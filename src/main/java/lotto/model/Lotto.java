@@ -25,7 +25,10 @@ public class Lotto {
     }
 
     // 당첨 결과 계산 기능
-    public void matcheNumber(List<List<Integer>> lotteryTickets, int bonusNumber) {
+    public void matcheNumber(List<List<Integer>> lotteryTickets, String bonusNumberString) {
+        Validator.bonusNumberValidate(bonusNumberString, numbers);
+        int bonusNumber = Integer.parseInt(bonusNumberString);
+
         for (List<Integer> lotteryTicket : lotteryTickets) {
             int matches = matchCount(lotteryTicket);
 
@@ -34,7 +37,7 @@ public class Lotto {
                 continue;
             }
 
-            incrementCount(matches, bonusNumber, lotteryTicket);
+            incrementCount(matches);
         }
     }
 
@@ -44,7 +47,7 @@ public class Lotto {
         return copyNumbers.size();
     }
 
-    private void incrementCount(int matches, int bonusNumber, List<Integer> lotteryTicket) {
+    private void incrementCount(int matches) {
         for (Result result : Result.values()) {
             if (result.getMatches() == matches && !result.getBonus()) {
                 result.incrementCount();

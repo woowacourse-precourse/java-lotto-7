@@ -40,14 +40,12 @@ public class LottoSystemController {
         boolean isBonusNumberValid = false;
         while (!isBonusNumberValid) {
             try {
-                user.specifyBonusNumber(inputView.inputBonusNumber(), lotto.getNumbers());
+                lotto.matcheNumber(user.getLotteryTickets(), inputView.inputBonusNumber());
                 isBonusNumberValid = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        lotto.matcheNumber(user.getLotteryTickets(), user.getBonusNumber());
 
         outputView.outputLottoWinningStatistics();
         outputView.outputLateOfReturn(user.lateOfReturn());

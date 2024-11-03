@@ -13,25 +13,14 @@ public class User {
 
     private final int money;
 
-    private int bonusNumber;
-
     public List<List<Integer>> lotteryTickets;
 
     public int getMoney() {
         return money;
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
-
     public List<List<Integer>> getLotteryTickets() {
         return lotteryTickets;
-    }
-
-    public void specifyBonusNumber(String bonusNumber, List<Integer> numbers) {
-        Validator.bonusNumberValidate(bonusNumber, numbers);
-        this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
     public void publishLotto(int count) {
