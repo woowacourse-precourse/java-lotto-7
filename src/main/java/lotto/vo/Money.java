@@ -1,5 +1,10 @@
 package lotto.vo;
 
+import static lotto.constants.Constants.MAX_USER_MONEY;
+import static lotto.constants.Constants.MIN_USER_MONEY;
+import static lotto.constants.Constants.MONEY_UNIT;
+import static lotto.constants.Constants.ZERO;
+
 import lotto.constants.ErrorMessages;
 
 public record Money(int money) {
@@ -14,7 +19,7 @@ public record Money(int money) {
     }
 
     private void validateRange(int money) {
-        if (isNegative(money) || isOver100kWon(money)) {
+        if (underMinMoney(money) || overMaxMoney(money)) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_MONEY_RANGE.getMessage());
         }
     }
@@ -26,17 +31,15 @@ public record Money(int money) {
     }
 
     private boolean hasInvalidUnit(int money) {
-        return money % 1_000 != 0;
+        return money % MONEY_UNIT != ZERO;
     }
 
-    private boolean isOver100kWon(int money) {
-        return money > 100_000;
+    private boolean overMaxMoney(int money) {
+        return money > MAX_USER_MONEY;
 
     }
 
-    private boolean isNegative(int money) {
-        return money <= 0;
+    private boolean underMinMoney(int money) {
+        return money <= MIN_USER_MONEY;
     }
-
-
 }
