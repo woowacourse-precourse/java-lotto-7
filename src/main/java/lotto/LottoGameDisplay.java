@@ -62,6 +62,7 @@ public class LottoGameDisplay {
     private int inputNumber() {
         String rawNumber = Console.readLine();
 
+        LottoGameValidator.checkIsBlank(rawNumber);
         LottoGameValidator.checkIsNumeric(rawNumber);
 
         return Integer.parseInt(rawNumber);
