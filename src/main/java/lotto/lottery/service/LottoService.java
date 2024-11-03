@@ -11,8 +11,8 @@ import lotto.lottery.service.port.RandomHolder;
 
 public class LottoService {
 
-    private List<Lotto> lottos = new ArrayList<>();
     private final RandomHolder randomHolder;
+    private List<Lotto> lottos = new ArrayList<>();
 
     public LottoService(RandomHolder randomHolder) {
         this.randomHolder = randomHolder;
