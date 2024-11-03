@@ -22,4 +22,20 @@ class WinningNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("당첨 번호는 중복되면 안 됩니다.");
     }
+
+    @Test
+    @DisplayName("당첨 번호를 7개 입력하면 예외를 던진다.")
+    void testLagerSizeThrowsException() {
+        assertThatThrownBy(() -> new WinningNumbers("1,2,3,4,5,6,7"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("숫자를 6개 입력해주세요.");
+    }
+
+    @Test
+    @DisplayName("당첨 번호를 2개 입력하면 예외를 던진다.")
+    void testSmallerSizeThrowsException() {
+        assertThatThrownBy(() -> new WinningNumbers("1,5"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("숫자를 6개 입력해주세요.");
+    }
 }
