@@ -29,11 +29,11 @@ public class LottoDraw {
     }
 
     private List<Integer> sortRandomNumbers() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
+        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
                 MIN_NUMBER_RANGE,
                 MAX_NUMBER_RANGE,
                 RANDOM_NUMBER_COUNT
-        );
+        ));
         Collections.sort(randomNumbers);
         return randomNumbers;
     }
