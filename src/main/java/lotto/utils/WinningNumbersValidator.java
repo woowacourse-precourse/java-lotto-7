@@ -13,4 +13,14 @@ public class WinningNumbersValidator {
             }
         }
     }
+
+    private static void validateInRange(List<String> inputNumbers) {
+        for (String number : inputNumbers) {
+            int num = Integer.parseInt(number);
+            if (num < 1 || num > 45) {
+                throw new IllegalArgumentException("[ERROR] 숫자는 1에서 45 사이여야 합니다.");
+            }
+        }
+    }
+
 }
