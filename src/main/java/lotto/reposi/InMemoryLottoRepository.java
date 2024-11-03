@@ -12,12 +12,12 @@ public class InMemoryLottoRepository implements LottoRepository {
 
     @Override
     public void saveLottoNumbers(List<List<Integer>> lottoNumbers) {
-        this.lottoNumbers = new ArrayList<>(lottoNumbers); // 깊은 복사를 통해 불변성 유지
+        this.lottoNumbers = lottoNumbers;
     }
 
     @Override
     public List<List<Integer>> getLottoNumbers() {
-        return new ArrayList<>(lottoNumbers); // 불변성 유지를 위해 복사본 반환
+        return lottoNumbers;
     }
 
     @Override
