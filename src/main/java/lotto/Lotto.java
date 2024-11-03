@@ -2,6 +2,7 @@ package lotto;
 
 import static lotto.Constants.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -28,6 +29,16 @@ public class Lotto {
                 .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER, LOTTO_NUMBER_START, LOTTO_NUMBER_END));
+    }
+
+    public int getMatchingCountWith(WinningNumber winningNumber) {
+        List<Number> matchingNumber = new ArrayList<>(List.copyOf(this.numbers));
+        matchingNumber.retainAll(winningNumber.get());
+        return matchingNumber.size();
+    }
+
+    public boolean isContained(BonusNumber bonusNumber) {
+        return this.numbers.contains(bonusNumber.get());
     }
 
     private void validate(List<Integer> numbers) {
