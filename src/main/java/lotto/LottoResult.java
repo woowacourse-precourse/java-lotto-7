@@ -23,7 +23,11 @@ public class LottoResult {
 
     public void printResults() {
         System.out.println("당첨 통계\n---");
-        rankCount.forEach((rank, count) -> System.out.printf("%s - %d개%n", rank, count));
+        System.out.printf("3개 일치 (5,000원) - %d개%n", getRankCount(Rank.FIFTH));
+        System.out.printf("4개 일치 (50,000원) - %d개%n", getRankCount(Rank.FOURTH));
+        System.out.printf("5개 일치 (1,500,000원) - %d개%n", getRankCount(Rank.THIRD));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", getRankCount(Rank.SECOND));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", getRankCount(Rank.FIRST));
     }
 
     public int getRankCount(Rank rank) {

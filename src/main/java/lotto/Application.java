@@ -33,7 +33,7 @@ public class Application {
     }
 
     private static Set<Integer> getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요 (쉼표로 구분).");
+        System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         Set<Integer> winningNumbers = parseWinningNumbers(input);
         InputHandler.validateWinningNumbers(winningNumbers);
