@@ -21,7 +21,7 @@ public class LottoResult {
         for (Rank rank : Rank.values()){
             profit+=rank.getPrize()*result.get(rank);
         }
-        return profit/budget;
+        return profit/budget*100;
     }
 
 }
