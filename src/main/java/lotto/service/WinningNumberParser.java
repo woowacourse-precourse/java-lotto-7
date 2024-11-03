@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.LottoErrorMessage;
 
-public class LottoParser {
+public class WinningNumberParser {
 
     public List<Integer> comma(String userInput) {
         String[] splitInput = userInput.split(",");
