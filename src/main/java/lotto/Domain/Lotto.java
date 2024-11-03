@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+    private static final int start = 1;
+    private static final int end = 45;
+    private static final int count = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -20,7 +23,7 @@ public class Lotto {
     }
 
     private static List<Integer> generateNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(start, end, count);
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }

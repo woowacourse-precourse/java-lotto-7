@@ -1,6 +1,8 @@
 package lotto.Domain;
 
+import java.util.List;
 import lotto.Messages.ErrorMessage;
+import lotto.Utils.Parser;
 import lotto.Utils.Validator;
 
 public class WinningNumbers {
@@ -12,6 +14,8 @@ public class WinningNumbers {
 
     public static WinningNumbers from(String input) {
         validateInput(input);
+        String[] numbers = input.split(DELIMITER,-1);
+        List<Integer> numberList = Parser.stringToNumberList(numbers);
         return new WinningNumbers();
     }
 
