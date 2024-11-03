@@ -1,5 +1,10 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
@@ -9,6 +14,10 @@ public class Application {
         int lottoCount = calculateLottoCount(purchasePrice);
 
         System.out.println(lottoCount + "개를 구매했습니다.");
+
+        List<Lotto> lottoPurchaseList = purchaseRandomLottoTickets(lottoCount);
+        printLottoPurchaseList(lottoPurchaseList);
+
     }
     public static int inputLottoPurchaseAmount() {
         try {
@@ -41,6 +50,19 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어지지 않습니다. 금액을 다시 입력해 주세요.");
         }
         return true;
+    }
+    public static List<Lotto> purchaseRandomLottoTickets(int count) {
+        List<Lotto> lottoPurchaseList = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            Lotto lotto = new Lotto(new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            lottoPurchaseList.add(lotto);
+        }
+        return lottoPurchaseList;
+    }
+    public static void printLottoPurchaseList(List<Lotto> LottoPurchaseList) {
+        for (Lotto lotto : LottoPurchaseList) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
 }
