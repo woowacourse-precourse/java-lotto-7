@@ -47,4 +47,19 @@ class LottoServiceTest {
         assertTrue(result.getProfitRate() > 0);
     }
 
+    @Test
+    @DisplayName("로또 결과 계산 시 유효한 티켓과 당첨 번호 확인")
+    void calculateResultWithInvalidTickets() {
+        LottoTickets tickets = LottoTickets.from(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 8))
+        ));
+        WinningNumbers winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
+        BonusNumber bonusNumber = BonusNumber.from("7", winningNumbers);
+
+        LottoResultDto result = lottoService.calculateResult(tickets, winningNumbers, bonusNumber);
+
+        assertEquals(0, result.getRankCounts().get(Rank.SIX));
+        assertEquals(1, result.getRankCounts().get(Rank.FIVE));
+    }
+
 }
