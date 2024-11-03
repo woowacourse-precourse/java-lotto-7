@@ -10,6 +10,7 @@ import java.util.Set;
 
 public class LottoManager {
     private PurchasedLottos purchasedLottos;
+
     public void run() {
         purchaseLotto();
         progressLottoGame();
@@ -36,6 +37,8 @@ public class LottoManager {
         List<Lotto> lottos = new ArrayList<>();
         int count = purchaseAmount / LottoConstants.LOTTO_PRICE;
 
+        OutputView.showPurchasedLottosQuantity(count);
+
         for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(
                     LottoConstants.MIN_LOTTO_NUMBER,
@@ -55,7 +58,13 @@ public class LottoManager {
 
     }
 
-    private
+    private void getWinningNumbers() {
+
+    }
+
+    private void getBonusNumber() {
+
+    }
 
     private void announceLottoResult() {
 
