@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.RandomNumber;
@@ -9,6 +10,15 @@ public class LottoService {
 
     public int getPurchaseCount(int purchaseAmount) {
         return purchaseAmount / DIVIDED_AMOUNT;
+    }
+
+    public List<Lotto> makeLottos(int purchaseCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < purchaseCount; i++) {
+            Lotto lotto = createLotto();
+            lottos.add(lotto);
+        }
+        return lottos;
     }
 
     private Lotto createLotto() {
