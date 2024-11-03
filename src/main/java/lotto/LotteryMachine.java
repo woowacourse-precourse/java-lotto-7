@@ -16,7 +16,6 @@ public class LotteryMachine {
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
     private final List<LottoResult> lottoResults = new ArrayList<>();
-    private boolean isDrawn;
 
     public LotteryMachine(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         this.winningNumbers = winningNumbers;
@@ -30,8 +29,6 @@ public class LotteryMachine {
 
             this.lottoResults.add(new LottoResult(countMatchNumbers, matchBonusNumber));
         }
-
-        completeDraw();
     }
 
     public WinningStatistic generateWinningStatisticBy(Price price) {
@@ -42,15 +39,7 @@ public class LotteryMachine {
         return WinningStatistic.from(lottoResults, price);
     }
 
-    private void completeDraw() {
-        this.isDrawn = true;
-    }
-
     private boolean drawnNotYet() {
-        return !alreadyDrawn();
-    }
-
-    private boolean alreadyDrawn() {
-        return this.isDrawn;
+        return lottoResults.isEmpty();
     }
 }
