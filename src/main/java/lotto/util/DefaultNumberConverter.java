@@ -2,8 +2,9 @@ package lotto.util;
 
 import lotto.exception.GeneralExceptionMessages;
 
-public class DefaultNumberConverter{
+public class DefaultNumberConverter implements NumberConverter{
 
+    @Override
     public int convertNumber(String input) {
         String trimmedInput = input.trim();
         if (trimmedInput.isEmpty() || !trimmedInput.matches("\\d+")) {
