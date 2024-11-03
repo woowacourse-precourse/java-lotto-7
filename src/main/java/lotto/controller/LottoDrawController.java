@@ -26,6 +26,7 @@ public class LottoDrawController {
 			return new WinningLotto(winningNumbers, bonusNumber, lottoCreator);
 		} catch (IllegalArgumentException exception) {
 			outputView.printErrorMessage(exception.getMessage());
+			return getWinningLotto();
 		}
 	}
 
