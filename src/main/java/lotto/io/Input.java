@@ -117,7 +117,7 @@ public class Input {
                 .map(Integer::parseInt)
                 .toList();
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
-        if(nonDuplicateNumbers.size() != numbers.size()) {
+        if (nonDuplicateNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorCode.WIN_NUMBER_DUPLICATE.getErrorMessage());
         }
     }
@@ -132,8 +132,8 @@ public class Input {
 
     private void validateBonusNumberDuplicate(String input) {
         int bonusNumber = Integer.parseInt(input);
-        if(winningNumber.contains(bonusNumber)){
-            throw new IllegalArgumentException(ErrorCode.WIN_NUMBER_DUPLICATE.getErrorMessage());
+        if (winningNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorCode.BONUS_NUMBER_DUPLICATE.getErrorMessage());
         }
     }
 
