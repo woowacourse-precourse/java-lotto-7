@@ -40,8 +40,8 @@ public class OutputView {
             entireWinningMoney += (entry.getValue() * entry.getKey().getMoney());
         }
 
-        System.out.println((entireWinningMoney / (numberOfLottery * LOTTERY_PRICE)) * 100);
-        double rateOfReturn = roundToTwoDecimalPlaces((entireWinningMoney / (numberOfLottery * LOTTERY_PRICE)) * 100);
+        double rateOfReturn = roundToTwoDecimalPlaces(
+                (entireWinningMoney / (double) (numberOfLottery * LOTTERY_PRICE)) * 100);
 
         System.out.println("총 수익률은 " + formatDoubleNumber(rateOfReturn) + "%입니다.");
     }
@@ -54,8 +54,7 @@ public class OutputView {
         return String.format("%,.1f", number);
     }
 
-    private double roundToTwoDecimalPlaces(long number) {
-        double changedNumber = (double) number;
-        return Math.round(changedNumber * 10) / 10.0;
+    private double roundToTwoDecimalPlaces(double number) {
+        return Math.round(number * 10) / 10.0;
     }
 }
