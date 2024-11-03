@@ -9,9 +9,12 @@ public class MyWallet {
 
     private List<Lotto> lottos;
 
+    private int winnings;
+
     public MyWallet(int money) {
         this.money = money;
         this.lottos = new ArrayList<>();
+        this.winnings = 0;
     }
 
     public List<Lotto> getLottos() {
@@ -22,9 +25,14 @@ public class MyWallet {
         return money;
     }
 
+    public int getWinnings() {
+        return winnings;
+    }
+
     public void buyLottos(int money) {
         List<Lotto> newLottos = LottoVendingMachine.issueNewLottos(money);
         lottos.addAll(newLottos);
     }
+
 
 }
