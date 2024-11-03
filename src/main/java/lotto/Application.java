@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -82,18 +84,24 @@ public class Application {
                 .toList();
     }
 
+    private static Map<LottoResult, Integer> getLottoResultCounts(List<LottoResult> lottoResults) {
+        return lottoResults.stream()
+                .collect(Collectors.groupingBy(result -> result))
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().size()));
+    }
+
     private static void printLottoResult(int purchaseAmount, List<LottoResult> lottoResults) {
         System.out.println("당첨 통계");
         System.out.println("---------");
         List<LottoResult> printSequence = LottoResult.values.stream()
                 .filter(result -> result != LottoResult.NONE)
                 .toList();
+        Map<LottoResult, Integer> lottoResultCount = getLottoResultCounts(lottoResults);
         int totalPrize = printSequence.stream()
                 .mapToInt(result -> {
-                    int count = lottoResults.stream()
-                            .filter(result::equals)
-                            .toList()
-                            .size();
+                    int count = lottoResultCount.getOrDefault(result, 0);
                     System.out.printf("%s - %d개\n", result.getDescription(), count);
                     return result.getPrize() * count;
                 }).sum();

@@ -93,6 +93,6 @@ public class WinningLottoTest {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             winningLotto.match(lotto);
         })
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalStateException.class);
     }
 }
