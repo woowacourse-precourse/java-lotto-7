@@ -36,7 +36,6 @@ public class LottoTickets {
         // lottos의 각 로또에 대해 당첨 번호를 계산하고, 결과를 lottoPrizes에 저장
         lottos.stream()
                 .map(winningLotto::getLottoPrize)
-                .filter(lottoPrize -> lottoPrize != LottoPrize.NO_PRIZE)
                 .forEach(lottoPrize ->
                         lottoPrizes.put(lottoPrize, lottoPrizes.get(lottoPrize) + 1) // 카운트 증가
                 );
