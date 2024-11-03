@@ -17,18 +17,19 @@ public class PurchasedLotto {
         size = lottos.size();
     }
 
-    public static PurchasedLotto generateLottos(int generateCount, Supplier<List<Integer>> supplier){
+    public static PurchasedLotto generateLottos(int generateCount, Supplier<List<Integer>> supplier) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < generateCount; i++) {
             lottos.add(Lotto.generateLotto(supplier.get()));
         }
         return new PurchasedLotto(lottos);
     }
+
     public int getSize() {
         return size;
     }
 
-    public Map<Prize, Integer> checkWin(List<Integer> winNumber, int bonusNumber){
+    public Map<Prize, Integer> checkWin(List<Integer> winNumber, int bonusNumber) {
         Map<Prize, Integer> result = new HashMap<>();
         for (Lotto lotto : lottos) {
             result.merge(lotto.checkWin(winNumber, bonusNumber), 1, Integer::sum);

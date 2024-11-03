@@ -23,30 +23,28 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
-    public static Lotto generateLotto(List<Integer> numbers){
+    public static Lotto generateLotto(List<Integer> numbers) {
         List<Integer> sortedNumbers = numbers.stream()
                 .sorted()
                 .toList();
         return new Lotto(sortedNumbers);
     }
 
-    public Prize checkWin(List<Integer> winningNumber, int bonusNumber){
+    public Prize checkWin(List<Integer> winningNumber, int bonusNumber) {
         int result = 0;
         for (Integer i : winningNumber) {
             if (numbers.contains(i)) result++;
         }
         boolean bonusTaken = numbers.contains(bonusNumber);
-        if(result == 6) return Prize.FIRST_PLACE;
-        else if(result == 5 && bonusTaken) return Prize.SECOND_PLACE;
-        else if(result == 5) return Prize.THIRD_PLACE;
-        else if(result == 4) return Prize.FOURTH_PLACE;
-        else if(result == 3) return Prize.FIFTH_PLACE;
+        if (result == 6) return Prize.FIRST_PLACE;
+        else if (result == 5 && bonusTaken) return Prize.SECOND_PLACE;
+        else if (result == 5) return Prize.THIRD_PLACE;
+        else if (result == 4) return Prize.FOURTH_PLACE;
+        else if (result == 3) return Prize.FIFTH_PLACE;
         return Prize.NOTHING;
     }
 
-
-    boolean isSorted(){
+    boolean isSorted() {
         return numbers.equals(numbers.stream().sorted().toList());
     }
 }

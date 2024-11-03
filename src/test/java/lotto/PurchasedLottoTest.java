@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PurchasedLottoTest {
 
     @Test
-    void 로또_생성(){
+    void 로또_생성() {
         //given
         int generateCount = 10;
 
@@ -21,7 +21,7 @@ class PurchasedLottoTest {
         PurchasedLotto purchasedLotto = PurchasedLotto
                 .generateLottos(
                         generateCount,
-                        () -> Randoms.pickUniqueNumbersInRange(1,45,6)
+                        () -> Randoms.pickUniqueNumbersInRange(1, 45, 6)
                 );
 
         //then
@@ -29,7 +29,7 @@ class PurchasedLottoTest {
     }
 
     @Test
-    void 로또_당첨_검사_1등(){
+    void 로또_당첨_검사_1등() {
         //given
         int generateCount = 3;
         PurchasedLotto purchasedLotto = PurchasedLotto.generateLottos(generateCount, () -> List.of(1, 2, 3, 4, 5, 6));
@@ -44,8 +44,9 @@ class PurchasedLottoTest {
         assertThat(result.getOrDefault(Prize.FOURTH_PLACE, 0)).isZero();
         assertThat(result.getOrDefault(Prize.FIFTH_PLACE, 0)).isZero();
     }
+
     @Test
-    void 로또_당첨_검사_2등(){
+    void 로또_당첨_검사_2등() {
         //given
         int generateCount = 3;
         PurchasedLotto purchasedLotto = PurchasedLotto.generateLottos(generateCount, () -> List.of(1, 2, 3, 4, 5, 6));
@@ -60,5 +61,4 @@ class PurchasedLottoTest {
         assertThat(result.getOrDefault(Prize.FOURTH_PLACE, 0)).isZero();
         assertThat(result.getOrDefault(Prize.FIFTH_PLACE, 0)).isZero();
     }
-
 }

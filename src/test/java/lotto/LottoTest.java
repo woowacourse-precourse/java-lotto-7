@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
     @Test
     void 로또_번호의_개수가_6개를_초과하면_예외가_발생한다() {
         assertThatThrownBy(() -> Lotto.generateLotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -57,7 +58,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_당첨_검사_1등(){
+    void 로또_당첨_검사_1등() {
         //given
         List<Integer> unorderedList = List.of(1, 2, 3, 4, 5, 6);
         //when
@@ -66,8 +67,9 @@ class LottoTest {
         //then
         assertThat(lotto.checkWin(List.of(1, 2, 3, 4, 5, 6), 7)).isEqualTo(Prize.FIRST_PLACE);
     }
+
     @Test
-    void 로또_당첨_검사_2등(){
+    void 로또_당첨_검사_2등() {
         //given
         List<Integer> unorderedList = List.of(1, 2, 3, 4, 5, 6);
         //when
@@ -78,7 +80,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_당첨_검사_낙첨(){
+    void 로또_당첨_검사_낙첨() {
         //given
         List<Integer> unorderedList = List.of(1, 2, 3, 4, 5, 6);
         //when

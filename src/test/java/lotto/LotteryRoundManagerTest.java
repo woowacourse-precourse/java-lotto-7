@@ -110,7 +110,7 @@ class LotteryRoundManagerTest {
                 .isThrownBy(() -> lotteryRoundManager.setWinningNumber(wrongList, bonusNumber))
                 .withMessageStartingWith(ERROR_MESSAGE);
     }
-    
+
     @DisplayName("로또 당첨번호는 6개를 초과하여 존재하면 안된다.")
     @Test
     void 로또_당첨_번호는_6개를_초과하면_안된다() {
@@ -138,9 +138,9 @@ class LotteryRoundManagerTest {
                 .isThrownBy(() -> lotteryRoundManager.setWinningNumber(wrongList, bonusNumber))
                 .withMessageStartingWith(ERROR_MESSAGE);
     }
-    
+
     @Test
-    void 당첨_수익률_계산(){
+    void 당첨_수익률_계산() {
         //given
         Map<Prize, Integer> winResult = new HashMap<>();
         winResult.put(Prize.FIFTH_PLACE, 1);
