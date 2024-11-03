@@ -3,24 +3,28 @@ package lotto.domain;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public enum Winning {
-    FIRST(6, new BigInteger("2000000000"), Winning::isFirst),
-    THIRD(5, new BigInteger("1500000"), Winning::isThird),
-    FOURTH(4, new BigInteger("50000"), Winning::isFourth),
-    FIFTH(3, new BigInteger("5000"), Winning::isFifth),
-    NONE(2, BigInteger.ZERO, Winning::isNone);
+    FIRST(5, 6, new BigInteger("2000000000"), Winning::isFirst),
+    THIRD(3, 5, new BigInteger("1500000"), Winning::isThird),
+    FOURTH(2, 4, new BigInteger("50000"), Winning::isFourth),
+    FIFTH(1, 3, new BigInteger("5000"), Winning::isFifth),
+    NONE(0, 2, BigInteger.ZERO, Winning::isNone);
 
+    private final int order;
     private final int condition;
     private final BigInteger prize;
     private final Function<Integer, Boolean> match;
 
-    Winning(int condition, BigInteger prize, Function<Integer, Boolean> match) {
+    Winning(int order, int condition, BigInteger prize, Function<Integer, Boolean> match) {
+        this.order = order;
         this.condition = condition;
         this.prize = prize;
         this.match = match;
@@ -77,5 +81,19 @@ public enum Winning {
         Winning winning = winningCount.getKey();
         BigInteger count = BigInteger.valueOf(winningCount.getValue());
         return winning.prize.multiply(count);
+    }
+
+    public static Stream<Winning> valuesAsOrderedStream() {
+        return Stream.of(Winning.values())
+                .sorted(Comparator.comparingInt(winning -> winning.order))
+                .filter(winning -> winning.order != 0);
+    }
+
+    public int getCondition() {
+        return condition;
+    }
+
+    public BigInteger getPrize() {
+        return prize;
     }
 }

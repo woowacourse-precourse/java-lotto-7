@@ -27,10 +27,16 @@ public class AppRunner {
     public void run() {
         String inputAmount = inputView.requestPurchaseAmount();
         LottoReceipt lottoReceipt = controller.readPurchaseAmount(inputAmount);
+
         String inputNumbers = inputView.requestWinningLottoNumbers();
         inputValidator.validateDigitAndDelimiterOnly(inputNumbers);
+
         WinningLotto winningLotto = controller.readWinningLottoNumbers(inputNumbers);
         WinningReport winningReport = controller.getReport(lottoReceipt, winningLotto);
+
+        String winningDetails = controller.sendWinningDetails(winningReport.getWinningCounts());
+        outputView.printWinningDetails(winningDetails);
+
         BigInteger totalPrize = Winning.tellTotalPrize(winningReport.getWinningCounts());
         BigDecimal rateOfReturn = lottoReceipt.calculateRateOfReturn(totalPrize);
         outputView.printRateOfReturn(rateOfReturn.toString());

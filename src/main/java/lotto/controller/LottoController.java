@@ -1,11 +1,15 @@
 package lotto.controller;
 
+import static lotto.MessageContainer.WINNING_DETAILS_TEMPLATE;
 import static lotto.view.ViewConstants.VIEW_DELIMITER;
 
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.domain.LottoReceipt;
+import lotto.domain.Winning;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningReport;
 import lotto.service.LottoService;
@@ -41,5 +45,18 @@ public class LottoController {
 
     private int toInteger(String input) {
         return Integer.parseInt(input);
+    }
+
+    public String sendWinningDetails(Map<Winning, Integer> winningCounts) {
+        return Winning.valuesAsOrderedStream()
+                .map(winning ->
+                        String.format(
+                                WINNING_DETAILS_TEMPLATE,
+                                winning.getCondition(),
+                                winning.getPrize(),
+                                winningCounts.get(winning)
+                        )
+                )
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 }
