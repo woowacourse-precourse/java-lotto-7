@@ -1,7 +1,7 @@
 package lotto.system.lottoGetter;
 
-import static lotto.system.unit.LottoNumber.LOTTO_NUMBER_LOWER_BOUND;
-import static lotto.system.unit.LottoNumber.LOTTO_NUMBER_UPPER_BOUND;
+import static lotto.system.utils.constants.LottoConstants.LOTTO_NUMBER_LOWER_BOUND;
+import static lotto.system.utils.constants.LottoConstants.LOTTO_NUMBER_UPPER_BOUND;
 import static lotto.system.utils.constants.LottoConstants.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -33,8 +33,7 @@ public class LottoTicketFactory { // 로또 수량 만큼 로또 티켓들을 �
 
 
     private static List<LottoNumber> generateUniqueNumbersInRange() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND,
-                        LOTTO_SIZE)
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND, LOTTO_SIZE)
                 .stream()
                 .map(LottoNumber::of)
                 .sorted()

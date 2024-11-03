@@ -1,7 +1,9 @@
 package lotto.user;
 
+import static lotto.system.utils.constants.LottoConstants.LOTTO_NUMBER_LOWER_BOUND;
+import static lotto.system.utils.constants.LottoConstants.LOTTO_NUMBER_UPPER_BOUND;
+
 import java.util.List;
-import lotto.system.unit.LottoNumber;
 
 public class Lotto { // 사용자 입력 로또 번호 검증 후 객체 생성
 
@@ -31,9 +33,9 @@ public class Lotto { // 사용자 입력 로또 번호 검증 후 객체 생성
     }
 
     private static void validateNumberRange(int number) {
-        if (number < LottoNumber.LOTTO_NUMBER_LOWER_BOUND || LottoNumber.LOTTO_NUMBER_UPPER_BOUND < number) {
+        if (number < LOTTO_NUMBER_LOWER_BOUND || LOTTO_NUMBER_UPPER_BOUND < number) {
             throw new IllegalArgumentException(String.format("[ERROR] 로또 번호는 %d부터 %d사이의 숫자여야 합니다.",
-                    LottoNumber.LOTTO_NUMBER_LOWER_BOUND, LottoNumber.LOTTO_NUMBER_UPPER_BOUND));
+                    LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND));
         }
     }
 

@@ -1,7 +1,7 @@
 package lotto.system;
 
-import static lotto.system.unit.LottoNumber.LOTTO_NUMBER_LOWER_BOUND;
-import static lotto.system.unit.LottoNumber.LOTTO_NUMBER_UPPER_BOUND;
+import static lotto.system.utils.constants.LottoConstants.LOTTO_NUMBER_LOWER_BOUND;
+import static lotto.system.utils.constants.LottoConstants.LOTTO_NUMBER_UPPER_BOUND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
