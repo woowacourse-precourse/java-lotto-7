@@ -22,4 +22,8 @@ public class OutputView {
             }
         }
     }
+
+    public static void printRateOfReturn(long buy, long prize) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", (prize / (double) buy * 100));
+    }
 }
