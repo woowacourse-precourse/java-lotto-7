@@ -136,5 +136,22 @@ public class Application {
         int earnings = firstCount * 2000000000 + secondCount * 30000000 + thirdCount * 1500000 + fourthCount * 50000 + fifthCount * 5000;
         double earningsRate = (double) (earnings - money) / money * 100;
         earningsRate = Math.round(earningsRate * 100 / 100.0);
+
+        // 8. 당첨 통계 출력
+        String first = "6개 일치 (2,000,000,000원) - %d개".formatted(firstCount);
+        String second = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개".formatted(secondCount);
+        String third = "5개 일치 (1,500,000원) - %d개".formatted(thirdCount);
+        String fourth = "4개 일치 (50,000원) - %d개".formatted(fourthCount);
+        String fifth = "3개 일치 (5,000원) - %d개".formatted(fifthCount);
+        String result = "총 수익률은 %.1f%%입니다.".formatted(earningsRate);
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(first);
+        System.out.println(second);
+        System.out.println(third);
+        System.out.println(fourth);
+        System.out.println(fifth);
+        System.out.println(result);
     }
 }
