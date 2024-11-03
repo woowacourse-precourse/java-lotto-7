@@ -45,7 +45,7 @@ class PurchaseMoneyValidatorTest {
         // then
         Assertions.assertThrows(IllegalArgumentException.class,
                 // when
-                () -> PurchaseMoneyValidator.validateEmptyValue(testTarget,null));
+                () -> PurchaseMoneyValidator.validateEmptyValue(testTarget));
     }
 
     @Test
@@ -55,7 +55,7 @@ class PurchaseMoneyValidatorTest {
         String testTarget = " 1000";
         // then
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> PurchaseMoneyValidator.validateWhitespaceAtHeadOrTail(testTarget,null));
+                () -> PurchaseMoneyValidator.validateWhitespaceAtHeadOrTail(testTarget));
     }
 
     @Test
@@ -65,7 +65,7 @@ class PurchaseMoneyValidatorTest {
         String testTarget = "1000 ";
         // then
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> PurchaseMoneyValidator.validateWhitespaceAtHeadOrTail(testTarget,null));
+                () -> PurchaseMoneyValidator.validateWhitespaceAtHeadOrTail(testTarget));
     }
 
     @Test

@@ -4,7 +4,9 @@ import lotto.util.constant.LottoConstants;
 
 public class PurchaseMoneyValidator extends CommonValidator {
 
-    private static final String ERR_MSG_WRONG_PURCHASE_INPUT ="[ERROR] 로또 구입 금액은 1,000원 단위의 양의 정수만 가능합니다.";
+    private static final String ERR_MSG_NOT_DEVISIBLE_BY_BASE_UNIT ="[ERROR] 로또는 1,000원 단위로만 구입이 가능합니다.";
+    private static final String ERR_MSG_NOT_DIGIT_INPUT ="[ERROR] 로또 구입 금액은 숫자로만 구성되어야합니다.";
+    private static final String ERR_MSG_START_WITH_ZERO_INPUT ="[ERROR] 로또 구입 금액은 0으로 시작할 수 없습니다..";
 
     /**
      * 사용자에게 입력받은 로또 구입 금액이 유효한 입력값인지 검사
@@ -21,17 +23,17 @@ public class PurchaseMoneyValidator extends CommonValidator {
      * @param inputPurchaseMoney
      */
     public static void validatePurchaseMoney(String inputPurchaseMoney) throws IllegalArgumentException {
-        validateEmptyValue(inputPurchaseMoney, ERR_MSG_WRONG_PURCHASE_INPUT);
-        validateWhitespaceAtHeadOrTail(inputPurchaseMoney, ERR_MSG_WRONG_PURCHASE_INPUT);
-        validateEachCharacterIsDigit(inputPurchaseMoney, ERR_MSG_WRONG_PURCHASE_INPUT);
-        validateStartWithZero(inputPurchaseMoney, ERR_MSG_WRONG_PURCHASE_INPUT);
+        validateEmptyValue(inputPurchaseMoney);
+        validateWhitespaceAtHeadOrTail(inputPurchaseMoney);
+        validateEachCharacterIsDigit(inputPurchaseMoney, ERR_MSG_NOT_DIGIT_INPUT);
+        validateStartWithZero(inputPurchaseMoney, ERR_MSG_START_WITH_ZERO_INPUT);
         validateDivisibleByBaseUnit(inputPurchaseMoney);
     }
 
     static void validateDivisibleByBaseUnit(String validateTarget) throws IllegalArgumentException {
         long target = Long.parseLong(validateTarget);
         if (target % LottoConstants.LOTTO_BASE_UNIT != LottoConstants.ZERO) {
-            throw new IllegalArgumentException(ERR_MSG_WRONG_PURCHASE_INPUT);
+            throw new IllegalArgumentException(ERR_MSG_NOT_DEVISIBLE_BY_BASE_UNIT);
         }
     }
 

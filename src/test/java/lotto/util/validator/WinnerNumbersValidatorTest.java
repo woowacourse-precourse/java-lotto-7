@@ -28,7 +28,7 @@ class WinnerNumbersValidatorTest {
         assertThrows(IllegalArgumentException.class,
 
                 //when
-                () -> WinnerNumbersValidator.validateEmptyValue(winnerNumberInput,null));
+                () -> WinnerNumbersValidator.validateEmptyValue(winnerNumberInput));
     }
 
     @Test
@@ -41,7 +41,7 @@ class WinnerNumbersValidatorTest {
         assertThrows(IllegalArgumentException.class,
 
                 //when
-                () -> WinnerNumbersValidator.validateWhitespaceAtHeadOrTail(winnerNumberInput, null));
+                () -> WinnerNumbersValidator.validateWhitespaceAtHeadOrTail(winnerNumberInput));
     }
 
     @Test
@@ -54,7 +54,7 @@ class WinnerNumbersValidatorTest {
         assertThrows(IllegalArgumentException.class,
 
                 //when
-                () -> WinnerNumbersValidator.validateWhitespaceAtHeadOrTail(winnerNumberInput, null));
+                () -> WinnerNumbersValidator.validateWhitespaceAtHeadOrTail(winnerNumberInput));
     }
 
     @Test

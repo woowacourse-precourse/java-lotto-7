@@ -2,7 +2,8 @@ package lotto.util.validator;
 
 public class WinnerNumbersValidator extends CommonValidator {
 
-    private static final String ERR_MSG_WRONG_INPUT_WINNER_NUMBERS = "[ERROR] 로또 당첨 번호는 ,로 분리된 정수만 입력이 가능합니다.";
+    private static final String ERR_MSG_NOT_DIGIT_WINNER_NUMBERS = "[ERROR] 로또 당첨 번호는 ,를 제외하고 숫자로만 구성되어야 합니다.";
+    private static final String ERR_MSG_START_WITH_ZERO_WHEN_SPLIT_BY_COMMA = "[ERROR] 각각의 숫자는 0으로 시작할 수 없습니다.";
     private static final String NAME_DELIMITER = ",";
 
     /**
@@ -14,22 +15,22 @@ public class WinnerNumbersValidator extends CommonValidator {
      */
 
     public static void validateWinnerNumber(String inputWinnerNumber) throws IllegalArgumentException {
-        validateEmptyValue(inputWinnerNumber, ERR_MSG_WRONG_INPUT_WINNER_NUMBERS);
-        validateWhitespaceAtHeadOrTail(inputWinnerNumber,ERR_MSG_WRONG_INPUT_WINNER_NUMBERS);
-        validateEachCharacterIsDigit(inputWinnerNumber.replaceAll(",",""),ERR_MSG_WRONG_INPUT_WINNER_NUMBERS);
+        validateEmptyValue(inputWinnerNumber);
+        validateWhitespaceAtHeadOrTail(inputWinnerNumber);
+        validateEachCharacterIsDigit(inputWinnerNumber.replaceAll(",",""),ERR_MSG_NOT_DIGIT_WINNER_NUMBERS);
         validateEachNumberIsEmpty(inputWinnerNumber);
         validateEachNumberStartWithZero(inputWinnerNumber);
     }
 
     private static void validateEachNumberStartWithZero(String validateTarget){
         for (String eachTarget : validateTarget.split(NAME_DELIMITER)) {
-            validateStartWithZero(eachTarget, ERR_MSG_WRONG_INPUT_WINNER_NUMBERS);
+            validateStartWithZero(eachTarget, ERR_MSG_START_WITH_ZERO_WHEN_SPLIT_BY_COMMA);
         }
     }
 
     private static void validateEachNumberIsEmpty(String validateTarget){
         for (String eachTarget : validateTarget.split(NAME_DELIMITER)) {
-            validateEmptyValue(eachTarget, ERR_MSG_WRONG_INPUT_WINNER_NUMBERS);
+            validateEmptyValue(eachTarget);
         }
     }
 }
