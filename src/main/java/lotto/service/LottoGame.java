@@ -43,7 +43,7 @@ public class LottoGame {
 
         }
 
-        OutputView.printLottoResult(winningResultCount);
+        OutputView.printLottoResult(winningResultCount,calculateProfitStatics(totalPrize));
 
     }
 
@@ -66,6 +66,13 @@ public class LottoGame {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
+    }
+
+    private double calculateProfitStatics(int totalPrize){
+
+        int totalSpent = userLottoList.size() * 1000;
+
+        return (double) totalPrize / totalSpent * 100;
     }
 
 

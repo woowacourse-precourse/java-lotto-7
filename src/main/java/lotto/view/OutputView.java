@@ -19,7 +19,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printLottoResult(Map<WinningResult, Integer> winningResultCount){
+    public static void printLottoResult(Map<WinningResult, Integer> winningResultCount, double profitRate){
 
 
         System.out.println("당첨 통계");
@@ -32,5 +32,7 @@ public class OutputView {
                     winningResultCount.get(result)
             );
         }
+
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 }
