@@ -14,8 +14,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
-    // TODO: 미션에서 제공한 테스트라 통과 해야함
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {

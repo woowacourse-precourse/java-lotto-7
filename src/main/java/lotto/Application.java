@@ -19,8 +19,8 @@ public class Application {
         int lottoCount = inputMoney / 1000;
 
         // 3. 로또 발행
-        LottoMaker lottoMaker = new LottoMaker(lottoCount);
-        lottoMaker.makeLottos();
+        LottoMaker lottoMaker = new LottoMaker();
+        lottoMaker.makeLottos(lottoCount);
         List<Lotto> lottos = lottoMaker.getLottos();
 
         // 4. 발행한 로또 출력

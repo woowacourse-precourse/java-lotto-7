@@ -14,8 +14,8 @@ class LottoMakerTest {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     int lottoCount = 5;
-                    LottoMaker lottoMaker = new LottoMaker(lottoCount);
-                    lottoMaker.makeLottos();
+                    LottoMaker lottoMaker = new LottoMaker();
+                    lottoMaker.makeLottos(lottoCount);
 
                     assertThat(lottoMaker.getLottos()).hasSize(lottoCount);
                 },
@@ -32,8 +32,8 @@ class LottoMakerTest {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     int lottoCount = 5;
-                    LottoMaker lottoMaker = new LottoMaker(lottoCount);
-                    lottoMaker.makeLottos();
+                    LottoMaker lottoMaker = new LottoMaker();
+                    lottoMaker.makeLottos(lottoCount);
                     List<Lotto> lottos = lottoMaker.getLottos();
 
                     assertThat(lottos.get(0).getNumbers()).contains(8, 21, 23, 41, 42, 43);

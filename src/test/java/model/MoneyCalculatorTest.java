@@ -17,7 +17,7 @@ class MoneyCalculatorTest {
 
     @Test
     void 당첨_금액_계산() {
-        List<Integer> matchNumberCount = List.of(1, 1, 1, 1, 1, 1, 1);
+        List<Integer> matchNumberCount = List.of(1, 1, 1, 1, 1, 1, 1, 1);
         MoneyCalculator moneyCalculator = new MoneyCalculator(matchNumberCount);
 
         long winningAmount = moneyCalculator.getWinningAmount();

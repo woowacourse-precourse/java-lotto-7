@@ -6,15 +6,11 @@ import java.util.List;
 
 public class LottoMaker {
 
-    private final int lottoCount;
-    List<Lotto> lottos;
+    private List<Lotto> lottos;
 
-    public LottoMaker(int lottoCount) {
-        this.lottoCount = lottoCount;
+    public void makeLottos(int lottoCount) {
         lottos = new ArrayList<>(lottoCount);
-    }
 
-    public void makeLottos() {
         for (int i = 0; i < lottoCount; i++) {
             Lotto lotto = new Lotto(getRandomNumbers());
             lottos.add(lotto);

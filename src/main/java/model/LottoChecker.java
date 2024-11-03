@@ -25,6 +25,7 @@ public class LottoChecker {
         for (Lotto lotto : lottos) {
             int matchCount = checkLotto(lotto);
             matchNumberCount[matchCount]++;
+
             if ((bonusFlag && matchCount == 5) || matchCount == 6) {
                 matchNumberCount[matchCount]--;
                 matchNumberCount[matchCount + 1]++;
