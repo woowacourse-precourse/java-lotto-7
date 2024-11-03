@@ -1,14 +1,14 @@
 package lotto.service;
 
-import static lotto.config.LottoRule.LOTTO_PRICE;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Rank;
 import lotto.generator.SortedLottoNumberGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static lotto.config.LottoRule.LOTTO_PRICE;
 
 public class LottoService {
 
@@ -28,9 +28,8 @@ public class LottoService {
     }
 
     public LottoResult match(List<Lotto> lottos, List<Integer> winNumber, int bonusNumber) {
-        List<Rank> ranks = lottos.stream()
+        return new LottoResult(lottos.stream()
                 .map(lotto -> Rank.match(lotto, winNumber, bonusNumber))
-                .toList();
-        return new LottoResult(ranks);
+                .toList());
     }
 }
