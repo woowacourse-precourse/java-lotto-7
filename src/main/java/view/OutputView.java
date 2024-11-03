@@ -1,7 +1,8 @@
 package view;
 
+import static view.message.ViewMessage.*;
+
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
@@ -12,19 +13,19 @@ import lotto.LottoResult;
 public class OutputView {
 
     public static void printPurchaseAmountMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PURCHASE_AMOUNT_MESSAGE);
     }
 
     public static void printLottoNumbersMessage() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        System.out.println(LOTTO_NUMBERS_MESSAGE);
     }
 
     public static void printBonusNumberMessage() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println(BONUS_NUMBER_MESSAGE);
     }
 
     public static void printPurchaseQuantity(BigDecimal purchaseQuantity) {
-        System.out.println("\n" + purchaseQuantity + "개를 구매했습니다.");
+        System.out.printf(PURCHASE_QUANTITY_MESSAGE, purchaseQuantity);
     }
 
     public static void printLottos(Set<Lotto> lottos) {
@@ -34,7 +35,8 @@ public class OutputView {
     }
 
     public static void printLottoResult(LottoResult lottoResult) {
-        printResultMessage();
+        System.out.println(LOTTO_RESULT_MESSAGE);
+
         Map<LottoRank, Integer> rankCounts = lottoResult.getRankCounts();
 
         Arrays.stream(LottoRank.values())
@@ -42,23 +44,17 @@ public class OutputView {
               .forEach(rank -> printLottoRank(rank, rankCounts.get(rank)));
     }
 
-    private static void printResultMessage() {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
-    }
-
     private static void printLottoRank(LottoRank lottoRank, int matchCount) {
-        DecimalFormat prizeFormatter = new DecimalFormat("#,###");
-        String formattedPrize = prizeFormatter.format(lottoRank.getPrize());
+        String formattedPrize = THOUSANDS_COMMA_FORMAT.format(lottoRank.getPrize());
 
-        System.out.printf("%d개 일치", lottoRank.getWinningCount());
+        System.out.printf(MATCH_COUNT_MESSAGE, lottoRank.getWinningCount());
         if (lottoRank.isBonusMatched()) {
-            System.out.print(", 보너스 볼 일치");
+            System.out.print(MATCHED_BONUS_NUMBER_MESSAGE);
         }
-        System.out.printf(" (%s원) - %d개\n", formattedPrize, matchCount);
+        System.out.printf(PRIZE_AND_RANK_COUNT_MESSAGE, formattedPrize, matchCount);
     }
 
     public static void printReturnOnInvestment(BigDecimal returnOnInvestment) {
-        System.out.printf("총 수익률은 %,.1f%%입니다.%n", returnOnInvestment);
+        System.out.printf(RETURN_ON_INVESTMENT_MESSAGE, returnOnInvestment);
     }
 }
