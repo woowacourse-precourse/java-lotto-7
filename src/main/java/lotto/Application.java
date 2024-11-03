@@ -22,14 +22,14 @@ public class Application {
     private static List<Lotto> buyLottos(int money) {
         Buy buy = new Buy();
         int count = buy.countLotto(money);
-        System.out.println(count + "개를 구매했습니다.");
+        System.out.println("\n" + count + "개를 구매했습니다.");
         List<Lotto> lottos = Lotto.generateLottos(count);
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
         return lottos;
     }
 
     private static WinNumber inputWinNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n" + "당첨 번호를 입력해 주세요.");
         String inputWinNumbers = Console.readLine();
         WinNumber winNumber = new WinNumber();
         winNumber.inputWinNumber(inputWinNumbers);
@@ -37,7 +37,7 @@ public class Application {
     }
 
     private static int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n" + "보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }
 

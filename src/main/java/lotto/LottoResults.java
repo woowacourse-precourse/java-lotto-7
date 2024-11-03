@@ -22,7 +22,7 @@ public class LottoResults {
     }
 
     private void printPrizeStatistics() {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n" + "당첨 통계\n---");
         for (Prize prize : Prize.values()) {
             int count = prizeCount.getOrDefault(prize, 0);
             System.out.printf("%s (%s) - %d개%n",
