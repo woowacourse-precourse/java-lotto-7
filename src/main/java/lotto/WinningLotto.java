@@ -1,12 +1,18 @@
 package lotto;
 
+import java.util.List;
+
 public class WinningLotto {
     private final Lotto lotto;
     private final int bonusNumber;
 
-    WinningLotto(Lotto lotto, int bonusNumber) {
+    private WinningLotto(Lotto lotto, int bonusNumber) {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
+    }
+
+    public static WinningLotto of(List<Integer> numbers, int bonusNumber) {
+        return new WinningLotto(new Lotto(numbers), bonusNumber);
     }
 
     public boolean isWinningNumber(int number) {
