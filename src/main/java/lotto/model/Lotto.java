@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static lotto.Constants.LOTTO_MAX_NUMBER;
 import static lotto.Constants.LOTTO_MIN_NUMBER;
@@ -6,7 +6,6 @@ import static lotto.Constants.LOTTO_SIZE;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -45,18 +44,6 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
-    }
-
-    public void print() {
-        System.out.print("[");
-        System.out.print(getJoinedNumbers());
-        System.out.println("]");
-    }
-
-    private String getJoinedNumbers() {
-        return numbers.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", "));
     }
 
     public long getMatchCount(Lotto lotto) {

@@ -3,7 +3,13 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoMachine;
+import lotto.model.LottoPrize;
+import lotto.model.LottoResult;
+import lotto.model.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +21,8 @@ public class LottoMachineTest {
     @ParameterizedTest
     @ValueSource(ints = {1000, 2000, 5000, 10000})
     void numberOfLottoShouldBeBudgetDividedBy1000Won(int budget) {
-        List<Lotto> results = LottoMachine.generateLotto(budget);
+        LottoMachine lottoMachine = new LottoMachine();
+        List<Lotto> results = lottoMachine.generateLotto(budget);
 
         assertThat(results.size()).isEqualTo(budget / 1000);
     }
@@ -25,8 +32,10 @@ public class LottoMachineTest {
     void prizeFor3MatchShouldBe5_000Won() {
         WinningNumbers winningNumbers = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 10);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        List<Lotto> generatedLottos = new ArrayList<>(List.of(lotto));
+        LottoMachine lottoMachine = new LottoMachine(generatedLottos);
 
-        LottoResult result = LottoMachine.match(winningNumbers, List.of(lotto));
+        LottoResult result = lottoMachine.match(winningNumbers);
         List<LottoPrize> prize = result.getPrizeFor(3);
 
         assertThat(prize).hasSize(1);
@@ -38,8 +47,10 @@ public class LottoMachineTest {
     void prizeFor4MatchShouldBe50_000Won() {
         WinningNumbers winningNumbers = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 10);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+        List<Lotto> generatedLottos = new ArrayList<>(List.of(lotto));
+        LottoMachine lottoMachine = new LottoMachine(generatedLottos);
 
-        LottoResult result = LottoMachine.match(winningNumbers, List.of(lotto));
+        LottoResult result = lottoMachine.match(winningNumbers);
         List<LottoPrize> prize = result.getPrizeFor(4);
 
         assertThat(prize).hasSize(1);
@@ -51,8 +62,10 @@ public class LottoMachineTest {
     void prizeFor5MatchShouldBe1_500_000Won() {
         WinningNumbers winningNumbers = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 10);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        List<Lotto> generatedLottos = new ArrayList<>(List.of(lotto));
+        LottoMachine lottoMachine = new LottoMachine(generatedLottos);
 
-        LottoResult result = LottoMachine.match(winningNumbers, List.of(lotto));
+        LottoResult result = lottoMachine.match(winningNumbers);
         List<LottoPrize> prize = result.getPrizeFor(5);
 
         assertThat(prize).hasSize(1);
@@ -64,8 +77,10 @@ public class LottoMachineTest {
     void prizeFor5MatchWithBonusBallShouldBe30_000_000Won() {
         WinningNumbers winningNumbers = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 10);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
+        List<Lotto> generatedLottos = new ArrayList<>(List.of(lotto));
+        LottoMachine lottoMachine = new LottoMachine(generatedLottos);
 
-        LottoResult result = LottoMachine.match(winningNumbers, List.of(lotto));
+        LottoResult result = lottoMachine.match(winningNumbers);
         List<LottoPrize> prize = result.getPrizeFor(5, true);
 
         assertThat(prize).hasSize(1);
@@ -77,8 +92,10 @@ public class LottoMachineTest {
     void prizeFor6MatchShouldBe2_000_000_000Won() {
         WinningNumbers winningNumbers = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 10);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Lotto> generatedLottos = new ArrayList<>(List.of(lotto));
+        LottoMachine lottoMachine = new LottoMachine(generatedLottos);
 
-        LottoResult result = LottoMachine.match(winningNumbers, List.of(lotto));
+        LottoResult result = lottoMachine.match(winningNumbers);
         List<LottoPrize> prize = result.getPrizeFor(6);
 
         assertThat(prize).hasSize(1);
@@ -90,8 +107,10 @@ public class LottoMachineTest {
     void noPrizeForNoMatch() {
         WinningNumbers winningNumbers = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 10);
         Lotto lotto = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        List<Lotto> generatedLottos = new ArrayList<>(List.of(lotto));
+        LottoMachine lottoMachine = new LottoMachine(generatedLottos);
 
-        LottoResult result = LottoMachine.match(winningNumbers, List.of(lotto));
+        LottoResult result = lottoMachine.match(winningNumbers);
         List<LottoPrize> prize = result.prizes();
 
         assertThat(prize).isEmpty();
@@ -100,7 +119,10 @@ public class LottoMachineTest {
     @DisplayName("로또 구입 금액이 천 원 단위가 아닌 경우 예외 발생")
     @Test
     void throwException_when_purchaseUnitIsNot1000Won() {
-        assertThatThrownBy(() -> LottoMachine.generateLotto(1001))
+        assertThatThrownBy(() -> {
+            LottoMachine lottoMachine = new LottoMachine();
+            lottoMachine.generateLotto(1001);
+        })
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -108,7 +130,10 @@ public class LottoMachineTest {
     @ParameterizedTest
     @ValueSource(ints = {0, -1000})
     void throwException_when_purchaseAmountIsNotPositive(int purchaseAmount) {
-        assertThatThrownBy(() -> LottoMachine.generateLotto(purchaseAmount))
+        assertThatThrownBy(() -> {
+            LottoMachine lottoMachine = new LottoMachine();
+            lottoMachine.generateLotto(purchaseAmount);
+        })
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

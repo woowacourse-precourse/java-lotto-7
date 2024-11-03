@@ -3,6 +3,9 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoResult;
+import lotto.model.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +18,7 @@ public class LottoResultTest {
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 7, 8, 9));
         Lotto lotto2 = new Lotto(List.of(4, 5, 6, 7, 8, 9));
 
-        LottoResult result = LottoMachine.match(winningNumbers, List.of(lotto1, lotto2));
-        assertThat(result.rateOfReturn(2_000)).isEqualTo(500);
+        LottoResult result = LottoResult.of(winningNumbers, List.of(lotto1, lotto2));
+        assertThat(result.rateOfReturn()).isEqualTo(500);
     }
 }
