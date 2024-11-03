@@ -33,6 +33,8 @@ public class LottoView {
             - 숫자로 변환후 반환하기
             - 1000원으로 나눈 몫을 반환하는 로직을 추가
         */
+        validateIntString(money);
+
         return money;
     }
 
@@ -40,6 +42,7 @@ public class LottoView {
         guideInputWinningNumbers();
 
         String rawNumbers = Console.readLine();
+        validateString(rawNumbers);
         String[] rawNumberList = rawNumbers.split(LottoView.DELIMITERS);
 
         return transformToIntegerList(rawNumberList);
@@ -154,6 +157,13 @@ public class LottoView {
         if(number <= 0){
             throw new IllegalArgumentException(ExceptionMessage.NON_POSITIVE_NUMBER.getMessage());
         }
+    }
+
+    public static void validateString(String string){
+        if(string.isBlank()){
+            throw new IllegalArgumentException(ExceptionMessage.EMPTY_STRING.getMessage());
+        }
+
     }
 
 }
