@@ -12,13 +12,27 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateSize(numbers);
+        validateDuplicate(numbers);
+        validateRange(numbers);
         this.numbers = ascNumbers(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != MAX_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        if (numbers.stream().distinct().findAny().isPresent()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> number <= 0 || number > 45)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이만 가능합니다.");
         }
     }
 
