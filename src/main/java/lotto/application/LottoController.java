@@ -2,8 +2,12 @@ package lotto.application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 import lotto.Lotto;
+import lotto.constant.WinningRank;
+import lotto.service.CalculateProfitRateService;
+import lotto.service.LottoMatchNumberService;
 import lotto.service.LottoNumberGeneratorService;
 import lotto.service.LottoTicketBuyingService;
 import lotto.service.LottoTicketIssueService;
@@ -29,7 +33,13 @@ public class LottoController {
         List<Lotto> issuedLotto = lottoTicketIssueService.issueLotto();
         outPutView.printBoughtLotto(issuedLotto);
         splitCommaAndConvertToList(inputView.readWinningNumbers());
-        inputView.readBonusNumber();
+        int bonusNumber = Integer.parseInt(inputView.readBonusNumber());
+        LottoMatchNumberService lottoMatchNumberService = new LottoMatchNumberService(winningNumbers, bonusNumber);
+        Map<WinningRank, Integer> winningRankIntegerMap = lottoMatchNumberService.calculateResults(issuedLotto);
+        outPutView.printWinningStatistic(winningRankIntegerMap);
+        double profitRate = CalculateProfitRateService.calculateProfitRate(winningRankIntegerMap,
+                Integer.parseInt(buyingPrice));
+        outPutView.printProfitRate(profitRate);
     }
 
     private void splitCommaAndConvertToList(String winningNumber) {
