@@ -44,7 +44,7 @@ public class LottoController {
         while (true) {
             try {
                 String bonusNumberInput = InputView.promptPurchaseBonusNumber();
-                return BonusNumber.from(Converter.stringToInt(bonusNumberInput), winningNumbers);
+                return BonusNumber.from(bonusNumberInput, winningNumbers);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

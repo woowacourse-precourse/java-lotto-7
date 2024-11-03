@@ -20,4 +20,7 @@ public class LottoPurchase {
         return amount;
     }
 
+    public int getTicketCount() {
+        return ticketCount;
+    }
 }
