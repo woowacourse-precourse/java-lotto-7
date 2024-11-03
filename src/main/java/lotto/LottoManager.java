@@ -57,10 +57,34 @@ public class LottoManager {
     }
 
     public Double calculateProfitRate() {
-        return null;
+        if (profitRate != null)
+            return profitRate;
+        Integer totalPrize = 0;
+        for(LottoResult lottoResult : lottoResultList) {
+            totalPrize += lottoResult.getWinningMoney();
+        }
+        profitRate = (double) totalPrize / (myLotto.size() * 1000) * 100;
+        return profitRate;
     }
 
     public void printWinnigStatistics() {
+        System.out.println("당첨 통계\n---");
+        System.out.println(String.format("3개 일치 (5,000원) - %d개", lottoResultList.stream()
+                .filter(item -> item.equals(LottoResult.THREE))
+                .count()));
+        System.out.println(String.format("4개 일치 (50,000원) - %d개", lottoResultList.stream()
+                .filter(item -> item.equals(LottoResult.FOUR))
+                .count()));
+        System.out.println(String.format("5개 일치 (1,500,000원) - %d개", lottoResultList.stream()
+                .filter(item -> item.equals(LottoResult.FIVE))
+                .count()));
+        System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", lottoResultList.stream()
+                .filter(item -> item.equals(LottoResult.FIVE_WITH_BONUS))
+                .count()));
+        System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", lottoResultList.stream()
+                .filter(item -> item.equals(LottoResult.SIX))
+                .count()));
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profitRate));
 
     }
 }

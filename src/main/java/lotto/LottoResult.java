@@ -23,4 +23,23 @@ public enum LottoResult {
         }
         return NONE; // 일치하는 값이 없을 경우 NONE 반환
     }
+
+    public Integer getWinningMoney() {
+        if (this == SIX)
+            return 2000000000;
+
+        if (this == FIVE_WITH_BONUS)
+            return 30000000;
+
+        if (this == FIVE)
+            return 1500000;
+
+        if (this == FOUR)
+            return 50000;
+
+        if (this == THREE)
+            return 5000;
+
+        return 0;
+    }
 }
