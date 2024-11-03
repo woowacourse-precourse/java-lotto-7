@@ -49,3 +49,5 @@ public class AssertionsTest {
         Assertions.assertThatNullPointerException().isThrownBy(() -> testString.substring(0, 1));
     }
 }
+
+
