@@ -11,6 +11,7 @@ public class InputView {
 
     private static final String START_PRICE_INPUT = "구입금액을 입력해 주세요.";
     private static final String START_WINNING_NUMBERS_INPUT = "당첨 번호를 입력해 주세요.";
+    private static final String START_BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
     private static final String PREFIX = ",";
 
     public int buyLottoPriceInput() {
@@ -22,7 +23,12 @@ public class InputView {
         System.out.println(START_WINNING_NUMBERS_INPUT);
         return readWinningNumbers();
     }
-    
+
+    public int bonusNumber(List<Integer> winningNumbers) {
+        System.out.println(START_BONUS_NUMBER_INPUT);
+        return readBonusNumber(winningNumbers);
+    }
+
     private int readLottoPrice() {
         try {
             return purchasePriceValidate(consoleReadLine());
@@ -51,6 +57,15 @@ public class InputView {
                 .toList();
     }
 
+    private int readBonusNumber(List<Integer> winningNumbers) {
+        try {
+            return parseIntegerBonusValidate(consoleReadLine(), winningNumbers);
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e);
+            return readBonusNumber(winningNumbers);
+        }
+    }
+
     private static String consoleReadLine() {
         String line = Console.readLine();
         System.out.println();
@@ -60,6 +75,5 @@ public class InputView {
     private void printErrorMessage(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
-
 
 }
