@@ -19,8 +19,6 @@ public class LottoGame {
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-
-
     // 1. 구입 금액 입력 및 검증
     public int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -32,6 +30,7 @@ public class LottoGame {
 
         int amount = Integer.parseInt(input);
         validateAmount(amount);
+        System.out.println();
         return amount / LOTTO_PRICE;
     }
 
@@ -102,59 +101,55 @@ public class LottoGame {
         }
     }
 
-    // 4. 당첨 결과 계산
-    private int calculateMatchCount(List<Integer> lottoNumbers) {
-        return (int) lottoNumbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
-    }
-
-    public int getRank(List<Integer> lottoNumbers) {
-        int matchCount = calculateMatchCount(lottoNumbers);
-        if (matchCount == 6) return 1;
-        if (matchCount == 5 && lottoNumbers.contains(bonusNumber)) return 2;
-        if (matchCount == 5) return 3;
-        if (matchCount == 4) return 4;
-        if (matchCount == 3) return 5;
-        return 0; // 미당첨
-    }
-
-    // 5. 결과 출력
+    // 4. 당첨 결과 계산 및 결과 출력
     public void calculateAndPrintResults() {
+        Map<String, Integer> rankCount = initializeRankCount();
+        int totalPrize = calculateTotalPrizeAndRankCount(rankCount);
+
+        printResults(rankCount);
+        printProfitRate(totalPrize);
+    }
+
+    private Map<String, Integer> initializeRankCount() {
         Map<String, Integer> rankCount = new HashMap<>();
         rankCount.put("1st", 0);
         rankCount.put("2nd", 0);
         rankCount.put("3rd", 0);
         rankCount.put("4th", 0);
         rankCount.put("5th", 0);
+        return rankCount;
+    }
 
+    private int calculateTotalPrizeAndRankCount(Map<String, Integer> rankCount) {
         int totalPrize = 0;
-
         for (Lotto lotto : lottos) {
             int matchCount = getMatchCount(lotto.getNumbers());
             boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
-
-            if (matchCount == 6) {
-                rankCount.put("1st", rankCount.get("1st") + 1);
-                totalPrize += PRIZE_MONEY.get(6);
-            } else if (matchCount == 5 && bonusMatch) {
-                rankCount.put("2nd", rankCount.get("2nd") + 1);
-                totalPrize += SECOND_PLACE_PRIZE;
-            } else if (matchCount == 5) {
-                rankCount.put("3rd", rankCount.get("3rd") + 1);
-                totalPrize += PRIZE_MONEY.get(5);
-            } else if (matchCount == 4) {
-                rankCount.put("4th", rankCount.get("4th") + 1);
-                totalPrize += PRIZE_MONEY.get(4);
-            } else if (matchCount == 3) {
-                rankCount.put("5th", rankCount.get("5th") + 1);
-                totalPrize += PRIZE_MONEY.get(3);
-            }
+            totalPrize += updateRankAndPrize(rankCount, matchCount, bonusMatch);
         }
-
-        printResults(rankCount);
-        printProfitRate(totalPrize);
+        return totalPrize;
     }
+
+    private int updateRankAndPrize(Map<String, Integer> rankCount, int matchCount, boolean bonusMatch) {
+        if (matchCount == 6) {
+            rankCount.put("1st", rankCount.get("1st") + 1);
+            return PRIZE_MONEY.get(6);
+        } else if (matchCount == 5 && bonusMatch) {
+            rankCount.put("2nd", rankCount.get("2nd") + 1);
+            return SECOND_PLACE_PRIZE;
+        } else if (matchCount == 5) {
+            rankCount.put("3rd", rankCount.get("3rd") + 1);
+            return PRIZE_MONEY.get(5);
+        } else if (matchCount == 4) {
+            rankCount.put("4th", rankCount.get("4th") + 1);
+            return PRIZE_MONEY.get(4);
+        } else if (matchCount == 3) {
+            rankCount.put("5th", rankCount.get("5th") + 1);
+            return PRIZE_MONEY.get(3);
+        }
+        return 0;
+    }
+
 
     private int getMatchCount(List<Integer> lottoNumbers) {
         return (int) lottoNumbers.stream().filter(winningNumbers::contains).count();
