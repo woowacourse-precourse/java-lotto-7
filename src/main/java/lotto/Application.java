@@ -11,9 +11,12 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Application {
-    static LottoService lottoService = new LottoService();
+    static LottoService lottoService;
 
     public static void main(String[] args) {
+        AppConfig config = new AppConfig();
+        lottoService = config.lottoService();
+
         Loop.executeUntilSuccess(Application::step1);
         Loop.executeUntilSuccess(Application::step2);
         Loop.executeUntilSuccess(Application::step3);

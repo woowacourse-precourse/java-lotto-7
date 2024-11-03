@@ -4,10 +4,10 @@ import java.util.List;
 
 import lotto.domain.utils.NumbersGenerator;
 
-class LottoMachine {
+public class LottoMachine {
     private final NumbersGenerator numbersGenerator;
 
-    LottoMachine(NumbersGenerator numbersGenerator) {
+    public LottoMachine(NumbersGenerator numbersGenerator) {
         this.numbersGenerator = numbersGenerator;
     }
 

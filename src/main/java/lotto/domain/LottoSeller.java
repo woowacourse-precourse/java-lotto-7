@@ -6,7 +6,15 @@ import lotto.domain.exception.InvalidPriceException;
 import lotto.domain.utils.RandomNumbersGenerator;
 
 public class LottoSeller {
-    private final LottoMachine lottoMachine = new LottoMachine(new RandomNumbersGenerator());
+    private final LottoMachine lottoMachine;
+
+    public LottoSeller() {
+        this.lottoMachine = new LottoMachine(new RandomNumbersGenerator());
+    }
+
+    public LottoSeller(LottoMachine lottoMachine) {
+        this.lottoMachine = lottoMachine;
+    }
 
     public List<Lotto> sell(int price) {
         validatePrice(price);

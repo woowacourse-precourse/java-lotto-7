@@ -7,9 +7,14 @@ import lotto.domain.WinningResult;
 import lotto.domain.LottoSeller;
 
 public class LottoService {
-    private final LottoSeller lottoSeller = new LottoSeller();
+    private final LottoSeller lottoSeller;
     private List<Lotto> lottos;
-    private Answer answer = new Answer();
+    private final Answer answer;
+
+    public LottoService(LottoSeller lottoSeller) {
+        this.lottoSeller = lottoSeller;
+        this.answer = new Answer();
+    }
 
     public List<Lotto> buy(int price) {
         return lottos = lottoSeller.sell(price);
