@@ -2,12 +2,14 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.enums.lotto.LottoMessage;
+import lotto.util.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        LottoValidator.validateDuplicateLottoNumber(numbers);
         this.numbers = sortedNumbers(numbers);
     }
 

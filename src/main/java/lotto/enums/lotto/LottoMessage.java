@@ -14,7 +14,8 @@ public enum LottoMessage {
     EXCEPTION_NUMBER_VALID("[ERROR] 올바른 형식의 숫자가 아닙니다."),
     EXCEPTION_PRICE_UNIT("[ERROR] 1,000원 단위가 아닙니다."),
     EXCEPTION_NUMBER_RANGE("[ERROR] 로또 번호 1부터 45 사이의 숫자여야 합니다."),
-    EXCEPTION_DUPLICATE_NUMBER("[ERROR] 기존 로또 당첨번호와 보너스 번호가 중복됩니다."),
+    EXCEPTION_DUPLICATE_LOTTO_NUMBER("[ERROR] 로또 번호가 중복됐습니다."),
+    EXCEPTION_DUPLICATE_BONUS_NUMBER("[ERROR] 기존 로또 당첨번호와 보너스 번호가 중복됩니다."),
     EXCEPTION_LOTTO_SIZE_NOT_EQUALS_6("[ERROR] 로또 번호는 6개여야 합니다.");
 
     private final String message;
