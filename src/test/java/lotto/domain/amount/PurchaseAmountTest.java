@@ -12,10 +12,10 @@ class PurchaseAmountTest {
     @Test
     void 로또_구입_금액이_1000으로_나누어_떨어지지_않는다면_예외를_발생한다() {
         // given
-        int purchaseAmount = 10002;
+        String purchaseAmount = "10002";
 
         // when & then
-        assertThatThrownBy(() -> new PurchaseAmount(purchaseAmount))
+        assertThatThrownBy(() -> PurchaseAmount.from(purchaseAmount))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(INVALID_PURCHASE_AMOUNT.getMessage());
     }

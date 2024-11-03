@@ -4,9 +4,13 @@ import static lotto.infrastructure.exception.ErrorCode.*;
 
 public class PurchaseAmount extends Amount {
 
-    public PurchaseAmount(int amount) {
+    private PurchaseAmount(int amount) {
         super(amount);
         validate(amount);
+    }
+
+    public static PurchaseAmount from(final String value) {
+        return new PurchaseAmount(Integer.parseInt(value));
     }
 
     private void validate(int amount) {
