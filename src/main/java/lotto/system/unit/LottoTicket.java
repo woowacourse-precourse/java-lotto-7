@@ -13,11 +13,15 @@ public class LottoTicket {
         this.ticket = tickets;
     }
 
-    public static LottoTicket of (List<Integer> rawTicket) {
+    public static LottoTicket ofRawNumbers(List<Integer> rawTicket) {
         validateLottoNumber(rawTicket);
         return new LottoTicket(rawTicket.stream()
                 .map(LottoNumber::of)
                 .collect(Collectors.toCollection(ArrayList::new)));
+    }
+
+    public static LottoTicket ofLottoNumbers(List<LottoNumber> tickets) {
+        return new LottoTicket(tickets);
     }
 
     private static void validateLottoNumber(List<Integer> rawTicket) {

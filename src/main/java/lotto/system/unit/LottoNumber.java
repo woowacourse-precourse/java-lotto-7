@@ -2,7 +2,7 @@ package lotto.system.unit;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class LottoNumber { // 사용자가 입력 로또 번호 하나를 의미하는 객체
+public class LottoNumber implements Comparable<LottoNumber> { // 사용자가 입력 로또 번호 하나를 의미하는 객체
 
     public final static int LOTTO_NUMBER_LOWER_BOUND = 1;
     public final static int LOTTO_NUMBER_UPPER_BOUND = 45;
@@ -33,6 +33,11 @@ public class LottoNumber { // 사용자가 입력 로또 번호 하나를 의미
 
     public int getValue() {
         return number;
+    }
+
+    @Override
+    public int compareTo(LottoNumber other) {
+        return Integer.compare(this.number, other.number);
     }
 
     @Override
