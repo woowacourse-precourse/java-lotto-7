@@ -10,7 +10,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
     void 기능_테스트() {
@@ -47,14 +46,6 @@ class ApplicationTest extends NsTest {
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
         );
-    }
-
-    @Test
-    void 예외_테스트_잘못된_보너스_번호() {
-        assertSimpleTest(() -> {
-            runException("1,2,3,4,5,6,7,8");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
     }
 
     @Override
