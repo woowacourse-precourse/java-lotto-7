@@ -18,7 +18,7 @@ public class LottoGenerateController {
         this.outputView = outputView;
     }
 
-    public List<Lotto> purchaseAll() {
+    public void purchaseAll() {
         int amount = getAmount();
 
         List<Lotto> lottoList = new ArrayList<>();
@@ -26,7 +26,7 @@ public class LottoGenerateController {
             lottoList.add(purchaseLotto());
         }
 
-        return lottoList;
+        outputView.printLotties(lottoList);
     }
 
     private int getAmount() {
