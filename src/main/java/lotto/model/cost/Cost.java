@@ -33,7 +33,7 @@ public class Cost {
     }
 
     private void isValidUnitCost(int cost) {
-        if (cost % 1000 != 0) {
+        if (cost % CostUnit.COST_UNIT.getUnit() != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해주세요.");
         }
     }

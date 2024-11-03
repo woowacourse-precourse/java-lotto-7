@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import lotto.model.cost.CostUnit;
 import lotto.model.lotto.CheckLotto;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoNumbers;
@@ -27,7 +28,7 @@ public class LottoController {
 
         cost = requestCostInput();
 
-        int purchaseCount = cost / 1000;
+        int purchaseCount = cost / CostUnit.COST_UNIT.getUnit();
 
         outputView.showInsertNewLine();
 
