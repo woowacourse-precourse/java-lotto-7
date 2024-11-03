@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 import lotto.domain.WinningLottoNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,5 +44,16 @@ public class LottoResultTest {
 
         // then
         assertThat(hasBonus).isTrue();
+    }
+
+    @Test
+    @DisplayName("당첨 등수를 계산한다.")
+    void 성공_당첨등수_유효한파라미터() {
+        assertThat(LottoRank.valueOf(6, false)).isEqualTo(LottoRank.FIRST);
+        assertThat(LottoRank.valueOf(5, true)).isEqualTo(LottoRank.SECOND);
+        assertThat(LottoRank.valueOf(5, false)).isEqualTo(LottoRank.THIRD);
+        assertThat(LottoRank.valueOf(4, false)).isEqualTo(LottoRank.FOURTH);
+        assertThat(LottoRank.valueOf(3, false)).isEqualTo(LottoRank.FIFTH);
+        assertThat(LottoRank.valueOf(2, false)).isEqualTo(LottoRank.NONE);
     }
 }
