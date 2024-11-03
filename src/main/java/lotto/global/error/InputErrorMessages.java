@@ -1,7 +1,7 @@
 package lotto.global.error;
 
 public enum InputErrorMessages {
-    INVALID_INPUT_FORMAT_NULL("[ERROR] ", "구입 금액 입력값이 비어 있습니다."),
+    INVALID_INPUT_FORMAT_NULL("[ERROR] ", "입력 값이 비어 있습니다."),
 
     INVALID_PRICE_FORMAT("[ERROR] ","로또 구입 금액에는 문자가 포함되면 안됩니다."),
     INVALID_PRICE_FORMAT_UNIT("[ERROR] ","로또 구입 금액은 1000원 단위의 금액만 가능합니다."),
