@@ -24,7 +24,7 @@ public class CliOutputView {
 
     private String convertLottoNumbersToString(Lotto sortedLotto) {
         String numbers = sortedLotto.getNumbers().stream()
-            .map(String::valueOf)   // Integer를 String으로 변환
+            .map(String::valueOf)
             .collect(Collectors.joining(", "));
         return numbers;
     }
