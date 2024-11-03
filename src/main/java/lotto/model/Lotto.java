@@ -46,6 +46,12 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
+    public int calcMatchCount(Lotto other) {
+        return (int) numbers.stream()
+                .filter(other.numbers::contains)
+                .count();
+    }
+
     @Override
     public String toString() {
         return numbers.stream()
