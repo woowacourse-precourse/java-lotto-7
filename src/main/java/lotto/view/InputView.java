@@ -21,4 +21,8 @@ public class InputView {
         OutputView.printRequestLottoBonusNumber();
         return Console.readLine();
     }
+
+    public static void endRequest() {
+        Console.close();
+    }
 }
