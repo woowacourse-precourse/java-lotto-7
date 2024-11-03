@@ -9,6 +9,10 @@ import java.util.Set;
 import lotto.global.LottoRank;
 
 public class Lotto {
+    public static final int MINIMAL_WINNING_NUMBER = 3;
+    public static final int TOTAL_LOTTO_NUMBERS = 6;
+    public static final int BONUS_MATCH_THRESHOLD = 5;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,7 +21,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != TOTAL_LOTTO_NUMBERS) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
         }
 
@@ -31,11 +35,11 @@ public class Lotto {
 
         int matchCount = (int) winningNumbers.stream().filter(numbers::contains).count();
 
-        if (matchCount < 3) {
+        if (matchCount < MINIMAL_WINNING_NUMBER) {
             return null;
         }
 
-        if (matchCount != 5) {
+        if (matchCount != BONUS_MATCH_THRESHOLD) {
             return LottoRank.findByMatchCount(matchCount);
         }
 

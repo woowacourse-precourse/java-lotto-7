@@ -2,8 +2,8 @@ package lotto.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.HashSet;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,5 +15,6 @@ public class GeneratorTest {
         List<Integer> lottoNumbers = Generator.lottoNumberGenerate();
 
         assertThat(lottoNumbers).hasSize(6);
+        assertThat(new HashSet<>(lottoNumbers)).hasSize(6);
     }
 }
