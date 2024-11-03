@@ -6,7 +6,7 @@ public enum Rank {
     NONE(0, null, 0L,
             ""),
     FIFTH(3, null, 5000L,
-            "3개 일치 (5000원) - "),
+            "3개 일치 (5,000원) - "),
     FOURTH(4, null, 50000L,
             "4개 일치 (50,000원) - "),
     THIRD(5, false, 1500000L,
