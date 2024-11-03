@@ -50,4 +50,8 @@ public class LottoResults {
                 .sum();
     }
 
+    private boolean isNotNoneRank(Map.Entry<Rank, Integer> entry) {
+        return entry.getKey() != Rank.NONE;
+    }
+
 }
