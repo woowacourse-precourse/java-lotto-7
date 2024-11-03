@@ -45,6 +45,6 @@ class OutputMessageTest {
         double testEarningRate = 77.7777;
 
         assertThat(OutputMessage.OUTPUT_EARNING_RATE.format(testEarningRate))
-                .isEqualTo(String.format("총 수익률은 %.1f%%입니다", testEarningRate));
+                .isEqualTo(String.format("총 수익률은 %.1f%%입니다.", testEarningRate));
     }
 }
