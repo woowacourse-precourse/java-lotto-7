@@ -7,22 +7,22 @@ import java.util.Map;
 import java.util.stream.IntStream;
 import lotto.util.NumbersGenerator;
 
-public class Lottos {
+public class PurchasedLottos {
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
     public static final int LOTTO_NUMBER_COUNT = 6;
     private final List<Lotto> lottos;
 
-    private Lottos(List<Lotto> lottos) {
+    private PurchasedLottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static Lottos purchase(int purchaseCount, NumbersGenerator numbersGenerator) {
+    public static PurchasedLottos purchase(int purchaseCount, NumbersGenerator numbersGenerator) {
         List<Lotto> purchasedLottos = IntStream.range(0, purchaseCount)
                 .mapToObj(lotto -> Lotto.of(
                         numbersGenerator.generateNumbers(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT)))
                 .toList();
-        return new Lottos(purchasedLottos);
+        return new PurchasedLottos(purchasedLottos);
     }
 
     public Map<LottoRank, Integer> lottoResultFrom(WinningLotto winningLotto) {
