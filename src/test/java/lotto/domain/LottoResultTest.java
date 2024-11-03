@@ -9,8 +9,8 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoResultTest {
-    private static final int EXPECTED_FIRST_COUNT = 1;
-    private static final int EXPECTED_SECOND_COUNT = 2;
+    private static final int EXPECTED_FIRST_COUNT = 2;
+    private static final int EXPECTED_SECOND_COUNT = 1;
     private static final int PURCHASE_AMOUNT = 10_000;
     private static final int PERCENTAGE_CONVERSION_FACTOR = 100;
 
