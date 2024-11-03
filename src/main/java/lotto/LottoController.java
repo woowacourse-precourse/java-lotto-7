@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoController {
-    private final Input input;
+    private final InputHandler inputHandler;
     private final View view;
     private final LottoService lottoService;
 
-    public LottoController(Input input, LottoService lottoService, View view) {
-        this.input = input;
+    public LottoController(InputHandler inputHandler, LottoService lottoService, View view) {
+        this.inputHandler = inputHandler;
         this.lottoService = lottoService;
         this.view = view;
     }
@@ -48,13 +48,13 @@ public class LottoController {
     }
 
     public Integer getAmountFromUser() {
-        Integer amount = input.getAmountWithMessage();
+        Integer amount = inputHandler.handleAmount();
         return amount/1000;
     }
 
     public WinLotto getWinningNumber() {
-        Lotto winNumberLotto = input.getWinNumberLotto();
-        return input.getBonusNumber(winNumberLotto);
+        Lotto winNumberLotto = inputHandler.handleWinNumbers();
+        return inputHandler.handleBonusNumber(winNumberLotto);
     }
 
     public Lottos createLottos(Integer count) {

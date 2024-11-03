@@ -5,31 +5,35 @@ public class LottoFactory {
         return new InputValidator();
     }
 
-    public static Input input() {
+    private static InputHandler inputHandler() {
+        return new InputHandler(input());
+    }
+
+    private static Input input() {
         return new Input(inputValidator());
     }
 
-    public static DrawStrategy drawStrategy() {
+    private static DrawStrategy drawStrategy() {
         return new RandomStrategy();
     }
 
-    public static RevenueCalculator revenueCalculator() {
+    private static RevenueCalculator revenueCalculator() {
         return new RevenueCalculator();
     }
 
-    public static LottoGenerator lottoGenerator() {
+    private static LottoGenerator lottoGenerator() {
         return new LottoGenerator(drawStrategy());
     }
 
-    public static LottoService lottoService() {
+    private static LottoService lottoService() {
         return new LottoService(lottoGenerator(), revenueCalculator());
     }
 
-    public static View view() {
+    private static View view() {
         return new View();
     }
 
     public static LottoController createLottoController() {
-        return new LottoController(input(), lottoService(), view());
+        return new LottoController(inputHandler(), lottoService(), view());
     }
 }

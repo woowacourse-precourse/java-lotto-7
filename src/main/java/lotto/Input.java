@@ -13,15 +13,9 @@ public class Input {
         this.inputValidator = inputValidator;
     }
 
-    public Integer getAmountWithMessage() {
-        while (true) {
-            try {
-                System.out.println(INPUT_AMOUNT_MESSAGE);
-                return getValidatedAmount();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public Integer getAmountWithGuide() {
+        System.out.println(INPUT_AMOUNT_MESSAGE);
+        return getValidatedAmount();
     }
 
     private Integer getValidatedAmount() {
@@ -30,31 +24,18 @@ public class Input {
         return amount;
     }
 
-    public Lotto getWinNumberLotto() {
-        while (true) {
-            try {
-                System.out.println(INPUT_WIN_NUMBER_MESSAGE);
-                List<Integer> numbers = getWinNumbers();
-                return new Lotto(numbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public Lotto getWinNumbersWithGuide() {
+        System.out.println(INPUT_WIN_NUMBER_MESSAGE);
+        return new Lotto(getWinNumbers());
     }
 
     private List<Integer> getWinNumbers() {
         return Parser.splitByDelimiter(Console.readLine());
     }
 
-    public WinLotto getBonusNumber(Lotto lotto) {
-        while (true) {
-            try {
-                System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-                return new WinLotto(lotto, getValidatedBonusNumber());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public WinLotto getBonusNumberWithGuide(Lotto lotto) {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        return new WinLotto(lotto, getValidatedBonusNumber());
     }
 
     private Integer getValidatedBonusNumber() {
