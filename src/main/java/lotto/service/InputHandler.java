@@ -7,7 +7,7 @@ import lotto.util.Parser;
 import lotto.util.Validator;
 import lotto.view.InputView;
 
-public class LottoService {
+public class InputHandler {
     public static UserMoney inputUserMoney() {
         while (true) {
             try {
