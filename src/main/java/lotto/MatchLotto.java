@@ -37,4 +37,17 @@ public class MatchLotto {
         return rankCountMap;
     }
 
+    private int getTotalPrizeMoney() {
+        int totalPrizeMoney = 0;
+        for(Lotto lotto:lottoNumbers.getLottos()){
+            int matchCount = lotto.matchWinningNumber(winningNumber);
+            boolean bonusMatch = lotto.matchBonusNumber(bonusNumber);
+            if(matchCount >= 3) {
+                totalPrizeMoney += Rank.fromValue(matchCount, bonusMatch).getPrize();
+            }
+        }
+        return totalPrizeMoney;
+    }
+
+
 }
