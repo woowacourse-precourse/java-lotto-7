@@ -21,7 +21,7 @@ public class OutputView {
     private static final String COUNT_SUFFIX = "개";
     private static final String YIELD_MESSAGE = "총 수익률은 %s%%입니다.";
 
-    public static void displayPrompt(Prompt prompt) {
+    public static void showPrompt(Prompt prompt) {
         if (prompt.equals(PURCHASE_AMOUNT)) {
             System.out.println(PURCHASE_AMOUNT_PROMPT);
         }
@@ -35,23 +35,35 @@ public class OutputView {
         }
     }
 
-    public static void displayLottoNumbers(int size, String formattedLottoNumbers) {
+    public static void showLottoNumbers(int size, String formattedLottoNumbers) {
         String result = NEW_LINE.getSymbol() + size + PURCHASE_NOTICE_HEADER
                 + NEW_LINE.getSymbol() + formattedLottoNumbers + NEW_LINE.getSymbol();
 
         System.out.println(result);
     }
 
-    public static void displayWinningResult(Map<Integer, Integer> matchCounts) {
-        StringBuilder result = new StringBuilder();
-
-        appendHeader(result);
-        appendWinningMessages(result, matchCounts);
-
-        System.out.println(result);
+    public static void showFinalResult(Map<Integer, Integer> matchCounts, double yield) {
+        StringBuilder winningResultOutput = prepareWinningResult(matchCounts);
+        String yieldOutput = prepareYield(yield);
+        System.out.println(winningResultOutput + NEW_LINE.getSymbol() + yieldOutput);
     }
 
-    public static void displayErrorMessage(String message) {
+    private static StringBuilder prepareWinningResult(Map<Integer, Integer> matchCounts) {
+        StringBuilder winningResultOutput = new StringBuilder();
+
+        appendHeader(winningResultOutput);
+        appendWinningMessages(winningResultOutput, matchCounts);
+
+        return winningResultOutput;
+    }
+
+    private static String prepareYield(double yield) {
+        String yieldOutput = String.format(YIELD_MESSAGE, yield);
+
+        return yieldOutput;
+    }
+
+    public static void showErrorMessage(String message) {
         System.out.println(message);
     }
 
@@ -89,11 +101,5 @@ public class OutputView {
         messages.put(6, String.format(MATCH_MESSAGE, 6, "2,000,000,000"));
 
         return messages;
-    }
-
-    public static void displayYield(double yield) {
-        String result = String.format(YIELD_MESSAGE, yield);
-
-        System.out.print(result);
     }
 }
