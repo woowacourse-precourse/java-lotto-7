@@ -36,14 +36,13 @@ public class OutputView {
             if (ranking.isBonusNumberMatching()) {
                 bonusNumberMatchingMessage = PRINT_BONUS_NUMBER_MATCHING_MESSAGE;
             }
-            System.out.printf
-                (
+            System.out.printf(
                     PRINT_FORMAT_WINNING_STATISTICS_MESSAGE,
                     ranking.getMatchingCount(),
                     bonusNumberMatchingMessage,
                     formatter.format(ranking.getPrice()),
                     rankingCountMap.getOrDefault(ranking, DEFAULT_COUNT_ZERO)
-                );
+            );
         }
     }
 
