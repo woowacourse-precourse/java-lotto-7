@@ -32,6 +32,20 @@ class PurchaseValidatorTest {
     }
 
     @Test
+    @DisplayName("실패 - 구매 금액이 10억 초과일 경우")
+    void 구매_금액_검증_테스트_10억_초과() {
+        assertFalse(purchaseValidator.validatePurchaseMoney("1000000001"));
+        assertFalse(purchaseValidator.validatePurchaseMoney("30000000000"));
+    }
+
+    @Test
+    @DisplayName("성공 - 구매 금액이 10억 이하일 경우")
+    void 구매_금액_검증_테스트_10억_이하() {
+        assertTrue(purchaseValidator.validatePurchaseMoney("1000000000"));
+        assertTrue(purchaseValidator.validatePurchaseMoney("500000000"));
+    }
+
+    @Test
     @DisplayName("성공 - 구매 금액 앞,뒤,사이에 공백이 있는경우")
     void 구매_금액_검증_테스트_올바른_값_사이_공백() {
         assertTrue(purchaseValidator.validatePurchaseMoney("1000"));
