@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class WinningLottoTest {
     private final WinningLotto winningLotto;
@@ -13,6 +12,11 @@ class WinningLottoTest {
     public WinningLottoTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         winningLotto = new WinningLotto(lotto, new BonusNum(7, lotto.getNumbers()));
+    }
+
+    @Test
+    void 매치되는_개수() {
+        assertEquals(winningLotto.countMatches(new Lotto(List.of(1, 2, 3, 4, 5, 6))), 6);
     }
 
     @Test
