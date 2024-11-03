@@ -5,7 +5,9 @@ import lotto.model.Lottos;
 import lotto.model.RankCount;
 import lotto.util.Constants;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class Output {
     public void printPurchasePriceInputPrompt() {
@@ -57,7 +59,7 @@ public class Output {
     private void printWinningStatistic(RankCount rankCount) {
         int matchNumbersCount = rankCount.getRank().getMatchNumbersCount();
         int matchBonus = rankCount.getRank().getMatchBonus();
-        String prize = rankCount.getRank().getFormattedPrize();
+        String prize = getNumberFormat(rankCount.getRank().getPrize());
         int count = rankCount.getCount();
 
         if (matchBonus != 0) {
@@ -68,6 +70,18 @@ public class Output {
     }
 
     public void printProfitability(double profitability) {
-        System.out.printf(Constants.PROFITABILITY_FORMAT.getMessage() + "%n", profitability);
+        System.out.printf(Constants.PROFITABILITY_FORMAT.getMessage() + "%n", getNumberFormat(profitability));
+    }
+
+    private String getNumberFormat(int number) {
+        NumberFormat formatter = NumberFormat.getInstance(Locale.US);
+        return formatter.format(number);
+    }
+
+    private String getNumberFormat(double number) {
+        NumberFormat formatter = NumberFormat.getInstance(Locale.US);
+        formatter.setMaximumFractionDigits(1);
+        formatter.setMinimumFractionDigits(1);
+        return formatter.format(number);
     }
 }

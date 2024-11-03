@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.text.NumberFormat;
-import java.util.Locale;
 
 public enum Rank {
     FIRST(6, 0, 2_000_000_000),
@@ -30,10 +28,5 @@ public enum Rank {
 
     public int getPrize() {
         return prize;
-    }
-
-    public String getFormattedPrize() {
-        NumberFormat formatter = NumberFormat.getInstance(Locale.US);
-        return formatter.format(prize);
     }
 }
