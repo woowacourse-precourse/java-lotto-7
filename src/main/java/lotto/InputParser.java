@@ -11,10 +11,11 @@ public class InputParser {
     private static final String NUMBER_WITH_DELIMITER_REGEX_SUFFIX = "\\s*-?\\d+)*\\s*$";
 
     public static int parseInt(String input) {
-        emptyCheck(input);
-        numberCheck(input);
-        integerRangeCheck(input);
-        return Integer.parseInt(input);
+        String strippedInput = input.strip();
+        emptyCheck(strippedInput);
+        numberCheck(strippedInput);
+        integerRangeCheck(strippedInput);
+        return Integer.parseInt(strippedInput);
     }
 
     public static List<Integer> parseIntList(String input) {
@@ -29,7 +30,6 @@ public class InputParser {
 
         String[] inputs = input.split(delimiter);
         return Arrays.stream(inputs)
-                .map(String::strip)
                 .map(InputParser::parseInt)
                 .toList();
     }
