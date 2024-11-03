@@ -8,21 +8,21 @@ public class WinningLotto {
 
     private static final int WINNING_LOTTO_NUMBER_SIZE = 6;
 
-    private final LottoNumbers numbers;
-    private final LottoNumber bonusNumber;
+    private final LottoNumbers lottoNumbers;
+    private final LottoNumber bonusLottoNumber;
 
-    public WinningLotto(LottoNumbers numbers, LottoNumber bonusNumber) {
-        validate(numbers, bonusNumber);
-        this.numbers = numbers;
-        this.bonusNumber = bonusNumber;
+    public WinningLotto(LottoNumbers lottoNumbers, LottoNumber bonusLottoNumber) {
+        validate(lottoNumbers, bonusLottoNumber);
+        this.lottoNumbers = lottoNumbers;
+        this.bonusLottoNumber = bonusLottoNumber;
     }
 
     public int getMatchCount(Lotto lotto) {
-        return numbers.countMatch(lotto.getLottoNumbers());
+        return lottoNumbers.countMatch(lotto.getLottoNumbers());
     }
 
     public boolean isBonusNumberMatches(Lotto lotto) {
-        return lotto.containsLottoNumber(bonusNumber);
+        return lotto.containsLottoNumber(bonusLottoNumber);
     }
 
     private void validate(LottoNumbers numbers, LottoNumber bonusNumber) {
