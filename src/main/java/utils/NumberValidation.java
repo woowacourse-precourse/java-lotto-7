@@ -1,6 +1,7 @@
 package utils;
 
 import static exception.ErrorMessage.DUPLICATE_NUMBER_ERROR;
+import static exception.ErrorMessage.LOTTO_NUMBER_CONTAINS_BONUS_NUMBER;
 import static exception.ErrorMessage.NUMBER_RANGE_ERROR;
 import static exception.ErrorMessage.NUMBER_SIZE_ERROR;
 
@@ -39,6 +40,12 @@ public class NumberValidation {
     public static void validateNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(NUMBER_RANGE_ERROR.getMessage());
+        }
+    }
+
+    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_CONTAINS_BONUS_NUMBER.getMessage());
         }
     }
 

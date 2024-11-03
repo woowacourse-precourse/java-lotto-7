@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 import service.WinningService;
+import utils.NumberValidation;
 import view.InputView;
 import view.OutputView;
 
@@ -15,7 +16,7 @@ public class LottoController {
         List<List<Integer>> lottos = purchaseLottoResult(ticketQuantity);
 
         List<Integer> winningNumbers = createWinningNumber();
-        int bonusNumber = createBonusNumber();
+        int bonusNumber = createBonusNumber(winningNumbers);
 /*
         for (Lotto lotto : lottos.getLottos()) {
             winningService.winningStatistics(winningNumbers, lotto.getNumbers(), bonusNumber);
@@ -45,16 +46,17 @@ public class LottoController {
         return getValidatedWinningNumbers();
     }
 
-    private int createBonusNumber() {
+    private int createBonusNumber(List<Integer> winningNumbers) {
         InputView.printBonusNumberMessage();
-        return getValidateBonusNumber();
+        return getValidateBonusNumber(winningNumbers);
     }
 
-    private int getValidateBonusNumber() {
+    private int getValidateBonusNumber(List<Integer> winningNumbers) {
         int bonusNumber;
         while (true) {
             try {
                 bonusNumber = InputView.bonusNumberInput();
+                NumberValidation.validateBonusNumber(winningNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
