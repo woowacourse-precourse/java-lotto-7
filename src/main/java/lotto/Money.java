@@ -5,11 +5,19 @@ import lotto.constant.NumberType;
 import static lotto.constant.ErrorMessage.PURCHASE_PRICE_ERROR;
 
 public class Money {
-    private final long amount;
+    private long amount;
 
     public Money(long amount) {
         validMoney(amount);
         this.amount = amount;
+    }
+
+    public void minus(Money money) {
+        this.amount -= money.amount;
+    }
+
+    public long getAmount() {
+        return amount;
     }
 
     private void validMoney(long amount) {
