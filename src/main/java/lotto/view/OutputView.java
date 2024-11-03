@@ -19,7 +19,6 @@ public class OutputView {
     }
 
     public void printWinningNumbersRequestMessage() {
-        printNewLine();
         printMessage(WINNING_LOTTO_NUMBERS_REQUEST);
     }
 
