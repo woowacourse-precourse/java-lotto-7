@@ -46,6 +46,7 @@ public class LottoController {
 
     private int handleLottoCount(int purchasePrice) {
         int count = lottoService.calculateLottoCount(purchasePrice);
+        output.printLottoCount(count);
         return count;
     }
 }
