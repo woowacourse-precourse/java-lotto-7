@@ -110,6 +110,7 @@ public class InputViewException {
         validateIfInputContainsWhitespace(inputBonusNumber);
         validateIfInputContainsNullOrEmpty(inputBonusNumber);
         validateInputBonusFormat(inputBonusNumber);
+        validateInputBonusNumberStartsWithZero(inputBonusNumber);
     }
 
     private void validateInputBonusFormat(String inputBonusNumber) {
@@ -118,6 +119,13 @@ public class InputViewException {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
                     ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_MUST_BE_NUMERIC);
+        }
+    }
+
+    private void validateInputBonusNumberStartsWithZero(String inputBonusNumber) {
+        if (!inputBonusNumber.equals(String.valueOf(Integer.parseInt(inputBonusNumber)))) {
+            throw new IllegalArgumentException(
+                    ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_NUMBER_CANNOT_START_WITH_ZERO);
         }
     }
 
