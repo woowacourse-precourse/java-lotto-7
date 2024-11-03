@@ -1,6 +1,7 @@
 package lotto.model.lotto;
 
 import java.util.List;
+import lotto.common.ErrorMessage;
 
 public class WinningLotto {
     private final Lotto lotto;
@@ -14,7 +15,7 @@ public class WinningLotto {
 
     private void validateDuplicated(final BonusNumber bonusNumber) {
         if (lotto.isContain(bonusNumber.getBonus())) {
-            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_CONFLICT_ERROR.getMessage());
         }
     }
 

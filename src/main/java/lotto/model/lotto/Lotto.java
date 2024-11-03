@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
+import lotto.common.ErrorMessage;
 
 public class Lotto {
     private static final Pattern VALID_NUMBER_PATTERN = Pattern.compile("^\\d+(,\\d+)*$");
@@ -23,7 +24,7 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-    
+
     protected boolean isContain(final int number) {
         return numbers.contains(number);
     }
@@ -36,21 +37,21 @@ public class Lotto {
 
     private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_COUNT.getMessage());
         }
     }
 
     private void validateDuplicated(final List<Integer> numbers) {
         Set<Integer> lottoNumbers = new HashSet<>(numbers);
         if (lottoNumbers.size() != LOTTO_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_CONFLICT_ERROR.getMessage());
         }
     }
 
     private void validateRange(final List<Integer> numbers) {
         for (int number : numbers) {
             if (number < MIN_NUMBER || number > MAX_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1과 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
             }
         }
     }
@@ -69,13 +70,13 @@ public class Lotto {
 
     private void validateEmptyInput(final String lottoNumber) {
         if (lottoNumber == null || lottoNumber.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 아무것도 입력되지 않았습니다. 로또 번호를 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
         }
     }
 
     private void validateInput(final String lottoNumber) {
         if (!VALID_NUMBER_PATTERN.matcher(lottoNumber).matches()) {
-            throw new IllegalArgumentException("[ERROR] 입력에 숫자와 쉼표만 포함되어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_FORMAT.getMessage());
         }
     }
 

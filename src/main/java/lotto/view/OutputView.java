@@ -4,6 +4,7 @@ import lotto.model.dto.LottoNumbers;
 import lotto.model.dto.ResultStatistics;
 
 public class OutputView {
+    private static final String ERROR_MESSAGE = "[ERROR] ";
     private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
     private static final String RESULT_MESSAGE = "당첨 통계";
     private static final String DIVIDER = "---";
@@ -18,7 +19,7 @@ public class OutputView {
     }
 
     public void printErrorMessage(final String message) {
-        System.out.println(message);
+        System.out.println(ERROR_MESSAGE + message);
     }
 
     public void printLottoResult(final ResultStatistics resultStatistics) {

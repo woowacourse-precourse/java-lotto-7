@@ -1,5 +1,6 @@
 package lotto.model.person;
 
+import lotto.common.ErrorMessage;
 import lotto.model.lotto.LottoMachine;
 import lotto.model.lotto.Lottos;
 import lotto.model.lottogenerator.LottoGenerator;
@@ -31,13 +32,13 @@ public class LottoSeller {
 
     private void validateAmount(final int amount) {
         if (amount % LOTTO_UNIT_AMOUNT != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 금액은 1000원 단위로 투입되어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY_FORMAT.getMessage());
         }
     }
 
     private void validateAmountRange(final int amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 양수인 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_INPUT_ERROR.getMessage());
         }
     }
 }

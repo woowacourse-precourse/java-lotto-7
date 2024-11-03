@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.common.ErrorMessage;
 
 public class InputView {
     private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -27,7 +28,7 @@ public class InputView {
         try {
             return Integer.parseInt(amount);
         } catch (final NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.CAN_NOT_CONVERT_TO_INT.getMessage());
         }
     }
 }
