@@ -1,46 +1,69 @@
 package lotto.model;
 
+import static lotto.constants.LottoConstant.WON_1000;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import lotto.dto.LottoBundle;
 import lotto.dto.LottoNumbers;
-import lotto.dto.LottoPrizeStatus;
+import lotto.dto.LottoEvaluatedStatus;
 
 public class LottoEvaluator {
-    private final HashMap<LottoPrize, Integer> prizeStatus = new HashMap<>();
+    private final LottoTicket lottoTicket;
+    private final Lotto winningNumbers;
+    private final int bonusNumber;
 
-    public LottoEvaluator(LottoTicket lottoTickets, Lotto winningNumbers, int bonusNumbers) {
-        LottoBundle lottoBundle = lottoTickets.getLottoTicketStatus();
+    public LottoEvaluator(LottoTicket lottoTicket, Lotto winningNumbers, int bonusNumber) {
+        this.lottoTicket = lottoTicket;
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+    }
+
+    public LottoEvaluatedStatus getEvaluatedStatus(){
+        HashMap<LottoPrize, Integer> prize = getPrize();
+
+        LottoBundle lottoBundle = lottoTicket.getLottoTicketStatus();
+        int lottoAmount = lottoBundle.getLottoNumbers().size() * WON_1000;
+        double returnOnInvestment = calculateReturnOnInvestment(prize, lottoAmount);
+
+        return new LottoEvaluatedStatus(prize, returnOnInvestment);
+    }
+
+    private HashMap<LottoPrize, Integer> getPrize() {
+        LottoBundle lottoBundle = lottoTicket.getLottoTicketStatus();
         List<LottoNumbers> lottoNumbers = lottoBundle.getLottoNumbers();
 
-        initializePrizeStatistics();
+        return evaluateTicket(lottoNumbers);
+    }
+
+    private HashMap<LottoPrize, Integer> evaluateTicket(List<LottoNumbers> lottoNumbers) {
+        HashMap<LottoPrize, Integer> prizeStatus = new HashMap<>();
+
+        initializePrizeStatus(prizeStatus);
         for (LottoNumbers lottoNumber : lottoNumbers) {
-            int winningCount = countMatchingNumbers(lottoNumber, winningNumbers);
-            int bonusCount = countMatchingBonus(lottoNumber, bonusNumbers);
+            int winningCount = countMatchingNumbers(lottoNumber);
+            int bonusCount = countMatchingBonus(lottoNumber);
             LottoPrize prize = checkPrize(winningCount, bonusCount);
-            updatePrizeStatistics(prize);
+            updatePrizeStatus(prizeStatus, prize);
         }
+
+        return prizeStatus;
     }
 
-    public LottoPrizeStatus getPrizeStatus(int lottoAmount) {
-        double returnOnInvestment = calculateEarningRate(prizeStatus, lottoAmount);
-        return new LottoPrizeStatus(prizeStatus, returnOnInvestment);
-    }
-
-
-    private void initializePrizeStatistics() {
+    private void initializePrizeStatus(HashMap<LottoPrize, Integer> prizeStatus) {
         for (LottoPrize prize : LottoPrize.values()) {
             prizeStatus.put(prize, 0);
         }
     }
 
-    private int countMatchingNumbers(LottoNumbers lottoNumbers, Lotto winningNumbers) {
+    private int countMatchingNumbers(LottoNumbers lottoNumbers) {
         List<Integer> lottoNumber = lottoNumbers.getLottoNumbers();
+        List<Integer> winningNumber = winningNumbers.getLottoNumbers().getLottoNumbers();
         int count = 0;
 
         for (Integer number : lottoNumber) {
-            if (winningNumbers.getLottoNumbers().getLottoNumbers().contains(number)) {
+            if (winningNumber.contains(number)) {
                 count++;
             }
         }
@@ -48,10 +71,10 @@ public class LottoEvaluator {
         return count;
     }
 
-    private int countMatchingBonus(LottoNumbers lottoNumbers, int bonusNumbers) {
+    private int countMatchingBonus(LottoNumbers lottoNumbers) {
         List<Integer> lottoNumber = lottoNumbers.getLottoNumbers();
 
-        if (lottoNumber.contains(bonusNumbers)) {
+        if (lottoNumber.contains(bonusNumber)) {
             return 1;
         }
         return 0;
@@ -66,13 +89,13 @@ public class LottoEvaluator {
         return LottoPrize.FAIL;
     }
 
-    private void updatePrizeStatistics(LottoPrize prize) {
+    private void updatePrizeStatus(HashMap<LottoPrize, Integer> prizeStatus, LottoPrize prize) {
         if (prize != null) {
             prizeStatus.put(prize, prizeStatus.get(prize) + 1);
         }
     }
 
-    private double calculateEarningRate(HashMap<LottoPrize, Integer> prizeStatus, int lottoAmount) {
+    private double calculateReturnOnInvestment(HashMap<LottoPrize, Integer> prizeStatus, int lottoAmount) {
         Set<LottoPrize> lottoPrizes = prizeStatus.keySet();
         double returnOnInvestment;
 
