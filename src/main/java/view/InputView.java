@@ -25,12 +25,11 @@ public class InputView {
     public static WinningLotto readWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        List<LottoNumber> winningNumbers;
+        List<Integer> winningNumbers;
         try {
             winningNumbers = Arrays.stream(input.split(","))
                     .map(String::trim)
                     .map(Integer::parseInt)
-                    .map(LottoNumber::new)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new InvalidInputException("[ERROR] 당첨 번호는 숫자여야 합니다.");
@@ -38,9 +37,9 @@ public class InputView {
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusInput = Console.readLine();
-        LottoNumber bonusNumber;
+        int bonusNumber;
         try {
-            bonusNumber = new LottoNumber(Integer.parseInt(bonusInput.trim()));
+            bonusNumber = Integer.parseInt(bonusInput.trim());
         } catch (NumberFormatException e) {
             throw new InvalidInputException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
