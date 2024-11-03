@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.util.LottoValidator;
 
 public class InputView {
     public int inputPurchaseAmount() {
@@ -10,7 +11,8 @@ public class InputView {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 int purchaseAmount = Integer.parseInt(Console.readLine());
-                // 유효성 검증 추가
+                LottoValidator.validatePurchaseAmount(purchaseAmount);
+
                 return purchaseAmount;
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("구입금액은 숫자만 허용됩니다.");
@@ -25,10 +27,10 @@ public class InputView {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String[] rawWinningNumbers = splitRawNumbers(Console.readLine());
-                // 유효성 검증 추가
-
                 List<Integer> winningNumbers = convertToWinningNumbers(rawWinningNumbers);
-                // 유효성 검증 추가
+
+                LottoValidator.validateLottoNumbers(winningNumbers);
+
                 return winningNumbers;
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("당첨 번호는 숫자만 허용됩니다.");
@@ -38,12 +40,13 @@ public class InputView {
         }
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(Console.readLine());
-                // 유효성 검증 추가
+                LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
+
                 return bonusNumber;
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("보너스 번호는 숫자만 허용됩니다.");
