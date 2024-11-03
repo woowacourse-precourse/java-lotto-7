@@ -27,6 +27,14 @@ public class InputView {
         return parseNumber(input);
     }
 
+    public int enterBonusNumber() {
+        ConsoleWriter.printlnMessage(PrintMessage.INPUT_BONUS_NUMBER.getMessage());
+        String input = ConsoleReader.enterMessage();
+        validateStringFormat(input);
+        validateNumberFormat(input);
+        return Integer.parseInt(input);
+    }
+
     private void validateStringFormat(String str) {
         if (isEmptyOrBlank(str)) {
             throw CustomException.of(ErrorMessage.BLANK_INPUT_ERROR);
