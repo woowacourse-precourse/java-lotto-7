@@ -1,5 +1,9 @@
 package lotto.validator;
 
+import static lotto.exception.LottoErrorCode.BONUS_NUMBER_DUPLICATED;
+import static lotto.exception.LottoErrorCode.BONUS_NUMBER_NOT_BLANK;
+import static lotto.exception.LottoErrorCode.BONUS_NUMBER_NOT_ONE;
+import static lotto.exception.LottoErrorCode.BONUS_NUMBER_OUT_OF_RANGE;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBERS_DUPLICATED;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBERS_NOT_SORTED;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBERS_OUT_OF_RANGE;
@@ -20,6 +24,7 @@ import java.util.regex.Pattern;
 public class LottoValidator {
 
     private static final Pattern POSITIVE_INTEGER = Pattern.compile("^[1-9]\\d*$");
+    private static final Pattern BONUS_NUMBER = Pattern.compile("\\d{1,2}");
 
     public void validateMoney(String money) {
         isMoneyBlank(money);
@@ -47,12 +52,37 @@ public class LottoValidator {
         isNumbersOutOfRange(lottoNumbers);
     }
 
-    public void validateBonusNumber(String bonusNumber) {
-        if (bonusNumber.isBlank()) {
-            throw new IllegalArgumentException("보너스 번호를 입력해 주세요.");
+    public void validateBonusNumber(List<Integer> winnerNumbers, String bonusNumber) {
+        isBonusNumBlank(bonusNumber);
+        isBonusNumNotOne(bonusNumber);
+
+        int bonus = Integer.parseInt(bonusNumber);
+
+        isBonusNumDuplicated(winnerNumbers, bonus);
+        isBonusNumOutOfRange(bonus);
+    }
+
+    private static void isBonusNumOutOfRange(int bonus) {
+        if (bonus < 1 || bonus > 45) {
+            throw new IllegalArgumentException(BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
-        if (bonusNumber.length() != 1) {
-            throw new IllegalArgumentException("보너스 번호는 1자리여야 합니다.");
+    }
+
+    private static void isBonusNumDuplicated(List<Integer> winnerNumbers, int bonus) {
+        if (winnerNumbers.contains(bonus)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATED.getMessage());
+        }
+    }
+
+    private static void isBonusNumNotOne(String bonusNumber) {
+        if (!BONUS_NUMBER.matcher(bonusNumber).matches()) {
+            throw new IllegalArgumentException(BONUS_NUMBER_NOT_ONE.getMessage());
+        }
+    }
+
+    private static void isBonusNumBlank(String bonusNumber) {
+        if (bonusNumber.isBlank()) {
+            throw new IllegalArgumentException(BONUS_NUMBER_NOT_BLANK.getMessage());
         }
     }
 

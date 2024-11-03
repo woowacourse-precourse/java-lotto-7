@@ -50,11 +50,11 @@ public class InMemoryLottoService implements LottoService {
     @Override // 당첨 번호와 보너스 번호를 입력받아 당첨 통계 계산
     public Map<Rank, Integer> calculateLottoResults(String winNumbers, String bonusNumber) {
         lottoValidator.validateWinnerLottoNumbers(winNumbers);
-        lottoValidator.validateBonusNumber(bonusNumber);
-
         List<Integer> winnerNumbers = Arrays.stream(winNumbers.split(","))
                 .map(Integer::parseInt)
                 .toList();
+
+        lottoValidator.validateBonusNumber(winnerNumbers, bonusNumber);
         int bonus = Integer.parseInt(bonusNumber);
 
         return getRankCounts(winnerNumbers, bonus);
