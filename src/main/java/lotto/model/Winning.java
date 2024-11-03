@@ -1,11 +1,11 @@
 package lotto.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.WinningRank;
 import lotto.dto.WinningNumbersDto;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -25,7 +25,8 @@ public class Winning {
 
     private WinningNumbersDto makeWinningNumbers(){
         List<Integer> winningNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(winningNumbers);
+
+        winningNumbers = winningNumbers.stream().sorted().collect(Collectors.toList());
         int winning =getWinningBonusNumber(winningNumbers);
         return new WinningNumbersDto(winningNumbers, winning);
     }
