@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.Rank;
 import lotto.model.RankCount;
 import org.junit.jupiter.api.Test;
 
@@ -68,5 +69,34 @@ class LottoServiceImplTest {
             lottos.addLotto(lotto);
         }
         return lottos;
+    }
+
+    @Test
+    void 수익률을_올바르게_계산한다() {
+        List<RankCount> winningStatistics = initializeWinningStatistics();
+
+        incrementWinningCounts(winningStatistics);
+
+        int purchasePrice = 7000;
+        double profitability = lottoService.calculateProfitability(winningStatistics, purchasePrice);
+        double expectedProfitability = 43642.9;
+        assertEquals(expectedProfitability, profitability);
+    }
+
+    private List<RankCount> initializeWinningStatistics() {
+        return Arrays.asList(
+                new RankCount(Rank.FIFTH),
+                new RankCount(Rank.FOURTH),
+                new RankCount(Rank.THIRD),
+                new RankCount(Rank.SECOND),
+                new RankCount(Rank.FIRST)
+        );
+    }
+
+    private void incrementWinningCounts(List<RankCount> winningStatistics) {
+        winningStatistics.get(0).incrementCount();
+        winningStatistics.get(1).incrementCount();
+        winningStatistics.get(2).incrementCount();
+        winningStatistics.get(2).incrementCount();
     }
 }
