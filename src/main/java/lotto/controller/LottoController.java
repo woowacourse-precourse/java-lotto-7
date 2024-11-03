@@ -10,12 +10,14 @@ import lotto.ui.InputView;
 import lotto.ui.OutputView;
 import lotto.util.ParseNumberUtil;
 import lotto.validator.MoneyValidator;
+import lotto.validator.NumberValidator;
 
 public class LottoController {
     private static final LottoService lottoService = new LottoService();
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static final MoneyValidator moneyValidator = new MoneyValidator();
+    private static final NumberValidator numberValidator = new NumberValidator();
 
     public void run() {
         LottoGame lottoGame = new LottoGame(new StandardLottoPrice(), new PriceDataImpl());
@@ -32,6 +34,8 @@ public class LottoController {
             try {
                 String winningInput = inputView.inputWinningNumber();
                 List<Integer> winningNumbers = ParseNumberUtil.parseNumber(winningInput);
+                numberValidator.checkNumberSize(winningNumbers);
+                numberValidator.checkNumberDuplicated(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -44,7 +48,6 @@ public class LottoController {
             try{
                 String money = inputView.inputMoney();
                 moneyValidator.validateNumeric(money);
-
                 moneyValidator.validateDivideWithLottoPrice(Integer.parseInt(money), lottoPrice);
                 return Integer.parseInt(money);
             } catch (IllegalArgumentException e) {
