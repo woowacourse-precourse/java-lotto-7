@@ -2,18 +2,9 @@ package lotto.controller;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import lotto.model.LottoGenerator;
-import lotto.view.OutputView;
-
 public class InputHandler {
-    private final OutputView outputView;
-
-    public InputHandler(final OutputView outputView, LottoGenerator lottoGenerator) {
-        this.outputView = outputView;
-    }
 
     public int readPurchaseAmount() {
-        outputView.printRequirePurchasePrice();
         String input = readLine();
         final int amount = parseToInteger(input);
         validatePositive(amount);
