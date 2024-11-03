@@ -1,48 +1,30 @@
 package lotto;
 
 import java.util.EnumMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class WinningNumbers {
-    private static final int COUNT = 6;
     private static final int START_NUMBER = 1;
     private static final int END_NUMBER = 45;
 
-    private final List<Integer> numbers;
+    private final Lotto lotto;
     private final int bonusNumber;
 
     public WinningNumbers(List<Integer> numbers, int bonusNumber) {
-        if (numbers.size() != COUNT) {
-            throw new IllegalArgumentException(String.format("[ERROR] 당첨 번호는 %d개여야 합니다.", COUNT));
-        }
-        for (Integer number : numbers) {
-            if (!(START_NUMBER <= number && number <= END_NUMBER)) {
-                throw new IllegalArgumentException(
-                        String.format("[ERROR] 당첨 번호는 %d~%d사이의 번호여야 합니다.", START_NUMBER, END_NUMBER)
-                );
-            }
-        }
-        Set<Integer> s = new HashSet<>();
-        for (Integer number : numbers) {
-            if(!s.add(number)){
-                throw new IllegalArgumentException(
-                        String.format("[ERROR] 중복된 번호가 있습니다: (%d).", number)
-                );
-            }
-        }
+        this(new Lotto(numbers), bonusNumber);
+    }
 
+    public WinningNumbers(Lotto lotto, int bonusNumber) {
         if (!(START_NUMBER <= bonusNumber && bonusNumber <= END_NUMBER)) {
             throw new IllegalArgumentException(
                     String.format("[ERROR] 보너스 번호는 %d~%d사이의 번호여야 합니다.", START_NUMBER, END_NUMBER));
         }
 
-        if (numbers.contains(bonusNumber)) {
+        if (lotto.hasNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복이 되면 안됩니다.");
         }
-        this.numbers = numbers;
+        this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
@@ -71,9 +53,7 @@ public class WinningNumbers {
     }
 
     public int countMatch(Lotto lotto) {
-        return (int) numbers.stream()
-                .filter(lotto::hasNumber)
-                .count();
+        return this.lotto.countMatch(lotto);
     }
 
     public boolean hasMatchNumber(Lotto lotto) {

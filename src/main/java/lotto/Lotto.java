@@ -6,6 +6,8 @@ import java.util.Set;
 
 public class Lotto {
     public static final int LOTTO_NUMBER_QUANTITY = 6;
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
 
     private final List<Integer> numbers;
 
@@ -17,6 +19,13 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_QUANTITY) {
             throw new IllegalArgumentException(String.format("[ERROR] 로또 번호는 %d개여야 합니다.", LOTTO_NUMBER_QUANTITY));
+        }
+        for (Integer number : numbers) {
+            if (!(START_NUMBER <= number && number <= END_NUMBER)) {
+                throw new IllegalArgumentException(
+                        String.format("[ERROR] 당첨 번호는 %d~%d사이의 번호여야 합니다.", START_NUMBER, END_NUMBER)
+                );
+            }
         }
         isDuplicate(numbers);
     }
@@ -34,6 +43,12 @@ public class Lotto {
 
     public boolean hasNumber(int number) {
         return numbers.contains(number);
+    }
+
+    public int countMatch(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::hasNumber)
+                .count();
     }
 
     public List<Integer> getNumbers() {
