@@ -17,8 +17,6 @@ public class LottoController {
         Cash cash = requestCashInput();
 
         LottoBundle lottoBundle = buyLottoBundle(cash);
-        lottoOutputView.printLottoBundleAmount(lottoBundle.getLottoAmount());
-        lottoOutputView.printLottoInBundle(lottoBundle);
 
         lottoOutputView.printWinningNumberNotification();
         Lotto winningLotto = requestWinningLottoInput();
@@ -27,9 +25,8 @@ public class LottoController {
         LottoBonusNumber lottoBonusNumber = requestBonusNumberInput();
 
         LottoResult lottoResult = lottoResultCalculator.calculatePrizeResult(lottoBundle, lottoBonusNumber, winningLotto, cash);
-        lottoOutputView.printLottoPrizesNotification();
-        lottoOutputView.printLottoPrizes(lottoResult.getLottoPrizes());
-        lottoOutputView.printLottoBenefit(lottoResult.getTotalBenefit());
+        printLottoPrizeDetails(lottoResult);
+        printLottoBenefit(lottoResult.getTotalBenefit());
     }
 
     private Cash requestCashInput() {
@@ -44,7 +41,10 @@ public class LottoController {
     }
 
     private LottoBundle buyLottoBundle(Cash cash) {
-        return lottoProvider.buyLottoBundle(cash);
+        LottoBundle lottoBundle = lottoProvider.buyLottoBundle(cash);
+        lottoOutputView.printLottoBundleAmount(lottoBundle.getLottoAmount());
+        lottoOutputView.printLottoInBundle(lottoBundle);
+        return lottoBundle;
     }
 
     private Lotto requestWinningLottoInput() {
@@ -67,5 +67,13 @@ public class LottoController {
                 lottoOutputView.printErrorMessage(e.getMessage());
             }
         }
+    }
+    private void printLottoPrizeDetails(LottoResult lottoResult) {
+        lottoOutputView.printLottoPrizesNotification();
+        lottoOutputView.printLottoPrizes(lottoResult.getLottoPrizes());
+    }
+
+    private void printLottoBenefit(double totalBenefit) {
+        lottoOutputView.printLottoBenefit(totalBenefit);
     }
 }
