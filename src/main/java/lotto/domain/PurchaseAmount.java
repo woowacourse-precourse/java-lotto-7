@@ -2,9 +2,10 @@ package lotto.domain;
 
 public class PurchaseAmount {
 
-    public static final String SHOULD_INTEGER_MESSAGE = "[ERROR] 구입금액을 숫자로 입력해주세요.";
-    public static final String SHOULD_DIVISIBLE_BY_THOUSAND_MESSAGE = "[ERROR] 구입금액을 1000원 단위로 입력해주세요.";
-    private int amount;
+    private static final String SHOULD_INTEGER_MESSAGE = "[ERROR] 구입금액을 숫자로 입력해주세요.";
+    private static final String SHOULD_DIVISIBLE_BY_THOUSAND_MESSAGE = "[ERROR] 구입금액을 1000원 단위로 입력해주세요.";
+    private static final int LOTTO_PRICE = 1000;
+    private final int amount;
 
     public PurchaseAmount(String rawPurchaseAmount) {
         int purchaseAmount = toInt(rawPurchaseAmount);
@@ -21,8 +22,12 @@ public class PurchaseAmount {
     }
 
     private void validateDivisibleByThousand(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(SHOULD_DIVISIBLE_BY_THOUSAND_MESSAGE);
         }
+    }
+
+    public int calculateLottoCount() {
+        return amount / LOTTO_PRICE;
     }
 }

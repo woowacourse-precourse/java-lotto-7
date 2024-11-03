@@ -8,8 +8,8 @@ public class LottoMachine {
     private final int count;
     private final NumbersGenerator numbersGenerator;
 
-    public LottoMachine(int count, NumbersGenerator numbersGenerator) {
-        this.count = count;
+    public LottoMachine(PurchaseAmount purchaseAmount, NumbersGenerator numbersGenerator) {
+        this.count = purchaseAmount.calculateLottoCount();
         this.numbersGenerator = numbersGenerator;
     }
 

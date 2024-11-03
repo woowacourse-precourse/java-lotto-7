@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -25,5 +26,15 @@ public class PurchaseAmountTest {
         assertThatThrownBy(() -> new PurchaseAmount(rawPurchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입금액을 1000원 단위로 입력해주세요.");
+    }
+
+    @DisplayName("")
+    @Test
+    void calculateLottoCountTest() {
+        PurchaseAmount purchaseAmount = new PurchaseAmount("3000");
+
+        int lottoCount = purchaseAmount.calculateLottoCount();
+
+        assertThat(lottoCount).isEqualTo(3);
     }
 }
