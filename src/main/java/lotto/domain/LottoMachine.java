@@ -20,6 +20,6 @@ public class LottoMachine {
     }
 
     public List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_SIZE);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_SIZE);
     }
 }

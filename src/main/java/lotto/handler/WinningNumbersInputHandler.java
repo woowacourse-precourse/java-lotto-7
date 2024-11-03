@@ -2,8 +2,8 @@ package lotto.handler;
 
 import lotto.domain.lottoForm.WinningNumbers;
 
-import static lotto.LottoConstants.LOTTO_NUMBER_END;
-import static lotto.LottoConstants.LOTTO_NUMBER_START;
+import static lotto.LottoConstants.LOTTO_NUMBER_MAX;
+import static lotto.LottoConstants.LOTTO_NUMBER_MIN;
 import static lotto.message.ErrorMessage.LOTTO_SCOPE_ERROR;
 import static lotto.message.ErrorMessage.NON_INTEGER_PURCHASE_AMOUNT;
 import static lotto.view.RequestView.getBonusInput;
@@ -37,7 +37,7 @@ public class WinningNumbersInputHandler {
     }
 
     public void validateScope(int number) {
-        if (number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END){
+        if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX){
             throw new IllegalArgumentException(LOTTO_SCOPE_ERROR.getMessage());
         }
     }

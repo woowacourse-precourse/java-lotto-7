@@ -18,7 +18,7 @@ public abstract class LottoForm {
 
     private void validateScope(List<Integer> numbers) {
         boolean result = numbers.stream()
-                .allMatch(number -> number >= LOTTO_NUMBER_START && number <= LOTTO_NUMBER_END);
+                .allMatch(number -> number >= LOTTO_NUMBER_MIN && number <= LOTTO_NUMBER_MAX);
         if (!result) {
             throw new IllegalArgumentException(LOTTO_SCOPE_ERROR.getMessage());
         }

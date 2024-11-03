@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.LottoConstants.LOTTO_NUMBER_END;
-import static lotto.LottoConstants.LOTTO_NUMBER_START;
+import static lotto.LottoConstants.LOTTO_NUMBER_MAX;
+import static lotto.LottoConstants.LOTTO_NUMBER_MIN;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoMachineTest {
@@ -22,7 +22,7 @@ public class LottoMachineTest {
         List<Integer> numbers = lottoMachine.generateNumbers();
 
         // then
-        assertThat(numbers).allMatch(number -> number >= LOTTO_NUMBER_START && number <= LOTTO_NUMBER_END);
+        assertThat(numbers).allMatch(number -> number >= LOTTO_NUMBER_MIN && number <= LOTTO_NUMBER_MAX);
 
     }
 
