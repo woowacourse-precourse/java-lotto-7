@@ -22,6 +22,9 @@ public class Application {
             int ticketCount = TicketCalculator.calculateTicketCount(purchaseAmount);
             System.out.println(ticketCount + "개를 구매했습니다.");
 
+            List<Lotto> userLottos = generateUserLottos(ticketCount);
+            printLottoNumbers(userLottos);
+
             System.out.println("당첨 번호를 입력해 주세요.");
             List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(","))
                     .map(Integer::parseInt)
@@ -32,14 +35,11 @@ public class Application {
 
             LottoValidator.validateWinningNumbers(winningNumbers, bonusNumber);
 
-            List<Lotto> userLottos = generateUserLottos(ticketCount);
-            printLottoNumbers(userLottos);
-
             int[] matchCounts = LottoResultCalculator.calculateResults(userLottos, winningNumbers, bonusNumber);
             printResults(matchCounts);
 
             double profitRate = ProfitCalculator.calculateProfitRate(matchCounts, purchaseAmount);
-            System.out.printf("총 수익률은 %.2f%%입니다.%n", profitRate);
+            System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
 
         } catch (NumberFormatException e) {
             System.out.println(ErrorMessages.INVALID_INPUT.getMessage());
@@ -52,7 +52,11 @@ public class Application {
         System.out.println("당첨 통계\n---");
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.MISS) {
-                System.out.printf("%d개 일치 (%d원) - %d개%n", rank.getMatchCount(), rank.getPrize(), matchCounts[rank.ordinal()]);
+                if (rank == LottoRank.SECOND) { // 보너스 볼 일치 출력 추가
+                    System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n", rank.getMatchCount(), String.format("%,d", rank.getPrize()), matchCounts[rank.ordinal()]);
+                } else {
+                    System.out.printf("%d개 일치 (%s원) - %d개%n", rank.getMatchCount(), String.format("%,d", rank.getPrize()), matchCounts[rank.ordinal()]);
+                }
             }
         }
     }
