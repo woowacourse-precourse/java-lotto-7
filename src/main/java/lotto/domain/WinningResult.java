@@ -85,7 +85,7 @@ public class WinningResult {
         return (double) prizeMoney / amount * 100;
     }
 
-    public void setPrizeMoney(int prizeMoney) {
+    public void setPrizeMoney(long prizeMoney) {
         this.prizeMoney = prizeMoney;
     }
 }
