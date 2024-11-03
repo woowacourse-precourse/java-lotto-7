@@ -102,6 +102,34 @@ public class LottoManagerTest {
         );
     }
 
+    @Test
+    void 수익률이_제대로_계산되어야_한다() {
+        int usedMoney = 2000;
+        List<Integer> lotto = List.of(1,2,3,4,5,6);
+        int bonusNumber = 1;
+        List<Integer> fiveMatchBonus = List.of(1,2,3,4,5,7);
+        List<Integer> sixMatch = List.of(1,2,3,4,5,6);
+
+        int earn = LottoPrize.FIVE_MATCH_BONUS.getPrize() + LottoPrize.SIX_MATCH.getPrize();
+        double expected = (double)(earn - usedMoney) / usedMoney * 100;
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    LottoManager lottoManager = new LottoManager(
+                            new Attempt(usedMoney),
+                            new Lotto(lotto),
+                            new BonusLotto(bonusNumber));
+                    Map<LottoPrize, Integer> prizeMap = lottoManager.doLotto();
+                    Assertions.assertEquals(
+                            expected,
+                            lottoManager.getROI(prizeMap)
+                    );
+                },
+                fiveMatchBonus,
+                sixMatch
+        );
+    }
+
     private List<List<Integer>> getRandomList() {
         return List.of(
                 List.of(8, 21, 23, 41, 42, 43),
