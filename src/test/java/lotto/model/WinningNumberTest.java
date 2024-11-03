@@ -40,4 +40,47 @@ public class WinningNumberTest {
             final WinningNumber InvalidWinningNumber = new WinningNumber(winningNumber.getNumbers(), bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("로또 한장의 당첨순위가 올바른지 확인하는 테스트")
+    void getWinningRank() {
+        final int FIFTH = 5;
+        final int FORTH = 4;
+        final int THIRD = 3;
+        final int SECOND = 2;
+        final int FIRST = 1;
+        final int NOT_WIN = 0;
+        int currentRank;
+        Lotto lotto;
+
+        //5등 체크
+        lotto = new Lotto(new ArrayList<>(List.of(1,2,3,39,40,41)));
+        currentRank = winningNumber.getWinningRank(lotto);
+        Assertions.assertEquals(FIFTH, currentRank);
+
+        //4등 체크
+        lotto = new Lotto(new ArrayList<>(List.of(1,2,3,10,40,41)));
+        currentRank = winningNumber.getWinningRank(lotto);
+        Assertions.assertEquals(FORTH, currentRank);
+
+        //3등 체크
+        lotto = new Lotto(new ArrayList<>(List.of(1,2,3,10,11,41)));
+        currentRank = winningNumber.getWinningRank(lotto);
+        Assertions.assertEquals(THIRD, currentRank);
+
+        //2등 체크
+        lotto = new Lotto(new ArrayList<>(List.of(1,2,3,10,11,8)));
+        currentRank = winningNumber.getWinningRank(lotto);
+        Assertions.assertEquals(SECOND, currentRank);
+
+        //1등 체크
+        lotto = new Lotto(new ArrayList<>(List.of(1,2,3,10,11,12)));
+        currentRank = winningNumber.getWinningRank(lotto);
+        Assertions.assertEquals(FIRST, currentRank);
+
+        //미당첨 체크
+        lotto = new Lotto(new ArrayList<>(List.of(1,2,38,39,40,41)));
+        currentRank = winningNumber.getWinningRank(lotto);
+        Assertions.assertEquals(NOT_WIN, currentRank);
+    }
 }
