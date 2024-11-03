@@ -59,7 +59,7 @@ public class PurchaseAmount {
         return (double) Math.round(profitPercentage * 100) / 100.0;
     }
 
-    public int getPurchasableLottoAmount() {
+    public int calculatePurchasableLottoAmount() {
         return amount / AMOUNT_UNIT;
     }
 

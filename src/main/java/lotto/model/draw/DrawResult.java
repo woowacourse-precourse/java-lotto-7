@@ -61,13 +61,13 @@ public class DrawResult {
         return drawResult;
     }
 
-    public int getTotalPrizeMoney() {
-        int sum = 0;
+    public int calculateTotalPrizeMoney() {
+        int totalPrizeMoney = 0;
         Set<Prize> prizes = drawResult.keySet();
         for (Prize prize : prizes) {
-            sum += prize.sumPrizeMoney(drawResult.get(prize));
+            totalPrizeMoney += prize.calculatePrizeMoney(drawResult.get(prize));
         }
-        return sum;
+        return totalPrizeMoney;
     }
 
 }

@@ -46,7 +46,7 @@ public enum Prize {
         return conditionCount;
     }
 
-    public int sumPrizeMoney(int count) {
+    public int calculatePrizeMoney(int count) {
         return prizeMoney*count;
     }
 

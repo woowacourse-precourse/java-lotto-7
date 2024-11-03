@@ -13,7 +13,7 @@ public class LottoTicketGenerator {
 
     public LottoTicket generateLottoTicket(PurchaseAmount purchaseAmount) {
         List<Lotto> ticket = new ArrayList<>();
-        int lottoAmount = purchaseAmount.getPurchasableLottoAmount();
+        int lottoAmount = purchaseAmount.calculatePurchasableLottoAmount();
         for (int i = 0; i < lottoAmount; i++) {
             ticket.add(lottoGenerator.generateLotto());
         }

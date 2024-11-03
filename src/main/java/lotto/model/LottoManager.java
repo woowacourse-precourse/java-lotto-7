@@ -36,7 +36,7 @@ public class LottoManager {
     private void buyLottoTicket() {
         purchaseAmount = receivePurchaseAmount();
         lottoTicket = lottoTicketGenerator.generateLottoTicket(purchaseAmount);
-        outputView.printLottoTicket(lottoTicket, purchaseAmount.getPurchasableLottoAmount());
+        outputView.printLottoTicket(lottoTicket, purchaseAmount.calculatePurchasableLottoAmount());
     }
 
     private void draw() {
@@ -48,7 +48,7 @@ public class LottoManager {
 
     private void displayDrawStatistics() {
         outputView.printDrawResult(drawResult);
-        int totalPrizeMoney = drawResult.getTotalPrizeMoney();
+        int totalPrizeMoney = drawResult.calculateTotalPrizeMoney();
         double profitPercentage = purchaseAmount.calculateProfitPercentage(totalPrizeMoney);
         outputView.printProfitPercentage(profitPercentage);
     }
