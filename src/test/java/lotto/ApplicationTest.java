@@ -74,6 +74,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("당첨번호 입력시 구분자가 쉼표가 아닐경우 예외처리")
+    @Test
+    void 당첨번호_입력시_구분자가_쉼표가_아닐경우_예외처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1|2|3|4|5|6");
+            assertThat(output()).contains(NOT_INTEGER.getMessage());
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
