@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.model.Lotto;
+import lotto.model.purchase.Lotto;
 
 public class PurchaseView {
     public String readPayment() {

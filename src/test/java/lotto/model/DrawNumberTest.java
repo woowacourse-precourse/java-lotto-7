@@ -3,6 +3,8 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.model.draw.DrawNumber;
+import lotto.model.draw.LottoNumbers;
 import org.junit.jupiter.api.Test;
 
 class DrawNumberTest {

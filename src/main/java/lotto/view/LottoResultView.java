@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.EnumMap;
 import java.util.Map.Entry;
 import lotto.enums.LottoWinInfo;
-import lotto.model.Profit;
+import lotto.model.result.Profit;
 
 public class LottoResultView {
     public void displayLottoWins(final EnumMap<LottoWinInfo, Integer> lottoWinCount) {

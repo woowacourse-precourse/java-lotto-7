@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.purchase;
 
 import static lotto.enums.LottoConstant.PRICE;
 

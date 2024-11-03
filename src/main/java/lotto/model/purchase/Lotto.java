@@ -1,6 +1,7 @@
-package lotto.model;
+package lotto.model.purchase;
 
 import java.util.List;
+import lotto.model.draw.LottoNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;

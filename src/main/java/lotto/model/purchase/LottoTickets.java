@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.purchase;
 
 import static lotto.enums.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.enums.LottoConstant.MAX_LOTTO_NUMBER;

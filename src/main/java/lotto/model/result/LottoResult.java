@@ -1,8 +1,11 @@
-package lotto.model;
+package lotto.model.result;
 
 import java.util.EnumMap;
 import java.util.List;
 import lotto.enums.LottoWinInfo;
+import lotto.model.draw.DrawNumber;
+import lotto.model.draw.LottoNumbers;
+import lotto.model.purchase.Lotto;
 
 public class LottoResult {
     private final EnumMap<LottoWinInfo, Integer> lottoWinCount = new EnumMap<>(LottoWinInfo.class);

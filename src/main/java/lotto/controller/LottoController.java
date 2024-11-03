@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import lotto.model.DrawNumber;
-import lotto.model.LottoNumbers;
-import lotto.model.LottoResult;
-import lotto.model.Purchase;
+import lotto.model.draw.DrawNumber;
+import lotto.model.draw.LottoNumbers;
+import lotto.model.purchase.Purchase;
+import lotto.model.result.LottoResult;
 import lotto.view.LottoDrawView;
 import lotto.view.LottoResultView;
 import lotto.view.PurchaseView;

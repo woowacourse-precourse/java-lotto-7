@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.draw;
 
 public class DrawNumber {
     private final LottoNumbers drawNumbers;

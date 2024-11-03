@@ -6,6 +6,8 @@ import static lotto.enums.LottoConstant.MIN_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.model.purchase.Lotto;
+import lotto.model.purchase.Purchase;
 import org.junit.jupiter.api.Test;
 
 class PurchaseTest {
