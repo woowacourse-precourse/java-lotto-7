@@ -11,6 +11,7 @@ public class LottoMachine {
         OutputView.printLottos(lottos);
         LottoWinningNumber winningNumber = getWinningNumberFromUser();
         LottoResultCounter resultCounter = winningNumber.countMatchingNumbers(lottos);
+        OutputView.printResult(resultCounter, purchaseCount * LOTTO_PRICE);
     }
 
     private int getPurchaseCountFromUser() {
