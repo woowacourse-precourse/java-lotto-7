@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Money {
     public static final Money ZERO = Money.from(0);
     private static final int ZERO_THRESHOLD = 0;
+    public static final int DECIMAL_PRECISION = 4;
 
     private final BigDecimal amount;
 
@@ -32,10 +33,10 @@ public class Money {
     }
 
     public Money divideWithRoundHalfUp(Money money) {
-        return new Money(this.amount.divide(money.amount, 4, RoundingMode.HALF_UP));
+        return new Money(this.amount.divide(money.amount, DECIMAL_PRECISION, RoundingMode.HALF_UP));
     }
 
-     public boolean isLessThan(Money other) {
+    public boolean isLessThan(Money other) {
         return amount.compareTo(other.amount) < ZERO_THRESHOLD;
     }
 
