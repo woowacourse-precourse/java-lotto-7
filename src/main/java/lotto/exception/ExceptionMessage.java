@@ -10,7 +10,11 @@ public enum ExceptionMessage {
     WINNING_NUMBER_DUPLICATE("[ERROR] 당첨 번호에 중복된 숫자가 있습니다."),
     WINNING_NUMBER_BLANK_INPUT("[ERROR] 당첨 번호는 빈 값이 될 수 없습니다."),
     WINNING_NUMBER_NOT_NUMBER("[ERROR] 당첨 번호는 숫자로만 입력해주세요."),
-    WINNING_NUMBER_SIZE_INSUFFICIENT("[ERROR] 당첨 번호는 6개를 입력해주세요.");
+    WINNING_NUMBER_SIZE_INSUFFICIENT("[ERROR] 당첨 번호는 6개를 입력해주세요."),
+    BONUS_NUMBER_BLANK_INPUT("[ERROR] 보너스 번호는 빈 값이 될 수 없습니다."),
+    BONUS_NUMBER_OUT_OF_RANGE("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다."),
+    BONUS_NUMBER_DUPLICATE_WITH_WINNING("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
+    BONUS_NUMBER_NOT_NUMBER("[ERROR] 보너스 번호는 숫자로만 입력해주세요.");
 
     private final String message;
 

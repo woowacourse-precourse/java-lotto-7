@@ -1,11 +1,10 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.service.LottoNumberGenerator;
 import lotto.service.PriceCalculator;
-import lotto.service.WinningNumberSplitter;
+import lotto.service.WinningNumberParser;
 import lotto.view.input.PurchasePriceInput;
 import lotto.view.input.WinningNumberInput;
 import lotto.view.output.ResultDisplayer;
@@ -16,15 +15,15 @@ public class LottoController {
     private final PriceCalculator priceCalculator;
     private final LottoNumberGenerator lottoNumberGenerator;
     private final ResultDisplayer resultDisplayer;
-    private final WinningNumberSplitter winningNumberSplitter;
+    private final WinningNumberParser winningNumberParser;
     private final WinningNumberInput winningNumberInput;
 
-    public LottoController(PriceCalculator priceCalculator, PurchasePriceInput purchasePriceInput, LottoNumberGenerator lottoNumberGenerator, ResultDisplayer resultDisplayer, WinningNumberSplitter winningNumberSplitter, WinningNumberInput winningNumberInput) {
+    public LottoController(PriceCalculator priceCalculator, PurchasePriceInput purchasePriceInput, LottoNumberGenerator lottoNumberGenerator, ResultDisplayer resultDisplayer, WinningNumberParser winningNumberParser, WinningNumberInput winningNumberInput) {
         this.purchasePriceInput = purchasePriceInput;
         this.priceCalculator = priceCalculator;
         this.lottoNumberGenerator = lottoNumberGenerator;
         this.resultDisplayer = resultDisplayer;
-        this.winningNumberSplitter = winningNumberSplitter;
+        this.winningNumberParser = winningNumberParser;
         this.winningNumberInput = winningNumberInput;
     }
 
@@ -35,8 +34,10 @@ public class LottoController {
         resultDisplayer.showPurchasedLottos(lottoCount, generatedLottos);
 
         String winningNumber = winningNumberInput.getNumber();
-        Lotto parsedWinningNumbers = winningNumberSplitter.split(winningNumber);
+        Lotto parsedWinningNumbers = winningNumberParser.splitWinngNumber(winningNumber);
+
         String winningBonusNumber = winningNumberInput.getBonusNumber();
+        int parsedWinningBonusNumber = winningNumberParser.parseBonusWinningNumber(winningBonusNumber);
     }
 }
 

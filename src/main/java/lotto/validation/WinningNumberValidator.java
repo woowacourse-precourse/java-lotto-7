@@ -7,6 +7,8 @@ import lotto.exception.ExceptionMessage;
 
 public class WinningNumberValidator {
 
+    private List<Integer> winningNumbers;
+
     public void validateNumber(String winningLottoNumber) {
         if (winningLottoNumber == null || winningLottoNumber.trim().isEmpty()) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_BLANK_INPUT.getMessage());
@@ -18,6 +20,13 @@ public class WinningNumberValidator {
         checkSize(lottoNumbers);
         checkRange(lottoNumbers);
         checkDuplicates(lottoNumbers);
+    }
+
+    public void validateBonusNumber(String bonusNumber) {
+        checkIfBlank(bonusNumber);
+        int number = parseNumber(bonusNumber);
+        checkRange(number);
+        checkDuplicateWithWinning(number, winningNumbers);
     }
 
     private void checkBlankInput(List<Integer> lottoNumbers) {
@@ -42,6 +51,32 @@ public class WinningNumberValidator {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_DUPLICATE.getMessage());
+        }
+    }
+
+    private void checkIfBlank(String bonusNumber) {
+        if (bonusNumber == null || bonusNumber.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 빈 값이 될 수 없습니다.");
+        }
+    }
+
+    private int parseNumber(String bonusNumber) {
+        try {
+            return Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로만 입력해주세요.");
+        }
+    }
+
+    private void checkRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private void checkDuplicateWithWinning(int number, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }

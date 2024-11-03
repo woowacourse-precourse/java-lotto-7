@@ -3,7 +3,7 @@ package lotto;
 import lotto.controller.LottoController;
 import lotto.service.LottoNumberGenerator;
 import lotto.service.PriceCalculator;
-import lotto.service.WinningNumberSplitter;
+import lotto.service.WinningNumberParser;
 import lotto.view.input.PromptDisplayer;
 import lotto.view.input.PurchasePriceInput;
 import lotto.view.input.WinningNumberInput;
@@ -16,9 +16,10 @@ public class Application {
         PriceCalculator priceCalculator = new PriceCalculator();
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
         ResultDisplayer resultDisplayer = new ResultDisplayer();
-        WinningNumberSplitter winningNumberSplitter = new WinningNumberSplitter();
+        WinningNumberParser winningNumberParser = new WinningNumberParser();
         WinningNumberInput winningNumberInput = new WinningNumberInput(promptDisplayer);
-        LottoController lottoController = new LottoController(priceCalculator, purchasePriceInput, lottoNumberGenerator, resultDisplayer, winningNumberSplitter, winningNumberInput);
+        LottoController lottoController = new LottoController(priceCalculator, purchasePriceInput, lottoNumberGenerator, resultDisplayer,
+                winningNumberParser, winningNumberInput);
         lottoController.start();
     }
 }

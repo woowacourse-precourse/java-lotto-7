@@ -3,20 +3,20 @@ package lotto.service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.ExceptionMessage;
 import lotto.model.Lotto;
-import lotto.validation.LottoPurchaseValidator;
 import lotto.validation.WinningNumberValidator;
 
-public class WinningNumberSplitter {
+public class WinningNumberParser {
 
     private static final String NUMBER_DELIMITER = ",";
     private final WinningNumberValidator winningNumberValidator;
 
-    public WinningNumberSplitter() {
+    public WinningNumberParser() {
         this.winningNumberValidator = new WinningNumberValidator();
     }
 
-    public Lotto split(String winningLottoNumber) {
+    public Lotto splitWinngNumber(String winningLottoNumber) {
         winningNumberValidator.validateNumber(winningLottoNumber);
         List<Integer> numbers = Arrays.stream(winningLottoNumber.split(NUMBER_DELIMITER))
                 .map(String::trim)
@@ -25,5 +25,10 @@ public class WinningNumberSplitter {
 
         winningNumberValidator.validateNumbers(numbers);
         return new Lotto(numbers);
+    }
+
+    public int parseBonusWinningNumber(String winningBonusNumber) {
+        winningNumberValidator.validateBonusNumber(winningBonusNumber);
+        return Integer.parseInt(winningBonusNumber);
     }
 }
