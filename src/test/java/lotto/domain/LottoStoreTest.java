@@ -20,7 +20,7 @@ public class LottoStoreTest {
 
         LottoTicket lottoTicket = lottoStore.buyLottoTicket(3000);
 
-        Assertions.assertThat(lottoTicket.getLottos().size()).isEqualTo(3);
+        Assertions.assertThat(lottoTicket.getLottoCount()).isEqualTo(3);
     }
 
     @ParameterizedTest

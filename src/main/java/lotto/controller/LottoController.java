@@ -1,16 +1,14 @@
 package lotto.controller;
 
-import lotto.constants.Ranking;
 import lotto.domain.Lotto;
 import lotto.domain.LottoStore;
 import lotto.domain.LottoTicket;
 import lotto.domain.WinningLotto;
+import lotto.domain.LottoResult;
 import lotto.utils.LottoNumbersGenerator;
 import lotto.utils.Retry;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.EnumMap;
 
 public class LottoController {
 
@@ -34,8 +32,8 @@ public class LottoController {
     }
 
     private void checkLottoResult(final LottoTicket lottoTicket, final WinningLotto winningLotto){
-        EnumMap<Ranking, Integer> lottoResult = lottoTicket.checkRanking(winningLotto);
-        double profitRate = lottoTicket.calculateProfitRate(winningLotto);
-        OutputView.printWinStatistics(profitRate, lottoResult);
+        LottoResult lottoResult = LottoResult.from(lottoTicket.checkRankings(winningLotto));
+        double profit = lottoResult.calculateProfit(lottoTicket.getLottoTicketPrice());
+        OutputView.printWinStatistics(profit, lottoResult.getRankingMap());
     }
 }

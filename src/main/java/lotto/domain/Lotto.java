@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.constants.Ranking;
 import lotto.validator.LottoValidator;
 
 import java.util.List;
@@ -26,9 +25,10 @@ public class Lotto {
     }
 
     public int calculateMatchCount(final List<LottoNumber> winNumbers) {
-        return (int) winNumbers.stream()
+        return winNumbers.stream()
                 .filter(numbers::contains)
-                .count();
+                .mapToInt(number -> 1)
+                .sum();
     }
 
     public boolean isContainNumber(final LottoNumber lottoNumber){
