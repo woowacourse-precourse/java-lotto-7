@@ -12,13 +12,18 @@ import lotto.view.output.OutputView;
 
 public class GameController {
 
-    private LottoMachine lottoMachine;
+    private final LottoMachine lottoMachine;
+    private final InputHandler inputHandler;
+    private final OutputView outputView;
+
     private LottoTicket lottoTicket;
     private WinningLotto winningLotto;
     private LottoResult lottoResult;
 
-    public GameController() {
-        this.lottoMachine = new LottoMachine();
+    public GameController(LottoMachine lottoMachine, InputHandler inputHandler, OutputView outputView) {
+        this.lottoMachine = lottoMachine;
+        this.inputHandler = inputHandler;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -28,14 +33,14 @@ public class GameController {
     }
 
     private void purchaseAndViewLottoTicket() {
-        int money = InputHandler.inputMoney();
+        int money = inputHandler.inputMoney();
         lottoTicket = lottoMachine.purchaseTicket(money);
-        OutputView.outputLottoNumbers(lottoTicket);
+        outputView.outputLottoNumbers(lottoTicket);
     }
 
     private void generateWinningLotto() {
-        Lotto winLotto = InputHandler.inputLottoNumbers();
-        Bonus bonusNumber = InputHandler.inputBonusNumber(winLotto.getNumbers());
+        Lotto winLotto = inputHandler.inputLottoNumbers();
+        Bonus bonusNumber = inputHandler.inputBonusNumber(winLotto.getNumbers());
         winningLotto = new WinningLotto(winLotto, bonusNumber);
     }
 
@@ -43,7 +48,7 @@ public class GameController {
         lottoResult = new LottoResult(lottoTicket.getPrice());
         lottoTicket.getLottos().stream()
                         .forEach(lotto -> lottoResult.recordResult(winningLotto, lotto));
-        OutputView.outputRankSummary(lottoResult.getResultRank(), lottoResult.calculateProfitRate());
+        outputView.outputRankSummary(lottoResult.getResultRank(), lottoResult.calculateProfitRate());
     }
 
 }
