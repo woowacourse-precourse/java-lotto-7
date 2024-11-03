@@ -29,7 +29,7 @@ public class LottoNumber {
 
     private static void validate(final int number) {
         if (number < LOTTO_NUM_MIN_VALUE || number > LOTTO_NUM_MAX_VALUE) {
-            throw new IllegalArgumentException("[ERROR] 존재하지 않는 로또 번호입니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이여야 합니다.");
         }
     }
 
