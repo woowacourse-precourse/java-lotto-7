@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -11,8 +12,10 @@ public class Application {
         int numberOfLottos = purchaseAmount / 1000;
         System.out.println(numberOfLottos + "개를 구매했습니다.");
 
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < numberOfLottos; i++) {
             Lotto lotto = LottoGenerator.generateLotto();
+            lottos.add(lotto);
             System.out.println(lotto.getNumbers());
         }
 
@@ -21,6 +24,10 @@ public class Application {
 
         int bonusNumber = getValidBonusNumber(winningNumbers);
         System.out.println("");
+
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.calculateResults(lottos, winningNumbers, bonusNumber);
+        lottoResult.printResults();
     }
 
     private static int getValidPurchaseAmount() {
