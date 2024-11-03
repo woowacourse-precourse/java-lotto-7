@@ -22,17 +22,17 @@
 ## 구현 기능 목록
 - [X] MVC 패턴으로 로직 분리 <br>
 ---
-- [ ] Application.java <br>
-  - [ ] LottoPlay로 연결하여 프로그램 시작 <br>
+- [X] Application.java <br>
+  - [X] LottoPlay로 연결하여 프로그램 시작 <br>
 ---
 - [ ] Controller <br>
-  - [ ] MoneyController.java <br>
-    - [ ] 입력 받은 로또 구매 금액 시행 횟수로 변환 <br>
-    - [ ] MoneyValidation에서 오류 확인 <br>
-  - [ ] LottoController.java <br>
-    - [ ] 입력 받은 당첨 번호 리스트로 변환 <br>
-    - [ ] LottoValidation에서 오류 확인 <br>
-    - [ ] BonusValidation에서 오류 확인 <br>
+  - [X] MoneyController.java <br>
+    - [X] 입력 받은 로또 구매 금액 시행 횟수로 변환 <br>
+    - [X] MoneyValidation에서 오류 확인 <br>
+  - [X] LottoController.java <br>
+    - [X] 입력 받은 당첨 번호 리스트로 변환 <br>
+    - [X] LottoValidation에서 오류 확인 <br>
+    - [X] BonusValidation에서 오류 확인 <br>
   - [ ] Play.java <br>
     - [ ] 시행 횟수 만큼 Model(Lotto) 반복 <br>
 ---

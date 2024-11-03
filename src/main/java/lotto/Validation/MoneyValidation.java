@@ -1,14 +1,14 @@
 package lotto.Validation;
 
 public class MoneyValidation {
-    public static void MoneyInputNotNull(String inputMoney) {
-        if (inputMoney == null || inputMoney.isEmpty()) {
+    public static void MoneyInputNotNull(String MoneyInput) {
+        if (MoneyInput == null || MoneyInput.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 구매 금액을 입력해야 합니다.");
         }
     }
 
-    public static void MoneyIsNumeric(String inputMoney) {
-        if (!inputMoney.matches("\\d+")) {
+    public static void MoneyIsNumeric(String MoneyInput) {
+        if (!MoneyInput.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자를 입력해야 합니다.");
         }
 

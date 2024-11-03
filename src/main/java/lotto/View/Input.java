@@ -1,11 +1,15 @@
-package lotto.View.Input;
+package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
+    private static String money;
+    private static String number;
+    private static String bonus;
+
     public static void InputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        String money = Console.readLine().trim();
+        money = Console.readLine().trim();
     }
 
     public static void Attempt(int money) {
@@ -17,12 +21,24 @@ public class Input {
     public static void InputNumbers() {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
-        String number = Console.readLine();
+        number = Console.readLine();
     }
 
     public static void InputBonus() {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
-        String bonus = Console.readLine();
+        bonus = Console.readLine();
+    }
+
+    public static String GetMoney() {
+        return money;
+    }
+
+    public static String GetNumber() {
+        return number;
+    }
+
+    public static String GetBonus() {
+        return bonus;
     }
 }
