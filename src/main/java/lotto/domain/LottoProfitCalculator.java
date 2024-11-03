@@ -36,9 +36,6 @@ public class LottoProfitCalculator {
     }
 
     private boolean calculateHitBonusNumber(Lotto lotto) {
-        if (lotto.getNumbers().contains(this.lottoResult.getBonusNumber())) {
-            return true;
-        }
-        return false;
+        return lotto.getNumbers().contains(this.lottoResult.getBonusNumber());
     }
 }
