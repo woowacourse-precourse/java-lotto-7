@@ -1,7 +1,7 @@
 package lotto.config;
 
 import lotto.ui.LottoController;
-import lotto.app.RandomValueGenerator;
+import lotto.app.DefaultRandomValueGenerator;
 import lotto.app.LottoService;
 import lotto.view.InputValidator;
 import lotto.view.InputView;
@@ -29,7 +29,7 @@ public class AppConfig {
         return new LottoService(randomValueGenerator());
     }
 
-    public RandomValueGenerator randomValueGenerator() {
-        return new RandomValueGenerator();
+    public DefaultRandomValueGenerator randomValueGenerator() {
+        return new DefaultRandomValueGenerator();
     }
 }
