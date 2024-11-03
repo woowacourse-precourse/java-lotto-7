@@ -44,6 +44,16 @@ class LottoTest {
                 .withMessageStartingWith("[ERROR]");
     }
 
+    @DisplayName("로또 번호의 숫자들은 정렬된 상태로 저장되어야 한다.")
+    @Test
+    void 로또_번호의_숫자들은_정렬된_상태로_저장되어야_한다() {
+        //given
+        List<Integer> unorderedList = List.of(4, 43, 6, 27, 31, 24);
+        //when
+        Lotto lotto = Lotto.generateLotto(unorderedList);
+        //then
+        assertThat(lotto.isSorted()).isTrue();
+    }
 
     static Stream<List<Integer>> provideIntegerList() {
         return Stream.of(
@@ -51,6 +61,4 @@ class LottoTest {
                 List.of(41, 42, 43, 44, 45, 46)
         );
     }
-
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }

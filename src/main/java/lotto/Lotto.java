@@ -30,4 +30,8 @@ public class Lotto {
                 .toList();
         return new Lotto(sortedNumbers);
     }
+
+    boolean isSorted(){
+        return numbers.equals(numbers.stream().sorted().toList());
+    }
 }
