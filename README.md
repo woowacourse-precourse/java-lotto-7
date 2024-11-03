@@ -24,6 +24,11 @@
         - bonusNumber: Integer
 - Value
     - LottoRank: Enum
+## 전략
+1. Validation
+   1. input null 확인 - ConsoleInputHandler
+   2. input type 확인 - Validator
+   3. value 확인 - domain
 
 ## 생각해볼 한계 및 발전 사항
 
