@@ -29,7 +29,7 @@ public enum LottoResult {
                 return result;
             }
         }
-        throw new IllegalArgumentException("[ERROR] 매칭되는 로또 결과가 없습니다.");
+        return null;
     }
 
     private static boolean doesResultMatch(int matchingCount, boolean doesBonusNumberMatch, LottoResult result) {
