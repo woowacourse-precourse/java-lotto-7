@@ -30,10 +30,10 @@ public enum Result {
     FIVE_WITH_BONUS(true, FIVE_NUMBERS_MATCH_WITH_BONUS,
             (match, bonus) -> match == 5 && bonus),
 
-    SIX(true, FIVE_NUMBERS_MATCH_WITH_BONUS,
+    SIX(true, SIX_NUMBERS_MATCH,
             (match, bonus) -> match == 6);
 
-    private boolean print;
+    public boolean print;
     private InfoMessage infoMessage;
     private int result;
     private BiPredicate<Integer, Boolean> predicate;
@@ -66,5 +66,9 @@ public enum Result {
 
     public static int getResult(int matchingNumber, boolean bonus) {
         return matches(matchingNumber, bonus).result;
+    }
+
+    public String getMessage(){
+        return infoMessage.formatNumber(result);
     }
 }

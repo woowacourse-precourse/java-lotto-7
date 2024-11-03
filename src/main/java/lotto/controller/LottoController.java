@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
-import lotto.domain.Result;
 import lotto.domain.lottoForm.WinningNumbers;
 
 public class LottoController {
