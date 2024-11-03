@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
 import lotto.util.InputValidator;
 
 public class InputHandler {
@@ -18,6 +20,22 @@ public class InputHandler {
                 int purchaseAmount = parseToInt(input);
                 inputValidator.checkDividedBy1000(purchaseAmount);
                 return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public List<Integer> getWinningNums() {
+        while (true) {
+            try {
+                System.out.println();
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                String[] splitInput = input.trim().split(",");
+                List<Integer> nums = Arrays.stream(splitInput)
+                        .map(this::parseToInt).toList();
+                return nums;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

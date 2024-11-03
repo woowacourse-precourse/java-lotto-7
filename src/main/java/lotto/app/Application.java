@@ -27,5 +27,7 @@ public class Application {
         int purchaseAmount = inputHandler.getPurchaseAmount();
         List<Lotto> lottos = lottoService.purchaseLottos(purchaseAmount);
         outputHandler.printLottos(lottos);
+
+        List<Integer> winningNums = inputHandler.getWinningNums();
     }
 }
