@@ -1,8 +1,14 @@
 package lotto.lotto;
 
-import static lotto.service.InputService.getLottoPurchaseAmount;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import lotto.domain.Lottos;
 import lotto.domain.User;
 import org.junit.jupiter.api.DisplayName;
@@ -24,5 +30,31 @@ public class LottoTest {
 
         // then
         assertEquals(lottoCount, 10);
+    }
+
+    @Test
+    @DisplayName("1 ~ 45사이의 중복되지 않는 정수 6개를 Lotto 객체에 저장한다.")
+    public void testIsNotDuplicatedSixNumber() {
+        // given
+        List<Integer> Lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+        // when
+        HashSet<Integer> LottoSet = new HashSet<>(Lotto);
+
+        // then
+        assertEquals(Lotto.size(), LottoSet.size());
+    }
+
+    @Test
+    @DisplayName("1 ~ 45사이의 중복되지 않는 정수 6개를 Lotto 객체에 저장한다.")
+    public void testIsDuplicatedSixNumber() {
+        // given
+        List<Integer> Lotto = Arrays.asList(1, 1, 2, 5, 27, 9);
+
+        // when
+        HashSet<Integer> LottoSet = new HashSet<>(Lotto);
+
+        // then
+        assertNotEquals(Lotto.size(), LottoSet.size());
     }
 }
