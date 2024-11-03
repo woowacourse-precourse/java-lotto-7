@@ -7,4 +7,6 @@ public class Constants {
     public static final int LOTTO_COUNT = 6;
 
     public static final String ERROR_HEADER = "[ERROR] ";
+    public static final String INVALID_INPUT = ERROR_HEADER + "문자가 입력됐거나 숫자 범위를 초과하였습니다.";
+
 }

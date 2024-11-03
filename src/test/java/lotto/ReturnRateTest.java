@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 class ReturnRateTest {
 
     private SpyResult result;
-    private Price price;
+    private Payment payment;
 
     @BeforeEach
     void setUp() {
         result = new SpyResult();
-        price = Price.from("10000");
+        payment = Payment.from("10000");
     }
 
     @DisplayName("당첨이 되지 않은 경우 수익률은 0.0%이다.")
@@ -22,7 +22,7 @@ class ReturnRateTest {
     void 당첨이_되지_않은_경우_수익률은_영퍼센트이다() {
         ReturnRate returnRate = new ReturnRate();
 
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "0.0%");
     }
@@ -33,7 +33,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(10000);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "100.0%");
     }
@@ -44,7 +44,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(2000000000);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "20,000,000.0%");
     }
@@ -55,7 +55,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(5000);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "50.0%");
     }
@@ -66,7 +66,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(5);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "0.1%");
     }
@@ -77,7 +77,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(4);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "0.0%");
     }
@@ -88,7 +88,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(2000000000L * 100);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "2,000,000,000.0%");
     }
@@ -99,7 +99,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(2000000000L * 96 + 30000000 + 1500000 + 50000 + 5000);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "1,920,315,550.0%");
     }
@@ -110,7 +110,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(3333);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "33.3%");
     }
@@ -121,7 +121,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(6666);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "66.7%");
     }
@@ -132,7 +132,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(9876544);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "98,765.4%");
     }
@@ -143,7 +143,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(9999995);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "99,999.9%");
     }
@@ -154,7 +154,7 @@ class ReturnRateTest {
         ReturnRate returnRate = new ReturnRate();
 
         result.setTotalPrize(9999999);
-        String formatReturnRate = returnRate.calculate(result, price);
+        String formatReturnRate = returnRate.calculate(result, payment);
 
         assertEquals(formatReturnRate, "100,000.0%");
     }
