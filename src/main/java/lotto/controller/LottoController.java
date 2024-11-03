@@ -9,14 +9,11 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 import java.util.List;
 
-import static lotto.constants.LottoConstants.PURCHASE_AMOUNT_UNIT;
-
 public class LottoController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
     private final LottoService lottoService = new LottoService();
     private final Validate validate = new Validate();
-    private List<Lotto> purchaseLottoNumbers;
     private LottoWinningNumbers lottoWinningNumbers;
     private LottoWinningTierManager lottoWinningTierManager;
 
@@ -25,8 +22,7 @@ public class LottoController {
         while (true) {
             try {
                 String purchaseAmount = inputView.requestPurchaseAmount();
-                purchaseLottoNumbers = lottoService.purchaseLotto(
-                        validate.validatePurchaseAmount(purchaseAmount));
+                lottoService.purchaseLotto(validate.validatePurchaseAmount(purchaseAmount));
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
@@ -34,6 +30,7 @@ public class LottoController {
         }
     }
     public void printPurchaseLottoNumbers () {
+        List<Lotto> purchaseLottoNumbers = lottoService.getLottoNumbers();
         outputView.printPurchasedLottoCount(purchaseLottoNumbers.size());
         for (Lotto lotto : purchaseLottoNumbers) {
             outputView.printMessage(lotto.getSortNumbers().toString());
@@ -71,7 +68,7 @@ public class LottoController {
     // 로또 결과 확인
     public void verifyLottoResults() {
         lottoWinningTierManager = new LottoWinningTierManager();
-        lottoService.updateWinningStatus(lottoWinningTierManager, purchaseLottoNumbers, lottoWinningNumbers);
+        lottoService.updateWinningStatus(lottoWinningTierManager, lottoWinningNumbers);
     }
 
     // 로또 결과 출력
@@ -81,8 +78,6 @@ public class LottoController {
         outputView.printTotalProfitRate(checkTotalProfitRate());
     }
     public double checkTotalProfitRate () {
-        return lottoService.calculateTotalProfitRate(
-                lottoWinningTierManager,
-                purchaseLottoNumbers.size() * PURCHASE_AMOUNT_UNIT);
+        return lottoService.calculateTotalProfitRate(lottoWinningTierManager);
     }
 }
