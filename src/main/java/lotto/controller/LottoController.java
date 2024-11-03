@@ -22,6 +22,8 @@ public class LottoController {
         setLottoNumbers();
         setBonusNumber();
         drawLotto();
+        calculateProfit();
+        calculateProfitRate();
         displayResult();
     }
 
@@ -78,6 +80,16 @@ public class LottoController {
             boolean hasBonusMatch = LottoService.calculateBonusMatch(matchCount, bonus.getNumber(), userLotto);
             user.addResult(Rule.valueOf(matchCount, hasBonusMatch));
         }
+    }
+
+    public void calculateProfit() {
+        for (Rule rule : user.getResults().keySet()) {
+            balance.addProfit(LottoService.calculateProfit(rule.getPrize(), user.getResults().get(rule)));
+        }
+    }
+
+    public void calculateProfitRate() {
+        balance.setProfitRate(LottoService.calculateProfitRate(balance.getProfit(), balance.getMoney()));
     }
 
     public void displayResult() {

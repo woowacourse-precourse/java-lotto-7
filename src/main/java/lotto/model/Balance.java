@@ -3,11 +3,15 @@ package lotto.model;
 public class Balance {
     private int money;
     private final int ticket;
+    private int profit;
+    private double profitRate;
 
     public Balance(int money) {
         validate(money);
         this.money = money;
         this.ticket = this.money / 1000;
+        this.profit = 0;
+        this.profitRate = 0;
     }
 
     private void validate(int money) {
@@ -19,7 +23,23 @@ public class Balance {
         }
     }
 
+    public int getMoney() {
+        return this.money;
+    }
+
     public int getTicket() {
         return this.ticket;
+    }
+
+    public void addProfit(int profit) {
+        this.profit += profit;
+    }
+
+    public int getProfit() {
+        return this.profit;
+    }
+
+    public void setProfitRate(double profitRate) {
+        this.profitRate = profitRate;
     }
 }
