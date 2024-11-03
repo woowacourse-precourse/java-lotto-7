@@ -1,6 +1,8 @@
 package lotto.view;
 
 import lotto.domain.Lottos;
+import lotto.domain.Profit;
+import lotto.domain.WinningResult;
 
 public class OutputView extends OutputWriter {
     public void requestLottoMoney() {
@@ -26,5 +28,12 @@ public class OutputView extends OutputWriter {
     public void requestBonusNumber() {
         displayNewLine();
         displayMessage("보너스 번호를 입력해 주세요.");
+    }
+
+    public void dispalyWinningStatistics(WinningResult winningResult) {
+        displayNewLine();
+        displayMessage("당첨 통계");
+        displayMessage("---");
+        displayMessage(winningResult.winningResultString());
     }
 }

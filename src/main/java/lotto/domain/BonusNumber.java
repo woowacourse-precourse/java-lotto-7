@@ -27,4 +27,8 @@ public class BonusNumber {
             throw new LottoNumberDuplicateException();
         }
     }
+
+    public boolean matchesBonusNumber(Lotto lotto) {
+        return lotto.isContain(number);
+    }
 }

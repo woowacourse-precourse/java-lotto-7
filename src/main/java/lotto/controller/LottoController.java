@@ -25,6 +25,9 @@ public class LottoController {
 
         WinningLotto winningLotto = repeatUntilValid(this::getWinningLotto);
         BonusNumber bonusNumber = repeatUntilValid(() -> getBonusNumber(winningLotto));
+
+        WinningResult winningResult = getWinningResult(purchasedLottos, winningLotto, bonusNumber);
+        outputView.dispalyWinningStatistics(winningResult);
     }
 
     private Money getLottoMoney() {
@@ -48,6 +51,12 @@ public class LottoController {
         outputView.requestBonusNumber();
         int inputBonusNumber = inputView.inputBonusNumber();
         return BonusNumber.of(winningLotto, inputBonusNumber);
+    }
+
+    private WinningResult getWinningResult(Lottos lottos, WinningLotto winningLotto, BonusNumber bonusNumber) {
+        WinningResult winningResult = WinningResult.create();
+        winningResult.calculateWinningResult(lottos, winningLotto, bonusNumber);
+        return winningResult;
     }
 
     private <T> T repeatUntilValid(Supplier<T> supplier) {
