@@ -1,12 +1,12 @@
 package lotto.controller;
 
 import lotto.common.Converter;
-import lotto.dto.AllWinningNumberDto;
+import lotto.dto.WinningNumbersDto;
 import lotto.model.winningNumber.BonusNumber;
 import lotto.model.lotto.purchaseAmount.PurchaseAmount;
 import lotto.model.lotto.lottoNumber.Lottos;
 import lotto.service.winningNumber.NumberGenerator;
-import lotto.model.winningNumber.WinningNumber;
+import lotto.model.winningNumber.MainNumber;
 import lotto.model.lotto.winningResult.WinningResults;
 import lotto.service.lotto.LottoMachine;
 import lotto.view.input.InputView;
@@ -30,9 +30,9 @@ public class LottoController {
         PurchaseAmount purchaseAmount = purchaseLottos();
         Lottos lottos = issueLottos(purchaseAmount);
         outputIssuedLottos(lottos);
-        WinningNumber winningNumber = pickWinningNumber();
-        BonusNumber bonusNumber = pickBonusNumber(winningNumber);
-        WinningResults winningResults = checkWinningResults(lottos, winningNumber, bonusNumber);
+        MainNumber mainNumber = pickWinningNumber();
+        BonusNumber bonusNumber = pickBonusNumber(mainNumber);
+        WinningResults winningResults = checkWinningResults(lottos, mainNumber, bonusNumber);
         outputWinningResults(winningResults, purchaseAmount);
     }
 
@@ -54,7 +54,7 @@ public class LottoController {
         outputView.outputIssuedLottos(lottos);
     }
 
-    private WinningNumber pickWinningNumber() {
+    private MainNumber pickWinningNumber() {
         try {
             String winningNumberInput = inputView.inputWinningNumber();
             return numberGenerator.registerWinningNumber(winningNumberInput);
@@ -64,19 +64,19 @@ public class LottoController {
         }
     }
 
-    private BonusNumber pickBonusNumber(WinningNumber winningNumber) {
+    private BonusNumber pickBonusNumber(MainNumber mainNumber) {
         try {
             String bonusNumberInput = inputView.inputBonusNumber();
-            return numberGenerator.registerBonusNumber(new AllWinningNumberDto(bonusNumberInput, winningNumber));
+            return numberGenerator.registerBonusNumber(new WinningNumbersDto(bonusNumberInput, mainNumber));
         } catch (IllegalArgumentException e) {
             outputView.outputExceptionMessage(e.getMessage());
-            return pickBonusNumber(winningNumber);
+            return pickBonusNumber(mainNumber);
         }
     }
 
-    private WinningResults checkWinningResults(Lottos lottos, WinningNumber winningNumber,
+    private WinningResults checkWinningResults(Lottos lottos, MainNumber mainNumber,
                                                BonusNumber bonusNumber) {
-        return lottoMachine.checkWinningResults(lottos, winningNumber, bonusNumber);
+        return lottoMachine.checkWinningResults(lottos, mainNumber, bonusNumber);
     }
 
     private void outputWinningResults(WinningResults winningResults, PurchaseAmount purchaseAmount) {

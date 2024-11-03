@@ -15,15 +15,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class WinningNumberTest {
+public class MainNumberTest {
     @Test
     @DisplayName("[success] 당첨번호 6개를 리스트에 저장한다.")
     void saveWinningNumberList() {
         List<Integer> testNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
-        WinningNumber winningNumber = new WinningNumber(testNumbers);
+        MainNumber mainNumber = new MainNumber(testNumbers);
 
         for (int number : testNumbers) {
-            assertThat(winningNumber.numbers()).contains(number);
+            assertThat(mainNumber.numbers()).contains(number);
         }
     }
 
@@ -32,7 +32,7 @@ public class WinningNumberTest {
     @MethodSource("wrongWinnerNumberSizeProvider")
     void fail_IfWinnerNumberSizeNotSix(List<Integer> testNumbers) {
         assertThatIllegalArgumentException().isThrownBy(
-                        () -> new WinningNumber(testNumbers))
+                        () -> new MainNumber(testNumbers))
                 .withMessage(Exceptions.WRONG_LOTTERY_NUMBER_SIZE.getMessage());
     }
     static Stream<List<Integer>> wrongWinnerNumberSizeProvider() {
@@ -48,7 +48,7 @@ public class WinningNumberTest {
     void fail_IfNotInRangeWinnerNumberExists(int wrongNumber) {
         List<Integer> numbersIncludingInvalidRange = new ArrayList<>(Arrays.asList(wrongNumber, 1, 2, 3, 4, 5));
         assertThatIllegalArgumentException().isThrownBy(
-                        () -> new WinningNumber(numbersIncludingInvalidRange))
+                        () -> new MainNumber(numbersIncludingInvalidRange))
                 .withMessage(Exceptions.OUT_OF_LOTTERY_NUMBER_RANGE.getMessage());
     }
 
@@ -57,16 +57,16 @@ public class WinningNumberTest {
     void fail_IfDuplicatedWinningNumberExists() {
         List<Integer> numbersIncludingDuplication = new ArrayList<>(Arrays.asList(5, 1, 2, 3, 4, 5));
         assertThatIllegalArgumentException().isThrownBy(
-                        () -> new WinningNumber(numbersIncludingDuplication))
+                        () -> new MainNumber(numbersIncludingDuplication))
                 .withMessage(Exceptions.DUPLICATED_LOTTERY_NUMBER.getMessage());
     }
 
     @Test
     @DisplayName("[fail] getter로 받은 당첨번호 리스트를 수정하는 경우 예외가 발생한다.")
     void fail_IfModifyWinningNumberList() {
-        WinningNumber winningNumber = new WinningNumber(
+        MainNumber mainNumber = new MainNumber(
                 new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
-        List<Integer> winningNumberList = winningNumber.numbers();
+        List<Integer> winningNumberList = mainNumber.numbers();
 
         assertThatThrownBy(() -> winningNumberList.add(7))
                 .isInstanceOf(UnsupportedOperationException.class);

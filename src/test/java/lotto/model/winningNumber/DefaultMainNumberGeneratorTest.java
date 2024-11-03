@@ -13,15 +13,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class DefaultWinningNumberGeneratorTest {
+public class DefaultMainNumberGeneratorTest {
     private final NumberGenerator numberGenerator = new DefaultNumberGenerator();
     @Test
     @DisplayName("[success] 당첨번호를 split해 순서대로 저장하여 WinningNumber를 생성한다.")
     void splitAndcreateWinningNumber() {
         String testNumbers = "1,2,3,4,5,6";
 
-        WinningNumber winningNumber = numberGenerator.registerWinningNumber(testNumbers);
-        List<Integer> winningNumberList = winningNumber.numbers();
+        MainNumber mainNumber = numberGenerator.registerWinningNumber(testNumbers);
+        List<Integer> winningNumberList = mainNumber.numbers();
 
         for (int i = 0; i < 6; i++) {
             int expectedWinningNumber = i + 1;

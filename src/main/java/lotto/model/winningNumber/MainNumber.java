@@ -4,9 +4,9 @@ import java.util.Collections;
 import java.util.List;
 import lotto.model.validator.LotteryNumberValidator;
 
-public record WinningNumber(List<Integer> numbers) {
+public record MainNumber(List<Integer> numbers) {
 
-    public WinningNumber {
+    public MainNumber {
         LotteryNumberValidator.validate(numbers);
     }
 

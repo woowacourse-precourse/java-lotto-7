@@ -10,7 +10,7 @@ import lotto.model.winningNumber.BonusNumber;
 import lotto.model.lotto.lottoNumber.Lotto;
 import lotto.model.lotto.purchaseAmount.PurchaseAmount;
 import lotto.model.lotto.lottoNumber.Lottos;
-import lotto.model.winningNumber.WinningNumber;
+import lotto.model.winningNumber.MainNumber;
 import lotto.model.lotto.winningResult.rank.Rank;
 import lotto.model.lotto.winningResult.WinningResults;
 
@@ -34,10 +34,10 @@ public class DefaultLottoMachine implements LottoMachine{
     }
 
     @Override
-    public WinningResults checkWinningResults(Lottos lottos, WinningNumber winningNumber, BonusNumber bonusNumber) {
+    public WinningResults checkWinningResults(Lottos lottos, MainNumber mainNumber, BonusNumber bonusNumber) {
         WinningResults winningResults = new WinningResults();
         for (Lotto lotto : lottos.lottos()) {
-            int matchingAmount = lotto.checkMatchingAmountWith(winningNumber.numbers());
+            int matchingAmount = lotto.checkMatchingAmountWith(mainNumber.numbers());
             boolean matchesBonusNumber = lotto.contains(bonusNumber.number());
             Rank rank = rankDeterminer.determine(new MatchingResultDto(matchingAmount, matchesBonusNumber));
             winningResults.add(rank);

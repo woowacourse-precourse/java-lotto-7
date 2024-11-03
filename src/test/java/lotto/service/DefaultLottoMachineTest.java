@@ -11,7 +11,7 @@ import lotto.model.winningNumber.BonusNumber;
 import lotto.model.lotto.lottoNumber.Lotto;
 import lotto.model.lotto.purchaseAmount.PurchaseAmount;
 import lotto.model.lotto.lottoNumber.Lottos;
-import lotto.model.winningNumber.WinningNumber;
+import lotto.model.winningNumber.MainNumber;
 import lotto.model.lotto.winningResult.rank.Rank;
 import lotto.model.lotto.winningResult.WinningResults;
 import lotto.service.lotto.DefaultLottoMachine;
@@ -34,12 +34,12 @@ public class DefaultLottoMachineTest {
                 new Lotto(new ArrayList<>(List.of(1, 8, 9, 10, 11, 12))),
                 new Lotto(new ArrayList<>(List.of(8, 9, 10, 11, 12, 13)))
         )));
-        WinningNumber winningNumber = new WinningNumber(new ArrayList<>(
+        MainNumber mainNumber = new MainNumber(new ArrayList<>(
                 List.of(1, 2, 3, 4, 5, 6)
         ));
         BonusNumber bonusNumber = new BonusNumber(7);
         WinningResults winningResults = defaultLottoMachine.checkWinningResults(
-                lottos, winningNumber, bonusNumber
+                lottos, mainNumber, bonusNumber
         );
         return winningResults;
     }
