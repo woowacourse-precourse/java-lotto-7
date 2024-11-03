@@ -14,7 +14,7 @@ public abstract class InputView {
     public static int readPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        checkIfPurchaseAmountIsValid(input);
+        checkIfNumberIsValid(input);
         return Integer.parseInt(input);
     }
 
