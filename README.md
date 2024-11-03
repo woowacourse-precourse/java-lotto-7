@@ -140,7 +140,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 2. 로또 당첨 확인하기
 - [x] 당첨 번호를 입력받는다
     - [ ] 번호가 1 ~ 45 사이에 있는 숫자가 아니라면 IllegalArgumentException을 던진다
-- [ ] 보너스 번호를 입력받는다
+- [x] 보너스 번호를 입력받는다
     - [ ] 번호가 1 ~ 45 사이에 있는 숫자가 아니라면 IllegalArgumentException을 던진다
 - [ ] 일치하는 개수에 따라 결과를 계산한다
 - [ ] 결과를 format에 맞게 출력한다
