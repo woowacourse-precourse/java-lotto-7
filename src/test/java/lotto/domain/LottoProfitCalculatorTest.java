@@ -52,7 +52,7 @@ public class LottoProfitCalculatorTest {
         // then
         LottoResult lottoResult = LottoResult.of(lottos, winningNumbers, bonusNumber);
         List<LottoRankType> ranks = lottoResult.getLottoRankTypes();
-        String result = LottoProfitCalculator.calculateProfitRate(ranks, purchaseAmount);
+        String result = LottoProfitCalculator.from(ranks, purchaseAmount).getLottoProfitRate();
 
         // then
         assertThat(result).isEqualTo(expectedRate);

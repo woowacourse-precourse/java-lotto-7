@@ -9,7 +9,21 @@ public class LottoProfitCalculator {
     private static final int PERCENT_CONVERSION_FACTOR = 100;
     private static final String DECIMAL_FORMAT = "%.1f";
 
-    public static String calculateProfitRate(List<LottoRankType> lottoRankTypes, final int purchaseAmount) {
+    private final String lottoProfitRate;
+
+    private LottoProfitCalculator(List<LottoRankType> lottoRankTypes, final int purchaseAmount) {
+        this.lottoProfitRate = calculateProfitRate(lottoRankTypes, purchaseAmount);
+    }
+
+    public static LottoProfitCalculator from(List<LottoRankType> lottoRankTypes, final int purchaseAmount) {
+        return new LottoProfitCalculator(lottoRankTypes, purchaseAmount);
+    }
+
+    public String getLottoProfitRate() {
+        return lottoProfitRate;
+    }
+
+    private String calculateProfitRate(List<LottoRankType> lottoRankTypes, final int purchaseAmount) {
         double profitRate = lottoRankTypes.stream()
                 .mapToDouble(LottoRankType::getPrice)
                 .sum();

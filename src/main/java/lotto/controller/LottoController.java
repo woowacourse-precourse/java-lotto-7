@@ -23,7 +23,7 @@ public class LottoController {
     private void getWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
         OutputView.printMessage(WINNING_STATISTICS.getText());
         List<LottoRankType> lottoRankTypes = LottoResult.of(lottos, winningNumbers, bonusNumber).getLottoRankTypes();
-        String profitRate = LottoProfitCalculator.calculateProfitRate(lottoRankTypes, purchaseAmount);
+        String profitRate = LottoProfitCalculator.from(lottoRankTypes, purchaseAmount).getLottoProfitRate();
         OutputView.printLottoResultPrompt(lottoRankTypes);
         OutputView.printLottoProfitRate(profitRate);
     }
