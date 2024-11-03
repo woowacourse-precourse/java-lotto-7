@@ -14,33 +14,57 @@ public class InputView {
     private List<Integer> lottoWinningNumber;
 
     public int readLottoPurchasePrice() {
-        String userInput = Console.readLine();
-        validateIsNumeric(userInput);
-        int lottoPurchasePrice = Integer.parseInt(userInput);
-        validatePurchasePriceByThousand(lottoPurchasePrice);
-        return lottoPurchasePrice;
+        while (true) {
+            try {
+                String userInput = Console.readLine();
+                validateIsNumeric(userInput);
+                int lottoPurchasePrice = Integer.parseInt(userInput);
+                validatePurchasePriceByThousand(lottoPurchasePrice);
+                return lottoPurchasePrice;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Integer> readLottoWinningNumber() {
-        String userInput = Console.readLine();
-        validateLastCharComma(userInput);
-        validateNonCommaDelimiter(userInput);
+        while (true) {
+            try {
+                String userInput = Console.readLine();
+                validateLastCharComma(userInput);
+                validateNonCommaDelimiter(userInput);
+                List<Integer> lottoWinningNumber = splitStringToList(userInput);
+                this.lottoWinningNumber = lottoWinningNumber;
+                new Lotto(lottoWinningNumber);
+                return lottoWinningNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public int readLottoBonusNumber() {
+        while (true) {
+            try {
+                String userInput = Console.readLine();
+                validateIsNumeric(userInput);
+                int lottoBonusNumber = Integer.parseInt(userInput);
+                validateLottoRange(lottoBonusNumber);
+                validateBonusNumberDuplicate(lottoWinningNumber, lottoBonusNumber);
+                return lottoBonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public List<Integer> splitStringToList(String userInput) {
         String[] splitInput = userInput.split(",");
         List<Integer> lottoWinningNumber = new ArrayList<>();
         for (String s : splitInput) {
             lottoWinningNumber.add(Integer.parseInt(s));
         }
-        this.lottoWinningNumber = lottoWinningNumber;
         return lottoWinningNumber;
-    }
-
-    public int readLottoBonusNumber() {
-        String userInput = Console.readLine();
-        validateIsNumeric(userInput);
-        int lottoBonusNumber = Integer.parseInt(userInput);
-        validateLottoRange(lottoBonusNumber);
-        validateBonusNumberDuplicate(lottoWinningNumber, lottoBonusNumber);
-        return lottoBonusNumber;
     }
 
     public void validateBonusNumberDuplicate(List<Integer> winningNumber, int bonusNumber) {
