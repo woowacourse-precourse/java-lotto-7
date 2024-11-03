@@ -75,6 +75,9 @@ public class LottoGame {
         return (double) totalPrize / totalSpent * 100;
     }
 
+    public Map<WinningResult, Integer> getWinningResultCount() {
+        return winningResultCount;
+    }
 
 
 
