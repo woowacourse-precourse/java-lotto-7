@@ -15,31 +15,43 @@ public class LottoController {
     private final OutputView outputView = new OutputView();
 
     public void start() {
-        Money money = new Money(inputView.enterMoney());
-        outputView.printTicketAmount(money);
+        Money money = promptForMoney();
+        LottoTicket lottoTicket = generateLottoTickets(money);
+        WinningLotto winningLotto = promptForWinningLotto();
+        PrizeResult prizeResult = calculatePrizes(lottoTicket, winningLotto);
+        outputWinningDetails(prizeResult, money);
+    }
 
+    private Money promptForMoney() {
+        return new Money(inputView.enterMoney());
+    }
+
+    private LottoTicket generateLottoTickets(Money money) {
+        outputView.printTicketAmount(money);
         LottoTicket lottoTicket = new LottoTicket(money);
         outputView.printLotto(lottoTicket);
+        return lottoTicket;
+    }
 
-        final String originWinningNumber = inputView.enterWinningNumber();
-        final Integer bonusNumber = inputView.enterBonusNumber();
+    private WinningLotto promptForWinningLotto() {
+        String originWinningNumber = inputView.enterWinningNumber();
+        Integer bonusNumber = inputView.enterBonusNumber();
+        return new WinningLotto(convertToLottoFormat(originWinningNumber), bonusNumber);
+    }
 
-        WinningLotto winningLotto = new WinningLotto(convertToLottoFormat(originWinningNumber), bonusNumber);
+    private PrizeResult calculatePrizes(LottoTicket lottoTicket, WinningLotto winningLotto) {
         PrizeResult prizeResult = new PrizeResult();
-        lottoResult(prizeResult, winningLotto, lottoTicket);
+        prizeResult.calculate(winningLotto, lottoTicket);
+        return prizeResult;
+    }
 
+    private void outputWinningDetails(PrizeResult prizeResult, Money money) {
         outputView.winningDetails(prizeResult, money);
-
-
     }
 
     public List<Integer> convertToLottoFormat(String inputValue) {
         return Arrays.stream(inputValue.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-    }
-
-    private void lottoResult(PrizeResult prizeResult, WinningLotto winningLotto, LottoTicket lottoTicket) {
-        prizeResult.calculate(winningLotto, lottoTicket);
     }
 }
