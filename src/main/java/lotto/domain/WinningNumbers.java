@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
-
 import static lotto.domain.constant.LottoRule.MAX_NUMBER;
 import static lotto.domain.constant.LottoRule.MIN_NUMBER;
 import static lotto.exception.ExceptionMessage.DUPLICATED_LOTTO_NUMBER;
@@ -23,12 +21,12 @@ public class WinningNumbers {
         return new WinningNumbers(winningLotto, bonusNumber);
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
+    public int getMatchingCount(Lotto lotto) {
+        return lotto.getMatchingCount(winningLotto);
     }
 
-    public Integer getBonusNumber() {
-        return bonusNumber;
+    public boolean hasMatchingBonusNumber(Lotto lotto) {
+        return lotto.hasBonusNumber(bonusNumber);
     }
 
     private void validateBonusNumber(Integer bonusNumber) {

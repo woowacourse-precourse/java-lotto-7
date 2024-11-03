@@ -41,8 +41,8 @@ public class LottoMachine {
 
     private void updateStatistics(PurchasedLottos lottos, WinningNumbers winningNumbers, EnumMap<Ranking, Integer> statistics) {
         lottos.getLottos().forEach(lotto -> {
-            int matchingCount = lotto.getMatchingCount(winningNumbers.getWinningLotto());
-            boolean hasBonusNumber = lotto.hasBonusNumber(winningNumbers.getBonusNumber());
+            int matchingCount = winningNumbers.getMatchingCount(lotto);
+            boolean hasBonusNumber = winningNumbers.hasMatchingBonusNumber(lotto);
             Ranking ranking = Ranking.getRanking(matchingCount, hasBonusNumber);
 
             int sumUnit = 1;
