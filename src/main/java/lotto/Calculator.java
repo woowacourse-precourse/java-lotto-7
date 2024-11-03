@@ -30,5 +30,14 @@ public class Calculator {
         });
         return results;
     }
+    
+    public double calculateReturnRate(Map<Ranking, Long> results, int purchasedCount) {
+        double totalPrize = results.entrySet().stream()
+                .mapToDouble(entry -> entry.getValue() * entry.getKey().getPrizeAmount())
+                .sum();
+        double purchaseAmount = purchasedCount * LOTTO_PRICE;
+        double returnRate = (totalPrize / purchaseAmount) * 100;
+        return Math.round(returnRate * 10.0) / 10.0;
+    }
 
 }
