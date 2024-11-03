@@ -1,23 +1,31 @@
 package lotto;
 
-public class Money {
-    private final int amount;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-    public Money(int amount) {
-        if (amount < 1000) {
+public class Money {
+    private final BigDecimal amount;
+
+    public Money(int value) {
+        this(BigDecimal.valueOf(value));
+    }
+
+    public Money(BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.valueOf(1000)) == -1) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
         }
-        if (amount % 1000 != 0) {
+        if (!BigDecimal.ZERO.equals(amount.remainder(BigDecimal.valueOf(1000)))) { // amount % 1000
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위이어야 합니다.");
         }
         this.amount = amount;
     }
 
     public int calculateLottoQuantity() {
-        return amount / 1000;
+        BigDecimal value = amount.divide(BigDecimal.valueOf(1000), RoundingMode.UNNECESSARY);
+        return value.intValue();
     }
 
-    public int getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 }

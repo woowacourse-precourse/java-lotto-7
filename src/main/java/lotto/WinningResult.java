@@ -2,13 +2,13 @@ package lotto;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.EnumMap;
+import java.util.Map;
 
 public class WinningResult {
-    private final EnumMap<Rank, Integer> counts;
+    private final Map<Rank, Integer> counts;
     private final Money money;
 
-    public WinningResult(EnumMap<Rank, Integer> counts, Money money) {
+    public WinningResult(Map<Rank, Integer> counts, Money money) {
         this.counts = counts;
         this.money = money;
     }
@@ -22,7 +22,10 @@ public class WinningResult {
 
     public BigDecimal calculatePrizeRate() {
         BigDecimal totalPrize = calculateTotalPrize();
-        BigDecimal value = totalPrize.divide(BigDecimal.valueOf(money.getAmount()), 2, RoundingMode.HALF_UP);
-        return value.multiply(BigDecimal.TEN);
+        return totalPrize.multiply(BigDecimal.valueOf(100)).divide(money.getAmount(), 1, RoundingMode.HALF_UP);
+    }
+
+    public Map<Rank, Integer> getCounts() {
+        return counts;
     }
 }

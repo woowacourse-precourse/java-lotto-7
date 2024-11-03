@@ -35,6 +35,6 @@ public class WinningResultTest {
         BigDecimal value = result.calculatePrizeRate();
 
         // 실제로 소숫점 둘째자리를 xxx.00으로 입력하면 xxx.0으로 입력되기 때문
-        assertThat(value.toString()).isEqualTo("2030000.00");
+        assertThat(value.toString()).isEqualTo("20300000.0");
     }
 }

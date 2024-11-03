@@ -1,6 +1,7 @@
 package lotto;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 public enum Rank {
     FIRST(6, false, BigDecimal.valueOf(2_000_000_000)),
@@ -43,7 +44,15 @@ public enum Rank {
         return matchCount;
     }
 
+    public boolean isMatchBonus() {
+        return matchBonus;
+    }
+
     public BigDecimal getPrize() {
         return prize;
+    }
+
+    public String getFormattedPrize() {
+        return new DecimalFormat("#,###").format(prize);
     }
 }
