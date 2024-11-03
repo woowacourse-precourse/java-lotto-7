@@ -24,4 +24,17 @@ public final class InputValidator {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 숫자는 6개이어야 합니다.");
         }
     }
+
+    public static void validateWinningLottoNumbersInRange(final List<Integer> winningLottoNumbers) {
+        winningLottoNumbers.forEach(
+                winningLottoNumber -> {
+                    if (!validateInLottoNumberRange(winningLottoNumber)) {
+                        throw new IllegalArgumentException("[ERROR] 당첨 번호는 1과 45 사이의 숫자이어야 합니다.");
+                    }
+                });
+    }
+
+    private static boolean validateInLottoNumberRange(final int winningLottoNumber) {
+        return winningLottoNumber >= 1 && winningLottoNumber <= 45;
+    }
 }

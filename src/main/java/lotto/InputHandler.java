@@ -28,6 +28,7 @@ public final class InputHandler {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 final List<Integer> winningLottoNumbers = InputConverter.convertToWinningLottoNumbers(Console.readLine());
                 InputValidator.validateWinningLottoNumbersCount(winningLottoNumbers);
+                InputValidator.validateWinningLottoNumbersInRange(winningLottoNumbers);
                 return new WinningLotto(winningLottoNumbers);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
