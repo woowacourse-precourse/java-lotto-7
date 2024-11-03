@@ -6,13 +6,15 @@ import lotto.model.Lotto;
 import java.util.HashMap;
 import java.util.List;
 
+import static lotto.constant.OutPutMessage.*;
+
 public class OutputView {
 
     public void printPurchasePriceMessage(){
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PURCHASE_PRICE_MESSAGE.getMessage());
     }
 
-    public void printPurchaseLottoQuantity(Integer purchaseQuantity){System.out.println("\n"+purchaseQuantity+"개를 구매했습니다.");}
+    public void printPurchaseLottoQuantity(Integer purchaseQuantity){System.out.println(NEW_LINE.getMessage() + purchaseQuantity + PURCHASE_QUANTITY_MESSAGE.getMessage());}
 
     public void printLotto(List<Lotto> lottos){
         for(Lotto lotto: lottos){
@@ -21,23 +23,23 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinningNumbersMessage(){System.out.println("당첨 번호를 입력해 주세요.");}
+    public void printWinningNumbersMessage(){System.out.println(WINNING_NUMBER_MESSAGE.getMessage());}
 
-    public void printBonusNumberMessage(){System.out.println("\n"+"보너스 번호를 입력해 주세요.");}
+    public void printBonusNumberMessage(){System.out.println(NEW_LINE.getMessage()+BONUS_NUMBER_MESSAGE.getMessage());}
 
     public void printResult(HashMap<Rank, Integer> result){
         System.out.println();
-        System.out.println("당첨 통계\n" + "---");
+        System.out.println(WINNING_STATISTICS.getMessage());
 
         for (Rank rank : Rank.values()) {
             int count = result.get(rank);
-            System.out.print(rank.getCount() + "개 일치");
-            if (rank.equals(Rank.SECOND)) System.out.print(", 보너스 볼 일치");
-            System.out.println(" (" + rank.getPrize() + ") - " + count + "개");
+            System.out.print(rank.getCount() + String.valueOf(MATCHING_AMOUNT_MESSAGE.getMessage()));
+            if (rank.equals(Rank.SECOND)) System.out.print(MATCHING_BONUS_MESSAGE.getMessage());
+            System.out.println(LEFT_PARENTHESIS.getMessage() + rank.getPrize() + RIGHT_PARENTHESIS.getMessage() + count + AMOUNT.getMessage());
         }
     }
 
     public void printProfitRate(double profitRate){
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profitRate));
+        System.out.println(String.format(String.valueOf(TOTAL_PROFIT_RATE_MESSAGE.getMessage()), profitRate));
     }
 }

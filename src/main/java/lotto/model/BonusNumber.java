@@ -1,8 +1,9 @@
 package lotto.model;
 
-import lotto.constant.Constants;
-import lotto.constant.DelimiterPattern;
-import lotto.constant.ErrorMessage;
+import static lotto.constant.ErrorMessage.*;
+import static lotto.constant.DelimiterPattern.*;
+import static lotto.constant.Constants.*;
+
 
 public class BonusNumber {
     private final Integer bonus;
@@ -13,9 +14,9 @@ public class BonusNumber {
     }
 
     private void validate(String bonus){
-        if(bonus.isEmpty()) throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
-        if(!bonus.matches(DelimiterPattern.NUMBER_VALIDATION_REGEX.getPattern())) throw new IllegalArgumentException(ErrorMessage.NOT_RANGE_NUMBER.getMessage());
-        if(Integer.parseInt(bonus)< Constants.LOTTO_NUMBER_START_RANGE.getConstant() || Integer.parseInt(bonus)>Constants.LOTTO_NUMBER_END_RANGE.getConstant()) throw new IllegalArgumentException(ErrorMessage.NOT_RANGE_NUMBER.getMessage());
+        if(bonus.isEmpty()) throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
+        if(!bonus.matches(NUMBER_VALIDATION_REGEX.getPattern())) throw new IllegalArgumentException(NOT_RANGE_NUMBER.getMessage());
+        if(Integer.parseInt(bonus)< LOTTO_NUMBER_START_RANGE.getConstant() || Integer.parseInt(bonus)>LOTTO_NUMBER_END_RANGE.getConstant()) throw new IllegalArgumentException(NOT_RANGE_NUMBER.getMessage());
     }
 
     public Integer getBonus(){return this.bonus;}

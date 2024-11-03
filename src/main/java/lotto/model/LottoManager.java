@@ -1,11 +1,12 @@
 package lotto.model;
 
 import lotto.constant.Constants;
-import lotto.constant.ErrorMessage;
 import lotto.constant.Rank;
 
 import java.util.*;
-import java.util.stream.Collectors;
+import static lotto.constant.Constants.*;
+import static lotto.constant.ErrorMessage.*;
+import static lotto.constant.Rank.*;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
@@ -43,18 +44,18 @@ public class LottoManager {
     }
 
     private void validateBonus(BonusNumber bonusNumber){
-        if(winningLotto.getNumbers().contains(bonusNumber.getBonus())) throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE_WINNING_NUM.getMessage());
+        if(winningLotto.getNumbers().contains(bonusNumber.getBonus())) throw new IllegalArgumentException(BONUS_DUPLICATE_WINNING_NUM.getMessage());
     }
 
     public List<Lotto> publishLotto(){
         List<Lotto> lottoList = new ArrayList<>();
         for(int i=0;i< purchaseQuantity.getPurchaseQuantity(); i++){
-            List<Integer> numbers = pickUniqueNumbersInRange(Constants.LOTTO_NUMBER_START_RANGE.getConstant(),
-                    Constants.LOTTO_NUMBER_END_RANGE.getConstant(), Constants.LOTTO_SIZE.getConstant());
+            List<Integer> numbers = pickUniqueNumbersInRange(LOTTO_NUMBER_START_RANGE.getConstant(),
+                    LOTTO_NUMBER_END_RANGE.getConstant(), LOTTO_SIZE.getConstant());
             List<Integer> sortedNumbers = numbers.stream()
                     .sorted()
                     .toList();
-            lottoList.add(new Lotto(numbers));
+            lottoList.add(new Lotto(sortedNumbers));
         }
         setLottos(lottoList);
         return lottos;
@@ -72,18 +73,18 @@ public class LottoManager {
             Integer matchingCount = getMatchingCount(win, lotto1);
             Rank rank = findIndex(matchingCount);
             if(rank ==null) continue;
-            if(rank.equals(Rank.THIRD) && lotto1.contains(bonusNumber.getBonus())) rank = Rank.SECOND;
+            if(rank.equals(Rank.THIRD) && lotto1.contains(bonusNumber.getBonus())) rank = SECOND;
             saveResult(rank);
         }
         return result;
     }
 
     private void initializePrize(){
-        result.put(Rank.FIFTH, 0);
-        result.put(Rank.FOURTH, 0);
-        result.put(Rank.THIRD, 0);
-        result.put(Rank.SECOND, 0);
-        result.put(Rank.FIRST, 0);
+        result.put(Rank.FIFTH, Constants.Zero.getConstant());
+        result.put(Rank.FOURTH, Constants.Zero.getConstant());
+        result.put(Rank.THIRD, Constants.Zero.getConstant());
+        result.put(Rank.SECOND, Constants.Zero.getConstant());
+        result.put(Rank.FIRST, Constants.Zero.getConstant());
     }
 
     private Integer getMatchingCount(List<Integer> win, List<Integer> lotto1) {
@@ -116,6 +117,6 @@ public class LottoManager {
     }
 
     private static double calculateProfitRate(long totalPrize, Integer purchaseQuantity) {
-        return ((double) totalPrize / (purchaseQuantity * Constants.DIVISOR.getConstant())) * 100;
+        return ((double) totalPrize / (purchaseQuantity * DIVISOR.getConstant())) * PERCENT.getConstant();
     }
 }

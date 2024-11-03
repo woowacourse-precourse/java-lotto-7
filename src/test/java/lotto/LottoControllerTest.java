@@ -1,6 +1,7 @@
-package lotto.controller;
+package lotto;
 
 import lotto.constant.Rank;
+import lotto.controller.LottoController;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoManager;
@@ -20,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LottoControllerTest {
 
     private LottoController lottoController;
-
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private ParserNums parser = new ParserNums();

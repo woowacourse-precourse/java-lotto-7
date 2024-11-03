@@ -1,8 +1,8 @@
 package lotto.model;
 
-import lotto.constant.Constants;
-import lotto.constant.DelimiterPattern;
-import lotto.constant.ErrorMessage;
+import static lotto.constant.ErrorMessage.*;
+import static lotto.constant.DelimiterPattern.*;
+import static lotto.constant.Constants.*;
 
 public class PurchaseQuantity {
 
@@ -10,14 +10,14 @@ public class PurchaseQuantity {
 
     public PurchaseQuantity(String price){
         validate(price);
-        this.purchaseQuantity = Integer.parseInt(price)/ Constants.DIVISOR.getConstant();
+        this.purchaseQuantity = Integer.parseInt(price)/ DIVISOR.getConstant();
     }
 
     private void validate(String price){
-        if(price.isEmpty()) throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
-        if(!price.matches(DelimiterPattern.NUMBER_VALIDATION_REGEX.getPattern())) throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
-        if(Integer.parseInt(price)<=Constants.Zero.getConstant()) throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
-        if(Integer.parseInt(price)%Constants.DIVISOR.getConstant()!=Constants.Zero.getConstant()) throw new IllegalArgumentException(ErrorMessage.NOT_THOUSAND_PRICE.getMessage());
+        if(price.isEmpty()) throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
+        if(!price.matches(NUMBER_VALIDATION_REGEX.getPattern())) throw new IllegalArgumentException(NOT_NATURAL_NUMBER.getMessage());
+        if(Integer.parseInt(price)<=Zero.getConstant()) throw new IllegalArgumentException(NOT_NATURAL_NUMBER.getMessage());
+        if(Integer.parseInt(price)%DIVISOR.getConstant()!=Zero.getConstant()) throw new IllegalArgumentException(NOT_THOUSAND_PRICE.getMessage());
     }
 
     public Integer getPurchaseQuantity(){return this.purchaseQuantity;}
