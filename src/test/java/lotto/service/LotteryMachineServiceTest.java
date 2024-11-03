@@ -120,6 +120,25 @@ class LotteryMachineServiceTest {
     }
 
     @Test
+    void compare_당첨_로또를_비교하고_저장한다2() throws Exception {
+        // given
+        statisticModel.setPurchaseAmount(new PurchaseAmount(1000L));
+        Method compare = lotteryMachineService.getClass()
+                .getDeclaredMethod("compare", List.class, Integer.class, List.class);
+        compare.setAccessible(true);
+
+        List<Integer> winnerNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Integer bonusNumber = 7;
+        List<Integer> lotto = List.of(1, 2, 3, 4, 5, 7);
+
+        // when
+        compare.invoke(lotteryMachineService, winnerNumbers, bonusNumber, lotto);
+
+        // then
+        assertThat(statisticModel.getPrizeMoney()).isEqualTo(Prize.SECOND.getMoney());
+    }
+
+    @Test
     void savePrize() throws Exception {
         // given
         statisticModel.setPurchaseAmount(new PurchaseAmount(1000L));

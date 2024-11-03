@@ -36,7 +36,13 @@ public enum Prize {
 
     public static Optional<Prize> getPrize(int match, boolean bonus) {
         return Arrays.stream(Prize.values())
-                .filter(prize -> prize.match == match && prize.bonus == bonus)
+                .filter(prize -> prize.match == match)
+                .filter(prize -> {
+                    if (prize.match == 5) {
+                        return prize.bonus == bonus;
+                    }
+                    return true;
+                })
                 .findAny();
     }
 }
