@@ -9,7 +9,8 @@ public class InputView {
     private static final String split = ",";
 
     public int purchaseLotto(){
-       return Integer.parseInt(Console.readLine());
+        System.out.println("구입금액을 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
     }
 
     public List<Integer> lottoNumber(String[] lottoInput){
@@ -23,11 +24,15 @@ public class InputView {
     }
 
     public String[] lottoInput(){
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
         String lottoInput = Console.readLine();
         return lottoInput.split(split);
     }
 
     public int lottoBonus(){
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }
 
