@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoPrintFormat;
 import lotto.model.lotto.LottoNumber;
 
@@ -68,11 +69,11 @@ public class DrawNumbersValidator {
     }
 
     private void validateCountWinningNumbers(List<String> splitWinningNumbers) {
-        if (splitWinningNumbers.size() < LottoPrintFormat.NUMBER_COUNT) {
+        if (splitWinningNumbers.size() < Lotto.NUMBER_COUNT) {
             throw new IllegalArgumentException("당첨 번호 개수가 부족합니다.");
         }
 
-        if (splitWinningNumbers.size() > LottoPrintFormat.NUMBER_COUNT) {
+        if (splitWinningNumbers.size() > Lotto.NUMBER_COUNT) {
             throw new IllegalArgumentException("당첨 번호 개수가 초과되었습니다.");
         }
     }

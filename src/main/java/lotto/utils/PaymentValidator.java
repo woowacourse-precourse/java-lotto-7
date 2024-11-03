@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import lotto.error.PaymentErrorMessage;
+import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoNumber;
 
 import java.math.BigInteger;
@@ -11,7 +12,6 @@ public class PaymentValidator {
     static final int INTEGER_INDEX = 0;
     static final int DECIMAL_INDEX = 1;
     static final int MAX_SPLIT_PAYMENT_LENGTH = 2;
-    static final int PRICE_OF_LOTTO = 1000;
     static final String DOT = "\\.";
     static final long LOTTO_OBJECT_SIZE = 200L;
     static final double ALLOW_LOTTO_OBJECT_SIZE_RATE = 0.1;
@@ -67,7 +67,7 @@ public class PaymentValidator {
             throw new IllegalArgumentException(PaymentErrorMessage.NEGATIVE_PAYMENT.getMessage());
         }
 
-        if (payment % PRICE_OF_LOTTO > 0) {
+        if (payment % Lotto.PRICE > 0) {
             throw new IllegalArgumentException(PaymentErrorMessage.NOT_MULTIPLE_OF_THOUSAND_PAYMENT.getMessage());
         }
     }
