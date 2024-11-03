@@ -3,12 +3,14 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
-import lotto.dto.LottoResponse;
 import lotto.dto.PrizeResponse;
 import lotto.repository.LottoRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoService {
     private final LottoRepository lottoRepository;
@@ -17,49 +19,59 @@ public class LottoService {
         this.lottoRepository = lottoRepository;
     }
 
-    public List<PrizeResponse> findWinningResult(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
-        List<PrizeResponse> prizeResponses = new ArrayList<>();
+    public List<PrizeResponse> findWinningResult(Lotto winningLotto, int bonusNumber) {
+        List<Lotto> purchasedLottos = lottoRepository.findAll();
+        Map<Prize, Integer> winningCounts = Arrays.stream(Prize.values())
+                .collect(Collectors.toMap(prize -> prize, prize -> 0));
 
         for (Lotto lotto : purchasedLottos) {
             List<Integer> numbers = lotto.getNumbers(); // 발행된 각 로또의 번호들
+            boolean containsBonusNumber = numbers.contains(bonusNumber);
 
-            PrizeResponse prizeResponse = calculatePrize(winningLotto, bonusNumber, numbers);
-            if (prizeResponse.prizeMoney() != 0) { // 당첨금이 있다면 결과에 추가
-                prizeResponses.add(prizeResponse);
+            Prize prize = calculatePrize(winningLotto, containsBonusNumber, numbers);
+
+            // 당첨금 0인 애는 뺴고 시작
+            // Map<Prize, Integer> 하나 만들어서 등수 별로 몇 개 있는지 세기
+            if (prize != Prize.NONE) { // 당첨금이 있다면 결과에 추가
+                winningCounts.put(prize, winningCounts.getOrDefault(prize, 0) + 1);
             }
         }
 
-        return prizeResponses;
+        return mapToPrizeResponses(winningCounts);
     }
 
-    private PrizeResponse calculatePrize(Lotto winningLotto, int bonusNumber, List<Integer> numbers) {
+    private Prize calculatePrize(Lotto winningLotto, boolean containsBonusNumber, List<Integer> numbers) {
         int matchingNumberCount = (int) winningLotto.getNumbers().stream()
                 .filter(numbers::contains)
                 .count();
-        boolean containsBonusNumber = numbers.contains(bonusNumber);
 
         if (containsBonusNumber) {
             matchingNumberCount++;
         }
-        Prize prize = Prize.findBy(matchingNumberCount, containsBonusNumber);
 
-        return new PrizeResponse(prize, containsBonusNumber);
+        return Prize.of(matchingNumberCount, containsBonusNumber);
     }
 
-    public void saveLottos(List<Lotto> lottos) {
-        lottoRepository.saveAll(lottos);
+    private List<PrizeResponse> mapToPrizeResponses(Map<Prize, Integer> winningCounts) {
+        List<PrizeResponse> prizeResponses = new ArrayList<>();
+
+        Arrays.stream(Prize.values())
+                .filter(prize -> prize != Prize.NONE)
+                .forEach(prize -> {
+                    int count = winningCounts.getOrDefault(prize, 0);
+                    prizeResponses.add(new PrizeResponse(prize, count));
+                });
+
+        return prizeResponses;
     }
 
-    public List<LottoResponse> generateLottos(int count) {
+    public void generateLottos(int count) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             lottos.add(generateLotto());
         }
-
-        return lottos.stream()
-                .map(LottoResponse::new)
-                .toList();
+        lottoRepository.saveAll(lottos);
     }
 
     private Lotto generateLotto() {
