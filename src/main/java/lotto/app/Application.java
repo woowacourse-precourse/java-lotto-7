@@ -26,5 +26,6 @@ public class Application {
     public void run() {
         int purchaseAmount = inputHandler.getPurchaseAmount();
         List<Lotto> lottos = lottoService.purchaseLottos(purchaseAmount);
+        outputHandler.printLottos(lottos);
     }
 }
