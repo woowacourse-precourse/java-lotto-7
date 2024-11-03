@@ -16,6 +16,9 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ExceptionMessage.TOO_MANY_NUMBERS.getMessage());
         }
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_NUMBER_LOTTO.getMessage());
+        }
     }
 
     public List<Integer> getNumbers() {
