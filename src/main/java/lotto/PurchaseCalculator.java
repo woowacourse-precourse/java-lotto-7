@@ -1,6 +1,7 @@
 package lotto;
 
 public class PurchaseCalculator {
+    private static final int LOTTO_PRICE = 1000;
     private final int purchaseAmount;
 
     public PurchaseCalculator(String input) {
@@ -19,13 +20,13 @@ public class PurchaseCalculator {
 
     // 변환 금액이 1,000원 단위인지 확인
     private void validateAmount(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력하세요.");
         }
     }
 
     // 로또의 개수 반환
     public int calculateLottoCount() {
-        return purchaseAmount / 1000;
+        return purchaseAmount / LOTTO_PRICE;
     }
 }
