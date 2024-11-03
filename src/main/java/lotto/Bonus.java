@@ -24,7 +24,7 @@ public class Bonus {
         }
     }
 
-    public int getNumber() {
+    public int get() {
         return this.number;
     }
 
