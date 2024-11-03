@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.model.lotto.LottoConstants.*;
-
 public class Lotto {
     private static final String LOTTO_SIZE_ERROR = "로또 번호는 6개여야 합니다.";
     private static final String LOTTO_RANGE_ERROR = "로또 번호는 1 ~ 45 사이의 숫자여야 합니다.";
@@ -23,13 +21,13 @@ public class Lotto {
     }
 
     private static void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LottoConstants.LOTTO_SIZE) {
             throw new LottoException(LOTTO_SIZE_ERROR);
         }
     }
 
     private static void validateNumberRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(num -> num < LOTTO_NUM_MIN || num > LOTTO_NUM_MAX)) {
+        if (numbers.stream().anyMatch(num -> num < LottoConstants.LOTTO_NUM_MIN || num > LottoConstants.LOTTO_NUM_MAX)) {
             throw new LottoException(LOTTO_RANGE_ERROR);
         }
     }
@@ -57,7 +55,7 @@ public class Lotto {
         StringBuilder result = new StringBuilder("[");
         result.append(numbers.stream()
                         .map(String::valueOf)
-                        .collect(Collectors.joining(LOTTO_PRINT_DELIMITER)))
+                        .collect(Collectors.joining(LottoConstants.LOTTO_PRINT_DELIMITER)))
                 .append("]");
         return result.toString();
     }
