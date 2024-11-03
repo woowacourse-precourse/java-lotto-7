@@ -17,8 +17,8 @@ class LottosTest {
 
     @BeforeEach
     void setUp() {
-        RandomNumberProvider numberProvider = new RandomNumberProvider();
-        DefaultRangeValidator rangeValidator = new DefaultRangeValidator();
+        NumberProvider numberProvider = new DefinedNumberProvider(1, 2, 3, 4, 5, 6);
+        RangeValidator rangeValidator = new DefaultRangeValidator();
         this.lotto = new Lotto(numberProvider, rangeValidator);
 
         this.draw = new Draw(lotto, 7, rangeValidator);
