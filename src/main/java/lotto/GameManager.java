@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.global.util.Validator.validateBonusNumber;
 import static lotto.global.util.Validator.validatePrice;
 import static lotto.global.util.Validator.validateWinningNumber;
 import static lotto.score.Prize.NO_PRIZE;
@@ -65,23 +66,35 @@ public class GameManager {
     }
 
     private LottoWinningSet readWinningLottoSet() {
-        printWinningNumberInputMessage();
         List<Integer> winningNumber = readWinningNumber();
-        printBonusNumberInputMessage();
-        int bonusNumber = readBonusNumber();
+        int bonusNumber = readBonusNumber(winningNumber);
         return new LottoWinningSet(winningNumber, bonusNumber);
     }
 
     private List<Integer> readWinningNumber() {
+        printWinningNumberInputMessage();
         List<String> input = Arrays.asList(inputView.readWinningNumber());
-        validateWinningNumber(input);
+        try {
+            validateWinningNumber(input);
+        } catch (IllegalArgumentException exception) {
+            outputView.println(exception.getMessage());
+            return readWinningNumber();
+        }
         return input.stream()
                 .map(Integer::parseInt)
                 .toList();
     }
 
-    private int readBonusNumber() {
-        return Integer.parseInt(inputView.readBonusNumber());
+    private int readBonusNumber(List<Integer> winningNumber) {
+        printBonusNumberInputMessage();
+        String input = inputView.readBonusNumber();
+        try {
+            validateBonusNumber(winningNumber, input);
+        } catch (IllegalArgumentException exception) {
+            outputView.println(exception.getMessage());
+            return readBonusNumber(winningNumber);
+        }
+        return Integer.parseInt(input);
     }
 
     private void printLottoPurchase(Integer lottoSize) {
