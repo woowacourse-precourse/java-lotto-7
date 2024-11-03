@@ -165,4 +165,54 @@ public class LottoGameValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.LOTTO_NUMBER_BETWEEN_1_AND_45.getMessage());
     }
+
+    @Test
+    void checkBonusValidTrue() {
+        // given
+        List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonus = 7;
+
+        // when
+        boolean result = LottoGameValidator.checkBonusValid(bonus, winNumbers);
+
+        // then
+        assertThat(result)
+                .isTrue();
+    }
+
+    @Test
+    @DisplayName("당첨번호와 중복된 보너스 번호")
+    void checkBonusValid_duplicate() {
+        // given
+        List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonus = 6;
+
+        // when
+        Throwable throwable = catchThrowable(() -> {
+            LottoGameValidator.checkBonusValid(bonus, winNumbers);
+        });
+
+        // then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.BONUS_NUMBER_DUPLICATE_WIN_NUMBERS.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-3, 0, 47})
+    @DisplayName("보너스 번호가 1~45 사이에 있지 않음")
+    void checkBonusValid_notBetween(int bonus) {
+        // given
+        List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        Throwable throwable = catchThrowable(() -> {
+            LottoGameValidator.checkBonusValid(bonus, winNumbers);
+        });
+
+        // then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.LOTTO_NUMBER_BETWEEN_1_AND_45.getMessage());
+    }
 }

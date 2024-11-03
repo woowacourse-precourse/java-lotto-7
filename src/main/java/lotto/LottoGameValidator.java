@@ -43,4 +43,15 @@ public class LottoGameValidator {
 
         return true;
     }
+
+    public static boolean checkBonusValid(int bonus, List<Integer> winNumbers) {
+        if (winNumbers.contains(bonus)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE_WIN_NUMBERS.getMessage());
+        }
+        if (!Validator.isBetween(Lotto.MIN_LOTTO_NUM, bonus, Lotto.MAX_LOTTO_NUM)) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_BETWEEN_1_AND_45.getMessage());
+        }
+
+        return true;
+    }
 }
