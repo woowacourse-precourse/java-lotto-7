@@ -42,10 +42,20 @@ public class LottoGameDisplay {
     }
 
     public int inputBonusNumber(List<Integer> winnerNumbers) {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                System.out.println();
+                System.out.println("보너스 번호를 입력해 주세요.");
 
-        return inputNumber();
+                int bonus = inputNumber();
+                LottoGameValidator.checkBonusValid(bonus, winnerNumbers);
+
+                return bonus;
+            } catch (Exception e) {
+                printErrorMessage(e);
+            }
+        }
+
     }
 
     private int inputNumber() {
