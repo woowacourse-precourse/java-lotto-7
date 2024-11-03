@@ -21,9 +21,8 @@ public class Lotto {
         }
     }
 
-    public int countMatches(Lotto winningLotto) {
-        List<Integer> matches = getMatchingNumbers(winningLotto);
-        return matches.size();
+    public int countMatchingNumbers(Lotto winningLotto) {
+        return getMatchingNumbers(winningLotto).size();
     }
 
     private List<Integer> getMatchingNumbers(Lotto winningLotto) {
