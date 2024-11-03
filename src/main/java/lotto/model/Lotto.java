@@ -4,9 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.enums.ErrorMessage;
 import lotto.enums.LottoEnum;
-import lotto.utils.Utils;
 import lotto.validation.Validator;
 
 public class Lotto {

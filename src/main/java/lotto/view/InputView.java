@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-import lotto.enums.ErrorMessage;
 import lotto.enums.LottoEnum;
 import lotto.enums.OutputViewEnum;
 import lotto.utils.Utils;
