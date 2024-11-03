@@ -2,74 +2,27 @@ package lotto.View.Input;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Input {
-    public int InputPaymoney() {
-        while (true) {
-            try {
-                System.out.println("구입 금액을 입력해 주세요.");
-                int Paymoney = Integer.parseInt(Console.readLine());
-                return MoneyValidation(Paymoney);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public static void InputMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
+        String money = Console.readLine().trim();
     }
 
-    public int MoneyValidation(int Paymoney) {
-        if (Paymoney % 1000 == 0) {
-            return Paymoney;
-        } throw new IllegalArgumentException("구입 금액은 1000원 단위로 입력해주세요.");
+    public static void Attempt(int money) {
+        System.out.println();
+        int attempt = money / 1000;
+        System.out.println(attempt+"개를 구매했습니다.");
     }
 
-    public List<Integer> InputNumber() {
-        while (true) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                String NumberList = Console.readLine();
-                List<Integer> numbers = Numbers(NumberList);
-                return NumberValidation(numbers);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public static void InputNumbers() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String number = Console.readLine();
     }
 
-    public static List<Integer> Numbers(String NumberList) {
-        String[] NumbersArray = NumberList.split(",");
-        List<Integer> numbers = new ArrayList<>();
-        for (String number : NumbersArray) {
-            numbers.add(Integer.parseInt(number.trim()));
-        }
-        return numbers;
-    }
-
-    public static List<Integer> NumberValidation(List<Integer> numbers) {
-        for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("당첨 번호는 1 이상 45 이하의 숫자이어야 합니다.");
-            }
-        }
-        return numbers;
-    }
-
-    public int InputBonus() {
-        while (true) {
-            try {
-                System.out.println("보너스 번호를 입력해 주세요.");
-                int Bonus = Integer.parseInt(Console.readLine());
-                return BonusValidation(Bonus);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    public int BonusValidation(int Bonus) {
-        if (1 <= Bonus && Bonus <= 45) {
-            return Bonus;
-        } throw new IllegalArgumentException("보너스 번호는 1 이상 45 이하의 숫자이어야 합니다.");
+    public static void InputBonus() {
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonus = Console.readLine();
     }
 }
