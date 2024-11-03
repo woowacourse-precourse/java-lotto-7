@@ -3,22 +3,28 @@ package lotto.model;
 import java.util.Arrays;
 
 public enum Rank {
-    LAST(0, 0, false),
-    _5TH(5_000, 3, false),
-    _4TH(50_000, 4, false),
-    _3TH(1_500_000, 5, false),
-    _2TH(30_000_000, 5, true),
-    _1TH(2_000_000_000, 6, false),
+    LAST(0, 0, 0, false),
+    _5TH(5, 5_000, 3, false),
+    _4TH(4, 50_000, 4, false),
+    _3TH(3, 1_500_000, 5, false),
+    _2TH(2, 30_000_000, 5, true),
+    _1TH(1, 2_000_000_000, 6, false),
     ;
 
+    private final int rank;
     private final long price;
     private final int matchCount;
     private final boolean containsBonus;
 
-    Rank(long price, int matchCount, boolean containsBonus) {
+    Rank(int rank, long price, int matchCount, boolean containsBonus) {
+        this.rank = rank;
         this.price = price;
         this.matchCount = matchCount;
         this.containsBonus = containsBonus;
+    }
+
+    public int getRank() {
+        return rank;
     }
 
     public long getPrice() {

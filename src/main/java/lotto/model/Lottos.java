@@ -30,4 +30,8 @@ public class Lottos {
                 .sum();
         return sum / getPrice();
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }
