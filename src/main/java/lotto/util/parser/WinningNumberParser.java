@@ -11,9 +11,9 @@ public class WinningNumberParser {
     private static final String REGEX = ",";
 
     public static List<Integer> parseRawWinningNumbers(String rawWinningNumber) {
-
         try {
             String[] contents = rawWinningNumber.split(REGEX);
+
             return Arrays.stream(contents)
                     .map(String::trim)
                     .map(Integer::parseInt)
@@ -21,6 +21,5 @@ public class WinningNumberParser {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_INTEGER_RANGE_WINNING_NUMBERS_ERROR_MESSAGE.getContent());
         }
-
     }
 }

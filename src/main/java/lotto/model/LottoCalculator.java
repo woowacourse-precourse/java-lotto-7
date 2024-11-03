@@ -19,6 +19,7 @@ public class LottoCalculator {
     public WinningStatistics getWinningStatistics(LottoTicket lottoTicket) {
         HashMap<Rank, Integer> lottoResult = getLottoResult(lottoTicket);
         double earningRate = calculateEarningRate(lottoResult, lottoTicket);
+
         return new WinningStatistics(lottoResult, earningRate);
     }
 
@@ -55,23 +56,6 @@ public class LottoCalculator {
         return Rank.determineRank(correctNumberCount, containBonusNumber);
     }
 
-    private double calculateEarningRate(HashMap<Rank, Integer> lottoResult, LottoTicket lottoTicket) {
-
-        long totalPrize = 0;
-
-        LottoTicketStatus lottoTicketStatus = lottoTicket.getLottoTicketStatus();
-        int purchaseAmount = lottoTicketStatus.getPurchaseAmount();
-
-        for (Rank rank : lottoResult.keySet()) {
-            long prize = rank.getPrize();
-            long count = lottoResult.get(rank);
-
-            totalPrize += prize * count;
-        }
-        double earningRate = (double) totalPrize / purchaseAmount * 100;
-        return (double) Math.round(earningRate * 10) / 10;
-    }
-
     private int getCorrectNumberCount(List<Integer> numbers) {
         int correctNumberCount = 0;
         LottoStatus winningLottoStatus = winningLotto.getStatus();
@@ -87,5 +71,21 @@ public class LottoCalculator {
 
     private boolean containBonusNumber(List<Integer> numbers) {
         return numbers.contains(bonusNumber);
+    }
+
+    private double calculateEarningRate(HashMap<Rank, Integer> lottoResult, LottoTicket lottoTicket) {
+        long totalPrize = 0;
+
+        LottoTicketStatus lottoTicketStatus = lottoTicket.getLottoTicketStatus();
+        int purchaseAmount = lottoTicketStatus.getPurchaseAmount();
+
+        for (Rank rank : lottoResult.keySet()) {
+            long prize = rank.getPrize();
+            long count = lottoResult.get(rank);
+            totalPrize += prize * count;
+        }
+
+        double earningRate = (double) totalPrize / purchaseAmount * 100;
+        return (double) Math.round(earningRate * 10) / 10;
     }
 }

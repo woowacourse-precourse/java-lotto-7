@@ -46,6 +46,12 @@ class LottoCalculatorTest {
         assertThat(earningRate).isEqualTo(500.0);
     }
 
+    private static Lotto getWinningLotto() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        return new Lotto(winningNumbers);
+    }
+
     private static LottoTicket getLottoTicket() {
         List<Integer> numbers = List.of(4, 5, 6, 7, 8, 9);
         int purchaseAmount = 1000;
@@ -53,9 +59,4 @@ class LottoCalculatorTest {
         return new LottoTicket(List.of(myLotto), purchaseAmount);
     }
 
-    private static Lotto getWinningLotto() {
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-
-        return new Lotto(winningNumbers);
-    }
 }

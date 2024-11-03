@@ -40,12 +40,6 @@ public class Lotto {
         }
     }
 
-    private void validateDuplication(List<Integer> numbers) {
-        if (isDuplicated(numbers)) {
-            throw new IllegalArgumentException(DUPLICATED_NUMBER_ERROR_MESSAGE.getContent());
-        }
-    }
-
     private void validateNumberRange(int number) {
         if (!isValidNumber(number)) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE.getContent());
@@ -54,6 +48,12 @@ public class Lotto {
 
     private boolean isValidNumber(int number) {
         return MIN_LOTTO_NUMBER <= number && number <= MAX_LOTTO_NUMBER;
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
+        if (isDuplicated(numbers)) {
+            throw new IllegalArgumentException(DUPLICATED_NUMBER_ERROR_MESSAGE.getContent());
+        }
     }
 
     private boolean isDuplicated(List<Integer> numbers) {

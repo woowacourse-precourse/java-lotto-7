@@ -24,7 +24,7 @@ class PurchaseAmountParserTest {
 
     @DisplayName("구입 금액 입력시 숫자가아닌 문자를 입력할 수 없다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3" , ":qwe", "a1b1b2"})
+    @ValueSource(strings = {"1,2,3", ":qwe", "a1b1b2"})
     void inputNotIntegerString(String rawPurchaseAmount) {
         assertThatThrownBy(() -> PurchaseAmountParser.parseRawPurchaseAmount(rawPurchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -33,7 +33,7 @@ class PurchaseAmountParserTest {
 
     @DisplayName("숫자로 이루어진 문자열이 들어올 경우 해당 문자열을 정수로 변환해서 반환해야 한다.")
     @ParameterizedTest
-    @CsvSource(value = {"1, 1" , "2, 2", "3, 3", "45, 45"})
+    @CsvSource(value = {"1, 1", "2, 2", "3, 3", "45, 45"})
     void parseRawPurchaseAmount(String rawPurchaseAmount, int expected) {
 
         int purchaseAmount = PurchaseAmountParser.parseRawPurchaseAmount(rawPurchaseAmount);

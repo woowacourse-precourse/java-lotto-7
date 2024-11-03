@@ -45,27 +45,8 @@ public class OutputView {
         printEarningRate(earningRate);
     }
 
-    private static void printStatisticsStartMessage() {
-        System.out.println(STATISTICS_START_MESSAGE);
-    }
-
-    private static void printEarningRate(double earningRate) {
-        BigDecimal bigEarningRate = new BigDecimal(earningRate);
-        DecimalFormat df = new DecimalFormat(PATTERN);
-        String result = df.format(bigEarningRate);
-        System.out.println(
-                EARNING_RATE_MESSAGE_PREFIX + result + EARNING_RATE_MESSAGE_SUFFIX);
-    }
-
-    private static void printLottoResult(HashMap<Rank, Integer> lottoResult) {
-        Rank[] ranks = values();
-        for (Rank rank : ranks) {
-            if (rank == LOSE) {
-                continue;
-            }
-            int count = lottoResult.get(rank);
-            System.out.println(rank.getMessage(count));
-        }
+    private static void printNewLine() {
+        System.out.println();
     }
 
     private static void printLottoCount(LottoTicketStatus lottoTicketStatus) {
@@ -80,7 +61,26 @@ public class OutputView {
         System.out.println(numbers);
     }
 
-    private static void printNewLine() {
-        System.out.println();
+    private static void printStatisticsStartMessage() {
+        System.out.println(STATISTICS_START_MESSAGE);
+    }
+
+    private static void printLottoResult(HashMap<Rank, Integer> lottoResult) {
+        Rank[] ranks = values();
+        for (Rank rank : ranks) {
+            if (rank == LOSE) {
+                continue;
+            }
+            int count = lottoResult.get(rank);
+            System.out.println(rank.getMessage(count));
+        }
+    }
+
+    private static void printEarningRate(double earningRate) {
+        BigDecimal bigEarningRate = new BigDecimal(earningRate);
+        DecimalFormat df = new DecimalFormat(PATTERN);
+        String result = df.format(bigEarningRate);
+        System.out.println(
+                EARNING_RATE_MESSAGE_PREFIX + result + EARNING_RATE_MESSAGE_SUFFIX);
     }
 }

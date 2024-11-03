@@ -25,6 +25,7 @@ public class LottoStore {
             Lotto lotto = new Lotto(randomNumbers);
             lottos.add(lotto);
         }
+
         return new LottoTicket(lottos, purchaseAmount);
     }
 }
