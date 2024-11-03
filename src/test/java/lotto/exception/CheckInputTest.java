@@ -1,19 +1,11 @@
 package lotto.exception;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
-import lotto.Application;
-import lotto.Console.InputConsole;
 import lotto.Lotto;
-import lotto.enums.ErrorType;
 import org.junit.jupiter.api.Test;
 
 class CheckInputTest {

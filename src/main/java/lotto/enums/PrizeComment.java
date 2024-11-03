@@ -9,11 +9,11 @@ public enum PrizeComment {
 
     private final String message;
 
-    PrizeComment(String message){
+    PrizeComment(String message) {
         this.message = message;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return message;
     }
 }

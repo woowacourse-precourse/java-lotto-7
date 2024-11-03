@@ -22,26 +22,26 @@ public class CheckInput {
         return true;
     }
 
-    public static Lotto checkLottoNumbers(String inputLottoNumbers){
+    public static Lotto checkLottoNumbers(String inputLottoNumbers) {
         String[] splitInputLottoNumbers = inputLottoNumbers.split(",");
 
         List<Integer> tmpLottoNumber = new ArrayList<>();
         for (String splitInputLottoNumber : splitInputLottoNumbers) {
-            try{
+            try {
                 int tmpNumber = Integer.parseInt(splitInputLottoNumber.trim());
 
-                if(tmpNumber < 1 || tmpNumber > 45){
+                if (tmpNumber < 1 || tmpNumber > 45) {
                     throw new IllegalArgumentException();
                 }
 
                 tmpLottoNumber.add(tmpNumber);
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println(ErrorType.INVALID_LOTTO_NUMBER_FORMAT.getErrorMessage());
                 return null;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
                 return null;
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(ErrorType.UNEXPECTED_ERROR.getErrorMessage());
                 return null;
             }
@@ -53,13 +53,13 @@ public class CheckInput {
         return tmpLotto;
     }
 
-    public static boolean checkBonusNumber(int bonusNum, Lotto winningLottoNumbers){
-        if(bonusNum < 1 || bonusNum > 45){
+    public static boolean checkBonusNumber(int bonusNum, Lotto winningLottoNumbers) {
+        if (bonusNum < 1 || bonusNum > 45) {
             System.out.println(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
             return false;
         }
 
-        if(winningLottoNumbers.checkDuplicateWithBonusNumber(bonusNum)){
+        if (winningLottoNumbers.checkDuplicateWithBonusNumber(bonusNum)) {
             System.out.println(ErrorType.INVALID_LOTTO_BONUS_NUMBER_DUPLICATE.getErrorMessage());
             return false;
         }

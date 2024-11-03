@@ -1,11 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import lotto.Console.InputConsole;
-import lotto.enums.ErrorType;
-import lotto.exception.CheckInput;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

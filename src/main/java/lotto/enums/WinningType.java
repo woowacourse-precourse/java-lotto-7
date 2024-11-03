@@ -11,25 +11,25 @@ public enum WinningType {
     private final int prizeMoney;
     private int count;
 
-    WinningType(int matchCount, int prizeMoney, int count){
+    WinningType(int matchCount, int prizeMoney, int count) {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
         this.count = count;
     }
 
-    public int getCount(){
+    public int getCount() {
         return count;
     }
 
-    public void countUp(){
+    public void countUp() {
         this.count += 1;
     }
 
-    public static long getAllProfit(){
+    public static long getAllProfit() {
         long allProfit = 0;
 
-        for(WinningType type : WinningType.values()){
-            allProfit += (long)type.getCount() * type.prizeMoney;
+        for (WinningType type : WinningType.values()) {
+            allProfit += (long) type.getCount() * type.prizeMoney;
         }
 
         return allProfit;

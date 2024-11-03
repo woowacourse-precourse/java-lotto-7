@@ -22,18 +22,18 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
-    public boolean checkDuplicateWithBonusNumber(int bonusNum){
-        if(numbers.contains(bonusNum)){
+    public boolean checkDuplicateWithBonusNumber(int bonusNum) {
+        if (numbers.contains(bonusNum)) {
             return true;
         }
         return false;
     }
 
-    public int findDuplicateNum(List<Integer> winningNumber){
+    public int findDuplicateNum(List<Integer> winningNumber) {
 
         List<Integer> matchNum = this.numbers.stream().filter(o -> winningNumber.stream()
                 .anyMatch(Predicate.isEqual(o))).collect(Collectors.toList());
@@ -41,9 +41,9 @@ public class Lotto {
         return matchNum.size();
     }
 
-    public void checkDuplicateMyself(List<Integer> numbers){
+    public void checkDuplicateMyself(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
-        if(set.size() < numbers.size()){
+        if (set.size() < numbers.size()) {
             throw new IllegalArgumentException(ErrorType.INVALID_DUPLICATE_LOTTO_NUMBER.getErrorMessage());
         }
     }

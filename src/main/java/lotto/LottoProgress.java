@@ -6,7 +6,7 @@ import lotto.Console.OutputConsole;
 
 public class LottoProgress {
 
-    public static void lottoProgress(){
+    public static void lottoProgress() {
         int inputMoney = InputConsole.intputMoney();
         List<Lotto> lottoList = buyLotto(inputMoney);
 
@@ -17,11 +17,11 @@ public class LottoProgress {
         OutputConsole.outputProfit(inputMoney);
     }
 
-    private static List<Lotto> buyLotto(int inputMoney){
+    private static List<Lotto> buyLotto(int inputMoney) {
         int lottoNum = LottoList.lottoNumber(inputMoney);
         System.out.println("\n" + lottoNum + "개를 구매했습니다.");
 
-        List<Lotto> lottoList  = LottoList.drawingLotto(lottoNum);
+        List<Lotto> lottoList = LottoList.drawingLotto(lottoNum);
         OutputConsole.outputLottoList(lottoList);
 
         return lottoList;

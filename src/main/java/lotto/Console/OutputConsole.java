@@ -8,13 +8,13 @@ import lotto.enums.WinningType;
 
 public class OutputConsole {
 
-    public static void outputLottoList(List<Lotto> lottoList){
+    public static void outputLottoList(List<Lotto> lottoList) {
         for (Lotto lotto : lottoList) {
             System.out.println(lotto.getNumbers());
         }
     }
 
-    public static void outputWinningStatics(Lotto winningLottoNumbers, List<Lotto> lottoList, int bonusNum){
+    public static void outputWinningStatics(Lotto winningLottoNumbers, List<Lotto> lottoList, int bonusNum) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
 
@@ -26,7 +26,7 @@ public class OutputConsole {
         System.out.println(PrizeComment.SAME_SIX.getMessage() + WinningType.FIFTH.getCount() + "개");
     }
 
-    public static void outputProfit(int inputMoney){
+    public static void outputProfit(int inputMoney) {
         System.out.println("총 수익률은 " + CheckWinning.calculateProfit(inputMoney) + "%입니다.");
     }
 

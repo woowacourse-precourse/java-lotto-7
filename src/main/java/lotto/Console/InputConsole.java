@@ -8,16 +8,16 @@ import lotto.exception.CheckInput;
 
 public class InputConsole {
 
-    public static int intputMoney(){
+    public static int intputMoney() {
         System.out.println("구매금액을 입력해 주세요.");
 
         int inputMoney = 0;
         boolean isValid = false;
-        while(!isValid){
-            try{
+        while (!isValid) {
+            try {
                 inputMoney = Integer.parseInt(readLine());
                 isValid = CheckInput.checkInputMoney(inputMoney);
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println(ErrorType.INVALID_PRICE_FORMAT.getErrorMessage());
                 System.out.println("구매금액을 다시 입력해 주세요.");
             }
@@ -26,19 +26,19 @@ public class InputConsole {
         return inputMoney;
     }
 
-    public static Lotto inputWinningNumbers(){
+    public static Lotto inputWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String winningLottoNum = readLine();
 
         boolean isValid = false;
         Lotto winningLottoNumbers = null;
-        while(!isValid){
+        while (!isValid) {
 
             winningLottoNumbers = CheckInput.checkLottoNumbers(winningLottoNum);
-            if(winningLottoNumbers != null){
+            if (winningLottoNumbers != null) {
                 isValid = true;
             }
-            if(winningLottoNumbers == null){
+            if (winningLottoNumbers == null) {
                 System.out.println("\n당첨 번호를 다시 입력해 주세요.");
                 winningLottoNum = readLine();
             }
@@ -47,11 +47,11 @@ public class InputConsole {
         return winningLottoNumbers;
     }
 
-    public static int inputBonusNumbers(Lotto winningLottoNumbers){
+    public static int inputBonusNumbers(Lotto winningLottoNumbers) {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNum = Integer.parseInt(readLine());
 
-        while(!CheckInput.checkBonusNumber(bonusNum, winningLottoNumbers)){
+        while (!CheckInput.checkBonusNumber(bonusNum, winningLottoNumbers)) {
 
             System.out.println("\n보너스 번호를 다시 입력해 주세요.");
             bonusNum = Integer.parseInt(readLine());
