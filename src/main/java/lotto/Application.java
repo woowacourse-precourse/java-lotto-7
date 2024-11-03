@@ -17,9 +17,11 @@ public class Application {
         ArrayList<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
 
-        //5.1 일치하는 번호의 개수를 확인하는 기능
         for (Lotto lottoTicket : lottoTickets) {
+            // 5.1 일치하는 번호의 개수를 확인하는 기능
             int matchCount = lottoTicket.getMatchCount(winningNumbers);
+            // 5.2 보너스 번호의 일치 여부를 확인하는 기능
+            boolean hasBonusNumber = lottoTicket.hasBonusNumber(bonusNumber);
         }
     }
 
