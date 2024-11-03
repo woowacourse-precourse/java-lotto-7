@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.info.LottoInfo;
+import lotto.model.Computer;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.view.InputView;
@@ -15,10 +16,13 @@ public class LottoController {
         User user = makeUserToBuyLotto(amount);
 
         OutputView.printBlankLine();
-        InputView.getWinningNumbers();
+        List<Integer> winningNumbers = InputView.getWinningNumbers();
 
         OutputView.printBlankLine();
-        InputView.getBonusNumber();
+        int bonusNumber = InputView.getBonusNumber();
+
+        Computer computer = new Computer(winningNumbers, bonusNumber);
+        computer.compareToWinningNumbers(user.getLotto());
     }
 
     private User makeUserToBuyLotto(int amount) {
