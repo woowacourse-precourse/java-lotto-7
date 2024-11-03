@@ -23,7 +23,7 @@ public class InputView {
     }
 
     public int getBonusInput(){
-        System.out.printf("보너스 번호 입력해 주세요.");
+        System.out.println("보너스 번호 입력해 주세요.");
         return validate.validateBonusNumber(getBonusNumber());
     }
 
