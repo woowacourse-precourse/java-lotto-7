@@ -21,4 +21,8 @@ public class Money {
     public boolean isZero(Money money) {
         return money.value == 0;
     }
+
+    public int calculateLottoCount() {
+        return (int) (value / LOTTO_PRICE.value);
+    }
 }
