@@ -38,7 +38,6 @@ public class LottoController {
         try {
             OutputView.printPurchaseAmount();
             purchasePrice = InputView.readPurchaseAmount();
-            this.countLotto(purchasePrice);
         } catch (IllegalArgumentException e) {
             if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
                 OutputView.printError(ErrorMessage.NOT_DIV.getError());
@@ -47,6 +46,7 @@ public class LottoController {
             OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
             gainPurchaseAmount(); return;
         }
+        this.countLotto(purchasePrice);
         this.myInfo.setPurchasePrice(purchasePrice);
     }
 
