@@ -2,6 +2,8 @@ package lotto.model;
 
 import lotto.common.ExceptionConstant;
 
+import java.util.List;
+
 public record WinningLotto(Lotto winningLotto, LottoNumber bonusNumber) {
 
     public WinningLotto {
@@ -13,4 +15,5 @@ public record WinningLotto(Lotto winningLotto, LottoNumber bonusNumber) {
             throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE+ExceptionConstant.BONUS_BALL_DUPLICATION_MESSAGE);
         }
     }
+
 }
