@@ -35,12 +35,12 @@ public enum LottoRank {
 
     public static LottoRank matchRank(int matchCount, boolean matchBonus) {
         return Arrays.stream(LottoRank.values())
-                .filter(lottoRank -> isMatching(matchCount, matchBonus, lottoRank))
+                .filter(lottoRank -> isMatchingCondition(matchCount, matchBonus, lottoRank))
                 .findFirst()
                 .orElse(NO_LUCK);
     }
 
-    private static boolean isMatching(int matchCount, boolean matchBonus, LottoRank lottoRank) {
+    private static boolean isMatchingCondition(int matchCount, boolean matchBonus, LottoRank lottoRank) {
         return lottoRank.lottoLankMatcher.matchRank(matchCount, matchBonus);
     }
 
