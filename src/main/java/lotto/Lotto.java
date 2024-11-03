@@ -1,13 +1,17 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final TreeSet<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        hasDuplicates(numbers);
+        this.numbers = new TreeSet<>(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,5 +20,17 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void hasDuplicates(List<Integer> numbers) {
+        if (new HashSet<>(numbers).size() < numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
+
 }
