@@ -22,12 +22,11 @@ public class WinningNumbers {
         return instance;
     }
 
-    public static WinningNumbers getInstance(List<Integer> numbers) {
+    public static void initialInstance(List<Integer> numbers) {
         if (winningNumbers.isEmpty()) {
             validate(numbers);
             winningNumbers.addAll(numbers);
         }
-        return instance;
     }
 
     private static void validate(List<Integer> numbers) {
