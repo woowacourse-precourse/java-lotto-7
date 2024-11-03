@@ -8,14 +8,14 @@ public class InputView {
     private static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public int readPurchaseAmount() {
+    public String readPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
         String amount = Console.readLine();
 
         validateNotNullOrBlank(amount);
         validateIsNumeric(amount);
 
-        return Integer.parseInt(amount);
+        return amount;
     }
 
     public String readWinningNumber() {
