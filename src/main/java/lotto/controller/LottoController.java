@@ -40,13 +40,17 @@ public class LottoController {
 
     public void runLotto() {
         PurchasePrice purchasePrice = inputPurchasePrice();
-        List<Lotto> issuedLotto = lottoIssueService.issueLotto(purchasePrice);
+        List<Lotto> issuedLotto = issueLotto(purchasePrice);
         printIssuedLotto(issuedLotto);
         WinningCriteria winningCriteria = inputWinningCriteria();
         WinningResult winningResult = calculateWinningResult(issuedLotto, winningCriteria);
         double rateOfReturn = calculateRateOfReturn(purchasePrice, winningResult);
         printWinningResult(winningResult);
         printRateOfReturn(rateOfReturn);
+    }
+
+    private List<Lotto> issueLotto(PurchasePrice purchasePrice) {
+        return lottoIssueService.issueLotto(purchasePrice);
     }
 
     private PurchasePrice inputPurchasePrice() {
