@@ -7,12 +7,19 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         
-    	int purchaseAmount = InputView.requestPurchaseAmount();
-    	int numberOfLottos = purchaseAmount/1000;
-    	System.out.println(numberOfLottos + "개를 구매했습니다.");
-    	
-    	List<Integer> winningNumbers = InputView.requestWinningNumbers();
-        int bonusNumber = InputView.requestBonusNumber();
+    	try {    		
+    		int purchaseAmount = InputView.requestPurchaseAmount();
+        	int numberOfLottos = purchaseAmount/1000;
+        	System.out.println(numberOfLottos + "개를 구매했습니다.");
+        	
+        	
+        	List<Integer> winningNumbers = InputView.requestWinningNumbers();
+            int bonusNumber = InputView.requestBonusNumber();
+                
+            
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage()); // 예외 메시지 출력
+        }
     	
     }
 }
