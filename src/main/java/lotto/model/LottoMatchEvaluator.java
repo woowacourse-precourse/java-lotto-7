@@ -32,7 +32,7 @@ public class LottoMatchEvaluator {
     public List<Integer> getLottoWinningCounts() {
         LottoRank[] ranks = LottoRank.values();
 
-        for (int i = 0; i < ranks.length ; i--) {
+        for (int i = 0; i < ranks.length ; i++) {
             int rankMatchingcount = ranks[i].getMatchingCount();
             int lottoWinningCount = (int) lottoResults.stream().filter(lotto -> lotto.getMatchingCount() == rankMatchingcount).count();
 
