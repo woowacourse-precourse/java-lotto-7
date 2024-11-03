@@ -2,7 +2,9 @@ package lotto.controller;
 
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.utils.Utils;
 import lotto.validator.Validators;
 import lotto.view.InputView;
@@ -71,4 +73,9 @@ public class Controller {
         }
     }
 
+    public Map<Rank, Integer> compareWithWinningNumbers(Lotto winningNumber, int bonusNumber, List<Lotto> lottos) {
+        Map<Rank, Integer> resultCounts = utils.evaluateLottoRanks(winningNumber, bonusNumber, lottos);
+        outputView.printLottoWinningDetails(resultCounts);
+        return resultCounts;
+    }
 }
