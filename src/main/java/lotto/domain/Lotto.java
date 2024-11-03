@@ -14,4 +14,10 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         Validator.validateWinningNumber(numbers);
     }
+
+    public List<Integer> getSortedNumbers(){
+        return numbers.stream()
+                .sorted()
+                .toList();
+    }
 }
