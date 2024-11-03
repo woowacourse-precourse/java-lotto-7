@@ -33,4 +33,8 @@ public class LottoResult {
     public int getCountByRank(LottoRank rank) {
         return rankCounts.getOrDefault(rank, 0);
     }
+
+    public double calculateProfitRate() {
+        return 0;
+    }
 }

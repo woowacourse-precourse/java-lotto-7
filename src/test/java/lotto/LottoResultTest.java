@@ -60,7 +60,7 @@ public class LottoResultTest {
     }
 
     @Test
-    @DisplayName("당첨 통계를 생성한다")
+    @DisplayName("당첨 통계를 생성한다.")
     void 성공_당첨통계생성_유효한파라미터() {
         // given
         String winningNumberList = "1, 2, 3, 4, 5, 8";
@@ -81,5 +81,28 @@ public class LottoResultTest {
         assertThat(result.getCountByRank(LottoRank.FIRST)).isEqualTo(1);
         assertThat(result.getCountByRank(LottoRank.SECOND)).isEqualTo(1);
         assertThat(result.getCountByRank(LottoRank.THIRD)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("수익률을 계산한다.")
+    void 성공_수익률계산_유효한파라미터() {
+        // given
+        String winningNumberList = "1, 2, 3, 4, 5, 6";
+        String bonusNumber = "7";
+
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6))
+        );
+
+        WinningNumbers winningNumbers = WinningNumbers.from(WinningLottoNumbers.from(winningNumberList),
+                BonusNumber.from(bonusNumber));
+
+        LottoResult result = LottoResult.of(lottos, winningNumbers);
+
+        // when
+        double profitRate = result.calculateProfitRate();
+
+        // then
+        assertThat(profitRate).isEqualTo(0);
     }
 }
