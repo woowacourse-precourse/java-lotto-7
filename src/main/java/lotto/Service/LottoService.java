@@ -8,7 +8,6 @@ import lotto.model.UserNumbers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoService {
     private final static int THREE_MATCHING_INDEX = 0;
@@ -23,16 +22,12 @@ public class LottoService {
     private List<Integer> results;
 
 
-    public void generateUserNumbers(String purchaseAmount) {
+    public void generateUserNumbers(int purchaseAmount) {
         userNumbers = new UserNumbers(purchaseAmount);
     }
 
-    public void generateLotto(String inputValue) {
-        String[] lottoNumber = inputValue.split(",");
-        List<Integer> lottoNumberList = Arrays.stream(lottoNumber)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        lotto = new Lotto(lottoNumberList);
+    public void generateLotto(Lotto lotto) {
+        this.lotto = lotto;
     }
 
     public void generateBonusNumber(int number) {

@@ -1,6 +1,5 @@
 package lotto.view;
 
-import lotto.model.UserNumber;
 import lotto.model.UserNumbers;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class ViewFacade {
         return inputView.getLottoNumber();
     }
 
-    public int getBonusNumber() {
+    public String getBonusNumber() {
         return inputView.getBonusNumber();
     }
 
