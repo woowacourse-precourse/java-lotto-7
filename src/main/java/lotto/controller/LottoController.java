@@ -70,16 +70,12 @@ public class LottoController {
         while (true) {
             try {
                 Number bonusNumber = new Number(InputView.inputBonusNumber());
-                validateBonusNumber(winNumbers, bonusNumber);
+                Number.validateBonusNumber(winNumbers, bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private void validateBonusNumber(Numbers winNumbers, Number bonusNumber) {
-        if (winNumbers.contains(bonusNumber)) throw new IllegalArgumentException();
     }
 
     private void calculateLottoResult(LottoResult lottoResult, List<Lotto> lottos, Numbers winNumbers, Number bonusNumber) {

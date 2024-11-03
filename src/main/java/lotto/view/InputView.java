@@ -27,11 +27,13 @@ public class InputView {
     }
 
     public static String inputWinNumbers() {
+        System.out.println();
         System.out.println(Input.WIN_NUMBERS.getMessage());
         return Console.readLine();
     }
 
     public static String inputBonusNumber() {
+        System.out.println();
         System.out.println(Input.BONUS_NUMBER.getMessage());
         return Console.readLine();
     }

@@ -20,6 +20,10 @@ public class Number implements Comparable<Number> {
         this.number = parsedNumber;
     }
 
+    public static void validateBonusNumber(Numbers winNumbers, Number bonusNumber) {
+        if (winNumbers.contains(bonusNumber)) throw new IllegalArgumentException(ErrorMessage.bonusNumberExist());
+    }
+
     public int value() {
         return number;
     }

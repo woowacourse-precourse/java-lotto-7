@@ -12,6 +12,7 @@ public class OutputView {
 
 
     public static void printPurchasedLottoAmount(int lottoNumber) {
+        System.out.println();
         System.out.printf(PURCHASED_LOTTO, lottoNumber);
     }
 
@@ -21,6 +22,7 @@ public class OutputView {
         }
     }
     public static void printWinStatistics() {
+        System.out.println();
         System.out.println(WIN_STATISTICS);
     }
 
