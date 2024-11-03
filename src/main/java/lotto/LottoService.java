@@ -16,7 +16,7 @@ public class LottoService {
         return lottos;
     }
 
-    public List<Integer> makeLandomNumber(){
+    private List<Integer> makeLandomNumber(){
         return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, 6);
     }
 
