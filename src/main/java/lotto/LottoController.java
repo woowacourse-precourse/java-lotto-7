@@ -11,5 +11,6 @@ public class LottoController {
         OutputView.printPurchasedLottos(lottos);
 
         List<Integer> winningNumbers = InputView.inputWinningNumbers();
+        int bonusNumber = InputView.inputBonusNumber();
     }
 }

@@ -28,6 +28,13 @@ public class InputView {
         return numbers;
     }
 
+    public static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        validateEmpty(input);
+        return Utils.convertNumber(input);
+    }
+
     private static void validateEmpty(String input) {
         if (input.isEmpty() || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 빈 값이 입력되었습니다.");
