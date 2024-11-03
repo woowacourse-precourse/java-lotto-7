@@ -1,31 +1,29 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.service.Bonus;
+import lotto.service.Lotto;
+import lotto.service.Money;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserInput {
     private List<String> winningInput;
     private List<Integer> winningNumbers;
-    private int number;
-    private int bonusNumber;
 
-    public int inputMoney() {
+    public Money inputMoney() {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
                 nullCheck(input);
                 isNumber(input);
-                int money = Integer.parseInt(input);
-                moneyValidate(money);
-                number = money / 1000;
+                int number = Integer.parseInt(input);
 
-                return number;
-
-            }
-            catch (IllegalArgumentException e) {
+                return new Money(number);
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -39,18 +37,17 @@ public class UserInput {
                 nullCheck(winningInput);
                 isNumber(winningInput);
                 winningNumbers = winningInput.stream().map(Integer::parseInt).collect(Collectors.toList());
-                isRange(winningNumbers);
-                isSix(winningNumbers);
 
-                return winningNumbers;
-            }
-            catch (IllegalArgumentException e) {
+                Lotto lotto = new Lotto(winningNumbers);
+
+                return lotto.getNumbers();
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public int inputBonusNumber() {
+    public Bonus inputBonusNumber() {
         while (true) {
             try {
                 System.out.println();
@@ -58,12 +55,12 @@ public class UserInput {
                 String input = Console.readLine();
                 nullCheck(input);
                 isNumber(input);
-                bonusNumber = Integer.parseInt(input);
-                isRange(bonusNumber);
 
-                return bonusNumber;
-            }
-            catch (IllegalArgumentException e) {
+                int number = Integer.parseInt(input);
+
+                return new Bonus(number);
+
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -81,59 +78,27 @@ public class UserInput {
         }
     }
 
-    private void moneyValidate(int money) {
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요");
-        }
-    }
 
     private void isNumber(String input) {
         boolean isNum = input.matches("[+-]?\\d*(\\.\\d+)?");
 
-        if(!isNum) {
+        if (!isNum) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
         }
     }
 
-    private void isRange(int input) {
-        if (!(1 <= input && input <= 45)) {
-            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 수만 입력해주세요.");
-        }
-    }
 
     private void isNumber(List<String> winningInput) {
         for (String input : winningInput) {
             boolean num = input.matches("[+-]?\\d*(\\.\\d+)?");
 
-            if(!num) {
+            if (!num) {
                 throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
             }
         }
     }
 
-    private void isRange(List<Integer> winningNumbers) {
-        for (int number : winningNumbers) {
-            if (!(1 <= number && number <= 45)) {
-                throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
-            }
-        }
-    }
-
-    private void isSix(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-    }
-
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public int getBonus() {
-        return bonusNumber;
     }
 }
