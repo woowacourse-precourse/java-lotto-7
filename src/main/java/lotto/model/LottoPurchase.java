@@ -11,15 +11,11 @@ public class LottoPurchase {
         this.money = money;
     }
 
-    public LottoTickets getLottoTickets() {
-        return lottoTickets;
-    }
-
     public int getMoney() {
         return money;
     }
 
     public LottoPurchaseResult getLottoPurchaseResult() {
-        return new LottoPurchaseResult(getLottoTickets().getLottoTicketsNumbers(), money / LOTTO_PRICE);
+        return new LottoPurchaseResult(lottoTickets.getLottoTicketsNumbers(), money / LOTTO_PRICE);
     }
 }
