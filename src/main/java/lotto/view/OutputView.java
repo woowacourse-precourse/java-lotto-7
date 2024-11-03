@@ -9,4 +9,8 @@ public class OutputView {
     public void printErrorMessage(String message) {
         System.out.println("[ERROR] " + message);
     }
+
+    public void printPurchasePrompt(int number) {
+        System.out.println(number + "개를 구입했습니다.");
+    }
 }
