@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.SequencedMap;
+import java.util.stream.Collectors;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
@@ -50,6 +51,13 @@ public class LottoResults {
         return lottoResults.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
+    }
+
+    public List<LottoResultDto> generateResultDtos() {
+        return lottoResults.entrySet().stream()
+                .filter(this::isNotNoneRank)
+                .map(this::toLottoResultDto)
+                .collect(Collectors.toList());
     }
 
     private boolean isNotNoneRank(Map.Entry<Rank, Integer> entry) {
