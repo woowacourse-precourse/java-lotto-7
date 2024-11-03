@@ -15,10 +15,10 @@ public enum Winning {
 	private static final int INITIAL_VALUE = 0;
 
 	private final int count;
-	private final int prize;
+	private final long prize;
 	private final boolean hasBonusNumber;
 
-	Winning(int count, int prize, boolean hasBonusNumber) {
+	Winning(int count, long prize, boolean hasBonusNumber) {
 		this.count = count;
 		this.prize = prize;
 		this.hasBonusNumber = hasBonusNumber;
