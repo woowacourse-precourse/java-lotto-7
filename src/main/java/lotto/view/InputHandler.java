@@ -12,7 +12,7 @@ public class InputHandler {
     public int getAmountInput() throws IllegalArgumentException {
         String input = Console.readLine();
         validateInputAmount(input);
-        return Integer.parseInt(input);
+        return parseInt(input);
     }
 
 
@@ -24,7 +24,7 @@ public class InputHandler {
         if (!InputValidator.isValidFormatForMoney(input)) {
             throw new IllegalArgumentException("[ERROR] 천 이상의 숫자만 입력해 주세요.");
         }
-        int numericInput = Integer.parseInt(input);
+        int numericInput = parseInt(input);
         if (!InputValidator.isThousandUnit(numericInput)) {
             throw new IllegalArgumentException("[ERROR] 천원단위로 입력해 주세요");
         }
@@ -63,7 +63,7 @@ public class InputHandler {
     public int getBonusNumber(List<Integer> lottoNumbers) {
         String stringBonusNumber = Console.readLine();
         validateBonusNumber(stringBonusNumber, lottoNumbers);
-        return Integer.parseInt(stringBonusNumber);
+        return parseInt(stringBonusNumber);
 
     }
 
@@ -86,5 +86,13 @@ public class InputHandler {
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private int parseInt(String number){
+        try{
+            return Integer.parseInt(number);
+        }catch (NumberFormatException e){
+            throw new NumberFormatException("[ERROR] 숫자를 입력해주세요");
+        }
     }
 }
