@@ -18,6 +18,7 @@ class WinningLottoTest {
          //expect
         assertThrows(IllegalArgumentException.class, () -> new WinningLotto(winningNumber, bonus));
     }
+
     @Test
     @DisplayName("로또와 당첨번호 비교 후 일치되는 숫자 개수 테스트")
     public void getMatchingCountTest() {

@@ -104,4 +104,12 @@ class LottoTest {
         assertTrue(matchingBonus1);
         assertFalse(matchingBonus2);
     }
+    @Test
+    @DisplayName("로또 범위 검증")
+    public void RangeTest(){
+        //given
+        List<Integer> number = List.of(1, 2, 3, 4, 5, 65);
+        //expect
+        assertThrows(IllegalArgumentException.class,()->{new Lotto(number);});
+    }
 }
