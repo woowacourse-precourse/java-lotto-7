@@ -38,4 +38,18 @@ public class GameManager {
 
         return player;
     }
+
+    public void getWinningLotto() {
+        while (true) {
+            try {
+                List<Integer> winningNumbers = Reader.readWinningNumbers();
+                int bonusNumber = Reader.readBonusNumber();
+                gameResultManager.changeWinningLotto(winningNumbers, bonusNumber);
+                break;
+            }
+            catch (IllegalArgumentException e) {
+                Writer.writeMessage(e.getMessage());
+            }
+        }
+    }
 }
