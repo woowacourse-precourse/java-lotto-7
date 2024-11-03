@@ -1,5 +1,9 @@
 package lotto.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import lotto.model.LottoGame;
 import lotto.model.LottoPurchase;
 import lotto.validator.Validator;
 import lotto.view.InputView;
@@ -31,7 +35,7 @@ public final class LottoGameController {
 
     private void play() {
         LottoPurchase lottoPurchase = buyLotto();
-
+        LottoGame lottoGame = playLottoGame(lottoPurchase);
     }
 
     private LottoPurchase buyLotto() {
@@ -42,11 +46,23 @@ public final class LottoGameController {
         return lottoPurchase;
     }
 
+    private LottoGame playLottoGame(LottoPurchase lottoPurchase) {
+        List<Integer> WinningLottoNumbers = readWinningLottoNumbers();
+    }
+
     private int readMoney() {
         String moneyInput = inputView.getMoneyInput();
 
         Validator.validateMoneyInput(moneyInput);
 
         return Integer.parseInt(moneyInput);
+    }
+
+    private List<Integer> readWinningLottoNumbers() {
+        String numbersInput = inputView.getNumbersInput();
+
+        return Arrays.stream(numbersInput.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
