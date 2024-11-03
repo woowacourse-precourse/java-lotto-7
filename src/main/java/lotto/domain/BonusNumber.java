@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.NumberType.LOTTO_MAX_NUMBER;
+import static lotto.constant.NumberType.LOTTO_MIN_NUMBER;
 import static lotto.exception.ErrorMessage.INVALID_BONUS_NUMBER_RANGE;
 
 import lotto.exception.LottoException;
@@ -17,7 +19,7 @@ public class BonusNumber {
     }
 
     private static void validateRange(int bonus) {
-        if (bonus < 1 || bonus > 45) {
+        if (bonus < LOTTO_MIN_NUMBER.getNumber() || bonus > LOTTO_MAX_NUMBER.getNumber()) {
             throw new LottoException(INVALID_BONUS_NUMBER_RANGE);
         }
     }
