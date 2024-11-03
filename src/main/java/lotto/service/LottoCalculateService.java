@@ -5,13 +5,6 @@ import lotto.domain.Lotto;
 import lotto.domain.Winning;
 
 public class LottoCalculateService {
-    private static final int THREE_NUMBER_MATCHES = 3;
-    private static final int FOUR_NUMBER_MATCHES = 4;
-    private static final int FIVE_NUMBER_MATCHES = 5;
-    private static final int SIX_NUMBER_MATCHES = 6;
-    private static final int BONUS_ENUM_LABEL = 7;
-    private static final int BEFORE_BONUS_NUMBER_INDEX = 6;
-
     public LottoCalculateService() {
     }
 
