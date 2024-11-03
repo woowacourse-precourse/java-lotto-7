@@ -16,7 +16,10 @@ class ApplicationTest extends NsTest {
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
+                    // 주어진 입력으로 애플리케이션 실행
                     run("8000", "1,2,3,4,5,6", "7");
+
+                    // 애플리케이션의 출력 검증
                     assertThat(output()).contains(
                             "8개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
@@ -35,6 +38,7 @@ class ApplicationTest extends NsTest {
                             "총 수익률은 62.5%입니다."
                     );
                 },
+                // 랜덤 번호의 기대 값
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),
                 List.of(7, 11, 16, 35, 36, 44),
@@ -49,13 +53,17 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
+            // 잘못된 입력으로 애플리케이션 실행
             runException("1000j");
+
+            // 출력 검증
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
     @Override
     public void runMain() {
+        // 메인 메서드 실행
         Application.main(new String[]{});
     }
 }
