@@ -22,9 +22,14 @@ public class LottoController {
         printPurchaseLottoCount(attemptCount);
 
         LottoTickets lottoTickets = new LottoTickets(attemptCount);
+        WinningLotto winningLotto = createWinningLotto();
+
+    }
+
+    private WinningLotto createWinningLotto() {
         List<Integer> winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber(winningNumber);
-        WinningLotto winningLotto = new WinningLotto(winningNumber, bonusNumber);
+        return new WinningLotto(winningNumber, bonusNumber);
     }
 
     private int getBonusNumber(List<Integer> winningNumber) {
