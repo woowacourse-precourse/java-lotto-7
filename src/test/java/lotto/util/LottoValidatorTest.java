@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoValidatorTest {
 
@@ -21,37 +23,37 @@ class LottoValidatorTest {
         assertEquals(1000, price);
     }
 
-    @Test
-    public void 천원_단위인지_확인하다() {
-        // given
-        int price = 1000;
-
-        // when
-
-        // then
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 2000, 3000, 10000})
+    public void 천원_단위인지_확인하다(int price) {
         assertDoesNotThrow(() -> LottoValidator.validatePriceUnit(price));
     }
 
-    // EXCEPTION
-    @Test
-    void 숫자가_아니면_예외를_던진다() {
-        // given
-        String number = "지종권";
-
-        // when
-
-        // then
-        assertThrows(IllegalArgumentException.class, () -> LottoValidator.validNumber(number));
+    @ParameterizedTest
+    @ValueSource(ints = {1, 34, 45, 23})
+    public void 숫자범위가_1에서_45사이인지_확인하다(int number) {
+        assertDoesNotThrow(() -> LottoValidator.validateLottoNumber(number));
     }
 
-    @Test
-    void 천원단위가_아니면_예외를_던진다() {
-        // given
-        int price = 0;
+    // EXCEPTION
+    @ParameterizedTest
+    @ValueSource(strings = {"지종권", "abc", "!@#", " ", "1a2b", "일이삼"})
+    void 숫자가_아니면_예외를_던진다(String invalidInput) {
+        assertThrows(IllegalArgumentException.class,
+                () -> LottoValidator.validNumber(invalidInput));
+    }
 
-        // when
+    @ParameterizedTest
+    @ValueSource(ints = {0, 500, 1500, -1000, -500})
+    void 천원단위가_아니면_예외를_던진다(int invalidPrice) {
+        assertThrows(IllegalArgumentException.class,
+                () -> LottoValidator.validatePriceUnit(invalidPrice));
+    }
 
-        // then
-        assertThrows(IllegalArgumentException.class, () -> LottoValidator.validatePriceUnit(price));
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46, -1, 100, 99999})
+    void 숫자범위가_1에서_45사이의_숫자가_아니면_예외를_던진다(int invalidNumber) {
+        assertThrows(IllegalArgumentException.class,
+                () -> LottoValidator.validateLottoNumber(invalidNumber));
     }
 }
