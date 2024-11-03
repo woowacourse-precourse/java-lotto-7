@@ -18,7 +18,7 @@ public class OutputView {
                 .forEach(System.out::println);
     }
 
-    public void printRequirePurchasePrice() {
+    public static void printRequirePurchasePrice() {
         System.out.println("구입 금액을 입력해 주세요.");
     }
 }
