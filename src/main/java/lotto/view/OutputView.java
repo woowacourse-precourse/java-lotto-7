@@ -7,7 +7,6 @@ public class OutputView {
     private final List<Lotto> lottos;
 
     public OutputView(List<Lotto> lottos) {
-        System.out.println();
         this.lottos = lottos;
     }
 
@@ -17,5 +16,9 @@ public class OutputView {
         lottos.stream()
                 .map(Object::toString)
                 .forEach(System.out::println);
+    }
+
+    public void printRequirePurchasePrice() {
+        System.out.println("구입 금액을 입력해 주세요.");
     }
 }
