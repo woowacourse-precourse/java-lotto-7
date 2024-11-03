@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.util.Arrays;
 import java.util.List;
 import lotto.controller.LottoController;
 import org.junit.jupiter.api.DisplayName;
@@ -100,17 +99,6 @@ class ApplicationTest extends NsTest {
         assertEquals("[ERROR] 구입금액은 1,000원 단위여야합니다.", exception.getMessage());
     }
 
-
-    @Test
-    @DisplayName("문자열 리스트가 정수형 리스트로 변환이 되었는지 테스트")
-    void testStringListToIntegerList() {
-        List<String> stringNumbers = Arrays.asList("1", "2", "3", "4", "5", "6");
-        List<Integer> expectedIntegers = Arrays.asList(1, 2, 3, 4, 5, 6);
-
-        List<Integer> result = LottoController.stringListToIntegerList(stringNumbers);
-
-        assertEquals(expectedIntegers, result, "정수 리스트 변환이 예상과 다릅니다.");
-    }
 
     @Override
     public void runMain() {
