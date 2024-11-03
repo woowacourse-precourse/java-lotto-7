@@ -44,4 +44,19 @@ public class LottoServiceTest {
         assertThat(results.get(LottoRank.FOURTH)).isEqualTo(1);
         assertThat(results.get(LottoRank.FIFTH)).isEqualTo(1);
     }
+
+    @DisplayName("총 당청금 계산 확인")
+    @Test
+    void totalPrizeTest() {
+        LottoService lottoService = new LottoService();
+        Map<LottoRank, Integer> results = Map.of(LottoRank.FIRST, 1, LottoRank.SECOND, 1, LottoRank.THIRD, 1,
+                LottoRank.FOURTH, 1, LottoRank.FIFTH, 1);
+
+        int totalPrize = lottoService.calculateTotalPrize(results);
+
+        int expectedPrize = LottoRank.FIRST.getPrize() + LottoRank.SECOND.getPrize() + LottoRank.THIRD.getPrize()
+                + LottoRank.FOURTH.getPrize() + LottoRank.FIFTH.getPrize();
+
+        assertThat(totalPrize).isEqualTo(expectedPrize);
+    }
 }
