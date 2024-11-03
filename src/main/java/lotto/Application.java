@@ -28,5 +28,7 @@ public class Application {
         lottoController.evaluate();
 
         OutputView.showResult();
+        long profitSum = Result.getProfitSum();
+        OutputView.showProfitRate(lottoCount, profitSum);
     }
 }

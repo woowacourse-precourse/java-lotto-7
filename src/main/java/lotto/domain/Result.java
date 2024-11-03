@@ -9,39 +9,41 @@ import static lotto.message.InfoMessage.*;
 
 public enum Result {
 
-    ZERO(false, null,
+    ZERO(false, null, 0,
             (match, bonus) -> match == 0),
 
-    ONE(false, null,
+    ONE(false, null, 0,
             (match, bonus) -> match == 1),
 
-    TWO(false, null,
+    TWO(false, null, 0,
             (match, bonus) -> match == 2),
 
-    THREE(true, THREE_NUMBERS_MATCH,
+    THREE(true, THREE_NUMBERS_MATCH, 5_000,
             (match, bonus) -> match == 3),
 
-    FOUR(true, FOUR_NUMBERS_MATCH,
+    FOUR(true, FOUR_NUMBERS_MATCH, 50_000,
             (match, bonus) -> match == 4),
 
-    FIVE(true, FIVE_NUMBERS_MATCH,
+    FIVE(true, FIVE_NUMBERS_MATCH, 1_500_000,
             (match, bonus) -> match == 5 && !bonus),
 
-    FIVE_WITH_BONUS(true, FIVE_NUMBERS_MATCH_WITH_BONUS,
+    FIVE_WITH_BONUS(true, FIVE_NUMBERS_MATCH_WITH_BONUS, 30_000_000,
             (match, bonus) -> match == 5 && bonus),
 
-    SIX(true, SIX_NUMBERS_MATCH,
+    SIX(true, SIX_NUMBERS_MATCH, 2_000_000_000,
             (match, bonus) -> match == 6);
 
     public boolean print;
     private InfoMessage infoMessage;
     private int result;
+    private long amount;
     private BiPredicate<Integer, Boolean> predicate;
 
-    Result(boolean print, InfoMessage infoMessage, BiPredicate<Integer, Boolean> predicate) {
+    Result(boolean print, InfoMessage infoMessage, long amount, BiPredicate<Integer, Boolean> predicate) {
         this.print = print;
         this.infoMessage = infoMessage;
         this.result = 0;
+        this.amount = amount;
         this.predicate = predicate;
     }
 
@@ -70,5 +72,15 @@ public enum Result {
 
     public String getMessage(){
         return infoMessage.formatNumber(result);
+    }
+
+    public static long getProfitSum() {
+        return Arrays.stream(Result.values())
+                .mapToLong(Result::calculateProfit)
+                .sum();
+    }
+
+    private long calculateProfit(){
+        return result * amount;
     }
 }

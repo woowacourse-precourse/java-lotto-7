@@ -5,8 +5,7 @@ import lotto.domain.Result;
 
 import java.util.Arrays;
 
-import static lotto.message.InfoMessage.LOTTO_COUNT_INFO;
-import static lotto.message.InfoMessage.WINNING_STATS_LABEL;
+import static lotto.message.InfoMessage.*;
 
 public class OutputView {
     public static void showLottosInfo(Lottos lottos){
@@ -21,5 +20,10 @@ public class OutputView {
                 .filter(result -> result.print)
                 .map(Result::getMessage)
                 .forEach(System.out::println);
+    }
+
+    public static void showProfitRate(long lottoCount, long profitSum) {
+        double profitRate = profitSum / (lottoCount * 10.0);
+        System.out.println(PROFIT_RATE_INFO.formatProfit(profitRate));
     }
 }
