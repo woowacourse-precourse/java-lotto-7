@@ -22,6 +22,7 @@ public class LottoVendingMachine {
     }
 
     //Todo: 리팩토링 필요
+    //Todo: 15줄 이하
     public boolean validateMoney(String userInput) {
 
         try {
