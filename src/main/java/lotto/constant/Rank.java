@@ -47,6 +47,7 @@ public enum Rank {
         return price;
     }
 
+    /* 등수 반환 */
     public int getRank() {
         return this.ordinal() + 1;
     }

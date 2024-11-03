@@ -15,7 +15,7 @@ public record ResultResponse(
     public static ResultResponse of(Map<Rank, Integer> ranks, double gain) {
         return new ResultResponse(
             ranks.entrySet().stream()
-                .map(value -> InnerRankCountResponse.of(value.getKey().getRank(), value.getValue()))
+                .map(InnerRankCountResponse::of)
                 .toList(),
             gain
         );
@@ -34,8 +34,11 @@ public record ResultResponse(
         int count
     ) {
 
-        private static InnerRankCountResponse of(int rank, int count) {
-            return new InnerRankCountResponse(rank, count);
+        private static InnerRankCountResponse of(Map.Entry<Rank, Integer> rankCount) {
+            return new InnerRankCountResponse(
+                rankCount.getKey().getRank(),
+                rankCount.getValue()
+            );
         }
     }
 }
