@@ -5,7 +5,8 @@ public enum Prize {
     SECOND_PLACE(30_000_000L),
     THIRD_PLACE(1_500_000L),
     FOURTH_PLACE(50_000L),
-    FIFTH_PLACE(5_000L);
+    FIFTH_PLACE(5_000L),
+    NOTHING(0L);
 
     private final long prizeMoney;
 
