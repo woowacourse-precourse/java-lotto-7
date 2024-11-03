@@ -35,4 +35,8 @@ public class Buyer {
         }
         return matchCount;
     }
+
+    public boolean hasBonusNumber(int number, Lotto lotto) {
+        return lotto.getNumbers().contains(number);
+    }
 }
