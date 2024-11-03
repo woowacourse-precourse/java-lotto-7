@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -24,8 +25,9 @@ public class OutputView {
     }
 
     public static void printLottoNumbers(List<Integer> lotto) {
-        lotto.sort(Comparator.naturalOrder());
-        System.out.println(lotto);
+        List<Integer> sortedLotto = new ArrayList<>(lotto);
+        sortedLotto.sort(Comparator.naturalOrder());
+        System.out.println(sortedLotto);
     }
 
     public static void printInputWinningNumbersMessage() {
