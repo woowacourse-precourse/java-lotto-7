@@ -1,7 +1,7 @@
 package lotto.service.generator;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -33,7 +33,7 @@ class WinningGeneratorTest {
     @Test
     void 당첨_번호가_구분자로_구분되었을_경우_결과를_반환한다() {
         String winning = "1,2,3,4,5,6";
-        List<Integer> correctWinning = List.of(1,2,3,4,5,6);
+        List<Integer> correctWinning = List.of(1, 2, 3, 4, 5, 6);
 
         WinningGenerator winningGenerator = WinningGenerator.create(winning);
 

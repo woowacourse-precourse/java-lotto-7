@@ -2,7 +2,6 @@ package lotto.service.calculator;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 
 public class WinningCalculator {
