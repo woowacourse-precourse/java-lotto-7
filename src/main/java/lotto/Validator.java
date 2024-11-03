@@ -14,7 +14,6 @@ public class Validator {
 
     private static final int LOTTERY_NUM_RANGE_FIRST = 1;
     private static final int LOTTERY_NUM_RANGE_LAST = 45;
-    private static final int WINNING_NUMBER_COUNT = 6;
 
     private static final String WINNING_NUMBER_OPERATOR = ",";
     private static final String DUPLICATE_NUMBER_ERROR = "중복된 숫자는 입력할 수 없습니다.";
@@ -60,15 +59,15 @@ public class Validator {
             Set<Integer> winningDigits = new HashSet<>();
             for (String splitInput : splitInputs) {
                 Integer parseInt = Integer.parseInt(splitInput);
+                if (winningDigits.contains(parseInt)) {
+                    throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
+                }
                 winningDigits.add(parseInt);
             }
 
             for (Integer winningDigit : winningDigits) {
                 checkIsPositiveNumber(winningDigit);
                 checkIsLotteryRange(winningDigit);
-            }
-            if (winningDigits.size() != WINNING_NUMBER_COUNT) {
-                throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
             }
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(COMMON_ERROR_MESSAGE +  e.getMessage());
