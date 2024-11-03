@@ -16,20 +16,13 @@ public class LottoGameDisplay {
                 System.out.println("구입금액을 입력해 주세요.");
                 String rawMoney = Console.readLine();
 
-                checkMoneyValid(rawMoney);
+                LottoGameValidator.checkIsNumeric(rawMoney);
 
                 return Integer.parseInt(rawMoney);
             } catch (Exception e) {
                 printErrorMessage(e);
             }
         }
-    }
-
-    private void checkMoneyValid(String rawMoney) {
-        if (!Validator.isNumeric(rawMoney)) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_MUST_NUMERIC.getMessage());
-        }
-        // 1000으로 나눠떨이지지 않는 경우
     }
 
     public List<Integer> inputWinnerNumbers() {
