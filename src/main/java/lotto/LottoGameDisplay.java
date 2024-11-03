@@ -52,6 +52,20 @@ public class LottoGameDisplay {
         return Integer.parseInt(rawNumber);
     }
 
+    private List<Integer> inputNumbers(String separator) {
+        List<String> rawNumbers = Arrays.stream(Console.readLine().split(separator))
+                .map(String::strip)
+                .toList();
+
+        for (String rawNum : rawNumbers) {
+            LottoGameValidator.checkIsNumeric(rawNum);
+        }
+
+        return rawNumbers.stream()
+                .map(Integer::parseInt)
+                .toList();
+    }
+
     private void printErrorMessage(Exception e) {
         System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
     }
