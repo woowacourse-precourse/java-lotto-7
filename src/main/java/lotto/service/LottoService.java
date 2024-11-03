@@ -25,8 +25,8 @@ public class LottoService {
 
     public WinningNumbers createWinningNumbers(final String numbersInput, final int bonusNumber) {
         List<Integer> numbers = parseNumbers(numbersInput);
-        Lotto winningNumbers = new Lotto(numbers);
-        return new WinningNumbers(winningNumbers, bonusNumber);
+        Lotto mainNumbers = new Lotto(numbers);
+        return new WinningNumbers(mainNumbers, bonusNumber);
     }
 
     private List<Integer> parseNumbers(final String input) {

@@ -51,12 +51,12 @@ public class LottoController {
     }
 
     private WinningNumbers requestWinningNumbers() {
-        outputView.displayWinningNumbersRequest();
-        String numbers = inputView.getString();
+        outputView.displayMainNumbersRequest();
+        String mainNumbers = inputView.getString();
         outputView.displayBonusNumberRequest();
         int bonusNumber = inputView.getInteger();
 
-        return lottoService.createWinningNumbers(numbers, bonusNumber);
+        return lottoService.createWinningNumbers(mainNumbers, bonusNumber);
     }
 
     private void respondWinningResult(

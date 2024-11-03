@@ -33,8 +33,8 @@ public class OutputView {
         return numbers.toString();
     }
 
-    public void displayWinningNumbersRequest() {
-        System.out.println(OutputMessage.WINNING_NUMBERS_REQUEST);
+    public void displayMainNumbersRequest() {
+        System.out.println(OutputMessage.MAIN_NUMBERS_REQUEST);
     }
 
     public void displayBonusNumberRequest() {

@@ -1,18 +1,16 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import lotto.constant.ExceptionMessage;
 import lotto.constant.Rule;
 
-public record WinningNumbers(Lotto numbers, int bonusNumber) {
+public record WinningNumbers(Lotto mainNumbers, int bonusNumber) {
     public WinningNumbers {
-        validateBonusNumber(numbers, bonusNumber);
+        validateBonusNumber(mainNumbers, bonusNumber);
     }
 
-    private void validateBonusNumber(final Lotto numbers, final int bonusNumber) {
+    private void validateBonusNumber(final Lotto mainNumbers, final int bonusNumber) {
         validateRange(bonusNumber);
-        validateNotWinningNumbers(numbers, bonusNumber);
+        validateNotMainNumbers(mainNumbers, bonusNumber);
     }
 
     private void validateRange(final int number) {
@@ -21,18 +19,21 @@ public record WinningNumbers(Lotto numbers, int bonusNumber) {
         }
     }
 
-    private void validateNotWinningNumbers(final Lotto numbers, final int bonusNumber) {
-        if (numbers.getNumbers().contains(bonusNumber)) {
+    private void validateNotMainNumbers(final Lotto mainNumbers, final int bonusNumber) {
+        if (mainNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_DUPLICATED_NUMBER.getMessage());
         }
     }
 
-    public Prize checkPrize(final Lotto myLotto) {
-        List<Integer> matchedNumbers = new ArrayList<>(myLotto.getNumbers());
-        matchedNumbers.retainAll(numbers.getNumbers());
-
-        int matchedCount = matchedNumbers.size();
-        boolean hasBonus = myLotto.getNumbers().contains(bonusNumber);
+    public Prize checkPrize(final Lotto lotto) {
+        int matchedCount = countMatchedCount(lotto);
+        boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
         return Prize.getPrize(matchedCount, hasBonus);
+    }
+
+    private int countMatchedCount(final Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(mainNumbers.getNumbers()::contains)
+                .count();
     }
 }
