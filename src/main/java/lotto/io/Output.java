@@ -1,6 +1,5 @@
 package lotto.io;
 
-import lotto.model.Lotto;
 import lotto.model.Lottos;
 
 public final class Output {

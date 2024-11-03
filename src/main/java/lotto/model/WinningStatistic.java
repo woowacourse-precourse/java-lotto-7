@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.constant.LottoConstants;
 
 public final class WinningStatistic {
     private static Map<NumberMatchType, Integer> matchCounts;
@@ -26,7 +27,7 @@ public final class WinningStatistic {
 
     public static String getWinningStatistics() {
         return Arrays.stream(NumberMatchType.values())
-                .map(type -> type.getMessage() + matchCounts.get(type) + "개")
+                .map(type -> type.getMessage() + matchCounts.get(type) + LottoConstants.COUNT_SUFFIX)
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
