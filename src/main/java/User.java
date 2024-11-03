@@ -1,14 +1,24 @@
 import java.util.List;
 import lotto.Lotto;
+import lotto.WinningStatus;
 
 public class User {
-
-    private final List<Lotto> lottos;
-
     private final Integer purchaseCost;
+    private final List<UserLottoInfo> lottoInfos;
 
-    public User(List<Lotto> lottos, Integer purchaseCost) {
-        this.lottos = lottos;
+
+    public User(List<UserLottoInfo> lottoInfos , Integer purchaseCost) {
+        this.lottoInfos = lottoInfos;
         this.purchaseCost = purchaseCost;
+    }
+
+    public static class UserLottoInfo {
+        private final Lotto lotto;
+        private final WinningStatus winningStatus;
+
+        public UserLottoInfo(Lotto lotto,WinningStatus winningStatus) {
+            this.lotto = lotto;
+            this.winningStatus = winningStatus;
+        }
     }
 }
