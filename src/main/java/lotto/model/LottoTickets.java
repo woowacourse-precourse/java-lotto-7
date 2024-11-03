@@ -2,9 +2,10 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.constants.PrizeRank;
 
 public class LottoTickets {
@@ -40,9 +41,14 @@ public class LottoTickets {
     }
 
     public Map<PrizeRank, Integer> getPrizeRankCountMap(WinningLotto winningLotto) {
-        Map<PrizeRank, Integer> prizeRankCountMap = lottoTickets.stream()
-                .map(lotto -> lotto.getPrizeRank(winningLotto))
-                .collect(Collectors.groupingBy(prizeRank -> prizeRank, Collectors.summingInt(rank -> 1)));
+        EnumMap<PrizeRank, Integer> prizeRankCountMap = new EnumMap<>(PrizeRank.class);
+
+        Arrays.stream(PrizeRank.values()).forEach(rank -> prizeRankCountMap.put(rank, 0));
+
+        lottoTickets.forEach(lotto -> {
+            PrizeRank prizeRank = lotto.getPrizeRank(winningLotto);
+            prizeRankCountMap.put(prizeRank, prizeRankCountMap.get(prizeRank) + 1);
+        });
 
         prizeRankCountMap.remove(PrizeRank.MATCH_FAIL);
 
