@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.view.ExceptionMessage;
 
 import java.util.*;
@@ -33,7 +32,6 @@ public class Lotto {
         checkLottoNumbersRange(numbers);
     }
 
-    // 중복된 로또번호 입력 시
     private void duplicateLottoNumbers(List<Integer> numbers) {
         Set<Integer> duplicates = new HashSet<>(numbers);
 
@@ -43,7 +41,6 @@ public class Lotto {
         }
     }
 
-    // 범위가 아닌 숫자 입력 시
     private void checkLottoNumbersRange(List<Integer> numbers) {
 
         for (Integer number : numbers) {
