@@ -12,9 +12,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         LottoValidator.validate(numbers);
-        List<Integer> sortedList = new ArrayList<>(numbers);
-        Collections.sort(sortedList);
-        this.numbers = Collections.unmodifiableList(sortedList);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        this.numbers = sortedNumbers;
     }
 
     public Lotto(String invalidNumbers) {
