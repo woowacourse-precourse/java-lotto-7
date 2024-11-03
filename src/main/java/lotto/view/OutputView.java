@@ -15,4 +15,8 @@ public class OutputView {
             System.out.println(numbers);
         }
     }
+
+    public void outputStatistics(){
+
+    }
 }

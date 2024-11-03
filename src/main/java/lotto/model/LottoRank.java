@@ -9,12 +9,21 @@ public enum LottoRank {
     FIRST(6,false,2000000000);
 
     private final int matchCount;
-    private final boolean isMatchBonusBall;
+    private final boolean hasBonusNumber;
     private final int prize;
 
-    LottoRank(int matchCount, boolean isMatchBonusBall, int prize){
+    LottoRank(int matchCount, boolean hasBonusNumber, int prize){
         this.matchCount = matchCount;
-        this.isMatchBonusBall=isMatchBonusBall;
+        this.hasBonusNumber=hasBonusNumber;
         this.prize = prize;
+    }
+
+    public static LottoRank getRank(int matchCount, boolean hasBonus) {
+        for (LottoRank rank : values()) {
+            if (rank.matchCount == matchCount && rank.hasBonusNumber == hasBonus) {
+                return rank;
+            }
+        }
+        return NONE;
     }
 }
