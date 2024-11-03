@@ -81,7 +81,9 @@ public class LottoService {
     }
 
     public int getBonusNumber(String bonusNumberInput) {
+        LottoNumberValidator.validateInteger(bonusNumberInput);
         int bonusNumber = Integer.parseInt(bonusNumberInput);
+        LottoNumberValidator.validateNumberRange(bonusNumber);
         return bonusNumber;
     }
 

@@ -9,8 +9,8 @@ public class LottoNumberValidator {
     private LottoNumberValidator() {
     }
 
-    public static void validateNumberCount(List<String> numbers) {
-        if (numbers.size() != 6) {
+    public static void validateNumberCount(List<String> tokens) {
+        if (tokens.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호가 6개가 아닙니다.");
         }
     }
@@ -30,7 +30,7 @@ public class LottoNumberValidator {
         }
     }
 
-    private static void validateInteger(String token) {
+    public static void validateInteger(String token) {
         try {
             Integer.parseInt(token);
         }
@@ -45,7 +45,7 @@ public class LottoNumberValidator {
         }
     }
 
-    private static void validateNumberRange(Integer number) {
+    public static void validateNumberRange(Integer number) {
         if (number < MIN || number > MAX) {
             throw new IllegalArgumentException("[ERROR] 1~45 범위의 번호가 아닙니다.");
         }
