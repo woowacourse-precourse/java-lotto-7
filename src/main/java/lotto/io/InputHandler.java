@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.io;
 
 import java.util.List;
 import java.util.function.Consumer;

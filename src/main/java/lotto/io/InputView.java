@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 

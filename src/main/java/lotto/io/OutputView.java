@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.io;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

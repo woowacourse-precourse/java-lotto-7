@@ -7,8 +7,8 @@ import lotto.model.LottoIssuer;
 import lotto.model.LottoResultCalculator;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningLotto;
-import lotto.view.InputHandler;
-import lotto.view.OutputView;
+import lotto.io.InputHandler;
+import lotto.io.OutputView;
 
 public class LottoController {
 

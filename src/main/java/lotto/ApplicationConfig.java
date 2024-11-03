@@ -2,9 +2,9 @@ package lotto;
 
 import lotto.model.LottoIssuer;
 import lotto.model.LottoNumbersGenerator;
-import lotto.view.InputHandler;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.io.InputHandler;
+import lotto.io.InputView;
+import lotto.io.OutputView;
 
 public class ApplicationConfig {
 
