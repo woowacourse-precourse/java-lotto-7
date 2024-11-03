@@ -6,23 +6,22 @@ import lotto.status.LottoConstants;
 import lotto.util.InputUtils;
 import lotto.view.Input;
 
-import static lotto.validator.InputValidator.*;
+public class Amount extends Validator implements LottoConstants {
+    private int amount;
 
-public class AmountValidator {
 
-    public AmountValidator() {
+    public int getAmount() {
+        return amount;
     }
 
-    public int processSetAmount() {
-        return Integer.parseInt(
-                InputUtils.retryRequest(Input.request(Input.PURCHASE_AMOUNT_PROMPT),
-                        this::inputAmountValidation
-                )
-        );
+    public void processSetAmount() {
+        String request = InputUtils.retryRequest(Input.request(Input.PURCHASE_AMOUNT_PROMPT), this::validate);
+
+        this.amount = Integer.parseInt(request);
     }
 
-    private Boolean inputAmountValidation(String request) {
-
+    @Override
+    protected Boolean validate(String request) {
         return nonEmpty(Input.PURCHASE_AMOUNT_PROMPT, request) &&
                isNumeric(Input.PURCHASE_AMOUNT_PROMPT, request) &&
                isPositiveNumeric(Input.PURCHASE_AMOUNT_PROMPT, request) &&
@@ -30,8 +29,10 @@ public class AmountValidator {
                isAmountUnderLimit(request);
     }
 
+    ;
+
     private Boolean isThousandUnit(String input) {
-        if (Integer.parseInt(input) % LottoConstants.LOTTO_UNIT_PRICE == 0) {
+        if (Integer.parseInt(input) % LOTTO_UNIT_PRICE == 0) {
             return true;
         }
 
@@ -39,7 +40,7 @@ public class AmountValidator {
     }
 
     private Boolean isAmountUnderLimit(String input) {
-        if (Integer.parseInt(input) <= LottoConstants.MAX_LOTTO_PURCHASE_AMOUNT) {
+        if (Integer.parseInt(input) <= MAX_LOTTO_PURCHASE_AMOUNT) {
             return true;
         }
 
