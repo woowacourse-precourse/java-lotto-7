@@ -10,6 +10,7 @@ public class Consts {
     public static final String PURCHASE_AMOUNT_1000_UNIT_ERROR = String.format("금액은 %d원 단위로 입력해 주세요.", LOTTO_PRICE);
     public static final String INPUT_MUST_BE_POSITIVE_NUMBER_ERROR = "금액은 음수일 수 없습니다.";
     public static final String WINNING_NUMBER_NOT_DUPLICATED_ERROR = "당첨 번호는 중복되면 안됩니다.";
+    public static final String LOTTO_NUMBER_MUST_BE_BETWEEN_ONE_FORTY_FIVE_ERROR = "로또 번호는 1이상 45이하의 숫자여야 합니다.";
 
     //TODO: 입력 메세지는 INPUT_MESSAGE를 변수명 앞에 계속 붙여도 되겠다.
     public static final String INPUT_MESSAGE_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
