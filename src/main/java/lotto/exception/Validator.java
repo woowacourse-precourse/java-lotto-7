@@ -1,8 +1,5 @@
 package lotto.exception;
 
-import static lotto.converter.LottoConverter.LOTTERY_NUMBERS_SIZE;
-import static lotto.converter.LottoConverter.MAXIMUM_LOTTERY_NUMBER;
-import static lotto.converter.LottoConverter.MINIMUM_LOTTERY_NUMBER;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +7,10 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Validator {
+    public static final int LOTTERY_NUMBERS_SIZE = 6;
     public static final long LOTTERY_PRICE = 1000;
+    public static final int MINIMUM_LOTTERY_NUMBER = 1;
+    public static final int MAXIMUM_LOTTERY_NUMBER = 45;
     public static final int MINIMUM_PAYMENT = 0;
     private static long lotteryNumber;
 
