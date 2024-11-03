@@ -33,5 +33,6 @@ public class LottoController {
             }
         }
         List<Integer> winningNumbers = inputView.lottoWinningNumbers();
+        int bonusNumber = inputView.bonusNumber();
     }
 }

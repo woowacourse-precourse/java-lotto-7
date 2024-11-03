@@ -21,6 +21,16 @@ public class InputViewImpl implements InputView {
         return convertStringsToIntegers(splitNumbers(winningNumbersInput()));
     }
 
+    @Override
+    public int bonusNumber() {
+        System.out.print("보너스 번호를 입력하세요: ");
+        return parseBonusNumber(Console.readLine());
+    }
+
+    int parseBonusNumber(String input) {
+        return Integer.parseInt(input);
+    }
+
     private String winningNumbersInput() {
         System.out.print("당첨 번호를 입력하세요 (쉼표로 구분): ");
         return Console.readLine();
@@ -36,5 +46,7 @@ public class InputViewImpl implements InputView {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+
 
 }

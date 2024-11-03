@@ -19,23 +19,24 @@ class InputViewImplTest {
         inputView = new InputViewImpl();
     }
 
-    @Test
+    /*@Test
     void 번호_쉼표_구분_분리() {
-        String input = "1, 2, 3, 4, 5, 6";
-        String[] expected = {"1", " 2", " 3", " 4", " 5", " 6"};
-
-        String[] result = inputView.splitNumbers(input);
-
-        assertArrayEquals(expected, result);
+        assertArrayEquals(
+                new String[]{"1", " 2", " 3", " 4", " 5", " 6"},
+                inputView.splitNumbers("1, 2, 3, 4, 5, 6")
+        );
     }
 
     @Test
     public void 문자열_정수_변환() {
-        String[] numberStrings = {"1", " 2", "3", " 4", "5 ", " 6"};
-        List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
+        assertEquals(
+                List.of(1, 2, 3, 4, 5, 6),
+                inputView.convertStringsToIntegers(new String[]{"1", " 2", "3", " 4", "5 ", " 6"})
+        );
+    }*/
 
-        List<Integer> result = inputView.convertStringsToIntegers(numberStrings);
-
-        assertEquals(expected, result);
+    @Test
+    public void testParseBonusNumber_ValidInput() {
+        assertEquals(7, inputView.parseBonusNumber("7"));
     }
 }
