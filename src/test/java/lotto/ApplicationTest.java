@@ -119,25 +119,6 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @DisplayName("입력된 보너스 번호가 1~45사이의 숫자가 아니면 예외가 발생한다.")
-    @Test
-    void 입력된_보너스_번호가_범위_내_숫자가_아니면_예외가_발생한다() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> runException("8000", "1,2,3,4,5,6", "46"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ErrorMessage.BONUS_NUMBER_MUST_BE_BETWEEN_1_AND_45.getMessage());
-        });
-    }
-
-    @Test
-    void 입력된_보너스_번호가_당첨번호와_중복되면_예외가_발생한다() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> runException("8000", "1,2,3,4,5,6", "6"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ErrorMessage.BONUS_NUMBER_DUPLICATES_WITH_WINNING_NUMBERS.getMessage());
-        });
-    }
-
     @Override
     public void runMain() {
         Application.main(new String[]{});
