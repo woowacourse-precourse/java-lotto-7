@@ -16,7 +16,8 @@ class LottoShopImplTest {
     @Test
     void 로또_구매() {
         //given
-        int purchaseAmount = 7000;
+        int amount = 7000;
+        PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
         //when
         LottoShopImpl lottoShopImpl = new LottoShopImpl(lottoMachine);
         LottoTickets lottoTickets = lottoShopImpl.publishTickets(purchaseAmount);

@@ -23,4 +23,10 @@ public class PurchaseAmount {
     public int getPurchasableQuantity() {
         return amount/LOTTO_PRICE;
     }
+
+    public double calculateTotalProfitRate(LottoWinningResult lottoWinningResult) {
+        int totalPrize = lottoWinningResult.getTotalPrize();
+        return (double) totalPrize/amount*100;
+    }
+
 }

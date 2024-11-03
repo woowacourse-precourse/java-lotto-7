@@ -13,8 +13,9 @@ public class LottoShopImpl implements LottoShop {
     }
 
     @Override
-    public LottoTickets publishTickets(int purchaseQuantity) {
-        return generateTickets(purchaseQuantity);
+    public LottoTickets publishTickets(PurchaseAmount purchaseAmount) {
+        int purchasableQuantity = purchaseAmount.getPurchasableQuantity();
+        return generateTickets(purchasableQuantity);
     }
 
     private LottoTickets generateTickets(int purchaseQuantity) {

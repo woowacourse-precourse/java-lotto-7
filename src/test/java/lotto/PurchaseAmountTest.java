@@ -5,6 +5,7 @@ import static lotto.ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -60,6 +61,20 @@ class PurchaseAmountTest {
         String amount = "1 2";
         //when, then
         assertThrows(NumberFormatException.class, () -> Integer.parseInt(amount));
+    }
+
+    @Test
+    void 총_수익률_계산(){
+        //give
+        PurchaseAmount purchaseAmount = new PurchaseAmount(5000);
+
+        LottoWinningResult lottoWinningResult = new LottoWinningResult();
+        lottoWinningResult.increment(WinningPrize.FOURTH);
+        lottoWinningResult.increment(WinningPrize.FIFTH);
+        //when
+        double totalProfitRate = purchaseAmount.calculateTotalProfitRate(lottoWinningResult);
+        //then
+        Assertions.assertThat(totalProfitRate).isEqualTo(1100.0);
     }
 
 

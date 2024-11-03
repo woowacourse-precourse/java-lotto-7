@@ -19,4 +19,8 @@ public class LottoWinningResult {
     public Map<WinningPrize, Integer> getResults() {
         return results;
     }
+
+    public int getTotalPrize() {
+        return results.entrySet().stream().mapToInt(entry -> entry.getKey().prize * entry.getValue()).sum();
+    }
 }
