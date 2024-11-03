@@ -10,6 +10,7 @@ import java.util.List;
  * 순서를 이용하기 위해 ScoreSystem은 LinkedHashMap을 사용했습니다.
  */
 public enum ScoreSystemReward implements Constants<List<Integer>> {
+
     DEFAULT(List.of(5000,
             50000,
             1500000,

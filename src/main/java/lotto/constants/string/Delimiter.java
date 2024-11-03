@@ -3,6 +3,7 @@ package lotto.constants.string;
 import lotto.constants.Constants;
 
 public enum Delimiter implements Constants<String> {
+
     DEFAULT(",");
 
     private final String delimiter;
