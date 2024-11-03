@@ -7,6 +7,7 @@
 * [Enum 정의하기](./day_04.md#enum-정의하기)
     * [로또 당첨 기준 Enum 정의하기](./day_04.md#로또-당첨-기준-enum-정의하기)
 * [로또 당첨 여부 체크하기](./day_04.md#로또-당첨-여부-체크하기)
+* [수익률 계산하기](./day_04.md#수익률-계산하기)
 * [To do List](./day_04.md#to-do-list)
 
 ## [로또 입력받기](./day_04.md#목차)
@@ -197,6 +198,34 @@ void 로또_당첨_테스트() {
 
 <br>
 
+## [수익률 계산하기](./day_04.md#목차)
+
+### Production Code
+
+```java
+// Application.java
+private static void printIncomePercent(List<Lotto> lottos, int[] winningCount) {
+    long income = lottoService.getWinningCost(winningCount);
+    double incomePercent = Math.round((double)income / lottos.size());
+
+    System.out.println("총 수익률은 " + incomePercent + "%입니다.");
+}
+```
+
+```java
+// LottoService.java
+public long getWinningCost(int[] counts) {
+    long cost = 0L;
+    for (LottoRank rank : LottoRank.values()) {
+        cost += (long)counts[rank.ordinal()] * rank.getGetPrize();
+    }
+
+    return cost;
+}
+```
+
+<br>
+
 ## [To do List](./day_04.md#목차)
 
 - [x] 로또 발행하기
@@ -212,5 +241,5 @@ void 로또_당첨_테스트() {
 - [ ] Enum 정의하기
     - [x] 로또 당첨 기준 Enum 정의하기
     - [ ] 에러 메시지 Enum 정의하기
-- [ ] 수익률 계산하기
+- [x] 수익률 계산하기
 - [ ] 에러 후 다시 입력하게 기능 변경
