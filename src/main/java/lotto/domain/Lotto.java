@@ -12,7 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortLottoNumbers(numbers);
     }
 
     public boolean contains(int number) {
@@ -54,5 +54,11 @@ public class Lotto {
                 .anyMatch(number ->
                         number < LOTTO_MINIMUM_BOUND || number > LOTTO_MAXIMUM_BOUND
                 );
+    }
+
+    private List<Integer> sortLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 }
