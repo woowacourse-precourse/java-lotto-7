@@ -38,6 +38,7 @@ public final class LottoGameController {
     private void play() {
         LottoPurchase lottoPurchase = buyLotto();
         LottoGame lottoGame = playLottoGame(lottoPurchase);
+        showLottoGameResult(lottoGame);
     }
 
     private LottoPurchase buyLotto() {
@@ -56,6 +57,10 @@ public final class LottoGameController {
 
         return new LottoGame(lottoPurchase.getLottoTickets(), new WinningLotto(winningLotto, bonusNumber),
                 lottoPurchase.getMoney());
+    }
+
+    private void showLottoGameResult(LottoGame lottoGame) {
+
     }
 
     private int readMoney() {
