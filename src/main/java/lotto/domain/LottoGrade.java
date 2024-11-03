@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Arrays;
 
@@ -22,7 +22,7 @@ public enum LottoGrade {
         this.price = price;
     }
 
-    public static LottoGrade findBy(int target, int bonus) {
+    protected static LottoGrade findBy(int target, int bonus) {
         validate(target, bonus);
 
         return Arrays.stream(LottoGrade.values())
