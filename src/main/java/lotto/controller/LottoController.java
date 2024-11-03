@@ -6,6 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.Player;
 import lotto.model.service.LottoService;
 import lotto.model.service.WinningNumbersService;
+import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,8 +14,8 @@ public class LottoController {
     OutputView outputView;
     InputView inputView;
 
-    private Player player; // Player 인스턴스를 필드로 추가
-    private int purchaseAmount; // 구매 금액을 필드로 추가
+    private Player player;
+    private int purchaseAmount;
 
     LottoService lottoService;
     WinningNumbersService winningNumbersService;
@@ -32,31 +33,70 @@ public class LottoController {
 
     public void run() {
         setupLotto();
-        progressLotto();
+        generateLottos();
+        generateBonusNumber();
         resultLotto();
     }
 
     private void setupLotto() {
-        outputView.purchaseLottoAmountMesssage();
+        purchaseAmount = 0;
 
-        purchaseAmount = inputView.getPurchaseAmount();
+        while (true) {
+            try {
+                outputView.purchaseLottoAmountMesssage();
+                purchaseAmount = inputView.getPurchaseAmount();
+                Validator.validateMoneyUnit(purchaseAmount);
+
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+
         player = new Player(purchaseAmount);
-
         lottoService.generateLottoTickets(player);
-
         processPurchase();
     }
 
-    private void progressLotto() {
+    private void generateLottos() {
         outputView.printLottoNumbers(player.getLottoNumbers());
 
-        outputView.enterWinningNumbers();
-        winningNumbersService.inputWinningNumbers();
+        // 당첨 번호 입력 및 검증
+        List<Integer> winningNumbers;
+        while (true) {
+            try {
+                outputView.enterWinningNumbers();
+                winningNumbersService.inputWinningNumbers();
+                winningNumbers = winningNumbersService.getWinningNumbers().getNumbers();
 
+                Validator.validateDuplicateNumber(winningNumbers);
+                Validator.validateNumberCount(winningNumbers);
+                for (int number : winningNumbers) {
+                    Validator.validateRange(number);
+                }
+
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
         player.setWinningNumbers(winningNumbersService.getWinningNumbers());
+    }
 
-        outputView.enterBonusNumber();
-        winningNumbersService.inputBonusNumber();
+    private void generateBonusNumber() {
+        while (true) {
+            try {
+                outputView.enterBonusNumber();
+                int bonusNumber = winningNumbersService.inputBonusNumber();
+
+                Validator.validateRange(bonusNumber);
+                Validator.validateDuplicateNumber(new ArrayList<>(List.of(bonusNumber)));
+
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage("[ERROR] " + e.getMessage());
+            }
+        }
     }
 
     private void resultLotto() {

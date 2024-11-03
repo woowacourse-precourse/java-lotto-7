@@ -2,7 +2,6 @@ package lotto.view;
 
 import java.text.NumberFormat;
 import java.util.List;
-import lotto.model.Lotto;
 import lotto.model.WinningMatch;
 
 public class OutputView {
@@ -44,7 +43,11 @@ public class OutputView {
         }
     }
 
-        public void promptTotalReturnRate(String totalReturnRate) {
+    public void promptTotalReturnRate(String totalReturnRate) {
         System.out.println("총 수익률은 " + totalReturnRate + "%입니다.");
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }
