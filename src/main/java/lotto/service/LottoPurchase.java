@@ -1,12 +1,12 @@
 package lotto.service;
 
+import static lotto.domain.Amount.LOTTO_PRICE;
+
 import java.util.List;
 import lotto.domain.Amount;
 import lotto.domain.LottoBundle;
 
 public class LottoPurchase {
-
-    public static final int LOTTO_PRICE = 1000;
 
     private LottoBundle bundle;
 
