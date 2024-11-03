@@ -42,28 +42,28 @@ public class LottoResult {
     }
 
     private void increaseThree() {
-        int currentCount = matchedCount.get("threeMatched");
-        matchedCount.put("threeMatched", currentCount+1);
+        int currentCount = matchedCount.get(MatchedCountNameEnum.THREE_MATCHED.getMessage());
+        matchedCount.put(MatchedCountNameEnum.THREE_MATCHED.getMessage(), currentCount+1);
     }
 
     private void increaseFour() {
-        int currentCount = matchedCount.get("fourMatched");
-        matchedCount.put("fourMatched", currentCount+1);
+        int currentCount = matchedCount.get(MatchedCountNameEnum.FOUR_MATCHED.getMessage());
+        matchedCount.put(MatchedCountNameEnum.FOUR_MATCHED.getMessage(), currentCount+1);
     }
 
     private void increaseFive(boolean isBonusMatched) {
         if (isBonusMatched) {
-            int currentCount = matchedCount.get("fiveWithBonusMatched");
-            matchedCount.put("fiveWithBonusMatched", currentCount+1);
+            int currentCount = matchedCount.get(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage());
+            matchedCount.put(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage(), currentCount+1);
             return;
         }
-        int currentCount = matchedCount.get("fiveMatched");
-        matchedCount.put("fiveMatched", currentCount+1);
+        int currentCount = matchedCount.get(MatchedCountNameEnum.FIVE_MATCHED.getMessage());
+        matchedCount.put(MatchedCountNameEnum.FIVE_MATCHED.getMessage(), currentCount+1);
     }
 
     private void increaseSix() {
-        int currentCount = matchedCount.get("sixMatched");
-        matchedCount.put("sixMatched", currentCount+1);
+        int currentCount = matchedCount.get(MatchedCountNameEnum.SIX_MATCHED.getMessage());
+        matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), currentCount+1);
     }
 
     public Map<String, Integer> getMatchedCount() {
