@@ -5,7 +5,7 @@ import lotto.lotto.service.NumberGenerator;
 
 import java.util.List;
 
-public class RandomNumberGenerate implements NumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
     private final int MIN_LOTTO_NUMBER_RANGE = 1;
     private final int MAX_LOTTO_NUMBER_RANGE = 45;
     private final int NUMBER_COUNT = 6;
