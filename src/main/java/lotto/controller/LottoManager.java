@@ -10,12 +10,13 @@ import java.util.Set;
 
 public class LottoManager {
     private PurchasedLottos purchasedLottos;
+    private Set<Integer> winningNumbers;
+    private int bonusNumber;
 
     public void run() {
         purchaseLotto();
         progressLottoGame();
         announceLottoResult();
-
     }
 
     private void purchaseLotto() {
@@ -53,20 +54,33 @@ public class LottoManager {
 
 
     private void progressLottoGame() {
-        getWinningNumbers();
-        getBonusNumber();
+        winningNumbers = getWinningNumbers();
+        bonusNumber = getBonusNumber();
 
     }
 
-    private void getWinningNumbers() {
-
+    private Set<Integer> getWinningNumbers() {
+        while (true) {
+            try {
+                return WinningNumbersParser.parse(InputView.readWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private void getBonusNumber() {
-
+    private int getBonusNumber() {
+        while (true) {
+            try {
+                return BonusNumberParser.parse(InputView.readBonusNumber(), winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void announceLottoResult() {
+
 
     }
 
