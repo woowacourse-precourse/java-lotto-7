@@ -33,6 +33,8 @@ public class LottoController {
         while (true) {
             try {
                 String bonusInput = inputView.inputBonusNumber();
+                Integer bonusNumber = ParseNumberUtil.parseNumberToInteger(bonusInput);
+                break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }

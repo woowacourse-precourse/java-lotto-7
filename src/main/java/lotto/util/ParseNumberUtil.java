@@ -17,4 +17,12 @@ public class ParseNumberUtil {
             throw new IllegalArgumentException(NumberErrorCode.NUMBER_PARSE_ERROR.getMessage());
         }
     }
+
+    public static Integer parseNumberToInteger(String number) {
+        try {
+            return Integer.parseInt(number.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NumberErrorCode.NUMBER_PARSE_ERROR.getMessage());
+        }
+    }
 }
