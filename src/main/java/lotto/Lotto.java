@@ -3,6 +3,7 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public record Lotto(List<Integer> numbers) {
     public Lotto {
@@ -34,5 +35,14 @@ public record Lotto(List<Integer> numbers) {
         if (outOfRange) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.format(1, 45));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "["
+                + numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "))
+                + "]";
     }
 }
