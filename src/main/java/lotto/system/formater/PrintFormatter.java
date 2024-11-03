@@ -7,35 +7,52 @@ import lotto.system.utils.Parser;
 import lotto.user.Bonus;
 import lotto.user.Lotto;
 import lotto.view.InputView;
-import lotto.view.OutView;
+import lotto.view.InputViewInterface;
+import lotto.view.OutPutView;
+import lotto.view.OutPutViewInterface;
 
 public class PrintFormatter {
 
+    private final OutPutViewInterface outPutView;
+    private final InputViewInterface inputView;
+
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String LOTTO_TICKET_QUANTITY_MESSAGE = "%d개를 구매하셨습니다.";
     private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static LottoTicketIssuer formatPurchaseInfo() {
-        OutView.printMessage(PURCHASE_AMOUNT_MESSAGE);
-        return new LottoTicketIssuer(InputView.inputPurchaseAmount());
+    public PrintFormatter(OutPutViewInterface outPutView, InputViewInterface inputView) {
+        this.outPutView = outPutView;
+        this.inputView = inputView;
     }
 
-    public static void formatLottoTickets(List<LottoTicket> lottoTickets) {
-        lottoTickets
-                .forEach(System.out::println);
+    public LottoTicketIssuer formatPurchaseInfo() {
+        outPutView.printMessage(PURCHASE_AMOUNT_MESSAGE);
+        LottoTicketIssuer lottoTicketIssuer = new LottoTicketIssuer(inputView.inputPurchaseAmount());
+        outPutView.printNewLine();
+        return lottoTicketIssuer;
     }
 
-    public static Lotto formatWinningNumbers() {
-        OutView.printMessage(WINNING_NUMBER_MESSAGE);
-        return new Lotto(Parser.parseWithDelimiter(InputView.inputWinningNumbers()));
+    public void formatLottoTickets(List<LottoTicket> lottoTickets, int quantity) {
+        outPutView.printMessage(String.format(LOTTO_TICKET_QUANTITY_MESSAGE, quantity));
+        lottoTickets.forEach(ticket -> outPutView.printMessage(ticket.toString()));
+        outPutView.printNewLine();
     }
 
-    public static Bonus formatBonusNumber() {
-        OutView.printMessage(BONUS_NUMBER_MESSAGE);
-        return new Bonus(InputView.inputBonusNumber());
+    public Lotto formatWinningNumbers() {
+        outPutView.printMessage(WINNING_NUMBER_MESSAGE);
+        Lotto winningNumbers = new Lotto(Parser.parseWithDelimiter(inputView.inputWinningNumbers()));
+        return winningNumbers;
     }
 
-    public static void formatResult(String result) {
-        OutView.printMessageWithNewLine(result);
+    public Bonus formatBonusNumber() {
+        outPutView.printMessage(BONUS_NUMBER_MESSAGE);
+        Bonus bonus = new Bonus(inputView.inputBonusNumber());
+        outPutView.printNewLine();
+        return bonus;
+    }
+
+    public void formatResult(String result) {
+        outPutView.printMessageWithNewLine(result);
     }
 }

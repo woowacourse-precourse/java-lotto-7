@@ -10,20 +10,22 @@ import lotto.system.unit.LottoTicket;
 import lotto.system.utils.PrizeType;
 import lotto.user.Bonus;
 import lotto.user.Lotto;
+import lotto.view.InputView;
+import lotto.view.OutPutView;
 
 public class LottoGame {
 
     public static void start() {
-
-        LottoTicketIssuer ticketIssuer = PrintFormatter.formatPurchaseInfo();
+        PrintFormatter printFormatter = new PrintFormatter(OutPutView.INSTANCE, new InputView());
+        LottoTicketIssuer ticketIssuer = printFormatter.formatPurchaseInfo();
         List<LottoTicket> issuedTickets = ticketIssuer.issueLottoTickets();
-        PrintFormatter.formatLottoTickets(issuedTickets);
-        Lotto lotto = PrintFormatter.formatWinningNumbers();
-        Bonus bonus = PrintFormatter.formatBonusNumber();
+        printFormatter.formatLottoTickets(issuedTickets, ticketIssuer.getQuantity());
+        Lotto lotto = printFormatter.formatWinningNumbers();
+        Bonus bonus = printFormatter.formatBonusNumber();
 
         Map<PrizeType, Integer> prizeTypeIntegerMap = LottoWinningAnalyzer.analyzeWinningStatistics(issuedTickets,
                 lotto.getNumbers(), bonus.getNumber());
-        PrintFormatter.formatResult(
+        printFormatter.formatResult(
                 WinningStatisticsFormatter.formatStatistics(prizeTypeIntegerMap, ticketIssuer.getPurchaseAmount()));
     }
 }
