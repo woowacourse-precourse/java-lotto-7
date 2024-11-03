@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Rank;
 import lotto.model.RankCount;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
@@ -13,7 +14,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoServiceImplTest {
-    private final LottoServiceImpl lottoService = new LottoServiceImpl();
+    private LottoServiceImpl lottoService;
+
+    @BeforeEach
+    void setUp() {
+        lottoService = new LottoServiceImpl();
+    }
 
     @Test
     void 구입_금액에_해당하는_만큼_로또_발행() {

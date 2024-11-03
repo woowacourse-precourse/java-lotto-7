@@ -1,5 +1,6 @@
 package lotto.util;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -8,7 +9,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidatorTest {
-    private final Validator validator = new Validator();
+    private Validator validator;
+
+    @BeforeEach
+    void setUp() {
+        validator = new Validator();
+    }
 
     @Test
     void 입력이_비어있으면_예외_발생() {
