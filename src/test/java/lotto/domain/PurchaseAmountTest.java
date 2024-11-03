@@ -1,22 +1,27 @@
-package lotto.service;
+package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static lotto.TestConstants.*;
+import static lotto.TestConstants.INVALID_LOTTO_PRICE_UNIT;
 import static lotto.common.Constants.*;
-import static lotto.service.Validator.validatePurchaseAmount;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ValidatorTest {
+class PurchaseAmountTest {
+
     @Test
-    @DisplayName("구입 금액이 1000원 단위의 숫자면 에러를 반환하지 않는다.")
+    @DisplayName("구입 금액이 1000원 단위의 숫자면 PurchaseAmount가 잘 생성된다.")
     void purchaseAmountIsNumberWithValidPriceUnit () {
         // given
         String rawPurchaseAmount = VALID_PURCHASE_AMOUNT;
 
-        // when & then
-        validatePurchaseAmount(rawPurchaseAmount);
+        // when
+        PurchaseAmount purchaseAmount = new PurchaseAmount(rawPurchaseAmount);
+
+        // then
+        Integer actualPurchaseAmount = Integer.parseInt(VALID_PURCHASE_AMOUNT);
+        assertTrue(purchaseAmount.compareAmount(actualPurchaseAmount));
     }
 
     @Test
@@ -27,7 +32,7 @@ class ValidatorTest {
 
         // when & then
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            validatePurchaseAmount(rawPurchaseAmount);
+            new PurchaseAmount(rawPurchaseAmount);
         });
 
         assertEquals(ERROR_PROMPT + INVALID_PRICE_UNIT, exception.getMessage());
@@ -41,7 +46,7 @@ class ValidatorTest {
 
         // when & then
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            validatePurchaseAmount(rawPurchaseAmount);
+            new PurchaseAmount(rawPurchaseAmount);
         });
 
         assertEquals(ERROR_PROMPT + UP_MAX_PURCHASE_AMOUNT, exception.getMessage());
@@ -55,9 +60,10 @@ class ValidatorTest {
 
         // when & then
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            validatePurchaseAmount(rawPurchaseAmount);
+            new PurchaseAmount(rawPurchaseAmount);
         });
 
         assertEquals(ERROR_PROMPT + INVALID_PRICE_UNIT, exception.getMessage());
     }
+
 }
