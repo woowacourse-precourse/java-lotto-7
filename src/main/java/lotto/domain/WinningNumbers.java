@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.exception.LottoErrorMessage;
 
@@ -11,6 +12,14 @@ public class WinningNumbers {
     private static final WinningNumbers instance = new WinningNumbers();
 
     private WinningNumbers() {
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return Collections.unmodifiableList(winningNumbers);
+    }
+
+    public static WinningNumbers getInstance() {
+        return instance;
     }
 
     public static WinningNumbers getInstance(List<Integer> numbers) {
