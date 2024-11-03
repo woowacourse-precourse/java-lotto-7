@@ -3,7 +3,8 @@ package lotto.service;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.TestConstants.*;
+import static lotto.TestConstants.TICKET_COUNT;
+import static lotto.TestConstants.VALID_PURCHASE_AMOUNT;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PurchaseServiceTest {
@@ -16,9 +17,9 @@ class PurchaseServiceTest {
         String rawPurchaseAmount = VALID_PURCHASE_AMOUNT;
 
         // when
-        Integer purchaseAmount = purchaseService.purchaseLotto(rawPurchaseAmount);
+        Integer lottoTicketCount = purchaseService.purchaseLotto(rawPurchaseAmount);
 
         // then
-        assertEquals(PURCHASE_AMOUNT, purchaseAmount);
+        assertEquals(TICKET_COUNT, lottoTicketCount);
     }
 }

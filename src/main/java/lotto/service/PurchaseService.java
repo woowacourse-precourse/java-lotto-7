@@ -7,6 +7,6 @@ public class PurchaseService {
     public Integer purchaseLotto(String rawPurchaseAmount) {
         PurchaseAmount purchaseAmount = new PurchaseAmount(rawPurchaseAmount);
 
-        return purchaseAmount.getAmount();
+        return purchaseAmount.calculateTicketCount();
     }
 }

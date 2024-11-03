@@ -14,7 +14,7 @@ public class LottoController {
     }
 
     public void run () {
-        Integer purchaseAmount = lottoPurchase();
+        Integer lottoTicketCount = lottoPurchase();
     }
 
     private Integer lottoPurchase () {

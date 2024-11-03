@@ -8,13 +8,13 @@ import static lotto.common.ValidationUtils.*;
 public class PurchaseAmount {
     private final Integer amount;
 
-    public Integer getAmount() {
-        return amount;
-    }
-
     public PurchaseAmount(String purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
         this.amount = Integer.parseInt(purchaseAmount);
+    }
+
+    public final Integer calculateTicketCount () {
+        return amount / LOTTO_PRICE_UNIT;
     }
 
     public final boolean compareAmount (Integer amount) {

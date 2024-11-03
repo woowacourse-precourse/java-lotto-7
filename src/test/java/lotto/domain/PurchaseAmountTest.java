@@ -66,4 +66,17 @@ class PurchaseAmountTest {
         assertEquals(ERROR_PROMPT + INVALID_PRICE_UNIT, exception.getMessage());
     }
 
+    @Test
+    @DisplayName("구입한 금액만큼의 로또의 개수를 반환한다.")
+    void getLottoTicketCount () {
+        // given
+        String rawPurchaseAmount = VALID_PURCHASE_AMOUNT;
+        PurchaseAmount purchaseAmount = new PurchaseAmount(rawPurchaseAmount);
+
+        // when
+        Integer lottoTicketCount = purchaseAmount.calculateTicketCount();
+
+        // then
+        assertEquals(TICKET_COUNT, lottoTicketCount);
+    }
 }
