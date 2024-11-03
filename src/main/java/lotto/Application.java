@@ -3,6 +3,7 @@ package lotto;
 import lotto.controller.BonusController;
 import lotto.controller.LottoController;
 import lotto.controller.PaymentController;
+import lotto.controller.ResultController;
 import lotto.controller.WinningController;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,9 +23,9 @@ public class Application {
         BonusController bonusController = new BonusController(inputView, outputView,
                 winningController.getWinningGenerator().getWinning());
 
-        lottoController.showWinningResult(
+        ResultController resultController = new ResultController(outputView, lottoController.getLottoTicket(), paymentController.getPayment());
+        resultController.showWinning(
                 winningController.getWinningGenerator().getWinning(),
-                bonusController.getBonusGenerator().getBonus()
-        );
+                bonusController.getBonusGenerator().getBonus());
     }
 }
