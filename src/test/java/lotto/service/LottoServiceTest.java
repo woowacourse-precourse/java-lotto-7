@@ -225,4 +225,17 @@ class LottoServiceTest {
         //then
         assertEquals(2_000_000_000, winningAmount);
     }
+
+    @Test
+    void 수익률은_당첨금을_구입금액으로_나눈_뒤_100을_곱한다() {
+        //given
+        int purchaseAmount = 8_000;
+        long winningAmount = 5_000;
+
+        //when
+        double profitRate = lottoService.calculateProfitRate(winningAmount, purchaseAmount);
+
+        //then
+        assertEquals(62.5, profitRate);
+    }
 }
