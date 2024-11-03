@@ -20,8 +20,7 @@ public class WinningStatisticsFormatter {
         }
         ProfitRateCalculator profitRateCalculator = new ProfitRateCalculator(statistics, totalPurchaseAmount);
         double profitRate = profitRateCalculator.calculator();
-        ProfitRateFormatter profitRateFormatter = new ProfitRateFormatter(profitRate);
-        sb.append(profitRateFormatter.formatAsMessage());
+        sb.append(ProfitRateFormatter.formatAsMessage(profitRate));
         return sb.toString();
     }
 }
