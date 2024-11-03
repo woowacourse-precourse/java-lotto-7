@@ -108,8 +108,24 @@ public class Lotto {
         for (int i = 0; i < num; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             new Lotto(numbers);
+            numbers.sort(Integer::compareTo);
             System.out.println(numbers);
         }
     }
 
+    // 3. 당첨 번호와 로또 번호를 비교해서 결과를 저장한다.
+    private static int calculateWinningStatus(List<Integer> lottoNumbers, String[] winningNumber) {
+        int count = 0;
+        for (int i = 0; i < lottoNumbers.size(); i++) {
+            if (lottoNumbers.contains(Integer.parseInt(winningNumber[i]))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // 3-1. 보너스 번호와 로또 번호를 비교해서 결과를 저장한다.
+    private static boolean calculateBonusStatus(List<Integer> lottoNumbers, int bonusNumber) {
+        return lottoNumbers.contains(bonusNumber);
+    }
 }
