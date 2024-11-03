@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.Messages.ErrorMessage;
 
 public class Lotto {
     private static final int start = 1;
@@ -22,6 +23,12 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public static Lotto from(List<Integer> numbers) {
+        validateRange(numbers);
+        validateDuplicate(numbers);
+        return new Lotto(numbers);
+    }
+
     private static List<Integer> generateNumbers() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(start, end, count);
         Collections.sort(lottoNumbers);
@@ -37,4 +44,22 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
     }
+
+    private static void validateRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (!(start <= number
+                    && number <= end)) {
+                String message = String.format(ErrorMessage.RANGE_OUT_NUMBERS.getMessage(), start, end);
+                throw new IllegalArgumentException(message);
+            }
+        }
+    }
+
+    private static void validateDuplicate(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.getMessage());
+        }
+    }
+
+
 }

@@ -7,16 +7,18 @@ import lotto.Utils.Validator;
 
 public class WinningNumbers {
     private static final String DELIMITER = ",";
-    private Lotto numbers;
+    private final Lotto numbers;
 
-    private WinningNumbers() {
+    private WinningNumbers(Lotto lottoNumbers) {
+        this.numbers = lottoNumbers;
     }
 
     public static WinningNumbers from(String input) {
         validateInput(input);
-        String[] numbers = input.split(DELIMITER,-1);
+        String[] numbers = input.split(DELIMITER, -1);
         List<Integer> numberList = Parser.stringToNumberList(numbers);
-        return new WinningNumbers();
+        Lotto lottoNumbers = Lotto.from(numberList);
+        return new WinningNumbers(lottoNumbers);
     }
 
     private static void validateInput(String input) {
@@ -38,7 +40,7 @@ public class WinningNumbers {
     }
 
     private static void checkCharacter(String input) {
-        String[] tokens = input.split(DELIMITER);
+        String[] tokens = input.split(DELIMITER, -1);
         for (String s : tokens) {
             try {
                 Integer.parseInt(s);
@@ -47,6 +49,9 @@ public class WinningNumbers {
                 throw new IllegalArgumentException(message);
             }
         }
+    }
+
+    private static void validateNumbers(List<Integer> numbers) {
     }
 
 }

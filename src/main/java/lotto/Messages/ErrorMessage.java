@@ -11,7 +11,9 @@ public enum ErrorMessage {
     MAX_OUT_PURCHASE_AMOUNT("구입 금액이 최대 허용 금액을 초과했습니다."),
     EMPTY_WINNING_NUMBERS("당첨 번호는 빈 문자열로 입력할 수 없습니다."),
     BLANK_WINNING_NUMBERS("당첨 번호는 공백 문자열로 입력할 수 없습니다."),
-    CHARACTER_WINNING_NUMBERS("당첨 번호는 숫자와 구분자 %s 만 입력할 수 있습니다.")
+    CHARACTER_WINNING_NUMBERS("당첨 번호는 숫자와 구분자 %s 만 입력할 수 있습니다."),
+    RANGE_OUT_NUMBERS("번호는 %d에서 %d 사이의 정수만 입력할 수 있습니다."),
+    DUPLICATE_NUMBERS("중복된 번호가 있습니다.")
     ;
 
     private final String message;
