@@ -11,7 +11,6 @@ public class InputView extends InputReader {
     public int inputLottoMoney() {
         String inputLottoMoney = inputMessage();
         validateInputNumberFormat(inputLottoMoney);
-
         return Parser.stringToInt(inputLottoMoney);
     }
 
@@ -39,7 +38,6 @@ public class InputView extends InputReader {
     public int inputBonusNumber() {
         String inputBonusNumber = inputMessage();
         validateInputNumberFormat(inputBonusNumber);
-
         return Parser.stringToInt(inputBonusNumber);
     }
 }
