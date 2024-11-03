@@ -24,7 +24,7 @@ public class LottoController {
     }
 
     private void buyAndPrintLottos() {
-        List<Lotto> lottos = lottoService.buyLotto(inputBuyAmount());
+        List<Lotto> lottos = lottoService.buyLottos(inputBuyAmount());
 
         OutputView.printLottos(lottos);
     }
