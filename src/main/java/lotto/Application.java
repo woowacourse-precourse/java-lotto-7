@@ -1,32 +1,29 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.IO.InputHandler;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
-        int price = Integer.parseInt(Console.readLine());
-        if (price % 1000 != 0)
-            System.out.println("[ERROR] 로또 금액은 천원 단위로 입력할 수 있습니다.");
+        int price = InputHandler.getPrice();
+        LottoList lottoList = new LottoList(LottoManager.getTotal(price));
 
-        int total = price / 1000;
-
-        LottoList lottoList = new LottoList(total);
-
-        System.out.println(lottoList.getLottoList().size());
+        System.out.println(lottoList.getLottoList().size() + "개를 구매했습니다.");
         for (Lotto lotto : lottoList.getLottoList()) {
             System.out.println(lotto.getNumbers());
         }
 
-        String input = Console.readLine();
-        List<Integer> WinningNumber = InputHandler.getLottoWinningNumber(input);
-        String input2 = Console.readLine();
+        List<Integer> winningNumber = InputHandler.getWinningLottoNumber();
+        int bonusNumber = InputHandler.getBonusNumber(winningNumber);
 
-        int bonusNumber = InputHandler.getBonusNumber(input2,WinningNumber);
+        System.out.println("당첨 확인 결과:");
+        Map<LottoRank, Integer> result = LottoManager.findWinningLotto(lottoList, winningNumber, bonusNumber);
 
+        double profit = LottoManager.calculateProfit(result, price);
+        System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 }
