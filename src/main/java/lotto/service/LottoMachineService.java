@@ -26,11 +26,13 @@ public class LottoMachineService {
 
     public void inputBonusNumber(String bonusNumber) {
         int validBonusNumber = LottoValidator.validNumber(bonusNumber);
+        LottoValidator.validateDuplicateNumber(lottoMachine.getWinningLotto(), validBonusNumber);
         lottoMachine.saveBonusNumber(validBonusNumber);
     }
 
     public void inputWinningNumbers(String numbers) {
         List<Integer> winningNumbers = LottoParser.parsingNumber(numbers);
+        LottoValidator.validateLottoNumber(winningNumbers);
         lottoMachine.saveWinningNumbers(winningNumbers);
     }
 
@@ -56,13 +58,16 @@ public class LottoMachineService {
         return memberLotto.contains(lottoMachine.getBonusNumber());
     }
 
-    public void giveCorrectCountAndMoney(List<Lotto> issuedLottos) {
-        for (Lotto lotto : issuedLottos) {
+    public void giveCorrectCountAndMoney() {
+        for (Lotto lotto : member.getIssuedLottos()) {
             int matchCount = correctLottoNumber(lotto);
             boolean hasBonus = correctBonusNumber(lotto);
 
             LottoRank lottoRank = LottoRank.valueOf(matchCount, hasBonus);
-            member.addLottoResult(lottoRank);
+
+            if (lottoRank != null) {
+                member.addLottoResult(lottoRank);
+            }
         }
     }
 }
