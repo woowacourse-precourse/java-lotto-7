@@ -20,8 +20,8 @@ public class Application {
         setBonusNumber();
         int[] winningCount = lottoService.getWinningCount(lottos, winningLotto, bonusNumber);
         printLottoResult(winningCount);
+        printIncomePercent(lottos, winningCount);
     }
-
 
     private static List<Lotto> setLottos() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -105,5 +105,12 @@ public class Application {
         }
 
         return stringBuilder.toString();
+    }
+
+    private static void printIncomePercent(List<Lotto> lottos, int[] winningCount) {
+        long income = lottoService.getWinningCost(winningCount);
+        double incomePercent = Math.round((double)income / lottos.size());
+
+        System.out.println("총 수익률은 " + incomePercent + "%입니다.");
     }
 }
