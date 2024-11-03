@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.constants.Ranking;
 
+import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ public class OutputView {
     private static final String WIN_SECOND_INFORMATION_MESSAGE = "{0}개 일치, 보너스 볼 일치 ({1}원) - {2}개";
     private static final String WIN_ALARM_MESSAGE = NEXT_LINE + "당첨 통계" + NEXT_LINE + "---";
     private static final String TOTAL_PROFIT_MESSAGE = "총 수익률은 {0}%입니다.";
+    private static final String pattern = "#,##0.0";
 
     public static void printLottoTicketInformation(final List<List<Integer>> lottos, final int lottoCount) {
         System.out.println(MessageFormat.format(BUY_LOTTO_COUNT_MESSAGE, lottoCount));
@@ -30,7 +32,7 @@ public class OutputView {
         System.out.println(formatRank(Ranking.THIRD, getCountOrDefault(Ranking.THIRD, results)));
         System.out.println(formatRank(Ranking.SECOND, getCountOrDefault(Ranking.SECOND, results)));
         System.out.println(formatRank(Ranking.FIRST, getCountOrDefault(Ranking.FIRST, results)));
-        System.out.println(MessageFormat.format(TOTAL_PROFIT_MESSAGE, String.format("%.1f", profit)));
+        System.out.println(MessageFormat.format(TOTAL_PROFIT_MESSAGE, formatProfit(profit)));
     }
 
     private static String formatRank(final Ranking rank, final int count) {
@@ -42,6 +44,11 @@ public class OutputView {
 
     private static int getCountOrDefault(final Ranking ranking, final Map<Ranking, Integer> results) {
         return results.getOrDefault(ranking, 0);
+    }
+
+    private static String formatProfit(double profit) {
+        DecimalFormat decimalFormat = new DecimalFormat(pattern);
+        return decimalFormat.format(profit);
     }
 
     private static String formatLottoNumbers(final List<Integer> numbers) {
