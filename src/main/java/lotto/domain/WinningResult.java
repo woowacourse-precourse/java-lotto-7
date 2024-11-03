@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class WinningResult {
-
     private final Map<Rank, Integer> winningResult;
 
     private WinningResult() {
@@ -34,7 +33,7 @@ public class WinningResult {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.getWinningMoney() > Rank.MISS.getWinningMoney())
                 .map(rank -> rank.getMessage() + winningResult.get(rank) + "개")
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     public int getWinningMoney() {
