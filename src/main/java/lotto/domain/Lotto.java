@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.util.Converter;
 import lotto.validation.WinningNumberValidator;
 

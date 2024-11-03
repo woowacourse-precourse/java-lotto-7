@@ -9,7 +9,6 @@ import lotto.domain.PurchasePrice;
 import lotto.domain.RateOfReturn;
 import lotto.domain.WinningNumber;
 import lotto.handler.InputHandler;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {

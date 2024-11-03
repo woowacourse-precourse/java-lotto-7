@@ -38,7 +38,7 @@ public class WinningNumberValidator {
     }
 
     private static void validateNoEmptyBetweenCommas(String input) {
-        String [] values = getSplit(input);
+        String[] values = getSplit(input);
 
         for (String value : values) {
             if (value.trim().isEmpty()) {
@@ -48,7 +48,7 @@ public class WinningNumberValidator {
     }
 
     private static void validateSixNumbers(String input) {
-        String [] values = getSplit(input);
+        String[] values = getSplit(input);
 
         if (values.length != LottoValue.NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.NOT_INPUT_SIX_NUMBERS.getErrorMessage());
@@ -56,7 +56,7 @@ public class WinningNumberValidator {
     }
 
     private static void validateStartWithZero(String input) {
-        String [] values = getSplit(input);
+        String[] values = getSplit(input);
 
         for (String value : values) {
             value = value.trim();
@@ -67,7 +67,7 @@ public class WinningNumberValidator {
     }
 
     private static void validateNumberDuplicate(String input) {
-        String [] values = getSplit(input);
+        String[] values = getSplit(input);
         Set<String> numbers = new HashSet<>();
 
         for (String value : values) {
@@ -79,11 +79,12 @@ public class WinningNumberValidator {
     }
 
     private static void validateRange(String input) {
-        String [] values = getSplit(input);
+        String[] values = getSplit(input);
 
         for (String value : values) {
             int number = Integer.parseInt(value.trim());
-            if (number < LottoValue.MIN_LOTTO_NUMBER_RANGE.getValue() || number > LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue()) {
+            if (number < LottoValue.MIN_LOTTO_NUMBER_RANGE.getValue()
+                    || number > LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue()) {
                 throw new IllegalArgumentException(ErrorMessage.ALLOW_ONE_TO_FORTY_FIVE.getErrorMessage());
             }
         }

@@ -1,11 +1,9 @@
 package lotto.validation;
 
-import java.util.List;
 import lotto.domain.WinningNumber;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoValue;
 import lotto.enums.RegexPattern;
-import lotto.util.Converter;
 
 public class BonusNumberValidator {
 
@@ -33,7 +31,8 @@ public class BonusNumberValidator {
     }
 
     private static void validateRange(int input) {
-        if (input < LottoValue.MIN_LOTTO_NUMBER_RANGE.getValue() || input > LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue()) {
+        if (input < LottoValue.MIN_LOTTO_NUMBER_RANGE.getValue()
+                || input > LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.ALLOW_ONE_TO_FORTY_FIVE.getErrorMessage());
         }
     }
