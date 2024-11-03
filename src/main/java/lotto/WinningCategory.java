@@ -7,9 +7,9 @@ public enum WinningCategory {
     FOUR_MATCH(4, false, 50_000),
     THREE_MATCH(3, false, 5_000);
 
-    private int matchCount;
-    private boolean hasBonus;
-    private int prize;
+    private final int matchCount;
+    private final boolean hasBonus;
+    private final int prize;
 
     WinningCategory(int matchCount, boolean hasBonus, int prize) {
         this.matchCount = matchCount;
