@@ -1,10 +1,10 @@
 package lotto.view;
 
-import static lotto.config.ErrorMessage.INPUT_BONUS_DUPLICATE_WIN_NUMBER_ERROR;
-import static lotto.config.ErrorMessage.INPUT_BONUS_NUMBER_RANGE_ERROR;
-import static lotto.config.ErrorMessage.INPUT_MONEY_DIVIDE_ERROR;
-import static lotto.config.ErrorMessage.INPUT_MONEY_ERROR;
-import static lotto.config.ErrorMessage.INPUT_WIN_NUMBER_DUPLICATE_ERROR;
+import static lotto.config.LottoErrorMessage.INPUT_BONUS_DUPLICATE_WIN_NUMBER_ERROR;
+import static lotto.config.LottoErrorMessage.INPUT_BONUS_NUMBER_RANGE_ERROR;
+import static lotto.config.LottoErrorMessage.INPUT_MONEY_DIVIDE_ERROR;
+import static lotto.config.LottoErrorMessage.INPUT_MONEY_ERROR;
+import static lotto.config.LottoErrorMessage.INPUT_WIN_NUMBER_DUPLICATE_ERROR;
 import static lotto.config.LottoMessage.INPUT_MONEY;
 import static lotto.config.LottoMessage.INPUT_WIN_NUMBER;
 import static lotto.config.LottoRule.LOTTO_MAX_NUMBER;
@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import lotto.config.ErrorMessage;
+import lotto.config.LottoErrorMessage;
 import lotto.config.LottoMessage;
 import lotto.config.LottoRule;
 
@@ -56,7 +56,7 @@ public class LottoInputView {
                 List<Integer> winNumber = parseToIntegers(split(Console.readLine()));
 
                 if (isNotRange(winNumber)) {
-                    throw new IllegalArgumentException(ErrorMessage.INPUT_WIN_NUMBER_RANGE_ERROR.getMessage());
+                    throw new IllegalArgumentException(LottoErrorMessage.INPUT_WIN_NUMBER_RANGE_ERROR.getMessage());
                 }
 
                 if (isDuplicated(winNumber)) {
@@ -90,7 +90,7 @@ public class LottoInputView {
         try {
             return Arrays.stream(numbers).map(Integer::parseInt).toList();
         } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_WIN_NUMBER_ERROR.getMessage());
+            throw new IllegalArgumentException(LottoErrorMessage.INPUT_WIN_NUMBER_ERROR.getMessage());
         }
     }
 
@@ -102,7 +102,7 @@ public class LottoInputView {
                 try {
                     bonusNumber = Integer.parseInt(Console.readLine());
                 } catch (Exception e) {
-                    throw new IllegalArgumentException(ErrorMessage.INPUT_BONUS_NUMBER_ERROR.getMessage());
+                    throw new IllegalArgumentException(LottoErrorMessage.INPUT_BONUS_NUMBER_ERROR.getMessage());
                 }
 
                 if (isContain(winNumber, bonusNumber)) {

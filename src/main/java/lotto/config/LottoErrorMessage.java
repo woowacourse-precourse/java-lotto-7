@@ -1,6 +1,6 @@
 package lotto.config;
 
-public enum ErrorMessage {
+public enum LottoErrorMessage {
     INPUT_MONEY_ERROR("숫자만 입력 가능합니다."),
     INPUT_MONEY_DIVIDE_ERROR("로또 구입 금액은 1000원 단위여야 합니다."),
 
@@ -15,7 +15,7 @@ public enum ErrorMessage {
 
     private final String message;
 
-    ErrorMessage(String message) {
+    LottoErrorMessage(String message) {
         this.message = message;
     }
 
