@@ -6,8 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.constant.LottoConfiguration;
-import lotto.constant.ValidationFailMessage;
 import lotto.generator.RawInputGenerator;
+import lotto.utility.CommonInputValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,10 +43,10 @@ class InputValidationServiceTest {
 
     static Stream<Arguments> 로또_구매_금액에_대한_입력값_검증() {
         return Stream.of(
-                Arguments.of("  ", ValidationFailMessage.EMPTY_INPUT.getMessage()),
-                Arguments.of("만원", ValidationFailMessage.NON_NUMERIC_INPUT.getMessage()),
-                Arguments.of("99999999999999", ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage()),
-                Arguments.of("-99999999999999", ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage())
+                Arguments.of("  ", CommonInputValidator.EMPTY_INPUT),
+                Arguments.of("만원", CommonInputValidator.NON_NUMERIC_INPUT),
+                Arguments.of("99999999999999", CommonInputValidator.OUT_OF_PARSE_RANGE),
+                Arguments.of("-99999999999999", CommonInputValidator.OUT_OF_PARSE_RANGE)
         );
     }
 
@@ -70,15 +70,14 @@ class InputValidationServiceTest {
 
     static Stream<Arguments> 잘못된_당첨_번호의_입력을_검증() {
         return Stream.of(
-                Arguments.of(" ", ValidationFailMessage.EMPTY_INPUT.getMessage()),
-                Arguments.of(",1,2,3,4,5", ValidationFailMessage.EMPTY_INPUT.getMessage()),
-                Arguments.of("1,2,3,4,5,", ValidationFailMessage.EMPTY_INPUT.getMessage()),
-                Arguments.of("일,2,3,4,5,6", ValidationFailMessage.NON_NUMERIC_INPUT.getMessage()),
-                Arguments.of("99999999999999,2,3,4,5,6", ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage()),
-                Arguments.of("-99999999999999,2,3,4,5,6", ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage())
+                Arguments.of(" ", CommonInputValidator.EMPTY_INPUT),
+                Arguments.of(",1,2,3,4,5", CommonInputValidator.EMPTY_INPUT),
+                Arguments.of("1,2,3,4,5,", CommonInputValidator.EMPTY_INPUT),
+                Arguments.of("일,2,3,4,5,6", CommonInputValidator.NON_NUMERIC_INPUT),
+                Arguments.of("99999999999999,2,3,4,5,6", CommonInputValidator.OUT_OF_PARSE_RANGE),
+                Arguments.of("-99999999999999,2,3,4,5,6", CommonInputValidator.OUT_OF_PARSE_RANGE)
         );
     }
-
 
     @DisplayName("올바른 보너스 번호의 입력을 검증")
     @Test
@@ -99,10 +98,10 @@ class InputValidationServiceTest {
 
     static Stream<Arguments> 잘못된_보너스_번호의_입력을_검증() {
         return Stream.of(
-                Arguments.of(" ", ValidationFailMessage.EMPTY_INPUT.getMessage()),
-                Arguments.of("일곱", ValidationFailMessage.NON_NUMERIC_INPUT.getMessage()),
-                Arguments.of("99999999999999", ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage()),
-                Arguments.of("-99999999999999", ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage())
+                Arguments.of(" ", CommonInputValidator.EMPTY_INPUT),
+                Arguments.of("일곱", CommonInputValidator.NON_NUMERIC_INPUT),
+                Arguments.of("99999999999999", CommonInputValidator.OUT_OF_PARSE_RANGE),
+                Arguments.of("-99999999999999", CommonInputValidator.OUT_OF_PARSE_RANGE)
         );
     }
 }
