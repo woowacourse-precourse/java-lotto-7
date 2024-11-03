@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.Comparator;
 import java.util.Map;
+import java.util.Objects;
 
 public class LottoResult {
 
@@ -29,6 +30,19 @@ public class LottoResult {
     @Override
     public String toString() {
         return "LottoResult{" + "result=" + result + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LottoResult that = (LottoResult) o;
+        return Objects.equals(result, that.result);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(result);
     }
 
     private void getResultForDisplay(StringBuilder resultForDisplay) {
