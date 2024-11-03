@@ -10,7 +10,7 @@ class LottoGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        lottoGenerator =  new LottoGenerator(new LottoStrategyRandom());
+        lottoGenerator =  new LottoGenerator(new RandomStrategy());
     }
 
     @Test

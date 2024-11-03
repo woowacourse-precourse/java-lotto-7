@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoGenerator {
-    private final LottoStrategy lottoStrategy;
+    private final GenerateStrategy generateStrategy;
 
-    public LottoGenerator(LottoStrategy lottoStrategy) {
-        this.lottoStrategy = lottoStrategy;
+    public LottoGenerator(GenerateStrategy generateStrategy) {
+        this.generateStrategy = generateStrategy;
     }
 
     public Lotto createLotto() {
@@ -16,7 +16,7 @@ public class LottoGenerator {
     }
 
     public List<Integer> createLottoNumber() {
-        return lottoStrategy.createNumber().stream()
+        return generateStrategy.generateNumber().stream()
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
     }
