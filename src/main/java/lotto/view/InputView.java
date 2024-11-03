@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.InputException;
+import lotto.message.ErrorMessage;
 
 public class InputView {
 
@@ -18,4 +20,14 @@ public class InputView {
         return Console.readLine();
     }
 
+    /**
+     * 사용자에게 보너스 번호 입력 받기
+     */
+    public static int getBonusNumber() {
+        try{
+            return Integer.parseInt(Console.readLine());
+        } catch(NumberFormatException e) {
+            throw new InputException(ErrorMessage.WRONG_TYPE_LOTTO_NUMBERS.getMessage());
+        }
+    }
 }

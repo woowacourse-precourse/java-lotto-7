@@ -13,6 +13,10 @@ public class LottoController {
         // 로또번호 입력 받기
         OutputView.printLottoNumbersMessage();
         String lottoNumbers = InputView.getLottoNumbers();
+
+        // 보너스 번호 입력 받기
+        OutputView.printBonusNumberMessage();
+        int bonusNumber = InputView.getBonusNumber();
     }
 
 }

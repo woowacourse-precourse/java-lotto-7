@@ -18,4 +18,10 @@ public class OutputView {
         System.out.println(SystemMessage.MESSAGE_INPUT_LOTTO_NUMBERS.getMessage());
     }
 
+    /**
+     * 사용자에게 보너스 번호 입력 문구 출력
+     */
+    public static void printBonusNumberMessage() {
+        System.out.println(SystemMessage.MESSAGE_INPUT_BONUS_NUMBER.getMessage());
+    }
 }
