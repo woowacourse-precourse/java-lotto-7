@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.InputMismatchException;
 import lotto.utils.Utils;
 import lotto.validator.Validators;
 import lotto.view.InputView;
@@ -17,5 +18,19 @@ public class Controller {
         this.outputView = outputView;
         this.validators = validators;
         this.utils = utils;
+    }
+
+    public int inputPurchaseAmount() {
+        while (true) {
+            try {
+                String inputPrice = inputView.lottoPrice();
+                validators.validateNumericInput(inputPrice);
+                int price = utils.parseStringToInt(inputPrice);
+                validators.validatePurchaseAmountUnit(price);
+                return price;
+            } catch (IllegalArgumentException | InputMismatchException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
