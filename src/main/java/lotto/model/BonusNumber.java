@@ -15,6 +15,10 @@ public class BonusNumber {
         this.number = Integer.parseInt(number);
     }
 
+    public boolean match(int number) {
+        return this.number == number;
+    }
+
     private void validate(final String number) {
         validateNumberPattern(number);
         validateValue(number);
