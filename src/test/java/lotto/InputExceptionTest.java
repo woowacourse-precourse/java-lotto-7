@@ -24,28 +24,10 @@ public class InputExceptionTest {
 
     @Test
     public void 로또_구매금액이_유효하면_예외가_발생하지_않는다() {
-        assertDoesNotThrow(() -> inputException.validateMoney(1000)); // 올바른 금액
-        assertDoesNotThrow(() -> inputException.validateMoney(5000)); // 올바른 금액
+        assertDoesNotThrow(() -> inputException.validateMoney(1000));
+        assertDoesNotThrow(() -> inputException.validateMoney(5000));
     }
 
-    @Test
-    public void 로또_번호가_유효하지_않으면_예외가_발생한다() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            inputException.validateLottoNumbers(List.of(1, 2, 3, 4, 5)); // 5개의 숫자만 있음
-        }, "[ERROR] 로또 번호는 6개의 숫자로 입력되어야 합니다.");
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            inputException.validateLottoNumbers(List.of(1, 2, 3, 4, 5, 5)); // 중복된 숫자 있음
-        }, "[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.");
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            inputException.validateLottoNumbers(List.of(0, 2, 3, 4, 5, 6)); // 0은 범위 밖
-        }, "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            inputException.validateLottoNumbers(List.of(1, 2, 3, 4, 5, 46)); // 46은 범위 밖
-        }, "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-    }
 
     @Test
     public void 로또_번호가_유효하면_예외가_발생하지_않는다() {
@@ -56,11 +38,11 @@ public class InputExceptionTest {
     @Test
     public void 보너스_번호가_유효하지_않으면_예외가_발생한다() {
         assertThrows(IllegalArgumentException.class, () -> {
-            inputException.validateBonusNumber(0); // 범위 밖
+            inputException.validateBonusNumber(0);
         }, "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
 
         assertThrows(IllegalArgumentException.class, () -> {
-            inputException.validateBonusNumber(46); // 범위 밖
+            inputException.validateBonusNumber(46);
         }, "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
@@ -69,4 +51,18 @@ public class InputExceptionTest {
         assertDoesNotThrow(() -> inputException.validateBonusNumber(1));
         assertDoesNotThrow(() -> inputException.validateBonusNumber(45));
     }
+    @Test
+    public void 로또_번호가_유효하지_않으면_예외가_발생한다() {
+        // 유효하지 않은 경우: 6개가 아닌 숫자의 개수
+        assertThrows(IllegalArgumentException.class, () -> inputException.validateLottoNumbers(List.of(1, 2, 3, 4, 5)));
+        assertThrows(IllegalArgumentException.class, () -> inputException.validateLottoNumbers(List.of(1, 2, 3, 4, 5, 6, 7)));
+
+        // 유효하지 않은 경우: 중복된 숫자 포함
+        assertThrows(IllegalArgumentException.class, () -> inputException.validateLottoNumbers(List.of(1, 2, 3, 4, 5, 5)));
+
+        // 유효하지 않은 경우: 숫자가 1 미만이거나 45를 초과하는 경우
+        assertThrows(IllegalArgumentException.class, () -> inputException.validateLottoNumbers(List.of(0, 2, 3, 4, 5, 6)));
+        assertThrows(IllegalArgumentException.class, () -> inputException.validateLottoNumbers(List.of(1, 2, 3, 4, 5, 46)));
+    }
+
 }
