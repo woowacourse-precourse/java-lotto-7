@@ -5,6 +5,7 @@ import lotto.domain.model.Lotto;
 import lotto.domain.model.PrizeCategory;
 import lotto.domain.model.WinningNumbers;
 import lotto.domain.service.LottoStatisticsService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LottoStatisticsServiceTest {
 
     @Test
+    @DisplayName("당첨_횟수_계산_성공")
     void 당첨_횟수_계산_성공() {
         LottoStatisticsService statisticsService = new LottoStatisticsService();
         WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
@@ -27,6 +29,7 @@ public class LottoStatisticsServiceTest {
     }
 
     @Test
+    @DisplayName("수익률_계산_성공")
     void 수익률_계산_성공() {
         LottoStatisticsService statisticsService = new LottoStatisticsService();
         int purchaseAmount = 5000;
@@ -38,6 +41,7 @@ public class LottoStatisticsServiceTest {
     }
 
     @Test
+    @DisplayName("티켓이_없는_경우_수익률_0_계산")
     void 티켓이_없는_경우_수익률_0_계산() {
         LottoStatisticsService statisticsService = new LottoStatisticsService();
         int purchaseAmount = 5000;
@@ -49,6 +53,7 @@ public class LottoStatisticsServiceTest {
     }
 
     @Test
+    @DisplayName("다양한_당첨_등급이_포함된_통계_계산_확인")
     void 다양한_당첨_등급이_포함된_통계_계산_확인() {
         LottoStatisticsService statisticsService = new LottoStatisticsService();
         WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
