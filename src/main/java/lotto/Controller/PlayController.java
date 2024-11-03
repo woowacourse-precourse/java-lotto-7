@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import lotto.Lotto;
-import lotto.Model.EarningRate;
-import lotto.Model.LottoNumbers;
-import lotto.Model.PlayLottoGame;
+import lotto.Model.Service.EarningRate;
+import lotto.Model.Service.LottoNumbers;
+import lotto.Model.Service.PlayLottoGame;
 import lotto.Model.Ranking;
 import lotto.View.OutputView;
 
@@ -17,8 +17,8 @@ public class PlayController {
     private final List<Lotto> lottoNumberList;
     private final PlayLottoGame playLottoGame;
     private final InputController inputController;
-    private Map<Integer, Boolean> matchingNumber;
-    private Map<Ranking, Integer> resultSet;
+    private Map<Integer, Boolean> gameResult;
+    private Map<Ranking, Integer> totalResultSet;
 
     public PlayController() {
         this.inputController = new InputController();
@@ -31,27 +31,27 @@ public class PlayController {
     }
 
     public void play() {
-        matchingNumber = playLottoGame.play();
+        gameResult = playLottoGame.play();
         updateResultSet();
     }
 
     private void initializeResultSet() {
-        resultSet = new TreeMap<>();
+        totalResultSet = new TreeMap<>();
         for (Ranking rank : Ranking.values()) {
-            resultSet.put(rank, 0);
+            totalResultSet.put(rank, 0);
         }
     }
 
     private void updateResultSet() {
-        matchingNumber.forEach((count, bonus) -> {
+        gameResult.forEach((count, bonus) -> {
             Ranking rank = Ranking.valueOf(count, bonus);
-            resultSet.put(rank, resultSet.get(rank) + 1);
+            totalResultSet.put(rank, totalResultSet.get(rank) + 1);
         });
     }
 
     public void showResult() {
         OutputView.printWinningStatistics();
-        OutputView.printResult(resultSet);
-        OutputView.printRevenueRate(EarningRate.returnEarningRate(gameNumber, resultSet));
+        OutputView.printResult(totalResultSet);
+        OutputView.printRevenueRate(EarningRate.returnEarningRate(gameNumber, totalResultSet));
     }
 }

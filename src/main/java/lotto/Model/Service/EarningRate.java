@@ -1,6 +1,7 @@
-package lotto.Model;
+package lotto.Model.Service;
 
 import java.util.Map;
+import lotto.Model.Ranking;
 
 public class EarningRate {
     //수익률을 반환하는 메소드

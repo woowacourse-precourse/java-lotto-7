@@ -1,4 +1,4 @@
-package lotto.Model;
+package lotto.Model.Service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -26,6 +26,7 @@ public class LottoNumbers {
         System.out.println(lottoNumbers);
         return new Lotto(lottoNumbers);
     }
+
     //사용자에게 입력받은 값을 기준으로 로또를 여러개 반환하는 로직
     public static List<Lotto> makeLottoList(int gameNumber){
         System.out.println(gameNumber+"개를 구매했습니다.");

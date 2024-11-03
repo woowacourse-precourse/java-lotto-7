@@ -15,7 +15,7 @@ public class InputView {
 
 
     //사용자에게 구입금액 입력받는 메소드
-    public int setPurchasePrice() {
+    public static int setPurchasePrice() {
         System.out.println(Constants.SET_PURCHASE_PRICE);
         while (true){
             try{
@@ -35,7 +35,7 @@ public class InputView {
     }
 
     //사용자에게 당첨번호 받는 로직
-    public String[] setWinningNumber() {
+    public static String[] setWinningNumber() {
         System.out.println(SET_WINNING_NUMBER);
         while (true){
             try{
@@ -51,7 +51,7 @@ public class InputView {
 
 
     //사용자에게 보너스 번호 받는 로직
-    public int setBonusNumber() {
+    public static int setBonusNumber() {
         System.out.println(SET_BONUS_NUMBER);
         while (true){
             try{
