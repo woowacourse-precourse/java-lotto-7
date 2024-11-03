@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.config.LottoRule;
+import lotto.domain.LottoRule;
 import lotto.generator.SortedLottoNumberGenerator;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;

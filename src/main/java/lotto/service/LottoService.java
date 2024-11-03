@@ -8,7 +8,7 @@ import lotto.generator.SortedLottoNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.config.LottoRule.LOTTO_PRICE;
+import static lotto.domain.LottoRule.LOTTO_PRICE;
 
 public class LottoService {
 

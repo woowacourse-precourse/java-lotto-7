@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.config.LottoRule;
-
 import java.util.List;
 
 import static lotto.config.message.LottoErrorMessage.*;

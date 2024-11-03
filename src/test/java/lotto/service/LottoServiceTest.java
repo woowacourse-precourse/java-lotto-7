@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.config.LottoRule.LOTTO_PRICE;
+import static lotto.domain.LottoRule.LOTTO_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;

@@ -1,13 +1,13 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.config.LottoRule;
+import lotto.domain.LottoRule;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import static lotto.config.LottoRule.*;
+import static lotto.domain.LottoRule.*;
 import static lotto.config.message.LottoErrorMessage.*;
 import static lotto.config.message.LottoInputMessage.*;
 

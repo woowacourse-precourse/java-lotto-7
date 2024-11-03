@@ -1,4 +1,4 @@
-package lotto.config;
+package lotto.domain;
 
 public enum LottoRule {
 

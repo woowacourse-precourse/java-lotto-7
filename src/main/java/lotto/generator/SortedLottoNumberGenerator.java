@@ -1,11 +1,10 @@
 package lotto.generator;
 
-import static lotto.config.LottoRule.LOTTO_MAX_NUMBER;
-import static lotto.config.LottoRule.LOTTO_MIN_NUMBER;
-import static lotto.config.LottoRule.LOTTO_SIZE;
-
 import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
+
+import static lotto.domain.LottoRule.*;
 
 public class SortedLottoNumberGenerator implements NumberGenerator<List<Integer>> {
 
