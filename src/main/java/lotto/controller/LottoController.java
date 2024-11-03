@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoGenerator;
+import lotto.domain.QuickLottoGenerator;
 import lotto.dto.LottoNumber;
 import lotto.domain.LottoProfit;
 import lotto.domain.LottoRank;
@@ -103,7 +103,7 @@ public class LottoController {
     }
 
     private LottoStore createLottoStore() {
-        return new LottoStore(new LottoGenerator());
+        return new LottoStore(new QuickLottoGenerator());
     }
 
 

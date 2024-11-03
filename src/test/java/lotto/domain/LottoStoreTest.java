@@ -10,11 +10,11 @@ import org.junit.jupiter.api.Test;
 
 class LottoStoreTest {
 
-    private LottoGenerator lottoGenerator;
+    private QuickLottoGenerator quickLottoGenerator;
 
     @BeforeEach
     void setUp() {
-        lottoGenerator = new LottoGenerator();
+        quickLottoGenerator = new QuickLottoGenerator();
     }
 
     @DisplayName("구입 금액 만큼 로또를 구매한다.")
@@ -23,7 +23,7 @@ class LottoStoreTest {
         //given
         final int unit = LottoRule.MONEY_UNIT;
         final Money money = new Money(5000);
-        final LottoStore lottoStore = new LottoStore(lottoGenerator);
+        final LottoStore lottoStore = new LottoStore(quickLottoGenerator);
 
         //when
         final List<Lotto> lottos = lottoStore.getLottosByMoney(money);
