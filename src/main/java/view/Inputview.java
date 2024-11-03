@@ -9,16 +9,19 @@ import java.util.NoSuchElementException;
 
 
 public class Inputview {
-    private int purchaseNumber;
     private Lotto lottoNumbers;
-    private int bonus;
+
 
 
     public int Purchase()
     {
-        int number=stringToInt(safeReadLine());
+        String input = safeReadLine();
+        int number=stringToInt(input);
         if(number<1000)
-            throw new IllegalArgumentException("[ERROR] 입력한 금액이 작습니다.");
+        {
+            throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_AMOUNT.getMessage());
+        }
+
 
         return number;
     }
@@ -42,7 +45,10 @@ public class Inputview {
         validateNumberInRange(number);
 
         if(lottoNumbers.getNumbers().contains(number))
-            throw new IllegalArgumentException("[ERROR] 당첨번호와 중복됩니다.");
+        {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
+        }
+
         return number;
     }
 
@@ -51,9 +57,11 @@ public class Inputview {
         return number.split(",");
     }
 
-    public void validateNumberInRange(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    public void validateNumberInRange(int number)
+    {
+        if (number < 1 || number > 45)
+        {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
@@ -62,13 +70,12 @@ public class Inputview {
         String input="";
         try
         {
-            input=Console.readLine();
+            return input=Console.readLine();
         }
         catch (NoSuchElementException e)
         {
-            throw new IllegalArgumentException("[ERROR] 입력을 받지 못하였습니다.");
+            throw new IllegalArgumentException(ErrorMessage.MISSING_INPUT.getMessage());
         }
-        return input;
     }
 
     public int stringToInt(String input)
@@ -76,12 +83,11 @@ public class Inputview {
         int number =-1;
         try
         {
-            number = Integer.parseInt(input);
+            return number = Integer.parseInt(input);
         }
         catch (NumberFormatException e)
         {
-            throw new IllegalArgumentException("[ERROR] 숫자로 변환하지 못하였습니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
-        return number;
     }
 }
