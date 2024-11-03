@@ -13,5 +13,4 @@ public class LottoRankInit {
         return winningStatistics;
     }
 
-
 }

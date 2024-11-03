@@ -11,14 +11,18 @@ public class LottoInput {
         while (true) {
             try {
                 int purchasePrice = getParseInt(Console.readLine());
-                if (purchasePrice < 1000 || purchasePrice % 1000 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 구매 금액은 1000이상, 1000원 단위여야 합니다.");
-                }
+                validatePrice(purchasePrice);
                 return purchasePrice;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println("구입금액을 입력해 주세요.");
             }
+        }
+    }
+
+    public static void validatePrice(int purchasePrice) {
+        if (purchasePrice < 1000 || purchasePrice % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000이상, 1000원 단위여야 합니다.");
         }
     }
 
@@ -35,7 +39,7 @@ public class LottoInput {
         }
     }
 
-    private static List<Integer> getWinningNumber() {
+    public static List<Integer> getWinningNumber() {
         int[] numbers = getIntArray(split(Console.readLine()));
         List<Integer> winningNumber = new ArrayList<>();
         for (int number : numbers) {
@@ -59,7 +63,7 @@ public class LottoInput {
         }
     }
 
-    private static int getParseInt(String input) {
+    public static int getParseInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -68,7 +72,7 @@ public class LottoInput {
     }
 
 
-    private static void validLotto(List<Integer> numbers) {
+    public static void validLotto(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요!");
@@ -76,7 +80,7 @@ public class LottoInput {
         }
     }
 
-    private static int[] getIntArray(String[] input) {
+    public static int[] getIntArray(String[] input) {
         int[] number = new int[input.length];
         for (int i = 0; i < number.length; i++) {
             number[i] = getParseInt(input[i]);
@@ -85,7 +89,7 @@ public class LottoInput {
     }
 
     private static String[] split(String input) {
-        return input.split(",");
+        return input.replaceAll(" ","").split(",");
     }
 
 }
