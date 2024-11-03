@@ -1,6 +1,5 @@
 package lotto.validator;
 
-import lotto.controller.LottoController;
 import lotto.controller.PurchaseAmountController;
 import lotto.util.ErrorMessage;
 
@@ -11,7 +10,7 @@ public class PurchaseAmountValidator {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException err) {
-            System.out.println(ErrorMessage.EMPTY_STRING_ERROR);
+            System.out.println(ErrorMessage.EMPTY_PURCHASE_AMOUNT_STRING_ERROR);
             PurchaseAmountController.restart();
         }
     }
