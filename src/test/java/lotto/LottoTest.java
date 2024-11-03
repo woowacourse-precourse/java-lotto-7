@@ -2,9 +2,12 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Winning;
+import lotto.domain.constant.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +39,57 @@ class LottoTest {
         List<Integer> numbers = List.of(3, 34, 12, 32, 24, 16);
         Lotto lotto = new Lotto(numbers);
         assertThat(lotto.toString()).isEqualTo("[3, 12, 16, 24, 32, 34]");
+    }
+
+    @Test
+    @DisplayName("6개 일치 - FIRST 랭크 반환")
+    void 일등_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6)).validateBonusNumber(7);
+        assertEquals(LottoRank.FIRST, lotto.getRank(winning));
+    }
+
+    @Test
+    @DisplayName("5개 일치 + 보너스 일치 - SECOND 랭크 반환")
+    void 이등_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6)).validateBonusNumber(7);
+        assertEquals(LottoRank.SECOND, lotto.getRank(winning));
+    }
+
+    @Test
+    @DisplayName("5개 일치 - THIRD 랭크 반환")
+    void 삼등_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6)).validateBonusNumber(7);
+        assertEquals(LottoRank.THIRD, lotto.getRank(winning));
+    }
+
+    @Test
+    @DisplayName("4개 일치 - FOURTH 랭크 반환")
+    void 사등_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 8, 9));
+        Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6)).validateBonusNumber(7);
+        assertEquals(LottoRank.FOURTH, lotto.getRank(winning));
+    }
+
+    @Test
+    @DisplayName("3개 일치 - FIFTH 랭크 반환")
+    void 오등_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 8, 9, 10));
+        Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6)).validateBonusNumber(7);
+        assertEquals(LottoRank.FIFTH, lotto.getRank(winning));
+    }
+
+    @Test
+    @DisplayName("2개 이하 일치 - NONE 랭크 반환")
+    void 꽝_당첨_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 8, 9, 10, 11));
+        Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6)).validateBonusNumber(7);
+        assertEquals(LottoRank.NONE, lotto.getRank(winning));
+
+        Lotto lotto2 = new Lotto(List.of(8, 9, 10, 11, 12, 13));
+        assertEquals(LottoRank.NONE, lotto2.getRank(winning));
     }
 
 }
