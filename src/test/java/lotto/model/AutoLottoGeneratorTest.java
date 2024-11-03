@@ -3,12 +3,14 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.util.InputValidator;
 import org.junit.jupiter.api.Test;
 
 class AutoLottoGeneratorTest {
 
 
-    AutoLottoGenerator autoLottoGenerator = new AutoLottoGenerator();
+    InputValidator inputValidator = new InputValidator();
+    AutoLottoGenerator autoLottoGenerator = new AutoLottoGenerator(inputValidator);
 
     @Test
     void 구매_금액에_맞게_로또를_성성한다() {

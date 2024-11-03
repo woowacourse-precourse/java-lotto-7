@@ -8,11 +8,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoNumberParserTest {
 
+    private InputValidator inputValidator;
     private LottoNumberParser lottoNumberParser;
 
     @BeforeEach
     void setUp() {
-        lottoNumberParser = new LottoNumberParser();
+        inputValidator= new InputValidator();
+        lottoNumberParser = new LottoNumberParser(inputValidator);
     }
 
     @ParameterizedTest

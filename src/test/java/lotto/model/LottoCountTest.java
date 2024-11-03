@@ -3,12 +3,20 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import lotto.util.InputValidator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoCountTest {
 
+    private InputValidator inputValidator;
+
+    @BeforeEach
+    void setUp() {
+        inputValidator = new InputValidator();
+    }
 
     @ParameterizedTest
     @ValueSource(strings = {"10001", "1897", "6600"})
@@ -42,14 +50,14 @@ class LottoCountTest {
 
 
     void 예외_실행(String input) {
-        assertThatThrownBy(() -> new LottoCount(input))
+        assertThatThrownBy(() -> new LottoCount(input, inputValidator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"1000,1", "3000,3"})
     void 구매_금액에_맞는_로또_개수_추출_테스트(String input, int expected) {
-        LottoCount lottoCount = new LottoCount(input);
+        LottoCount lottoCount = new LottoCount(input, inputValidator);
         int purchasedLottoCount = lottoCount.getLottoCount();
 
         assertEquals(purchasedLottoCount, expected);

@@ -3,6 +3,7 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.util.InputValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -10,10 +11,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 class LottoBonusNumberTest {
 
     private Lotto lotto;
+    private InputValidator inputValidator;
+
 
     @BeforeEach
     void setUp() {
-        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        inputValidator = new InputValidator();
+        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6), inputValidator);
+
     }
 
     @ParameterizedTest
@@ -43,7 +48,7 @@ class LottoBonusNumberTest {
 
 
     void 예외_실행(String input, Lotto lotto) {
-        assertThatThrownBy(() -> new LottoBonusNumber(input, lotto))
+        assertThatThrownBy(() -> new LottoBonusNumber(input, lotto, inputValidator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
