@@ -57,6 +57,16 @@ public class LottoView {
         return transformToIntegerList(rawNumberList);
     }
 
+    public int readBonusNumber(){
+        guideInputBonusNumber();
+
+        String rawBonusNumber = Console.readLine();
+
+        validateString(rawBonusNumber);
+
+        return this.parseInt(rawBonusNumber);
+    }
+
     public void printBoughtLottoInfo(List<Lotto> lottos){
         System.out.printf(UserInterfaceMessage.PRINTF_BOUGHT_LOTTO_INFO+"\n",lottos.size());
 
