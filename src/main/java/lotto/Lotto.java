@@ -40,7 +40,7 @@ public class Lotto {
         return new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_START_NUM, LOTTO_FINAL_NUM, LOTTO_SIZE));
     }
 
-    public static Lotto createWinningLotto(String numbers){
+    public static Lotto createWinningRegularLotto(String numbers){
 
         try{
             List<Integer> winningNumber = Arrays.stream(numbers.split(","))

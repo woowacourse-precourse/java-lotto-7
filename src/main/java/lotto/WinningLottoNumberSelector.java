@@ -8,14 +8,12 @@ import java.util.Map;
 
 public class WinningLottoNumberSelector {
 
-    private final Lotto winningLotto;
-    private final SpecialNumber specialNumber;
+    private final WinningNumber winningNumber;
 
     private final List<Lotto> purchasedLottos;
 
-    public WinningLottoNumberSelector(Lotto winningLotto,SpecialNumber specialNumber,List<Lotto> purchasedLottos){
-        this.winningLotto = winningLotto;
-        this.specialNumber = specialNumber;
+    public WinningLottoNumberSelector(final WinningNumber winningNumber,final List<Lotto> purchasedLottos){
+        this.winningNumber = winningNumber;
         this.purchasedLottos = purchasedLottos;
     }
 
@@ -25,7 +23,7 @@ public class WinningLottoNumberSelector {
         int correctNumber = 0;
 
         for(int i=0; i<purchasedLotto.getNumbers().size();i++){
-            if(winningLotto.getNumbers().contains(purchasedLotto.getNumbers().get(i))){
+            if(winningNumber.getWinningRegularLotto().getNumbers().contains(purchasedLotto.getNumbers().get(i))){
                 correctNumber++;
             }
         }
@@ -37,7 +35,7 @@ public class WinningLottoNumberSelector {
 
         return purchasedLotto.getNumbers()
                 .stream()
-                .anyMatch(i->i==specialNumber.getSpecialNumber());
+                .anyMatch(i->i== getSpecialNumber().getSpecialNumber());
 
     }
 
@@ -46,7 +44,7 @@ public class WinningLottoNumberSelector {
     }
 
     public SpecialNumber getSpecialNumber(){
-        return specialNumber;
+        return winningNumber.getSpecialNumber();
     }
 
 }

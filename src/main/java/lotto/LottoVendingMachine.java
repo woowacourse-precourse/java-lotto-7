@@ -37,10 +37,9 @@ public class LottoVendingMachine {
 
     private WinningLottoNumberSelector getWinningLottoNumber(List<Lotto> purchasedLottos){
 
-        Lotto winningLotto = inputHandler.inputWinningLottoNumber();
-        SpecialNumber specialNumber = inputHandler.inputSpecialNumber();
+        WinningNumber winningNumber = inputHandler.inputWinningLottoNumber();
 
-        return new WinningLottoNumberSelector(winningLotto,specialNumber,purchasedLottos);
+        return new WinningLottoNumberSelector(winningNumber,purchasedLottos);
     }
 
     private List<Lotto> makeLottos(int ticket){
