@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.model.rank.RankCondition.sortedValuesExceptNone;
+import static lotto.model.rank.RankCondition.valuesExceptNone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class StatisticView {
     public static StatisticView from(final DrawResultRankTable resultRankTable, final RecoveryRatio recoveryRatio) {
         List<String> messages = new ArrayList<>();
 
-        for (RankCondition rankCondition : sortedValuesExceptNone()) {
+        for (RankCondition rankCondition : valuesExceptNone()) {
             String rankConditionMessage = rankCondition.toStringMessage();
             String prizeCount = resultRankTable.toStringMessageOf(rankCondition);
 

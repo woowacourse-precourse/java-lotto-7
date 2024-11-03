@@ -1,6 +1,5 @@
 package lotto.model.rank;
 
-import static java.util.Comparator.comparing;
 import static lotto.model.money.Money.FIFTH_RANK_PRIZE;
 import static lotto.model.money.Money.FIRST_RANK_PRIZE;
 import static lotto.model.money.Money.FOURTH_RANK_PRIZE;
@@ -43,10 +42,9 @@ public enum RankCondition {
         return SECOND.matchingCount == matchingCount;
     }
 
-    public static List<RankCondition> sortedValuesExceptNone() {
+    public static List<RankCondition> valuesExceptNone() {
         return Arrays.stream(RankCondition.values())
                 .filter(condition -> condition != NONE)
-                .sorted(comparing(condition -> condition.prizeAmount))
                 .toList();
     }
 

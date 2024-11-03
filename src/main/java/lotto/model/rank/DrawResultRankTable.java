@@ -15,7 +15,7 @@ public class DrawResultRankTable {
 
     public static DrawResultRankTable initiate() {
         EnumMap<RankCondition, Integer> rankTable = new EnumMap<>(RankCondition.class);
-        RankCondition.sortedValuesExceptNone()
+        RankCondition.valuesExceptNone()
                 .forEach(rank -> rankTable.put(rank, 0));
         return new DrawResultRankTable(rankTable);
     }

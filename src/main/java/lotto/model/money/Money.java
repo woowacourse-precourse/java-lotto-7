@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Objects;
 
-public class Money implements Comparable<Money> {
+public class Money {
 
     enum Currency {
         WON("원");
@@ -91,11 +91,6 @@ public class Money implements Comparable<Money> {
     public String toString() {
         String formattedMoney = FORMATTER.format(this.value);
         return String.format("(%s%s)", formattedMoney, WON.value);
-    }
-
-    @Override
-    public int compareTo(final Money that) {
-        return Long.compare(this.value, that.value);
     }
 
     private void validateRemainder() {
