@@ -62,4 +62,17 @@ public class Lotto {
         }
     }
 
+    public String toPrintList(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        if(numbers.size() > 0){
+            stringBuilder.append(numbers.get(0));
+        }
+        for(int i = 1 ; i < numbers.size() ; i ++){
+            stringBuilder.append(", " + numbers.get(i));
+        }
+        stringBuilder.append("]");
+        return stringBuilder.toString();
+    }
+
 }

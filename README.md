@@ -9,7 +9,7 @@ inputView
 
 outputView
 - [x] 입력 프롬프트 출력 메세지 static final 변수로 선언
-- [ ] 구매한 로또 번호 출력(Lotto)
+- [x] 구매한 로또 번호 출력(Lotto)
 - [ ] 당첨 통계 출력(Lottos)
 - [ ] 총 수익률 출력
 - [x] 싱글톤 구현
@@ -17,7 +17,7 @@ outputView
 LottoController
 - [x] 구입 금액 단위 검증
 - [x] 사용자 입력 구입 금액 숫자 검증
-- [ ] 로또 번호 생성 후 Lotto 객체 생성
+- [x] 로또 번호 생성 후 Lotto 객체 생성
 
 
 Lotto
