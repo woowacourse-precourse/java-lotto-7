@@ -12,8 +12,16 @@ public class LottoResult {
             int mathCount = winningNumbers.countMatchingNumbers(lotto);
             boolean matchBonus = winningNumbers.isBonusMatched(lotto);
             recordMatchResult(mathCount, matchBonus);
-
         }
+    }
+
+    public double calculateRateOfReturn(int amount) {
+        int total = 0;
+        for (Rank rank : Rank.values()) {
+            total += rank.getCount() * rank.getPrize();
+        }
+        double rateOfReturn = ((double) total / amount) * 100;
+        return Math.round(rateOfReturn * 100) / 100.0;
     }
 
     public void displayWinningStatistics() {
