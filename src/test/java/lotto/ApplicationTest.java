@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -51,6 +52,37 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 입력_테스트() {
+        assertSimpleTest(() -> {
+            run("1000000","1,2,3,4,5,6","12");
+        });
+    }
+
+    @DisplayName("예외가 발생하면 값을 다시 받아야한다.")
+    @Test
+    void 예외_발생_없을때까지_값_받기() {
+        assertSimpleTest(() -> {
+            run("40","100000","1,2,3,4,5,6","12");
+        });
+    }
+
+    @DisplayName("보너스번호 혹은 당첨번호 입력에서 예외가 발생해도 재입력을 받는다.")
+    @Test
+    void 보너스번호_혹은_당첨번호_예외발생시_재입력() {
+        assertSimpleTest(() -> {
+            run("10000","1,2,400,4,5,6","1,2,3,4,5,6","10");
+        });
+    }
+
+    @DisplayName("보너스 번호와 당첨번호가 같으면 예외 발생 후 보너스번호를 다시 입력받는다.")
+    @Test
+    void 보너스_당첨_번호가_같으면_재입력() {
+        assertSimpleTest(() -> {
+            run("100000","1,2,3,4,5,6","6","7");
         });
     }
 
