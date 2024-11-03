@@ -62,7 +62,7 @@ public class LottoController {
     }
 
     private Benefit updateBenefit(LottoTickets lottoTickets, WinningLotto winningLotto, BonusNumber bonusNumber) {
-        return benefitCreator.create(lottoTickets, winningLotto, bonusNumber);
+        return benefitCreator.execute(lottoTickets, winningLotto, bonusNumber);
 
     }
 }

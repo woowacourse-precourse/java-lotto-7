@@ -27,9 +27,9 @@ public class LottoControllerFactory {
     public static LottoController create() {
         Buyer buyer = createBuyer();
         LottoMachine lottoMachine = createLottoMachine();
-        BenefitCalculator benefitCreator = createBenefitCreator();
+        BenefitCalculator benefitCalculator = createBenefitCreator();
         ResultViewService resultViewService = createResultViewService();
-        return new LottoController(buyer, lottoMachine, benefitCreator, resultViewService);
+        return new LottoController(buyer, lottoMachine, benefitCalculator, resultViewService);
     }
 
     private static Buyer createBuyer() {
