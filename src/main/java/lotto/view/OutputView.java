@@ -33,4 +33,8 @@ public class OutputView {
     private void printStatistics(LottoResults results) {
         System.out.printf(RATE_OF_RETURN_MESSAGE, results.getPercentageOfMatched());
     }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

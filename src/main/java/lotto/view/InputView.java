@@ -14,7 +14,7 @@ public class InputView {
         try {
             return parser.parseLottoPurchasePrice(Console.readLine());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
         }
         return readLottoPurchasePrice();
     }
@@ -24,7 +24,7 @@ public class InputView {
         try {
             return parser.parseWinningLottoNumbers(Console.readLine());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
         }
         return readWinningLottoNumbers();
     }
@@ -34,7 +34,7 @@ public class InputView {
         try {
             return parser.parseStringToInteger(Console.readLine());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
         }
         return readBonusLottoNumber();
     }
