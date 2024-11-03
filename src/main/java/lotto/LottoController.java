@@ -17,6 +17,7 @@ public class LottoController {
         OutputView.printLottoPurchasing(status.getLottoCount(), status.getLottos());
         status.setWinningNumbers(winningNumbersController());
         status.setBonusNumber(bonusWinningNumberController(status));
+        OutputView.printLottoRankCount(status.calculationResult(), status.getEarnRate());
     }
 
     private Integer inputMoneyController() {

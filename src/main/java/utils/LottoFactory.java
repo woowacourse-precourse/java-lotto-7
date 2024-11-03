@@ -1,6 +1,5 @@
 package utils;
 
-import java.util.Arrays;
 import java.util.List;
 import model.Lotto;
 
@@ -10,6 +9,6 @@ public class LottoFactory {
         for (int i = 0; i < count; i++) {
             result[i] = new Lotto(RandomLottoListGenerator.generate());
         }
-        return Arrays.stream(result).toList();
+        return List.of(result);
     }
 }
