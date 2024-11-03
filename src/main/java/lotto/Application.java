@@ -11,6 +11,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
+    private static final String PURCHASE_AMOUNT_ERROR_MESSAGE = "[ERROR] 구입금액은 1,000원 단위이며, 1,000원 이상이어야 합니다.";
+    private static final String COMMA = ",";
     private final List<Lotto> purchasedLottos;
     private Lotto winningLotto;
     private int bonusNumber;
@@ -36,16 +38,10 @@ public class Application {
     }
 
     private int getPurchaseAmount() {
-        while (true) {
-            try {
-                System.out.println("구입금액을 입력해 주세요.");
-                String input = Console.readLine();
-                validatePurchaseAmount(input);
-                return Integer.parseInt(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        System.out.println("구입금액을 입력해 주세요.");
+        String input = Console.readLine();
+        validatePurchaseAmount(input);
+        return Integer.parseInt(input);
     }
 
     public void validatePurchaseAmount(String input) {
@@ -55,7 +51,7 @@ public class Application {
         try {
             int amount = Integer.parseInt(input);
             if (amount < LOTTO_PRICE || amount % LOTTO_PRICE != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위이며, 1,000원 이상이어야 합니다.");
+                throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR_MESSAGE);
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해 주세요.");
@@ -64,7 +60,8 @@ public class Application {
 
     private void purchaseLottos(int amount) {
         int count = amount / LOTTO_PRICE;
-        System.out.println("\n" + count + "개를 구매했습니다.");
+        System.out.println();
+        System.out.println(count + "개를 구매했습니다.");
         for (int i = 0; i < count; i++) {
             Lotto lotto = Lotto.create();
             purchasedLottos.add(lotto);
@@ -75,66 +72,85 @@ public class Application {
 
     private void setWinningNumbers() {
         winningLotto = getWinningLotto();
+        System.out.println();
         bonusNumber = getBonusNumber();
+        System.out.println();
     }
 
     private Lotto getWinningLotto() {
-        while (true) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                String input = Console.readLine();
-                List<Integer> numbers = parseWinningNumbers(input);
-                return Lotto.createWinningLotto(numbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        return parseWinningLotto(input);
     }
 
-    public List<Integer> parseWinningNumbers(String input) {
+    private Lotto parseWinningLotto(String input) {
         validateWinningNumberInput(input);
-        return Arrays.stream(input.split(","))
-                .map(String::trim)
-                .map(this::parseNumber)
-                .collect(Collectors.toList());
+        List<Integer> numbers = parseWinningNumbers(input);
+        return Lotto.createWinningLotto(numbers);
     }
 
     public void validateWinningNumberInput(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 필수입니다.");
         }
-        if (!input.matches("^\\s*\\d+(\\s*,\\s*\\d+)*\\s*$")) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표로 구분된 숫자여야 합니다.");
+        if (!input.matches("^\\s*\\d+(\\s*,\\s*\\d+){5}\\s*$")) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표(,)로 구분된 6개의 숫자여야 합니다.");
         }
     }
 
-    private int parseNumber(String number) {
+    public List<Integer> parseWinningNumbers(String input) {
         try {
-            int num = Integer.parseInt(number);
-            if (num < 1 || num > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-            return num;
+            List<Integer> numbers = Arrays.stream(input.split(COMMA))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+            validateNumberRange(numbers);
+            validateDuplicateNumbers(numbers);
+            return numbers;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 올바른 숫자 형식이 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private void validateDuplicateNumbers(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
         }
     }
 
     private int getBonusNumber() {
-        while (true) {
-            try {
-                System.out.println("\n보너스 번호를 입력해 주세요.");
-                String input = Console.readLine();
-                int number = parseNumber(input.trim());
-                validateBonusNumber(number);
-                return number;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        validateBonusNumberInput(input);
+        int number = Integer.parseInt(input.trim());
+        validateBonusNumber(number);
+        return number;
+    }
+
+    private void validateBonusNumberInput(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 필수입니다.");
+        }
+        try {
+            int number = Integer.parseInt(input.trim());
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
         }
     }
 
     public void validateBonusNumber(int number) {
+        if (winningLotto == null) {
+            throw new IllegalStateException("[ERROR] 당첨 번호가 먼저 설정되어야 합니다.");
+        }
         if (winningLotto.contains(number)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
@@ -149,17 +165,17 @@ public class Application {
     private Result calculateResult() {
         Result result = new Result();
         for (Lotto lotto : purchasedLottos) {
-            Rank rank = determineRank(lotto);
+            Rank rank = getRank(lotto);
             result.addRank(rank);
         }
         result.calculateProfitRate(purchasedLottos.size() * LOTTO_PRICE);
         return result;
     }
 
-    private Rank determineRank(Lotto lotto) {
+    private Rank getRank(Lotto lotto) {
         int matchCount = lotto.countMatches(winningLotto);
-        boolean hasBonusNumber = lotto.contains(bonusNumber);
-        return Rank.valueOf(matchCount, hasBonusNumber);
+        boolean matchBonus = lotto.contains(bonusNumber);
+        return Rank.valueOf(matchCount, matchBonus);
     }
 }
 
@@ -227,6 +243,10 @@ class Result {
             totalPrize += (long) entry.getKey().getPrize() * entry.getValue();
         }
         profitRate = totalPrize * 100.0 / totalPurchaseAmount;
+    }
+
+    public double getProfitRate() {
+        return profitRate;
     }
 
     public void printStatistics() {

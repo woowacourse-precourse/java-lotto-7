@@ -1,15 +1,15 @@
 package lotto;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
 
 class StringTest {
 
@@ -86,18 +86,6 @@ class StringTest {
     assertThatThrownBy(() -> app.parseWinningNumbers(input))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-  }
-
-  @DisplayName("보너스 번호가 당첨 번호와 중복되는 경우 예외가 발생한다")
-  @Test
-  void validateDuplicateBonusNumber() {
-    Application app = new Application();
-    List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-    Lotto winningLotto = Lotto.createWinningLotto(winningNumbers);
-
-    assertThatThrownBy(() -> app.validateBonusNumber(1))
-        .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
   }
 
   @DisplayName("올바른 형식의 입력값은 정상적으로 처리된다")

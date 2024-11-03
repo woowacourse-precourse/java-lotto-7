@@ -1,8 +1,8 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -15,19 +15,27 @@ public class Lotto {
     }
 
     public static Lotto create() {
-        List<Integer> numbers = getLottoNumber();
-        numbers.sort(Integer::compareTo);
+        List<Integer> numbers = new ArrayList<>(getLottoNumber());
+        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 
     public static Lotto createWinningLotto(List<Integer> numbers) {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        sortedNumbers.sort(Integer::compareTo);
+        Collections.sort(sortedNumbers);
         return new Lotto(sortedNumbers);
+    }
+
+    private static List<Integer> getLottoNumber() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     public int countMatches(Lotto other) {
@@ -36,17 +44,13 @@ public class Lotto {
                 .count();
     }
 
-    public boolean contains(int number) {
-        return numbers.contains(number);
-    }
-
     private void validateNumbers(List<Integer> numbers) {
-        validateNumber(numbers);
+        validateSize(numbers);
         validateNumberRange(numbers);
         validateDuplicateNumbers(numbers);
     }
 
-    private void validateNumber(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers == null || numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
@@ -64,14 +68,8 @@ public class Lotto {
         }
     }
 
-    private static List<Integer> getLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
     @Override
     public String toString() {
-        return numbers.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", ", "[", "]"));
+        return numbers.toString();
     }
 }
