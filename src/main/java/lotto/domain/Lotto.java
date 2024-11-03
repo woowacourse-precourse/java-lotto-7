@@ -2,17 +2,14 @@ package lotto.domain;
 
 import java.util.List;
 
-public class Lotto {
+public record Lotto(List<Integer> numbers) {
 
     private final static int MIN_NUMBER = 1;
     private final static int MAX_NUMBER = 45;
     private final static int LOTTO_SIZE = 6;
 
-    private final List<Integer> numbers;
-
-    public Lotto(List<Integer> numbers) {
+    public Lotto {
         validate(numbers);
-        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
