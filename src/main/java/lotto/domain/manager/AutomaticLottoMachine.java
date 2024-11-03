@@ -1,16 +1,17 @@
-package lotto.domain;
+package lotto.domain.manager;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static java.lang.String.format;
-import static lotto.domain.constant.LottoConstraint.FIXED_LOTTO_SIZE;
-import static lotto.domain.constant.LottoConstraint.LIMITED_NUMBER_OF_AUTOMATIC_LOTTO_ISSUED;
-import static lotto.domain.constant.LottoConstraint.LOTTO_PRICE_UNIT;
-import static lotto.domain.constant.LottoConstraint.MAXIMUM_NUMBER_VALUE;
-import static lotto.domain.constant.LottoConstraint.MINIMUM_NUMBER_VALUE;
+import static lotto.domain.constant.LottoConstraintProperties.FIXED_LOTTO_SIZE;
+import static lotto.domain.constant.LottoConstraintProperties.LIMITED_NUMBER_OF_AUTOMATIC_LOTTO_ISSUED;
+import static lotto.domain.constant.LottoConstraintProperties.LOTTO_PRICE_UNIT;
+import static lotto.domain.constant.LottoConstraintProperties.MAXIMUM_NUMBER_VALUE;
+import static lotto.domain.constant.LottoConstraintProperties.MINIMUM_NUMBER_VALUE;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.domain.model.Lotto;
 
 public class AutomaticLottoMachine {
 
@@ -26,11 +27,19 @@ public class AutomaticLottoMachine {
         this.lottos = issueAutomatic(quantity);
     }
 
+    public int getQuantity() {
+        return lottos.size();
+    }
+
+    public Stream<Lotto> getLottos() {
+        return this.lottos.stream();
+    }
+
     @Override
     public String toString() {
         return lottos.stream()
                 .map(Lotto::toString)
-                .collect(Collectors.joining(System.lineSeparator()));
+                .collect(Collectors.joining(System.lineSeparator(), "", System.lineSeparator()));
     }
 
     private List<Lotto> issueAutomatic(int quantity) {
@@ -50,28 +59,24 @@ public class AutomaticLottoMachine {
         return amount / LOTTO_PRICE_UNIT;
     }
 
-    private static void verifyLimitSize(int quantity) {
+    private void verifyLimitSize(int quantity) {
         boolean isExceed = LIMITED_NUMBER_OF_AUTOMATIC_LOTTO_ISSUED < quantity;
         if (isExceed) {
             throw new IllegalArgumentException(format(ERROR_LIMITED_IN_SIZE, LIMITED_NUMBER_OF_AUTOMATIC_LOTTO_ISSUED));
         }
     }
 
-    private static void verifyPositive(int amount) {
+    private void verifyPositive(int amount) {
         boolean isNegativeOrZero = amount <= 0;
         if (isNegativeOrZero) {
             throw new IllegalArgumentException(format(ERROR_THE_AMOUNT_IN_WON_UNITS_TEMPLATE, LOTTO_PRICE_UNIT));
         }
     }
 
-    private static void verifyPriceUnit(int amount) {
+    private void verifyPriceUnit(int amount) {
         boolean isNotLottoPurchaseUnit = amount % LOTTO_PRICE_UNIT != 0;
         if (isNotLottoPurchaseUnit) {
             throw new IllegalArgumentException(format(ERROR_THE_AMOUNT_IN_WON_UNITS_TEMPLATE, LOTTO_PRICE_UNIT));
         }
-    }
-
-    public int getQuantity() {
-        return lottos.size();
     }
 }
