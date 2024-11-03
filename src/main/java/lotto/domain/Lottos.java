@@ -18,4 +18,8 @@ public class Lottos {
     public void addLottoToList(Lotto lotto) {
         lottos.add(lotto);
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

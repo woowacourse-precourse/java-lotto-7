@@ -1,9 +1,6 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -27,17 +24,16 @@ public class LottoService {
         int lottoAmount = user.getNumOfLottos();
 
         for (int lotto = 0; lotto < lottoAmount; lotto++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lottoNumbers = getRandomNumber();
             lottos.addLottoToList(new Lotto(lottoNumbers));
         }
+    }
 
-        System.out.println("Lottos의 크기: " + lottos.getLottosSize());
+    public static List<Integer> getRandomNumber() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public void sortAscending() {
-//        for (List<Lotto> lotto : lottos.getLottos()) {
-//            Lotto.validate(lotto);
-//        }
     }
 
 
