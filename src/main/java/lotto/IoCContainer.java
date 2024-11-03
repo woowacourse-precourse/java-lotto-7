@@ -4,6 +4,8 @@ import lotto.business.LottoShop;
 import lotto.business.Money;
 import lotto.business.contract.ContractStrategy;
 import lotto.business.contract.ManualContractStrategy;
+import lotto.business.draw.DrawStrategy;
+import lotto.business.draw.ManualDrawStrategy;
 import lotto.business.issue.IssueStrategy;
 import lotto.business.issue.RandomIssueStrategy;
 import lotto.io.ConsoleIOManager;
@@ -14,7 +16,9 @@ public class IoCContainer {
     private static final IOManager ioManager = new ConsoleIOManager();
     private static final ContractStrategy contractStrategy = new ManualContractStrategy(ioManager, lottoPrice);
     private static final IssueStrategy issueStrategy = new RandomIssueStrategy();
-    private static final LottoShop lottoShop = new LottoShop(lottoPrice, contractStrategy, issueStrategy);
+    private static final DrawStrategy drawStrategy = new ManualDrawStrategy(ioManager);
+    private static final LottoShop lottoShop =
+            new LottoShop(lottoPrice, contractStrategy, issueStrategy, drawStrategy);
 
     public static IOManager getIoManager() {
         return ioManager;
