@@ -11,7 +11,4 @@ public class LottoView {
         this.input = new Input();
         this.output = new Output();
     }
-
-
-
 }

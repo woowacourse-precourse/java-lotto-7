@@ -18,14 +18,15 @@ public class LottoController {
         this.lottoService = new LottoService(lottoModel);
     }
 
-
     public void start() {
         int lottoCount = getLottoCount();
         lottoView.output.lottoCount(lottoCount);
         lottoService.generateLottos(lottoCount);
+
         for (int i = 0; i < lottoCount; i++) {
             lottoView.output.lottoNumber(lottoModel.getLottoNumbers(i));
         }
+
         List<Integer> winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber(winningNumber);
 
@@ -33,7 +34,6 @@ public class LottoController {
         for (int i = 0; i < lottoCount; i++) {
             lottoService.winningCount(winningNumber, i, winningCount, bonusNumber);
         }
-
         lottoView.output.winningResult(winningCount, lottoService.getRate(lottoCount, winningCount));
     }
 
