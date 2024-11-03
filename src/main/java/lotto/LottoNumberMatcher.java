@@ -66,19 +66,19 @@ public class LottoNumberMatcher {
     }
 
     private int countMatchedNumbers(Lotto lotto) {
-        int correctCount = 0;
+        int matchNumberCount = 0;
 
         for(LottoNumber value : lotto.getValue()) {
             if(lottoGame.getWinningNumbers().contains(value)) {
-                correctCount++;
+                matchNumberCount++;
             }
         }
 
-        if (correctCount == 5) {
+        if (matchNumberCount == 5) {
             if (lotto.contains(lottoGame.getBonusNumber().getValue())) {
-                correctCount = 7;
+                matchNumberCount = 7;
             }
         }
-        return correctCount;
+        return matchNumberCount;
     }
 }
