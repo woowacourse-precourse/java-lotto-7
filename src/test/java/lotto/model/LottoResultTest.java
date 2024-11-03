@@ -2,8 +2,6 @@ package lotto.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import lotto.model.LottoRank;
-import lotto.model.LottoResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
