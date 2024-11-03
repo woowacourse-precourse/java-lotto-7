@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.text.DecimalFormat;
 import java.util.Map;
 
 public class Price {
@@ -20,8 +21,10 @@ public class Price {
 	}
 
 	public String getProfitRate(Map<Winning, Integer> winningResult) {
+		DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
 		long totalWinningPrize = Winning.getTotalWinningPrize(winningResult);
 		double profitRate = (double)totalWinningPrize / price * PERCENTAGE_MULTIPLIER;
+		return decimalFormat.format(profitRate);
 	}
 
 	private void validatePrice(int price) {
