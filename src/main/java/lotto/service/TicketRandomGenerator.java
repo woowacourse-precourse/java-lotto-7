@@ -21,9 +21,7 @@ public class TicketRandomGenerator implements TicketGenerator {
     public List<Ticket> getTickets() {
         List<Ticket> tickets = new ArrayList<>();
 
-        long ticket_count = money / Constants.LOTTO_PRICE.getLong();
-
-        for (int i = 0; i < ticket_count; i++) {
+        for (int i = 0; i < getTicketCount(); i++) {
             tickets.add(getTicket());
         }
 
@@ -36,7 +34,11 @@ public class TicketRandomGenerator implements TicketGenerator {
         return new Ticket(numbers);
     }
 
-    protected List<Integer> generateRandomNumbers() {
+    private long getTicketCount() {
+        return money / Constants.LOTTO_PRICE.getLong();
+    }
+
+    private List<Integer> generateRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 Constants.MIN_LOTTO_NUMBER.getNumber(),
                 Constants.MAX_LOTTO_NUMBER.getNumber(),
