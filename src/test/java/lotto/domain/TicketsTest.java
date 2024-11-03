@@ -1,19 +1,32 @@
 package lotto.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class TicketsTest {
 
     @Test
-    void 구입금액_만큼의_로또를_발급한다() {
+    void 티켓_개수만큼_로또_티켓이_생성된다() {
         // given
-        TicketCount ticketCount = new TicketCount(10000);
+        Tickets tickets = new Tickets(5);
+
+        // when & then
+        assertThat(tickets.getSize()).isEqualTo(5);
+    }
+
+    @Test
+    void 티켓_정보를_반환한다() {
+        // given
+        Tickets tickets = new Tickets(3);
 
         // when
-        Tickets tickets = new Tickets(ticketCount);
+        List<String> ticketsInfo = tickets.getTicketsInfo();
 
         // then
-        Assertions.assertThat(tickets.getSize()).isEqualTo(10);
+        assertThat(ticketsInfo).hasSize(3);
+        ticketsInfo.forEach(info -> assertThat(info).matches("\\d+, \\d+, \\d+, \\d+, \\d+, \\d+"));
     }
 }
