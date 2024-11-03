@@ -11,12 +11,11 @@ public class LottoManager {
 
     private int amount;
     private Lotto winningLotto;
-    private int bonus;
     private HashMap<LottoRank, Integer> winningResult;
 
     public void setWinningLotto(List<Integer> numbers, int bonus) {
         this.winningLotto = new Lotto(numbers);
-        this.bonus = bonus;
+        this.winningLotto.setBonusNumber(bonus);
     }
 
     public ArrayList<Lotto> purchaseLotto(int amount) {
@@ -51,7 +50,7 @@ public class LottoManager {
                 if (winningLotto.getNumbers().contains(i)) {
                     count++;
                 }
-                if (bonus == i) {
+                if (winningLotto.getBonusNumber() == i) {
                     bonusMatch = true;
                 }
             }
