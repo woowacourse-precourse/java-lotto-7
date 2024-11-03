@@ -12,4 +12,9 @@ public class LottoPurchase {
     public LottoCount getLottoCount() {
         return lottoCount;
     }
+
+    public String calculateEarnRate(int prizeMoney) {
+        double rate = (double) prizeMoney / lottoPrice.getgameMoney();
+        return String.format("%.1f", rate * 100);
+    }
 }
