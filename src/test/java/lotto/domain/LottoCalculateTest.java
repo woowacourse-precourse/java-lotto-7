@@ -5,6 +5,8 @@ import static lotto.global.LottoScore.SECOND;
 import static lotto.global.LottoScore.THIRD;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoCalculate;
 import lotto.global.LottoScore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
