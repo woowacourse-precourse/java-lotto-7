@@ -1,6 +1,7 @@
-package lotto.domain.winner;
+package lotto.domain.lotto;
 
 import java.util.stream.Stream;
+import lotto.domain.winner.MessageProvider;
 
 public enum ResultState implements MessageProvider {
 

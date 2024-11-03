@@ -1,7 +1,5 @@
 package lotto.domain.lotto;
 
-import lotto.domain.winner.ResultState;
-
 public class LottoResult {
 
     private final ResultState resultState;

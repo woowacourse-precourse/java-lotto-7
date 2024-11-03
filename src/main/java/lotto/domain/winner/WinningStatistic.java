@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.common.Price;
 import lotto.domain.lotto.LottoResult;
+import lotto.domain.lotto.ResultState;
 
 public class WinningStatistic {
 

@@ -1,5 +1,7 @@
 package lotto.domain.winner;
 
+import lotto.domain.lotto.ResultState;
+
 public class WinnerFrequency {
 
     private final ResultState resultState;
