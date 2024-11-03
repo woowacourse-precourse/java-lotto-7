@@ -22,5 +22,11 @@ public class OutputView {
     public static void printStatistics(Map<Rank, Integer> rankCount, long totalWinnings, double roi) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
+
+        Arrays.stream(Rank.values())
+                .filter(rank -> rankCount.getOrDefault(rank, 0) > 0)
+                .forEach(rank -> System.out.printf("%s (%d원) - %d개%n", rank.getLabel(), rank.getPrize(), rankCount.get(rank)));
+
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", roi);
     }
 }
