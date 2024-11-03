@@ -1,9 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,7 +17,12 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        for (Integer number : numbers) {
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if (numberSet.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+        for (int i = 0; i < numbers.size(); i++) {
+            Integer number = numbers.get(i);
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
@@ -25,7 +30,23 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        Collections.sort(numbers);
         return new ArrayList<>(numbers);
+    }
+
+    public int matchCount(List<Integer> winningNumbers) {
+        Set<Integer> winningSet = new HashSet<>(winningNumbers);
+        int matchCount = 0;
+
+        for (int i = 0; i < numbers.size(); i++) {
+            Integer number = numbers.get(i);
+            if (winningSet.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    public boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 }
