@@ -58,7 +58,6 @@ public class BonusNumber {
     private void checkIsValidRange(int input) {
         int MIN = 1;
         int MAX = 45;
-
         if (input < MIN || input > MAX) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이여야 합니다.");
         }
