@@ -6,15 +6,8 @@ public class Money {
     private static final int LOTTO_PRICE = 1000;
     private final int amount;
 
-    public Money(int amount) {
-        validateAmount(amount);
+    public Money(Integer amount) {
         this.amount = amount;
-    }
-
-    private void validateAmount(int amount) {
-        if (amount <= 0 || amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(InputErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
-        }
     }
 
     public int getLottoCount() {

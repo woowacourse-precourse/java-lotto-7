@@ -4,6 +4,8 @@ import lotto.util.InputParser;
 import lotto.util.ValidationUtils;
 import lotto.view.InputView;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 public class InputService {
@@ -29,10 +31,24 @@ public class InputService {
         while (true) {
             try {
                 String winningNum = inputView.getWinningNum();
-                return inputParser.parseWinningNumbers(winningNum);
+
+                validateWinningNumInput(winningNum);
+
+                Set<Integer> winningNumbers = inputParser.parseWinningNumbers(winningNum);
+                ValidationUtils.validateWinningNumbersCount(winningNumbers);
+
+                return winningNumbers;
+
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void validateWinningNumInput(String winningNum) {
+        List<String> numbers = Arrays.asList(winningNum.split(","));
+        for (String num : numbers) {
+            ValidationUtils.validateNumberFormat(num.trim());
         }
     }
 

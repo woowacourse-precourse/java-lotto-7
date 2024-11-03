@@ -15,14 +15,10 @@ public class InputParser {
     }
 
     public Set<Integer> parseWinningNumbers(String winningNumInput) {
-        Set<Integer> numbers = Arrays.stream(winningNumInput.split(","))
+        return Arrays.stream(winningNumInput.split(","))
                 .map(String::trim)
-                .peek(ValidationUtils::validateNumberFormat)
                 .map(Integer::parseInt)
                 .collect(Collectors.toCollection(TreeSet::new));
-
-        ValidationUtils.validateWinningNumbers(numbers);
-        return numbers;
     }
 
     public int parseBonusNumber(String bonusNumInput) {

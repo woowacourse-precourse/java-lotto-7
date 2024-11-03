@@ -64,4 +64,10 @@ public class ValidationUtils {
             throw new IllegalArgumentException(InputErrorMessage.NON_NUMERIC_PURCHASE_AMOUNT.getMessage());
         }
     }
+
+    public static void validateWinningNumbersCount(Set<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(InputErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage());
+        }
+    }
 }
