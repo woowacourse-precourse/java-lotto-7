@@ -7,7 +7,6 @@ import lotto.model.LottoRank;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.ResultView;
-import lotto.model.strategy.NumberGenerationStrategy;
 
 public class LottoController {
 
@@ -15,10 +14,14 @@ public class LottoController {
     private final InputView inputView;
     private final ResultView resultView;
 
-    public LottoController(NumberGenerationStrategy strategy) {
-        this.lottoService = new LottoService(strategy);
-        this.inputView = new InputView();
-        this.resultView = new ResultView();
+    public LottoController(
+            LottoService lottoService,
+            InputView inputView,
+            ResultView resultView
+    ) {
+        this.lottoService = lottoService;
+        this.inputView = inputView;
+        this.resultView = resultView;
     }
 
     /**
