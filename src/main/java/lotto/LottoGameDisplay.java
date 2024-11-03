@@ -40,9 +40,8 @@ public class LottoGameDisplay {
     public int inputBonusNumber(List<Integer> winnerNumbers) {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
-        String rawBonusNumber = Console.readLine();
 
-        return Integer.parseInt(rawBonusNumber);
+        return inputNumber();
     }
 
     private int inputNumber() {
