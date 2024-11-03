@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class Bonus {
     private final int bonusNumber;
 
@@ -17,17 +19,21 @@ public class Bonus {
 
     private void rangeValidate() {
         if (!(bonusNumber >= 1 && bonusNumber <= 45)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이여야 합니다.");
+            throw new IllegalArgumentException("보너스 번호는 1~45 사이여야 합니다.");
         }
     }
 
     private void hasDuplicated(Lotto lotto) {
         if (lotto.hasDuplicatedBonusNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 될수 없습니다.");
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복 될수 없습니다.");
         }
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public boolean matching(List<Integer> userLotto) {
+        if (userLotto.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
     }
+
 }
