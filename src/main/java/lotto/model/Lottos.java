@@ -23,4 +23,8 @@ public class Lottos {
         }
         this.lottoTickets = lottoTickets;
     }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
+    }
 }

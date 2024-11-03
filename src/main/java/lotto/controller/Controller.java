@@ -1,9 +1,11 @@
 package lotto.controller;
 
+import lotto.model.Lotto;
 import lotto.model.LottoCreator;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,8 +13,9 @@ import java.util.stream.Collectors;
 
 public class Controller {
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
 
-    public void purchaseLottos() {
+    private int chooseNumberOfLottoContinuously(){
         LottoCreator lottoCreator = new LottoCreator();
         int numberOfLotto;
         while (true) {
@@ -20,7 +23,15 @@ public class Controller {
             numberOfLotto = lottoCreator.chooseNumberOfLotto(purchasePrice);
             if (numberOfLotto != LottoCreator.INITIAL_NUMBER_OF_LOTTO) break;
         }
+        return numberOfLotto;
+    }
+
+    public void purchaseLottos() {
+        int numberOfLotto = chooseNumberOfLottoContinuously();
         Lottos lottos = new Lottos(numberOfLotto);
+        outputView.outputNumberOfLotto(numberOfLotto);
+        List<Lotto> lottoTickets = lottos.getLottoTickets();
+        outputView.outputLottos(lottoTickets);
     }
 
     private static List<Integer> convertToIntegerList(String winningNumber) {
