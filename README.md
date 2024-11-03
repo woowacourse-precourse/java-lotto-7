@@ -168,6 +168,8 @@
   - 로또 결과 제목을 출력한다.
 - displayLottoResultState
   - 로또 결과를 출력한다.
+- displayProfitability
+  - 로또 수익률을 출력한다.
 
 ## 로직
 
