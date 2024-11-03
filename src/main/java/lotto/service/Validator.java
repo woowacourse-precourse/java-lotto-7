@@ -35,22 +35,18 @@ public class Validator {
         }
     }
 
-    public void handleInvalidCharacterInNumber() {
-        throw new IllegalArgumentException(
-            "[ERROR] 숫자, 쉼표(,) 외 다른 문자가 입력되었습니다."
-        );
-    }
-
-    public void handleEmptyInputInNumbers() {
-        throw new IllegalArgumentException(
-            "[ERROR] 입력되지 않은 번호가 있습니다."
-        );
+    public void validateEmptyInputInNumbers(String input) {
+        if(input == null) {
+            throw new IllegalArgumentException(
+                "[ERROR] 입력되지 않은 번호가 있습니다. 리스트를 다시 입력해주세요."
+            );
+        }
     }
 
     public void validateNumberCount(int size) {
         if (size != 6) {
             throw new IllegalArgumentException(
-                "[ERROR] 로또 번호는 6개여야 합니다." + size
+                "[ERROR] 로또 번호는 6개여야 합니다. 현재 사이즈 : " + size
             );
         }
     }

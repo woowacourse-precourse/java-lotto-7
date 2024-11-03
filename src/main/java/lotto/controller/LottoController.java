@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.Money;
+import lotto.domain.WinningNumbers;
 import lotto.service.GenerateLotto;
 import lotto.service.InputService;
 import lotto.service.OutputService;
@@ -17,5 +18,7 @@ public class LottoController {
         Money money = new Money(inputService.inputPaidMoney());
         int amountLotto = money.getAmount();
         List<Lotto> purchasedLotto = generateLotto.generateLottoNumbers(amountLotto);
+        outputService.requestWinningNumbers();
+        WinningNumbers winningNumbers = inputService.inputWinningNumbers();
     }
 }
