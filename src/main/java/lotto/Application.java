@@ -45,7 +45,7 @@ public class Application {
         bonusWinningPrice.put(5, 30000000);
         LottoChecker lottoChecker = new LottoChecker(winningPrice, bonusWinningPrice);
 
-        lottoChecker.result(winningLotto, lottoes, bonusNumber);
+        lottoChecker.operateResult(winningLotto, lottoes, bonusNumber);
     }
 
 }

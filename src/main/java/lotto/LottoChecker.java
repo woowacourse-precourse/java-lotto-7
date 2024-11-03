@@ -82,7 +82,7 @@ public class LottoChecker {
         }
     }
 
-    public void result(Lotto winningLotto, List<Lotto> lottoes, int bonusNumber) {
+    public void operateResult(Lotto winningLotto, List<Lotto> lottoes, int bonusNumber) {
         match(winningLotto, lottoes, bonusNumber);
 
         printWinningInfo();
