@@ -2,7 +2,7 @@
 
 ## 프로젝트 소개
     본 프로그램은 6개의 숫자로 이루어진 로또로 구매할 금액을 입력하면 금액에 맞는 갯수의 로또를 
-    랜덤하게 받게 되고 입력한 당첨번호와 비교하여 당첨 통계를 내주는 프로그램입니다. 
+    랜덤하게 받게 되고 입력한 당첨번호와 보너스 번호를 비교하여 당첨 통계를 내주는 프로그램입니다. 
 
 
 ## 구현 기능 목록
@@ -29,3 +29,45 @@
 - [X] 보너스 숫자 예외 처리
 - [X] 입력 받은 당첨 번호 및 보너스 번호 중복 예외처리
 
+## 파일 구조
+    ├── main
+    │     └── java  
+    │           └── lotto
+    │                 ├── Application.java
+    │                 ├── constant
+    │                 │       ├── Constant.java
+    │                 │       ├── ErrorMessage.java
+    │                 │       └── Message.java
+    │                 ├── controller
+    │                 │       └── LottoController.java
+    │                 ├── domain
+    │                 │       ├── Bonus.java
+    │                 │       ├── Lotto.java
+    │                 │       ├── PurchaseAmount.java
+    │                 │       ├── RandomNumbers.java
+    │                 │       ├── Rank.java
+    │                 │       ├── WinningLotto.java
+    │                 │       └── WinningNumber.java
+    │                 ├── model
+    │                 │       ├── LottoCollection.java
+    │                 │       └── WonLotto.java
+    │                 ├── service
+    │                 │       └── LottoService.java
+    │                 └── view
+    │                       ├── InputView.java
+    │                       └── OutputView.java
+    └── test
+          └── java
+                └── lotto
+                      ├── ApplicationTest.java
+                      ├── domain
+                      │     ├── BonusTest.java
+                      │     ├── LottoTest.java
+                      │     ├── PurchaseAmountTest.java
+                      │     ├── RandomNumbersTest.java
+                      │     ├── RankTest.java
+                      │     └── WinningLottoTest.java
+                      ├── model
+                      │     └── LottoCollectionTest.java
+                      └── service
+                            └── LottoServiceTest.java
