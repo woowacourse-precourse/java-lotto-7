@@ -36,12 +36,25 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw ErrorCode.INVALID_LOTTO_NUMBER_COUNT.exception();
+            throw ErrorCode.INVALID_LOTTO_NUMBER.exception();
         }
 
+        numbersDuplicateCheck(numbers);
+        numbersRangeCheck(numbers);
+    }
+
+    private void numbersDuplicateCheck(List<Integer> numbers) {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
         if (numbers.size() > nonDuplicateNumbers.size()) {
             throw ErrorCode.DUPLICATE_LOTTO_NUMBER.exception();
+        }
+    }
+
+    private void numbersRangeCheck(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number <= 0 || number > 45) {
+                throw ErrorCode.INVALID_LOTTO_NUMBER.exception();
+            }
         }
     }
 
