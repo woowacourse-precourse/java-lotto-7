@@ -26,7 +26,7 @@ public class IteratorInputHandler {
                 inputView::inputLottoPurchaseAmount,
                 lottoPurchaseAmount -> {
                     inputValidator.validatePurchaseAmount(lottoPurchaseAmount);
-                    return Money.from(Long.parseLong(lottoPurchaseAmount));
+                    return Money.from(Long.parseLong(lottoPurchaseAmount.trim()));
                 }
         );
     }
