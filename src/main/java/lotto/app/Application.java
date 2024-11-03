@@ -34,7 +34,7 @@ public class Application {
         int bonusNum = inputHandler.getBonusNum();
 
         List<Score> scores = lottoService.calculateScores(lottos, successLotto, bonusNum);
-        displayResult(scores);
+        displayResult(scores, purchaseAmount);
     }
 
     private Lotto getWinningLotto() {
@@ -42,8 +42,11 @@ public class Application {
         return lottoService.generateWinningLotto(winningNums);
     }
 
-    private void displayResult(List<Score> scores) {
+    private void displayResult(List<Score> scores, int purchaseAmount) {
         Map<Score, Integer> scoreCount = lottoService.calculateScoreCount(scores);
+        int totalPrizeMoney = lottoService.calculateTotalPrizeMoney(scores);
+        double rateOfReturn = lottoService.calculateRateOfReturn(totalPrizeMoney, purchaseAmount);
         outputHandler.printLottosResult(scoreCount);
+        outputHandler.printRateOfReturn(rateOfReturn);
     }
 }

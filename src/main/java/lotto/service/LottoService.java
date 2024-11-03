@@ -41,6 +41,16 @@ public class LottoService {
         return scores;
     }
 
+    public int calculateTotalPrizeMoney(List<Score> finalScore) {
+        int totalPrizeMoney = finalScore.stream().map(Score::getPrizeMoney).reduce(0, Integer::sum);
+        return totalPrizeMoney;
+    }
+
+    public double calculateRateOfReturn(int totalPrizeMoney, int money) {
+        double rate = (double) totalPrizeMoney / money * 100;
+        return rate;
+    }
+
     public Map<Score, Integer> calculateScoreCount(List<Score> scores) {
         Map<Score, Integer> scoreCount = new EnumMap<>(Score.class);
         for (Score score : scores) {

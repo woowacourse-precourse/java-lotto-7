@@ -24,4 +24,8 @@ public class OutputHandler {
             System.out.printf("%s - %d개%n", score.getPrintMessage(), count);
         }
     }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", rateOfReturn);
+    }
 }
