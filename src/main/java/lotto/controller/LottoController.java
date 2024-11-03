@@ -28,7 +28,8 @@ public class LottoController {
         Map<Rank, Integer> rankResults = calculateResults(purchasedLottos, winningNumbers);
         displayResults(rankResults);
 
-        displayProfitRate(rankResults, purchaseAmount);
+        double profitRate = calculateProfitRate(rankResults, purchaseAmount);
+        displayProfitRate(profitRate);
     }
 
     private int getPurchaseAmount() {
@@ -62,9 +63,12 @@ public class LottoController {
         OutputView.displayResults(rankResults);
     }
 
-    private void displayProfitRate(Map<Rank, Integer> rankResults, int purchaseAmount) {
+    private double calculateProfitRate(Map<Rank, Integer> rankResults, int purchaseAmount) {
         int totalPrize = calculateTotalPrize(rankResults);
-        double profitRate = (double) totalPrize / purchaseAmount * PERCENTAGE_MULTIPLIER;
+        return (double) totalPrize / purchaseAmount * PERCENTAGE_MULTIPLIER;
+    }
+
+    private void displayProfitRate(double profitRate) {
         OutputView.displayProfitRate(profitRate);
     }
 
