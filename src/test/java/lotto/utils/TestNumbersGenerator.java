@@ -2,7 +2,7 @@ package lotto.utils;
 
 import java.util.List;
 
-public class TestNumbersGenerator implements NumbersGenerator{
+public class TestNumbersGenerator implements NumbersGenerator {
     private final List<Integer> numbers;
 
     public TestNumbersGenerator(List<Integer> numbers) {

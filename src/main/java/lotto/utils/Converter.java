@@ -9,7 +9,7 @@ public class Converter {
     private static final String WHITESPACE_REGEX = "\\s+";
     private static final String EMPTY_STRING = "";
 
-    private Converter(){
+    private Converter() {
     }
 
     public static int convertToNumber(final String input) {

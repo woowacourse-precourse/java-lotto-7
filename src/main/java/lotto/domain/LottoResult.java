@@ -12,7 +12,7 @@ public class LottoResult {
 
     private final EnumMap<Ranking, Integer> rankingMap;
 
-    private LottoResult(EnumMap<Ranking, Integer> rankingMap){
+    private LottoResult(EnumMap<Ranking, Integer> rankingMap) {
         this.rankingMap = rankingMap;
     }
 

@@ -5,7 +5,10 @@ import lotto.utils.LottoException;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static lotto.constants.ErrorMessage.*;
+import static lotto.constants.ErrorMessage.ERROR_EMPTY_INPUT;
+import static lotto.constants.ErrorMessage.ERROR_NOT_POSITIVE_NUMBER;
+import static lotto.constants.ErrorMessage.ERROR_TRAILING_COMMA;
+import static lotto.constants.ErrorMessage.ERROR_INVALID_WIN_NUMBERS;
 
 public class InputValidator {
     private static final String DELIMITER = ",";

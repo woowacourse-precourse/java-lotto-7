@@ -1,18 +1,19 @@
 package lotto.constants;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class RankingTest {
 
     @ParameterizedTest
     @MethodSource("provideRankingResult")
     void 당첨_순위_계산_테스트(int matchCount, boolean isMatch, Ranking expectRanking) {
-        Assertions.assertThat(Ranking.of(matchCount, isMatch)).isEqualTo(expectRanking);
+        assertThat(Ranking.of(matchCount, isMatch)).isEqualTo(expectRanking);
     }
 
     static Stream<Arguments> provideRankingResult() {

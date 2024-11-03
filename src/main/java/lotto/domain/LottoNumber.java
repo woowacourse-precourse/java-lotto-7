@@ -23,7 +23,7 @@ public class LottoNumber {
         this.number = number;
     }
 
-    public static LottoNumber valueOf(final int number){
+    public static LottoNumber valueOf(final int number) {
         LottoNumberValidator.validateLottoNumber(number);
         return NUMBER_POOL.get(number);
     }

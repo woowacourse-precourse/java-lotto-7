@@ -8,7 +8,7 @@ import static lotto.constants.ErrorMessage.ERROR_BONUS_NUMBER_DUPLICATE;
 
 public class WinningLottoValidator {
 
-    private WinningLottoValidator(){
+    private WinningLottoValidator() {
     }
 
     public static void validateWinningLotto(final List<Integer> winNumbers, final int bonusNumber) {

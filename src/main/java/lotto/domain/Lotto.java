@@ -31,7 +31,7 @@ public class Lotto {
                 .sum();
     }
 
-    public boolean isContainNumber(final LottoNumber lottoNumber){
+    public boolean isContainNumber(final LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
     }
 

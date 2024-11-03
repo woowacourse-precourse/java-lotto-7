@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import static lotto.constants.LottoValue.LOTTO_PRICE;
 
-
 public class LottoTicket {
 
     private final List<Lotto> lottos;
@@ -22,13 +21,13 @@ public class LottoTicket {
                 .collect(Collectors.toList());
     }
 
-    private Ranking checkSingleRanking(final Lotto lotto, final WinningLotto winningLotto){
+    private Ranking checkSingleRanking(final Lotto lotto, final WinningLotto winningLotto) {
         int matchCount = lotto.calculateMatchCount(winningLotto.getLotto().getNumbers());
         boolean isBonus = lotto.isContainNumber(winningLotto.getBonusNumber());
         return Ranking.of(matchCount, isBonus);
     }
 
-    public int getLottoTicketPrice(){
+    public int getLottoTicketPrice() {
         return lottos.size() * LOTTO_PRICE.getValue();
     }
 

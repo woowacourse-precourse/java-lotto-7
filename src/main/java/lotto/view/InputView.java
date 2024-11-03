@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 public class InputView {
 
-    private InputView(){
+    private InputView() {
     }
 
     public static int inputPurchaseAmount() {

@@ -11,16 +11,16 @@ import static lotto.constants.LottoValue.LOTTO_NUMBER_COUNT;
 
 public class LottoValidator {
 
-    private LottoValidator(){
+    private LottoValidator() {
     }
 
-    public static void validateLotto(final List<Integer> numbers){
+    public static void validateLotto(final List<Integer> numbers) {
         checkNumberCount(numbers);
         checkNumberDuplicate(numbers);
     }
 
     private static void checkNumberCount(final List<Integer> numbers) {
-        if(numbers.size() != LOTTO_NUMBER_COUNT.getValue()){
+        if (numbers.size() != LOTTO_NUMBER_COUNT.getValue()) {
             throw new LottoException(ERROR_LOTTO_COUNT);
         }
     }

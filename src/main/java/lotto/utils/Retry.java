@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 public class Retry {
 
-    private Retry(){
+    private Retry() {
     }
 
     public static <T> T retryOnException(final Supplier<T> operation) {

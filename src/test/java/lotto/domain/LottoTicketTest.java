@@ -14,7 +14,7 @@ public class LottoTicketTest {
     @Test
     void 로또_티켓에_있는_모든_로또의_당첨_결과를_조회한다() {
         LottoTicket lottoTicket = new LottoTicket(providerLottos());
-        WinningLotto winningLotto = WinningLotto.of(Lotto.from(List.of(1,2,3,4,5,6)), 7);
+        WinningLotto winningLotto = WinningLotto.of(Lotto.from(List.of(1, 2, 3, 4, 5, 6)), 7);
 
         List<Ranking> rankings = lottoTicket.checkRankings(winningLotto);
 
