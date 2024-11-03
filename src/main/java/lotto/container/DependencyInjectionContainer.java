@@ -9,6 +9,7 @@ import lotto.view.ConsoleView;
 import lotto.controller.LottoController;
 import lotto.service.amount.AmountService;
 import lotto.service.lotto.LottoService;
+import lotto.view.View;
 
 
 /**
@@ -24,7 +25,8 @@ public class DependencyInjectionContainer {
   }
 
   private void createLottoController () {
-    ConsoleView view = new ConsoleView();
+    ConsoleView consoleView = new ConsoleView();
+    container.put(View.class, consoleView);
 
     PurchaseAmountCommand purchaseAmountCommand = new PurchaseAmountCommand();
     AmountService amountService = new AmountService(purchaseAmountCommand);
@@ -35,7 +37,7 @@ public class DependencyInjectionContainer {
     LottoService lottoService = new LottoService(lottoCommand, bonusCommand);
     container.put(LottoService.class, lottoService);
 
-    LottoController lottoController = new LottoController(view, lottoService, amountService);
+    LottoController lottoController = new LottoController(consoleView, lottoService, amountService);
     container.put(LottoController.class, lottoController);
   }
 
