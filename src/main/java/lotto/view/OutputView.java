@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    public static void printPurchasedLottos(List<Lotto> purchasedLottos) {
+    public static void printPurchasedLottos(final List<Lotto> purchasedLottos) {
         System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : purchasedLottos) {
             List<Integer> sortedLotto = new ArrayList<>(lotto.getNumbers());
@@ -18,7 +18,7 @@ public class OutputView {
         }
     }
 
-    public static void printLottoResult(Map<Rank, Integer> resultCountMap) {
+    public static void printLottoResult(final Map<Rank, Integer> resultCountMap) {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (int i = Rank.values().length - 1; i >= 0; i--) {
@@ -31,11 +31,11 @@ public class OutputView {
         }
     }
 
-    public static void printRateOfReturn(double rateOfReturn) {
+    public static void printRateOfReturn(final double rateOfReturn) {
         System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
-    public static void printErrorMessage(String message) {
+    public static void printErrorMessage(final String message) {
         System.out.println(message);
     }
 }

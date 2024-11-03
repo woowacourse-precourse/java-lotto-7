@@ -7,13 +7,13 @@ import java.util.Map;
 public class LottoResult {
     private final Map<Rank, Integer> resultCountMap;
 
-    public LottoResult(WinningLotto winningLotto, List<Lotto> purchasedLottos) {
+    public LottoResult(final WinningLotto winningLotto, final List<Lotto> purchasedLottos) {
         this.resultCountMap = calculateResults(winningLotto, purchasedLottos);
     }
 
-    private Map<Rank, Integer> calculateResults(WinningLotto winningLotto, List<Lotto> lottos) {
+    private Map<Rank, Integer> calculateResults(final WinningLotto winningLotto, final List<Lotto> purchasedLottos) {
         Map<Rank, Integer> resultMap = initializeResultMap();
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : purchasedLottos) {
             int matchCount = calculateMatchCount(lotto, winningLotto);
             boolean hasBonus = lotto.getNumbers().contains(winningLotto.getBonusNumber());
             Rank rank = Rank.getRank(matchCount, hasBonus);
@@ -30,7 +30,7 @@ public class LottoResult {
         return resultMap;
     }
 
-    private int calculateMatchCount(Lotto lotto, WinningLotto winningLotto) {
+    private int calculateMatchCount(final Lotto lotto, final WinningLotto winningLotto) {
         int matchCount = 0;
         for (int number : lotto.getNumbers()) {
             if (winningLotto.getWinningNumbers().getNumbers().contains(number)) {

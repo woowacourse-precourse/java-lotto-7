@@ -11,7 +11,7 @@ public enum Rank {
     private final boolean needToCheckBonus;
     private final int prize;
 
-    Rank(int matchCount, boolean needToCheckBonus, int prize) {
+    Rank(final int matchCount, final boolean needToCheckBonus, final int prize) {
         this.matchCount = matchCount;
         this.needToCheckBonus = needToCheckBonus;
         this.prize = prize;
@@ -29,7 +29,7 @@ public enum Rank {
         return needToCheckBonus;
     }
 
-    public static Rank getRank(int matchCount, boolean hasBonus) {
+    public static Rank getRank(final int matchCount, final boolean hasBonus) {
         for (Rank rank : Rank.values()) {
             if (rank.matchCount == matchCount && (rank.needToCheckBonus == hasBonus)) {
                 return rank;
