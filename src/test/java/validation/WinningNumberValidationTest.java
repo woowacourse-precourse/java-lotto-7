@@ -1,5 +1,6 @@
 package validation;
 
+import java.util.List;
 import lotto.validation.WinningNumberValidation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -57,8 +58,21 @@ public class WinningNumberValidationTest {
     @ValueSource(strings = {"0", "46", "abc"})
     @DisplayName("보너스 번호가 null이나 빈 값이거나, 범위를 넘거나, 숫자가 아닌 경우 예외 발생")
     void InvalidBonusNumberTest(String input) {
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
         assertThatThrownBy(() -> {
-            WinningNumberValidation.parseValidatedBonusNumber(input);
+            WinningNumberValidation.parseValidatedBonusNumber(input, winningNumber);
+        })
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"1", "2", "3"})
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 때 예외 발생")
+    void DuplicateBonusNumberTest(String input) {
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> {
+            WinningNumberValidation.parseValidatedBonusNumber(input, winningNumber);
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
