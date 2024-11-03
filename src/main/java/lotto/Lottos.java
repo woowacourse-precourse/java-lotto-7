@@ -37,4 +37,12 @@ public class Lottos {
         }
         return numbersOfLottos;
     }
+
+    public int size() {
+        return lottos.size();
+    }
+
+    public Lotto lottoAt(int index) {
+        return lottos.get(index);
+    }
 }

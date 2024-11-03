@@ -61,11 +61,11 @@ public class WinningNumbers {
         }
     }
 
-    public boolean contains(int number) {
-        return numbers.contains(number);
-    }
-
     public boolean contains(BonusNumber bonusNumber) {
         return numbers.contains(bonusNumber.number());
+    }
+
+    public int numberAt(int index) {
+        return numbers.get(index);
     }
 }

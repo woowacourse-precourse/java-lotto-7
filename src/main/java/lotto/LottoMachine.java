@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
+    private static final int COUNTS_OF_LOTTO = 6;
+    private static final int COUNTS_OF_RANK = 5;
+
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
@@ -17,6 +20,8 @@ public class LottoMachine {
         showLottos(lottos);
         WinningNumbers winningNumbers = makeWinningNumbers();
         BonusNumber bonusNumber = makeBonusNumber(winningNumbers);
+        calculateResults(lottos, winningNumbers, bonusNumber);
+        
     }
 
     private Purchase makePurchase() {
@@ -87,5 +92,25 @@ public class LottoMachine {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 입력하신 번호가 이미 당첨번호에 존재합니다.");
         }
+    }
+
+    private void calculateResults(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        for (int i = 0; i < lottos.size(); i++) {
+            Result rank = decideRank(lottos.lottoAt(i), winningNumbers, bonusNumber);
+            rank.winningCountsUp();
+        }
+    }
+
+    private Result decideRank(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        double count = 0;
+        if(lotto.contains(bonusNumber.number())) {
+            count += 0.5;
+        }
+        for (int i = 0; i < COUNTS_OF_LOTTO; i++) {
+            if(lotto.contains(winningNumbers.numberAt(i))) {
+                count += 1;
+            }
+        }
+        return Result.getRank(count);
     }
 }
