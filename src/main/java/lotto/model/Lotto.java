@@ -9,6 +9,7 @@ public class Lotto {
     private static final int MIN = 1;
     private static final int MAX = 45;
     private static final int LOTTO_SIZE = 6;
+    private static final int LOTTO_PRICE = 1000;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -54,5 +55,9 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers.stream().toList();
+    }
+
+    public static int getLottoPrice() {
+        return LOTTO_PRICE;
     }
 }

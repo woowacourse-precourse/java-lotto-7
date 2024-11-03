@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.Lotto.getLottoPrice;
+
 import java.util.List;
 import lotto.common.ErrorMessage;
 import lotto.dto.MoneyDTO;
@@ -23,9 +25,5 @@ public class LottoSeller {
 
     private int getQuantity(MoneyDTO moneyDTO) {
         return (int) (moneyDTO.money() / getLottoPrice());
-    }
-
-    private int getLottoPrice() {
-        return LottoBank.LOTTO_PRICE;
     }
 }
