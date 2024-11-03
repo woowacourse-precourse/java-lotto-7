@@ -1,9 +1,11 @@
 package lotto.controller;
 
-import lotto.dto.LottoPrizeStatus;
+import java.util.HashMap;
+import lotto.dto.LottoEvaluatedStatus;
 import lotto.model.Lotto;
 import lotto.model.LottoOutlet;
-import lotto.model.LottoPrizeRanker;
+import lotto.model.LottoEvaluator;
+import lotto.model.LottoPrize;
 import lotto.model.LottoTicket;
 import lotto.utils.parser.AmountsParser;
 import lotto.utils.parser.BonusNumberParser;
@@ -24,20 +26,17 @@ public class Controller {
     }
 
     public void run() {
-        // 1. 로또 구입 금액 입력 받기
         int lottoAmount = readLottoAmount();
-        // 2. 로또 구매 하기
+
         LottoTicket lottoTickets = LottoOutlet.purchaseLottoTickets(lottoAmount);
-        // 3. 로또 번호 출력 하기
         printLottoStatus(lottoTickets);
-        // 4. 당첨 번호 입력 받기
+
         Lotto winningNumbers = readWinningNumbers();
-        // 5. 보너스 번호 입력 받기
         int bonusNumbers = readBonusNumber(winningNumbers);
-        // 6. 로또 확인 하기 -> 수정해야할 부분 
-        LottoPrizeRanker lottoPrizeRanker = new LottoPrizeRanker(lottoTickets, winningNumbers, bonusNumbers);
-        // 7. 당첨 통계 출력 하기
-        LottoPrizeStatus lottoPrizeStatus = lottoPrizeRanker.getPrizeStatus(lottoAmount);
+
+        LottoEvaluator lottoEvaluator = new LottoEvaluator(lottoTickets, winningNumbers, bonusNumbers);
+        LottoEvaluatedStatus lottoPrizeStatus = lottoEvaluator.getEvaluatedStatus();
+
         printLottoResult(lottoPrizeStatus);
     }
 
@@ -81,7 +80,7 @@ public class Controller {
         }
     }
 
-    private void printLottoResult(LottoPrizeStatus lottoPrizeStatus) {
+    private void printLottoResult(LottoEvaluatedStatus lottoPrizeStatus) {
         outputView.printPrizeResult(lottoPrizeStatus);
     }
 }
