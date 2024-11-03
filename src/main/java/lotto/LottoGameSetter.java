@@ -11,22 +11,23 @@ public class LottoGameSetter {
     public LottoGame set() {
 
         LottoPrice totalPrice = setTotalPrice();
+
         Integer totalLottoCount = setTotalLottoCount(totalPrice);
         Lottos lottos = drawLottery(totalLottoCount);
 
         printDrawingResult(lottos);
 
-        LottoNumbers winningNumbers = setWinningNumbers();
-        BonusNumber bonusNumber = setBonusNumber(winningNumbers);
+        LottoNumbers lottoNumbers = setLottoNumbers();
+        BonusNumber bonusNumber = setBonusNumber(lottoNumbers);
 
-        return LottoGame.of(totalPrice, lottos, winningNumbers, bonusNumber);
+        return LottoGame.of(totalPrice, lottos, lottoNumbers, bonusNumber);
     }
 
     private BonusNumber setBonusNumber(LottoNumbers winningNumbers) {
         return BonusNumber.of(ConsoleInput.getBonusNumberInput(), winningNumbers);
     }
 
-    private LottoNumbers setWinningNumbers() {
+    private LottoNumbers setLottoNumbers() {
         return LottoNumbers.from(ConsoleInput.getWinningNumbers());
     }
 
