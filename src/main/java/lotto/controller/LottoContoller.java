@@ -30,7 +30,7 @@ public class LottoContoller {
         lottoService.computeProfitRate(
                 inputView.inputPurchaseAmount(),
                 inputView.inputWinningNumbers(),
-                ""
+                inputView.inputBonusNumber()
         );
     }
 }

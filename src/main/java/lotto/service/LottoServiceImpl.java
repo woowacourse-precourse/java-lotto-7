@@ -28,7 +28,7 @@ public class LottoServiceImpl implements LottoService{
         lottoRepository.generateRandomLottos(numericPurchaseAmount);
         return (double) lottoRepository.findTotalPrizeByWinningNumbersAndBonusNumber(
                 parseIntegerList(winningNumbers),
-                0
+                Integer.parseInt(bonusNumber)
         ) / numericPurchaseAmount;
     }
 
