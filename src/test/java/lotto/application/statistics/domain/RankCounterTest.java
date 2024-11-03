@@ -3,6 +3,7 @@ package lotto.application.statistics.domain;
 
 import static lotto.application.statistics.domain.Rank.FIFTH;
 import static lotto.application.statistics.domain.Rank.FIRST;
+import static lotto.application.statistics.domain.Rank.FOURTH;
 import static lotto.application.statistics.domain.Rank.NONE;
 import static lotto.application.statistics.domain.Rank.SECOND;
 import static lotto.application.statistics.domain.Rank.THIRD;
@@ -48,6 +49,26 @@ class RankCounterTest {
                 () -> assertThat(counter.getCount(FIRST)).isEqualTo(2),
                 () -> assertThat(counter.getCount(SECOND)).isEqualTo(1)
         );
+    }
+
+    @DisplayName("총 상금 정확하게 계산함")
+    @Test
+    void 총_상금_정확하게_계산함() {
+        // given
+        RankCounter counter = new RankCounter();
+        counter.add(FIRST);
+        counter.add(SECOND);
+        counter.add(THIRD);
+        counter.add(FOURTH);
+        counter.add(FIFTH);
+        counter.add(NONE);
+
+        // when
+        int totalPrice = counter.calculateTotalPrize();
+
+        // then
+        int expect = 2000000000 + 30000000 + 1500000 + 50000 + 5000 + 0;
+        assertThat(totalPrice).isEqualTo(expect);
     }
 
 }
