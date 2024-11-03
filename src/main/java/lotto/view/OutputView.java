@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.Calculator;
 import lotto.domain.LotteryMachine;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResultChecker;
@@ -38,6 +39,11 @@ public class OutputView {
             if (rank.equals(Rank.NONE)) continue;
             System.out.printf("%s - %d개\n", rank.getMessage(), matchCount);
         }
+    }
+
+    public static void printLottoProfit(double profit){
+        String profitFormat = String.format("%.1f",profit);
+        System.out.printf("총 수익률은 %s%% 입니다.",profitFormat);
     }
 
 }
