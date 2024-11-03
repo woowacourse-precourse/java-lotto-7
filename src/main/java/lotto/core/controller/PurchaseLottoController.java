@@ -3,6 +3,8 @@ package lotto.core.controller;
 import lotto.commons.util.Command;
 import lotto.commons.util.Repeat;
 import lotto.core.constants.InputViewHeader;
+import lotto.core.controller.request.VoidRequest;
+import lotto.core.controller.response.PurchaseLottoResponse;
 import lotto.core.dto.LottoPurchaseAmountDto;
 import lotto.core.dto.LottoTicketDto;
 import lotto.core.service.CreateLottoPurchaseAmountService;
@@ -10,7 +12,7 @@ import lotto.core.service.PublishLottoTicketService;
 import lotto.core.view.InputLottoPurchaseAmountView;
 import lotto.core.view.PublishLottoTicketView;
 
-public class PurchaseLottoController implements Controller<Class<Void>, LottoTicketDto> {
+public class PurchaseLottoController implements Controller<VoidRequest, PurchaseLottoResponse> {
 
     private final InputLottoPurchaseAmountView inputLottoPurchaseAmountView;
 
@@ -31,11 +33,11 @@ public class PurchaseLottoController implements Controller<Class<Void>, LottoTic
     }
 
     @Override
-    public LottoTicketDto request(Class<Void> unused) {
+    public PurchaseLottoResponse request(VoidRequest unused) {
         LottoPurchaseAmountDto amount = this.processInputLottoPurchaseAmount();
         LottoTicketDto ticket = this.publishLottoTicketService.publish(amount);
         this.publishLottoTicketView.display(ticket);
-        return ticket;
+        return PurchaseLottoResponse.dtoOf(ticket);
     }
 
     private LottoPurchaseAmountDto processInputLottoPurchaseAmount() {

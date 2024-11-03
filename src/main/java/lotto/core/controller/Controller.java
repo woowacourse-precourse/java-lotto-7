@@ -1,7 +1,10 @@
 package lotto.core.controller;
 
-public interface Controller<Request, Response> {
+import lotto.core.controller.request.Request;
+import lotto.core.controller.response.Response;
 
-    Response request(Request request);
+public interface Controller<Req extends Request, Res extends Response> {
+
+    Res request(Req request);
 
 }

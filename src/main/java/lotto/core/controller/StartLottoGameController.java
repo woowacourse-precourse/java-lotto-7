@@ -1,10 +1,15 @@
 package lotto.core.controller;
 
+import java.util.List;
 import lotto.commons.util.Command;
 import lotto.commons.util.Repeat;
 import lotto.core.constants.InputViewHeader;
+import lotto.core.controller.request.StartLottoGameRequest;
+import lotto.core.controller.request.StartLottoGameRequest.LottoPurchaseAmountRequest;
+import lotto.core.controller.response.VoidResponse;
 import lotto.core.dto.LottoDto;
 import lotto.core.dto.LottoNumberDto;
+import lotto.core.dto.LottoPurchaseAmountDto;
 import lotto.core.dto.LottoResultDto;
 import lotto.core.dto.LottoTicketDto;
 import lotto.core.service.CreateBonusLottoNumberService;
@@ -14,7 +19,7 @@ import lotto.core.view.InputBonusLottoNumberView;
 import lotto.core.view.InputWinningLottoView;
 import lotto.core.view.MatchWinningLottoView;
 
-public class StartLottoGameController implements Controller<LottoTicketDto, Class<Void>> {
+public class StartLottoGameController implements Controller<StartLottoGameRequest, VoidResponse> {
 
     private final InputWinningLottoView inputWinningLottoView;
 
@@ -43,12 +48,20 @@ public class StartLottoGameController implements Controller<LottoTicketDto, Clas
     }
 
     @Override
-    public Class<Void> request(LottoTicketDto ticket) {
+    public VoidResponse request(StartLottoGameRequest request) {
+        LottoTicketDto ticket = dtoAsRequest(request);
         LottoDto winningLotto = processInputWinningLotto();
         LottoNumberDto bonusNumber = processInputBonusLottoNumber(winningLotto);
         LottoResultDto winningResult = this.matchWinningLottoService.match(ticket, winningLotto, bonusNumber);
         this.matchWinningLottoView.display(winningResult);
-        return Void.class;
+        return VoidResponse.type();
+    }
+
+    private LottoTicketDto dtoAsRequest(StartLottoGameRequest request) {
+        LottoPurchaseAmountRequest amountRequest = request.amount();
+        LottoPurchaseAmountDto amount = new LottoPurchaseAmountDto(amountRequest.value(), amountRequest.lottoCount());
+        List<LottoDto> lottos = request.lottos().stream().map(it -> new LottoDto(it.numbers())).toList();
+        return new LottoTicketDto(amount, lottos);
     }
 
     private LottoDto processInputWinningLotto() {
