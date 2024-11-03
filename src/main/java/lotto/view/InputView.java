@@ -2,8 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.enums.OutputMessage;
-import lotto.exception.LottoNumberTypeValidator;
-import lotto.exception.MoneyTypeValidator;
+import lotto.validator.LottoNumberTypeValidator;
+import lotto.validator.MoneyTypeValidator;
 
 import java.util.List;
 
