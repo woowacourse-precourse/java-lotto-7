@@ -4,6 +4,8 @@ import static lotto.utils.Error.DUPLICATED_WINNING_NUMBERS;
 import static lotto.utils.Error.NOT_SIX_WINNING_NUMBERS;
 import static lotto.utils.Error.WINNING_NUMBERS_OUT_OF_RANGE;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,11 +18,11 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
     }
 
     public List<Integer> getWinningNumbers() {
-        return this.numbers;
+        return Collections.unmodifiableList(numbers);
     }
 
     private void validate(List<Integer> numbers) {
