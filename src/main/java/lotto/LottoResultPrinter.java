@@ -6,13 +6,14 @@ import java.util.Comparator;
 
 public class LottoResultPrinter {
 
-    public static void printResults(Map<PrizeRank, Integer> resultCounts) {
+    public static void printResults(Map<PrizeRank, Integer> resultCounts, int purchaseAmount) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
         int totalPrize = calculateTotalPrize(resultCounts);
         printPrizeCounts(resultCounts);
-        printYield(totalPrize, calculateTotalAmountSpent(resultCounts));
+        printYield(totalPrize, purchaseAmount);
+
     }
 
     private static void printPrizeCounts(Map<PrizeRank, Integer> resultCounts) {
@@ -50,11 +51,8 @@ public class LottoResultPrinter {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", yield);
     }
 
-    private static int calculateTotalAmountSpent(Map<PrizeRank, Integer> resultCounts) {
-        int totalTickets = 0;
-        for (int count : resultCounts.values()) {
-            totalTickets += count;
-        }
-        return totalTickets * 1000; // 로또 한 장당 1,000원
+    private static int calculateTotalAmountSpent(int purchaseAmount) {
+        return purchaseAmount;
     }
+
 }

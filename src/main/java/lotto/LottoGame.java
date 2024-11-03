@@ -10,23 +10,24 @@ public class LottoGame {
 
     public void start() {
         try {
-            int lottoCount = getValidatedLottoCount();
-            System.out.println();
+            int purchaseAmount = getPurchaseAmount();
+            int lottoCount = getValidatedLottoCount(purchaseAmount);
+            System.out.println(); // 구입금액 입력 후 공백
 
             List<Lotto> purchasedLottos = generateLottos(lottoCount);
             printPurchasedLottos(purchasedLottos);
-            System.out.println();
+            System.out.println(); // 로또 번호 출력 후 공백
 
             Map<PrizeRank, Integer> resultCounts = getResultCounts(purchasedLottos);
-            System.out.println();
-            LottoResultPrinter.printResults(resultCounts);
+            LottoResultPrinter.printResults(resultCounts, purchaseAmount);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
         }
     }
 
-    private int getValidatedLottoCount() {
-        int purchaseAmount = getPurchaseAmount();
+
+    private int getValidatedLottoCount(int purchaseAmount) {
+//        int purchaseAmount = getPurchaseAmount();
         LottoValidator.validateAmount(purchaseAmount);
         return purchaseAmount / 1000;
     }
