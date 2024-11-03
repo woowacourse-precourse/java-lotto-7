@@ -24,14 +24,16 @@ public class Validate {
     }
 
     public List<Integer> validateLottoNumber(String lottoNumber){
-        List<String> lottoNumbers = Arrays.stream(lottoNumber.split(","))
+        List<Integer> lottoNumbers = Arrays.stream(lottoNumber.split(","))
+                .map(number -> {
+                    checkNumber(number);  // 각 숫자가 유효한지 확인
+                    int parsedNumber = Integer.parseInt(number);
+                    if (parsedNumber > 45) throw new IllegalArgumentException("[ERROR] 로또 번호는 45 이하여야 합니다.");
+                    return parsedNumber;
+                })
                 .toList();
 
-        for (String number : lottoNumbers) {
-            checkNumber(number);
-            if(Integer.parseInt(number)>45) throw new IllegalArgumentException("[ERROR] 로또 번호는 45 이하여야 합니다.");
-        }
-        return List.of(Integer.parseInt(lottoNumber));
+        return lottoNumbers;
     }
 
     private static void checkNumber(String number) {
