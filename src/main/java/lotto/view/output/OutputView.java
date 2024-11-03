@@ -23,4 +23,6 @@ public interface OutputView {
     void showProfitRate(BigDecimal profitRate);
 
     void showLotto(LottoNumberDto numbers);
+
+    void showException(RuntimeException exception);
 }

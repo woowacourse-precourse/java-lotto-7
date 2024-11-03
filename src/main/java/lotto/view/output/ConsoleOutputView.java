@@ -57,4 +57,9 @@ public class ConsoleOutputView implements OutputView {
     public void showLotto(final LottoNumberDto numbers) {
         System.out.println(numbers.numbers());
     }
+
+    @Override
+    public void showException(final RuntimeException exception) {
+        System.out.println(exception.getMessage());
+    }
 }
