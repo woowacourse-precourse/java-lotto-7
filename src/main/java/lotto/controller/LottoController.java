@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.dto.MatchCondition;
+import lotto.dto.MatchResult;
 import lotto.enums.LottoRank;
 import lotto.util.Convertor;
 import lotto.view.InputView;
@@ -26,9 +26,9 @@ public class LottoController {
         displayPurchasedLottoNumbers(ticket);
         System.out.println();
 
-        List<MatchCondition> matchConditions = getMatchConditions(lottoTicket);
+        List<MatchResult> matchResults = getMatchConditions(lottoTicket);
 
-        double profitRate = getProfitRate(matchConditions, enteredPurchaseAmount);
+        double profitRate = getProfitRate(matchResults, enteredPurchaseAmount);
         outputView.printTotalProfitRate(profitRate);
     }
 
@@ -49,13 +49,13 @@ public class LottoController {
         }
     }
 
-    private List<MatchCondition> getMatchConditions(LottoTicket lottoTicket) {
+    private List<MatchResult> getMatchConditions(LottoTicket lottoTicket) {
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
-        List<MatchCondition> matchConditions = lottoTicket.gatherMatchCondition(winningNumber, bonusNumber);
-        Map<LottoRank, Integer> lottoRankCount = produceStatistics(matchConditions);
+        List<MatchResult> matchResults = lottoTicket.gatherMatchResult(winningNumber, bonusNumber);
+        Map<LottoRank, Integer> lottoRankCount = produceStatistics(matchResults);
         outputView.printWinningStatistics(lottoRankCount);
-        return matchConditions;
+        return matchResults;
     }
 
     private WinningNumber getWinningNumber() {
@@ -72,13 +72,13 @@ public class LottoController {
         return BonusNumber.from(inputBonusNumber);
     }
 
-    private Map<LottoRank, Integer> produceStatistics(List<MatchCondition> matchConditions) {
+    private Map<LottoRank, Integer> produceStatistics(List<MatchResult> matchResults) {
         LottoResult lottoResult = new LottoResult();
-        return lottoResult.produceStatistics(matchConditions);
+        return lottoResult.produceStatistics(matchResults);
     }
 
-    private double getProfitRate(List<MatchCondition> matchConditions, String enteredPurchaseAmount) {
-        long totalWinningAmount = profitCalculator.calculateTotalWinningAmount(matchConditions);
+    private double getProfitRate(List<MatchResult> matchResults, String enteredPurchaseAmount) {
+        long totalWinningAmount = profitCalculator.calculateTotalWinningAmount(matchResults);
         long lottoPurchaseAmount = Convertor.convertToLong(enteredPurchaseAmount);
         return profitCalculator.calculateProfitRate(totalWinningAmount, lottoPurchaseAmount);
     }

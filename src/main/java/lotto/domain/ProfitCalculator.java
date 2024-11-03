@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.dto.MatchCondition;
+import lotto.dto.MatchResult;
 import lotto.enums.LottoRank;
 
 import java.math.BigDecimal;
@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ProfitCalculator {
 
-    public long calculateTotalWinningAmount(List<MatchCondition> matchConditions) {
-        return matchConditions.stream()
+    public long calculateTotalWinningAmount(List<MatchResult> matchResults) {
+        return matchResults.stream()
                 .mapToLong(this::calculateWinningAmount)
                 .sum();
     }
@@ -23,8 +23,8 @@ public class ProfitCalculator {
         return profitRate.doubleValue();
     }
 
-    private long calculateWinningAmount(MatchCondition matchCondition) {
-        LottoRank rank = LottoRank.of(matchCondition.matchCount(), matchCondition.containBonusNumber());
+    private long calculateWinningAmount(MatchResult matchResult) {
+        LottoRank rank = LottoRank.of(matchResult.matchCount(), matchResult.containBonusNumber());
         return rank.getMoney();
     }
 }

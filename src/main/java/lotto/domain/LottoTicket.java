@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.dto.MatchCondition;
+import lotto.dto.MatchResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class LottoTicket {
         return new Lotto(numbers);
     }
 
-    public List<MatchCondition> gatherMatchCondition(WinningNumber winningNumber, BonusNumber bonusNumber) {
+    public List<MatchResult> gatherMatchResult(WinningNumber winningNumber, BonusNumber bonusNumber) {
         return ticket.stream()
                 .map(lotto -> lotto.compareWithWinningNumbers(winningNumber, bonusNumber))
                 .toList();

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.dto.MatchCondition;
+import lotto.dto.MatchResult;
 import lotto.enums.Message;
 
 import java.util.List;
@@ -29,10 +29,10 @@ public class Lotto {
         return numbers.stream().anyMatch(bonusNumber::isEqualTo);
     }
 
-    public MatchCondition compareWithWinningNumbers(WinningNumber winningNumber, BonusNumber bonusNumber) {
+    public MatchResult compareWithWinningNumbers(WinningNumber winningNumber, BonusNumber bonusNumber) {
         int matchCount = countMatchingNumber(winningNumber);
         boolean containsBonusNumber = containsBonusNumber(bonusNumber);
-        return new MatchCondition(matchCount, containsBonusNumber);
+        return new MatchResult(matchCount, containsBonusNumber);
     }
 
     public List<Integer> getNumbers() {

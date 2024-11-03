@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.dto.MatchCondition;
+import lotto.dto.MatchResult;
 import lotto.enums.LottoRank;
 
 import java.util.EnumMap;
@@ -18,10 +18,10 @@ public class LottoResult {
         }
     }
 
-    public Map<LottoRank, Integer> produceStatistics(List<MatchCondition> matchConditions) {
+    public Map<LottoRank, Integer> produceStatistics(List<MatchResult> matchResults) {
 
-        for (MatchCondition matchCondition : matchConditions) {
-            LottoRank rank = LottoRank.of(matchCondition.matchCount(), matchCondition.containBonusNumber());
+        for (MatchResult matchResult : matchResults) {
+            LottoRank rank = LottoRank.of(matchResult.matchCount(), matchResult.containBonusNumber());
             rankCounts.computeIfPresent(rank, (key, count) -> count + 1);
         }
         return rankCounts;

@@ -3,7 +3,7 @@ package lotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
-import lotto.dto.MatchCondition;
+import lotto.dto.MatchResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,8 +36,8 @@ class LottoTest {
         WinningNumber winningNumber = WinningNumber.from(enteredWinningNumbers);
         Lotto lotto = new Lotto(lottoNumbers);
 
-        MatchCondition matchCondition = lotto.compareWithWinningNumbers(winningNumber, BonusNumber.from("10"));
-        int actualMatchCount = matchCondition.matchCount();
+        MatchResult matchResult = lotto.compareWithWinningNumbers(winningNumber, BonusNumber.from("10"));
+        int actualMatchCount = matchResult.matchCount();
 
         Assertions.assertThat(actualMatchCount).isEqualTo(4);
     }
@@ -51,8 +51,8 @@ class LottoTest {
         BonusNumber bonusNumber = BonusNumber.from(enteredBonusNumber);
         Lotto lotto = new Lotto(lottoNumbers);
 
-        MatchCondition matchCondition = lotto.compareWithWinningNumbers(WinningNumber.from("10,11,12,13,14,15"), bonusNumber);
-        boolean actualContainsBonusNumber = matchCondition.containBonusNumber();
+        MatchResult matchResult = lotto.compareWithWinningNumbers(WinningNumber.from("10,11,12,13,14,15"), bonusNumber);
+        boolean actualContainsBonusNumber = matchResult.containBonusNumber();
 
         Assertions.assertThat(actualContainsBonusNumber).isEqualTo(true);
     }
