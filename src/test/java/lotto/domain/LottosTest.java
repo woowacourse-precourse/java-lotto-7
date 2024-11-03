@@ -2,8 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.view.domain.Amount;
-import lotto.view.domain.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

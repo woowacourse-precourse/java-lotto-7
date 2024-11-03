@@ -1,4 +1,4 @@
-package lotto.view.domain;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.EnumMap;

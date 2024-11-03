@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.view.console.ConsoleReader;
 import lotto.view.console.ConsoleWriter;
-import lotto.view.global.PrintMessage;
-import lotto.view.global.exception.CustomException;
-import lotto.view.global.exception.ErrorMessage;
+import lotto.global.PrintMessage;
+import lotto.global.exception.CustomException;
+import lotto.global.exception.ErrorMessage;
 
 public class InputView {
 

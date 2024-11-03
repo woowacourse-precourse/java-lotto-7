@@ -1,4 +1,4 @@
-package lotto.view.global.exception;
+package lotto.global.exception;
 
 public class CustomException extends IllegalArgumentException {
     private CustomException(ErrorMessage errorMessage) {

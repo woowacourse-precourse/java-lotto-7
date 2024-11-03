@@ -1,13 +1,13 @@
-package lotto.view.controller;
+package lotto.controller;
 
-import lotto.view.InputView;
 import lotto.view.console.ConsoleWriter;
-import lotto.view.domain.Amount;
-import lotto.view.domain.Lotto;
-import lotto.view.domain.Lottos;
-import lotto.view.domain.WinningCondition;
-import lotto.view.domain.WinningResult;
-import lotto.view.global.exception.CustomException;
+import lotto.domain.Amount;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.domain.WinningCondition;
+import lotto.domain.WinningResult;
+import lotto.global.exception.CustomException;
+import lotto.view.InputView;
 
 public class LottoController {
     private final InputView inputView;
