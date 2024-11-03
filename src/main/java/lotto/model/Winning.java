@@ -62,5 +62,17 @@ public enum Winning {
                 && this.isMatchBonusNumber == isMatchBonusNumber;
     }
 
+    private void makeString(StringBuilder sb) {
+        sb.append(winningNumberMatch)
+                .append("개 일치");
+        if (isMatchBonusNumber) {
+            sb.append(", 보너스 볼 일치");
+        }
+        sb.append(" (")
+                .append(NumberFormat.getInstance().format(prizeMoney))
+                .append("원) - ")
+                .append(count)
+                .append("개\n");
+    }
     }
 }
