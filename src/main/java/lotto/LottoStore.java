@@ -11,7 +11,7 @@ public class LottoStore {
     private final int LOTTO_PRICE = 1000;
 
     public LottoStore(int purchaseAmount) {
-        this.purchasePrice = purchaseAmount;// 입력된 구매 금액 유효성 확인
+        this.purchasePrice = purchaseAmount;
         this.purchasedLotto.addAll(purchaseLotto());
     }
 
@@ -28,10 +28,8 @@ public class LottoStore {
         return purchasePrice / LOTTO_PRICE;
     }
 
-    //아래 테스트 필요
     public List<Lotto> getPurchasedLotto() {
         return new ArrayList<>(purchasedLotto);
     }
-
 
 }
