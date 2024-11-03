@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Constant;
 import lotto.validation.LottoValidator;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Lotto {
@@ -44,8 +46,24 @@ public class Lotto {
         return bitmask;
     }
 
+    public static Lotto makeRandomLotto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(
+                Constant.MINIMUM_LOTTO_NUMBER,
+                Constant.MAXIMUM_LOTTO_NUMBER,
+                Constant.LOTTO_SIZE));
+    }
+
     //getter
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    //For Test
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lotto lotto = (Lotto) o;
+        return Objects.equals(numbers, lotto.numbers);
     }
 }
