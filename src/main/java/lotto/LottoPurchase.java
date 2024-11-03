@@ -10,7 +10,7 @@ public class LottoPurchase {
         boolean validInput = false;
 
         while (!validInput) {
-            System.out.print("구입금액을 입력해 주세요. : ");
+            System.out.println("구입금액을 입력해 주세요. : ");
             String input = Console.readLine().trim();
 
             try {
