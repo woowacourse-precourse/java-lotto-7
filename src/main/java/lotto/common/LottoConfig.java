@@ -4,6 +4,7 @@ import lotto.LottoApplication;
 import lotto.application.LottoResultUseCase;
 import lotto.application.PurchaseLottoUseCase;
 import lotto.application.RetrieveLottoUseCase;
+import lotto.application.service.LottoMatcher;
 import lotto.application.service.LottoResultService;
 import lotto.application.service.PurchaseLottoService;
 import lotto.application.service.RetrieveLottoService;
@@ -13,6 +14,7 @@ import lotto.domain.repository.InMemoryLottoRepository;
 import lotto.domain.repository.InMemoryWinLottoRepository;
 import lotto.domain.repository.LottoRepository;
 import lotto.domain.repository.WinLottoRepository;
+import lotto.domain.repository.WinResultHistory;
 import lotto.view.ApplicationConsoleView;
 import lotto.view.ApplicationView;
 import lotto.view.converter.LottoMessageParser;
@@ -51,7 +53,7 @@ public final class LottoConfig {
     }
 
     private LottoResultUseCase lottoResultUseCase() {
-        return new LottoResultService(winLottoRepository());
+        return new LottoResultService(winLottoRepository(), WinResultHistory.getInstance(), lottoRepository(), new LottoMatcher());
     }
 
     private LottoRepository lottoRepository() {
