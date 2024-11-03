@@ -28,4 +28,15 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public LottoGrade match(Lotto targetLotto, int bonus) {
+        int targetCount = (int) numbers.stream()
+                .filter(num -> targetLotto.numbers.contains(num))
+                .count();
+
+        int bonusCount = (int) numbers.stream()
+                .filter(num -> num == bonus)
+                .count();
+
+        return LottoGrade.match(targetCount, bonusCount);
+    }
 }

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.LottoGrade;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,7 @@ public class LottoGradeTest {
     @ParameterizedTest
     @MethodSource("provideLottoGrades")
     void 로또_등급_테스트(int targetCount, int bonusCount, LottoGrade expectedGrade) {
-        LottoGrade lottoGrade = LottoGrade.findBy(targetCount, bonusCount);
+        LottoGrade lottoGrade = LottoGrade.match(targetCount, bonusCount);
 
         Assertions.assertThat(lottoGrade).isEqualTo(expectedGrade);
     }
@@ -40,7 +39,7 @@ public class LottoGradeTest {
 
     @Test
     void 로또_등급_예외테스트() {
-        Assertions.assertThatThrownBy(() -> LottoGrade.findBy(7, 0))
+        Assertions.assertThatThrownBy(() -> LottoGrade.match(7, 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

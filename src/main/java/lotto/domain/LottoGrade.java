@@ -22,7 +22,7 @@ public enum LottoGrade {
         this.price = price;
     }
 
-    protected static LottoGrade findBy(int target, int bonus) {
+    protected static LottoGrade match(int target, int bonus) {
         validate(target, bonus);
 
         return Arrays.stream(LottoGrade.values())
