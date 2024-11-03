@@ -36,9 +36,7 @@ public class LottoController {
 
         WinningNumbers();
         bonusNumber();
-
-        calculateLottoResult();
-
+        calculateLottoResult(purchaseAmount * LOTTO_PRICE);
 
     }
     // 로또 개수
@@ -104,14 +102,16 @@ public class LottoController {
         bonusNumber = IntegerBonusNumber;
     }
 
-    private static void calculateLottoResult(){
+    private static void calculateLottoResult(int purchaseCost){
         LottoResult lottoResult = new LottoResult(winningNumbers, bonusNumber);
         for (Lotto lotto : myLottos) {
             LottoPrize prize = lottoResult.calculateResults(lotto);
             lottoResult.setResults(prize);
         }
+        lottoResult.calculateTotalProfit(purchaseCost);
         lottoResult.printResults();
     }
+
 
 
 

@@ -12,13 +12,12 @@ public class LottoResult {
     private final Lotto winningNumber;
     private final int bonusNumber;
     private final Map<LottoPrize, Integer> results;
-
+    private double totalProfit = 0.0;
 
     public LottoResult(Lotto winningNumber, int bonusNumber) {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
-
-        results = new EnumMap<>(LottoPrize.class);
+        this.results = new EnumMap<>(LottoPrize.class);
         for (LottoPrize prize : LottoPrize.values()) {
             results.put(prize, 0); // 초기값 0으로 설정
         }
@@ -40,6 +39,16 @@ public class LottoResult {
         return LottoPrize.valueOf(matchCount, containBonus);
     }
 
+    public void calculateTotalProfit(int purchaseCost){
+        int totalPrizeMoney = 0;
+        for (Map.Entry<LottoPrize, Integer> entry : results.entrySet()) {
+            LottoPrize prize = entry.getKey();
+            int count = entry.getValue();
+            totalPrizeMoney += count * prize.getPrize();
+        }
+        totalProfit = ((double) (totalPrizeMoney) / purchaseCost) * 100;
+    }
+
     public void printResults() {
         OutputView.printResultMessage();
         for (Map.Entry<LottoPrize, Integer> entry : results.entrySet()) {
@@ -47,7 +56,6 @@ public class LottoResult {
             int count = entry.getValue();
             OutputView.printLottoResult(prize.getDescription(), count);
         }
+        OutputView.printTotalProfit(totalProfit);
     }
-
-
 }

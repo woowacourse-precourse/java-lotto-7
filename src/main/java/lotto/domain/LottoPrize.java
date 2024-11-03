@@ -20,21 +20,17 @@ public enum LottoPrize {
     }
 
     public static LottoPrize valueOf(int matchCount, boolean matchBonus) {
-
         if (MATCH_5.getMatchCount() == matchCount && matchBonus) {
             return MATCH_5_BONUS;
         }
-
         if (matchCount < 3) {
             return NO_MATCH;
         }
-
         for (LottoPrize prize : LottoPrize.values()) {
             if (prize.matchCount == matchCount) {
                 return prize;
             }
         }
-
         throw new IllegalArgumentException("[ERROR]");
     }
 
