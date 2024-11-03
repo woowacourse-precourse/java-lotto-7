@@ -52,9 +52,18 @@ public class MatchLotto {
     private BigDecimal getProfitRate() {
         BigDecimal profitRate = new BigDecimal(Double.toString(((double)getTotalPrizeMoney() / (double)totalLottoPrice) * 100));
         return profitRate.setScale(1, RoundingMode.HALF_UP);
-
     }
 
-
+    private void printRankResult(Rank rank, int count) {
+        NumberFormat format = NumberFormat.getInstance();
+        if(rank.getMatchCount() == 5 && rank.getBonusMatch()){
+            String output = String.format("%d개 일치, 보너스 볼 일치 (%s)원 - %d개", rank.getMatchCount(), format.format(rank.getPrize()), count);
+            System.out.println(output);
+        }
+        if(!rank.getBonusMatch()){
+            String output = String.format("%d개 일치 (%s)원 - %d개", rank.getMatchCount(), format.format(rank.getPrize()), count);
+            System.out.println(output);
+        }
+    }
 
 }
