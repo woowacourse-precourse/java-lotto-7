@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.service.prize.PrizeReadService;
+import lotto.service.prize.PrizeResponse;
 import lotto.service.prize.PrizeWriteService;
 
 public class PrizeController {
@@ -15,6 +16,10 @@ public class PrizeController {
 
     public Long save(List<Integer> numbers, int bonus) {
         return writeService.create(numbers, bonus);
+    }
+
+    public PrizeResponse getPrize(Long prizeId) {
+        return readService.getPrize(prizeId);
     }
 
 }

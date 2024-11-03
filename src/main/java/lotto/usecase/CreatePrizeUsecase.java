@@ -1,7 +1,7 @@
 package lotto.usecase;
 
-import lotto.PrizeResponse;
 import lotto.controller.PrizeController;
+import lotto.service.prize.PrizeResponse;
 import lotto.view.input.PrizeInputView;
 import lotto.view.input.PrizeViewRequest;
 
