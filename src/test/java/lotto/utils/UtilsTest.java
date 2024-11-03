@@ -70,4 +70,28 @@ public class UtilsTest {
         assertTrue(Utils.checkSizeEqual(input, 6));
     }
 
+    @DisplayName("list의 각 숫자들이 매개변수 min,max 사이의 범위인지 확인한다. [BigDecimal타입]")
+    @Test
+    void areAllNumbersValidRangeBigDecimalType() {
+        BigDecimal min = new BigDecimal(1);
+        BigDecimal max = new BigDecimal(45);
+        List<BigDecimal> lotto = new ArrayList<>();
+        for (int i = 1; i <= 6; i++) {
+            lotto.add(new BigDecimal(i));
+        }
+
+        assertTrue(Utils.areAllNumbersValidRange(min, max, lotto));
+    }
+
+    @DisplayName("list의 각 숫자들이 매개변수 min,max 사이의 범위인지 확인한다. [int타입]")
+    @Test
+    void areAllNumbersValidRange() {
+        List<Integer> lotto = new ArrayList<>();
+        for (int i = 1; i <= 6; i++) {
+            lotto.add(i);
+        }
+
+        assertTrue(Utils.areAllNumbersValidRange(1, 45, lotto));
+    }
+
 }
