@@ -26,12 +26,6 @@ class ApplicationTest extends NsTest {
         assertThatThrownBy(() -> Application.buyLotto("1001")).isInstanceOf(IllegalArgumentException.class);
     }
 
-//    @DisplayName("잘못된 값 입력 시 [ERROR] 출력")
-//    @Test
-//    void inputMoney_예외_테스트() {
-//        assertThatThrownBy(IllegalArgumentException.class, () -> )
-//    }
-
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
