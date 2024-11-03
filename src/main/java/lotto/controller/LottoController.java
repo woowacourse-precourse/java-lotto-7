@@ -19,6 +19,8 @@ public class LottoController {
     private final Validator validator;
     private final LottoService lottoService;
 
+    private Lotto lottoWinningNumbers;
+
     public LottoController(Output output, Input input, Validator validator, LottoService lottoService) {
         this.output = output;
         this.input = input;
@@ -30,7 +32,7 @@ public class LottoController {
         int purchasePrice = handlePurchasePrice();
         int count = handleLottoCount(purchasePrice);
         handleCreatedLottos(count);
-        Lotto lottoWinningNumbers = handleWinningNumbers();
+        lottoWinningNumbers = handleWinningNumbers();
         handleBonusNumber();
     }
 
@@ -122,6 +124,7 @@ public class LottoController {
             validator.validateNonNumber(input);
             validator.validatePositiveNumber(input);
             validator.validateNumberRange(input);
+            validator.validateWinningNumbersContainBonus(input, lottoWinningNumbers.getNumbers());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             handleBonusNumber();
