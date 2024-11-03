@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import lotto.constant.ExceptionMessage;
+import lotto.constant.Rule;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,7 +17,11 @@ public class Lotto {
     }
 
     public static Lotto generateRandomly() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                Rule.MIN_LOTTO_NUMBER,
+                Rule.MAX_LOTTO_NUMBER,
+                Rule.LOTTO_NUMBERS_COUNT
+        );
         return new Lotto((numbers));
     }
 
@@ -27,14 +32,14 @@ public class Lotto {
     }
 
     private void validateSize(final List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Rule.LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBERS_INVALID_SIZE.getMessage());
         }
     }
 
     private void validateIsDuplicated(final List<Integer> numbers) {
         HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (numbers.size() != uniqueNumbers.size()) {
+        if (uniqueNumbers.size() != Rule.LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBERS_DUPLICATED_NUMBER.getMessage());
         }
     }
@@ -46,7 +51,7 @@ public class Lotto {
     }
 
     private boolean isInvalidRange(final int number) {
-        return number < 1 || number > 45;
+        return number < Rule.MIN_LOTTO_NUMBER || number > Rule.MAX_LOTTO_NUMBER;
     }
 
     private void sort(final List<Integer> numbers) {
