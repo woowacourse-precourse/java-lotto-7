@@ -29,6 +29,13 @@ public class Validate {
         return winningNumbers;
     }
 
+    public static int parseIntegerBonusValidate(String value, List<Integer> winningNumbers) {
+        int parsedValue = parseIntegerValidate(value);
+        validateBonusNumber(parsedValue);
+        bonusNumberDuplicateValidate(winningNumbers, parsedValue);
+        return parsedValue;
+    }
+
     private static void validateWinningNumberCount(List<Integer> validNumbers) {
         if (validNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -53,6 +60,18 @@ public class Validate {
 
     private static boolean isLottoRange(Integer number) {
         return number < 0 || number > 45;
+    }
+
+    private static void validateBonusNumber(int number) {
+        if (isLottoRange(number)) {
+            throw new IllegalArgumentException("[ERROR] 올바른 보너스 번호를 입력해주세요.");
+        }
+    }
+
+    private static void bonusNumberDuplicateValidate(List<Integer> winningNumbers, int bonusValidate) {
+        if (winningNumbers.contains(bonusValidate)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
     }
 
 }
