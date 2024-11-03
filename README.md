@@ -39,8 +39,8 @@
   - [X] Lotto.java <br>
     - [X] 당첨 번호 6개 아닐 시 예외 처리 <br>
     - [X] 랜덤한 번호 추출 <br>
-  - [ ] Statistics.java <br>
-    - [ ] 당첨 등수 및 당첨 금액 통계 계산 <br>
+  - [X] Statistics.java <br>
+    - [X] 당첨 등수 및 당첨 금액 통계 계산 <br>
   - [ ] Rate.java <br>
     - [ ] 수익률 계산 <br>
 ---
