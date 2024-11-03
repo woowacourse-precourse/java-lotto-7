@@ -55,9 +55,15 @@ public class Input {
 		}
 	}
 
-	public static void validateDuplicateBonusNumber(List<Integer> numbers, String input) {
+	public void validateDuplicateBonusNumber(List<Integer> numbers, String input) {
 		if (numbers.contains(Integer.parseInt(input))) {
 			throw new IllegalArgumentException("[ERROR] 보너스번호와 당첨번호가 중복될 수 없습니다.");
+		}
+	}
+
+	public void validateEmpty(String input) {
+		if (input.isEmpty()) {
+			throw new IllegalArgumentException("[ERROR] 입력이 비어있을 수 없습니다.");
 		}
 	}
 }
