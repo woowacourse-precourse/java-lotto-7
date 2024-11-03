@@ -22,8 +22,16 @@ public enum Rank {
         this.isRequireBonus = isRequireBonus;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public int getPrize() {
         return prize;
+    }
+
+    public boolean isRequireBonus() {
+        return isRequireBonus;
     }
 
     public static Rank getRank(int matchCount, boolean matchBonus) {
