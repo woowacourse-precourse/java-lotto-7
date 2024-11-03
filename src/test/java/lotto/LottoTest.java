@@ -3,10 +3,16 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
+    @Test
+    void 로또_정상_생성() {
+        Assertions.assertInstanceOf(Lotto.class, new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+    }
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -24,5 +30,12 @@ class LottoTest {
     void 로또_번호에_범위에_벗어나는_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 80)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호_가져오기() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        Assertions.assertEquals(lotto.toString(), "[1, 2, 3, 4, 5, 6]");
     }
 }
