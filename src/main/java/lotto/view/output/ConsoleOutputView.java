@@ -13,7 +13,6 @@ public class ConsoleOutputView implements OutPutView{
     private static final String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";
     private static final String LOTTO_STATISTICS_HEADER = "당첨 통계\n---";
     private static final String TOTAL_RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
-    private static final String EXCEPTION_RETRY_MESSAGE = "다시 입력 해주세요.";
 
     @Override
     public void displayPurchaseAmountPrompt() {
@@ -59,6 +58,5 @@ public class ConsoleOutputView implements OutPutView{
     @Override
     public void displayExceptionMessage(String exceptionMessage) {
         System.out.println(exceptionMessage);
-        System.out.println(EXCEPTION_RETRY_MESSAGE);
     }
 }
