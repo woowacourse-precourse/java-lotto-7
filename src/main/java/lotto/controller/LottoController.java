@@ -9,4 +9,9 @@ public class LottoController {
         int ticketQuantity = lottoService.purchaseTicket();
         return lottoService.generateLottoNumbers(ticketQuantity);
     }
+
+    public List<String> createLottoWinningNumber() {
+        LottoService lottoService = new LottoService();
+        return lottoService.generateWinningNumber();
+    }
 }

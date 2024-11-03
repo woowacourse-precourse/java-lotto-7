@@ -26,4 +26,14 @@ public class LottoService {
 
         return lottoTickets;
     }
+
+    public List<String> generateWinningNumber() {
+        ClientInput clientInput = new ClientInput();
+        List<String> numbers = new ArrayList<>();
+        String winningNumber = clientInput.enterWinningNumber();
+        String bonusNumber = clientInput.enterBonusNumber();
+        String string = winningNumber + "," + bonusNumber;
+        numbers.add(string);
+        return numbers;
+    }
 }
