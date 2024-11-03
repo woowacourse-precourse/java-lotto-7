@@ -33,69 +33,62 @@ public class LottoController {
     }
 
     public void process() {
-        // 로또 구입 금액
-        outputView.showCommentForPurchasePrice();
         Quantity quantity = calculateQuantity();
-        outputView.showQuantity(quantity.getQuantity());
+        List<Lotto> drawnLottos = drawLottos(quantity);
 
-        // 로또 발행
-        List<Lotto> lottos = drawLottos(quantity);
-        for (Lotto lotto : lottos) {
-            outputView.showLotto(lotto.getNumbers());
-        }
-
-        // 당첨 번호
-        outputView.showCommentForWinningLotto();
         Lotto winningLotto = makeWinningLotto();
-
-        // 보너스 번호
-        outputView.showCommentForBonusNumber();
         LottoNumber bonusNumber = makeBonusNumber();
 
-        // 당첨 통계
-        outputView.showCommentForWinningResult();
-        Lottery lottery = new Lottery(winningLotto, bonusNumber, lottos);
-        getLottoResult(lottery);
-        calculateProfitRate(lottery);
+        Lottery lottery = new Lottery(winningLotto, bonusNumber, drawnLottos);
+        getLottoResult(lottery.getLottoResult());
+        calculateProfitRate(lottery.calculateProfitRate());
     }
 
     private Quantity calculateQuantity() {
+        outputView.showCommentForPurchasePrice();
         String inputPrice = inputView.readLine();
         PurchasePrice purchasePrice = new PurchasePrice(inputPrice);
-        return purchasePrice.calculateQuantity();
+        Quantity quantity = purchasePrice.calculateQuantity();
+        outputView.showQuantity(quantity.getQuantity());
+        return quantity;
     }
 
     private List<Lotto> drawLottos(final Quantity quantity) {
-        return Lotto.makeAsMuchAs(generator.generateNumbersBy(quantity.getQuantity()));
+        List<Lotto> lottos = Lotto.makeAsMuchAs(generator.generateNumbersBy(quantity.getQuantity()));
+        for (Lotto lotto : lottos) {
+            outputView.showLotto(lotto.getNumbers());
+        }
+        return lottos;
     }
 
     private Lotto makeWinningLotto() {
+        outputView.showCommentForWinningLotto();
         String inputNumbers = inputView.readLine();
         List<Integer> numbers = converter.convertFrom(splitter.split(inputNumbers));
         return new Lotto(numbers);
     }
 
     private LottoNumber makeBonusNumber() {
+        outputView.showCommentForBonusNumber();
         String inputBonusNumber = inputView.readLine();
         return new LottoNumber(converter.convertFrom(inputBonusNumber));
     }
 
-    private void getLottoResult(final Lottery lottery) {
-        LottoResult lottoResult = lottery.getLottoResult();
+    private void getLottoResult(final LottoResult lottoResult) {
+        outputView.showCommentForLottoResult();
         for (int i = LottoRank.values().length - 1; i >= 0; i--) {
             LottoRank lottoRank = LottoRank.values()[i];
             BigDecimal count = lottoResult.get(lottoRank);
             outputView.showCommentForMatchingCount(lottoRank.getMatchingCount());
             if (lottoRank == LottoRank.SECOND) {
-                outputView.showWinningResultForSecond(lottoRank.getAward(), count);
+                outputView.showLottoResultForSecond(lottoRank.getAward(), count);
                 continue;
             }
-            outputView.showWinningResult(lottoRank.getAward(), count);
+            outputView.showLottoResult(lottoRank.getAward(), count);
         }
     }
 
-    private void calculateProfitRate(final Lottery lottery) {
-        BigDecimal profitRate = lottery.calculateProfitRate();
+    private void calculateProfitRate(final BigDecimal profitRate) {
         outputView.showProfitRate(profitRate);
     }
 }
