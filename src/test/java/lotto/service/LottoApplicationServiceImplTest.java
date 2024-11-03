@@ -3,10 +3,11 @@ package lotto.service;
 import lotto.domain.model.lotto.Lotto;
 import lotto.domain.model.winning.WinningNumbers;
 import lotto.domain.model.winning.WinningResult;
+import lotto.domain.model.winning.Rank;
 import lotto.domain.model.bonus.BonusNumber;
 import lotto.domain.model.winning.WinningContext;
-import lotto.domain.model.winning.Rank;
 import lotto.exception.lotto.LottoErrorMessages;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoApplicationServiceImplTest {
-    private final LottoApplicationServiceImpl lottoService = new LottoApplicationServiceImpl();
+    private LottoApplicationServiceImpl lottoService;
+
+    @BeforeEach
+    void setUp() {
+        lottoService = new LottoApplicationServiceImpl();
+    }
 
     @Test
     @DisplayName("로또 구입 금액이 공백일 경우 예외가 발생한다.")
@@ -33,8 +39,8 @@ public class LottoApplicationServiceImplTest {
     }
 
     @Test
-    @DisplayName("로또 구입 금액이 숫자가 아니거나 음수일 경우 예외가 발생한다.")
-    void 로또_구입_금액이_숫자가_아니거나_양수가_아닐_경우_예외가_발생한다() {
+    @DisplayName("로또 구입 금액이 음수일 경우 예외가 발생한다.")
+    void 로또_구입_금액이_음수일_경우_예외가_발생한다() {
         // given
         String invalidAmount = "-1000";
 
