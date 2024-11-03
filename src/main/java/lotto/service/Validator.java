@@ -1,5 +1,9 @@
 package lotto.service;
 
+import lotto.domain.WinningNumbers;
+
+import java.util.List;
+
 public class Validator {
     public void validateEmptyInput(String input) {
         if(input.isEmpty()) {
@@ -55,6 +59,14 @@ public class Validator {
         if(number < 1 || number > 45) {
             throw new IllegalArgumentException(
                 "[ERROR] 1~45 사이의 숫자만 입력해주세요 : " + number
+            );
+        }
+    }
+
+    public void validateNumberDuplicate(int bonusNumber, int winningNumber) {
+        if(bonusNumber == winningNumber) {
+            throw new IllegalArgumentException(
+                "[ERROR] 이미 당첨 번호로 등록된 숫자입니다. 다시 입력해주세요."
             );
         }
     }

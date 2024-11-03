@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.domain.WinningNumbers;
@@ -20,5 +21,7 @@ public class LottoController {
         List<Lotto> purchasedLotto = generateLotto.generateLottoNumbers(amountLotto);
         outputService.requestWinningNumbers();
         WinningNumbers winningNumbers = inputService.inputWinningNumbers();
+        outputService.requestBonusNumber();
+        BonusNumber bonusNumber = inputService.inputBonusNumber(winningNumbers);
     }
 }
