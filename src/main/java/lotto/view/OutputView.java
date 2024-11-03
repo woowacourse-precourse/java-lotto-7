@@ -18,11 +18,13 @@ public class OutputView {
     public static void displayResults(Map<Rank, Integer> rankResults) {
         System.out.println("당첨 통계");
         System.out.println("---");
+
         for (Rank rank : Rank.values()) {
-            if (rankResults.containsKey(rank) && rank != Rank.NONE) {
+            if (rank != Rank.NONE) {
+                int count = rankResults.getOrDefault(rank, 0);
                 System.out.println(rank.getMatchCount() + "개 일치" +
                         (rank.isBonusMatch() ? ", 보너스 볼 일치" : "") +
-                        " (" + rank.getPrize() + "원) - " + rankResults.get(rank) + "개");
+                        " (" + rank.getPrize() + "원) - " + count + "개");
             }
         }
     }
