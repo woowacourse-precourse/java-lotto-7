@@ -57,6 +57,6 @@ public class LottoController {
 
     public void setBonusNumber() {
         OutputView.printBonusNumber();
-        bonus = new Bonus(InputView.inputBonusNumber());
+        bonus = new Bonus(InputView.inputBonusNumber(), lotto.getNumbers());
     }
 }
