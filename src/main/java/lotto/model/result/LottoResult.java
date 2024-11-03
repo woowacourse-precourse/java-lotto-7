@@ -7,7 +7,7 @@ import java.util.Map;
 public class LottoResult {
     private final Map<Rank, Integer> result = new EnumMap<>(Rank.class);
 
-    public LottoResult() {
+    LottoResult() {
         for (Rank rank : Rank.values()) {
             result.put(rank, 0);
         }
