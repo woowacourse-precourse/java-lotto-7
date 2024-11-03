@@ -16,12 +16,12 @@ public class InputView {
         return inputNumber();
     }
 
-    private static List<Integer> inputWinningNumbers() {
+    public static List<Integer> inputWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         return inputNumbers();
     }
 
-    private static int inputBonusNumber() {
+    public static int inputBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         return inputNumber();
     }
