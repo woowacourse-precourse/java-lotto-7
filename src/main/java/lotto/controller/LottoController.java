@@ -29,7 +29,6 @@ public class LottoController {
     }
 
     private void printPurchaseResult(Lottos purchasedLottos) {
-        System.out.println();
         View.printPurchaseResult(purchasedLottos);
     }
 
@@ -40,15 +39,25 @@ public class LottoController {
     }
 
     private  Lotto inputLotto(){
-        View.promptForWinningLotto();
-        List<Integer> mainWinningNumbers  = View.inputWinningLotto();
-        return new Lotto(mainWinningNumbers);
+        try{
+            View.promptForWinningLotto();
+            List<Integer> mainWinningNumbers  = View.inputWinningLotto();
+            return new Lotto(mainWinningNumbers);
+        }catch (IllegalArgumentException e) {
+            View.printException(e);
+            return inputLotto();
+        }
     }
 
     private  BonusNumber inpuBonus(){
-        View.promptForWinningBonusNumber();
-        int winningBonusNumberInput=   View.inputWinningBonusNumber();
-        return new BonusNumber(winningBonusNumberInput);
+        try{
+            View.promptForWinningBonusNumber();
+            int winningBonusNumberInput=View.inputWinningBonusNumber();
+            return new BonusNumber(winningBonusNumberInput);
+        }catch (IllegalArgumentException e) {
+            View.printException(e);
+            return inpuBonus();
+        }
     }
 
     private void printLottoResults(Lottos purchasedLottos, WinningNumbers winningNumbers) {

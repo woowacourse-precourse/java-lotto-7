@@ -12,6 +12,12 @@ import lotto.domain.Lottos;
 import lotto.domain.WinningPrize;
 
 public class View {
+
+    public static void printException(IllegalArgumentException e) {
+        System.out.println("[ERROR] : " + e.getMessage());
+    }
+
+
     public static void promptForPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
     }
@@ -50,35 +56,30 @@ public class View {
 
 
 
+    public static void printPurchaseResult(Lottos purchasedLottos) {
+        System.out.println();
+        printPurchaseCount(purchasedLottos);
+        printLottoNumbers(purchasedLottos);
+    }
 
+    private static void printPurchaseCount(Lottos purchasedLottos) {
+        System.out.printf("\n%d개를 구매했습니다.", purchasedLottos.getSize());
+    }
+
+    private static void printLottoNumbers(Lottos purchasedLottos) {
+        List<Lotto> lottos = purchasedLottos.getLottos();
+        for (Lotto lotto : lottos) {
+            List<Integer> numbers = lotto.getNumbers();
+            List<Integer> sortedNumbers = new ArrayList<>(numbers);
+            Collections.sort(sortedNumbers);
+            System.out.println(sortedNumbers);
+        }
+    }
 
 
     public static void promptForWinningLotto() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
     }
-
-    public static void promptForWinningBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-    }
-
-    public static void printLottoResults(LottoResult lottoResult, double returnRate) {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
-
-        Map<WinningPrize, Integer> results = lottoResult.getResults();
-        for (WinningPrize winningPrize : WinningPrize.values()) {
-            if (winningPrize != WinningPrize.NONE_PRIZE) {
-                System.out.printf("%s (%,d원) - %d개%n",
-                        winningPrize.getDescription(),
-                        winningPrize.getPrize(),
-                        results.get(winningPrize));
-            }
-        }
-
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", returnRate);
-    }
-
-
 
     public static List<Integer> inputWinningLotto() {
         String winningLottoInput = Console.readLine();
@@ -86,16 +87,6 @@ public class View {
         validateCommaFormat(winningLottoInput);
         return convertToNumbers(winningLottoInput);
     }
-
-    public static int inputWinningBonusNumber() {
-        String winningBonusNumberInput = Console.readLine();
-        validateEmpty(winningBonusNumberInput);
-        validateNumeric(winningBonusNumberInput);
-
-        return Integer.parseInt(winningBonusNumberInput);
-    }
-
-
 
     private static void validateCommaFormat(String input) {
         List<String> numbers = splitInputByComma(input);
@@ -127,37 +118,46 @@ public class View {
         for (String numberStr : numberStrings) {
             numbers.add(Integer.parseInt(numberStr.trim()));
         }
-
         return numbers;
     }
 
+    public static void promptForWinningBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
 
-
-    public static void printException(IllegalArgumentException e) {
-        System.out.println("[ERROR] : " + e.getMessage());
+    public static int inputWinningBonusNumber() {
+        String winningBonusNumberInput = Console.readLine();
+        validateEmpty(winningBonusNumberInput);
+        validateNumeric(winningBonusNumberInput);
+        return Integer.parseInt(winningBonusNumberInput);
     }
 
 
 
 
-    public static void printPurchaseResult(Lottos purchasedLottos) {
-        printPurchaseCount(purchasedLottos);
-        printLottoNumbers(purchasedLottos);
-    }
 
-    private static void printPurchaseCount(Lottos purchasedLottos) {
-        System.out.println(purchasedLottos.getSize() + "개를 구매했습니다.");
-    }
+    public static void printLottoResults(LottoResult lottoResult, double returnRate) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
 
-    private static void printLottoNumbers(Lottos purchasedLottos) {
-        List<Lotto> lottos = purchasedLottos.getLottos();
-        for (Lotto lotto : lottos) {
-            List<Integer> numbers = lotto.getNumbers();
-            List<Integer> sortedNumbers = new ArrayList<>(numbers);
-            Collections.sort(sortedNumbers);
-            System.out.println(sortedNumbers);
+        Map<WinningPrize, Integer> results = lottoResult.getResults();
+        for (WinningPrize winningPrize : WinningPrize.values()) {
+            if (winningPrize != WinningPrize.NONE_PRIZE) {
+                System.out.printf("%s (%,d원) - %d개%n",
+                        winningPrize.getDescription(),
+                        winningPrize.getPrize(),
+                        results.get(winningPrize));
+            }
         }
+
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", returnRate);
     }
+
+
+
+
+
+
 
 
 

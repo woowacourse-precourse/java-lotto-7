@@ -1,13 +1,13 @@
 package lotto.domain;
 
 public class Money {
-    private long amount;
+    private long purchaseAmount;
     private static final int MINIMUM_LOTTO_PRICE = 1000;
     private static final int LOTTO_PRICE_UNIT = 1000;
 
     public Money(long money) {
         validateMoney(money);
-        this.amount = money;
+        this.purchaseAmount = money;
     }
 
     private void validateMoney(long money) {
@@ -31,7 +31,7 @@ public class Money {
 
 
     public long getLottoQuantity() {
-        return amount / LOTTO_PRICE_UNIT;
+        return purchaseAmount / LOTTO_PRICE_UNIT;
     }
 
 
