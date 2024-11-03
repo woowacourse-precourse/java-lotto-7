@@ -10,7 +10,7 @@ public record PurchaseTotalPrice(int totalPrice) {
     private static final int UNIT_PRICE = 1000;
 
     public static PurchaseTotalPrice from(String input) {
-        int parsedTotalPrice = PurchaseTotalPriceParser.parseTotalPriceFromString(input);
+        int parsedTotalPrice = PurchaseTotalPriceParser.parse(input);
         validate(parsedTotalPrice);
         return new PurchaseTotalPrice(parsedTotalPrice);
     }

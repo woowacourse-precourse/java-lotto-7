@@ -15,41 +15,41 @@ public class LottoNumbersInputParser {
     private LottoNumbersInputParser() {
     }
 
-    public static List<Integer> parseLottoNumbers(String input) {
-        validate(input);
-        return parseNumbersFromString(input);
+    public static List<Integer> parse(String input) {
+        validateInput(input);
+        return splitAndConvertToNumbers(input);
     }
 
-    private static void validate(String input) {
-        validateLottoNumbersNotNull(input);
-        validateLottoNumbersNotEmpty(input);
-        validateCommaPosition(input);
+    private static void validateInput(String input) {
+        checkNotNull(input);
+        checkNotEmpty(input);
+        checkCommaPosition(input);
     }
 
-    private static void validateLottoNumbersNotNull(String input) {
+    private static void checkNotNull(String input) {
         if (input == null) {
             throw CustomIllegalArgumentException.from(NULL_INPUT);
         }
     }
 
-    private static void validateLottoNumbersNotEmpty(String input) {
+    private static void checkNotEmpty(String input) {
         if (input.isEmpty()) {
             throw CustomIllegalArgumentException.from(EMPTY_INPUT);
         }
     }
 
-    private static void validateCommaPosition(String input) {
+    private static void checkCommaPosition(String input) {
         if (input.startsWith(DELIMITER) || input.endsWith(DELIMITER)) {
             throw CustomIllegalArgumentException.from(INVALID_COMMA_POSITION);
         }
     }
 
-    private static List<Integer> parseNumbersFromString(String input) {
+    private static List<Integer> splitAndConvertToNumbers(String input) {
         List<String> parts = Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toList());
         validateParts(parts);
-        return convertPartsToNumbers(parts);
+        return toIntegerList(parts);
     }
 
     private static void validateParts(List<String> parts) {
@@ -57,11 +57,11 @@ public class LottoNumbersInputParser {
             if (part.isEmpty()) {
                 throw CustomIllegalArgumentException.from(EMPTY_PART_INPUT);
             }
-            validateNumber(part);
+            validateNumberFormat(part);
         }
     }
 
-    private static void validateNumber(String part) {
+    private static void validateNumberFormat(String part) {
         try {
             Integer.parseInt(part);
         } catch (NumberFormatException e) {
@@ -69,7 +69,7 @@ public class LottoNumbersInputParser {
         }
     }
 
-    private static List<Integer> convertPartsToNumbers(List<String> parts) {
+    private static List<Integer> toIntegerList(List<String> parts) {
         return parts.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());

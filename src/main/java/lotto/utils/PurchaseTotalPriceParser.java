@@ -6,11 +6,11 @@ import lotto.exception.CustomIllegalArgumentException;
 
 public class PurchaseTotalPriceParser {
 
-    public static int parseTotalPriceFromString(String input) {
-        return parseTotalPrice(input);
+    public static int parse(String input) {
+        return convertToInteger(input);
     }
 
-    private static int parseTotalPrice(String input) {
+    private static int convertToInteger(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

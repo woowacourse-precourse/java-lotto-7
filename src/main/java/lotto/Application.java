@@ -42,7 +42,7 @@ public class Application {
         //당첨 번호 입력
         outputView.printLottoNumbersInputPrompt();
         LottoNumbersInput lottoNumbersInput = inputView.readLottoNumbers();
-        LottoNumbersInputParser.parseLottoNumbers(lottoNumbersInput.input());
+        LottoNumbersInputParser.parse(lottoNumbersInput.input());
 
         //보너스 번호 입력
         outputView.printBonusNumberInputPrompt();
