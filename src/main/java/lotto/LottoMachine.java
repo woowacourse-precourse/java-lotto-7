@@ -2,80 +2,59 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
+import lotto.domain.WinningLotto;
+import lotto.domain.prize.WinningStrategy;
+import lotto.domain.statistic.Statistic;
 import lotto.io.InputHandler;
+import lotto.io.LottoIOHandler;
 import lotto.io.OutputHandler;
-import lotto.prize.KoreaPrizeChecker;
-import lotto.user.User;
-import lotto.user.User.UserLottoInfo;
+import lotto.domain.prize.KoreaPrizeChecker;
+import lotto.domain.user.User;
+import lotto.domain.user.User.UserLottoInfo;
 
 public class LottoMachine {
-
-    private final InputHandler inputHandler = new InputHandler();
-    private final OutputHandler outputHandler = new OutputHandler();
-
+    private final LottoIOHandler lottoIOHandler = new LottoIOHandler();
+    private final LottoGenerator lottoGenerator = new LottoGenerator();
+    private final WinningStrategy koreaPrizeChecker = new KoreaPrizeChecker();
+    private final Statistic statistic = new Statistic();
     public void run() {
-
-        Integer purchaseCost = null;
-
-        outputHandler.showPurchaseCostInputComments();
-
-        while (purchaseCost == null) {
-            try {
-                purchaseCost = inputHandler.getPurchaseCost();
-
-            } catch (IllegalArgumentException e) {
-                outputHandler.showErrorMessage(e.getMessage());
-            }
-        }
-
-
-        LottoGenerator lottoGenerator = new LottoGenerator();
-
+        Integer purchaseCost = lottoIOHandler.askPurchaseCost();
         Integer lottoCount = purchaseCost / 1000;
+        lottoIOHandler.showPurchaseLottoCount(lottoCount);
+        List<Lotto> lottoList = getLottoList(lottoCount);
 
-        outputHandler.showPurchaseLottoCount(lottoCount);
+        WinningLotto winningLotto = lottoIOHandler.askWinningLotto();
 
-        List<Lotto> lottos = new ArrayList<>();
+        List<UserLottoInfo> userLottoInfos = getUserLottoInfos(lottoList, winningLotto);
+        User user = new User(userLottoInfos, purchaseCost);
 
-        for (int i = 0; i < lottoCount; i++) {
+        statistic.setWinningStatistics(user.getLottoInfos());
+        lottoIOHandler.showWinningStatistics(statistic);
+        lottoIOHandler.showInterestRate(statistic.getInterestRate(user.getLottoInfos(), user.getPurchaseCost()));
+    }
 
-            Lotto lotto = new Lotto(lottoGenerator.generateLottoNumbers(1, 45, 6));
-            lottos.add(lotto);
-            outputHandler.showNumber(lotto);
-        }
-
-        outputHandler.showWinningLottoInputComment();
-        List<Integer> winningLottoNumber = inputHandler.getWinningLottoInput();
-        outputHandler.showWinningLottoBonusNumberInputComment();
-        Integer bonusNum = inputHandler.getWinningLottoBonusNumberInput();
-
-        WinningLotto winningLotto = new WinningLotto(winningLottoNumber, bonusNum);
-
-        KoreaPrizeChecker koreaPrizeChecker = new KoreaPrizeChecker();
-
+    private List<UserLottoInfo> getUserLottoInfos(List<Lotto> lottoList, WinningLotto winningLotto) {
         List<UserLottoInfo> userLottoInfos = new ArrayList<>();
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoList) {
             userLottoInfos.add(new UserLottoInfo(lotto,
                     koreaPrizeChecker.checkPrize(lotto.getNumbers(), winningLotto.getNumbers(),
                             winningLotto.getBonusNumber())));
         }
-
-        User user = new User(userLottoInfos, purchaseCost);
-
-        Statistic statistic = new Statistic();
-
-        statistic.setWinningStatistics(user.getLottoInfos());
-
-        outputHandler.showWinningStatistics(statistic);
-        outputHandler.showInterestRate(statistic.getInterestRate(user.getLottoInfos(), user.getPurchaseCost()));
-
+        return userLottoInfos;
     }
 
-    public void before() {
+    private List<Lotto> getLottoList(Integer lottoCount) {
+        List<Lotto> lottoList = new ArrayList<>();
 
-        outputHandler.showPurchaseCostInputComments();
-
+        for (int i = 0; i < lottoCount; i++) {
+            Lotto lotto = new Lotto(lottoGenerator.generateLottoNumbers(1, 45, 6));
+            lottoList.add(lotto);
+            lottoIOHandler.showNumber(lotto);
+        }
+        return lottoList;
     }
 }
 

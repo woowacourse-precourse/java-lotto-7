@@ -1,7 +1,7 @@
 package lotto.io;
 
-import lotto.Lotto;
-import lotto.Statistic;
+import lotto.domain.Lotto;
+import lotto.domain.statistic.Statistic;
 
 public class OutputHandler {
 
