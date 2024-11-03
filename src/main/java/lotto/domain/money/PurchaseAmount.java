@@ -4,8 +4,8 @@ import lotto.exception.LottoApplicationException;
 
 public class PurchaseAmount {
 
-    public static final int UNIT = 1000;
-    public static final int MIN_AMOUNT = 0;
+    private static final int UNIT = 1000;
+    private static final int MIN_AMOUNT = 0;
 
     private final int amount;
 

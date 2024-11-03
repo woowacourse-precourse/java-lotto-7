@@ -8,10 +8,10 @@ import lotto.domain.LottoNumber;
 
 public class LottoMessageGenerator {
 
-    public static final String PURCHASED_QUANTITY_FORMAT = "%d개를 구매했습니다.";
-    public static final String NUMBER_DELIMITER = ", ";
-    public static final String NUMBERS_PREFIX = "[";
-    public static final String NUMBERS_SUFFIX = "]";
+    private static final String PURCHASED_QUANTITY_FORMAT = "%d개를 구매했습니다.";
+    private static final String NUMBER_DELIMITER = ", ";
+    private static final String NUMBERS_PREFIX = "[";
+    private static final String NUMBERS_SUFFIX = "]";
 
     public String getPurchaseQuantityMessage(int quantity) {
         return String.format(PURCHASED_QUANTITY_FORMAT, quantity);

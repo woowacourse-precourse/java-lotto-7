@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.rank.LottoRank;
 import lotto.domain.money.PurchaseAmount;
+import lotto.domain.rank.LottoRank;
 import lotto.exception.LottoApplicationException;
 import lotto.view.input.InputHandler;
 import lotto.view.output.OutputHandler;
 
 public class LottoView {
+
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
 
@@ -32,7 +33,7 @@ public class LottoView {
         outputHandler.showEmptyLine();
         return winningNumbers;
     }
-    
+
     public LottoNumber getBonusNumberFromUser() {
         outputHandler.askBonusNumber();
         LottoNumber bonusNumber = inputHandler.getBonusNumber();

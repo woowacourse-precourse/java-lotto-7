@@ -1,16 +1,16 @@
 package lotto.service;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoNumberGenerator;
+import lotto.domain.WinningLotto;
+import lotto.domain.money.Money;
 import lotto.domain.rank.LottoRank;
 import lotto.domain.rank.LottoRanks;
-import lotto.domain.money.Money;
-import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")

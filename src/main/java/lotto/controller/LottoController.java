@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.rank.LottoRanks;
+import lotto.domain.WinningLotto;
 import lotto.domain.money.Money;
 import lotto.domain.money.PurchaseAmount;
-import lotto.domain.WinningLotto;
+import lotto.domain.rank.LottoRanks;
 import lotto.exception.LottoApplicationException;
 import lotto.service.LottoService;
 import lotto.view.LottoView;
@@ -49,7 +49,7 @@ public class LottoController {
         return new WinningLotto(lotto, bonusNumber);
     }
 
-    public <T> T repeatUntilCorrectInput(Supplier<T> supplier) {
+    private <T> T repeatUntilCorrectInput(Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();

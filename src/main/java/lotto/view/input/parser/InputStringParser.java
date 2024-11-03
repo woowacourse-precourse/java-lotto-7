@@ -6,7 +6,7 @@ import lotto.exception.LottoApplicationException;
 
 public class InputStringParser {
 
-    public static final String DEFAULT_DELIMITER = ",";
+    private static final String DEFAULT_DELIMITER = ",";
 
     public List<Integer> toIntegerList(String input) {
         return Arrays.stream(input.split(DEFAULT_DELIMITER))

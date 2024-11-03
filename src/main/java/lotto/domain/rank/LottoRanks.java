@@ -7,8 +7,8 @@ import lotto.domain.money.Money;
 
 public class LottoRanks {
 
-    public static final int DEFAULT_RATE_OF_RETURN = 0;
-    public static final int RATE = 100;
+    private static final int DEFAULT_RATE_OF_RETURN = 0;
+    private static final int RATE = 100;
 
     private final Map<LottoRank, Integer> ranks = new EnumMap<>(LottoRank.class);
 
