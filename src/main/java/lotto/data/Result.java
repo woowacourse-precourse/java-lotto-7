@@ -34,4 +34,24 @@ public class Result {
     public void addSixNumberMatch() {
         this.sixNumberMatch++;
     }
+
+    public Integer getThreeNumberMatch() {
+        return threeNumberMatch;
+    }
+
+    public Integer getFourNumberMatch() {
+        return fourNumberMatch;
+    }
+
+    public Integer getFiveNumberMatch() {
+        return fiveNumberMatch;
+    }
+
+    public Integer getBonusNumberMatch() {
+        return bonusNumberMatch;
+    }
+
+    public Integer getSixNumberMatch() {
+        return sixNumberMatch;
+    }
 }

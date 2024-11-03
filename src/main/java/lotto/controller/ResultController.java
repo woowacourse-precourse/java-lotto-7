@@ -21,5 +21,6 @@ public class ResultController {
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
         Integer bonusNumber = inputView.inputBonusNumber();
         lottoMachine.calculateResult(winningNumbers, bonusNumber);
+        outputView.printResult(lottoMachine.getResult());
     }
 }
