@@ -7,10 +7,12 @@ import java.util.Map;
 import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
 import lotto.service.LottoService;
+import lotto.service.StatisticsService;
 
 public class Application {
     public static void main(String[] args) {
         LottoService lottoService = new LottoService();
+        StatisticsService statisticsService = new StatisticsService();
 
         String purchaseAmount;
         System.out.println("구입금액을 입력해 주세요.");
@@ -38,9 +40,7 @@ public class Application {
                 bonusNumber);
         printStatistics(lottoResultCount);
 
-        int prizeMoneyAmount = calculateTotalPrizeMoney(lottoResultCount);
-        double rateEarning = (double) prizeMoneyAmount / purchaseAmountInt * 100;
-        rateEarning = Math.round(rateEarning * 100) / 100.0;
+        double rateEarning = statisticsService.calculateRateEarning(lottoResultCount, purchaseAmountInt);
         System.out.printf("총 수익률은 %.1f%%입니다.", rateEarning);
     }
 
