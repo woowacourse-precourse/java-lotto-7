@@ -6,6 +6,7 @@ import lotto.model.LottoRank;
 import lotto.model.LottoRevenueCalculator;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
+import lotto.util.NumbersGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,17 +16,19 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final NumbersGenerator numbersGenerator;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, NumbersGenerator numbersGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.numbersGenerator = numbersGenerator;
     }
 
     public void run() {
         int purchaseMoney = getMoney();
         int purchaseCount = calculatePurchaseCountBy(purchaseMoney);
 
-        Lottos purchasedLottos = Lottos.purchase(purchaseCount);
+        Lottos purchasedLottos = Lottos.purchase(purchaseCount, numbersGenerator);
         outputView.showPurchasedLottos(purchaseCount, purchasedLottos);
 
         WinningLotto winningLotto = getWinningLotto();
