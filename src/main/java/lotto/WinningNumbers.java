@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import util.LottoFormatter;
 
 public class WinningNumbers {
@@ -37,10 +39,18 @@ public class WinningNumbers {
         if (winningNumbers.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 번호를 입력해 주세요.");
         }
+        if (hasDuplicate(winningNumbers)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에는 중복된 숫자가 포함될 수 없습니다.");
+        }
     }
 
     private boolean isWithinRange(List<Integer> numbers) {
         return numbers.stream().allMatch(num -> num >= MIN_NUMBER && num <= MAX_NUMBER);
+    }
+
+    private boolean hasDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        return uniqueNumbers.size() != numbers.size();
     }
 
     public List<Integer> getAllWinningNumbers() {
