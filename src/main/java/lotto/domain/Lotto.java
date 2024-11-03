@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -12,6 +12,10 @@ public class Lotto {
         validate(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
+    }
+
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
     }
 
     public int countMatching(Lotto other) {
@@ -31,5 +35,4 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
 }
