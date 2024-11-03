@@ -2,11 +2,9 @@ package lotto;
 
 import lotto.utility.MatchedCountNameEnum;
 import lotto.utility.ProfitCalculator;
-import lotto.utility.RandomNumberCreator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,5 +88,15 @@ public class ProfitCalculatorTest {
         matchedCount.put(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), 1);
         assertThat(ProfitCalculator.calculate(1000, matchedCount)).isEqualTo("203155500.0");
+    }
+
+    @Test
+    void 여러_개의_경우_5() {
+        matchedCount.put(MatchedCountNameEnum.THREE_MATCHED.getMessage(), 47998);
+        matchedCount.put(MatchedCountNameEnum.FOUR_MATCHED.getMessage(), 2891);
+        matchedCount.put(MatchedCountNameEnum.FIVE_MATCHED.getMessage(), 59);
+        matchedCount.put(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage(), 2);
+        matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), 1);
+        assertThat(ProfitCalculator.calculate(2147483000, matchedCount)).isEqualTo("118.0");
     }
 }
