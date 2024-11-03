@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.exception.ErrorMessages;
-import lotto.exception.LottoException;
 import lotto.exception.MoneyException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
