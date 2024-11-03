@@ -7,6 +7,7 @@ import lotto.domain.Money;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.OutputviewFormatter;
 
 public class LottoController {
     public static void run() {
@@ -14,6 +15,7 @@ public class LottoController {
         final Money money = requestPurchaseMoneyAmount();
 
         Lottos lottos = lottoService.generateLottos(money.getPurchasableLottoCount());
+        OutputView.printPurchasedLottos(money.getPurchasableLottoCount(), OutputviewFormatter.formatLottoNumbers(lottos));
     }
 
     private static Money requestPurchaseMoneyAmount() {
