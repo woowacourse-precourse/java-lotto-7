@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import lotto.dto.WinningLottoDto;
 import lotto.message.ExceptionMessage;
 import lotto.model.domain.Lotto;
+import lotto.model.domain.LottoPrize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -109,21 +110,23 @@ class LottoTest {
     @DisplayName("당첨 번호와 비교하여 등수를 반환 하는 테스트입니다.")
     @ParameterizedTest
     @MethodSource("generateRankCase")
-    void generateWinningLottoTest(WinningLottoDto winningLottoDto, int rank) {
+    void generateWinningLottoTest(WinningLottoDto winningLottoDto, LottoPrize rank) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lotto.matchLottoNumbers(winningLottoDto)).isEqualTo(rank);
+        assertThat(lotto.matchLottoNumbers(winningLottoDto))
+                .extracting("lottoPrize")
+                .isEqualTo(rank);
     }
 
     static Stream<Arguments> generateRankCase() {
         return Stream.of(
-                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6), 7), 1),
-                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 8), 6), 2),
-                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 8), 7), 3),
-                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 8, 9), 7), 4),
-                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 8, 9, 10), 7), 5),
-                Arguments.of(new WinningLottoDto(List.of(1, 2, 8, 9, 10, 11), 7), -1),
-                Arguments.of(new WinningLottoDto(List.of(11, 12, 13, 14, 15, 16), 7), -1),
-                Arguments.of(new WinningLottoDto(List.of(11, 12, 13, 14, 15, 16), 1), -1)
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6), 7), LottoPrize.FIRST),
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 8), 6), LottoPrize.SECOND),
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 8), 7), LottoPrize.THIRD),
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 8, 9), 7), LottoPrize.FOURTH),
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 8, 9, 10), 7), LottoPrize.FIFTH),
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 8, 9, 10, 11), 7), LottoPrize.NO_RANK),
+                Arguments.of(new WinningLottoDto(List.of(11, 12, 13, 14, 15, 16), 7), LottoPrize.NO_RANK),
+                Arguments.of(new WinningLottoDto(List.of(11, 12, 13, 14, 15, 16), 1), LottoPrize.NO_RANK)
         );
     }
 

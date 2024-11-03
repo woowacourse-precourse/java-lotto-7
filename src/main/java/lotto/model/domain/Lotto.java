@@ -3,6 +3,7 @@ package lotto.model.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.dto.LottoPrizeDto;
 import lotto.dto.WinningLottoDto;
 import lotto.message.ExceptionMessage;
 
@@ -61,32 +62,62 @@ public class Lotto {
         return new WinningLottoDto(numbers, bonusNumber);
     }
 
-    public int matchLottoNumbers(WinningLottoDto winningLottoDto) {
+    public LottoPrizeDto matchLottoNumbers(WinningLottoDto winningLottoDto) {
         List<Integer> winningNumbers = winningLottoDto.getWinningNumbers();
         int bonusNumber = winningLottoDto.getBonusNumber();
         Set<Integer> forMatchNumber = new HashSet<>(numbers);
+        boolean matchBonusNumber = !forMatchNumber.add(bonusNumber);
+        int matchCount = countMatches(winningNumbers, forMatchNumber);
+        return getRank(matchCount, matchBonusNumber);
+    }
+
+    private int countMatches(List<Integer> winningNumbers, Set<Integer> forMatchNumber) {
         int matchCount = 0;
         for (int number : winningNumbers) {
             if (!forMatchNumber.add(number)) {
                 matchCount++;
             }
         }
+        return matchCount;
+    }
 
+    private LottoPrizeDto getRank(int matchCount, boolean matchBonusNumber) {
+        LottoPrizeDto rank = new LottoPrizeDto(LottoPrize.NO_RANK);
+        isFirstRank(matchCount, rank);
+        isSecondOrThird(matchCount, matchBonusNumber, rank);
+        isFourth(matchCount, rank);
+        isFifth(matchCount, rank);
+        return rank;
+    }
+
+    private void isFirstRank(int matchCount, LottoPrizeDto rank) {
         if (matchCount == 6) {
-            return 1;
+            rank.setLottoPrize(LottoPrize.FIRST);
         }
+    }
+
+    private void isSecondOrThird(int matchCount, boolean matchBonusNumber, LottoPrizeDto rank) {
         if (matchCount == 5) {
-            if (!forMatchNumber.add(bonusNumber)) {
-                return 2;
-            }
-            return 3;
+            rank.setLottoPrize(LottoPrize.THIRD);
+            isSecond(matchBonusNumber, rank);
         }
+    }
+
+    private void isSecond(boolean matchBonusNumber, LottoPrizeDto rank) {
+        if (matchBonusNumber) {
+            rank.setLottoPrize(LottoPrize.SECOND);
+        }
+    }
+
+    private void isFourth(int matchCount, LottoPrizeDto rank) {
         if (matchCount == 4) {
-            return 4;
+            rank.setLottoPrize(LottoPrize.FOURTH);
         }
+    }
+
+    private void isFifth(int matchCount, LottoPrizeDto rank) {
         if (matchCount == 3) {
-            return 5;
+            rank.setLottoPrize(LottoPrize.FIFTH);
         }
-        return -1;
     }
 }
