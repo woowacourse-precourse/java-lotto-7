@@ -39,7 +39,8 @@ public class LottoMachine {
             prizeSum += getWinningPrizeStatics(winningCondition, countMatchNumbers);
         }
 
-        return new WinningResultStatics(winningNumbersStatics, profitCalculator.calculateProfit(prizeSum,numberOfTickets));
+        return new WinningResultStatics(winningNumbersStatics,
+                profitCalculator.calculateProfit(prizeSum, numberOfTickets));
     }
 
     private WinningNumbersStatics storeWinningNumbersStatics(WinningConditions winningCondition,
