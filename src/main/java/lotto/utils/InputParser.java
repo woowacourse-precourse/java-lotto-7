@@ -29,8 +29,7 @@ public class InputParser {
     }
 
     public static List<Integer> parseNumbers(final String input) {
-        validateEmpty(input);
-        validateEndWithDelimiter(input);
+        validateInput(input);
 
         return splitByDelimiter(input).stream()
                 .map(InputParser::convertToInt)
@@ -49,6 +48,11 @@ public class InputParser {
         }
 
         return number;
+    }
+
+    private static void validateInput(final String input) {
+        validateEndWithDelimiter(input);
+        validateEmpty(input);
     }
 
     private static void validateEmpty(final String input) {
