@@ -24,7 +24,7 @@ public class LottoController {
         List<Integer> winningNumbers = inputWinningNumbers();
         int bonusNumber = inputBonusNumber(winningNumbers);
 
-        winningService.winningStatistics(winningNumbers, lottos, bonusNumber);
+        winningService.calculateWinningStatistics(winningNumbers, lottos, bonusNumber);
         OutputView.printResult(winningService.getLottoResult());
     }
 
@@ -93,7 +93,7 @@ public class LottoController {
         while (true) {
             try {
                 int purchaseAmount = InputView.purchasePriceInput();
-                ticketQuantity = winningService.buyTicket(purchaseAmount);
+                ticketQuantity = winningService.calculateTicketQuantity(purchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());

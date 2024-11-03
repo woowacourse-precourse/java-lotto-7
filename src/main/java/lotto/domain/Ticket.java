@@ -8,6 +8,7 @@ public class Ticket {
     private static final int TICKET_PRICE = 1_000;
     private int quantity;
     private int purchaseAmount;
+
     private Ticket(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
