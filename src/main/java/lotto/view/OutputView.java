@@ -12,7 +12,7 @@ public class OutputView {
 
     public static void printPurchaseAmount(String purchaseAmount) {
         int amount = Integer.parseInt(purchaseAmount) / LOTTO_PRICE;
-        System.out.println("\n" + amount + "개를 구매했습니다.");
+        System.out.println("\n"+ amount + "개를 구매했습니다.");
     }
 
     public static void printLottoNumbers(List<Integer> numbers) {
@@ -31,17 +31,16 @@ public class OutputView {
         Rank rank = rankCount.getRank();
         int count = rankCount.getCount();
 
-        System.out.printf("%d개 일치 (%d원) - %d개\n",
-                rank.getMatchCount(), rank.getPrize(), count);
+        String result = rank.getDescription() + " - " + count + "개";
+        System.out.println(result);
     }
 
     public static void printProfitRate(BigDecimal profitRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+        String result = "총 수익률은 " + profitRate.setScale(1, BigDecimal.ROUND_HALF_UP) + "%입니다.";
+        System.out.println(result);
     }
 
     public static void printErrorMessage(String messages) {
         System.out.println(PREFIX + messages);
     }
-
-
 }
