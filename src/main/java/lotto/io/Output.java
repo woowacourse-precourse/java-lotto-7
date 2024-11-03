@@ -2,6 +2,7 @@ package lotto.io;
 
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.RankCount;
 import lotto.util.Constants;
 
 import java.util.List;
@@ -44,5 +45,25 @@ public class Output {
 
     public void printBonusNumberInputPrompt() {
         System.out.println(Constants.BONUS_NUMBER_INPUT_PROMPT.getMessage());
+    }
+
+    public void printWinningStatistics(List<RankCount> winningStatistics) {
+        System.out.println(Constants.WINNING_STATISTICS.getMessage());
+        for (RankCount rankCount : winningStatistics) {
+            printWinningStatistic(rankCount);
+        }
+    }
+
+    private void printWinningStatistic(RankCount rankCount) {
+        int matchNumbersCount = rankCount.getRank().getMatchNumbersCount();
+        int matchBonus = rankCount.getRank().getMatchBonus();
+        int prize = rankCount.getRank().getPrize();
+        int count = rankCount.getCount();
+
+        if (matchBonus != 0) {
+            System.out.printf((Constants.MATCH_COUNT_FORMAT_WITH_BONUS.getMessage()) + "%n", matchNumbersCount, prize, count);
+            return;
+        }
+        System.out.printf((Constants.MATCH_COUNT_FORMAT.getMessage()) + "%n", matchNumbersCount, prize, count);
     }
 }

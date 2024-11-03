@@ -139,6 +139,8 @@ public class LottoController {
 
     private List<RankCount> handleWinningStatistics(Lottos lottos) {
         List<RankCount> winningStatistics = lottoService.calculateWinningStatistics(lottos, lottoWinningNumbers, lottoBonusNumber);
+        output.printWinningStatistics(winningStatistics);
+
         return winningStatistics;
     }
 }
