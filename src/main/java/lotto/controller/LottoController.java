@@ -1,10 +1,15 @@
 package lotto.controller;
 
 import lotto.domain.Consumer;
+import lotto.domain.LottoPrize;
 import lotto.service.LottoService;
+import lotto.view.OutputView;
+
+import java.util.List;
 
 import static lotto.util.Utils.changeStringToInt;
-import static lotto.view.InputView.inputPrice;
+import static lotto.util.Utils.changeStringToIntegerList;
+import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;
 
 public class LottoController {
@@ -12,11 +17,12 @@ public class LottoController {
     private static final int NUMBER_LIMIT = 1000;
     private final LottoService lottoService = new LottoService();
     private Consumer consumer;
+    private LottoPrize lottoPrize;
 
     public void start() {
         setting();
-//        startLotto();
-//        resultLotto();
+        startLotto();
+        resultLotto();
     }
 
     public void setting() {
@@ -49,5 +55,47 @@ public class LottoController {
         }
     }
 
+    public void startLotto() {
+        lottoPrize = lottoPrizeNumber();
+        lottoPrize = lottoBonusNumber();
+    }
+
+    private LottoPrize lottoPrizeNumber() {
+        try {
+            return LottoPrize.createLottoPrize(inputLottoPrizeNumber());
+        } catch (IllegalArgumentException e) {
+            ErrorMessage(e.getMessage());
+            return lottoPrizeNumber();
+        }
+    }
+
+    private List<Integer> inputLottoPrizeNumber() {
+        try {
+            String inputPrizeNumber = inputLottoNumbers();
+            return changeStringToIntegerList(inputPrizeNumber);
+        } catch (IllegalArgumentException e) {
+            ErrorMessage(e.getMessage());
+            return inputLottoPrizeNumber();
+        }
+    }
+
+    private LottoPrize lottoBonusNumber() {
+        try {
+            return LottoPrize.createLottoBonus(lottoPrize.getLottoPrizeNumbers(), inputLottoBonusNumber());
+        } catch (IllegalArgumentException e) {
+            ErrorMessage(e.getMessage());
+            return lottoBonusNumber();
+        }
+    }
+
+    private Integer inputLottoBonusNumber() {
+        try {
+            String inputBonusNumber = inputLottoBonus();
+            return changeStringToInt(inputBonusNumber);
+        } catch (IllegalArgumentException e) {
+            ErrorMessage(e.getMessage());
+            return inputLottoBonusNumber();
+        }
+    }
 
 }
