@@ -35,4 +35,8 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다. 현재 번호: " + numbers);
         }
     }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
 }
