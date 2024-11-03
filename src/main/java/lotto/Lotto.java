@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.enums.ErrorCode;
 import lotto.enums.Value;
 
 import java.util.List;
@@ -15,15 +16,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != Value.lottoNumberCount) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_COUNT_ERROR.getMessage());
         }
-        for (int number : numbers) {
-            if (number < Value.lottoStartNumber || number > Value.lottoEndNumber) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이여야 합니다.");
-            }
+        if (numbers.stream().anyMatch(number -> number < Value.lottoStartNumber || number > Value.lottoEndNumber)) {
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_RANGE_ERROR.getMessage());
         }
         if (numbers.stream().distinct().count() != Value.lottoNumberCount) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 }
