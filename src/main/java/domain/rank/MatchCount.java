@@ -35,4 +35,8 @@ public enum MatchCount {
     public String getOutputMessage() {
         return outputMessage;
     }
+
+    public Long getPriceMoney() {
+        return priceMoney;
+    }
 }

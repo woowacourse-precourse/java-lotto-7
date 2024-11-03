@@ -8,6 +8,8 @@ public enum OutputMessage {
     NEW_LINE("\r\n"),
     DASH_SEPERATOR(" - "),
     COUNT_UNIT("개"),
+    TOTAL_RATE_MESSAGE("총 수익률은 "),
+    PERCENTAGE_SYMBOL("%입니다.\r\n")
     ;
 
     private final String outputMessage;

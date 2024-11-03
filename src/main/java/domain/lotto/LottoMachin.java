@@ -62,7 +62,8 @@ public class LottoMachin {
         Output.println(OutputMessage.WINNING_STATISTICS.getOutputMessage());
         Map<MatchCount, Integer> checkedLottoResult = consumer.getCheckLottoResultBy(this);
         StringBuilder stringBuilder = generateLottoResultStringFrom(checkedLottoResult);
-        System.out.println(stringBuilder.toString());
+        stringBuilder.append(printCalculateRateAs(checkedLottoResult, consumer.getPurchasedLottoCount()));
+        Output.println(stringBuilder.toString());
     }
 
     public int getMatchedLottoCount(Lotto purchasedLotto,
@@ -83,7 +84,30 @@ public class LottoMachin {
         }
         return stringBuilder;
     }
-    // TODO : 수익률을 계산한다.
 
-    // TODO : 수익률을 출력한다.
+    private StringBuilder printCalculateRateAs(Map<MatchCount, Integer> matchCountResult, int purchasedLottoCount) {
+        StringBuilder stringBuilder = new StringBuilder();
+        Long priceTotal = calculatePriceTotalAs(matchCountResult);
+        stringBuilder.append(OutputMessage.TOTAL_RATE_MESSAGE.getOutputMessage());
+        stringBuilder.append(calculateRounded(priceTotal, purchasedLottoCount));
+        stringBuilder.append(OutputMessage.PERCENTAGE_SYMBOL.getOutputMessage());
+        return stringBuilder;
+    }
+
+    private Long calculatePriceTotalAs(Map<MatchCount, Integer> matchCountResult) {
+        Long totalPrice = 0L;
+        for (Map.Entry<MatchCount, Integer> entrySet : matchCountResult.entrySet()) {
+            if (entrySet.getValue() != 0) {
+                totalPrice += entrySet.getKey().getPriceMoney() * entrySet.getValue();
+            }
+        }
+
+        return totalPrice;
+    }
+
+    // ((총 수익률) / (로또 구매 금액)) * 100
+    public static Double calculateRounded(Long priceTotal, int purchasedLottoCount) {
+        double result = ((double) priceTotal / (purchasedLottoCount * LottoPrice.LOTTO_PRICE.getPrice())) * 100;
+        return Math.round(result * 10) / 10.0;
+    }
 }
