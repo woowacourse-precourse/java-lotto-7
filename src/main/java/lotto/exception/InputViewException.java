@@ -8,6 +8,7 @@ public class InputViewException {
         validateMoneyFormat(inputMoney);
         validateIfMoneyPositive(inputMoney);
         validateIfMoneyMultipleOfThousand(inputMoney);
+        validateIfMoneyStartsWithZero(inputMoney);
     }
 
     private void validateMoneyFormat(String inputMoney){
@@ -31,6 +32,13 @@ public class InputViewException {
         if (Integer.parseInt(inputMoney) % 1000 != 0) {
             throw new IllegalArgumentException(
                     ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.MONEY_MUST_BE_A_MULTIPLE_OF_THOUSAND);
+        }
+    }
+
+    private void validateIfMoneyStartsWithZero(String inputMoney) {
+        if (!inputMoney.equals(String.valueOf(Integer.parseInt(inputMoney)))) {
+            throw new IllegalArgumentException(
+                    ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_NUMBER_CANNOT_START_WITH_ZERO);
         }
     }
 
