@@ -9,9 +9,18 @@ public class InputView {
         if (!isNumeric(money)){
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
         }
+
+        int inputMoney = Integer.parseInt(money);
+        if (!isModZero(inputMoney)){
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        }
     }
 
     public static boolean isNumeric(String input){
         return input.matches("\\d+");
+    }
+
+    public static boolean isModZero(int money){
+        return money % 1000 == 0;
     }
 }
