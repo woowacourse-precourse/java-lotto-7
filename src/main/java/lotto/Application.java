@@ -10,10 +10,8 @@ public class Application {
 
         LottoBuyer lottoBuyer = new LottoBuyer(lottoCount);
         input.makeEmptyLine(null);
-
+        
         lottoBuyer.setWinningLottoAndBonusNumber(input.receiveWiningNumber(), input.receiveBonusNumber());
-
-        System.out.println(lottoBuyer);
-
+        lottoBuyer.printTotalPrize();
     }
 }

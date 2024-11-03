@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.LottoRank.LOTTO_RANKS;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 
@@ -24,6 +26,68 @@ public class LottoBuyer {
     public void setWinningLottoAndBonusNumber(Lotto winningLotto, int bonusLottoNumber) {
         this.winningLotto = winningLotto;
         this.bonusLottoNumber = bonusLottoNumber;
+    }
+
+    public ArrayList<LottoRank> makeLottoRank() {
+        ArrayList<LottoRank> ranks = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            int duplNumber = winningLotto.findDuplicateNumber(lotto.getNumbers());
+            LottoRank lottoRank = specifyLottoRank(duplNumber, lotto);
+            if (lottoRank != null) {
+                ranks.add(specifyLottoRank(duplNumber, lotto));
+            }
+        }
+        return ranks;
+    }
+
+    private LottoRank specifyLottoRank(int duplNumber, Lotto lotto) {
+        if (duplNumber == 6) {
+            return LottoRank.FRIST;
+        }
+        if (duplNumber == 5) {
+            return checkBonusNumber(lotto);
+        }
+        if (duplNumber == 4) {
+            return LottoRank.FOURTH;
+        }
+        if (duplNumber == 3) {
+            return LottoRank.FIFTH;
+        }
+        return null;
+    }
+
+    public LottoRank checkBonusNumber(Lotto lotto) {
+        boolean matchBonus = lotto.getNumbers().contains(bonusLottoNumber);
+        if (matchBonus) {
+            return LottoRank.SECOND;
+        }
+        return LottoRank.THIRD;
+    }
+
+    public long calculateTotalPrize() {
+        ArrayList<LottoRank> ranks = makeLottoRank();
+        long totalPrize = 0;
+        for (int i = LOTTO_RANKS.length - 1; i >= 0; i--) {
+            LottoRank lottoRank = LOTTO_RANKS[i];
+            long count = ranks.stream()
+                    .filter(lottoRank::equals)
+                    .count();
+            totalPrize += lottoRank.countPrize(count);
+        }
+        return totalPrize;
+    }
+
+    public void printTotalPrize() {
+        System.out.printf("%n당첨 통계%n---%n");
+        long totalPrize = calculateTotalPrize();
+        // 퍼센트(%) 계산을 위해 상금에 100을 곱한값을 전달한다
+        System.out.printf("총 수익률은 %s%%입니다.", prizeFormat(totalPrize * 100));
+    }
+
+    private String prizeFormat(long totalPrizeForPercent) {
+        long buyPrice = lottos.size();
+        String format = String.format("%.1f", totalPrizeForPercent / (lottos.size() * (double) 1000));
+        return format;
     }
 
 
