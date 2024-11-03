@@ -20,14 +20,6 @@ public enum Rank {
         this.description = description;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public boolean requiresBonus() {
-        return requiresBonus;
-    }
-
     public int getPrize() {
         return prize;
     }
