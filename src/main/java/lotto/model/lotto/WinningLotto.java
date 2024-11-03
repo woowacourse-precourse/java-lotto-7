@@ -2,18 +2,18 @@ package lotto.model.lotto;
 
 public class WinningLotto {
 
-    private final Lotto lotto;
+    private final Lotto winningNumbers;
     private final int bonusNumber;
 
-    public WinningLotto(Lotto lotto, int bonusNumber) {
-        this.lotto = lotto;
+    public WinningLotto(Lotto winningNumbers, int bonusNumber) {
+        this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
     public int countMatchingNumberWith(Lotto lotto) {
         int matchCount = 0;
         for (Integer number : lotto.numbers) {
-            if (this.lotto.numbers.contains(number)) {
+            if (this.winningNumbers.numbers.contains(number)) {
                 matchCount++;
             }
         }

@@ -30,10 +30,10 @@ public class WinningLottoTest {
     @DisplayName("중복되는 숫자의 개수를 올바르게 반환한다.")
     void returnValidMatchingNumber() {
         // given
-        Lotto lotto = new Lotto(numbers);
+        Lotto winningNumbers = new Lotto(numbers);
 
         // when
-        int matchingNumber = winningLotto.countMatchingNumberWith(lotto);
+        int matchingNumber = winningLotto.countMatchingNumberWith(winningNumbers);
 
         // then
         assertThat(matchingNumber).isEqualTo(numbers.size());
@@ -43,10 +43,10 @@ public class WinningLottoTest {
     @DisplayName("보너스 숫자와의 일치 여부를 올바르게 반환한다.")
     void shouldReturnCorrectBonusMatchStatus() {
         // given
-        Lotto lotto = new Lotto(createValidNumbers(bonusNumber));
+        Lotto winningNumbers = new Lotto(createValidNumbers(bonusNumber));
 
         // when
-        boolean bonusNumberMatched = winningLotto.isBonusNumberMatchedWith(lotto);
+        boolean bonusNumberMatched = winningLotto.isBonusNumberMatchedWith(winningNumbers);
 
         // then
         assertThat(bonusNumberMatched).isTrue();
