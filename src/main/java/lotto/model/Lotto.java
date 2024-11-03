@@ -45,4 +45,8 @@ public class Lotto {
         return new Lotto(randomNumbers);
     }
 
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(this.numbers);
+    }
+
 }

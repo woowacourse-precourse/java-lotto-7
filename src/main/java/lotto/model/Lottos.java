@@ -24,4 +24,14 @@ public class Lottos {
         return this.lottos.size() == size;
     }
 
+    public List<List<Integer>> getLottos() {
+        List<List<Integer>> allLottos = new ArrayList<>();
+
+        for (Lotto lotto : this.lottos) {
+            allLottos.add(lotto.getNumbers());
+        }
+
+        return allLottos;
+    }
+
 }
