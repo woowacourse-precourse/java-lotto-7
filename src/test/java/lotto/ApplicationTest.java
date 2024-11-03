@@ -130,6 +130,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("메인 숫자가 범위를 벗어날 때 예외 메시지 출력")
+    void displayErrorMessageWhenMainNumbersOutOfRange() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,50", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Override
     public void runMain() {
