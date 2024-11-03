@@ -15,10 +15,11 @@ public class PrizeController {
     private final OutputView outputView = new OutputView();
 
     public void lottoStart(){
-        int lottoMoney=inputView.getMoneyInput()/1000;
+        int lottoMoney=inputView.getMoneyInput();
         int count=lottoMoney/1000;
 
-        List<Lotto> lotto=generateLotto(lottoMoney);
+        List<Lotto> lotto=generateLotto(count);
+        outputView.printLottoNumber(count);
         outputView.printLotto(lotto);
 
         Map<LottoRate, Integer> prizeRepository = prizeService.servicePrize(lotto,
