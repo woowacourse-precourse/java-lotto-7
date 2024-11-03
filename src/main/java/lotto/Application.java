@@ -18,27 +18,9 @@ public class Application {
         // 2.5 로또의 번호를 출력하는 기능
         printLottoTickets(lottoTickets);
 
-        // 3.1 당첨 번호를 입력 받는 기능
-        String winningNumbersInput = getInputString("당첨 번호를 입력해 주세요.");
-
-        // 3.2 입력된 당첨 번호를 쉼표(,)를 기준으로 분리하는 기능
-        String[] winningNumbersInputSplits = winningNumbersInput.split(",");
-
-        try {
-            // 3.3 분리한 문자열의 개수가 맞지 않는 경우 예외 처리하는 기능
-            validateWinningNumbersCount(winningNumbersInputSplits);
-            // 3.4 당첨 번호 중에 정수로 변환할 수 없는 문자열이 있는 경우 예외 처리하는 기능
-            validateNumericStrings(winningNumbersInputSplits);
-            // 3.5 범위(1~45)에 맞지 않는 당첨 번호가 포함된 경우 예외 처리하는 기능
-            ArrayList<Integer> winningNumbers = parseIntWinningNumbers(winningNumbersInputSplits);
-            validateLottoNumbersInRange(winningNumbers);
-            // 3.6 중복되는 번호가 존재할 경우 예외 처리하는 기능
-            validateUniqueNumbers(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        // 3.7 형식에 맞는 당첨 번호가 입력될 때까지 반복하여 입력을 받는 기능
+        ArrayList<Integer> winningNumbers = getWinningNumbers();
     }
-
 
 
     private static String getInputString(String message) {
@@ -153,6 +135,27 @@ public class Application {
         for (int number : numbers) {
             if (!set.add(number)) {
                 throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 있습니다.");
+            }
+        }
+    }
+
+    private static ArrayList<Integer> convertWinningNumbers(String[] winningNumbersInputSplits) {
+        validateWinningNumbersCount(winningNumbersInputSplits);
+        validateNumericStrings(winningNumbersInputSplits);
+        ArrayList<Integer> winningNumbers = parseIntWinningNumbers(winningNumbersInputSplits);
+        validateLottoNumbersInRange(winningNumbers);
+        validateUniqueNumbers(winningNumbers);
+        return winningNumbers;
+    }
+
+    private static ArrayList<Integer> getWinningNumbers() {
+        while (true) {
+            String winningNumbersInput = getInputString("당첨 번호를 입력해 주세요.");
+            String[] winningNumbersInputSplits = winningNumbersInput.split(",");
+            try {
+                return convertWinningNumbers(winningNumbersInputSplits);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
