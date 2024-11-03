@@ -20,10 +20,7 @@ public class DrawnLotto {
             throw new IllegalArgumentException("당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.");
         }
         try {
-            return Arrays.stream(numbers)
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+            return Arrays.stream(numbers).map(String::trim).map(Integer::parseInt).collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("당첨 번호는 숫자만 입력 가능합니다.");
         }
@@ -45,4 +42,20 @@ public class DrawnLotto {
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
         }
     }
+
+    public int countHits(Lotto lotto) {
+        int count = 0;
+        for (int num : lotto.getNumbers()) {
+            if (drawnLotto.getNumbers().contains(num)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean isBonusNumberHit(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
+
 }

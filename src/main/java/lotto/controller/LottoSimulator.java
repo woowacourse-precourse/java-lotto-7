@@ -42,7 +42,7 @@ public class LottoSimulator {
     }
     
     private void verifyLottoWins() {
-        
+        lottoHolder.calculateRankCounts(drawnLotto);
     }
     
     private void showLottoResults() {
