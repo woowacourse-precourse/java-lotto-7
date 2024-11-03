@@ -17,9 +17,8 @@ public class Application {
         LottoController lottoController = new LottoController();
         try{
             String money = inputHandler.getBuyMoney();
-            int count = parseInt(money)/1000;
-            outputHandler.printPurchaseCount(count);
-            lottoController.createLottos(parseInt(money));
+            lottoController.createLottos(Integer.parseInt(money));
+            outputHandler.printPurchaseCount(lottoController.getLottos().size());
             outputHandler.printLottos(lottoController.getLottos());
             String[] winningNumbers = inputHandler.getWinningNum();
             List<Integer> winningLotto = new ArrayList<>();
@@ -32,7 +31,6 @@ public class Application {
             outputHandler.printProfitRate(lottoController.getProfitRate());
         }catch(IllegalArgumentException e){
             outputHandler.printError(e.getMessage());
-            throw e;
         }
     }
 }

@@ -32,6 +32,6 @@ public class OutputHandler {
         System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
     public void printError(String message) {
-        System.out.println(message);
+        System.out.println("[ERROR] " + message);
     }
 }
