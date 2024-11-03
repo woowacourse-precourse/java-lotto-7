@@ -1,8 +1,8 @@
 package lotto;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,12 +10,38 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers); // 입력된 리스트를 오름차순 정렬
         this.numbers = numbers;
     }
 
+    // 입력한 금액만큼 로또 생성
+    public static List<Lotto> makeLotto(int lottoCount) {
+        List<Lotto> lotto = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            lotto.add(new Lotto(generateRandomNum()));
+        }
+        return lotto;
+    }
+
+    // 로또 생성을 위한 랜덤 정수 6자리 생성
+    private static List<Integer> generateRandomNum() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    // 보너스번호 설정
     public void setBonusNum(int bonusNum) {
         validateBonusNum(bonusNum);
         this.bonusNum = bonusNum;
+    }
+
+    // 객체의 번호 반환
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    // 객체의 보너스번호 반환
+    public int getBonusNum() {
+        return bonusNum;
     }
 
     // 당첨번호 입력 검증
@@ -43,13 +69,5 @@ public class Lotto {
         if (numbers.contains(bonusNum)) {
             throw new IllegalArgumentException("[ERROR] 당첨번호와 중복되지 않는 번호를 입력하세요.");
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-    public int getBonusNum() {
-        return bonusNum;
     }
 }
