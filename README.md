@@ -151,10 +151,26 @@
 - [x] Numbers 객체의 동등성을 비교하는 기능 (equals)
 - [x] Numbers 객체의 해시코드를 가져오는 기능 (hashCode)
 
+### LottoMatcher
+
+- [x] 로또 당첨 정보를 기반으로 등수를 계산하는 기능 (calculateRank)
+  - 로또 번호와 당첨 번호의 일치 개수를 센다. (countMatches)
+  - 로또 번호에 보너스 번호가 포함되어 있는지 확인한다. (hasBonusNumber)
+  - 로또 객체에서 로또 번호들을 가져온다. (getLottoNumbers)
+  - 당첨 정보에서 당첨 번호들을 가져온다. (getWinningLottoNumbers)
+
 ### Rank
 
 - [x] Rank 객체를 생성하는 기능 (of)
+  - 보너스 번호를 맞추지 못한 경우, 로또 번호만 체크한다.
+  - 보너스 번호를 맞춘 경우, 보너스 번호와 로또 번호 둘다 체크한다.
 - [x] 상금을 반환하는 기능 (getPrize)
+
+### WinningInfo
+
+- [x] 로또의 추첨 결과를 생성하는 기능 (of)
+- [x] 추첨한 로또의 번호를 가져오는 기능 (getWinningNumbers)
+- [x] 추첨한 로또의 보너스 번호를 가져오는 기능 (getBonusNumber)
 
 ---
 
