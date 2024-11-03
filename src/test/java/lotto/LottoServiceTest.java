@@ -52,4 +52,14 @@ public class LottoServiceTest {
 
         assertEquals(62.5, profitRate);
     }
+
+    @Test
+    void 큰_수익률을_올바르게_계산한다() {
+        long totalWinningAmount = 4_000_000_000L;
+        int totalPurchaseAmount = 4000;
+
+        double profitRate = lottoService.calculateProfitRate(totalWinningAmount, totalPurchaseAmount);
+
+        assertEquals(100_000_000, profitRate);
+    }
 }
