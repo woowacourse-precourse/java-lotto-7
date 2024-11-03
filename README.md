@@ -30,10 +30,10 @@
 - 세부 controller와 view를 연결 : controller.MainController
 
 
-- 사용자에게 받는 입력을 담당하는 controller, 입력 예외처리 : controller.InputController
+- 사용자에게 받는 입력 및 입력 예외처리를 담당하는 controller : controller.InputController
 
 
-- 사용자에게 받은 입력 처리를 담당하는 controller.LottoController
+- 사용자에게 받은 입력 처리를 담당하는 controller : LottoController
 
 
 - 사용자에게 보여줄 출력을 담당하는 controller : controller.OutputController
