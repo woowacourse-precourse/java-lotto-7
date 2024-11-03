@@ -16,6 +16,7 @@ public class LottoController {
     public void run() {
         Amount amount = requestAmount();
         Lottos lottos = createLottos(amount);
+        inputView.enterWinningNumbers();
     }
 
     private Amount requestAmount() {
