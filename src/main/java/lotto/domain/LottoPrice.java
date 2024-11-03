@@ -1,18 +1,20 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+
 public class LottoPrice {
-    private static final int LOTTO_UNIT_PRICE = 1000;
-    private final int price;
+    private static final BigDecimal LOTTO_UNIT_PRICE = BigDecimal.valueOf(1000);
+    private final BigDecimal price;
 
     public LottoPrice(int price) {
-        this.price = price;
+        this.price = BigDecimal.valueOf(price);
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public int getCanPurchaseLottoCount() {
-        return price / LOTTO_UNIT_PRICE;
+    public BigDecimal getCanPurchaseLottoCount() {
+        return price.divide(LOTTO_UNIT_PRICE);
     }
 }

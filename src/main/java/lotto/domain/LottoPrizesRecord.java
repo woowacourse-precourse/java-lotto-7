@@ -13,21 +13,20 @@ public class LottoPrizesRecord {
         this.lottoPrizesMap = lottoPrizesMap;
     }
 
-    public long totalEarningAmount() {
+    public BigDecimal totalEarningAmount() {
         return lottoPrizesMap.entrySet().stream()
                 .filter(entry -> entry.getKey() != NO_PRIZE)
-                .mapToLong(entry -> entry.getValue() * entry.getKey().getPrizeMoney())
-                .sum();
+                .map(entry -> BigDecimal.valueOf(entry.getValue()).multiply(BigDecimal.valueOf(entry.getKey().getPrizeMoney())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public double getRateOfReturn(LottoPrice lottoPrice) {
-        long totalEarningAmount = totalEarningAmount();
-        int lottoPricePrice = lottoPrice.getPrice();
+    public BigDecimal getRateOfReturn(LottoPrice lottoPrice) {
+        BigDecimal totalEarningAmount = totalEarningAmount();
 
-        BigDecimal rateOfReturn = BigDecimal.valueOf(totalEarningAmount)
+        BigDecimal rateOfReturn = totalEarningAmount
                 .multiply(BigDecimal.valueOf(100))
-                .divide(BigDecimal.valueOf(lottoPricePrice), 2, RoundingMode.HALF_UP);
-        return rateOfReturn.doubleValue();
+                .divide(lottoPrice.getPrice(), 1, RoundingMode.HALF_UP);
+        return rateOfReturn;
     }
 
     public Map<LottoPrize, Integer> getLottoPrizesMap() {

@@ -5,6 +5,7 @@ import static lotto.exception.input.InputErrorCode.BONUS_NUMBER_OUT_OF_RANGE;
 import static lotto.exception.input.InputErrorCode.INVALID_LOTTO_NUMBER_PATTERN;
 import static lotto.exception.input.InputErrorCode.LOTTO_PRICE_NOT_DIVISIBLE_BY_1000;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;

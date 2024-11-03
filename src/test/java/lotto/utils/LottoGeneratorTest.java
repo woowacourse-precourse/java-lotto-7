@@ -2,6 +2,7 @@ package lotto.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
 import lotto.domain.LottoTickets;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +17,7 @@ class LottoGeneratorTest {
     @DisplayName("생성된 로또 갯수 일치 여부 테스트")
     void testGenerateLottosSize(int lottoAmount) {
         // Given & When
-        LottoTickets lottos = LottoGenerator.generateLottoTickets(lottoAmount);
+        LottoTickets lottos = LottoGenerator.generateLottoTickets(BigDecimal.valueOf(lottoAmount));
 
         // Then
         assertThat(lottos.getLottoCount()).isEqualTo(lottoAmount);
