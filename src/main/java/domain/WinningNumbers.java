@@ -7,7 +7,11 @@ public class WinningNumbers {
 
     public static List<Integer> generateWinningNumbers(String winningNumber) {
         List<Integer> winningNumberCollection = new ArrayList<>();
-        winningNumberCollection.add(Integer.parseInt(winningNumber));
+        String[] numbers = winningNumber.split(",");
+
+        for (String number : numbers) {
+            winningNumberCollection.add(Integer.parseInt(number.trim()));
+        }
         return winningNumberCollection;
     }
 }
