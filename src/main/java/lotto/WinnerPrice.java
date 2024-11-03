@@ -3,7 +3,6 @@ package lotto;
 public enum WinnerPrice {
 
     //LottoView 에서 출력할 떄 이용할 enum 클래스
-
     FIRST(6, 2000000000, 4, false, "6개 일치 (2,000,000,000원) - "),
     SECOND(5, 30000000, 3, true, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     THIRD(5, 1500000, 2, false, "5개 일치 (1,500,000원) - "),

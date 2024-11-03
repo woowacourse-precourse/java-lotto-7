@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-
     private List<Lotto> lottos;
     private List<Integer> winningNumbers;
 

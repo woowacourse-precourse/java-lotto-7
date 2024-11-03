@@ -29,6 +29,4 @@ public class Application {
         LottoController lottoController = new LottoController();
         lottoController.run();
     }
-
-
 }

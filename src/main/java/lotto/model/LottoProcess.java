@@ -7,7 +7,6 @@ import lotto.WinnerPrice;
 import java.util.*;
 
 public class LottoProcess {
-
     private List<Integer> winningStatistics;
 
     public LottoProcess() {

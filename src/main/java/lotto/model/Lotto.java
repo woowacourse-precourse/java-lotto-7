@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-
     //하나의 객체로 생각 -> 로또 용지 1개
     private final List<Integer> numbers;
 
