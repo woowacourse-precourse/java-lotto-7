@@ -16,7 +16,7 @@ public class InputView {
 		}
 	}
 
-	public List<Integer> getWinningLottoInput() {
+	public List<Integer> getWinningNumbersInput() {
 		try {
 			String winningLotto = Console.readLine();
 			return parseToNumbers(winningLotto);
