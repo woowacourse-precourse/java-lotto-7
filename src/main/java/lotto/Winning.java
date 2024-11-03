@@ -31,7 +31,7 @@ public class Winning {
         }
     }
 
-    public List<Integer> get() {
+    public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
 

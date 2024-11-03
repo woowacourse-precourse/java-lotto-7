@@ -33,7 +33,7 @@ public class Lotto {
 
     public int getMatchingCountWith(Winning winning) {
         List<Number> matchingNumber = new ArrayList<>(List.copyOf(this.numbers));
-        matchingNumber.retainAll(winning.get());
+        matchingNumber.retainAll(winning.getNumbers());
         return matchingNumber.size();
     }
 
