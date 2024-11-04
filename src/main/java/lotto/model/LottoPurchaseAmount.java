@@ -12,8 +12,16 @@ public class LottoPurchaseAmount {
         this.amount = Integer.parseInt(amount);
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public int getPurchaseCount() {
+        return amount / AMOUNT_UNIT;
+    }
+
     private void validate(String amount) {
-        if (!amount.isEmpty())
+        if (amount.isEmpty())
             throw new IllegalArgumentException(ErrorConstant.ERROR_MARK + ErrorConstant.NOT_ENTERED);
         if (!ValidatorConstant.NUMBER_PATTERN.matcher(amount).matches())
             throw new IllegalArgumentException(ErrorConstant.ERROR_MARK + ErrorConstant.NOT_NUMBER);
