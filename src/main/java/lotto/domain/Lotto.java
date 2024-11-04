@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lotto.domain.dto.LottoResultDto;
 
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,12 +25,18 @@ public class Lotto {
     public LottoResultDto countNumberOfWinnings(WinningNumber winningNumber) {
         int matchCount = 0;
         boolean isBonus = false;
-        for (int i = 0; i < this.numbers.size(); i++) {
-            if (winningNumber.getBonusNumber() == this.numbers.get(i)) {
+
+        Set<Integer> winningSet = new HashSet<>();
+        for (int winning : winningNumber.getWinningNumbers()) {
+            winningSet.add(winning);
+        }
+
+        for (Integer number : this.numbers) {
+            if (winningNumber.getBonusNumber() == number) {
                 isBonus = true;
                 continue;
             }
-            if (winningNumber.getWinningNumbers()[i] == this.numbers.get(i)) {
+            if (winningSet.contains(number)) {
                 matchCount++;
             }
         }

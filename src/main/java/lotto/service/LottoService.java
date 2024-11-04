@@ -14,7 +14,7 @@ public class LottoService {
     public List<Lotto> generateLottoNumbers(int purchaseAmount) {
         List<Lotto> generatedLotto = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
-            List<Integer> generatedLottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> generatedLottoNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(generatedLottoNumber);
             generatedLotto.add(new Lotto(generatedLottoNumber));
         }
@@ -23,7 +23,7 @@ public class LottoService {
 
     public Map<Prize, Integer> calculateMathLotto(int[] winningNumbers, int bonusNumber, List<Lotto> lottos) {
         WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
-        Map<Prize, Integer> prizeCount = new HashMap<>();
+        Map<Prize, Integer> prizeCount = new TreeMap<>();
         for (Prize prize : Prize.values()) {
             if (prize.getPrizeMoney() == 0) {
                 continue;
