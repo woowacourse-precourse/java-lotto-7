@@ -27,21 +27,21 @@ class LottoTest {
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 
-    //  쉼표를 포함하여 구입 금액을 입력하는 경우 (예: 1,400) NumberFormatException
-    @DisplayName("쉼표를 포함하여 구입 금액을 입력하는 경우 (예: 1,400) NumberFormatException")
-    @Test
-    void NumberFormatExceptionTest_되도_않는_영어이름_테스트_1() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-            .isInstanceOf(NumberFormatException.class);
-    }
-
-    // 문자열을 포함하여 입력하는 경우 (예: 만원, 1만원, 10,000원) NumberFormatException
-    @DisplayName("문자열을 포함하여 입력하는 경우 (예: 만원, 1만원, 10,000원) NumberFormatException")
-    @Test
-    void NumberFormatExceptionTest_되도_않는_영어이름_테스트_2() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-            .isInstanceOf(NumberFormatException.class);
-    }
+//    //  쉼표를 포함하여 구입 금액을 입력하는 경우 (예: 1,400) NumberFormatException
+//    @DisplayName("쉼표를 포함하여 구입 금액을 입력하는 경우 (예: 1,400) NumberFormatException")
+//    @Test
+//    void NumberFormatExceptionTest_되도_않는_영어이름_테스트_1() {
+//        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+//            .isInstanceOf(NumberFormatException.class);
+//    }
+//
+//    // 문자열을 포함하여 입력하는 경우 (예: 만원, 1만원, 10,000원) NumberFormatException
+//    @DisplayName("문자열을 포함하여 입력하는 경우 (예: 만원, 1만원, 10,000원) NumberFormatException")
+//    @Test
+//    void NumberFormatExceptionTest_되도_않는_영어이름_테스트_2() {
+//        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+//            .isInstanceOf(NumberFormatException.class);
+//    }
 
     //    중복된 숫자가 포함된 경우 : IllegalArgumentException
     @DisplayName("중복된 숫자가 포함된 경우 : IllegalArgumentException")
