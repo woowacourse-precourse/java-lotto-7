@@ -1,7 +1,9 @@
 package lotto.exception;
 
+import lotto.console.ConsoleManager;
+
 public class InputException extends IllegalArgumentException{
     public InputException(final ExceptionMessage message) {
-        super(message.getMessage());
+        ConsoleManager.println(message.getMessage());
     }
 }

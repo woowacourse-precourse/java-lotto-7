@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class LottoService {
@@ -20,7 +21,6 @@ public class LottoService {
     private static List<Integer> getSortedNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange
                 (1,45,6);
-        Collections.sort(numbers);
         return numbers;
     }
 
