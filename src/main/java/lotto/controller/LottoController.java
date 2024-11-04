@@ -14,6 +14,6 @@ public class LottoController {
         Purchase purchase = new Purchase(inputService.getPurchaseMoney());
         Winning winning = new Winning(inputService.getWinningNumbers(), inputService.getBonusNumber());
         MyLotto myLotto = lottoService.buyLottos(purchase);
-        lottoService.checkWinning(myLotto, winning);
+        lottoService.checkWinning(purchase, myLotto, winning);
     }
 }

@@ -10,7 +10,8 @@ public enum Message {
     MATCH_4("4개 일치 (50,000원) - %d개"),
     MATCH_5("5개 일치 (1,500,000원) - %d개"),
     MATCH_5_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
-    MATCH_6("6개 일치 (2,000,000,000원) - %d개");;
+    MATCH_6("6개 일치 (2,000,000,000원) - %d개"),
+    TOTAL_PROFITATABILITY("총 수익률은 %f%%입니다.");
 
     private final String message;
 
@@ -31,5 +32,8 @@ public enum Message {
     }
     public void printFormatted(Long count) {
         System.out.printf(message + "\n", count);
+    }
+    public void printFormatted(double rate) {
+        System.out.printf(message + "\n", rate);
     }
 }

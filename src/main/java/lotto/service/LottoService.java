@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
+    private final BigInteger FIRST_WINNING = BigInteger.valueOf(2000000000);
+    private final BigInteger SECOND_WINNING = BigInteger.valueOf(30000000);
+    private final BigInteger THIRD_WINNING = BigInteger.valueOf(1500000);
+    private final BigInteger FOURTH_WINNING = BigInteger.valueOf(50000);
+    private final BigInteger FIFTH_WINNING = BigInteger.valueOf(5000);
+
     public MyLotto buyLottos(Purchase purchase) {
         OutputView outputView = new OutputView();
 
@@ -32,7 +38,7 @@ public class LottoService {
         return lottos;
     }
 
-    public void checkWinning(MyLotto myLotto, Winning winning) {
+    public void checkWinning(Purchase purchase, MyLotto myLotto, Winning winning) {
         for (Lotto lotto : myLotto.getLottos()) {
             Long sameCount = matchLottoNumbers(lotto.getNumbers(), winning.getWinNumbers());
 
@@ -40,6 +46,7 @@ public class LottoService {
         }
         OutputView outputView = new OutputView();
         outputView.printWinningPlaces(myLotto);
+        outputView.printProfitability(purchase, calculateWinning(myLotto));
     }
 
     private Long matchLottoNumbers(List<Integer> lotto, List<BigInteger> winning) {
@@ -77,5 +84,11 @@ public class LottoService {
         if (sameCount == 6L) {
             myLotto.updateFirstPlace();
         }
+    }
+
+    private BigInteger calculateWinning(MyLotto myLotto) {
+        return BigInteger.valueOf(myLotto.getFirstPlace() * FIRST_WINNING.longValue() + myLotto.getSecondPlace() * SECOND_WINNING.longValue() +
+                myLotto.getThirdPlace() * THIRD_WINNING.longValue() + myLotto.getFourthPlace() * FOURTH_WINNING.longValue() +
+                myLotto.getFifthPlace() * FIFTH_WINNING.longValue());
     }
 }
