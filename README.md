@@ -42,7 +42,3 @@
 4. **예외 처리**
     - 구입 금액은 1,000원 단위로 입력받습니다. 잘못된 경우 예외 처리하여 사용자에게 오류 메시지를 제공합니다.
     - 당첨 번호와 보너스 번호는 1부터 45 사이의 숫자여야 하며, 유효하지 않은 경우에도 예외 처리합니다.
-
-
-# 프로젝트 구조
-/lotto ├── Application.java ├── InputHandler.java ├── Lotto.java ├── LottoManager.java ├── Statistics.java └── README.md
