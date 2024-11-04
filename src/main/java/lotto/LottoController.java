@@ -56,4 +56,9 @@ public class LottoController {
         }
         return totalWinnings;
     }
+
+    public double calculateRateOfReturn(int totalWinnings, int purchaseNumber) {
+        double rateOfReturn = ((double) totalWinnings / purchaseNumber) * 100;
+        return Math.round(rateOfReturn) / 10.0;
+    }
 }
