@@ -46,7 +46,7 @@ public class LottoTickets {
         if (purchaseAmount == 0) {
             return 0.0;
         }
-        return (double) (profit - purchaseAmount) / purchaseAmount * 100;
+        return (double) profit / purchaseAmount * 100;
     }
 
     private void generateLottoTickets(int purchasAmount) {
