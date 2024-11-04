@@ -24,6 +24,14 @@ public class Application {
             tickets.add(new Lotto(LottoMachine.drawNumbers()));
         }
 
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = parseNumbers(Console.readLine());
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        
+
 
 
     }
