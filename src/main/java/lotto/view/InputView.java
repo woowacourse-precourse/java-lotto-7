@@ -45,6 +45,7 @@ public class InputView {
 
     public static int getBonusNumber() {
         String input = Console.readLine();
+        validateInputIsNull(input);
         return Integer.parseInt(input);
     }
 
