@@ -22,22 +22,11 @@ public class LottoService {
 
         while (true) {
             try {
-                if (!LottoUtils.isNumber(input)) {
-                    outputView.printError(ErrorMessage.INVALID_INPUT_MESSAGE);
-                    throw new IllegalArgumentException();
-                }
+                checkCashisNumber(input);
 
                 cash = Integer.parseInt(input);
-
-                if (cash < MINIMUM_CASH_UNIT) {
-                    outputView.printError(ErrorMessage.INVALID_INPUT_MESSAGE);
-                    throw new IllegalArgumentException();
-                }
-
-                if (cash % MINIMUM_CASH_UNIT != 0) {
-                    outputView.printError(ErrorMessage.INVALID_CASH_MESSAGE);
-                    throw new IllegalArgumentException();
-                }
+                checkMinimumCash(cash);
+                checkMinimumCashUnit(cash);
 
                 break;
             } catch (IllegalArgumentException e) {
@@ -61,10 +50,7 @@ public class LottoService {
                 String[] numbers = input.split(",");
 
                 winningNumbers.clear();
-
-                for (String number : numbers) {
-                    winningNumbers.add(Integer.parseInt(number));
-                }
+                winningNumbers = addWinningNumbers(winningNumbers, numbers);
 
                 winningLotto = new Lotto(winningNumbers);
 
@@ -85,13 +71,8 @@ public class LottoService {
             try {
                 bonusNumber = Integer.parseInt(bonusNumberInput);
 
-                if (bonusNumber < 1 || bonusNumber > 45) {
-                    throw new IllegalArgumentException();
-                }
-
-                if (haveBonusNumber(winningLotto.getNumbers(), bonusNumber)) {
-                    throw new IllegalArgumentException();
-                }
+                checkBonusNumberRange(bonusNumber);
+                checkhaveBonusNumber(winningLotto.getNumbers(), bonusNumber);
 
                 break;
             } catch (IllegalArgumentException e) {
@@ -124,5 +105,46 @@ public class LottoService {
         }
 
         return haveBonusNumber;
+    }
+
+    public void checkCashisNumber(String input) {
+        if (!LottoUtils.isNumber(input)) {
+            outputView.printError(ErrorMessage.INVALID_INPUT_MESSAGE);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkMinimumCash(Integer cash) {
+        if (cash < MINIMUM_CASH_UNIT) {
+            outputView.printError(ErrorMessage.INVALID_INPUT_MESSAGE);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkMinimumCashUnit(Integer cash) {
+        if (cash % MINIMUM_CASH_UNIT != 0) {
+            outputView.printError(ErrorMessage.INVALID_CASH_MESSAGE);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public List<Integer> addWinningNumbers(List<Integer> winningNumbers, String[] numbers) {
+        for (String number : numbers) {
+            winningNumbers.add(Integer.parseInt(number));
+        }
+
+        return winningNumbers;
+    }
+
+    public void checkBonusNumberRange(Integer bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkhaveBonusNumber(List<Integer> winningNumbers, Integer bonusNumber) {
+        if (haveBonusNumber(winningNumbers, bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
     }
 }
