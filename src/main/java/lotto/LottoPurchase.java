@@ -20,7 +20,7 @@ public class LottoPurchase {
                 lottoCount = lottoAmount / 1000;
                 validInput = true;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
         return lottoCount;
