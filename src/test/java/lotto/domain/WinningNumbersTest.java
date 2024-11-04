@@ -37,7 +37,7 @@ public class WinningNumbersTest {
 
     @DisplayName("당첨 번호 중 로또 번호의 범위가 아닌 정수가 있으면 예외가 발생한다")
     @ParameterizedTest
-    @ValueSource(strings = {"", "12,5,17,i10, 41, 38"})
+    @ValueSource(strings = {"  ", "", "12,5,17,i10, 41, 38"})
     void numberScopeExceptionTest(String input) {
         // when & then
         Assertions.assertThatThrownBy(() -> WinningNumbers.from(input))
