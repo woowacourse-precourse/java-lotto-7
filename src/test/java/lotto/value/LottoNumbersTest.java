@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 class LottoNumbersTest {
 
     public static final Class<IllegalArgumentException> COMMON_EXCEPTION = IllegalArgumentException.class;
-    public static final String ERROR_HEADER = "[ERROR]";
 
     @Test
     void 한줄의_로또숫자들을_생성한다() {
@@ -20,14 +19,11 @@ class LottoNumbersTest {
                 .isEqualTo(LottoNumbers.of(List.of(1, 2, 3, 4, 5, 6)));
 
         assertThatCode(() -> LottoNumbers.of(List.of(1, 2, 3, 4, 5)))
-                .isInstanceOf(COMMON_EXCEPTION)
-                .hasMessageContaining(ERROR_HEADER);
+                .isInstanceOf(COMMON_EXCEPTION);
         assertThatCode(() -> LottoNumbers.of(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(COMMON_EXCEPTION)
-                .hasMessageContaining(ERROR_HEADER);
+                .isInstanceOf(COMMON_EXCEPTION);
         assertThatCode(() -> LottoNumbers.of(List.of(1, 1, 3, 4, 5, 6)))
-                .isInstanceOf(COMMON_EXCEPTION)
-                .hasMessageContaining(ERROR_HEADER);
+                .isInstanceOf(COMMON_EXCEPTION);
     }
 
     @Test

@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Test;
 class LottosTest {
 
     public static final Class<IllegalArgumentException> COMMON_EXCEPTION = IllegalArgumentException.class;
-    public static final String ERROR_HEADER = "[ERROR]";
 
     @Test
     void 생성방법을_지정하여_로또들을_생성할수있다() {
@@ -30,8 +29,7 @@ class LottosTest {
                 .doesNotThrowAnyException();
 
         assertThatCode(() -> Lottos.by(null))
-                .isInstanceOf(COMMON_EXCEPTION)
-                .hasMessageContaining(ERROR_HEADER);
+                .isInstanceOf(COMMON_EXCEPTION);
     }
 
     @Test

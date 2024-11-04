@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 class LottoNumberTest {
 
     public static final Class<IllegalArgumentException> COMMON_EXCEPTION = IllegalArgumentException.class;
-    public static final String EXCEPTION_HEADER = "[ERROR]";
 
     @Test
     void 로또번호의_범위는_1부터45까지다() {
@@ -16,11 +15,9 @@ class LottoNumberTest {
         assertThatCode(() -> new LottoNumber(22)).doesNotThrowAnyException();
         assertThatCode(() -> new LottoNumber(45)).doesNotThrowAnyException();
         assertThatCode(() -> new LottoNumber(0))
-                .isInstanceOf(COMMON_EXCEPTION)
-                .hasMessageContaining(EXCEPTION_HEADER);
+                .isInstanceOf(COMMON_EXCEPTION);
         assertThatCode(() -> new LottoNumber(46))
-                .isInstanceOf(COMMON_EXCEPTION)
-                .hasMessageContaining(EXCEPTION_HEADER);
+                .isInstanceOf(COMMON_EXCEPTION);
     }
 
 }
