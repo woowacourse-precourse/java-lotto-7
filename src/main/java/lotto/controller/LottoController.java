@@ -50,6 +50,6 @@ public class LottoController {
                     prize.getValue(), prize.getKey().isMatchBonus());
         }
 
-        float lottoReturn = prizeResult.calculateReturn(price);
+        outputView.printTotalReturn(prizeResult.calculateReturn(price));
     }
 }
