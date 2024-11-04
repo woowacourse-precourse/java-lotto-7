@@ -23,6 +23,7 @@ public class Application {
         bonusNumber = inputBonusNumber();
 
         compareLottos(lottos);
+        printResults(purchaseAmount);
     }
 
 
@@ -182,7 +183,7 @@ public class Application {
     }
 
 
-    private static void printResults(){
+    private static void printResults(int purchaseAmount){
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + Lotto.MatchType.THREE.getCount() + "개");
@@ -190,6 +191,10 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + Lotto.MatchType.FIVE.getCount() + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + Lotto.MatchType.FIVE_WITH_BONUS.getCount() + "개");
         System.out.println("6개 일치 (5,000원) - " + Lotto.MatchType.SIX.getCount() + "개");
-        System.out.println("총 수익률은" + calculateReturnRate() + "%입니다.");
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", calculateReturnRate(purchaseAmount));
+    }
+
+    private static float calculateReturnRate(int purchaseAmount) {
+        return (float) Lotto.MatchType.calculateTotalPrize() / purchaseAmount * 100;
     }
 }
