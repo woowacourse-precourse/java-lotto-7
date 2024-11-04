@@ -1,13 +1,11 @@
 package lotto.util;
 
+import static lotto.constants.NumberConstants.MONEY_UNIT;
+import static lotto.constants.NumberConstants.ZERO;
+import static lotto.constants.RegExpConstants.INT_REGEX;
 import static lotto.message.ErrorMessage.INVALID_MONEY_TYPE;
 
 public class MoneyValidator {
-
-    private static final String INT_REGEX = "\\d+";
-
-    private static final int MONEY_UNIT = 1000;
-    private static final int ZERO = 0;
 
     public static int validate(final String moneyTemp) {
         intValidate(moneyTemp);

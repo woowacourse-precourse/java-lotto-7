@@ -1,11 +1,11 @@
 package lotto.view;
 
+import static lotto.constants.OutputMessageConstants.PURCHASE_MESSAGE;
+import static lotto.constants.RegExpConstants.ENTER;
+
 import java.util.List;
 
 public class UserLottoListView {
-
-    private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
-    public static final String ENTER = "\n";
 
     private final StringBuilder stringBuilder = new StringBuilder();
 

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static java.util.stream.IntStream.range;
+import static lotto.constants.NumberConstants.ZERO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +18,7 @@ public class UserLottoList {
     }
 
     private List<Lotto> generateNumberOfLotto(int number) {
-        return range(0, number)
+        return range(ZERO, number)
                 .mapToObj(i -> generateLotto())
                 .collect(Collectors.toList());
     }

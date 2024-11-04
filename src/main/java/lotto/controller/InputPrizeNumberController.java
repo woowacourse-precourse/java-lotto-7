@@ -1,10 +1,11 @@
 package lotto.controller;
 
+import static lotto.constants.NumberConstants.LOTTO_RANGE_END;
+import static lotto.constants.NumberConstants.LOTTO_RANGE_START;
+import static lotto.constants.RegExpConstants.COMMA_REGEX;
+import static lotto.constants.RegExpConstants.INT_REGEX;
 import static lotto.message.ErrorMessage.DUPLICATE_NUMBER;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_EXCEPTION;
-import static lotto.util.LottoNumberGenerator.LOTTO_RANGE_END;
-import static lotto.util.LottoNumberGenerator.LOTTO_RANGE_START;
-import static lotto.util.MoneyValidator.INT_REGEX;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +26,6 @@ public class InputPrizeNumberController {
     }
 
     public PrizeLotto getPrizeNumbers() {
-
         Lotto prizeNumberLotto = getSixNumbers();
         int bonusNumber = getBonusNumber(prizeNumberLotto);
 
@@ -35,7 +35,7 @@ public class InputPrizeNumberController {
     private Lotto getSixNumbers() {
         while (true) {
             try {
-                String[] inputNumbers = inputPrizeNumberView.getSixPrizeNumber().split(",");
+                String[] inputNumbers = inputPrizeNumberView.getSixPrizeNumber().split(COMMA_REGEX);
                 checkNumberListFormat(inputNumbers);
                 List<Integer> prizeNumbers = Arrays.stream(inputNumbers)
                         .mapToInt(Integer::parseInt).boxed()
