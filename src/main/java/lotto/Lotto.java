@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +14,55 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
     }
 
-    // TODO: 추가 기능 구현
+    public Map<Object, Integer> checkLottoWin(List<List<Integer>> randomNumberList, Integer bonusNumber) {
+        Map<Object, Integer> checkLotto = new HashMap<>();
+        checkLotto.put(3, 0);
+        checkLotto.put(4, 0);
+        checkLotto.put(5, 0);
+        checkLotto.put(6, 0);
+        checkLotto.put("bonus", 0);
+
+        for (List<Integer> randomNumbers : randomNumberList) {
+            Object matchResult = countLottoMatchesWithBonus(numbers, bonusNumber, randomNumbers);
+            if (matchResult != null) {
+                checkLotto.put(matchResult, checkLotto.get(matchResult) + 1);
+            }
+        }
+        return checkLotto;
+    }
+
+    private Object countLottoMatchesWithBonus(
+            List<Integer> lottoNumbers,
+            int bonusNumber,
+            List<Integer> randomNumbers
+    ) {
+        int matchCount = 0;
+
+        for (Integer number : randomNumbers) {
+            if (lottoNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+
+        if (matchCount == 5 && lottoNumbers.contains(bonusNumber)) {
+            return "bonus";
+        }
+        if (matchCount >= 3){
+            return matchCount;
+        }
+        return null;
+    }
 }

@@ -22,4 +22,27 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호에 45 초과의 숫자가 포함되면 예외가 발생한다.")
+    @Test
+    void 로또_번호에_45초과의_숫자가_포함되면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 175, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class); // 예외 메시지 확인
+    }
+    @DisplayName("로또 번호에 0이하의 숫자가 포함되면 예외가 발생한다.")
+    @Test
+    void 로또_번호에_0이하의_숫자가_포함되면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 0, 12, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class); // 예외 메시지 확인
+    }
+    @DisplayName("로또 번호에 0 이하의 숫자가 포함되면 예외가 발생한다 2.")
+    @Test
+    void 로또_번호에_0_이하의_숫자가_포함되면_예외가_발생한다_2() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 0, -12, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class); // 예외 메시지 확인
+    }
+    @DisplayName("올바른 로또 번호를 입력하면 예외가 발생하지 않는다.")
+    @Test
+    void 올바른_로또_번호를_입력하면_예외가_발생하지_않는다() {
+        new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 예외가 발생하지 않음
+    }
 }
