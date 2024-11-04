@@ -93,7 +93,7 @@ public class MainController {
                 matchCount++;
             }
         }
-        boolean containsBonusNumber = lotto.getNumbers().contains(bonusNumber);
+        boolean containsBonusNumber = lotto.getNumbers().contains(bonusNumber.getBonusNumber());
 
         return LottoRank.getLottoRankByMatchResult(matchCount, containsBonusNumber);
     }
@@ -101,15 +101,15 @@ public class MainController {
     public static void makeStatistic(LottoRanks lottoRanks, Wallet myWallet) {
         printLottoBundleResultHeader();
         for (LottoRank lottoRank : LottoRank.values()) {
-            Integer count = (Integer) (int) lottoRanks.getLottoRanks().stream().filter(l -> l.getMatchCount().equals(lottoRank.getMatchCount())).count();
+            Integer count = (Integer) (int) lottoRanks.getLottoRanks().stream().filter(l -> l.equals(lottoRank)).count();
             printLottoRankResult(lottoRank, count);
         }
     }
 
     public static void calculateProfit(LottoRanks lottoRanks, Wallet wallet) {
         Double totalReward = Double.valueOf(lottoRanks.getLottoRanks().stream().mapToInt(LottoRank::getReward).sum());
-        System.out.println(totalReward + " " + wallet.getMoney());
         Double profit = (totalReward / wallet.getMoney()) * 100;
-        printTotalProfit(profit);
+        String profitArgument = String.format("%.2f", profit);
+        printTotalProfit(profitArgument);
     }
 }

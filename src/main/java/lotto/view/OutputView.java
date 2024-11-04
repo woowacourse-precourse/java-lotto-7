@@ -21,7 +21,7 @@ public class OutputView {
         System.out.println(lottoRank.getDescription() + amount + "개");
     }
 
-    public static void printTotalProfit(Double profit) {
+    public static void printTotalProfit(String profit) {
         System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 }
