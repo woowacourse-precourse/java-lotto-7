@@ -38,6 +38,7 @@ public class Input {
 	private static List<Integer> parseLottoNumbers(String input) {
 			return Arrays.stream(input.split(","))
 				.map((number) -> validateLottoPurchaseAmountFormat(number))
+				.map(Input::validateLottoNumberRange)
 				.collect(Collectors.toList());
 	}
 
@@ -49,9 +50,10 @@ public class Input {
 		}
 	}
 
-	private static void validateLottoNumberRange(int number) {
+	private static int validateLottoNumberRange(int number) {
 		if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
 			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
 		}
+		return number;
 	}
 }
