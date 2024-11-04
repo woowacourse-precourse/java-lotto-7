@@ -24,4 +24,9 @@ public class InputHandler {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+    public static int getBonusNumber() {
+        String bonusNumber = Console.readLine();
+        return Integer.parseInt(bonusNumber);
+    }
 }
