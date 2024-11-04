@@ -31,6 +31,38 @@ public class LottoUtility {
     }
 
     public static void printMessage(String message) {
+    public LottoWinningStandard getLottoWinningStandard(int matchedNumberCount, int matchedBonusNumberCount) {
+        if (matchedNumberCount == 6) {
+            return LottoWinningStandard.FIRST_PRIZE;
+        }
+        if (matchedNumberCount == 5 && matchedBonusNumberCount == 1) {
+            return LottoWinningStandard.SECOND_PRIZE;
+        }
+        if (matchedNumberCount == 5) {
+            return LottoWinningStandard.THIRD_PRIZE;
+        }
+        if (matchedNumberCount == 4) {
+            return LottoWinningStandard.FOURTH_PRIZE;
+        }
+        if (matchedNumberCount == 3) {
+            return LottoWinningStandard.FIFTH_PRIZE;
+        }
+        return null;
+    }
+
+    public String getReturnRateMessage(double returnAmount, double purchaseAmount) {
+        double returnRate = (returnAmount / purchaseAmount) * 100.0;
+        returnRate = Math.round(returnRate * 100) / 100.0;
+
+        DecimalFormat formatter = new DecimalFormat("#,##0.0");
+        String returnRateString = formatter.format(returnRate);
+        return "총 수익률은 " + returnRateString + "%입니다.";
+    }
+
+    public long getTotalPrizeByLottoWinningStandard(LottoWinningStandard standard, int lottoCount) {
+        return (long) standard.getPrizeMoney() * lottoCount;
+    }
+
     public int getBonusNumber(Lotto winningLotto) {
         boolean stop = false;
         int bonus = 0;
