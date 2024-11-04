@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.enums.Winnings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,6 +28,7 @@ public class Order {
         List<Lotto> orderedLottos = new ArrayList<>();
         for (int i = 0; i < orderCount; i++) {
             Lotto lotto = createRandomLotto();
+            System.out.println(lotto);
             orderedLottos.add(lotto);
         }
         return orderedLottos;

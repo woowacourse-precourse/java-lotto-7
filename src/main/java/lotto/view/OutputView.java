@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.model.Order;
-import lotto.model.Winnings;
+import lotto.model.enums.Winnings;
 import java.util.List;
 
 public class OutputView {
