@@ -14,6 +14,7 @@ public class Lotto {
     public String toString() {
         return "[" + String.join(", ",
                 lottoNumbers.getNumbers().stream()
+                        .sorted()
                         .map(String::valueOf)
                         .toList()
         ) + "]";
