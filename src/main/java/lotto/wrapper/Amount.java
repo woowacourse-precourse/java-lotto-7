@@ -7,15 +7,19 @@ public class Amount {
 
     private final int amount;
 
-
     private Amount(String inputAmount) {
         int amount = Parse.stringToInt(inputAmount);
-        LottoValidator.validatePrice(amount);
+        validate(amount);
         this.amount = amount;
     }
 
     public static Amount of(String inputAmount) {
         return new Amount(inputAmount);
+    }
+
+    private void validate(int amount) {
+        LottoValidator.validatePrice(amount);
+        LottoValidator.validateDivisible(amount);
     }
 
     public int getAmount() {
