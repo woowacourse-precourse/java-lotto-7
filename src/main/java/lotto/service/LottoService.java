@@ -14,7 +14,7 @@ import lotto.error.exception.InvalidNumberFormatException;
 import lotto.generator.LottoGenerator;
 
 public class LottoService {
-    private final static String WINNING_NUMBER_SEPARATOR = ",";
+    private static final String WINNING_NUMBER_SEPARATOR = ",";
 
     private final LottoGenerator lottoGenerator;
 
