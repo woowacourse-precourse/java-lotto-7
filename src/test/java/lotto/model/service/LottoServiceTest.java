@@ -5,12 +5,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.model.domain.BonusNumber;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoWinningNumbers;
+import lotto.model.domain.ProfitRatio;
+import lotto.model.domain.PurchaseAmount;
 import org.junit.jupiter.api.Test;
 
-class LottoServiceTest {
-    private final LottoService lottoService = new LottoService(new LottoGenerator());
+class LottoDrawServiceTest {
+    private final LottoDrawService lottoDrawService = new LottoDrawService(new LottoGenerator());
 
     @Test
     void 구매금액만큼_로또_생성() {
@@ -18,7 +21,7 @@ class LottoServiceTest {
         int lottoPurchaseAmount = 5000;
 
         //when
-        List<Lotto> lottos = lottoService.createLottos(5000);
+        List<Lotto> lottos = lottoDrawService.createLottos(new PurchaseAmount(lottoPurchaseAmount));
 
         //then
         assertThat(lottos).hasSize(5);
@@ -60,10 +63,10 @@ class LottoServiceTest {
         lotts.add(new Lotto(numbers41));
         lotts.add(new Lotto(numbers51));
 
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers(winning, bonusNumber);
+        LottoWinningNumbers winningNumbers = new LottoWinningNumbers(winning, new BonusNumber(bonusNumber));
 
         //when
-        List<LottoPrize> lottoPrizes = lottoService.drawWinners(lotts, winningNumbers);
+        List<LottoPrize> lottoPrizes = lottoDrawService.drawWinners(lotts, winningNumbers);
 
         //then
         assertThat(lottoPrizes).hasSize(7);
@@ -78,11 +81,11 @@ class LottoServiceTest {
         int purchaseAmount = 7000;
 
         //when
-        double profitRatio = lottoService.calculateProfitRatio(purchaseAmount, lottoPrizes);
+        ProfitRatio profitRatio = lottoDrawService.calculateProfitRatio(new PurchaseAmount(purchaseAmount), lottoPrizes);
 
         //then
         double expectedRatio = 785.7;
-        assertThat(profitRatio).isEqualTo(expectedRatio);
+        assertThat(profitRatio.get()).isEqualTo(expectedRatio);
 
     }
 

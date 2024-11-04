@@ -1,4 +1,4 @@
-package lotto.view.input;
+package lotto.ui.input;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package lotto.model.domain;
+package lotto.constant;
 
 public class LottoConstant {
     public static final int AMOUNT_UNIT = 1000;

@@ -9,7 +9,7 @@ import lotto.model.domain.Lotto;
 import lotto.model.service.LottoPrize;
 
 public class OutputView implements ErrorHandler {
-    private final static String ERROR = "[ERROR] ";
+    private final static String ERROR = "[ERROR] %s 다시 입력해주세요.";
     private final static String PURCHASE_AMOUNT_REQUEST = "구입금액을 입력해 주세요.";
     private final static String LOTTO_COUNT_NOTICE = "개를 구매했습니다.";
     private final static String WINNING_NUMBERS_REQUEST = "당첨 번호를 입력해 주세요.";
@@ -21,7 +21,7 @@ public class OutputView implements ErrorHandler {
 
     @Override
     public void printError(String message) {
-        System.out.println(ERROR + message);
+        System.out.println(String.format(ERROR, message));
     }
 
     public void printPurchaseAmountRequest() {
