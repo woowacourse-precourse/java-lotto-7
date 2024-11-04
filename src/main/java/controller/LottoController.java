@@ -1,8 +1,8 @@
 package controller;
 
-import lotto.LottoGenerator;
-import lotto.Lottos;
-import lotto.PurchaseAmount;
+import lotto.core.LottoGenerator;
+import lotto.core.Lottos;
+import lotto.core.PurchaseAmount;
 import lotto.statistics.RevenueCalculator;
 import lotto.winning.BonusNumber;
 import lotto.winning.WinningLotto;

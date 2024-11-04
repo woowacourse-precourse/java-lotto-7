@@ -1,8 +1,11 @@
-package lotto;
+package lotto.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.core.Lotto;
+import lotto.core.LottoNumber;
+import lotto.core.Lottos;
 import lotto.winning.BonusNumber;
 import lotto.winning.WinningLotto;
 import lotto.winning.WinningNumbers;

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.core;
 
 import constants.Constants;
 import constants.ErrorMessage;

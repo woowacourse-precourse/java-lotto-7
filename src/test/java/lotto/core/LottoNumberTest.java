@@ -1,10 +1,10 @@
-package lotto;
+package lotto.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import constants.ErrorMessage;
-import lotto.LottoNumber;
+import lotto.core.LottoNumber;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

@@ -3,7 +3,7 @@ package lotto.winning;
 import constants.ErrorMessage;
 import java.util.List;
 import java.util.Objects;
-import lotto.LottoNumber;
+import lotto.core.LottoNumber;
 
 public class BonusNumber {
 

@@ -4,8 +4,8 @@ import constants.ErrorMessage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import lotto.LottoNumber;
-import lotto.LottoValidator;
+import lotto.core.LottoNumber;
+import lotto.core.LottoValidator;
 
 public class WinningNumbers {
 

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.core;
 
 import constants.ErrorMessage;
 import java.util.ArrayList;

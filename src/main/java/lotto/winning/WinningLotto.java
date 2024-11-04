@@ -2,7 +2,7 @@ package lotto.winning;
 
 import java.util.List;
 import java.util.Objects;
-import lotto.LottoNumber;
+import lotto.core.LottoNumber;
 
 public class WinningLotto {
 
