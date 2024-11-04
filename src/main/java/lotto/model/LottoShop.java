@@ -1,8 +1,8 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,8 +22,12 @@ public class LottoShop {
     }
 
     private static List<Integer> createSingleLotto() {
-        return Randoms.pickUniqueNumbersInRange(LottoType.MIN_NUMBER.getNumber(), LottoType.MAX_NUMBER.getNumber(),
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LottoType.MIN_NUMBER.getNumber(),
+                LottoType.MAX_NUMBER.getNumber(),
                 LottoType.COUNT.getNumber());
+        List<Integer> result = new ArrayList<>(randomNumbers);
+        result.sort(Comparator.naturalOrder());
+        return result;
     }
 
     public WinType findWinLotto(Lotto lotto) {
