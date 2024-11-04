@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import lotto.EnumManagement.ExceptionEnum;
 
 public class Exception {
@@ -38,8 +39,8 @@ public class Exception {
 
     }
 
-    public int isDivide1000(int inputNumber){
-        if(!(inputNumber % DIVIDED_TOTAL_LOTTO_PURCHASE == 0)){
+    public int isDivide1000(int inputNumber) {
+        if (!(inputNumber % DIVIDED_TOTAL_LOTTO_PURCHASE == 0)) {
             throw new IllegalArgumentException(ExceptionEnum.LOTTO_PURCHASE_UNIT_1000.getMessage());
         }
         return inputNumber;

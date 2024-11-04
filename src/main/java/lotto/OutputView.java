@@ -17,27 +17,27 @@ public class OutputView {
         }
     }
 
-    private List<Integer> randomNumber(){
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
+    private List<Integer> randomNumber() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    public void generateLotto(int lottoCount){
+    public void generateLotto(int lottoCount) {
         this.boughtLottoNumbers = new ArrayList<>();
-        for(int i = 0 ; i < lottoCount ; i++) {
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = new ArrayList<>(randomNumber());
             lottoNumbers.sort(Integer::compareTo);
             this.boughtLottoNumbers.add(lottoNumbers);
         }
     }
 
-    public void lottoWinOutput(List<Integer> lottoMatchTable){
+    public void lottoWinOutput(List<Integer> lottoMatchTable) {
         System.out.println(OutputViewEnum.WINNING_STAT.getMessage());
-        for(int i = 0 ; i < lottoMatchTable.size() ; i++) {
+        for (int i = 0; i < lottoMatchTable.size(); i++) {
             System.out.println(OutputViewEnum.values()[i].getMessage() + lottoMatchTable.get(i) + OutputViewEnum.COUNT.getMessage());
         }
     }
 
-    public void lottoReturnRateOutput(double lottoReturnRate){
+    public void lottoReturnRateOutput(double lottoReturnRate) {
         DecimalFormat df = new DecimalFormat(OutputViewEnum.LOTTO_RETURN_RATE_FORMAT.getMessage());
         String lottoReturnRateOutput = df.format(lottoReturnRate);
         System.out.println(OutputViewEnum.LOTTO_RETURN_RATE.getMessage() + lottoReturnRateOutput + OutputViewEnum.PERCENT.getMessage());

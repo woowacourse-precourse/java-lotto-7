@@ -7,6 +7,6 @@ public class Application {
         outputView.generateLotto(inputView.getLottoCount());
         inputView.inputStart(outputView);
         Lotto lotto = new Lotto(inputView.getLottoNumbers());
-        lotto.start(outputView,inputView);
+        lotto.start(outputView, inputView);
     }
 }

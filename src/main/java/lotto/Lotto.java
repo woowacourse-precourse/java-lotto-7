@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+
 import lotto.EnumManagement.LottoEnum;
 
 
@@ -21,24 +22,25 @@ public class Lotto {
         outputView.lottoReturnRateOutput(lottoReturnRate);
     }
 
-    public List<Integer> makeWinLottoPrice(List<Integer> lottoWinPrice) {
+    public List<Integer> makeLottoWinPrice(List<Integer> lottoWinPrice) {
         int size = 0;
         for (LottoEnum lottoPrice : LottoEnum.values()) {
             if (size < LottoEnum.LOTTO_WINNING_SIZE.getNumber())
                 lottoWinPrice.add(lottoPrice.getNumber());
-            ++size;
+            size++;
         }
         return lottoWinPrice;
     }
 
     public double calLottoReturnRate(List<Integer> lottoMatchTable, int lottoPurchase) {
-        int totalLottoWinPrice = 0;
+        long totalLottoWinPrice = 0;
         List<Integer> lottoWinPrice = new ArrayList<>();
-        lottoWinPrice = makeWinLottoPrice(lottoWinPrice);
+        lottoWinPrice = makeLottoWinPrice(lottoWinPrice);
         for (int i = 0; i < lottoMatchTable.size(); i++) {
-            totalLottoWinPrice += lottoMatchTable.get(i) * lottoWinPrice.get(i);
+            totalLottoWinPrice += (long) lottoMatchTable.get(i) * lottoWinPrice.get(i);
         }
-        return (double) (totalLottoWinPrice) / lottoPurchase * LottoEnum.DIVIDE_100.getNumber();
+
+        return (double) totalLottoWinPrice / lottoPurchase * LottoEnum.MULTI_100.getNumber();
     }
 
     public List<Integer> pushNumberTable(List<Integer> equalNumberTable, int equalNumberCount, boolean bonusNumber) {
@@ -49,8 +51,8 @@ public class Lotto {
             return equalNumberTable;
         }
         //발행한 로또에 3개부터 6개까지 같은 숫자가 있으면 equalNumberTable에 각 List의 Index에 맞게 1씩 증가 시킨다.(5등 ~ 1등 당첨된 로또의 개수)
-        for(int i = LottoEnum.NUMBER_TABLE_INDEX_3.getNumber(); i <= LottoEnum.NUMBER_TABLE_INDEX_6.getNumber() ; i++){
-            if(equalNumberCount == i){
+        for (int i = LottoEnum.NUMBER_TABLE_INDEX_3.getNumber(); i <= LottoEnum.NUMBER_TABLE_INDEX_6.getNumber(); i++) {
+            if (equalNumberCount == i) {
                 equalNumberTable.set(countToIndex[i], equalNumberTable.get(countToIndex[i]) + LottoEnum.LOTTO_WINNING.getNumber());
                 break;
             }

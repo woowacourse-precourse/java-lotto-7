@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+
 import lotto.EnumManagement.InputViewEnum;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -47,10 +48,10 @@ public class InputView {
         while (true) {
             System.out.println(InputViewEnum.LOTTO_NUMBER.getMessage());
             String rawNumbers = Console.readLine();
-            try{
+            try {
                 this.lottoNumbers = exception.parseLottoNumbers(rawNumbers);
                 break;
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
 

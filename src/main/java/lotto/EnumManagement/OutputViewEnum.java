@@ -10,7 +10,7 @@ public enum OutputViewEnum {
     COUNT("개"),
     WINNING_STAT("당첨 통계\n---"),
     LOTTO_RETURN_RATE("총 수익률은 "),
-    PERCENT("% 입니다."),
+    PERCENT("%입니다."),
     LOTTO_RETURN_RATE_FORMAT("0.0");
 
 
