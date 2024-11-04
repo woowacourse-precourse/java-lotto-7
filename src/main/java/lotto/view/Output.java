@@ -12,11 +12,15 @@ public class Output {
         System.out.println(" ");
         System.out.println(money/1000+"개를 구매했습니다.");
     }
-
     public static void requestLottoNumbers(List<Integer> numbers){
         System.out.println(numbers.toString());
-
     }
+    public static void requestWinningNumber(){
+        System.out.println(" ");
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+
 
 
 

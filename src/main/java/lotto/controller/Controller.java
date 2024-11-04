@@ -5,19 +5,35 @@ import lotto.Service.PublishLottoService;
 import lotto.Service.ValidService;
 import lotto.model.Lotto;
 import lotto.model.User;
+import lotto.model.WinningLotto;
 import lotto.view.Input;
 import lotto.view.Output;
 
 public class Controller {
-    ValidService validService = new ValidService();
-    ParsingService parsingService = new ParsingService();
-    User user1 = new User();
+    private final ValidService validService = new ValidService();
+    private final ParsingService parsingService = new ParsingService();
+    private final User user1 = new User();
+    private  WinningLotto winningLotto;
 
 
     public void start() {
         getMoney();
         buyLotto(parsingService.getMoney(),user1); //현재 문제상황
         displayLottos(user1);
+        while (true){
+            Output.requestWinningNumber();
+            String winningNumbers=Input.getInput();
+            try{
+                validService.checkLottoNumbers(winningNumbers);
+                break;
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+
+            }
+        }
+
+
     }
 
     private void getMoney(){
