@@ -34,6 +34,7 @@
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;6-a. 수익률 올바르게 계산되는지 테스트
 
+### 7. 위에서 작성한 함수들을 Application에서 실행
 
 
 
