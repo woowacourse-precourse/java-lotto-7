@@ -29,11 +29,12 @@ public class UserInputTest {
     @DisplayName("구입금액 입력 안내 메시지 확인")
     @Test
     void checkPurchaseAmountInputPrompt() {
+        System.setIn(new ByteArrayInputStream("테스트 입력".getBytes()));
         ByteArrayOutputStream outputStream = getSystemSetOut();
         UserInput userInput = new UserInput();
         String successMessage = "구입금액을 입력해 주세요.";
 
-        userInput.promptPrtchaseAmountInput();
+        userInput.promptPurchaseAmountInput();
 
         assertEquals(successMessage + "\n", outputStream.toString());
     }
@@ -45,15 +46,16 @@ public class UserInputTest {
         System.setIn(new ByteArrayInputStream(test.getBytes()));
         UserInput userInput = new UserInput();
 
-        assertEquals(test, userInput.promptPrtchaseAmountInput());
+        assertEquals(test, userInput.promptPurchaseAmountInput());
     }
 
     @DisplayName("당첨 번호 입력 안내 메시지 확인")
     @Test
     void checkWinningNumberInputPrompt() {
+        System.setIn(new ByteArrayInputStream("테스트 입력".getBytes()));
         ByteArrayOutputStream outputStream = getSystemSetOut();
         UserInput userInput = new UserInput();
-        String successMessage = "당첨 번호를 입력해 주세요.";
+        String successMessage = "\n당첨 번호를 입력해 주세요.";
 
         userInput.promptWinningNumberInput();
 
@@ -73,9 +75,10 @@ public class UserInputTest {
     @DisplayName("보너스 번호 입력 안내 메시지 확인")
     @Test
     void checkBonusNumberInputPrompt() {
+        System.setIn(new ByteArrayInputStream("테스트 입력".getBytes()));
         ByteArrayOutputStream outputStream = getSystemSetOut();
         UserInput userInput = new UserInput();
-        String successMessage = "보너스 번호를 입력해 주세요.";
+        String successMessage = "\n보너스 번호를 입력해 주세요.";
 
         userInput.promptBonusNumberInput();
 
