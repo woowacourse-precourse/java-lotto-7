@@ -15,15 +15,15 @@ import static lotto.constant.Amount.THOUSAND;
 
 public class LottoNumberGenerator {
 
-    private final List<List<Integer>> lottoNumbersList = new ArrayList<>();
+    private final List<List<Integer>> lottoTickets = new ArrayList<>();
 
     public List<List<Integer>> generateLottoNumbers(int quantity) {
         for (int i = 0; i < quantity / THOUSAND.getValue(); i++) {
             ArrayList<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER.getValue(), MAXIMUM_LOTTO_NUMBER.getValue(), LOTTO_NUMBERS_SIZE.getValue()));
             sortLottoNumbers(lottoNumbers);
-            lottoNumbersList.add(lottoNumbers);
+            lottoTickets.add(lottoNumbers);
         }
-        return lottoNumbersList;
+        return lottoTickets;
     }
 
     public Lotto createWinningNumbers(String winningNumbers) {

@@ -42,7 +42,7 @@ public class LottoController {
 
         outputView.displayNumberOfPurchases(lottoPurchaseDetails.getPurchaseAmount());
 
-        outputView.showLottoTickets(lottoPurchaseDetails.getLottoTicketList());
+        outputView.showLottoTickets(lottoPurchaseDetails.getLottoTickets());
 
         issueWinningNumbers();
 

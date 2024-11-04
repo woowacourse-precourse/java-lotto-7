@@ -9,14 +9,14 @@ import java.util.List;
 public class LottoPurchaseDetails {
 
     private int purchaseAmount;
-    private List<List<Integer>> lottoTicketList = new ArrayList<>();
+    private List<List<Integer>> lottoTickets = new ArrayList<>();
 
     public void assignPurchaseAmount(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public void assignIssuedLottoTickets(List<List<Integer>> lottoTicketList) {
-        this.lottoTicketList = lottoTicketList;
+    public void assignIssuedLottoTickets(List<List<Integer>> lottoTickets) {
+        this.lottoTickets = lottoTickets;
     }
 
     public int getPurchaseAmount() {
@@ -27,7 +27,7 @@ public class LottoPurchaseDetails {
         return purchaseAmount / Amount.THOUSAND.getValue();
     }
 
-    public List<List<Integer>> getLottoTicketList() {
-        return Collections.unmodifiableList(this.lottoTicketList);
+    public List<List<Integer>> getLottoTickets() {
+        return Collections.unmodifiableList(this.lottoTickets);
     }
 }
