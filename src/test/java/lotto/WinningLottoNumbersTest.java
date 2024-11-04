@@ -34,7 +34,7 @@ public class WinningLottoNumbersTest {
         // when & then
         assertThatThrownBy(() -> new WinningLottoNumbers(invalidNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessage("[ERROR] 당첨 번호는 1이상 45이하여야 합니다.");
     }
 
     @Test

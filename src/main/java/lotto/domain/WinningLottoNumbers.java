@@ -31,7 +31,7 @@ public class WinningLottoNumbers {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 
@@ -43,19 +43,25 @@ public class WinningLottoNumbers {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBERS_SIZE) {
-            ErrorMessage.INVALID_WINNING_NUMBERS_SIZE.getFormattedMessage(WINNING_NUMBERS_SIZE);
+            throw new IllegalArgumentException(
+                    ErrorMessage.INVALID_WINNING_NUMBERS_SIZE.getFormattedMessage(WINNING_NUMBERS_SIZE)
+            );
         }
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(this::isInvalidRange)) {
-            ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getFormattedMessage(MIN_NUMBER, MAX_NUMBER);
+            throw new IllegalArgumentException(
+                    ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getFormattedMessage(MIN_NUMBER, MAX_NUMBER)
+            );
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage();
+            throw new IllegalArgumentException(
+                    ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage()
+            );
         }
     }
 
