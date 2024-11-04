@@ -32,7 +32,7 @@ public class Lotto {
     }
 
     // 리스트 내 중복 숫자 검증 메소드
-    public void checkDuplicate(List<Integer> numbers) {
+    public List<Integer> checkDuplicate(List<Integer> numbers) {
         HashSet<Integer> numberSet = new HashSet<>(); // 중복 확인을 위한 Set
 
         for (Integer number : numbers) {
@@ -41,5 +41,6 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다");
             }
         }
+        return numbers;
     }
 }
