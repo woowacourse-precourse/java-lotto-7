@@ -16,12 +16,10 @@ public class LottoController {
 
     private final OutputView outputView;
     private final InputView inputView;
-    private final ValidationManager validationManager;
 
-    public LottoController(InputView inputView, OutputView outputView, ValidationManager validationManager) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.outputView = outputView;
         this.inputView = inputView;
-        this.validationManager = validationManager;
     }
 
     public void playLotto() {
@@ -65,7 +63,7 @@ public class LottoController {
         while (!valid) {
             try {
                 String lottoInput = inputView.readInput(Lotto.getRequestMessage());
-                validationManager.isNumbersDividedByComma(lottoInput); //정수와 쉼표로 이루어져있는지 확인
+                Lotto.isNumbersDividedByComma(lottoInput); //정수와 쉼표로 이루어져있는지 확인
                 Lotto lotto = new Lotto(TypeConverter.ToNumberList(lottoInput));//6자 이상인지 범위는 (1-45)인지 확인후 객체 생성
                 return lotto.getLottoNumbers();
             } catch (IllegalArgumentException e) {

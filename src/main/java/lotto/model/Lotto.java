@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Lotto {
+public class Lotto extends ValidationManager{
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
