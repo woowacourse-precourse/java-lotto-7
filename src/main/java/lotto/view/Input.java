@@ -17,7 +17,7 @@ public class Input {
         return Console.readLine();
     }
 
-    public List<Integer> winningNumber() throws IllegalArgumentException{
+    public List<Integer> winningNumber() {
         String input = Console.readLine();
         validation.number(input);
 

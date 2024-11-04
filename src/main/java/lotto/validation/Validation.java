@@ -21,7 +21,7 @@ public class Validation {
         }
     }
 
-    public void number(String input) throws IllegalArgumentException {
+    public void number(String input) {
         String[] numbers = input.split(SPLIT);
         for (String number : numbers) {
             number = number.trim();
