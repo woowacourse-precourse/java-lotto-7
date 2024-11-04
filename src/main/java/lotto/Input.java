@@ -19,7 +19,7 @@ public class Input {
     }
 
     private Integer getValidatedAmount() {
-        Integer amount = Parser.toInteger(Console.readLine());
+        Integer amount = StringParser.toInteger(Console.readLine());
         inputValidator.validateAmount(amount);
         return amount;
     }
@@ -30,7 +30,7 @@ public class Input {
     }
 
     private List<Integer> getWinNumbers() {
-        return Parser.splitByDelimiter(Console.readLine());
+        return StringParser.splitByDelimiter(Console.readLine());
     }
 
     public WinningNumbers getBonusNumberWithGuide(Lotto lotto) {
@@ -39,6 +39,6 @@ public class Input {
     }
 
     private Integer getValidatedBonusNumber() {
-        return Parser.toInteger(Console.readLine());
+        return StringParser.toInteger(Console.readLine());
     }
 }

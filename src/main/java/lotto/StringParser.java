@@ -5,7 +5,7 @@ import static lotto.ExceptionMessages.INVALID_INPUT;
 import java.util.Arrays;
 import java.util.List;
 
-public class Parser {
+public class StringParser {
     private static final String DIGIT_REGEX = "^[0-9]+$";
     private static final String DELIMITER = ",";
 
@@ -18,7 +18,7 @@ public class Parser {
 
     public static List<Integer> splitByDelimiter(String value) {
         return Arrays.stream(value.split(DELIMITER))
-                .map(Parser::toInteger)
+                .map(StringParser::toInteger)
                 .toList();
     }
 }
