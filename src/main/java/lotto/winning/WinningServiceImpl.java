@@ -11,6 +11,7 @@ public class WinningServiceImpl implements WinningService {
 
     private List<Integer> winningLottoNumbers;
     private int bonusNumber;
+    private Map<Rank, Integer> result;
 
     private final VendingMachineRepository vendingMachineRepository;
 
@@ -20,13 +21,17 @@ public class WinningServiceImpl implements WinningService {
 
     @Override
     public Map<Rank, Integer> checkLotto(WinningLotto winningLotto) {
-        Map<Rank, Integer> result = setInitialValue();
-
-
+        result = setInitialValue();
         winningLottoNumbers = winningLotto.lottoNumbers.getNumbers();
         bonusNumber = winningLotto.bonus;
 
         List<Lotto> lottos = vendingMachineRepository.getStoredLottoTickets();
+        putWinningResult(lottos);
+
+        return result;
+    }
+
+    private void putWinningResult(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             int cnt = countMatchingNumber(lotto);
             if (cnt < 3) {
@@ -40,13 +45,10 @@ public class WinningServiceImpl implements WinningService {
 
             result.put(Rank.getWinningRank(cnt, isBonusMatch), result.get(Rank.getWinningRank(cnt, isBonusMatch)) + 1);
         }
-
-        return result;
     }
 
     private Map<Rank, Integer> setInitialValue() {
         Map<Rank, Integer> result = new EnumMap<>(Rank.class);
-
         for (Rank rank : Rank.values()) {
             if (rank != Rank.LOSING_TICKET) {
                 result.put(rank, 0);
@@ -60,7 +62,6 @@ public class WinningServiceImpl implements WinningService {
         int i = 0;
         int j = 0;
         int count = 0;
-
         while (i < 6 && j < 6) {
             if (lotto.getNumbers().get(i) < winningLottoNumbers.get(j)) {
                 i++;
@@ -82,7 +83,6 @@ public class WinningServiceImpl implements WinningService {
         if (lotto.getNumbers().contains(bonusNumber)) {
             return true;
         }
-
         return false;
     }
 
