@@ -44,4 +44,15 @@ class PaperServiceImplTest {
                 .hasMessageContaining(PURCHASE_AMOUNT_UNIT.getMessage());
     }
 
+    @DisplayName("1000단위가 아닌 값 입력 예외 테스트")
+    @ParameterizedTest
+    @CsvSource(value = {"1000:1", "3000:3", "11000:11"}, delimiter = ':')
+    void savePaper(String amount, String count) {
+        int purchaseAmount = Integer.parseInt(amount);
+        int purchaseCount = Integer.parseInt(count);
+
+        paperService.savePaper(purchaseAmount);
+
+        assertEquals(paperRepository.getAllPaper().size(), purchaseCount);
+    }
 }
