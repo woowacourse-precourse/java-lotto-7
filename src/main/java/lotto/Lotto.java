@@ -30,4 +30,14 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int getMatchCount(Lotto other) {
+        int count = 0;
+        for (int number : numbers) {
+            if (other.numbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
