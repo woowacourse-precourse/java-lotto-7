@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBonus;
@@ -38,9 +39,11 @@ public class LotteryService {
     }
 
     public void setWinningLotto() {
+        outputView.printRequireWinningNumber();
+
         String inputLottoWinningNumbers = Console.readLine();
 
-        List<Integer> lottoWinningNumbers = null;
+        List<Integer> lottoWinningNumbers = new ArrayList<>();
 
         for (final String winningNumber : inputLottoWinningNumbers.split(",")) {
             lottoWinningNumbers.add(Integer.parseInt(winningNumber));
@@ -56,9 +59,23 @@ public class LotteryService {
 
     public void getLottoWinningStatistics() {
         outputView.printWinningStatistics();
+
+        // 개수 일치 여부 판단 필요
+        final List<Lotto> lottos = lottoBuyer.getLottos();
+        final List<Integer> winningNumbers = winningLottery.getNumbers();
+        for (Lotto lotto : lottos) {
+            List<Integer> ticketNumbers = lotto.getNumbers();
+            int matchingCount = 0;
+            for (Integer number : ticketNumbers) {
+                if (winningNumbers.contains(number)) {
+                    matchingCount++;
+                }
+            }
+            System.out.println("로또 번호: " + ticketNumbers + ", 일치 개수: " + matchingCount);
+        }
     }
 
-    public void getLotteryYield(final LottoBuyer lottoBuyer, final int purchaseAmount, final int totalWinningAmount) {
+    public void getLotteryYield(final int purchaseAmount, final int totalWinningAmount) {
         final int lotteryYield = lottoBuyer.calculateLotteryYield(purchaseAmount, totalWinningAmount);
         System.out.println("총 수익률은 " + lotteryYield + "%입니다.");
     }
@@ -70,6 +87,7 @@ public class LotteryService {
             lottoBuyer.addLotto(lotto);
             System.out.println(ticketNumbers);
         }
+        System.out.println();
     }
 
     private List<Integer> getTicketNumbers() {

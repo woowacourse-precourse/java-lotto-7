@@ -29,4 +29,8 @@ public class LottoBuyer {
     public void addLotto(final Lotto lotto) {
         lottos.add(lotto);
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }
