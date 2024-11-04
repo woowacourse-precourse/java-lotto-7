@@ -46,7 +46,7 @@
  │    └── LottoAppController
  ├── 📂 error
  │    ├── 📂 format
- │    │   └── ErrorMessageFormat
+ │    │    └── ErrorMessageFormat
  │    ├── DrawNumbersError
  │    ├── LottoNumberError
  │    ├── PaymentError
