@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class LottoService {
     private final LottoGenerator lottoGenerator;
-    public final RevenueCalculator revenueCalculator;
+    private final RevenueCalculator revenueCalculator;
 
     public LottoService(LottoGenerator lottoGenerator, RevenueCalculator revenueCalculator) {
         this.lottoGenerator = lottoGenerator;

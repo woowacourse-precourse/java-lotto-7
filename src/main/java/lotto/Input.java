@@ -15,12 +15,11 @@ public class Input {
 
     public LottoPurchase promptLottoPurchase() {
         view.printGuide(INPUT_AMOUNT_GUIDE);
-        return getAmount();
+        return new LottoPurchase(getAmount());
     }
 
-    private LottoPurchase getAmount() {
-        Integer amount = StringParser.toInteger(Console.readLine());
-        return new LottoPurchase(amount);
+    private Integer getAmount() {
+        return StringParser.toInteger(Console.readLine());
     }
 
     public Lotto promptWinningNumbers() {
@@ -34,12 +33,10 @@ public class Input {
 
     public WinningNumbers promptBonusNumber(Lotto lotto) {
         view.printGuide(INPUT_BONUS_NUMBER_GUIDE);
-        return getBonusNumber(lotto);
+        return new WinningNumbers(lotto, getBonusNumber());
     }
 
-    private WinningNumbers getBonusNumber(Lotto lotto) {
-        String input = Console.readLine();
-        Bonus bonus = new Bonus(StringParser.toInteger(input));
-        return new WinningNumbers(lotto, bonus);
+    private Bonus getBonusNumber() {
+        return new Bonus(StringParser.toInteger(Console.readLine()));
     }
 }
