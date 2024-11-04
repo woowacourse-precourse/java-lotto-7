@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.dto.LottoResult;
 import lotto.dto.PurchaseAmount;
+import lotto.dto.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -12,6 +13,8 @@ public class LottoController {
         PurchaseAmount purchaseAmount = getValidLottoPurchaseAmount();
         Lottos lottos = new Lottos(purchaseAmount);
         showLottoNumbers(purchaseAmount, lottos);
+
+        Lotto winningLotto = getWinningNumbers();
     }
 
     public PurchaseAmount getValidLottoPurchaseAmount() {
@@ -33,7 +36,8 @@ public class LottoController {
 
     public Lotto getWinningNumbers() {
         try {
-            new Lotto(InputView.getWinningNumbers);
+            WinningNumbers winningNumbers = new WinningNumbers(InputView.inputWinningNumbers());
+            return winningNumbers.getWinningLotto();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningNumbers();
