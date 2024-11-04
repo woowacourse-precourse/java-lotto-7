@@ -83,9 +83,9 @@ public class Application {
         List<String> winningNumbers = new ArrayList<>(List.of(inputWinningNumber.split(",")));
         List<Integer> parsedWinningNumbers = new ArrayList<>();
 
-        for (int i = 0; i < winningNumbers.size(); i++) {
+        for (String winningNumber : winningNumbers) {
             try {
-                int parsedNumber = Integer.parseInt(winningNumbers.get(i));
+                int parsedNumber = Integer.parseInt(winningNumber);
 
                 if (parsedNumber < 1 || parsedNumber > 45) {
                     throw new IllegalArgumentException("[ERROR] 당첨 번호는 1 ~ 45번까지만 입력이 가능합니다.");
