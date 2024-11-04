@@ -28,7 +28,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또_번호의_개수가_5개_이하면_예외가_발생한다.")
+    @DisplayName("로또 번호의 개수가 5개 이하면 예외가 발생한다.")
     @Test
     void 로또_번호의_개수가_5개_이하면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
