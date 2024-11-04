@@ -1,9 +1,16 @@
 package lotto.view;
 
 import static lotto.enums.ViewMessage.OUTPUT_LOTTO_COUNT;
+import static lotto.enums.ViewMessage.OUTPUT_RESULT;
 
+import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import lotto.enums.Prize;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 
@@ -28,5 +35,30 @@ public class OutputView {
         List<Integer> numbers = lotto.getNumbers();
         Collections.sort(numbers);
         System.out.println(numbers);
+    }
+
+    public void printResults(Map<Prize, Integer> prizeCount) {
+        printResultMessage();
+        Arrays.stream(Prize.values())
+                .sorted(Comparator.reverseOrder())
+                .forEach(prize -> printPrizeResult(prize, prizeCount));
+    }
+
+    private void printResultMessage() {
+        System.out.println(OUTPUT_RESULT.getMessage());
+    }
+
+    private void printPrizeResult(Prize prize, Map<Prize, Integer> prizeCount) {
+        String resultMessage = prize.getMatchCount() + "개 일치";
+        if (prize.getRequiresBonus()) {
+            resultMessage += ", 보너스 볼 일치";
+        }
+        resultMessage += " (" + formatCurrency(prize.getPrizeAmount()) + "원) - " + prizeCount.get(prize) + "개";
+        System.out.println(resultMessage);
+    }
+
+    private String formatCurrency(int amount) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
+        return numberFormat.format(amount);
     }
 }

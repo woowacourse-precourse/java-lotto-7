@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import java.util.Map;
+import lotto.enums.Prize;
+import lotto.model.LottoResultChecker;
 import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
@@ -24,5 +27,8 @@ public class LottoController {
 
         WinningNumbers winningNumbers = new WinningNumbers(inputView.getWinningNumbers(), inputView.getBonusNumber());
 
+        LottoResultChecker lottoResultChecker = new LottoResultChecker(winningNumbers);
+        Map<Prize, Integer> winningResult = lottoResultChecker.getLottosWinningResult(lottos);
+        outputView.printResults(winningResult);
     }
 }
