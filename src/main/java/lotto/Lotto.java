@@ -43,4 +43,11 @@ public class Lotto {
 		}
 		return false;
 	}
+
+	public int compareNumbers(List<Integer> lottos, List<Integer> luckyNumber, int bonusNumber) {
+		return (int) lottos.stream()
+			.filter(luckyNumber::contains)
+			.filter(num -> lottos.contains(bonusNumber))
+			.count();
+	}
 }
