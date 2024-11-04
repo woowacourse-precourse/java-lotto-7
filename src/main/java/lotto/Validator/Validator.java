@@ -28,8 +28,11 @@ public class Validator {
         }
     }
 
-    private static void validateLength(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != LOTTO_NUMBERS_COUNT) {
+    public static void validateLength(List<Integer> winningNumbers) {
+        List<Integer> distinctNumbers = winningNumbers.stream()
+                                            .distinct()
+                                            .toList();
+        if (distinctNumbers.size() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
