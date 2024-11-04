@@ -8,6 +8,7 @@ import lotto.Domain.PurchaseAmount;
 import lotto.Domain.WinningAnalyzer;
 import lotto.Domain.WinningNumbers;
 import lotto.Domain.WinningResult;
+import lotto.Messages.ErrorMessage;
 import lotto.Messages.OutputMessage;
 import lotto.Utils.Formatter;
 import lotto.Utils.UserInput;
@@ -39,7 +40,7 @@ public class LottoGameController {
                 game.setAmount(amount.getValue());
                 break;
             } catch (IllegalArgumentException e) {
-                OutputView.printMessage(e.getMessage());
+                OutputView.printMessage(ErrorMessage.ERROR_PREFIX.getMessage() + e.getMessage());
             }
         }
         game.setIssuedLottos(issuedLottos);
@@ -62,7 +63,7 @@ public class LottoGameController {
                 winningNumbers.registerMainNumbers(winningNumbersInput);
                 break;
             } catch (IllegalArgumentException e) {
-                OutputView.printMessage(e.getMessage());
+                OutputView.printMessage(ErrorMessage.ERROR_PREFIX.getMessage() + e.getMessage());
             }
         }
 
@@ -73,7 +74,7 @@ public class LottoGameController {
                 winningNumbers.registerBonus(bonusNumberInput);
                 break;
             } catch (IllegalArgumentException e) {
-                OutputView.printMessage(e.getMessage());
+                OutputView.printMessage(ErrorMessage.ERROR_PREFIX.getMessage() + e.getMessage());
             }
         }
 
