@@ -25,8 +25,8 @@ public class MoneyManager {
     }
 
     private void validateMoneyRange(Long money) {
-        if (money < MONEY_MIN) {
-            throw new IllegalArgumentException(String.format("%s원 이상을 입력해주세요.", Formatter.formatToCurrency(MONEY_MIN)));
+        if (money <= MONEY_MIN) {
+            throw new IllegalArgumentException(String.format("%s원 보다 큰 금액을 입력해주세요.", Formatter.formatToCurrency(MONEY_MIN)));
         }
     }
 
