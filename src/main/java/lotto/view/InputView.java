@@ -6,6 +6,11 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.ErrorMessages;
 
 public class InputView {
+
+    private InputView() {
+
+    }
+
     public static String getUserLotto() {
         return Console.readLine();
     }
