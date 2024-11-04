@@ -33,7 +33,7 @@ public class LottoController {
             outputView.printPurchaseResult(lottos);
             return lottos;
         }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return purchaseLotto();
         }
     }
@@ -48,7 +48,7 @@ public class LottoController {
             int bonusNumber = inputView.RequestBonusNumber();
             return new WinningResult(winningLotto, bonusNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return createWinningResultWithBonusNumber(winningLotto);
         }
     }
@@ -57,7 +57,7 @@ public class LottoController {
         try {
             return new Lotto(inputView.RequestWinningNumbers());
         }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return createWinningLotto();
         }
     }

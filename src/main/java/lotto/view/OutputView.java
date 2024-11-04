@@ -40,4 +40,8 @@ public class OutputView {
     public void printReturnRate(double returnRate) {
         System.out.printf(RETURN_RATE_FORMAT, returnRate);
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

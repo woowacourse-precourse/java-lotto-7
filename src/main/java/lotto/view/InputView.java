@@ -35,7 +35,7 @@ public class InputView {
             String input = Console.readLine();
             return parseInt(input);
         }catch(NumberFormatException e){
-            System.out.println(LottoException.INVALID_NUMBER_FORMAT);
+            printErrorMessage(LottoException.INVALID_NUMBER_FORMAT);
             return TryGetPurchaseAmount();
         }
     }
@@ -47,7 +47,7 @@ public class InputView {
                     .map(number -> Integer.parseInt(number.trim()))
                     .collect(Collectors.toList());
         }catch(NumberFormatException e){
-            System.out.println(LottoException.INVALID_NUMBER_FORMAT);
+            printErrorMessage(LottoException.INVALID_NUMBER_FORMAT);
             return TryGetWinningNumbers();
         }
     }
@@ -57,8 +57,12 @@ public class InputView {
             String input = Console.readLine();
             return parseInt(input);
         }catch(NumberFormatException e){
-            System.out.println(LottoException.INVALID_NUMBER_FORMAT);
+            printErrorMessage(LottoException.INVALID_NUMBER_FORMAT);
             return TryGetBonusNumber();
         }
+    }
+
+    private void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }
