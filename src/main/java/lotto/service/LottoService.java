@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.enums.Constants;
+import lotto.enums.Rank;
 
 public class LottoService {
 
@@ -27,5 +28,16 @@ public class LottoService {
             lottoResult[rank]++;
         }
         return Arrays.stream(lottoResult).boxed().toList();
+    }
+
+    public double calculateRate(int money, List<Integer> lottoResults) {
+        double totalSum = 0;
+        for (Rank rank : Rank.values()) {
+            int prize = rank.getPrize();
+            int count = lottoResults.get(rank.getRank());
+            totalSum += prize * count;
+        }
+        double rate = (totalSum / money) * 100d;
+        return Math.round(rate * 100d) / 100d;
     }
 }
