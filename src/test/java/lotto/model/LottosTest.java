@@ -44,7 +44,6 @@ public class LottosTest {
 
     @ParameterizedTest(name = "lottoCount: {0}")
     @ValueSource(ints = {1, 2, 3, 4, 5})
-    @DisplayName("사이즈만큼의 로또를 랜덤으로 생성한다.")
     void 사이즈만큼의_로또를_랜덤으로_생성한다(int lottoCount) {
 
         // given
@@ -59,7 +58,6 @@ public class LottosTest {
 
     @ParameterizedTest(name = "lottoCount: {0}")
     @ValueSource(ints = {1, 2, 3, 4, 5})
-    @DisplayName("로또 당첨 통계를 반환한다.")
     void 로또_당첨_통계를_반환한다(int lottoCount) {
 
         // given
@@ -84,7 +82,6 @@ public class LottosTest {
 
     @ParameterizedTest(name = "lottoCount: {0}")
     @ValueSource(ints = {10, 20, 30, 40})
-    @DisplayName("로또들의 번호를 반환한다.")
     void 로또들의_번호를_반환한다(int lottoCount) {
 
         // given

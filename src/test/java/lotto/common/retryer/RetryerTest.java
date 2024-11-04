@@ -19,7 +19,6 @@ public class RetryerTest {
     }
 
     @Test
-    @DisplayName("예외 발생 시 반환값 있는 메서드를 재실행한다")
     void 예외_발생_시_반환값_있는_메서드를_재실행한다() {
 
         // when
@@ -30,7 +29,6 @@ public class RetryerTest {
     }
 
     @Test
-    @DisplayName("예외 발생 시 반환값 없는 메서드를 재실행한다")
     void 예외_발생_시_반환값_없는_메서드를_재실행한다() {
 
         // when

@@ -88,7 +88,6 @@ public class LottoNumbersTest {
 
     @ParameterizedTest(name = "numberCount: {0}")
     @ValueSource(ints = {1, 2, 3, 4, 5})
-    @DisplayName("사이즈만큼의 로또 번호를 랜덤으로 생성한다.")
     void 사이즈만큼의_로또_번호를_랜덤으로_생성한다(int numberCount) {
 
         // given
