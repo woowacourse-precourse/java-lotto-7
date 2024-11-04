@@ -48,4 +48,8 @@ public class LottoResult {
         }
         return totalPrize;
     }
+
+    public double calculateYield(LottoCreate lottoCreate) {
+        return (double) calculateTotalPrize() / lottoCreate.getLottoCount() * 100;
+    }
 }
