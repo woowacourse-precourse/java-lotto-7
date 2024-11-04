@@ -17,6 +17,7 @@ public enum Rank {
 
     public static Rank getRankByScore(int score) {
         return Arrays.stream(values())
+                .filter(value -> value.score == score)
                 .findFirst()
                 .orElse(ETC);
     }
