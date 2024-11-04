@@ -12,4 +12,6 @@ public class Message {
     public static final String MATCH_5_WITH_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
     public static final String MATCH_6 = "6개 일치 (2,000,000,000원) - %d개";
     public static final String PROFIT_RATE = "총 수익률은 %.1f%%입니다.%n";
+    public static final String ERROR_PREFIX = "[ERROR] ";
+
 }

@@ -32,4 +32,8 @@ public class OutputView {
     private long countResults(List<LottoResult> results, LottoResult resultType) {
         return results.stream().filter(result -> result == resultType).count();
     }
+
+    public void printError(String message) {
+        System.out.println(Message.ERROR_PREFIX + message);
+    }
 }
