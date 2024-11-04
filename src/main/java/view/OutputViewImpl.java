@@ -14,6 +14,7 @@ public class OutputViewImpl implements OutputView {
         }
     }
 
+    // TODO: 리팩토링 해라잉
     @Override
     public void printLottoResult(LottoWinningResultResponse lottoWinningResultResponse) {
         NumberFormat f = NumberFormat.getInstance();

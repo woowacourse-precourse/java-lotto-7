@@ -16,7 +16,7 @@ public class MoneyPolicyImpl implements MoneyPolicy {
         Validator.shouldNotBeDividedBy1000(money);
 
         // 돈의 값이 너무 크면 안된다.(예외에서 최댓값 말해주기)
-        Validator.moneyShouldNotBeTooBig(money);
+        Validator.shouldNotBeTooBig(money);
     }
 
 

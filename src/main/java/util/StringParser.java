@@ -9,12 +9,13 @@ public class StringParser {
         String[] _numbers = string.split(",");
         List<Integer> numbers = new ArrayList<>();
         for (String number : _numbers) {
-            Validator.moneyShouldNotBeTooBig(number);
+            // TODO: 문자나 실수가 들어갈 수 있음
             Validator.shouldBeOnlyNumber(number);
-            
+            Validator.shouldNotBeTooBig(number);
+            Validator.shouldBeOnlyNumber(number);
+
             numbers.add(Integer.parseInt(number));
         }
-
         return numbers;
     }
 }
