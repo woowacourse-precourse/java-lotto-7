@@ -1,6 +1,5 @@
 package lotto.app;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.List;
 import java.util.Map;
@@ -14,17 +13,17 @@ import lotto.LottoResult;
 import lotto.LottoStatistics;
 import lotto.exception.LottoException;
 import lotto.interaction.input.LottoInput;
-import lotto.interaction.input.LottoStandardInput;
+import lotto.interaction.input.WoowaLottoInput;
 import lotto.interaction.output.LottoOutput;
-import lotto.interaction.output.LottoStandardOutput;
+import lotto.interaction.output.LottoStdOutput;
 
 public class CLILottoApp implements LottoApp{
     private final LottoOutput output;
     private final LottoInput input;
 
-    public CLILottoApp(BufferedReader br, BufferedWriter bw) {
-        this.output = new LottoStandardOutput(bw);
-        this.input = new LottoStandardInput(br);
+    public CLILottoApp() {
+        this.output = new LottoStdOutput();
+        this.input = new WoowaLottoInput();
     }
 
     private <T> T assertInput(Supplier<T> inputFunction) {
