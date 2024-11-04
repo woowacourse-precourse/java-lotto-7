@@ -40,7 +40,7 @@ public class TouchScreenTest {
     void 자동발권_전_유저_구매기록을_불러오려고_하면_예외가_발생한다() {
         assertThatThrownBy(() -> UserStorage.getNumbers())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(MessageCenter.ERROR_USERSTORAGE.get());
+                .hasMessage(MessageCenter.ERROR_STORAGE.get());
     }
 
     @ParameterizedTest

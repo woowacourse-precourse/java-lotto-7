@@ -53,7 +53,7 @@ public class TrialHistory {
     }
 
     private void validateCount(Integer count) {
-        if (totalCount != null || count == null || count <= 0)  {
+        if (totalCount != null || count == null || count <= 0) {
             throw new IllegalArgumentException(MessageCenter.ERROR_PAID.get());
         }
     }
@@ -81,5 +81,4 @@ public class TrialHistory {
             throw new IllegalArgumentException(MessageCenter.ERROR_SAVE.get());
         }
     }
-
 }

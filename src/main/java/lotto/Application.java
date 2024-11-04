@@ -9,20 +9,19 @@ import lotto.user.UserAnalysis;
 
 public class Application {
     public static void main(String[] args) {
-        try{
-            TouchScreen touchScreen = new TouchScreen();
-            HeadQuarter headQuarter = new HeadQuarter();
-            UserAnalysis userAnalysis = new UserAnalysis();
-            Result result = new Result();
+        TouchScreen touchScreen = new TouchScreen();
+        HeadQuarter headQuarter = new HeadQuarter();
+        UserAnalysis userAnalysis = new UserAnalysis();
+        Result result = new Result();
 
-            MessageCenter.START.print();
+        try {
             touchScreen.inputMoney();
             touchScreen.pushDraw();
 
             WonNumbers wonNumbers = headQuarter.pickNumbers();
             PrizeHistory prizeHistory = result.getResult(wonNumbers);
-
             userAnalysis.getAnalysis(prizeHistory);
+
         } catch (IllegalArgumentException e) {
             System.out.println(MessageCenter.ERROR.get());
         }

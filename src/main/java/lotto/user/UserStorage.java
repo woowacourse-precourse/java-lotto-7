@@ -33,7 +33,7 @@ public class UserStorage {
 
     private static void validateDrawnPacks(List<DrawnNumbers> drawnNumberPacks) {
         if (drawnNumberPacks == null || drawnNumberPacks.isEmpty()) {
-            throw new IllegalArgumentException(MessageCenter.ERROR_USERSTORAGE.get());
+            throw new IllegalArgumentException(MessageCenter.ERROR_STORAGE.get());
         }
     }
 }

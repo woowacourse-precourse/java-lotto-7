@@ -10,19 +10,16 @@ public class HeadQuarter {
     WonNumbers wonNumbers = new WonNumbers();
 
     public WonNumbers pickNumbers() {
-
         pickMainNumbers();
         pickBonusNumber();
-
         return wonNumbers;
     }
 
     void pickMainNumbers() {
-
         MessageCenter.NEW_LINE.print();
         MessageCenter.PICK_MAIN.print();
 
-        while(wonNumbers.getLotto() == null) {
+        while (wonNumbers.getLotto() == null) {
             String initialNums = read();
             loopMains(initialNums);
         }
@@ -31,7 +28,7 @@ public class HeadQuarter {
     void loopMains(String initialNums) {
         try {
             saveMains(initialNums);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(MessageCenter.ERROR_PICK.get());
         }
     }
@@ -39,7 +36,7 @@ public class HeadQuarter {
     private List<Integer> parseMains(String[] initialMains) {
         List<Integer> parsedMains = new ArrayList<>();
         for (String initialMain : initialMains) {
-            Integer parsedMain= parse(initialMain);
+            Integer parsedMain = parse(initialMain);
             validateUnique(parsedMains, parsedMain);
             validateRange(parsedMain);
             parsedMains.add(parsedMain);
@@ -55,11 +52,10 @@ public class HeadQuarter {
     }
 
     void pickBonusNumber() {
-
         MessageCenter.NEW_LINE.print();
         MessageCenter.PICK_BONUS.print();
 
-        while(wonNumbers.getBonus() == null) {
+        while (wonNumbers.getBonus() == null) {
             wonNumbers.cleanBonus();
             String initialNum = read();
             loopBonus(initialNum);
@@ -69,13 +65,13 @@ public class HeadQuarter {
     void loopBonus(String initialNum) {
         try {
             saveBonus(initialNum);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(MessageCenter.ERROR_PICK.get());
         }
     }
 
     Integer parseBonus(String initialNum) {
-        Integer parsedBonus= parse(initialNum);
+        Integer parsedBonus = parse(initialNum);
         List<Integer> mainNumbers = wonNumbers.getLotto().getNumbers();
         validateUnique(mainNumbers, parsedBonus);
         validateRange(parsedBonus);
@@ -111,9 +107,4 @@ public class HeadQuarter {
             throw new IllegalArgumentException(MessageCenter.ERROR_PICK.get());
         }
     }
-
-
-
-
-
 }

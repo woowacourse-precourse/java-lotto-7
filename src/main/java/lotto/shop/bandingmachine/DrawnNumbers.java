@@ -1,6 +1,5 @@
 package lotto.shop.bandingmachine;
 
-import java.util.Collections;
 import java.util.List;
 import lotto.MessageCenter;
 
@@ -9,7 +8,7 @@ public class DrawnNumbers {
     private List<Integer> mainNumbers;
     private Integer bonusNumber;
 
-    private DrawnNumbers() {}
+    private DrawnNumbers() { }
 
     static DrawnNumbers create() {
         return new DrawnNumbers();
@@ -17,11 +16,6 @@ public class DrawnNumbers {
 
     static DrawnNumbers forTest() {
         return new DrawnNumbers();
-    }
-
-    public DrawnNumbers getDrawnNumbers() {
-        validateBothNotNull();
-        return this;
     }
 
     public List<Integer> getMainNumbers() {

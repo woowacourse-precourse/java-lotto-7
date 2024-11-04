@@ -44,14 +44,12 @@ public class Printer {
 
     private List<Integer> getInitialNumbers(DrawnNumbers drawnNumberPack) {
         return drawnNumberPack.getMainNumbers();
-    };
-
+    }
 
     private void validateUserStorage() {
         List<DrawnNumbers> drawnNumberPacks = UserStorage.getNumbers();
         if (drawnNumberPacks == null || drawnNumberPacks.isEmpty()) {
-            throw new IllegalArgumentException(MessageCenter.ERROR_USERSTORAGE.get());
+            throw new IllegalArgumentException(MessageCenter.ERROR_STORAGE.get());
         }
     }
-
 }

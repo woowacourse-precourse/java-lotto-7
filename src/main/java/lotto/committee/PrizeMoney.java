@@ -7,13 +7,13 @@ public enum PrizeMoney {
     FOURTH_PRIZE(50000),
     FIFTH_PRIZE(5000);
 
-    private final Integer won;
+    private final Integer WON;
 
-    private PrizeMoney(Integer won) {
-        this.won = won;
+    PrizeMoney(Integer won) {
+        this.WON = won;
     }
 
     public Integer getWon() {
-        return this.won;
+        return this.WON;
     }
 }

@@ -43,8 +43,8 @@ public class DrawSystem {
     }
 
     private void addDrawResult(List<Integer> mainNumbers, Integer bonusNumber) {
-            drawnNumbers.addMainNumbers(mainNumbers);
-            drawnNumbers.addBonusNumber(bonusNumber);
+        drawnNumbers.addMainNumbers(mainNumbers);
+        drawnNumbers.addBonusNumber(bonusNumber);
     }
 
     private List<Integer> drawMainNumbers() {
@@ -54,12 +54,11 @@ public class DrawSystem {
     private Integer drawBonusNumber(List<Integer> mainNumbers) {
         Integer bonusNumber = initBonusNumber();
         bonusNumber = makeUnique(mainNumbers, bonusNumber);
-
         return bonusNumber;
     }
 
     private Integer initBonusNumber() {
-        return Randoms.pickNumberInRange(1,45);
+        return Randoms.pickNumberInRange(1, 45);
     }
 
     private Integer makeUnique(List<Integer> mainNumbers, Integer bonusNumber) {
@@ -79,6 +78,7 @@ public class DrawSystem {
         validateNull(totalCount);
         validatePositive(totalCount);
     }
+
     private void validateNull(Integer totalCount) {
         if (totalCount == null) {
             throw new IllegalArgumentException(MessageCenter.ERROR_COUNT.get());

@@ -19,6 +19,46 @@ public class Result {
         return prizeHistory;
     }
 
+    private void getPrizes(WonNumbers wonNumbers, List<DrawnNumbers> drawnNumberPacks) {
+        for (DrawnNumbers drawnNumberPack : drawnNumberPacks) {
+            getPrize(wonNumbers, drawnNumberPack);
+        }
+    }
+
+    private void getPrize(WonNumbers wonNumbers, DrawnNumbers drawnNumberPack) {
+
+        List<Integer> wonMains = wonNumbers.getLotto().getNumbers();
+        List<Integer> drawnMains = drawnNumberPack.getMainNumbers();
+        Integer wonBonus = wonNumbers.getBonus();
+        Integer drawnBonus = drawnNumberPack.getBonusNumber();
+
+        Integer matchCount = matchMains(wonMains, drawnMains);
+        getCount(matchCount, wonBonus, drawnBonus);
+    }
+
+    private void getCount(Integer matchCount, Integer wonBonus, Integer drawnBonus) {
+        checkFifth(matchCount);
+        checkFourth(matchCount);
+        checkSecondThird(matchCount, wonBonus, drawnBonus);
+        checkFirst(matchCount);
+        checkLost(matchCount);
+    }
+
+    private Integer matchMains(List<Integer> wonMains, List<Integer> drawnMains) {
+        Integer matchCount = 0;
+        for (Integer drawnMain : drawnMains) {
+            matchCount = checkMatch(matchCount, wonMains, drawnMain);
+        }
+        return matchCount;
+    }
+
+    private Integer checkMatch(Integer matchCount, List<Integer> wonMains, Integer drawnMain) {
+        if(wonMains.contains(drawnMain)) {
+            matchCount += 1;
+        }
+        return matchCount;
+    }
+    
     public void print(PrizeHistory prizeHistory) {
         prizeHistory.getPrizeHistory();
         MessageCenter.NEW_LINE.print();
@@ -38,6 +78,7 @@ public class Result {
         String msgEnd = "";
         msgEnd += count;
         msgEnd += MessageCenter.RESULT_END.get();
+
         return msgEnd;
     }
 
@@ -67,31 +108,6 @@ public class Result {
         prizeResult = "";
         prizeResult = MessageCenter.RESULT_FIFTH.get() + getMsgEnd(count);
         System.out.println(prizeResult);
-    }
-
-    private void getPrizes(WonNumbers wonNumbers, List<DrawnNumbers> drawnNumberPacks) {
-        for (DrawnNumbers drawnNumberPack : drawnNumberPacks) {
-            getPrize(wonNumbers, drawnNumberPack);
-        }
-    }
-
-    private void getPrize(WonNumbers wonNumbers, DrawnNumbers drawnNumberPack) {
-
-        List<Integer> wonMains = wonNumbers.getLotto().getNumbers();
-        List<Integer> drawnMains = drawnNumberPack.getMainNumbers();
-        Integer wonBonus = wonNumbers.getBonus();
-        Integer drawnBonus = drawnNumberPack.getBonusNumber();
-
-        Integer matchCount = matchMains(wonMains, drawnMains);
-        getCount(matchCount, wonBonus, drawnBonus);
-    }
-
-    private void getCount(Integer matchCount, Integer wonBonus, Integer drawnBonus) {
-        checkFifth(matchCount);
-        checkFourth(matchCount);
-        checkSecondThird(matchCount, wonBonus, drawnBonus);
-        checkFirst(matchCount);
-        checkLost(matchCount);
     }
 
     private void checkLost(Integer matchCount) {
@@ -136,20 +152,4 @@ public class Result {
             prizeHistory.addFifth();
         }
     }
-
-    private Integer matchMains(List<Integer> wonMains, List<Integer> drawnMains) {
-        Integer matchCount = 0;
-        for (Integer drawnMain : drawnMains) {
-             matchCount = checkMatch(matchCount, wonMains, drawnMain);
-        }
-        return matchCount;
-    }
-
-    private Integer checkMatch(Integer matchCount, List<Integer> wonMains, Integer drawnMain) {
-        if(wonMains.contains(drawnMain)) {
-            matchCount += 1;
-        }
-        return matchCount;
-    }
-
 }

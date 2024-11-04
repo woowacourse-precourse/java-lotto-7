@@ -13,8 +13,8 @@ public class TouchScreen {
     Pos pos = new Pos();
     Printer printer = new Printer();
 
-
     public void inputMoney() {
+        MessageCenter.START.print();
         getMoney();
         getCount();
     }
@@ -39,10 +39,10 @@ public class TouchScreen {
     }
 
 
-    private void getDrawnNumbers(Integer totalCount){
+    private void getDrawnNumbers(Integer totalCount) {
         List<DrawnNumbers> drawnNumberPacks = drawSystem.runDraws(totalCount);
         trialHistory.saveDrawnNumberPacks(drawnNumberPacks);
-    };
+    }
 
     private void getMoney() {
         Integer money = pos.checkMoney();

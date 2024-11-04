@@ -24,11 +24,6 @@ public class WonNumbers {
         return this.bonusNumber;
     }
 
-    void cleanAll() {
-        this.lotto = null;
-        this.bonusNumber = null;
-    }
-
     void cleanBonus() {
         this.bonusNumber = null;
     }

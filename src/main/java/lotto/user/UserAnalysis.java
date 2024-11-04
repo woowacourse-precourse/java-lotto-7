@@ -12,22 +12,18 @@ public class UserAnalysis {
     private final Integer FOURTH_WON = PrizeMoney.FOURTH_PRIZE.getWon();
     private final Integer FIFTH_WON = PrizeMoney.FIFTH_PRIZE.getWon();
 
-
     public void getAnalysis(PrizeHistory prizeHistory) {
         Double rateResult = calculate(prizeHistory);
         MessageCenter.printRate(rateResult);
     }
 
     private Double calculate(PrizeHistory prizeHistory) {
-
         List<Integer> totalWon = sumEach(prizeHistory);
         Integer sumResult = sum(totalWon);
-
         return getRate(sumResult);
     }
 
     private List<Integer> sumEach(PrizeHistory prizeHistory) {
-
         Integer firstCount = prizeHistory.getFirst();
         Integer secondCount = prizeHistory.getSecond();
         Integer thirdCount = prizeHistory.getThird();
@@ -51,7 +47,6 @@ public class UserAnalysis {
     private Double divide(Integer sumResult, Integer totalPaid) {
         Double sum = sumResult.doubleValue();
         Double paid = totalPaid.doubleValue();
-
         return (sum / paid);
     }
 
@@ -61,8 +56,5 @@ public class UserAnalysis {
 
     public Integer multiply(Integer count, Integer won) {
         return (count * won);
-    };
-
-
-
+    }
 }
