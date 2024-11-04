@@ -30,8 +30,8 @@ public class Validator {
     }
 
     public void validatePrice(int value) {
-        if (value <= 0 || value % 1000 != 0) {
-            throw new IllegalArgumentException();
+        if (value <= 0 || value % ConstantValue.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PRICE.getMessage());
         }
     }
 }

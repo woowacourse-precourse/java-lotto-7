@@ -28,7 +28,8 @@ public class ConstantMessage {
     public enum ErrorMessage {
         INVALID_VALUE("부적절한 입력입니다. "),
         INVALID_LOTTO_RANGE("뽑은 숫자가 로또의 범위를 벗어납니다."),
-        INVALID_LOTTO_COUNT("로또 번호는 6개여야 합니다."),
+        INVALID_LOTTO_COUNT("로또의 갯수가 맞지 않습니다."),
+        INVALID_PRICE("로또 가격과 맞아떨어지지 않습니다."),
         DUPLICATED_LOTTO_VALUE("로또 번호는 중복될 수 없습니다. ");
 
         private final String error;
