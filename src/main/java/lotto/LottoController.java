@@ -83,7 +83,7 @@ public class LottoController {
                     bonusMatched = true;
                 }
             }
-            LottoRank lottoRank = LottoRank.getLottoRank(matchCount, bonusMatched);
+            LottoRank.setLottoRank(matchCount, bonusMatched);
         }
     }
 }
