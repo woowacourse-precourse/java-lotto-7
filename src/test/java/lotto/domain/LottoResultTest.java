@@ -1,11 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.constants.WinnerConstants.FIRST_WINNER;
 import static lotto.constants.WinnerConstants.SECOND_WINNER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
-import lotto.domain.LottoResult;
 import org.junit.jupiter.api.Test;
 
 public class LottoResultTest {

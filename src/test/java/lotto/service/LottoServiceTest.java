@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,7 +8,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 import lotto.dto.LottoResultDto;
 import lotto.generator.LottoGenerator;
-import lotto.service.LottoService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

@@ -1,10 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.domain.Lotto;
 import lotto.generator.LottoGenerator;
 import org.junit.jupiter.api.Test;
 
