@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import lotto.LottoConstants;
 import lotto.domain.Lotto;
 
 import java.util.List;
@@ -9,8 +10,11 @@ public class Validation {
     public static Integer validateCash(String input) {
         try {
             Integer cash = Integer.parseInt(input);
-            if (cash <= 0 || cash > 1_000_000) {
+            if (cash <= LottoConstants.INPUT_MIN_CASH || cash > LottoConstants.INPUT_MAX_CASH) {
                 throw new IllegalArgumentException(ErrorMessages.INVALID_CASH.getMessage());
+            }
+            if (cash % LottoConstants.LOTTO_PRICE != 0) {
+                throw new IllegalArgumentException(ErrorMessages.NON_UNIT_CASH.getMessage());
             }
             return cash;
         } catch (NumberFormatException e) {
@@ -30,7 +34,7 @@ public class Validation {
     public static Integer validateBonus(String input) {
         try {
             Integer bonus = Integer.parseInt(input);
-            if (bonus <= 0 || bonus > 45) {
+            if (bonus <= LottoConstants.INPUT_MIN_LOTTO || bonus > LottoConstants.INPUT_MAX_LOTTO) {
                 throw new IllegalArgumentException(ErrorMessages.INVALID_BONUS_NUMBER.getMessage());
             }
             return bonus;
