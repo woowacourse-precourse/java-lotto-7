@@ -52,7 +52,6 @@ public class LottoPrizeCalculator {
         return prize != LottoPrize.NO_PRIZE;
     }
 
-
     private String formatPrizeStatistics(LottoPrize prize) {
         long prizeCount = countPrizes(prize);
         return String.format(PRIZE_STATISTICS_FORMAT, prize, prizeCount);
