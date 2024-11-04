@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Validator;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,10 +17,11 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-	public static List<Integer> readWinningNumbers() {
+    public static List<Integer> readWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        List<String> numbers = Arrays.asList(input.split(","));
+        List<String> numberStrings = Arrays.asList(input.split(","));
+        List<String> numbers = new ArrayList<>(numberStrings); // 가변 리스트로 변환
         Validator.validateWinningNumbers(numbers);
         return numbers.stream()
                 .map(Integer::parseInt)
