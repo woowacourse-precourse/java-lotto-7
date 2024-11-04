@@ -1,10 +1,12 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoRankGroup {
+    private final DecimalFormat df = new DecimalFormat("###,###.0%");
     public static List<String> RANK_STATUS_INSTRUCION = List.of(
             "당첨 통계",
             "---"
@@ -32,22 +34,22 @@ public class LottoRankGroup {
         return instructions;
     }
 
-    private String getRateOfRevenue(){
-        return String.format("총 수익률은 %s입니다.",Math.round(turnToPercentage((double)revenue()/cost()) * 10) / 10.0 + "%");
+    private String getRateOfRevenue() {
+        return String.format("총 수익률은 %s입니다.", turnToPercentage((double) revenue() / cost()));
     }
 
-    private double turnToPercentage(double number){
-        return number*100;
+    private String turnToPercentage(double number) {
+        return df.format(number);
     }
 
-    private long cost(){
+    private long cost() {
         return (long) Lotto.PRICE * ranks.size();
     }
 
 
     private long revenue() {
         long revenue = 0;
-        for(LottoRank rank : ranks) {
+        for (LottoRank rank : ranks) {
             revenue += rank.getPrizeMoney() * getCount(rank);
         }
         return revenue;
