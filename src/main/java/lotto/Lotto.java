@@ -6,15 +6,28 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        Validator.validateWinNumber(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    public Rank matchWinNumbers(List<Integer> winNumbers, int bonusNumber) {
+        int matchCount = 0;
+
+        for (int number : numbers) {
+            if (winNumbers.contains(number)) {
+                matchCount++;
+            }
         }
+
+        boolean matchBonus = numbers.contains(bonusNumber);
+
+        return Rank.valueOf(matchCount, matchBonus);
     }
 
-    // TODO: 추가 기능 구현
+    public String toString() {
+        return "[" + String.join(", ", numbers.stream()
+                .map(String::valueOf)
+                .toList()) + "]";
+    }
+
 }
