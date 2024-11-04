@@ -20,6 +20,7 @@ public class LottoController {
         resultView.printPurchaseLottoInfo(myLotto);
 
         inputView.inputWinnerNumber();
+        inputView.inputBonusNumber();
 
     }
 }

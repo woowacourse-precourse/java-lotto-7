@@ -61,8 +61,17 @@ public class InputView {
         }
     }
 
-    public void inputBonusNumber() {
+    public int inputBonusNumber() {
         System.out.println("보너스 볼을 입력해 주세요.");
+        int number;
+        try {
+            number = Integer.parseInt(Console.readLine());
+            checkNumberIsInvalid(number);
+        } catch(IllegalArgumentException e) {
+            System.out.println("[ERROR] " + "서식에 맞지 않는 입력이 있습니다.");
+            return inputBonusNumber();
+        }
+        return number;
     }
 
     private List<Integer> convertStringToIntList(String stringWinningNumber) {
