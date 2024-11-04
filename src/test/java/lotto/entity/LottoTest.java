@@ -23,6 +23,21 @@ class LottoTest {
 
         // when
         Lotto lotto = new Lotto(integers);
+
+        // then
+        assertEquals(integers, lotto.getNumbers());
+    }
+
+    @Test
+    void 로또_번호_정렬_테스트() {
+        // given
+        List<Integer> integers = List.of(20, 5, 3, 10, 44, 45);
+
+        // when
+        Lotto lotto = new Lotto(integers);
+
+        // then
+        assertEquals(integers.stream().sorted().toList(), lotto.getNumbers());
     }
 
     @Test

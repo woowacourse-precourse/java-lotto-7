@@ -14,13 +14,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         LottoValidator.validate(numbers);
-        this.numbers = List.copyOf(numbers);
+        this.numbers = List.copyOf(numbers.stream().sorted().toList());
     }
 
     public static Lotto createRandomLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER.getValue(),
-                LOTTO_MAX_NUMBER.getValue(),
-                LOTTO_NUMBER_COUNT.getValue());
+                LOTTO_MAX_NUMBER.getValue(), LOTTO_NUMBER_COUNT.getValue());
         return new Lotto(numbers);
     }
 
