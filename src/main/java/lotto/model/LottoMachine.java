@@ -20,7 +20,7 @@ public class LottoMachine {
         int count = purchaseAmount / PURCHASE_AMOUNT_UNITS;
 
         for (int i = LOOP_START_INDEX; i < count; i++) {
-            Lotto lotto = LottoGenerator.generate();
+            Lotto lotto = Lotto.generate();
             lottos.add(lotto);
         }
         return lottos;
