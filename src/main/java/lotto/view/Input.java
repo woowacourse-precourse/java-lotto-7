@@ -12,13 +12,14 @@ public class Input {
         System.out.println(PURCHASE_MESSAGE);
         String input = Console.readLine();
         return input;
-    
     }
+
     public static String[] inputWinningNum() {
         System.out.println(WINNING_NUMBER_MESSAGE);
         String input = Console.readLine();
         return input.split(",");
     }
+    
     public static String inputBonusNum() {
         System.out.println(BONUS_NUMBER_MESSAGE);
         String input = Console.readLine();

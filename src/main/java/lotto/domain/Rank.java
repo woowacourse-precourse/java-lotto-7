@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum Rank {
@@ -23,6 +24,18 @@ public enum Rank {
         return condition.test(matchCount, hasBonusNumber);
     }
 
+    public long getReward() {
+        return reward;
+    }
+
+    public static Rank of(int matchCount, boolean hasBonus) {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.matchesCondition(matchCount, hasBonus))
+                .findFirst()
+                .orElse(MISS);
+    }
+
+    @Override
     public String toString() {
         return String.format("%d개 일치%s (%,d원)",
                 condition.test(6, false) ? 6 :
@@ -32,9 +45,5 @@ public enum Rank {
                                                 condition.test(3, false) ? 3 : 0,
                 condition == SECOND.condition ? ", 보너스 볼 일치" : "",
                 reward);
-    }
-
-    public long getReward() {
-        return reward;
     }
 }

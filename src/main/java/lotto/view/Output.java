@@ -1,10 +1,11 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.domain.PurchaseAmount;
 
 public class Output {
     public static void printBuyLotto() {
-        System.out.printf("%d개를 구매했습니다.%n", buyLotto);
+        System.out.printf("%d개를 구매했습니다.%n", PurchaseAmount);
     }
 
     public static void printWinReward(String winReward) {
@@ -21,6 +22,6 @@ public class Output {
         System.out.println(exception.getMessage());
     }
 
-    public static void printIssuedLottoDetails(List<Lotto> issuedLottos) {
+    public static void printIssuedLottoDetails(List<LottoManager> issuedLottos) {
     }
 }

@@ -4,13 +4,16 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.LottoManager;
 
 public class WinReward {
     private static final int INITIAL_COUNT = 0;
     private final Map<Rank, Integer> details;
+    private final LottoManager lottoManager;
 
-    public WinReward() {
+    public WinReward(LottoManager lottoManager) {
         this.details = new EnumMap<>(Rank.class);
+        this.lottoManager = lottoManager;
         Arrays.stream(Rank.values()).forEach(rank -> details.put(rank, INITIAL_COUNT));
     }
 
@@ -34,5 +37,9 @@ public class WinReward {
     }
 
     public Rank match(Lotto lotto) {
+        int matchCount = lotto.getMatchCount(lottoManager.getWinningNumbers()); // Assumes getMatchCount() is implemented in Lotto
+        boolean hasBonus = lotto.hasBonusNumber(lottoManager.getBonusNumber()); // Assumes hasBonusNumber() is implemented in Lotto
+
+        return Rank.of(matchCount, hasBonus); // Uses Rank.of() to get the matching Rank
     }
 }
