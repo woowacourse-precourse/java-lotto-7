@@ -4,9 +4,60 @@ import lotto.model.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LottoRankTest {
+
+    @Test
+    @DisplayName("로또 번호와 당첨 번호의 일치 수를 계산한다")
+    void 로또_번호와_당첨_번호의_일치_수를_계산한다() {
+        // Given
+        List<Integer> myNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto myLotto = new Lotto(myNumbers);
+        List<Integer> winningNumbers = Arrays.asList(4, 5, 6, 7, 8, 9);
+        Lotto winningLotto = new Lotto(winningNumbers);
+
+        // When
+        int matchCount = myLotto.countMatches(winningLotto);
+
+        // Then
+        assertThat(matchCount).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("보너스 번호와 일치여부를 확인한다")
+    void 보너스_번호와_일치여부를_확인한다() {
+        // Given
+        List<Integer> myNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto myLotto = new Lotto(myNumbers);
+        int bonusNumber = 6;
+
+        // When
+        boolean isBonusMatched = myLotto.isBonusMatched(bonusNumber);
+
+        // Then
+        assertThat(isBonusMatched).isTrue();
+    }
+
+    @Test
+    @DisplayName("보너스 번호와 일치하지 않으면 false 반환한다")
+    void 보너스_번호가_일치하지_않으면_false를_반환한다() {
+        // Given
+        List<Integer> myNumbers = Arrays.asList(1, 2, 3, 4, 5, 7);
+        Lotto myLotto = new Lotto(myNumbers);
+        int bonusNumber = 6;
+
+        // When
+        boolean isBonusMatched = myLotto.isBonusMatched(bonusNumber);
+
+        // Then
+        assertThat(isBonusMatched).isFalse();
+    }
+
     @Test
     @DisplayName("일치하는 번호 갯수와 보너스 번호 일치 유무에 따른 등수 출력")
     void 일치하는_번호_갯수와_보너스_번호_일치_유무에_따른_등수_출력() {
