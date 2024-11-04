@@ -108,8 +108,20 @@ public class LottoController {
     }
 
     public void inputBonusNumber() {
-        inputView.printMessage(InputMessage.INPUT_BONUS_NUMBER);
-        bonusNumber = inputView.inputBonusNumber();
+        boolean isValidInput = false;
+
+        do {
+            inputView.printMessage(InputMessage.INPUT_BONUS_NUMBER);
+            bonusNumber = inputView.inputBonusNumber();
+            try {
+                validateBonusNumber();
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            } catch (IllegalStateException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        } while (!isValidInput);
     }
 
     public void validateBonusNumber() {
