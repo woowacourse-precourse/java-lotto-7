@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import lotto.model.LottoTicket;
+import lotto.service.LottoNumberGenerator;
 import lotto.service.LottoService;
 import lotto.service.StatisticsService;
 import lotto.validator.PurchaseValidator;
@@ -19,7 +20,8 @@ class LottoControllerTest {
 
     @BeforeEach
     void setUp() {
-        lottoService = new LottoService();
+        LottoNumberGenerator generator = new LottoNumberGenerator(); // LottoNumberGenerator 인스턴스 생성
+        lottoService = new LottoService(generator);
         statisticsService = new StatisticsService();
         lottoController = new LottoController(lottoService, statisticsService);
     }

@@ -20,7 +20,8 @@ class LottoServiceTest {
 
     @BeforeEach
     void setUp() {
-        lottoService = new LottoService();
+        LottoNumberGenerator generator = new LottoNumberGenerator(); // LottoNumberGenerator 인스턴스 생성
+        lottoService = new LottoService(generator);
     }
 
     @Test

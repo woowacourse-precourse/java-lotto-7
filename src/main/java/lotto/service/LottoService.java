@@ -11,7 +11,7 @@ import lotto.model.LottoTicket;
 public class LottoService {
     private final LottoNumberGenerator numberGenerator;
 
-    public LottoService() {
+    public LottoService(LottoNumberGenerator numberGenerator) {
         this.numberGenerator = new LottoNumberGenerator();
     }
 
