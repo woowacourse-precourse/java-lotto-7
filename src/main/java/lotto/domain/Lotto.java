@@ -9,6 +9,7 @@ import lotto.util.ListValidator;
 import lotto.util.NumberValidator;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

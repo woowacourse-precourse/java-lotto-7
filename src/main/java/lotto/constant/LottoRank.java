@@ -58,7 +58,7 @@ public enum LottoRank {
     }
 
     private static boolean isMatchBonus(final LottoRank lottoRank, final boolean matchBonus) {
-        return Objects.equals(lottoRank.matchBonus , matchBonus);
+        return Objects.equals(lottoRank.matchBonus, matchBonus);
     }
 
     private static boolean isMatchCount(final LottoRank lottoRank, final int matchCount) {
