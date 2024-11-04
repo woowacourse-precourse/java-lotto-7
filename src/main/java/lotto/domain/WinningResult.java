@@ -14,6 +14,8 @@ public enum WinningResult {
     RANK_2TH(5, true, 30_000_000, "5개 일치, 보너스 볼 일치"),
     RANK_1TH(6, false, 2_000_000_000, "6개 일치");
 
+    private static final String RESULT_FORMAT = "%s (%s원) - %d개";
+
     private final int matchCount;
     private final boolean hasBonus;
     private final int winningAmount;
@@ -49,7 +51,7 @@ public enum WinningResult {
     }
 
     private String getFormattedResult(int count) {
-        return String.format("%s (%s원) - %d개",
+        return String.format(RESULT_FORMAT,
                 this.description,
                 getFormattedWinningAmount(),
                 count
