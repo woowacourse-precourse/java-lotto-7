@@ -2,6 +2,8 @@ package lotto.view;
 
 public class ConsoleUtils {
 
+    public static final String ERROR_PREFIX = "[ERROR] ";
+
     public static void printMessageWithNewLine(String message) {
         System.out.println(message);
     }
@@ -15,7 +17,7 @@ public class ConsoleUtils {
     }
 
     public static void printError(String message) {
-        System.out.println("[ERROR] " + message);
+        System.out.println(ERROR_PREFIX + message);
     }
 
 }
