@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.constant.Constant.NUMBERS_RANGE_END;
 import static lotto.constant.Constant.NUMBERS_RANGE_START;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -28,7 +29,6 @@ public class WinningNumbers {
         validateSixNumbers();
         numbers.forEach(this::validateRange);
         validateDuplicated();
-        sortNumbers();
     }
 
     private void validateSixNumbers() {
@@ -53,10 +53,6 @@ public class WinningNumbers {
         }
     }
 
-    private void sortNumbers() {
-        Collections.sort(numbers);
-    }
-
     private void validateBonusNumber() {
         validateBonusDuplicated();
         validateRange(bonusNumber);
@@ -69,7 +65,7 @@ public class WinningNumbers {
     }
 
     public List<Integer> getWinningNumbers() {
-        List<Integer> winningNumbers = numbers;
+        List<Integer> winningNumbers = new ArrayList<>(numbers);
         winningNumbers.add(bonusNumber);
         return winningNumbers;
     }
