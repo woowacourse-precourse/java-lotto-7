@@ -36,4 +36,8 @@ public class UserResponseView {
         System.out.println("총 수익률은 "+revenue+"%입니다.");
     }
 
+    public static void errorMessage(String detailErrorMessage){
+        throw new IllegalArgumentException("[ERROR] "+ detailErrorMessage);
+    }
+
 }
