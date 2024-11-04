@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Arrays;
+import lotto.exception.ErrorCode;
 
 public enum CorrectStatus {
 
@@ -38,7 +39,7 @@ public enum CorrectStatus {
                     return status.matchCount == matchCount;
                 })
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("No matching CorrectStatus for match count: " + matchCount));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorCode.CANT_MATCH_CORRECTNESS.getMessage()));
     }
 
     public String getMessage(){
