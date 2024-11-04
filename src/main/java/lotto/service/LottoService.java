@@ -2,7 +2,9 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.Prize;
+import lotto.dto.LottoResponse;
 import lotto.dto.PrizeResponse;
 import lotto.repository.LottoRepository;
 
@@ -19,14 +21,14 @@ public class LottoService {
         this.lottoRepository = lottoRepository;
     }
 
-    public List<PrizeResponse> findWinningResult(Lotto winningLotto, int bonusNumber) {
+    public List<PrizeResponse> findWinningResult(Lotto winningLotto, LottoNumber bonusNumber) {
         List<Lotto> purchasedLottos = lottoRepository.findAll();
         Map<Prize, Integer> winningCounts = Arrays.stream(Prize.values())
                 .collect(Collectors.toMap(prize -> prize, prize -> 0));
 
         for (Lotto lotto : purchasedLottos) {
             List<Integer> numbers = lotto.getNumbers(); // 발행된 각 로또의 번호들
-            boolean containsBonusNumber = numbers.contains(bonusNumber);
+            boolean containsBonusNumber = numbers.contains(bonusNumber.getNumber());
 
             Prize prize = calculatePrize(winningLotto, containsBonusNumber, numbers);
 
@@ -78,5 +80,12 @@ public class LottoService {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
         return new Lotto(lottoNumbers);
+    }
+
+    public List<LottoResponse> findAll() {
+        return lottoRepository.findAll()
+                .stream()
+                .map(LottoResponse::new)
+                .toList();
     }
 }
