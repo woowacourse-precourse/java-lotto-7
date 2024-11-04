@@ -6,7 +6,8 @@ import lotto.view.Input;
 
 public class InputValidator {
     private Input input = new Input();
-    public int readBuyLotto(){
+
+    public int readBuyLotto() {
         while (true) {
             try {
                 return input.readLottoAmount();
@@ -16,7 +17,7 @@ public class InputValidator {
         }
     }
 
-    public Lotto readWinningLotto(){
+    public Lotto readWinningLotto() {
         while (true) {
             try {
                 return new Lotto(input.readWinningNumber());
@@ -26,7 +27,7 @@ public class InputValidator {
         }
     }
 
-    public void makeBonusNumber(Lotto winningLotto){
+    public void makeBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
                 new BonusNumber(input.readBonusNumber(), winningLotto);
