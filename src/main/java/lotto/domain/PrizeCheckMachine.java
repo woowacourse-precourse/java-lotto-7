@@ -21,6 +21,6 @@ public class PrizeCheckMachine implements CriteriaTool {
 
     @Override
     public Boolean matchingLuckyNumber(List<Integer> lotto) {
-        return null;
+        return lotto.contains(luckyNumber);
     }
 }
