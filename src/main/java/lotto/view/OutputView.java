@@ -11,10 +11,11 @@ import lotto.model.WinningResultsDto;
 
 public class OutputView {
 
+	private static final String PURCHASE_PRICE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
 	private static final String DECIMAL_FORMAT = "#,###.#";
 
 	public void printPurchasePriceInputMessage() {
-		System.out.println("구입금액을 입력해 주세요.");
+		System.out.println(PURCHASE_PRICE_INPUT_MESSAGE);
 	}
 
 	public void printErrorMessage(String errorMessage) {
