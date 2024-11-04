@@ -16,13 +16,13 @@ public class LottoResult {
         rankingCount.put(ranking, rankingCount.get(ranking) + 1);
     }
 
+    public Map<LottoRanking, Integer> getRankingCount() {
+        return Map.copyOf(rankingCount);
+    }
+
     public int getTotalPrize() {
         return rankingCount.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
-    }
-
-    public Map<LottoRanking, Integer> getRankingCount() {
-        return rankingCount;
     }
 }

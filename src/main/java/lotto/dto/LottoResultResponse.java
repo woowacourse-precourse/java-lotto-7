@@ -1,6 +1,9 @@
+// LottoResultResponse.java
 package lotto.dto;
 
-import lotto.model.LottoResult;
+import lotto.model.LottoRanking;
 
-public record LottoResultResponse(LottoResult result, double profitRate) {
+import java.util.Map;
+
+public record LottoResultResponse(Map<LottoRanking, Integer> rankingCount, double profitRate) {
 }

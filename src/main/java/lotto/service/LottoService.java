@@ -37,6 +37,6 @@ public class LottoService {
             lottoResult.addRanking(ranking);
         }
         double profitRate = Math.round((double) lottoResult.getTotalPrize() / request.purchaseAmount() * 100 * 100) / 100.0;
-        return new LottoResultResponse(lottoResult,profitRate);
+        return new LottoResultResponse(lottoResult.getRankingCount(), profitRate);
     }
 }
