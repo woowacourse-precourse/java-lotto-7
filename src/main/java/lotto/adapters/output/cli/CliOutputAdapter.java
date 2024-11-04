@@ -26,16 +26,6 @@ public class CliOutputAdapter implements OutputPort {
 
     @Override
     public void writeResponse(Response response) {
-        if (response instanceof PurchaseLottoResponse) {
-            System.out.println(lottoFormatter.format(((PurchaseLottoResponse) response)));
-            return;
-        }
-
-        if (response instanceof EvaluateWinningLottoResponse) {
-            System.out.println(lottoFormatter.format(((EvaluateWinningLottoResponse) response)));
-            return;
-        }
-
-        System.out.println(response);
+        System.out.println(lottoFormatter.format(response));
     }
 }

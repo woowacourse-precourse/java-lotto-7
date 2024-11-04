@@ -27,7 +27,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 3, 4, 5, 6)));
+            Lotto.from(List.of(1, 2, 3, 4, 5, 6)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(FIRST);
@@ -40,7 +40,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 3, 4, 5, 7)));
+            Lotto.from(List.of(1, 2, 3, 4, 5, 7)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(SECOND);
@@ -53,7 +53,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 3, 4, 5, 8)));
+            Lotto.from(List.of(1, 2, 3, 4, 5, 8)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(THIRD);
@@ -66,7 +66,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 3, 4, 9, 10)));
+            Lotto.from(List.of(1, 2, 3, 4, 9, 10)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(FOURTH);
@@ -79,7 +79,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 3, 8, 9, 10)));
+            Lotto.from(List.of(1, 2, 3, 8, 9, 10)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(FIFTH);
@@ -92,7 +92,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 7, 8, 9, 10)));
+            Lotto.from(List.of(1, 2, 7, 8, 9, 10)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(LOSE);
@@ -105,7 +105,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 7, 8, 9, 10, 11)));
+            Lotto.from(List.of(1, 7, 8, 9, 10, 11)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(LOSE);
@@ -118,7 +118,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(7, 8, 9, 10, 11, 12)));
+            Lotto.from(List.of(7, 8, 9, 10, 11, 12)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(LOSE);

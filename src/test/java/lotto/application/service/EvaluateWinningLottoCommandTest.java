@@ -5,7 +5,6 @@ import static lotto.domain.lotto.vo.LottoPrize.FIRST;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.UUID;
 import lotto.application.dto.request.EvaluateWinningLottoRequest;
 import lotto.application.dto.response.EvaluateWinningLottoResponse;
 import lotto.application.port.input.EvaluateWinningLottoUsecase;
@@ -35,7 +34,7 @@ class EvaluateWinningLottoCommandTest {
     void 당첨_여부를_확인한다() {
         // given
         WinningNumber winningNumber = WinningNumber.of(List.of(1, 2, 3, 4, 5, 6), 7);
-        List<Lotto> lottos = List.of(Lotto.of(List.of(1, 2, 3, 4, 5, 6)));
+        List<Lotto> lottos = List.of(Lotto.from(List.of(1, 2, 3, 4, 5, 6)));
 
         EvaluateWinningLottoRequest evaluateWinningLottoRequest = new EvaluateWinningLottoRequest(winningNumber);
 

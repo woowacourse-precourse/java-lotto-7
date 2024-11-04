@@ -18,7 +18,7 @@ public class Lotto {
             .collect(Collectors.toList());
     }
 
-    public static Lotto of(List<Integer> numbers) {
+    public static Lotto from(List<Integer> numbers) {
         return new Lotto(numbers);
     }
 

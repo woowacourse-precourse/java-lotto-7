@@ -1,46 +1,50 @@
 package lotto.infrastructure.format;
 
-
 import static lotto.infrastructure.constants.AnnounceMessages.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.application.dto.response.EvaluateWinningLottoResponse;
 import lotto.application.dto.response.PurchaseLottoResponse;
+import lotto.application.dto.response.Response;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.vo.LottoPrize;
-import lotto.infrastructure.constants.AnnounceMessages;
 
 public class LottoFormatter {
 
     private static final String NEW_LINE = "\n";
     private static final String NUMBER_FORMAT = "%,d";
-    private static final int NONE = 0;
     private static final int ROUNDING_FACTOR = 100;
     private static final double ROUNDING_DIVISOR = 100.0;
 
-
-    public String format(PurchaseLottoResponse response) {
-        StringBuilder result = new StringBuilder();
-        result.append(String.format(PURCHASE_LOTTO_FORMAT.getMessage(), response.lottoCount()));
-
-        for (Lotto lotto : response.lottos()) {
-            result.append(formatLotto(lotto)).append(NEW_LINE);
+    public String format(Response response) {
+        if (response instanceof PurchaseLottoResponse) {
+            return formatPurchaseLottoResponse((PurchaseLottoResponse) response);
         }
-
-        return result.toString();
+        if (response instanceof EvaluateWinningLottoResponse) {
+            return formatEvaluateWinningLottoResponse((EvaluateWinningLottoResponse) response);
+        }
+        return response.toString();
     }
 
-    private String formatLotto(Lotto lotto) {
-        return lotto.getNumbers().toString();
+    private String formatPurchaseLottoResponse(PurchaseLottoResponse response) {
+        return String.format(PURCHASE_LOTTO_FORMAT.getMessage(), response.lottoCount())
+            + formatLottos(response.lottos())
+            + NEW_LINE;
     }
 
-    public String format(EvaluateWinningLottoResponse response) {
+    private String formatLottos(List<Lotto> lottos) {
+        return lottos.stream()
+            .map(Lotto::toString)
+            .collect(Collectors.joining(NEW_LINE));
+    }
+
+    private String formatEvaluateWinningLottoResponse(EvaluateWinningLottoResponse response) {
         StringBuilder result = new StringBuilder();
-        result.append(AnnounceMessages.HEADER.getMessage());
+        result.append(HEADER.getMessage());
 
         appendWinningStatistics(result, response.winningResult());
-
         result.append(String.format(TOTAL_EARNING_RATE_FORMAT.getMessage(),
             roundEarningRate(response.earningRate())));
 
@@ -51,13 +55,9 @@ public class LottoFormatter {
         StringBuilder result,
         Map<LottoPrize, Integer> winningResult
     ) {
-        for (LottoPrize prize : LottoPrize.values()) {
-            if (prize == LottoPrize.LOSE) {
-	continue;
-            }
-
-            appendPrizeStatistics(result, prize, winningResult.getOrDefault(prize, NONE));
-        }
+        winningResult.entrySet().stream()
+            .filter(entry -> entry.getKey() != LottoPrize.LOSE)
+            .forEach(entry -> appendPrizeStatistics(result, entry.getKey(), entry.getValue()));
     }
 
     private void appendPrizeStatistics(
@@ -65,21 +65,16 @@ public class LottoFormatter {
         LottoPrize prize,
         int count
     ) {
-        String formattedPrizeMoney = formatPrizeMoney(prize.getPrizeAmount());
-
-        if (prize == LottoPrize.SECOND) {
-            result.append(
-	String.format(BONUS_STATISTIC_FORMAT.getMessage(), prize.getMatchingNumberCount(),
-	    formattedPrizeMoney, count));
-            return;
-        }
-
-        result.append(String.format(STATISTIC_FORMAT.getMessage(), prize.getMatchingNumberCount(),
-            formattedPrizeMoney, count));
+        String formattedPrizeMoney = formatPrizeAmount(prize.getPrizeAmount());
+        String message = (prize == LottoPrize.SECOND)
+            ? BONUS_STATISTIC_FORMAT.getMessage()
+            : STATISTIC_FORMAT.getMessage();
+        result.append(
+            String.format(message, prize.getMatchingNumberCount(), formattedPrizeMoney, count));
     }
 
-    private String formatPrizeMoney(long prizeMoney) {
-        return String.format(NUMBER_FORMAT, prizeMoney);
+    private String formatPrizeAmount(long prizeAmount) {
+        return String.format(NUMBER_FORMAT, prizeAmount);
     }
 
     private double roundEarningRate(double earningRate) {
