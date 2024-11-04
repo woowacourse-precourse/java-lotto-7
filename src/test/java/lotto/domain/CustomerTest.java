@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -33,8 +33,7 @@ public class CustomerTest {
 	@DisplayName("천원 미만의 금액을 입력하면 예외가 발생한다.")
 	@Test
 	void 천원_미만의_금액을_입력하면_예외가_발생한다() {
-		assertThatThrownBy(() -> Customer.from(999))
-			.isInstanceOf(IllegalArgumentException.class);
+		assertThatIllegalArgumentException().isThrownBy(() -> Customer.from(999));
 	}
 
 	@DisplayName("몇개의 로또가 당첨되었는지 확인할 수 있다")
