@@ -18,7 +18,7 @@ public class LottoService {
     }
 
     private List<Integer> makeLandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(Constants.LOTTO_MIN_NUM, Constants.LOTTO_MIN_NUM, Constants.LOTTO_SIZE);
+        return Randoms.pickUniqueNumbersInRange(Constants.LOTTO_MIN_NUM, Constants.LOTTO_MAX_NUM, Constants.LOTTO_SIZE);
     }
 
     public double getYield(int useMoney, int winningMoney) {
