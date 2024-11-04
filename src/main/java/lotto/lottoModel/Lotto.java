@@ -18,7 +18,7 @@ public class Lotto {
         }
     }
 
-    private void validateUniqueNumbers(List<Integer> numbers){
+    private void validateUniqueNumbers(List<Integer> numbers) {
         if (numbers.size() != numbers.stream()
                 .distinct()
                 .count()) {
