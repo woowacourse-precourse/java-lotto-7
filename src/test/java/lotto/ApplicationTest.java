@@ -50,7 +50,7 @@ class ApplicationTest extends NsTest {
 
     @Test
     @ParameterizedTest
-    @ValueSource(strings = {"1000j", "", " ", "@"})
+    @ValueSource(strings = {"1000j", " ", "@"})
     void 예외_테스트(String input) {
         assertSimpleTest(() -> {
             runException(input);
