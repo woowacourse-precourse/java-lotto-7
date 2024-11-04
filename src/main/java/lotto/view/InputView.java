@@ -29,10 +29,13 @@ public class InputView {
     public static List<Integer> readWinningNumbers() {
         System.out.println(WINNING_NUMBERS_INPUT_VIEW);
         String input = Console.readLine().trim();
-        String[] inputInString = input.split(DELIMITER);
+        List<String> inputInString = Arrays.stream(input.split(DELIMITER))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .toList();
 
         try {
-          List<Integer> winningNumbers = Arrays.stream(inputInString)
+          List<Integer> winningNumbers = inputInString.stream()
                   .map(Integer::parseInt)
                   .toList();
           return winningNumbers;
