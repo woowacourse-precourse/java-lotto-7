@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constant.ErrorMessages;
 import lotto.constant.LottoConstants;
 import lotto.exception.InputException;
 
@@ -22,14 +23,14 @@ public class Lotto {
 
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LottoConstants.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(LottoConstants.ERROR_INVALID_LOTTO_NUMBER_COUNT);
+            throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_LOTTO_NUMBER_COUNT);
         }
     }
 
     private void validateUniqueNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new InputException(LottoConstants.ERROR_DUPLICATE_LOTTO_NUMBER);
+            throw new InputException(ErrorMessages.ERROR_DUPLICATE_LOTTO_NUMBER);
         }
     }
 

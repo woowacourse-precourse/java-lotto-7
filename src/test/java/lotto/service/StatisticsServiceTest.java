@@ -33,7 +33,7 @@ class StatisticsServiceTest {
 
         assertThatThrownBy(() -> statisticsService.calculateRateEarning(lottoResultCount, 0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액은 0보다 커야 합니다.");
+                .hasMessage("[ERROR] 구입 금액은 0보다 커야 합니다.");
     }
 
     @Test
@@ -43,6 +43,6 @@ class StatisticsServiceTest {
 
         assertThatThrownBy(() -> statisticsService.calculateRateEarning(lottoResultCount, -1000))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액은 0보다 커야 합니다.");
+                .hasMessage("[ERROR] 구입 금액은 0보다 커야 합니다.");
     }
 }

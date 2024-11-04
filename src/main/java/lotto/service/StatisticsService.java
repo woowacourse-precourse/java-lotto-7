@@ -1,7 +1,7 @@
 package lotto.service;
 
 import java.util.Map;
-import lotto.constant.LottoConstants;
+import lotto.constant.ErrorMessages;
 import lotto.model.LottoResult;
 
 public class StatisticsService {
@@ -14,7 +14,7 @@ public class StatisticsService {
 
     private void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount <= 0) {
-            throw new IllegalArgumentException(LottoConstants.ERROR_PURCHASE_AMOUNT_GREATER_THAN_ZERO);
+            throw new IllegalArgumentException(ErrorMessages.ERROR_PURCHASE_AMOUNT_GREATER_THAN_ZERO);
         }
     }
 
