@@ -7,6 +7,9 @@ import java.util.Objects;
 import java.util.Set;
 
 public class LottoNumbers {
+    private static final int REQUIRED_NUMBER_COUNT = 6;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
     private final List<Integer> numbers;
 
     public LottoNumbers(List<Integer> numbers) {
@@ -15,10 +18,10 @@ public class LottoNumbers {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != REQUIRED_NUMBER_COUNT) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_COUNT);
         }
-        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+        if (numbers.stream().anyMatch(num -> num < MIN_NUMBER || num > MAX_NUMBER)) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_RANGE);
         }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
