@@ -4,7 +4,7 @@ public class InputMoneyValidator {
 
     private static final int LOTTO_PRICE = 1000;
 
-    public void validatePurchaseMoney(String inputPurchaseMoney) {
+    public static void validatePurchaseMoney(String inputPurchaseMoney) {
 
         if (!isNumeric(inputPurchaseMoney)) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 양수로 입력해 주세요.");
@@ -15,7 +15,7 @@ public class InputMoneyValidator {
         }
     }
 
-    private boolean isNumeric(String inputPrice) {
+    private static boolean isNumeric(String inputPrice) {
         return inputPrice.chars().allMatch(Character::isDigit);
     }
 }

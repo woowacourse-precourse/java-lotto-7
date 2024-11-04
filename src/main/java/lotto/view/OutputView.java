@@ -5,6 +5,10 @@ import lotto.domain.LottoPrize;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 
+import java.util.List;
+
+import static lotto.domain.LottoPrize.*;
+
 public class OutputView {
 
     private static final String HYPHEN = "-";
@@ -27,16 +31,11 @@ public class OutputView {
         stringBuilder.append("당첨 통계").append("\n");
         stringBuilder.append(HYPHEN.repeat(3)).append("\n");
 
-        stringBuilder.append(LottoPrize.FIFTH_PRIZE.getDescription()).append(" - ")
-            .append(lottoResult.getLottoPrizeCounts(LottoPrize.FIFTH_PRIZE)).append("개").append("\n");
-        stringBuilder.append(LottoPrize.FOURTH_PRIZE.getDescription()).append(" - ")
-            .append(lottoResult.getLottoPrizeCounts(LottoPrize.FOURTH_PRIZE)).append("개").append("\n");
-        stringBuilder.append(LottoPrize.THIRD_PRIZE.getDescription()).append(" - ")
-            .append(lottoResult.getLottoPrizeCounts(LottoPrize.THIRD_PRIZE)).append("개").append("\n");
-        stringBuilder.append(LottoPrize.SECOND_PRIZE.getDescription()).append(" - ")
-            .append(lottoResult.getLottoPrizeCounts(LottoPrize.SECOND_PRIZE)).append("개").append("\n");
-        stringBuilder.append(LottoPrize.FIRST_PRIZE.getDescription()).append(" - ")
-            .append(lottoResult.getLottoPrizeCounts(LottoPrize.FIRST_PRIZE)).append("개").append("\n");
+        List<LottoPrize> prizes = List.of(FIFTH_PRIZE, FOURTH_PRIZE, THIRD_PRIZE, SECOND_PRIZE, FIRST_PRIZE);
+        for (LottoPrize prize : prizes) {
+            stringBuilder.append(prize.getDescription()).append(" - ")
+                .append(lottoResult.getLottoPrizeCounts(prize)).append("개").append("\n");
+        }
 
         stringBuilder.append("총 수익률은 ").append(String.format("%.1f", lottoResult.calculateYield())).append("%입니다.");
         System.out.println(stringBuilder);
