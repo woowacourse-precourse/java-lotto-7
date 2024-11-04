@@ -13,6 +13,7 @@ public class LottoMachine {
     private final InputReader inputReader = new InputReader(validation);
     private final MatchCalculator matchCalculator = new MatchCalculator();
     private final LottoGenerator lottoGenerator = new LottoGenerator();
+    private final ErrorHandler errorHandler = new ErrorHandler();
 
     private ArrayList<Lotto> lottos = new ArrayList<>();
     private Map<MatchCount, Integer> result = new HashMap<>();
@@ -23,7 +24,9 @@ public class LottoMachine {
 
     public void run() {
         System.out.println("구입 금액을 입력해 주세요.");
-        lottoPrice = inputReader.readLottoPrice();
+        errorHandler.continueNotToCatchError(()->{
+            lottoPrice = inputReader.readLottoPrice();
+        });
         System.out.println(lottoPrice + "\n");
 
         numberOfTickets = calculateNumberOfTickets(lottoPrice);
@@ -32,11 +35,15 @@ public class LottoMachine {
         vendorTicket(numberOfTickets);
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        winningLotto = inputReader.readWinningNumbers();
+        errorHandler.continueNotToCatchError(()->{
+            winningLotto = inputReader.readWinningNumbers();
+        });
         System.out.println(winningLotto.getNumbers()+"\n");
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        bonusNumber = inputReader.readBonusNumber(winningLotto);
+        errorHandler.continueNotToCatchError(()->{
+            bonusNumber = inputReader.readBonusNumber(winningLotto);
+        });
         System.out.println(bonusNumber+"\n");
 
         System.out.println("당첨 통계\n---");
