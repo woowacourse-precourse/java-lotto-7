@@ -5,6 +5,7 @@ import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
 
 public class Validator {
+    public static final String NUMERIC_PATTERN = "-?\\d+";
 
     public static void validateBlank(String input, ErrorMessage errorMessage) {
         if (input == null || input.isBlank()) {
@@ -13,7 +14,7 @@ public class Validator {
     }
 
     public static void validateNumeric(String input, ErrorMessage errorMessage) {
-        if (!input.matches(Constant.NUMERIC_PATTERN)) {
+        if (!input.matches(NUMERIC_PATTERN)) {
             throw new LottoException(errorMessage.getMessage());
         }
     }
