@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.view.input.Input.addtionBonusNumber;
 import static lotto.view.input.Input.getWinNumbers;
 import static lotto.view.input.Input.purchaseAmountConsole;
 
@@ -16,12 +17,14 @@ public class Game {
 
     public void gameStart(){
         Purchase purchase = getPurchase();
-        System.out.println("");
+
 
         outputGetLottoNumbers(purchase.getPurchaseAccount());
-        System.out.println("");
+
 
         List<Integer> getInputWinNumbers = getInputWinNumbers();
+
+        int bonusNumber = getBonusNumber();
 
 
     }
@@ -40,7 +43,13 @@ public class Game {
         }
     }
 
+    private void outputGetLottoNumbers(int getPurchaseAccount){
+        System.out.println("");
+        output.getLottoNumbers(getPurchaseAccount);
+    }
+
     private List<Integer> getInputWinNumbers(){
+        System.out.println("");
         System.out.println(getWinNumbers);
         while(true){
             try{
@@ -48,13 +57,22 @@ public class Game {
                 Lotto lotto = new Lotto(getWinNumbers);
                 return lotto.getWinningLottoNumbers();
             }catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
 
 
-    private void outputGetLottoNumbers(int getPurchaseAccount){
-        output.getLottoNumbers(getPurchaseAccount);
+    private int getBonusNumber(){
+        System.out.println("");
+        System.out.println(addtionBonusNumber);
+        while (true){
+            try{
+                return input.getBonusNumber();
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 }
