@@ -15,6 +15,10 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
 
+    private List<Lotto> lottos;
+    private List<Integer> winningNumbers;
+    private int bonusNumber = 0;
+
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
@@ -22,13 +26,21 @@ public class LottoController {
 
     public void run() {
         int money = getMoney();
-        int lottoAmount = buyLotto(money);
-        List<Lotto> lottos = makeLottos(lottoAmount);
-        printLottos(lottos);
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber(winningNumbers);
+        prepareLottos(money);
+        makeWinningCondition();
         List<Integer> lottoResults = makeLottoResults(lottos, winningNumbers, bonusNumber);
         printLottoResults(money, lottoResults);
+    }
+
+    private void prepareLottos(int money) {
+        int lottoAmount = buyLotto(money);
+        lottos = makeLottos(lottoAmount);
+        printLottos(lottos);
+    }
+
+    private void makeWinningCondition() {
+        winningNumbers = getWinningNumbers();
+        bonusNumber = getBonusNumber(winningNumbers);
     }
 
     private int buyLotto(int money) {
