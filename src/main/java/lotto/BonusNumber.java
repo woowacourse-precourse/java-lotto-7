@@ -16,6 +16,10 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
+
     private Integer parseNumber(String number) {
         return Parser.parse(number);
     }
