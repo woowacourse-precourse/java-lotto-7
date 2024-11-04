@@ -6,9 +6,6 @@ import lotto.dto.ProfitStatisticsDto;
 import lotto.entity.LottoMachine;
 import lotto.entity.ProfitReport;
 import lotto.seirvce.LottoService;
-import lotto.validator.LottoValidator;
-import lotto.validator.PurchaseValidator;
-import lotto.validator.WinningNumbersValidator;
 import lotto.view.ConsoleInput;
 import lotto.view.ConsoleOutput;
 
@@ -41,63 +38,16 @@ public class LottoController {
     }
 
     private LottoControllerInputDto getUserInputs() {
-        int purchaseAmount = getPurchaseAmount();
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber(winningNumbers);
+        InputRetryUtil inputRetryUtil = new InputRetryUtil(consoleInput, consoleOutput);
+        int purchaseAmount = inputRetryUtil.getValidatedPurchaseAmount();
+        List<Integer> winningNumbers = inputRetryUtil.getValidatedWinningNumbers();
+        int bonusNumber = inputRetryUtil.getValidatedBonusNumber(winningNumbers);
 
         return new LottoControllerInputDto.Builder()
                 .paymentAmount(purchaseAmount)
                 .winnerNumbers(winningNumbers)
                 .bonusNumber(bonusNumber)
                 .build();
-    }
-
-    private int getPurchaseAmount() {
-        int paymentAmount;
-
-        while (true) {
-            try {
-                String userInput = consoleInput.getPurchasedAmount();
-                paymentAmount = InputParser.parseInteger(userInput);
-                PurchaseValidator.validate(paymentAmount);
-                break;
-            } catch (IllegalArgumentException error) {
-                consoleOutput.printException(error);
-            }
-        }
-        return paymentAmount;
-    }
-
-    private List<Integer> getWinningNumbers() {
-        List<Integer> numbers;
-
-        while (true) {
-            try {
-                String userInput = consoleInput.getWinningNumbers();
-                numbers = InputParser.parseIntegers(userInput);
-                LottoValidator.validate(numbers);
-                break;
-            } catch (IllegalArgumentException error) {
-                consoleOutput.printException(error);
-            }
-        }
-        return numbers;
-    }
-
-    private int getBonusNumber(List<Integer> winningNumbers) {
-        int bonusNumber;
-
-        while (true) {
-            try {
-                String input = consoleInput.getBonusNumber();
-                bonusNumber = InputParser.parseInteger(input);
-                WinningNumbersValidator.bonusNumber(winningNumbers, bonusNumber);
-                break;
-            } catch (IllegalArgumentException error) {
-                consoleOutput.printException(error);
-            }
-        }
-        return bonusNumber;
     }
 
 }
