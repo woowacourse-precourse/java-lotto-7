@@ -1,8 +1,10 @@
-package lotto;
+package lotto.display;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import lotto.Lotto;
+import lotto.LottoRank;
 
 public class LottoGameOutputDisplay {
 
