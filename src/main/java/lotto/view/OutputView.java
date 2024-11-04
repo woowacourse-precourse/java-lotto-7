@@ -7,6 +7,7 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -69,21 +70,31 @@ public class OutputView {
                 numberFormat.format(rank.getPrize()),
                 statistics.getOrDefault(rank, DEFAULT_COUNT));
     }
-
     private static void printTotalYield(Map<LottoRank, Long> statistics, int lottoCount) {
-        double totalPrize = statistics.entrySet().stream()
-                .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())
-                .sum();
+        double totalPrize = calculateTotalPrize(statistics);
         double purchaseAmount = lottoCount * LOTTO_PRICE;
         double yield = (totalPrize / purchaseAmount) * PERCENTAGE;
         System.out.printf(MESSAGE_TOTAL_YIELD, yield);
     }
 
+    private static double calculateTotalPrize(Map<LottoRank, Long> statistics) {
+        Set<Map.Entry<LottoRank, Long>> entrySet = statistics.entrySet();
+        return entrySet.stream()
+                .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
+
     private static LottoRank getLottoRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
-        long matchCount = lotto.toDTO().getNumbers().stream()
+        List<Integer> lottoNumbers = getLottoNumbers(lotto);
+        long matchCount = lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
-        boolean matchBonus = lotto.toDTO().getNumbers().contains(bonusNumber);
+        boolean matchBonus = lottoNumbers.contains(bonusNumber);
         return LottoRank.valueOf((int) matchCount, matchBonus);
+    }
+
+    private static List<Integer> getLottoNumbers(Lotto lotto) {
+        LottoDTO lottoDTO = lotto.toDTO();
+        return lottoDTO.getNumbers();
     }
 }
