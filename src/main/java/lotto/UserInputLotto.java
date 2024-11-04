@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클래스
-    public int purchaseAmount() {   // 사용자가 얼마어치 사는지 입력
+    public int purchaseAmount() {
+        // 사용자가 구입 금액 입력
         while (true) {
             try {
                 int amount = purchaseAmountRead();
@@ -21,7 +22,8 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
         }
     }
 
-    public List<Integer> inputPrizeNumbers() {      // 사용자가 당첨 번호를 입력
+    public List<Integer> inputPrizeNumbers() {
+        // 사용자가 당첨 번호를 입력
         while (true) {
             try {
                 List<Integer> numbers = inputPrizeNumbersRead();
@@ -34,7 +36,8 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
         }
     }
 
-    public int inputBonusNumber(List<Integer> prizeNumbers) {   // 사용자가 보너스 번호 입력
+    public int inputBonusNumber(List<Integer> prizeNumbers) {
+        // 사용자가 보너스 번호 입력
         while (true) {
             try {
                 int bonusNumber = inputBonusNumberRead();
@@ -65,7 +68,7 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
     }
 
     private List<Integer> delimiterNumber(String input) {
-        // 쉼표로 구분하여 숫자 반환
+        // 문자열을 쉽표로 구분하여 숫자로 반환
         String[] inputNumbers = input.split(",");
         List<Integer> numbers = new ArrayList<>();
         for (String number : inputNumbers) {
@@ -76,11 +79,12 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
     }
 
     private void validatePurchaseAmount(int amount) {
+        // 구입 금액 유효성 검사
         ErrorMessage.INVALID_PURCHASE_AMOUNT.validateAmount(amount);
     }
 
     private void validateInputPrizeNumbers(List<Integer> numbers) {
-        //
+        // 입력한 당첨 금액 유효성 검사
         ErrorMessage.INVALID_WINNING_NUMBER.validate(numbers);
         ErrorMessage.DUPLICATE_WINNING_NUMBER.validate(numbers);
         for (int number : numbers) {
@@ -89,6 +93,7 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
     }
 
     private void validateInputBonusNumber(List<Integer> prizeNumbers, int bonusNumbers) {
+        // 입력한 보너스 번호 유효성 검사
         ErrorMessage.INVALID_NUMBER_RANGE.validate(bonusNumbers);
         ErrorMessage.DUPLICATE_BONUS_WINNING_NUMBER.validate(prizeNumbers, bonusNumbers);
     }

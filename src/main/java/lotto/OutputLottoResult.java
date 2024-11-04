@@ -11,6 +11,7 @@ public class OutputLottoResult {    // 로또 결과 출력
     }
 
     public void printLottoResults(int[] lottoResult, int totalPrize, int puchaseAmount) {
+        // 로또 결과 및 수익률 출력
         System.out.println("당첨 통계");
         System.out.println("---");
         printLottoResult("3개 일치 (5,000원)", lottoResult[4]);
@@ -28,6 +29,7 @@ public class OutputLottoResult {    // 로또 결과 출력
     }
 
     private double calculateRate(int totalPrize, int purchaseAmount) {
+        // 수익률 검산 메서드
         return (double) totalPrize / purchaseAmount * 100;
     }
 }

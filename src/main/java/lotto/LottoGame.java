@@ -20,6 +20,7 @@ public class LottoGame {
     }
 
     public void start() {
+        // 로또 발매 주요 흐름
         int purchaseAmount = userInputLotto.purchaseAmount();
         List<Lotto> purchasedLottos = initGame(purchaseAmount);
 
@@ -31,6 +32,7 @@ public class LottoGame {
     }
 
     private List<Lotto> initGame(int purchaseAmount) {
+        // 구입 금액에 따른 로또 생 및 정보 출력
         int lottoCount = purchaseAmount / 1000;
         List<Lotto> purchasedLottos = lottoGeneration.generateLottoLines(lottoCount);
         outputLottoResult.printLottoInfo(lottoCount, purchasedLottos);
@@ -39,6 +41,7 @@ public class LottoGame {
     }
 
     private void calculateRank(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
+        // 당첨 결과 계산 메서드
         for (Lotto lotto : purchasedLottos) {
             int rank = lottoCheck.checkRank(lotto, winningNumbers, bonusNumber);
             if (rank >= 1 && rank <= 5) {

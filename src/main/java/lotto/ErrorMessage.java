@@ -26,7 +26,7 @@ public enum ErrorMessage {      // 예외별 메시지 관리
     },
 
     INVALID_NUMBER_RANGE("[ERROR] 번호는 1 ~ 45까지의 양수만 가능합니다.") {
-        // 1 ~ 45의 양수번호 확인
+        // 1 ~ 45의 숫자 확인
         @Override
         public void validate(int number) {
             if (number < 1 || number > 45) {
