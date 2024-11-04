@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.Winning;
 import lotto.repository.LottoRepository;
 import lotto.util.ExceptionMessage;
+import lotto.util.Utils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -49,7 +50,12 @@ public class ViewControllerImpl implements ViewController {
     public Integer getMoney() {
         outputView.printGuide();
         String money = inputView.readLine();
-        return this.validateMoney(Integer.parseInt(money));
+        try {
+            return this.validateMoney(Integer.parseInt(money));
+        } catch (NumberFormatException e) {
+            System.out.println(ExceptionMessage.INVALID_MONEY_FORMAT_ERROR);
+        }
+        return 0;
     }
 
     public void showNumber(Integer lottoCount) {
