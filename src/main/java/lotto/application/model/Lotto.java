@@ -34,6 +34,9 @@ public class Lotto implements Model {
                 .filter(winningNumber::contains)
                 .count();
 
-        return WinningRanking.findWinningRankingByMatchedCount(count);
+        if(count==5 && this.numbers.contains(bonusNumber)) return WinningRanking.SECOND;
+
+        //TODO: 보너스 번호 매칭됐는지 여부를 판별하는 메소드로 따로 뺄 수 있겠다.
+        return WinningRanking.findByCountAndBonus(count, numbers.contains(bonusNumber));
     }
 }
