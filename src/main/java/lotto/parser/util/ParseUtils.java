@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseUtils {
+    public static final String INVALID_NUMBER_FORMAT_ERROR = "숫자 형식만 입력 가능합니다. 잘못된 형식: ";
 
     public static List<Integer> convertToNumbers(List<String> inputs) {
         List<Integer> convertedNumbers = new ArrayList<>();
         for (String input : inputs) {
             int parsedInput = validateParseNumberAndReturn(input);
-            convertedNumbers.add((parsedInput));
+            convertedNumbers.add(parsedInput);
         }
         return convertedNumbers;
     }
@@ -31,7 +32,7 @@ public class ParseUtils {
             int parsedInput = Integer.parseInt(input);
             return parsedInput;
         } catch (Exception e) {
-            throw new IllegalArgumentException("숫자 형식만 입력 가능합니다. 잘못된 형식: " + input);
+            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT_ERROR + input);
         }
     }
 }

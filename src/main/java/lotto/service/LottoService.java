@@ -66,9 +66,6 @@ public class LottoService {
     }
 
     private boolean hasBonusNumberInLottoNumbers(int bonusNumber, Lotto lotto) {
-        if (lotto.getNumbers().contains(bonusNumber)) {
-            return true;
-        }
-        return false;
+        return lotto.getNumbers().contains(bonusNumber);
     }
 }

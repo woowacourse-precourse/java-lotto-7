@@ -1,6 +1,5 @@
 package lotto.domain.WinningLotto;
 
-
 public enum WinningLotto {
     NO_MATCH(0, 0),
     THREE_MATCH(3, 5000),
@@ -25,18 +24,17 @@ public enum WinningLotto {
         return prize;
     }
 
-
     public static WinningLotto from(int matchedCount, boolean hasBonus) {
-        if (matchedCount == 6) {
+        if (matchedCount == SIX_MATCH.matchedCount) {
             return SIX_MATCH;
         }
-        if (matchedCount == 5) {
+        if (matchedCount == FIVE_MATCH.matchedCount) {
             return hasBonus ? FIVE_MATCH_BONUS : FIVE_MATCH;
         }
-        if (matchedCount == 4) {
+        if (matchedCount == FOUR_MATCH.matchedCount) {
             return FOUR_MATCH;
         }
-        if (matchedCount == 3) {
+        if (matchedCount == THREE_MATCH.matchedCount) {
             return THREE_MATCH;
         }
         return NO_MATCH;

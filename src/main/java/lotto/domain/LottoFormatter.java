@@ -28,7 +28,7 @@ public class LottoFormatter {
 
     public List<WinningLottoResultDTO> formatWinningLottoResults() {
         List<WinningLottoResultDTO> formatResults = new ArrayList<>();
-        Map<WinningLotto, Integer> counts = winningLottoCounter.getAllCounts();
+        Map<WinningLotto, Integer> counts = winningLottoCounter.getCounts();
 
         for (WinningLotto winningLotto : WinningLotto.values()) {
             if (winningLotto != WinningLotto.NO_MATCH) {

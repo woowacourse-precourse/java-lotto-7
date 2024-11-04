@@ -1,6 +1,5 @@
 package lotto.domain.WinningLotto;
 
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -16,10 +15,6 @@ public class WinningLottoCounter {
 
     public Map<WinningLotto, Integer> getCounts() {
         return counts;
-    }
-
-    public Map<WinningLotto, Integer> getAllCounts() {
-        return Collections.unmodifiableMap(new EnumMap<>(counts));
     }
 
     public void incrementCount(WinningLotto winningLotto) {
