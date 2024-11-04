@@ -33,4 +33,20 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public boolean containNumber(int bonus) {
+        return numbers.contains(bonus);
+    }
+
+    public int duplicatesNumber(Lotto lotto) {
+        int count = 0;
+        for(int num: numbers) {
+            if(lotto.containNumber(num)) count ++;
+        }
+        return count;
+    }
 }
