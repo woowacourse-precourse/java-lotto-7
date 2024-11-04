@@ -19,13 +19,13 @@ public class OutputView {
         for (LottoGameResult singleResult : result) {
             if (singleResult.getPrize() == 30000000) {
                 System.out.println(
-                        singleResult.getNum() + "개 일치, 보너스 볼 일치 (" + singleResult.getPrize() + "원) - "
+                        singleResult.getNum() + "개 일치, 보너스 볼 일치 (" + String.format("%,d", singleResult.getPrize()) + "원) - "
                                 + singleResult.getCount()
                                 + "개");
                 continue;
             }
             System.out.println(
-                    singleResult.getNum() + "개 일치 (" + singleResult.getPrize() + "원) - " + singleResult.getCount()
+                    singleResult.getNum() + "개 일치 (" + String.format("%,d", singleResult.getPrize()) + "원) - " + singleResult.getCount()
                             + "개");
         }
         System.out.println("총 수익률은 " + String.format("%.1f", earns) + "%입니다.");

@@ -50,7 +50,7 @@ public class LottoGame {
             totalEarnings += drawType.getPrize() * count;
         }
 
-        return Math.round(((double) totalEarnings / purchasePrice) * 100);
+        return ((double) totalEarnings / purchasePrice) * 100;
     }
 
     private void validateDuplicate(Lotto winningLotto, int bonusNum) {
