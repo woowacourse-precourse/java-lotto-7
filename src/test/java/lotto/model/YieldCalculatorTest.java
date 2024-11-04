@@ -12,12 +12,12 @@ class YieldCalculatorTest {
     @Test
     void 정확한_수익률을_계산한다() {
         MyWallet myWallet = new MyWallet();
-        myWallet.saveMoney(10000); // 10,000원을 저장
-        myWallet.saveWinnings(5000); // 5,000원의 수익
+        myWallet.saveMoney(10000);
+        myWallet.saveWinnings(5000);
 
         float yield = YieldCalculator.calculateYield(myWallet);
 
-        assertThat(yield).isEqualTo(50.0f); // 수익률은 50%여야 함
+        assertThat(yield).isEqualTo(50.0f);
     }
 
     @DisplayName("수익이 없는 경우 수익률은 0%가 된다.")
