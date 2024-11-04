@@ -4,7 +4,7 @@ import lotto.domain.LottoNumberProvider;
 import lotto.domain.TypeConverter;
 import lotto.domain.WinningResultExtractor;
 import lotto.validator.BonusNumber;
-import lotto.validator.Lotto;
+import lotto.Lotto;
 import lotto.validator.PurchaseAmount;
 import lotto.view.InputReader;
 import lotto.view.OutputWriter;
