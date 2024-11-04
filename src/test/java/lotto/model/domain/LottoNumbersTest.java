@@ -33,7 +33,7 @@ public class LottoNumbersTest {
 
     @DisplayName("로또 넘버에 특정 숫자가 포함되어있는지 확인한다")
     @Test
-    void test_4() {
+    void test4() {
         LottoNumbers lottoNumbers = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber lottoNumber = new LottoNumber(6);
         assertTrue(lottoNumbers.hasNumber(lottoNumber));
@@ -41,7 +41,7 @@ public class LottoNumbersTest {
 
     @DisplayName("숫자모음들끼리 몇 개 같은지 반환한다")
     @Test
-    void test_5() {
+    void test5() {
         LottoNumbers lottoNumbers1 = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6));
         LottoNumbers lottoNumbers2 = new LottoNumbers(List.of(1, 2, 3, 41, 42, 43));
         assertEquals(3, lottoNumbers1.countDuplicatingNumbers(lottoNumbers2));

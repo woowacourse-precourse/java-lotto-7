@@ -15,14 +15,14 @@ class RankResultTest {
 
     @DisplayName("객체를 올바르게 생성한다")
     @Test
-    void test_1() {
+    void test1() {
         RankResult rankResult = new RankResult();
         assertEquals(0, rankResult.getRankReuslts().get(Rank.FIFTH));
     }
 
     @DisplayName("출력을 올바르게 한다")
     @Test
-    void test_2() {
+    void test2() {
         RankResult rankResult = new RankResult();
 
         rankResult.increaseRankCount(Rank.FIFTH);
@@ -38,7 +38,7 @@ class RankResultTest {
 
     @DisplayName("이천원 로또를 사고 당첨금 오천원의 수익률을 반환한다")
     @Test
-    void test_3() {
+    void test3() {
         Iterator<List<Integer>> numbers = List.of(
                 List.of(8, 9, 10, 11, 12, 13),
                 List.of(1, 2, 3, 43, 44, 45)

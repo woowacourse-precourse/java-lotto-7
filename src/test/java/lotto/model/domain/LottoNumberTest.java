@@ -20,7 +20,7 @@ class LottoNumberTest {
 
     @DisplayName("동일한 숫자는 동일한 객체로 취급한다")
     @Test
-    void test_2() {
+    void test2() {
         LottoNumber one = new LottoNumber(1);
         LottoNumber one2 = new LottoNumber(1);
         assertEquals(one,one2);

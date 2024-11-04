@@ -14,7 +14,7 @@ class LottosTest {
 
     @DisplayName("로또 6개를 산다")
     @Test
-    void test_1() {
+    void test1() {
         Lottos lottos = Lottos.from(6L, () -> List.of(1, 2, 3, 4, 5, 6));
         assertEquals(6, lottos.getSize());
     }
@@ -22,7 +22,7 @@ class LottosTest {
     //테스트를 위해 lotto의 생성자 private -> public
     @DisplayName("로또들의 일치결과를 알려준다.")
     @Test
-    void test_2() {
+    void test2() {
         Lottos lottos = Lottos.from(1L, () -> List.of(1, 2, 3, 4, 5, 7));
         WinningBalls winningBalls = new WinningBalls(List.of(1, 2, 3, 4, 5, 6));
         BonusBall bonusBall = BonusBall.of(7, winningBalls);
