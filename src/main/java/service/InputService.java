@@ -13,7 +13,7 @@ public class InputService {
 
     public InputService(){}
 
-    public Integer inputLottoPurchaseCost(){
+   public Integer inputLottoPurchaseCost(){
         System.out.println(INPUT_PURCHASE_COST_MESSAGE);
         String purchaseCost = Console.readLine();
 
