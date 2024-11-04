@@ -22,6 +22,12 @@ public class PrizeResult {
                 .forEach(this::updatePrizeResult);
     }
 
+    public int getSumOfProfit() {
+        return Arrays.stream(Prize.values())
+                .mapToInt(prize -> prizes.get(prize) * prize.getPrizeMoney())
+                .sum();
+    }
+
     private void updatePrizeResult(Prize prize) {
         prizes.put(prize, prizes.get(prize) + 1);
     }
