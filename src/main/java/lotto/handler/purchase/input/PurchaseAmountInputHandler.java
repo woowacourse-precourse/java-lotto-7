@@ -17,7 +17,7 @@ public class PurchaseAmountInputHandler extends LottoHandler {
     }
 
     private String inputPurchaseAmount() {
-        System.out.println(DisplayFormat.PURCHASE_INPUT.displayDefault());
+        System.out.print(DisplayFormat.PURCHASE_INPUT.displayDefault());
         return Console.readLine();
     }
 }

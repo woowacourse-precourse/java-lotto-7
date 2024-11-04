@@ -19,6 +19,7 @@ public class Lotto {
     public WinningRank getRank(List<Integer> winningNumbers, int bonusNumber) {
         int sameNumberCount = (int) numbers.stream().filter(number -> winningNumbers.stream()
                 .anyMatch(winningNumber -> isSameNumber(winningNumber, number))).count();
+
         if (sameNumberCount == 5) {
             return getSecondOrThirdRank(numbers, bonusNumber);
         }

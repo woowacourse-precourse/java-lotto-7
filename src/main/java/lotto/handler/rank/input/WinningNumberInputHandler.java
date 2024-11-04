@@ -13,9 +13,7 @@ public class WinningNumberInputHandler extends LottoHandler {
     protected HandlerToken process(HandlerToken handlerToken) {
         String winningNumbers = inputWinningNumbers();
         String bonusNumber = inputBonusNumber();
-
         handlerToken.addContent(TokenType.WINNING_NUMBER_DTO, WinningNumberDTO.create(winningNumbers, bonusNumber));
-
         return handlerToken;
     }
 

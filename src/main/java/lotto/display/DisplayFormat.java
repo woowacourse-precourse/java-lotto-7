@@ -1,7 +1,7 @@
 package lotto.display;
 
 public enum DisplayFormat {
-    PURCHASE_INPUT("구입금액을 입력해 주세요."),
+    PURCHASE_INPUT("구입금액을 입력해 주세요.\n"),
     PURCHASE_INPUT_RESULT("%d개를 구매했습니다.\n"),
     GAP("\n"),
     WINNING_NUMBER_INPUT("당첨 번호를 입력해 주세요\n"),

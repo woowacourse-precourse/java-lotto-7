@@ -20,9 +20,10 @@ public class PurchaseInputValidationHandler extends LottoHandler {
         } catch (IllegalArgumentException e) {
             handlerToken.addContent(TokenType.INVALID_INPUT_ERROR, null);
             System.out.println(DisplayFormat.ERROR.displayWithOneValue(e.getMessage()));
+        } finally {
+            checkInvalidInputAndRevert(handlerToken);
         }
 
-        checkInvalidInputAndRevert(handlerToken);
         return handlerToken;
     }
 
