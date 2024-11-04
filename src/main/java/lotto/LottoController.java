@@ -13,34 +13,33 @@ public class LottoController {
 
     public void run() {
         LottoPurchase lottoPurchase = purchaseLotto();
-        WinningNumbers winningNumbers = getWinningNumbers();
-        Lottos lottos = createLottos(lottoPurchase);
-
+        WinningNumbers winningNumbers = issueWinningNumbers();
+        Lottos lottos = generateLottos(lottoPurchase);
         displayLottos(lottoPurchase, lottos);
         displayResults(lottos, winningNumbers, lottoPurchase);
     }
 
-    public void displayResults(Lottos lottos, WinningNumbers winningNumbers, LottoPurchase lottoPurchase) {
+    private void displayResults(Lottos lottos, WinningNumbers winningNumbers, LottoPurchase lottoPurchase) {
         LottoResults lottoResults = lottoService.calculateResults(lottos, winningNumbers, lottoPurchase);
         view.printWinningStatistics(lottoResults.getRankFrequency());
         view.printRevenue(lottoResults.getRevenue());
     }
 
-    public void displayLottos(LottoPurchase lottoPurchase, Lottos lottos) {
+    private void displayLottos(LottoPurchase lottoPurchase, Lottos lottos) {
         view.printPurchaseCount(lottoPurchase.getCount());
         view.printLottos(lottos);
     }
 
-    public LottoPurchase purchaseLotto() {
+    private LottoPurchase purchaseLotto() {
         return inputHandler.handleLottoPurchase();
     }
 
-    public WinningNumbers getWinningNumbers() {
+    private WinningNumbers issueWinningNumbers() {
         Lotto winNumberLotto = inputHandler.handleWinNumbers();
         return inputHandler.handleBonusNumber(winNumberLotto);
     }
 
-    public Lottos createLottos(LottoPurchase lottoPurchase) {
+    private Lottos generateLottos(LottoPurchase lottoPurchase) {
         return lottoService.createLottos(lottoPurchase.getCount());
     }
 }
