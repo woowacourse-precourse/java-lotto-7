@@ -79,6 +79,28 @@ class ApplicationTest extends NsTest {
         assertDoesNotThrow(() -> Application.isInteger("1000"));
     }
 
+    @Test
+    void 천의_배수가_아니면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            assertThrows(Exception.class, () -> {
+                Application.isMultipleOf1000(100);
+            });
+        });
+    }
+
+    @Test
+    void 천의_배수가_아니면_발생하는_예외() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.isMultipleOf1000(300))
+                    .isInstanceOf(IllegalArgumentException.class);
+        });
+    }
+
+    @Test
+    void 천의_배수이면_예외가_발생하지_않는다() {
+        assertDoesNotThrow(() -> Application.isMultipleOf1000(3000));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
