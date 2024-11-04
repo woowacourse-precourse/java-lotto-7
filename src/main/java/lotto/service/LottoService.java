@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
+import lotto.domain.Prize;
 import lotto.domain.RandomLottos;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningResult;
@@ -50,6 +51,9 @@ public class LottoService {
 
             int matchingCount = countMatching(mergedLotto);
             boolean hasNumber = radnomLotto.hasNumber(winningLotto.getBonus());
+
+            Prize foundPrize = Prize.findPrize(matchingCount, hasNumber);
+            winningResult.increaseCountOf(foundPrize);
         }
 
         return winningResult;

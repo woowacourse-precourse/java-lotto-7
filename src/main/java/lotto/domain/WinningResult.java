@@ -7,6 +7,7 @@ import java.util.Map;
 public class WinningResult {
 
     private static final int DEFAULT_VALUE = 0;
+    private static final int COUNT = 1;
 
     private final Map<Prize, Integer> prizes;
 
@@ -21,5 +22,9 @@ public class WinningResult {
         );
 
         return new WinningResult(winningPrizes);
+    }
+
+    public void increaseCountOf(Prize prize) {
+        prizes.put(prize, prizes.get(prize) + COUNT);
     }
 }
