@@ -33,8 +33,7 @@ public class LottoController {
         int bonusNumber = getBonusNumber(winningLotto);
 
         LottoResultDto resultDto = lottoService.getResult(lottos, winningLotto, bonusNumber);
-        outputView.printWinningDetail(resultDto);
-        outputView.printRevenueResult(resultDto);
+        outputView.printWinningResult(resultDto);
     }
 
     private LottoCount getLottoCount() {

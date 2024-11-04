@@ -21,6 +21,11 @@ public class OutputView {
         lottoDtos.forEach(lottoDto -> System.out.println(lottoDto.lotto()));
     }
 
+    public void printWinningResult(LottoResultDto lottoResultDto) {
+        printWinningDetail(lottoResultDto);
+        printRevenueResult(lottoResultDto);
+    }
+
     public void printWinningDetail(LottoResultDto dto) {
         System.out.println(WINNING_STATISTICS);
 
