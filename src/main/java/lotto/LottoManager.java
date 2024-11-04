@@ -21,34 +21,34 @@ public class LottoManager {
 
     public Map<LottoPrize, Integer> doLotto() {
         //기본 로또 당첨 비교
-        Map<LottoPrize, Integer> lottoPrizeMap = initializePrizeMap();
+        Map<LottoPrize, Integer> lottoPrizes = initializePrizeMap();
 
         for(Lotto randomLotto: randomLottos) {
             int result = lotto.compareLottoNumber(randomLotto.getNumbers());
-            updatePrizeMap(lottoPrizeMap, result);
+            updatePrizeMap(lottoPrizes, result);
         }
-        return lottoPrizeMap;
+        return lottoPrizes;
     }
 
-    private void updatePrizeMap(Map<LottoPrize, Integer> prizeMap, int result) {
+    private void updatePrizeMap(Map<LottoPrize, Integer> prizes, int result) {
         if (result == 6) {
-            incrementPrizeCount(prizeMap, LottoPrize.SIX_MATCH);
+            incrementPrizeCount(prizes, LottoPrize.SIX_MATCH);
             return;
         }
         if (result == 5) {
             if (isBonusMatched()) {
-                incrementPrizeCount(prizeMap, LottoPrize.FIVE_MATCH_BONUS);
+                incrementPrizeCount(prizes, LottoPrize.FIVE_MATCH_BONUS);
                 return;
             }
-            incrementPrizeCount(prizeMap, LottoPrize.FIVE_MATCH);
+            incrementPrizeCount(prizes, LottoPrize.FIVE_MATCH);
             return;
         }
         if (result == 4) {
-            incrementPrizeCount(prizeMap, LottoPrize.FOUR_MATCH);
+            incrementPrizeCount(prizes, LottoPrize.FOUR_MATCH);
             return;
         }
         if (result == 3) {
-            incrementPrizeCount(prizeMap, LottoPrize.THREE_MATCH);
+            incrementPrizeCount(prizes, LottoPrize.THREE_MATCH);
         }
     }
 
