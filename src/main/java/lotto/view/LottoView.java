@@ -151,7 +151,7 @@ public class LottoView {
        - 변환 로직을 책임질 클래스 구현 고려하기
      */
     public String toStringWithRound(double decimal, int roundPosition){
-        String format = "%.0f";
+        String format = "%,.0f";
         int defaultDecimalPosition = 0;
         int decimalPosition = --roundPosition;
         if(decimalPosition != defaultDecimalPosition){
