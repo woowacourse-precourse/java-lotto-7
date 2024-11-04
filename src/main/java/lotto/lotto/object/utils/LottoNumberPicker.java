@@ -14,9 +14,6 @@ public class LottoNumberPicker {
     }
 
     public int createBonusNumber() {
-        /**
-         * 기존 로또 번호에 있는 수는 아닌지 중복 검사하는 로직 추가 필요
-         */
         return Randoms.pickNumberInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
     }
 }

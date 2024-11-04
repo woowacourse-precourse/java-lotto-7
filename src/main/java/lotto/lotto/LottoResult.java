@@ -48,16 +48,37 @@ public class LottoResult {
     /**
      * 당첨 통계를 출력하기 위한 Map을 생성한다.
      */
-    public Map<Integer, Integer> winningStatistics(List<MyLotto> myLottos) {
+    public Map<Integer, Integer> winnerLottoCount(List<MyLotto> myLottos) {
         Map<Integer, Integer> result = new HashMap<>();
+        result.put(1, 0);
+        result.put(2, 0);
         result.put(3, 0);
         result.put(4, 0);
         result.put(5, 0);
-        result.put(6, 0);
+
         for (MyLotto lotto : myLottos) {
-            int i = matchingNumberCount(lotto);
-            result.put(i, result.get(i) + 1);
+            if (lotto.getRank() > 0) {
+                result.put(lotto.getRank(), result.get(lotto.getRank()) + 1);
+            }
         }
         return result;
+    }
+
+    public double getReturnRate(long money, List<MyLotto> myLottos) {
+        long profit = 0;
+        for (MyLotto lotto : myLottos) {
+            if (lotto.getRank() == 1) {
+                profit += 2000000000;
+            } else if (lotto.getRank() == 2) {
+                profit += 30000000;
+            } else if (lotto.getRank() == 3) {
+                profit += 1500000;
+            } else if (lotto.getRank() == 4) {
+                profit += 50000;
+            } else if (lotto.getRank() == 5) {
+                profit += 5000;
+            }
+        }
+        return (double) profit / money;
     }
 }
