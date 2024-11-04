@@ -60,6 +60,7 @@ public class Application {
     private static Lotto getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningNumbers = parseNumbers();
+        System.out.println();
         return new Lotto(winningNumbers);
     }
 
