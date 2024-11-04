@@ -11,7 +11,7 @@ public class LottoMachine {
     public void buyTickets(int amount) {
         validateAmount(amount);
         int ticketCount = amount / LOTTO_PRICE;
-        System.out.println(ticketCount + "개를 구매했습니다.");
+        System.out.println("\n" +ticketCount + "개를 구매했습니다.");
         for (int i = 0; i < ticketCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
