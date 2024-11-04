@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.function.Supplier;
 
 public enum LottoWinningRanks {
@@ -26,5 +27,19 @@ public enum LottoWinningRanks {
 
     public String getMoneyString() {
         return getMoney.get();
+    }
+
+    // `sameCount`와 `isBonusMatched`를 사용해 알맞은 LottoWinningRanks 찾기
+    public static LottoWinningRanks getRank(int sameCount, boolean isBonusMatched) {
+        if (sameCount == 5 && isBonusMatched) {
+            return Arrays.stream(values())
+                    .filter(rank -> rank.sameCount == sameCount && rank.isBonusMatched == isBonusMatched)
+                    .findFirst()
+                    .orElse(NO_WIN);
+        }
+        return Arrays.stream(values())
+                .filter(rank -> rank.sameCount == sameCount)
+                .findFirst()
+                .orElse(NO_WIN);
     }
 }
