@@ -202,4 +202,248 @@
 - [x] : LottoService에서 받은 당첨 내역과 수익률로 OutputView의 당첨 내역과 수익률 출력
 
 ## ☑️ 프료그램 구조
+```
+src/
+├── constants/
+│   └── LottoConstants
+├── controller/
+│   └── LottoController
+├── domain/
+│   ├── calculator/
+│   │   ├── EarningRateCalculator
+│   │   ├── WinningAmountCalculator
+│   │   └── WinningResultsCalculator
+│   ├── factory/
+│   │   └── RankInfoFactory
+│   ├── generator/
+│   │   └── LottoTicketGenerator
+│   └── model/
+│       └── RankInfo
+├── service/
+│   └── LottoService
+├── validator/
+│   ├── LottoErrorMessages
+│   ├── NumbersValidator
+│   └── PurchaseAmountValidator
+├── view/
+│   ├── LottoInputView
+│   └── LottoOutputView
+├── Application
+└───Lotto
+```
+### MVC 패턴
+- Model (모델) : 도메인 내 데이터와 비즈니스 로직의 핵심을 다룬다.
+  > domain 패키지의 model, calculator, factory, generator   
+  > 데이터 구조 : RankInfo, Lotto  
+  > 비즈니스 로직 : EarningRateCalculator, WinningAmountCalculator, WinningResultsCalculator
 
+- View (뷰) : 사용자와의 입출력을 담당하며, 데이터를 입력받고 처리 결과를 출력하는 역할을 수행한다.
+  > view 패키지의 LottoInputView, LottoOutputView
+
+- Controller (컨트롤러) : 사용자 입력을 받아 모델과 상호작용하고, 처리 결과를 View에 전달하는 흐름을 관리한다.
+  > controller 패키지의 LottoController
+
+- Service (서비스) : 애플리케이션 로직을 조율하는 서비스 계층으로, Model과 Controller 간의 복잡한 로직을 간소화해주는 역할을 수행한다.
+  > service 패키지의 LottoService
+
+## ☑️ 프료그램 설명
+### Lotto 클래스
+```java
+public class Lotto {
+    private final List<Integer> numbers;
+ 
+    public Lotto(List<Integer> numbers) {
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
+    }
+ 
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
+ 
+    public int getMatchCount(Lotto winningNumbers) {
+        return (int) numbers.stream().filter(winningNumbers.getNumbers()::contains).count();
+    }
+ 
+    public boolean isBonusNumberMatched(Lotto bonusNumber) {
+        return numbers.contains(bonusNumber.getNumbers().getFirst());
+    }
+}
+```
+우선, 사용자가 입력한 `당첨 번호`, `보너스 번호`, `랜덤 생성 번호`를 모두 `Lotto` 객체를 이용하여 생성하도록 하고,  
+로또 번호와 관련된 로직들을 `Lotto` 클래스 안에 작성하여 `일급 컬렉션`의 형태로 구현하였다.
+
+### RankInfo 클래스와 RankInfoFactory 클래스
+```java
+public class RankInfo {
+    private final int rank;
+    private final int matchCount;
+    private final int prizeAmount;
+    private final String description;
+    private final boolean hasBonusBall;
+
+    public RankInfo(int rank, int matchCount, int prizeAmount, String description, boolean hasBonusBall) {
+        this.rank = rank;
+        this.matchCount = matchCount;
+        this.prizeAmount = prizeAmount;
+        this.description = description;
+        this.hasBonusBall = hasBonusBall;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean hasBonusBall() {
+        return hasBonusBall;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RankInfo rankInfo)) return false;
+        return rank == rankInfo.rank && matchCount == rankInfo.matchCount &&
+                prizeAmount == rankInfo.prizeAmount && hasBonusBall == rankInfo.hasBonusBall;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rank, matchCount, prizeAmount, hasBonusBall);
+    }
+}
+```
+1등(1등, 6개 일치, 2,000,000,000원, 당첨 결과 문구, 보너스볼 유무)  
+2등(2등, 5개 일치, 30,000,000원, 당첨 결과 문구, 보너스볼 유무)  
+3등(3등, 5개 일치, 30,000,000원 , 당첨 결과 문구, 보너스볼 유무)  
+...  
+이런 식으로 데이터를 객체로 저장할 수 있는 `RankInfo` 클래스를 생성하였다.  
+
+그리고 `equals`와 `hashCode`를 오버라이드하여  
+`winningResult`(Map<RankInfo, Integer>: 해당 등수 정보, 횟수)를 저장한 데이터를 찾을 때  
+winningResult.get(firstRank) 하면 매칭되어 찾아질 수 있게끔 했다.  
+
+```java
+public class RankInfoFactory {
+    private static final RankInfo FIRST_RANK = new RankInfo(1, 6, 2000000000, DESCRIPTION, false);
+    private static final RankInfo SECOND_RANK = new RankInfo(2, 5, 30000000, SECOND_RANK_DESCRIPTION, true);
+    private static final RankInfo THIRD_RANK = new RankInfo(3, 5, 1500000, DESCRIPTION, false);
+    private static final RankInfo FOURTH_RANK = new RankInfo(4, 4, 50000, DESCRIPTION, false);
+    private static final RankInfo FIFTH_RANK = new RankInfo(5, 3, 5000, DESCRIPTION, false);
+
+    public static RankInfo getFirstRank() {
+        return FIRST_RANK;
+    }
+
+    public static RankInfo getSecondRank() {
+        return SECOND_RANK;
+    }
+
+    public static RankInfo getThirdRank() {
+        return THIRD_RANK;
+    }
+
+    public static RankInfo getFourthRank() {
+        return FOURTH_RANK;
+    }
+
+    public static RankInfo getFifthRank() {
+        return FIFTH_RANK;
+    }
+
+    public static List<RankInfo> getAllRanks() {
+        return Arrays.asList(FIFTH_RANK, FOURTH_RANK, THIRD_RANK, SECOND_RANK, FIRST_RANK);
+    }
+}
+```
+`FIRST_RANK`, `SECOND_RANK`, `THIRD_RANK`, `FOURTH_RANK`, `FIFTH_RANK`의 정보를 저장하고 해당 객체를 가지고 키로 사용하도록 하였다.  
+(Map<RankInfo, Integer> winningResult 여기서 <FIRST_RANK, 1>, <SECOND_RANK, 0> 이런 식으로 저장하는 데 사용하였다.)
+
+### LottoService 클래스
+```java
+public class LottoService {
+    private Map<RankInfo, Integer> winningResults;
+    private BigDecimal winningAmount;
+    private String earningsRate;
+
+    public LottoService(List<Lotto> lottoTickets, Lotto winningNumbers, Lotto bonusNumber, int purchaseAmount) {
+        calculateWinningResults(lottoTickets, winningNumbers, bonusNumber);
+        calculateWinningAmount(winningResults);
+        calculateEarningResults(BigDecimal.valueOf(purchaseAmount), winningAmount);
+    }
+
+    private void calculateWinningResults(List<Lotto> lottoTickets, Lotto winningNumbers, Lotto bonusNumber) {
+        WinningResultsCalculator winningResultsCalculator = new WinningResultsCalculator(lottoTickets, winningNumbers, bonusNumber);
+        this.winningResults = winningResultsCalculator.getWinningResults();
+    }
+
+    private void calculateWinningAmount(Map<RankInfo, Integer> winningResults) {
+        WinningAmountCalculator winningAmountCalculator = new WinningAmountCalculator(winningResults);
+        this.winningAmount = winningAmountCalculator.getWinningAmount();
+    }
+
+    private void calculateEarningResults(BigDecimal purchaseAmount, BigDecimal winningAmount) {
+        EarningsRateCalculator earningsRateCalculator = new EarningsRateCalculator(purchaseAmount, winningAmount);
+        this.earningsRate = earningsRateCalculator.getEarningsRate();
+    }
+
+    // 테스트용 함수
+    public String getWinningAmount() {
+        return this.winningAmount.toPlainString();
+    }
+
+    public String getEarningsRate() {
+        return this.earningsRate;
+    }
+
+    public Map<RankInfo, Integer> getWinningResults() {
+        return new HashMap<>(winningResults);
+    }
+}
+```
+`EarningsRateCalcultator`, `WinningAmountCalculator`, `WinningResultsCalculator` 클래스를 실행하고,  
+이를 통해 얻은 `earningsRate`, `winningAmount`, `winningResults`를 저장하여 가져올 수 있는 클래스이다.
+
+### LottoErrorMessages 클래스
+
+```java
+public enum LottoErrorMessages {
+    MUST_BE_TARGET_LENGTH("%s %s 번호는 %d개이어야 합니다."),
+    MUST_BE_NUMBER("%s %s은(는) 숫자 형식이어야 합니다."),
+    MUST_BE_UNIQUE("%s 로또 번호가 중복되었습니다."),
+    MUST_BE_NO_SPACE("%s %s에 공백을 허용하지 않습니다."),
+    MUST_BE_RANGE("%s 로또 번호는 " + RANDOM_MIN + " ~ " + RANDOM_MAX + " 사이 숫자이어야 합니다."),
+    MUST_BE_OVER_THRESHOLD("%s 구입 금액은 " + PURCHASE_AMOUNT_THRESHOLD + "원 이상이어야 합니다."),
+    MUST_BE_UNIT("%s 구입 금액은 " + PURCHASE_AMOUNT_UNIT + "원 단위이어야 합니다.");
+
+    private final String message;
+
+    LottoErrorMessages(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return String.format(LINE_SPACE + message, ERROR_MESSAGE_BEGINNING);
+    }
+
+    public String getMessage(String input) {
+        return String.format(LINE_SPACE + message, ERROR_MESSAGE_BEGINNING, input);
+    }
+
+    public String getMessage(String type, int length) {
+        return String.format(LINE_SPACE + message, ERROR_MESSAGE_BEGINNING, type, length);
+    }
+}
+```
+`String.format`을 사용하여, 당첨 번호와 보너스 번호에 모두 적용 가능한 에러 메시지를 `enum`으로 생성하였다.
