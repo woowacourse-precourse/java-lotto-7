@@ -3,8 +3,7 @@ package lotto.service;
 import lotto.model.Lotto;
 import lotto.view.MatchLotto;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class MatchCheck {
@@ -23,24 +22,25 @@ public class MatchCheck {
         for( Integer Number : findFivePaper ){
             if(Number==bonusNumber){ return true; }
         }
+
         return false;
     }
 
-    public List<Integer> matchCountPapers(Lotto[] lotto, List<Integer> winNumber, int bonusNumber) {
-        List<Integer> resultCounts = new ArrayList<>(Collections.nCopies(5, 0));
-        int matchCount = 0;
-        boolean bonusMatch = false;
+    public HashMap<Lotto, MatchLotto> winPapers(Lotto[] lotto, List<Integer> winNumber, int bonusNumber) {
+        HashMap<Lotto, MatchLotto> winPapers = new HashMap<>();
 
         for (Lotto lottoPaper : lotto) {
-            matchCount = matchLotto(lottoPaper.getNumbers(), winNumber);
-            bonusMatch = matchBonusNumber(lottoPaper.getNumbers(), bonusNumber);
+            int matchCount = matchLotto(lottoPaper.getNumbers(), winNumber);
+            boolean bonusMatch = matchBonusNumber(lottoPaper.getNumbers(), bonusNumber);
 
-            MatchLotto result = MatchLotto.getResult(matchCount, bonusMatch);
+            MatchLotto matchLotto = MatchLotto.getRank(matchCount, bonusMatch);
 
-            if (result != null) { resultCounts.set(result.getIndex(), resultCounts.get(result.getIndex()) + 1); }
+            if (matchLotto != MatchLotto.NO_MATCH) {
+                winPapers.put(lottoPaper, matchLotto);
+            }
         }
 
-        return resultCounts;
+        return winPapers;
     }
 
 }
