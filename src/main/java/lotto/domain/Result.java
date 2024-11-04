@@ -5,19 +5,14 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class Result {
-    private static final Result result = new Result();
     private final Map<Ranking, Integer> resultMap = new EnumMap<>(Ranking.class);
     private int winPrize;
 
-    private Result() {
+    public Result() {
         for (Ranking ranking : Ranking.values()) {
             resultMap.put(ranking, 0);
         }
         winPrize = 0;
-    }
-
-    public static Result getResult() {
-        return result;
     }
 
     public void addWinCount(Ranking ranking) {
