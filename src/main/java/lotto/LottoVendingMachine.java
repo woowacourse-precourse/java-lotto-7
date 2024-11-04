@@ -10,10 +10,12 @@ public class LottoVendingMachine {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     public List<Lotto> purchaseLottos() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String userInput = Console.readLine();
+
+        String userInput;
 
         while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            userInput = Console.readLine();
             if (validateMoney(userInput)) break;
         }
 
