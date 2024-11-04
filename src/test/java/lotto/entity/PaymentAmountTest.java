@@ -3,7 +3,7 @@ package lotto.entity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class PurchaseTest {
+public class PaymentAmountTest {
 
     // 티켓 수 테스트
 
@@ -13,10 +13,10 @@ public class PurchaseTest {
         int money = 1000;
 
         // when
-        Purchase purchase = new Purchase(money);
+        PaymentAmount paymentAmount = new PaymentAmount(money);
 
         // then
-        Assertions.assertEquals(1, purchase.calculateTicketCount());
+        Assertions.assertEquals(1, paymentAmount.calculateTicketCount());
     }
 
     @Test
@@ -25,10 +25,10 @@ public class PurchaseTest {
         int money = 2000;
 
         // when
-        Purchase purchase = new Purchase(money);
+        PaymentAmount paymentAmount = new PaymentAmount(money);
 
         // then
-        Assertions.assertEquals(2, purchase.calculateTicketCount());
+        Assertions.assertEquals(2, paymentAmount.calculateTicketCount());
     }
 
     @Test
@@ -37,10 +37,10 @@ public class PurchaseTest {
         int money = 100_000;
 
         // when
-        Purchase purchase = new Purchase(money);
+        PaymentAmount paymentAmount = new PaymentAmount(money);
 
         // then
-        Assertions.assertEquals(100, purchase.calculateTicketCount());
+        Assertions.assertEquals(100, paymentAmount.calculateTicketCount());
     }
 
     // 결제한 금액 테스트
@@ -51,10 +51,10 @@ public class PurchaseTest {
         int money = 1000;
 
         // when
-        Purchase purchase = new Purchase(money);
+        PaymentAmount paymentAmount = new PaymentAmount(money);
 
         // then
-        Assertions.assertEquals(1000, purchase.getPaymentAmount());
+        Assertions.assertEquals(1000, paymentAmount.getAmount());
     }
 
     // 예외 테스트들
@@ -66,7 +66,7 @@ public class PurchaseTest {
 
         // when
         IllegalArgumentException exception = Assertions.assertThrows(
-                IllegalArgumentException.class, () -> new Purchase(money));
+                IllegalArgumentException.class, () -> new PaymentAmount(money));
 
         // then
         Assertions.assertEquals("로또 가격보다 적은 금액입니다.", exception.getMessage());
@@ -79,7 +79,7 @@ public class PurchaseTest {
 
         // when
         IllegalArgumentException exception = Assertions.assertThrows(
-                IllegalArgumentException.class, () -> new Purchase(money));
+                IllegalArgumentException.class, () -> new PaymentAmount(money));
 
         // then
         Assertions.assertEquals("로또 가격은 1000원 단위로만 가능합니다.", exception.getMessage());
@@ -92,7 +92,7 @@ public class PurchaseTest {
 
         // when
         IllegalArgumentException exception = Assertions.assertThrows(
-                IllegalArgumentException.class, () -> new Purchase(money));
+                IllegalArgumentException.class, () -> new PaymentAmount(money));
 
         // then
         Assertions.assertEquals("로또 가격은 1000원 단위로만 가능합니다.", exception.getMessage());
@@ -105,7 +105,7 @@ public class PurchaseTest {
 
         // when
         IllegalArgumentException exception = Assertions.assertThrows(
-                IllegalArgumentException.class, () -> new Purchase(money));
+                IllegalArgumentException.class, () -> new PaymentAmount(money));
 
         // then
         Assertions.assertEquals("로또 가격은 1000원 단위로만 가능합니다.", exception.getMessage());
@@ -118,7 +118,7 @@ public class PurchaseTest {
 
         // when
         IllegalArgumentException exception = Assertions.assertThrows(
-                IllegalArgumentException.class, () -> new Purchase(money));
+                IllegalArgumentException.class, () -> new PaymentAmount(money));
 
         // then
         Assertions.assertEquals("로또는 한번에 10만원 까지 구입 가능합니다.", exception.getMessage());
@@ -130,10 +130,10 @@ public class PurchaseTest {
         int money = 1000;
 
         // when
-        Purchase purchase = new Purchase(money);
+        PaymentAmount paymentAmount = new PaymentAmount(money);
 
         // then
-        Assertions.assertEquals(1000, purchase.getPaymentAmount());
+        Assertions.assertEquals(1000, paymentAmount.getAmount());
     }
 
 }
