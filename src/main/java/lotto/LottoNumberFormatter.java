@@ -7,11 +7,14 @@ import java.util.Set;
 
 public class LottoNumberFormatter {
 
-    public List<Integer> convertToNums(String inputWinningNums) {
+    public List<Integer> splitInput(String inputWinningNums) {
         String[] inputNums = inputWinningNums.split(",");
-
         validateWinningNums(inputNums);
 
+        return convertToNums(inputNums);
+    }
+
+    public List<Integer> convertToNums(String[] inputNums) {
         List<Integer> winningNums = new ArrayList<>();
         try {
             for (int i = 0; i < inputNums.length; i++) {
@@ -23,7 +26,6 @@ public class LottoNumberFormatter {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자 이외의 입력이 감지되었습니다.");
         }
-
         return winningNums;
     }
 

@@ -21,7 +21,7 @@ public class Application {
         System.out.println();
 
         LottoNumberFormatter formatter = new LottoNumberFormatter();
-        List<Integer> winningNums = formatter.convertToNums(inputWinningNumbers);
+        List<Integer> winningNums = formatter.splitInput(inputWinningNumbers);
         int bonusNum = formatter.convertToBonusNum(inputBonusNumber);
         formatter.hasDuplicateNum(winningNums, bonusNum);
 
