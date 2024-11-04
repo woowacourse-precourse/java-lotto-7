@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.EnumMap;
 import java.util.List;
+import lotto.dto.ResultDto;
 
 public class LottoResult {
 
@@ -14,6 +15,10 @@ public class LottoResult {
 
     public static LottoResult createResult(List<Rank> ranks) {
         return new LottoResult(ranks);
+    }
+
+    public ResultDto getResults() {
+        return ResultDto.toDto(results);
     }
 
     public Long getTotalPrize() {
