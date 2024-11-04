@@ -18,6 +18,7 @@ public class LottoUtils {
         createLottoResults(winning, lottos, bonus);
         Map<MatchResult, Integer> matchResultMap = countMatchResults();
         printMatchResults(matchResultMap);
+        calculateRateOfReturn(lottoResults, purchaseAmount);
     }
 
     Map<MatchResult, Integer> countMatchResults() {
@@ -29,6 +30,7 @@ public class LottoUtils {
         }
         return matchCounts;
     }
+
 
     private void printMatchResults(Map<MatchResult, Integer> matchResult) {
         System.out.println("당첨 통계");
@@ -69,5 +71,14 @@ public class LottoUtils {
             return MatchResult.FIVE_MATCH_BONUS;
         }
         return MatchResult.FIVE_MATCH;
+    }
+
+    private void calculateRateOfReturn(List<MatchResult> matchResults, int purchaseAmount) {
+        for (int i = 0; i < matchResults.size(); i++){
+            totalPrize += matchResults.get(i).prizeAmount();
+        }
+        double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
+
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 }

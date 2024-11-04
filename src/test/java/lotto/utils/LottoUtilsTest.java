@@ -49,5 +49,21 @@ class LottoUtilsTest {
         assertEquals(MatchResult.NONE, lottoUtils.lottoResults.get(5), "여섯 번째 로또 결과가 예상과 다릅니다.");
     }
 
+    @Test
+    void 당첨_통계와_수익률_테스트() {
+        lottoUtils.calculateWinningResult(winningNumbers, lottos, bonusNumber, purchaseAmount);
+
+        Map<MatchResult, Integer> matchCounts = lottoUtils.countMatchResults();
+        assertEquals(1, matchCounts.get(MatchResult.THREE_MATCH), "3개 일치 결과가 예상과 다릅니다.");
+        assertEquals(0, matchCounts.get(MatchResult.FOUR_MATCH), "4개 일치 결과가 예상과 다릅니다.");
+        assertEquals(0, matchCounts.get(MatchResult.FIVE_MATCH_BONUS), "5개 일치 보너스 결과가 예상과 다릅니다.");
+        assertEquals(0, matchCounts.get(MatchResult.SIX_MATCH), "6개 일치 결과가 예상과 다릅니다.");
+
+        double rateOfResult = (double) lottoUtils.totalPrize / purchaseAmount * 100;
+        assertEquals(62.5, rateOfResult, "수익률 결과가 예상과 다릅니다.");
+
+    }
+
+
 
 }
