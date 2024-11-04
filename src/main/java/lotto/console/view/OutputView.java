@@ -39,8 +39,4 @@ public class OutputView {
                 "6개 일치 (2,000,000,000원) - " + result.stream().filter(lottoResult -> lottoResult == LottoResult.FIRST)
                         .count() + "개");
     }
-
-    private void printResult(LottoResult result, int count) {
-
-    }
 }

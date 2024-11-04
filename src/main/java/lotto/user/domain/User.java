@@ -1,5 +1,7 @@
 package lotto.user.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -48,6 +50,10 @@ public class User {
         return lottos.stream()
                 .map(lotto -> lotto.match(answer))
                 .toList();
+    }
+
+    public BigDecimal calculateRatio(int totalPrize) {
+        return BigDecimal.valueOf(totalPrize).divide(BigDecimal.valueOf(money), 1, RoundingMode.HALF_UP);
     }
 
     public boolean hasLotto(Lotto lotto) {

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.console.view.InputView;
 import lotto.console.view.OutputView;
@@ -35,5 +36,7 @@ public class Application {
         outputView.printResults(results);
 
         System.out.println("LottoResult.getTotalPrize(results) = " + LottoResult.getTotalPrize(results));
+        BigDecimal ratio = user.calculateRatio(LottoResult.getTotalPrize(results));
+        System.out.println("ratio = " + ratio);
     }
 }
