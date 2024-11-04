@@ -21,7 +21,7 @@ public class WinningNumber {
         }
 
         if (isDuplication(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS);
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS);
         }
     }
 
