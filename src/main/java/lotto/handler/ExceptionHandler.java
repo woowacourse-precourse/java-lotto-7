@@ -9,4 +9,14 @@ public class ExceptionHandler {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
+
+    public void validateWinningNumbers(String winningNumbers) {
+
+        for (String number : winningNumbers.split(",")) {
+            int num = Integer.parseInt(number);
+            if (num < 1 || num > 45) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS.getMessage());
+            }
+        }
+    }
 }

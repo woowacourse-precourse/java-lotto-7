@@ -21,5 +21,6 @@ public class LottoController {
         int purchaseAmount = inputView.requestPurchaseAmount();
         int cnt = lottoService.calculateLottoCount(purchaseAmount);
         System.out.println(cnt + resultView.responseCntLotto());
+
     }
 }
