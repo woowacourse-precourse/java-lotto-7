@@ -27,6 +27,19 @@ public class LottoGame {
 
     private void generateWinningLotto() {
         List<Integer> validWiningNumbers = getValidWinningNumbers();
+        int bonusNumber = getValidBonusNumber(validWiningNumbers);
+    }
+
+    private int getValidBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                int bonusNumber = inputView.inputBonusNumber();
+                Validation.validateBonusNumber(winningNumbers, bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Integer> getValidWinningNumbers() {
