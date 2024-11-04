@@ -2,6 +2,7 @@ package lotto.domain;
 
 public class Money {
     private static final int ONE_THOUSAND = 1000;
+    private static final int ZERO = 0;
     private final int money;
 
     public Money(final int money) {
@@ -21,7 +22,7 @@ public class Money {
     }
 
     private void validateAmountInThousands(int value) {
-        if (value % ONE_THOUSAND != 0) {
+        if (value % ONE_THOUSAND != ZERO) {
             throw new IllegalArgumentException("금액은 1000원으로 나누어 떨어져야합니다.");
         }
     }
