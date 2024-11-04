@@ -48,8 +48,10 @@ class InputViewTest {
     void testInvalidAmountAboveMaximum() {
         IllegalArgumentException exception = Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> InputView.parseAndValidateAmount("2000000")
+                () -> InputView.parseAndValidateAmount("2147001000") // 제한된 금액보다 큰 값
         );
-        Assertions.assertEquals("[ERROR] 구입 금액이 너무 큽니다. 최대 1,000,000원까지 가능합니다.", exception.getMessage());
+        Assertions.assertEquals("[ERROR] 구입 금액이 너무 큽니다. 최대 2,147,000,000원까지 가능합니다.", exception.getMessage());
     }
+
+
 }
