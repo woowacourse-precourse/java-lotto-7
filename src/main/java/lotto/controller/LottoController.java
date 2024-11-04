@@ -61,10 +61,10 @@ public class LottoController {
         InputWinningNumberView inputWinningNumberView = new InputWinningNumberView();
         InputBonusNumberView inputBonusNumberView = new InputBonusNumberView();
         while (true) {
-            List<Integer> winningNumbers = inputWinningNumberView.getValue();
-            int bonusNumber = inputBonusNumberView.getValue();
-
             try {
+                List<Integer> winningNumbers = inputWinningNumberView.getValue();
+                int bonusNumber = inputBonusNumberView.getValue();
+
                 return new WinningLotto(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
