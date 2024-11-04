@@ -93,7 +93,7 @@ public class LottoModelTest {
 
                 },
                 List.of(1,2,42,43,44,45),
-                List.of(1,2,7,44,45)
+                List.of(1,2,7,43,44,45)
         );
     }
 
