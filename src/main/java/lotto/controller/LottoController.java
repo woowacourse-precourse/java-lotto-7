@@ -6,7 +6,9 @@ import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
 import lotto.service.LottoService;
 import lotto.service.StatisticsService;
-import lotto.validator.InputValidator;
+import lotto.validator.BonusNumberValidator;
+import lotto.validator.PurchaseValidator;
+import lotto.validator.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -36,7 +38,7 @@ public class LottoController {
         while (true) {
             try {
                 String purchaseAmount = InputView.requestPurchaseAmount();
-                return InputValidator.validatePurchaseAmount(purchaseAmount);
+                return PurchaseValidator.validatePurchaseAmount(purchaseAmount);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
@@ -47,7 +49,7 @@ public class LottoController {
         while (true) {
             try {
                 List<String> winningNumbersInput = InputView.requestWinningNumbers();
-                return InputValidator.validateWinningNumbers(winningNumbersInput);
+                return WinningNumberValidator.validateWinningNumbers(winningNumbersInput);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
@@ -58,7 +60,7 @@ public class LottoController {
         while (true) {
             try {
                 String bonusNumberInput = InputView.requestBonusNumber();
-                return InputValidator.validateBonusNumber(bonusNumberInput, winningNumbersInteger);
+                return BonusNumberValidator.validateBonusNumber(bonusNumberInput, winningNumbersInteger);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

@@ -10,7 +10,7 @@ import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
 import lotto.service.LottoService;
 import lotto.service.StatisticsService;
-import lotto.validator.InputValidator;
+import lotto.validator.PurchaseValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -62,7 +62,7 @@ class LottoControllerTest {
         String invalidPurchaseAmount = "invalid_input";
 
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.validatePurchaseAmount(invalidPurchaseAmount);
+            PurchaseValidator.validatePurchaseAmount(invalidPurchaseAmount);
         });
     }
 }
