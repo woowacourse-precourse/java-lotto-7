@@ -29,4 +29,14 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
         }
     }
+
+    public int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        }
+    }
 }
