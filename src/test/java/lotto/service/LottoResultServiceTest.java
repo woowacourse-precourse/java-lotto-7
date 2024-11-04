@@ -1,10 +1,12 @@
 package lotto.service;
 
 import lotto.model.Lotto;
+import lotto.model.WinningStatistic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -43,5 +45,13 @@ public class LottoResultServiceTest {
         Lotto testLotto = new Lotto(Arrays.asList(1, 2, 13, 14, 15, 16));
         int matchCount = lottoResultService.countMatchingNumbers(testLotto, winningLotto);
         assertEquals(2, matchCount, "2개의 번호가 일치해야 합니다.");
+    }
+
+    @Test
+    public void 정상적_당첨통계객체_생성_확인(){
+        List<WinningStatistic> statistics = lottoResultService.generateWinningStatistics();
+        for(WinningStatistic winningStatistic : statistics){
+            winningStatistic.printStatus();
+        }
     }
 }

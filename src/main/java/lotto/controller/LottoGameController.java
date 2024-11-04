@@ -1,17 +1,20 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.WinningStatistic;
 import lotto.service.LottoGeneratorService;
 import lotto.service.LottoPurchaseService;
+import lotto.service.LottoResultService;
 import lotto.service.WinningNumberService;
 import lotto.view.OutputView;
 import lotto.view.InputView;
 
-import java.util.List;
+import java.util.*;
 
 import static lotto.util.NumberUtil.parseLottoNumber;
 
 public class LottoGameController {
+
     private final LottoPurchaseService lottoPurchaseService;
     private final OutputView outputView;
     private final LottoGeneratorService lottoGeneratorService;
@@ -29,22 +32,23 @@ public class LottoGameController {
         this.outputView = outputView;
         this.lottoGeneratorService = lottoGeneratorService;
         this.inputView = inputView;
-        this.winningNumberService = winningNumberService; // 주입받은 WinningNumberService 저장
+        this.winningNumberService = winningNumberService;
     }
 
     public void run() {
+        List<Lotto> purchasedLottos;
         List<Integer> winningNumbers;
         Lotto winningLotto;
         int bonusNumber;
 
-        purchaseLotto();
+        purchasedLottos = purchaseLotto();
         winningLotto = new Lotto(setWinningNumbers());
         bonusNumber = setBonusNumber(winningLotto.getNumbers());
-        System.out.println(winningLotto.getNumbers());
-        System.out.println(bonusNumber);
+        calculateWinningStatics(purchasedLottos, winningLotto, bonusNumber);
+
     }
 
-    public void purchaseLotto() {
+    public List<Lotto> purchaseLotto() {
         int purchasedLottoCount;
         List<Lotto> lottos;
 
@@ -52,6 +56,8 @@ public class LottoGameController {
         outputView.printPurchasedLottoCount(purchasedLottoCount);
         lottos = lottoGeneratorService.generateLotto(purchasedLottoCount);
         outputView.printLottoNumbers(lottos);
+
+        return lottos;
     }
 
     public List<Integer> setWinningNumbers() {
@@ -82,12 +88,24 @@ public class LottoGameController {
             }
         }
     }
-    
+
     public boolean validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        if(winningNumbers.contains(bonusNumber)) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스번호가 당첨번호와 중복됩니다.");
         }
         return true;
+    }
+
+    public void calculateWinningStatics(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
+        LottoResultService lottoResultService = new LottoResultService(purchasedLottos, winningLotto, bonusNumber);
+        List<WinningStatistic> winningStatistics = new ArrayList<>();
+
+        for(Lotto purchasedLotto : purchasedLottos) {
+            int count = lottoResultService.countMatchingNumbers(purchasedLotto, winningLotto);
+            if (count == 5 && lottoResultService.matchBonus(purchasedLotto, bonusNumber)){
+//                winningStatistics.add(5, ));
+            }
+        }
     }
 
 
