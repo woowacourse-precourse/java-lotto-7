@@ -3,6 +3,7 @@ package lotto.validator;
 import java.util.Set;
 import lotto.message.ErrorMessage;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class BonusNumberValidator {
     public static int validateBonusNumber(String bonusNumber, Set<Integer> winningNumber) {
@@ -23,7 +24,7 @@ public class BonusNumberValidator {
         try {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NULL_OR_EMPTY.getMessage());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             InputView.inputBonusNumber();
         }
     }
@@ -32,7 +33,16 @@ public class BonusNumberValidator {
         try {
             Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            System.out.println(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
+            handleNumberFormatExecption();
+        }
+    }
+
+    private static void handleNumberFormatExecption(){
+        try {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
+        }
+        catch(IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
             InputView.inputBonusNumber();
         }
     }
@@ -48,7 +58,7 @@ public class BonusNumberValidator {
         try {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             InputView.inputBonusNumber();
         }
     }
@@ -63,7 +73,7 @@ public class BonusNumberValidator {
         try {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             InputView.inputBonusNumber();
         }
     }

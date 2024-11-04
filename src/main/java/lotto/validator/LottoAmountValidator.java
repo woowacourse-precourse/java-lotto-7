@@ -40,11 +40,21 @@ public class LottoAmountValidator {
         try {
             lottoRound = Integer.parseInt(lottoInteger);
         } catch (NumberFormatException e) {
-            System.out.println(ErrorMessage.PURCHASE_AMOUNT_NOT_NUMBER.getMessage());
-            InputView.buyLotto();
+            handleNumberFormatExecption();
         }
         return lottoRound;
     }
+
+    private static void handleNumberFormatExecption(){
+        try {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
+        }
+        catch(IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            InputView.buyLotto();
+        }
+    }
+
 
     public static void inputNullOrEmpty(String input) {
         if (input == null || input.isBlank()) {
@@ -56,7 +66,8 @@ public class LottoAmountValidator {
         try {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NULL_OR_EMPTY.getMessage());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
+            InputView.buyLotto();
         }
     }
 }

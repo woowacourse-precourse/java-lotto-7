@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import lotto.message.ErrorMessage;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class WinningNumberValidator {
     public static Set<Integer> validateWinningNumber(String[] winningNumbers) {
@@ -29,7 +30,7 @@ public class WinningNumberValidator {
         try {
             throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY_WINNING_NUMBER.getMessage());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             InputView.inputWinningNumber();
         }
     }
@@ -38,7 +39,16 @@ public class WinningNumberValidator {
         try {
             Integer.parseInt(winningNumber);
         } catch (NumberFormatException e) {
-            System.out.println(ErrorMessage.INVALID_WINNING_NUMBER.getMessage());
+            handleNumberFormatExecption();
+        }
+    }
+
+    private static void handleNumberFormatExecption(){
+        try {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
+        }
+        catch(IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
             InputView.inputWinningNumber();
         }
     }
@@ -53,7 +63,7 @@ public class WinningNumberValidator {
         try {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             InputView.inputWinningNumber();
         }
     }
@@ -69,7 +79,7 @@ public class WinningNumberValidator {
         try {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER.getMessage());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             InputView.inputWinningNumber();
         }
     }
@@ -84,7 +94,7 @@ public class WinningNumberValidator {
         try {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             InputView.inputWinningNumber();
         }
     }
