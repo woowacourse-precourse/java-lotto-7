@@ -1,4 +1,4 @@
-package lotto;
+package lotto.user;
 
 import lotto.user.Lotto;
 import org.junit.jupiter.api.DisplayName;
