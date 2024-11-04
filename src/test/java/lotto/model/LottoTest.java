@@ -1,11 +1,17 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.catchThrowable;
+
+import static lotto.constants.ErrorMessage.LOTTO_NUMBER_MUST_BE_ONE_TO_FORTY_FIVE;
 
 class LottoTest {
     @Test
@@ -21,5 +27,19 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 1부터 45 사이의 값이 아니면 예외가 발생한다.")
+    @Test
+    void ThrowExceptionIfLottoRangeNOTOneToFortyFive() {
+        // given
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(0, 3, 4, 18, 34, 40));
+
+        // when
+        Throwable thrown = catchThrowable(() -> {
+            Lotto lotto = new Lotto(numbers);
+        });
+
+        // then
+        assertThat(thrown).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LOTTO_NUMBER_MUST_BE_ONE_TO_FORTY_FIVE.get());
+    }
 }
