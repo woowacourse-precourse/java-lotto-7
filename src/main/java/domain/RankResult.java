@@ -9,7 +9,11 @@ public class RankResult {
     private final Map<Rank, Long> rankResult;
 
     public RankResult(List<Rank> ranks) {
-        this.rankResult = ranks.stream()
+        this.rankResult = rankCounting(ranks);
+    }
+
+    private Map<Rank, Long> rankCounting(List<Rank> ranks) {
+        return ranks.stream()
                 .collect(Collectors.groupingBy(winningLotto -> winningLotto, Collectors.counting()));
     }
 
