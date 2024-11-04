@@ -29,4 +29,13 @@ class LottoMachineTest {
 
     }
 
+    @Test
+    void 주어진_개수만큼_로또_티켓이_생성되는지_확인() {
+        LottoMachine lottoMachine = new LottoMachine();
+        int count = 5;
+        List<List<Integer>> lottoTickets = lottoMachine.generateLottoTickets(count);
+
+        assertThat(lottoTickets).hasSize(count);
+    }
+
 }
