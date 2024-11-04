@@ -12,12 +12,12 @@ class LottoGeneratorTest {
     @Test
     void shouldSortNumbersWhenGiveRawNumbers() {
         // give
-        List<Integer> actualNumbers = new ArrayList<>(List.of(1, 4, 5, 2, 10, 17));
+        List<Integer> rawNumbers = new ArrayList<>(List.of(1, 4, 5, 2, 10, 17));
         List<Integer> expectedNumbers = List.of(1, 2, 4, 5, 10, 17);
         LottoGenerator lottoGenerator = new LottoGenerator();
 
         // when
-        lottoGenerator.manufactureRawNumbers(actualNumbers);
+        List<Integer> actualNumbers = lottoGenerator.manufactureRawNumbers(rawNumbers);
 
         // then
         Assertions.assertThat(actualNumbers).isEqualTo(expectedNumbers);
