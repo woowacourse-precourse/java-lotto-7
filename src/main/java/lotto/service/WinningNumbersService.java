@@ -16,8 +16,8 @@ public class WinningNumbersService {
         winningNumbers.addBonusNumber(rawBonusNumber);
     }
 
-    public List<LottoRank> getLottoRanks (Lottos lottos, WinningNumbers winningNumbers) {
-        return winningNumbers.getLottoRanks(lottos);
+    public List<LottoRank> getWinningRanks (Lottos lottos, WinningNumbers winningNumbers) {
+        return winningNumbers.getWinningRanks(lottos);
     }
 
 }

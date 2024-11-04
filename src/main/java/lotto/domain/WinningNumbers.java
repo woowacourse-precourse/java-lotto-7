@@ -22,18 +22,18 @@ public class WinningNumbers {
         bonusNumber = Integer.parseInt(rawBonusNumber);
     }
 
-    public List<LottoRank> getLottoRanks (Lottos lottos) {
+    public List<LottoRank> getWinningRanks (Lottos lottos) {
         List<LottoRank> lottoRanks = new ArrayList<>();
 
         for (Lotto lotto: lottos.getLottos()) {
-            LottoRank lottoRank = getLottoRank(lotto);
+            LottoRank lottoRank = getWinningRank(lotto);
             lottoRanks.add(lottoRank);
         }
 
         return lottoRanks;
     }
 
-    public LottoRank getLottoRank(Lotto lotto) {
+    public LottoRank getWinningRank(Lotto lotto) {
         int matchCount = countMatchingNumbers(lotto);
         boolean bonusMatch = lotto.containBonusNumber(bonusNumber);
 

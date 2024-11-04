@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
-import lotto.dto.LottoRankCountDto;
+import lotto.dto.WinningRankCountDto;
 import lotto.service.LottoService;
 import lotto.service.PurchaseService;
 import lotto.service.WinningNumbersService;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.common.Constants.*;
-import static lotto.service.LottoRankCounter.countRanks;
+import static lotto.service.LottoRankCounter.countWinningRanks;
 
 public class LottoMachine {
     private final InputView inputView;
@@ -42,7 +42,7 @@ public class LottoMachine {
 
         WinningNumbers winningNumbers = getWinningNumbers();
 
-        LottoRankCountDto lottoRankCountDto = getLottoRanks(lottos, winningNumbers);
+        WinningRankCountDto winningRankCountDto = getWinningRanks(lottos, winningNumbers);
     }
 
     public Lottos generateLottos (Integer lottoTicketCount) {
@@ -88,12 +88,12 @@ public class LottoMachine {
         return winningNumbers;
     }
 
-    private LottoRankCountDto getLottoRanks (Lottos lottos, WinningNumbers winningNumbers) {
-        List<LottoRank> lottoRanks = winningNumbersService.getLottoRanks(lottos, winningNumbers);
+    private WinningRankCountDto getWinningRanks (Lottos lottos, WinningNumbers winningNumbers) {
+        List<LottoRank> WinningRanks = winningNumbersService.getWinningRanks(lottos, winningNumbers);
 
-        LottoRankCountDto lottoRankCountDto = countRanks(lottoRanks);
-        outputView.printWinningDetails(lottoRankCountDto);
+        WinningRankCountDto winningRankCountDto = countWinningRanks(WinningRanks);
+        outputView.printWinningDetails(winningRankCountDto);
 
-        return lottoRankCountDto;
+        return winningRankCountDto;
     }
 }

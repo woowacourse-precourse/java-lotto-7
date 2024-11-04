@@ -190,7 +190,7 @@ class WinningNumbersTest {
         winningNumbers.addBonusNumber(VALID_BONUS_NUMBER);
 
         // when
-        LottoRank lottoRank = winningNumbers.getLottoRank(lotto);
+        LottoRank lottoRank = winningNumbers.getWinningRank(lotto);
 
         // then
         assertEquals(LottoRank.MATCH_3_NUMBERS, lottoRank);
@@ -212,7 +212,7 @@ class WinningNumbersTest {
         winningNumbers.addBonusNumber(VALID_BONUS_NUMBER);
 
         // when
-        List<LottoRank> lottoRanks = winningNumbers.getLottoRanks(savedLottos);
+        List<LottoRank> lottoRanks = winningNumbers.getWinningRanks(savedLottos);
 
         // then
         assertEquals(lottoRanks.size(), lottos.size());

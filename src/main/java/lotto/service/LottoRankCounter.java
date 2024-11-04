@@ -1,9 +1,8 @@
 package lotto.service;
 
 import lotto.domain.LottoRank;
-import lotto.dto.LottoRankCountDto;
+import lotto.dto.WinningRankCountDto;
 
-import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -12,7 +11,7 @@ import static lotto.domain.LottoRank.getLottoRanksWithoutNoRank;
 
 public class LottoRankCounter {
 
-    public static LottoRankCountDto countRanks(List<LottoRank> lottoRanks) {
+    public static WinningRankCountDto countWinningRanks(List<LottoRank> lottoRanks) {
         List<LottoRank> allLottoRanks = getLottoRanksWithoutNoRank();
 
         Map<LottoRank, Long> rankCounts = allLottoRanks.stream()
@@ -22,6 +21,6 @@ public class LottoRankCounter {
             rankCounts.merge(lottoRank, 1L, Long::sum);
         }
 
-        return new LottoRankCountDto(rankCounts);
+        return new WinningRankCountDto(rankCounts);
     }
 }

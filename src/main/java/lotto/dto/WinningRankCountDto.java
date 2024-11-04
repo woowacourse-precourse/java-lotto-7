@@ -4,10 +4,10 @@ import lotto.domain.LottoRank;
 
 import java.util.Map;
 
-public class LottoRankCountDto {
+public class WinningRankCountDto {
     private final Map<LottoRank, Long> rankCounts;
 
-    public LottoRankCountDto(Map<LottoRank, Long> rankCounts) {
+    public WinningRankCountDto(Map<LottoRank, Long> rankCounts) {
         this.rankCounts = rankCounts;
     }
 

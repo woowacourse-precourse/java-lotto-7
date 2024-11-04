@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.domain.LottoRank;
-import lotto.dto.LottoRankCountDto;
+import lotto.dto.WinningRankCountDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ class LottoRankCounterTest {
                 LottoRank.MATCH_5_NUMBERS_WITH_BONUS_NUMBER);
 
         // when
-        LottoRankCountDto result = LottoRankCounter.countRanks(lottoRanks);
+        WinningRankCountDto result = LottoRankCounter.countWinningRanks(lottoRanks);
 
         // then
         Map<LottoRank, Long> rankCounts = result.getRankCounts();

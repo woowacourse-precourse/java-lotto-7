@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.domain.LottoRank;
 import lotto.domain.Lottos;
-import lotto.dto.LottoRankCountDto;
+import lotto.dto.WinningRankCountDto;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class OutputView {
         printLineBreak();
     }
 
-    public void printWinningDetails (LottoRankCountDto lottoRankCountDto) {
+    public void printWinningDetails (WinningRankCountDto winningRankCountDto) {
         List<LottoRank> availableRanks = getLottoRanksWithoutNoRank();
 
         System.out.println(RANK_DETAIL_PROMPT);
@@ -39,7 +39,7 @@ public class OutputView {
             Integer prizeMoney = lottoRank.getPrizeMoney();
             String formattedPrizeMoney = formatWithCommas(prizeMoney);
 
-            Long winningCount = lottoRankCountDto.getRankCount(lottoRank);
+            Long winningCount = winningRankCountDto.getRankCount(lottoRank);
 
             printWinningDetail(matchCount, formattedPrizeMoney, winningCount, hasBonusNumber);
         }
