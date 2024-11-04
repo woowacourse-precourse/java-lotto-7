@@ -7,7 +7,7 @@ public class OutputMessage {
     public static final String MAIN_NUMBERS_REQUEST = LINE_SEPARATOR + "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_REQUEST = LINE_SEPARATOR + "보너스 번호를 입력해 주세요.";
     public static final String WINNING_RESULT_PREFIX = LINE_SEPARATOR + "당첨 통계" + LINE_SEPARATOR + "---" + LINE_SEPARATOR;
-    public static final String RATE_OF_RETURN_FORMAT = LINE_SEPARATOR + "총 수익률은 %.2f%%입니다.";
+    public static final String RATE_OF_RETURN_FORMAT = LINE_SEPARATOR + "총 수익률은 %.1f%%입니다.";
 
     private OutputMessage() {
     }
