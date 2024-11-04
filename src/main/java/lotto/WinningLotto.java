@@ -10,4 +10,5 @@ public class WinningLotto {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
+
 }
