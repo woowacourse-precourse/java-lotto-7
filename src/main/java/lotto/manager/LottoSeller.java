@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoSeller {
-    private static final int LOTTO_PRISE = 1000;
+    private static final int LOTTO_PRICE = 1000;
     private final LottoNumberSupplier lottoNumberSupplier;
 
     public LottoSeller(LottoNumberSupplier lottoNumberSupplier) {
@@ -30,7 +30,7 @@ public class LottoSeller {
 
     private int calculateLottoCount(int money) {
         validateMoney(money);
-        return money / LOTTO_PRISE;
+        return money / LOTTO_PRICE;
     }
 
     private void validateMoney(int money) {
@@ -38,7 +38,7 @@ public class LottoSeller {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 양의 정수여야 합니다.");
         }
 
-        if (money % LOTTO_PRISE != 0) {
+        if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 구매할 수 있습니다.");
         }
     }
