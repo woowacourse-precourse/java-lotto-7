@@ -5,6 +5,9 @@ import lotto.domain.LottoVendingMachine;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.WinningLotto;
 import lotto.domain.vo.PurchaseAmount;
+import lotto.dto.request.PurchaseAmountDTO;
+import lotto.dto.response.PurchasedLottosDTO;
+import lotto.util.Repeater;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -34,5 +37,20 @@ public class LottoController {
                 purchasedLottos.calculateRankCounts(winningLotto)
         );
         displayResults(lottoResult, purchaseAmount);
+    }
+
+    private PurchaseAmount getValidatedPurchaseAmount() {
+        return Repeater.executeWithRetry(
+                () -> {
+                    PurchaseAmountDTO purchaseAmountDTO = inputView.inputPurchaseAmount();
+                    return PurchaseAmount.of(purchaseAmountDTO.purchaseAmount());
+                },
+                outputView::printError
+        );
+    }
+
+    private void displayPurchasedLottos(PurchasedLottos purchasedLottos) {
+        PurchasedLottosDTO responseDTO = PurchasedLottosDTO.from(purchasedLottos);
+        outputView.printPurchasedLottos(responseDTO);
     }
 }
