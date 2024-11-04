@@ -7,7 +7,7 @@ import static lotto.constant.LottoConstants.MIN_LOTTO_NUMBER;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class LottoNumberService {
+public class LottoNumberPicker {
 
     public List<Integer> createRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);

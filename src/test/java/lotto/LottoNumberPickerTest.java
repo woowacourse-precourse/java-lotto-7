@@ -7,19 +7,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.lotto.Lotto;
-import lotto.lotto.LottoNumberService;
+import lotto.lotto.LottoNumberPicker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoNumberServiceTest {
+public class LottoNumberPickerTest {
     @DisplayName("로또 번호 1에서 45까지의 숫자 중 6개를 랜덤 추출한다.")
     @Test
     void 로또_번호_1에서_45까지의_숫자_중_6개를_랜덤_추출한다() {
         // given
-        LottoNumberService lottoNumberService = new LottoNumberService();
+        LottoNumberPicker lottoNumberPicker = new LottoNumberPicker();
 
         // when
-        Lotto lotto = new Lotto(lottoNumberService.createRandomNumbers());
+        Lotto lotto = new Lotto(lottoNumberPicker.createRandomNumbers());
 
         // then
         List<Integer> lottoNumbers = lotto.getNumbersList();
@@ -36,10 +36,10 @@ public class LottoNumberServiceTest {
     @Test
     void 보너스_번호_한_개를_랜덤_생성한다() {
         // given
-        LottoNumberService lottoNumberService = new LottoNumberService();
+        LottoNumberPicker lottoNumberPicker = new LottoNumberPicker();
 
         // when
-        int newBonusNumber = lottoNumberService.createBonusNumber();
+        int newBonusNumber = lottoNumberPicker.createBonusNumber();
 
         // then
         assertThat(newBonusNumber).isBetween(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
