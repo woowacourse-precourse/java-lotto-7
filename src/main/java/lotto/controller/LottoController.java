@@ -133,7 +133,7 @@ public class LottoController {
 
     public void validateBonusNumber() {
         int parsedBonusNumber = lottoService.validateBonusNumber(bonusNumber, winningNumberObject);
-        BonusNumber bonusNumber = lottoService.addBonusNumber(parsedBonusNumber);
+        bonusNumberObject = lottoService.addBonusNumber(parsedBonusNumber);
     }
 
     public void printLottoWinMessage() {

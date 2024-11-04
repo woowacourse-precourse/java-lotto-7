@@ -149,7 +149,13 @@ public class LottoService {
     private WinningRanking getLottoRanking(Lotto lotto, WinningNumber winningNumberObject,
                                            BonusNumber bonusNumberObject) {
         int matchCount = getMatchCount(lotto, winningNumberObject);
-        boolean needBonusNumber = lotto.getNumbers().contains(bonusNumberObject);
+        int bonusNumber = bonusNumberObject.getNumber();
+        boolean needBonusNumber = lotto.getNumbers().contains(bonusNumber);
+
+        if (matchCount == 5 && needBonusNumber) {
+            return WinningRanking.FIVE_MATCH_BONUS;
+        }
+
         return WinningRanking.getWinningRanking(matchCount, needBonusNumber);
     }
 
