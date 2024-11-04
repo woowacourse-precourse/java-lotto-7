@@ -81,6 +81,13 @@ public class Customer {
         return result;
     }
 
+    public double calculate(EnumMap<Rank, Integer> result) {
+        int totalWinningPrize = result.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getWinningPrize() * entry.getValue())
+                .sum();
+        return (double) totalWinningPrize / price.getValue();
+    }
+
     private EnumMap<Rank, Integer> initRankMap() {
         EnumMap<Rank, Integer> rankMap = new EnumMap<>(Rank.class);
         Arrays.stream(values()).forEach(rank -> rankMap.put(rank, 0));
