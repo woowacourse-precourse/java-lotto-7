@@ -32,6 +32,6 @@ public class Lotto {
     public String getNumbers() {
         return this.numbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(",", "[", "]"));
+                .collect(Collectors.joining(", ", "[", "]"));
     }
 }
