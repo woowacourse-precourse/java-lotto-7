@@ -32,6 +32,22 @@ public class Lotto {
         return numbers;
     }
 
+    // 당첨 번호와의 일치 개수를 반환하는 메서드
+    public int getMatchCount(List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int number : winningNumbers) {
+            if (numbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    // 보너스 번호 포함 여부를 확인하는 메서드
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     @Override
     public String toString() {
         return numbers.stream()
