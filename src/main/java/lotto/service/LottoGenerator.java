@@ -2,7 +2,6 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 
@@ -21,7 +20,6 @@ public class LottoGenerator {
 
     private Lotto generateSingleLotto(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_NUMBER_COUNT);
-        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 }
