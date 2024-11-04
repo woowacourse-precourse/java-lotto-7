@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,6 @@ public class Lotto {
         }
     }
 
-
     // TODO: 추가 기능 구현
 
     public Lotto() {
@@ -35,9 +33,9 @@ public class Lotto {
         return lottos;
     }
 
-    public void number_print(Lotto lotto) {
+    public void number_print() {
         String message = "[";
-        for (int n : lotto.numbers) {
+        for (int n : this.numbers) {
             message += n + ", ";
         }
         message = message.substring(0, message.length() - 2) + "]";
