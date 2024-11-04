@@ -1,6 +1,8 @@
-package lotto.lotto.domain;
+package lotto.money.domain;
 
-import lotto.money.domain.Money;
+import lotto.lotto.domain.BonusNumber;
+import lotto.lotto.domain.Lotto;
+import lotto.lotto.domain.WinningLotto;
 import lotto.money.infrastructure.WinningAmount;
 
 import java.util.Arrays;
