@@ -19,18 +19,18 @@
   - 예외 발생 시 에러 메시지를 출력하고 재입력을 유도
 
 ### Lotto
-- 로또의 번호를 저장하고 검증
+- 로또의 번호를 저장하고 정렬
 - **필드**:
   - `List<Integer> numbers` - 로또 번호
 - **메서드**:
-  - `Lotto(List<Integer> numbers)` - 생성자, 번호 검증 및 정렬
+  - `Lotto(List<Integer> numbers)` - 생성자, 번호 정렬 및 불변 리스트로 저장
   - `getNumbers()` - 로또 번호 반환
   - `toString()` - 로또 번호 문자열 반환
 
 ### Rank
 - 로또의 당첨 등수를 정의
 - **열거형 값**:
-  - `FIRST`, `SECOND`, `THIRD`, `FOURTH`, `FIFTH`, `NONE`
+  - `FIRST`, `SECOND`, `THIRD`, `FOURTH`, `FIFTH`
 - **필드**:
   - `int matchCount` - 일치하는 번호 개수
   - `long prize` - 당첨 상금
@@ -80,10 +80,13 @@
 
 ### InputView
 - 사용자 입력을 담당
+- **필드**:
+  - `Scanner scanner` - 사용자 입력을 위한 Scanner 객체
 - **메서드**:
   - `readPurchaseAmount()` - 구매 금액 입력 및 검증
   - `readWinningNumbers()` - 당첨 번호 입력 및 검증
   - `readBonusNumber(List<Integer> winningNumbers)` - 보너스 번호 입력 및 검증
+  - `close()` - Scanner 자원 해제
 
 ### OutputView
 - 출력 형식을 담당
@@ -93,10 +96,12 @@
   - `printStatistics(Statistics statistics)` - 당첨 통계 및 수익률 출력
 
 ### Validation
+- 모든 입력에 대한 유효성 검증을 담당
 - **메서드**:
   - `validatePurchaseAmount(String input)` - 구매 금액 유효성 검사
   - `validateWinningNumbers(String input)` - 당첨 번호 유효성 검사
   - `validateBonusNumber(String input, List<Integer> winningNumbers)` - 보너스 번호 유효성 검사
+  - `validateLottoNumbers(List<Integer> numbers)` - 로또 번호 유효성 검사
 
 ## 테스트
 - **기능 테스트**
