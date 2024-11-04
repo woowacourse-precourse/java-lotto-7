@@ -35,7 +35,6 @@ public class LottoScoreboard {
         this.totalWinnings = totalWinnings;
     }
 
-    // 각 일치 개수 증가 메소드
     public void incrementThreeMatches() {
         threeMatches++;
         totalWinnings += 5000;
@@ -60,10 +59,10 @@ public class LottoScoreboard {
         sixMatches++;
         totalWinnings += 2000000000;
     }
-    
+
     public String calculateTotalProfit() {
-        double profit = ((double) totalWinnings / totalSpent) * 100; // 수익률 계산
-        return String.format("%.1f%%", Math.round(profit * 10.0) / 10.0); // 소수점 둘째 자리 반올림
+        double profit = ((double) totalWinnings / totalSpent) * 100;
+        return String.format("%.1f%%", Math.round(profit * 10.0) / 10.0);
     }
 
     public void calculateIncrementNumber(int matchCount, boolean bonusMatch) {
