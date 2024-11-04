@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.model.LottoNumberParser;
+import lotto.util.model.Parser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

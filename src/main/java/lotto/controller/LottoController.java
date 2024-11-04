@@ -1,8 +1,13 @@
 package lotto.controller;
 
-import lotto.*;
 import lotto.enums.LottoPrices;
 import lotto.exception.LottoExceptionMessage;
+import lotto.model.Lotto;
+import lotto.model.LottoGenerator;
+import lotto.model.LottoNumberMatcher;
+import lotto.model.LottoNumberParser;
+import lotto.util.Parser;
+import lotto.util.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
