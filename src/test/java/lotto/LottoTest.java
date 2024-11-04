@@ -2,18 +2,41 @@ package lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.List;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+
+    static final Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    static final List<Lotto> lottos = List.of(
+            new Lotto(List.of(40, 41, 42, 43, 44, 45)),
+            new Lotto(List.of(1, 41, 42, 43, 44, 45)),
+            new Lotto(List.of(1, 2, 42, 43, 44, 45)),
+            new Lotto(List.of(1, 2, 3, 43, 44, 45)),
+            new Lotto(List.of(1, 2, 3, 4, 44, 45)),
+            new Lotto(List.of(1, 2, 3, 4, 5, 45)),
+            new Lotto(List.of(1, 2, 3, 4, 5, 6))
+    );
+    static final List<Integer> containsCount = List.of(1, 2, 3, 4, 5, 6);
+    static final List<List<Integer>> rangeExceptionNumbers = List.of(
+            List.of(1, 2, 3, 4, 5, Lotto.NUMBER_MAX + 1),
+            List.of(1, 2, 3, 4, 5, Lotto.NUMBER_MIN - 1)
+    );
+    static final List<List<Integer>> sizeExceptionNumbers = List.of(
+            List.of(1, 2, 3, 4, 5),
+            List.of(1, 2, 3, 4, 5, 6, 7)
+    );
+
+    @ParameterizedTest
+    @FieldSource("sizeExceptionNumbers")
+    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다(List<Integer> numbers) {
+        assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,46 +47,42 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호가 1~45 값을 넘어가면 예외가 발생한다.")
-    @Test
-    void 로또_값_범위(){
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+    @ParameterizedTest
+    @FieldSource("rangeExceptionNumbers")
+    void 번호_범위_예외(List<Integer> numbers) {
+        assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 번호_출력() {
+        assertThat(winner.toString()).contains("[1, 2, 3, 4, 5, 6]");
+    }
+
+    @Test
+    void 번호_정렬() {
+        assertThat(new Lotto(List.of(5, 4, 3, 2, 1, 6)).toString()).contains("[1, 2, 3, 4, 5, 6]");
+    }
+
+    @ParameterizedTest
+    @MethodSource("lottoAndMatchCount")
+    void 로또_당첨_개수(Lotto lotto, int count) {
+        assertThat(lotto.containsCount(winner)).isEqualTo(count);
+    }
+
+    private static List<Arguments> lottoAndMatchCount() {
+        List<Arguments> arguments = new java.util.ArrayList<>(List.of());
+
+        for (int i = 0; i < lottos.size(); i++) {
+            arguments.add((Arguments.of(lottos.get(i), i)));
+        }
+        return arguments;
+    }
+
+    @Test
+    public void 랜덤_로또() {
+        assertThat(Lotto.getRandom()).isInstanceOf(Lotto.class);
+    }
+
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
-
-    @Test
-    void 로또_번호_맞은_개수() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lotto.winningCount(new Lotto(List.of(1, 2, 3, 4, 5, 6)))).isEqualTo(6);
-        assertThat(lotto.winningCount(new Lotto(List.of(1, 7, 8, 9, 10, 11)))).isEqualTo(1);
-    }
-
-    @Test
-    void 보너스볼_매칭() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lotto.isBonusBallMatch(6)).isTrue();
-        assertThat(lotto.isBonusBallMatch(7)).isFalse();
-    }
-
-    @Test
-    void 스트링_변환(){
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lotto.numbersToString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
-    }
-
-    @Test
-    void 몇등인지(){
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(LottoRank.getRank(lotto, winner,7)).isEqualTo(LottoRank.FIRST);
-    }
-
-    @Test
-    void 정렬(){
-        assertThat(new Lotto(List.of(6,5,4,3,2,1)).numbersToString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
-    }
-
 }
