@@ -21,6 +21,8 @@ public class Application {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
+
+        inputWinningNumbers();
     }
 
     private static int getPurchaseAmount() {
@@ -39,6 +41,58 @@ public class Application {
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
             }
+        }
+    }
+
+    private static void inputWinningNumbers() {
+        List<Integer> winningNumbers = new ArrayList<>();
+        while (winningNumbers.size() < 6) {
+            try {
+                System.out.println("\n당첨 번호를 입력해 주세요.");
+                String winningInput = Console.readLine();
+                winningNumbers = parseNumbers(winningInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        int bonusNumber = 0;
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                bonusNumber = Integer.parseInt(Console.readLine());
+                validateBonusNumber(winningNumbers, bonusNumber);
+                break; // 유효한 보너스 번호가 입력된 경우 루프 종료
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
+            }
+        }
+    }
+
+    private static List<Integer> parseNumbers(String input) {
+        String[] numbers = input.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        for (String number : numbers) {
+            int num = Integer.parseInt(number.trim());
+            validateLottoNumber(num); // 각 번호에 대해 유효성 검사
+            winningNumbers.add(num);
+        }
+        return winningNumbers;
+    }
+
+    private static void validateLottoNumber(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }
