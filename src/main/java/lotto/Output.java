@@ -12,7 +12,7 @@ public class Output {
         }
     }
 
-    public void printWinningResult(Map<String, Integer> winningResult, double yield) {
+    public void printWinningResult(Map<LottoPrize, Integer> winningResult, double yield) {
         String result = """
                 
                 당첨 통계
@@ -25,11 +25,11 @@ public class Output {
                 총 수익률은 %s%%입니다.
                 """
                 .formatted(
-                        winningResult.get("MATCH_3"),
-                        winningResult.get("MATCH_4"),
-                        winningResult.get("MATCH_5"),
-                        winningResult.get("MATCH_5_BONUS"),
-                        winningResult.get("MATCH_6"),
+                        winningResult.get(LottoPrize.FIFTH),
+                        winningResult.get(LottoPrize.FOURTH),
+                        winningResult.get(LottoPrize.THIRD),
+                        winningResult.get(LottoPrize.SECOND),
+                        winningResult.get(LottoPrize.FIRST),
                         String.format("%.1f", yield)
                 );
         System.out.println(result);
