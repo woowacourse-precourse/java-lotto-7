@@ -3,10 +3,6 @@ package lotto.view;
 import java.util.List;
 
 public class OutputView {
-    public static void printPurchase(int purchase) {
-        System.out.println(purchase);
-    }
-
     public static void printLottoNumbers(List<List<Integer>> lottoNumbers) {
         System.out.println("\n" + lottoNumbers.size() + "개를 구매했습니다.");
         for (List<Integer> innerList : lottoNumbers) {
