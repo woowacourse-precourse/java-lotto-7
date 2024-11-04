@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Lotto;
 import domain.LottoGenerator;
 import domain.User;
 import java.util.ArrayList;
@@ -9,15 +10,17 @@ import view.OutputView;
 
 public class Controller {
     User user;
+    Lotto lotto;
     LottoGenerator generator = new LottoGenerator();
     List<List<Integer>> lottoLists = new ArrayList<>();//로또 발행 번호
-
+    List<Integer> lottoNumbers;
 
 
     public void run() {
         buying();
         quantity();
         generator();
+        getLottoNumbers();
     }
 
     private void buying() {
@@ -42,6 +45,41 @@ public class Controller {
             List<Integer> lottoNumbers = generator.generate();
             lottoLists.add(lottoNumbers);
             OutputView.outGenerateNumbersView(lottoNumbers);
+        }
+    }
+
+    private void getLottoNumbers() {
+        OutputView.outLottoNumbers();
+        List<Integer> numbers;
+        try {
+            numbers = LottoNumbers();
+            lotto = new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 올바른 숫자를 입력해주세요.");
+            getLottoNumbers();
+        }
+    }
+
+    private List<Integer> LottoNumbers() {
+        List<Integer> numbers = new ArrayList<>();
+        String inputLottoNumbers = InputView.inputLottoNumbers(); //입력 받음
+        String[] splitedNumbers = inputLottoNumbers.split(",");
+        checkExceptionNumbers(splitedNumbers, numbers);
+        return numbers;
+    }
+
+    private void checkExceptionNumbers(String[] splitedNumbers, List<Integer> numbers) {
+        for (String splitedNumber : splitedNumbers) {
+            int number;
+            try {
+                number = Integer.parseInt(splitedNumber);
+                if (number < 1 || number > 45) {
+                    throw new IllegalArgumentException();
+                }
+                numbers.add(number);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 

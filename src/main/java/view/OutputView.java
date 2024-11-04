@@ -15,4 +15,9 @@ public class OutputView {
     public static void outGenerateNumbersView(List<Integer> lottoNumbers) {
         System.out.println(lottoNumbers);
     }
+
+    public static void outLottoNumbers() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }
