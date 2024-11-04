@@ -6,27 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-    private final LottoView view;
-    private List<Lotto> purchasedTickets;
-    private List<Integer> winningNumbers;
+    private List<Lotto> purchasedTickets = new ArrayList<>();
+    private Lotto winningNumbers;
     private int bonusNumber;
 
-    public LottoController(LottoView view) {
-        this.view = view;
-        this.purchasedTickets = new ArrayList<>();
-    }
 
     public void run() {
-        int price = view.inputPurchaseAmount();
-        purchaseTickets(price);
-        view.printPurchasedTickets(purchasedTickets);
+        int purchaseAmount = LottoView.inputPurchaseAmount();
+        purchaseTickets(purchaseAmount);
+        LottoView.printPurchasedTickets(purchasedTickets);
 
-        winningNumbers = view.inputWinningNumbers();
-        bonusNumber = view.inputBonusNumber();
+        winningNumbers = LottoView.inputWinningNumbers();
+        bonusNumber = LottoView.inputBonusNumber();
 
         Result result = calculateResults();
-        double profitRate = result.calculateProfitRate(price);
-        view.printResults(result.getResultCounts(), profitRate);
+        double profitRate = result.calculateProfitRate(purchaseAmount);
+        LottoView.printResults(result.getResultCounts(), profitRate);
     }
 
     private void purchaseTickets(int price) {
