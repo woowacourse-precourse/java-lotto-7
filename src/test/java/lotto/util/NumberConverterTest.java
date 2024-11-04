@@ -12,7 +12,7 @@ public class NumberConverterTest {
     private final NumberConverter converter = new NumberConverter();
 
     @Test
-    @DisplayName("유효한 숫자 문자열 입력 시 해당 숫자로 변환된다")
+    @DisplayName("유효한 숫자 문자열 입력 시 해당 숫자로 변환된다.")
     void shouldConvertValidNumberString() {
         // given
         String input = "1";
@@ -25,10 +25,10 @@ public class NumberConverterTest {
     }
 
     @Test
-    @DisplayName("숫자 앞뒤로 공백이 포함되어 있다면 공백을 제거하고 숫자를 반환한다")
+    @DisplayName("숫자 앞뒤로 공백이 포함되어 있다면 공백을 제거하고 숫자를 반환한다.")
     void shouldConvertValidNumberStringIncludingTrim() {
         // given
-        String input = "1 ";
+        String input = " 1 ";
 
         // when
         int result = converter.convertNumber(input);
@@ -38,7 +38,7 @@ public class NumberConverterTest {
     }
 
     @Test
-    @DisplayName("빈 문자열 입력 시 예외 발생")
+    @DisplayName("빈 문자열 입력 시에는 예외가 발생한다.")
     void shouldThrowExceptionForEmptyString() {
         // given
         String input = "";
@@ -50,7 +50,7 @@ public class NumberConverterTest {
     }
 
     @Test
-    @DisplayName("숫자가 아닌 문자열 입력 시 예외 발생")
+    @DisplayName("숫자가 아닌 문자열 입력 시에 예외가 발생한다.")
     void shouldThrowExceptionForNonNumericString() {
         // given
         String input = "hi";
