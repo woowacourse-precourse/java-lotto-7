@@ -11,11 +11,11 @@ public class WinningNumber {
 
     public WinningNumber(final Lotto winningRegularLotto,final BonusNumber bonusNumber) {
         this.winningRegularLotto = winningRegularLotto;
-        validateSpecialNumber(bonusNumber);
+        validateBonusNumber(bonusNumber);
         this.BonusNumber = bonusNumber;
     }
 
-    private void validateSpecialNumber(final BonusNumber bonusNumber) {
+    private void validateBonusNumber(final BonusNumber bonusNumber) {
 
         if(winningRegularLotto.getNumbers().contains(bonusNumber.getNumber())){
             throw new IllegalArgumentException(ErrorCode.DUPLICATE_LOTTO_NUMBERS_NOT_ALLOWED.getMessage());
@@ -29,6 +29,5 @@ public class WinningNumber {
     public BonusNumber getBonusNumber(){
         return this.bonusNumber;
     }
-
 
 }

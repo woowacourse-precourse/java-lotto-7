@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.CorrectStatus.findByMatchCountAndSpecialNumber;
+import static lotto.CorrectStatus.findByMatchCountAndBonusNumber;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
