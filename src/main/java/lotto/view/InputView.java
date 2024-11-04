@@ -47,15 +47,15 @@ public class InputView {
     }
 
     // 당청 번호 입력
-    public List<Integer> scanWinningLotto() {
-        return (List<Integer>) RetryUtil.retryUntilSuccess(() -> {
+    public LottoDto scanWinningLotto() {
+        return (LottoDto) RetryUtil.retryUntilSuccess(() -> {
             System.out.print("당첨 번호를 입력해 주세요." + LINE_SEPARATOR);
             String input = Console.readLine();
             validateWinningLotto(input);
-            return parseWithDelimiter(input, COMMA).stream()
+            return new LottoDto(parseWithDelimiter(input, COMMA).stream()
                     .mapToInt(Integer::parseInt)
                     .boxed()
-                    .toList();
+                    .toList());
         });
     }
 
