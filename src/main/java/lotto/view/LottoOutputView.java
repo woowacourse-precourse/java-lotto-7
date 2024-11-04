@@ -54,10 +54,7 @@ public class LottoOutputView {
         Integer price = standard.getPrice();
         String formattedPrice = NumberFormat.getInstance().format(price);
 
-        Integer count = winningResult.get(rank);
-        if (count == null) {
-            count = 0;
-        }
+        Integer count = winningResult.getOrDefault(rank, 0);
 
         String result = String.format("%s (%s원) - %d개", condtion, formattedPrice, count);
         System.out.println(result);
