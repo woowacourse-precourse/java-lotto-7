@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -57,5 +58,19 @@ class LottoTest {
             assertThat(numbers).allMatch(num -> num >= 1 && num <= 45);
             assertThat(new HashSet<>(numbers)).hasSize(6);
         }
+    }
+
+    @Test
+    void 로또_당첨_확인_테스트() {
+        List<Lotto> tickets = new ArrayList<>();
+        tickets.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));   // 1등
+        tickets.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));   // 2등
+
+        LottoWinningChecker checker = new LottoWinningChecker(tickets, List.of(1, 2, 3, 4, 5, 6), 7);
+        List<Integer> expectedPlaceCount = List.of(1, 1, 0, 0, 0);  // 1등 1개, 2등 1개, 나머지 0개
+
+        checker.matchTicketsWithWinningNumbers();
+
+        assertThat(checker.getPlaceCount()).isEqualTo(expectedPlaceCount);
     }
 }
