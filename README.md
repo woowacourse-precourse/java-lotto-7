@@ -177,30 +177,6 @@
 Randoms.pickUniqueNumbersInRange(1, 45, 6);
 ```
 
-### Lotto 클래스
-- 제공된 `Lotto` 클래스를 사용하여 구현해야 한다.
-- `Lotto`에 `numbers` 이외의 필드(인스턴스 변수)를 추가할 수 없다.
-- `numbers`의 접근 제어자인 `private`은 변경할 수 없다.
-- Lotto의 패키지를 변경할 수 있다.
-```
-public class Lotto {
-    private final List<Integer> numbers;
-
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-    }
-
-    // TODO: 추가 기능 구현
-}
-```
-
 ## 커밋 규칙
 - Git의 커밋 단위는 `README.md`에 정리한 기능 목록 단위로 추가한다.
     - [AngularJS Git Commit Message Conventions](https://github.com/angular/angular.js/blob/main/DEVELOPERS.md#commits)을 참고해 커밋 메시지를 작성한다.
