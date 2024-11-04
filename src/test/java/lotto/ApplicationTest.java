@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -50,6 +51,114 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("구입 금액이 1000으로 나누어 떨어지지 않는 경우")
+    public void test1(){
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("구입 금액이 정수가 아닌 경우")
+    public void test2(){
+        assertSimpleTest(() -> {
+            runException("test");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("구입 금액이 빈 값인 경우")
+    public void test3(){
+        assertSimpleTest(() -> {
+            runException("\n");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 6개가 아닌 경우")
+    public void test4(){
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 비어 있는 경우")
+    public void test5(){
+        assertSimpleTest(() -> {
+            runException("5000", "\n");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호 구분자가 잘못 사용된 경우")
+    public void test6(){
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6,");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 중복된 경우")
+    public void test7(){
+        assertSimpleTest(() -> {
+            runException("5000", "1,1,3,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 1~45 사이의 숫자가 아닌 경우")
+    public void test8(){
+        assertSimpleTest(() -> {
+            runException("5000", "1,111,3,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 1~45 사이의 숫자가 아닌 경우")
+    public void test9(){
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "77");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 숫자가 아닌 경우")
+    public void test10(){
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "test");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 비어 있는 경우")
+    public void test11(){
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "\n");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복되는 경우")
+    public void test12(){
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "1");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
