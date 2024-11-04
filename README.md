@@ -109,7 +109,7 @@ src/main/java/
         ├── domain/
         │      ├── Lotto.java                      // 로또 티켓
         │      ├── LottoTickets.java               // 여러 로또 티켓을 관리하는 일급 컬렉션
-        │      ├── WinningLotto.java             // 당첨 번호 및 보너스 번호
+        │      ├── WinningLotto.java               // 당첨 번호 및 보너스 번호
         │      └── LottoPurchaseMoney.java         // 구입 금액을 관리하는 클래스
         ├── service/
         │      ├── LottoGame.java                  // 로또 게임 전체 흐름을 관리하는 클래스
@@ -119,7 +119,7 @@ src/main/java/
         │      └── OutputHandler.java              // 결과 출력 처리 클래스
         ├── validator/
         │      ├── LottoValidator.java             // 로또 번호 검증
-        │      ├── WinningLottoValidator.java    // 당첨 번호 검증
+        │      ├── WinningLottoValidator.java      // 당첨 번호 검증
         │      └── MoneyValidator.java             // 구입 금액 검증
         ├── enums/
         │      └── Rank.java                       // 당첨 등수와 상금 정의하는 Enum
