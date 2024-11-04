@@ -71,3 +71,29 @@
 - 가독성을 위한 import 순서 재배치
 - 오버플로우 방지를 위해 int 자료형 long 으로 변경
 - 수익에 해당하는 상수 enum 으로 이동, 이동에 따른 enum 상수들 이름 변경
+
+      - controller
+           - LottoController -> 입출력과 모델을 연결하는 클래스
+      - model
+            - constant 
+                - Lotto -> 로또 번호 최소, 최대, 개수, 가격을 상수로 저장한 클래스
+                - Match -> 로또 당첨 수익을 저장한 enum 클래스
+            - BonusNumber -> 보너스 번호를 검증하고 저장하는 클래스
+            - Lotto -> 당첨 번호를 검증하고 저장하는 클래스
+            - LottoAmount -> 로또 개수를 저장하는 클래스 
+            - LottoNumber -> 랜덤으로 생성된 로또 번호를 저장하는 클래스
+            - MatchNumbers -> 당첨 번호와 일치하는 개수를 저장하는 클래스 
+            - Profit -> 수익 금액을 결정하는 클래스
+            - PurchasePrice -> 구입 금액을 검증하고 저장하는 클래스
+            - RandomNumber -> 랜덤 로또 번호를 생성하는 클래스
+      - util
+            - Convertor -> 숫자 또는 리스트로 변환하는 클래스
+            - ExceptionHelper -> 모든 예외에 [ERROR] 가 접미에 붙도록 설정하는 클래스
+            - Sorter -> 리스트를 오름차순으로 정렬하는 클래스
+            - Splitter - 구분자를 기준으로 나누는 클래스
+      - view
+            - validator
+                - InputValidator -> 입력을 검증하는 클래스
+            - InputView -> 입력받는 클래스
+            - OutputView -> 출력하는 클래스
+      - Application -> 프로그램이 실행되는 클래스
