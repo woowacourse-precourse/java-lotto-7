@@ -1,4 +1,4 @@
-package lotto;
+package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -7,7 +7,8 @@ import java.util.List;
 
 public class LottoUtils {
 
-    public static List<List<Integer>> generate(int purchaseCount) {
+    public static List<List<Integer>> generate(int purchaseAmount) {
+        int purchaseCount = purchaseAmount / 1000;
         List<List<Integer>> purchaseLottoNumbers = new ArrayList<>();
 
         for (int i = 0; i < purchaseCount; i++) {
