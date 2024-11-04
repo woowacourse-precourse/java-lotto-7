@@ -109,6 +109,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 번호를 다른 구분자로 입력하는 경우 예외 발생")
+    @Test
+    void 당첨_번호를_다른_구분자로_입력하는_경우_예외발생() {
+        InputView inputView = new InputView();
+        String invalidInput = "1;2;3;4;5";
+
+        assertThatThrownBy(() -> inputView.testParseWinningNumbers(invalidInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외 발생")
     @Test
     void 보너스_번호가_중복되는_경우_예외발생() {
