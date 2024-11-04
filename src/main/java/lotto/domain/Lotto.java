@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.Prompt.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constant.Prize;
@@ -28,7 +30,7 @@ public class Lotto {
                 .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(","));
-        System.out.println("[" + sortedNumbers + "]");
+        System.out.println(LOTTO_OUTPUT_PREFIX.getMessage() + sortedNumbers + LOTTO_OUTPUT_SUFFIX.getMessage());
     }
 
     public Prize match(Lotto winningNumber, BonusNumber bonusNumber) {

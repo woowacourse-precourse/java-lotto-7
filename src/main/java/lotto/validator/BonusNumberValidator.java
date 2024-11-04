@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import static lotto.constant.ErrorCode.*;
+import static lotto.constant.LottoConfig.*;
+
 import lotto.domain.Lotto;
 
 public class BonusNumberValidator {
@@ -10,14 +13,14 @@ public class BonusNumberValidator {
         try {
             int bonus = Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.");
+            throw new NumberFormatException(INVALID_BONUS_NUMBER.getMessage());
         }
     }
 
     public static void validateNumberRange(String bonusNumber) {
         int bonus = Integer.parseInt(bonusNumber);
-        if (bonus <= 0 || bonus > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        if (bonus < MIN_NUMBER.getValue() || bonus > MAX_NUMBER.getValue()) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_BONUS_NUMBER.getMessage());
         }
 
     }
@@ -25,7 +28,7 @@ public class BonusNumberValidator {
     public static void checkBonusNumberDuplicate(String bonusNumber, Lotto winningNumbers) {
         int bonus = Integer.parseInt(bonusNumber);
         if (winningNumbers.getNumbers().contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복일 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 }

@@ -6,7 +6,10 @@ public enum Prompt {
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
 
     CONFIRM_TICKET_COUNT("%d개를 구매했습니다."),
-    EARNING_RATE("총 수익률은 %.1f%%입니다.");
+    EARNING_RATE("총 수익률은 %.1f%%입니다."),
+
+    LOTTO_OUTPUT_PREFIX("["),
+    LOTTO_OUTPUT_SUFFIX("]");
 
     private final String message;
 

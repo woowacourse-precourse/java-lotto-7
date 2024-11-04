@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import static lotto.constant.ErrorCode.*;
+import static lotto.constant.LottoConfig.*;
+
 public class MoneyValidator {
     private MoneyValidator() {
     }
@@ -8,21 +11,21 @@ public class MoneyValidator {
         try {
             int money = Integer.parseInt(value);
         } catch (Exception e) {
-            throw new NumberFormatException("구입 금액은 숫자를 입력해주세요.");
+            throw new NumberFormatException(INVALID_MONEY.getMessage());
         }
     }
 
     public static void isPositive(String value) {
         int money = Integer.parseInt(value);
         if (money <= 0) {
-            throw new IllegalArgumentException("구입 금액은 양수를 입력해주세요.");
+            throw new IllegalArgumentException(NOT_POSITIVE_MONEY.getMessage());
         }
     }
 
     public static void checkDivisibleByThousand(String value) {
         int money = Integer.parseInt(value);
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException("구입 금액은 1000원 단위여야 합니다.");
+        if ((money % LOTTO_TICKET_PRICE.getValue()) != 0) {
+            throw new IllegalArgumentException(DIVISION_BY_LOTTO_PRICE.getMessage());
         }
     }
 }

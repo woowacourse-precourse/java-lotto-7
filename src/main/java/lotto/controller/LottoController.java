@@ -1,13 +1,11 @@
 package lotto.controller;
 
-import lotto.constant.Prompt;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.Result;
 import lotto.service.LottoService;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {

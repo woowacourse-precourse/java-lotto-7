@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConfig.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,6 @@ public class Lottos {
     }
 
     private List<Integer> chooseRandomLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getValue(), MAX_NUMBER.getValue(), NUMBER_COUNT.getValue());
     }
 }

@@ -1,15 +1,13 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.constant.LottoConfig;
 import lotto.constant.Prize;
-import lotto.constant.Prompt;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.Result;
-import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 
@@ -38,7 +36,7 @@ public class LottoService {
     }
 
     public int getTicketCount(Money money) {
-        return money.getValue() / 1000;
+        return money.getValue() / LottoConfig.LOTTO_TICKET_PRICE.getValue();
     }
 
     public Lotto getWinningNumbers() {
@@ -46,8 +44,7 @@ public class LottoService {
 
         while (true) {
             try {
-                System.out.println(Prompt.INPUT_WINNING_NUMBERS.getMessage());
-                String numbers = Console.readLine();
+                String numbers = InputView.inputWinningNumbers();
 
                 LottoValidator.validateInput(numbers);
                 lotto = LottoValidator.makeLottoNumberList(numbers);
@@ -64,8 +61,7 @@ public class LottoService {
     public BonusNumber getBonusNumber(Lotto winningNumbers) {
         while (true) {
             try {
-                System.out.println(Prompt.INPUT_BONUS_NUMBER.getMessage());
-                BonusNumber bonusNumber = new BonusNumber(Console.readLine(), winningNumbers);
+                BonusNumber bonusNumber = new BonusNumber(InputView.inputBonusNumber(), winningNumbers);
 
                 return bonusNumber;
             } catch (IllegalArgumentException e) {

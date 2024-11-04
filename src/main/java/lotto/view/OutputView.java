@@ -26,9 +26,10 @@ public class OutputView {
     public static void printResults(Result result) {
         HashMap<Prize, Integer> prizeResult = result.getPrizeResult();
 
-        for (Prize prize: Prize.values()) {
-            if (prize == Prize.NONE)
+        for (Prize prize : Prize.values()) {
+            if (prize == Prize.NONE) {
                 continue;
+            }
             String message = prize.getMessage();
             int count = prizeResult.get(prize);
             System.out.printf((message + "%n"), count);
