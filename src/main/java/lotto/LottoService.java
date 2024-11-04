@@ -9,6 +9,10 @@ public class LottoService {
     }
 
     public Integer convertInputToCash(String input) {
+        return Integer.parseInt(input);
+    }
+
+    public Integer convertInputToLottoAmount(String input) {
         if (!LottoUtils.isNumber(input)) {
             System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
             throw new IllegalArgumentException();

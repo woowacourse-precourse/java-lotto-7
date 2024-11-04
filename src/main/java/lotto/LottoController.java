@@ -16,7 +16,7 @@ public class LottoController {
     public void run() {
         outputView.printInputCashMessage();
         String input = inputView.inputCash();
-        Integer lottoAmount = lottoService.convertInputToCash(input);
+        Integer lottoAmount = lottoService.convertInputToLottoAmount(input);
 
         List<Lotto> lottos = lottoService.getLotto(lottoAmount);
         outputView.printLottoAmountMessage(lottoAmount);
@@ -65,5 +65,7 @@ public class LottoController {
                 count5th++;
             }
         }
+
+        Float earningRate = (float) price / lottoService.convertInputToCash(input);
     }
 }
