@@ -47,14 +47,18 @@ public class CheckingWinningService {
         ranks.put(fourthRank, 50_000);
         ranks.put(fifthRank, 5_000);
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + fifthRank + "개");
-        System.out.println("4개 일치 (50,000원) - " + fourthRank + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + thirdRank + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + secondRank + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + firstRank + "개");
-
         return ranks;
+    }
+
+    public double calculateRateOfReturn(Map<Integer, Integer> ranks, int payment) {
+        double sum = 0;
+        for (int numberOfWinning : ranks.keySet()) {
+            sum += numberOfWinning * ranks.get(numberOfWinning);
+        }
+
+        sum /= payment;
+        sum *= 100;
+
+        return Math.round(sum * 100) / 100.0;
     }
 }

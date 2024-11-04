@@ -10,15 +10,15 @@ import lotto.controller.PublishingController;
 import lotto.controller.PurchasingController;
 import lotto.validator.PaymentValidator;
 import lotto.view.Purchasing_InputView;
+import lotto.view.Winning_OutputView;
 
 public class LottoFactory {
-    //유효성, 인풋, 아웃풋 뷰 생성해서 컨트롤러에 주입한다.
-    //컨트롤러 3개를 여기서 생성해서 돌리기
     private final Purchasing_InputView purchasingInputView;
     private final PaymentValidator paymentValidator;
     private final Purchasing_OutputView purchasingOutputView;
     private final Publishing_OutputTicketsView publishingOutputTicketsView;
     private final Winning_InputView winningInputView;
+    private final Winning_OutputView winningOutputView;
 
     public LottoFactory() {
         this.purchasingInputView = new Purchasing_InputView();
@@ -26,6 +26,7 @@ public class LottoFactory {
         this.purchasingOutputView = new Purchasing_OutputView();
         this.publishingOutputTicketsView = new Publishing_OutputTicketsView();
         this.winningInputView = new Winning_InputView();
+        this.winningOutputView = new Winning_OutputView();
     }
 
     public void create() {
@@ -36,6 +37,6 @@ public class LottoFactory {
         PublishingController publishingController = new PublishingController(publishingOutputTicketsView, numberOfTickets);
         List<Lotto> LottoTickets = publishingController.publishLottoTickets();
 
-        WinningController winningController = new WinningController(LottoTickets, winningInputView);
+        WinningController winningController = new WinningController(LottoTickets, winningInputView, winningOutputView);
     }
 }

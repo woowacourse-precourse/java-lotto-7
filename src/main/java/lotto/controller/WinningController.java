@@ -7,26 +7,30 @@ import lotto.model.WinningNumber;
 import lotto.model.WinningStatistics;
 import lotto.service.CheckingWinningService;
 import lotto.view.Winning_InputView;
+import lotto.view.Winning_OutputView;
 
 public class WinningController {
     private final List<Lotto> LottoTickets;
     private final Winning_InputView winningInputView;
+    private final Winning_OutputView winningOutputView;
     private CheckingWinningService checkingWinningService;
     private WinningNumber winningNumber;
     private WinningStatistics winningStatistics;
 
-    public WinningController(List<Lotto> LottoTickets, Winning_InputView winningInputView) {
+    public WinningController(List<Lotto> LottoTickets, Winning_InputView winningInputView, Winning_OutputView winningOutputView) {
         this.LottoTickets = LottoTickets;
         this.winningInputView = winningInputView;
+        this.winningOutputView = winningOutputView;
+
         checkingWinningService = new CheckingWinningService();
         winningNumber = new WinningNumber();
         winningStatistics = new WinningStatistics(checkingWinningService);
     }
 
-    public void presentWinningLottoTickets() {
+    public Map<Integer, Integer> presentWinningLottoTickets() {
         List<Integer> winningNumbers = setWinningNumbers();
         int bonusNumber = setBonusNumber();
-        Map<Integer, Integer> ranks = winningStatistics.getRanks(winningNumbers, bonusNumber, LottoTickets);
+        return winningStatistics.getRanks(winningNumbers, bonusNumber, LottoTickets);
     }
 
     private List<Integer> setWinningNumbers() {

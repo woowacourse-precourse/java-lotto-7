@@ -19,4 +19,7 @@ public class WinningStatistics {
         return checkingWinningService.calculateRanks(numberOfMatches);
     }
 
+    public double getRateOfWinning() {
+
+    }
 }
