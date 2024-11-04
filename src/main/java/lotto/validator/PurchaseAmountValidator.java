@@ -19,15 +19,15 @@ public class PurchaseAmountValidator {
         return purchaseAmount;
     }
 
-    private static void validateBlank(String purchaseAmount) {
-        if (StringUtils.isBlank(purchaseAmount)) {
+    private static void validateBlank(String input) {
+        if (StringUtils.isBlank(input)) {
             throw new IllegalInputException(INVALID_BLANK_INPUT.getMessage());
         }
     }
 
-    private static int validateType(String purchaseAmount) {
+    private static int validateType(String input) {
         try {
-            return Integer.parseInt(purchaseAmount);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalTypeException(
                     String.format(INVALID_TYPE_INPUT.getMessage(), input, type)
