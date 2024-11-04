@@ -51,6 +51,13 @@ public class LottoController {
         while (true) {
             try {
                 bonusNumber = LottoView.getBonusNumber();
+
+                Set<Integer> nonDuplicateNumbers = new HashSet<>(winningNumbers);
+                nonDuplicateNumbers.add(bonusNumber);
+                if (nonDuplicateNumbers.size() != 7) {
+                    throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력할 수 없습니다.");
+                }
+
                 break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
