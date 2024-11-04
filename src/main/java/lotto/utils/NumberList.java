@@ -18,10 +18,16 @@ public class NumberList extends ArrayList<Integer> {
         super();
     }
 
-    static public void isListOverMaxLength(List<Integer> list, int maxLength){
-        if(list.size() > maxLength){
+    static public void validateLottoNumbersSize(List<Integer> list){
+        if(list.size() > MAX_SIZE){
             ExceptionFactory.throwIllegalArgumentException(ExceptionType.LIST_OVER_MAX_LENGTH);
         }
+    }
+
+    static public void validateLottoNumberRange(int number){
+        int startRange = NUMBER_RANGE[NumberList.NUMBER_RANGE_START];
+        int endRange = NUMBER_RANGE[NumberList.NUMBER_RANGE_END];
+        Validator.validateSpecificRange(number, startRange,endRange);
     }
 
     public NumberList generateRandomNumberList(){

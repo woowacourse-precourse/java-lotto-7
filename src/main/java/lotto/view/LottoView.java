@@ -102,21 +102,16 @@ public class LottoView {
         String[] rawWinningNumberList = rawWinningNumbers.split(LottoView.DELIMITERS);
         List<Integer> winningNumberList = transformToIntegerList(rawWinningNumberList);
 
-        int startRange = NumberList.NUMBER_RANGE[NumberList.NUMBER_RANGE_START];
-        int endRange = NumberList.NUMBER_RANGE[NumberList.NUMBER_RANGE_END];
         for(int number : winningNumberList){
-            Validator.validateSpecificRange(number, startRange,endRange);
+            NumberList.validateLottoNumberRange(number);
         }
 
-        Validator.validateListSize(winningNumberList,NumberList.MAX_SIZE);
+        NumberList.validateLottoNumbersSize(winningNumberList);
     }
 
     public void validateBonusNumber(String rawBonusNumber){
         int bonusNumber = this.parsePositiveInt(rawBonusNumber);
-        int startRange = NumberList.NUMBER_RANGE[NumberList.NUMBER_RANGE_START];
-        int endRange = NumberList.NUMBER_RANGE[NumberList.NUMBER_RANGE_END];
-        Validator.validateSpecificRange(bonusNumber, startRange,endRange);
-
+        NumberList.validateLottoNumberRange(bonusNumber);
     }
 
     /*TODO
