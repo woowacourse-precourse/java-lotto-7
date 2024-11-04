@@ -11,7 +11,7 @@ public class Application {
         PurchaseAmountRequestDto purchaseAmountRequestDto = PurchaseAmountController.run();
         Lottos lottos = LottoController.run(purchaseAmountRequestDto);
         WinningNumbersRequestDto winningNumbersRequestDto = WinningNumbersController.run();
-        BonusNumberRequestDto bonusNumberRequestDto = BonusNumberController.run();
+        BonusNumberRequestDto bonusNumberRequestDto = BonusNumberController.run(winningNumbersRequestDto);
         ProfitController.run(lottos, winningNumbersRequestDto, bonusNumberRequestDto);
     }
 }
