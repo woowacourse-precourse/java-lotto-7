@@ -25,7 +25,7 @@ public class LottoController {
         Integer winningBonusNumber = getWinningBonusNumber();
 
         List<Integer> calculatedLottoResults = lottoService.calculateLottoResults(lottos, winningSixNumbers, winningBonusNumber);
-        Double earningRate = lottoService.calculateEarningRate(money, calculatedLottoResults);
+        Double earningRate = lottoService.calculateEarningRate(money.getMoney(), calculatedLottoResults);
         printCalculatedResult(new Result(calculatedLottoResults, earningRate));
 
         Console.close();
