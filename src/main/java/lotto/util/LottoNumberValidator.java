@@ -1,5 +1,9 @@
 package lotto.util;
 
+import static lotto.constant.ErrorMessage.DUPLICATION_LOTTO_NUMBER;
+import static lotto.constant.ErrorMessage.INVALID_LOTTO_RANGE;
+import static lotto.constant.ErrorMessage.INVALID_LOTTO_SIZE;
+
 import java.util.List;
 
 public class LottoNumberValidator {
@@ -14,20 +18,20 @@ public class LottoNumberValidator {
                 .distinct()
                 .count();
         if (hasDuplication) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안됩니다.");
+            throw new IllegalArgumentException(DUPLICATION_LOTTO_NUMBER.getMessage());
         }
     }
 
     private static void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
         }
     }
 
     private static void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < 0 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+                throw new IllegalArgumentException(INVALID_LOTTO_RANGE.getMessage());
             }
         }
     }

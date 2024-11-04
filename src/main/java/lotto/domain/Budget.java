@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.INVALID_BUDGET;
+import static lotto.constant.ErrorMessage.NOT_INPUT_BUDGET;
 import static lotto.util.IntegerConvertor.parse;
 
 public class Budget {
@@ -14,13 +16,13 @@ public class Budget {
 
     private void validate(String budget) {
         if (budget == null || budget.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 금액을 입력해주세요.");
+            throw new IllegalArgumentException(NOT_INPUT_BUDGET.getMessage());
         }
         if (parse(budget) % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어져야 합니다!");
+            throw new IllegalArgumentException(INVALID_BUDGET.getMessage());
         }
         if (parse(budget) <= 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원의 양의 배수인 금액을 입력해 주세요.");
+            throw new IllegalArgumentException(INVALID_BUDGET.getMessage());
         }
     }
 

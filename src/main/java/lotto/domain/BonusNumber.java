@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.DUPLICATION_BONUS_NUMBER;
 import static lotto.util.IntegerConvertor.parse;
 import static lotto.util.LottoNumberValidator.validateRange;
 
@@ -20,7 +21,7 @@ public class BonusNumber {
 
     private void validateDuplication(int number, List<Integer> numbers) {
         if (numbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 같을 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATION_BONUS_NUMBER.getMessage());
         }
     }
 
