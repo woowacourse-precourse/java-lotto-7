@@ -4,8 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 import lotto.repository.LottoRepository;
 import lotto.validation.InputValidation;
 import lotto.validation.PurchasePriceValidation;
@@ -90,5 +92,52 @@ public class LottoService {
 
     public void saveBonusNumber(int bonusNumber) {
         lottoRepository.insertBonusNumber(bonusNumber);
+    }
+
+    public void calculateWinningNumbers() {
+        Set<List<Integer>> lottoTickets = lottoRepository.getLottoTickets();
+        List<Integer> winningNumbers = lottoRepository.getWinningLotto();
+        long matchCount;
+
+        for (List<Integer> lottoTicket : lottoTickets) {
+            matchCount = lottoTicket.stream()
+                    .filter(winningNumbers::contains)
+                    .count();
+
+            if (matchCount == 5) {
+                calculateBonusNumber(lottoTicket);
+                return;
+            }
+            insertMatchCount(matchCount);
+        }
+    }
+
+    public void insertMatchCount(long matchCount) {
+        if (matchCount == 6) {
+            lottoRepository.insertMatchCount(LottoRank.FIRST);
+            return;
+        }
+        if (matchCount == 4) {
+            lottoRepository.insertMatchCount(LottoRank.FOURTH);
+            return;
+        }
+        if (matchCount == 3) {
+            lottoRepository.insertMatchCount(LottoRank.FIFTH);
+        }
+    }
+
+    public void calculateBonusNumber(List<Integer> lottoTicket) {
+        int bonusNumber = lottoRepository.getBonusNumber();
+
+        if (lottoTicket.contains(bonusNumber)) {
+            lottoRepository.insertMatchCount(LottoRank.SECOND);
+            return;
+        }
+        lottoRepository.insertMatchCount(LottoRank.FOURTH);
+    }
+
+    public int getMatchedCount(LottoRank value) {
+        Map<LottoRank, Integer> winningResults = lottoRepository.getWinningResults();
+        return winningResults.getOrDefault(value, 0);
     }
 }

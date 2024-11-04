@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.LottoRank;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -70,7 +71,22 @@ public class LottoController {
             }
         }
 
+        // 당첨 통계
+        lottoService.calculateWinningNumbers();
 
+        // 당첨 통계 결과 출력
+        for (LottoRank value : LottoRank.values()) {
+            int matchedCount = lottoService.getMatchedCount(value);
+            if (value == LottoRank.SECOND) {
+                outputView.printLottoResultWithBonusNumber(value.getMatchCount(),
+                        value.getFormattedPrize(),
+                        matchedCount);
+                continue;
+            }
+            outputView.printLottoResultWithoutBonusNumber(value.getMatchCount(),
+                    value.getFormattedPrize(),
+                    matchedCount);
+        }
     }
 
 }
