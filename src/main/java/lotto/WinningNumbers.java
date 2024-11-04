@@ -81,6 +81,14 @@ public class WinningNumbers {
         return Integer.parseInt(inputBonusNumber);
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
+
     public String toString() {
         return winningNumbers.toString() + " " + bonusNumber;
     }

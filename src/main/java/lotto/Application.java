@@ -1,12 +1,20 @@
 package lotto;
 
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        LottoGenerator lg = new LottoGenerator();
-        lg.getLottos();
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        System.out.println(lottoGenerator);
+        List<Lotto> lottos = lottoGenerator.getLottos();
 
-        WinningNumbers wn = new WinningNumbers();
-        System.out.println(wn);
+        WinningNumbers winningNumbers = new WinningNumbers();
+        List<Integer> winningNums = winningNumbers.getWinningNumbers();
+        int bonusNum = winningNumbers.getBonusNumber();
+
+        LottoCalculator lottoCalculator = new LottoCalculator(winningNums, bonusNum, lottos);
+        lottoCalculator.calculateResults();
+
     }
 }

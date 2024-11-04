@@ -56,13 +56,19 @@ public class LottoGenerator {
         return amount/1000;
     }
 
-    public void getLottos() {
-        System.out.println(Lottos.size() + "개를 구매했습니다.");
+    public List<Lotto> getLottos() {
+        return Lottos;
+    }
 
-        for(Lotto lotto : Lottos) {
-            System.out.println(lotto);
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(Lottos.size()).append("개를 구매했습니다.\n");
+
+        for (Lotto lotto : Lottos) {
+            result.append(lotto).append("\n");
         }
-        System.out.println();
+
+        return result.toString();
     }
 
 }
