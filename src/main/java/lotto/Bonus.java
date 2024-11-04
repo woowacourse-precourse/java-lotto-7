@@ -15,7 +15,7 @@ public class Bonus {
 
     private void validate(int bonusNumber, Lotto winningLottoNumbers) {
         validateRange(bonusNumber);
-        validateDuplicateWithWinningLottoNumbers(winningLottoNumbers);
+        validateDuplicateWithWinningLottoNumbers(bonusNumber, winningLottoNumbers);
     }
 
     private void validateRange(int bonusNumber) {
@@ -24,7 +24,7 @@ public class Bonus {
         }
     }
 
-    private void validateDuplicateWithWinningLottoNumbers(Lotto winningLottoNumbers) {
+    private void validateDuplicateWithWinningLottoNumbers(int bonusNumber, Lotto winningLottoNumbers) {
         if (winningLottoNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATE_WINNING_AND_BONUS_NUMBER.getMessage());
         }
