@@ -1,5 +1,9 @@
 package lotto.lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -15,6 +19,17 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
+    
+    public List<List<Integer>> generateLotteryTickets(int numberOfTickets) {
+        List<List<Integer>> lotteryTickets = new ArrayList<>();
 
-    // TODO: 추가 기능 구현
+        for (int i = 0; i < numberOfTickets; i++) {
+            List<Integer> ticket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            validate(ticket);
+            Collections.sort(ticket);
+            lotteryTickets.add(ticket);
+        }
+
+        return lotteryTickets;
+    }
 }
