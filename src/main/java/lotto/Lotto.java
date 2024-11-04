@@ -26,6 +26,7 @@ public class Lotto {
     public int getMatchedSize(List<Integer> winningNumbers){
         List<Integer> currentNumbers = new LinkedList<>(numbers);
         currentNumbers.retainAll(winningNumbers);
+
         return currentNumbers.size();
     }
     public boolean hasBonusNumber(int bonusNumber){

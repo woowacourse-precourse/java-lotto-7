@@ -108,11 +108,9 @@ public class LottoController {
             // 숫자가 5개 일치 + 보너스 번호 O
             if(count == 5 && currentNumeberList.hasBonusNumber(bonusNumber)){
                 countHasBonusNumber++;
+                continue;
             }
-            // 숫자가 5개 일치 + 보너스 번호 X or 3개, 4개, 6개 일치
-            else if(count != 5 || !currentNumeberList.hasBonusNumber(bonusNumber)){
-                countMatched.add(count);
-            }
+            countMatched.add(count);
         }
     }
 }
