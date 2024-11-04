@@ -37,8 +37,7 @@ public enum WinningPrize {
 
     public static Optional<WinningPrize> determineWinningPrize(int matchCount, boolean bonusNumberMatch) {
         return Arrays.stream(WinningPrize.values())
-                .filter(winningPrize -> winningPrize.matchCount == matchCount
-                        && (!winningPrize.requiresBonus() || bonusNumberMatch))
+                .filter(prize -> prize.getMatchCount() == matchCount && bonusNumberMatch == prize.requiresBonus())
                 .findFirst();
     }
 
