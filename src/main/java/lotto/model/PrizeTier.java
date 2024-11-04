@@ -17,15 +17,6 @@ public enum PrizeTier {
         this.prizeAmount = prizeAmount;
     }
 
-    public static PrizeTier getPrizeTier(int matchCount, boolean bonusMatch) {
-        for (PrizeTier tier : values()) {
-            if (tier.matchCount == matchCount && tier.bonusMatch == bonusMatch) {
-                return tier;
-            }
-        }
-        return null;
-    }
-
     public int getMatchCount() {
         return matchCount;
     }
