@@ -48,4 +48,8 @@ public class OutputView {
     public void printProfit(double profit) {
         System.out.printf(ViewConstant.OUTPUT_PROFIT_RATE_MESSAGE, profit);
     }
+
+    public void printError(String message) {
+        System.out.println(message);
+    }
 }

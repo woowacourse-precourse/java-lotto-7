@@ -18,7 +18,7 @@ public record LottoPrice(int price) {
     }
 
     private void validateRange(int price) {
-        if (price <= LottoConstant.LOTTO_PRICE) {
+        if (price < LottoConstant.LOTTO_PRICE) {
             throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.LOTTO_PRICE_MESSAGE + LottoConstant.LOTTO_PRICE + "원 이상이어야 합니다.");
         }
     }
