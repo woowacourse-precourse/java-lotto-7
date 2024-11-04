@@ -43,6 +43,8 @@ public class InputView {
                 validatePositiveNumber(bonusNumber);
                 result.setBonusNumber(bonusNumber);
                 break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자가 아닙니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
