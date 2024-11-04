@@ -8,17 +8,25 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class LottoManager {
+    private final int PURCHASE_UNIT = 1000;
+    private final int START = 1;
+    private final int END = 45;
+    private final int COUNT = 1;
     private List<Lotto> lottos = new ArrayList<>();
     private Map<WinningStandard, Integer> winningResult = new HashMap<>();
     private Lotto winningLotto;
     private long payment;
     private int bonusNumber;
 
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
     public List<Lotto> create(long payment) {
         this.payment = payment;
-        long purchaseAmount = payment / 1000;
+        long purchaseAmount = payment / PURCHASE_UNIT;
         for (int i = 0; i < purchaseAmount; i++) {
-            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(START, END, COUNT);
             lottos.add(new Lotto(lotto));
         }
         return lottos;
@@ -84,9 +92,5 @@ public class LottoManager {
         if (input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 형식입니다.");
         }
-    }
-
-    public Lotto getWinningLotto() {
-        return winningLotto;
     }
 }
