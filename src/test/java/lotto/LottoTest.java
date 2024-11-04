@@ -1,25 +1,41 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
+import static lotto.domain.Rank.FIFTH;
+import static lotto.domain.Rank.FIRST;
+import static lotto.domain.Rank.FOURTH;
+import static lotto.domain.Rank.MISS;
+import static lotto.domain.Rank.SECOND;
+import static lotto.domain.Rank.THIRD;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.EnumMap;
+import java.util.List;
+import lotto.domain.Customer;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+public class LottoTest {
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+    private final int PRICE = 1_000;
+    private final List<Lotto> LOTTOS = List.of(Lotto.from(List.of(1, 2, 3, 4, 5, 6)));
+    private final Customer customer = Customer.of(PRICE, LOTTOS);
 
-class LottoTest {
     @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
+    void 천원으로_구매한_로또가_아무것도_당첨되지_않는다면_수익률은_0_퍼센트() {
+        // given
+        WinningLotto winningLotto = WinningLotto.of(List.of(39, 40, 41, 42, 43, 44), 45);
+        // when
+        EnumMap<Rank, Integer> result = customer.result(winningLotto);
+        double calculate = customer.calculate(result);
+        // then
+        assertEquals(result.get(FIFTH), 0);
+        assertEquals(result.get(FOURTH), 0);
+        assertEquals(result.get(THIRD), 0);
+        assertEquals(result.get(SECOND), 0);
+        assertEquals(result.get(FIRST), 0);
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
-    @Test
-    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertEquals(MISS.getWinningPrize() / PRICE, calculate);
     }
-
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }
