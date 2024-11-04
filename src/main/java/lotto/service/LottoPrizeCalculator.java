@@ -12,8 +12,8 @@ public class LottoPrizeCalculator {
     private static final int FOURTH_WINNER_PRIZE = 50_000;
     private static final int FIFTH_WINNER_PRIZE = 5_000;
 
-    public int calculatePrize(Lottos generatedLottos, Lotto parsedWinningNumbers, int parsedWinningBonus) {
-        int totalPrize = 0;
+    public long calculatePrize(Lottos generatedLottos, Lotto parsedWinningNumbers, int parsedWinningBonus) {
+        long totalPrize = 0;
 
         for (Lotto lotto : generatedLottos.getLottos()) {
             int matchingNumbers = countMatchingNumbers(lotto, parsedWinningNumbers);
@@ -54,5 +54,11 @@ public class LottoPrizeCalculator {
             return FIFTH_WINNER_PRIZE;
         }
         return 0;
+    }
+
+    public double calculateYield(long totalPrize, long purchaseAmount) {
+
+        double yield = ((double) totalPrize / purchaseAmount) * 100;
+        return Math.round(yield * 100) / 100.0;
     }
 }

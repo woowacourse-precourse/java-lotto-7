@@ -32,17 +32,46 @@ public class LottoController {
     }
 
     public void start() {
+        long purchaseAmount = getPurchaseAmount();
+        Lottos generatedLottos = generateLottos(purchaseAmount);
+        Lotto parsedWinningNumbers = getParsedWinningNumbers();
+        int parsedWinningBonus = getParsedWinningBonus();
+        long totalPrize = calculateTotalPrize(generatedLottos, parsedWinningNumbers, parsedWinningBonus);
+        double yield = calculateYield(totalPrize, purchaseAmount);
+        displayResults(totalPrize, yield);
+    }
+
+    private long getPurchaseAmount() {
         String price = purchasePriceInput.getPurchasePrice();
-        int lottoCount = priceCalculator.calculateLotto(price);
+        return Long.parseLong(price);
+    }
+
+    private Lottos generateLottos(long purchaseAmount) {
+        int lottoCount = priceCalculator.calculateLotto(String.valueOf(purchaseAmount));
         Lottos generatedLottos = lottoNumberGenerator.generateLottoNumbers(lottoCount);
         resultDisplayer.showPurchasedLottos(lottoCount, generatedLottos);
+        return generatedLottos;
+    }
 
+    private Lotto getParsedWinningNumbers() {
         String winningNumber = winningNumberInput.getNumber();
-        Lotto parsedWinningNumbers = winningNumberParser.splitWinngNumber(winningNumber);
+        return winningNumberParser.splitWinngNumber(winningNumber);
+    }
 
+    private int getParsedWinningBonus() {
         String winningBonusNumber = winningNumberInput.getBonusNumber();
-        int parsedWinningBonus= winningNumberParser.parseBonusWinningNumber(winningBonusNumber);
-        lottoPrizeCalculator.calculatePrize(generatedLottos, parsedWinningNumbers, parsedWinningBonus);
+        return winningNumberParser.parseBonusWinningNumber(winningBonusNumber);
+    }
+
+    private long calculateTotalPrize(Lottos generatedLottos, Lotto parsedWinningNumbers, int parsedWinningBonus) {
+        return lottoPrizeCalculator.calculatePrize(generatedLottos, parsedWinningNumbers, parsedWinningBonus);
+    }
+
+    private double calculateYield(long totalPrize, long purchaseAmount) {
+        return lottoPrizeCalculator.calculateYield(totalPrize, purchaseAmount);
+    }
+
+    private void displayResults(long totalPrize, double yield) {
+
     }
 }
-
