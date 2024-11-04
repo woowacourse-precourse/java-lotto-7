@@ -19,7 +19,7 @@ public class OutputView {
 		System.out.println(errorMessage);
 	}
 
-	public void printPurchaseLottoResultMessage(int count, List<List<String>> purchaseLottoResult) {
+	public void printPurchasedLottoResultMessage(int count, List<List<String>> purchaseLottoResult) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("\n");
 		stringBuilder.append(getLottoCountMessage(count));
