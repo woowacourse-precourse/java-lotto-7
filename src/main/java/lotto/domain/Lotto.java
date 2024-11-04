@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-import lotto.exception.LottoNumberSizeException;
+import lotto.exception.lottoticketexception.LottoNumberSizeException;
 
 public class Lotto {
 	private final List<Integer> numbers;
