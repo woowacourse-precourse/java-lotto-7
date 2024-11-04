@@ -18,6 +18,10 @@ public class OutputHandler {
     }
 
     public void outputResults(List<RankResultDto> winningResults) {
+        outputRankStatistics(countRanks(winningResults));
+    }
+
+    private Map<Integer, Integer> countRanks(List<RankResultDto> winningResults) {
         Map<Integer, Integer> rankCounts = new HashMap<>();
 
         for (RankResultDto resultDto : winningResults) {
@@ -25,6 +29,10 @@ public class OutputHandler {
             rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
         }
 
+        return rankCounts;
+    }
+
+    private void outputRankStatistics(Map<Integer, Integer> rankCounts) {
         System.out.printf(WINNING_STATISTICS_HEADER);
 
         EnumSet.allOf(PrizeRank.class).stream()
