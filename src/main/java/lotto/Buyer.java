@@ -21,4 +21,8 @@ public class Buyer {
     public List<Lotto> getPurchasedLottos() {
         return purchasedLottos;
     }
+
+    public void printPurchasedLottos() {
+        ResultView.printPurchasedLottos(purchasedLottos);
+    }
 }
