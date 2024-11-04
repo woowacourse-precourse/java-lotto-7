@@ -25,4 +25,10 @@ public class InputView {
         return bonusNumberInput;
     }
 
+    public static void validateEmptyString(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("입력값으로 공백은 허용하지 않습니다.");
+        }
+    }
+
 }

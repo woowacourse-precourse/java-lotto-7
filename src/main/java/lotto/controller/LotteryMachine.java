@@ -3,6 +3,7 @@ package lotto.controller;
 import static lotto.model.LotteryDrawer.validateBonusNumber;
 import static lotto.model.LotteryDrawer.validateWinningNumbers;
 import static lotto.model.Lotto.LOTTO_PRICE;
+import static lotto.view.InputView.validateEmptyString;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,8 +57,7 @@ public class LotteryMachine {
         boolean validInput = false;
         while (!validInput) {
             try {
-                String purchaseAmountInput = inputView.getPurchaseAmountFromUser();
-                int purchaseAmount = Integer.parseInt(purchaseAmountInput);
+                int purchaseAmount = parsePurchaseAmount(inputView.getPurchaseAmountFromUser());
                 issuedLotto = lotteryIssuer.issue(purchaseAmount).stream()
                         .map(ticket -> (Lotto) ticket).toList();
                 validInput = true;
@@ -66,6 +66,17 @@ public class LotteryMachine {
             }
         }
         return issuedLotto;
+    }
+
+    private int parsePurchaseAmount(String purchaseAmountInput) {
+        int purchaseAmount = 0;
+        try {
+            validateEmptyString(purchaseAmountInput);
+            purchaseAmount = Integer.parseInt(purchaseAmountInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("유효하지 않은 숫자 형태입니다.");
+        }
+        return purchaseAmount;
     }
 
     private Set<Integer> setWinningNumbers() {
