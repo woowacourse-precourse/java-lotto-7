@@ -1,19 +1,20 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.QuickLottoGenerator;
-import lotto.dto.LottoNumber;
 import lotto.domain.LottoProfit;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoStore;
 import lotto.domain.Money;
+import lotto.domain.QuickLottoGenerator;
 import lotto.domain.WinningNumbers;
-import lotto.dto.WinningRecipe;
 import lotto.domain.WinningResult;
+import lotto.dto.LottoNumber;
+import lotto.dto.WinningRecipe;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -33,9 +34,15 @@ public class LottoController {
         final List<Lotto> lottos = lottoStore.getLottosByMoney(money);
         responseLottos(lottos);
         final WinningNumbers winningNumbers = requestWinningNumbers();
+        Console.close();
+        responseResult(winningNumbers, lottos, money);
+    }
+
+    private void responseResult(final WinningNumbers winningNumbers, final List<Lotto> lottos, Money money) {
         final WinningResult winningResult = new WinningResult(winningNumbers, lottos);
         final LottoProfit lottoProfit = new LottoProfit(winningResult.getLottoRanks(), money);
-        responseResult(winningResult, lottoProfit);
+        responseWinningResult(winningResult);
+        responseLottoProfit(lottoProfit);
     }
 
     private void responseLottos(final List<Lotto> lottos) {
@@ -46,11 +53,6 @@ public class LottoController {
         return lottos.stream()
                 .map(LottoNumber::of)
                 .toList();
-    }
-
-    private void responseResult(final WinningResult winningResult, final LottoProfit lottoProfit) {
-        responseWinningResult(winningResult);
-        responseLottoProfit(lottoProfit);
     }
 
     private void responseLottoProfit(final LottoProfit lottoProfit) {
