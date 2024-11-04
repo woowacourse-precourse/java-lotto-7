@@ -12,7 +12,7 @@ public class ParserTest {
     @Test
     void 문자열_정수_정상_파싱() {
         int parsedNum = Parser.parseStringToInt("5");
-        assertEquals(parsedNum, 5);
+        assertEquals(5, parsedNum);
     }
 
     @Test
