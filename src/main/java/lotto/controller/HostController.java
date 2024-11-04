@@ -22,6 +22,17 @@ public class HostController {
     private HostController() {
     }
 
+    private void getBallEntry() {
+        ballEntryInputService = new InputServiceImpl<>(new BallEntryValidator(), new BallEntryConverterService());
+        getInput(ballEntryInputService, InputInfo.WINNING_NUMBER);
+    }
+
+    private void getLuckyBall() {
+        luckyBallInputService = new InputServiceImpl<>(
+                new LuckyBallInputValidator(BallEntryValidator.getBallInputEntry()), new BallInputConverterService());
+        getInput(luckyBallInputService, InputInfo.LUCKY_NUMBER);
+    }
+
     private void getInput(InputService<?> inputService, InputInfo inputInfo) {
         String input = UserInput.get(inputInfo.guide());
         try {
@@ -30,6 +41,17 @@ public class HostController {
             System.out.println(e.getMessage());
             getInput(inputService, inputInfo);
         }
+    }
+
+    public void run() {
+        getBallEntry();
+        getLuckyBall();
+        createReport();
+    }
+
+    private void createReport() {
+        HostService hostService = HostServiceImpl.getInstance(ballEntryInputService, luckyBallInputService);
+        hostService.getReport();
     }
 
     public static HostController getController() {
