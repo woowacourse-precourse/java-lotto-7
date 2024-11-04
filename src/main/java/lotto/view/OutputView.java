@@ -74,7 +74,7 @@ public class OutputView {
 			.append('\n')
 			.append(String.format(ConsoleMessage.MATCH_6.getMessage(), prizeCounts.get(Prize.FIRST)))
 			.append('\n');
-		System.out.println(statisticBuilder);
+		System.out.print(statisticBuilder);
 	}
 
 	public void printTotalYield(double yield) {
