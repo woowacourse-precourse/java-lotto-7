@@ -8,9 +8,17 @@ public record PurchaseAmount(int amount) {
     }
 
     private static int validatePurchaseAmount(String input) {
-        if (!input.matches(SIGNED_NUMBER_REGEX)) {
+        validateLetter(input);
+        return Integer.parseInt(input);
+    }
+
+    private static void validateLetter(String value) {
+        if (isLetter(value)) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 문자가 아닌 숫자여야 합니다.");
         }
-        return Integer.parseInt(input);
+    }
+
+    private static boolean isLetter(String value) {
+        return !value.matches(SIGNED_NUMBER_REGEX);
     }
 }
