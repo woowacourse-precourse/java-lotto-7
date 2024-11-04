@@ -25,6 +25,9 @@ public class Application {
 
         List<Lotto> lottos = createLotto(lottoPieces);
         lottosView(lottos);
+
+        String winningNumber = Console.readLine();
+        Lotto winningLotto = new Lotto(parseWinningNumber(winningNumber));
     }
 
     public static int buyLotto(final String input) {
@@ -57,5 +60,16 @@ public class Application {
         for (Lotto lotto : lottos) {
             lotto.lottoView();
         }
+    }
+
+    // 예외 처리 필요
+    public static List<Integer> parseWinningNumber(String input) {
+        String[] splitInput = input.split(",");
+
+        List<Integer> winningNumber = new ArrayList<>();
+        for (String number : splitInput) {
+            winningNumber.add(Integer.parseInt(number));
+        }
+        return winningNumber;
     }
 }
