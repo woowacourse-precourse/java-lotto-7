@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -51,8 +52,8 @@ public class LottoProfitCalculatorTest {
 
         // then
         LottoResult lottoResult = LottoResult.of(lottos, winningNumbers, bonusNumber);
-        List<LottoRankType> ranks = lottoResult.getLottoRankTypes();
-        String result = LottoProfitCalculator.from(ranks, purchaseAmount).getLottoProfitRate();
+        EnumMap<LottoRankType, Integer> rankCountMap = lottoResult.getRankCountMap();
+        String result = LottoProfitCalculator.from(rankCountMap, purchaseAmount).getLottoProfitRate();
 
         // then
         assertThat(result).isEqualTo(expectedRate);

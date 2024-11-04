@@ -3,6 +3,7 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.EnumMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,9 +30,14 @@ class LottoResultTest {
         int bonusNumber = 7;
 
         LottoResult lottoResult = LottoResult.of(lottos, winningNumbers, bonusNumber);
-        List<LottoRankType> ranks = lottoResult.getLottoRankTypes();
+        EnumMap<LottoRankType, Integer> rankCountMap = lottoResult.getRankCountMap();
 
-        assertThat(ranks.getFirst()).isEqualTo(LottoRankType.FIRST);
+        assertThat(rankCountMap.get(LottoRankType.FIRST)).isEqualTo(1);
+        assertThat(rankCountMap.get(LottoRankType.SECOND)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.THIRD)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.FOURTH)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.FIFTH)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.NONE)).isEqualTo(0);
     }
 
     @Test
@@ -42,9 +48,14 @@ class LottoResultTest {
         int bonusNumber = 7;
 
         LottoResult lottoResult = LottoResult.of(lottos, winningNumbers, bonusNumber);
-        List<LottoRankType> ranks = lottoResult.getLottoRankTypes();
+        EnumMap<LottoRankType, Integer> rankCountMap = lottoResult.getRankCountMap();
 
-        assertThat(ranks.getFirst()).isEqualTo(LottoRankType.SECOND);
+        assertThat(rankCountMap.get(LottoRankType.FIRST)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.SECOND)).isEqualTo(1);
+        assertThat(rankCountMap.get(LottoRankType.THIRD)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.FOURTH)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.FIFTH)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.NONE)).isEqualTo(0);
     }
 
     @Test
@@ -55,9 +66,14 @@ class LottoResultTest {
         int bonusNumber = 13;
 
         LottoResult lottoResult = LottoResult.of(lottos, winningNumbers, bonusNumber);
-        List<LottoRankType> ranks = lottoResult.getLottoRankTypes();
+        EnumMap<LottoRankType, Integer> rankCountMap = lottoResult.getRankCountMap();
 
-        assertThat(ranks.getFirst()).isEqualTo(LottoRankType.NONE);
+        assertThat(rankCountMap.get(LottoRankType.FIRST)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.SECOND)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.THIRD)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.FOURTH)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.FIFTH)).isEqualTo(0);
+        assertThat(rankCountMap.get(LottoRankType.NONE)).isEqualTo(1);
     }
 
 }
