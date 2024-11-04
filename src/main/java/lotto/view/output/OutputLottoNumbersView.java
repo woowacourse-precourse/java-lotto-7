@@ -1,7 +1,7 @@
 package lotto.view.output;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class OutputLottoNumbersView {
     public static void lottoNumbersOutput(Lotto lotto) {

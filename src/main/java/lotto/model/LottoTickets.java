@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
 
 public class LottoTickets {
     private final List<Lotto> tickets = new ArrayList<>();

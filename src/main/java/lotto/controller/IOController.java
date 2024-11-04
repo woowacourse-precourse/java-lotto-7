@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.Set;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.LottoTickets;
 import lotto.model.ResultAnalysis;
