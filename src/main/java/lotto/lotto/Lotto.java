@@ -1,5 +1,7 @@
 package lotto.lotto;
 
+import static lotto.lotto.constant.LottoConstant.MAXIMUM_LOTTO_VALUE;
+import static lotto.lotto.constant.LottoConstant.MINIMUM_LOTTO_VALUE;
 import static lotto.lotto.constant.LottoConstant.NUM_OF_LOTTO_NUMBERS;
 
 import java.util.List;
@@ -18,12 +20,20 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != NUM_OF_LOTTO_NUMBERS) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        validateNumOfLottoNumber(numbers);
+        validateDuplicated(numbers);
+        validateNumbersInRange(numbers);
+    }
 
+    private void validateDuplicated(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 중복되면 안 됩니다.");
+        }
+    }
+
+    private void validateNumOfLottoNumber(List<Integer> numbers) {
+        if (numbers.size() != NUM_OF_LOTTO_NUMBERS) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
