@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 import lotto.message.Message;
 
 import java.util.List;
@@ -14,6 +15,12 @@ public class LottoView {
         isPositive(input);
         return input;
     }
+
+    public static void printLottoList(List<Lotto> lottoList){
+        System.out.println(lottoList.size() + Message.OUTPUT_LOTTOS.toString());
+        lottoList.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+
 
     private static void isDivisibleBy1000(String input) {
         if(Integer.parseInt(input) % 1000 !=0){
