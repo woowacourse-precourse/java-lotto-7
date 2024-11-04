@@ -10,8 +10,10 @@ import lotto.dto.ResultDto;
 public class OutputView {
 
     public void printPurchasedLotto(int count, String lottos) {
-        System.out.println(PURCHASED_LOTTO_COUNT.getMessage());
+        System.out.printf(PURCHASED_LOTTO_COUNT.getMessage(),count);
+        System.out.print(System.lineSeparator());
         System.out.println(lottos);
+        System.out.print(System.lineSeparator());
     }
 
     public void printWinningStatic(ResultDto resultDto) {
