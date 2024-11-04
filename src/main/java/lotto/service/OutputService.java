@@ -1,6 +1,10 @@
 package lotto.service;
 
+import lotto.domain.Prize;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OutputService {
     public void requestPay() {
@@ -21,5 +25,32 @@ public class OutputService {
 
     public void requestBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
+
+    public void moveToShowPrize() {
+        System.out.println("당첨 통계\n---");
+    }
+
+    public void showResultLotto(Map<Prize, Integer> result) {
+        for(Prize prize : Prize.values()) {
+            if(prize.getIndex() == 0) {
+                continue;
+            }
+            System.out.print(checkPrizeAndShow(prize, prize.getBonusNumber()));
+            System.out.println(result.get(prize) + "개");
+        }
+    }
+
+    public String checkPrizeAndShow(Prize prize, boolean bonus) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(prize.getAmount());
+        sb.append("개 일치");
+        if(bonus) {
+            sb.append(", 보너스 볼 일치");
+        }
+        sb.append("(");
+        sb.append(prize.getReward());
+        sb.append("원) - ");
+        return sb.toString();
     }
 }
