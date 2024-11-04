@@ -12,17 +12,23 @@ public class InputView {
 
     public static int getPurchaseAmount() {
         System.out.println(ASK_PURCHASE_AMOUNT);
-        return Integer.parseInt(readLine());
+        int amount = Integer.parseInt(readLine());
+        System.out.println();
+        return amount;
     }
 
     public static List<Integer> getWinningNumbers() {
         System.out.println(ASK_WINNING_NUMBERS);
-        return parseWinningNumber(readLine());
+        List<Integer> winningNumbers = parseWinningNumber(readLine());
+        System.out.println();
+        return winningNumbers;
     }
 
     public static int getBonusNumber() {
         System.out.println(ASK_BONUS_NUMBER);
-        return Integer.parseInt(readLine());
+        int bonusNumber = Integer.parseInt(readLine());
+        System.out.println();
+        return bonusNumber;
     }
 
     private static List<Integer> parseWinningNumber(String input) {
