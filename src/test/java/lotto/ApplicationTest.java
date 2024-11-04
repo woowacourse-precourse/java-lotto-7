@@ -52,6 +52,20 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+        assertSimpleTest(() -> {
+            runException("100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("-100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("1001");
+            //구입 금액은 1,000원 단위로 입력 받으며
+            // 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Override
