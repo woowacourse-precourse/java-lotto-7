@@ -9,7 +9,7 @@ public class BonusNumber {
     }
 
     private void validate(int bonusNumber, Lotto winningLotto) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < Constants.LOTTO_MIN_NUM || bonusNumber > Constants.LOTTO_MAX_NUM) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이어야 합니다.");
         }
         if (winningLotto.getNumbers().contains(bonusNumber)) {

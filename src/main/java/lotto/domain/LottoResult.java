@@ -3,12 +3,6 @@ package lotto.domain;
 import java.util.List;
 
 public class LottoResult {
-    private static final int THREE_MATCHES_PRIZE = 5000;
-    private static final int FOUR_MATCHES_PRIZE = 50000;
-    private static final int FIVE_MATCHES_PRIZE = 1500000;
-    private static final int FIVE_MATCHES_WITH_BONUS_PRIZE = 30000000;
-    private static final int SIX_MATCHES_PRIZE = 2000000000;
-
     private int threeMatchesCount;
     private int fourMatchesCount;
     private int fiveMatchesCount;
@@ -47,11 +41,11 @@ public class LottoResult {
 
     public int getTotalPrizeAmount() {
         int totalPrizeAmount = 0;
-        totalPrizeAmount += threeMatchesCount * THREE_MATCHES_PRIZE;
-        totalPrizeAmount += fourMatchesCount * FOUR_MATCHES_PRIZE;
-        totalPrizeAmount += fiveMatchesCount * FIVE_MATCHES_PRIZE;
-        totalPrizeAmount += fiveMatchesWithBonusCount * FIVE_MATCHES_WITH_BONUS_PRIZE;
-        totalPrizeAmount += sixMatchesCount * SIX_MATCHES_PRIZE;
+        totalPrizeAmount += threeMatchesCount * Constants.THREE_MATCHES_PRIZE;
+        totalPrizeAmount += fourMatchesCount * Constants.FOUR_MATCHES_PRIZE;
+        totalPrizeAmount += fiveMatchesCount * Constants.FIVE_MATCHES_PRIZE;
+        totalPrizeAmount += fiveMatchesWithBonusCount * Constants.FIVE_MATCHES_WITH_BONUS_PRIZE;
+        totalPrizeAmount += sixMatchesCount * Constants.SIX_MATCHES_PRIZE;
 
         return totalPrizeAmount;
     }

@@ -17,11 +17,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constants.LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         for(Integer number : numbers){
-            if (number < 1 || number > 45) {
+            if (number < Constants.LOTTO_MIN_NUM || number > Constants.LOTTO_MAX_NUM) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이어야 합니다.");
             }
         }
