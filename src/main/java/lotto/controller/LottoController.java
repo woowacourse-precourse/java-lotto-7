@@ -7,7 +7,6 @@ import lotto.model.LottoGenerator;
 import lotto.model.LottoNumberMatcher;
 import lotto.model.LottoNumberParser;
 import lotto.util.Parser;
-import lotto.util.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

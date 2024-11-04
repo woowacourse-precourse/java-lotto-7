@@ -2,15 +2,16 @@ package lotto.model;
 
 import lotto.enums.LottoConfig;
 import lotto.exception.LottoExceptionMessage;
+import lotto.util.NumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
-    private final lotto.util.model.NumberGenerator numberGenerator;
+    private final NumberGenerator numberGenerator;
 
     public LottoGenerator() {
-        this.numberGenerator = new lotto.util.model.NumberGenerator();
+        this.numberGenerator = new NumberGenerator();
     }
 
     public Lotto generate() {
