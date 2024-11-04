@@ -46,7 +46,7 @@ public class ApplicationRunner extends AbstractIOHandler {
 
     private WinningLottoBuilder setWinningNumbers(String input) {
         List<Integer> winningNumbers = Objects.requireNonNull(StringParser.toNumericsSplitBy(input, DELIMITER));
-        return WinningLottoBuilder.builder().winningNumbers(winningNumbers);
+        return WinningLotto.builder().winningNumbers(winningNumbers);
     }
 
     private WinningLotto setBonusNumber(String input, WinningLottoBuilder builder) {
