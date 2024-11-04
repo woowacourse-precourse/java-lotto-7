@@ -6,18 +6,30 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int money = 0;
-        while (true) {
+        String winningNumbers = "";
+        boolean moneyValid = true;
+        boolean winningNumbersValid = true;
+        while (moneyValid) {
             try {
                 money = getValidMoney();
+                moneyValid = false;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
-            break;
         }
         LottoMachine lottoMachine = new LottoMachine(money);
         lottoMachine.makeLottos();
         lottoMachine.printLottos();
-        lottoMachine.inputWinnigNumbers(Console.readLine());
+        while (winningNumbersValid){
+            try{
+                winningNumbers = Console.readLine();
+                lottoMachine.inputWinnigNumbers(winningNumbers);
+                winningNumbersValid = false;
+            } catch (IllegalArgumentException e){
+                System.err.println(e.getMessage());
+            }
+        }
+
         lottoMachine.inputBonusNumbers(Console.readLine());
         lottoMachine.initPrizeMap();
         lottoMachine.makePrizeMap();

@@ -5,7 +5,7 @@ import java.util.*;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoMachine {
-
+    final int winnigNumberCount = 6;
     int inputprizeResult;
     int count;
 
@@ -19,11 +19,11 @@ public class LottoMachine {
         this.count = this.inputprizeResult / 1000;
     }
 
-    private boolean isDigit(String input){
+    private boolean isDigit(String input) {
         char tmp;
-        for (int i=0; i< input.length(); i++){
+        for (int i = 0; i < input.length(); i++) {
             tmp = input.charAt(i);
-            if(!Character.isDigit(tmp)){
+            if (!Character.isDigit(tmp)) {
                 return false;
             }
         }
@@ -52,7 +52,7 @@ public class LottoMachine {
 
     public void inputWinnigNumbers(String winnigNumbers) {
 
-        int[] intNumbers = validateWinnigNumber(winnigNumbers.split(","));
+        int[] intNumbers = validateWinnigNumber(winnigNumbers);
         for (int i = 0; i < intNumbers.length; i++) {
             this.winnigNumbers.add(intNumbers[i]);
         }
@@ -66,23 +66,24 @@ public class LottoMachine {
     }
 
 
-    private int[] validateWinnigNumber(String[] strArr) {
-        while (true){
+    private int[] validateWinnigNumber(String winnigNumbers) {
+
+        String[] splitedWinningNumber = winnigNumbers.split(",");
+        if (splitedWinningNumber.length != winnigNumberCount) {
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력하세요");
+        }
+        int[] convertedArr = new int[splitedWinningNumber.length];
+
+        for (int i = 0; i < splitedWinningNumber.length; i++) {
             try {
-                if (strArr.length!=6){
-                    throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력하세요");
-                }
-                int[] convertedArr = new int[strArr.length];
-                for (int i = 0; i < strArr.length; i++) {
-                    convertedArr[i] = Integer.parseInt(strArr[i]);
-                }
-                return convertedArr;
-            } catch (IllegalArgumentException e){
-                System.err.println(e.getMessage());
+                convertedArr[i] = Integer.parseInt(splitedWinningNumber[i]);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 숫자로 당첨번호를 입력하시오");
             }
         }
-
+        return convertedArr;
     }
+
 
     public Ranking getRanking(List<Integer> lottoNumbers) {
         int matchCount = 0;
@@ -95,7 +96,7 @@ public class LottoMachine {
                 isBonus = true;
             }
         }
-        if(matchCount<3){
+        if (matchCount < 3) {
             return Ranking.NOLUCK;
         }
         if (matchCount == 3) {
@@ -131,10 +132,10 @@ public class LottoMachine {
 
     public void printPrize() {
         for (Map.Entry<Ranking, Integer> entry : prizeResult.entrySet()) {
-            if (entry.getKey().equals(Ranking.SECOND)){
+            if (entry.getKey().equals(Ranking.SECOND)) {
                 System.out.println(String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"
-                    ,entry.getKey().getMatchCount(), entry.getKey().getPrice()
-                    ,entry.getValue()));
+                        , entry.getKey().getMatchCount(), entry.getKey().getPrice()
+                        , entry.getValue()));
                 continue;
             }
             System.out.println(String.format("%d개 일치 (%,d원) - %d개"
@@ -143,14 +144,14 @@ public class LottoMachine {
         }
     }
 
-    public void printProfit(){
+    public void printProfit() {
         double sum = 0;
         double profit = 0;
-        for (Map.Entry<Ranking,Integer> entry : prizeResult.entrySet()){
-            sum += entry.getKey().getPrice()*entry.getValue();
+        for (Map.Entry<Ranking, Integer> entry : prizeResult.entrySet()) {
+            sum += entry.getKey().getPrice() * entry.getValue();
         }
-        profit = sum/inputprizeResult*100;
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.",profit));
+        profit = sum / inputprizeResult * 100;
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profit));
     }
 
 
