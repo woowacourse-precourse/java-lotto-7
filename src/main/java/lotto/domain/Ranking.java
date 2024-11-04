@@ -29,4 +29,8 @@ public enum Ranking {
                 .orElse(Ranking.LAST_PLACE);
     }
 
+    public int getWinningPrice() {
+        return winningPrice;
+    }
+
 }

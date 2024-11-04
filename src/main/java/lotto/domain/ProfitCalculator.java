@@ -41,4 +41,10 @@ public class ProfitCalculator {
         return numbers.contains(bonusNumber);
     }
 
+    public int getWinningAmount(Map<Ranking, Integer> winningInfo) {
+        return winningInfo.entrySet().stream()
+                .mapToInt(entry -> (int) entry.getKey().getWinningPrice() * entry.getValue())
+                .sum();
+    }
+
 }
