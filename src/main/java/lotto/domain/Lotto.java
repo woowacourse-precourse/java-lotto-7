@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.LottoConstant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,25 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    /**
+     * 입력받은 로또 당첨번호와 비교하여 등수를 계산합니다.
+     *
+     * @param gradingNumbers 비교대상이 될 로또 당첨번호
+     * @param bonusNumber    비교대상이 될 로또 보너스번호
+     * @return 로또 당첨등수. 당첨되지 않은 경우 -1을 반환합니다.
+     */
+    public int grade(List<Integer> gradingNumbers, int bonusNumber) {
+        int[] compareResult = calculateSameCount(gradingNumbers, bonusNumber);
+        int sameCount = compareResult[0];
+        boolean isBonusInclude = compareResult[1] == 1;
+
+        if (sameCount == 5) {
+            if (!isBonusInclude) return 3;
+            return 2;
+        }
+        return LottoConstant.LOTTO_GRADES[sameCount];
+    }
 
     /**
      * 로또 당첨번호와 보너스번호가 현재 로또의 번호와 몇개 일치하는지 판단합니다.
