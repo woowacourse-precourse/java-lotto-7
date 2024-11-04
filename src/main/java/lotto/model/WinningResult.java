@@ -22,7 +22,7 @@ public enum WinningResult {
         if (matchCount == 5 && isBonusMatch) {
             return SECOND;
         }
-        if(matchCount == 5) {
+        if (matchCount == 5) {
             return THIRD;
         }
 
@@ -32,6 +32,14 @@ public enum WinningResult {
             }
         }
         return NONE;
+    }
+
+    public int getNormalCount() {
+        return normalCount;
+    }
+
+    public boolean isBonusMatch() {
+        return bonusMatch;
     }
 
     public int getReward() {
