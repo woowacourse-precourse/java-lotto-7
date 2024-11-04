@@ -1,7 +1,20 @@
 package lotto.util;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class InputParser {
-    public static String[] parse(String input) {
-        return input.split(",");
+    public static int parsePurchasePrice(String input) {
+        InputValidator.validatePurchasePrice(input);
+        return Integer.parseInt(input);
+    }
+
+    public static List<Integer> parseWinningNumbers(String input) {
+        InputValidator.validateWinningNumbers(input);
+        List<Integer> winningNumbers = new ArrayList<>();
+        Arrays.stream(input.split(",")).forEach(
+                num -> winningNumbers.add(Integer.parseInt(num)));
+        return winningNumbers;
     }
 }

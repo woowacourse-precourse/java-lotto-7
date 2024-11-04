@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.util.NumberSorter;
-
 import java.util.*;
 
 public class Lotto {
@@ -21,7 +19,7 @@ public class Lotto {
         }
     }
 
-    private boolean validateNumberRange(int number) {
+    public boolean validateNumberRange(int number) {
         return 1 <= number && number <= 45;
     }
 
