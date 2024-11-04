@@ -7,23 +7,20 @@ public class Input {
     private static final String INPUT_AMOUNT_GUIDE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBERS_GUIDE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_GUIDE = "보너스 번호를 입력해 주세요.";
-    private final InputValidator inputValidator;
     private final View view;
 
-    public Input(InputValidator inputValidator, View view) {
-        this.inputValidator = inputValidator;
+    public Input(View view) {
         this.view = view;
     }
 
-    public Integer getAmountWithGuide() {
+    public LottoPurchase getAmountWithGuide() {
         view.printGuide(INPUT_AMOUNT_GUIDE);
         return getValidatedAmount();
     }
 
-    private Integer getValidatedAmount() {
+    private LottoPurchase getValidatedAmount() {
         Integer amount = StringParser.toInteger(Console.readLine());
-        inputValidator.validateAmount(amount);
-        return amount;
+        return new LottoPurchase(amount);
     }
 
     public Lotto getWinNumbersWithGuide() {

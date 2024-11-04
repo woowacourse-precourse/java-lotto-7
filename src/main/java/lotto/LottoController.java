@@ -12,28 +12,27 @@ public class LottoController {
     }
 
     public void run() {
-        Integer lottoPurchaseCount = getCount();
+        LottoPurchase lottoPurchase = purchaseLotto();
         WinningNumbers winningNumbers = getWinningNumbers();
-        Lottos lottos = createLottos(lottoPurchaseCount);
+        Lottos lottos = createLottos(lottoPurchase);
 
-        displayLottos(lottoPurchaseCount, lottos);
-        displayResults(lottos, winningNumbers, lottoPurchaseCount);
+        displayLottos(lottoPurchase, lottos);
+        displayResults(lottos, winningNumbers, lottoPurchase);
     }
 
-    public void displayResults(Lottos lottos, WinningNumbers winningNumbers, Integer count) {
-        LottoResults lottoResults = lottoService.calculateResults(lottos, winningNumbers, count);
+    public void displayResults(Lottos lottos, WinningNumbers winningNumbers, LottoPurchase lottoPurchase) {
+        LottoResults lottoResults = lottoService.calculateResults(lottos, winningNumbers, lottoPurchase);
         view.printWinningStatistics(lottoResults.getRankFrequency());
         view.printRevenue(lottoResults.getRevenue());
     }
 
-    public void displayLottos(Integer count, Lottos lottos) {
-        view.printPurchaseCount(count);
+    public void displayLottos(LottoPurchase lottoPurchase, Lottos lottos) {
+        view.printPurchaseCount(lottoPurchase.getCount());
         view.printLottos(lottos);
     }
 
-    public Integer getCount() {
-        Integer amount = inputHandler.handleAmount();
-        return amount / 1000;
+    public LottoPurchase purchaseLotto() {
+        return inputHandler.handleAmount();
     }
 
     public WinningNumbers getWinningNumbers() {
@@ -41,7 +40,7 @@ public class LottoController {
         return inputHandler.handleBonusNumber(winNumberLotto);
     }
 
-    public Lottos createLottos(Integer lottoPurchaseCount) {
-        return lottoService.createLottos(lottoPurchaseCount);
+    public Lottos createLottos(LottoPurchase lottoPurchase) {
+        return lottoService.createLottos(lottoPurchase.getCount());
     }
 }

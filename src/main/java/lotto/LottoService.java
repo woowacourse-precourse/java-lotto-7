@@ -8,17 +8,15 @@ public class LottoService {
     private final LottoGenerator lottoGenerator;
     public final RevenueCalculator revenueCalculator;
 
-    private static final Integer LOTTO_PRICE = 1000;
-
     public LottoService(LottoGenerator lottoGenerator, RevenueCalculator revenueCalculator) {
         this.lottoGenerator = lottoGenerator;
         this.revenueCalculator = revenueCalculator;
     }
 
-    public LottoResults calculateResults(Lottos lottos, WinningNumbers winningNumbers, Integer count) {
+    public LottoResults calculateResults(Lottos lottos, WinningNumbers winningNumbers, LottoPurchase lottoPurchase) {
         List<Rank> ranks = calculateWinnings(lottos, winningNumbers);
         Map<Rank, Integer> rankFrequency = rankCounter(ranks);
-        double revenue = calculateRevenue(ranks, count * LOTTO_PRICE);
+        double revenue = calculateRevenue(ranks, lottoPurchase.getAmount());
         return new LottoResults(rankFrequency, revenue);
     }
 

@@ -1,16 +1,13 @@
 package lotto;
 
 public class LottoFactory {
-    private static InputValidator inputValidator() {
-        return new InputValidator();
-    }
 
     private static InputHandler inputHandler() {
         return new InputHandler(input());
     }
 
     private static Input input() {
-        return new Input(inputValidator(), view());
+        return new Input(view());
     }
 
     private static DrawStrategy drawStrategy() {

@@ -9,7 +9,7 @@ public class InputHandler {
         this.input = input;
     }
 
-    public Integer handleAmount() {
+    public LottoPurchase handleAmount() {
         return handle(input::getAmountWithGuide);
     }
 
