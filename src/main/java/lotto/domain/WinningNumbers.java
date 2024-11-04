@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.List;
 
 public class WinningNumbers {
-    private Lotto winningNumbers;
+    private final Lotto winningNumbers;
 
     private WinningNumbers(Lotto winningNumbers) {
         this.winningNumbers = winningNumbers;

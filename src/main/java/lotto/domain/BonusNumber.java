@@ -7,7 +7,7 @@ import static lotto.util.Validator.isEmpty;
 import static lotto.util.Validator.isInteger;
 
 public class BonusNumber {
-    private int value;
+    private final int value;
 
     public BonusNumber(String value, WinningNumbers winningNumbers) {
         validate(value, winningNumbers);

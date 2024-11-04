@@ -7,7 +7,7 @@ import static lotto.util.Validator.isInteger;
 import static lotto.util.Validator.isPositive;
 
 public class Cost {
-    int value;
+    private final int value;
 
     public Cost(String value) {
         validate(value);
