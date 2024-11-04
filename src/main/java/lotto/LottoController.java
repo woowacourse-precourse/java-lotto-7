@@ -6,15 +6,10 @@ import java.util.Map;
 public class LottoController {
     private final LottoGenerator lottoGenerator;
     private final LottoResultCalculator calculator;
-    private final InputView inputView;
-    private final OutputView outputView;
 
-    public LottoController(LottoGenerator lottoGenerator, LottoResultCalculator calculator,
-                           InputView inputView, OutputView outputView) {
+    public LottoController(LottoGenerator lottoGenerator, LottoResultCalculator calculator) {
         this.lottoGenerator = lottoGenerator;
         this.calculator = calculator;
-        this.inputView = inputView;
-        this.outputView = outputView;
     }
 
     public void run() {
