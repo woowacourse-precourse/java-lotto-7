@@ -2,20 +2,30 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.enums.CustomError;
+import lotto.enums.LottoResultType;
 
+import java.text.DecimalFormat;
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Application {
+    private static LottoMachine lottoMachine = new LottoMachine();
+
     public static void main(String[] args) {
         int purchaseAmount = promptPurchaseAmount();
-
+        List<Lotto> lottos = lottoMachine.purchaseLotto(purchaseAmount);
+        printLottosNum(lottos);
         List<Integer> winningNumbers = promptWinningNumbers();
-
         int bonusNumber = promptBonusNumber(winningNumbers);
-
+        List<LottoResultType> lottoResults = lottoMachine.checkLottoResult(lottos, winningNumbers, bonusNumber);
+        int totalPrizeMoney = lottoResults.stream()
+                .mapToInt(LottoResultType::getPrizeMoney)
+                .sum();
+        printLottoResults(purchaseAmount, totalPrizeMoney, lottoResults);
+        Console.close();
     }
 
     public static int promptPurchaseAmount() {
@@ -31,8 +41,21 @@ public class Application {
         }
     }
 
+    public static void printLottosNum(List<Lotto> lottos) {
+        System.out.println();
+        System.out.printf("%d개를 구매했습니다.\n", lottos.size());
+        for (Lotto lotto : lottos) {
+            System.out.println(
+                    lotto.getNumbers().stream()
+                            .sorted()
+                            .toList()
+            );
+        }
+    }
+
     public static List<Integer> promptWinningNumbers() {
         while (true) {
+            System.out.println();
             System.out.println("당첨 번호를 입력해 주세요.");
             String winningNumbers = Console.readLine();
 
@@ -49,6 +72,7 @@ public class Application {
 
     public static int promptBonusNumber(List<Integer> winningNumbers) {
         while (true) {
+            System.out.println();
             System.out.println("보너스 번호를 입력해 주세요.");
             String bonusNumber = Console.readLine();
 
@@ -58,6 +82,39 @@ public class Application {
 
             handleInvalidBonusNumber();
         }
+    }
+
+    public static void printLottoResults(int purchaseAmount, int totalPrizeMoney, List<LottoResultType> lottoResults) {
+        System.out.println();
+        System.out.println("당첨 통계\n---");
+        for (LottoResultType lottoResultType : LottoResultType.hasPrizeMoneyLottoResultType()) {
+            printLottoResultByType(lottoResultType, lottoResults);
+        }
+        printEarningRate(purchaseAmount, totalPrizeMoney);
+    }
+
+    private static void printLottoResultByType(LottoResultType lottoResultType, List<LottoResultType> lottoResults) {
+        String message = "{0}개 일치 ({1}원) - {2}개";
+        if (lottoResultType == LottoResultType.SECOND_PLACE) {
+            message = "{0}개 일치, 보너스 볼 일치 ({1}원) - {2}개";
+        }
+
+        long count = lottoResults.stream()
+                .filter(lottoResult -> lottoResult == lottoResultType)
+                .count();
+        System.out.println(
+                MessageFormat.format(
+                        message, lottoResultType.getMatchCnt(), lottoResultType.getPrizeMoney(), count
+                )
+        );
+    }
+
+    private static void printEarningRate(int purchaseAmount, int totalPrizeMoney) {
+        double profitRate = ((double) totalPrizeMoney / purchaseAmount) * 100;
+        DecimalFormat df = new DecimalFormat("#,##0.0");
+        String formattedProfitRate = df.format(profitRate);
+
+        System.out.println("총 수익률은 " + formattedProfitRate + "%입니다.");
     }
 
     public static boolean isValidPurchaseAmount(String purchaseAmount) {
