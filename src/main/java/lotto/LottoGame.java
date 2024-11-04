@@ -47,4 +47,24 @@ public class LottoGame {
         }
         return resultMap;
     }
+
+    // 수익률 출력 메서드
+    private void printYield(int purchaseAmount, Map<PrizeRank, Integer> resultMap) {
+        double totalPrize = calculateTotalPrize(resultMap);
+        double yield = (totalPrize / purchaseAmount) * 100;
+
+        System.out.printf("총 수익률은 %.2f%%입니다.%n", yield);
+    }
+
+    // 총 당첨 금액 계산 메서드
+    public double calculateTotalPrize(Map<PrizeRank, Integer> resultMap) {
+        double totalPrize = 0;
+
+        for (Map.Entry<PrizeRank, Integer> entry : resultMap.entrySet()) {
+            PrizeRank rank = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += rank.getPrizeAmount() * count;
+        }
+        return totalPrize;
+    }
 }

@@ -48,4 +48,27 @@ class LottoGameTest {
         assertThat(results.get(PrizeRank.FOURTH)).isEqualTo(1);
         assertThat(results.get(PrizeRank.FIFTH)).isEqualTo(1);
     }
+
+    @DisplayName("수익률 계산이 정확하게 수행되는지 테스트")
+    @Test
+    void 수익률_계산_테스트() {
+        LottoGame game = new LottoGame();
+
+        // 구입 금액: 5,000원
+        int purchaseAmount = 5000;
+
+        // 당첨 결과 (예: 1등 1개, 3등 1개)
+        Map<PrizeRank, Integer> resultMap = Map.of(
+                PrizeRank.FIRST, 1,
+                PrizeRank.THIRD, 1
+        );
+
+        // 수익률 계산
+        double totalPrize = game.calculateTotalPrize(resultMap);
+        double yield = (totalPrize / purchaseAmount) * 100;
+
+        // 예상 총 당첨 금액: 2,001,500,000원
+        assertThat(totalPrize).isEqualTo(2_001_500_000);
+        assertThat(Math.round(yield * 100) / 100.0).isEqualTo(40030000.00);  // 소수점 둘째 자리 반올림
+    }
 }

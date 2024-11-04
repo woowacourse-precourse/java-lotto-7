@@ -22,7 +22,11 @@ public class Application {
         lottoMachine.printTickets(tickets);
 
         // 당첨 내역 계산 및 출력
-        printResults(tickets, winningNumbers, bonusNumber);
+        Map<PrizeRank, Integer> resultMap = lottoMachine.calculateResults(tickets, winningNumbers, bonusNumber);
+
+        // 당첨 내역 및 수익률 출력
+        printResults(resultMap);
+        printYield(lottoPurchaseAmount, resultMap);
     }
 
     private static int getValidatedPurchaseAmount() {
@@ -87,9 +91,7 @@ public class Application {
         }
     }
 
-    private static void printResults(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
-        Map<PrizeRank, Integer> resultMap = lottoMachine.calculateResults(tickets, winningNumbers, bonusNumber);
-
+    private static void printResults(Map<PrizeRank, Integer> resultMap) {
         System.out.println("당첨 통계\n---");
         for (PrizeRank rank : PrizeRank.values()) {
             if (rank != PrizeRank.NONE) {
@@ -100,5 +102,25 @@ public class Application {
                         resultMap.getOrDefault(rank, 0));
             }
         }
+    }
+
+    // 수익률 출력 메서드
+    private static void printYield(int purchaseAmount, Map<PrizeRank, Integer> resultMap) {
+        double totalPrize = calculateTotalPrize(resultMap);
+        double yield = (totalPrize / purchaseAmount) * 100;
+
+        System.out.printf("총 수익률은 %.2f%%입니다.%n", yield);
+    }
+
+    // 총 당첨 금액 계산 메서드
+    private static double calculateTotalPrize(Map<PrizeRank, Integer> resultMap) {
+        double totalPrize = 0;
+
+        for (Map.Entry<PrizeRank, Integer> entry : resultMap.entrySet()) {
+            PrizeRank rank = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += rank.getPrizeAmount() * count;
+        }
+        return totalPrize;
     }
 }
