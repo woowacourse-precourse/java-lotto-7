@@ -39,11 +39,11 @@ class RankCalculatorTest {
 
         assertThat(rankCalculator.checkBonusNumber(
                 Lotto.createUserLotto(List.of(1,2,3,4,5,6)),
-                new WinningNumber(Lotto.createWinningLotto(List.of(1,2,3,4,5,6)),bonusNumber1)))
+                new WinningNumber(Lotto.createWinningLotto(List.of(2,3,4,5,7,8)),bonusNumber1)))
                 .isTrue();
         assertThat(rankCalculator.checkBonusNumber(
                 Lotto.createUserLotto(List.of(1,2,3,4,5,6)),
-                new WinningNumber(Lotto.createWinningLotto(List.of(1,2,3,4,5,6)),bonusNumber2)))
+                new WinningNumber(Lotto.createWinningLotto(List.of(2,3,4,5,6,8)),bonusNumber2)))
                 .isFalse();
     }
 

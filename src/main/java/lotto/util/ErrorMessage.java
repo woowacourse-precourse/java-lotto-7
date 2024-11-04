@@ -1,9 +1,15 @@
 package lotto.util;
 
 public enum ErrorMessage {
-    MAX_CAR_COUNT(
-            "[ERR_CODE]",
-            "ERR_MSG"),
+    LOTTO_NUMBER_COUNT(
+            "[R0001]",
+            "로또 번호는 6개여야 합니다."),
+    LOTTO_NUMBER_RANGE(
+            "[R0002]",
+            "로또 번호는 1에서 45 사이여야 합니다."),
+    UNIQUE_LOTTO_NUMBER(
+            "[U0001]",
+            "로또 번호는 중복 될 수 없습니다."),
     ;
 
     String errorCode;

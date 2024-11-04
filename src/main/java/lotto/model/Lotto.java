@@ -1,5 +1,9 @@
 package lotto.model;
 
+import lotto.util.ErrorMessage;
+import lotto.util.Limit;
+import lotto.util.Message;
+
 import java.util.List;
 
 public class Lotto {
@@ -29,23 +33,25 @@ public class Lotto {
         return numbers;
     }
 
-    // TODO: 추가 기능 구현
-
     private void validateSize(List<Integer> numbers){
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != Limit.LOTTO_NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
+                    + ErrorMessage.LOTTO_NUMBER_COUNT.getError());
         }
     }
 
     private void validateUnique(List<Integer> numbers){
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복 될 수 없습니다.");
+            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
+                    + ErrorMessage.UNIQUE_LOTTO_NUMBER.getError());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
-        if(numbers.stream().anyMatch(integer -> integer < 0 || integer >45)){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이여야 합니다.");
+        if(numbers.stream().anyMatch(integer ->
+                integer < Limit.MIN_LOTTO_NUMBER.getValue() || integer > Limit.MAX_LOTTO_NUMBER.getValue())){
+            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
+                    + ErrorMessage.LOTTO_NUMBER_RANGE.getError());
         }
     }
 }
