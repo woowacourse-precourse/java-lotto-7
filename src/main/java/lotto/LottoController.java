@@ -42,10 +42,6 @@ public class LottoController {
         }
     }
 
-    public WinNumbers mapWimNumbers(List<Integer> winNumber, int bonusNumber) {
-        return new WinNumbers(winNumber, bonusNumber);
-    }
-
     public LottoResult calculateWinnings(List<Lotto> lottos, WinNumbers winNumbers) {
         int totalWinnings = 0;
         int[] rankCount = new int[Rank.values().length];
