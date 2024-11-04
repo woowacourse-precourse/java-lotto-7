@@ -17,7 +17,7 @@ public class OutputView {
     private static final String OUTPUT_LOTTO_RESULT_SECOND = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     private static final String OUTPUT_LOTTO_RESULT_FIRST = "6개 일치 (2,000,000,000원) - ";
     private static final String OUTPUT_LOTTO_RESULT_REVENUE = "총 수익률은 ";
-    private static final String OUTPUT_LOTTO_RESULT_REVENUE_TAIL = "% 입니다.";
+    private static final String OUTPUT_LOTTO_RESULT_REVENUE_TAIL = "%입니다.";
     private static final String OUTPUT_LOTTO_RESULT_COUNT = "개";
 
     public static void outputLottoPurchaseAmount(int amount){

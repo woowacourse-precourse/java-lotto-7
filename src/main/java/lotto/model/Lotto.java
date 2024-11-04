@@ -2,10 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static lotto.exception.LottoExceptionStatus.*;
 import static lotto.properties.LottoProperties.*;
@@ -15,8 +12,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+        List<Integer> lottoNumbers = new ArrayList<>(numbers);
+        Collections.sort(lottoNumbers);
+        validate(lottoNumbers);
+        this.numbers = lottoNumbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -55,7 +54,6 @@ public class Lotto {
                 LOTTO_NUMBER_END,
                 LOTTO_NUMBER_QUANTITY
         );
-        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 }
