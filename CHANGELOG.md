@@ -1,7 +1,8 @@
-#### 2024-11-03
+#### 2024-11-04
 
 ##### Documentation Changes
 
+*  update CHANGELOG.md (b444fd24)
 *  update README.md (a8dc4005)
 *  Update README.md (76c15666)
 *  update README.md (85484d8e)
@@ -36,6 +37,7 @@
 
 ##### Bug Fixes
 
+*  메서드 삭제 (54d4bfea)
 *  반올림 방법 변경 (95fc0325)
 *  불변 리스트 활용 (29b9aee1)
 *  MoneyFormat 추가 (a8c0b7c9)
@@ -47,6 +49,9 @@
 
 ##### Refactors
 
+*  객체 생성 시 검증이 도메인에서 일어나도록 리팩터링 (f75a5939)
+*  stringParser 메서드 이용하도록 수정 (4a4f5104)
+*  stringParser 메서드 이용하도록 수정 (25f50fee)
 *  컨트롤러 메서드 서비스로 분리 (3435b5ca)
 *  stream API로 수정 (d77784f7)
 *  커스텀 exception을 catch 하도록 변경 (33042b4a)
@@ -67,6 +72,7 @@
 
 ##### Tests
 
+*  난수 발생기 테스트 구현 (8ed5faec)
 *  ProfitCalculatorService 테스트 구현 (762b6719)
 *  validatorService 테스트 구현 (f010620e)
 *  custom exception handler 테스트 구현 (899012fe)
