@@ -1,6 +1,7 @@
-package lotto;
+package lotto.model;
 
 import java.util.Arrays;
+import model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
