@@ -32,7 +32,7 @@ class InputViewTest extends NsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"money", "돈", "$"})
+    @ValueSource(strings = {" ", "money", "돈", "$"})
     @DisplayName("입력한 구입 금액이 숫자가 아니라면 예외처리 되는지")
     void invalidInputPurchaseMoney(String inputPurchaseMoney) {
         run(inputPurchaseMoney);
@@ -66,7 +66,7 @@ class InputViewTest extends NsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"bonus", "보너스", "$"})
+    @ValueSource(strings = {" ", "bonus", "보너스", "$"})
     @DisplayName("입력한 보너스 번호가 숫자가 아니라면 예외처리 되는지")
     void invalidInputBonusNumber(String inputBonusNumber) {
         run(inputBonusNumber);

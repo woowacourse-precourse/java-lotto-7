@@ -25,7 +25,7 @@ class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "number", "숫자", "!!"})
+    @ValueSource(strings = {"", " ", "number", "숫자", "!!"})
     @DisplayName("숫자가 아닌 형식이 입력됐을 때 예외처리 되는지")
     void parseStringToIntException(String input) {
         assertThatThrownBy(() -> Parser.stringToInt(input))
