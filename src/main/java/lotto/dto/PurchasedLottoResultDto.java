@@ -16,6 +16,7 @@ public record PurchasedLottoResultDto(
 		return numbers.stream()
 				.map(LottoNumber::getNumber)
 				.map(String::valueOf)
+				.sorted()
 				.toList();
 	}
 }
