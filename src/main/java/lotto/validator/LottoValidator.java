@@ -11,30 +11,13 @@ public class LottoValidator {
 
     private static final String ERROR_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String ERROR_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    private static final String ERROR_DUPLICATE = "[ERROR] 로또 번호에 중복된 숫자가 있습니다.";
+    private static final String ERROR_DUPLICATE = "[ERROR] 중복된 숫자가 있습니다.";
     private static final String ERROR_BONUS_DUPLICATE = "[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.";
-    private static final String ERROR_NULL = "[ERROR] 로또 번호는 null일 수 없습니다.";
 
-    private LottoValidator() {
-    }
-
-    public static void validateLottoNumbers(List<Integer> numbers) {
-        validateNull(numbers);
+    public static void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
-    }
-
-    public static void validateWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        validateLottoNumbers(winningNumbers);
-        validateBonusNumber(winningNumbers, bonusNumber);
-        validateNumberRange(bonusNumber);
-    }
-
-    private static void validateNull(List<Integer> numbers) {
-        if (numbers == null) {
-            throw new IllegalArgumentException(ERROR_NULL);
-        }
     }
 
     private static void validateSize(List<Integer> numbers) {
@@ -45,13 +28,9 @@ public class LottoValidator {
 
     private static void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
-            validateNumberRange(number);
-        }
-    }
-
-    private static void validateNumberRange(int number) {
-        if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(ERROR_RANGE);
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                throw new IllegalArgumentException(ERROR_RANGE);
+            }
         }
     }
 
@@ -62,7 +41,10 @@ public class LottoValidator {
         }
     }
 
-    private static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+            throw new IllegalArgumentException(ERROR_RANGE);
+        }
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ERROR_BONUS_DUPLICATE);
         }
