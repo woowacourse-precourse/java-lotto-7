@@ -31,5 +31,7 @@ public class Application {
 
         long totalPrize = lottoService.getTotalPrize(winningCountForEach);
         String profitRate = lottoService.getProfitRate(purchaseAmount, totalPrize);
+
+        outputService.printWinningStatistics(winningCountForEach);
     }
 }

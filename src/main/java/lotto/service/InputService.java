@@ -36,6 +36,7 @@ public class InputService {
 
         int bonusNumberValue = convertToNumericPurchaseAmount(bonusNumber);
         inputException.validateValueInRange(bonusNumberValue);
+        System.out.println();
 
         return convertToNumericPurchaseAmount(bonusNumber);
     }
