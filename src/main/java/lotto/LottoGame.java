@@ -11,4 +11,9 @@ public class LottoGame {
             lottos.add(LottoGenerator.generate());
         }
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
 }
