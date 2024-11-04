@@ -8,6 +8,8 @@ public enum Rank {
     SECOND(5, true, 30_000_000),
     FIRST(6, false, 2_000_000_000);
 
+    private static final int VALID_MATCH_COUNT = 3;
+
     private final int matchCount;
     private final boolean matchBonus;
     private final int prize;
@@ -31,7 +33,7 @@ public enum Rank {
         if (this == SECOND) {
             return String.format("%d개 일치, 보너스 볼 일치 (%s원)", matchCount, formatPrize());
         }
-        if (this.matchCount >= 3) {
+        if (this.matchCount >= VALID_MATCH_COUNT) {
             return String.format("%d개 일치 (%s원)", matchCount, formatPrize());
         }
         return null;

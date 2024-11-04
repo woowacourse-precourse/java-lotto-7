@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.Lotto;
 
 public class BonusNumber {
     private int bonusNumber;
@@ -27,7 +28,7 @@ public class BonusNumber {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복되는 숫자가 존재합니다.");
         }
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < Lotto.END_NUMBER || bonusNumber > Lotto.END_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45사이의 숫자만 입력이 가능합니다.");
         }
     }
