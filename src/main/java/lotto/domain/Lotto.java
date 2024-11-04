@@ -29,7 +29,7 @@ public class Lotto {
     public static Lotto create() {
         List<Integer> randoms = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_SIZE);
         List<Integer> sortedNumbers = new ArrayList<>(randoms);
-        Collections.sort(randoms);
+        Collections.sort(sortedNumbers);
         return new Lotto(sortedNumbers);
     }
 
