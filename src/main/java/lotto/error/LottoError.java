@@ -7,7 +7,6 @@ public enum LottoError {
     INVALID_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
     INVALID_NUMBER_RANGE("로또 번호는 1부터 45 사이여야 합니다."),
     DUPLICATE_NUMBER("중복된 숫자가 없어야 합니다."),
-    INVALID_BONUS_NUMBER("보너스 번호는 1부터 45 사이의 숫자여야 합니다."),
     BONUS_NUMBER_DUPLICATE("보너스 번호는 이미 뽑힌 당첨 번호와 중복될 수 없습니다."),
     INVALID_NUMBER_PARSE("입력하신 숫자가 유효하지 않습니다.");
 
