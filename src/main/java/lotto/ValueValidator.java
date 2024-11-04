@@ -8,7 +8,7 @@ public class ValueValidator {
     public static int ValidatePurchaseAmount(String lotteryPurchaseAmount) {
         try {
             int purchaseAmount = Integer.parseInt(lotteryPurchaseAmount.trim());
-            if(purchaseAmount <= 0 || purchaseAmount % 1000 != 0){
+            if(purchaseAmount <= 0 || purchaseAmount % LottoMachine.LOTTO_PRICE != 0){
                 throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위의 양의 정수여야 합니다.");
             }
 
