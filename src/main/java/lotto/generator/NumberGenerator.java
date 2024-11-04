@@ -9,6 +9,7 @@ import java.util.List;
 
 public enum NumberGenerator {
     RANDOM {
+        @Override
         public List<Integer> generateNumber() {
             return Randoms.pickUniqueNumbersInRange(
                     MIN_NUMBER.getConstant(),
