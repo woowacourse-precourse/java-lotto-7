@@ -6,10 +6,17 @@ import lotto.message.ErrorMessage;
 public class BonusNumberValidator {
     public static int validateBonusNumber(String bonusNumber, Set<Integer> winningNumber) {
         checkNullOrEmptyNumber(bonusNumber);
+        checkHasBlank(bonusNumber);
         checkInteger(bonusNumber);
         checkValidBonusNumber(bonusNumber);
         checkDuplicateBonusNumber(bonusNumber, winningNumber);
         return Integer.parseInt(bonusNumber);
+    }
+
+    private static void checkHasBlank(String bonusNumber) {
+        if(bonusNumber.contains(" ")){
+            throw new IllegalArgumentException(ErrorMessage.INPUT_HAS_BLANK.getMessage());
+        }
     }
 
     private static void checkNullOrEmptyNumber(String bonusNumber) {

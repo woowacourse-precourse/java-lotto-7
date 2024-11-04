@@ -11,6 +11,7 @@ public enum ErrorMessage {
     INVALID_BONUS_NUMBER("[ERROR] 보너스 번호는 1부터 45까지의 숫자여야 합니다."),
     DUPLICATE_BONUS_NUMBER("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
     INPUT_NULL_OR_EMPTY("[ERROR] 입력값은 비어 있을 수 없습니다."),
+    INPUT_HAS_BLANK("[ERROR] 입력 숫자 사이에는 공백이 포함되어 있을 수 없습니다."),
     INVALID_COMMA_FORMAT("[ERROR] 당첨 번호는 연속된 쉼표가 포함되거나 쉼표로 시작/끝날 수 없습니다.");
 
     private final String message;

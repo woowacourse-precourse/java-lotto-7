@@ -10,12 +10,20 @@ public class WinningNumberValidator {
         checkWinningNumbersAmount(winningNumbers);
         for (String winningNumber : winningNumbers) {
             checkNullOrEmptyNumber(winningNumber);
+            winningNumber = winningNumber.trim();
+            checkWinningNumberContainsBlank(winningNumber);
             checkInteger(winningNumber);
             checkValidWinningNumber(winningNumber);
             checkDuplicateWinningNumber(winningNumber, winningNumberSet);
             winningNumberSet.add(Integer.parseInt(winningNumber));
         }
         return winningNumberSet;
+    }
+
+    private static void checkWinningNumberContainsBlank(String winningNumber) {
+        if(winningNumber.contains(" ")){
+            throw new IllegalArgumentException(ErrorMessage.INPUT_HAS_BLANK.getMessage());
+        }
     }
 
     private static void checkNullOrEmptyNumber(String winningNumber) {

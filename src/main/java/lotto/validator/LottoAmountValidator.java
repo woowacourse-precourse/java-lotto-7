@@ -5,6 +5,9 @@ import lotto.message.ErrorMessage;
 public class LottoAmountValidator {
     public static int validatePurchaseAmout(String lottoAmount) {
         inputNullOrEmpty(lottoAmount);
+        if(lottoAmount.contains(" ")){
+            throw new IllegalArgumentException(ErrorMessage.INPUT_HAS_BLANK.getMessage());
+        }
         int lottoRound = convertPurchaseAmountToInt(lottoAmount);
         if (lottoRound < 1000) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE_OR_ZERO.getMessage());
