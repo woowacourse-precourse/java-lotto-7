@@ -8,14 +8,15 @@ public class OutputView {
     private static final String PURCHASE_CONFIRM = "개를 구매했습니다.";
 
     public void printLottos(List<Lotto> lottos) {
-        System.out.println(lottos.size() + PURCHASE_CONFIRM);
+        System.out.println("\n" + lottos.size() + PURCHASE_CONFIRM);
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
 
     public void printWinningsResult() {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         WinningRank.printWinningsResult();
     }
 

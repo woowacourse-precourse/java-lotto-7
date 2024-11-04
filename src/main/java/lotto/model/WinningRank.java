@@ -54,7 +54,7 @@ public enum WinningRank {
         if (matchBonus) {
             System.out.print(", 보너스 볼 일치");
         }
-        System.out.println(" (" + transferFormat() + "원) - " + count);
+        System.out.println(" (" + transferFormat() + "원) - " + count + "개");
     }
 
     public static void printWinningsResult() {
