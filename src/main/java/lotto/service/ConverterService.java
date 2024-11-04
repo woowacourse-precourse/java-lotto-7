@@ -4,15 +4,21 @@ import lotto.constants.ConstraintConstants;
 import lotto.domain.dto.LottoResultDto;
 import lotto.enums.Prize;
 
-import java.math.RoundingMode;
 import java.math.BigDecimal;
 
+import static lotto.constants.ConstraintConstants.MAX_INT_LENGTH;
 import static lotto.constants.ErrorViewConstants.*;
 import static lotto.service.ValidatorService.*;
 
 public class ConverterService {
+    private static final double RATE = 100.0f;
+    private static final String formatter = "%.2f";
     public static int convertPurchasePrice(String enteredPurchasePrice) {
         try {
+            if (enteredPurchasePrice.length() >= MAX_INT_LENGTH) {
+                throw new IllegalArgumentException(INVALID_INPUT_CONSTRAINT);
+            }
+
             int purchasePrice = Integer.parseInt(enteredPurchasePrice);
             if (validatePurchaseAmount(purchasePrice)) {
                 return purchasePrice / ConstraintConstants.PURCHASE_UNIT;
@@ -71,8 +77,7 @@ public class ConverterService {
     }
 
     public static double convertProfitToRate(long profit, int purchasePrice) {
-        double rate = (float)profit / (float)purchasePrice;
-        BigDecimal formattedRate = BigDecimal.valueOf(rate).setScale(2, RoundingMode.HALF_UP);
-        return formattedRate.doubleValue();
+        BigDecimal profitRate = BigDecimal.valueOf((float) profit / (float) purchasePrice * RATE);
+        return Double.parseDouble(String.format(formatter, profitRate));
     }
 }
