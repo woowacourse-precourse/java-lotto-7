@@ -19,4 +19,11 @@ public class InputTest {
 		String payment = "1400";
 		assertThrows(IllegalArgumentException.class, () -> input.validateRemainder(payment));
 	}
+
+	@Test
+	@DisplayName("번호가 1-45까지의 입력 검증 테스트")
+	void 입력이_1부터_45까지의_번호인지_검증하는_테스트() {
+		String numbers = "1,2,3,4,5,46";
+		assertThrows(IllegalArgumentException.class, () -> input.validateLuckyNumberRange(numbers));
+	}
 }
