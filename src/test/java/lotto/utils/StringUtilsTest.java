@@ -24,7 +24,7 @@ class StringUtilsTest {
 
 		@DisplayName("문자열을 숫자로 변환에 실패하면 예외를 던진다.")
 		@ParameterizedTest
-		@ValueSource(strings = {"천원", "!@#$%^", "ABCD"})
+		@ValueSource(strings = {"천원", "!@#$%^", "ABCD", "1000j"})
 		void fail(String s) {
 			assertThatThrownBy(() -> StringUtils.toNumber(s))
 				.isInstanceOf(IllegalArgumentException.class)
