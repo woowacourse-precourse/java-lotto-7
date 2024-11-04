@@ -79,10 +79,12 @@ public class Application {
         return 1 + matchRecursive(p1+1,p2+1,i);
     }
 
-    public void bonusCheck(int i){
+    public boolean bonusCheck(int i){
         if(lotto_list[i].contains(bonus)){
             bonusCount++;
+            return true;
         }
+        return false;
     }
 
     public void inputBonus(){
@@ -94,10 +96,13 @@ public class Application {
         amoutAry = new int[numSize+1];
         for(int i = 0; i < lotto_list.length; i++){
             int num = matchRecursive(0, 0, i);
+            boolean check = false;
             if(num == 5){
-                bonusCheck(i);
+                check = bonusCheck(i);
             }
-            amoutAry[num]++;
+            if(!check){
+                amoutAry[num]++;
+            }
         }
     }
 
