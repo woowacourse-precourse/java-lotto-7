@@ -47,7 +47,8 @@ public class LottoGame {
 
         for (Lotto ticket : tickets) {
             int matchCount = ticket.matchCount(winningNumber);
-            boolean bonusCheck = ticket.getNumbers().contains(bonusNumber);
+            boolean bonusCheck = false;
+            if (matchCount == 5) bonusCheck = ticket.getNumbers().contains(bonusNumber); // 일치하는 번호가 5개 일때만 2,3 등 구분
             WinningRank winningRank = WinningRank.matchRank(matchCount, bonusCheck);
             if (winningRank != null) {
                 result.record(winningRank);
