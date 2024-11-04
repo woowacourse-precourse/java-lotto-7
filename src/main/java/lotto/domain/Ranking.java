@@ -7,7 +7,7 @@ public enum Ranking {
     SECOND(2, 30_000_000, 5, true),
     THIRD(3, 1_500_000, 5, false),
     FOURTH(4, 50_000, 4, false),
-    FIFTH(5, 5_000, 3, false),
+    FIFTH(5, 5000, 3, false),
     MISS(6, 0, 0, false);
 
     private final int grade;

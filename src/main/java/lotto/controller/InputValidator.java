@@ -2,7 +2,7 @@ package lotto.controller;
 
 public class InputValidator {
     private static final int INPUT_AMOUNT_UNIT = 1000;
-    private static final int MAX_INPUT_AMOUNT = 2100000000;
+    private static final int MAX_INPUT_AMOUNT = 2_100_000_000;
 
     public void validatePurchaseAmount(String purchaseAmount) {
         long amount = parseAmount(purchaseAmount.trim());
