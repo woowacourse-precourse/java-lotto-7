@@ -17,20 +17,20 @@ public class LottoStatistics {
     }
 
     public static Map<LottoRank, Integer> calcRankStatistics(List<LottoRank> lottoRanks) {
-        Map<LottoRank, Integer> rankMap = new HashMap<>();
+        Map<LottoRank, Integer> winningCntPerRank = new HashMap<>();
 
         // key 설정
         for (LottoRank lottoRank : LottoRank.values()) {
-            rankMap.put(lottoRank, 0);
+            winningCntPerRank.put(lottoRank, 0);
         }
 
         // value 설정
         for (LottoRank lottoRank : lottoRanks) {
-            int count = rankMap.get(lottoRank);
+            int count = winningCntPerRank.get(lottoRank);
             count++;
-            rankMap.put(lottoRank, count);
+            winningCntPerRank.put(lottoRank, count);
         }
 
-        return rankMap;
+        return winningCntPerRank;
     }
 }
