@@ -4,6 +4,14 @@
 ## 기능 구현 목록 📝
 
 ### ✨ 업데이트 내용
+- 숫자가 2,147,483,647(Integer.MAX_VALUE)를 넘을 경우 예외 처리
+- 총 수익률 계산을 위한 LottoProfit 객체 구현
+- 유효성 검증 클래스 이름에 `Lotto` 키워드 제거
+- ListValidator, NumberValidator 클래스에 제네릭 적용
+- 단일 숫자일 경우 InvalidNumberException, 복수 숫자일 경우 InvalidNumbersException 으로 예외 처리 분리
+- LottoGenerator 추상화 및 QuickLottoGenerator(자동 로또) 구현 
+
+---
 
 ### ✅ 진행과정
 
@@ -32,6 +40,8 @@
 
 #### 7. 예외 상황 시 에러 문구를 출력해야 한다.
 - 에러 문구는 `[ERROR]`로 시작
+
+---
 
 ### ✅ 실행 결과 예시
 ```text
@@ -63,64 +73,121 @@
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 62.5%입니다.
 ```
+---
 
 ### ✅ 클래스 및 기능
 
 #### 1. domain
 ##### Lotto
 
-- [] 로또 번호의 정보를 갖고 있음
-- [] 특정 숫자가 로또 번호에 있는지 판단
+- [X] 로또 번호의 정보를 갖고 있음
+- [X] 특정 숫자가 로또 번호에 있는지 판단
 
 ###### 예외 처리
-- [] 번호가 중복된 경우
-- [] 번호가 1~45를 벗어난 경우
+- [X] 번호가 중복된 경우
+- [X] 번호가 1~45를 벗어난 경우
 
 ##### Money
 
-- [] 구입 금액의 정보를 갖고 있음
-- [] 1,000으로 나눈 몫을 반환 (로또 티켓 수)
+- [X] 구입 금액의 정보를 갖고 있음
+- [X] 1,000으로 나눈 몫을 반환 (로또 티켓 수)
 
 ###### 예외 처리
-- [] 자연수가 아닌 경우
-- [] Integer.MAX_VALUE를 초과한 경우
-- [] 1,000 단위가 아닌 경우
+- [X] 1,000 단위가 아닌 경우
 
-##### LottoGenerator
-- [] 로또를 발행
+##### QuickLottoGenerator
+- [X] 자동 로또를 발행
+- [X] LottoGenerator의 구현체
 
 ##### LottoStore
-- [] 로또를 구입금액 만큼 발행
+- [X] 로또를 구입금액 만큼 발행
 
 ##### WinningNumbers
 
-- [] 당첨 번호와 보너스 번호의 정보를 갖고 있음
-- [] 당첨 번호에 특정 숫자가 있는지 판단
+- [X] 당첨 번호와 보너스 번호의 정보를 갖고 있음
+- [X] 당첨 번호에 특정 숫자가 있는지 판단
 
 ##### BonusNumber
-- [] 보너스 번호의 정보를 갖고 있음
-- [] 특정 숫자가 보너스 번호와 일치하는지 판단
+- [X] 보너스 번호의 정보를 갖고 있음
+- [X] 특정 숫자가 보너스 번호와 일치하는지 판단
+
+###### 예외 처리
+- [X] 보너스 번호가 1~45 사이의 자연수가 아닌 경우
+- [X] 보너스 번호가 당첨 번호와 중복 되는 경우
 
 ##### WinningResult
-- [] 로또 당첨 결과를 반환
+- [X] 로또 당첨 결과를 반환
+
+##### LottoProfit
+- [X] 총 수익률을 계산하여 반환
 
 ##### LottoRank
-- [] 로또 당첨 정보를 갖고 있음
+- [X] 로또 당첨 정보를 갖고 있음
 
 #### 2. util
 
-##### LottoListValidator
-- [] 리스트 사이즈 검증
-- [] 리스트 중복 검증
+##### ListValidator
+- [X] 리스트 사이즈 검증
+- [X] 리스트 중복 검증
+- [X] 리스트 요소 범위 검증
 
-##### LottoNumberValidator
-- [] 숫자 범위 검증
-- [] 숫자 단위 검증
+##### NumberValidator
+- [X] 숫자 범위 검증
+- [X] 숫자 단위 검증
 
-##### LottoStringValidator
-- [] 문자열 형식 검증
+##### InputConvertor
+- [X] 문자열을 숫자 리스트로 변환
+- [X] 문자열을 숫자로 변환
 
-##### LottoInputConvertor
-- [] 문자열을 숫자 리스트로 변환
-- [] 문자열을 숫자로 변환
+#### 3. constant
 
+##### LottoRule
+- [X] 로또 규칙을 정의
+
+#### 4. error
+
+##### ErrorMessage
+- [X] 에러 메세지를 정의
+
+##### AppException
+- [X] IllegalArgumentException의 하위 클래스
+
+##### InvalidNumberException
+- [X] 숫자 관련 예외 클래스
+- [X] AppException의 하위 클래스
+
+##### InvalidNumbersException
+- [X] 여러 숫자 관련 예외 클래스
+- [X] AppException의 하위 클래스
+
+#### 5. view
+
+##### ConsoleInputView
+- [X] 사용자의 콘솔 입력을 읽음
+- [X] InputView의 구현체
+
+##### ConsoleOutputView
+- [X] 사용자에게 결과를 콘솔 출력
+- [X] OuputView의 구현체
+
+#### 6. controller
+- [X] 애플리케이션 흐름을 제어
+
+---
+
+### ✅ 클래스 다이어그램
+
+#### 1. Main
+![3주차_다이어그램_메인](https://github.com/user-attachments/assets/317b5f47-925c-47e5-b5ad-0ddffb747d4c)
+
+#### 2. Util
+![3주차_다이어그램_유틸](https://github.com/user-attachments/assets/ffeb68fd-c4fc-41cd-a7eb-30454e549bb6)
+
+#### 3. Constant
+![3주차_다이어그램_상수](https://github.com/user-attachments/assets/b42b5fb8-cc74-4058-bbd2-d03b34b73b55)
+
+#### 4. Error
+![3주차_다이어그램_에러](https://github.com/user-attachments/assets/9ef3e31b-4e37-4d0a-afa0-5f7d86424822)
+
+#### 5. View
+![3주차_다이어그램_뷰](https://github.com/user-attachments/assets/644bb47f-fb70-4fec-8202-052d53ebcb26)
