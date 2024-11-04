@@ -2,6 +2,8 @@ package lotto.controller;
 
 import static lotto.exception.errorMessage.IllegalArgumentExceptionMessage.NUMBER_FORMAT;
 
+import java.util.List;
+import lotto.dto.PaperDto;
 import lotto.service.paper.PaperService;
 import lotto.view.View;
 
@@ -16,6 +18,12 @@ public class LottoController {
 
     public void start() {
         saveLotto();
+        printLottoList();
+    }
+
+    private void printLottoList() {
+        List<PaperDto> paperDto = paperService.getAllPaper();
+        view.printPaperStatus(paperDto);
     }
 
     private void saveLotto() {
