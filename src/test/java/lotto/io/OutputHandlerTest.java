@@ -64,11 +64,11 @@ class OutputHandlerTest {
 
     @ParameterizedTest
     @CsvSource({
-            "0.2736, 27.4",
-            "0.2735, 27.4",
-            "0.27349, 27.3",
-            "0.2734, 27.3",
-            "0.2731, 27.3",
+            "27.36, 27.4",
+            "27.350, 27.4",
+            "27.349, 27.3",
+            "27.34, 27.3",
+            "27.31, 27.3",
     })
     void 수익통계를_출력한다(float incomeRate, String incomePercent) {
         //given

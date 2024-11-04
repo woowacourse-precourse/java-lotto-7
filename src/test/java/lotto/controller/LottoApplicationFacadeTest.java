@@ -76,7 +76,7 @@ class LottoApplicationFacadeTest {
                 "6개 일치 (2,000,000,000원) - 0개"
         );
         assertThat(writerFake.getOutputs().get(2)).contains(
-                "총 수익률은 1666.7%입니다."
+                "총 수익률은 1,666.7%입니다."
         );
     }
 

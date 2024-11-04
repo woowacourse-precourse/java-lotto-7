@@ -38,7 +38,7 @@ class LottoStaticsControllerTest {
                 "6개 일치 (2,000,000,000원) - 0개"
         );
         assertThat(writerFake.getOutputs().get(1)).contains(
-                "총 수익률은 1575000.0%입니다."
+                "총 수익률은 1,575,000.0%입니다."
         );
     }
 }

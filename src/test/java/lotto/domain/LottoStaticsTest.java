@@ -91,13 +91,13 @@ class LottoStaticsTest {
 
     @ParameterizedTest
     @MethodSource("provideWinningLottoAndIncomeRate")
-    void 수익률을_확인할_수_있다(WinningLotto winningLotto, float expectedIncomeRate) {
+    void 수익률을_확인할_수_있다(WinningLotto winningLotto, double expectedIncomeRate) {
         List<Lotto> lottos = getLottos();
         Money money = Money.from(3000);
         LottoStatics sut = LottoStatics.of(lottos, winningLotto, money);
 
         //when
-        float result = sut.getIncomeRate();
+        double result = sut.getIncomePercent();
 
         //then
         assertThat(result).isEqualTo(expectedIncomeRate);
@@ -128,19 +128,19 @@ class LottoStaticsTest {
         return Stream.of(
                 Arguments.of(
                         WinningLotto.of(Lotto.from(List.of(1, 2, 3, 4, 5, 6)), 7),
-                        (float) (FRIST_PRIZE.prizeMoney) / 3000
+                        (double) (FRIST_PRIZE.prizeMoney) * 100 / 3000
                 ),
                 Arguments.of(
                         WinningLotto.of(Lotto.from(List.of(2, 3, 4, 5, 6, 7)), 8),
-                        (float) (FIFTH_PRIZE.prizeMoney + THIRD_PRIZE.prizeMoney) / 3000
+                        (double) (FIFTH_PRIZE.prizeMoney + THIRD_PRIZE.prizeMoney) * 100 / 3000
                 ),
                 Arguments.of(
                         WinningLotto.of(Lotto.from(List.of(2, 3, 4, 5, 6, 7)), 1),
-                        (float) (FIFTH_PRIZE.prizeMoney + SECOND_PRIZE.prizeMoney) / 3000
+                        (double) (FIFTH_PRIZE.prizeMoney + SECOND_PRIZE.prizeMoney) * 100 / 3000
                 ),
                 Arguments.of(
                         WinningLotto.of(Lotto.from(List.of(3, 4, 5, 6, 9, 10)), 15),
-                        (float) (FOURTH_PRIZE.prizeMoney * 2) / 3000
+                        (double) (FOURTH_PRIZE.prizeMoney * 2) * 100 / 3000
                 )
         );
     }
