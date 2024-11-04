@@ -54,9 +54,13 @@ public class LottoService {
         }
     }
 
-    public Integer setBonusNumber(String input) {
+    public Integer setBonusNumber(List<Integer> numbers, String input) {
         try {
-            return bonusNumberParser.parse(input);
+            Integer parsed = bonusNumberParser.parse(input);
+            if (numbers.contains(parsed)) {
+                throw BonusNumberFormatException.duplicateNumber();
+            }
+            return parsed;
         } catch (BonusNumberFormatException e) {
             throw new IllegalArgumentException(ExceptionHandler.createErrorMessage(e.getMessage()), e);
         }

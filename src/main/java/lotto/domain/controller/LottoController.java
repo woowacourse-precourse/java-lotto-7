@@ -1,5 +1,6 @@
 package lotto.domain.controller;
 
+import java.util.List;
 import lotto.domain.Lotteries;
 import lotto.domain.Lotto;
 import lotto.domain.service.LottoService;
@@ -34,7 +35,7 @@ public class LottoController {
     public void play() {
         Lotteries lotteries = purchaseLotteries();
         Lotto winningNumber = setWinningNumber();
-        Integer bonusNumber = setBonusNumber();
+        Integer bonusNumber = setBonusNumber(winningNumber.getNumbers());
 
         calculateProfit(lotteries, winningNumber, bonusNumber);
     }
@@ -63,14 +64,14 @@ public class LottoController {
         }
     }
 
-    private Integer setBonusNumber() {
+    private Integer setBonusNumber(List<Integer> numbers) {
         output.printBonusNumberMessage();
 
         try {
-            return service.setBonusNumber(input.read());
+            return service.setBonusNumber(numbers, input.read());
         } catch (IllegalArgumentException e) {
             output.printError(e);
-            return setBonusNumber();
+            return setBonusNumber(numbers);
         }
     }
 
