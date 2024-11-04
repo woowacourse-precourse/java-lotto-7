@@ -111,7 +111,7 @@ public class LottoServiceImpl implements LottoService {
     }
 
     private List<Integer> parseIntegerList(String stringInput) {
-        return Arrays.stream(stringInput.split(","))
+        return Arrays.stream(stringInput.split(SystemConstants.LOTTO_SERVICE_WINNING_NUMBERS_SEPARATOR))
                 .map(Integer::parseInt)
                 .toList();
     }

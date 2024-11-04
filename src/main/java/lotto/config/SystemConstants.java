@@ -15,4 +15,5 @@ public class SystemConstants {
     public static final String LOTTO_SERVICE_PRIZE_REPORT_FORMAT = "%d개 일치%s (%s원) - %d개";
     public static final String LOTTO_SERVICE_PRIZE_REPORT_HAS_BONUS = ", 보너스 볼 일치";
     public static final String LOTTO_SERVICE_PRIZE_REPORT_INNER_FORMAT = "%,d";
+    public static final String LOTTO_SERVICE_WINNING_NUMBERS_SEPARATOR = ",";
 }
