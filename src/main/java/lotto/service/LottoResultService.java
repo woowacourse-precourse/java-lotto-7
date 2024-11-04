@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import lotto.constant.GlobalConstant;
 import lotto.constant.WinningCondition;
 import lotto.dto.LottoResult;
 import lotto.model.Lotto;
@@ -11,9 +12,6 @@ import lotto.model.MatchingCountResult;
 public class LottoResultService {
     private final LottoMatchingCounter lottoMatchingCounter;
     private final List<Lotto> purchaseLotto;
-    private final String WINNING_COUNT = "winningCount";
-    private final String BONUS_COUNT = "bonusCount";
-    private final int UNIT = 1000;
     private List<MatchingCountResult> matchingCountResults;
 
     public LottoResultService(List<Lotto> purchaseLotto, List<Integer> winningNumbers, int bonusNumber) {
@@ -41,8 +39,8 @@ public class LottoResultService {
         for (Lotto lotto : purchaseLotto) {
             HashMap<String, Integer> matchingCount = lottoMatchingCounter.countMatchingNumbers(lotto);
             WinningCondition condition = Converter.matchingCounterResultConvert(
-                    matchingCount.get(WINNING_COUNT),
-                    matchingCount.get(BONUS_COUNT));
+                    matchingCount.get(GlobalConstant.WINNING_COUNT.value()),
+                    matchingCount.get(GlobalConstant.BONUS_COUNT.value()));
             updateMatchingCount(matchingCountResults, condition);
         }
 
@@ -59,7 +57,7 @@ public class LottoResultService {
     }
 
     private double getLottoRate(List<MatchingCountResult> matchingCountResults) {
-        int purchaseAmount = purchaseLotto.size() * UNIT;
+        int purchaseAmount = purchaseLotto.size() * GlobalConstant.UNIT.intValue();
         return LottoRateCalculator.calculateReturnOfRate(purchaseAmount, matchingCountResults);
     }
 }

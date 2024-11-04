@@ -2,17 +2,17 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.GlobalConstant;
 import lotto.constant.WinningCondition;
 
 public class Converter {
-    private static String SEPARATOR = ",";
 
     public static int integerConvert(String number) {
         return Integer.parseInt(number);
     }
 
     public static List<Integer> winningNumbersConvert(String winningNumbers) {
-        String[] splitNumbers = winningNumbers.split(SEPARATOR);
+        String[] splitNumbers = winningNumbers.split(GlobalConstant.SEPARATOR.value());
         List<Integer> convertNumbers = new ArrayList<>();
         for (String number : splitNumbers) {
             convertNumbers.add(Integer.parseInt(number));

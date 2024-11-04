@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.GlobalConstant;
 import lotto.model.Lotto;
 
 public class LottoSeller {
@@ -13,7 +14,7 @@ public class LottoSeller {
     }
 
     public int calculatePurchaseCount(int amount) {
-        return amount / 1000;
+        return amount / GlobalConstant.UNIT.intValue();
     }
 
     public List<Lotto> provideLotto(int count) {
