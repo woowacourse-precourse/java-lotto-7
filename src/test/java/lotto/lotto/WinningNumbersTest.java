@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class WinningNumbersTest {
     @ParameterizedTest
@@ -82,5 +83,14 @@ class WinningNumbersTest {
         assertThatThrownBy(() -> WinningNumbers.of("1", "2", "3"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 6개여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "46"})
+    @DisplayName("당첨 번호는 1과 45 사이의 정수여야 한다")
+    void numberOutOfRangeThrowException(String outRange) {
+        assertThatThrownBy(() -> WinningNumbers.of("1", "2", outRange, "4", "5", "6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 1부터 45 사이의 정수여야 합니다.");
     }
 }
