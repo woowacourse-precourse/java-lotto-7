@@ -7,7 +7,6 @@ import lotto.entity.Price;
 import java.util.ArrayList;
 import java.util.List;
 
-// 로또를 만드는 클래스
 public class LottoGenerator {
     private static final int START_NUMBER = 1;
     private static final int END_NUMBER = 45;

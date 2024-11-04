@@ -10,7 +10,6 @@ import lotto.validator.model.LottoResultValidator;
 import java.util.HashMap;
 import java.util.List;
 
-// 로또 결과를 계산하는 클래스
 public class LottoResult {
     private final LottoResultValidator validator;
     private final Price price;
