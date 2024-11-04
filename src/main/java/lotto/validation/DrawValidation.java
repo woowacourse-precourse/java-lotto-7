@@ -38,4 +38,12 @@ public class DrawValidation {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }
+
+    public static void validateDuplicatedWinningNumbers(List<Integer> winningNumbers) {
+        HashSet<Integer> hashSet = new HashSet<>(winningNumbers);
+        if (hashSet.size() != CORRECT_WINNING_NUMBERS_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getMessage());
+        }
+    }
+
 }
