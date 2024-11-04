@@ -21,6 +21,7 @@ public class Validator {
      */
     public static void validatePurchaseAmount(int amount) {
         if (amount <= 0 || amount % LOTTO_PRICE != 0) {
+            LoggerUtils.logError("구입 금액이 잘못되었습니다: " + amount);
             throw new IllegalArgumentException(ErrorMessages.INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
@@ -33,14 +34,21 @@ public class Validator {
      * @throws IllegalArgumentException 유효하지 않은 번호가 포함된 경우
      */
     public static void validateWinningNumbers(List<Integer> numbers) {
+        if (numbers == null) {
+            LoggerUtils.logError("당첨 번호가 null입니다.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER.getMessage());
+        }
         if (numbers.size() != 6) {
+            LoggerUtils.logError("당첨 번호 개수가 잘못되었습니다: " + numbers.size());
             throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER.getMessage());
         }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
+            LoggerUtils.logError("당첨 번호에 중복된 숫자가 포함되었습니다: " + numbers);
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER.getMessage());
         }
         if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
+            LoggerUtils.logError("당첨 번호가 유효 범위를 벗어났습니다: " + numbers);
             throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
@@ -53,6 +61,7 @@ public class Validator {
      */
     public static void validateBonusNumber(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            LoggerUtils.logError("보너스 번호가 유효 범위를 벗어났습니다: " + number);
             throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
@@ -70,10 +79,12 @@ public class Validator {
             try {
                 T input = inputSupplier.get();
                 if (validation.test(input)) {
+                    LoggerUtils.logInfo("유효한 입력값을 받았습니다: " + input);
                     return input;
                 }
                 System.out.println(errorMessage);
             } catch (IllegalArgumentException e) {
+                LoggerUtils.logError("유효하지 않은 입력입니다: " + e.getMessage());
                 System.out.println(e.getMessage());
             }
         }
