@@ -14,8 +14,14 @@ public class InputView {
     }
 
     public static int getPurchaseAmount() {
-        String input = getInputPurchaseAmount();
-        return validatePurchaseAmount(input);
+        while (true) {
+            try {
+                String input = getInputPurchaseAmount();
+                return validatePurchaseAmount(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static int validatePurchaseAmount(String input) {
@@ -36,8 +42,14 @@ public class InputView {
     }
 
     public static List<Integer> getWinningNumbers() {
-        String input = getInputWinningNumbers();
-        return validateWinningNumbers(input);
+        while (true) {
+            try {
+                String input = getInputWinningNumbers();
+                return validateWinningNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static List<Integer> validateWinningNumbers(String input) {
@@ -71,8 +83,14 @@ public class InputView {
     }
 
     public static int getBonusNumber() {
-        String input = getInputBonusNumber();
-        return validateBonusNumber(input);
+        while (true) {
+            try {
+                String input = getInputBonusNumber();
+                return validateBonusNumber(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static int validateBonusNumber(String input) {
