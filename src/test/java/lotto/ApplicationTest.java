@@ -1,6 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.domain.Ranking;
+import lotto.domain.Result;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -50,6 +54,119 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+//    @Test
+//    @DisplayName("수익률 반올림 테스트")
+//    void 수익률_소수점_둘째자리에서_반올림_테스트() {
+//        assertRandomUniqueNumbersInRangeTest(
+//                () -> {
+//                    run("3000", "1,2,3,4,5,6", "7");
+//                    assertThat(output()).contains(
+//                            "3개를 구매했습니다.",
+//                            "[1, 2, 3, 9, 10, 11]",
+//                            "[9, 10, 11, 12, 13, 14]",
+//                            "[9, 10, 11, 12, 13, 14]",
+//                            "3개 일치 (5,000원) - 1개",
+//                            "4개 일치 (50,000원) - 0개",
+//                            "5개 일치 (1,500,000원) - 0개",
+//                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+//                            "6개 일치 (2,000,000,000원) - 0개",
+//                            "총 수익률은 166.7%입니다."
+//                    );
+//                },
+//                List.of(1, 2, 3, 9, 10, 11),
+//                List.of(9, 10, 11, 12, 13, 14),
+//                List.of(9, 10, 11, 12, 13, 14)
+//        );
+//    }
+
+    @Test
+    void 구매금액_숫자_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("aaa");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구매금액_1000원_미만_경우() {
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구매금액_1000원_단위_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("10100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_구분자_쉼표_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2.3.4.5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_6개_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_숫자_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,six");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_1이상_45이하_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,7,46,-1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_중복된_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,7,7,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_숫자_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,7,8,4", "k");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_1이상_45이하_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,7,8,4", "48");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_당첨번호_중복된_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,7,8,4", "8");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
