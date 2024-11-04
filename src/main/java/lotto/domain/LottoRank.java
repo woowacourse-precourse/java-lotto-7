@@ -48,4 +48,16 @@ public enum LottoRank {
                 .findFirst()
                 .orElse(NONE);
     }
+
+    public int getWinningCount() {
+        return winningCount;
+    }
+
+    public boolean isBonusNumberMatched() {
+        return bonusNumberMatched;
+    }
+
+    public long getPrice() {
+        return price;
+    }
 }

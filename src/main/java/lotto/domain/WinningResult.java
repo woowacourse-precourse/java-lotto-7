@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class WinningResult {
     private Map<LottoRank, Integer> lottoResult;
+    private long profit;
 
     public WinningResult(final Lottos lottos, final WinningNumbersCombinations winningCombinations) {
         this.lottoResult = new EnumMap<>(LottoRank.class);
@@ -23,5 +24,13 @@ public class WinningResult {
 
     private void countLottoRank(final LottoRank lottoRank) {
         lottoResult.put(lottoRank, lottoResult.getOrDefault(lottoRank, 0) + 1);
+    }
+
+    public long calculateProfit() {
+        profit = 0;
+        for (LottoRank result : lottoResult.keySet()) {
+            profit = result.getPrice() * lottoResult.get(result);
+        }
+        return profit;
     }
 }

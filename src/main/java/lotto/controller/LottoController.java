@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbersCombinations;
+import lotto.domain.WinningResult;
 import lotto.dto.BonusNumber;
 import lotto.dto.LottoResult;
 import lotto.dto.PurchaseAmount;
@@ -17,6 +18,8 @@ public class LottoController {
 
         WinningNumbers winningLotto = getWinningNumbers();
         WinningNumbersCombinations winningCombinations = getBonusNumber(winningLotto);
+
+        WinningResult winningResult = new WinningResult(lottos, winningCombinations);
     }
 
     public PurchaseAmount getValidLottoPurchaseAmount() {
