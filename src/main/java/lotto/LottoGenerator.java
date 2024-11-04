@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -35,7 +36,14 @@ public class LottoGenerator {
         this.getTicketCount(input);
 
         return this.generateLotto(this.lottoCount);
+    }
 
-
+    void purchaseLotto(String input) throws Exception {
+        getLottoList(input);
+        System.out.println(lottoCount+"개를 구매했습니다.");
+        for (Lotto lotto: lottoList){
+            Integer[] arr = lotto.getNumbers().toArray(new Integer[6]);
+            System.out.println(Arrays.toString(arr));
+        }
     }
 }
