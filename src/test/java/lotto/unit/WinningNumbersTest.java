@@ -52,4 +52,12 @@ class WinningNumbersTest {
         assertThatThrownBy(() -> new WinningNumbers(input))
                 .isInstanceOf(NumberFormatException.class);
     }
+
+    @Test
+    @DisplayName("당첨 번호 입력에 공백이 포함된 경우 올바르게 처리된다.")
+    void winningNumbersWithSpaces() {
+        String input = " 1 , 2 , 3 , 4 , 5 , 6 ";
+        WinningNumbers winningNumbers = new WinningNumbers(input);
+        assertThat(winningNumbers.getNumbers()).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
+    }
 }
