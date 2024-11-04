@@ -5,9 +5,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.util.stream.IntStream;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class WinningTest {
+    @BeforeEach
+    void setUp() {
+        Winning.initCount();
+    }
+
     @Test
     void int_값으로_알맞는_Winning_가져오는지_테스트() {
         assertEquals(THREE, getFromValue(3, false));
@@ -43,7 +49,7 @@ class WinningTest {
     }
 
     @Test
-    void 당첨_count와_price를_곱한_값_출력_테스트() {
+    void 당첨_count와_price를_곱한_값_테스트() {
         THREE.increaseCount();
 
         assertEquals(5000, getTotalWinningPrice().get().intValue());

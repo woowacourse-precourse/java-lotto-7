@@ -25,7 +25,7 @@ class LottoTest {
     @Test
     void 로또_번호에_0이하_46이상_넘어간_수가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
-                .hasMessage("[ERROR] 로또 번호는 1에서 45 사이만 가능합니다.");
+                .hasMessage("로또 번호는 1에서 45 사이만 가능합니다.");
     }
 
     @Test
