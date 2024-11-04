@@ -11,6 +11,7 @@ import lotto.domain.Prize;
 public class OutputView {
     private static final String PURCHASE_COUNT_MESSAGE_FORMAT = "%d개를 구매했습니다.\n";
     private static final String NUMBERS_MESSAGE_FORMAT = "[%s]\n";
+    private static final String RATE_OF_RETURN_MESSAGE_FORMAT = "총 수익률은 %s%%입니다.\n";
     private static final String STATISTIC_MESSAGE_FORMAT = "%d개 일치%s (%s원) - %d개\n";
 
     private static final String DEFAULT_BONUS_NUMBER_MESSAGE = "";
@@ -50,6 +51,9 @@ public class OutputView {
         System.out.printf(STATISTIC_MESSAGE_FORMAT, matchCount, isBonusNumberNeeded, prizeAmount, winningCount);
     }
 
+    public void displayRateOfReturn(Double rateOfReturn) {
+        System.out.printf(RATE_OF_RETURN_MESSAGE_FORMAT, rateOfReturn);
+    }
 
     private void displayPurchaseCount(Integer count) {
         System.out.printf(PURCHASE_COUNT_MESSAGE_FORMAT, count);
