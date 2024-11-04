@@ -4,7 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.exception.splitter.InvalidTextException;
+import lotto.exception.converter.InvalidConvertException;
+import lotto.exception.validator.InvalidInputException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,8 +38,8 @@ public class SplitterTest {
         // When & Then
         assertThatThrownBy(() -> splitter.split(text))
                 .isInstanceOf(IllegalArgumentException.class)
-                .isExactlyInstanceOf(InvalidTextException.class)
-                .hasMessageContaining("빈 문자열이거나 공백일 수 없습니다");
+                .isExactlyInstanceOf(InvalidInputException.class)
+                .hasMessageContaining("입력 문자열은(는) 빈 문자열이거나 공백일 수 없습니다.");
     }
 
     @Test
@@ -51,8 +52,8 @@ public class SplitterTest {
         // When & Then
         assertThatThrownBy(() -> splitter.split(text))
                 .isInstanceOf(IllegalArgumentException.class)
-                .isExactlyInstanceOf(InvalidTextException.class)
-                .hasMessageContaining("빈 문자열이거나 공백일 수 없습니다");
+                .isExactlyInstanceOf(InvalidInputException.class)
+                .hasMessageContaining("입력 문자열은(는) 빈 문자열이거나 공백일 수 없습니다.");
     }
 
     @Test
@@ -65,7 +66,7 @@ public class SplitterTest {
         // When & Then
         assertThatThrownBy(() -> splitter.split(text))
                 .isInstanceOf(IllegalArgumentException.class)
-                .isExactlyInstanceOf(InvalidTextException.class)
-                .hasMessageContaining("null일 수 없습니다");
+                .isExactlyInstanceOf(InvalidInputException.class)
+                .hasMessageContaining("입력 문자열은(는) null일 수 없습니다.");
     }
 }

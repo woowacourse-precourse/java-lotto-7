@@ -26,19 +26,7 @@ public class PriceTest {
 
             // When & Then
             assertThatCode(() -> {
-                new Price(Long.MAX_VALUE + "000");
-            }).doesNotThrowAnyException();
-        }
-
-        @ParameterizedTest
-        @ValueSource(strings = {" 1000", "1000 "})
-        @DisplayName("구입 금액 처음이나 끝에 공백이 포함될 경우 공백을 무시하고 생성한다")
-        void 성공_생성_처음이나끝에공백포함(String input) {
-            // Given
-
-            // When & Then
-            assertThatCode(() -> {
-                new Price(input);
+                new Price(new BigDecimal(Long.MAX_VALUE + "000"));
             }).doesNotThrowAnyException();
         }
 
@@ -48,23 +36,10 @@ public class PriceTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> new Price("500"))
+            assertThatThrownBy(() -> new Price(BigDecimal.valueOf(500)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidPurchasePriceException.class)
                     .hasMessageContaining("구입 금액이 1000원 단위가 아닙니다");
-        }
-
-        @ParameterizedTest
-        @ValueSource(strings = {"a20", "1000.0", "1000 0"})
-        @DisplayName("구입 금액이 정수가 아닐 경우 예외가 발생한다")
-        void 실패_생성_정수X(String input) {
-            // Given
-
-            // When & Then
-            assertThatThrownBy(() -> new Price(input))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
-                    .hasMessageContaining("구입 금액은 숫자로만 이루어져야 합니다");
         }
 
         @ParameterizedTest
@@ -74,46 +49,10 @@ public class PriceTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> new Price(input))
+            assertThatThrownBy(() -> new Price(new BigDecimal(input)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidPurchasePriceException.class)
                     .hasMessageContaining("구입 금액은 자연수여야 합니다");
-        }
-
-        @Test
-        @DisplayName("구입 금액이 비어있을 경우 예외가 발생한다")
-        void 실패_생성_empty() {
-            // Given
-
-            // When & Then
-            assertThatThrownBy(() -> new Price(""))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
-                    .hasMessageContaining("구입 금액은 비어있거나 공백일 수 없습니다");
-        }
-
-        @Test
-        @DisplayName("구입 금액이 공백일 경우 예외가 발생한다")
-        void 실패_생성_공백() {
-            // Given
-
-            // When & Then
-            assertThatThrownBy(() -> new Price(" "))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
-                    .hasMessageContaining("구입 금액은 비어있거나 공백일 수 없습니다");
-        }
-
-        @Test
-        @DisplayName("구입 금액이 null일 경우 예외가 발생한다")
-        void 실패_생성_null() {
-            // Given
-
-            // When & Then
-            assertThatThrownBy(() -> new Price(null))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
-                    .hasMessageContaining("구입 금액은 null이 될 수 없습니다");
         }
     }
 
@@ -125,7 +64,7 @@ public class PriceTest {
         @DisplayName("로또 수량을 계산한다")
         void 성공_로또수량계산() {
             // Given
-            Price price = new Price("10000");
+            Price price = new Price(BigDecimal.valueOf(10000));
 
             // When
             Quantity quantity = price.calculateQuantity();

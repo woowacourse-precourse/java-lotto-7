@@ -9,7 +9,7 @@ import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.LottoRank;
 import lotto.domain.price.Price;
 import lotto.domain.quantity.Quantity;
-import lotto.support.converter.IntegerConverter;
+import lotto.support.converter.Converter;
 import lotto.support.splitter.Splitter;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
@@ -18,10 +18,10 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final IntegerConverter converter;
+    private final Converter converter;
     private final Splitter splitter;
 
-    public LottoController(final InputView inputView, final OutputView outputView, final IntegerConverter converter,
+    public LottoController(final InputView inputView, final OutputView outputView, final Converter converter,
                            final Splitter splitter) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -49,7 +49,7 @@ public class LottoController {
 
     private Price makePrice() {
         outputView.showCommentForPrice();
-        return new Price(inputView.readLine());
+        return new Price(converter.convertToBigDecimal(inputView.readLine()));
     }
 
     private void showQuantity(final Quantity quantity) {
@@ -69,13 +69,13 @@ public class LottoController {
     private Lotto makeWinningLotto() {
         outputView.showCommentForWinningLotto();
         List<String> numbers = splitter.split(inputView.readLine());
-        return new Lotto(converter.convertFrom(numbers));
+        return new Lotto(converter.convertToInteger(numbers));
     }
 
     private LottoNumber makeBonusNumber() {
         outputView.showCommentForBonusNumber();
         String inputBonusNumber = inputView.readLine();
-        return LottoNumber.valueOf(converter.convertFrom(inputBonusNumber));
+        return LottoNumber.valueOf(converter.convertToInteger(inputBonusNumber));
     }
 
     private void showLotteryReport(final Lottery lottery) {

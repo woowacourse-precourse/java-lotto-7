@@ -2,7 +2,7 @@ package lotto.support.splitter;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.exception.splitter.InvalidTextException;
+import lotto.support.InputValidator;
 
 public class Splitter {
 
@@ -13,16 +13,7 @@ public class Splitter {
     }
 
     public List<String> split(final String text) {
-        validate(text);
+        InputValidator.validateNotNullOrBlank(text, "입력 문자열");
         return Arrays.asList(text.split(delimiter, -1));
-    }
-
-    private void validate(final String text) {
-        if (text == null) {
-            throw new InvalidTextException("null일 수 없습니다");
-        }
-        if (text.isBlank()) {
-            throw new InvalidTextException("빈 문자열이거나 공백일 수 없습니다");
-        }
     }
 }

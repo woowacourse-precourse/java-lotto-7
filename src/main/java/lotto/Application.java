@@ -2,7 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoController;
-import lotto.support.converter.IntegerConverter;
+import lotto.support.converter.Converter;
 import lotto.support.splitter.Splitter;
 import lotto.view.input.ConsoleInputView;
 import lotto.view.input.InputView;
@@ -16,7 +16,7 @@ public class Application {
     public static void main(String[] args) {
         InputView inputView = new ConsoleInputView();
         OutputView outputView = new ConsoleOutputView();
-        IntegerConverter converter = new IntegerConverter();
+        Converter converter = new Converter();
         Splitter splitter = new Splitter(DELIMITER);
 
         LottoController lottoController = new LottoController(inputView, outputView, converter, splitter);

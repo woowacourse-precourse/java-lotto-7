@@ -11,11 +11,8 @@ public class Price {
 
     private final BigDecimal price;
 
-    public Price(final String input) {
-        validateLength(input);
-
-        BigDecimal price = parse(input);
-        validateNumber(price);
+    public Price(final BigDecimal price) {
+        validate(price);
         this.price = price;
     }
 
@@ -23,24 +20,7 @@ public class Price {
         return new Quantity(price.divide(LOTTO_UNIT_PRICE));
     }
 
-    private void validateLength(final String input) {
-        if (input == null) {
-            throw new InvalidPurchasePriceException("구입 금액은 null이 될 수 없습니다");
-        }
-        if (input.isBlank()) {
-            throw new InvalidPurchasePriceException("구입 금액은 비어있거나 공백일 수 없습니다");
-        }
-    }
-
-    private BigDecimal parse(final String input) {
-        try {
-            return new BigDecimal(input.trim());
-        } catch (NumberFormatException e) {
-            throw new InvalidPurchasePriceException("구입 금액은 숫자로만 이루어져야 합니다");
-        }
-    }
-
-    private void validateNumber(final BigDecimal price) {
+    private void validate(final BigDecimal price) {
         if (price.scale() > 0) {
             throw new InvalidPurchasePriceException("구입 금액은 숫자로만 이루어져야 합니다");
         }

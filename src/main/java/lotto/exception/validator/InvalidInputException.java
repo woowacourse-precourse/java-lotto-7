@@ -1,4 +1,4 @@
-package lotto.exception.converter;
+package lotto.exception.validator;
 
 import lotto.exception.CustomIllegalArgumentException;
 
