@@ -22,8 +22,8 @@ public class Output {
     }
 
     public void outputWinningResult(List<WinningType> winningTypes) {
-       /* System.out.print("당첨 통계\n");
-        System.out.print("---\n");*/
+        System.out.print("당첨 통계\n");
+        System.out.print("---\n");
 
         int[] winningCounts = sortAndCountingWinningType(winningTypes);
         System.out.printf("%d개 일치 (%s원) - %d개\n", 3, numberFormat.format(5000), winningCounts[3]);
