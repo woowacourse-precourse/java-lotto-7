@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +55,16 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("구입금액 유효성 검증 테스트")
+    @Test
+    void 구입금액_유효성_검증_테스트() {
+        assertEquals(2000, Application.validatePurchasePrice("2000"));
+        assertThrows(IllegalArgumentException.class, () -> Application.validatePurchasePrice("2300"));
+        assertThrows(IllegalArgumentException.class, () -> Application.validatePurchasePrice("0"));
+        assertThrows(IllegalArgumentException.class, () -> Application.validatePurchasePrice("-10000"));
+        assertThrows(IllegalArgumentException.class, () -> Application.validatePurchasePrice("hahaha"));
     }
 
     @Override

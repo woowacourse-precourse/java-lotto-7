@@ -51,7 +51,7 @@ public class Application {
         }
     }
 
-    private static int validatePurchasePrice(String purchasePriceStr) {
+    static int validatePurchasePrice(String purchasePriceStr) {
         try {
             int purchasePrice = Integer.parseInt(purchasePriceStr);
             if (purchasePrice <= 0 || purchasePrice % PER_LOTTO_PRICE != 0) {
