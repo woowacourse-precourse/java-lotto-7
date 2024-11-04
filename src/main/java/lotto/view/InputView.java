@@ -6,18 +6,18 @@ import static lotto.view.ViewMessages.REQUIRE_PURCHASE_AMOUNT;
 import static lotto.view.ViewMessages.REQUIRE_WINNING_NUMBERS;
 
 public class InputView {
-    public static void inputLottoPurchaseAmount() {
+    public static String inputLottoPurchaseAmount() {
         System.out.println(REQUIRE_PURCHASE_AMOUNT);
-        readLine();
+        return readLine();
     }
 
-    public static void inputWinningNumbers() {
+    public static String inputWinningNumbers() {
         System.out.println(REQUIRE_WINNING_NUMBERS);
-        readLine();
+        return readLine();
     }
 
-    public static void inputBonusNumber() {
+    public static String inputBonusNumber() {
         System.out.println(REQUIRE_BONUS_NUMBER);
-        readLine();
+        return readLine();
     }
 }
