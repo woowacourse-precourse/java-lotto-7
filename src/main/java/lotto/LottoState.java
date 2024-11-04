@@ -9,6 +9,11 @@ public class LottoState {
         this.normalCount = 0;
     }
 
+    public LottoState(int bonusCount, int normalCount) {
+        this.bonusCount = bonusCount;
+        this.normalCount = normalCount;
+    }
+
     public int getScore() {
         return this.bonusCount + this.normalCount * 10;
     }
