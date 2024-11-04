@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 
 import lotto.domain.Winning;
 import lotto.service.LottoService;
+import lotto.utils.Parsing;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -34,5 +35,7 @@ public class LottoController {
         String bonusNumberInput = inputView.bonusNumberInput();
         List<Winning> results = Winning.FIRST.findWinningDetail(lottos, winningNumberInput, bonusNumberInput);
         outputView.resultPrint(results);
+        double profit = Winning.FIRST.profitRate(purchaseInput);
+        outputView.profitPrint(profit);
     }
 }

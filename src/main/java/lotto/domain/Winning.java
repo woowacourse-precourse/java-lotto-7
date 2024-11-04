@@ -49,7 +49,7 @@ public enum Winning {
 
         List<Winning> winningResults = new ArrayList<>();
         for (Winning winning : Winning.values()) {
-            winningResults.add(winning); // 상수 그대로 추가
+            winningResults.add(winning);
         }
         return winningResults;
     }
@@ -89,6 +89,19 @@ public enum Winning {
             }
         }
 
+    }
+
+    public double profitRate(String purchaseInput) {
+        int totalPrize = 0;
+
+        for (Winning result : Winning.values()) {
+            int prizeAmount = Integer.parseInt(result.getPrizeMoney().replace(",", ""));
+            totalPrize += prizeAmount * result.getNumberOfLottos();
+        }
+        Parsing parsing = new Parsing();
+        int purchase = parsing.stringToInteger(purchaseInput);
+        double profitRate = (double) totalPrize / purchase * 100;
+        return Math.round(profitRate * 100) / 100.0;
     }
 
 }
