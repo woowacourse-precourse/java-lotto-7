@@ -18,12 +18,8 @@ public class LottoMachine {
         lottoTickets = new LottoTickets(tickets);
     }
 
-    private List<Lotto> createTickets(int ticketCount) {
-        return IntStream.range(0, ticketCount)
-            .mapToObj(i -> new Lotto(
-                RandomNumber.getUniqueNumbers(START_LOTTO_NUMBER, LAST_LOTTO_NUMBER, LOTTO_COUNT)
-            ))
-            .toList();
+    public LottoTickets currentLottoTickets() {
+        return lottoTickets;
     }
 
     public int currentLottoTicketCount() {
@@ -33,4 +29,13 @@ public class LottoMachine {
     public String currentLottoTicketNumbers() {
         return lottoTickets.toString();
     }
+
+    private List<Lotto> createTickets(int ticketCount) {
+        return IntStream.range(0, ticketCount)
+            .mapToObj(i -> new Lotto(
+                RandomNumber.getUniqueNumbers(START_LOTTO_NUMBER, LAST_LOTTO_NUMBER, LOTTO_COUNT)
+            ))
+            .toList();
+    }
+
 }
