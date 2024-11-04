@@ -1,7 +1,7 @@
 package lotto.model;
 
-import static lotto.model.ErrorMessage.INVALID_PRICE_AMOUNT;
-import static lotto.model.ErrorMessage.INVALID_PRICE_VALUE;
+import static lotto.message.ErrorMessage.INVALID_PRICE_AMOUNT;
+import static lotto.message.ErrorMessage.INVALID_PRICE_VALUE;
 
 import java.util.Map;
 

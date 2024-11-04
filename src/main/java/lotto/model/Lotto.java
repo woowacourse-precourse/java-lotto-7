@@ -1,7 +1,7 @@
 package lotto.model;
 
-import static lotto.model.ErrorMessage.DUPLICATED_LOTTO_NUMBERS;
-import static lotto.model.ErrorMessage.INVALID_LOTTO_NUMBERS_COUNT;
+import static lotto.message.ErrorMessage.DUPLICATED_LOTTO_NUMBERS;
+import static lotto.message.ErrorMessage.INVALID_LOTTO_NUMBERS_COUNT;
 
 import java.util.HashSet;
 import java.util.List;

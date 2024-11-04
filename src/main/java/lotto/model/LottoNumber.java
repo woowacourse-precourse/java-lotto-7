@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.model.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.message.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 
 import java.util.HashMap;
 import java.util.Map;

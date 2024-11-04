@@ -1,8 +1,8 @@
 package lotto.view;
 
-import static lotto.model.ErrorMessage.INVALID_BONUS_NUMBER_INPUT;
-import static lotto.model.ErrorMessage.INVALID_PRICE_INPUT;
-import static lotto.model.ErrorMessage.INVALID_WINNING_NUMBERS_INPUT;
+import static lotto.message.ErrorMessage.INVALID_BONUS_NUMBER_INPUT;
+import static lotto.message.ErrorMessage.INVALID_PRICE_INPUT;
+import static lotto.message.ErrorMessage.INVALID_WINNING_NUMBERS_INPUT;
 
 import java.util.Arrays;
 import java.util.List;
