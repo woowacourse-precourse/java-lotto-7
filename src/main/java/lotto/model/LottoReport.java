@@ -1,63 +1,46 @@
 package lotto.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.stream.IntStream;
 
 public class LottoReport {
 
-    private final List<Lotto> purchasedLottos;
-    private final List<Integer> winningNumbers;
-    private final int bonusNumber;
-    private final Map<LottoPrize, Integer> matchCountMap = new HashMap<>();
-    private int totalEarnings = 0;
+    private static final int MIN_MATCH_COUNT = 3;
+    private static final int MAX_MATCH_COUNT = 6;
+    private static final int INITIAL_COUNT = 0;
 
-    private LottoReport(List<Lotto> purchasedLottos, WinnerLotto winnerLotto) {
-        this.purchasedLottos = purchasedLottos;
-        this.winningNumbers = winnerLotto.getNumbers();
-        this.bonusNumber = winnerLotto.getBonusNumber();
+    private final Map<LottoPrize, Integer> matchCountMap = new HashMap<>();
+    private int totalEarnings;
+
+    private LottoReport() {
         initializeMatchCountMap();
-        generateReport();
     }
 
-    public static LottoReport of(List<Lotto> purchasedLottos, WinnerLotto winnerLotto) {
-        return new LottoReport(purchasedLottos, winnerLotto);
+    public static LottoReport of(List<Lotto> purchasedLottoList, WinnerLotto winnerLotto) {
+        LottoReport lottoReport = new LottoReport();
+        purchasedLottoList.forEach(lotto -> lottoReport.addEarnings(lotto, winnerLotto));
+        return lottoReport;
     }
 
     private void initializeMatchCountMap() {
-        for (LottoPrize prize : LottoPrize.values()) {
-            matchCountMap.put(prize, 0);
+        IntStream.rangeClosed(MIN_MATCH_COUNT, MAX_MATCH_COUNT)
+                .forEach(matchCount -> matchCountMap.put(LottoPrize.findByMatchCount(matchCount, false), INITIAL_COUNT));
+        matchCountMap.put(LottoPrize.MATCH_COUNT_5_WITH_BONUS, INITIAL_COUNT);
+    }
+
+    private void addEarnings(Lotto lotto, WinnerLotto winnerLotto) {
+        int matchCount = lotto.getNumbers().stream()
+                .filter(winnerLotto.getWinningNumbers()::contains)
+                .toList()
+                .size();
+        boolean hasBonus = winnerLotto.hasBonus(lotto);
+        LottoPrize lottoPrize = LottoPrize.findByMatchCount(matchCount, hasBonus);
+        if (lottoPrize != null) {
+            matchCountMap.put(lottoPrize, matchCountMap.get(lottoPrize) + 1);
+            totalEarnings += lottoPrize.getPrize();
         }
-    }
-
-    private void generateReport() {
-        purchasedLottos.forEach(lotto -> {
-            int matchCount = calculateMatchCount(lotto);
-
-            if (isBonusMatch(matchCount, lotto)) {
-                updateMatchCountAndEarnings(LottoPrize.MATCH_COUNT_5_WITH_BONUS);
-                return;
-            }
-
-            if (matchCount >= LottoPrize.MATCH_COUNT_3.getMatchCount()) {
-                updateMatchCountAndEarnings(LottoPrize.valueOf("MATCH_COUNT_" + matchCount));
-            }
-        });
-    }
-
-    private int calculateMatchCount(Lotto lotto) {
-        return (int) lotto.getNumbers().stream()
-                .filter(winningNumbers::contains)
-                .count();
-    }
-
-    private boolean isBonusMatch(int matchCount, Lotto lotto) {
-        return matchCount == LottoPrize.MATCH_COUNT_5.getMatchCount() && lotto.getNumbers().contains(bonusNumber);
-    }
-
-    private void updateMatchCountAndEarnings(LottoPrize prize) {
-        matchCountMap.put(prize, matchCountMap.get(prize) + 1);
-        totalEarnings += prize.getPrize();
     }
 
     public Map<LottoPrize, Integer> getMatchCountMap() {
