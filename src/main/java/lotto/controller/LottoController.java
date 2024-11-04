@@ -42,12 +42,11 @@ public class LottoController {
 
         LottoPrizes lottoPrizes = new LottoPrizes(lottos, winningNumbers);
 
-        String yield = lottoPrizes.calculateYield(lottoBudget.getValue());
-
         List<String> matchStatistics = lottoPrizes.calculateMatchStatistics();
         outputView.printMatchStatistics(matchStatistics);
 
-        System.out.println("총 수익률은 " + yield + "%입니다.");
+        String yield = lottoPrizes.calculateYield(lottoBudget.getValue());
+        outputView.printYield(yield);
     }
 
 }

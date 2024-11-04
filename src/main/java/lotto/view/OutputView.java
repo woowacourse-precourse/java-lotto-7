@@ -16,4 +16,8 @@ public class OutputView {
         System.out.println("당첨 통계" + System.lineSeparator() + "---");
         matchStatistics.forEach(System.out::println);
     }
+
+    public void printYield(String yield) {
+        System.out.println("총 수익률은 " + yield + "%입니다.");
+    }
 }
