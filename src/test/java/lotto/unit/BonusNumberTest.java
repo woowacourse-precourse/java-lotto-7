@@ -42,4 +42,15 @@ class BonusNumberTest {
         BonusNumber bonus = new BonusNumber(bonusNumber, winningNumbers);
         assertThat(bonus.getBonusNumber()).isEqualTo(7);
     }
+
+    @Test
+    @DisplayName("보너스 번호가 음수인 경우 예외가 발생한다.")
+    void bonusNumberIsNegative() {
+        String input = "1,2,3,4,5,6";
+        WinningNumbers winningNumbers = new WinningNumbers(input);
+        int bonusNumber = -7;
+        assertThatThrownBy(() -> new BonusNumber(bonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
+    }
 }
