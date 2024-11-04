@@ -6,21 +6,16 @@ import java.util.List;
 
 public class LottoGenerator {
     Integer cost;
-    List<Lotto> lottos = new ArrayList<> ();
+    List<Lotto> lottos = new ArrayList<>();
 
-    LottoGenerator(String userInput){
-        validate(userInput);
-        this.cost = Integer.parseInt(userInput);
+    LottoGenerator(int cost) {
+        this.cost = cost;
         generate(cost);
         printGeneratedLottos();
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return lottos;
-    }
-
-    private void validate(String userInput){
-
     }
 
     private void printGeneratedLottos() {
@@ -29,7 +24,7 @@ public class LottoGenerator {
         }
     }
 
-    private void generate(Integer cost){
+    private void generate(Integer cost) {
         int attempt = cost / 1000;
         System.out.printf("%d개를 구매했습니다.%n", attempt);
 

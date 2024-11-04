@@ -27,14 +27,18 @@ public class LottoChecker {
     public RANK check(Lotto lotto) {
         Set<Integer> unionNumbers = new HashSet<>(winningNumbers);
         unionNumbers.retainAll(lotto.getNumbers());
-        if (unionNumbers.size() == 6)
+        if (unionNumbers.size() == 6) {
             return RANK.FIRST;
-        if (unionNumbers.size() == 5)
+        }
+        if (unionNumbers.size() == 5) {
             return checkBonus(lotto);
-        if (unionNumbers.size() == 4)
+        }
+        if (unionNumbers.size() == 4) {
             return RANK.FOURTH;
-        if (unionNumbers.size() == 3)
+        }
+        if (unionNumbers.size() == 3) {
             return RANK.FIFTH;
+        }
         return RANK.FAILURE;
     }
 
