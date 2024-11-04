@@ -375,7 +375,7 @@ public class LottoResultTest {
     private static Stream<Arguments> 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         return Stream.of
                 (Arguments.arguments("1000", List.of(1, 2, 3, 4, 5, 5), "4,5,6,7,8,9", "10")
-        );
+                );
     }
 
     private static Stream<Arguments> 로또_번호가_1_과_45_사이의_숫자가_아니면_예외가_발생한다() {
@@ -432,7 +432,7 @@ public class LottoResultTest {
         );
     }
 
-    private static Stream<Arguments> 당첨_번호가_1과_45_사이의_숫자가_아니면_예외가_발생한다(){
+    private static Stream<Arguments> 당첨_번호가_1과_45_사이의_숫자가_아니면_예외가_발생한다() {
         return Stream.of(
                 Arguments.arguments("1000", List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))), "1,2,3,4,5,46", "10"),
                 Arguments.arguments("1000", List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))), "1,2,3,4,5,0", "10")
@@ -470,7 +470,7 @@ public class LottoResultTest {
                 new Lotto(List.of(10, 11, 12, 13, 14, 15)),
                 new Lotto(List.of(10, 11, 12, 13, 14, 15)),
                 new Lotto(List.of(10, 11, 12, 13, 14, 15)),
-                new Lotto( List.of(10, 11, 12, 13, 14, 15)),
+                new Lotto(List.of(10, 11, 12, 13, 14, 15)),
                 new Lotto(List.of(10, 11, 12, 13, 14, 15)),
                 new Lotto(List.of(10, 11, 12, 13, 14, 15)),
                 new Lotto(List.of(10, 11, 12, 13, 14, 15))

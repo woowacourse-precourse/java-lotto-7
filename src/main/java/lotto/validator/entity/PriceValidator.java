@@ -7,7 +7,7 @@ import lotto.validator.Validator;
 public class PriceValidator implements Validator {
     private final String price;
 
-    public PriceValidator(String price){
+    public PriceValidator(String price) {
         this.price = price;
     }
 
@@ -24,27 +24,27 @@ public class PriceValidator implements Validator {
         }
     }
 
-    private void isNull(){
-        if(price == null){
+    private void isNull() {
+        if (price == null) {
             throw new IllegalArgumentException(ExceptionMessage.PRICE_IS_NULL.getMessage());
         }
     }
 
-    private void isValidPrice(){
+    private void isValidPrice() {
         int inputPrice = isValueInRange();
         isMultipleOfAThousand(inputPrice);
     }
 
     private int isValueInRange() {
-        try{
+        try {
             return Integer.parseInt(price);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException(ExceptionMessage.PRICE_OUT_OF_RANGE.getMessage());
         }
     }
 
-    private void isMultipleOfAThousand(int inputValue){
-        if(inputValue == 0 || inputValue % 1000 > 0){
+    private void isMultipleOfAThousand(int inputValue) {
+        if (inputValue == 0 || inputValue % 1000 > 0) {
             throw new IllegalArgumentException(ExceptionMessage.PRICE_NOT_MULTIPLE_OF_THOUSAND.getMessage());
         }
     }

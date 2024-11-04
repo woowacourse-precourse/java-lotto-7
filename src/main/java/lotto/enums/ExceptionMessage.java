@@ -1,5 +1,6 @@
 package lotto.enums;
 
+// 에러 메세지 관리 열거 클래스
 public enum ExceptionMessage {
     PRICE_NOT_VALID_FORMAT("금액은 1000 이상의 숫자 하나만 입력 할 수 있습니다."),
     PRICE_IS_NULL("구입금액 NULL 오류 입니다."),
@@ -19,13 +20,10 @@ public enum ExceptionMessage {
     WINNING_BONUS_NUMBER_DUPLICATED("당첨 번호와 보너스 번호는 중복 될 수 없습니다.");
 
 
-
-
-
     private final String HEADER = "[ERROR] ";
     private final String message;
 
-    private ExceptionMessage(String message){
+    private ExceptionMessage(String message) {
         this.message = HEADER + message;
     }
 

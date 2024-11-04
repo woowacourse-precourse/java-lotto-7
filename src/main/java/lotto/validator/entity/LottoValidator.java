@@ -10,37 +10,37 @@ import java.util.List;
 public class LottoValidator implements Validator {
     private final List<Integer> numbers;
 
-    public LottoValidator(List<Integer> numbers){
+    public LottoValidator(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
     @Override
-    public void validate(){
+    public void validate() {
         isDuplicated();
         isValidCount();
         isValidNumbers();
     }
 
-    private void isDuplicated(){
-        if(numbers.size() > new HashSet<>(numbers).size()){
+    private void isDuplicated() {
+        if (numbers.size() > new HashSet<>(numbers).size()) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 
-    private void isValidCount(){
+    private void isValidCount() {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_NOT_VALID_COUNT.getMessage());
         }
     }
 
-    private void isValidNumbers(){
-        for(int number: numbers){
+    private void isValidNumbers() {
+        for (int number : numbers) {
             isInRange(number);
         }
     }
 
-    private void isInRange(int number){
-        if(number < 1 || number > 45){
+    private void isInRange(int number) {
+        if (number < 1 || number > 45) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }

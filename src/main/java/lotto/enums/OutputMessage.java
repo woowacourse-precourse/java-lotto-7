@@ -1,5 +1,6 @@
 package lotto.enums;
 
+// 출력 메세지를 관리하는 열거 클래스
 public enum OutputMessage {
     LOTTO_COUNT("\n%d개를 구매했습니다.\n"),
     WINNING_HISTORY_TITLE("\n당첨 통계\n---"),
@@ -8,7 +9,7 @@ public enum OutputMessage {
 
     private final String message;
 
-    private OutputMessage(String message){
+    private OutputMessage(String message) {
         this.message = message;
     }
 

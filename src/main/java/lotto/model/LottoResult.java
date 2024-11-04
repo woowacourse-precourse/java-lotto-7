@@ -10,6 +10,7 @@ import lotto.validator.model.LottoResultValidator;
 import java.util.HashMap;
 import java.util.List;
 
+// 로또 결과를 계산하는 클래스
 public class LottoResult {
     private final LottoResultValidator validator;
     private final Price price;
@@ -20,12 +21,12 @@ public class LottoResult {
     private long totalPrizeMoney;
     private double rateOfReturn;
 
-    public LottoResult(Price price, List<Lotto> lottoList, WinningNumber winningNumber, BonusNumber bonusNumber){
+    public LottoResult(Price price, List<Lotto> lottoList, WinningNumber winningNumber, BonusNumber bonusNumber) {
         this.validator = new LottoResultValidator(winningNumber, bonusNumber);
 
         validate();
 
-        this.price  = price;
+        this.price = price;
         this.lottoList = lottoList;
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
@@ -38,16 +39,16 @@ public class LottoResult {
         return winningHistory;
     }
 
-    public double getRateOfReturn(){
+    public double getRateOfReturn() {
         return rateOfReturn;
     }
 
-    private void validate(){
+    private void validate() {
         validator.validate();
     }
 
-    private void calculateResult(){
-        for(Lotto lotto: lottoList){
+    private void calculateResult() {
+        for (Lotto lotto : lottoList) {
             int correctCount = calculateCorrectCount(lotto);
             boolean bonus = isCorrectBonus(lotto);
 
@@ -59,45 +60,45 @@ public class LottoResult {
         }
     }
 
-    private LottoPrize calculateRank(int correctCount, boolean bonus){
-        if(correctCount < 3){
+    private LottoPrize calculateRank(int correctCount, boolean bonus) {
+        if (correctCount < 3) {
             return LottoPrize.getFromCorrectCountAndBonus(0, bonus);
         }
 
         return LottoPrize.getFromCorrectCountAndBonus(correctCount, bonus);
     }
 
-    private int calculateCorrectCount(Lotto lotto){
+    private int calculateCorrectCount(Lotto lotto) {
         int count = 0;
 
-        for(int number : lotto.getNumbers()){
+        for (int number : lotto.getNumbers()) {
             count += isCorrectNumber(number);
         }
 
         return count;
     }
 
-    private int isCorrectNumber(int number){
-        if(!winningNumber.getValue().getNumbers().contains(number)){
+    private int isCorrectNumber(int number) {
+        if (!winningNumber.getValue().getNumbers().contains(number)) {
             return 0;
         }
 
         return 1;
     }
 
-    private boolean isCorrectBonus(Lotto lotto){
+    private boolean isCorrectBonus(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber.getValue());
     }
 
-    private void logWinningHistory(LottoPrize prize){
+    private void logWinningHistory(LottoPrize prize) {
         winningHistory.put(prize, winningHistory.getOrDefault(prize, 0) + 1);
     }
 
-    private void addPrizeMoney(LottoPrize prize){
+    private void addPrizeMoney(LottoPrize prize) {
         totalPrizeMoney += prize.getPrizeMoney();
     }
 
-    private void calculateRateOfReturn(){
-        rateOfReturn =  totalPrizeMoney / (double)price.getValue() * 100;
+    private void calculateRateOfReturn() {
+        rateOfReturn = totalPrizeMoney / (double) price.getValue() * 100;
     }
 }

@@ -7,7 +7,7 @@ import lotto.validator.Validator;
 public class WinningNumberValidator implements Validator {
     private final String winningNumbers;
 
-    public WinningNumberValidator(String winningNumbers){
+    public WinningNumberValidator(String winningNumbers) {
         this.winningNumbers = winningNumbers;
     }
 
@@ -16,46 +16,46 @@ public class WinningNumberValidator implements Validator {
         isNull();
         isValidatedForm();
 
-        for(String winningNumber: winningNumbers.split(",")){
+        for (String winningNumber : winningNumbers.split(",")) {
             isValueInRange(winningNumber);
         }
     }
 
-    private void isValidatedForm(){
+    private void isValidatedForm() {
         isConsistOfNumberAndComma();
         isStartOrEndWithComma();
         isContainsContinuousComma();
     }
 
-    private void isNull(){
-        if(winningNumbers == null){
+    private void isNull() {
+        if (winningNumbers == null) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_IS_NULL.getMessage());
         }
     }
 
-    private void isConsistOfNumberAndComma(){
-        if(!winningNumbers.matches("[0-9|,]+")){
+    private void isConsistOfNumberAndComma() {
+        if (!winningNumbers.matches("[0-9|,]+")) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_NOT_VALID_FORMAT.getMessage());
         }
     }
 
-    private void isStartOrEndWithComma(){
-        if(winningNumbers.startsWith(",") || winningNumbers.endsWith(",")){
+    private void isStartOrEndWithComma() {
+        if (winningNumbers.startsWith(",") || winningNumbers.endsWith(",")) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_START_OR_END_WITH_COMMA.getMessage());
         }
     }
 
-    private void isContainsContinuousComma(){
-        if(winningNumbers.contains(",,")){
+    private void isContainsContinuousComma() {
+        if (winningNumbers.contains(",,")) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_HAS_CONTINUOUS_COMMA.getMessage());
         }
     }
 
-    private void isValueInRange(String winningNumber){
-        try{
+    private void isValueInRange(String winningNumber) {
+        try {
             int number = Integer.parseInt(winningNumber);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }

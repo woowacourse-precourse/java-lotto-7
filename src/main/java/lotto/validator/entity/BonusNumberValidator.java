@@ -7,7 +7,7 @@ import lotto.validator.Validator;
 public class BonusNumberValidator implements Validator {
     private final String bonusNumber;
 
-    public BonusNumberValidator(String bonusNumber){
+    public BonusNumberValidator(String bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 
@@ -18,26 +18,26 @@ public class BonusNumberValidator implements Validator {
         isInRange();
     }
 
-    private void isValidatedForm(){
-        if(!bonusNumber.matches("[0-9]+")){
+    private void isValidatedForm() {
+        if (!bonusNumber.matches("[0-9]+")) {
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_NOT_VALID_FORMAT.getMessage());
         }
     }
 
-    private void isNull(){
-        if(bonusNumber == null){
+    private void isNull() {
+        if (bonusNumber == null) {
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_IS_NULL.getMessage());
         }
     }
 
-    private void isInRange(){
-        try{
+    private void isInRange() {
+        try {
             int number = Integer.parseInt(bonusNumber);
 
-            if(number < 1 || number > 45){
+            if (number < 1 || number > 45) {
                 throw new Exception();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
