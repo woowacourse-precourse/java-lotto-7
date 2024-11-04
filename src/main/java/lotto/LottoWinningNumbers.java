@@ -58,7 +58,7 @@ public class LottoWinningNumbers {
           .boxed()
           .toList();
       this.winningNumber = new Lotto(winningNum);
-    } catch (Exception e) {
+    } catch (IllegalArgumentException e) {
       System.out.print("[ERROR] ");
       System.out.println(e.getMessage());
       assignWinningNumber();
@@ -71,7 +71,7 @@ public class LottoWinningNumbers {
       int bonusNumber = inputBonusNumber();
       validateBonusNumber(bonusNumber);
       this.bonusNumber = bonusNumber;
-    } catch (Exception e) {
+    } catch (IllegalArgumentException e) {
       System.out.print("[ERROR] ");
       System.out.println(e.getMessage());
       assignBonusNumber();

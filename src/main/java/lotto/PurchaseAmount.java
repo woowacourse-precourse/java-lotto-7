@@ -30,7 +30,7 @@ public class PurchaseAmount {
   public void assignPurchaseQuantity(int purchaseAmount) {
     try {
       validatePurchaseAmount(purchaseAmount);
-    } catch (Exception e) {
+    } catch (IllegalArgumentException e) {
       System.out.print("[ERROR] ");
       System.out.println(e.getMessage());
       assignPurchaseQuantity(inputPurchaseAmount());
