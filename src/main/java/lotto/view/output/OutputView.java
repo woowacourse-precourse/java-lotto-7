@@ -28,16 +28,15 @@ public class OutputView {
         System.out.println(ViewConstants.DIVIDER);
 
         Map<Rank, Integer> rankCounts = result.getRankCounts();
-
         List<Rank> ranks = Arrays.asList(Rank.values());
         Collections.reverse(ranks);
 
-        for (Rank rank : ranks) {
-            if (rank != Rank.NO_WIN) {
-                String formattedPrize = formatter.format(rank.getPrize());
-                System.out.printf(ViewConstants.WINNING_STATISTICS_FORMAT, rank.getMessage(), formattedPrize, rankCounts.getOrDefault(rank, 0));
-            }
-        }
+        ranks.stream()
+                .filter(rank -> rank != Rank.NO_WIN)
+                .forEach(rank -> {
+                    String formattedPrize = formatter.format(rank.getPrize());
+                    System.out.printf(ViewConstants.WINNING_STATISTICS_FORMAT, rank.getMessage(), formattedPrize, rankCounts.getOrDefault(rank, 0));
+                });
     }
 
     public static void printEarningsRate(double earningsRate) {
