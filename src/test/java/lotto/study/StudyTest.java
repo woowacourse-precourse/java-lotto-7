@@ -19,4 +19,14 @@ public class StudyTest {
 
         assertThat(numbers).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
+
+    @DisplayName("double 연산이 실제로 오차를 발생하는지 확인하는 학습 테스트")
+    @Test
+    void test2() {
+        double number = 0.1;
+        double number2 = 0.2;
+        double sum = number + number2;
+
+        assertThat(sum == 0.3).isFalse();
+    }
 }
