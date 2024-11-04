@@ -8,4 +8,8 @@ public class LottoState {
         this.bonusCount = 0;
         this.normalCount = 0;
     }
+
+    public int getScore() {
+        return this.bonusCount + this.normalCount * 10;
+    }
 }
