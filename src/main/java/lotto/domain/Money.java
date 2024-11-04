@@ -23,7 +23,7 @@ public class Money {
     }
 
     private void validate(final int value) {
-        final NumberValidator numberValidator = NumberValidator.getInstance();
+        final NumberValidator<Integer> numberValidator = NumberValidator.getInstance();
         numberValidator.validateUnit(value, LottoRule.MONEY_UNIT);
     }
 

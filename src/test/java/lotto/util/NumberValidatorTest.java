@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class NumberValidatorTest {
 
-    private NumberValidator numberValidator;
+    private NumberValidator<Integer> numberValidator;
 
     @BeforeEach
     void setUp() {

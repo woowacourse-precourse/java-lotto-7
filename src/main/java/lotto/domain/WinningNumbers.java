@@ -17,7 +17,7 @@ public class WinningNumbers {
     private void validate(final Lotto winningLotto, final BonusNumber bonusNumber) {
         final List<Integer> numbers = winningLotto.getNumbers();
         final int value = bonusNumber.getValue();
-        final NumberValidator numberValidator = NumberValidator.getInstance();
+        final NumberValidator<Integer> numberValidator = NumberValidator.getInstance();
         numberValidator.validateContains(numbers, value);
     }
 

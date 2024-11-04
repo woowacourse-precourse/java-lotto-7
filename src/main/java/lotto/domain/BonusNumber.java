@@ -23,7 +23,7 @@ public class BonusNumber {
     }
 
     private void validate(final int value) {
-        final NumberValidator numberValidator = NumberValidator.getInstance();
+        final NumberValidator<Integer> numberValidator = NumberValidator.getInstance();
         numberValidator.validateRange(value, LottoRule.MIN_NUMBER,  LottoRule.MAX_NUMBER);
     }
 }
