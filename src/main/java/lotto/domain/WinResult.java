@@ -16,6 +16,10 @@ public class WinResult {
         }
     }
 
+    public int getMatchCount(String rank) {
+        return winResult.get(rank);
+    }
+
     public void plusCount(String rank) {
         winResult.merge(rank, MATCH_COUNT_INCREMENT, Integer::sum);
     }

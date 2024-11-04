@@ -1,5 +1,7 @@
 package lotto.application.service;
 
+import static lotto.common.LottoConstant.UNIT_OF_MONEY;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
@@ -7,8 +9,6 @@ import lotto.application.PurchaseLottoUseCase;
 import lotto.domain.repository.LottoRepository;
 
 public class PurchaseLottoService implements PurchaseLottoUseCase {
-
-    private static final int UNIT_OF_MONEY = 1000;
 
     private final LottoFactory lottoFactory;
     private final LottoRepository lottoRepository;

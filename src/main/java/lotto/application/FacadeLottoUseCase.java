@@ -15,4 +15,6 @@ public interface FacadeLottoUseCase {
     void checkWinning();
 
     WinResult getWinResult();
+
+    float calculateProfitRate();
 }

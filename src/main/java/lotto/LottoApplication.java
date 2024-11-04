@@ -55,5 +55,6 @@ public class LottoApplication {
     private void showResult() {
         WinResult winResult = facadeLottoUseCase.getWinResult();
         applicationView.printWinningResult(WinningInfo.from(winResult));
+        float profitRate = facadeLottoUseCase.calculateProfitRate();
     }
 }
