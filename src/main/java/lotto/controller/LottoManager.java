@@ -1,7 +1,10 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
+import lotto.constant.WinningRank;
 import lotto.model.Lotto;
 import lotto.model.LottoRepository;
 import lotto.util.InputParser;
@@ -26,6 +29,50 @@ public class LottoManager {
         List<Integer> winningNumbers = getWinningNumbers(); // todo 입력한 수 중 중복 있는지 확인
         int bonusNumber = getBonusNumber(); // todo 당첨번호와 겹치는지 확인
 
+        Map<WinningRank, Integer> rankCount = calculateWinningStatistic(winningNumbers, bonusNumber,
+                purchasePrice);
+        printWinningStatistic(rankCount);
+    }
+
+    private Map<WinningRank, Integer> calculateWinningStatistic(List<Integer> winningNumbers, int bonusNumber, int purchasePrice) {
+        outputView.printWinningStatisticHead();
+        List<Lotto> lottos = lottoRepository.findAll();
+
+        Map<WinningRank, Integer> rankCountMap = new EnumMap<>(WinningRank.class);
+        for (WinningRank rank : WinningRank.values()) {
+            rankCountMap.put(rank, 0);
+        }
+
+        for (Lotto lotto : lottos) {
+            calculateRank(winningNumbers, bonusNumber, lotto, rankCountMap);
+        }
+        return rankCountMap;
+    }
+
+    private void printWinningStatistic(Map<WinningRank, Integer> rankCountMap) {
+        for (Map.Entry<WinningRank, Integer> entry : rankCountMap.entrySet()) {
+            if (entry.getKey() != WinningRank.ZERO) {
+                outputView.printWinningStatisticBody(entry);
+            }
+        }
+    }
+
+    private void calculateRank(List<Integer> winningNumbers, int bonusNumber, Lotto lotto,
+                               Map<WinningRank, Integer> rankCountMap) {
+        List<Integer> numbers = lotto.getNumbers();
+        int count = 0;
+        boolean bonus = false;
+        for (Integer number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        if (count == 5 && numbers.contains(bonusNumber)) {
+            bonus = true;
+        }
+
+        WinningRank rank = WinningRank.getRank(count, bonus);
+        rankCountMap.put(rank, rankCountMap.get(rank) + 1);
     }
 
     private int getBonusNumber() {
