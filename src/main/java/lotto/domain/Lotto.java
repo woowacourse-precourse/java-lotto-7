@@ -28,6 +28,11 @@ public class Lotto {
         }
     }
 
+    public boolean contains(int target) {
+        return numbers.stream()
+                .anyMatch(number -> number.equals(target));
+    }
+
     private boolean isSizeSix(int size) {
         return size == 6;
     }

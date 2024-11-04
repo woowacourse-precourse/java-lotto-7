@@ -13,4 +13,9 @@ public class WinningNumbers {
         Lotto lotto = new Lotto(numbers);
         return new WinningNumbers(lotto);
     }
+
+    public boolean contains(int number){
+        return winningNumbers.contains(number);
+    }
+
 }
