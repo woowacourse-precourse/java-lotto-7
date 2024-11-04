@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Lotto {
     private static final int NUM_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
