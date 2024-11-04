@@ -1,7 +1,17 @@
 package lotto;
 
+import lotto.controller.LottoController;
+import lotto.model.LottoHandler;
+import lotto.model.RankingHandler;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+
+        final LottoHandler lottoHandler = new LottoHandler();
+        final RankingHandler rankingHandler = new RankingHandler();
+
+        final LottoController lottoController = new LottoController(lottoHandler, rankingHandler);
+
+        lottoController.start();
     }
 }

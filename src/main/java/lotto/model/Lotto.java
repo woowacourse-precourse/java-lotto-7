@@ -1,11 +1,15 @@
-package lotto;
+package lotto.model;
+
+import lotto.utils.WinningNumberValidation;
 
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        WinningNumberValidation.validateDuplicateWinningNumbers(numbers);
         validate(numbers);
         this.numbers = numbers;
     }
@@ -16,5 +20,7 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
