@@ -25,11 +25,11 @@ public class LottoMachine {
 
     public List<Lotto> generateLotto(int purchaseAmount) {
         validate(purchaseAmount);
-        int numberOfLottos = purchaseAmount / PRICE.getValue();
+        int numberOfLottos = purchaseAmount / PRICE;
 
         for (int i = 0; i < numberOfLottos; i++) {
             List<Integer> generatedNumbers = pickUniqueNumbersInRange(
-                    MIN_NUMBER.getValue(), MAX_NUMBER.getValue(), VALID_SIZE.getValue()
+                    MIN_NUMBER, MAX_NUMBER, VALID_SIZE
             );
             generatedLottos.add(new Lotto(generatedNumbers));
         }
@@ -50,7 +50,7 @@ public class LottoMachine {
     }
 
     private boolean isNotValidPurchaseUnit(int purchaseAmount) {
-        return purchaseAmount % PRICE.getValue() != ZERO;
+        return purchaseAmount % PRICE != ZERO;
     }
 
     public LottoResult match(WinningNumbers winningNumbers) {

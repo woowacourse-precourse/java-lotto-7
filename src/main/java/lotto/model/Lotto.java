@@ -33,16 +33,16 @@ public class Lotto {
     }
 
     private static boolean hasInvalidSize(List<Integer> numbers) {
-        return numbers.size() != VALID_SIZE.getValue();
+        return numbers.size() != VALID_SIZE;
     }
 
     private static boolean hasInvalidRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(n -> n < MIN_NUMBER.getValue() || n > MAX_NUMBER.getValue());
+                .anyMatch(n -> n < MIN_NUMBER || n > MAX_NUMBER);
     }
 
     private boolean hasDuplicate(List<Integer> numbers) {
-        return Set.copyOf(numbers).size() != VALID_SIZE.getValue();
+        return Set.copyOf(numbers).size() != VALID_SIZE;
     }
 
     public List<Integer> getNumbers() {

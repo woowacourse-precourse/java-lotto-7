@@ -17,7 +17,7 @@ public record LottoResult(List<LottoPrize> prizes, double rateOfReturn) {
 
             LottoPrize.of(matchCount, isBonusBallMatched).ifPresent(prizes::add);
         }
-        int purchaseAmount = lottos.size() * PRICE.getValue();
+        int purchaseAmount = lottos.size() * PRICE;
         double rateOfReturn = rateOfReturn(prizes, purchaseAmount);
 
         return new LottoResult(prizes, rateOfReturn);

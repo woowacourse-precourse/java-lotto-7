@@ -14,7 +14,7 @@ public record WinningNumbers(Lotto lotto, int bonusBall) {
         if (lotto.contains(bonusBall)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS_BALL.getMessage());
         }
-        if (bonusBall < MIN_NUMBER.getValue() || bonusBall > MAX_NUMBER.getValue()) {
+        if (bonusBall < MIN_NUMBER || bonusBall > MAX_NUMBER) {
             throw new IllegalArgumentException(INVALID_BONUS_BALL_RANGE.getMessage());
         }
     }
