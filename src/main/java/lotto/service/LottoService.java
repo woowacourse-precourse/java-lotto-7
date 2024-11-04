@@ -6,7 +6,7 @@ import lotto.domain.IssuedLotto;
 import lotto.domain.IssuedRandomLotto;
 import lotto.domain.LottoProfitCalculator;
 import lotto.domain.LottoResult;
-import lotto.domain.dto.LottoStatisticsDto;
+import lotto.dto.LottoStatisticsDto;
 
 public class LottoService {
     private final RandomNumberGenerator randomNumberGenerator;

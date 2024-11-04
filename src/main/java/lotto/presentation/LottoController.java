@@ -3,7 +3,7 @@ package lotto.presentation;
 import java.util.List;
 import lotto.domain.IssuedLotto;
 import lotto.domain.LottoResult;
-import lotto.domain.dto.LottoStatisticsDto;
+import lotto.dto.LottoStatisticsDto;
 import lotto.presentation.view.InputView;
 import lotto.presentation.view.OutputView;
 import lotto.service.LottoService;

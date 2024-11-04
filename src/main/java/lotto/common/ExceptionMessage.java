@@ -8,7 +8,6 @@ public enum ExceptionMessage {
     ERROR_MINIMUM_PURCHASE_AMOUNT("1,000원 이상 입력해주세요."),
     ERROR_INVALID_PURCHASE_AMOUNT_UNIT("1,000원 단위로 입력해주세요."),
     ERROR_MAXIMUM_PURCHASE_AMOUNT("로또 구입 금액은 100,000원 이하로 입력해주세요."),
-
     ;
     private final String message;
 

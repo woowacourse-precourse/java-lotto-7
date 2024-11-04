@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.Random;
 import lotto.common.RandomNumberGenerator;
 import lotto.presentation.LottoController;
 import lotto.presentation.view.InputView;

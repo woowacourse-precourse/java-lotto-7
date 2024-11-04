@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.dto.LottoStatisticsDto;
+import lotto.dto.LottoStatisticsDto;
 
 public class OutputView {
     public void printIssuedLottos(List<Lotto> issuedLottos) {
