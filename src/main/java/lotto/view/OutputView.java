@@ -11,10 +11,6 @@ import java.util.Map;
 
 public class OutputView {
 
-    private static final String LABEL_WINNING_STATISTICS = "당첨 통계";
-    private static final String SYMBOL_SEPARATOR_LINE = "---";
-    private static final String PROFIT_RATE_FORMAT = "#,##0.0";
-
     public static void printPurchaseAmountInputMessage() {
         System.out.println(Message.INPUT_PURCHASE_AMOUNT.getMessage());
     }
@@ -44,8 +40,7 @@ public class OutputView {
     }
 
     public static void printWinningStatistics(Map<LottoRank, Integer> lottoRankCount) {
-        System.out.println(LABEL_WINNING_STATISTICS);
-        System.out.println(SYMBOL_SEPARATOR_LINE);
+        System.out.println("당첨 통계\n---");
 
         Map<LottoRank, String> rankInfo = LottoRank.getRankInfo();
 
@@ -64,7 +59,7 @@ public class OutputView {
     }
 
     private static String formatProfitRate(double profitRate) {
-        DecimalFormat decimalFormat = new DecimalFormat(PROFIT_RATE_FORMAT);
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
         return decimalFormat.format(profitRate);
     }
 }
