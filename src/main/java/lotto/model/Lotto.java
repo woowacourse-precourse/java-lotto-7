@@ -35,4 +35,18 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복일 수 없습니다.");
         }
     }
+
+    public Prize determinePrize(List<Integer> numbers, int bonus) {
+        return Prize.getPrize(countMatchNumber(numbers), hasBonus(bonus));
+    }
+
+    private int countMatchNumber(List<Integer> numbers) {
+        return (int) this.numbers.stream()
+                .filter(numbers::contains)
+                .count();
+    }
+
+    private boolean hasBonus(int bonus) {
+        return this.numbers.contains(bonus);
+    }
 }
