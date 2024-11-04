@@ -1,7 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.constant.Constant;
+import lotto.validator.BonusValidator;
 import lotto.validator.WinningNumberValidator;
 import lotto.validator.LottoPurchaseValidator;
 
@@ -26,11 +28,11 @@ public class InputView {
     }
 
     // 사용자 입력 보너스 번호
-    public static String inputBonusNumber() {
+    public static String inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println(Constant.LOTTO_BONUS_MESSAGE);
         String bonusNumber = readLine();
 
-        LottoPurchaseValidator.validate(bonusNumber);
+        BonusValidator.validate(winningNumbers, bonusNumber);
         return bonusNumber;
     }
 

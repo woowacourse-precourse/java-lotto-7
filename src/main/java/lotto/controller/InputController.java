@@ -41,7 +41,7 @@ public class InputController {
     public int setBonusNumber() {
         while (true) {
             try {
-                String inputBonusNumber = InputView.inputBonusNumber();
+                String inputBonusNumber = InputView.inputBonusNumber(setWinningNumbers());
                 return Integer.parseInt(inputBonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

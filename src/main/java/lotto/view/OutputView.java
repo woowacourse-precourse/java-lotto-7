@@ -35,11 +35,14 @@ public class OutputView {
         Map<LottoRank, Integer> resultCount = lottoService.calculateTotalWinnings(lottos);
         NumberFormat nf = NumberFormat.getInstance();
         for (LottoRank lottoRank : resultCount.keySet()) {
+            if(lottoRank.name().equals("SECOND")) {
+                System.out.printf(Constant.SECOND_RANK_COUNT + "\n", lottoRank.getSameNumberCount(), nf.format(lottoRank.getWinningPrice()),
+                        resultCount.get(lottoRank));
+                continue;
+            }
             System.out.printf(Constant.EACH_RANK_COUNT + "\n", lottoRank.getSameNumberCount(), nf.format(lottoRank.getWinningPrice()),
                     resultCount.get(lottoRank));
         }
-        double rateOfReturn = lottoService.calculateRateOfReturn(resultCount, purchasePrice);
-        System.out.printf(Constant.RATE_OF_RETURN_MESSAGE, rateOfReturn);
+        System.out.printf(Constant.RATE_OF_RETURN_MESSAGE, lottoService.calculateRateOfReturn(resultCount, purchasePrice));
     }
-
 }
