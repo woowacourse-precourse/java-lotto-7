@@ -18,6 +18,12 @@ public class CalculateResult {
         this.results = new ArrayList<>();
     }
 
+    public void calculateMatches(List<Lotto> lottos){
+        for (Lotto lotto : lottos) {
+            this.results.add(findMatches(lotto));
+        }
+    }
+
     public SingleResult findMatches(Lotto lotto){
         List<Integer> numbers = lotto.getNumbers();
         SingleResult result = new SingleResult();
@@ -32,18 +38,10 @@ public class CalculateResult {
         return result;
     }
 
-    public void calculateMatches(List<Lotto> lottos){
-        for (Lotto lotto : lottos) {
-            this.results.add(findMatches(lotto));
-        }
-    }
-
-    public float getLottoReturns(int totalCount){
-        int total = 0;
-        for (SingleResult singleResult : this.results) {
-            total += singleResult.getPrize();
-        }
-        return ((float) total / (totalCount * TICKET_UNIT_PRICE)) * 100;
+    public void getTotalResult(int totalCount){
+        float lottoReturn = getLottoReturns(totalCount);
+        List<Integer> winCounts = getWinCounts();
+        printSummary(winCounts, lottoReturn);
     }
 
     public List<Integer> getWinCounts(){
@@ -55,9 +53,11 @@ public class CalculateResult {
         return winCounts;
     }
 
-    public void getTotalResult(int totalCount){
-        float lottoReturn = getLottoReturns(totalCount);
-        List<Integer> winCounts = getWinCounts();
-        printSummary(winCounts, lottoReturn);
+    public float getLottoReturns(int totalCount){
+        int total = 0;
+        for (SingleResult singleResult : this.results) {
+            total += singleResult.getPrize();
+        }
+        return ((float) total / (totalCount * TICKET_UNIT_PRICE)) * 100;
     }
 }

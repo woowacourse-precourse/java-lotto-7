@@ -17,6 +17,12 @@ public class Lotto {
         this.numbers = sortedNumbers;
     }
 
+    private void checkNumbersRange(List<Integer> numbers){
+        for (Integer number : numbers) {
+            checkRange(number);
+        }
+    }
+
     protected static void checkRange(Integer number){
         if (number > 45 || number < 1) {
             throw new IllegalArgumentException(ErrorMessages.NUMBER_RANGE_ERROR.getMessage());
@@ -27,12 +33,6 @@ public class Lotto {
         checkDuplicateLottoNumbers(numbers);
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessages.LOTTO_COUNT_ERROR.getMessage());
-        }
-    }
-
-    private void checkNumbersRange(List<Integer> numbers){
-        for (Integer number : numbers) {
-            checkRange(number);
         }
     }
 

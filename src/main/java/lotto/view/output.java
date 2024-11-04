@@ -9,12 +9,14 @@ import lotto.controller.LottoController;
 import lotto.model.Lotto;
 
 public class output {
-    public static void printOutputTotalCount(int count){
-        System.out.println(count + RequestMessages.OUTPUT_TOTAL_COUNT.getMessage());
+    public static void printBoughtLottos(LottoController lottoController){
+        printWhiteSpace();
+        printOutputTotalCount(lottoController.getTotalCount());
+        printLottos(lottoController.getLottos());
     }
 
-    public static void printSummaryMessage(){
-        System.out.println(RequestMessages.SUMMARY.getMessage());
+    public static void printOutputTotalCount(int count){
+        System.out.println(count + RequestMessages.OUTPUT_TOTAL_COUNT.getMessage());
     }
 
     public static void printLottos(List<Lotto> Lottos){
@@ -23,10 +25,13 @@ public class output {
         }
     }
 
-    public static void printBoughtLottos(LottoController lottoController){
-        printWhiteSpace();
-        printOutputTotalCount(lottoController.getTotalCount());
-        printLottos(lottoController.getLottos());
+    public static void printSummary(List<Integer> winCounts, float lottoReturn){
+        printWinCounts(winCounts);
+        printLottoReturn(lottoReturn);
+    }
+
+    public static void printLottoReturn(float lottoReturn){
+        System.out.println("총 수익률은 " + String.format("%.1f", lottoReturn) + "%입니다.");
     }
 
     public static void printWinCounts(List<Integer> winCounts){
@@ -38,12 +43,7 @@ public class output {
         }
     }
 
-    public static void printLottoReturn(float lottoReturn){
-        System.out.println("총 수익률은 " + String.format("%.1f", lottoReturn) + "%입니다.");
-    }
-
-    public static void printSummary(List<Integer> winCounts, float lottoReturn){
-        printWinCounts(winCounts);
-        printLottoReturn(lottoReturn);
+    public static void printSummaryMessage(){
+        System.out.println(RequestMessages.SUMMARY.getMessage());
     }
 }

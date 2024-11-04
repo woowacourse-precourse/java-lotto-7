@@ -48,15 +48,6 @@ public class LottoController {
         calculator.getTotalResult(lottoController.totalCount);
     }
 
-    public List<Integer> changeStringListToIntList(List<String> stringList) {
-        List<Integer> intList = new ArrayList<>();
-        for (String s : stringList){
-            inputNullCheck(s);
-            intList.add(Integer.valueOf(s));
-        }
-        return intList;
-    }
-
     public WinningLotto makeWinningLotto() {
         List<String> inputNumbers = readWinningNumbers();
         while(true){
@@ -69,6 +60,15 @@ public class LottoController {
                 inputNumbers = readWinningNumbers();
             }
         }
+    }
+
+    public List<Integer> changeStringListToIntList(List<String> stringList) {
+        List<Integer> intList = new ArrayList<>();
+        for (String s : stringList){
+            inputNullCheck(s);
+            intList.add(Integer.valueOf(s));
+        }
+        return intList;
     }
 
     public void bonusNumber(WinningLotto winningLotto){
