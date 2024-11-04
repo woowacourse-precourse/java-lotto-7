@@ -53,4 +53,11 @@ public class WinningNumberServiceTest {
 
         assertThat(rankingResult.size()).isEqualTo(5);
     }
+
+    @Test
+    void 총_수익률_가구하기_테스트() {
+        double earningsRate = winningNumberService.getEarningsRate(winningNumberService.getRankingResult(), 8000);
+
+        assertThat(earningsRate).isEqualTo(62.5);
+    }
 }

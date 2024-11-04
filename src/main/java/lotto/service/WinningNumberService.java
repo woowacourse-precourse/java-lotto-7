@@ -20,7 +20,7 @@ public class WinningNumberService {
         this.winningNumber = createWinningNumber(winningNumber, bonusNumber);
     }
 
-    private WinningNumber createWinningNumber(String winningNumbers, int bonusNumber) {
+    public WinningNumber createWinningNumber(String winningNumbers, int bonusNumber) {
         List<Integer> winningNumber = Arrays.stream(winningNumbers.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
