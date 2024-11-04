@@ -3,12 +3,17 @@ package lotto.model;
 import lotto.util.Parser;
 import lotto.util.Validator;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import static lotto.common.ErrorMessage.NOT_NUMBER_OR_RANGE_EXCESS;
+import static lotto.common.ErrorMessage.*;
 
 public class MainNumber {
+    private static final int RANGE_START = 1;
+    private static final int RANGE_END = 45;
+
     private final List<Integer> numbers;
 
     public MainNumber(final String inputValue) {
@@ -23,9 +28,9 @@ public class MainNumber {
     }
 
     private void validate(List<Integer> elements) {
-        Validator.checkElementCount(elements);
-        Validator.checkWinningNumberRange(elements);
-        Validator.checkDuplicate(elements);
+        checkElementCount(elements);
+        checkWinningNumberRange(elements);
+        checkDuplicate(elements);
     }
 
     private List<Integer> convertType(List<String> elements) throws IllegalArgumentException {
@@ -35,6 +40,27 @@ public class MainNumber {
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_NUMBER_OR_RANGE_EXCESS.getMessage());
+        }
+    }
+
+    private void checkElementCount(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(MAIN_NUMBERS_COUNT.getMessage());
+        }
+    }
+
+    private void checkWinningNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < RANGE_START || RANGE_END < number) {
+                throw new IllegalArgumentException(WINNING_NUMBER_RANGE.getMessage());
+            }
+        }
+    }
+
+    private void checkDuplicate(List<Integer> numbers) {
+        Set<Integer> singleNumbers = new HashSet<>(numbers);
+        if (numbers.size() != singleNumbers.size()) {
+            throw new IllegalArgumentException(DUPLICATE_EXIST.getMessage());
         }
     }
 

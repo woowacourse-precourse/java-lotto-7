@@ -3,9 +3,11 @@ package lotto.vo;
 import lotto.util.Parser;
 import lotto.util.Validator;
 
-import static lotto.common.ErrorMessage.NOT_NUMBER_OR_RANGE_EXCESS;
+import static lotto.common.ErrorMessage.*;
 
 public class Payment {
+    private static final int ZERO = 0;
+    private static final int THOUSAND = 1000;
     private final int money;
 
     public Payment(final String inputValue) {
@@ -23,8 +25,20 @@ public class Payment {
     }
 
     private void validate(final int money) throws IllegalArgumentException {
-        Validator.checkNegative(money);
-        Validator.checkMultiplesOfThousand(money);
+        checkNegative(money);
+        checkMultiplesOfThousand(money);
+    }
+
+    private void checkNegative(int money) {
+        if (money < ZERO) {
+            throw new IllegalArgumentException(NEGATIVE_NUMBER.getMessage());
+        }
+    }
+
+    private void checkMultiplesOfThousand(int money) {
+        if (money % THOUSAND != ZERO) {
+            throw new IllegalArgumentException(MULTIPLES_OF_THOUSAND.getMessage());
+        }
     }
 
     public int getMoney() {

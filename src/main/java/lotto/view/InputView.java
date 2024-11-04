@@ -3,10 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.Validator;
 import lotto.view.message.InputMessage;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
 
-import static lotto.view.message.InputMessage.*;
 import static lotto.common.ErrorMessage.EMPTY_INPUT;
+import static lotto.view.message.InputMessage.*;
 
 public class InputView {
     public static String inputMoney() {
@@ -31,6 +30,8 @@ public class InputView {
     }
 
     private static void validate(String inputValue) throws IllegalArgumentException { // TODO: 적절한 Exception로 수정
-        Validator.checkEmpty(inputValue);
+        if (inputValue == null || inputValue.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
+        }
     }
 }
