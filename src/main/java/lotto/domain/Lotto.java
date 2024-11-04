@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.common.ErrorMessage;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -8,7 +10,15 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDistinctNumber(numbers);
         this.numbers = sortNumbers(numbers);
+    }
+
+    private void validateDistinctNumber(List<Integer> numbers) {
+        long totalSize=numbers.stream().distinct().count();
+        if (numbers.size()!=totalSize){
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER);
+        }
     }
 
     public List<Integer> getNumbers() {
