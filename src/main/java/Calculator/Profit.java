@@ -1,13 +1,13 @@
 package Calculator;
 
-import java.util.List;
+import java.util.Map;
 
 public class Profit {
-    public double calculate(List<Integer> ranks, int money) {
+    public double calculate(Map<Integer, Integer> ranks, int money) {
         int cnt = money / 1000;
 
         int totalEarnMoney = 0;
-        for (int i = 1; i < 7; i++) {
+        for (int i = 1; i < 6; i++) {
             totalEarnMoney = totalEarnMoney + getPrice(i, ranks.get(i));
         }
 
