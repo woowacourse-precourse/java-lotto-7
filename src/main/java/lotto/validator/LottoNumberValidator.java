@@ -17,6 +17,10 @@ public class LottoNumberValidator {
             throw new IllegalArgumentException(InputNumberException.EMPTY_INPUT.getMessage());
         }
 
+        if (input.trim().endsWith(DELIMITER)) {
+            throw new IllegalArgumentException(InputNumberException.ENDS_WITH_COMMA.getMessage());
+        }
+
         List<Integer> numbers;
         try {
             numbers = parseNumbers(input);
