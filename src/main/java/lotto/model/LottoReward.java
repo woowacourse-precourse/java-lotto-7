@@ -14,7 +14,7 @@ public enum LottoReward {
         this.reward = reward;
     }
 
-    public String getReward() {
-        return String.format("%,d", this.reward);
+    public int getReward() {
+        return reward;
     }
 }
