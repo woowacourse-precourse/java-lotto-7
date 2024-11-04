@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.WinningState;
 import lotto.util.InputParser;
+import lotto.util.InputValidator;
 import lotto.util.RandomNumbersGenerator;
 import lotto.view.LottoView;
 
@@ -16,12 +17,14 @@ public class LottoController {
     private int turn;
     private List<Integer> winningNumbers;
     private int bonusNumber;
+    private Lotto[] lottos;
     private Map<String, Integer> results;
 
     public LottoController() {
         this.purchasePrice = InputParser.parsePurchasePrice(LottoView.inputPurchasePrice());
         this.turn = purchasePrice / PRICE;
-        results = new HashMap<>();
+        this.lottos = new Lotto[this.turn];
+        this.results = new HashMap<>();
         for (WinningState state : WinningState.values()) {
             results.put(state.name(), 0);
         }
@@ -29,14 +32,15 @@ public class LottoController {
 
     public void runLotto() {
         LottoView.printTurn(turn);
-        Lotto[] lottos = new Lotto[turn];
 
         for (int i = 0; i < turn; i++) {
             lottos[i] = new Lotto(RandomNumbersGenerator.create());
             LottoView.printLotto(lottos[i].toString());
         }
+
         this.winningNumbers = InputParser.parseWinningNumbers(LottoView.inputWinningNumbers());
         this.bonusNumber = InputParser.parseBonusNumber(LottoView.inputBonusNumber());
+        InputValidator.validateWinningBonusNumbers(winningNumbers, bonusNumber);
 
         for (int i = 0; i < turn; i++) {
             String result = lottos[i].checkWinner(winningNumbers, bonusNumber);

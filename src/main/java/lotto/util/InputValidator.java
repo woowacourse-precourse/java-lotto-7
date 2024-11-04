@@ -31,6 +31,9 @@ public class InputValidator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 정수로 이루어져야 합니다.");
         }
+        if (Arrays.stream(input.split(",")).distinct().count() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 중복되지 않는 6개의 숫자여야 합니다.");
+        }
         new Lotto(winningNumbers);
     }
 
@@ -43,6 +46,12 @@ public class InputValidator {
         }
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    public static void validateWinningBonusNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복됩니다.");
         }
     }
 }
