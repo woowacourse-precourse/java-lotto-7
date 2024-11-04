@@ -1,7 +1,8 @@
 package lotto.purchasing.model;
 
+import static lotto.common.constant.LottoConstant.PAYMENT_UNIT_WON;
+
 public class Payment {
-    private static final int PAYMENT_OF_UNIT = 1_000;
     private final int numberOfTickets;
 
     public Payment(String inputPayment) {
@@ -11,7 +12,7 @@ public class Payment {
     private int purchasingLottoTickets(String inputPayment) {
         validPaymentNumber(inputPayment);
         validPaymentMultipleOf1_000(inputPayment);
-        return Integer.parseInt(inputPayment) / PAYMENT_OF_UNIT;
+        return Integer.parseInt(inputPayment) / PAYMENT_UNIT_WON;
     }
 
     private void validPaymentNumber(String inputPayment) {
@@ -24,7 +25,7 @@ public class Payment {
     
     private void validPaymentMultipleOf1_000(String inputPayment) {
         int payment = Integer.parseInt(inputPayment);
-        if (payment % PAYMENT_OF_UNIT != 0 || payment <= 0) {
+        if (payment % PAYMENT_UNIT_WON != 0 || payment <= 0) {
             throw new IllegalArgumentException("[ERROR] 1,000원 단위의 금액을 입력하세요.");
         }
     }

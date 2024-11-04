@@ -1,14 +1,15 @@
 package lotto.winning.model;
 
+import static lotto.common.constant.LottoConstant.WINNING_NUMBER_DELIMITER;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.winning.validator.ValidatorOfWinningNumber;
 
 public class WinningNumbers {
-    private static final String DELIMITER = ",";
     private List<Integer> winningNumbers;
-    private ValidatorOfWinningNumber validator;
+    private final ValidatorOfWinningNumber validator;
 
     public WinningNumbers() {
         validator = ValidatorOfWinningNumber.getValidator();
@@ -21,7 +22,7 @@ public class WinningNumbers {
 
     private void splitIntoNumbers(String inputWinningNumbers) {
         winningNumbers = new ArrayList<>();
-        for (String splitedNumber : inputWinningNumbers.split(DELIMITER)) {
+        for (String splitedNumber : inputWinningNumbers.split(WINNING_NUMBER_DELIMITER)) {
             validator.validateCastingToNumber(splitedNumber);
             int number = Integer.parseInt(splitedNumber);
 
@@ -30,6 +31,7 @@ public class WinningNumbers {
             validator.validateDegenerate(winningNumbers, number);
             winningNumbers.add(number);
         }
+        validator.validateLottoLimit(winningNumbers);
         Collections.sort(winningNumbers);
     }
     
