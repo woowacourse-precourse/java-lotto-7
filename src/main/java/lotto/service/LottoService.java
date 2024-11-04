@@ -36,6 +36,15 @@ public class LottoService {
         this.lotto = new Lotto(numbers);
     }
 
+    /*
+    로또 보너스 번호 저장
+     */
+    public void saveBonusNumber(int bonusNum) {
+        if (lotto != null) {
+            lotto.setBonusNumber(bonusNum);
+        }
+    }
+
     public void printLottoTickets(List<List<Integer>> lottoTickets) {
         System.out.println(lottoTickets.size() + AnswerConstants.PURCHASE_COMPLETE_MSG);
 

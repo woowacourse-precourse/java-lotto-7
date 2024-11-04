@@ -29,4 +29,10 @@ public class LottoController {
 
         lottoService.saveLottoNumber(numbers);
     }
+
+    public void saveBonusNumber() {
+        int bonusNum = Integer.parseInt(Console.readLine().trim());
+
+        lottoService.saveBonusNumber(bonusNum);
+    }
 }
