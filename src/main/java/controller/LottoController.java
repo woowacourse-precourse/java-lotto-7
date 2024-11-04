@@ -2,6 +2,7 @@ package controller;
 
 import common.InputMessage;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import model.Lotto;
 import services.LottoService;
@@ -28,6 +29,11 @@ public class LottoController {
 
         String pickLottoNumbers = getValidatedWinningNumbers();
         String pickBonusLottoNumber = getValidatedBonusNumber(pickLottoNumbers);
+
+        Map<Integer, Integer> lottoMatchs = lottoService.findMatchLotto(pickLottoNumbers, pickBonusLottoNumber, lottos);
+        double yield = lottoService.calculateYield(lottoMatchs, purchaseAmount);
+
+        outputView.showWinResult(lottoMatchs, yield);
     }
 
     private String getValidatedBonusNumber(String pickLottoNumbers) {
