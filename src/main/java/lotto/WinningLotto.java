@@ -18,4 +18,9 @@ public class WinningLotto {
         LottoState state = new LottoState(normalCount, bonusCount);
         return state.getScore();
     }
+
+    public Rank getRank(Lotto lotto) {
+        int score = getScore(lotto);
+        return Rank.getRankByScore(score);
+    }
 }
