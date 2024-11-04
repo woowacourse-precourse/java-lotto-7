@@ -10,6 +10,7 @@ import lotto.repository.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 class LottoPublishServiceTest {
 
@@ -17,8 +18,8 @@ class LottoPublishServiceTest {
 
     @BeforeEach
     void setup() {
-        lottoPublishService =
-                LottoPublishService.getInstance();
+        lottoPublishService = LottoPublishService.getInstance();
+        lottoPublishService.clearPublishedLottoNumbers();
     }
 
     @DisplayName("중복되지_않는_6개의_숫자_생성")
@@ -31,5 +32,16 @@ class LottoPublishServiceTest {
         Set<Integer> dinstinctLottos = new HashSet<>(lottos.get(0).getNumbers());
         // then
         assertThat(dinstinctLottos.size()).isEqualTo(LottoRule.LOTTO_MAX_COUNT.getValue());
+    }
+
+    @Test
+    void 구매_복권의_게임수_테스트() {
+        // give
+        lottoPublishService.lottoPublish("5000");
+        Integer lottoPublishedSize = 5;
+        // when
+        List<Lotto> lottos = lottoPublishService.getPublishedLottoNumbers();
+        // then
+        assertThat(lottos.size()).isEqualTo(lottoPublishedSize);
     }
 }
