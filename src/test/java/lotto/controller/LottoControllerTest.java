@@ -7,6 +7,8 @@ import java.util.List;
 import lotto.controller.error.ErrorType;
 import lotto.controller.generator.mock.MockNumberGenerator;
 import lotto.model.Lotto;
+import lotto.model.Rank;
+import lotto.model.Statistics;
 import lotto.view.input.mock.MockInputView;
 import lotto.view.output.mock.MockOutputView;
 import org.junit.jupiter.api.DisplayName;
@@ -30,21 +32,13 @@ class LottoControllerTest {
 
             // when
             controller.start();
-            List<String> output = outputView.getOutput();
+            List<Lotto> lottos = (List<Lotto>) outputView.getOutput().getFirst();
 
             // then
             assertSoftly(softly -> {
-                softly.assertThat(output.getFirst()).isEqualTo("8개를 구매했습니다.");
-                softly.assertThat(output.subList(1, 9)).contains(
-                        "[1, 2, 3, 4, 5, 6]",
-                        "[1, 2, 3, 4, 5, 6]",
-                        "[1, 2, 3, 4, 5, 6]",
-                        "[1, 2, 3, 4, 5, 6]",
-                        "[1, 2, 3, 4, 5, 6]",
-                        "[1, 2, 3, 4, 5, 6]",
-                        "[1, 2, 3, 4, 5, 6]",
-                        "[1, 2, 3, 4, 5, 6]"
-                );
+                softly.assertThat(lottos).hasSize(8);
+                lottos.forEach(lotto ->
+                        softly.assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6));
             });
         }
 
@@ -59,18 +53,13 @@ class LottoControllerTest {
 
             // when
             controller.start();
-            List<String> output = outputView.getOutput();
+            Statistics statistics = (Statistics) outputView.getOutput().get(1);
 
             // then
-            assertThat(output).contains(
-                    "당첨 통계\n---",
-                    "3개 일치 (5,000원) - 0개",
-                    "4개 일치 (50,000원) - 0개",
-                    "5개 일치 (1,500,000원) - 0개",
-                    "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                    "6개 일치 (2,000,000,000원) - 8개",
-                    "총 수익률은 200000000.0%입니다."
-            );
+            assertSoftly(softly -> {
+                softly.assertThat(statistics.getWinningResult().get(Rank.FIRST_PLACE)).isEqualTo(8);
+                softly.assertThat(statistics.getYield()).isEqualTo("200000000.0");
+            });
         }
     }
 
@@ -85,14 +74,15 @@ class LottoControllerTest {
             String invalidAmount = "1500";
             MockInputView inputView = new MockInputView(List.of(invalidAmount, "8000", "1,2,3,4,5,6", "7"));
             MockOutputView outputView = new MockOutputView();
-            LottoController controller = new LottoController(inputView, outputView, new MockNumberGenerator());
+            MockNumberGenerator numberGenerator = new MockNumberGenerator();
+            LottoController controller = new LottoController(inputView, outputView, numberGenerator);
 
             // when
             controller.start();
-            List<String> output = outputView.getOutput();
-            // then
+            String errorMessage = (String) outputView.getOutput().getFirst();
 
-            assertThat(output.getFirst()).isEqualTo(ErrorType.INVALID_UNIT_AMOUNT.getMessage());
+            // then
+            assertThat(errorMessage).isEqualTo(ErrorType.INVALID_UNIT_AMOUNT.getMessage());
         }
 
         @Test
@@ -102,14 +92,15 @@ class LottoControllerTest {
             String invalidLottoNumber = "1,2,3";
             MockInputView inputView = new MockInputView(List.of("0", invalidLottoNumber, "1,2,3,4,5,6", "7"));
             MockOutputView outputView = new MockOutputView();
-            LottoController controller = new LottoController(inputView, outputView, new MockNumberGenerator());
+            MockNumberGenerator numberGenerator = new MockNumberGenerator();
+            LottoController controller = new LottoController(inputView, outputView, numberGenerator);
 
             // when
             controller.start();
-            List<String> output = outputView.getOutput();
+            String errorMessage = (String) outputView.getOutput().get(1);
 
             // then
-            assertThat(output.get(1)).isEqualTo(ErrorType.INVALID_LOTTO_COUNT.getMessage());
+            assertThat(errorMessage).isEqualTo(ErrorType.INVALID_LOTTO_COUNT.getMessage());
         }
 
         @Test
@@ -119,14 +110,15 @@ class LottoControllerTest {
             String invalidBonusNumber = String.valueOf(Lotto.MAX_LOTTO_NUMBER + 1);
             MockInputView inputView = new MockInputView(List.of("0", "1,2,3,4,5,6", invalidBonusNumber, "7"));
             MockOutputView outputView = new MockOutputView();
-            LottoController controller = new LottoController(inputView, outputView, new MockNumberGenerator());
+            MockNumberGenerator numberGenerator = new MockNumberGenerator();
+            LottoController controller = new LottoController(inputView, outputView, numberGenerator);
 
             // when
             controller.start();
-            List<String> output = outputView.getOutput();
+            String errorMessage = (String) outputView.getOutput().get(1);
 
             // then
-            assertThat(output.get(1)).isEqualTo(ErrorType.OUT_OF_RANGE.getMessage());
+            assertThat(errorMessage).isEqualTo(ErrorType.OUT_OF_RANGE.getMessage());
         }
     }
 }
