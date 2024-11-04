@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -73,5 +74,13 @@ class WinningNumbersTest {
                 Arguments.arguments((Object) rawCase4),
                 Arguments.arguments((Object) rawCase5)
         );
+    }
+
+    @Test
+    @DisplayName("당첨 번호는 6개여야 한다")
+    void notNunOfWinningNumberThrowException() {
+        assertThatThrownBy(() -> WinningNumbers.of("1", "2", "3"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 6개여야 합니다.");
     }
 }
