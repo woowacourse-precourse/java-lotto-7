@@ -1,47 +1,63 @@
 package lotto;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 public class LottoStatistics {
 
-    private final Map<String, Integer> matchCounts;
+    public enum Prize {
+        MATCH_3(5000),
+        MATCH_4(50000),
+        MATCH_5(1500000),
+        MATCH_5_BONUS(30000000),
+        MATCH_6(2000000000);
+
+        private final int prizeAmount;
+
+        Prize(int prizeAmount) {
+            this.prizeAmount = prizeAmount;
+        }
+
+        public int getPrizeAmount() {
+            return prizeAmount;
+        }
+    }
+
+    private final Map<Prize, Integer> matchCounts = new EnumMap<>(Prize.class);
 
     public LottoStatistics() {
-        matchCounts = new HashMap<>();
-        matchCounts.put("3_MATCH", 0);
-        matchCounts.put("4_MATCH", 0);
-        matchCounts.put("5_MATCH", 0);
-        matchCounts.put("5_MATCH_BONUS", 0);
-        matchCounts.put("6_MATCH", 0);
+        for (Prize prize : Prize.values()) {
+            matchCounts.put(prize, 0);
+        }
     }
 
     public void incrementCount(int matchCount, boolean hasBonusMatch) {
-        // 기본 키를 설정
-        String key = matchCount + "_MATCH";
+        Prize key = switch (matchCount) {
+            case 3 -> Prize.MATCH_3;
+            case 4 -> Prize.MATCH_4;
+            case 5 -> hasBonusMatch ? Prize.MATCH_5_BONUS : Prize.MATCH_5;
+            case 6 -> Prize.MATCH_6;
+            default -> null;
+        };
 
-        // 보너스 번호 일치 여부에 따라 키 조정
-        if (hasBonusMatch && matchCount == 5) {
-            key = "5_MATCH_BONUS";
+        if (key != null) {
+            matchCounts.put(key, matchCounts.get(key) + 1);
         }
-
-        matchCounts.put(key, matchCounts.getOrDefault(key, 0) + 1);
     }
 
     public int getTotalPrize() {
-        return (matchCounts.get("3_MATCH") * 5000) +
-                (matchCounts.get("4_MATCH") * 50000) +
-                (matchCounts.get("5_MATCH") * 1500000) +
-                (matchCounts.get("5_MATCH_BONUS") * 30000000) +
-                (matchCounts.get("6_MATCH") * 2000000000);
+        return matchCounts.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
+                .sum();
     }
 
     public void printStatistics() {
-        System.out.println("3개 일치 (5,000원) - " + matchCounts.get("3_MATCH") + "개");
-        System.out.println("4개 일치 (50,000원) - " + matchCounts.get("4_MATCH") + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + matchCounts.get("5_MATCH") + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchCounts.get("5_MATCH_BONUS") + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + matchCounts.get("6_MATCH") + "개");
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        System.out.printf("3개 일치 (5,000원) - %d개%n", matchCounts.get(Prize.MATCH_3));
+        System.out.printf("4개 일치 (50,000원) - %d개%n", matchCounts.get(Prize.MATCH_4));
+        System.out.printf("5개 일치 (1,500,000원) - %d개%n", matchCounts.get(Prize.MATCH_5));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", matchCounts.get(Prize.MATCH_5_BONUS));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", matchCounts.get(Prize.MATCH_6));
     }
-
 }
