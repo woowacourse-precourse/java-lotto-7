@@ -42,7 +42,7 @@ public enum Rank {
     public static Rank of(long matchCount, boolean containsBonus) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matchCount == matchCount)
-                .filter(rank -> rank.containsBonus == containsBonus)
+                .filter(rank -> rank.matchCount != 5 || rank.containsBonus == containsBonus)
                 .findFirst()
                 .orElse(LAST);
     }
