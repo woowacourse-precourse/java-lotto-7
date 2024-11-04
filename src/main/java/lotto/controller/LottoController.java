@@ -37,10 +37,11 @@ public class LottoController {
     public void setWinningNumbers(){
         String input = lottoView.winningInput();
         List<Integer> numbers = InputParser.winningNumParse(input);
+        Validation.validateNumbersBoundary(numbers);
+        Validation.validateNoDuplicates(numbers);
+
         String bonusInput = lottoView.bonusInput();
         int bonus = Integer.parseInt(bonusInput);
-
-        Validation.validateNumbersBoundary(numbers);
         Validation.validateOneNumBoundary(bonus);
 
         lottoManagementSystem.setWinningNumbers(numbers);
