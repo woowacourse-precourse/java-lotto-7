@@ -32,8 +32,6 @@ class DrawnNumbersTest {
         assertThatThrownBy(() -> new DrawnNumbers(drawnNumbers)).isInstanceOf(DuplicatedLottoNumberException.class);
     }
 
-    ;
-
     @Test
     @DisplayName("5개의 숫자가 들어왔을 때 예외 발생")
     void 추첨번호_생성_예외_테스트2() {
