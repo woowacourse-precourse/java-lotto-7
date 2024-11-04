@@ -7,6 +7,7 @@ import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.utils.InputConverter;
+import lotto.utils.Retry;
 import lotto.validator.InputLottoNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -30,20 +31,26 @@ public class LottoController {
     public void run() {
         InputLottoNumbersValidator validator = new InputLottoNumbersValidator();
 
-        String input = inputView.getBudget();
-        validator.validateBudget(input);
+        // 예산 입력을 예외 처리와 함께 재시도
+        String input = Retry.retryOnException(() -> {
+            String budgetInput = inputView.getBudget();
+            validator.validateBudget(budgetInput);
+            return budgetInput;
+        });
         int budget = InputConverter.convertInputNumber(input);
         Lottos userLottos = purchaseLottos(budget);
 
         outputView.printLottoNumbers(userLottos.toDtoList(), budget);
 
-        WinningLotto winningLotto = inputWinningLotto();
+        // 당첨 번호와 보너스 번호 입력을 예외 처리와 함께 재시도
+        WinningLotto winningLotto = Retry.retryOnException(this::inputWinningLotto);
         LottoResultDTO resultDTO = lottoService.checkWinnings(userLottos, winningLotto);
         outputView.printWinningResults(resultDTO);
 
         LottoStatisticsDTO statisticsDTO = lottoService.calculateProfitRate(budget, resultDTO.getTotalPrize());
         outputView.printProfitRate(statisticsDTO);
     }
+
 
     private Lottos purchaseLottos(int purchaseAmount) {
         int lottoCount = purchaseAmount / 1000;
