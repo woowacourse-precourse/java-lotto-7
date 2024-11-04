@@ -1,6 +1,9 @@
 package lotto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -26,11 +29,12 @@ public class OutputHandler {
                 System.out.println(resultMessageFormat(rank,entry.getValue()));
             }
         }
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        BigDecimal roundedResult = new BigDecimal(rateOfReturn).setScale(1, RoundingMode.HALF_UP);
+        System.out.println("총 수익률은 " + roundedResult + "%입니다.");
     }
 
     private String makeLottoNumberStringFormat(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
+        List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
         Collections.sort(numbers);
         StringBuilder sb = new StringBuilder();
 
@@ -50,7 +54,7 @@ public class OutputHandler {
         NumberFormat numberFormat = NumberFormat.getInstance();
         sb.append(rank.getMatchNumbers()).append("개 일치");
         if (rank.getMatchNumbers() == 5 && rank.getIsBonusMatch()) {
-            sb.append(", 보너스 불 일치");
+            sb.append(", 보너스 볼 일치");
         }
         sb.append(" (").append(numberFormat.format(rank.getWinningPrice())).append("원)");
         sb.append(" - ").append(count).append("개");
