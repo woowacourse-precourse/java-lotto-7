@@ -15,10 +15,17 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
+        for(int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) > 45 || numbers.get(i) < 1) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+
         Set<Integer> numSet = new HashSet<>(numbers); // 중복 확인
         if(numbers.size() != numSet.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 수가 존재합니다.");
         }
+
     }
 
     public void printNums() {
