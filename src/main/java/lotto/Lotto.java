@@ -19,9 +19,18 @@ public class Lotto {
 
     //로또 구입 금액 입력
     public int buy_lotto(){
-        System.out.println("구입금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
-        validateAmount(amount);
+        int amount = 0;
+        // 에러 메시지를 출력 후 그 부분부터 다시 입력.
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                amount = Integer.parseInt(Console.readLine());
+                validateAmount(amount);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // 예외 메시지 출력
+            }
+        }
         return amount;
     }
 
