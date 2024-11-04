@@ -24,6 +24,9 @@ public class Lotto {
         try {
             Validator.validateListSize(numbers, NumberList.MAX_SIZE);
             Validator.validateDuplicate(numbers);
+            for(int number : numbers) {
+                NumberList.validateLottoNumberRange(number);
+            }
         }catch(IllegalArgumentException exception){
             throw new IllegalStateException(exception.getMessage(),exception);
         }
