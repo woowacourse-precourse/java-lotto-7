@@ -6,7 +6,6 @@ import java.util.List;
 public class EnterBonusNumberValidation extends EnterWinningNumberValidation {
   private final static int LOTTO_NUMBER_MIN = 1;
   private final static int LOTTO_NUMBER_MAX = 45;
-  private final static int LOTTO_NUMBERS_SIZE = 6;
   public boolean validateEnterBonusNumber(List<Integer> winningNumbers,String bonusNumber) {
     try {
       List<Integer> winningNumbersAddBonusNumber=new ArrayList<>(winningNumbers);

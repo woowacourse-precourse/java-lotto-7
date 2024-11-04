@@ -13,6 +13,13 @@ public class PurchaseAmountTest {
   private final PurchaseAmountValidation purchaseAmount = new PurchaseAmountValidation();
 
 
+
+  @Test
+  void 문자를_넣을시_에러발생() {
+    boolean isValid = purchaseAmount.validatePurchaseAmount("ㄱ"); // 예외가 발생하지 않으면 테스트 통과
+    assertThat(isValid).isFalse()
+        .isInstanceOf(IllegalArgumentException.class);
+  }
   @DisplayName("정상적인 값을 넣었을시")
   @Test
   void 구입_금액이_올바르면_예외가_발생하지않는다() {
