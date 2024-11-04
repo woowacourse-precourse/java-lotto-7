@@ -11,32 +11,43 @@ public class WinningLottoInput {
 
     public static Set<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                String input = Console.readLine().trim();
+                String[] splitNumbers = input.split(",");
 
-        String input = Console.readLine().trim();
-        String[] splitNumbers = input.split(",");
+                Set<Integer> lottoNumbers = parseAndValidateNumbers(splitNumbers);
 
-        Set<Integer> lottoNumbers = parseAndValidateNumbers(splitNumbers);
+                return lottoNumbers;
 
-        return lottoNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 올바른 형식으로 입력해주세요"); // 예외 발생 시 오류 메시지 출력
+            }
+
+        }
     }
 
     public static Integer getBonusNumber(Set<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해주세요");
 
-        try {
-            String input = Console.readLine().trim();
+        while (true) {
+            try {
+                String input = Console.readLine().trim();
 
-            int bonusNumber = Integer.parseInt(input);
+                int bonusNumber = Integer.parseInt(input);
 
-            if (MIN_NUMBER <= bonusNumber && bonusNumber <= MAX_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 1~45의 숫자를 하나 입력해야 합니다");
+                if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+                    System.out.println("[ERROR] 1~45의 숫자를 하나 입력해야 합니다.");
+                    continue;
+                }
+                if (winningNumbers.contains(bonusNumber)) {
+                    System.out.println("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                    continue;
+                }
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자 형식만 입력 가능합니다.");
             }
-            if (winningNumbers.contains(bonusNumber)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-            }
-            return bonusNumber;
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 숫자 형식만 입력 가능합니다");
         }
     }
 

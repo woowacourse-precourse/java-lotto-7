@@ -1,26 +1,29 @@
 package lotto.model;
 
-import net.bytebuddy.dynamic.scaffold.TypeInitializer.None;
-
 public enum LottoRank {
-    FIRST(6, false),
-    SECOND(5, true),
-    THIRD(5, false),
-    FOURTH(4, false),
-    FIFTH(3, false),
-    NONE(0, false);
+    NONE(0, false, 0),
+    FIFTH(3, false, 5000),
+    FOURTH(4, false, 50000),
+    THIRD(5, false, 1500000),
+    SECOND(5, true, 30000000),
+    FIRST(6, false, 2000000000);
 
     private final int matchCount;
     private final boolean requiresBonus;
+    private final int prize;
 
-    LottoRank(int matchCount, boolean requiresBonus) {
+    LottoRank(int matchCount, boolean requiresBonus, int prize) {
         this.matchCount = matchCount;
         this.requiresBonus = requiresBonus;
+        this.prize = prize;
     }
 
     public static LottoRank getRank(int matchCount, boolean bonusMatch) {
         if (matchCount == 5) {
-            return bonusMatch ? SECOND : THIRD;
+            if(bonusMatch) {
+                return SECOND;
+            }
+            return THIRD;
         }
         for (LottoRank rank : values()) {
             if (rank.matchCount == matchCount && rank.requiresBonus == bonusMatch) {
@@ -28,5 +31,9 @@ public enum LottoRank {
             }
         }
         return NONE;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 }
