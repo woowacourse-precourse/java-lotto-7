@@ -13,8 +13,7 @@ public class LottoProgram {
         int bonusNumber = Input.inputBonusNumber();
         List<Grade> grades = new ArrayList<>();
         for (Lotto lottoEach : lotto) {
-            LottoJudge judge = new LottoJudge(answer, lottoEach.getNumbers(),bonusNumber);
-            grades.add(judge.judge());
+            grades.add(lottoEach.judgeLotto(answer, bonusNumber));
         }
         LottoCalculator calculator = new LottoCalculator(grades);
         LottoStatistics statistics = calculator.calculate(price);
