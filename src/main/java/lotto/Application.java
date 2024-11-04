@@ -12,43 +12,42 @@ public class Application {
     public static void main(String[] args) {
         try {
             int purchaseAmount = getPurchaseAmount();
-            List<List<Integer>> lottoNumbers = makeLottoNumbers(purchaseAmount);
-            List<Integer> winningNumbers = getWinningNumbers();
-
+            List<List<Integer>> numbers = makeRandomNumbers(purchaseAmount);
+            List<Integer> lottoNumbers = getLottoNumbers();
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static List<List<Integer>> makeLottoNumbers(int purchaseAmount) {
-        List<List<Integer>> lottoNumbersList = new ArrayList<>();
+    private static List<List<Integer>> makeRandomNumbers(int purchaseAmount) {
+        List<List<Integer>> randomNumberList = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottoNumbers.sort(Integer::compareTo);
-            System.out.println(lottoNumbers);
-            lottoNumbersList.add(lottoNumbers);
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            randomNumbers.sort(Integer::compareTo);
+            System.out.println(randomNumbers);
+            randomNumberList.add(randomNumbers);
         }
-        return lottoNumbersList;
+        return randomNumberList;
     }
 
-    private static List<Integer> getWinningNumbers() {
+    private static List<Integer> getLottoNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        List<Integer> winningNumbers = new ArrayList<>();
+        List<Integer> lottoNumbers = new ArrayList<>();
         String[] numbers = input.split(",");
 
         for (String number : numbers) {
-                winningNumbers.add(Integer.parseInt(number.trim()));
+            lottoNumbers.add(Integer.parseInt(number.trim()));
         }
-        winningNumbers.sort(Integer::compareTo);
+        lottoNumbers.sort(Integer::compareTo);
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusInput = Console.readLine();
 
         Integer bonusNumber = Integer.parseInt(bonusInput.trim());
-        winningNumbers.add(bonusNumber);
+        lottoNumbers.add(bonusNumber);
 
-        return winningNumbers;
+        return lottoNumbers;
     }
 
     private static int getPurchaseAmount() {
