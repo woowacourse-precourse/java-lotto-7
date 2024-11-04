@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.Rank;
 
 public class OutputView {
 
@@ -23,14 +24,19 @@ public class OutputView {
         System.out.println(RESULTS_ANNOUNCEMENT_MESSAGE);
         System.out.println(SEPARATING_LINE);
 
-        lottos.getWinningStatistics().forEach((rank, count) -> {
-            System.out.println(String.format(
-                    WINNING_DETAIL,
-                    rank.getDescription(),
-                    rank.getPrize(),
-                    count
-            ));
-        });
+        lottos.getWinningStatistics().entrySet().stream()
+            .filter(entry -> entry.getKey() != Rank.NONE)
+            .sorted((e1, e2) -> Integer.compare(e1.getKey().getMatchNumber(), e2.getKey().getMatchNumber()))
+            .forEach(entry -> {
+                Rank rank = entry.getKey();
+                int count = entry.getValue();
+                System.out.println(String.format(
+                        WINNING_DETAIL,
+                        rank.getDescription(),
+                        rank.getPrize(),
+                        count
+                ));
+            });
 
         System.out.println(String.format(WINNING_RATE_OF_RETURN_MESSAGE, lottos.getRateOfReturn()));
     }

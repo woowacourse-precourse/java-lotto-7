@@ -20,6 +20,7 @@ public class Lottos {
     private int winningAmount;
 
     public Lottos(int number) {
+        this.number = number;
         List<Lotto> generatedLotto = new ArrayList<>();
         for (int i = 0; i < number; i++) {
             generatedLotto.add(new Lotto(RandomNumber.createRandomNumbers()));

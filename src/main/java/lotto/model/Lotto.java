@@ -26,7 +26,6 @@ public class Lotto {
         int matchNumber = (int) getLottoNumbers().stream()
                 .filter(n -> winningLotto.getWinningNumbers().contains(n)).count();
         boolean matchBonus = numbers.contains(winningLotto.getBonusNumber());
-        System.out.println(matchNumber + ", " + matchBonus);
 
         return Rank.findRank(matchNumber, matchBonus);
     }
