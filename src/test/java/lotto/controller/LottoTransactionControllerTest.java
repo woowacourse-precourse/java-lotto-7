@@ -51,7 +51,7 @@ public class LottoTransactionControllerTest {
     }
 
     @Test
-    public void 로또_당첨번호_비교() { // TODO test용 삭제 또는 수정 예정
+    public void 자동_로또_당첨번호_비교() {
         int money = 5000;
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
@@ -61,7 +61,7 @@ public class LottoTransactionControllerTest {
     }
 
     @Test
-    public void 로또_당첨번호_비교_테스트() {
+    public void 수동_로또_당첨번호_비교() {
         List<List<Integer>> lottoNumbers = getKeysFromMap(lottoPrizeData);
 
         controller.sellManualLotto(lottoNumbers, 5000);
