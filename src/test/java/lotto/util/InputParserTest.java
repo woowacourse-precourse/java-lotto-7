@@ -14,24 +14,24 @@ class InputParserTest {
 
     @Test
     @DisplayName("로또 가격 입력값이 비어있으면 IllegalArgumentException 발생")
-    void parseLottoPrice_EmptyInput_ExceptionThrown() {
+    void parseBudget_EmptyInput_ExceptionThrown() {
         // given
         String input = "";
 
         // when, then
-        assertThatThrownBy(() -> InputParser.parseLottoPrice(input))
+        assertThatThrownBy(() -> InputParser.parseBudget(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(InputErrorMessage.INPUT_IS_EMPTY.getMessage());
     }
 
     @Test
     @DisplayName("로또 가격 입력값이 null이면 IllegalArgumentException 발생")
-    void parseLottoPrice_NullInput_ExceptionThrown() {
+    void parseBudget_NullInput_ExceptionThrown() {
         // given
         String input = null;
 
         // when, then
-        assertThatThrownBy(() -> InputParser.parseLottoPrice(input))
+        assertThatThrownBy(() -> InputParser.parseBudget(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(InputErrorMessage.INPUT_IS_EMPTY.getMessage());
     }
@@ -39,23 +39,23 @@ class InputParserTest {
     @ValueSource(strings = {"   ", "abc", "1.1"})
     @ParameterizedTest(name = "로또 가격 입력값이 {0}이면 IllegalArgumentException 발생")
     @DisplayName("로또 가격 입력값이 숫자가 아니면 IllegalArgumentException 발생")
-    void parseLottoPrice_NotNumberInput_ExceptionThrown(String input) {
+    void parseBudget_NotNumberInput_ExceptionThrown(String input) {
         // given
 
         // when, then
-        assertThatThrownBy(() -> InputParser.parseLottoPrice(input))
+        assertThatThrownBy(() -> InputParser.parseBudget(input))
                 .isInstanceOf(NumberFormatException.class)
                 .hasMessage(InputErrorMessage.INPUT_IS_NOT_NUMBER.getMessage());
     }
 
     @Test
     @DisplayName("로또 입력값 파싱 성공")
-    void parseLottoPrice_Success() {
+    void parseBudget_Success() {
         // given
         String input = "1000";
 
         // when
-        int result = InputParser.parseLottoPrice(input);
+        int result = InputParser.parseBudget(input);
 
         // then
         assertThat(result).isEqualTo(1000);

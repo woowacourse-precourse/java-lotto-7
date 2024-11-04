@@ -11,8 +11,8 @@ public class InputParser {
     private InputParser() {
     }
 
-    public static int parseLottoPrice(String input) {
-        validateLottoPrice(input);
+    public static int parseBudget(String input) {
+        validateBudget(input);
         return Integer.parseInt(input);
     }
 
@@ -29,7 +29,7 @@ public class InputParser {
         return Integer.parseInt(input);
     }
 
-    private static void validateLottoPrice(String lottoPrice) {
+    private static void validateBudget(String lottoPrice) {
         validateInputNullOrEmpty(lottoPrice);
         validateInputIsNumber(lottoPrice);
     }
