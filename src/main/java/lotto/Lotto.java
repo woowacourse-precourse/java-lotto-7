@@ -1,20 +1,36 @@
 package lotto;
 
 import java.util.List;
+import validator.BonusValidator;
+import validator.PrizeNumberValidator;
 
 public class Lotto {
-    private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+    private final PrizeNumber prizeNumber;
+    private final List<LottoTicket> lottoTicketBundle;
+    private final Integer bonusNumber;
+
+    public Lotto(
+            List<Integer> prizeNumber,
+            List<LottoTicket> lottoTicketBundle,
+            Integer bonusNumber
+    ) {
+        PrizeNumberValidator.validate(prizeNumber);
+        BonusValidator.validate(bonusNumber, prizeNumber);
+
+        this.prizeNumber = new PrizeNumber(prizeNumber);
+        this.lottoTicketBundle = lottoTicketBundle;
+        this.bonusNumber = bonusNumber;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+    public void play() {
+        TicketPrizeMatcher ticketPrizeMatcher = new TicketPrizeMatcher(
+                prizeNumber,
+                lottoTicketBundle,
+                bonusNumber
+        );
+        MatchResult matchResult = ticketPrizeMatcher.matchAll();
+        Output output = new Output();
+        output.printMatchResult(matchResult);
     }
-
-    // TODO: 추가 기능 구현
 }
