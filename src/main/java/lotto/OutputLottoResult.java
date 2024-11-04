@@ -11,7 +11,8 @@ public class OutputLottoResult {    // 로또 결과 출력
     }
 
     public void printLottoResults(int[] lottoResult, int totalPrize, int puchaseAmount) {
-        System.out.println("당첨 내역 출력");
+        System.out.println("당첨 통계");
+        System.out.println("---");
         printLottoResult("3개 일치 (5,000원)", lottoResult[4]);
         printLottoResult("4개 일치 (50,000원)", lottoResult[3]);
         printLottoResult("5개 일치 (1,500,000원)", lottoResult[2]);

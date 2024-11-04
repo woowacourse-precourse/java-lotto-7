@@ -48,19 +48,19 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
     }
 
     private int purchaseAmountRead() {
-        System.out.println("얼마어치를 구매하시겠습니까? (1,000원 단위)");
+        System.out.println("구입금액을 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }
 
     private List<Integer> inputPrizeNumbersRead() {
-        System.out.println("당첨 번호를 입력해 주세요(쉼표로 구성된 1 ~ 45 사이의 중복되지 않은 숫자)");
+        System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
 
         return delimiterNumber(input);
     }
 
     private int inputBonusNumberRead() {
-        System.out.println("보너스 번호를 입력하세요");
+        System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }
 
