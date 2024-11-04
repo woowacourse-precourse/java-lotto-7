@@ -6,26 +6,37 @@
 main
 └── java
     └── lotto
-        ├── controller
-        │   └── MainController
-        ├── domain
-        │   ├── Lotto
-        │   └── LottoPrizeMap
-        ├── enums
-        │   ├── ErrorMessage
-        │   ├── InputMessage
-        │   ├── LottoPrize
-        │   └── OutputMessage
-        ├── service
-        │   ├── CalculateProfitRate
-        │   ├── LottoDraw
-        │   └── LottoWinning
-        ├── validate
-        │   └── LottoValidator
-        └── view
-            ├── InputView
-            └── OutputView
+    │   ├── controller
+    │   │   └── MainController
+    │   ├── domain
+    │   │   ├── Lotto
+    │   │   ├── LottoDraw
+    │   │   └── LottoPrizeMap
+    │   ├── enums
+    │   │   ├── ErrorMessage
+    │   │   ├── InputMessage
+    │   │   ├── LottoPrice
+    │   │   └── OutputMessage
+    │   ├── service
+    │   │   ├── CalculateProfitRate
+    │   │   ├── LottoWinning
+    │   │   └── RandomNumbersDraw
+    │   ├── validate
+    │   │   └── LottoValidator
+    │   └── view
+    │       ├── InputView
+    │       └── OutputView
     └── Application
+test
+└── java
+    ├── lotto
+    │   ├── domain
+    │   │   ├── LottoDrawTest
+    │   │   ├── LottoPriceMapTest
+    │   │   └── LottoTest
+    │   ├── service
+    │   │   └── CalculateProfitRateTest
+    └── ApplicationTest
 ```
 ---
 ### **기능 목록**
