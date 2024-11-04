@@ -6,13 +6,12 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        String money = getMoney();
 
-        List<Lotto> lottoList = getRandomLottos(money);
+        List<Lotto> lottoList = getRandomLottoList();
 
         LottoResultChecker lottoResultChecker = new LottoResultChecker();
-        lottoResultChecker.setWinningNumbers(getNumbers());
-        lottoResultChecker.setBonusNumber(getNumber());
+        lottoResultChecker.setWinningNumbers();
+        lottoResultChecker.setBonusNumber();
 
         Integer[] result = lottoResultChecker.getLottoResult(lottoList);
 
@@ -20,24 +19,11 @@ public class Application {
         resultReport.printReport();
     }
 
-    static String getMoney(){
-
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = readLine();
-        System.out.println();
-
-        return input;
-    }
-
-    static List<Lotto> getRandomLottos(String money){
+    static List<Lotto> getRandomLottoList() {
         LottoGenerator lottoGenerator = new LottoGenerator();
 
-        try{
-            lottoGenerator.purchaseLotto(money);
-            System.out.println();
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+        lottoGenerator.purchaseLotto();
+        System.out.println();
 
         return lottoGenerator.lottoList;
     }
@@ -59,4 +45,5 @@ public class Application {
 
         return input2;
     }
+
 }
