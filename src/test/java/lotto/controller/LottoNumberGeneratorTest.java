@@ -1,12 +1,11 @@
 package lotto.controller;
 
-import lotto.controller.LottoNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.constants.ModelContstants.*;
+import static lotto.constants.Constants.*;
 import static org.assertj.core.api.Assertions.*;
 
 class LottoNumberGeneratorTest {
