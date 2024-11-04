@@ -9,7 +9,7 @@ public class OutputView {
     private static final String LOTTO_FORMAT = "\n%d개를 구매했습니다.\n";
     private static final String RESULT_MESSAGE = "\n당첨 통계\n---";
     private static final String PRIZE_FORMAT = "%s%s - %d개\n";
-    private static final String EARNING_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
+    private static final String EARNING_RATE_FORMAT = "총 수익률은 %,.1f%%입니다.";
     
     public void showPurchaseAmount(int chance) {
         System.out.printf(LOTTO_FORMAT, chance);
