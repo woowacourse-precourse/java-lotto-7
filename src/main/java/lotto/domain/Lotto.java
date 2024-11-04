@@ -14,13 +14,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumberCount(numbers);
+        validateUnique(numbers);
+    }
+
+    private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    private void validateUnique(List<Integer> lottoNumbers) {
-        if (containsDuplicates(lottoNumbers)) {
+    private void validateUnique(List<Integer> numbers) {
+        if (containsDuplicates(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
     }
