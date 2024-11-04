@@ -27,7 +27,7 @@ public class LottoController {
     }
 
     public void showLottoResult(int amount, List<Integer> winNumbers, int bonusNumber) {
-        Result result = new Result()
+        Result result = new Result();
         lottoService.getLottoResult(result, winNumbers, bonusNumber);
         printLottoResult(result, amount);
     }
