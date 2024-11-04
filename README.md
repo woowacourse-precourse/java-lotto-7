@@ -97,6 +97,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [x] 로또를 반환하는 기능 추가
 - [x] 로또를 구입하는 기능 추가
 - [x] 구입 가능한 로또 수를 계산하는 기능 추가
+- [ ] 결과들을 저장하는 기능 추가
 - Money
 - [x] 남은 금액을 반환하는 기능 추가
 - [x] 사용한 금액을 반환하는 기능 추가
@@ -110,9 +111,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [x] 일치하는 번호의 수를 반환하는 기능 추가
 - [x] 일치하는 여러 번호의 수를 반환하는 기능 추가
 - Result
-- [ ] 당첨금을 지급하는 기능 추가
-- [ ] 당첨 기록을 저장하는 기능 추가
-- [ ] 당첨 기록을 반환하는 기능 추가
+- [x] 로또 결과를 나타내는 기능 추가
 [View]  
 InputView
 - [x] 금액을 입력받는 기능 추가
