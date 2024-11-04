@@ -3,6 +3,7 @@ package lotto.service;
 import static lotto.model.LottoStore.LOTTO_PRICE;
 
 import java.util.Map;
+
 import lotto.enums.LottoRank;
 import lotto.model.LottoResult;
 import lotto.model.LottoStore;

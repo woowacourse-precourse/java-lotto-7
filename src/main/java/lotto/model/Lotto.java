@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+
 import lotto.util.Validator;
 
 public class Lotto {
