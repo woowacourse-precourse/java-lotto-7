@@ -16,6 +16,7 @@ public class OutputView {
     public void printLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         lottos.forEach(System.out::println);
+        System.out.println();
     }
 
 }

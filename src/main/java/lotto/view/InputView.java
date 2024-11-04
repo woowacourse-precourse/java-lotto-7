@@ -22,6 +22,7 @@ public class InputView {
         try {
             outputView.printMessage(START);
             int cash = parser.parseToInt(inputString());
+            outputView.printResult(" ");
             return new CashRegister(cash).calculateLottoCount();
         } catch (IllegalArgumentException e) {
             outputView.printResult(e.getMessage());
@@ -33,6 +34,7 @@ public class InputView {
         try {
             outputView.printMessage(WINNING_START);
             List<Integer> winningNumbers = parser.parseToIntList(inputString());
+            outputView.printResult(" ");
             return new Winning(winningNumbers);
         } catch (IllegalArgumentException e) {
             outputView.printResult(e.getMessage());
@@ -43,7 +45,9 @@ public class InputView {
     public Winning inputBonusNumber(Winning winning) {
         try {
             outputView.printMessage(BONUS_START);
-            return winning.validateBonusNumber(parser.parseToInt(inputString()));
+            winning.validateBonusNumber(parser.parseToInt(inputString()));
+            outputView.printResult(" ");
+            return winning;
         } catch (IllegalArgumentException e) {
             outputView.printResult(e.getMessage());
             return inputBonusNumber(winning);
