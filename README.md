@@ -55,19 +55,36 @@
 ```
 🌐 src.main.java.lotto
 │
+├── 📦 constants
+│   └── LottoConstantNumbers
+│
 ├── 📦 controller
 │   └── LottoController
 │
 ├── 📦 domain
 │   ├── Lotto
-│   ├── LottoGame
 │   ├── LottoResult
 │   ├── Prize
 │   └── WinningNumber
 │
 ├── 📦 exception
-│   ├── ErrorMessage
-│   └── LottoException
+│   │
+│   ├──📦 lottoticketexception
+│   │   ├── DuplicateException
+│   │   └── LottoNumberSizeException
+│   │
+│   ├──📦 numberexception
+│   │   ├── InvalidNumberException
+│   │   └── OutOfRangeNumberException
+│   │
+│   ├──📦 purchaseamountexception
+│   │   ├── InvalidPurchaseAmountException
+│   │   ├── MaxPurchaseExceedException
+│   │   ├── NegativePurchaseAmountException
+│   │   └── NotDivisibleByLottoPriceException
+│   │
+│   ├── ErrorConstants
+│   └── ErrorMessage
 │
 ├── 📦 factory
 │   └── LottoTicketStore
@@ -79,9 +96,12 @@
 │   └── LottoStatisticsService
 │
 ├── 📦 util
+│   ├── DuplicateValidator
 │   ├── LottoNumberSorter
-│   ├── LottoNumberValidator
-│   └── RandomNumberGenerator
+│   ├── NumberValidator
+│   ├── PurchaseAmountValidator
+│   ├── RandomNumberGenerator
+│   └── WinningNumberSeparator
 │
 ├── 📦 view
 │   ├── ConsoleMessage
