@@ -9,17 +9,17 @@ import java.util.List;
 public class LottoGenerator {
     public static final Money LOTTO_AMOUNT = new Money(1_000L);
 
-    private static Lotto generate() {
+    public Lotto generate() {
         List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
 
-    public static Lottos generate(Money receivedMoney) {
+    public Lottos generate(Money receivedMoney) {
         return generate((long) receivedMoney.divide(LOTTO_AMOUNT));
     }
 
-    public static Lottos generate(long count) {
+    public Lottos generate(long count) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
