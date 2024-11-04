@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -47,10 +48,59 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 예외_테스트_구매금액이_숫자가_아닐_경우() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    @DisplayName("구매 금액이 1000원 단위가 아닐 경우 예외 메시지가 출력된다.")
+    void 예외_테스트_구매금액이_1000원_단위가_아니면() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE, "구입 금액은 1,000원 단위여야 합니다.");
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호에 숫자가 아닌 값이 포함되면 예외 메시지가 출력된다.")
+    void 예외_테스트_당첨번호에_숫자가_아니면() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,X", "7");
+            assertThat(output()).contains(ERROR_MESSAGE, "로또 번호는 숫자여야 합니다.");
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 숫자가 아니면 예외 메시지가 출력된다.")
+    void 예외_테스트_보너스번호가_숫자가_아니면() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "X");
+            assertThat(output()).contains(ERROR_MESSAGE, "보너스 번호는 숫자여야 합니다.");
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외 메시지가 출력된다.")
+    void 예외_테스트_보너스번호가_당첨번호와_중복되면() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE, "보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 범위를 벗어나면 예외 메시지가 출력된다.")
+    void 예외_테스트_보너스번호가_범위를_벗어나면() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE, "보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        });
+
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "0");
+            assertThat(output()).contains(ERROR_MESSAGE, "보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         });
     }
 
