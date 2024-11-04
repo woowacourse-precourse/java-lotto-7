@@ -43,4 +43,9 @@ public class Lotto {
         return false;
     }
 
+    public List<Integer> getLotto(){
+        // List 정렬하는 방법
+        Collections.sort(numbers);
+        return numbers;
+    }
 }

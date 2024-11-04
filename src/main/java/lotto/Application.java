@@ -32,7 +32,10 @@ public class Application {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottos.add(lotto.getLotto());
         }
-
+        //
+        for (List<Integer> lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 }
 
