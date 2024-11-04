@@ -28,13 +28,13 @@ public class Calculator {
         return matchCount;
     }
 
-    public WinningPrize rank(int matchCount, Lotto issuedLotto, BonusNumber bonusNumber) {
+    public WinningPrize rank(int matchCount, Lotto issuedLotto) {
         Set<Integer> issuedNumber = new HashSet<>(issuedLotto.getNumbers());
 
         if (matchCount == 3) { return WinningPrize.FIFTH; }
         if (matchCount == 4) { return WinningPrize.FOURTH; }
         if (matchCount == 5) {
-            if (issuedNumber.contains(bonusNumber.getNumber())) {
+            if (issuedNumber.contains(BonusNumber.getInstance().getNumber())) {
                 return WinningPrize.SECOND;
             }
             return WinningPrize.THIRD;

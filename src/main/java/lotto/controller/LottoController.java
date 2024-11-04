@@ -75,7 +75,7 @@ public class LottoController {
 
         for (Lotto lotto : lottos) {
             int count = calculator.matchCount(lotto);
-            WinningPrize rank = calculator.rank(count, lotto, BonusNumber.getInstance());
+            WinningPrize rank = calculator.rank(count, lotto);
             WinningInformation.getInstance().addWinningCount(rank);
         }
     }
