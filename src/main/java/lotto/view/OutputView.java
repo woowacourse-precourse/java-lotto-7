@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
+    public void printEmptyLine() {
+        System.out.println();
+    }
+
     public void printErrorMessage(String message) {
         System.out.println(message);
     }
