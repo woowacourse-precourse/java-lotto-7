@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.view.InputView.getPurchaseAmount;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,27 +28,37 @@ public class LottoGame {
 
     public void start(){
         try{
-            int purchaseAmount = InputView.getPurchaseAmount();
-            generateLottos(purchaseAmount);
-            OutputView.printPurchaseAmountMessage(getPurchaseCount(purchaseAmount));
-            OutputView.printUserLotto(userLottos);
-
-            Set<Integer> winningNumbers = InputView.getWinningNumbers();
-            int bonusNumber = InputView.getBonusNumber(winningNumbers);
-            LottoResult winningResult = new LottoResult(winningNumbers, bonusNumber);
-
-            Map<Rank, Integer> rankCount = rankCalculator.calculateRanks(userLottos, winningResult);
-            long totalWinnings = winningCalculator.calculateTotalWinnings(rankCount);
-            double roi = winningCalculator.calculateROI(totalWinnings, purchaseAmount);
-
-            OutputView.printStatistics(rankCount, roi);
+            int purchaseAmount = getPurchaseAmount();
+            generateAndDisplayLottos(purchaseAmount);
+            LottoResult winningResult = getWinningResult();
+            Map<Rank, Integer> rankCount = calculateRanks(winningResult);
+            calculateAndDisplayROI(rankCount, purchaseAmount);
         }catch (Exception e){
             System.out.println("[ERROR] 예기치 않은 오류가 발생했습니다: " + e.getMessage());
         }
     }
 
-    private void generateLottos(int purchaseAmount) {
-        userLottos = lottoGenerator.generateLottos(getPurchaseCount(purchaseAmount));
+    private void generateAndDisplayLottos(int purchaseAmount) {
+        int purchaseCount = getPurchaseCount(purchaseAmount);
+        userLottos = lottoGenerator.generateLottos(purchaseCount);
+        OutputView.printPurchaseAmountMessage(purchaseCount);
+        OutputView.printUserLotto(userLottos);
+    }
+
+    private Map<Rank, Integer> calculateRanks(LottoResult winningResult) {
+        return rankCalculator.calculateRanks(userLottos, winningResult);
+    }
+
+    private void calculateAndDisplayROI(Map<Rank, Integer> rankCount, int purchaseAmount) {
+        int totalWinnings = winningCalculator.calculateTotalWinnings(rankCount);
+        double roi = winningCalculator.calculateROI(totalWinnings, purchaseAmount);
+        OutputView.printStatistics(rankCount, roi);
+    }
+
+    private LottoResult getWinningResult() {
+        Set<Integer> winningNumbers = InputView.getWinningNumbers();
+        int bonusNumber = InputView.getBonusNumber(winningNumbers);
+        return new LottoResult(winningNumbers, bonusNumber);
     }
 
     private int getPurchaseCount(int purchaseAmount){
