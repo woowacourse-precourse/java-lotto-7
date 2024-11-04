@@ -204,11 +204,11 @@ class UserView {
 	}
 
 	public static void printWinningNumberInputMessage() {
-		System.out.println("당첨 번호를 입력해주세요.");
+		System.out.println("당첨 번호를 입력해 주세요.");
 	}
 
 	public static void printBonusNumberInputMessage() {
-		System.out.println("보너스 번호를 입력해주세요.");
+		System.out.println("보너스 번호를 입력해 주세요.");
 	}
 
 	public static void printWinningStatisticsMessage() {
@@ -217,11 +217,11 @@ class UserView {
 	}
 
 	public static void printWinningStatistics(int[] gradingCount) {
-		System.out.println("3개 일치 : (5000원) - " + gradingCount[5] + "개");
-		System.out.println("4개 일치 : (50,000원) - " + gradingCount[4] + "개");
-		System.out.println("5개 일치 : (1,500,000원) - " + gradingCount[3] + "개");
+		System.out.println("3개 일치 (5000원) - " + gradingCount[5] + "개");
+		System.out.println("4개 일치 (50,000원) - " + gradingCount[4] + "개");
+		System.out.println("5개 일치 (1,500,000원) - " + gradingCount[3] + "개");
 		System.out.println("5개 일치, 보너스 볼 일치 : (30,000,000원) - " + gradingCount[2] + "개");
-		System.out.println("6개 일치 : (2,000,000,000원) - " + gradingCount[1] + "개");
+		System.out.println("6개 일치 (2,000,000,000원) - " + gradingCount[1] + "개");
 	}
 	
 	public static void printProfitRate(String profitRate) {
