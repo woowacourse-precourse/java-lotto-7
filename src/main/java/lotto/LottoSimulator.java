@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class LottoSimulator {
     private final LottoShop lottoShop;
@@ -18,8 +19,10 @@ public class LottoSimulator {
     }
 
     private PurchaseAmount getPurchaseAmount() {
-        OutputHandler.printInputPurchaseAmountMessage();
-        return new PurchaseAmount(InputHandler.requestPurchaseAmount());
+        return requestValidInput(
+                () -> new PurchaseAmount(InputHandler.requestPurchaseAmount()),
+                OutputHandler::printInputPurchaseAmountMessage
+        );
     }
 
     private LottoTickets purchaseTickets(PurchaseAmount purchaseAmount) {
@@ -28,23 +31,23 @@ public class LottoSimulator {
         return lottoTickets;
     }
 
-    private static WinningLotto getWinningLotto() {
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
+    private WinningLotto getWinningLotto() {
+        List<Integer> winningNumbers = requestValidInput(InputHandler::requestWinningNumber, OutputHandler::printInputWinningNumbers);
+        int bonusNumber = requestValidInput(InputHandler::requestBonusNumber, OutputHandler::printInputBonusNumbers);
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    private static List<Integer> getWinningNumbers() {
-        OutputHandler.printInputWinningNumbers();
-        List<Integer> winningNumbers = InputHandler.requestWinningNumber();
-        return winningNumbers;
+    private <T> T requestValidInput(Supplier<T> inputMethod, Runnable outputMethod) {
+        while (true) {
+            try {
+                outputMethod.run();
+                return inputMethod.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private static int getBonusNumber() {
-        OutputHandler.printInputBonusNumbers();
-        int bonusNumber = InputHandler.requestBonusNumber();
-        return bonusNumber;
-    }
 
     private static LottoWinningResult getWinningResult(LottoTickets lottoTickets, WinningLotto winningLotto) {
         LottoWinningResult lottoWinningResult = getLottoWinningResult(lottoTickets, winningLotto);
