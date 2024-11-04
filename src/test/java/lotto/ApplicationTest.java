@@ -45,7 +45,29 @@ class ApplicationTest extends NsTest {
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
-
+    @Test
+    void applicationTest_success() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("3000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "3개를 구매했습니다.",
+                            "[2, 9, 11, 33, 43, 45]",
+                            "[1, 2, 3, 4, 5, 7]",
+                            "[2, 5, 6, 7, 13, 14]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 1개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 10016.7%입니다."
+                    );
+                },
+                List.of(2, 9, 11, 33, 43, 45),
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(2, 5, 6, 7, 13, 14)
+        );
+    }
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
