@@ -8,8 +8,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        numbers.sort(Integer::compareTo);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -30,13 +30,12 @@ public class Lotto {
         }
     }
 
-    public List<Integer> sorted(List<Integer> numbers) {
-        return numbers.stream()
-                .sorted()
-                .collect(Collectors.toList());
-    }
-
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
