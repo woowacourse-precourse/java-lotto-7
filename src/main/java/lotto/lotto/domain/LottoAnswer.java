@@ -13,4 +13,8 @@ public class LottoAnswer extends Lotto {
     public static LottoAnswer issue(List<Integer> numbers, int bonusNumber) {
         return new LottoAnswer(numbers, bonusNumber);
     }
+
+    public boolean containsBonus(Lotto lotto) {
+        return lotto.contains(bonusNumber);
+    }
 }

@@ -22,8 +22,6 @@ public class InputView {
             return Console.readLine();
         } catch (NoSuchElementException e) {
             throw new IllegalArgumentException("[ERROR] 입력이 없습니다.");
-        } finally {
-            Console.close();
         }
     }
 

@@ -1,6 +1,7 @@
 package lotto.lotto.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum LottoResult {
     LOSE(0, false, 0),
@@ -21,7 +22,7 @@ public enum LottoResult {
         this.prize = prize;
     }
 
-    public static LottoResult calculate(int matchCount, boolean hasBonus) {
+    public static LottoResult match(int matchCount, boolean hasBonus) {
         if (matchCount == THIRD.matchCount) {
             if (hasBonus) {
                 return SECOND;
@@ -33,6 +34,12 @@ public enum LottoResult {
                 .filter(lottoResult -> lottoResult.matchCount == matchCount)
                 .findFirst()
                 .orElse(LOSE);
+    }
+
+    public static int getTotalPrize(List<LottoResult> results) {
+        return results.stream()
+                .mapToInt(LottoResult::getPrize)
+                .sum();
     }
 
     public int getPrize() {

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.lotto.domain.Lotto;
+import lotto.lotto.domain.LottoAnswer;
+import lotto.lotto.domain.LottoResult;
 
 public class User {
     private final List<Lotto> lottos = new ArrayList<>();
@@ -40,6 +42,12 @@ public class User {
 
     public boolean canBuyLotto() {
         return money >= Lotto.PRICE;
+    }
+
+    public List<LottoResult> match(LottoAnswer answer) {
+        return lottos.stream()
+                .map(lotto -> lotto.match(answer))
+                .toList();
     }
 
     public boolean hasLotto(Lotto lotto) {

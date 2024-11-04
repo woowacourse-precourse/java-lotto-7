@@ -6,7 +6,7 @@ import java.util.List;
 public class Lotto {
     public static final int PRICE = 1000;
 
-    private final List<Integer> numbers;
+    protected final List<Integer> numbers;
 
     Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -49,6 +49,21 @@ public class Lotto {
      */
     public static Lotto issue(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public LottoResult match(LottoAnswer answer) {
+        int matchCount = numbers.stream()
+                .filter(answer::contains)
+                .toList()
+                .size();
+
+        boolean hasBonus = answer.containsBonus(this);
+
+        return LottoResult.match(matchCount, hasBonus);
+    }
+
+    protected boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     @Override

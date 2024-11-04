@@ -3,15 +3,22 @@ package lotto.console.view;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class InputViewTest {
+
+    @AfterEach
+    void close() {
+        Console.close();
+    }
 
     @DisplayName("성공 | 금액 입력이 정상적으로 이루어진 경우")
     @ParameterizedTest

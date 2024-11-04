@@ -5,6 +5,7 @@ import lotto.console.view.InputView;
 import lotto.console.view.OutputView;
 import lotto.lotto.domain.Lotto;
 import lotto.lotto.domain.LottoAnswer;
+import lotto.lotto.domain.LottoResult;
 import lotto.user.domain.User;
 
 public class Application {
@@ -30,6 +31,9 @@ public class Application {
 
         LottoAnswer answer = LottoAnswer.issue(winNumbers, bonusNumber);
 
-        System.out.println("answer = " + answer);
+        List<LottoResult> results = user.match(answer);
+        outputView.printResults(results);
+
+        System.out.println("LottoResult.getTotalPrize(results) = " + LottoResult.getTotalPrize(results));
     }
 }
