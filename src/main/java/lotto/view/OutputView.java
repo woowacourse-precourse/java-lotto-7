@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.enums.LottoRank;
 import lotto.enums.Message;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +13,7 @@ public class OutputView {
 
     private static final String LABEL_WINNING_STATISTICS = "당첨 통계";
     private static final String SYMBOL_SEPARATOR_LINE = "---";
+    private static final String PROFIT_RATE_FORMAT = "#,##0.0";
 
     public static void printPurchaseAmountInputMessage() {
         System.out.println(Message.INPUT_PURCHASE_AMOUNT.getMessage());
@@ -54,10 +56,15 @@ public class OutputView {
     }
 
     public static void printTotalProfitRate(double profitRate) {
-        System.out.printf(Message.TOTAL_PROFIT_RATE.getMessage(), profitRate);
+        System.out.printf(Message.TOTAL_PROFIT_RATE.getMessage(), formatProfitRate(profitRate));
     }
 
     public static void printExceptionMessage(String message) {
         System.out.println(Message.ERROR_PREFIX.getMessage() + message);
+    }
+
+    private static String formatProfitRate(double profitRate) {
+        DecimalFormat decimalFormat = new DecimalFormat(PROFIT_RATE_FORMAT);
+        return decimalFormat.format(profitRate);
     }
 }
