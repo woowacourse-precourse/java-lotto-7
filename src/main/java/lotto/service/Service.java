@@ -88,4 +88,8 @@ public class Service {
         Validation.validateDuplicatedNumberInList(lottoGame.getWinningNumbers(), bonusNumber);
         lottoGame.setBonusNumber(bonusNumber);
     }
+
+    public int countCorrectLottoNumbers(Lotto lotto) {
+        return Utils.countSameElements(lottoGame.getWinningNumbers(), lotto.getNumbers());
+    }
 }
