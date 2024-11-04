@@ -22,10 +22,9 @@ public class InputView {
     public static Lotto inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해주세요");
         String input = Console.readLine();
-        List<LottoNumber> numbers = Arrays.stream(input.split(","))
+        List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
-                .map(LottoNumber::new)
                 .collect(Collectors.toList());
         return new Lotto(numbers);
     }

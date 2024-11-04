@@ -40,7 +40,7 @@ public class LottoService {
                 .toList();
     }
 
-    public Map<Prize, Integer> cacluateReults(List<Lotto> lottos, Lotto winningLotto, LottoNumber bonusNumber) {
+    public Map<Prize, Integer> calculateResults(List<Lotto> lottos, Lotto winningLotto, LottoNumber bonusNumber) {
         Map<Prize, Integer> results = new EnumMap<>(Prize.class);
         for (Prize prize : Prize.values()) {
             results.put(prize, 0);
