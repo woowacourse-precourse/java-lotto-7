@@ -2,9 +2,7 @@ package lotto.view;
 
 import static lotto.constant.ErrorMessage.ERROR_TAG;
 import static lotto.view.OutputMessage.OUTPUT_EARNING_RATE;
-import static lotto.view.OutputMessage.OUTPUT_EXCEPT_SECOND_PLACE_RESULT;
 import static lotto.view.OutputMessage.OUTPUT_PURCHASE_QUANTITY;
-import static lotto.view.OutputMessage.OUTPUT_SECOND_PLACE_RESULT;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -30,14 +28,7 @@ public class OutputView {
         printMessage(WINNING_STATISTICS_TITLE);
         printMessage(DIVIDING_LINE);
         for (WinningInfo info : WinningInfo.values()) {
-            if (info != WinningInfo.SECOND) {
-                printMessage(
-                        OUTPUT_EXCEPT_SECOND_PLACE_RESULT.format(info.getMatchingNumberCount(), info.getPrizeMoney(),
-                                info.getWinningTicketCount()));
-                continue;
-            }
-            printMessage(OUTPUT_SECOND_PLACE_RESULT.format(info.getMatchingNumberCount(), info.getPrizeMoney(),
-                    info.getWinningTicketCount()));
+            printMessage(OutputMessage.formatWinningResult(info));
         }
         printMessage(OUTPUT_EARNING_RATE.format(earningRate));
     }
