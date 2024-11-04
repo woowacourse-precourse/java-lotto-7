@@ -3,10 +3,18 @@ package lotto.view;
 import lotto.domain.Lotto;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
+
+    private static final DecimalFormat df = new DecimalFormat("#,##0.0");
+
+    static {
+        df.setRoundingMode(RoundingMode.HALF_UP);
+    }
 
     private static final String[] resultString = {
             "3개 일치 (5,000원) - ",
@@ -35,6 +43,11 @@ public class OutputView {
     }
 
     public static void outputEarningRate(BigDecimal earningRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", earningRate);
+        System.out.println("총 수익률은 " + setDecimalOutputFormat(earningRate) + "%입니다.");
+    }
+
+    private static String setDecimalOutputFormat(BigDecimal earningRate) {
+        System.out.println("earningRate = " + earningRate);
+        return df.format(earningRate);
     }
 }
