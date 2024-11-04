@@ -6,10 +6,9 @@ import java.util.List;
 public class Lotto {
     private final List<LottoNumber> numbers;
 
-    public Lotto(List<String> numbers) {
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers.stream()
-                .map(Integer::parseInt)
                 .map(LottoNumber::new)
                 .toList();
     }
@@ -24,41 +23,24 @@ public class Lotto {
                 .anyMatch(lottoNumber -> lottoNumber.getNumber() == number);
     }
 
-    private void validate(List<String> numbers) {
+    private void validate(List<Integer> numbers) {
         validateNumberCount(numbers);
-        validateInteger(numbers);
         validateUnique(numbers);
     }
 
-    private void validateNumberCount(List<String> numbers) {
+    private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    private void validateInteger(List<String> numbers) {
-        if (!isInteger(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 정수여야 합니다.");
-        }
-    }
-
-    private boolean isInteger(List<String> numbers) {
-        try {
-            numbers.forEach(Integer::parseInt);
-
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    private void validateUnique(List<String> numbers) {
+    private void validateUnique(List<Integer> numbers) {
         if (containsDuplicates(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
     }
 
-    private boolean containsDuplicates(List<String> lottoNumbers) {
+    private boolean containsDuplicates(List<Integer> lottoNumbers) {
         return new HashSet<>(lottoNumbers).size() != lottoNumbers.size();
     }
 
