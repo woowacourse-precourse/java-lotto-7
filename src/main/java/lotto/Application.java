@@ -6,7 +6,7 @@ import java.util.List;
 public class Application {
     public static int budget_input() {
         try {
-            System.out.println("구입금액을 입력해 주세요.");
+            System.out.println("\n구입금액을 입력해 주세요.");
             String userInput = Console.readLine().trim();
             int budget = Integer.parseInt(userInput);
 
