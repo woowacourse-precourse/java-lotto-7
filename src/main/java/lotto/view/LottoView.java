@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
-import lotto.constant.ExceptionMessage;
 import lotto.constant.PrizeTier;
 import lotto.utils.Validator;
 import lotto.view.constant.UserInterfaceMessage;

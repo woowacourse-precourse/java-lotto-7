@@ -4,7 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.constant.ExceptionMessage;
+import lotto.constant.ExceptionFactory;
+import lotto.constant.ExceptionType;
 
 
 public class NumberList extends ArrayList<Integer> {
@@ -24,7 +25,7 @@ public class NumberList extends ArrayList<Integer> {
          * Exception Message를 ENUM 이나 상수로 정의하여 사용하기.
          * */
         if(list.size() > maxLength){
-            throw new IllegalArgumentException(ExceptionMessage.LIST_OVER_MAX_LENGTH.getMessage());
+            ExceptionFactory.throwIllegalArgumentException(ExceptionType.LIST_OVER_MAX_LENGTH);
         }
     }
 
