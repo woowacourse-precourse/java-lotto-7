@@ -8,11 +8,11 @@ public class Lotto {
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
-        validateLotto(numbers);
+        validate(numbers);
         this.numbers = sortNumbers(numbers);
     }
 
-    private void validateLotto(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         LottoValidator lottoValidator = new LottoValidator();
         lottoValidator.validateLotto(numbers);
     }
