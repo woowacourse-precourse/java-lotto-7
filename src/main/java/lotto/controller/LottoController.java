@@ -27,7 +27,7 @@ public class LottoController {
         OutputView.printPurchasedTickets(ticketGroup);
 
         List<Integer> winningNumbers = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumber();
+        int bonusNumber = InputView.getBonusNumber(winningNumbers);
 
         WinningPrize winningPrize = new WinningPrize(winningNumbers, bonusNumber);
         statistics.calculateCount(ticketGroup.getTickets(), winningPrize);
