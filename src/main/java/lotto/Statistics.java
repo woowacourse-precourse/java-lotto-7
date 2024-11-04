@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 public class Statistics {
 
+    private final static int EMPTY = 0;
     private final Map<Rank, Integer> statistics;
     private final Money profit;
 
@@ -32,7 +33,7 @@ public class Statistics {
         return ranks.stream()
                 .map(Rank::getPrize)
                 .reduce(Money::add)
-                .orElse(new Money(0));
+                .orElse(new Money(EMPTY));
     }
 
     public int getFrequencyOf(Rank rank) {
