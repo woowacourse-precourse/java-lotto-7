@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.Constant.NUMBERS_RANGE_END;
+import static lotto.constant.Constant.NUMBERS_RANGE_START;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,10 +13,6 @@ import java.util.Set;
 public class WinningNumbers {
 
     private static final String DELIMITER = ",";
-
-    private static final int NUMBERS_RANGE_START = 1;
-
-    private static final int NUMBERS_RANGE_END = 45;
 
     private final List<Integer> numbers;
 

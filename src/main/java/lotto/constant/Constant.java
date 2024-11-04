@@ -2,6 +2,10 @@ package lotto.constant;
 
 public class Constant {
 
+    public static final int NUMBERS_RANGE_START = 1;
+    public static final int NUMBERS_RANGE_END = 45;
+    public static final int NUMBERS_MAX_COUNT = 6;
+
     public static final int FIRST_PLACE_MATCH_COUNT = 6;
     public static final int SECOND_AND_THIRD_PLACE_MATCH_COUNT = 5;
     public static final int FOURTH_PLACE_MATCH_COUNT = 4;
