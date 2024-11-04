@@ -1,4 +1,4 @@
-package lotto.calculateManager;
+package lotto.lottoMachine.calculateManager;
 
 import java.util.Map;
 import lotto.lottoMachine.lottoRank.LottoRankStructure;

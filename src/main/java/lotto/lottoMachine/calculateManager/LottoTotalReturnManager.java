@@ -1,4 +1,4 @@
-package lotto.calculateManager;
+package lotto.lottoMachine.calculateManager;
 
 public class LottoTotalReturnManager {
     private static final double NEED_TO_BE_MULTIPLIED_TO_INDEICATE_PERCENTAGE = 100.0;
