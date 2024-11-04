@@ -1,21 +1,28 @@
 package lotto.view.lottoPurchaseView;
 
-import lotto.util.DefaultNumberConverter;
+import lotto.util.NumberConverter;
+import lotto.validator.LottoPurchasePriceValidator;
 import lotto.view.InputProvider;
+import lotto.view.RepeatInput;
 
 public class LottoPurchaseInputView{
 
     private final InputProvider inputProvider;
-    private final DefaultNumberConverter numberConverter;
+    private final NumberConverter numberConverter;
 
-    public LottoPurchaseInputView(InputProvider inputProvider, DefaultNumberConverter numberConverter){
+    public LottoPurchaseInputView(InputProvider inputProvider, NumberConverter numberConverter){
         this.inputProvider = inputProvider;
         this.numberConverter = numberConverter;
     }
 
-    public int getLottoPurchasePrice(){
+    public int getPurchasePrice(){
         System.out.println("구입금액을 입력해 주세요.");
-        return numberConverter.convertNumber(inputProvider.getInput());
+        return RepeatInput.getValidInput(() -> {
+            String input = inputProvider.getInput();
+            int purchasePrice = numberConverter.convertNumber(input);
+            LottoPurchasePriceValidator.validateLottoPurchasePrice(purchasePrice);
+            return purchasePrice;
+        });
     }
 
 }

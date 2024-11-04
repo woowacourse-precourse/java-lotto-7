@@ -7,29 +7,39 @@ import java.util.Map;
 
 public class WinningLottoOutputView {
 
-    NumberFormatter numberFormatter = new NumberFormatter();
+    private final NumberFormatter numberFormatter;
 
+    public WinningLottoOutputView(NumberFormatter numberFormatter) {
+        this.numberFormatter = numberFormatter;
+    }
 
     public void showLottoResult(Map<LottoRankAward, Integer> lottoResult){
-        String bonusNumberMatchedMessage = "";
-
         System.out.println("당첨 통계\n---");
 
         for (Map.Entry<LottoRankAward, Integer> entry : lottoResult.entrySet()) {
             LottoRankAward rank = entry.getKey();
-            if (rank.getIsBonusMatched()){
-                bonusNumberMatchedMessage = ", 보너스 볼 일치";
-            }
-            System.out.println(rank.getMatchLottoNumberCount() + "개 일치" + bonusNumberMatchedMessage +
-                    " (" +
-                    numberFormatter.formatNumber(rank.getWinningMoneyPrize())+ "원) - " +
-                    entry.getValue() + "개"
-            );
+            String message = createLottoResultMessage(rank, entry.getValue());
+            System.out.println(message);
         }
     }
 
-    public void showLottoProfitRate(double profitRate){
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+    private String createLottoResultMessage(LottoRankAward rank, int count){
+        String bonusNumberMatchedMessage = getBonusNumberMatchedMessage(rank.getIsBonusMatched());
+        return String.format("%d개 일치%s (%s원) - %d개",
+                rank.getMatchLottoNumberCount(),
+                bonusNumberMatchedMessage,
+                numberFormatter.formatNumber(rank.getWinningMoneyPrize()),
+                count);
     }
+
+    private String getBonusNumberMatchedMessage(boolean isBonusMatched){
+        String bonusNumberMatchedMessage = "";
+        if (isBonusMatched){
+            bonusNumberMatchedMessage = ", 보너스 볼 일치";
+        }
+        return bonusNumberMatchedMessage;
+    }
+
+
 
 }
