@@ -9,6 +9,7 @@ import lotto.dto.LottoStatisticsDTO;
 import lotto.dto.LottosDTO;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
@@ -25,8 +26,8 @@ public class LottoController {
         Lottos lottos = lottoService.buyLottos(inputPrice());
         printBoughtLottoInfo(LottosDTO.from(lottos));
         WinningLotto winningLotto = inputWinningLotto();
-        LottoStatisticsDTO lottoStatistics = lottoService.getStatistics(winningLotto, lottos);
-        outputView.printStatistics(lottoStatistics);
+        LottoResult lottoStatistics = lottoService.getStatistics(winningLotto, lottos);
+        outputView.printStatistics(LottoStatisticsDTO.from(lottoStatistics, lottos.getAmount()));
     }
 
     private WinningLotto inputWinningLotto() {

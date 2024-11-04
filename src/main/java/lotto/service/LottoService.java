@@ -18,12 +18,12 @@ public class LottoService {
         return lottoShop.buy(price);
     }
 
-    public LottoStatisticsDTO getStatistics(WinningLotto winningLotto, Lottos lottos) {
+    public LottoResult getStatistics(WinningLotto winningLotto, Lottos lottos) {
         LottoRankEvaluator lottoRankEvaluator = new LottoRankEvaluator(winningLotto);
         LottoResult lottoResult = new LottoResult();
         lottos.getLottos()
                 .forEach(lotto -> lottoResult.putResult(lottoRankEvaluator.evaluateRank(lotto)));
-        return LottoStatisticsDTO.from(lottoResult, lottos.getAmount());
+        return lottoResult;
     }
 
     public WinningLotto generateWinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
