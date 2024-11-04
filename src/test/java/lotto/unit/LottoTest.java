@@ -46,4 +46,11 @@ class LottoTest {
         Lotto lotto = new Lotto(numbers);
         assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
+
+    @Test
+    @DisplayName("로또 번호에 문자열이 포함된 경우 예외가 발생한다.")
+    void lottoNumbersContainString() {
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 2, 3, 4, 5, Integer.parseInt("a"))))
+                .isInstanceOf(NumberFormatException.class);
+    }
 }
