@@ -12,14 +12,15 @@ import lotto.view.OutputView;
 public class LotteryService {
     private final OutputView outputView;
     private final LotteryValidator lotteryValidator;
+    private final LottoBuyer lottoBuyer;
 
     public LotteryService() {
         this.outputView = new OutputView();
         this.lotteryValidator = new LotteryValidator();
+        this.lottoBuyer = new LottoBuyer();
     }
 
     public void purchaseLotto() {
-        LottoBuyer lottoBuyer = new LottoBuyer();
         outputView.printRequirePurchaseAmount();
 
         final String inputPurchaseAmount = Console.readLine();
@@ -32,7 +33,7 @@ public class LotteryService {
         issueLottoTickets(lottoBuyer, lottoPurchaseAmount);
     }
 
-    public void getLottoWinningNumber() {
+    public void setWinningLotto() {
         String inputLottoWinningNumbers = Console.readLine();
 
         List<Integer> lottoWinningNumbers = null;
@@ -41,7 +42,7 @@ public class LotteryService {
             lottoWinningNumbers.add(Integer.parseInt(winningNumber));
         }
 
-        Lotto lotto = new Lotto(lottoWinningNumbers);
+        Lotto winningLottery = new Lotto(lottoWinningNumbers);
     }
 
     public void getLottoBonusNumber() {

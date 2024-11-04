@@ -12,7 +12,7 @@ public class LotteryController {
     public void startLottery() {
         // 로또를 구매한다.
         lotteryService.purchaseLotto();
-        lotteryService.getLottoWinningNumber();
+        lotteryService.setWinningLotto();
         lotteryService.getLottoBonusNumber();
         lotteryService.getLottoWinningStatistics();
     }
