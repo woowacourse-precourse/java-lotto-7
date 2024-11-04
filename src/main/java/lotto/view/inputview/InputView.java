@@ -32,19 +32,17 @@ public class InputView implements Input {
 
     @Override
     public String requestLottoNumbers() {
-
+        String str = "";
         while(true) {
             try {
                 System.out.println(InfoMessage.REQUEST_WINNING_NUMBERS);
-                String str = Console.readLine();
+                str = Console.readLine();
                 exceptionHandler.validateWinningNumbers(str);
-                return str;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.INVALID_WINNING_NUMBERS);
             }
         }
+        return str;
     }
-
-
-
 }

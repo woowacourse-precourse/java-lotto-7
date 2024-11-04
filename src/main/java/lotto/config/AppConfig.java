@@ -26,6 +26,6 @@ public class AppConfig {
     }
 
     public ExceptionHandler exceptionHandler() {
-        return exceptionHandler();
+        return new ExceptionHandler();
     }
 }

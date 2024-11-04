@@ -11,7 +11,6 @@ public class ExceptionHandler {
     }
 
     public void validateWinningNumbers(String winningNumbers) {
-
         for (String number : winningNumbers.split(",")) {
             int num = Integer.parseInt(number);
             if (num < 1 || num > 45) {

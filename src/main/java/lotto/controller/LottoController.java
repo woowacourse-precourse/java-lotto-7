@@ -5,6 +5,8 @@ import lotto.model.service.LottoService;
 import lotto.view.inputview.InputView;
 import lotto.view.outputview.ResultView;
 
+import java.util.List;
+
 public class LottoController {
 
     private final LottoService lottoService;
@@ -21,6 +23,10 @@ public class LottoController {
         int purchaseAmount = inputView.requestPurchaseAmount();
         int cnt = lottoService.calculateLottoCount(purchaseAmount);
         System.out.println(cnt + resultView.responseCntLotto());
+        List<List<Integer>> lottoNumbersList = lottoService.lottoNumbers(cnt);
+        for (List<Integer> lottoNumber : lottoNumbersList) {
+            System.out.println(lottoNumber);
+        }
 
     }
 }
