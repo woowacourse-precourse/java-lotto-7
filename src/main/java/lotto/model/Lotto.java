@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -9,8 +8,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
-        sort();
+        this.numbers = numbers.stream()
+                .sorted()
+                .toList();
     }
 
     private void validate(List<Integer> numbers) {
@@ -20,14 +20,12 @@ public class Lotto {
         List<Integer> visitedNumbers = new ArrayList<>();
         for (int number : numbers) {
             if (visitedNumbers.contains(number)) {
-                throw new  IllegalArgumentException("[ERROR] 로또 번호는 중복될수 없습니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될수 없습니다.");
             }
             visitedNumbers.add(number);
         }
     }
-    private void sort() {
-        Collections.sort(numbers);
-    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
