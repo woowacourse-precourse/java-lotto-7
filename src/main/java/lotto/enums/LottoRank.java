@@ -5,7 +5,8 @@ public enum LottoRank {
     SECOND_RANK(2, 4, 30_000_000, "30,000,000"),
     THIRD_RANK(3, 5, 1_500_000, "1,500,000"),
     FOURTH_RANK(4, 5, 50_000, "50,000"),
-    FIFTH_RANK(5, 6, 5_000, "5,000");
+    FIFTH_RANK(5, 6, 5_000, "5,000"),
+    NONE_RANK(0, 0, 0, "0");
 
     private final int rank;
     private final int count;
@@ -33,5 +34,14 @@ public enum LottoRank {
 
     public String getPrizeInfo() {
         return prizeInfo;
+    }
+
+    public static LottoRank getEnumsValue(int rank) {
+        for (LottoRank lottoRank : LottoRank.values()) {
+            if (lottoRank.getRank() == rank) {
+                return lottoRank;
+            }
+        }
+        return NONE_RANK;
     }
 }
