@@ -1,23 +1,22 @@
 package lotto.controller;
 
+import static lotto.exception.LottoErrorMessage.BONUS_NUMBER_DUPLICATE_WITH_WINNING_NUMBER;
+import static lotto.exception.LottoErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
+
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.model.Lotto;
-import lotto.model.Price;
+import lotto.model.LottoMachine;
+import lotto.model.LottoPrice;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
 public class LottoController {
-    LottoInputView lottoInputView;
-    LottoOutputView lottoOutputView;
+    private final LottoInputView lottoInputView;
+    private final LottoOutputView lottoOutputView;
 
     public LottoController(LottoInputView lottoInputView, LottoOutputView lottoOutputView) {
         this.lottoInputView = lottoInputView;
@@ -25,46 +24,35 @@ public class LottoController {
     }
 
     public void run() {
-        // 로또 구입 금액 입력받기
-        int money = executeWithRetry(this::inputLottoMoney);
-
-        // 구입한 개수만큼 로또 발행
-        List<Lotto> lottos = issueLottos(money);
+        // 로또 구입 금액 에 알맞은 개수만큼 로또 발행
+        LottoMachine lottoMachine = new LottoMachine();
+        List<Lotto> lottos = buyLottos(lottoMachine);
 
         // 발행한 로또 수량 및 번호 출력
-        System.out.printf("\n%d개를 구매했습니다.\n", lottos.size());
-        for (Lotto lotto : lottos) {
-            lotto.print();
-        }
+        printLottoNumbers(lottos);
 
         // 당첨 번호 입력 받기
-        List<Integer> winningNumbers = executeWithRetry(this::inputWinningNumbers);
+        Lotto winningLotto = inputWinningNumbers();
 
         // 보너스 번호 입력 받기
-        int bonusNumber = executeWithRetry(this::inputBonusNumber, winningNumbers);
+        int bonusNumber = inputBonusNumber(winningLotto);
 
         // 구매한 로또와 당첨 번호 비교
-        HashMap<Price, Integer> prices = new HashMap<>();
-        for (Lotto lotto : lottos) {
-            Price p = lotto.compareWithWinningNumber(winningNumbers, bonusNumber);
-            prices.put(p, prices.getOrDefault(p, 0) + 1);
-        }
+        HashMap<LottoPrice, Integer> prices = lottoMachine.calculateLottoPrice(lottos, winningLotto, bonusNumber);
 
         // 당첨 내역 출력
-        System.out.println("\n당첨 통계\n---");
-        for (Price price : Price.getValues()) {
-            price.print(prices.getOrDefault(price, 0));
-        }
+        lottoOutputView.printLottoWinPrice(prices);
 
         // 수익률 출력
-        printProfitRate(prices, money);
+        lottoOutputView.printProfitRate(prices, lottos.size());
     }
 
-    private int inputLottoMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String amount = Console.readLine();
-        validateAmount(amount);
-        return Integer.parseInt(amount);
+    private List<Lotto> buyLottos(LottoMachine lottoMachine) {
+        return executeWithRetry(() -> {
+            lottoOutputView.printInputLottoMoneyMessage();
+            int money = lottoInputView.readInt();
+            return lottoMachine.issueLottos(money);
+        });
     }
 
     private <T> T executeWithRetry(Supplier<T> action) {
@@ -72,93 +60,50 @@ public class LottoController {
             try {
                 return action.get();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
 
-    private <T> T executeWithRetry(Function<List<Integer>, T> action, List<Integer> integerList) {
-        while (true) {
-            try {
-                return action.apply(integerList);
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
+    private void printLottoNumbers(List<Lotto> lottos) {
+        List<List<Integer>> lottosNumbers = lottos.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+        lottoOutputView.printLottosNumber(lottosNumbers);
     }
 
-    private void validateAmount(String amount) {
-        if (amount == null || amount.isBlank()) {
-            throw new IllegalArgumentException("빈 칸은 입력할 수 없습니다.");
-        }
-        int intAmount = Integer.parseInt(amount);
-        if (intAmount <= 0) {
-            throw new IllegalArgumentException("로또 금액은 1,000 이상의 값을 입력해주세요.");
-        }
-        if (intAmount % 1000 != 0) {
-            throw new IllegalArgumentException("로또 금액은 1,000 단위로 입력해주세요.");
-        }
+    private Lotto inputWinningNumbers() {
+        return executeWithRetry(() -> {
+            lottoOutputView.printWinningNumbersMessage();
+            String input = lottoInputView.readString();
+            return parseWinningNumbers(input);
+        });
     }
 
-    private List<Lotto> issueLottos(int money) {
-        List<Lotto> lottos = new ArrayList<>();
-        int lottoCount = money / 1000;
-        while (lottoCount-- > 0) {
-            List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            List<Integer> sortedUniqueNumbers = uniqueNumbers.stream().sorted().toList();
-            Lotto lotto = new Lotto(sortedUniqueNumbers);
-            lottos.add(lotto);
-        }
-        return lottos;
-    }
-
-    private List<Integer> inputWinningNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
+    private Lotto parseWinningNumbers(String input) {
         List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .mapToInt(Integer::parseInt)
                 .sorted()
                 .boxed()
                 .toList();
-        validateWinningNumbers(winningNumbers);
-        return winningNumbers;
+        return new Lotto(winningNumbers);
     }
 
-    private void validateWinningNumbers(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("6개의 숫자를 쉼표로 구분하여 입력해주세요");
-        }
-        if (winningNumbers.stream().anyMatch(m -> m < 1 || m > 45)) {
-            throw new IllegalArgumentException("1~45 사이의 자연수를 입력해주세요.");
-        }
-        if (winningNumbers.size() != new HashSet<>(winningNumbers).size()) {
-            throw new IllegalArgumentException("숫자는 중복되면 안됩니다.");
-        }
+    private int inputBonusNumber(Lotto lottoNumbers) {
+        return executeWithRetry(() -> {
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            validateBonusNumber(bonusNumber, lottoNumbers);
+            return bonusNumber;
+        });
     }
 
-    private int inputBonusNumber(List<Integer> lottoNumbers) {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        validateBonusNumber(bonusNumber, lottoNumbers);
-        return bonusNumber;
-    }
-
-    private void validateBonusNumber(int bonusNumber, List<Integer> lottoNumbers) {
+    private void validateBonusNumber(int bonusNumber, Lotto lottoNumbers) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("1~45 사이의 자연수를 입력해주세요.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE.message);
         }
         if (lottoNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("당첨 번호와 중복되는 보너스 번호입니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_WITH_WINNING_NUMBER.message);
         }
-    }
-
-    private void printProfitRate(Map<Price, Integer> prices, int money) {
-        Long profit = 0L;
-        for (var price : prices.entrySet()) {
-            profit += price.getKey().getProfit(price.getValue());
-        }
-        double profitRate = (double) profit / (double) money;
-        double profitPercentage = (double) Math.round(profitRate * 1000) / 10;
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitPercentage);
     }
 }

@@ -1,58 +1,48 @@
 package lotto.model;
 
+import static lotto.constant.LottoConstant.LOTTO_MAX_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_MIN_NUMBER;
+import static lotto.exception.LottoErrorMessage.LOTTO_NUMBER_COUNT_INVALID;
+import static lotto.exception.LottoErrorMessage.LOTTO_NUMBER_DUPLICATE;
+import static lotto.exception.LottoErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers = new ArrayList<>(numbers);
+        numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_INVALID.message);
         }
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE.message);
+        }
+        if (numbers.stream().anyMatch(m -> m < LOTTO_MIN_NUMBER || m > LOTTO_MAX_NUMBER)) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE.message);
         }
     }
 
-    public void print() {
-        System.out.println(numbers);
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
-    public Price compareWithWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
-        Set<Integer> setNumbers = new HashSet<>(this.numbers);
-        int matchCount = getMatchCount(setNumbers, winningNumbers);
-        if (matchCount == 6) {
-            return Price.FIRST;
-        }
-        if (matchCount == 5 && setNumbers.contains(bonusNumber)) {
-            return Price.SECOND;
-        }
-        if (matchCount == 5) {
-            return Price.THIRD;
-        }
-        if (matchCount == 4) {
-            return Price.FORTH;
-        }
-        if (matchCount == 3) {
-            return Price.FIFTH;
-        }
-        return Price.NONE;
+    public int getMatchCount(Lotto winningLotto) {
+        return (int) numbers.stream().filter(winningLotto::contains).count();
     }
 
-    private int getMatchCount(Set<Integer> setNumbers, List<Integer> winningNumbers) {
-        int count = 0;
-        for (int winningNumber : winningNumbers) {
-            if (setNumbers.contains(winningNumber)) {
-                count += 1;
-            }
-        }
-        return count;
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 }
