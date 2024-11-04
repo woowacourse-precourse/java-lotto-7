@@ -12,6 +12,7 @@ public class Application {
             OutputView output = new OutputView();
             LottoController controller = new LottoController(input, output);
             controller.start();
+            controller.checkLottoNumbers();
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MESSAGE + " " + e.getMessage());
         }
