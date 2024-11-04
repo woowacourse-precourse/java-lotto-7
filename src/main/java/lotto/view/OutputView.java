@@ -1,24 +1,29 @@
 package lotto.view;
 
+import lotto.enums.Constants;
 import lotto.enums.Ranking;
 import lotto.model.Lotto;
+import lotto.model.Money;
 
 import java.util.List;
 import java.util.Map;
+
+import static lotto.enums.Constants.MONEY_UNIT;
 
 public class OutputView {
     private static final String READ_MONEY_OUTPUT= "개를 구매했습니다.";
     private static final String RESULT_MESSAGE="당첨 통계";
     private static final String RESULT_DASH="---";
     private static final String RESULT_UNIT = "개";
-    public void printMoney(int money) {
+    public void printMoney(Money money) {
         System.out.println();
-        System.out.println(money + READ_MONEY_OUTPUT);
+        System.out.println(money.getMoney()/ MONEY_UNIT.getValue() + READ_MONEY_OUTPUT);
     }
 
-    public void printLotto(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
-        System.out.println(numbers);
+    public void printLotto(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     public void printResult(Map<Ranking, Integer> result) {
