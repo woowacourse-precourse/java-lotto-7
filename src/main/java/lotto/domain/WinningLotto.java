@@ -18,4 +18,13 @@ public class WinningLotto {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
+    public Rank match(Lotto lotto) {
+        long matchCount = lotto.getNumbers().stream()
+                .filter(numbers::contains)
+                .count();
+        boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+
+        return Rank.findRank((int) matchCount, bonusMatch);
+    }
 }
