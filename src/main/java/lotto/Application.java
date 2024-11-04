@@ -26,6 +26,10 @@ public class Application {
             // 당첨 결과 확인
             int totalPrize = checkResults(userLottos, winningNumbers, bonusNumber);
 
+            // 수익률 계산 및 출력
+            double profitRate = calculateProfit(totalPrize, purchaseAmount);
+            System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }
@@ -111,7 +115,7 @@ public class Application {
     private static int getMatchCount(List<Integer> userNumbers, List<Integer> winningNumbers) {
         return (int) userNumbers.stream().filter(winningNumbers::contains).count();
     }
-
+    //당첨결과 확인 기능 추가
     private static void printResults(int[] prizeCount) {
         System.out.println("당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + prizeCount[4] + "개");
@@ -120,5 +124,9 @@ public class Application {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + prizeCount[1] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + prizeCount[0] + "개");
     }
-
+    //수익률 계산 및 출력기능 추가
+    private static double calculateProfit(int totalPrize, int purchaseAmount) {
+        double profitRate = ((double) totalPrize / purchaseAmount) * 100;
+        return Math.round(profitRate * 100) / 100.0;
+    }
 }
