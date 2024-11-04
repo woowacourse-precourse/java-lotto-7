@@ -22,4 +22,13 @@ public class BonusNumberTest {
         });
         assertEquals(INVALID_BONUS_NUMBER.message(), e.getMessage());
     }
+
+    @Test
+    void 보너스_번호에_45를_초과하는_숫자가_포함된다면_예외발생() {
+        String bonusNumber = "46";
+        LottoException e = assertThrows(LottoException.class, () -> {
+            BonusNumberValidator.validate(winningNumbersDto, bonusNumber);
+        });
+        assertEquals(INVALID_BONUS_NUMBER.message(), e.getMessage());
+    }
 }
