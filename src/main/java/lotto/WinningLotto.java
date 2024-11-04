@@ -1,8 +1,7 @@
 package lotto;
 
 import java.util.List;
-import lotto.common.LottoNumber;
-import lotto.common.LottoResult;
+import lotto.common.LottoResults;
 import lotto.exception.LottoArgumentException;
 
 public class WinningLotto extends Lotto {
@@ -20,10 +19,10 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public LottoResult getResult(final Lotto lotto) {
+    public LottoResults getResult(final Lotto lotto) {
         final int matchedCount = getMatchedNumberCount(lotto);
         final boolean bonusNumberMatched = bonusNumberMatched(lotto);
-        return LottoResult.getWinningStatus(matchedCount, bonusNumberMatched);
+        return LottoResults.getWinningStatus(matchedCount, bonusNumberMatched);
     }
 
     private int getMatchedNumberCount(final Lotto lotto) {

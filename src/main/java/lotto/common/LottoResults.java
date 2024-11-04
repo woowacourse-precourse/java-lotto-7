@@ -3,7 +3,7 @@ package lotto.common;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-public enum LottoResult {
+public enum LottoResults {
     FIRST(6, false, 2000000000, "6개 일치"),
     SECOND(5, true, 30000000, "5개 일치, 보너스 볼 일치"),
     THIRD(5, false, 1500000, "5개 일치"),
@@ -16,7 +16,7 @@ public enum LottoResult {
     private final BigDecimal winningAmount;
     private final String conditionInformation;
 
-    LottoResult(final int matchedCount, final boolean bonusNumberMatched, final int winningAmount, final String conditionInformation) {
+    LottoResults(final int matchedCount, final boolean bonusNumberMatched, final int winningAmount, final String conditionInformation) {
         this.matchedCount = matchedCount;
         this.bonusNumberMatched = bonusNumberMatched;
         this.winningAmount = new BigDecimal(winningAmount);
@@ -27,11 +27,11 @@ public enum LottoResult {
         return this.winningAmount;
     }
 
-    public static LottoResult getWinningStatus(final int matchedCount, final boolean bonusNumberMatched) {
-        return Arrays.stream(LottoResult.values())
+    public static LottoResults getWinningStatus(final int matchedCount, final boolean bonusNumberMatched) {
+        return Arrays.stream(LottoResults.values())
                 .filter(resultStatus -> matchedCount == resultStatus.matchedCount && bonusNumberMatched == resultStatus.bonusNumberMatched)
                 .findAny()
-                .orElse(LottoResult.NONE);
+                .orElse(LottoResults.NONE);
     }
 
     public String getConditionInformation() {

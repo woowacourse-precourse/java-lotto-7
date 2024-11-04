@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lotto.common.LottoResult;
+import lotto.common.LottoResults;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,7 +46,7 @@ class LottoContainerTest {
                                 new Lotto(List.of(1, 2, 3, 4, 5, 7).stream()
                                         .map(LottoNum::new).collect(Collectors.toList()))
                         ),
-                        LottoResult.FIRST.getWinningAmount().add(LottoResult.SECOND.getWinningAmount())
+                        LottoResults.FIRST.getWinningAmount().add(LottoResults.SECOND.getWinningAmount())
                 ),
                 Arguments.of(
                         List.of(

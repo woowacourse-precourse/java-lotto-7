@@ -2,19 +2,19 @@ package lotto;
 
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.common.LottoResult;
+import lotto.common.LottoResults;
 
 public class Results {
 
-    private final List<LottoResult> lottoResults;
+    private final List<LottoResults> lottoResults;
 
-    public Results(final List<LottoResult> lottoResults) {
+    public Results(final List<LottoResults> lottoResults) {
         this.lottoResults = lottoResults;
     }
 
     public BigDecimal getSum() {
         BigDecimal sum = new BigDecimal(0);
-        for (LottoResult lottoResult : lottoResults) {
+        for (LottoResults lottoResult : lottoResults) {
             sum = sum.add(lottoResult.getWinningAmount());
         }
         return sum;
@@ -27,13 +27,13 @@ public class Results {
         return sum.divide(payment).multiply(new BigDecimal("100"));
     }
 
-    public long getCount(final LottoResult targetResult) {
+    public long getCount(final LottoResults targetResult) {
         return this.lottoResults.stream()
                 .filter(lottoResult -> lottoResult.equals(targetResult))
                 .count();
     }
 
-    public LottoStatisticsInfo getStatistics(final LottoResult lottoResult) {
+    public LottoStatisticsInfo getStatistics(final LottoResults lottoResult) {
         return new LottoStatisticsInfo(
                 lottoResult.getConditionInformation(),
                 lottoResult.getWinningAmount().intValue(),

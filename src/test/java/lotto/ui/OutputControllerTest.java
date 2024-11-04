@@ -7,7 +7,7 @@ import lotto.Lotto;
 import lotto.LottoContainer;
 import lotto.LottoNum;
 import lotto.Results;
-import lotto.common.LottoResult;
+import lotto.common.LottoResults;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -49,7 +49,7 @@ class OutputControllerTest {
     void 통계_출력_테스트() {
         final OutputController outputController = new OutputController(outputUi);
 
-        outputController.printStatisticResults(new Results(List.of(LottoResult.THIRD, LottoResult.SECOND)));
+        outputController.printStatisticResults(new Results(List.of(LottoResults.THIRD, LottoResults.SECOND)));
         Assertions.assertThat(printResult.toString())
                 .isEqualTo("당첨 통계\n"
                         + "---\n"

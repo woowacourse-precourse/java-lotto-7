@@ -6,7 +6,7 @@ import lotto.LottoContainer;
 import lotto.LottoInfo;
 import lotto.LottoPayment;
 import lotto.Results;
-import lotto.common.LottoResult;
+import lotto.common.LottoResults;
 import lotto.exception.LottoArgumentException;
 
 public class OutputController {
@@ -43,11 +43,11 @@ public class OutputController {
         this.nextLine();
         outputUi.printWithLineBreak("당첨 통계");
         outputUi.printWithLineBreak("---");
-        outputUi.printWithLineBreak(results.getStatistics(LottoResult.FIFTH).toString());
-        outputUi.printWithLineBreak(results.getStatistics(LottoResult.FORTH).toString());
-        outputUi.printWithLineBreak(results.getStatistics(LottoResult.THIRD).toString());
-        outputUi.printWithLineBreak(results.getStatistics(LottoResult.SECOND).toString());
-        outputUi.printWithLineBreak(results.getStatistics(LottoResult.FIRST).toString());
+        outputUi.printWithLineBreak(results.getStatistics(LottoResults.FIFTH).toString());
+        outputUi.printWithLineBreak(results.getStatistics(LottoResults.FORTH).toString());
+        outputUi.printWithLineBreak(results.getStatistics(LottoResults.THIRD).toString());
+        outputUi.printWithLineBreak(results.getStatistics(LottoResults.SECOND).toString());
+        outputUi.printWithLineBreak(results.getStatistics(LottoResults.FIRST).toString());
     }
 
     public void printProfitRatio(final Results results, final LottoPayment lottoPayment) {
