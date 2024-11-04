@@ -3,7 +3,7 @@ package lotto.util;
 import java.util.List;
 
 public class LottoNumberValidator {
-    public static void validate(List<Integer> numbers) {
+    public static void validateLottoNumbers(List<Integer> numbers) {
         validateNumberCount(numbers);
         validateDuplication(numbers);
         validateRange(numbers);
@@ -29,6 +29,12 @@ public class LottoNumberValidator {
             if (number < 0 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
             }
+        }
+    }
+
+    public static void validateRange(int number) {
+        if (number < 0 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
         }
     }
 }
