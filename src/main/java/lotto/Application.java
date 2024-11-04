@@ -179,7 +179,8 @@ public class Application {
         totalPrize += matchCounts.getOrDefault(-5, 0) * fiveMatchBonusPrize;
         totalPrize += matchCounts.getOrDefault(6, 0) * sixMatchPrize;
 
-        // 수익률 계산
-        return ((double) totalPrize / purchaseAmount) * 100;
+        double profitRate = ((double) totalPrize / purchaseAmount) * 100;
+
+        return Math.round(profitRate * 100) / 100.0;
     }
 }
