@@ -14,7 +14,9 @@ public enum ExceptionMessage {
     BONUS_NUMBER_BLANK_INPUT("[ERROR] 보너스 번호는 빈 값이 될 수 없습니다."),
     BONUS_NUMBER_OUT_OF_RANGE("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다."),
     BONUS_NUMBER_DUPLICATE_WITH_WINNING("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
-    BONUS_NUMBER_NOT_NUMBER("[ERROR] 보너스 번호는 숫자로만 입력해주세요.");
+    BONUS_NUMBER_NOT_NUMBER("[ERROR] 보너스 번호는 숫자로만 입력해주세요."),
+    LOTTO_NUMBER_SIZE_INSUFFICIENT("[ERROR] 로또 번호는 6개여야 합니다."),
+    LOTTO_DUPLICATE_NUMBER("[ERROR] 로또 번호에는 중복된 숫자가 있을 수 없습니다.");
 
     private final String message;
 
