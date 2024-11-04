@@ -18,5 +18,7 @@ public class LottoController {
         outputView.purchase();
         String purchaseInput = inputView.purchaseInput();
         int lottoQuantity = service.lottoQuantity(purchaseInput);
+        outputView.quantity(lottoQuantity);
+
     }
 }
