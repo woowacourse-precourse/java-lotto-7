@@ -9,19 +9,16 @@ public class Application {
         // TODO: 프로그램 구현
         LottoStore store = new LottoStore();
 
-        System.out.println("구입금액을 입력해 주세요.");
-        int amount = Source.inputAmountOrBonusNumber(Console.readLine());
+        int amount = Source.inputAmount();  // 구입 금액 입력
         List<Lotto> tickets = store.purchase(amount);
         System.out.println("\n" + tickets.size() + "개를 구매했습니다.");
         tickets.forEach(System.out::println);
 
-        System.out.println("\n당첨번호를 입력해 주세요.");
-        String[] winningInput = Source.inputWinningNumber(Console.readLine());
-        Lotto winningNumbers = Source.parseNumbers(winningInput);
+        Lotto winningNumbers = Source.inputWinningNumbers();  // 당첨 번호 입력
+        int bonusNumber = Source.inputBonusNumber();  // 보너스 번호 입력
 
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        int bonusNumber = Source.inputAmountOrBonusNumber(Console.readLine());
-
-
+        System.out.println("\n당첨 통계\n---");
+        Result result = new Result(tickets, winningNumbers, bonusNumber);
+        result.print();
     }
 }
