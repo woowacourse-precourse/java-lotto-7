@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class LottoDraw {
 
     static Lotto inputWinningNumbers() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요");
         String firstInput = Console.readLine();
 
@@ -27,6 +28,7 @@ public class LottoDraw {
     }
 
     static int inputBonusNumber(Lotto inputLotto) {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요");
         String secondInput = Console.readLine();
 

@@ -35,6 +35,23 @@ public class Lotto {
         }
     }
 
+
+    public LottoRank findRank(LottoTicket ticket) {
+        long matchCount = ticket.getNumbers().stream()
+                .filter(numbers::contains)
+                .count();
+
+        boolean hasBonus = ticket.getNumbers().contains(bonusNumber);
+
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank.getMatchCount() == matchCount && rank.hasBonus() == hasBonus) {
+                return rank;
+            }
+        }
+
+        return LottoRank.NONE;
+    }
+
     public List<Integer> getNumbers() {
         return this.numbers;
     }

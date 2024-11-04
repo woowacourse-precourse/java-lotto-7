@@ -1,20 +1,16 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.List;
-
-
 public class Application {
     public static void main(String[] args) {
 
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        LottoTickets myTickets = LotteryStore.purchase();
 
-        Lotto mainLotto = LottoDraw.inputWinningNumbers();
-        mainLotto.bonusNumber = LottoDraw.inputBonusNumber(mainLotto);
+        Lotto winningLotto = LottoDraw.inputWinningNumbers();
+        winningLotto.bonusNumber = LottoDraw.inputBonusNumber(winningLotto);
 
-        //System.out.println(mainLotto.toString());
+        LottoResult result = new LottoResult();
+        result.calculateResults(myTickets.getTickets(), winningLotto, winningLotto.bonusNumber);
+        result.displayResults();
+
     }
-
 }
-
-
