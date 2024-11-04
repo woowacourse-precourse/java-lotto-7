@@ -16,5 +16,13 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public Integer getMatchingNumberCount(List<Integer> numbers, Integer bonusNumber) {
+        numbers.retainAll(this.numbers);
+        return numbers.size();
+    }
+
+    public boolean isBonusNumberMatching(Integer bonusNumber) {
+        return numbers.stream()
+                .anyMatch(n -> n.equals(bonusNumber));
+    }
 }
