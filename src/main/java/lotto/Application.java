@@ -49,5 +49,26 @@ public class Application {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 번호는 숫자로 입력해야 합니다.");
         }
+
+        int[] matchCounts = new int[8];
+
+        for (Lotto lotto : lottos) {
+            int matches = 0;
+            boolean hasBonus = false;
+            for (int number : lotto.getNumbers()) {
+                if (winningNumbers.contains(number)) {
+                    matches++;
+                }
+                if (number == bonusNumber) {
+                    hasBonus = true;
+                }
+            }
+            if (matches == 5 && hasBonus) {
+                matchCounts[7]++;
+            }
+            if (matches >= 3) {
+                matchCounts[matches]++;
+            }
+        }
     }
 }
