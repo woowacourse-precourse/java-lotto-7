@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.Message;
 import lotto.util.Validator;
 
 public class InputView {
@@ -15,7 +16,7 @@ public class InputView {
 
     public int scanPurchasePrice() {
         while (true) {
-            System.out.println("구입금액을 입력해 주세요.");
+            System.out.println(Message.PURCHASE_PRICE_PROMPT.getMessage());
             try {
                 String purchasePriceInput = Console.readLine();
                 return validator.validatePurchasePrice(purchasePriceInput);
@@ -27,7 +28,7 @@ public class InputView {
 
     public Lotto scanWinningNumbers() {
         while (true) {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
+            System.out.println("\n" + Message.WINNING_NUMBERS_PROMPT.getMessage());
             try{
                 String[] winningNumbersInput = Console.readLine().split(",");
                 validator.validateWinningNumber(winningNumbersInput);
@@ -51,7 +52,7 @@ public class InputView {
 
     public int scanBonusNumber(Lotto winningNumbers) {
         while (true) {
-            System.out.println("\n보너스 번호를 입력해 주세요.");
+            System.out.println("\n" + Message.BONUS_NUMBER_PROMPT.getMessage());
             try{
                 String bonusNumberInput = Console.readLine();
                 return validator.validateBonusNumber(bonusNumberInput, winningNumbers);
