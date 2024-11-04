@@ -19,13 +19,16 @@ public class BonusNumber {
             return new BonusNumber(number);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
-                    ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getFormattedMessage(MIN_NUMBER, MAX_NUMBER));
+                    ErrorMessage.INVALID_NUMBER_FORMAT.getMessage()
+            );
         }
     }
 
     private void validate(int number) {
         if (isInvalidRange(number)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getFormattedMessage(MIN_NUMBER, MAX_NUMBER)
+            );
         }
     }
 

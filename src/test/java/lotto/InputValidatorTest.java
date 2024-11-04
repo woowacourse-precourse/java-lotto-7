@@ -38,7 +38,7 @@ public class InputValidatorTest {
         // when & then
         assertThatThrownBy(() -> PurchaseAmount.from("2500"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+                .hasMessage("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
     }
 
     @ParameterizedTest

@@ -27,7 +27,7 @@ class BonusNumberTest {
     void 실패_보너스번호입력_범위초과(String input) {
         assertThatThrownBy(() -> BonusNumber.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessage("[ERROR] 보너스 번호는 1이상 45이하여야 합니다.");
     }
 
     @Test
