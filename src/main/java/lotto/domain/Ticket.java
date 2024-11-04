@@ -11,7 +11,7 @@ public class Ticket {
         this.ticket = ticket;
     }
 
-    public static Ticket from(Money money) {
+    public static Ticket of(Money money) {
         return new Ticket(publishTicket(money));
     }
 
