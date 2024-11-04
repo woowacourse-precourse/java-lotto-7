@@ -10,7 +10,6 @@ class RankTest {
     @DisplayName("일치하는 숫자 개수와 보너스 번호 일치 여부로 Rank를 반환한다.")
     @Test
     void 일치숫자개수_보너스번호_일치여부로_Rank반환() {
-        // when & then
         assertThat(Rank.valueOf(6, false)).isEqualTo(Rank.FIRST);
         assertThat(Rank.valueOf(5, true)).isEqualTo(Rank.SECOND);
         assertThat(Rank.valueOf(5, false)).isEqualTo(Rank.THIRD);
@@ -22,7 +21,6 @@ class RankTest {
     @DisplayName("Rank의 당첨 금액과 일치 메시지를 확인한다.")
     @Test
     void Rank의_당첨금액_일치메시지_확인() {
-        // when & then
         assertThat(Rank.FIRST.getPrize()).isEqualTo(2_000_000_000);
         assertThat(Rank.FIRST.getMatchMessage()).isEqualTo("6개 일치 (2,000,000,000원)");
 
