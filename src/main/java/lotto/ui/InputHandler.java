@@ -7,31 +7,35 @@ import lotto.domain.WinningLotto;
 public class InputHandler {
 
     public static LottoPurchaseMoney getPurchaseAmount() {
-        try {
-            System.out.println("구입 금액을 입력해 주세요.");
-            String input = Console.readLine();
-            validateInputIsNotEmpty(input);
-            validateInputIsNumeric(input);
-            return new LottoPurchaseMoney(input);
-        } catch (IllegalArgumentException e) {
-            return getPurchaseAmount();  // 잘못된 입력일 경우 재입력 받기
+        while (true) {
+            try {
+                System.out.println("구입 금액을 입력해 주세요.");
+                String input = Console.readLine();
+                validateInputIsNotEmpty(input);
+                validateInputIsNumeric(input);
+                return new LottoPurchaseMoney(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     public static WinningLotto getWinningLotto() {
-        try {
-            System.out.println("당첨 번호를 입력해 주세요.");
-            String winningNumbersInput = Console.readLine();
-            validateInputIsNotEmpty(winningNumbersInput);
+        while (true) {
+            try {
+                System.out.println(System.lineSeparator() + "당첨 번호를 입력해 주세요.");
+                String winningNumbersInput = Console.readLine();
+                validateInputIsNotEmpty(winningNumbersInput);
 
-            System.out.println("보너스 번호를 입력해 주세요.");
-            String bonusNumberInput = Console.readLine();
-            validateInputIsNotEmpty(bonusNumberInput);
-            validateInputIsNumeric(bonusNumberInput);
+                System.out.println(System.lineSeparator() + "보너스 번호를 입력해 주세요.");
+                String bonusNumberInput = Console.readLine();
+                validateInputIsNotEmpty(bonusNumberInput);
+                validateInputIsNumeric(bonusNumberInput);
 
-            return new WinningLotto(winningNumbersInput, bonusNumberInput);
-        } catch (IllegalArgumentException e) {
-            return getWinningLotto();
+                return new WinningLotto(winningNumbersInput, bonusNumberInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

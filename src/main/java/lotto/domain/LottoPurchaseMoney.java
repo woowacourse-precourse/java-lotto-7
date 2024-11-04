@@ -17,4 +17,8 @@ public class LottoPurchaseMoney {
     public int calculateLottoCount() {
         return this.amount / LOTTO_PRICE;
     }
+
+    public int getAmount() {
+        return this.amount;
+    }
 }

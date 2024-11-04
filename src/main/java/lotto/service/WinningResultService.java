@@ -14,7 +14,9 @@ public class WinningResultService {
             int matchCount = winningLotto.getMatchCount(lotto);
             boolean hasBonus = winningLotto.hasBonusNumber(lotto);
             Rank rank = Rank.valueOf(matchCount, hasBonus);
-            winningResult.updateResult(rank);
+            if (rank != Rank.NONE) {
+                winningResult.updateResult(rank);
+            }
         });
 
         return winningResult;
