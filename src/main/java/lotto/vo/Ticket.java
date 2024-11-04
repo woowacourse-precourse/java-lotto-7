@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 import static lotto.common.Constants.*;
 
 public class Ticket {
-    private static final int WINNING_NUMBER_COUNT = 6;
-
     private final List<Integer> ticket;
 
     public Ticket() {
@@ -16,7 +14,7 @@ public class Ticket {
     }
 
     private List<Integer> pickRandom() {
-        return Randoms.pickUniqueNumbersInRange(RANGE_START, RANGE_END, WINNING_NUMBER_COUNT)
+        return Randoms.pickUniqueNumbersInRange(RANGE_START, RANGE_END, MAIN_NUMBER_SIZE)
                 .stream()
                 .sorted()
                 .collect(Collectors.toList());

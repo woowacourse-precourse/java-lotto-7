@@ -43,7 +43,7 @@ public class MainNumber {
     }
 
     private void checkElementCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != MAIN_NUMBER_SIZE) {
             throw new IllegalArgumentException(MAIN_NUMBERS_COUNT.getMessage());
         }
     }
