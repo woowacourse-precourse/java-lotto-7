@@ -7,6 +7,7 @@ import lotto.validation.NumberCountValidator;
 import lotto.validation.NumberRangeValidator;
 import lotto.validation.StringValidator;
 import lotto.validation.UniqueNumberValidator;
+import lotto.validation.AmountValidator;
 import lotto.validation.Validator;
 
 public class ValidatorFactory {
@@ -28,6 +29,12 @@ public class ValidatorFactory {
 
     public static Validator<WinningNumbers> createBonusNumberValidator(int bonusNumber, String errorMessage) {
         return new BonusNumberValidator(bonusNumber, errorMessage);
+    }
+
+    private static final Validator<Integer> amountValidator = AmountValidator.getInstance();
+
+    public static Validator<Integer> getAmountValidator() {
+        return amountValidator;
     }
 
 }

@@ -1,19 +1,17 @@
 package lotto.domain;
 
+import lotto.utils.ValidatorFactory;
+import lotto.validation.Validator;
+
 public class Purchase {
-    private final int amount;
     private static final int LOTTO_PRICE = 1000;
 
+    private final int amount;
 
     public Purchase(int amount) {
-        validate(amount);
+        Validator<Integer> amountValidator = ValidatorFactory.getAmountValidator();
+        amountValidator.validate(amount);
         this.amount = amount;
-    }
-
-    private void validate(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
-        }
     }
 
     public int getLottoCount() {
@@ -23,5 +21,4 @@ public class Purchase {
     public int getAmount() {
         return amount;
     }
-
 }
