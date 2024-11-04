@@ -6,6 +6,7 @@ import lotto.model.Lotto;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OutputView implements UserOutput {
     private final String THREE_MATCH = "3";
@@ -23,7 +24,10 @@ public class OutputView implements UserOutput {
     public void outputStatistics(List<List<Integer>> lottoNumbers) {
         for (List<Integer> lottoNumber : lottoNumbers) {
             Collections.sort(lottoNumber);
-            System.out.println(lottoNumber.toString());
+            String lottResult = "[" + String.join(", ", lottoNumber.stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.toList())) + "]";
+            System.out.println(lottResult);
         }
     }
 
