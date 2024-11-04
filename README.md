@@ -121,116 +121,43 @@
 
 ```mermaid
 classDiagram
-direction BT
-class BonusNumber {
-  + isMatch(int) boolean
-  + ofNumberAndWinningLottoAndConfig(int, WinningLotto, LottoConfig) BonusNumber
-  + hashCode() int
-  + equals(Object) boolean
-}
-class Lotto {
-  + getNumbers() List~Integer~
-  + ofNumbersAndConfig(List~Integer~, LottoConfig) Lotto
-  + getMatchCountWinningLotto(WinningLotto) int
-  + equals(Object) boolean
-  + hashCode() int
-  + isMatchBonusNumber(BonusNumber) boolean
-}
-class LottoBundle {
-  + ofLottosAndPurchasePrice(List~Lotto~, LottoPurchasePrice) LottoBundle
-  + makeLottoResult(WinningLotto, BonusNumber) LottoResult
-  + hashCode() int
-  + getLottos() List~Lotto~
-  + equals(Object) boolean
-}
-class LottoBundleDTO {
-  + getLottos() List~Lotto~
-  + from(List~Lotto~) LottoBundleDTO
-}
-class LottoController {
-  + run() void
-}
-class LottoDispenser {
-  + fromConfig(LottoConfig) LottoDispenser
-  + issueLottoBundle(LottoPurchasePrice) LottoBundle
-}
-class LottoError {
-<<enumeration>>
-  + getMessage() String
-  + values() LottoError[]
-  + valueOf(String) LottoError
-  + getErrorMessageFormat() Pattern
-}
-class LottoInputParser {
-  + parseInt(String) int
-  + parseNumbers(String) List~Integer~
-}
-class LottoInputValidator {
-  + validateLottoPurchasePrice(String) void
-  + validateLottoWinningNumbers(String) void
-  + validateLottoBonusNumber(String) void
-}
-class LottoInputView {
-  + readLottoWinningNumbers() List~Integer~
-  + readLottoBonusNumber() int
-  + readLottoPurchasePrice() int
-}
-class LottoOutputView {
-  + printLottoResult(LottoResultDTO) void
-  + printLottoBonusNumber() void
-  + printLottoBundle(LottoBundleDTO) void
-  + printLottoPurchasePrice() void
-  + printLottoWinningNumbers() void
-}
-class LottoPurchasePrice {
-  + equals(Object) boolean
-  + ofPurchasePriceAndConfig(int, LottoConfig) LottoPurchasePrice
-  + hashCode() int
-  + calculateProfit(double) double
-  + getLottoCount() int
-}
-class LottoRank {
-<<enumeration>>
-  + getMessage() String
-  + valueOf(String) LottoRank
-  + ofLottoAndWinningLottoAndBonusNumber(Lotto, WinningLotto, BonusNumber) LottoRank
-  + values() LottoRank[]
-  + getPrizeMoney() int
-}
-class LottoResult {
-  + ofRankCountAndProfitRate(Map~LottoRank, Integer~, double) LottoResult
-  + equals(Object) boolean
-  + hashCode() int
-  + getRankCount() Map~LottoRank, Integer~
-  + getLottoProfitRate() double
-}
-class LottoResultDTO {
-  + getLottoProfitRate() double
-  + ofRankCountAndProfitRate(Map~LottoRank, Integer~, double) LottoResultDTO
-  + getLottoRankCount() Map~LottoRank, Integer~
-}
-class RetryHandler {
-  + retry(Supplier~T~) T
-  + retry(Function~T, R~, T) R
-}
-class WinningLotto {
-  + equals(Object) boolean
-  + isContains(int) boolean
-  + ofNumbersAndConfig(List~Integer~, LottoConfig) WinningLotto
-  + hashCode() int
-}
+  direction BT
+  class BonusNumber
+  class Lotto
+  class LottoBundle
+  class LottoBundleDTO
+  class LottoController
+  class LottoDispenser
+  class LottoError {
+    <<enumeration>>
 
-LottoBundle "1" *--> "lottos *" Lotto 
-LottoBundle "1" *--> "lottoPurchasePrice 1" LottoPurchasePrice 
-LottoBundleDTO "1" *--> "lottos *" Lotto 
-LottoController "1" *--> "lottoDispenser 1" LottoDispenser 
-LottoController "1" *--> "lottoInputView 1" LottoInputView 
-LottoController "1" *--> "lottoOutputView 1" LottoOutputView 
-LottoController "1" *--> "retryHandler 1" RetryHandler 
-LottoInputView "1" *--> "lottoInputParser 1" LottoInputParser 
-LottoInputView "1" *--> "lottoInputValidator 1" LottoInputValidator 
-LottoResult "1" *--> "rankCount *" LottoRank 
-LottoResultDTO "1" *--> "lottoRankCount *" LottoRank 
+  }
+  class LottoInputParser
+  class LottoInputValidator
+  class LottoInputView
+  class LottoOutputView
+  class LottoPurchasePrice
+  class LottoRank {
+    <<enumeration>>
+
+  }
+  class LottoResult
+  class LottoResultDTO
+  class RetryHandler
+  class WinningLotto
+
+  LottoBundle "1" *--> "lottos *" Lotto
+  LottoBundle "1" *--> "lottoPurchasePrice 1" LottoPurchasePrice
+  LottoBundleDTO "1" *--> "lottos *" Lotto
+  LottoController "1" *--> "lottoDispenser 1" LottoDispenser
+  LottoController "1" *--> "lottoInputView 1" LottoInputView
+  LottoController "1" *--> "lottoOutputView 1" LottoOutputView
+  LottoController "1" *--> "retryHandler 1" RetryHandler
+  LottoInputView "1" *--> "lottoInputParser 1" LottoInputParser
+  LottoInputView "1" *--> "lottoInputValidator 1" LottoInputValidator
+  LottoResult "1" *--> "rankCount *" LottoRank
+  LottoResultDTO "1" *--> "lottoRankCount *" LottoRank
+
 
 ```
 
