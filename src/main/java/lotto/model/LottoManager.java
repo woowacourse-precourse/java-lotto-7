@@ -10,6 +10,8 @@ public class LottoManager {
     private static final Rank NONE_RANK_FILTER = Rank.NONE;
     private static final long INITIAL_RANK_COUNT = 0L;
     private static final int PERCENTAGE_MULTIPLIER = 100;
+    private static final long COUNT_INCREMENT = 1L;
+
 
     private final Lottos lottos;
     private final WinningNumbers winningNumbers;
@@ -45,7 +47,7 @@ public class LottoManager {
         lottos.getLottos().stream()
                 .map(this::getRank)
                 .filter(rank -> rank != NONE_RANK_FILTER)
-                .forEach(rank -> results.put(rank, results.get(rank) + 1));
+                .forEach(rank -> results.put(rank, results.get(rank) + COUNT_INCREMENT));
     }
 
     private Rank getRank(Lotto lotto) {

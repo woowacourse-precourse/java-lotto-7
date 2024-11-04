@@ -4,6 +4,7 @@ import message.ErrorMessage;
 
 public class AttemptCount {
     private static final int LOTTO_PRICE = 1000;
+    private static final int ZERO = 0;
 
     private final int attemptCount;
 
@@ -28,7 +29,7 @@ public class AttemptCount {
     }
 
     private static boolean isInvalidPurchaseAmount(int purchaseAmount) {
-        return purchaseAmount % LOTTO_PRICE != 0;
+        return purchaseAmount % LOTTO_PRICE != ZERO;
     }
 
     public int getCount() {
