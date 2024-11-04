@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class WinningTypes {
@@ -15,11 +14,14 @@ public class WinningTypes {
     }
 
     public WinningType getWinning(int count) {
-        return new WinningType(winningTypes.get(count));
+        try {
+            return new WinningType(winningTypes.get(count));
+        } catch (NullPointerException e) {
+            return new WinningType(-1, -1);
+        }
     }
 
     public WinningType getBonusWinning() {
         return new WinningType(bonusWinning);
     }
-
 }

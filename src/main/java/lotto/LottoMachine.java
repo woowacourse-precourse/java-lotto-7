@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoMachine {
 
     private Lotto winningLotto;
@@ -19,6 +21,20 @@ public class LottoMachine {
             winningType = winningTypes.getBonusWinning();
         }
         return winningType;
+    }
+
+    public List<WinningType> checkWinnings(List<Lotto> lottos) {
+        return lottos.stream()
+                .map(this::checkWinning)
+                .filter(winningType -> isWinning(winningType))
+                .toList();
+    }
+
+    private boolean isWinning(WinningType winningType) {
+        if (winningType.getSameCount() == -1) {
+            return false;
+        }
+        return true;
     }
 
     private boolean hasBonusNumber(Lotto lotto) {

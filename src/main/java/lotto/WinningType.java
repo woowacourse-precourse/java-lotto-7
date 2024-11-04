@@ -2,9 +2,11 @@ package lotto;
 
 public class WinningType {
 
+    private int sameCount;
     private int prize;
 
-    public WinningType(int prize) {
+    public WinningType(int sameCount, int prize) {
+        this.sameCount = sameCount;
         this.prize = prize;
     }
 
@@ -16,6 +18,9 @@ public class WinningType {
         return prize;
     }
 
+    public int getSameCount() {
+        return sameCount;
+    }
 
     @Override
     public boolean equals(Object o) {
