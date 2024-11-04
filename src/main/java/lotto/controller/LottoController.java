@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.Rank;
 import lotto.service.LottoService;
-import lotto.util.Config;
+import lotto.util.Validator;
 import lotto.view.Inputview;
 import lotto.view.Outputview;
 
@@ -34,7 +34,9 @@ public class LottoController {
     private int getPurchaseAmount() {
         while (true) {
             try {
-                return Inputview.inputMoney();
+                int money = Inputview.inputMoney();
+                Validator.validatePurchaseAmount(money);
+                return money;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -45,7 +47,7 @@ public class LottoController {
         while (true) {
             try {
                 String winningNumbers = Inputview.inputWinningNumbers();
-                return lottoService.parseWinningNumbers(winningNumbers); // 유효성 검사 및 파싱
+                return lottoService.parseWinningNumbers(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -56,12 +58,8 @@ public class LottoController {
         while (true) {
             try {
                 int bonusNumber = Inputview.inputBonusNumber();
-                if (bonusNumber < 1 || bonusNumber > 45) {
-                    throw new IllegalArgumentException(Config.ERROR_OUT_OF_RANGE_NUMBER);
-                }
-                if (winningNumbers.contains(bonusNumber)) {
-                    throw new IllegalArgumentException(Config.ERROR_BONUS_NUMBER_DUPLICATE);
-                }
+                Validator.validateBonusNumberDuplication(winningNumbers, bonusNumber);
+                Validator.validateLottoNumberRange(List.of(bonusNumber)); // 보너스 번호 범위 확인
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
