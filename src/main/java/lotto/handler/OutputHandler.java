@@ -12,7 +12,7 @@ public class OutputHandler {
     public void printPurchasedLotto(final int ticket, final List<Lotto> purchasedLottos){
 
         System.out.println();
-        System.out.println(ticket+"개를 구매했습니다");
+        System.out.println(ticket+"개를 구매했습니다.");
 
         purchasedLottos.stream()
                 .map(Lotto::getNumbers)
@@ -33,6 +33,6 @@ public class OutputHandler {
 
         DecimalFormat df = new DecimalFormat("#,###.0");
 
-        System.out.println("총 수익률은 " + df.format(profitRate) + "%입니다");
+        System.out.println("총 수익률은 " + df.format(profitRate) + "%입니다.");
     }
 }
