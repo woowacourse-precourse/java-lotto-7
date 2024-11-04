@@ -6,7 +6,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import java.util.List;
 import lotto.constants.ErrorMessage;
 import lotto.model.Lotto;
-import lotto.utils.validator.AmountsValidator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +36,7 @@ class BonusNumberParserTest {
 
         assertThatThrownBy(() -> BonusNumberParser.getBonusNumber(temporaryLottoNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ONLY_INTEGER_ALLOWED.getMessage());
+                .hasMessage(ErrorMessage.ONLY_INTEGER_BONUS_NUMBER_ALLOWED.getMessage());
     }
 
     @DisplayName("1부터 45사이가 아닌 보너스 숫자가 입력된다면, 예외가 발생한다.")
