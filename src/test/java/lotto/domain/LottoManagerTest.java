@@ -2,6 +2,7 @@ package lotto.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,43 @@ public class LottoManagerTest {
 
     @Test
     void 당첨_결과_반환() {
-        List<Lotto> lottos = List.of(
+        List<Lotto> lottos = getLottos();
+        WinLotto winLotto = getWinLotto();
+        Map<LottoRank, Integer> expectResult = getLottoResult();
+
+        assertThat(lottoManager.drawResult(lottos, winLotto)).isEqualTo(expectResult);
+    }
+
+    @Test
+    void 당첨금_반환() {
+        Map<LottoRank, Integer> result = getLottoResult();
+        long expectPrize = Arrays.stream(values())
+                .mapToLong(LottoRank::getPrize)
+                .sum();
+
+        assertThat(lottoManager.calculatePrize(result)).isEqualTo(expectPrize);
+    }
+
+    private Map<LottoRank, Integer> getLottoResult() {
+        return Map.of(
+                FAIL, 3,
+                THREE, 1,
+                FOUR, 1,
+                FIVE, 1,
+                FIVE_BONUS, 1,
+                SIX, 1
+        );
+    }
+
+    private WinLotto getWinLotto() {
+        WinLotto winLotto = new WinLotto(List.of(1, 5, 20, 25, 40, 45));
+        winLotto.setBonusNumber(7);
+
+        return winLotto;
+    }
+
+    private List<Lotto> getLottos() {
+        return List.of(
                 new Lotto(List.of(1, 5, 20, 25, 40, 45)),
                 new Lotto(List.of(1, 5, 20, 25, 40, 44)),
                 new Lotto(List.of(1, 5, 20, 25, 43, 44)),
@@ -34,17 +71,5 @@ public class LottoManagerTest {
                 new Lotto(List.of(2, 4, 23, 24, 43, 44)),
                 new Lotto(List.of(1, 5, 20, 25, 40, 7))
         );
-        WinLotto winLotto = new WinLotto(List.of(1, 5, 20, 25, 40, 45));
-        winLotto.setBonusNumber(7);
-        Map<LottoRank, Integer> expectResult = Map.of(
-                FAIL, 3,
-                THREE, 1,
-                FOUR, 1,
-                FIVE, 1,
-                FIVE_BONUS, 1,
-                SIX, 1
-        );
-
-        assertThat(lottoManager.drawResult(lottos, winLotto)).isEqualTo(expectResult);
     }
 }
