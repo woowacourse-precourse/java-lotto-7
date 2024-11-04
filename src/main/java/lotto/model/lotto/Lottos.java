@@ -11,7 +11,7 @@ public class Lottos {
     public static final int LOTTO_NUMBER_COUNT = 6;
     private final List<Lotto> lottos;
 
-    private Lottos(List<Lotto> lottos) {
+    public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
