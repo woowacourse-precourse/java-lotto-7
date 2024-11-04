@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import java.util.List;
+
 public class LottoPrizeCalculatorTest {
     private LottoPrizeCalculator calculator;
     @BeforeEach

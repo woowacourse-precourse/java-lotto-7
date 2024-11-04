@@ -6,6 +6,7 @@ import java.util.Map;
 import lotto.constatnt.WinningRank;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+
 public class LottoPrizeCalculator {
 
     private final Map<WinningRank, Integer> winningCounts = new HashMap<>();
