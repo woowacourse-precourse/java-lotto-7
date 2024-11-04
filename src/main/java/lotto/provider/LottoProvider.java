@@ -25,14 +25,11 @@ public class LottoProvider {
 
 	private User user;
 
-	private Answer answer;
-
-	public LottoProvider(String lottoPurchaseAmount, User user, Answer answer) {
+	public LottoProvider(String lottoPurchaseAmount, User user) {
 		int lottoPurchaseAmountNum = Integer.parseInt(lottoPurchaseAmount);
 		validateLottoPurchaseAmount(lottoPurchaseAmountNum);
 		this.user = user;
 		user.setLottoPurchaseAmount(lottoPurchaseAmountNum);
-		this.answer = answer;
 		this.numberOfLottos = lottoPurchaseAmountNum / THOUSAND;
 	}
 
@@ -57,7 +54,7 @@ public class LottoProvider {
 		}
 	}
 
-	public List<LottoRank> calculateRank() {
+	public List<LottoRank> calculateRank(Answer answer) {
 		List<LottoRank> ranks = new ArrayList<>();
 		for (Lotto pickedLotto : pickedLottos) {
 			int matchCounts = answer.checkLottoResult(pickedLotto);
