@@ -21,17 +21,29 @@ public class OutputView {
     public static void printLottoResult(LottoResult lottoResult) {
         for(Rank rank : Rank.values()){
             if(rank.getCorrectCount() >= MINIMUM_WINNING_CORRECT_COUNT){
-                String resultMessage = getLottoStatisticMessage(rank).getFormatWinningStatisticMessage(rank.getCorrectCount(), rank.getPrize(), lottoResult.getLottoResultMap().get(rank));
-                print(resultMessage);
+                print(getLottoResultMessage(rank, lottoResult));
             }
         }
     }
 
-    private static OutputMessage getLottoStatisticMessage(Rank rank){
-        if(rank.getCorrectCount() == SECOND_RANK_CORRECT_COUNT && rank.getBonusCount() == SECOND_RANK_BONUS_COUNT){
+    private static String getLottoResultMessage(Rank rank, LottoResult lottoResult){
+        int correctCount = rank.getCorrectCount();
+        long prize = rank.getPrize();
+        int winningCount = lottoResult.getLottoResultMap().get(rank);
+        return getLottoStatisticOutputView(rank).
+                getFormatWinningStatisticMessage(correctCount, prize, winningCount);
+    }
+
+    private static OutputMessage getLottoStatisticOutputView(Rank rank){
+        if(isSecondRank(rank)){
             return OUTPUT_WINNING_STATISTIC_BONUS;
         }
         return OUTPUT_WINNING_STATISTIC;
+    }
+
+    private static boolean isSecondRank(Rank rank){
+        return rank.getCorrectCount() == SECOND_RANK_CORRECT_COUNT
+                && rank.getBonusCount() == SECOND_RANK_BONUS_COUNT;
     }
 
     public static void printReturnRate(double returnRate) {
