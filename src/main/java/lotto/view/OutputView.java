@@ -2,6 +2,8 @@ package lotto.view;
 
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Rank;
+import lotto.model.WinningResult;
 
 public class OutputView {
 

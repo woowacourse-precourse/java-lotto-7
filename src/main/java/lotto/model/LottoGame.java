@@ -26,12 +26,13 @@ public class LottoGame {
         return generateLottoes(lottoCount);
     }
 
-    public void playLottoGame() {
-        List<Integer> winningNumbers =  winningLottoNumbers.getWinningNumber();
+    public WinningResult playLottoGame(List<Lotto> lottoes) {
+        List<Integer> winningNumbers = winningLottoNumbers.getWinningNumber();
         winningLottoNumbers.validatePositiveInteger(winningNumbers);
         outputView.promptBonusNumber();
         int BonusNumber = winningLottoNumbers.getBonusNumber(winningNumbers);
-
+        LottoNumberMatcher lottoNumberMatcher = new LottoNumberMatcher(lottoes, winningNumbers, BonusNumber);
+        return lottoNumberMatcher.calculateWinningResult();
     }
 
 

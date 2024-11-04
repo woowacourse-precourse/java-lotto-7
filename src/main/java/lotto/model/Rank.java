@@ -1,11 +1,11 @@
 package lotto.model;
 
 public enum Rank {
-    SIX(6, false, 2000000000),
-    FIVE_BONUS(5, true, 30000000),
-    FIVE(5, false, 1500000),
-    FOUR(4, false, 50000),
-    THREE(3, false, 5000),
+    SIX(6, false, 2_000_000_000),
+    FIVE_BONUS(5, true, 30_000_000),
+    FIVE(5, false, 1_500_000),
+    FOUR(4, false, 50_000),
+    THREE(3, false, 5_000),
     NONE(0, false, 0);
 
     private final int matchCount;
