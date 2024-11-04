@@ -22,23 +22,27 @@ public class Lotto {
 
         // 각 로또 번호와 당첨 번호를 비교
         for (List<Integer> lottoNumbers : buyLottoNumbers) {
-            int matchingCount = 0;
-
-            for (int number : lottoNumbers) {
-                if (winningNumbers.contains(number)) {
-                    ++matchingCount;
-                }
-            }
-            WinningNums rank = WinningNums.checkRank(matchingCount);
-            if(matchingCount == 5 && lottoNumbers.contains(bonusNumber)){
-                rank = WinningNums.FIVE_BONUS;
-            }
-
+            WinningNums rank = numberCompare(lottoNumbers, bonusNumber);
             statistics.put(rank, statistics.get(rank) + 1);
         }
 
         printStatistics(statistics);
         printRate(statistics, buyLottoAmount);
+    }
+
+    private WinningNums numberCompare(List<Integer> lottoNumbers, int bonusNumber){
+        int matchingCount = 0;
+
+        for (int number : lottoNumbers) {
+            if (winningNumbers.contains(number)) {
+                ++matchingCount;
+            }
+        }
+        WinningNums rank = WinningNums.checkRank(matchingCount);
+        if(matchingCount == 5 && lottoNumbers.contains(bonusNumber)){
+            rank = WinningNums.FIVE_BONUS;
+        }
+        return rank;
     }
 
     // 통계 결과를 출력
@@ -66,5 +70,5 @@ public class Lotto {
         rate = Math.round(rate * 100) / 100.0;
         System.out.println("총 수익률은 " + rate + "%입니다.");
     }
-    
+
 }
