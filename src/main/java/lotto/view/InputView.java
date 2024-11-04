@@ -7,12 +7,10 @@ public class InputView {
 
     public static String requestCost() {
         System.out.println("구입금액을 입력해 주세요.");
-        return enterMessage();
+        return InputValidator.validateCost(enterMessage());
     }
 
     private static String enterMessage() {
-        String message = Console.readLine();
-        InputValidator.validate(message);
-        return message;
+        return InputValidator.validate(Console.readLine());
     }
 }
