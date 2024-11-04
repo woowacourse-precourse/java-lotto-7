@@ -20,7 +20,7 @@ public class Repeater {
         }
     }
 
-    private static <T> T getObject(final Supplier<T> supplier) {
+    private <T> T getObject(final Supplier<T> supplier) {
         return supplier.get();
     }
 }
