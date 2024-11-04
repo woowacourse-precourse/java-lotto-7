@@ -20,9 +20,11 @@ public class LottoService {
         machine.createWinningNumbers(numbers, bonusNumber);
     }
 
-    public void countWonLotto(List<Integer> numbers, int bonusNumber) {
+    public void countLottoMatchNumbers(List<Integer> numbers, int bonusNumber) {
         WinningNumbers winningNumbers = WinningNumbers.getInstance(numbers, bonusNumber);
         winningNumbers.matchWinningNumbers();
+
+
     }
 
 }

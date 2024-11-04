@@ -35,6 +35,6 @@ public class LottoController {
     }
 
     private void calculateLotto(List<Integer> winningNumbers, int bonusNumber) {
-        lottoService.countWonLotto(winningNumbers, bonusNumber);
+        lottoService.countLottoMatchNumbers(winningNumbers, bonusNumber);
     }
 }
