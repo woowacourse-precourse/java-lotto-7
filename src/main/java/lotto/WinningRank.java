@@ -8,8 +8,8 @@ public enum WinningRank {
     FIRST_WINNING(6, 2_000_000_000),
     NO_WINNING(0, 0);
 
-    private final int matchCount; //당첨 개수
-    private final int winningAmount; //당첨 금액
+    private final int matchCount;
+    private final int winningAmount;
 
     WinningRank(int matchCount, int winningAmount){
         this.matchCount = matchCount;

@@ -11,7 +11,7 @@ public class LottoStatistics {
     public LottoStatistics(int purchaseAmount){
         this.purchaseAmount = purchaseAmount;
         for (WinningRank value : WinningRank.values()) {
-            rankCounts.put(value, 0); //당첨 개수 0으로 초기화
+            rankCounts.put(value, 0);
         }
     }
 
@@ -36,7 +36,6 @@ public class LottoStatistics {
 
         for (WinningRank value : WinningRank.values()) {
             if(value != WinningRank.NO_WINNING){
-                //당첨이면
                 int count = rankCounts.get(value);
                 totalPrize += value.getWinningAmount() * count;
                 String message = printFormat(value);
