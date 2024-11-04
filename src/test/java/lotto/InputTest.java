@@ -40,4 +40,11 @@ public class InputTest {
 		String numbers = "1,2,3,4,5,6,7";
 		assertThrows(IllegalArgumentException.class, () -> input.validateNumberCount(numbers));
 	}
+
+	@Test
+	@DisplayName("당첨번호가 숫자인지 검증 테스트")
+	void 당첨번호가_숫자인지_검증하는_테스트() {
+		String numbers = "1,2,3,4,5,짱구";
+		assertThrows(IllegalArgumentException.class, () -> input.validateLuckyNumberInteger(numbers));
+	}
 }
