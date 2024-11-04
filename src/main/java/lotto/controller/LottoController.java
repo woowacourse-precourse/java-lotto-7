@@ -38,7 +38,6 @@ public class LottoController {
         String input = lottoView.winningInput();
         List<Integer> numbers = InputParser.winningNumParse(input);
         Validation.validateNumbersBoundary(numbers);
-        Validation.validateNoDuplicates(numbers);
 
         String bonusInput = lottoView.bonusInput();
         Validation.validateInteger(bonusInput);
