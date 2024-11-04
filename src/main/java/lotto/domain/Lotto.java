@@ -22,8 +22,7 @@ public class Lotto {
         }
     }
 
-    public void validateWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        validate(winningNumbers);
+    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
