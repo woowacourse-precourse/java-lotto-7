@@ -16,8 +16,7 @@ public class LottoResult {
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
         checkPrizeCount();
-
-
+        calculateResult();
     }
 
     //로또 당첨 금액 확인
@@ -48,6 +47,16 @@ public class LottoResult {
             }
         }
         return matchCount;
+    }
+    //결과 출력문
+    public void printResult() {
+        System.out.println("당첨 통계\n---");
+        System.out.printf("3개 일치 (5,000원) - %d개\n", prizeCount.get(3));
+        System.out.printf("4개 일치 (50,000원) - %d개\n", prizeCount.get(4));
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", prizeCount.get(5));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", prizeCount.get(7));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", prizeCount.get(6));
+        // 수익률 계산 추가 가능
     }
 
 }
