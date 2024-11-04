@@ -23,8 +23,37 @@ public class Application {
 
         final int bonusNumber = getBonusNumber(winningNumbers);
 
-        Map<rank, Integer> resultOfLotto = calculatorForLotto(listOfLotto, winningNumbers, bonusNumber);
+        final Map<rank, Integer> resultOfLotto = calculatorForLotto(listOfLotto, winningNumbers, bonusNumber);
 
+        final int totalWinningReward = calculatorForTotalWinningReward(resultOfLotto);
+
+        final double returnOnInvestment = (double) ((totalWinningReward - price) / price) * 100;
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (rank rank : rank.values()) {
+            System.out.println(rank + " - " + resultOfLotto.get(rank) + "개");
+        }
+        System.out.printf("총 수익률은 %.2f%%입니다.", returnOnInvestment);
+
+    }
+
+    private static int calculatorForTotalWinningReward(Map<rank, Integer> resultOfLotto) {
+        int totalWinningReward = 0;
+
+        final int firstWinningReward = 2000000000;
+        final int secondWinningReward = 30000000;
+        final int thirdWinningReward = 1500000;
+        final int fourthWinningReward = 50000;
+        final int fifthWinningReward = 5000;
+
+        totalWinningReward += resultOfLotto.get(rank.first) * firstWinningReward;
+        totalWinningReward += resultOfLotto.get(rank.second) * secondWinningReward;
+        totalWinningReward += resultOfLotto.get(rank.third) * thirdWinningReward;
+        totalWinningReward += resultOfLotto.get(rank.fourth) * fourthWinningReward;
+        totalWinningReward += resultOfLotto.get(rank.fifth) * fifthWinningReward;
+
+        return totalWinningReward;
     }
 
     private static Map<rank, Integer> calculatorForLotto(List<List<Integer>> listOfLotto, List<Integer> winningNumbers, int bonusNumber) {
@@ -155,11 +184,11 @@ public class Application {
     }
 
     public enum rank {
-        first("1등"),
-        second("2등"),
-        third("3등"),
-        fourth("4등"),
-        fifth("5등");
+        fifth("3개 일치 (5,000원)"),
+        fourth("4개 일치 (50,000원)"),
+        third("5개 일치 (1,500,000원)"),
+        second("5개 일치, 보너스 볼 일치 (30,000,000원)"),
+        first("6개 일치 (2,000,000,000원)");
 
         private final String displayName;
 
