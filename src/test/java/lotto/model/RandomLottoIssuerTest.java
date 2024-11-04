@@ -1,7 +1,7 @@
 package lotto.model;
 
-import static lotto.common.constant.LottoNumber.LOTTO_NUMBER_LOWER_BOUND;
-import static lotto.common.constant.LottoNumber.LOTTO_NUMBER_UPPER_BOUND;
+import static lotto.common.constant.LottoIntegerConstant.LOTTO_NUMBER_LOWER_BOUND;
+import static lotto.common.constant.LottoIntegerConstant.LOTTO_NUMBER_UPPER_BOUND;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,7 +35,7 @@ class RandomLottoIssuerTest {
     @RepeatedTest(100)
     void 랜덤하게_생성된_로또_번호는_1에서_45_사이의_값을_가진다() {
         lotto.numbers().forEach(
-                number -> assertThat(number.number()).isBetween(LOTTO_NUMBER_LOWER_BOUND.number(),
-                        LOTTO_NUMBER_UPPER_BOUND.number()));
+                number -> assertThat(number.number())
+                        .isBetween(LOTTO_NUMBER_LOWER_BOUND.number(), LOTTO_NUMBER_UPPER_BOUND.number()));
     }
 }

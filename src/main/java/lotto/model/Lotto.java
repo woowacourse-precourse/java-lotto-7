@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.common.constant.LottoIntegerConstant.LOTTO_SIZE;
 import static lotto.common.exception.ErrorMessage.LOTTO_NUMBERS_COUNT_ERROR;
 import static lotto.common.exception.ErrorMessage.LOTTO_NUMBERS_DUPLICATION_ERROR;
 
@@ -29,7 +30,7 @@ public class Lotto {
     }
 
     private void validateNumberCount(List<LottoNumber> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.number()) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_COUNT_ERROR.message());
         }
     }

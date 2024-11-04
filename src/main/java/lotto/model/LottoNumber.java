@@ -1,7 +1,7 @@
 package lotto.model;
 
-import static lotto.common.constant.LottoNumber.LOTTO_NUMBER_LOWER_BOUND;
-import static lotto.common.constant.LottoNumber.LOTTO_NUMBER_UPPER_BOUND;
+import static lotto.common.constant.LottoIntegerConstant.LOTTO_NUMBER_LOWER_BOUND;
+import static lotto.common.constant.LottoIntegerConstant.LOTTO_NUMBER_UPPER_BOUND;
 import static lotto.common.exception.ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE_ERROR;
 
 public class LottoNumber {

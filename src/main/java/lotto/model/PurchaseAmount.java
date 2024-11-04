@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.common.constant.LottoPrice.LOTTO_PRICE;
+import static lotto.common.constant.LottoIntegerConstant.LOTTO_PRICE;
 import static lotto.common.exception.ErrorMessage.PURCHASE_AMOUNT_VALUE_ERROR;
 
 public class PurchaseAmount {
@@ -17,7 +17,7 @@ public class PurchaseAmount {
     }
 
     public int getPurchaseQuantity() {
-        return amount / LOTTO_PRICE.price();
+        return amount / LOTTO_PRICE.number();
     }
 
     public int amount() {
@@ -25,7 +25,7 @@ public class PurchaseAmount {
     }
 
     private void validate(int amount) {
-        if (amount % LOTTO_PRICE.price() != 0) {
+        if (amount % LOTTO_PRICE.number() != 0) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_VALUE_ERROR.message());
         }
     }

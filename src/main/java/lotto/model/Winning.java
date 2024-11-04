@@ -24,8 +24,9 @@ public enum Winning {
 
     public static Winning getRank(int matchCount, boolean isBonusNumberMatched) {
         return Arrays.stream(Winning.values())
-                .filter(winning -> (matchCount != 5 || winning.isBonusNumberMatched == isBonusNumberMatched)
-                        && winning.matchCount == matchCount)
+                .filter(winning ->
+                        (matchCount != SECOND.matchCount() || winning.isBonusNumberMatched == isBonusNumberMatched)
+                                && winning.matchCount == matchCount)
                 .findFirst()
                 .orElse(Winning.NONE);
     }
