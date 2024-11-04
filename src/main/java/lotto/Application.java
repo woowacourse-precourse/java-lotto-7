@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Application {
     private static int money;
@@ -16,6 +13,7 @@ public class Application {
     private static int bonusNumber;
     private static final int minimumLottoNumber = 1;
     private static final int maximumLottoNumber = 45;
+    private static final Map<LottoMatch, Integer> lottoMatches = new HashMap<>();
     public static void main(String[] args) {
         init();
         playgame();
@@ -24,6 +22,16 @@ public class Application {
     public static void playgame() {
         getWinNumbers();
         getBonusNumbers();
+        checkResult();
+    }
+
+    public static void checkResult() {
+        for (LottoMatch rank : LottoMatch.values()) {
+            lottoMatches.put(rank, 0);
+        }
+        for(Lotto lotto : lottos) {
+            lotto.checkMatch(lottoMatches, winNumbers, bonusNumber);
+        }
     }
 
     public static void getBonusNumbers() {
