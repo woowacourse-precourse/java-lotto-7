@@ -1,5 +1,3 @@
-# java-lotto-precourse
-
 ## 💡 애플리케이션 설명
 
 > ❓ 애플리케이션의 대략적인 설명입니다.
@@ -166,6 +164,8 @@ src
                 │   ├── LottoTest.java
                 │   ├── TicketTest.java
                 │   └── UserLottoTest.java
+                ├── services
+                │   └── LottoBowlTest.java
                 ├── utils
                 │   ├── NumberValidatorTest.java
                 │   ├── StringSplitterTest.java
