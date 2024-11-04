@@ -10,6 +10,7 @@ import lotto.view.OutputView;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class LottoController {
 
@@ -36,40 +37,30 @@ public class LottoController {
     }
 
     private int getPurchaseAmount() {
-        while (true) {
-            try {
-                return lottoService.getPurchaseAmount(InputView.getPurchaseAmount());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return validateInput(() -> lottoService.getPurchaseAmount(InputView.getPurchaseAmount()));
     }
 
     private Lotto getWinningNumbers() {
-        while (true) {
-            try {
-                return lottoService.createWinningLotto(InputView.getWinningNumbers());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return validateInput(() -> lottoService.createWinningLotto(InputView.getWinningNumbers()));
     }
 
     private int getBonusNumber() {
-        while (true) {
-            try {
-                return lottoService.getBonusNumber(InputView.getBonusNumber());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return validateInput(() -> lottoService.getBonusNumber(InputView.getBonusNumber()));
     }
 
     private void printPrize(Map<LottoWinnerPrize, Integer> prizeCount) {
         OutputView.promptWINNING_STATISTICS();
-        List<LottoWinnerPrize> result = lottoService.getPrizeList(prizeCount);
-        for (LottoWinnerPrize prize : result) {
-            OutputView.printPrizeCount(prize.getDescription(), prizeCount.get(prize));
+        lottoService.getPrizeList(prizeCount)
+                .forEach(prize -> OutputView.printPrizeCount(prize.getDescription(), prizeCount.get(prize)));
+    }
+
+    private <T> T validateInput(Supplier<T> inputSupplier) {
+        while (true) {
+            try {
+                return inputSupplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
