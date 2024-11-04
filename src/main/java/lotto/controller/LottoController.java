@@ -24,7 +24,8 @@ public class LottoController {
      */
     public void run() {
         buyLotto();
-        setWinningAndBonus();
+        setWinnerLotto();
+        setBonus();
         showResult();
     }
 
@@ -43,17 +44,28 @@ public class LottoController {
     }
 
     /**
-     * 복권 당첨 번호와 보너스 번호 입력이 나올때까지 반복
+     * 로또 당첨 번호 받아 저장
      */
-    private void setWinningAndBonus() {
+    private void setWinnerLotto() {
         try {
             List<Integer> winningNum = inputHelper.getWinner();
-            int bonus = inputHelper.getBonus();
-
-            lottoMachine.init(winningNum, bonus);
+            lottoMachine.setWinner(winningNum);
         } catch (LottoException e) {
             System.out.println(e.makeErrorMessage());
-            buyLotto();
+            setWinnerLotto();
+        }
+    }
+
+    /**
+     * 로또 보너스 번호 받아 저장
+     */
+    private void setBonus() {
+        try {
+            int bonus = inputHelper.getBonus();
+            lottoMachine.setBonus(bonus);
+        } catch (LottoException e) {
+            System.out.println(e.makeErrorMessage());
+            setBonus();
         }
     }
 
@@ -66,7 +78,7 @@ public class LottoController {
             outputHelper.printResult(result);
         } catch (LottoException e) {
             System.out.println(e.makeErrorMessage());
-            buyLotto();
+            showResult();
         }
     }
 }

@@ -20,7 +20,10 @@ class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        assertDoesNotThrow(() -> lottoMachine.init(nums, bonus));
+        assertDoesNotThrow(() -> {
+            lottoMachine.setWinner(nums);
+            lottoMachine.setBonus(bonus);
+        });
 
         // then
         assertEquals(0, lottoMachine.getLottoNums().size());
@@ -35,7 +38,10 @@ class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        LottoException e = assertThrows(LottoException.class, () -> lottoMachine.init(nums, bonus));
+        LottoException e = assertThrows(LottoException.class, () -> {
+            lottoMachine.setWinner(nums);
+            lottoMachine.setBonus(bonus);
+        });
 
         // then
         assertEquals(ErrorMessage.EXIST_NUM.getMessage(), e.getMessage());
@@ -50,7 +56,10 @@ class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        LottoException e = assertThrows(LottoException.class, () -> lottoMachine.init(nums, bonus));
+        LottoException e = assertThrows(LottoException.class, () -> {
+            lottoMachine.setWinner(nums);
+            lottoMachine.setBonus(bonus);
+        });
 
         // then
         assertEquals(ErrorMessage.EXIST_NUM.getMessage(), e.getMessage());
@@ -65,7 +74,10 @@ class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        LottoException e = assertThrows(LottoException.class, () -> lottoMachine.init(nums, bonus));
+        LottoException e = assertThrows(LottoException.class, () -> {
+            lottoMachine.setWinner(nums);
+            lottoMachine.setBonus(bonus);
+        });
 
         // then
         assertEquals(ErrorMessage.NOT_SIX_NUM.getMessage(), e.getMessage());
@@ -80,7 +92,10 @@ class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        LottoException e = assertThrows(LottoException.class, () -> lottoMachine.init(nums, bonus));
+        LottoException e = assertThrows(LottoException.class, () -> {
+            lottoMachine.setWinner(nums);
+            lottoMachine.setBonus(bonus);
+        });
 
         // then
         assertEquals(ErrorMessage.NOT_IN_RANGE.getMessage(), e.getMessage());
@@ -95,7 +110,10 @@ class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        LottoException e = assertThrows(LottoException.class, () -> lottoMachine.init(nums, bonus));
+        LottoException e = assertThrows(LottoException.class, () -> {
+            lottoMachine.setWinner(nums);
+            lottoMachine.setBonus(bonus);
+        });
 
         // then
         assertEquals(ErrorMessage.NOT_IN_RANGE.getMessage(), e.getMessage());
@@ -111,7 +129,8 @@ class LottoMachineTest {
         int money = 5000;
 
         // when
-        lottoMachine.init(winnerNum, bonus);
+        lottoMachine.setWinner(winnerNum);
+        lottoMachine.setBonus(bonus);
         lottoMachine.buyLotto(money);
         int lottoCount = lottoMachine.getLottoNums().size();
 
@@ -128,7 +147,8 @@ class LottoMachineTest {
         int bonus = 10;
 
         // when
-        lottoMachine.init(winnerNum, bonus);
+        lottoMachine.setWinner(winnerNum);
+        lottoMachine.setBonus(bonus);
         LottoException e = assertThrows(LottoException.class, lottoMachine::getResult);
 
         // then
@@ -161,7 +181,8 @@ class LottoMachineTest {
         int money = 5000;
 
         // when
-        lottoMachine.init(winnerNum, bonus);
+        lottoMachine.setWinner(winnerNum);
+        lottoMachine.setBonus(bonus);
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     lottoMachine.buyLotto(money);

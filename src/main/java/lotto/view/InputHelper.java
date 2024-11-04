@@ -22,7 +22,7 @@ public class InputHelper {
     public int getPurchase() {
         System.out.println(PURCHASE_MESSAGE);
 
-        String input = Console.readLine();
+        String input = getInput();
         validateNumber(input);
 
         int money = Integer.parseInt(input);
@@ -39,7 +39,7 @@ public class InputHelper {
     public List<Integer> getWinner() {
         System.out.println(WINNING_MESSAGE);
 
-        String input = Console.readLine();
+        String input = getInput();
         validateFormat(input);
 
         return Arrays.stream(input.split(DELIMITER)).mapToInt(Integer::parseInt).boxed().toList();
@@ -53,7 +53,7 @@ public class InputHelper {
     public int getBonus() {
         System.out.println(BONUS_MESSAGE);
 
-        String input = Console.readLine();
+        String input = getInput();
         validateNumber(input);
 
         int bonus = Integer.parseInt(input);
@@ -93,5 +93,15 @@ public class InputHelper {
         if (!Validator.isList(s)) {
             throw new LottoException(ErrorMessage.NOT_INPUT_FORMAT);
         }
+    }
+
+    /**
+     * 입력을 받은 후 줄바꿈 처리를 위한 메서드
+     * @return 입력받은 문자열
+     */
+    private String getInput() {
+        String input = Console.readLine();
+        System.out.println();
+        return input;
     }
 }

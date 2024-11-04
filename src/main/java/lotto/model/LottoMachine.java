@@ -25,15 +25,22 @@ public class LottoMachine {
     }
 
     /**
-     * 당첨 번호와 보너스 번호 넣기
+     * 당첨 번호 넣기
      *
-     * @param winner 당첨 번호
+     * @param winnerNum 당첨 번호
+     */
+    public void setWinner(List<Integer> winnerNum) {
+        this.winner = new Lotto(winnerNum);
+    }
+
+    /**
+     * 보너스 번호 넣기
+     *
      * @param bonus  보너스 번호
      */
-    public void init(List<Integer> winner, int bonus) {
-        this.winner = new Lotto(winner);
+    public void setBonus(int bonus) {
         this.bonus = bonus;
-        validateWinner(winner, bonus);
+        validateWinner(winner.getNumbers(), bonus);
     }
 
     /**
