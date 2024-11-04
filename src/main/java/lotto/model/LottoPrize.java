@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 public enum LottoPrize {
     FIFTH(3, 5000),

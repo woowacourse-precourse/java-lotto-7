@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import static lotto.utils.ErrorMessage.INVALID_LOTTO_NUMBER;
 import static lotto.utils.ErrorMessage.INVALID_RANGE;

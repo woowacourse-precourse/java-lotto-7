@@ -16,7 +16,7 @@ public class InputView {
         System.out.println(errorMessage);
     }
 
-    public static int inputPrice() {
+    public int inputPrice() {
         try {
             System.out.println(INPUT_PRICE_MESSAGE);
             return Integer.parseInt(Console.readLine());
@@ -26,12 +26,12 @@ public class InputView {
         }
     }
 
-    public static List<String> inputNumbers() {
+    public List<String> inputNumbers() {
         System.out.println(INPUT_WINNER_LOTTO_MESSAGE);
         return List.of(Console.readLine().split(","));
     }
 
-    public static int inputBonus() {
+    public int inputBonus() {
         try {
             System.out.println(INPUT_BONUS_MESSAGE);
             return Integer.parseInt(Console.readLine());

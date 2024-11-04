@@ -1,8 +1,8 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
-import lotto.domain.LottoPrize;
+import lotto.model.Lotto;
+import lotto.model.LottoMachine;
+import lotto.model.LottoPrize;
 
 public class OutputView {
     private static final String BUY_COUNT = "\n%d개를 구매했습니다.\n";
@@ -11,7 +11,7 @@ public class OutputView {
     private static final String BONUS_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String TOTAL_RETURN = "총 수익률은 %.1f%%입니다.\n";
 
-    public static void lottoList(LottoMachine lottoMachine) {
+    public void lottoTIckets(LottoMachine lottoMachine) {
         int buy = lottoMachine.getLottoTicketSize();
 
         System.out.printf(BUY_COUNT, buy);
@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void winningStatistics(double totalReturn) {
+    public void winningStatistics(double totalReturn) {
         System.out.println(RESULT_MESSAGE);
 
         for (LottoPrize value : LottoPrize.values()) {
