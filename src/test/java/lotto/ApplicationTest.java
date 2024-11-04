@@ -52,6 +52,29 @@ class ApplicationTest extends NsTest {
                 "FIRST", 1));
     }
 
+    @DisplayName("calProfitRate_단위_테스트")
+    @Test
+    void calProfitRate_기능_테스트() {
+        Map<String, Integer> lotto1 = Map.of(
+                "FIFTH", 1,
+                "FOURTH", 0,
+                "THIRD", 0,
+                "SECOND", 0,
+                "FIRST", 0);
+        int lottoPieces1 = 10;
+
+        Map<String, Integer> lotto2 = Map.of(
+                "FIFTH", 0,
+                "FOURTH", 1,
+                "THIRD", 0,
+                "SECOND", 0,
+                "FIRST", 0);
+        int lottoPieces2 = 10;
+
+        assertThat(Application.calProfitRate(lotto1, lottoPieces1)).isEqualTo(50);
+        assertThat(Application.calProfitRate(lotto2, lottoPieces2)).isEqualTo(500);
+    }
+
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
