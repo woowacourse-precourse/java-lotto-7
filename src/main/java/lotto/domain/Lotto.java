@@ -1,6 +1,8 @@
 package lotto.domain;
 
-import java.util.List;
+import lotto.util.NumberSorter;
+
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,5 +24,9 @@ public class Lotto {
     private boolean validateNumberRange(int number) {
         return 1 <= number && number <= 45;
     }
-    // TODO: 추가 기능 구현
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
