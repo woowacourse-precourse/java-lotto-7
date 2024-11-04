@@ -1,12 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.utils.ErrorMessage;
 import lotto.utils.Message;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class InputView {
 
@@ -31,7 +30,8 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.PURCHASE_AMOUNT_INVALID);
         }
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND);
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_PREFIX + ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND);
         }
     }
 

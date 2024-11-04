@@ -1,12 +1,12 @@
 package lotto.view;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.utils.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.*;
 
 class InputViewTest {
 
@@ -19,7 +19,8 @@ class InputViewTest {
         // when & then
         assertThatThrownBy(() -> InputView.validatePurchaseAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.ERROR_PREFIX + ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND);
+                .hasMessageContaining(
+                        ErrorMessage.ERROR_PREFIX + ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND);
     }
 
     @DisplayName("당첨 번호 입력이 6개가 아니면 예외가 발생한다.")
@@ -120,5 +121,4 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_PREFIX + ErrorMessage.BONUS_NUMBER_NOT_NUMBER);
     }
-
 }

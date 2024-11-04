@@ -1,13 +1,13 @@
 package lotto;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
 import lotto.utils.ErrorMessage;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static camp.nextstep.edu.missionutils.test.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -60,7 +60,8 @@ class ApplicationTest extends NsTest {
     void 예외_테스트_구입금액_단위아님() {
         assertSimpleTest(() -> {
             runException("1500");
-            assertThat(output()).contains(ErrorMessage.ERROR_PREFIX + ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND);
+            assertThat(output()).contains(
+                    ErrorMessage.ERROR_PREFIX + ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND);
         });
     }
 

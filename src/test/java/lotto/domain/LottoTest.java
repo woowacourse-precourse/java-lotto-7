@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
 import lotto.utils.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.*;
-
-import java.util.List;
 
 class LottoTest {
 
@@ -117,5 +118,4 @@ class LottoTest {
         // then
         assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 45);
     }
-
 }

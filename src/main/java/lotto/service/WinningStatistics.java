@@ -1,9 +1,8 @@
 package lotto.service;
 
-import lotto.domain.Rank;
-
 import java.util.HashMap;
 import java.util.Map;
+import lotto.domain.Rank;
 
 public class WinningStatistics {
     private final Map<Rank, Integer> rankCounts = new HashMap<>();

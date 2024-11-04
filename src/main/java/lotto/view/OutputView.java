@@ -1,11 +1,10 @@
 package lotto.view;
 
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.WinningStatistics;
 import lotto.utils.Message;
-
-import java.util.List;
 
 public class OutputView {
     public static void printPurchasedLottos(List<Lotto> lottos) {
