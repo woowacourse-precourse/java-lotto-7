@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -14,7 +15,21 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        numbers.forEach(number -> {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        });
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+        }
     }
 
-    // TODO: 추가 기능 구현
+    public LottoRank checkRank(List<Integer> winningNumber, int bonusNumber) {
+        int matchCount = (int) numbers.stream()
+                .filter(winningNumber::contains)
+                .count();
+        boolean matchBonus = numbers.contains(bonusNumber);
+        return LottoRank.valueOf(matchCount, matchBonus);
+    }
 }
