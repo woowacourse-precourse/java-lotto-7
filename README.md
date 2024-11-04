@@ -56,43 +56,22 @@
 -  수익률은 소수점 둘째 자리에서 반올림한다.
 -  당첨 내역을 출력한다.
 
---- 
+## 테스트 코드
 
-# MVC 패턴 구조
-### Main
-- [x] Application
-### Model
-- [x] Lotto 
-- [x] LottoMachine
-- [x] LottoManager
-- [x] LottoResult
-- [x] LottoBuyer
-### View
-- [x] InputView
-- [x] OutputView
-### Controller
-- [x] LottoGameController
-### Enum
-- [x] LottoGrade
-- [x] LottoNumberRange
-### Util
-- [x] LottoNumberGenerator
-- [x] RandomNumberGenerator
-- [x] Validator
-  - [x] LottoPriceValidator
-  - [x] LottoNumberValidator
-  - [x] BonusNumberValidator
-- [x] ExceptionMessage
-### DTO
-- [x] LottoDto
-- [x] LottoResultDto
-- [x] LottoNumberListDto
+- 로또 번호 테스트
+- 로또 머신 테스트
+- 로또 매니저 테스트
+- 로또 결과 테스트
+- 구매자 테스트
+- 입력 유효성 검사 테스트
 
----
-# TEST 
-## model
-- [x] LottoBuyerTest
-- [x] LottoMachineTest
-- [x] LottoManagerTest
-- [x] LottoResultTest
-- [x] LottoTest
+## 예외 처리
+- 로또 번호가 6개가 아니라면 예외를 발생시킨다.
+- 중복된 숫자가 있다면 예외를 발생시킨다.
+- 당첨 로또가 null인 경우 예외를 발생시킨다.
+- 당첨 로또 번호와 보너스 번호가 중복일 경우 예외를 발생시킨다.
+- 1000원 단위로 나누어 떨어지지 않으면 예외를 발생시킨다.
+- Integer 자료형이 아니라면 예외를 발생시킨다.
+- 숫자가 아니라면 예외를 발생시킨다.
+- 입력 받은 번호가 1부터 45사이의 범위가 아니라면 예외를 발생시킨다.
+- 숫자가 아니라면 예외를 발생시킨다.
