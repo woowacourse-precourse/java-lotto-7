@@ -1,45 +1,30 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.regex.Pattern;
+import message.ErrorMessage;
+import message.GameMessage;
 import util.NumberValidate;
 
 public class Application {
 
     public static void main(String[] args) {
-        LottoSeller lottoSeller;
-        String inputCash;
-        do {
-            inputCash = getCashAmount();
-        } while (!validateCashInput(inputCash));
-
-        lottoSeller = new LottoSeller(Integer.parseInt(inputCash), Lotto.PRICE);
-        List<Lotto> lottos = lottoSeller.sell();
-        System.out.println(lottos.size() + GameMessage.GET_LOTTO_MESSAGE.getMessage());
-        lottos.forEach(lotto -> System.out.println(lotto.getLottoNumber()));
-        List<Integer> winningNumbers = getWinningNumbers();
-        String inputBonusNumber;
-        do {
-            inputBonusNumber = getBonusNumber();
-        } while (!validateBonusInput(inputBonusNumber, winningNumbers));
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
-        System.out.println();
-        System.out.println(GameMessage.RESULT_AVERAGE_MESSAGE.getMessage());
-        System.out.println(GameMessage.RESULT_HYPE_MESSAGE.getMessage());
-
-        LottoHost lottoHost = new LottoHost(lottos);
-        LinkedHashMap<LottoResult, Integer> winningResults = lottoHost.getWinningResults(winningNumbers, bonusNumber);
-        printResults(winningResults);
-        printEarningRate(lottoHost, inputCash);
+        int inputCash = getCashAmount();
+        List<Lotto> lottos = buyLotto(inputCash);
+        printLotto(lottos);
+        LottoMachine lottoMachine = new LottoMachine();
+        lottoMachine.inputWinningNumbers();
+        lottoMachine.inputBonusNumber();
+        announceOfResults(lottos, inputCash, lottoMachine);
     }
 
-    private static String getCashAmount() {
-        System.out.println(GameMessage.GET_INPUT_MESSAGE.getMessage());
-        return Console.readLine();
+    private static Integer getCashAmount() {
+        String inputCash;
+        do {
+            System.out.println(GameMessage.GET_INPUT_MESSAGE.getMessage());
+            inputCash = Console.readLine();
+        } while (!validateCashInput(inputCash));
+        return Integer.parseInt(inputCash);
     }
 
     private static boolean validateCashInput(String inputCash) {
@@ -47,14 +32,12 @@ public class Application {
             System.out.println(ErrorMessage.PURCHASE_AMOUNT_INPUT_NOT_NUMBER.getMessage());
             return false;
         }
-
         if (!NumberValidate.isPositiveNumber(inputCash)) {
             System.out.println(ErrorMessage.PURCHASE_AMOUNT_NOT_POSITIVE_NUMBER.getMessage());
             return false;
         }
 
         int cash = Integer.parseInt(inputCash);
-
         if (!NumberValidate.nothingLeftAfterDivideBy(cash, Lotto.PRICE)) {
             System.out.println(ErrorMessage.PURCHASE_AMOUNT_NOT_DIVISIBLE_BY_THOUSAND.getMessage());
             return false;
@@ -62,68 +45,30 @@ public class Application {
         return true;
     }
 
-    private static List<Integer> getWinningNumbers() {
-        final String INPUT_SEPARATOR = ",";
-        Pattern pattern = Pattern.compile("[ ]*\\d+(?:[ ]*,[ ]*\\d+){5}");
-
-        String inputWinningNumbers;
-        do {
-            System.out.println(GameMessage.GET_WINNING_NUMBER_MESSAGE.getMessage());
-            inputWinningNumbers = Console.readLine();
-        } while (!pattern.matcher(inputWinningNumbers).matches());
-
-        List<Integer> winningNumbers = Arrays.stream(inputWinningNumbers.split(INPUT_SEPARATOR, -1))
-                .map(Integer::parseInt)
-                .toList();
-        return winningNumbers;
+    private static List<Lotto> buyLotto(int inputCash) {
+        LottoSeller lottoSeller = new LottoSeller(inputCash, Lotto.PRICE);
+        List<Lotto> lottos = lottoSeller.sell();
+        return lottos;
     }
 
-    private static String getBonusNumber() {
-        System.out.println(GameMessage.GET_BONUS_NUMBER_MESSAGE.getMessage());
-        return Console.readLine();
+    private static void printLotto(List<Lotto> lottos) {
+        System.out.println(lottos.size() + GameMessage.GET_LOTTO_MESSAGE.getMessage());
+        lottos.forEach(lotto -> System.out.println(lotto.getLottoNumber()));
     }
 
-    private static boolean validateBonusInput(String inputBonusNumber, List<Integer> winningNumbers) {
-        if (!NumberValidate.isNumber(inputBonusNumber)) {
-            System.out.println(ErrorMessage.WINNING_NUMBER_NOT_NUMBER.getMessage());
-            return false;
-        }
-        if (!NumberValidate.isPositiveNumber(inputBonusNumber)) {
-            System.out.println(ErrorMessage.WINNING_NUMBER_NOT_POSITIVE_NUMBER.getMessage());
-            return false;
-        }
+    private static void announceOfResults(List<Lotto> lottos, int inputCash, LottoMachine lottoMachine) {
+        System.out.println();
+        System.out.println(GameMessage.RESULT_AVERAGE_MESSAGE.getMessage());
+        System.out.println(GameMessage.RESULT_HYPE_MESSAGE.getMessage());
 
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
-        if (winningNumbers.contains(bonusNumber)) {
-            System.out.println(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
-            return false;
-        }
-        return true;
+        LottoHost lottoHost = new LottoHost(lottos);
+        checkWinning(lottoHost, lottoMachine);
+        Announcer announcer = new Announcer(lottoHost.getWinningResults());
+        announcer.printResults();
+        announcer.printEarningRate(lottoHost, Integer.toString(inputCash));
     }
 
-    private static void printResults(LinkedHashMap<LottoResult, Integer> winningResults) {
-        for (LottoResult lottoResult : winningResults.keySet()) {
-            if (lottoResult.getRankName().equals("NONE_RANK")) {
-                continue;
-            }
-            int prizeNumber = lottoResult.getPrize();
-            String subStringBonusNumber = " ";
-            if (lottoResult.getRankName().equals("SECOND_PRIZE")) {
-                subStringBonusNumber = ", 보너스 볼 일치";
-            }
-            String result = String.format("%d개 일치%s(%,d원) - %d개", lottoResult.getSameNumberCount(),
-                    subStringBonusNumber, prizeNumber,
-                    winningResults.get(lottoResult));
-            System.out.println(result);
-
-        }
-    }
-
-    private static void printEarningRate(LottoHost lottoHost, String inputCash) {
-        float earningRate = lottoHost.calcEarningRate(inputCash);
-        DecimalFormat df = new DecimalFormat("#,##0.0");
-        String formattedEarningRate = df.format(earningRate);
-        System.out.printf("%s %s %s\n", GameMessage.RESULT_RATE_MESSAGE_START.getMessage(), formattedEarningRate,
-                GameMessage.RESULT_RATE_MESSAGE_END.getMessage());
+    private static void checkWinning(LottoHost lottoHost, LottoMachine lottoMachine) {
+        lottoHost.getWinningResults(lottoMachine.getWinningNumbers(), lottoMachine.getBonusNumber());
     }
 }
