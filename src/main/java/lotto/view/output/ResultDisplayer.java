@@ -30,18 +30,32 @@ public class ResultDisplayer {
         System.out.println(SEPARATOR);
 
         for (WinningRank rank : WinningRank.values()) {
-            if (rank == WinningRank.SECOND_PRIZE_WITH_BONUS) {
-                System.out.printf(MATCH_COUNT_WITH_BONUS_MESSAGE + " " + PRIZE_MESSAGE,
-                        rank.getRequiredMatchingCount(),
-                        rank.getPrizeAmount(),
-                        winningCounts.getOrDefault(rank, 0));
-            } else if (rank != WinningRank.NO_PRIZE) {
-                System.out.printf(MATCH_COUNT_MESSAGE + " " + PRIZE_MESSAGE,
-                        rank.getRequiredMatchingCount(),
-                        rank.getPrizeAmount(),
-                        winningCounts.getOrDefault(rank, 0));
-            }
+            printRankStatistics(rank, winningCounts);
         }
+    }
+
+    private void printRankStatistics(WinningRank rank, Map<WinningRank, Integer> winningCounts) {
+        if (rank == WinningRank.SECOND_PRIZE_WITH_BONUS) {
+            printSecondPrizeWithBonus(rank, winningCounts);
+            return;
+        }
+        if (rank != WinningRank.NO_PRIZE) {
+            printRegularPrize(rank, winningCounts);
+        }
+    }
+
+    private void printSecondPrizeWithBonus(WinningRank rank, Map<WinningRank, Integer> winningCounts) {
+        System.out.printf(MATCH_COUNT_WITH_BONUS_MESSAGE + " " + PRIZE_MESSAGE,
+                rank.getRequiredMatchingCount(),
+                rank.getPrizeAmount(),
+                winningCounts.getOrDefault(rank, 0));
+    }
+
+    private void printRegularPrize(WinningRank rank, Map<WinningRank, Integer> winningCounts) {
+        System.out.printf(MATCH_COUNT_MESSAGE + " " + PRIZE_MESSAGE,
+                rank.getRequiredMatchingCount(),
+                rank.getPrizeAmount(),
+                winningCounts.getOrDefault(rank, 0));
     }
 
     public void showYield(double yield) {
