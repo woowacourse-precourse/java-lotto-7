@@ -13,23 +13,31 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    public void run() {
-        LottoPurchaseMoney invested = getPurchaseMoney();
-        Lottos issued = new Lottos(invested.toLottoCount());
-        OutputView.printLottos(issued);
+    private final InputView inputView;
+    private final OutputView outputView;
 
-        WinningLotto winningLotto = getWinningLotto();
-        LottoMatcher lottoMatcher = new LottoMatcher(issued, winningLotto);
-        OutputView.printPrizeStats(lottoMatcher, invested);
+    public LottoController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
-    private LottoPurchaseMoney getPurchaseMoney() {
+    public void run() {
+        LottoPurchaseMoney lottoPurchaseMoney = getLottoPurchaseMoney();
+        Lottos lottos = new Lottos(lottoPurchaseMoney.toLottoCount());
+        outputView.printLottos(lottos);
+
+        WinningLotto winningLotto = getWinningLotto();
+        LottoMatcher lottoMatcher = new LottoMatcher(lottos, winningLotto);
+        outputView.printPrizeStats(lottoMatcher, lottoPurchaseMoney);
+    }
+
+    private LottoPurchaseMoney getLottoPurchaseMoney() {
         while (true) {
             try {
-                OutputView.println(MONEY_PROMPT.getMessage());
-                return new LottoPurchaseMoney(InputView.getInteger());
+                outputView.println(MONEY_PROMPT.getMessage());
+                return new LottoPurchaseMoney(inputView.getInteger());
             } catch (IllegalArgumentException e) {
-                OutputView.println(e.getMessage());
+                outputView.println(e.getMessage());
             }
         }
     }
@@ -39,10 +47,10 @@ public class LottoController {
 
         while (true) {
             try {
-                OutputView.println(BONUS_NUMBER_PROMPT.getMessage());
-                return new WinningLotto(lotto, InputView.getLottoNumber());
+                outputView.println(BONUS_NUMBER_PROMPT.getMessage());
+                return new WinningLotto(lotto, inputView.getLottoNumber());
             } catch (IllegalArgumentException e) {
-                OutputView.println(e.getMessage());
+                outputView.println(e.getMessage());
             }
         }
     }
@@ -50,10 +58,10 @@ public class LottoController {
     private Lotto getLotto() {
         while (true) {
             try {
-                OutputView.println(WINNING_NUMBERS_PROMPT.getMessage());
-                return new Lotto(InputView.getLottoNumberList());
+                outputView.println(WINNING_NUMBERS_PROMPT.getMessage());
+                return new Lotto(inputView.getLottoNumberList());
             } catch (IllegalArgumentException e) {
-                OutputView.println(e.getMessage());
+                outputView.println(e.getMessage());
             }
         }
     }

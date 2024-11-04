@@ -16,16 +16,12 @@ import lotto.model.Lottos;
 import lotto.model.Money;
 
 public class OutputView {
-
-    private OutputView() {
-    }
-
-    public static void println(String message) {
+    public void println(String message) {
         System.out.print(message);
         System.out.printf(NEW_LINE);
     }
 
-    public static void printLottos(Lottos lottos) {
+    public void printLottos(Lottos lottos) {
         System.out.printf(LOTTO_COUNT_FORMAT, lottos.count());
 
         for (Lotto lotto : lottos.toList()) {
@@ -36,7 +32,7 @@ public class OutputView {
         }
     }
 
-    public static void printPrizeStats(LottoMatcher lottoMatcher, LottoPurchaseMoney invested) {
+    public void printPrizeStats(LottoMatcher lottoMatcher, LottoPurchaseMoney lottoPurchaseMoney) {
         System.out.printf(PRIZE_START_MESSAGE);
 
         for (Prize prize : Prize.prizesOrderedBy(Prize.earningAscending())) {
