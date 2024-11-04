@@ -9,6 +9,8 @@ public class Application {
     static final int priceOfLottery = 1000;
     static int amountForLottery;
     static Lotto[] purchasedLotteries;
+    static int[] lotteryWinningNumbers;
+    static int lotteryBonusNumber;
 
     public static void main(String[] args) {
         readAmount();
@@ -39,6 +41,33 @@ public class Application {
             System.out.println(randomNumbers.toString());
             purchasedLotteries[i] = new Lotto(randomNumbers);
         }
+    }
+    public static void readLotteryWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] inputNumbers = Console.readLine().split(",");
+        if(inputNumbers.length != 6) {
+            // 쉼표로 구분된 6개의 문자열이 주어지지 않은 경우
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 쉼표로 구분된 6개의 정수여야 합니다.");
+        }
+        lotteryWinningNumbers = new int[6];
+        for(int i=0; i<6; i++) {
+            try{
+                lotteryWinningNumbers[i] = Integer.parseInt(inputNumbers[i]);
+                validateLotteryNumber(lotteryWinningNumbers[i]);
+            } catch (NumberFormatException e){
+                throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 정수여야 합니다.");
+            }
+        }
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int input;
+        try{
+            input = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 정수여야 합니다.");
+        }
+        validateLotteryNumber(input);
+        lotteryBonusNumber = input;
     }
     public static void validateLotteryNumber(int input) {
         if(input < 1 || input > 45) {
