@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.PrizeResult;
+import lotto.domain.ProfitRate;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.validation.InputValidator;
@@ -36,6 +37,7 @@ public class LottoController {
         PrizeResult prizeResult = new PrizeResult();
         prizeResult.calculatePrizes(winningLotto, lottos);
 
+        ProfitRate profitRate = new ProfitRate(money, prizeResult);
     }
 
     private Money getMoney() {
