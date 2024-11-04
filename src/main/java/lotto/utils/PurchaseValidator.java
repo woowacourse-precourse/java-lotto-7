@@ -43,5 +43,4 @@ public class PurchaseValidator {
             throw new IllegalArgumentException(ErrorMessages.NEGATIVE_AMOUNT.getMessage());
         }
     }
-
 }

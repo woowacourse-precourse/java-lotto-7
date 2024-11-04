@@ -29,5 +29,4 @@ class LottoTicketsTest {
         assertThrows(IllegalArgumentException.class, () -> LottoTickets.from(List.of()),
                 "빈 로또 티켓 리스트 생성 시 예외가 발생해야 합니다.");
     }
-
 }

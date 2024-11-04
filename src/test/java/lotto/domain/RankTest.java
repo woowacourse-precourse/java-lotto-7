@@ -39,5 +39,4 @@ class RankTest {
         assertEquals(30_000_000, Rank.FIVE_AND_BONUS.getPrize());
         assertTrue(Rank.FIVE_AND_BONUS.isMatchBonus());
     }
-
 }

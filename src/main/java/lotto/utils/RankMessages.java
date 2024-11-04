@@ -19,5 +19,4 @@ public class RankMessages {
         }
         return messages.get(matchCount);
     }
-
 }

@@ -31,5 +31,4 @@ public class BonusNumberValidator {
             throw new IllegalArgumentException(ErrorMessages.BONUS_DUPLICATE.getMessage());
         }
     }
-
 }

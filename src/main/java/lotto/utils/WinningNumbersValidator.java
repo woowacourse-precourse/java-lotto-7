@@ -44,5 +44,4 @@ public class WinningNumbersValidator {
             throw new IllegalArgumentException(ErrorMessages.NOT_SIX_NUMBERS.getMessage());
         }
     }
-
 }

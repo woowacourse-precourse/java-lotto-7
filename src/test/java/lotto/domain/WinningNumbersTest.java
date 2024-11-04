@@ -45,5 +45,4 @@ class WinningNumbersTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> WinningNumbers.from("1,2,3,4,5,j"));
         assertEquals("입력된 값 중 숫자가 아닌 값이 있습니다.", exception.getMessage());
     }
-
 }

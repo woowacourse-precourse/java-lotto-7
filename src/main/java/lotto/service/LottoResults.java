@@ -50,5 +50,4 @@ public class LottoResults {
                 .mapToLong(entry -> entry.getKey().calculateTotalEarnings(entry.getValue()))
                 .sum();
     }
-
 }

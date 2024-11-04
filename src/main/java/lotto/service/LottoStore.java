@@ -27,5 +27,4 @@ public class LottoStore {
         lottoNumbers.sort(Comparator.naturalOrder());
         return new Lotto(lottoNumbers);
     }
-
 }

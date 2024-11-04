@@ -12,5 +12,4 @@ public class LottoTicketsDto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
 }

@@ -61,5 +61,4 @@ class LottoServiceTest {
         assertEquals(0, result.getRankCounts().get(Rank.SIX));
         assertEquals(1, result.getRankCounts().get(Rank.FIVE));
     }
-
 }

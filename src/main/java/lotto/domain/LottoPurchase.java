@@ -23,5 +23,4 @@ public class LottoPurchase {
     public int getTicketCount() {
         return ticketCount;
     }
-
 }

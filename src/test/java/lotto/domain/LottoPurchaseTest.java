@@ -31,5 +31,4 @@ class LottoPurchaseTest {
         exception = assertThrows(IllegalArgumentException.class, () -> LottoPurchase.of(-100));
         assertEquals("금액은 1,000원으로 나누어 떨어져야 합니다.", exception.getMessage());
     }
-
 }

@@ -17,5 +17,4 @@ public class BonusNumber {
     public String getBonusNumber() {
         return bonusNumber;
     }
-
 }

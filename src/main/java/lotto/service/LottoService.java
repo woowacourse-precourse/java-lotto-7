@@ -39,5 +39,4 @@ public class LottoService {
     private double getProfitRate(LottoTickets tickets, double totalEarnings) {
         return (totalEarnings / (tickets.size() * 1000)) * 100;
     }
-
 }
