@@ -1,5 +1,6 @@
 package lotto.model.enums;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -41,15 +42,13 @@ public enum Rank {
     }
 
     public static Rank checkRank(long match, boolean bonus) {
-        if (match == SECOND.match && !bonus) {
-            return THIRD;
-        }
-        Map<Integer, Rank> rankByMatch = Map.of(
-                FIRST.match, FIRST,
-                SECOND.match, SECOND,
-                FOURTH.match, FOURTH,
-                FIFTH.match, FIFTH
-        );
-        return rankByMatch.getOrDefault(match, NONE);
+        return Arrays.stream(values())
+                .filter(rank -> rank.isMatch((int) match, bonus))
+                .findFirst()
+                .orElse(NONE);
+    }
+
+    public boolean isMatch(int matchCount, boolean bonus) {
+        return this.match == matchCount && (!requiresBonus || bonus == requiresBonus);
     }
 }
