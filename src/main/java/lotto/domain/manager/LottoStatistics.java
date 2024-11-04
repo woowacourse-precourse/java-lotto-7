@@ -5,45 +5,33 @@ import static java.lang.String.join;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import lotto.domain.constant.Rank;
 import lotto.domain.model.Lotto;
+import lotto.domain.model.Profit;
 
 public class LottoStatistics {
     private static final String DEFAULT_DELIMITER = " - ";
     private static final int SPECIAL_MATCH_COUNT_CASE = 4;
-    private static final String RATE_OF_RETURN_RULES = "%.1f";
 
     private final Map<Rank, Integer> winningStatusTable;
-    private final double profitRate;
+    private final Profit profit;
 
     public LottoStatistics(AutomaticLottoMachine automaticLottoMachine, WinningLotto winningNumbers) {
         winningStatusTable = initialize();
         buildWinningStatus(automaticLottoMachine, winningNumbers);
-
-        profitRate = calculateProfitRate(automaticLottoMachine);
+        profit = calculateProfit(automaticLottoMachine.getAmount());
     }
 
     @Override
     public String toString() {
         return String.join(System.lineSeparator(),
                 visualizeWiningStatus(),
-                visualizeProfitRate());
+                visualizeProfit());
     }
 
-    private String visualizeProfitRate() {
-        return String.join("", "총 수익률은 ", String.format(RATE_OF_RETURN_RULES, profitRate), "%입니다.");
-    }
-
-    private String visualizeWiningStatus() {
-        return winningStatusTable.entrySet().stream()
-                .map((entry) -> join(DEFAULT_DELIMITER,
-                        entry.getKey().getDescription(),
-                        entry.getValue() + "개"))
-                .collect(Collectors.joining(System.lineSeparator()));
-    }
-
-    private static LinkedHashMap<Rank, Integer> initialize() {
+    private LinkedHashMap<Rank, Integer> initialize() {
         return Arrays.stream(Rank.values())
                 .collect(Collectors.toMap(
                         rank -> rank,
@@ -53,18 +41,28 @@ public class LottoStatistics {
                 ));
     }
 
-    private double calculateProfitRate(AutomaticLottoMachine automaticLottoMachine) {
-        int totalReward = calculateTotalReward();
-
-        return (totalReward / (double) automaticLottoMachine.getAmount()) * 100.0;
-    }
-
-    private int calculateTotalReward() {
-        return winningStatusTable.entrySet().stream()
+    private Profit calculateProfit(int amount) {
+        int totalReward = winningStatusTable.entrySet().stream()
                 .filter(entry -> entry.getValue() > 0)
                 .map(entry -> entry.getKey().calculateReward(entry.getValue()))
                 .reduce(0, Integer::sum);
 
+        return new Profit(amount, totalReward);
+    }
+
+    private String visualizeProfit() {
+        return String.join("", "총 수익률은 ", profit.toString(), "%입니다.");
+    }
+
+    private String visualizeWiningStatus() {
+        return winningStatusTable.entrySet()
+                .stream()
+                .map(this::toDefaultFormat)
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    private String toDefaultFormat(Entry<Rank, Integer> entry) {
+        return join(DEFAULT_DELIMITER, entry.getKey().getDescription(), entry.getValue() + "개");
     }
 
     private void buildWinningStatus(AutomaticLottoMachine automaticLottoMachine, WinningLotto winningNumbers) {
