@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.common.ErrorMessage;
 
 public class Lotto {
 
@@ -30,19 +31,19 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_SIZE);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(this::isOutOfRange)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE);
         }
     }
 
     private void validateNoDuplicates(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE);
         }
     }
 

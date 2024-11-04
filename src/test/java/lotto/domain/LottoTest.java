@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import lotto.common.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +28,7 @@ class LottoTest {
     @Test
     void 로또_번호가_1에서_45_사이가_아니면_예외가_발생한다() {
         assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(0, 2, 3, 4, 5, 6)),
-                "[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+                ErrorMessage.LOTTO_NUMBER_RANGE);
     }
 
     @DisplayName("유효한 로또 번호가 주어지면 예외가 발생하지 않는다.")

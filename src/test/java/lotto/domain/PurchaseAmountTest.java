@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import lotto.common.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -16,7 +17,7 @@ class PurchaseAmountTest {
     @DisplayName("구입 금액이 양수가 아닌 경우 예외 발생 테스트")
     void 구입_금액이_양수가_아닐_때_예외_발생(int amount) {
         assertThrows(IllegalArgumentException.class, () -> new PurchaseAmount(amount),
-                "[ERROR] 구입 금액은 양수여야 합니다.");
+                ErrorMessage.PURCHASE_AMOUNT_POSITIVE);
     }
 
     @ParameterizedTest
@@ -24,7 +25,7 @@ class PurchaseAmountTest {
     @DisplayName("구입 금액이 1,000원 단위가 아닌 경우 예외 발생 테스트")
     void 구입_금액이_천원_단위가_아닐_때_예외_발생(int amount) {
         assertThrows(IllegalArgumentException.class, () -> new PurchaseAmount(amount),
-                "[ERROR] 구입 금액은 1,000원 단위의 정수여야 합니다.");
+                ErrorMessage.PURCHASE_AMOUNT_THOUSAND_UNIT);
     }
 
     @ParameterizedTest

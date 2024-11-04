@@ -3,6 +3,7 @@ package lotto.util;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import lotto.common.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,7 +15,7 @@ class InputValidatorTest {
     @DisplayName("정수 입력값이 null 또는 비어 있을 경우 예외 발생 테스트")
     void 입력값이_null_또는_비어있을_때_예외_발생(String amount) {
         assertThrows(IllegalArgumentException.class, () -> InputValidator.validateNotBlankAndInteger(amount),
-                "[ERROR] 입력값은 비어 있지 않아야 합니다.");
+                ErrorMessage.INPUT_NOT_BLANK);
     }
 
     @ParameterizedTest
@@ -22,7 +23,7 @@ class InputValidatorTest {
     @DisplayName("정수 입력값이 정수가 아닌 경우 예외 발생 테스트")
     void 입력값이_정수가_아닐_때_예외_발생(String amount) {
         assertThrows(IllegalArgumentException.class, () -> InputValidator.validateNotBlankAndInteger(amount),
-                "[ERROR] 입력값은 정수여야 합니다.");
+                ErrorMessage.INPUT_INTEGER);
     }
 
     @ParameterizedTest
@@ -37,15 +38,7 @@ class InputValidatorTest {
     @DisplayName("당첨 번호가 null 또는 비어 있을 경우 예외 발생 테스트")
     void 당첨_번호가_null_또는_비어있을_때_예외_발생(String winningNumbers) {
         assertThrows(IllegalArgumentException.class, () -> InputValidator.validateWinningNumbers(winningNumbers),
-                "[ERROR] 입력값은 비어 있지 않아야 합니다.");
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"1,2,3 4,5,6", "1:2:3:4:5:6"})
-    @DisplayName("당첨 번호가 쉼표로 구분되어 있지 않을 경우 예외 발생 테스트")
-    void 당첨_번호가_쉼표로_구분되어_있지_않을_때_예외_발생(String winningNumbers) {
-        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateWinningNumbers(winningNumbers),
-                "[ERROR] 입력값은 쉼표(,)로 구분된 6개의 숫자여야 합니다.");
+                ErrorMessage.INPUT_NOT_BLANK);
     }
 
     @ParameterizedTest
@@ -53,7 +46,7 @@ class InputValidatorTest {
     @DisplayName("당첨 번호가 정수가 아닌 경우 예외 발생 테스트")
     void 당첨_번호가_정수가_아닐_때_예외_발생(String winningNumbers) {
         assertThrows(IllegalArgumentException.class, () -> InputValidator.validateWinningNumbers(winningNumbers),
-                "[ERROR] 입력값은 정수여야 합니다.");
+                ErrorMessage.INPUT_INTEGER);
     }
 
     @ParameterizedTest

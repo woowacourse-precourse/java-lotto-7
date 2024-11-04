@@ -1,6 +1,7 @@
 package lotto.util;
 
 import java.util.Arrays;
+import lotto.common.ErrorMessage;
 
 public class InputValidator {
 
@@ -18,7 +19,7 @@ public class InputValidator {
 
     private static void validateNotBlank(String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 비어 있지 않아야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_BLANK);
         }
     }
 
@@ -31,7 +32,7 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 정수여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_INTEGER);
         }
     }
 }
