@@ -8,19 +8,46 @@ import java.util.List;
 import java.util.Map;
 
 public class Game {
+    private Money money;
+    private LottoManager lottoManager;
+    private Store store;
+    private Comparator comparator;
+    private List<Result> lottoResults;
+    private Lotto winningNumbers;
+    private int bonusNumber;
+
+    public Game() {
+        lottoManager = new LottoManager();
+        store = new Store();
+        comparator = new Comparator();
+    }
+
     public void start() {
+        readMoney();
+        buyLottos();
+        readWinningNumbers();
+        drawLottos();
+    }
+
+    private void readMoney() {
         OutputView.requestMoney();
-        Money money = new Money(InputView.readMoney());
-        LottoManager lottoManager = new LottoManager();
-        Store store = new Store();
+        money = new Money(InputView.readMoney());
+    }
+
+    private void buyLottos() {
         lottoManager.buyLotto(store, money);
         OutputView.printLottos(lottoManager.getLottos());
+    }
+
+    private void readWinningNumbers() {
         OutputView.requestWinningNumbers();
-        Lotto winningNumbers = new Lotto(InputView.readNumbers());
+        winningNumbers = new Lotto(InputView.readNumbers());
         OutputView.requestBonusNumber();
-        int bonusNumber = InputView.readNumber();
-        Comparator comparator = new Comparator();
-        List<Result> lottoResults =  comparator.compareLottos(lottoManager.getLottos(), winningNumbers, bonusNumber);
+        bonusNumber = InputView.readNumber();
+    }
+
+    private void drawLottos() {
+        lottoResults = comparator.compareLottos(lottoManager.getLottos(), winningNumbers, bonusNumber);
         lottoManager.setResults(lottoResults);
         money.receiveWinningAmount(lottoManager.getWinningAmount());
         OutputView.printStastistics(Result.getStatistics(lottoResults));
