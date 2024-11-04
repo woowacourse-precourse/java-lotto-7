@@ -25,4 +25,8 @@ public class Amount {
     public int getCount(){
         return this.count;
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }
