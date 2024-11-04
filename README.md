@@ -10,7 +10,7 @@
 ## 최종 구조
 
 ---
-![프로젝트 구조](<img width="557" alt="image" src="https://github.com/user-attachments/assets/6e75a97c-fd3b-4916-ba43-5086a56ea1cb">)
+![프로젝트 구조](https://github.com/user-attachments/assets/6e75a97c-fd3b-4916-ba43-5086a56ea1cb)
 
 ---
 
