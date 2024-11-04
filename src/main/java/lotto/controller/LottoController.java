@@ -42,6 +42,7 @@ public class LottoController {
     private PurchaseAmount inputPurchaseAmount() {
         outputView.printPurchaseAmountMessage();
         int purchaseAmount = inputView.inputPurchaseAmount();
+        outputView.nextLine();
         return PurchaseAmount.from(purchaseAmount);
     }
 
@@ -50,18 +51,21 @@ public class LottoController {
         outputView.printQuantity(quantity);
         Lottos lottos = lottoGenerator.issue(quantity);
         outputView.printLottos(lottos);
+        outputView.nextLine();
         return lottos;
     }
 
     private WinningNumbers inputWinningNumbers() {
         outputView.printWinningNumbersMessage();
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        outputView.nextLine();
         return WinningNumbers.from(winningNumbers);
     }
 
     private BonusNumber inputBonusNumber() {
         outputView.printBonusNumberMessage();
         int bonusNumber = inputView.inputBonusNumber();
+        outputView.nextLine();
         return BonusNumber.from(bonusNumber);
     }
 }
