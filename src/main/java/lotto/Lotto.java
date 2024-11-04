@@ -3,8 +3,6 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
-
-import lotto.EnumManagement.ExceptionEnum;
 import lotto.EnumManagement.LottoEnum;
 
 
@@ -44,13 +42,13 @@ public class Lotto {
     }
 
     public List<Integer> pushNumberTable(List<Integer> equalNumberTable, int equalNumberCount, boolean bonusNumber) {
-        int[] countToIndex = {0, 0, 0, 0, 1, 2, 4};
+        int[] countToIndex = {0, 0, 0, 0, 1, 2, 4}; // 같은 숫자가 3개 이상 부터 로또 당첨이어서 해당 값을 활용해서 임의로 리스트의 INDEX 이동하기 위해 사용
 
         if (equalNumberCount == LottoEnum.EQUAL_LOTTO_NUMBER_5.getNumber() && bonusNumber) {
             equalNumberTable.set(LottoEnum.NUMBER_TABLE_INDEX_3.getNumber(), equalNumberTable.get(LottoEnum.NUMBER_TABLE_INDEX_3.getNumber()) + LottoEnum.LOTTO_WINNING.getNumber());
             return equalNumberTable;
         }
-
+        //발행한 로또에 3개부터 6개까지 같은 숫자가 있으면 equalNumberTable에 각 List의 Index에 맞게 1씩 증가 시킨다.(5등 ~ 1등 당첨된 로또의 개수)
         for(int i = LottoEnum.NUMBER_TABLE_INDEX_3.getNumber(); i <= LottoEnum.NUMBER_TABLE_INDEX_6.getNumber() ; i++){
             if(equalNumberCount == i){
                 equalNumberTable.set(countToIndex[i], equalNumberTable.get(countToIndex[i]) + LottoEnum.LOTTO_WINNING.getNumber());
