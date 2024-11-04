@@ -12,15 +12,15 @@ public class LottoController {
 
     public void start() {
         PaymentInput paymentInput = InputView.enterPayment();
-        List<Lotto> lottos = createLottos(paymentInput.getLottoCounts());
+        LottoGroup lottos = new LottoGroup(createLottos(paymentInput.getLottoCounts()));
 
-        OutputView.printLottosInfo(lottos);
+        lottos.printEachInfo();
 
         DrawNumbers drawNumbers = InputView.enterWinningNumbers();
-        Map<Rank, Integer> prizeResult = getPrizeResult(lottos, drawNumbers);
-        TotalGain totalGain = new TotalGain(prizeResult, paymentInput);
+        LottoResult lottoResult= getPrizeResult(lottos, drawNumbers);
+        //TotalGain totalGain = new TotalGain(lottoResult, paymentInput);
 
-        OutputView.showResult(totalGain);
+        OutputView.showResult(lottoResult,paymentInput);
     }
 
 
@@ -34,10 +34,10 @@ public class LottoController {
         return lottos;
     }
 
-    private Map<Rank, Integer> getPrizeResult(List<Lotto> lottos, DrawNumbers drawNumbers) {
-        PrizeMachine prizeMachine = new PrizeMachine(lottos);
-        Map<Rank, Integer> prizeResult = prizeMachine.getAmountOfPrize(drawNumbers);
+    private LottoResult getPrizeResult(LottoGroup lottos, DrawNumbers drawNumbers) {
+        Map<Rank, Integer> prizeResult = lottos.getEachLottoPrize(drawNumbers.getWinningNumbers(),drawNumbers.getBonusNumber());
 
-        return prizeResult;
+        LottoResult lottoResult=new LottoResult(prizeResult);
+        return lottoResult;
     }
 }
