@@ -182,7 +182,9 @@ public class Application {
         System.out.println("당첨 통계\n---");
         int totalPrize = 0;
 
-        for (Rank rank : Rank.values()) {
+        Rank[] ranks = Rank.values();
+        for (int i = ranks.length - 1; i >= 0; i--) {
+            Rank rank = ranks[i];
             if (rank == Rank.NONE) {
                 continue;
             }
@@ -199,9 +201,9 @@ public class Application {
 
     public static void printRankResult(Rank rank, int count) {
         if (rank == Rank.SECOND) {
-            System.out.println("5개 일치, 보너스 볼 일치 (" + rank.getPrize() + "원) - " + count + "개");
+            System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개%n", String.format("%,d", rank.getPrize()), count);
             return;
         }
-        System.out.println(rank.matchCount + "개 일치 (" + rank.getPrize() + "원) - " + count + "개");
+        System.out.printf("%d개 일치 (%s원) - %d개%n", rank.matchCount, String.format("%,d", rank.getPrize()), count);
     }
 }
