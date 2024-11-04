@@ -27,6 +27,8 @@ public class LottoController {
         List<Lotto> lottos = lottoGenerator.generateLottos();
         outputView.displayLottoCount(lottoGenerator.getLottoCnt());
         outputView.displayLottos(lottos);
+
+        Lotto winningLotto = validateWinningNumbers();
     }
 
     public int validatePurchaseAmount() {
@@ -42,5 +44,20 @@ public class LottoController {
             }
         }
         return purchaseAmount;
+    }
+
+    public Lotto validateWinningNumbers() {
+        List<Integer> winningNumbers;
+        Lotto winningLotto;
+        while (true) {
+            try {
+                winningNumbers = inputView.getWinningNumbers();
+                winningLotto = new Lotto(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningLotto;
     }
 }
