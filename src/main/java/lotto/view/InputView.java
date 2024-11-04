@@ -37,14 +37,14 @@ public class InputView {
         return winningLottoNumber;
     }
 
-    public static BonusNumber getBonusNumber(){
+    public static BonusNumber getBonusNumber(WinningLottoNumber winningLottoNumber){
         BonusNumber bonusNumber;
         try{
             String userInputBonusNumber = Console.readLine();
-            bonusNumber = BonusNumber.of(userInputBonusNumber);
+            bonusNumber = BonusNumber.of(userInputBonusNumber, winningLottoNumber);
         }catch(BonusNumberException e){
             e.printErrorMessage();
-            bonusNumber = getBonusNumber();
+            bonusNumber = getBonusNumber(winningLottoNumber);
         }finally{
             Console.close();
         }

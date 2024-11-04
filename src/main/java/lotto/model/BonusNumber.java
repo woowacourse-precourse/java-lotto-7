@@ -6,17 +6,22 @@ import lotto.validation.BonusNumberValidator;
 import java.util.List;
 
 import static lotto.common.constant.ErrorMessage.BONUS_NUMBER_FORMAT_ERROR;
+import static lotto.common.constant.ErrorMessage.WINNING_NUMBER_CONTAINS_BONUS_NUMBER;
 
 public class BonusNumber {
 
     private final Integer bonusNumber;
 
-    private BonusNumber(String userInputBonusNumber) {
+    private BonusNumber(String userInputBonusNumber,WinningLottoNumber winningLottoNumber) {
         this.bonusNumber = parseUserInputBonusNumber(userInputBonusNumber);
+
+        if (winningLottoNumber.isContainInWinningLottoNumber(this)) {
+            throw new BonusNumberException(WINNING_NUMBER_CONTAINS_BONUS_NUMBER);
+        }
     }
 
-    public static BonusNumber of(String userInputBonusNumber){
-        return new BonusNumber(userInputBonusNumber);
+    public static BonusNumber of(String userInputBonusNumber,WinningLottoNumber winningLottoNumber){
+        return new BonusNumber(userInputBonusNumber,winningLottoNumber);
     }
 
     private Integer parseUserInputBonusNumber(String userInputBonusNumber){

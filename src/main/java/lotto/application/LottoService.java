@@ -35,7 +35,7 @@ public class LottoService implements Service{
 
         //input BonusNumber
         OutputView.printPromptMessageForBonusNumber();
-        BonusNumber bonusNumber = InputView.getBonusNumber();
+        BonusNumber bonusNumber = InputView.getBonusNumber(winningLottoNumber);
 
         //make winning Lotto object
         WinningLotto winningLotto = WinningLotto.of(winningLottoNumber, bonusNumber);

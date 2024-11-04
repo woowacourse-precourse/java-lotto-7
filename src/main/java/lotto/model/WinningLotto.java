@@ -17,9 +17,6 @@ public class WinningLotto {
     }
 
     public static WinningLotto of(WinningLottoNumber winningLottoNumber, BonusNumber bonusNumber) {
-        if (winningLottoNumber.isContainInWinningLottoNumber(bonusNumber)) {
-            throw new BonusNumberException(WINNING_NUMBER_CONTAINS_BONUS_NUMBER);
-        }
         return new WinningLotto(winningLottoNumber, bonusNumber);
     }
 
