@@ -12,7 +12,7 @@ public class LottoGenerator {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < numberOfLottos; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6)); // 불변 리스트를 수정 가능한 리스트로 복사
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
