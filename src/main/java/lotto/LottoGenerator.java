@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,8 +31,9 @@ public class LottoGenerator {
     private List<Lotto> generateLotto(int number) {
         List<Lotto> lottoList = new LinkedList<>();
         for (int i = 0; i < number; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            lottoList.add(lotto);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(numbers);
+            lottoList.add(new Lotto(numbers));
         }
         return lottoList;
     }
@@ -41,5 +44,6 @@ public class LottoGenerator {
         for (Lotto lotto : lottoList) {
             System.out.println(lotto.getNumbers().toString());
         }
+        System.out.println();
     }
 }
