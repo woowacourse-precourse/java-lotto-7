@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LottoResult {
+public class LottoService {
 
     private static final int PRICE_PER_LOTTO = 1000;
     private static final int RETURN_RATE_DENOMINATOR = 100;
@@ -16,7 +16,7 @@ public class LottoResult {
     private final OutputView outputView;
     private final Map<Rank, Integer> rankCounts;
 
-    public LottoResult(final InputView inputView, final OutputView outputView) {
+    public LottoService(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.rankCounts = new HashMap<>();
