@@ -44,12 +44,101 @@ class ApplicationTest extends NsTest {
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
         );
+
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("8000", "8,21,23,41,42,43", "7");
+                    assertThat(output()).contains(
+                            "8개를 구매했습니다.",
+                            "[8, 21, 23, 41, 42, 43]",
+                            "[3, 5, 11, 16, 32, 38]",
+                            "[7, 11, 16, 35, 36, 44]",
+                            "[1, 8, 11, 31, 41, 42]",
+                            "[13, 14, 16, 38, 42, 45]",
+                            "[7, 11, 30, 40, 42, 43]",
+                            "[2, 13, 22, 32, 38, 45]",
+                            "[1, 3, 5, 14, 22, 45]",
+                            "3개 일치 (5,000원) - 1개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 1개",
+                            "총 수익률은 25,000,062.5%입니다."
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42),
+                List.of(13, 14, 16, 38, 42, 45),
+                List.of(7, 11, 30, 40, 42, 43),
+                List.of(2, 13, 22, 32, 38, 45),
+                List.of(1, 3, 5, 14, 22, 45)
+        );
+
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "8,21,23,41,42,43", "7");
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[8, 21, 23, 24, 25, 26]",
+                            "3개 일치 (5,000원) - 1개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 500.0%입니다."
+                    );
+                },
+                List.of(8, 21, 23, 24, 25, 26)
+        );
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "8,21,23,41,42,43", "7");
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[7, 21, 23, 41, 42, 43]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 3,000,000.0%입니다."
+                    );
+                },
+                List.of(7, 21, 23, 41, 42, 43)
+        );
     }
+
 
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        assertSimpleTest(() -> {
+            runException("-1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+
+        assertSimpleTest(() -> {
+            runException("1000.1");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
