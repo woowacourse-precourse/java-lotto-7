@@ -12,17 +12,48 @@ import lotto.view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
+        int purchaseAmount = inputPurchaseAmountRepeat();
         LottoMachine lottoMachine = new LottoMachine();
-        int purchaseAmount = InputView.inputPurchaseAmount();
         List<Lotto> lottos = lottoMachine.purchaseLottos(purchaseAmount);
         OutputView.printPurchasedLottoCountAndNumber(lottos);
 
-        List<Integer> winningNumber = InputView.inputWinningNumber();
-        Integer bonusNumber = InputView.inputBonusNumber(winningNumber);
-        LottoCommittee committee = new LottoCommittee(winningNumber, bonusNumber);
+        LottoCommittee lottoCommittee = new LottoCommittee();
+        inputWinningNumbersRepeat(lottoCommittee);
+        inputBonusNumberRepeat(lottoCommittee);
 
-        HashMap<Ranking, Integer> rankingCountMap = committee.calculateRanking(lottos);
+        HashMap<Ranking, Integer> rankingCountMap = lottoCommittee.calculateRanking(lottos);
         OutputView.printWinningHistory(rankingCountMap);
         OutputView.printRateOfReturn(purchaseAmount, rankingCountMap);
+    }
+
+    private static int inputPurchaseAmountRepeat() {
+        try {
+            return InputView.inputPurchaseAmount();
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+            return inputPurchaseAmountRepeat();
+        }
+    }
+
+    private static List<Integer> inputWinningNumbersRepeat(LottoCommittee lottoCommittee) {
+        try {
+            List<Integer> winningNumbers = InputView.inputWinningNumber();
+            lottoCommittee.insertWinningNumbers(winningNumbers);
+            return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumbersRepeat(lottoCommittee);
+        }
+    }
+
+    private static int inputBonusNumberRepeat(LottoCommittee lottoCommittee) {
+        try {
+            int bonusNumber = InputView.inputBonusNumber();
+            lottoCommittee.insertBonusNumber(bonusNumber);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumberRepeat(lottoCommittee);
+        }
     }
 }

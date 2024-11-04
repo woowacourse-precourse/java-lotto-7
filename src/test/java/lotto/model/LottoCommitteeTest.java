@@ -14,7 +14,9 @@ class LottoCommitteeTest {
 
         List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        LottoCommittee committee = new LottoCommittee(winningNumber, bonusNumber);
+        LottoCommittee committee = new LottoCommittee();
+        committee.insertWinningNumbers(winningNumber);
+        committee.insertBonusNumber(bonusNumber);
 
         // when
         Ranking ranking = committee.calculateRanking(lotto);
@@ -31,7 +33,9 @@ class LottoCommitteeTest {
 
         List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 7);
         int bonusNumber = 6;
-        LottoCommittee committee = new LottoCommittee(winningNumber, bonusNumber);
+        LottoCommittee committee = new LottoCommittee();
+        committee.insertWinningNumbers(winningNumber);
+        committee.insertBonusNumber(bonusNumber);
 
         // when
         Ranking ranking = committee.calculateRanking(lotto);
@@ -48,7 +52,9 @@ class LottoCommitteeTest {
 
         List<Integer> winningNumber = List.of(1, 2, 3, 7, 8, 9);
         int bonusNumber = 6;
-        LottoCommittee committee = new LottoCommittee(winningNumber, bonusNumber);
+        LottoCommittee committee = new LottoCommittee();
+        committee.insertWinningNumbers(winningNumber);
+        committee.insertBonusNumber(bonusNumber);
 
         // when
         Ranking ranking = committee.calculateRanking(lotto);
@@ -65,7 +71,9 @@ class LottoCommitteeTest {
 
         List<Integer> winningNumber = List.of(1, 2, 7, 8, 9, 10);
         int bonusNumber = 6;
-        LottoCommittee committee = new LottoCommittee(winningNumber, bonusNumber);
+        LottoCommittee committee = new LottoCommittee();
+        committee.insertWinningNumbers(winningNumber);
+        committee.insertBonusNumber(bonusNumber);
 
         // when
         Ranking ranking = committee.calculateRanking(lotto);
