@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.checker.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;

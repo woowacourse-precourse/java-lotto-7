@@ -1,8 +1,8 @@
 package lotto.view;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Money;
-import lotto.domain.WinningNumbers;
+import lotto.checker.domain.BonusNumber;
+import lotto.purchase.domain.Money;
+import lotto.checker.domain.WinningNumbers;
 
 public interface InputView {
 

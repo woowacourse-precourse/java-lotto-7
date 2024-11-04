@@ -1,5 +1,7 @@
-package lotto.domain;
+package lotto.results.domain;
 
+
+import lotto.purchase.domain.Money;
 
 import static lotto.common.NumberConstants.SECOND_RANK_CHANCE;
 

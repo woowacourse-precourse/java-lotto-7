@@ -1,8 +1,14 @@
 package lotto.basic;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.*;
-import lotto.service.LottoService;
+import lotto.checker.domain.BonusNumber;
+import lotto.checker.domain.Lotto;
+import lotto.checker.domain.Lottos;
+import lotto.checker.domain.WinningNumbers;
+import lotto.purchase.domain.FortuneMachine;
+import lotto.purchase.domain.Money;
+import lotto.results.application.ResultsService;
+import lotto.results.domain.Result;
 import lotto.view.InputViewImpl;
 import lotto.view.OutputViewImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -218,15 +224,13 @@ public class test {
     @Test
     void 번호_맞추기_당첨번호_테스트() {
         // given
-        InputViewImpl inputView = new InputViewImpl();
-        OutputViewImpl outputView = new OutputViewImpl();
-        LottoService lottoService = new LottoService(inputView, outputView);
+        ResultsService resultsService = new ResultsService();
         WinningNumbers winningNumbers = new WinningNumbers("1, 2, 3, 4, 5, 6");
         Lotto lotto = new Lotto(List.of(1, 2, 3, 43, 44, 45));
         Integer expectedValues = 3;
 
         // when
-        Integer actualValue = lottoService.countWinningNumber(winningNumbers, lotto);
+        Integer actualValue = resultsService.countWinningNumber(winningNumbers, lotto);
 
         // then
         assertThat(actualValue)
@@ -236,16 +240,14 @@ public class test {
     @Test
     void 번호_맞추기_보너스번호_테스트() {
         // given
-        InputViewImpl inputView = new InputViewImpl();
-        OutputViewImpl outputView = new OutputViewImpl();
-        LottoService lottoService = new LottoService(inputView, outputView);
+        ResultsService resultsService = new ResultsService();
         WinningNumbers winningNumbers = new WinningNumbers("31, 32, 33, 34, 35, 36");
         BonusNumber bonusNumber = new BonusNumber("7", winningNumbers);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 43, 44, 7));
         Integer expectedValues = 1;
 
         // when
-        Integer actualValue = lottoService.countBonusNumber(bonusNumber.value(), lotto);
+        Integer actualValue = resultsService.countBonusNumber(bonusNumber.value(), lotto);
 
         // then
         assertThat(actualValue)

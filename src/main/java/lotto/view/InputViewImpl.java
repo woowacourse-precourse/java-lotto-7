@@ -1,9 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.BonusNumber;
-import lotto.domain.Money;
-import lotto.domain.WinningNumbers;
+import lotto.checker.domain.BonusNumber;
+import lotto.purchase.domain.Money;
+import lotto.checker.domain.WinningNumbers;
 
 
 public class InputViewImpl implements InputView {
@@ -20,7 +20,6 @@ public class InputViewImpl implements InputView {
     }
 
     public WinningNumbers getWinningNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
         while (true) {
             try {
                 return new WinningNumbers(Console.readLine());
@@ -31,7 +30,6 @@ public class InputViewImpl implements InputView {
     }
 
     public BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
         while (true) {
             try {
                 return new BonusNumber(Console.readLine(), winningNumbers);

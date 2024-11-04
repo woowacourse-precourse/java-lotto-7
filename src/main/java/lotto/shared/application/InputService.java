@@ -1,13 +1,13 @@
-package lotto.service;
+package lotto.shared.application;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Money;
-import lotto.domain.WinningNumbers;
+import lotto.checker.domain.BonusNumber;
+import lotto.purchase.domain.Money;
+import lotto.checker.domain.WinningNumbers;
 import lotto.view.InputView;
 
 public class InputService {
 
-    InputView inputView;
+    private final InputView inputView;
 
     public InputService(InputView inputView) {
         this.inputView = inputView;

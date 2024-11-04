@@ -1,26 +1,23 @@
-package lotto.service;
+package lotto.results.application;
 
-import lotto.domain.*;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.checker.domain.Lotto;
+import lotto.checker.domain.BonusNumber;
+import lotto.checker.domain.WinningNumbers;
+import lotto.results.domain.Result;
+import lotto.results.domain.Results;
+import lotto.results.dto.ResultsRequest;
 
 import java.util.List;
 
-public class LottoService {
+public class ResultsService {
 
-    InputView inputView;
-    OutputView outputView;
-    FortuneMachine fortuneMachine;
-
-    public LottoService(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.fortuneMachine = fortuneMachine;
-    }
-
-    public Results calculateResults(WinningNumbers winningNumbers, BonusNumber bonusNumber, Lottos lottos) {
-        List<Result> resultList = lottos.stream()
-                .map(lotto -> getResult(winningNumbers, bonusNumber, lotto))
+    public Results calculateResults(ResultsRequest request) {
+        List<Result> resultList = request.getLottos()
+                .stream()
+                .map(lotto -> getResult(
+                        request.getWinningNumbers(),
+                        request.getBonusNumber(),
+                        lotto))
                 .toList();
         return new Results(resultList);
     }
@@ -42,6 +39,5 @@ public class LottoService {
         }
         return 0;
     }
-
 
 }

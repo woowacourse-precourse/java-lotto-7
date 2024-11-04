@@ -1,35 +1,23 @@
 package lotto.controller;
 
-import lotto.domain.*;
-import lotto.service.FortuneMachineService;
-import lotto.service.InputService;
-import lotto.service.LottoService;
-import lotto.service.OutputService;
+import lotto.shared.application.InputService;
+import lotto.shared.event.EventPublisher;
+import lotto.purchase.domain.Money;
+import lotto.purchase.event.MoneyCreatedEvent;
 
 public class LottoController {
 
-    LottoService lottoService;
     InputService inputService;
-    OutputService outputService;
-    FortuneMachineService fortuneMachineService;
+    EventPublisher eventPublisher;
 
-    public LottoController(LottoService lottoService, InputService inputService, OutputService outputService, FortuneMachineService fortuneMachineService) {
-        this.lottoService = lottoService;
+    public LottoController(InputService inputService,
+                           EventPublisher eventPublisher) {
         this.inputService = inputService;
-        this.outputService = outputService;
-        this.fortuneMachineService = fortuneMachineService;
+        this.eventPublisher = eventPublisher;
     }
 
     public void run() {
         Money money = inputService.getMoney();
-        Lottos lottos =fortuneMachineService.getLotto(money);
-        outputService.showLotto(lottos);
-
-        WinningNumbers winningNumbers = inputService.getWinningNumbers();
-        BonusNumber bonusNumber = inputService.getBonusNumber(winningNumbers);
-
-
-        Results results = lottoService.calculateResults(winningNumbers, bonusNumber, lottos);
-        outputService.showResults(results, money);
+        eventPublisher.publish(new MoneyCreatedEvent(money));
     }
 }

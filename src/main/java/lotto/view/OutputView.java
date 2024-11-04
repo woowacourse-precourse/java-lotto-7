@@ -1,15 +1,17 @@
 package lotto.view;
 
-import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.domain.Result;
-import lotto.domain.Results;
-
-import java.util.stream.IntStream;
+import lotto.checker.domain.Lottos;
+import lotto.purchase.domain.Money;
+import lotto.results.domain.Result;
+import lotto.results.domain.Results;
 
 public interface OutputView {
 
     void showLottos(Lottos lottos);
+
+    void showWinningNumbersPrompt();
+
+    void showBonusNumberPrompt();
 
     void showResults(Results results, Money money);
 

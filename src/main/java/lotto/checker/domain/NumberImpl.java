@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.checker.domain;
 
 
 import static lotto.common.ErrorMessage.ERROR_MESSAGE;
@@ -38,5 +38,5 @@ public abstract class NumberImpl implements Number {
 
 
 
-    abstract String getDomain();
+    public abstract String getDomain();
 }

@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.checker.domain;
 
 import java.util.Iterator;
 import java.util.List;

@@ -1,6 +1,7 @@
-package lotto.domain;
+package lotto.purchase.domain;
 
 import lotto.common.NumberConstants;
+import lotto.checker.domain.NumberImpl;
 
 public class Money extends NumberImpl {
 
@@ -30,7 +31,7 @@ public class Money extends NumberImpl {
     }
 
     @Override
-    String getDomain() {
+    public String getDomain() {
         return "입력금액";
     }
 

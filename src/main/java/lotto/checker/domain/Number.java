@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.checker.domain;
 
 public interface Number {
 

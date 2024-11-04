@@ -1,9 +1,10 @@
-package lotto.domain;
+package lotto.purchase.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.checker.domain.Lotto;
+import lotto.checker.domain.Lottos;
 import lotto.common.NumberConstants;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.LongStream;
 

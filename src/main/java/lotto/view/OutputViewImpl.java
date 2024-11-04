@@ -1,6 +1,9 @@
 package lotto.view;
 
-import lotto.domain.*;
+import lotto.checker.domain.Lottos;
+import lotto.purchase.domain.Money;
+import lotto.results.domain.Result;
+import lotto.results.domain.Results;
 
 import java.util.stream.IntStream;
 
@@ -11,6 +14,14 @@ public class OutputViewImpl implements OutputView {
         lottos.forEach(lotto -> {
             System.out.print(lotto.toString() + "\n");
         });
+    }
+
+    public void showWinningNumbersPrompt() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+    }
+
+    public void showBonusNumberPrompt() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     public void showResults(Results results, Money money) {

@@ -1,12 +1,12 @@
-package lotto.service;
+package lotto.purchase.application;
 
-import lotto.domain.FortuneMachine;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
+import lotto.checker.domain.Lottos;
+import lotto.purchase.domain.FortuneMachine;
+import lotto.purchase.domain.Money;
 
 public class FortuneMachineService {
 
-    FortuneMachine fortuneMachine;
+    private final FortuneMachine fortuneMachine;
 
     public FortuneMachineService(FortuneMachine fortuneMachine) {
         this.fortuneMachine = fortuneMachine;

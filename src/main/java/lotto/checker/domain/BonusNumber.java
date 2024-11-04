@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.checker.domain;
 
 import static lotto.common.ErrorMessage.ERROR_MESSAGE;
 
