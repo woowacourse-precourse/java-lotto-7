@@ -7,7 +7,7 @@ public class Winning {
     private final BonusNumber bonusNumber;
 
     public Winning(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        validateBonusNumber(winningNumbers.getWinningNumbers(),bonusNumber);
+        validateBonusNumber(winningNumbers.getNumbers(),bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -18,4 +18,11 @@ public class Winning {
         }
     }
 
+    public WinningNumbers getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
 }

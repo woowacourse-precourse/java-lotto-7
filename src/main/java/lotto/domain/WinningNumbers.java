@@ -30,7 +30,7 @@ public class WinningNumbers {
         }
     }
 
-    public List<WinningNumber> getWinningNumbers() {
+    public List<WinningNumber> getNumbers() {
         return winningNumbers;
     }
 }
