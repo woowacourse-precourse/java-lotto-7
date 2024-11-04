@@ -75,7 +75,8 @@
   │   ├── Lotto.java           // 로또 번호를 관리하는 도메인 객체
   │   ├── LottoMachine.java     // 로또를 발행하고 관리하는 도메인 객체
   │   ├── Purchase.java        // 구매 정보를 관리하는 도메인 객체
-  │   └── WinningNumbers.java   // 당첨 번호를 관리하는 도메인 객체
+  │   ├── WinningNumbers.java   // 당첨 번호를 관리하는 도메인 객체
+  │   └── WinningResult.java   // 당첨 등수를 정의하는 도메인 객체
   ├── service
   │   ├── LottoService.java      // 비즈니스 로직을 처리하는 서비스 클래스
   │   └── PurchaseService.java   // 구매 관련 비즈니스 로직을 처리하는 서비스 클래스
