@@ -38,13 +38,13 @@ public class DongHangLottery {
     }
 
     public static void drawWinningLotteryNumbers() {
-        WinningController drawController = appConfig.drawController();
+        WinningController winningController = appConfig.winningController();
 
         Lotto winningNumber = drawWinningNumbers();
         int bonus = drawBonusNumber(winningNumber.getNumbers());
         WinningLotto winningLotto = new WinningLotto(winningNumber, bonus);
 
-        drawController.checkResult(winningLotto);
+        winningController.checkResult(winningLotto);
         inputReader.close();
     }
 

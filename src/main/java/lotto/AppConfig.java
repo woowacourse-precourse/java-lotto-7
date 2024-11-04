@@ -20,7 +20,7 @@ public class AppConfig {
         return new VendingMachineServiceImpl(vendingMachineRepository());
     }
 
-    public WinningController drawController() {
+    public WinningController winningController() {
         return new WinningController(drawService());
     }
 
