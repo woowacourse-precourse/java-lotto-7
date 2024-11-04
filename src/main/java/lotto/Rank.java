@@ -1,12 +1,12 @@
 package lotto;
 
 public enum Rank {
-    FIRST(6, 0, "2,000,000,000"),
-    SECOND(5, 1, "30,000,000"),
-    THIRD(5, 0, "1,500,000"),
-    FOURTH(4, 0, "50,000"),
+    MISS(-1, 0, ""),
     FIFTH(3, 0, "5,000"),
-    MISS(-1, 0, "");
+    FOURTH(4, 0, "50,000"),
+    THIRD(5, 0, "1,500,000"),
+    SECOND(5, 1, "30,000,000"),
+    FIRST(6, 0, "2,000,000,000");
 
     private final int numberCount;
     private final int bounsExist;
