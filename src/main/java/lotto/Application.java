@@ -20,12 +20,9 @@ public class Application {
 
         //4. 당첨 번호 6개 입력받기
         Lotto winningLotto = inputSixNumbers.inputLottoNumbers();
-        List<Integer> lottoNumbers = winningLotto.getNumbers(); // Lotto 객체로부터 번호 가져오기
+        List<Integer> lottoNumbers = winningLotto.getNumbers();
 
         //5. 보너스 번호 1개 입력받기
         int bonusNumber = inputBonusNumber.inputBonusNumber(lottoNumbers);
-
-        System.out.println("입력한 로또 번호: " + lottoNumbers);
-        System.out.println("입력한 보너스 번호: " + bonusNumber);
     }
 }

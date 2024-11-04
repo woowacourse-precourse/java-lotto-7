@@ -1,45 +1,33 @@
 package lotto;
 
 public enum LottoRank {
-    FIRST(6, 2000000000),
-    SECOND(5, 30000000),
-    THIRD(5, 1500000),
-    FOURTH(4, 50000),
-    FIFTH(3, 5000);
+    FIFTH(5000),    // 3개 일치
+    FOURTH(50000),  // 4개 일치
+    THIRD(1500000), // 5개 일치
+    SECOND(30000000), // 5개 일치, 보너스 볼 일치
+    FIRST(2000000000); // 6개 일치
 
-    private final int matchingCount;
-    private final int prizeAmount;
+    private final int prizeAmount; // 당첨 금액
+    private int count; // 당첨 개수
 
-    LottoRank(int matchingCount, int prizeAmount) {
-        this.matchingCount = matchingCount;
+    LottoRank(int prizeAmount) {
         this.prizeAmount = prizeAmount;
-    }
-
-    public int getMatchingCount() {
-        return matchingCount;
+        this.count = 0; // 초기화
     }
 
     public int getPrizeAmount() {
         return prizeAmount;
     }
 
-    public static LottoRank fromMatchingCount(int matchingCount, boolean bonusMatched) {
-        if (matchingCount == FIRST.matchingCount) {
-            return FIRST;
-        }
-        if (matchingCount == SECOND.matchingCount && bonusMatched) {
-            return SECOND;
-        }
-        if (matchingCount == THIRD.matchingCount) {
-            return THIRD;
-        }
-        if (matchingCount == FOURTH.matchingCount) {
-            return FOURTH;
-        }
-        if (matchingCount == FIFTH.matchingCount) {
-            return FIFTH;
-        }
-        return null;
+    public int getCount() {
+        return count;
+    }
+
+    public void incrementCount() {
+        count++;
+    }
+
+    public void resetCount() {
+        count = 0;
     }
 }
-
