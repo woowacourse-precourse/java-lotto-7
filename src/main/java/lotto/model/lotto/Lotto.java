@@ -11,17 +11,13 @@ public class Lotto {
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 45;
     public static final int PRICE = 1000;
-
     private static final String LOTTO_DELIMITER = ",";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-    }
-
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
     }
 
     public static Lotto of(String rawNumbers) {
@@ -30,10 +26,15 @@ public class Lotto {
             List<Integer> winningNumbers = Arrays.stream(winningNumberStrings)
                     .map(Integer::parseInt)
                     .toList();
+
             return new Lotto(winningNumbers);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBERS_NOT_A_NUMBER.getMessage());
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     public boolean containsNumber(int numberToCheck) {
@@ -52,13 +53,6 @@ public class Lotto {
         }
     }
 
-    private void validateNumbersDuplicate(List<Integer> numbers) {
-        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
-        if (nonDuplicateNumbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBERS_DUPLICATED.getMessage());
-        }
-    }
-
     private void validateNumbersRange(List<Integer> numbers) {
         numbers.forEach(this::validateNumberRange);
     }
@@ -66,6 +60,13 @@ public class Lotto {
     private void validateNumberRange(Integer number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
+        }
+    }
+
+    private void validateNumbersDuplicate(List<Integer> numbers) {
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+        if (nonDuplicateNumbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBERS_DUPLICATED.getMessage());
         }
     }
 }
