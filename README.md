@@ -1,5 +1,15 @@
 # java-lotto-precourse
 
+## 아키텍처
+
+**MVC (Model-View-Controller)** 패턴을 따릅니다.
+
+> - **Model**: 이벤트를 처리하고, 변경된 데이터를 View에게 전달합니다.
+>- **View**: Model로부터 받은 데이터를 이용해 화면을 구성합니다.
+>- **Controller**: View로부터 발생한 이벤트를 Model에게 전달하고, Model로부터 받은 데이터를 View에게 반환합니다.
+
+---
+
 ## Model
 
 ### LottoCreator
