@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.ErrorMessages;
 
 public class InputView {
     public int readPurchaseAmount() {
@@ -9,7 +10,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_AMOUNT);
         }
     }
 
@@ -26,7 +27,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE);
         }
     }
 }
