@@ -25,7 +25,7 @@ public final class Statistics {
     }
 
     public double calculateProfitRate() {
-        final double seed = Lotto.TICKET_PRICE * resultCountMap.size();
+        final double seed = Lotto.TICKET_PRICE * lotteries.size();
         int profit = 0;
 
         for (Entry<Rank, Integer> entry : resultCountMap.entrySet()){
