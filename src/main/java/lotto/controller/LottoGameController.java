@@ -40,11 +40,13 @@ public class LottoGameController {
         List<Integer> winningNumbers;
         Lotto winningLotto;
         int bonusNumber;
+        List<WinningStatistic> winningStatistics;
 
         purchasedLottos = purchaseLotto();
         winningLotto = new Lotto(setWinningNumbers());
         bonusNumber = setBonusNumber(winningLotto.getNumbers());
-        calculateWinningStatics(purchasedLottos, winningLotto, bonusNumber);
+        winningStatistics = calculateWinningStatics(purchasedLottos, winningLotto, bonusNumber);
+        outputView.printStatistics(winningStatistics);
 
     }
 
@@ -96,16 +98,20 @@ public class LottoGameController {
         return true;
     }
 
-    public void calculateWinningStatics(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
+    public List<WinningStatistic> calculateWinningStatics(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
         LottoResultService lottoResultService = new LottoResultService(purchasedLottos, winningLotto, bonusNumber);
-        List<WinningStatistic> winningStatistics = new ArrayList<>();
+        List<WinningStatistic> winningStatistics = lottoResultService.generateWinningStatistics();
 
         for(Lotto purchasedLotto : purchasedLottos) {
             int count = lottoResultService.countMatchingNumbers(purchasedLotto, winningLotto);
             if (count == 5 && lottoResultService.matchBonus(purchasedLotto, bonusNumber)){
-//                winningStatistics.add(5, ));
+                winningStatistics.get(3).incrementOccurrence();
+                continue;
             }
+            if(count>=3)
+                winningStatistics.get(count-3).incrementOccurrence();
         }
+        return winningStatistics;
     }
 
 

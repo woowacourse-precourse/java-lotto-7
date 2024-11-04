@@ -1,6 +1,8 @@
 package lotto.model;
 
 
+import java.text.DecimalFormat;
+
 public class WinningStatistic {
 
     private final int matchCount;
@@ -29,7 +31,12 @@ public class WinningStatistic {
         this.occurrence++;
     }
 
-    public void printStatus(){
-        System.out.println(matchCount + " " + prizeAmount + " " + occurrence);
+    public String presentStatus(){
+        String status = "";
+        status += matchCount + "개 일치";
+        if(prizeAmount == 30000000){
+            status +=", 보너스 볼 일치";
+        }
+        return status;
     }
 }

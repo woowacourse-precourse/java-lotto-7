@@ -51,7 +51,7 @@ public class LottoResultServiceTest {
     public void 정상적_당첨통계객체_생성_확인(){
         List<WinningStatistic> statistics = lottoResultService.generateWinningStatistics();
         for(WinningStatistic winningStatistic : statistics){
-            winningStatistic.printStatus();
+            System.out.println(winningStatistic.presentStatus());
         }
     }
 }
