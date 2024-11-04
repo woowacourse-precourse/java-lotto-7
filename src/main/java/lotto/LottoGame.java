@@ -18,6 +18,7 @@ public class LottoGame {
 
     public void start() {
         Player player = createPlayer();
+        WinningLotto winningLotto = createWinningLotto();
     }
 
     private Player createPlayer() {
@@ -25,5 +26,11 @@ public class LottoGame {
         List<Lotto> lottoes = lottoMachine.issueLottoes(purchaseAmount);
         outputHandler.printPurchaseResult(lottoes);
         return new Player(purchaseAmount, lottoes);
+    }
+
+    private WinningLotto createWinningLotto() {
+        List<Integer> winningNumbers = inputHandler.readWinningNumbersInput();
+        int bonusNumber = inputHandler.readBonusNumberInput(winningNumbers);
+        return new WinningLotto(lottoMachine.issueLotto(winningNumbers), bonusNumber);
     }
 }
