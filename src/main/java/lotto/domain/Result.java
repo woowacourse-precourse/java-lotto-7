@@ -4,11 +4,12 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import lotto.Lotto;
 import lotto.constants.OutputMessages;
 
 public class Result {
     public static final int PERCENTAGE_FACTOR = 100;
-    
+
     private final Map<PrizeLevel, Integer> resultMap = new EnumMap<>(PrizeLevel.class);
     private final List<Lotto> lottos;
     private final Set<Integer> winningNumbers;

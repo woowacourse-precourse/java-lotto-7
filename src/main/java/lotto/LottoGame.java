@@ -21,7 +21,6 @@ public class LottoGame {
 
         WinningNumbers winningNumbers = inputView.inputWinningNumbers();
         BonusNumber bonusNumber = inputView.inputBonusNumber(winningNumbers);
-
         Result result = new Result(
                 lottoGenerator.getLottos(),
                 winningNumbers.getNumbers(),

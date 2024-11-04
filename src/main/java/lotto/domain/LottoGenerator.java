@@ -8,6 +8,7 @@ import static lotto.constants.LottoGeneratorConstants.LOTTO_PRICE;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Lotto;
 import lotto.constants.ErrorMessages;
 
 public class LottoGenerator {
