@@ -29,15 +29,15 @@ public class LottoController {
 
         //로또 번호 구매
         int lottoCount = lottoService.getLottoCount(purchasePrice);
-        outputView.lottoPurchasedCount(lottoCount);
+        outputView.lottoCount(lottoCount);
 
         //구매한 로또 번호 출력
         String lottoReceipt = lottoService.buyLotto(lottoCount);
-        outputView.lottoPurchasedDetail(lottoReceipt);
+        outputView.lottoReceipt(lottoReceipt);
 
         //당첨 번호 입력
         outputView.askWinningNumber();
-        getValidWinningNumber();
+        saveWinningNumber();
 
         //보너스 번호 입력
         outputView.askBonusNumber();
@@ -67,15 +67,15 @@ public class LottoController {
         }
     }
 
-    private void getValidWinningNumber() {
+    private void saveWinningNumber() {
         while (true) {
             try {
                 String input = inputView.winningNumber();
                 lottoValidation.validateBlank(input);
                 List<String> splitNumber = List.of(input.split(COMMA));
-                List<Integer> winningNumbers = lottoValidation.validateParsing(splitNumber);
-                lottoService.saveWinningNumbers(winningNumbers);
-                break;
+                List<Integer> winningNumber = lottoValidation.validateParsing(splitNumber);
+                lottoService.saveWinningNumber(winningNumber);
+                return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

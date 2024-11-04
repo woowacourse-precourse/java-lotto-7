@@ -32,8 +32,8 @@ public class LottoService {
         return soldLotto.getLottoDetails().toString();
     }
 
-    public void saveWinningNumbers(List<Integer> winningNumbers) {
-        winningLotto.addWinningLotto(winningNumbers);
+    public void saveWinningNumber(List<Integer> winningNumber) {
+        winningLotto.addWinningLotto(winningNumber);
     }
 
     public void validateBonusNumber(int bonusNumber) {

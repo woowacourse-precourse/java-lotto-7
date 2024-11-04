@@ -13,8 +13,6 @@ public class OutputView {
         ASK_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
         ASK_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
         WINNING_STATISTICS("\n당첨 통계\n---");
-
-
         private final String description;
 
         Description(String description) {
@@ -31,12 +29,12 @@ public class OutputView {
         System.out.println(Description.ASK_PURCHASE_PRICE);
     }
 
-    public void lottoPurchasedCount(int count) {
-        System.out.println(LINE_SEPARATOR + count + Description.LOTTO_COUNT);
+    public void lottoCount(int lottoCount) {
+        System.out.println(LINE_SEPARATOR + lottoCount + Description.LOTTO_COUNT);
     }
 
-    public void lottoPurchasedDetail(String lottos) {
-        System.out.println(lottos);
+    public void lottoReceipt(String lottoReceipt) {
+        System.out.println(lottoReceipt);
     }
 
     public void askWinningNumber() {
