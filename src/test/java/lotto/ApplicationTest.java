@@ -1,7 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -46,10 +50,35 @@ class ApplicationTest extends NsTest {
         );
     }
 
-    @Test
-    void 예외_테스트() {
+    @DisplayName("숫자가 아닌 구매금액을 입력했을 때 예외가 발생한다")
+    @NullSource
+    @ParameterizedTest
+    @ValueSource(strings = {"1000j"})
+    void throwWhenInvalidPurchaseAmount(String input) {
         assertSimpleTest(() -> {
-            runException("1000j");
+            runException(input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("숫자가 아닌 로또 번호를 입력했을 때 예외가 발생한다")
+    @NullSource
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,a"})
+    void throwWhenInvalidLottoNumber(String input) {
+        assertSimpleTest(() -> {
+            runException("1000", input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("숫자가 아닌 보너스 번호를 입력했을 때 예외가 발생한다")
+    @NullSource
+    @ParameterizedTest
+    @ValueSource(strings = {"a"})
+    void throwWhenInvalidBonusNumber(String input) {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
