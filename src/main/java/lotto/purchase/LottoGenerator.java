@@ -4,8 +4,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.statistics.LottoBall;
 
 class LottoGenerator {
+
+    private static final int LOTTO_BALL_COUNT = 6;
 
     private final List<MyLotto> lotteries;
 
@@ -15,7 +18,10 @@ class LottoGenerator {
 
     public List<MyLotto> createLotteries(int totalLotteryCount) {
         for (int i = 0; i < totalLotteryCount; i++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
+                    LottoBall.MIN_NUMBER.getValue(),
+                    LottoBall.MAX_NUMBER.getValue(),
+                    LOTTO_BALL_COUNT);
             lotteries.add(new MyLotto(manufactureRawNumbers(randomNumbers)));
         }
         return lotteries;

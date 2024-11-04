@@ -1,6 +1,6 @@
 package lotto.statistics;
 
-enum LottoBall {
+public enum LottoBall {
     MIN_NUMBER(1),
     MAX_NUMBER(45);
 
