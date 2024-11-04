@@ -10,8 +10,7 @@ public class MoneyInputValidator {
 
     public static void validateMoneyInput(String input) {
         CommonInputValidator.validateCommonInput(input);
-        CommonInputValidator.validateIsNumeric(input);
-        CommonInputValidator.validateIsInIntegerRange(input);
+        NumberInputValidator.validateNumberInput(input);
         validateIsMoreThanThousand(input);
         validateIsDivisibleByThousand(input);
     }

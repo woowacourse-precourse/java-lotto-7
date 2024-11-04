@@ -12,8 +12,7 @@ public class WinningNumberInputValidator {
     private static void validateIsIntegerList(String input) {
         String[] splitInput = input.split(COMMA);
         for (String s : splitInput) {
-            CommonInputValidator.validateIsNumeric(s);
-            CommonInputValidator.validateIsInIntegerRange(s);
+            NumberInputValidator.validateNumberInput(s);
         }
     }
 
