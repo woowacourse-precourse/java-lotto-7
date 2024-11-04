@@ -14,11 +14,9 @@ public class Application {
         List<List<Integer>> lottoLists = LottoMachine.generateLotto(purchase);
         OutputView.printLottoNumbers(lottoLists);
 
-        String inputWinningNumbers = InputView.inputWinningNumbers();
-        List<Integer> winningNumbers = InputController.parseIntegerList(inputWinningNumbers);
+        List<Integer> winningNumbers = InputController.parseIntegerList(InputView.inputWinningNumbers());
 
-        int inputBonusNumber = InputView.inputBonusNumber();
-        int bonusNumber = InputController.validateBonusNumber(inputBonusNumber);
+        int bonusNumber = InputController.validateBonusNumber(InputView.inputBonusNumber());
 
         OutputView.printWinningComment();
         LottoMatcher.matchingLotto(purchase, lottoLists, winningNumbers, bonusNumber);
