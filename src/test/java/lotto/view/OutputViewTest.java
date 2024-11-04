@@ -61,6 +61,14 @@ class OutputViewTest extends NsTest {
         ));
     }
 
+    @Test
+    @DisplayName("수익률 출력 테스트")
+    void displayYieldRate() {
+        outputView.displayYieldRate(62.522);
+        assertTrue(output().contains("총 수익률은 62.5%입니다."));
+    }
+
+
     @Override
     protected void runMain() {
 
