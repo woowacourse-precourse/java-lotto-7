@@ -9,28 +9,32 @@ import java.util.stream.Collectors;
 
 public class OutputHandler {
 
-    public static final String LOTTO_NUMBER_DELIMITER = ", ";
-    public static final String LOTTO_NOTATION_PREFIX = "[";
-    public static final String LOTTO_NOTATION_SUFFIX = "]";
+    private static final String PURCHASE_AMOUNT_INSTRUCTION_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBER_INSTRUCTION_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String PURCHASE_RESULT_FORMAT = "%d개를 구매했습니다.%n";
+    private static final String BONUS_NUMBER_INSTRUCTION_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String STATIC_RESULT_MESSAGE = "\n당첨 통계\n---\n";
+    private static final String TOTAL_PROFIT_FORMAT = "총 수익률은 %.1f%%입니다.%n";
+    private static final String LOTTO_NUMBER_DELIMITER = ", ";
+    private static final String LOTTO_NOTATION_PREFIX = "[";
+    private static final String LOTTO_NOTATION_SUFFIX = "]";
 
     public void showPurchaseAmountInstruction() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PURCHASE_AMOUNT_INSTRUCTION_MESSAGE);
     }
 
     public void showWinningNumbersInstruction() {
         System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUMBER_INSTRUCTION_MESSAGE);
     }
 
     public void showBonusNumberInstruction() {
         System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(BONUS_NUMBER_INSTRUCTION_MESSAGE);
     }
 
     public void showWinningStatisticsComment() {
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.printf(STATIC_RESULT_MESSAGE);
     }
 
     public void showLottos(List<Lotto> lottos) {
@@ -43,12 +47,12 @@ public class OutputHandler {
     }
 
     public void showTotalPrize(WinningResult result) {
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", result.getProfitRate());
+        System.out.printf(TOTAL_PROFIT_FORMAT, result.getProfitRate());
     }
 
     private void showPurchaseInformation(List<Lotto> lottos) {
         System.out.println();
-        System.out.printf("%d개를 구매했습니다.%n", lottos.size());
+        System.out.printf(PURCHASE_RESULT_FORMAT, lottos.size());
     }
 
     private void showLottosNotation(List<Lotto> lottos) {
