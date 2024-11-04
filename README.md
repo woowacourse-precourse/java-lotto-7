@@ -52,7 +52,7 @@
    - [x] validate string whether numeric string is positive or not
    - [x] validate string whether string is blank or not
    - [x] validate number whether number is divisible by specific number or not
-   - [ ] validate number whether number is out of specific range or not
+   - [x] validate number whether number is out of specific range or not
 
 ### Throwing Exception logic
 

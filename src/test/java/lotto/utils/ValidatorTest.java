@@ -49,4 +49,13 @@ public class ValidatorTest {
 
         Validator.validateDivisible(validValue,divisor);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {46,-1,0,5000})
+    void testValidateSpecificRange(int value){
+        int start = 1;
+        int end = 45;
+
+        assertThatThrownBy(()->Validator.validateSpecificRange(value,start,end)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
