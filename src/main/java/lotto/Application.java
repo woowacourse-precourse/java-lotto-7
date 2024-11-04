@@ -32,6 +32,7 @@ public class Application {
         printResults(gradeCounts);
         calculateProfitRate(gradeCounts, money);
     }
+
     // 입력
     private static int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
