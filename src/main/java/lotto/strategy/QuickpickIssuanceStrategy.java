@@ -16,7 +16,7 @@ public class QuickpickIssuanceStrategy implements IssuanceStrategy {
                 MAXIMUM_LOTTO_NUMBER,
                 NUMBERS_PER_TICKET
         );
-        
+
         return Lotto.from(numbers);
     }
 }
