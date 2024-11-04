@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningLottoTest {
@@ -29,7 +30,6 @@ public class WinningLottoTest {
     void matchNumbers() {
         WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
-
         assertThat(winningLotto.matchNumbers(lotto)).isEqualTo(3);
     }
 
@@ -38,7 +38,6 @@ public class WinningLottoTest {
     void matchBonusNumber() {
         WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-
         assertThat(winningLotto.hasBonusNumber(lotto)).isTrue();
     }
 }
