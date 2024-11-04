@@ -39,7 +39,7 @@ public class InputView {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 int bonus = Integer.parseInt(Console.readLine().trim());
                 if (bonus < 1 || bonus > 45 || winningLotto.getNumbers().contains(bonus)) {
-                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자 중 당첨 번호와 중복되지 않는 숫자여야 합니다.");
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
                 }
                 return bonus;
             } catch (IllegalArgumentException e) {
