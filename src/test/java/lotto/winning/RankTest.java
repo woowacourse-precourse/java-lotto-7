@@ -1,8 +1,9 @@
 package lotto.winning;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RankTest {
@@ -29,6 +30,13 @@ class RankTest {
     void 등수_확인_테스트_예외값_입력() {
         assertThrows(IllegalArgumentException.class,
                 () -> Rank.getWinningRank(2,true));
+    }
+
+    @Test
+    @DisplayName("등수별 총 수익 반환 테스트")
+    void 등수별_총_수익_반환_테스트() {
+        long profit = Rank.FIRST.getProfit(5);
+        assertThat(profit).isEqualTo(10_000_000_000L);
     }
 
 }
