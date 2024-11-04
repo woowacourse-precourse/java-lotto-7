@@ -1,4 +1,7 @@
-package lotto;
+package lotto.vo;
+
+import lotto.constant.ErrorMessage;
+import lotto.domain.LottoPublisher;
 
 public record PurchaseAmount(int value) {
     private static final String SIGNED_NUMBER_REGEX = "-?[0-9]+";
@@ -17,19 +20,19 @@ public record PurchaseAmount(int value) {
 
     private static void validateLetter(String input) {
         if (isLetter(input)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 문자가 아닌 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_CHARACTER_ERROR);
         }
     }
 
     private static void validatePositive(int purchaseAmount) {
         if (!isPositive(purchaseAmount)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 양수인 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_ERROR);
         }
     }
 
     private static void validateAmount(int purchaseAmount) {
         if (isPurchasableLottoAmount(purchaseAmount)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT_ERROR);
         }
     }
 

@@ -1,9 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.constant.OutputMessage;
 
 public class LottoRankSummary {
     public static List<LottoWinningRanks> summarizeLottoRanks(List<Integer> lottoResults, List<Boolean> bonusResults) {

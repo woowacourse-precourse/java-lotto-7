@@ -1,9 +1,15 @@
-package lotto;
+package lotto.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.vo.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.LottoBuyer;
+import lotto.domain.LottoPublisher;
+import lotto.domain.LottoRankSummary;
+import lotto.domain.LottoWinningRanks;
+import lotto.vo.PurchaseAmount;
+import lotto.vo.WinningNumber;
 
 public class LottoService {
     public LottoBuyer getLottoBuyer(PurchaseAmount purchaseAmount) {

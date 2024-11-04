@@ -1,8 +1,11 @@
-package lotto;
+package lotto.view;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.LottoWinningRanks;
+import lotto.constant.OutputMessage;
 
 public class Output {
     public static void printPurchaseAmountRequestMessage() {

@@ -1,17 +1,18 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+import lotto.vo.PurchaseAmount;
 
 public class LottoBuyer {
     private final PurchaseAmount purchaseAmount;
     private final List<Lotto> lottos;
 
-    LottoBuyer(List<Lotto> lottos, PurchaseAmount purchaseAmount) {
+    public LottoBuyer(List<Lotto> lottos, PurchaseAmount purchaseAmount) {
         this.lottos = lottos;
         this.purchaseAmount = purchaseAmount;
     }
 
-    public int getLottoCount(){
+    public int getLottoCount() {
         return purchaseAmount.value() / LottoPublisher.LOTTO_PRICE;
     }
 

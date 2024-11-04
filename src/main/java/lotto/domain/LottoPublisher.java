@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.vo.PurchaseAmount;
 
 public class LottoPublisher {
     public static final int LOTTO_PRICE = 1000;

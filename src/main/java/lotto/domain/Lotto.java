@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import lotto.constant.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,7 +14,7 @@ public class Lotto {
         this.numbers.sort(Integer::compareTo);
     }
 
-    public List<Integer> getLottoNumbers (){
+    public List<Integer> getLottoNumbers() {
         return numbers;
     }
 
@@ -34,21 +35,21 @@ public class Lotto {
 
     private void validateLottoCountSize(List<Integer> numbers) {
         if (isLottoCountSize(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_COUNT_ERROR);
         }
     }
 
-    private void validateDuplication(List<Integer> numbers){
+    private void validateDuplication(List<Integer> numbers) {
         if (isDuplication(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_DUPLICATION_ERROR);
         }
     }
 
-    private boolean isLottoCountSize (List<Integer> numbers) {
+    private boolean isLottoCountSize(List<Integer> numbers) {
         return numbers.size() != LottoPublisher.LOTTO_COUNT_SIZE;
     }
 
-    private boolean isDuplication (List<Integer> numbers) {
+    private boolean isDuplication(List<Integer> numbers) {
         return new HashSet<>(numbers).size() != numbers.size();
     }
 

@@ -1,7 +1,15 @@
-package lotto;
+package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import lotto.vo.BonusNumber;
+import lotto.view.Input;
+import lotto.domain.LottoBuyer;
+import lotto.service.LottoService;
+import lotto.domain.LottoWinningRanks;
+import lotto.view.Output;
+import lotto.vo.PurchaseAmount;
+import lotto.vo.WinningNumber;
 
 public class LottoController {
     private final LottoService lottoService;
@@ -48,7 +56,8 @@ public class LottoController {
         return Input.getBonusNumber(winningNumber);
     }
 
-    private List<LottoWinningRanks> getLottoWinningRanks(LottoBuyer lottoBuyer, WinningNumber winningNumber, BonusNumber bonusNumber) {
+    private List<LottoWinningRanks> getLottoWinningRanks(LottoBuyer lottoBuyer, WinningNumber winningNumber,
+                                                         BonusNumber bonusNumber) {
         return lottoService.summarizeLottoRanks(lottoBuyer.getLottos(), winningNumber, bonusNumber);
     }
 
