@@ -18,12 +18,20 @@ public class OutputView {
         return instance;
     }
 
-    public void printPurchaseInput(){
+    public void printPurchaseInput() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
     }
 
-    public void printLottos(Integer lottoCount, String lottosString){
+    public void printLottos(Integer lottoCount, String lottosString) {
         System.out.println(String.format(PURCHASE_COUNT_MESSAGE, lottoCount));
         System.out.println(lottosString);
+    }
+
+    public void printWinningNumberInput() {
+        System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
+    }
+
+    public void printBonusNumberInput(){
+        System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
     }
 }

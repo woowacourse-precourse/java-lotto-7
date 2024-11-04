@@ -20,15 +20,19 @@ public class LottoController {
 
         printLottos(createLottos, lottoCount);
 
+        List<Integer> winningNumbers = inputWinningNumbers();
+
+        Integer bonusNumber = inputBonusNumber();
+
     }
 
-    private void printLottos(List<Lotto> createLottos, Integer lottoCount){
+    private void printLottos(List<Lotto> createLottos, Integer lottoCount) {
         String lottosString = getLottosString(createLottos);
 
         OutputView.getInstance().printLottos(lottoCount, lottosString);
     }
 
-    private String getLottosString(List<Lotto> lottos){
+    private String getLottosString(List<Lotto> lottos) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Lotto lotto : lottos) {
             stringBuilder.append(lotto.toPrintList()).append("\n");
@@ -47,6 +51,24 @@ public class LottoController {
             lottos.add(lotto);
         }
         return lottos;
+    }
+
+    private List<Integer> inputWinningNumbers() {
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        OutputView.getInstance().printWinningNumberInput();
+        String input = InputView.getInstance().readUserInput();
+
+        for (String splitString : input.split(",")) {
+            winningNumbers.add(toInt(splitString));
+        }
+
+        return winningNumbers;
+    }
+
+    private Integer inputBonusNumber() {
+        OutputView.getInstance().printBonusNumberInput();
+        return toInt(InputView.getInstance().readUserInput());
     }
 
 
@@ -68,14 +90,13 @@ public class LottoController {
         return toInt(InputView.getInstance().readUserInput());
     }
 
-    private Integer toInt(String string){
-        try{
+    private Integer toInt(String string) {
+        try {
             return Integer.parseInt(string);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INPUT_NUMBER_ERROR_MESSAGE);
         }
     }
-
 
 
 }
