@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
-import lotto.LottoNum;
+import lotto.LottoNumber;
 import lotto.LottoPayment;
 import lotto.exception.LottoArgumentException;
 
@@ -31,13 +31,13 @@ public class InputController {
             validateNumber(number);
         }
         return new Lotto(lottoNumbers.stream()
-                .map(LottoNum::new).collect(Collectors.toList()));
+                .map(LottoNumber::new).collect(Collectors.toList()));
     }
 
-    public LottoNum getBonusNumber() {
+    public LottoNumber getBonusNumber() {
         final String input = this.readTrimmedInput();
         this.validateNumber(input);
-        return new LottoNum(input);
+        return new LottoNumber(input);
     }
 
     private String readTrimmedInput() {

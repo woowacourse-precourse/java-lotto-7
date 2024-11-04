@@ -14,7 +14,7 @@ public class LottoGenerator {
                 LottoNumbers.END.get(),
                 LottoNumbers.SIZE.get()
         );
-        final List<LottoNum> lottoNums = this.mapToLottoNumbers(numbers);
+        final List<LottoNumber> lottoNums = this.mapToLottoNumbers(numbers);
         return new Lotto(lottoNums);
     }
 
@@ -26,9 +26,9 @@ public class LottoGenerator {
         return new LottoContainer(lotteries);
     }
 
-    private List<LottoNum> mapToLottoNumbers(final List<Integer> numbers) {
+    private List<LottoNumber> mapToLottoNumbers(final List<Integer> numbers) {
         return numbers.stream()
-                .map(number -> new LottoNum(number))
+                .map(number -> new LottoNumber(number))
                 .collect(Collectors.toList());
     }
 }

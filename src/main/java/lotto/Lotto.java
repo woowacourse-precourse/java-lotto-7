@@ -6,25 +6,25 @@ import lotto.common.LottoNumbers;
 import lotto.exception.LottoArgumentException;
 
 public class Lotto {
-    private final List<LottoNum> numbers;
+    private final List<LottoNumber> numbers;
 
-    public Lotto(final List<LottoNum> lottoNumbers) {
+    public Lotto(final List<LottoNumber> lottoNumbers) {
         validate(lottoNumbers);
         this.numbers = lottoNumbers;
     }
 
-    private void validate(final List<LottoNum> numbers) {
+    private void validate(final List<LottoNumber> numbers) {
         validateSize(numbers);
         validateDuplicatedNumbers(numbers);
     }
 
-    private void validateSize(final List<LottoNum> numbers) {
+    private void validateSize(final List<LottoNumber> numbers) {
         if (numbers.size() != LottoNumbers.SIZE.get()) {
             throw new LottoArgumentException("로또 번호는 " + LottoNumbers.SIZE.get() + "개여야 합니다.");
         }
     }
 
-    private void validateDuplicatedNumbers(final List<LottoNum> numbers) {
+    private void validateDuplicatedNumbers(final List<LottoNumber> numbers) {
         final Long elementCount = numbers.stream()
                 .distinct()
                 .count();
@@ -33,11 +33,11 @@ public class Lotto {
         }
     }
 
-    public boolean containsNumber(final LottoNum number) {
+    public boolean containsNumber(final LottoNumber number) {
         return this.numbers.contains(number);
     }
 
-    protected List<LottoNum> getNumbers() {
+    protected List<LottoNumber> getNumbers() {
         return Collections.unmodifiableList(this.numbers);
     }
 }

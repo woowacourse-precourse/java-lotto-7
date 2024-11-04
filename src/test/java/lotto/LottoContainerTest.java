@@ -15,13 +15,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 class LottoContainerTest {
 
     private final WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6).stream()
-            .map(LottoNum::new).collect(Collectors.toList()), new LottoNum(7));
+            .map(LottoNumber::new).collect(Collectors.toList()), new LottoNumber(7));
 
     @DisplayName("발행된 로또 저장 테스트")
     @Test
     void 발행된_로또_저장_테스트() {
         final List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6).stream()
-                .map(LottoNum::new)
+                .map(LottoNumber::new)
                 .collect(Collectors.toList())));
         final LottoContainer container = new LottoContainer(lottos);
 
@@ -42,18 +42,18 @@ class LottoContainerTest {
                 Arguments.of(
                         List.of(
                                 new Lotto(List.of(1, 2, 3, 4, 5, 6).stream()
-                                        .map(LottoNum::new).collect(Collectors.toList())),
+                                        .map(LottoNumber::new).collect(Collectors.toList())),
                                 new Lotto(List.of(1, 2, 3, 4, 5, 7).stream()
-                                        .map(LottoNum::new).collect(Collectors.toList()))
+                                        .map(LottoNumber::new).collect(Collectors.toList()))
                         ),
                         LottoResults.FIRST.getWinningAmount().add(LottoResults.SECOND.getWinningAmount())
                 ),
                 Arguments.of(
                         List.of(
                                 new Lotto(List.of(11, 12, 13, 14, 15, 16).stream()
-                                        .map(LottoNum::new).collect(Collectors.toList())),
+                                        .map(LottoNumber::new).collect(Collectors.toList())),
                                 new Lotto(List.of(5, 6, 7, 8, 9, 10).stream()
-                                        .map(LottoNum::new).collect(Collectors.toList()))
+                                        .map(LottoNumber::new).collect(Collectors.toList()))
                         ),
                         BigDecimal.ZERO
                 )

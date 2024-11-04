@@ -22,7 +22,7 @@ public class Application {
         final Lotto inputWinnerLotto = repeater.repeatWithErrorMessage(() -> inputController.getLotto());
         outputController.printToGetBonusNumberInput();
         final WinningLotto winningLotto = repeater.repeatWithErrorMessage(() -> {
-            final LottoNum bonusNumber = inputController.getBonusNumber();
+            final LottoNumber bonusNumber = inputController.getBonusNumber();
             return new WinningLotto(inputWinnerLotto, bonusNumber);
         });
 

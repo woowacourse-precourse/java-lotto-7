@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.LottoContainer;
-import lotto.LottoNum;
+import lotto.LottoNumber;
 import lotto.Results;
 import lotto.common.LottoResults;
 import org.assertj.core.api.Assertions;
@@ -31,9 +31,9 @@ class OutputControllerTest {
         final OutputController outputController = new OutputController(outputUi);
         final LottoContainer lottoContainer = new LottoContainer(
                 List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6).stream()
-                                .map(LottoNum::new).collect(Collectors.toList())),
+                                .map(LottoNumber::new).collect(Collectors.toList())),
                         new Lotto(List.of(2, 3, 4, 5, 6, 7).stream()
-                                .map(LottoNum::new).collect(Collectors.toList()))
+                                .map(LottoNumber::new).collect(Collectors.toList()))
                 )
         );
 

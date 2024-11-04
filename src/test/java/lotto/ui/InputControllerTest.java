@@ -1,7 +1,7 @@
 package lotto.ui;
 
 import java.util.stream.Stream;
-import lotto.LottoNum;
+import lotto.LottoNumber;
 import lotto.exception.LottoArgumentException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +31,7 @@ class InputControllerTest {
         final InputController inputController = new InputController(inputUi);
 
         Assertions.assertThat(inputController.getBonusNumber())
-                .isEqualTo(new LottoNum(44));
+                .isEqualTo(new LottoNumber(44));
     }
 
     @DisplayName("잘못된 보너스 번호 입력 테스트")

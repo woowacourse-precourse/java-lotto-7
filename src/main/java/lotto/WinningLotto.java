@@ -5,15 +5,15 @@ import lotto.common.LottoResults;
 import lotto.exception.LottoArgumentException;
 
 public class WinningLotto extends Lotto {
-    private final LottoNum bonusNumber;
+    private final LottoNumber bonusNumber;
 
-    public WinningLotto(final List<LottoNum> lottoNumbers, final LottoNum bonusNumber) {
+    public WinningLotto(final List<LottoNumber> lottoNumbers, final LottoNumber bonusNumber) {
         super(lottoNumbers);
         validateAlreadyExistsNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    public WinningLotto(final Lotto lotto, final LottoNum bonusNumber) {
+    public WinningLotto(final Lotto lotto, final LottoNumber bonusNumber) {
         super(lotto.getNumbers());
         validateAlreadyExistsNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
@@ -27,7 +27,7 @@ public class WinningLotto extends Lotto {
 
     private int getMatchedNumberCount(final Lotto lotto) {
         int matchedCount = 0;
-        for (final LottoNum winningNumber : this.getNumbers()) {
+        for (final LottoNumber winningNumber : this.getNumbers()) {
             if (lotto.containsNumber(winningNumber)) {
                 matchedCount++;
             }
@@ -42,7 +42,7 @@ public class WinningLotto extends Lotto {
         return false;
     }
 
-    private void validateAlreadyExistsNumber(final LottoNum bonusNumber) {
+    private void validateAlreadyExistsNumber(final LottoNumber bonusNumber) {
         if (super.containsNumber(bonusNumber)) {
             throw new LottoArgumentException("보너스 번호가 이미 로또 번호에 포함되어 있습니다.");
         }

@@ -4,15 +4,15 @@ import java.util.Objects;
 import lotto.common.LottoNumbers;
 import lotto.exception.LottoArgumentException;
 
-public class LottoNum {
+public class LottoNumber {
     private final int number;
 
-    public LottoNum(final String number) {
+    public LottoNumber(final String number) {
         validate(number);
         this.number = Integer.parseInt(number);
     }
 
-    public LottoNum(final int number) {
+    public LottoNumber(final int number) {
         final String value = String.valueOf(number);
         validate(value);
         this.number = number;
@@ -45,7 +45,7 @@ public class LottoNum {
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        LottoNum lottoNum = (LottoNum) object;
+        LottoNumber lottoNum = (LottoNumber) object;
         return number == lottoNum.number;
     }
 

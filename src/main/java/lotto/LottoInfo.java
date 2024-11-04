@@ -9,7 +9,7 @@ public class LottoInfo {
         this.lotto = lotto;
     }
 
-    public List<LottoNum> lottoNumbers() {
+    public List<LottoNumber> lottoNumbers() {
         return lotto.getNumbers();
     }
 }

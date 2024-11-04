@@ -15,7 +15,7 @@ class LottoTest {
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7).stream()
-                .map(LottoNum::new).collect(Collectors.toList())))
+                .map(LottoNumber::new).collect(Collectors.toList())))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -23,7 +23,7 @@ class LottoTest {
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5).stream()
-                .map(LottoNum::new).collect(Collectors.toList())))
+                .map(LottoNumber::new).collect(Collectors.toList())))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -32,7 +32,7 @@ class LottoTest {
     @MethodSource("범위벗어나는케이스")
     void 각_로또_번호가_범위에_벗어나면_예외가_발생한다(final List<Integer> lottoNumbers) {
         assertThatThrownBy(() -> new Lotto(lottoNumbers.stream()
-                .map(LottoNum::new).collect(Collectors.toList())))
+                .map(LottoNumber::new).collect(Collectors.toList())))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
