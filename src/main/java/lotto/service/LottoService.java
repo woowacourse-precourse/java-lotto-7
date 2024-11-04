@@ -28,7 +28,6 @@ public class LottoService {
         initWinningCounts();
         for (Lotto lotto : lotteries) {
             countWinning(lotto, winningLottery, bonusLottery);
-
         }
     }
 
