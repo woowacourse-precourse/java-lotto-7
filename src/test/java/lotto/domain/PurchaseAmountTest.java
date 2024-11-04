@@ -34,6 +34,8 @@ class PurchaseAmountTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new PurchaseAmount(rawPurchaseAmount);
         });
+
+        assertEquals(ERROR_PROMPT + INVALID_PRICE_UNIT, exception.getMessage());
     }
 
     @Test
@@ -46,6 +48,8 @@ class PurchaseAmountTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new PurchaseAmount(rawPurchaseAmount);
         });
+
+        assertEquals(ERROR_PROMPT + UP_MAX_PURCHASE_AMOUNT, exception.getMessage());
     }
 
     @Test
@@ -58,6 +62,8 @@ class PurchaseAmountTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new PurchaseAmount(rawPurchaseAmount);
         });
+
+        assertEquals(ERROR_PROMPT + INVALID_PRICE_UNIT, exception.getMessage());
     }
 
     @Test
