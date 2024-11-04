@@ -23,32 +23,31 @@ public class GamePlay {
     private int bonusNumber;
 
     public GamePlay() {
-        useMoneys = getMoney();
+        inputMoney();
         buyLotto();
-        winningLotto = getWinningLotto();
-        bonusNumber = getBonusNumber();
-
+        pickWinningLotto();
+        pickBonusNumber();
         displayResult();
     }
 
-    private int getBonusNumber() {
+    private void pickBonusNumber() {
         System.out.println("보너스 번호를 입력해주세요.");
-        return Integer.parseInt(Console.readLine());
+        bonusNumber = Integer.parseInt(Console.readLine());
     }
 
-    private Lotto getWinningLotto() {
+    private void pickWinningLotto() {
         System.out.println("당첨 번호 6자리를 입력해주세요. (,) 쉼표를 기준으로 구분됩니다.");
 
-        return new Lotto(stream(Console.readLine().split(DELIMITER))
+        winningLotto = new Lotto(stream(Console.readLine().split(DELIMITER))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList()));
     }
 
-    private int getMoney() {
+    private void inputMoney() {
         System.out.println("로또 구입 금액을 입력해주세요. 단, 1000원 단위로 입력해주세요.");
         int money = Integer.parseInt(Console.readLine());
-        return money;
+        useMoneys = money;
     }
 
     private void buyLotto() {
@@ -113,18 +112,43 @@ public class GamePlay {
     }
 
     private void displayResult() {
-        StringBuilder sb = new StringBuilder();
-        Map<Rank, Integer> results = calculateLotto();
+        Map<Rank, Integer> lottoResult = calculateLotto();
 
+        displayWinningStatics(lottoResult);
+        displayProfitRate(lottoResult);
+    }
+
+    private void displayWinningStatics(Map<Rank, Integer> lottoResult) {
+        StringBuilder sb = new StringBuilder();
         sb.append(LINE_BREAK).append("당첨 통계").append(LINE_BREAK)
                 .append("---").append(LINE_BREAK);
 
         Arrays.stream(Rank.values())
                 .sorted(Comparator.comparing(Rank::getPrize).reversed())
                 .forEach(rank -> sb.append(rank.getDescription())
-                        .append(" - ").append(results.get(rank))
+                        .append(" - ").append(lottoResult.get(rank))
                         .append("개").append(LINE_BREAK));
 
         System.out.println(sb.toString());
+    }
+
+    private void displayProfitRate(Map<Rank, Integer> lottoResult) {
+        long totalPrize = calculatePrize(lottoResult);
+        double profitRate = calculateProfitRate(totalPrize);
+
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+    }
+
+    private long calculatePrize(Map<Rank, Integer> lottoResult) {
+        long totalPrize = 0;
+        for(Rank rank : lottoResult.keySet()){
+            totalPrize += rank.getPrize() * lottoResult.get(rank);
+        }
+
+        return totalPrize;
+    }
+
+    private double calculateProfitRate(long totalPrize) {
+        return  (totalPrize * 100.0) / useMoneys;
     }
 }
