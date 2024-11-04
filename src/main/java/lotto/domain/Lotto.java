@@ -22,6 +22,16 @@ public class Lotto {
         }
     }
 
+    public void validateWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        validate(winningNumbers);
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
     public LottoRank match(List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = (int) numbers.stream().filter(winningNumbers::contains).count();
         boolean matchBonus = numbers.contains(bonusNumber);

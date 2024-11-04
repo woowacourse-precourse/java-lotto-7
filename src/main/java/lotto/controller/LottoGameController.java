@@ -22,6 +22,9 @@ public class LottoGameController {
             List<Integer> winningNumbers = inputView.inputWinningNumbers();
             int bonusNumber = inputView.inputBonusNumber();
 
+            Lotto winningLotto = new Lotto(winningNumbers);
+            winningLotto.validateWinningNumbers(winningNumbers, bonusNumber);
+
             LottoResult result = lottoMachine.calculateResult(tickets, winningNumbers, bonusNumber);
             outputView.printResult(result, purchaseAmount);
         } catch (IllegalArgumentException e) {
