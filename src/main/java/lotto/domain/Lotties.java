@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.model.LotteryStatistics;
 
 public class Lotties {
     private final List<Lotto> lottoTickets;
@@ -20,5 +21,9 @@ public class Lotties {
 
     public long size() {
         return lottoTickets.size();
+    }
+
+    public LotteryStatistics computeStatistics(WinningLotto winningLotto) {
+        return LotteryStatistics.of(this, winningLotto);
     }
 }

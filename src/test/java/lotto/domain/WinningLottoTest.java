@@ -38,6 +38,22 @@ class WinningLottoTest {
     void 일정한_출력형식을_갖는다() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         WinningLotto winningLotto = WinningLotto.of(lotto, 7);
-        assertEquals(winningLotto.toString(), "Number = [1, 2, 3, 4, 5, 6], Bonus = 7");
+        assertEquals("Number = [1, 2, 3, 4, 5, 6], Bonus = 7", winningLotto.toString());
+    }
+
+    @DisplayName("올바른 당첨번호를 반환한다.")
+    @Test
+    void 올바른_당첨번호를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = WinningLotto.of(lotto, 7);
+        assertEquals(6, winningLotto.getWinningNumbers().size());
+    }
+
+    @DisplayName("올바른 보너스번호를 반환한다.")
+    @Test
+    void 올바른_보너스번호를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = WinningLotto.of(lotto, 7);
+        assertEquals(7, winningLotto.getBonusNumber());
     }
 }

@@ -3,9 +3,9 @@ package lotto;
 
 import lotto.domain.Lotties;
 import lotto.domain.LottiesFactory;
-import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 import lotto.model.Budget;
+import lotto.model.LotteryStatistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,6 +21,8 @@ public class Application {
         outputView.printLotties(lotties);
 
         WinningLotto winningLotto =  inputView.readWinningLotto();
-        System.out.println(winningLotto);
+
+        LotteryStatistics statistics = lotties.computeStatistics(winningLotto);
+        outputView.printStatistics(statistics);
     }
 }

@@ -1,11 +1,14 @@
 package lotto.domain;
 
+import lotto.model.LottoPrize;
+import net.bytebuddy.build.Plugin.WithInitialization;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -90,4 +93,25 @@ class LottoTest {
         assertFalse(lotto.contains(7));
     }
 
+    @DisplayName("로또 2등 당첨 시 올바른 등수를 반환한다.")
+    @Test
+    void 로또_2등_당첨_시_올바른_등수를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
+        WinningLotto winningLotto = WinningLotto.of(
+                new Lotto((List.of(1,2,3,4,5,6))),
+                7
+        );
+        assertEquals(LottoPrize.SECOND, lotto.scratch(winningLotto));
+    }
+
+    @DisplayName("로또 당첨 시 올바른 등수를 반환한다.")
+    @Test
+    void 로또_당첨_시_올바른_등수를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
+        WinningLotto winningLotto = WinningLotto.of(
+                new Lotto((List.of(1,2,3,4,5,6))),
+                45
+        );
+        assertEquals(LottoPrize.THIRD, lotto.scratch(winningLotto));
+    }
 }

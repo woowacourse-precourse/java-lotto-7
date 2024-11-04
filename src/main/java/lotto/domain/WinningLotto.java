@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.common.ErrorMessage;
 
 public class WinningLotto {
@@ -26,6 +27,18 @@ public class WinningLotto {
 
     public static WinningLotto of(Lotto lotto, int bonusNumber) {
         return new WinningLotto(lotto, bonusNumber);
+    }
+
+    public boolean contains(Integer number) {
+        return lotto.contains(number);
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return lotto.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
     @Override

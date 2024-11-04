@@ -6,11 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.common.ErrorMessage;
+import lotto.model.LottoPrize;
 
 public class Lotto {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int NUMBER_OF_NUMBERS = 6;
+    private static final int MAYBE_SECOND_PRIZE = 5;
 
     private final List<Integer> numbers;
 
@@ -56,6 +58,24 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
+    }
+
+    public LottoPrize scratch(WinningLotto winningLotto) {
+        int count = compare(winningLotto);
+        if ((count == MAYBE_SECOND_PRIZE) && (contains(winningLotto.getBonusNumber()))) {
+            return LottoPrize.SECOND;
+        }
+        return LottoPrize.from(count);
+    }
+
+    private int compare(WinningLotto winningLotto) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winningLotto.contains(number)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public boolean contains(Integer number) {
