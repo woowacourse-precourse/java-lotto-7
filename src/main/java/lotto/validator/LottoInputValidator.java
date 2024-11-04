@@ -1,5 +1,12 @@
 package lotto.validator;
 
+import static lotto.constant.LottoConstant.DELIMITER;
+import static lotto.constant.LottoConstant.LOTTO_MAX_AMOUNT;
+import static lotto.constant.LottoConstant.LOTTO_MAX_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_MIN_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_PRICE;
+import static lotto.constant.LottoConstant.LOTTO_SIZE;
+import static lotto.constant.LottoConstant.ZERO;
 import static lotto.exception.LottoErrorCode.BONUS_NUMBER_DUPLICATED;
 import static lotto.exception.LottoErrorCode.BONUS_NUMBER_NOT_BLANK;
 import static lotto.exception.LottoErrorCode.BONUS_NUMBER_NOT_ONE;
@@ -53,7 +60,7 @@ public class LottoInputValidator { // 사용자 Input 검증
     }
 
     private static void isBonusNumOutOfRange(int bonus) {
-        if (bonus < 1 || bonus > 45) {
+        if (bonus < LOTTO_MIN_NUMBER || bonus > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
@@ -77,20 +84,20 @@ public class LottoInputValidator { // 사용자 Input 검증
     }
 
     private static List<Integer> getLottoNumbersFromWinnerLottoNumbers(String winnerNumbers) {
-        String[] numbers = winnerNumbers.split(",");
+        String[] numbers = winnerNumbers.split(DELIMITER);
         return Arrays.stream(numbers)
                 .map(Integer::parseInt)
                 .toList();
     }
 
     private static void isWinnerNumbersContainComma(String winnerNumbers) {
-        if (!winnerNumbers.contains(",")) {
+        if (!winnerNumbers.contains(DELIMITER)) {
             throw new IllegalArgumentException(WINNER_LOTTO_NUMBERS_NOT_SEPARATED_BY_COMMA.getMessage());
         }
     }
 
     private static void isWinnerNumbersSize6(String winnerNumbers) {
-        if (winnerNumbers.split(",").length != 6) {
+        if (winnerNumbers.split(DELIMITER).length != LOTTO_SIZE) {
             throw new IllegalArgumentException(WINNER_LOTTO_NUMBERS_SIZE_NOT_6.getMessage());
         }
     }
@@ -102,31 +109,31 @@ public class LottoInputValidator { // 사용자 Input 검증
     }
 
     private static void isWinnerNumbersOutOfRange(List<Integer> lottoNumbers) {
-        if (lottoNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+        if (lottoNumbers.stream().anyMatch(number -> number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER)) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }
 
     private static void isWinnerNumbersDuplicated(List<Integer> lottoNumbers) {
-        if (lottoNumbers.stream().distinct().count() != 6) {
+        if (lottoNumbers.stream().distinct().count() != LOTTO_SIZE) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATED.getMessage());
         }
     }
 
     private static void isMoneyOver_1_000_000(String money) {
-        if (Integer.parseInt(money) > 1000000) {
+        if (Integer.parseInt(money) > LOTTO_MAX_AMOUNT) {
             throw new IllegalArgumentException(LOTTO_PRICE_NOT_OVER_1_000_000.getMessage());
         }
     }
 
     private static void isMoneyNotIn_1_000(String money) {
-        if (Integer.parseInt(money) % 1000 != 0) {
+        if (Integer.parseInt(money) % LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException(LOTTO_PRICE_NOT_IN_1_000.getMessage());
         }
     }
 
     private static void isMoneyUnder_1_000(String money) {
-        if (Integer.parseInt(money) < 1000) {
+        if (Integer.parseInt(money) < LOTTO_PRICE) {
             throw new IllegalArgumentException(LOTTO_PRICE_NOT_UNDER_1_000.getMessage());
         }
     }

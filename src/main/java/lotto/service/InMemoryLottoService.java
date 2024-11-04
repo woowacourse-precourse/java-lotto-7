@@ -4,6 +4,8 @@ import static lotto.constant.LottoConstant.LOTTO_MAX_NUMBER;
 import static lotto.constant.LottoConstant.LOTTO_MIN_NUMBER;
 import static lotto.constant.LottoConstant.LOTTO_PRICE;
 import static lotto.constant.LottoConstant.LOTTO_SIZE;
+import static lotto.constant.LottoConstant.ONE;
+import static lotto.constant.LottoConstant.ZERO;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class InMemoryLottoService implements LottoService {
 
         int purchasableLottoCount = Integer.parseInt(money) / LOTTO_PRICE;
 
-        for (int i = 0; i < purchasableLottoCount; i++) {
+        for (int i = ZERO; i < purchasableLottoCount; i++) {
             List<Integer> lottoNumbers = createLottoNumbers();
             lottoRepository.save(new Lotto(lottoNumbers));
         }
@@ -81,7 +83,7 @@ public class InMemoryLottoService implements LottoService {
     }
 
     private long getTotalPrize(Map<Rank, Integer> rankCounts) {
-        long totalPrize = 0;
+        long totalPrize = ZERO;
         for (Rank rank : Rank.values()) {
             totalPrize += (long) rankCounts.get(rank) * rank.getPrize();
         }
@@ -98,7 +100,7 @@ public class InMemoryLottoService implements LottoService {
     private Map<Rank, Integer> getRankCounts(List<Integer> winnerNumbers, int bonus) {
         Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
-            rankCounts.put(rank, 0);
+            rankCounts.put(rank, ZERO);
         }
 
         List<Lotto> lottos = lottoRepository.findAll();
@@ -110,7 +112,7 @@ public class InMemoryLottoService implements LottoService {
             boolean isBonusMatch = lotto.getNumbers().contains(bonus);
 
             Rank rank = Rank.valueOf(matchCount, isBonusMatch);
-            rankCounts.put(rank, rankCounts.get(rank) + 1);
+            rankCounts.put(rank, rankCounts.get(rank) + ONE);
         }
         return rankCounts;
     }

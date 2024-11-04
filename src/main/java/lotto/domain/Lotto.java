@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.LOTTO_MAX_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_MIN_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_SIZE;
+import static lotto.constant.LottoConstant.ONE;
+import static lotto.constant.LottoConstant.ZERO;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBERS_DUPLICATED;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBERS_NOT_SORTED;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBERS_OUT_OF_RANGE;
@@ -15,13 +20,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+        if (numbers.stream().anyMatch(number -> number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER)) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
         }
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != LOTTO_SIZE) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATED.getMessage());
         }
         if (!isSorted(numbers)) {
@@ -30,8 +35,8 @@ public class Lotto {
     }
 
     private boolean isSorted(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
-            if (i + 1 < numbers.size() && numbers.get(i) > numbers.get(i + 1)) {
+        for (int i = ZERO; i < numbers.size(); i++) {
+            if (i + ONE < numbers.size() && numbers.get(i) > numbers.get(i + ONE)) {
                 return false;
             }
         }
