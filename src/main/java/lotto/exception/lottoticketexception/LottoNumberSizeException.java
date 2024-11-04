@@ -1,4 +1,7 @@
-package lotto.exception;
+package lotto.exception.lottoticketexception;
+
+import lotto.exception.ErrorConstants;
+import lotto.exception.ErrorMessage;
 
 public class LottoNumberSizeException extends IllegalArgumentException {
 	public LottoNumberSizeException() {
