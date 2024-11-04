@@ -33,6 +33,32 @@ public class Lotto {
         }
     }
 
+    public Prize checkPrize(List<Integer> winningNumbers, Integer bonusNumber) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+
+        if (count == 6) {
+            return Prize.FIRST;
+        }
+        if (count == 5 && numbers.contains(bonusNumber)) {
+            return Prize.SECOND;
+        }
+        if (count == 5) {
+            return Prize.THIRD;
+        }
+        if (count == 4) {
+            return Prize.FOURTH;
+        }
+        if (count == 3) {
+            return Prize.FIFTH;
+        }
+        return Prize.NO_PRIZE;
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
