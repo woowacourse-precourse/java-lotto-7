@@ -65,7 +65,7 @@ public class LottoTickets {
     }
 
 
-    public Double calculateProfitRate(int money, int[] result) {
+    public double calculateProfitRate(int money, int[] result) {
         double totalProfit = 0.0;
 
         for (LottoCriteria criteria : LottoCriteria.values()) {
