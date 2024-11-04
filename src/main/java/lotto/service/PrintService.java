@@ -14,6 +14,7 @@ public class PrintService {
     private static final int FIVE = 2;
     private static final int FIVE_BONUS = 3;
     private static final int SIX = 4;
+    private static final int ADJUST_NUMBER = 100;
     private static final int THREE_EARN = 5000;
     private static final int FOUR_EARN = 50000;
     private static final int FIVE_EARN = 1500000;
@@ -28,10 +29,9 @@ public class PrintService {
         return new PrintService();
     }
 
-    public void printNoticeBuyAmount(int amount, int change) {
+    public void printNoticeBuyAmount(int amount) {
         System.out.println(
-                amount + LottoInfoMessages.NOTICE_BUY_AMOUNT_START.text()
-                        + change + LottoInfoMessages.NOTICE_BUY_AMOUNT_END.text());
+                amount + LottoInfoMessages.NOTICE_BUY_AMOUNT_START.text());
         System.out.println();
     }
 
@@ -85,7 +85,7 @@ public class PrintService {
         earnings += matchedResult[FIVE] * FIVE_EARN;
         earnings += matchedResult[FIVE_BONUS] * FIVE_BONUS_EARN;
         earnings += matchedResult[SIX] * SIX_EARN;
-        return (float) earnings / pay;
+        return (float) ADJUST_NUMBER * earnings / pay;
     }
 
     private int[] addCountNumber(int[] numbers, int[] matchedResult) {
@@ -100,14 +100,31 @@ public class PrintService {
     public void printLottoGroup(LottoGroup lottoGroup) {
         int lottoGroupSize = lottoGroup.getSize();
         List<Lotto> lottos = lottoGroup.getLottos();
-        System.out.println(LottoInfoMessages.TOTAL_BUY_AMOUNT.text());
+        printBuyLottoList();
         for (int i = 0; i < lottoGroupSize; i++) {
             System.out.println(lottos.get(i).getString());
         }
         System.out.println();
     }
 
+    private void printBuyLottoList() {
+        System.out.println(LottoInfoMessages.BUY_LOTTO_LIST.text());
+    }
+
+
     public void printSyntaxError() {
         System.out.println(LottoErrorMessages.SYNTAX_NUMBER_ERROR.addErrorText());
+    }
+
+    public void printPayInputError() {
+        System.out.println(LottoErrorMessages.PAY_INPUT_ERROR.addErrorText());
+    }
+
+    public void printNotThousand() {
+        System.out.println(LottoErrorMessages.NOT_THOUSAND.addErrorText());
+    }
+
+    public void printInsertPay() {
+        System.out.println(LottoInfoMessages.INSERT_PAY.text());
     }
 }

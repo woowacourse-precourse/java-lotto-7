@@ -20,8 +20,6 @@ public class LottoController {
     private int manualAmount = 0;
     private int change = 0;
     private int bonusNumber = 0;
-    private List<Set<Integer>> manualLottoList = new ArrayList<>();
-    private List<Set<Integer>> autoLottoList = new ArrayList<>();
     private LottoGroup lottoGroup;
     private Lotto winnerLotto;
     private List<int[]> matchedList = new ArrayList<>();
@@ -46,7 +44,7 @@ public class LottoController {
         pay = lottoService.payInput();
         amount = pay.getAmount();
         change = pay.getChange();
-        printService.printNoticeBuyAmount(amount, change);
+        printService.printNoticeBuyAmount(amount);
     }
 
     private void generateAndPrintLotto() {
