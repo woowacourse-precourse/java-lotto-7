@@ -36,6 +36,10 @@ public enum LottoEnum {
         return winnerCount;
     }
 
+    public void reset() {
+        winnerCount = new BigDecimal(0);
+    }
+
     public static void increaseWinnerCount(int count) {
         Arrays.stream(LottoEnum.values())
                 .filter(lotto -> lotto.matchCount == count)
