@@ -11,20 +11,39 @@ import lotto.validator.WinningLottoValidator;
 
 public class InputHandler {
     public int readPurchaseAmountInput() {
-        System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE.getMessage());
-        String input = Console.readLine();
-        return PurchaseAmountValidator.validatePurchaseAmount(input);
+        while (true) {
+            try {
+                System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE.getMessage());
+                String input = Console.readLine();
+                return PurchaseAmountValidator.validatePurchaseAmount(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     public List<Integer> readWinningNumbersInput() {
-        System.out.println(WINNING_NUMBERS_INPUT_MESSAGE.getMessage());
-        String input = Console.readLine();
-        return WinningLottoValidator.validateWinningNumbers(input);
+        while (true) {
+            try {
+                System.out.println(WINNING_NUMBERS_INPUT_MESSAGE.getMessage());
+                String input = Console.readLine();
+                return WinningLottoValidator.validateWinningNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int readBonusNumberInput() {
-        System.out.println(BONUS_NUMBER_INPUT_MESSAGE.getMessage());
-        String input = Console.readLine();
-        return WinningLottoValidator.validateBonusNumber(input);
+        while (true) {
+            try {
+                System.out.println(BONUS_NUMBER_INPUT_MESSAGE.getMessage());
+                String input = Console.readLine();
+                return WinningLottoValidator.validateBonusNumber(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
