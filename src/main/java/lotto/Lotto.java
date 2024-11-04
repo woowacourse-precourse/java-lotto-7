@@ -44,6 +44,10 @@ public class Lotto {
         return Prize.NOTHING;
     }
 
+    public void printNumber(){
+        System.out.println(numbers);
+    }
+
     boolean isSorted() {
         return numbers.equals(numbers.stream().sorted().toList());
     }
