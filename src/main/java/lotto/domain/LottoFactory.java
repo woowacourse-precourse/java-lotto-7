@@ -23,30 +23,7 @@ public class LottoFactory {
     private static Lotto createLotto() {
         List<Integer> numbersInRange = Randoms
                 .pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
-        validate(numbersInRange);
         Collections.sort(numbersInRange);
         return new Lotto(numbersInRange);
-    }
-
-    private static void validate(List<Integer> numbers) {
-        validateRange(numbers);
-        validateDuplicated(numbers);
-    }
-
-    private static void validateDuplicated(List<Integer> numbers) {
-        boolean isDuplicated = numbers.stream()
-                .distinct()
-                .count() != LOTTO_SIZE;
-        if (isDuplicated) {
-            throw new IllegalArgumentException(ErrorCode.DUPLICATED_NUMBER.getMessage());
-        }
-    }
-
-    private static void validateRange(List<Integer> numbers) {
-        boolean isOverRange = numbers.stream()
-                .anyMatch(number -> number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER);
-        if (isOverRange) {
-            throw new IllegalArgumentException(ErrorCode.OUT_OF_RANGE.getMessage());
-        }
     }
 }

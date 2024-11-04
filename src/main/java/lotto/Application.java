@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.LottoManager;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinnerLotto;
 import lotto.io.InputView;
 import lotto.io.OutputView;
 
@@ -13,6 +14,6 @@ public class Application {
         LottoManager lottoManager = LottoManager.from(purchaseAmount.getAmount());
 
         OutputView.printPurchaseLottos(lottoManager.getPublishedLottos());
-
+        WinnerLotto winnerLotto = inputView.inputWinningNumbers();
     }
 }

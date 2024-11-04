@@ -1,6 +1,7 @@
 package lotto.io;
 
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinnerLotto;
 import lotto.error.ErrorCode;
 
 public class InputView {
@@ -19,7 +20,6 @@ public class InputView {
     private String readLine() {
         String input = reader.readLine();
         validate(input);
-
         return input;
     }
 
@@ -39,7 +39,21 @@ public class InputView {
         while(true){
             try{
                 String inputPurchaseAmount = readLine();
+                System.out.println();
                 return new PurchaseAmount(inputPurchaseAmount);
+            } catch (IllegalArgumentException ex){
+                printReInput(ex);
+            }
+        }
+    }
+
+    public WinnerLotto inputWinningNumbers(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        while(true){
+            try{
+                String inputWinningNumbers = readLine();
+                System.out.println();
+                return WinnerLotto.from(inputWinningNumbers);
             } catch (IllegalArgumentException ex){
                 printReInput(ex);
             }
