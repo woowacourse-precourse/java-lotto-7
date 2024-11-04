@@ -6,7 +6,6 @@ import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private WinningState winningState;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
