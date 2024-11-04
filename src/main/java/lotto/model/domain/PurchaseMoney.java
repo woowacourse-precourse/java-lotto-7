@@ -15,7 +15,7 @@ public class PurchaseMoney {
 	}
 
 	private void moreThanThousand(int input) {
-		if (input <= MINIMUM_MONEY_SIZE) {
+		if (input < MINIMUM_MONEY_SIZE) {
 			throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.");
 		}
 	}
