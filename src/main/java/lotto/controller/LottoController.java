@@ -20,43 +20,53 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmountInt = 0;
-        while (true) {
-            try {
-                String purchaseAmount = InputView.requestPurchaseAmount();
-                purchaseAmountInt = InputValidator.validatePurchaseAmount(purchaseAmount);
-                break;
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
-            }
-        }
-
+        int purchaseAmountInt = requestAndValidatePurchaseAmount();
         LottoTicket lottoTicket = lottoService.generateLottos(purchaseAmountInt);
+
         OutputView.printPurchaseMessage(lottoTicket.getLottos().size());
         OutputView.printLottos(lottoTicket);
 
-        List<Integer> winningNumbersInteger = null;
+        List<Integer> winningNumbersInteger = requestAndValidateWinningNumbers();
+        int bonusNumber = requestAndValidateBonusNumber(winningNumbersInteger);
+
+        calculateAndDisplayStatistics(lottoTicket, winningNumbersInteger, bonusNumber, purchaseAmountInt);
+    }
+
+    private int requestAndValidatePurchaseAmount() {
+        while (true) {
+            try {
+                String purchaseAmount = InputView.requestPurchaseAmount();
+                return InputValidator.validatePurchaseAmount(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> requestAndValidateWinningNumbers() {
         while (true) {
             try {
                 List<String> winningNumbersInput = InputView.requestWinningNumbers();
-                winningNumbersInteger = InputValidator.validateWinningNumbers(winningNumbersInput);
-                break;
+                return InputValidator.validateWinningNumbers(winningNumbersInput);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
         }
+    }
 
-        int bonusNumber = 0;
+    private int requestAndValidateBonusNumber(List<Integer> winningNumbersInteger) {
         while (true) {
             try {
                 String bonusNumberInput = InputView.requestBonusNumber();
-                bonusNumber = InputValidator.validateBonusNumber(bonusNumberInput, winningNumbersInteger);
-                break;
+                return InputValidator.validateBonusNumber(bonusNumberInput, winningNumbersInteger);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
         }
+    }
 
+    private void calculateAndDisplayStatistics(LottoTicket lottoTicket, List<Integer> winningNumbersInteger,
+                                               int bonusNumber, int purchaseAmountInt) {
         Map<LottoResult, Integer> lottoResultCount = lottoService.calculateStatisticsLottoResult(
                 lottoTicket, winningNumbersInteger, bonusNumber);
         OutputView.printWinningStatistics(lottoResultCount);
@@ -64,5 +74,4 @@ public class LottoController {
         double rateEarning = statisticsService.calculateRateEarning(lottoResultCount, purchaseAmountInt);
         OutputView.printRateEarning(rateEarning);
     }
-
 }
