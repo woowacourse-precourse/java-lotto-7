@@ -13,7 +13,7 @@ public class InputParser {
 
     public static int parseBudget(String input) {
         validateBudget(input);
-        return Integer.parseInt(input);
+        return Integer.parseInt(input.trim());
     }
 
     public static List<Integer> parseWinningNumbers(String input) {
@@ -26,12 +26,12 @@ public class InputParser {
 
     public static int parseBonusNumber(String input) {
         validateBonusNumber(input);
-        return Integer.parseInt(input);
+        return Integer.parseInt(input.trim());
     }
 
     private static void validateBudget(String lottoPrice) {
         validateInputNullOrEmpty(lottoPrice);
-        validateInputIsNumber(lottoPrice);
+        validateInputIsNumber(lottoPrice.trim());
     }
 
     private static void validateWinningNumbers(String winningNumbers) {
@@ -43,7 +43,7 @@ public class InputParser {
 
     private static void validateBonusNumber(String bonusNumber) {
         validateInputNullOrEmpty(bonusNumber);
-        validateInputIsNumber(bonusNumber);
+        validateInputIsNumber(bonusNumber.trim());
     }
 
     private static void validateInputNullOrEmpty(String input) {
