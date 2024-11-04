@@ -8,6 +8,7 @@ import java.util.List;
 
 public class WinningLotto {
     private static final int WINNING_NUMBER_SIZE = 6;
+
     private final List<Integer> winningNumbers;
     private final Integer bonusNumber;
 

@@ -4,6 +4,7 @@ import lotto.common.Displayable;
 
 public class ConsoleOutputView implements OutputView {
     private static final String ERROR="[ERROR] ";
+
     @Override
     public void printLine(Displayable line) {
         System.out.println(line.toPrettyString());
