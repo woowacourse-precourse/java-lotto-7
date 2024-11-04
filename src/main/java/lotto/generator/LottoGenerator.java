@@ -1,9 +1,7 @@
 package lotto.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class LottoGenerator {
     private static final int START_NUM = 1;
@@ -11,9 +9,8 @@ public class LottoGenerator {
     private static final int COUNT_NUM = 6;
     private static final int BONUS_NUM = 1;
 
-    public Set<Integer> getLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, COUNT_NUM);
-        return new HashSet<>(numbers);
+    public List<Integer> getLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, COUNT_NUM);
     }
 
     public int getBonusNumber() {
