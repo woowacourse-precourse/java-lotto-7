@@ -128,8 +128,7 @@ public class LottoGame {
 
     // 당첨된 상금을 더하는 메서드
     public void addTotalLottoPrizeMoney(LottoPrize lottoPrize, int matchCount) {
-        long lottoPrizeMoney = Long.parseLong(lottoPrize.getPrizeMoney().replace(",", ""));
-        totalLottoPrizeMoney += lottoPrizeMoney * matchCount;
+        totalLottoPrizeMoney += lottoPrize.getRealPrizeMoney() * matchCount;
     }
 
     // 금액에 맞게 로또를 발급하는 메서드
