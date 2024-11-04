@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import java.util.Map;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domains.customer.Customer;
 import lotto.domains.lotto.domain.LottoPrizeNumbers;
 import lotto.domains.lotto.domain.LottoTicket;
@@ -50,6 +51,7 @@ public class Application {
 
 		OutputInterface.printMessage(customer.formattingForPrintProfit());
 
+		Console.close();
 	}
 
 	private static Customer purchaseLottoTickets(InputInterface inputInterface) {
