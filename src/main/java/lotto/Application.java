@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
@@ -45,6 +46,36 @@ public class Application {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
+        }
+    }
+
+    public static List<Integer> inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        List<Integer> winningNumbers = parseNumbers(input);
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+        return winningNumbers;
+    }
+
+    public static int inputBonusNumber(List<Integer> winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        if (bonusNumber < 1 || bonusNumber > 45 || winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 하며 당첨 번호와 중복되지 않아야 합니다.");
+        }
+        return bonusNumber;
+    }
+
+    public static List<Integer> parseNumbers(String input) {
+        try {
+            return List.of(input.split(","))
+                    .stream()
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 번호는 숫자여야 합니다.");
         }
     }
 }
