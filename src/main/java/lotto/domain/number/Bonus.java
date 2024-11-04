@@ -4,11 +4,11 @@ import java.util.List;
 import lotto.constant.LottoRule;
 import lotto.util.NumberValidator;
 
-public class BonusNumber {
+public class Bonus {
 
     private final int value;
 
-    public BonusNumber(final int value) {
+    public Bonus(final int value) {
         validate(value);
         this.value = value;
     }

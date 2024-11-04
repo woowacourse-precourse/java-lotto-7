@@ -8,8 +8,8 @@ import java.util.Map;
 import lotto.domain.winning.LottoRank;
 import lotto.domain.winning.WinningResult;
 import lotto.domain.number.Lotto;
-import lotto.domain.number.BonusNumber;
-import lotto.domain.number.WinningNumbers;
+import lotto.domain.number.Bonus;
+import lotto.domain.number.Winning;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,13 +20,13 @@ class WinningResultTest {
     void getLottoRanksTest() {
         //given
         final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        final BonusNumber bonusNumber = new BonusNumber(10);
-        final WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
+        final Bonus bonus = new Bonus(10);
+        final Winning winning = new Winning(winningLotto, bonus);
         final List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 10)),
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)));
 
         //when
-        final WinningResult winningResult = new WinningResult(winningNumbers, lottos);
+        final WinningResult winningResult = new WinningResult(winning, lottos);
         final Map<LottoRank, Integer> lottoRanks = winningResult.getLottoRanks();
 
         //then
