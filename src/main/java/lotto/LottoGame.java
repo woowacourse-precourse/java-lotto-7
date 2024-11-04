@@ -14,7 +14,7 @@ public class LottoGame {
 
     int amount;
     int lottoQuantity;
-
+    int bonusNumber;
     public void inputAmount() {
         // 로또 구매액 설정
         this.amount = lottoGameValidate.readAmount(LOTTO_PRICE);
@@ -42,6 +42,24 @@ public class LottoGame {
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자 형식이 올바르지 않습니다. 다시 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        setBonusNumber(winningNumbers);
+    }
+
+    public void setBonusNumber(List<Integer> winningNumbers) {
+        // 보너스 번호 설정
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                lottoGameValidate.validateBonusNumber(bonusNumber, winningNumbers);
+                this.bonusNumber = bonusNumber;
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자 형식이 올바르지 않습니다. 숫자로만 입력해 주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

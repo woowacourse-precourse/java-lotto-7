@@ -52,4 +52,13 @@ public class LottoGameValidator {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
         }
     }
+
+    public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 겹칠 수 없습니다.");
+        }
+    }
 }
