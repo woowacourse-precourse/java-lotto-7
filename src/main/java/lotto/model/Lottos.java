@@ -2,14 +2,12 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.dto.DrawResult;
-import lotto.model.dto.DrawResults;
 
 public class Lottos {
 
     private final List<Lotto> lottos;
 
-    private Lottos(List<Lotto> lottos) {
+    public Lottos(List<Lotto> lottos) {
         this.lottos = new ArrayList<>(lottos);
     }
 
@@ -20,10 +18,6 @@ public class Lottos {
         }
 
         return new Lottos(lottos);
-    }
-
-    public boolean isSize(int size) {
-        return this.lottos.size() == size;
     }
 
     public List<List<Integer>> getLottos() {

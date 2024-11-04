@@ -3,8 +3,6 @@ package lotto.model;
 import java.util.HashMap;
 import java.util.Map;
 import lotto.constant.DrawType;
-import lotto.model.dto.DrawResult;
-import lotto.model.dto.DrawResults;
 
 public class LottoGame {
 

@@ -1,4 +1,4 @@
-package lotto.model.dto;
+package lotto.model;
 
 import static lotto.constant.DrawType.NO_MATCH;
 
