@@ -41,10 +41,20 @@ public class LottoController {
     }
 
     private WinningNumbers readWinningNumbers() {
-        String winningNumbersInput = inputView.readWinningNumbers();
-        Lotto mainNumbers = retryUntilValid(() -> Lotto.of(winningNumbersInput));
+        Lotto mainNumbers = retryUntilValid(this::readMainNumbers);
+
+        return retryUntilValid(() -> readBonusNumberAndAssembleWinningNumbers(mainNumbers));
+    }
+
+    private WinningNumbers readBonusNumberAndAssembleWinningNumbers(Lotto mainNumbers) {
         String bonusNumber = inputView.readBonusNumber();
-        return retryUntilValid(() -> new WinningNumbers(mainNumbers, bonusNumber));
+        return new WinningNumbers(mainNumbers, bonusNumber);
+    }
+
+    private Lotto readMainNumbers() {
+        String winningNumbersInput = inputView.readWinningNumbers();
+        Lotto mainNumbers = Lotto.of(winningNumbersInput);
+        return mainNumbers;
     }
 
     private PurchaseAmount readPurchaseAmount() {

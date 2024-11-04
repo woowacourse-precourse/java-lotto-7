@@ -22,8 +22,8 @@ public class PurchaseAmount {
     }
 
     private void validate(int value) {
-        validateUnits(value);
         validateNegative(value);
+        validateUnits(value);
     }
 
     private void validateUnits(int value) {

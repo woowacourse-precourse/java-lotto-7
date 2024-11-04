@@ -41,8 +41,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateNumbersRange(numbers);
         validateNumberSize(numbers);
+        validateNumbersRange(numbers);
         validateNumbersDuplicate(numbers);
     }
 
