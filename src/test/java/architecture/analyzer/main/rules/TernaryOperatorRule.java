@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class TernaryOperatorRule implements CodeStyleRule {
-    private static final Pattern TERNARY_PATTERN = Pattern.compile(".*\\?.*:.*");
+    private static final Pattern GENERIC_WILDCARD_PATTERN =
+            Pattern.compile(".*<\\s*\\?\\s*(extends|super)\\s+[^>]+>.*");
+
+    private static final Pattern TERNARY_PATTERN =
+            Pattern.compile(".*[^<]\\s*\\?\\s*[^>\\s][^:]*:\\s*[^>\\s].*");
 
     @Override
     public List<CodeViolation> analyze(String fileName, List<String> lines) {
@@ -23,6 +27,12 @@ public class TernaryOperatorRule implements CodeStyleRule {
     }
 
     private boolean containsTernaryOperator(String line) {
-        return TERNARY_PATTERN.matcher(line.trim()).matches();
+        line = line.trim();
+        // 제네릭 와일드카드인 경우 false 반환
+        if (GENERIC_WILDCARD_PATTERN.matcher(line).matches()) {
+            return false;
+        }
+        // 삼항 연산자 패턴 확인
+        return TERNARY_PATTERN.matcher(line).matches();
     }
 }

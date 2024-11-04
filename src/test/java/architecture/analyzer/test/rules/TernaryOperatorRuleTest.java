@@ -54,4 +54,30 @@ class TernaryOperatorRuleTest {
                 .extracting("message")
                 .contains("삼항 연산자 사용이 감지되었습니다");
     }
+
+    @Test
+    void 제네릭_타입_선언시_물음표는_삼항_연산자로_감지하지_않는다() {
+        // given
+        String code = """
+                public class Test {
+                    public void method() {
+                        List<Class<? extends Exception>> retryableErrors = List.of(
+                            IllegalArgumentException.class,
+                            RuntimeException.class
+                        );
+                
+                        for (Class<? extends Exception> retryableError : retryableErrors) {
+                            System.out.println(retryableError.getName());
+                        }
+                    }
+                }
+                """;
+        var rule = new TernaryOperatorRule();
+
+        // when
+        List<CodeViolation> violations = rule.analyze("Test.java", code.lines().toList());
+
+        // then
+        assertThat(violations).isEmpty();
+    }
 }
