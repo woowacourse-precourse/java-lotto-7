@@ -1,6 +1,7 @@
 package lotto.message;
 
 public enum ErrorMessage {
+
     PAYMENT_EMPTY("[ERROR] 공백은 허용되지 않습니다."),
     PAYMENT_NOT_A_NUMBER("[ERROR] 숫자를 입력해야 합니다."),
     PAYMENT_INVALID_AMOUNT("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다."),
