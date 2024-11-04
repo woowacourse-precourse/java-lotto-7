@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Customer {
     private ArrayList<Lotto> lottos;
     private int jackpot;
-    private Lotto correctNumber;
+    private Lotto correctNumbers;
 
     Customer(){
         lottos = new ArrayList<>();
