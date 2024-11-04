@@ -21,10 +21,10 @@ public class WinNumber {
     }
 
     private List<Integer> getWinNumbers(String numbers) {
-        String[] split = numbers.split(WIN_NUMBER_DELIMITER);
-        validateFormats(split);
-        validateWinNumber(split);
-        return Arrays.stream(split)
+        String[] splitValue = numbers.split(WIN_NUMBER_DELIMITER);
+        validateFormats(splitValue);
+        validateWinNumber(splitValue);
+        return Arrays.stream(splitValue)
                 .map(Integer::parseInt)
                 .toList();
     }
@@ -34,40 +34,40 @@ public class WinNumber {
         return Integer.parseInt(bonus);
     }
 
-    private void validateFormats(String[] inputValue) {
-        for (String string : inputValue) {
-            validateFormat(string);
+    private void validateFormats(String[] inputValues) {
+        for (String value : inputValues) {
+            validateFormat(value);
         }
     }
 
-    private static void validateFormat(String string) {
+    private static void validateFormat(String inputValues) {
         final Pattern PATTERN = Pattern.compile(NUMBER_PROVE_DELIMITER);
-        if (!PATTERN.matcher(string).matches()) {
+        if (!PATTERN.matcher(inputValues).matches()) {
             throw new IllegalArgumentException(INPUT_HAS_WRONG_PATTERN.getMsg());
         }
     }
 
-    private void validateWinNumber(String[] split) {
-        if (isNotMatchLottoSize(split)) {
+    private void validateWinNumber(String[] inputValues) {
+        if (isNotMatchLottoSize(inputValues)) {
             throw new IllegalArgumentException(LOTTO_DOES_NOT_HAVE_CORRECT_SIZE.getMsg());
         }
     }
 
-    private static boolean isNotMatchLottoSize(String[] split) {
-        return split.length != SIZE_OF_LOTTO;
+    private static boolean isNotMatchLottoSize(String[] inputValues) {
+        return inputValues.length != SIZE_OF_LOTTO;
     }
 
     public int countMatchingNumbers(List<Integer> numbers) {
         int total = 0;
-        for (Integer winNumber : numbers) {
-            if (isContains(winNumber)) {
+        for (Integer number : numbers) {
+            if (isWinNumber(number)) {
                 total++;
             }
         }
         return total;
     }
 
-    private boolean isContains(Integer winNumber) {
+    private boolean isWinNumber(Integer winNumber) {
         return numbers.contains(winNumber);
     }
 
