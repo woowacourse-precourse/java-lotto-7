@@ -9,6 +9,8 @@ import java.util.Arrays;
 import static lotto.constants.Purchase.LOTTO_PRICE_PER_UNIT;
 
 public class OutputView {
+    private final static int RATIO_MULTIPLIER = 100;
+
     public void printUnitCount(int thousandUnitCount) {
         System.out.println(thousandUnitCount + "개를 구매했습니다.");
     }
@@ -29,8 +31,8 @@ public class OutputView {
         int purchaseAmount = thousandUnitCount * LOTTO_PRICE_PER_UNIT;
         double winningsAmount = Arrays.stream(LottoOperator.values())
                 .mapToDouble(LottoOperator::getRateOfReturn)
-                .sum() - purchaseAmount;
-        double rateOfReturn = (winningsAmount / purchaseAmount) * 100;
+                .sum();
+        double rateOfReturn = (winningsAmount / purchaseAmount) * RATIO_MULTIPLIER;
         System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
     }
 }
