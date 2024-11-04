@@ -5,15 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -124,7 +121,6 @@ class LottoServiceTest {
         Map<Rank, Integer> results = lottoService.calculateResults(winningNumbers, bonusNumber);
         double profit = lottoService.calculateProfit(results);
 
-        // 예상 수익률: (2,000,000,000 + 30,000,000 + 1,500,000 + 50,000) / (5 * 1000) * 100
         double expectedProfit = ((2_000_000_000 + 30_000_000 + 1_500_000 + 50_000) / (5 * 1000.0)) * 100;
         assertThat(profit).isEqualTo(expectedProfit);
     }

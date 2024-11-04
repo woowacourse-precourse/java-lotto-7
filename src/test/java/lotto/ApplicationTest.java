@@ -49,13 +49,32 @@ class ApplicationTest extends NsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1000j", "2 1000", "1500"})
-    void 예외_테스트() {
+    @ValueSource(strings = {"1000j", "2 1000", "1500", "-10000"})
+    void 로또_구매_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7", "1,2,3,4,5,50", "1,2,3,4,4,6"})
+    void 당첨번호_예외_테스트(String winningNumbers) {
+        assertSimpleTest(() -> {
+            runException("8000", winningNumbers, "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "46", "100", "-5", "abc"})
+    void 보너스번호_예외_테스트(String bonusNumber) {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", bonusNumber);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Override
     public void runMain() {
