@@ -27,5 +27,9 @@ public class MainController {
         outputView.printLottoList(purchasedLottos.stream()
                 .map(lotto -> new LottoDto(lotto.getNumbers()))
                 .toList());
+
+        // 당첨 번호 입력
+        List<Integer> winningLotto = inputView.scanWinningLotto();
+        System.out.print(winningLotto);
     }
 }
