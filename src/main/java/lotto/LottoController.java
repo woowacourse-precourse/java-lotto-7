@@ -6,10 +6,25 @@ import java.util.*;
 public class LottoController {
     public void run() {
         // 로또 구입 금액 입력 받기
-        int inputCash = LottoView.getInputCash();
+        int inputCash, lottoCount;
+        while (true) {
+            try {
+                inputCash = LottoView.getInputCash();
 
-        // 1000 단위, 숫자 여부 검증 필요
-        int lottoCount = inputCash / 1000;
+                if (inputCash < 1000) {
+                    throw new IllegalArgumentException("[ERROR] 1000원 이상으로 입력해주세요.");
+                } else if (inputCash % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
+                }
+
+                lottoCount = inputCash / 1000;
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 잘못된 입력입니다. 숫자를 입력하세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         // 로또 생성 과정
         List<Lotto> lottos = new ArrayList<>();
