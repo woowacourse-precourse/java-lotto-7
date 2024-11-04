@@ -17,9 +17,13 @@ public class LottoGame {
         int purchaseCount = purchaseAmount.getPurchaseCount();
 
         List<Lotto> lottos = lottoMachine.generateLotto(purchaseCount);
+        
+        OutputHandler.printLottos(lottos);
 
         WinningLotto winningLotto = InputHandler.getWinningLotto();
 
         result.calculateResults(winningLotto, lottos);
+
+        OutputHandler.printResults(result, purchaseAmount);
     }
 }
