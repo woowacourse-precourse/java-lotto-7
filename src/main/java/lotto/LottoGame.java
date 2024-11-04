@@ -24,12 +24,16 @@ public class LottoGame {
         List<Lotto> purchasedLottos = initGame(purchaseAmount);
 
         List<Integer> winningNumbers = userInputLotto.inputPrizeNumbers();
+        int bonusNumber = userInputLotto.inputBonusNumber(winningNumbers);
+
+        calculateRank(purchasedLottos, winningNumbers, bonusNumber);
+        outputLottoResult.printLottoResults(lottoResults, totalPrize, purchaseAmount);
     }
 
-    private List<Lotto> initGame() {
-        int purchaseAmount = userInputLotto.purchaseAmount();
+    private List<Lotto> initGame(int purchaseAmount) {
         int lottoCount = purchaseAmount / 1000;
         List<Lotto> purchasedLottos = lottoGeneration.generateLottoLines(lottoCount);
+        outputLottoResult.printLottoInfo(lottoCount, purchasedLottos);
 
         return purchasedLottos;
     }
