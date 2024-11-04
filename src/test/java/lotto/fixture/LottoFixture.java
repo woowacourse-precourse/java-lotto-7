@@ -13,4 +13,11 @@ public class LottoFixture {
         List<Integer> numbers = List.of(input1, input2, input3, input4, input5, input6);
         return Lotto.from(numbers);
     }
+
+    public static Lotto createLengthException(Integer input1, Integer input2, Integer input3, Integer input4,
+                                              Integer input5,
+                                              Integer input6, Integer input7) {
+        List<Integer> numbers = List.of(input1, input2, input3, input4, input5, input6, input7);
+        return Lotto.from(numbers);
+    }
 }
