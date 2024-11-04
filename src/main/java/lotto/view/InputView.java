@@ -30,35 +30,59 @@ public class InputView {
     }
 
     public static int getMoney() {
-        while (true) {
-            String inputMoney = InputView.moneyInput();
-            try {
-                return getValidMoney(inputMoney);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        String inputMoney = InputView.moneyInput();
+        if (isValidMoney(inputMoney)) {
+            return getValidMoney(inputMoney);
+        } else {
+            return getMoney();
+        }
+    }
+
+    private static boolean isValidMoney(String input) {
+        try {
+            getValidMoney(input);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
     public static List<Integer> getWinningNumbers() {
-        while (true) {
-            String inputWinningNumbers = InputView.winningNumbersInput();
-            try {
-                return StringParser.parseStringToIntegerList(inputWinningNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        String inputWinningNumbers = InputView.winningNumbersInput();
+        if (isValidWinningNumbers(inputWinningNumbers)) {
+            return StringParser.parseStringToIntegerList(inputWinningNumbers);
+        } else {
+            return getWinningNumbers();
+        }
+    }
+
+    private static boolean isValidWinningNumbers(String input) {
+        try {
+            StringParser.parseStringToIntegerList(input);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
     public static Integer getBonusNumber(List<Integer> winningNumbers) {
-        while (true) {
-            String inputBonusNumber = InputView.bonusNumberInput();
-            try {
-                return getValidBonusNumber(winningNumbers, inputBonusNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        String inputBonusNumber = InputView.bonusNumberInput();
+        if (isValidBonusNumber(winningNumbers, inputBonusNumber)) {
+            return getValidBonusNumber(winningNumbers, inputBonusNumber);
+        } else {
+            return getBonusNumber(winningNumbers);
+        }
+    }
+
+    private static boolean isValidBonusNumber(List<Integer> winningNumbers, String inputBonusNumber) {
+        try {
+            getValidBonusNumber(winningNumbers, inputBonusNumber);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
