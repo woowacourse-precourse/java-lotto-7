@@ -54,11 +54,9 @@ public class LottoWinningStatistics {
 
     public double calculateYield() {
         double totalWinnings = calculateTotalWinnings();
+        double yield = (totalWinnings / purchaseAmount) * 100;
 
-        if (totalWinnings > purchaseAmount) {
-            return (totalWinnings / purchaseAmount) * 100;
-        }
-        return ((totalWinnings - purchaseAmount) / purchaseAmount) * 100;
+        return Math.round(yield * 100.0) / 100.0;
     }
 
 
