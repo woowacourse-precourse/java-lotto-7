@@ -18,7 +18,7 @@ public class User {
 	}
 
 	public void updateRank(LottoRank rank) {
-		lottoStats.put(rank, lottoStats.getOrDefault(rank, 0) + 1);
+		lottoStats.put(rank, lottoStats.get(rank) + 1);
 	}
 
 	public void setLottoPurchaseAmount(int lottoPurchaseAmount) {
