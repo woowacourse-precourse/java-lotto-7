@@ -118,7 +118,7 @@ public class LottoService {
         try {
             String numbers = Console.readLine();
             if (numbers.isEmpty()) {
-                return Lotto.createLotto(lottoGenerator.getLottoNumbers());
+                return new Lotto(lottoGenerator.getLottoNumbers());
             }
             return Lotto.createLottoByString(numbers);
         } catch (IllegalArgumentException e) {
