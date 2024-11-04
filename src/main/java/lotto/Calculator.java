@@ -46,11 +46,16 @@ public class Calculator {
 
   public float CalculateProfit(PurchaseAmount purchaseAmount, PrizeCounter prizeCounter) {
     int totalPrizeMoney = 0;
-    totalPrizeMoney += prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE) * 2_000_000_000;
-    totalPrizeMoney += prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE) * 30_000_000;
-    totalPrizeMoney += prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE) * 1_500_000;
-    totalPrizeMoney += prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE)* 50_000;
-    totalPrizeMoney += prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE)* 5_000;
+    totalPrizeMoney +=
+        prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE) * 2_000_000_000;
+    totalPrizeMoney +=
+        prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE) * 30_000_000;
+    totalPrizeMoney +=
+        prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE) * 1_500_000;
+    totalPrizeMoney +=
+        prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE) * 50_000;
+    totalPrizeMoney +=
+        prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE) * 5_000;
     int totalSpent = purchaseAmount.getPurchaseQuantity() * 1000;
     return ((float) totalPrizeMoney / totalSpent) * 100;
   }

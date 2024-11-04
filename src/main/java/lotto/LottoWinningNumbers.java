@@ -45,12 +45,11 @@ public class LottoWinningNumbers {
   }
 
   public void assignWinningNumber() {
-    try{
+    try {
       int[] winningNumber = inputWinningNumber();
       validateWinningNumber(winningNumber);
       this.winningNumber = winningNumber;
-    }catch(IllegalArgumentException e)
-    {
+    } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       assignWinningNumber();
     }
@@ -58,12 +57,11 @@ public class LottoWinningNumbers {
   }
 
   public void assignBonusNumber() {
-    try{
+    try {
       int bonusNumber = inputBonusNumber();
       validateBonusNumber(bonusNumber);
       this.bonusNumber = bonusNumber;
-    }catch(IllegalArgumentException e)
-    {
+    } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       assignBonusNumber();
     }

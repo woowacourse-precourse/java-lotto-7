@@ -27,9 +27,9 @@ public class PurchaseAmount {
   }
 
   public void assignPurchaseQuantity(int purchaseAmount) {
-    try{
+    try {
       validatePurchaseAmount(purchaseAmount);
-    }catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       assignPurchaseQuantity(inputPurchaseAmount());
     }

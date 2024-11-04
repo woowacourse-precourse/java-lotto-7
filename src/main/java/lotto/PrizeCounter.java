@@ -32,15 +32,19 @@ public class PrizeCounter {
     System.out.println("당첨 통계\n---");
     NumberFormat numberFormat = NumberFormat.getInstance();
 
-    System.out.printf(FIFTH_PRIZE_FORMAT, numberFormat.format(FIFTH_PRIZE_AMOUNT), prizeCount.getOrDefault(Calculator.WinningType.FIFTH_PRIZE, 0));
-    System.out.printf(FOURTH_PRIZE_FORMAT, numberFormat.format(FOURTH_PRIZE_AMOUNT), prizeCount.getOrDefault(Calculator.WinningType.FORTH_PRIZE, 0));
-    System.out.printf(THIRD_PRIZE_FORMAT, numberFormat.format(THIRD_PRIZE_AMOUNT), prizeCount.getOrDefault(Calculator.WinningType.THIRD_PRIZE, 0));
-    System.out.printf(SECOND_PRIZE_FORMAT, numberFormat.format(SECOND_PRIZE_AMOUNT), prizeCount.getOrDefault(Calculator.WinningType.SECOND_PRIZE, 0));
-    System.out.printf(FIRST_PRIZE_FORMAT, numberFormat.format(FIRST_PRIZE_AMOUNT), prizeCount.getOrDefault(Calculator.WinningType.FIRST_PRIZE, 0));
+    System.out.printf(FIFTH_PRIZE_FORMAT, numberFormat.format(FIFTH_PRIZE_AMOUNT),
+        prizeCount.getOrDefault(Calculator.WinningType.FIFTH_PRIZE, 0));
+    System.out.printf(FOURTH_PRIZE_FORMAT, numberFormat.format(FOURTH_PRIZE_AMOUNT),
+        prizeCount.getOrDefault(Calculator.WinningType.FORTH_PRIZE, 0));
+    System.out.printf(THIRD_PRIZE_FORMAT, numberFormat.format(THIRD_PRIZE_AMOUNT),
+        prizeCount.getOrDefault(Calculator.WinningType.THIRD_PRIZE, 0));
+    System.out.printf(SECOND_PRIZE_FORMAT, numberFormat.format(SECOND_PRIZE_AMOUNT),
+        prizeCount.getOrDefault(Calculator.WinningType.SECOND_PRIZE, 0));
+    System.out.printf(FIRST_PRIZE_FORMAT, numberFormat.format(FIRST_PRIZE_AMOUNT),
+        prizeCount.getOrDefault(Calculator.WinningType.FIRST_PRIZE, 0));
   }
 
-  public Map<Calculator.WinningType, Integer> getPrizeCount()
-  {
+  public Map<Calculator.WinningType, Integer> getPrizeCount() {
     return this.prizeCount;
   }
 

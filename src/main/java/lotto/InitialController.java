@@ -52,9 +52,8 @@ public class InitialController {
     prizeCounter.printPrizeCount();
   }
 
-  public void calculateAndPrintProfit()
-  {
-    float result = calculator.CalculateProfit(this.purchaseAmount , this.prizeCounter);
+  public void calculateAndPrintProfit() {
+    float result = calculator.CalculateProfit(this.purchaseAmount, this.prizeCounter);
     System.out.println(String.format(PROFIT_MESSAGE, result));
   }
 }
