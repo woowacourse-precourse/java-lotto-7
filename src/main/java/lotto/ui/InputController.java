@@ -1,5 +1,10 @@
 package lotto.ui;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import lotto.Lotto;
+import lotto.LottoNum;
 import lotto.LottoPayment;
 import lotto.exception.LottoArgumentException;
 
@@ -12,9 +17,24 @@ public class InputController {
     }
 
     public LottoPayment getPayment() {
-        final String input = inputUi.readLine().trim();
+        final String input = this.readTrimmedInput();
         validateNumber(input);
         return new LottoPayment(input);
+    }
+
+    public Lotto getLotto() {
+        final String input = this.readTrimmedInput();
+        final List<String> lottoNumbers = Arrays.stream(input.split(","))
+                .collect(Collectors.toList());
+        for (final String number : lottoNumbers) {
+            validateNumber(number);
+        }
+        return new Lotto(lottoNumbers.stream()
+                .map(LottoNum::new).collect(Collectors.toList()));
+    }
+
+    private String readTrimmedInput() {
+        return inputUi.readLine().trim();
     }
 
     private void validateNumber(final String numberInput) {

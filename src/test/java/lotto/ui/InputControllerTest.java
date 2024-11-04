@@ -24,6 +24,27 @@ class InputControllerTest {
                 .isEqualTo(10);
     }
 
+    @DisplayName("로또 잘못된 입력 테스트")
+    @ParameterizedTest
+    @MethodSource("잘못된_당첨번호_입력")
+    void 로또_잘못된_당첨번호_입력_테스트(final String inputLottoNumbers) {
+        input.append(inputLottoNumbers);
+        final InputController inputController = new InputController(inputUi);
+
+        Assertions.assertThatThrownBy(() -> inputController.getLotto())
+                .isInstanceOf(LottoArgumentException.class);
+    }
+
+    static Stream<Arguments> 잘못된_당첨번호_입력() {
+        return Stream.of(
+                Arguments.of("1,2,3,,4,5"),
+                Arguments.of(" "),
+                Arguments.of("123124"),
+                Arguments.of("test"),
+                Arguments.of("")
+        );
+    }
+
     @DisplayName("입금 금액이 숫자가 아닐때 예외를 던진다")
     @ParameterizedTest
     @MethodSource("숫자가_아닌_입력_데이터")
