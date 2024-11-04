@@ -106,5 +106,16 @@ public class Application {
         System.out.printf("5개 일치 (1,500,000원) - %d개\n", results[Rank.THIRD.ordinal()]);
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", results[Rank.SECOND.ordinal()]);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", results[Rank.FIRST.ordinal()]);
+
+        double rateOfReturn = calculateRateOfReturn(results, amount);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", rateOfReturn);
+    }
+
+    private static double calculateRateOfReturn(int[] results, int amount) {
+        int totalPrize = 0;
+        for (Rank rank : Rank.values()) {
+            totalPrize += results[rank.ordinal()] * rank.getPrize();
+        }
+        return (double) totalPrize / amount * 100;
     }
 }
