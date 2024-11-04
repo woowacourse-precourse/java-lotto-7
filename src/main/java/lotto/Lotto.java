@@ -187,7 +187,7 @@ public class Lotto {
         int sum = 0;
         Integer[] temp;
         Integer[] result = new Integer[7];
-        initIntegerArrayToZero(result);
+        initIntegersToZero(result);
         for (int i = 0; i < count; i++) {
             temp = calculateWinningStatus(tempList[i], winningNumber, bonusNumInt);
             boolean bonus = temp[1] == 1;
@@ -198,7 +198,7 @@ public class Lotto {
         return result;
     }
 
-    private static void initIntegerArrayToZero(Integer[] array) {
+    private static void initIntegersToZero(Integer[] array) {
         for (int i = 0; i < array.length; i++) {
             array[i] = 0;
         }

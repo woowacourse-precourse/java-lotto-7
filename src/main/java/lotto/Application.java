@@ -19,9 +19,6 @@ public class Application {
         finalResult(lottoStat, purchaseInt);
     }
 
-
-
-
     private static void finalResult(Integer[] lottoStat, int purchaseInt) {
         System.out.println("\n당첨 통계\n---");
         for (int i = 1; i < lottoStat.length - 1; i++) {
@@ -33,26 +30,11 @@ public class Application {
     }
 
     private static void printResult(Integer[] lottoStat, int i) {
-        if( i == 1 ) {
-            System.out.println("3개 일치 (5,000원) - " + lottoStat[i] + "개");
-            return;
-        }
-        if( i == 2 ) {
-            System.out.println("4개 일치 (50,000원) - " + lottoStat[i] + "개");
-            return;
-        }
-        if( i == 3 ) {
-            System.out.println("5개 일치 (1,500,000원) - " + lottoStat[i] + "개");
-            return;
-        }
-        if( i == 4 ) {
-            System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoStat[i] + "개");
-            return;
-        }
-        if( i == 5 ) {
-            System.out.println("6개 일치 (2,000,000,000원) - " + lottoStat[i] + "개");
-        }
+        if( i == 1 ) System.out.println("3개 일치 (5,000원) - " + lottoStat[i] + "개");
+        if( i == 2 ) System.out.println("4개 일치 (50,000원) - " + lottoStat[i] + "개");
+        if( i == 3 ) System.out.println("5개 일치 (1,500,000원) - " + lottoStat[i] + "개");
+        if( i == 4 ) System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoStat[i] + "개");
+        if( i == 5 ) System.out.println("6개 일치 (2,000,000,000원) - " + lottoStat[i] + "개");
     }
-
 
 }
