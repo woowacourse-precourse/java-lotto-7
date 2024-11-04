@@ -8,6 +8,8 @@ public class Application {
         showUserLottos(userLottos);
         Lotto winningLotto = getWinningLotto();
         int bonusNumber = getBonusNumber(winningLotto);
+        Result result  = new Result(winningLotto, bonusNumber, userLottos.getLottos());
+        showResult(result);
     }
 
     private static UserLottos createUserLottos() {
@@ -72,5 +74,10 @@ public class Application {
     private static String inputBonusNumber() {
         System.out.println(IOMessage.BONUS_NUMBER.getMessage());
         return readLine();
+    }
+
+    private static void showResult(Result result) {
+        System.out.printf("%s\n%s\n", IOMessage.STATISTICS.getMessage(), IOMessage.DIVIDER.getMessage());
+        System.out.println(result.getResult());
     }
 }
