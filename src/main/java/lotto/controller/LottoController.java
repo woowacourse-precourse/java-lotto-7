@@ -1,5 +1,10 @@
 package lotto.controller;
 
+import static lotto.view.output.LottoOutputView.*;
+import static lotto.view.output.PrizeOutputView.*;
+import static lotto.view.output.ProfitOutputView.*;
+import static lotto.view.output.TicketOutputView.*;
+
 import java.util.List;
 import lotto.domain.Money;
 import lotto.domain.PrizeResult;
@@ -9,27 +14,23 @@ import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 import lotto.view.input.InputBonusNumberView;
 import lotto.view.input.InputMoneyView;
-import lotto.view.input.InputView;
 import lotto.view.input.InputWinningNumberView;
-import lotto.view.output.OutputView;
 
 public class LottoController {
-    OutputView outputView = new OutputView();
-
     public void start() {
         Money money = getMoney();
-        outputView.showTicket(money.getTicket());
+        showTicket(money.getTicket());
 
         List<Lotto> lottos = getLottos(money);
-        outputView.showLottos(lottos);
+        showLottos(lottos);
 
         WinningLotto winningLotto = getWinningLotto();
 
         PrizeResult prizeResult = getPrizeResult(lottos, winningLotto);
-        outputView.showPrizeResults(prizeResult);
+        showPrizeResults(prizeResult);
 
         double profitRatio = getProfitRate(money, prizeResult);
-        outputView.showProfitRate(profitRatio);
+        showProfitRate(profitRatio);
     }
 
     private Money getMoney() {
