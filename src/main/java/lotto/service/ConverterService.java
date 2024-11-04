@@ -60,6 +60,7 @@ public class ConverterService {
                     throw new IllegalArgumentException(DUPLICATED_NUMBERS);
                 }
             }
+            return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBERS);
         }
