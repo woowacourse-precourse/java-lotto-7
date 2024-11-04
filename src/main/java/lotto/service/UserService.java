@@ -16,6 +16,10 @@ public class UserService {
         this.outputView = outputView;
     }
 
+    /**
+     * 구입할 금액을 입력하는 메서드
+     * @return 구입 금액
+     */
     public int inputAmount(){
         try {
             PurchaseAmount purchaseAmount = new PurchaseAmount(inputView.inputAmountView());
@@ -26,6 +30,11 @@ public class UserService {
         }
     }
 
+    /**
+     * 구입한 로또 갯수 만큼의 로또 번호를 저장하고 출력 해주는 메서드
+     * @param lottoTickets 구입한 로또 갯수
+     * @return 구입한 로또 번호
+     */
     public User priceLotto(int lottoTickets){
 
         User user = new User(lottoTickets);

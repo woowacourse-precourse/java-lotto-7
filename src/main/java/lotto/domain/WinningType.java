@@ -25,6 +25,12 @@ public enum WinningType {
         return message;
     }
 
+    /**
+     * 당첨 번호 일치 개수와 보너스 번호 일치 여부에 따라 당첨 유형을 반환 해주는 메서드
+     * @param matchCount 당첨 번호가 일치한 개수
+     * @param bonusMatched 보너스 번호가 일치한지 검증
+     * @return 당첨 번호가 일치하는 만큼의 enum 값을 반환(없을 경우 null 반환)
+     */
     public static WinningType valueOf(int matchCount, boolean bonusMatched) {
         if (matchCount == 5 && bonusMatched) {
             return FIVE_MATCH_WITH_BONUS;
