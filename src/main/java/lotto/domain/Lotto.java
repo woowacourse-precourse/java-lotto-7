@@ -41,9 +41,8 @@ public class Lotto {
     }
 
     public List<LottoNumber> getNumbers() {
-        return new ArrayList<>(numbers);
+        return Collections.unmodifiableList(numbers);
     }
-
     public boolean contains(LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
     }
