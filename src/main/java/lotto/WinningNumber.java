@@ -37,6 +37,7 @@ public class WinningNumber {
                 String input = Console.readLine();
                 System.out.println();
                 String[] inputNum = input.split(",");
+                List<Integer> winningNumber = changeType(inputNum);
                 Lotto lotto = new Lotto(winningNumber);
                 this.winningNumber = winningNumber;
                 break; // 입력이 유효하면 루프 종료
@@ -46,7 +47,17 @@ public class WinningNumber {
         }
     }
 
-
+    public List<Integer> changeType(String[] inputNum) {
+        List<Integer> numberList = new ArrayList<>();
+        for (String num : inputNum) {
+            try {
+                numberList.add(Integer.parseInt(num));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] : 입력값이 잘못되었습니다.");
+            }
+        }
+        return numberList;
+    }
 
     public void bonusNumber() {
         while (true) {
