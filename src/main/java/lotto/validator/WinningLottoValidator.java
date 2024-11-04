@@ -1,10 +1,13 @@
 package lotto.validator;
 
+import static lotto.message.ExceptionMessage.INVALID_BLANK_INPUT;
 import static lotto.message.ExceptionMessage.INVALID_TYPE_INPUT;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.IllegalInputException;
 import lotto.exception.IllegalTypeException;
+import org.junit.platform.commons.util.StringUtils;
 
 public class WinningLottoValidator {
 
@@ -14,11 +17,20 @@ public class WinningLottoValidator {
     private static final int MIN_VALUE = 1, MAX_VALUE = 45;
 
     public static List<Integer> validateWinningNumbers(String input) {
-        return Arrays.stream(input.split(DELIMITER)).map(WinningLottoValidator::validateType).toList();
+        return Arrays.stream(input.split(DELIMITER))
+                .peek(WinningLottoValidator::validateBlank)
+                .map(WinningLottoValidator::validateType)
+                .toList();
     }
 
     public static int validateBonusNumber(String input) {
         return Integer.parseInt(input);
+    }
+
+    private static void validateBlank(String input) {
+        if (StringUtils.isBlank(input)) {
+            throw new IllegalInputException(INVALID_BLANK_INPUT.getMessage());
+        }
     }
 
     private static int validateType(String input) {
