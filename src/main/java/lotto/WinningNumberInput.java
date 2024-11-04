@@ -15,7 +15,7 @@ public class WinningNumberInput {
     private static final int MAX_NUMBER = 45;
 
     public static List<Integer> requestWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요. (쉼표로 구분된 6개의 숫자)");
+        System.out.println("\n당첨 번호를 입력해 주세요. (쉼표로 구분된 6개의 숫자)");
         String input = Console.readLine();
         return parseAndValidateWinningNumbers(input);
     }
