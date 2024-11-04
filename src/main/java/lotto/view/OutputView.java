@@ -9,7 +9,7 @@ import java.util.Map;
 public class OutputView {
     private static final String ERROR_HEADER = "[ERROR]";
     private static final String PURCHASE_LOTTO_NUMBER = "개를 구매했습니다.";
-    private static final String LOTTO_STATICS_HEADER = "당첨 통계\n---\n";
+    private static final String LOTTO_STATICS_HEADER = "당첨 통계\n---";
     private static final String TOTAL_PROFIT_RATE_IS = "총 수익률은 %.1f%%입니다.";
 
     public static void print(String string) {

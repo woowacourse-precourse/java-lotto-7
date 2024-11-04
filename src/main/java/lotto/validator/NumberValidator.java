@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 public class NumberValidator {
     private static final String NUMBER_NOT_NUMERIC_MESSAGE = "번호는 숫자만 입력할 수 있습니다.";
     private static final String NUMBER_NOT_IN_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String BONUS_NUMBER_NOT_WINNIG_NUMBER = "보너스 번호는 당첨 번호와 중복될 수 없습니다.";
 
     public static boolean checkValidWinningNumbers(String winningNumbers) throws IllegalArgumentException {
         try {
@@ -22,15 +23,23 @@ public class NumberValidator {
         return true;
     }
 
-    public static boolean checkValidBonusNumber(String bonusNumber) throws IllegalArgumentException {
+    public static boolean checkValidBonusNumber(String bonusNumber, List<Integer> winningNumbers) throws IllegalArgumentException {
         try {
             numberIsNumeric(bonusNumber);
             numberIsInRange(bonusNumber);
+            isNotWinningNumber(bonusNumber, winningNumbers);
         } catch (Exception e) {
             OutputView.printErrorMessage(e.getMessage());
             return false;
         }
         return true;
+    }
+
+    private static void isNotWinningNumber(String inputNumber, List<Integer> winningNumbers) throws IllegalArgumentException {
+        int bonusNumber = Integer.parseInt(inputNumber);
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_NOT_WINNIG_NUMBER);
+        }
     }
 
     private static void numberIsNumeric(String inputNumber) throws IllegalArgumentException {
