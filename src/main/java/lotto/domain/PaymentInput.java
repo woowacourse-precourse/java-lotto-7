@@ -2,18 +2,17 @@ package lotto.domain;
 
 import lotto.common.ErrorMessage;
 
-
 public class PaymentInput {
-    private static final long UNIT=1000;
+    private static final long UNIT = 1000;
     private final long payment;
     private final long lottoCounts;
 
-    public PaymentInput(long payment){
+    public PaymentInput(long payment) {
         validatePositiveNumber(payment);
         validateUnit(payment);
 
-        this.payment=payment;
-        this.lottoCounts= this.payment /UNIT;
+        this.payment = payment;
+        this.lottoCounts = this.payment / UNIT;
     }
 
     public long getLottoCounts() {
@@ -25,13 +24,13 @@ public class PaymentInput {
     }
 
     private static void validatePositiveNumber(long input) {
-        if (input<0){
+        if (input < 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE_INPUT);
         }
     }
 
     private void validateUnit(long payment) {
-        if (payment%UNIT!=0 || payment==0){
+        if (payment % UNIT != 0 || payment == 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_UNIT_INPUT);
         }
     }

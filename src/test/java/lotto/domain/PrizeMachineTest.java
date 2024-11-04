@@ -15,21 +15,21 @@ class PrizeMachineTest {
     DrawNumbers drawNumbers;
 
     @BeforeEach
-    void setUp(){
-        lottos=List.of(
-                new Lotto(List.of(1,2,3,10,11,12)),
-                new Lotto(List.of(4,5,6,7,8,13)),
-                new Lotto(List.of(4,5,6,7,8,12)),
-                new Lotto(List.of(4,5,6,7,8,9)),
-                new Lotto(List.of(4,5,6,15,16,17))
+    void setUp() {
+        lottos = List.of(
+                new Lotto(List.of(1, 2, 3, 10, 11, 12)),
+                new Lotto(List.of(4, 5, 6, 7, 8, 13)),
+                new Lotto(List.of(4, 5, 6, 7, 8, 12)),
+                new Lotto(List.of(4, 5, 6, 7, 8, 9)),
+                new Lotto(List.of(4, 5, 6, 15, 16, 17))
         );
 
-        prizeMachine=new PrizeMachine(lottos);
-        drawNumbers=new DrawNumbers(new WinningNumbers(List.of(4,5,6,7,8,9)),new BonusNumber(13));
+        prizeMachine = new PrizeMachine(lottos);
+        drawNumbers = new DrawNumbers(new WinningNumbers(List.of(4, 5, 6, 7, 8, 9)), new BonusNumber(13));
     }
 
     @Test
-    void 등수를_잘_반환하는지_확인한다(){
+    void 등수를_잘_반환하는지_확인한다() {
 
         Map<Rank, Integer> expected = new EnumMap<>(Rank.class);
 

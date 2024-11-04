@@ -8,7 +8,6 @@ public class BonusNumber {
     private final int bonusNumber;
 
     public BonusNumber(int bonusNumber) {
-
         validateBonusNumberInRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
@@ -18,7 +17,7 @@ public class BonusNumber {
     }
 
     private static void validateBonusNumberInRange(int bonusNumber) {
-        if (bonusNumber<MININUM_NUMBER || bonusNumber>MAXIM1UM_NUMBER){
+        if (bonusNumber < MININUM_NUMBER || bonusNumber > MAXIM1UM_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_RANGE);
         }
     }

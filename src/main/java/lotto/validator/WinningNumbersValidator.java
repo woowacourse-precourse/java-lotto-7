@@ -7,35 +7,35 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinningNumbersValidator {
-    private static final String INPUT_SEPERATOR=",";
+    private static final String INPUT_SEPERATOR = ",";
 
-    public static List<Integer> validateWinningNumbers(String input){
+    public static List<Integer> validateWinningNumbers(String input) {
         validateNullAndBlank(input);
         validateStartEndPoint(input);
-        List<Integer> parsedWinningNumbers=validateOnyIntegerAndComma(input);
+        List<Integer> parsedWinningNumbers = validateOnyIntegerAndComma(input);
 
         return parsedWinningNumbers;
     }
 
     private static void validateStartEndPoint(String input) {
-        if (input.charAt(0)==',' || input.charAt(input.length()-1)==','){
+        if (input.charAt(0) == ',' || input.charAt(input.length() - 1) == ',') {
             throw new IllegalArgumentException(ErrorMessage.INVALID_START_END_POINT);
         }
     }
 
     private static List<Integer> validateOnyIntegerAndComma(String input) {
-        try{
+        try {
             return Arrays.stream(input.split(INPUT_SEPERATOR))
                     .mapToInt(Integer::parseInt)
                     .boxed()
                     .collect(Collectors.toList());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_TYPE);
         }
     }
 
     private static void validateNullAndBlank(String input) {
-        if (input==null || input.isBlank()){
+        if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.BLANK_OR_NULL_INPUT);
         }
     }

@@ -15,8 +15,8 @@ public class Lotto {
     }
 
     private void validateDistinctNumber(List<Integer> numbers) {
-        long totalSize=numbers.stream().distinct().count();
-        if (numbers.size()!=totalSize){
+        long totalSize = numbers.stream().distinct().count();
+        if (numbers.size() != totalSize) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER);
         }
     }
@@ -39,13 +39,12 @@ public class Lotto {
         long hits = numbers.stream().filter(number -> winningNumbers.stream().anyMatch(Predicate.isEqual(number)))
                 .count();
 
-        return (int)hits;
+        return (int) hits;
     }
 
-    public BonusExistence findBonus(int hits, int bonusNumber){
-        boolean haveBonus=numbers.stream().anyMatch(number->number==bonusNumber);
+    public BonusExistence findBonus(int hits, int bonusNumber) {
+        boolean haveBonus = numbers.stream().anyMatch(number -> number == bonusNumber);
 
-        return BonusExistence.of(hits,haveBonus);
+        return BonusExistence.of(hits, haveBonus);
     }
-
 }

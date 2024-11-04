@@ -12,49 +12,46 @@ import lotto.validator.WinningNumbersValidator;
 import java.util.List;
 
 public class InputView {
-    private static final String PAYMENT_INPUT_COMMAND="구입금액을 입력해 주세요.";
-    private static final String WINNING_NUMBER_COMMAND ="\n당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_COMMAND="\n보너스 번호를 입력해 주세요.";
+    private static final String PAYMENT_INPUT_COMMAND = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBER_COMMAND = "\n당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_COMMAND = "\n보너스 번호를 입력해 주세요.";
 
-    public static PaymentInput enterPayment(){
-        try{
+    public static PaymentInput enterPayment() {
+        try {
             System.out.println(PAYMENT_INPUT_COMMAND);
-            Long parsedPayment= PaymentValidator.validateRawPayment(Console.readLine());
-            PaymentInput paymentInput=new PaymentInput(parsedPayment);
+            Long parsedPayment = PaymentValidator.validateRawPayment(Console.readLine());
+            PaymentInput paymentInput = new PaymentInput(parsedPayment);
             return paymentInput;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return enterPayment();
         }
     }
 
     public static DrawNumbers enterWinningNumbers() {
-        try{
+        try {
             System.out.println(WINNING_NUMBER_COMMAND);
-            List<Integer> parsedWinningNumbers= WinningNumbersValidator.validateWinningNumbers(Console.readLine());
-            WinningNumbers winningNumbers=new WinningNumbers(parsedWinningNumbers);
+            List<Integer> parsedWinningNumbers = WinningNumbersValidator.validateWinningNumbers(Console.readLine());
+            WinningNumbers winningNumbers = new WinningNumbers(parsedWinningNumbers);
 
-            DrawNumbers drawNumbers=enterBonusInput(winningNumbers);
+            DrawNumbers drawNumbers = enterBonusInput(winningNumbers);
             return drawNumbers;
-
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return enterWinningNumbers();
         }
-
     }
 
     public static DrawNumbers enterBonusInput(WinningNumbers winningNumbers) {
-        try{
+        try {
             System.out.println(BONUS_NUMBER_COMMAND);
-            int parseNumber=BonusNumberValidator.validateBonusNumber(Console.readLine());
-            BonusNumber bonusNumber=new BonusNumber(parseNumber);
-            return new DrawNumbers(winningNumbers,bonusNumber);
-        }catch (IllegalArgumentException e){
+            int parseNumber = BonusNumberValidator.validateBonusNumber(Console.readLine());
+            BonusNumber bonusNumber = new BonusNumber(parseNumber);
+            return new DrawNumbers(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
             return enterBonusInput(winningNumbers);
         }
-
     }
 }

@@ -8,14 +8,14 @@ public class DrawNumbers {
     WinningNumbers winningNumbers;
     BonusNumber bonusNumber;
 
-    public DrawNumbers(WinningNumbers winningNumbers,BonusNumber bonusNumber){
-        validateDuplicatedNumber(winningNumbers,bonusNumber);
-        this.winningNumbers=winningNumbers;
-        this.bonusNumber=bonusNumber;
+    public DrawNumbers(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        validateDuplicatedNumber(winningNumbers, bonusNumber);
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
     private void validateDuplicatedNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        if (winningNumbers.getParsedNumbers().contains(bonusNumber.getBonusNumber())){
+        if (winningNumbers.getParsedNumbers().contains(bonusNumber.getBonusNumber())) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_TO_WINNING_NUMBERS);
         }
     }
@@ -27,5 +27,4 @@ public class DrawNumbers {
     public int getBonusNumber() {
         return bonusNumber.getBonusNumber();
     }
-
 }

@@ -25,22 +25,22 @@ class LottoTest {
     }
 
     @Test
-    void 로또번호_생성시_오름차순으로_정렬된다(){
-        Lotto lotto=new Lotto(List.of(6,5,4,3,2,1));
+    void 로또번호_생성시_오름차순으로_정렬된다() {
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
 
-        Lotto expected=new Lotto(List.of(1,2,3,4,5,6));
+        Lotto expected = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertThat(lotto).usingRecursiveComparison().isEqualTo(expected);
     }
 
-   @Test
-    void 보너스_여부에_따라_서로_다른_enum을_반환한다(){
-        Lotto lotto=new Lotto(List.of(6,5,4,3,2,1));
+    @Test
+    void 보너스_여부에_따라_서로_다른_enum을_반환한다() {
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
 
         assertAll(
-                ()->assertEquals(lotto.findBonus(5,6), BonusExistence.HAVE_BONUS),
-                ()->assertEquals(lotto.findBonus(5,10), BonusExistence.NO_BONUS),
-                ()->assertEquals(lotto.findBonus(4,10), BonusExistence.IRRELEVANT)
+                () -> assertEquals(lotto.findBonus(5, 6), BonusExistence.HAVE_BONUS),
+                () -> assertEquals(lotto.findBonus(5, 10), BonusExistence.NO_BONUS),
+                () -> assertEquals(lotto.findBonus(4, 10), BonusExistence.IRRELEVANT)
         );
 
     }
