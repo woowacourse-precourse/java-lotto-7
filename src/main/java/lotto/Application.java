@@ -19,9 +19,7 @@ public class Application {
         List<List<Integer>> tickets = lottoService.getTickets(numberOfTickets);
         System.out.println();
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNumberBeforeCheck = Console.readLine();
-        Lotto winningNumber = new Lotto(lottoService.checkWinningNumber(winningNumberBeforeCheck));
+        Lotto winningNumber = userInput.winningNumber();
         System.out.println();
 
         System.out.println("보너스 번호를 입력해 주세요.");
