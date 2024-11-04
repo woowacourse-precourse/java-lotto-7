@@ -27,4 +27,42 @@ public class LottoUtilityTest {
         assertThat(utility.getWinningInfoMessage(LottoWinningStandard.FIFTH_PRIZE, 5))
                 .isEqualTo("3개 일치 (5,000원) - 5개");
     }
+
+    @Test
+    void 당첨번호_개수에_맞는_등수를_반환() {
+        assertThat(utility.getLottoWinningStandard(6, 0))
+                .isEqualTo(LottoWinningStandard.FIRST_PRIZE);
+        assertThat(utility.getLottoWinningStandard(5, 1))
+                .isEqualTo(LottoWinningStandard.SECOND_PRIZE);
+        assertThat(utility.getLottoWinningStandard(5, 0))
+                .isEqualTo(LottoWinningStandard.THIRD_PRIZE);
+        assertThat(utility.getLottoWinningStandard(4, 0))
+                .isEqualTo(LottoWinningStandard.FOURTH_PRIZE);
+        assertThat(utility.getLottoWinningStandard(3, 0))
+                .isEqualTo(LottoWinningStandard.FIFTH_PRIZE);
+    }
+
+    @Test
+    void 당첨_수익금의_총합계_계산결과를_반환() {
+        assertThat(utility.getTotalPrizeByLottoWinningStandard(LottoWinningStandard.FIRST_PRIZE, 1))
+                .isEqualTo(2000000000);
+        assertThat(utility.getTotalPrizeByLottoWinningStandard(LottoWinningStandard.SECOND_PRIZE, 2))
+                .isEqualTo(60000000);
+        assertThat(utility.getTotalPrizeByLottoWinningStandard(LottoWinningStandard.THIRD_PRIZE, 3))
+                .isEqualTo(4500000);
+        assertThat(utility.getTotalPrizeByLottoWinningStandard(LottoWinningStandard.FOURTH_PRIZE, 4))
+                .isEqualTo(200000);
+        assertThat(utility.getTotalPrizeByLottoWinningStandard(LottoWinningStandard.FIFTH_PRIZE, 5))
+                .isEqualTo(25000);
+    }
+
+    @Test
+    void 수익률_출력() {
+        assertThat(utility.getReturnRateMessage(5000, 8000))
+                .isEqualTo("총 수익률은 62.5%입니다.");
+        assertThat(utility.getReturnRateMessage(5000, 5000))
+                .isEqualTo("총 수익률은 100.0%입니다.");
+        assertThat(utility.getReturnRateMessage(50000, 5000))
+                .isEqualTo("총 수익률은 1,000.0%입니다.");
+    }
 }
