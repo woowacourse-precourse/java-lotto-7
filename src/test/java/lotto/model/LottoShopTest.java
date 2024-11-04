@@ -11,7 +11,7 @@ class LottoShopTest {
     void 로또_상점에서_로또를_구매한다() {
         assertRandomUniqueNumbersInRangeTest(() -> {
                     LottoShop lottoShop = new LottoShop();
-                    Lottos lottos = lottoShop.buy(4_000);
+                    Lottos lottos = lottoShop.buy(new Price(4_000));
                     assertThat(lottos.size()).isEqualTo(4);
                 },
                 List.of(1, 2, 3, 4, 5, 6),

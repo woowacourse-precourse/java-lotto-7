@@ -7,13 +7,14 @@ import lotto.model.LottoRankEvaluator;
 import lotto.model.LottoResult;
 import lotto.model.LottoShop;
 import lotto.model.Lottos;
+import lotto.model.Price;
 import lotto.model.WinningLotto;
 
 public class LottoService {
 
     private final LottoShop lottoShop = new LottoShop();
 
-    public Lottos buyLottos(int price) {
+    public Lottos buyLottos(Price price) {
         return lottoShop.buy(price);
     }
 

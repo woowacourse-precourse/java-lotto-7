@@ -11,6 +11,7 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.Lottos;
+import lotto.model.Price;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -54,10 +55,10 @@ public class LottoController {
         });
     }
 
-    private int inputPrice() {
+    private Price inputPrice() {
         return handleInput(() -> {
             outputView.printInputPriceMessage();
-            return parsePriceInteger(inputView.readPrice());
+            return new Price(parsePriceInteger(inputView.readPrice()));
         });
     }
 
