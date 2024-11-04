@@ -28,9 +28,9 @@ public class LottoController {
     public void start() {
         int amount = input.requestPurchasePrice();
         issueLotto(amount);
-        Lotto lotto = input.requestNumbers();
+        Lotto inputLotto = input.requestNumbers();
         bonusNumber = input.requestBonusNumber();
-        setInputNumbers(lotto, bonusNumber);
+        setInputNumbers(inputLotto, bonusNumber);
 
         output.printPurchasedLotto(lotteryTickets);
     }
@@ -43,8 +43,8 @@ public class LottoController {
         }
     }
 
-    public void setInputNumbers(Lotto lotto, int bonus) {
-        this.inputLotto = lotto;
+    public void setInputNumbers(Lotto input, int bonus) {
+        this.inputLotto = input;
         this.bonusNumber = bonus;
     }
 

@@ -36,6 +36,5 @@ public class OutputView {
 
         double profitRate = ((double) rank.getPrize() / (purchased*1000)) * 100.0;
         System.out.printf("총 수익률은 %s%%입니다.\n", Formatter.profitFormatted(profitRate));
-//        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 }

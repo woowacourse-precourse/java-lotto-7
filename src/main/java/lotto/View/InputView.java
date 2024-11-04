@@ -1,18 +1,20 @@
 package lotto.View;
+import Common.Formatter;
 import Common.Validator;
 import camp.nextstep.edu.missionutils.Console;
-import com.sun.tools.jconsole.JConsoleContext;
 import lotto.Lotto;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputView {
 
     public int requestPurchasePrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        int price = Integer.parseInt(Console.readLine());
+        String line = Console.readLine();
+        if (!Formatter.canParseInt(line)) throw new IllegalArgumentException("구입 금액은 숫자만 입력해야 합니다.");
+        int price = Integer.parseInt(line);
         if (price % 1000 != 0) throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
         System.out.println();
         return price/1000;
@@ -21,8 +23,12 @@ public class InputView {
     public Lotto requestNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] input = Console.readLine().split(",");
+        List<Integer> numbers = Arrays.stream(input)
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
         System.out.println();
-        return new Lotto(Validator.validateNumbers(input));
+        return new Lotto(numbers);
     }
 
     public int requestBonusNumber() {

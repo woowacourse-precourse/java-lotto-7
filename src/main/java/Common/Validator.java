@@ -7,15 +7,15 @@ public class Validator {
 
     private Validator() {}
 
-    public static List<Integer> validateNumbers(String[] input) {
-        if (input.length != 6) throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
-        List<Integer> numbers = new ArrayList<>();
-        for (String s : input) {
-            int number = Integer.parseInt(s);
-            validateNumberRange(number);
-            numbers.add(number);
+    public static void validateNumbersCount(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
-        validateDuplicateNumber(numbers);
+    }
+    public static List<Integer> validateNumbers(List<Integer> numbers) {
+        for (int num : numbers) {
+            validateNumberRange(num);
+        }
         return numbers;
     }
 
