@@ -4,6 +4,7 @@ import lotto.controller.LottoController;
 import lotto.service.InputMessageService;
 import lotto.service.LottoService;
 import lotto.service.OutputMessageService;
+import lotto.validation.EnterBonusNumberValidation;
 import lotto.validation.EnterWinningNumberValidation;
 import lotto.validation.PurchaseAmountValidation;
 import lotto.view.InputMessageView;
@@ -17,7 +18,7 @@ public class AppConfig {
     return new LottoService();
   }
   public InputMessageService inputMessageService(){
-    return new InputMessageService(inputMessageView(),purchaseAmountValidation(),enterWinningNumberValidation());
+    return new InputMessageService(inputMessageView(),purchaseAmountValidation(),enterWinningNumberValidation(),enterBonusNumberValidation());
   }
   public InputMessageView inputMessageView(){
     return new InputMessageView();
@@ -35,5 +36,8 @@ public class AppConfig {
 
   public EnterWinningNumberValidation enterWinningNumberValidation(){
     return new EnterWinningNumberValidation();
+  }
+  public EnterBonusNumberValidation enterBonusNumberValidation(){
+    return new EnterBonusNumberValidation();
   }
 }

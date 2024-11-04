@@ -28,7 +28,9 @@ public class LottoController {
     outputMessageView.numberOfPurchases(numberOfPurchases);
     List<Lotto> lottos=lottoService.lottoResults(numberOfPurchases);
     outputMessageView.lottoResults(lottos);
-    Lotto WinningNumbers=inputMessageService.enterWinningNumberAndValidation();
+    List<Integer> winningNumbers=inputMessageService.enterWinningNumberAndValidation();
+    List<Integer> winningNumbersAddBonusNumber=inputMessageService.winningNumbersAddBonusNumberAndValidation(winningNumbers);
+
   }
 
 }

@@ -1,11 +1,15 @@
 package lotto.validation;
 
 public class PurchaseAmountValidation {
-  public boolean validatePurchaseAmount(long purchaseAmount){
+  public boolean validatePurchaseAmount(String purchaseAmount){
     try {
-      checkNegativeNumber(purchaseAmount);
-      unitConfirmation(purchaseAmount);
+      Long purchaseAmountLong=Long.parseLong(purchaseAmount);
+      checkNegativeNumber(purchaseAmountLong);
+      unitConfirmation(purchaseAmountLong);
       return true;
+    }catch (NumberFormatException e) {
+      System.out.println("[ERROR] 금액은 숫자를 입력해야 합니다.");
+      return false;
     }catch (IllegalArgumentException e){
       System.out.println(e.getMessage());
       return false;
