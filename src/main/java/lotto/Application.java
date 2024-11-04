@@ -11,6 +11,7 @@ import java.util.Map;
 public class Application {
     private static final int LOTTO_PRICE = 1000;
     private static final int PERCENT = 100;
+    private static final String ERROR_MESSAGE = "[ERROR]";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static void main(String[] args) {
@@ -24,7 +25,7 @@ public class Application {
                 System.out.printf("\n%d개를 구매했습니다.\n", lottoPieces);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
+                System.out.println(ERROR_MESSAGE + " 구입 금액은 숫자여야 합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
