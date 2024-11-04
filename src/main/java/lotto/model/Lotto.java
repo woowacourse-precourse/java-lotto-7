@@ -14,6 +14,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        if (numbers == null || numbers.isEmpty()) {
+            throw new IllegalStateException("로또 번호가 초기화되지 않았습니다.");
+        }
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
