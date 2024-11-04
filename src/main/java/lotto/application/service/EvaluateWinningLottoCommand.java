@@ -43,7 +43,10 @@ public class EvaluateWinningLottoCommand implements EvaluateWinningLottoUsecase 
         return lottoRepository.findAll();
     }
 
-    private List<LottoPrize> evaluatePrizes(List<Lotto> lottos, WinningNumber winningNumber) {
+    private List<LottoPrize> evaluatePrizes(
+        List<Lotto> lottos,
+        WinningNumber winningNumber
+    ) {
         return lottos.stream()
             .map(lotto -> winningLottoEvaluator.evaluate(winningNumber, lotto))
             .collect(Collectors.toList());
@@ -65,11 +68,14 @@ public class EvaluateWinningLottoCommand implements EvaluateWinningLottoUsecase 
         return statistics;
     }
 
-    private double calculateYieldRate(List<LottoPrize> prizes, int totalLottos) {
+    private double calculateYieldRate(
+        List<LottoPrize> prizes,
+        int lottoCount
+    ) {
         double totalPrizeAmount = prizes.stream()
             .mapToDouble(LottoPrize::getPrizeAmount)
             .sum();
 
-        return (totalPrizeAmount / (totalLottos * LOTTO_PRICE)) * ROUNDING_FACTOR;
+        return (totalPrizeAmount / (lottoCount * LOTTO_PRICE)) * ROUNDING_FACTOR;
     }
 }

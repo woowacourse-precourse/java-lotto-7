@@ -6,7 +6,10 @@ import lotto.domain.lotto.vo.LottoPrize;
 
 public class WinningLottoEvaluator {
 
-    public LottoPrize evaluate(WinningNumber winningNumber, Lotto lotto) {
+    public LottoPrize evaluate(
+        WinningNumber winningNumber,
+        Lotto lotto
+    ) {
         int matchingNumbers = winningNumber.getMatchingNumbersCount(lotto);
         boolean isBonusMatched = winningNumber.isBonusNumberMatched(lotto);
 

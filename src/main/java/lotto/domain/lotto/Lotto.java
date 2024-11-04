@@ -55,9 +55,12 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return PREFIX_BRACKET.getFormat()
-            + numbers.stream().map(String::valueOf)
-            .collect(Collectors.joining(DELIMITER_WITH_SPACE.getFormat()))
-            + SUFFIX_BRACKET.getFormat();
+        return numbers.stream().map(String::valueOf)
+            .collect(Collectors.joining(
+	    DELIMITER_WITH_SPACE.getFormat(),
+	    PREFIX_BRACKET.getFormat(),
+	    SUFFIX_BRACKET.getFormat()
+	)
+            );
     }
 }
