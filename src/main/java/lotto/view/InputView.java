@@ -13,11 +13,21 @@ public class InputView {
         while (true) {
             try {
                 int amount = Integer.parseInt(Console.readLine());
+                purchaseValidate(amount);
                 System.out.println();
                 return amount;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
+        }
+    }
+
+    // 구입 금액 유효성 검사 메소드
+    private void purchaseValidate(int amount) {
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력 해야 합니다.");
         }
     }
 

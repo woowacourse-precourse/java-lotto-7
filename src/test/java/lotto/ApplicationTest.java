@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.view.InputView;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,10 +10,13 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
+    private final InputView inputView = new InputView();
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    @DisplayName("전체 로직 테스트")
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -46,6 +51,7 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("구입 금액 입력 예외 테스트 - 숫자 형식이 아닌 경우")
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
@@ -53,6 +59,13 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @DisplayName("구입 금액 입력 예외 테스트 - 1,000원 단위가 아닌 경우")
+    @Test
+    void 구입_금액_단위_예외_테스트() {
+
+    }
+
 
     @Override
     public void runMain() {
