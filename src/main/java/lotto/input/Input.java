@@ -16,7 +16,7 @@ public class Input {
             System.out.println(ENTER_PURCHASE_AMOUNT.getPrompt());
 
             try {
-                return new Purchase(Integer.parseInt(Console.readLine()));
+                return new Purchase(Integer.parseInt(Console.readLine().replaceAll(" ", "")));
             } catch (NumberFormatException e) {
                 System.out.println(INPUT_MUST_BE_NUMBER.getMessage());
             } catch (IllegalArgumentException e) {
