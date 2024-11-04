@@ -35,7 +35,7 @@ public class LottoPrizeCalculatorTest {
         this.calculator = new LottoPrizeCalculator(lottoPrizes);
     }
 
-    @DisplayName("당첨 통계를 생성할 때 정확한 통계를 반환해야한다")
+    @DisplayName("당첨 통계를 생성할 때 정확한 통계를 반환해야한다.")
     @Test
     public void 당첨_통계를_생성할_때_정확한_통계를_반환해야한다() {
         List<String> expectedStatistics = Arrays.asList(
@@ -54,7 +54,7 @@ public class LottoPrizeCalculatorTest {
         }
     }
 
-    @DisplayName("수익률을 계산할 때 정확한 수익률을 반환해야한다")
+    @DisplayName("수익률을 계산할 때 정확한 수익률을 반환해야한다.")
     @Test
     public void 수익률을_계산할_때_정확한_수익률을_반환해야한다() {
         int purchaseAmount = 10000;
