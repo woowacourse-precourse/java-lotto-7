@@ -8,6 +8,7 @@ import java.util.List;
 public class Application {
     private static int money;
     private static List<Lotto> lottos;
+    private static final int lottoNumbersCount = 6;
     public static void main(String[] args) {
         init();
     }
@@ -28,7 +29,7 @@ public class Application {
     public static void buyLotto() {
         int lottoCount = money/1000;
         for(int i = 0; i < lottoCount; i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,lottoNumbersCount);
             lottos.add(new Lotto(numbers));
         }
     }
@@ -55,6 +56,13 @@ public class Application {
             Integer.parseInt(input);
         }catch(Exception e){
             throw new NumberFormatException("정수여야 합니다.");
+        }
+    }
+
+    public static void splitWithComma(String input) throws Exception{
+        String[] splitted = input.split(",");
+        if(splitted.length != lottoNumbersCount){
+            throw new IllegalArgumentException("숫자들은 ,(콤마)로 구분되어야 합니다.");
         }
     }
 }

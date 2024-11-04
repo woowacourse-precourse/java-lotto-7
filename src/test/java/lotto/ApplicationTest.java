@@ -101,6 +101,28 @@ class ApplicationTest extends NsTest {
         assertDoesNotThrow(() -> Application.isMultipleOf1000(3000));
     }
 
+    @Test
+    void 당첨번호_입력_시_콤마로_구분했을때_요소가_6개가_아니면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            assertThrows(Exception.class, () -> {
+                Application.splitWithComma("a,b,c,d,e,w,f");
+            });
+        });
+    }
+
+    @Test
+    void 당첨번호_입력_시_콤마로_구분했을떄_요소가_6개가_아니면_발생하는_예외(){
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.splitWithComma("a,1,2,3,4,b,a"))
+                    .isInstanceOf(IllegalArgumentException.class);
+        });
+    }
+
+    @Test
+    void 당첨번호_입력_시_콤마로_구분했을떄_요소가_6개가_아니면_예외가_발생하지_않는다(){
+        assertDoesNotThrow(() -> Application.splitWithComma("a,d,b,c,d,e"));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
