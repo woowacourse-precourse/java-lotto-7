@@ -15,6 +15,7 @@ public class Application {
             List<Lotto> purchasedLottos = purchaseLottos(amount / LOTTO_PRICE);
             printLottos(purchasedLottos);
             List<Integer> winningNumbers = inputWinningNumbers();
+            int bonusNumber = inputBonusNumber();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -70,6 +71,18 @@ public class Application {
                 return winningNumbers;
             } catch (Exception e) {
                 System.out.println("[ERROR] 올바른 형식의 당첨 번호를 입력해 주세요.");
+            }
+        }
+    }
+
+    // 보너스 번호 입력 메서드 - 유효성 검사는 Lotto 클래스에서 처리
+    private static int inputBonusNumber() {
+        while (true) {
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            try {
+                return Integer.parseInt(Console.readLine());
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 올바른 형식의 보너스 번호를 입력해 주세요.");
             }
         }
     }
