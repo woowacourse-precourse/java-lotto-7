@@ -1,9 +1,10 @@
 package lotto.domain;
 
+import lotto.view.ErrorMessage;
+
 public class PurchaseAmount {
     private static final int UNIT = 1000;
     private final int amountNum;
-    private static final String ERROR_MESSAGE = "[ERROR]";
     public PurchaseAmount(String amountStr){
         int amount=checkText(amountStr);
         validate(amount);
@@ -16,22 +17,22 @@ public class PurchaseAmount {
     private static int checkText(String amountStr) {
         amountStr=amountStr.trim();
         if (amountStr.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_AMOUNT.getMessage());
         }
         try {
             return Integer.parseInt(amountStr.trim());
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("문자는 안돼요");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
         }
     }
     private void checkNegative(int amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException();
+        if (amount <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER_ERROR.getMessage());
         }
     }
     private void checkUnit(int amount) {
         if (amount % UNIT != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_NUMBER_ERROR.getMessage());
         }
     }
     public int calculateLottoCount(){
