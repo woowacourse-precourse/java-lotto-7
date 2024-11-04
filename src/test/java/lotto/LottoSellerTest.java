@@ -84,6 +84,15 @@ class LottoSellerTest extends NsTest {
         });
     }
 
+    @Test
+    void 로또_보너스_번호가_숫자가_아니라면_에러출력_후_재입력받는다() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "7a");
+            assertThat(output())
+                    .contains(ERROR_MESSAGE + "로또 번호는 숫자여야 합니다.");
+        });
+    }
+
     @Override
     public void runMain() {
         LottoSeller lottoSeller = new LottoSeller();
