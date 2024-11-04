@@ -21,7 +21,7 @@ public class Validator {
         validateUniqueNumbers(numbers);
     }
 
-    public static int validateLottoNumber(String userInput) {
+    public static int validateIndividualLottoNumber(String userInput) {
         validateNotEmptyValue(userInput);
         return validateNumberInput(userInput);
     }

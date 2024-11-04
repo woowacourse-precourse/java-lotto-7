@@ -51,7 +51,7 @@ public class Lotto {
         String[] numbers = userInput.split(",", -1);
 
         for (String number : numbers) {
-            int validatedNumber = Validator.validateLottoNumber(number);
+            int validatedNumber = Validator.validateIndividualLottoNumber(number);
             winningNumbers.add(validatedNumber);
         }
 
@@ -59,7 +59,7 @@ public class Lotto {
     }
 
     private static int getBonusNumberFromInput(Lotto numbers, String userInput) {
-        int bonusNumber = Validator.validateLottoNumber(userInput);
+        int bonusNumber = Validator.validateIndividualLottoNumber(userInput);
         Validator.validateBonusNumber(numbers, bonusNumber);
 
         return bonusNumber;
