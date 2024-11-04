@@ -1,21 +1,18 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OutputController {
 
     StatisticsController statisticsController = new StatisticsController();
+    LottoGenerator lottoGenerator = new LottoGenerator();
 
     public List<Lotto> printLottos(int purchaseNumber) {
 
         System.out.println(purchaseNumber + "개를 구매했습니다.");
 
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < purchaseNumber; i++) {
-            Lotto lotto = new Lotto(Lotto.generateNumbers());
-            lottos.add(lotto);
-        }
+        List<Lotto> lottos = lottoGenerator.generateLotto(purchaseNumber);
+
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }

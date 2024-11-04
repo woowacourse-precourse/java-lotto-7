@@ -11,10 +11,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
     public Rank matchWinNumbers(List<Integer> winNumbers, int bonusNumber) {
         int matchCount = 0;
 
