@@ -1,7 +1,6 @@
-package lotto.model;
+package lotto.model.payment;
 
 import lotto.model.lotto.Lotto;
-import lotto.utils.PaymentValidator;
 
 public class Payment {
 

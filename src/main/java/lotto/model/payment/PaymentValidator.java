@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.model.payment;
 
 import lotto.error.PaymentErrorMessage;
 import lotto.model.lotto.Lotto;

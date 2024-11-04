@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.model.Payment;
+import lotto.model.payment.Payment;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoChecker;
 import lotto.model.lotto.LottoPublisher;
