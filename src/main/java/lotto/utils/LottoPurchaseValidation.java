@@ -12,7 +12,7 @@ public class LottoPurchaseValidation {
         return clientMoney;
     }
 
-    private static int validateMoneyIsInteger(String rawClientInput) {
+    public static int validateMoneyIsInteger(String rawClientInput) {
         try {
             return Integer.parseInt(rawClientInput.trim());
         } catch (NumberFormatException e) {
@@ -20,19 +20,19 @@ public class LottoPurchaseValidation {
         }
     }
 
-    private static void validateMoneyIsPositive(int rawIntegerInput) {
+    public static void validateMoneyIsPositive(int rawIntegerInput) {
         if (rawIntegerInput < 0) {
             throw new IllegalArgumentException(LottoPurchaseErrorType.INVALID_MONEY_NEGATIVE.getMessage());
         }
     }
 
-    private static void validateMoneyIsNotDivisibleByLottoPrice(int rawIntegerInput) {
+    public static void validateMoneyIsNotDivisibleByLottoPrice(int rawIntegerInput) {
         if (rawIntegerInput % 1000 != 0) {
             throw new IllegalArgumentException(LottoPurchaseErrorType.INVALID_MONEY_UNIT.getMessage());
         }
     }
 
-    private static void validateMoneyIsNull(String rawClientInput) {
+    public static void validateMoneyIsNull(String rawClientInput) {
         if (rawClientInput.isBlank()) {
             throw new IllegalArgumentException(LottoPurchaseErrorType.INVALID_INPUT_NULL_MONEY.getMessage());
         }

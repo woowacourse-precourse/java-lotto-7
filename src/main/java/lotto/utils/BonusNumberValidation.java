@@ -2,6 +2,8 @@ package lotto.utils;
 
 import lotto.constants.errorType.BonusNumberErrorType;
 
+import java.util.List;
+
 public class BonusNumberValidation {
 
     public static int checkedBonusNumber(String rawBonusNumber) {
@@ -28,6 +30,12 @@ public class BonusNumberValidation {
     private static void validateNumberIsNull(String rawBonusNumber) {
         if (rawBonusNumber.isBlank()) {
             throw new IllegalArgumentException(BonusNumberErrorType.BONUS_NUMBER_NULL_ERROR.getMessage());
+        }
+    }
+
+    public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(BonusNumberErrorType.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 

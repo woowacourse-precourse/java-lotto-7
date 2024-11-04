@@ -16,7 +16,6 @@ public class LottoController {
     private final Customer customer = new Customer();
     private final LottoHandler lottoHandler;
     private final RankingHandler rankingHandler;
-    private Lotto lotto;
 
     public LottoController(LottoHandler lottoHandler, RankingHandler rankingHandler) {
         this.lottoHandler = lottoHandler;
@@ -50,6 +49,7 @@ public class LottoController {
     private void inputBonusNumber() {
         String rawBonusNumber = InputMessage.inputBonusNumber();
         int bonusNumber = BonusNumberValidation.checkedBonusNumber(rawBonusNumber);
+        BonusNumberValidation.validateBonusNumber(bonusNumber, lottoHandler.getWinningLottoNumbers());
 
         lottoHandler.setBonusNumber(bonusNumber);
     }

@@ -51,6 +51,10 @@ public class LottoHandler {
         return bonusNumber;
     }
 
+    public List<Integer> getWinningLottoNumbers() {
+        return winningLottoNumbers.getNumbers();
+    }
+
     public void staticsResults(Customer customer) {
         customer.initializeRankingResults();
 
