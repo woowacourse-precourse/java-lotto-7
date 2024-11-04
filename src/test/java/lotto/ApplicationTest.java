@@ -55,7 +55,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 로또_구매_시_금액이_부족하면_예외가_발생한다() {
+    void 로또_구매_시_금액이_부족하면_예외_발생() {
         assertSimpleTest(() -> {
             runException("500", "1,2,3,4,5,6", "7"); // 금액이 부족한 경우
             assertThat(output()).contains(ERROR_MESSAGE);
@@ -79,9 +79,17 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 당첨번호와_보너스번호의_형식이_올바르지_않으면_예외가_발생한다() {
+    void 당첨번호와_보너스번호의_형식이_올바르지_않으면_예외_발생() {
         assertSimpleTest(() -> {
             runException("8000", "1,2,3,4,5,6", "50"); // 범위를 벗어난 보너스 번호
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호와_보너스번호가_중복이면_예외_발생() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "6");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

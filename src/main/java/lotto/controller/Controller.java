@@ -53,7 +53,13 @@ public class Controller {
     private BonusNumber getBonusNumber(Lotto winningNumbers) {
         int number = NumberInputView.getBonusNumber();
         BonusNumber bonusNumber = new BonusNumber(number);
-        bonusNumber.validate(winningNumbers);
+
+        try {
+            bonusNumber.validate(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getBonusNumber(winningNumbers);
+        }
         return bonusNumber;
     }
 }
