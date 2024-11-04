@@ -1,5 +1,7 @@
 package lotto;
 
+import static constant.Constant.*;
+
 import java.util.List;
 
 public class Lotto {
@@ -7,7 +9,13 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkLottoNumberRange(numbers);
+        checkRedundancy(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,5 +24,17 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    // 중복된 로또 번호가 있는지 확인하는 메서드
+    private void checkRedundancy(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+        }
+    }
+
+    // 로또 번호가 최솟값과 최댓값을 벗어났는지 검증하는 메서드
+    private void checkLottoNumberRange(List<Integer> numbers) {
+        if (numbers.getFirst() < MIN_LOTTO_NUMBER || numbers.getLast() > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+        }
+    }
 }
