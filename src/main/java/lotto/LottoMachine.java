@@ -21,7 +21,7 @@ public class LottoMachine {
 			boolean hasBonus = lotto.hasBonus(bonusNumber);
 
 			Prize prize = Prize.rank(matchCount, hasBonus);
-			winningResults.put(prize, winningResults.getOrDefault(prize, 0) + 1);
+			winningResults.put(prize, winningResults.get(prize) + 1);
 		}
 
 		double prizeRate = caculatePrizeRate(money, winningResults);
