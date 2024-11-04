@@ -20,6 +20,7 @@ public class AutomaticLottoMachine implements LottoMachine {
     }
 
     private List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER, LottoConstants.MAX_NUMBER, LottoConstants.LOTTO_SIZE);
+        return Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER, LottoConstants.MAX_NUMBER,
+                LottoConstants.LOTTO_SIZE);
     }
 }

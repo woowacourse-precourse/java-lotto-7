@@ -47,7 +47,7 @@ class LottoResultTest {
     void 수익률_계산_테스트() {
         LottoResult lottoResult = new LottoResult(lottoTickets, winningLotto);
         double profitRate = lottoResult.calculateProfitRate(new PurchaseAmount(6_000));
-        double expectedProfitRate = ((double)2_031_555_000/6_000) * 100;
+        double expectedProfitRate = ((double) 2_031_555_000 / 6_000) * 100;
         assertThat(profitRate).isCloseTo(expectedProfitRate, withPrecision(1e-5));
     }
 }
