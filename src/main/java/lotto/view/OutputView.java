@@ -2,8 +2,9 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constants.Constants;
+import java.util.Optional;
 import lotto.model.Lotto;
+import lotto.model.LottoPrize;
 
 public class OutputView {
 
@@ -35,11 +36,9 @@ public class OutputView {
     }
 
     private void printStatisticsDetails(Map<Integer, Integer> lottoStatistics) {
-        System.out.printf("%s%d개%n", Constants.THREE_MATCHED_MESSAGE, lottoStatistics.get(3));
-        System.out.printf("%s%d개%n", Constants.FOUR_MATCHED_MESSAGE, lottoStatistics.get(4));
-        System.out.printf("%s%d개%n", Constants.FIVE_MATCHED_MESSAGE, lottoStatistics.get(5));
-        System.out.printf("%s%d개%n", Constants.BONUS_MATCHED_MESSAGE, lottoStatistics.get(7));
-        System.out.printf("%s%d개%n", Constants.SIX_MATCHED_MESSAGE, lottoStatistics.get(6));
+        for (LottoPrize prize : LottoPrize.values()) {
+            int count = Optional.ofNullable(lottoStatistics.get(prize.ordinal() + 3)).orElse(0); // 3부터 시작하는 매칭 수
+            System.out.printf("%s - %d개%n", prize.formatMessage(), count);
+        }
     }
-
 }
