@@ -20,7 +20,11 @@ public class Application {
             getWinningNumber();
             getBonusNumber();
 
-            System.out.println(getLottoCount(lottoPurchaseAmount) + LOTTO_QUANTITY_MESSAGE);
+            int lottoCount = getLottoCount(lottoPurchaseAmount);
+
+            System.out.println(lottoCount + LOTTO_QUANTITY_MESSAGE);
+
+            printLottoNumbers(lottoCount);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -81,5 +85,13 @@ public class Application {
         }
 
         return lottoNumbers;
+    }
+
+    public static void printLottoNumbers(int lottoCount) {
+        List<Lotto> lottoNumbers = getLottoNumbers(lottoCount);
+
+        for (Lotto lotto : lottoNumbers) {
+            System.out.println(lotto);
+        }
     }
 }
