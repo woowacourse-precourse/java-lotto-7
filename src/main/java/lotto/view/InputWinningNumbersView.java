@@ -22,10 +22,10 @@ public class InputWinningNumbersView extends InputView {
     }
 
     private void validate(String inputValue) {
-        validateInputValue(inputValue);
+        validateFormat(inputValue);
     }
 
-    private void validateInputValue(String inputValue) {
+    private void validateFormat(String inputValue) {
         if (!PATTERN.matcher(inputValue).matches()) {
             throw new InvalidInputWinningNumbersException();
         }
