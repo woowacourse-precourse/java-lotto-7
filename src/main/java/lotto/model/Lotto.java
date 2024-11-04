@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,6 +27,15 @@ public class Lotto {
         }
     }
 
+    public long countMatching(Lotto winningLotto) {
+        return numbers.stream()
+                .filter(winningLotto::contains)
+                .count();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 
     @Override
     public String toString() {
