@@ -53,12 +53,12 @@
 
 ### LottoException
 
-- [ ] 로또 예외처리
+- [x] 로또 예외처리
 
 ### MoneyException
 
-- [ ] 돈 예외처리
+- [x] 돈 예외처리
 
 ### FormatException
 
-- [ ] 형식 예외처리
+- [x] 형식 예외처리
