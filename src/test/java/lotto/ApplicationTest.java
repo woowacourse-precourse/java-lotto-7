@@ -154,7 +154,7 @@ class ApplicationTest extends NsTest {
 
     @Test
     @DisplayName("당첨된 로또 통계를 기반으로 얼마를 이득봤는지 계산하는 테스트")
-    public void calculateYieldTest() {
+    public void calculateTotalPrizeTest() {
         //given
         List<List<Integer>> purchasedLotto = List.of(
                 List.of(1, 2, 3, 4, 5, 6),
@@ -169,8 +169,10 @@ class ApplicationTest extends NsTest {
         Long calculateTotalPrize = lottoService.calculateTotalPrize(matchCounts);
         //then
         assertEquals(calculateTotalPrize, 200050000);
-
     }
+
+    @Test
+    @DisplayName("당첨된 로또 통계를 기반으로 수익률을 계산하는 테스트")
 
 
     @Override
