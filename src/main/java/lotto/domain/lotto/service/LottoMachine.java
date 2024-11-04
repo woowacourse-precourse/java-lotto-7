@@ -1,21 +1,20 @@
 package lotto.domain.lotto.service;
 
+import static lotto.domain.lotto.constants.LottoNumber.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.UUID;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.constants.LottoNumber;
 
 public class LottoMachine {
-
-    private final int LOTTO_START_INDEX = 1;
-    private final int LOTTO_END_INDEX = 45;
-    private final int LOTTO_SIZE = 6;
 
     public Lotto create() {
         return Lotto.of(
             Randoms.pickUniqueNumbersInRange(
-                LOTTO_START_INDEX,
-                LOTTO_END_INDEX,
-                LOTTO_SIZE
+	MINIMUM_LOTTO_NUMBER.getCriteria(),
+	MAXIMUM_LOTTO_NUMBER.getCriteria(),
+	LOTTO_COUNT.getCriteria()
             )
         );
     }

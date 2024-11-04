@@ -25,7 +25,8 @@ public class LottoCliInputAdapter {
     private final PurchaseLottoUsecase purchaseLottoUsecase;
     private final EvaluateWinningLottoUsecase evaluateWinningLottoUsecase;
 
-    public LottoCliInputAdapter(InputValidator inputValidator,
+    public LottoCliInputAdapter(
+        InputValidator inputValidator,
         OutputPort outputPort,
         PurchaseLottoUsecase purchaseLottoUsecase,
         EvaluateWinningLottoUsecase evaluateWinningLottoUsecase
@@ -51,16 +52,6 @@ public class LottoCliInputAdapter {
         outputPort.writeResponse(purchaseLottoResponse);
     }
 
-    private void analyzeLottoResult() {
-        WinningNumber winningNumber = promptWinningNumber();
-        EvaluateWinningLottoResponse evaluateWinningLottoResponse = evaluateWinningLottoUsecase.execute(
-            new EvaluateWinningLottoRequest(winningNumber)
-        );
-
-        outputPort.writeNewline();
-        outputPort.writeResponse(evaluateWinningLottoResponse);
-    }
-
     private PurchaseAmount promptPurchaseAmount() {
         outputPort.writeMessage(PROMPT_PURCHASE_AMOUNT.getMessage());
         return readPurchaseAmount();
@@ -75,6 +66,16 @@ public class LottoCliInputAdapter {
             outputPort.writeMessage(exception.getMessage());
             return readPurchaseAmount();
         }
+    }
+
+    private void analyzeLottoResult() {
+        WinningNumber winningNumber = promptWinningNumber();
+        EvaluateWinningLottoResponse evaluateWinningLottoResponse = evaluateWinningLottoUsecase.execute(
+            new EvaluateWinningLottoRequest(winningNumber)
+        );
+
+        outputPort.writeNewline();
+        outputPort.writeResponse(evaluateWinningLottoResponse);
     }
 
     private WinningNumber promptWinningNumber() {
