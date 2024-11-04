@@ -1,6 +1,7 @@
 package lotto.global.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.exception.InputException;
 
 public class InputConsole implements AutoCloseable {
 
@@ -8,7 +9,7 @@ public class InputConsole implements AutoCloseable {
         String input = Console.readLine();
 
         if (input.isBlank()) {
-            throw new IllegalArgumentException();
+            throw InputException.empty();
         }
 
         return input;
