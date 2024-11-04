@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.exception.ExceptionMessages;
+
 import java.util.List;
 
 public class LottoValidator {
@@ -9,7 +11,7 @@ public class LottoValidator {
     public void validateLottoRange(List<Integer> lottoNumbers) {
         for (Integer number : lottoNumbers) {
             if (number < MIN_NUMBER || number > MAX_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 " + MIN_NUMBER + "부터 " + MAX_NUMBER + " 사이의 정수여야 합니다. 잘못된 번호: " + number);
+                throw new IllegalArgumentException(ExceptionMessages.LOTTO_NUMBER_RANGE_ERROR + number);
             }
         }
     }
