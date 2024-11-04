@@ -28,6 +28,10 @@ public class LottoMachine {
         return winningNumbers;
     }
 
+    public int getPaymentAmount() {
+        return paymentAmount.getAmount();
+    }
+
     // private methods
 
     private List<Lotto> createLottos(int lottoCount) {

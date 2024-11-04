@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.configuration.LottoConfiguration;
 import lotto.configuration.Prize;
 import lotto.dto.PrizeCountEntry;
 import lotto.validator.ProfitReportVaildator;
@@ -12,20 +11,22 @@ import lotto.validator.ProfitReportVaildator;
 public class ProfitReport {
     private final List<Lotto> purchasedLottos;
     private final WinningNumbers winningNumbers;
+    private final PaymentAmount paymentAmount;
 
     // constructor
 
-    public ProfitReport(List<Lotto> purchasedLottos, WinningNumbers winningNumbers) {
+    public ProfitReport(List<Lotto> purchasedLottos, WinningNumbers winningNumbers, int amount) {
         ProfitReportVaildator.validate(purchasedLottos, winningNumbers);
         this.purchasedLottos = purchasedLottos;
         this.winningNumbers = winningNumbers;
+        this.paymentAmount = new PaymentAmount(amount);
     }
 
     // public method
 
     public double calculateProfitRate() {
         long profit = calculateProfit();
-        long paymentAmount = getPaymentAmount();
+        long paymentAmount = this.paymentAmount.getAmount();
 
         return (double) profit / paymentAmount * 100;
     }
@@ -45,7 +46,10 @@ public class ProfitReport {
                 .map(prize -> new PrizeCountEntry(prize, prizeCount.get(prize)))
                 .sorted((o1, o2) -> Long.compare(o1.prize().getPrizeMoney(), o2.prize().getPrizeMoney()))
                 .toList();
+    }
 
+    public int getPaymentAmount() {
+        return paymentAmount.getAmount();
     }
 
     public List<Lotto> getPurchasedLottos() {
@@ -54,10 +58,6 @@ public class ProfitReport {
 
     public WinningNumbers getWinningNumbers() {
         return winningNumbers;
-    }
-
-    public int getPaymentAmount() {
-        return purchasedLottos.size() * LottoConfiguration.LOTTO_PRICE.getValue();
     }
 
     // private method

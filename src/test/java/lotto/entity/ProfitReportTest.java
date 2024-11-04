@@ -213,9 +213,10 @@ class ProfitReportTest {
         // given
         Lotto lotto = Lotto.createRandomLotto();
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+        int paymentAmount = 1000;
 
         // when
-        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers);
+        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers, paymentAmount);
 
         // then
         assertNotNull(profitReport);
@@ -228,7 +229,7 @@ class ProfitReportTest {
 
         // when
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,
-                () -> new ProfitReport(null, winningNumbers));
+                () -> new ProfitReport(null, winningNumbers, 0));
 
         // then
         Assertions.assertEquals("구매한 로또는 null 또는 비어있을 수 없습니다.", exception.getMessage());
@@ -243,7 +244,7 @@ class ProfitReportTest {
 
         // when
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,
-                () -> new ProfitReport(List.of(), winningNumbers));
+                () -> new ProfitReport(List.of(), winningNumbers, 0));
 
         // then
         Assertions.assertEquals("구매한 로또는 null 또는 비어있을 수 없습니다.", exception.getMessage());
@@ -254,7 +255,7 @@ class ProfitReportTest {
         // given
         Lotto lotto = Lotto.createRandomLotto();
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
-        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers);
+        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers, 1000);
 
         // when
         WinningNumbers actual = profitReport.getWinningNumbers();
@@ -269,7 +270,7 @@ class ProfitReportTest {
         // given
         Lotto lotto = Lotto.createRandomLotto();
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
-        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers);
+        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers, 1000);
 
         // when
         WinningNumbers actual = profitReport.getWinningNumbers();
@@ -285,7 +286,7 @@ class ProfitReportTest {
         // given
         Lotto lotto = Lotto.createRandomLotto();
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
-        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers);
+        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers, 1000);
 
         // when
         List<Lotto> actual = profitReport.getPurchasedLottos();
@@ -300,7 +301,7 @@ class ProfitReportTest {
         // given
         Lotto lotto = Lotto.createRandomLotto();
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
-        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers);
+        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers, 1000);
 
         // when
         List<Lotto> actual = profitReport.getPurchasedLottos();
@@ -319,7 +320,7 @@ class ProfitReportTest {
         // given
         Lotto lotto = Lotto.createRandomLotto();
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
-        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers);
+        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers, 1000);
 
         // when
         int actual = profitReport.getPaymentAmount();
@@ -334,7 +335,7 @@ class ProfitReportTest {
         // given
         Lotto lotto = new Lotto(lottoInput);
         WinningNumbers winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumber);
-        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers);
+        ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers, 1000 * lottoInput.size());
 
         // when
         long actual = profitReport.calculateProfit();
@@ -349,7 +350,7 @@ class ProfitReportTest {
                             double expected) {
         // given
         WinningNumbers winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumber);
-        ProfitReport profitReport = new ProfitReport(lottoInputs, winningNumbers);
+        ProfitReport profitReport = new ProfitReport(lottoInputs, winningNumbers, 1000 * lottoInputs.size());
 
         // when
         double actual = profitReport.calculateProfitRate();
@@ -365,7 +366,7 @@ class ProfitReportTest {
                              List<PrizeCountEntry> expected) {
         // given
         WinningNumbers winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumber);
-        ProfitReport profitReport = new ProfitReport(lottoInputs, winningNumbers);
+        ProfitReport profitReport = new ProfitReport(lottoInputs, winningNumbers, 1000 * lottoInputs.size());
 
         // when
         List<PrizeCountEntry> actual = profitReport.calculateWinningCountsByPrize();

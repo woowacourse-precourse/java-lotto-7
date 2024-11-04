@@ -10,6 +10,7 @@ public class LottoService {
     }
 
     public ProfitReport generateProfitReport(LottoMachine lottoMachine) {
-        return new ProfitReport(lottoMachine.getPurchasedLottos(), lottoMachine.getWinningNumbers());
+        return new ProfitReport(lottoMachine.getPurchasedLottos(), lottoMachine.getWinningNumbers(),
+                lottoMachine.getPaymentAmount());
     }
 }
