@@ -1,7 +1,6 @@
 package lotto;
 
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,12 +31,6 @@ public class LottoGame {
         double rateOfResult = LottoStatistics.calcRateOfReturn(money, lottoRanks);
         Map<LottoRank, Integer> rankMap = LottoStatistics.calcRankStatistics(lottoRanks);
         lottoGameDisplay.printWinStatistics(rankMap, rateOfResult);
-
-        close();
-    }
-
-    public void close() {
-        Console.close();
     }
 
     private List<LottoRank> checkLottosRank(List<Lotto> lottos, List<Integer> winnerNumbers, int bonus) {
