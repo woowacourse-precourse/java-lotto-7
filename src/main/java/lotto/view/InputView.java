@@ -6,40 +6,55 @@ import java.util.ArrayList;
 
 public class InputView {
 
+    private static final String MESSAGE_WINNING_NUMBERS = "당첨 번호를 입력해 주세요. (쉼표로 구분하여 6개 입력)";
+    private static final String MESSAGE_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static final String MESSAGE_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String ERROR_INVALID_NUMBER = "[ERROR] 유효한 숫자를 입력해 주세요.";
+    private static final String ERROR_WINNING_NUMBERS_COUNT = "[ERROR] 당첨 번호는 6개여야 합니다.";
+    private static final String ERROR_WINNING_NUMBERS_RANGE = "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String ERROR_DUPLICATE_WINNING_NUMBERS = "[ERROR] 당첨 번호에는 중복된 숫자가 없어야 합니다.";
+    private static final String ERROR_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String ERROR_PURCHASE_AMOUNT = "[ERROR] 구입금액은 1,000원 단위여야 합니다.";
+
+    private static final int WINNING_NUMBER_COUNT = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int MIN_PURCHASE_AMOUNT = 1000;
+
     public static List<Integer> getWinningNumbers() {
         try {
-            System.out.println("당첨 번호를 입력해 주세요. (쉼표로 구분하여 6개 입력)");
+            System.out.println(MESSAGE_WINNING_NUMBERS);
             String[] inputs = splitInput(Console.readLine());
             List<Integer> numbers = parseNumbers(inputs);
             validateWinningNumbers(numbers);
             return numbers;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getWinningNumbers(); // 재시도
+            return getWinningNumbers();
         }
     }
 
     public static int getBonusNumber() {
         try {
-            System.out.println("보너스 번호를 입력해 주세요.");
+            System.out.println(MESSAGE_BONUS_NUMBER);
             int bonusNumber = parseNumber(Console.readLine());
             validateNumber(bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBonusNumber(); // 재시도
+            return getBonusNumber();
         }
     }
 
     public static int getPurchaseAmount() {
         try {
-            System.out.println("구입금액을 입력해 주세요.");
+            System.out.println(MESSAGE_PURCHASE_AMOUNT);
             int amount = parseNumber(Console.readLine());
             validatePurchaseAmount(amount);
             return amount;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getPurchaseAmount(); // 재시도
+            return getPurchaseAmount();
         }
     }
 
@@ -59,31 +74,31 @@ public class InputView {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(ERROR_INVALID_NUMBER);
         }
     }
 
     private static void validateWinningNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        if (numbers.size() != WINNING_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ERROR_WINNING_NUMBERS_COUNT);
         }
-        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+        if (numbers.stream().anyMatch(num -> num < MIN_LOTTO_NUMBER || num > MAX_LOTTO_NUMBER)) {
+            throw new IllegalArgumentException(ERROR_WINNING_NUMBERS_RANGE);
         }
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에는 중복된 숫자가 없어야 합니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATE_WINNING_NUMBERS);
         }
     }
 
     private static void validateNumber(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_RANGE);
         }
     }
 
     private static void validatePurchaseAmount(int amount) {
-        if (amount < 1000 || amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위여야 합니다.");
+        if (amount < MIN_PURCHASE_AMOUNT || amount % MIN_PURCHASE_AMOUNT != 0) {
+            throw new IllegalArgumentException(ERROR_PURCHASE_AMOUNT);
         }
     }
 }
