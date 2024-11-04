@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.model.strategy.NumberGenerationStrategy;
+import lotto.utils.ErrorMessages;
 
 /**
  * 로또 발행기 클래스
@@ -51,7 +52,7 @@ public class LottoMachine {
      */
     public void validateAmount(int amount) {
         if (amount <= 0 || amount % LOTTO_PRICE != 0) {
-           throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+           throw new IllegalArgumentException(ErrorMessages.INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
 }
