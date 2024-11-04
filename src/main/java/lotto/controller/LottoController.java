@@ -19,7 +19,7 @@ public class LottoController {
     public void run() {
         int purchaseAmount = input.getPurchaseAmount();
         LottoMachine lottoMachine = new LottoMachine(purchaseAmount);
-        output.printLottoTickets(lottoMachine.getLottos());
+        output.printLottoTickets(lottoMachine.generateLottos());
 
         List<Integer> winningNumbers = LottoUtils.parseNumbers(input.getWinningNumbers());
         int bonusNumber = input.getBonusNumber();

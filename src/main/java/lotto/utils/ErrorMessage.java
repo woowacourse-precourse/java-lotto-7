@@ -1,7 +1,5 @@
 package lotto.utils;
 
-
-
 public class ErrorMessage {
     public static final String INVALID_LOTTO_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
     public static final String DUPLICATE_LOTTO_NUMBER = "[ERROR] 중복된 번호가 존재합니다!";

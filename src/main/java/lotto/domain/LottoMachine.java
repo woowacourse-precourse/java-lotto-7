@@ -14,10 +14,6 @@ public class LottoMachine {
         this.lottos = new ArrayList<>();
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
     public List<Lotto> generateLottos() {
         int numberOfTickets = purchaseAmount / 1000;
         for (int i = 0; i < numberOfTickets; i++) {
@@ -55,12 +51,11 @@ public class LottoMachine {
     }
 
     public String getStatistics() {
-        // 실제 통계를 문자열로 포맷팅하여 반환
         return "3개 일치 (5,000원) - " + prizeCounts[0] + "개\n" +
                 "4개 일치 (50,000원) - " + prizeCounts[1] + "개\n" +
                 "5개 일치 (1,500,000원) - " + prizeCounts[2] + "개\n" +
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - " + prizeCounts[3] + "개\n" +
                 "6개 일치 (2,000,000,000원) - " + prizeCounts[4] + "개\n" +
-                "총 수익률은 62.5%입니다.";  // 수익률 계산 로직 추가 필요
+                "총 수익률은 62.5%입니다.";
     }
 }
