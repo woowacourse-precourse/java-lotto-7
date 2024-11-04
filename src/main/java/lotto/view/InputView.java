@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.dto.BonusLottoNumBerInput;
+import lotto.dto.BonusLottoNumberInput;
 import lotto.dto.LottoPurchasedAmountInput;
 import lotto.dto.WinnerLottoNumbersInput;
 
@@ -17,8 +17,8 @@ public class InputView {
         return WinnerLottoNumbersInput.from(rawNumbers.trim());
     }
 
-    public BonusLottoNumBerInput readBonusLottoNumber() {
+    public BonusLottoNumberInput readBonusLottoNumber() {
         String rawBonusNumber = Console.readLine();
-        return BonusLottoNumBerInput.from(rawBonusNumber.trim());
+        return BonusLottoNumberInput.from(rawBonusNumber.trim());
     }
 }

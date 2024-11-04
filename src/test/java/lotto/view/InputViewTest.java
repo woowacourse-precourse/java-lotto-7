@@ -3,7 +3,7 @@ package lotto.view;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import lotto.dto.BonusLottoNumBerInput;
+import lotto.dto.BonusLottoNumberInput;
 import lotto.dto.LottoPurchasedAmountInput;
 import lotto.dto.WinnerLottoNumbersInput;
 import lotto.exception.ErrorMessage;
@@ -17,7 +17,7 @@ public class InputViewTest {
         LottoException exception = assertThrows(LottoException.class, () -> {
             LottoPurchasedAmountInput.from(null);
             WinnerLottoNumbersInput.from(null);
-            BonusLottoNumBerInput.from(null);
+            BonusLottoNumberInput.from(null);
         });
         assertEquals(ErrorMessage.NULL_INPUT_ERROR.getMessage(), exception.getMessage());
     }
@@ -27,7 +27,7 @@ public class InputViewTest {
         LottoException exception = assertThrows(LottoException.class, () -> {
             LottoPurchasedAmountInput.from("");
             WinnerLottoNumbersInput.from("");
-            BonusLottoNumBerInput.from("");
+            BonusLottoNumberInput.from("");
         });
         assertEquals(ErrorMessage.EMPTY_INPUT_ERROR.getMessage(), exception.getMessage());
     }
