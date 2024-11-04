@@ -19,7 +19,7 @@ public class LottoResult {
 
     public LottoResult() {
         for (Rank rank : Rank.values()) {
-            winningCount.put(rank, 0);
+            winningCount.put(rank, INITIAL_COUNT);
         }
     }
 
