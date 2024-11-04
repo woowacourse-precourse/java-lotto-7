@@ -1,11 +1,10 @@
 package lotto;
 
-import lotto.common.ErrorMessage;
 import lotto.common.LottoGrade;
 import lotto.common.MessageGenerator;
 import lotto.domain.EarningReteCalculator;
 import lotto.domain.LottoFactory;
-import lotto.domain.LottoParser;
+import lotto.helper.LottoParser;
 import lotto.domain.WinningStrategy;
 import lotto.helper.InputValidator;
 import lotto.view.ConsoleInput;

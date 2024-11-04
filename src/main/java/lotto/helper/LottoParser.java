@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.helper;
 
 import lotto.Lotto;
 import lotto.common.ErrorMessage;

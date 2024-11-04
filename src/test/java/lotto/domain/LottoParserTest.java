@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.Lotto;
 import lotto.common.ErrorMessage;
+import lotto.helper.LottoParser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
