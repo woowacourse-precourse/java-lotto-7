@@ -24,12 +24,17 @@ public class MarginCalculator {
         BigDecimal profitForCalculate = new BigDecimal(profit);
         BigDecimal percentUnit = new BigDecimal(Integer.toString(PERCENT_UNIT));
 
+        BigDecimal calculatedPercentage = calculatePercentage(userMoneyForCalculate, profitForCalculate, percentUnit);
         // 해당 반올림 방식은 Banker's rounding 이 아님.
-        BigDecimal calculatedProfit = profitForCalculate
+        return calculatedPercentage.setScale(1, RoundingMode.HALF_UP);
+    }
+
+    private BigDecimal calculatePercentage(BigDecimal userMoneyForCalculate, BigDecimal profitForCalculate,
+                                           BigDecimal percentUnit) {
+
+        return profitForCalculate
                 .divide(userMoneyForCalculate)
                 .multiply(percentUnit);
-
-        return calculatedProfit.setScale(1, RoundingMode.HALF_UP);
     }
 
     private int calculateProfit() {
