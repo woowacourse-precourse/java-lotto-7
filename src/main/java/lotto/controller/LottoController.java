@@ -26,32 +26,61 @@ public class LottoController {
   public void run() {
 
     // 금액 받기 및 구매 개수 출력
-    String purchaseAmountInput = inputView.readPurchaseAmount();
-    int validatedPurchaseAmount = inputValidator.validatePurchaseAmount(purchaseAmountInput);
-    outputView.printPurchaseCount(validatedPurchaseAmount);
+    int purchaseAmount = getValidatedPurchaseAmount();
+    int numOfLottos = purchaseAmount/1000;
+
+    outputView.printPurchaseCount(numOfLottos);
 
     // 로또 리스트 생성 및 출력
-    lottos = lottoService.generateLottosByAmount(validatedPurchaseAmount);
+    lottos = lottoService.generateLottosByAmount(purchaseAmount);
     outputView.printGeneratedLottos(lottos);
 
     // 당첨 번호 입력 및 검증
-    String winningNumbersInput = inputView.readWinningNumbers();
-    List<Integer> validatedWinningNumbers = inputValidator.validateWinningNumbers(
-        winningNumbersInput);
+    List<Integer> winningNumbers = getValidatedWinningNumbers();
 
     // 보너스 번호 입력 및 검증
-    String bonusNumberInput = inputView.readBonusNumber();
-    int validatedBonusNumber = inputValidator.validateBonusNumber(bonusNumberInput,
-        validatedWinningNumbers);
+    int bonusNumber = getValidatedBonusNumber(winningNumbers);
 
     // 당첨 개수 계산 및 출력
-    List<Integer> winningCounts = lottoService.checkWinningNumbers(lottos, validatedWinningNumbers, validatedBonusNumber);
+    List<Integer> winningCounts = lottoService.checkWinningNumbers(lottos, winningNumbers, bonusNumber);
     outputView.printWinningResults(winningCounts);
 
     // 수익률 계산 및 출력
-    double yield = lottoService.calculateYield(winningCounts, validatedPurchaseAmount);
+    double yield = lottoService.calculateYield(winningCounts, purchaseAmount);
     outputView.printYield(yield);
 
   }
 
+  private int getValidatedPurchaseAmount() {
+    while (true) {
+      try {
+        String purchaseAmountInput = inputView.readPurchaseAmount();
+        return inputValidator.validatePurchaseAmount(purchaseAmountInput);
+      } catch (IllegalArgumentException e) {
+        System.out.println("[ERROR] 유효하지 않은 금액입니다. 다시 입력해주세요.");
+      }
+    }
+  }
+
+  private List<Integer> getValidatedWinningNumbers() {
+    while (true) {
+      try {
+        String winningNumbersInput = inputView.readWinningNumbers();
+        return inputValidator.validateWinningNumbers(winningNumbersInput);
+      } catch (IllegalArgumentException e) {
+        System.out.println("[ERROR] 유효하지 않은 당첨 번호입니다.");
+      }
+    }
+  }
+
+  private int getValidatedBonusNumber(List<Integer> validatedWinningNumbers) {
+    while (true) {
+      try {
+        String bonusNumberInput = inputView.readBonusNumber();
+        return inputValidator.validateBonusNumber(bonusNumberInput, validatedWinningNumbers);
+      } catch (IllegalArgumentException e) {
+        System.out.println("[ERROR] 유효하지 않은 보너스 번호입니다.");
+      }
+    }
+  }
 }
