@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        LottoManager lottoManager = new LottoManager();
-        LottoService lottoService = new LottoService(lottoManager);
-        LottoView lottoView = new LottoView();
-        LottoController lottoController = new LottoController(lottoService, lottoView);
+        final LottoManager lottoManager = new LottoManager();
+        final LottoService lottoService = new LottoService(lottoManager);
+        final LottoView lottoView = new LottoView();
+        final LottoController lottoController = new LottoController(lottoService, lottoView);
 
-        List<Lotto> lottoTickets = lottoController.purchaseLottoTickets();
+        final List<Lotto> lottoTickets = lottoController.purchaseLottoTickets();
         lottoController.setWinningAndBonusLottoNumbers();
         lottoController.lottoResults(lottoTickets);
     }

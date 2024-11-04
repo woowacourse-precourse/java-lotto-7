@@ -17,7 +17,7 @@ public class LottoView {
         return Console.readLine();
     }
 
-    public void displayPurchasedLotto(List<Lotto> lottoTickets) {
+    public void displayPurchasedLotto(final List<Lotto> lottoTickets) {
         System.out.println(lottoTickets.size() + "개를 구매하셨습니다.");
         lottoTickets.forEach(lotto ->
                 System.out.println(lotto.getNumbers()));
@@ -33,9 +33,9 @@ public class LottoView {
         return Console.readLine();
     }
 
-    public void displayLottoResults(LottoResultDto lottoResult) {
-        Map<LottoPrizeRankType, Long> rankLotto = lottoResult.rankLotto();
-        float rateOfReturn = lottoResult.rateOfReturn();
+    public void displayLottoResults(final LottoResultDto lottoResult) {
+        final Map<LottoPrizeRankType, Long> rankLotto = lottoResult.rankLotto();
+        final float rateOfReturn = lottoResult.rateOfReturn();
         System.out.println("당첨 통계");
         System.out.println("-------");
         for (Entry<LottoPrizeRankType, Long> rank : rankLotto.entrySet()) {

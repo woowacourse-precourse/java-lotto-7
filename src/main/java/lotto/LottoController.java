@@ -7,7 +7,7 @@ public class LottoController {
     private final LottoService lottoService;
     private final LottoView lottoView;
 
-    protected LottoController(LottoService lottoService, LottoView lottoView) {
+    protected LottoController(final LottoService lottoService, final LottoView lottoView) {
         this.lottoService = lottoService;
         this.lottoView = lottoView;
     }

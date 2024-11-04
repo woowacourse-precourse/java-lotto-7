@@ -16,14 +16,14 @@ public enum LottoPrizeRankType {
     private final boolean bonusMatch;
     private final Long prizeMoney;
 
-    LottoPrizeRankType(int matchCount, boolean bonusMatch, Long prizeMoney) {
+    LottoPrizeRankType(final int matchCount, final boolean bonusMatch, final Long prizeMoney) {
         this.matchCount = matchCount;
         this.bonusMatch = bonusMatch;
         this.prizeMoney = prizeMoney;
     }
 
-    public static LottoPrizeRankType findByMatchCountAndBonusMatch(int matchCount,
-            boolean bonusMatch) {
+    public static LottoPrizeRankType findByMatchCountAndBonusMatch(final int matchCount,
+            final boolean bonusMatch) {
         for (LottoPrizeRankType lottoPrizeRankType : values()) {
             if (isPrizeRank(lottoPrizeRankType, matchCount, bonusMatch)) {
                 return lottoPrizeRankType;
@@ -32,8 +32,10 @@ public enum LottoPrizeRankType {
         return ZERO;
     }
 
-    public static boolean isPrizeRank(LottoPrizeRankType lottoPrizeRankType, int matchCount,
-            boolean bonusMatch) {
+    public static boolean isPrizeRank(final LottoPrizeRankType lottoPrizeRankType,
+            final int matchCount,
+            final boolean bonusMatch) {
+
         if (lottoPrizeRankType.matchCount != matchCount) {
             return false;
         }

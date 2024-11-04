@@ -10,34 +10,34 @@ public class LottoService {
 
     private final LottoManager lottoManager;
 
-    protected LottoService(LottoManager lottoManager) {
+    protected LottoService(final LottoManager lottoManager) {
         this.lottoManager = lottoManager;
     }
 
     public final List<Lotto> purchaseLottoTickets(final String purchaseAmount) {
-        int convertedPurchaseAmount = convertToInt(purchaseAmount);
-        int totalPurchaseCount = calculatePurchaseCount(convertedPurchaseAmount);
+        final int convertedPurchaseAmount = convertToInt(purchaseAmount);
+        final int totalPurchaseCount = calculatePurchaseCount(convertedPurchaseAmount);
         return IntStream.range(0, totalPurchaseCount)
                 .mapToObj(lotto -> lottoManager.drawLottoTicket()).toList();
     }
 
-    private int convertToInt(String purchaseAmount) {
+    private int convertToInt(final String purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
         return Integer.parseInt(purchaseAmount);
     }
 
-    private void validatePurchaseAmount(String purchaseAmount) {
+    private void validatePurchaseAmount(final String purchaseAmount) {
         if (!purchaseAmount.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
         }
     }
 
-    private int calculatePurchaseCount(int purchaseAmount) {
+    private int calculatePurchaseCount(final int purchaseAmount) {
         validateDivisibility(purchaseAmount);
         return purchaseAmount / WinningLottoStore.getLottoPrice();
     }
 
-    private void validateDivisibility(int purchaseAmount) {
+    private void validateDivisibility(final int purchaseAmount) {
         final int remain = purchaseAmount % WinningLottoStore.getLottoPrice();
         if (remain != 0) {
             throw new IllegalArgumentException(
@@ -46,17 +46,17 @@ public class LottoService {
     }
 
     public final void setWinningLottoStore(
-            String inputWinningNumbers, String inputBonusNumber) {
+            final String inputWinningNumbers, final String inputBonusNumber) {
         final List<String> splitWinningNumbers = splitWinningLottoNumbers(inputWinningNumbers);
-        List<Integer> winningNumbers = splitWinningNumbers.stream()
+        final List<Integer> winningNumbers = splitWinningNumbers.stream()
                 .map(lottoManager::convertToLottoNumber).toList();
-        int bonusNumber = lottoManager.convertToLottoNumber(inputBonusNumber);
+        final int bonusNumber = lottoManager.convertToLottoNumber(inputBonusNumber);
         validateDuplicate(winningNumbers, bonusNumber);
-        Lotto lotto = new Lotto(winningNumbers);
+        final Lotto lotto = new Lotto(winningNumbers);
         WinningLottoStore.setUpLottoStore(lotto, bonusNumber);
     }
 
-    private void validateDuplicate(List<Integer> winningNumbers, int bonusNumber) {
+    private void validateDuplicate(final List<Integer> winningNumbers, final int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복되었습니다.");
         }
@@ -66,26 +66,26 @@ public class LottoService {
         return List.of(lottoTicket.split(","));
     }
 
-    public LottoResultDto getLottoResults(List<Lotto> userLottoTickets) {
-        Map<LottoPrizeRankType, Long> rankLotto = calculateRankCount(userLottoTickets);
-        Long totalPrizeMoney = calculateTotalPrizeMoney(rankLotto);
+    public LottoResultDto getLottoResults(final List<Lotto> userLottoTickets) {
+        final Map<LottoPrizeRankType, Long> rankLotto = calculateRankCount(userLottoTickets);
+        final Long totalPrizeMoney = calculateTotalPrizeMoney(rankLotto);
         float rateOfReturn = calculateRateOfReturn(totalPrizeMoney, userLottoTickets.size());
         return new LottoResultDto(rankLotto, rateOfReturn);
     }
 
-    private float calculateRateOfReturn(Long totalPrizeMoney, int totalTicketCount) {
-        long totalCost = (long) totalTicketCount * WinningLottoStore.getLottoPrice();
+    private float calculateRateOfReturn(final Long totalPrizeMoney, final int totalTicketCount) {
+        final long totalCost = (long) totalTicketCount * WinningLottoStore.getLottoPrice();
         return (float) totalPrizeMoney / totalCost * 100;
     }
 
-    private Long calculateTotalPrizeMoney(Map<LottoPrizeRankType, Long> rankLotto) {
+    private Long calculateTotalPrizeMoney(final Map<LottoPrizeRankType, Long> rankLotto) {
         return rankLotto.entrySet().stream()
                 .mapToLong(rankEntry ->
                         rankEntry.getKey().getPrizeMoney() * rankEntry.getValue())
                 .sum();
     }
 
-    private Map<LottoPrizeRankType, Long> calculateRankCount(List<Lotto> userLottoTickets) {
+    private Map<LottoPrizeRankType, Long> calculateRankCount(final List<Lotto> userLottoTickets) {
         final Map<LottoPrizeRankType, Long> rankCount = LottoPrizeRankType.getRankCountMap();
         userLottoTickets.stream().map(lottoManager::getLottoResults)
                 .filter(ticket -> ticket != LottoPrizeRankType.ZERO)

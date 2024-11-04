@@ -20,29 +20,30 @@ public class LottoManager {
     }
 
     public LottoPrizeRankType getLottoResults(final Lotto userLottoTicket) {
-        int hitCount = countMatchingWithWinningLotto(userLottoTicket);
-        boolean isBonusMatched = userLottoTicket.isContain(WinningLottoStore.getBonusNumber());
+        final int hitCount = countMatchingWithWinningLotto(userLottoTicket);
+        final boolean isBonusMatched = userLottoTicket.isContain(
+                WinningLottoStore.getBonusNumber());
         return LottoPrizeRankType.findByMatchCountAndBonusMatch(hitCount, isBonusMatched);
     }
 
-    private int countMatchingWithWinningLotto(Lotto userLottoTicket) {
+    private int countMatchingWithWinningLotto(final Lotto userLottoTicket) {
         return WinningLottoStore.getWinningLotto().countMatchingNumbers(userLottoTicket);
     }
 
-    public int convertToLottoNumber(String inputNumber) {
+    public int convertToLottoNumber(final String inputNumber) {
         validateIsLottoNumber(inputNumber);
-        int convertedNum = Integer.parseInt(inputNumber);
+        final int convertedNum = Integer.parseInt(inputNumber);
         validateRange(convertedNum);
         return convertedNum;
     }
 
-    private void validateIsLottoNumber(String inputNumber) {
+    private void validateIsLottoNumber(final String inputNumber) {
         if (!inputNumber.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
         }
     }
 
-    private void validateRange(int number) {
+    private void validateRange(final int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 1~45 숫자를 입력하세요");
         }

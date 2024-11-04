@@ -6,20 +6,20 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validateCount(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
 
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
+    private void validateDuplicate(final List<Integer> numbers) {
         if (numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있으면 안됩니다.");
         }
     }
 
-    private void validateCount(List<Integer> numbers) {
+    private void validateCount(final List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개 입니다.");
         }
@@ -33,12 +33,12 @@ public class Lotto {
         return this.numbers;
     }
 
-    public int countMatchingNumbers(Lotto otherLotto) {
+    public int countMatchingNumbers(final Lotto otherLotto) {
         return Math.toIntExact(this.numbers.stream()
                 .filter(otherLotto.getNumbers()::contains).count());
     }
 
-    public boolean isContain(int number) {
+    public boolean isContain(final int number) {
         return this.numbers.contains(number);
     }
 }
