@@ -13,7 +13,7 @@ import lotto.global.message.OutputMessage;
 
 public class OutputView {
     public static void printException(IllegalArgumentException e) {
-        System.out.printf(OutputMessage.ERROR_FORMAT, e.getMessage());
+        System.out.println( e.getMessage());
     }
 
     public static void printPurchaseResult(Lottos purchasedLottos) {
