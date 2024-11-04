@@ -46,5 +46,33 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 포함해야 합니다.");
         }
         Lotto winLotto = new Lotto(winLottoNumbers);
+        System.out.println();
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNum;
+        try {
+            bonusNum = Integer.parseInt(Console.readLine());
+
+            // 1 ~ 45 범위 검사
+            if (bonusNum < 1 || bonusNum > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+
+            if(duplicated(bonusNum, winLotto)){
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 없는 숫자여야 합니다.");
+            }
+
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해 주세요.");
+        }
+    }
+
+    private static boolean duplicated(int number, Lotto lotto) {
+        for ( int num : lotto.getNumbers() ){
+            if ( number == num ) {
+                return true;
+            }
+        }
+        return false;
     }
 }
