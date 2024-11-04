@@ -52,4 +52,12 @@ class LottoTest {
 
         assertThat(lotto.toString()).isEqualTo(expectedMessage);
     }
+
+    @Test
+    void 로또_문자열_오름차순_정렬_테스트() {
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+        String expectedMessage = "[1, 2, 3, 4, 5, 6]\n";
+
+        assertThat(lotto.toString()).isEqualTo(expectedMessage);
+    }
 }
