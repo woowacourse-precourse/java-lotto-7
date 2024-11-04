@@ -4,6 +4,7 @@ import static lotto.constant.Error.DUPLICATED_LOTTO_NUMBERS;
 import static lotto.constant.Error.RANGE_LOTTO_NUMBER;
 import static lotto.constant.Error.SIZE_LOTTO_NUMBERS;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.validation.NumbersValidation;
 
@@ -13,7 +14,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        numbers.sort(Integer::compareTo);
         this.numbers = numbers;
     }
 
@@ -29,6 +29,8 @@ public class Lotto {
 
     @Override
     public String toString() {
+        ArrayList<Integer> numbers = new ArrayList<>(this.numbers);
+        numbers.sort(Integer::compareTo);
         return numbers.toString();
     }
 }
