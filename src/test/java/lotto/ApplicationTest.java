@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.enums.ErrorMessage;
+import lotto.enums.PrintMessage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -47,10 +49,29 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 구매_금액으로_잘못된_문자열_입력_시_예외_발생_및_재입력() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ErrorMessage.INVALID_NUMBER_FORM.format());
+            assertThat(output()).contains(PrintMessage.INPUT_PURCHASE_AMOUNT_PROMPT.format());
+        });
+    }
+
+    @Test
+    void 로또_번호_입력_시_예외_발생_및_재입력() {
+        assertSimpleTest(() -> {
+            runException("8000","1,2,3,4,a,b,c,d");
+            assertThat(output()).contains(ErrorMessage.INVALID_NUMBERS_INPUT.format());
+            assertThat(output()).contains(PrintMessage.INPUT_WINNING_NUMBERS_PROMPT.format());
+        });
+    }
+
+    @Test
+    void 보너스_번호_입력_시_예외_발생_및_재입력() {
+        assertSimpleTest(() -> {
+            runException("8000","1,2,3,4,5,6","1");
+            assertThat(output()).contains(ErrorMessage.DUPLICATED_WITH_WINNING_NUMBERS.format());
+            assertThat(output()).contains(PrintMessage.INPUT_BONUS_NUMBER_PROMPT.format());
         });
     }
 
