@@ -8,17 +8,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lotto.dto.entity.Lotto;
 import lotto.dto.LottoResultDto;
+import lotto.dto.data.Lotto;
 import lotto.utils.ErrorMessages;
 import lotto.utils.LottoMatchStatus;
 import lotto.utils.LottoMessages;
 
 public class InputOutputManager {
-    public int receivePurchaseAmount(){
+    public int receivePurchaseAmount() {
         askForPurchaseAmount();
         return receiveMoney();
     }
+
     private void askForPurchaseAmount() {
         System.out.println(LottoMessages.ENTER_PURCHASE_AMOUNT.getMessage());
     }
@@ -27,20 +28,35 @@ public class InputOutputManager {
         int money = 0;
         try {
             money = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println(ErrorMessages.NUMERIC_INPUT_ONLY_MESSAGE.getMessage());
             receiveMoney();
         }
         return money;
     }
 
-    public List<Integer> receiveWinningNumbers(){
+    public List<Integer> receiveWinningNumbers() {
         askForLottoNumbers();
-        return extractNumbers(receiveLottoNumbers());
+        String input;
+
+        do {
+            input = receiveLottoNumbers();
+        } while (!isValidWinningNumberFormat(input));
+
+        return extractNumbers(input);
+    }
+
+    private boolean isValidWinningNumberFormat(String input) {
+        String regex = "^\\d+(,\\d+)*$";
+        if (!input.matches(regex)) {
+            System.out.println(ErrorMessages.INVALID_WINNING_NUMBER_FORMAT.getMessage());
+            return false;
+        }
+        return true;
     }
 
     private void askForLottoNumbers() {
-        System.out.println(LottoMessages.ENTER.getMessage()+
+        System.out.println(LottoMessages.ENTER.getMessage() +
                 LottoMessages.ENTER_WINNING_NUMBERS.getMessage());
     }
 
@@ -48,20 +64,20 @@ public class InputOutputManager {
         return Console.readLine();
     }
 
-    private List<Integer> extractNumbers(String sentence){
+    private List<Integer> extractNumbers(String sentence) {
         return Arrays.stream(sentence.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    public int receiveBonusNumber(){
+    public int receiveBonusNumber() {
         askForBonusNumbers();
         return receiveBonusNumbers();
     }
 
     private void askForBonusNumbers() {
-        System.out.println(LottoMessages.ENTER.getMessage()+
+        System.out.println(LottoMessages.ENTER.getMessage() +
                 LottoMessages.ENTER_BONUS_NUMBER.getMessage());
     }
 
@@ -78,6 +94,7 @@ public class InputOutputManager {
                 .collect(Collectors.joining(""));
         System.out.println(message);
     }
+
     public void printLottoNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
@@ -86,7 +103,7 @@ public class InputOutputManager {
         }
     }
 
-    public void printLottoResult(LottoResultDto lottoResultDto){
+    public void printLottoResult(LottoResultDto lottoResultDto) {
         printOnTopic();
         printAllMatchResults(lottoResultDto.getLottoResult());
         printProfitRate(lottoResultDto.getProfit());
@@ -115,7 +132,7 @@ public class InputOutputManager {
         });
     }
 
-    private void printProfitRate(double profit){
+    private void printProfitRate(double profit) {
         String message = LottoMessages.TOTAL_PROFIT_RATE.getMessage() +
                 String.format("%.1f", profit) + "%" +
                 LottoMessages.END_MESSAGE.getMessage();

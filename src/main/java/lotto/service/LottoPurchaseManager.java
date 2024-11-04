@@ -5,8 +5,8 @@ import lotto.domain.LottoDrawer;
 import lotto.domain.calculator.Calculator;
 import lotto.domain.lottoGeneratir.LottoGenerator;
 import lotto.dto.ReceiptAndLottoDto;
-import lotto.dto.entity.Lotto;
-import lotto.dto.entity.Receipt;
+import lotto.dto.data.Lotto;
+import lotto.dto.data.Receipt;
 
 public class LottoPurchaseManager {
     private Calculator calculator;

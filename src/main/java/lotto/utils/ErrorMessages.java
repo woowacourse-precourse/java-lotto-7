@@ -6,7 +6,8 @@ public enum ErrorMessages {
     ERROR_INVALID_LOTTO_NUMBER_COUNT("[ERROR] 로또 번호는 6개여야 합니다."),
     ERROR_DUPLICATE_LOTTO_NUMBER("[ERROR] 로또 번호에 중복된 값이 입력되었습니다."),
     ERROR_DUPLICATE_BONUS_NUMBER("[ERROR] 보너스 번호에 중복된 값이 입력되었습니다."),
-    NUMERIC_INPUT_ONLY_MESSAGE("[ERROR] 구입 금액은 숫자로만 입력해야 합니다.");
+    NUMERIC_INPUT_ONLY_MESSAGE("[ERROR] 구입 금액은 숫자로만 입력해야 합니다."),
+    INVALID_WINNING_NUMBER_FORMAT("[ERROR] 올바르지 않은 로또 번호입니다. 다시 입력하세요.");
     private String error;
 
     ErrorMessages(String error) {

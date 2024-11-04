@@ -1,4 +1,4 @@
-package lotto.dto.entity;
+package lotto.dto.data;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +14,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers){
+    private void validate(List<Integer> numbers) {
         validateNumberCount(numbers);
         validateUniqueNumbers(numbers);
     }
@@ -25,10 +25,10 @@ public class Lotto {
         }
     }
 
-    private void validateUniqueNumbers(List<Integer> numbers){
+    private void validateUniqueNumbers(List<Integer> numbers) {
         Set<Integer> numSet = new HashSet<>(numbers);
 
-        if(numSet.size() != numbers.size()){
+        if (numSet.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
@@ -40,14 +40,14 @@ public class Lotto {
         return matchingCount;
     }
 
-    public boolean isMatchBonus(WinningLotto winningLotto){
+    public boolean isMatchBonus(WinningLotto winningLotto) {
         if (this.numbers.contains(winningLotto.getBonusNumber())) {
             return true;
         }
         return false;
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
 }

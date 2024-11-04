@@ -2,15 +2,16 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.lottoGeneratir.LottoGenerator;
-import lotto.dto.entity.WinningLotto;
+import lotto.dto.data.WinningLotto;
 
 public class LottoGenerateManager {
     private LottoGenerator lottoGenerator;
-    public LottoGenerateManager(LottoGenerator lottoGenerator){
+
+    public LottoGenerateManager(LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
     }
 
-    public WinningLotto provideWinningLotto(List<Integer> numbers, int bonusNumber){
+    public WinningLotto provideWinningLotto(List<Integer> numbers, int bonusNumber) {
         return (WinningLotto) lottoGenerator.generateWinningLotto(numbers, bonusNumber);
     }
 }
