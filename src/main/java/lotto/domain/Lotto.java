@@ -1,5 +1,12 @@
 package lotto.domain;
 
+import static lotto.constant.LottoErrorConstant.ERROR_LOTTO_NUMBER_COUNT;
+import static lotto.constant.LottoErrorConstant.ERROR_LOTTO_NUMBER_NO_DUPLICATES;
+import static lotto.constant.LottoErrorConstant.ERROR_LOTTO_NUMBER_RANGE;
+import static lotto.constant.LottoValueConstant.MAX_NUMBER_LOTTO;
+import static lotto.constant.LottoValueConstant.MIN_NUMBER_LOTTO;
+import static lotto.constant.LottoValueConstant.NUMBER_OF_LOTTO;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,19 +22,19 @@ public class Lotto {
 
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+        if (numbers.size() != NUMBER_OF_LOTTO) {
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_COUNT);
         }
         if (!isValidRange(numbers)) {
-            throw new IllegalArgumentException("로또 번호는 1에서 45 사이여야 합니다.");
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE);
         }
         if (hasDuplicatesEachNumber(numbers)) {
-            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_NO_DUPLICATES);
         }
     }
 
     private boolean isValidRange(List<Integer> numbers) {
-        return numbers.stream().allMatch(num -> num >= 1 && num <= 45);
+        return numbers.stream().allMatch(num -> num >= MIN_NUMBER_LOTTO && num <= MAX_NUMBER_LOTTO);
     }
 
     private boolean hasDuplicatesEachNumber(List<Integer> numbers) {
