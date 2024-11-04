@@ -10,6 +10,7 @@ public enum Amount {
     MATCHED_ZERO(0),
     PLUS_MATCHED_COUNT(1),
     INITIAL_VALUE(0),
+    SINGLE_DIGIT(1),
     LOTTO_NUMBERS_SIZE(6);
 
     private final int value;
