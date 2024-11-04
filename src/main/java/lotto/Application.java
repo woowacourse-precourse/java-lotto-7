@@ -12,7 +12,13 @@ public class Application {
         // TODO: 프로그램 구현
 
         System.out.println("구입금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
+        int amount = 0;
+        try {
+            amount = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException  e) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 금액입니다.");
+        }
+
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 천원 단위로 입력해주세요.");
         }
@@ -26,9 +32,6 @@ public class Application {
 
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> input = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt).toList();
-        for(int num : input) {
-            validate(num);
-        }
         Lotto winningNums = new Lotto(input);
         System.out.println();
 
@@ -56,7 +59,7 @@ public class Application {
     }
 
     private static void validate(int num) {
-        if(num < 1 || num > 45) {
+        if (num < 1 || num > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
