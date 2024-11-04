@@ -65,7 +65,8 @@ class PrintTest {
     String actualOutput = String.format("%d개를 구매했습니다.", lottoCounts);
     // 실제 출력값
     // 예시와 실제값 검증
-    assertEquals(given, actualOutput);
+    assertEquals(given, actualOutput); // org.opentest4j.AssertionFailedError at PrintTest.java:68
+
   }
 
   /**
@@ -98,7 +99,8 @@ class PrintTest {
     String actualResult = handler.compareNumbersResult(actualLotto, winning, bonus);
 
     // 실제 수익률 결과 조회
-    double revenue = handler.calculateRevenue(actualResult, amount);
+    double revenue = handler.calculateRevenue(actualResult, amount); //  java.util.regex.PatternSyntaxException at PrintTest.java:101
+
     String actual = handler.getResult(revenue);
 
     // 실제 일치성 결과 출력

@@ -95,10 +95,6 @@ class HandlerTest {
         "6개 일치 (2,000,000,000원) - 0개";
 
     // 구매 금액 만큼의 로또 수 조회
-    /**
-     * HandlerTest > 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다 FAILED
-     *     org.opentest4j.AssertionFailedError at HandlerTest.java:99
-     */
     String readAmount = "8000";
     System.setIn(setReadLine(readAmount));
 
@@ -115,7 +111,8 @@ class HandlerTest {
     // 예시와 실제값 일치 여부 검증
 
 
-    assertEquals(given, actualResult);
+    assertEquals(given, actualResult); //org.opentest4j.AssertionFailedError at HandlerTest.java:118
+
   }
 
   /**
@@ -139,7 +136,8 @@ class HandlerTest {
     // 수익률 계산 결과 조회
     String actual = handler.getResult(revenue);
     // 검증
-    assertEquals(expect, actual);
+    assertEquals(expect, actual); // java.util.regex.PatternSyntaxException: Unclosed counted closure near index 6
+    // 아 시간 없어서 인공지능한테 물어봤더니 또 틀리네 기계녀석
   }
 
 
