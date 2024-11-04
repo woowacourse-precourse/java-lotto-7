@@ -90,45 +90,19 @@
 
 
 ## 기능 목록
-- [ ] 사용자에게 로또를 판매하기
+- [x] 사용자에게 로또를 판매하기
     - 로또 번호가 1000으로 나누어떨어지지 않거나, 1000 미만인 경우, 예외를 발생시키고 재입력을 요구한다.
-- [ ] 로또 번호 생성하기
+- [x] 로또 번호 생성하기
     - 로또 번호는 1 이상 45 이하의 정수이어야 한다.
     - 로또 번호는 겹치지 않아야 한다.
     - 해당 조건을 만족하지 않을 경우, 예외를 발생시키고, 재입력을 요구한다.
-- [ ] 사용자에게 당첨 번호 + 보너스 번호 등록받기
-- [ ] 당첨 여부 검사하기 
+- [x] 사용자에게 당첨 번호 + 보너스 번호 등록받기
+- [x] 당첨 여부 검사하기 
   -  정수가 아닌 실수가 입력될 경우, 예외를 발생시키고, 재입력을 요구한다.
   - 보너스 번호가 45를 초과하거나, 0 이하인 정수가 있을 경우, 예외를 발생시키고, 재입력을 요구한다.
   - 보너스 번호가 당첨 번호와 겹칠 경우, 예외를 발생시키고, 재입력을 요구한다.
-- [ ] 당첨 내역 & 수익률 출력하기
+- [x] 당첨 내역 & 수익률 출력하기
   - 당첨 횟수가 10억회를 넘어갈 경우, 예외를 발생시킨다.
   - 당첨 횟수가 음수일 경우, 예외를 발생시킨다.
 
-## 아키텍처 설계
-```mermaid
-classDiagram
-    class Lotto{
-        -numbers: List~Integer~
-        -validate(): void
-    }
-    class PurchasedLottos{
-        -lottos: List~Lotto~
-        -size: Integer
-        +getLottos(): List~Lotto~
-    }
-    class WinningNumber{
-        -numbers: List~Integer~
-        -bonusNumber: Integer
-        -validate(): void
-    }
-    class LottoSeller{
-        +lottoGenerator(int count): PurchasedLottos
-    }
-    class LotteryManager{
-        +calculateBenefit(Map<Prize, Integer> result): double
-        +checkWon<PurchasedLottos>: Map<Prize, Integer> 
-        -isWon(Lotto): Prize
-    }
-    class main
 ```
