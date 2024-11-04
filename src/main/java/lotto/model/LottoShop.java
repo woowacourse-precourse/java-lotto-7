@@ -7,10 +7,10 @@ public class LottoShop {
     private static final Long LOTTO_PRICE = 1000L;
 
     public Lottos buyLottos(Money money) {
-        long quantity = calculatePurchasableQuantity(money);
+        long quantities = calculatePurchasableQuantity(money);
         List<List<Integer>> lottoNumbers = new ArrayList<>();
 
-        for (int i = 0; i < quantity; i++) {
+        for (int quantity = 0; quantity < quantities; quantity++) {
             lottoNumbers.add(LottoGenerator.generateLottoNumbers());
         }
 

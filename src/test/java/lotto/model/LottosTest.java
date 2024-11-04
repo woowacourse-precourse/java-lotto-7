@@ -26,6 +26,7 @@ class LottosTest {
 
         Map<Rank, Integer> expectedRanks = new HashMap<>();
         expectedRanks.put(Rank.FIFTH, 1);
+        expectedRanks.put(Rank.NONE, 7);
 
         // when
         System.out.println("=====Logic Start=====");

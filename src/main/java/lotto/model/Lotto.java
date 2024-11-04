@@ -9,7 +9,6 @@ import java.util.Set;
 import static lotto.enumerate.ErrorPrint.LOTTO_DOES_NOT_ALLOW_DUPLICATE_NUMBER;
 import static lotto.enumerate.ErrorPrint.LOTTO_DOES_NOT_HAVE_CORRECT_SIZE;
 import static lotto.enumerate.Rank.*;
-import static lotto.enumerate.Rank.NONE;
 
 public class Lotto {
     private final List<Integer> numbers;

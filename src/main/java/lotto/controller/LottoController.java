@@ -20,20 +20,15 @@ public class LottoController {
 
     public void run() {
         Money purchase = getMoney();
-
         Lottos lottos = createLottos(purchase);
-
         printLottoDetails(lottos);
-
         WinNumber winNumber = createWinNumber();
-
         Map<Rank, Integer> lottoRank = getLottoRank(lottos, winNumber);
-
         printResults(lottoRank, purchase.getPrice());
     }
 
     private Money getMoney() {
-        String purchase = inputView.inputPurchase();
+        String purchase = inputView.promptForBudget();
         return new Money(purchase);
     }
 
@@ -42,13 +37,13 @@ public class LottoController {
     }
 
     private void printLottoDetails(Lottos lottos) {
-        outputView.printBuyLottoCount(lottos.getBuyLottoQuantity());
-        outputView.printLottoNumbers(lottos);
+        outputView.displayLottoPurchaseCount(lottos.getBuyLottoQuantity());
+        outputView.displayLottoNumbers(lottos);
     }
 
     private WinNumber createWinNumber() {
-        String winNumbers = inputView.inputWinningNumbers();
-        String bonusNumber = inputView.inputBonusNumber();
+        String winNumbers = inputView.promptForWinningNumbers();
+        String bonusNumber = inputView.promptForBonusNumber();
         return new WinNumber(winNumbers, bonusNumber);
     }
 
@@ -57,8 +52,8 @@ public class LottoController {
     }
 
     private void printResults(Map<Rank, Integer> lottoRank, long purchase) {
-        outputView.printRank(lottoRank);
+        outputView.displayRankDistribution(lottoRank);
         double earningRate = EarningCalculator.calculate(lottoRank, purchase);
-        outputView.printEarningRate(earningRate);
+        outputView.displayEarningRate(earningRate);
     }
 }

@@ -2,7 +2,9 @@ package lotto.model;
 
 import lotto.enumerate.Rank;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Lottos {
@@ -36,9 +38,6 @@ public class Lottos {
 
         for (Lotto lotto : lottos) {
             Rank rank = lotto.findRank(winNumber);
-            if (rank.equals(Rank.NONE)) {
-                continue;
-            }
             currentRankSituationMap.put(rank, currentRankSituationMap.getOrDefault(rank, 0) + 1);
         }
 
