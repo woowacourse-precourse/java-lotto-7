@@ -22,8 +22,7 @@ public class Game {
             before();
             start();
             end();
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }
 
@@ -34,18 +33,20 @@ public class Game {
         lottoTicket = new LottoTicket(Input.number());
         Output.printCount(lottoTicket.getCount());
     }
-    private void start(){
+
+    private void start() {
         Issuing.lottoTickets(lottoTicket);
-        for(Lotto lotto : lottoTicket.getLottoTickets()){
+        for (Lotto lotto : lottoTicket.getLottoTickets()) {
             Output.printNumbers(lotto.getNumbers());
         }
         Input.askWinNumbers();
         List<Integer> winNumbers = Input.numbers();
         Input.askBonusNumber();
-        winLotto = new WinningLotto(winNumbers,Input.number());
+        winLotto = new WinningLotto(winNumbers, Input.number());
     }
-    private void end(){
-        Ranking.matchLotto(lottoTicket,winLotto);
+
+    private void end() {
+        Ranking.matchLotto(lottoTicket, winLotto);
         Output.printResult(lottoTicket.getResult());
         Output.printEarningRate(Calculating.earningRate(lottoTicket));
     }

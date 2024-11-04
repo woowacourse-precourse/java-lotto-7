@@ -4,7 +4,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
-
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
