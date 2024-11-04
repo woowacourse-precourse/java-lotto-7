@@ -14,15 +14,12 @@ public class LottoController {
     public void lotto() {
         processInputMoney();
 
-        List<Lotto> lottos = lottoService.generateLottos();
-        outputView.printNumOfLottos(lottos.size());
-        for (Lotto lotto : lottos) {
-            outputView.printLotto(lotto.getNumbers());
-        }
-        outputView.printEmptyLine();
+        generateAndPrintLottos();
 
         processInputWinningNumber();
         processInputBonusNumber();
+
+        lottoService.getLottoStatistics();
     }
 
     private void processInputMoney() {
@@ -57,6 +54,15 @@ public class LottoController {
             outputView.printErrorMessage(e.getMessage());
             outputView.printEmptyLine();
             processInputBonusNumber();
+        }
+        outputView.printEmptyLine();
+    }
+
+    private void generateAndPrintLottos() {
+        List<Lotto> lottos = lottoService.generateLottos();
+        outputView.printNumOfLottos(lottos.size());
+        for (Lotto lotto : lottos) {
+            outputView.printLotto(lotto.getNumbers());
         }
         outputView.printEmptyLine();
     }

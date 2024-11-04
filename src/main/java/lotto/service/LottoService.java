@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.domain.Bonus;
@@ -15,6 +16,7 @@ public class LottoService {
     private static final int LOTTO_PRIZE = 1000;
 
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    private final LottoResultChecker lottoResultChecker = new LottoResultChecker();
 
     private Money money;
     private int numOfLottos;
@@ -82,4 +84,18 @@ public class LottoService {
         }
         return lottos;
     }
+
+    public Map<List<Integer>, Long> getLottoStatistics() {
+        lottoResultChecker.lottoChecker(lottos, winningNumber, bonusNumber);
+        return Map.of(getLottoResult(), getLottoRateOfReturn());
+    }
+
+    private List<Integer> getLottoResult() {
+        return lottoResultChecker.getResult();
+    }
+
+    private long getLottoRateOfReturn() {
+        return lottoResultChecker.getPrize();
+    }
+
 }
