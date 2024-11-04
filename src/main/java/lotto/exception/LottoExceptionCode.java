@@ -1,6 +1,7 @@
 package lotto.exception;
 
 public enum LottoExceptionCode {
+    IO_EXCEPTION_OCCUR("입출력 예외가 발생했습니다."),
     NEED_MULTIPLE_OF_THOUSAND("지불할 금액은 1000의 배수여야 합니다."),
     PURCHASE_MONEY_FORMAT_ERROR("지불할 금액은 0이상의 양의 정수여야 합니다."),
     NOT_VALID_NUMBER_OF_WINNING_NUMBER("입력한 당첨 번호의 개수가 6개 보다 적거나 많습니다."),
