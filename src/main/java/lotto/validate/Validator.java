@@ -3,8 +3,8 @@ package lotto.validate;
 import java.util.List;
 
 public class Validator {
-    private static final String ONLY_NUM = "[0-9]+";
-    private static final String LIST_FORMAT = "[0-9]+(,[0-9]+)*";
+    private static final String ONLY_NUM = "[0-9]{1,9}";
+    private static final String LIST_FORMAT = "[0-9]{1,9}(,[0-9]{1,9})*";
     private static final int ZERO = 0;
     private static final int MIN = 1;
     private static final int MAX = 45;
