@@ -1,11 +1,16 @@
 package lotto.domain;
 
+import static lotto.Util.Validator.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Util.Validator;
 import lotto.message.ExceptionMessage;
 
 public class Lotto {
+    public static final int LOTTO_MIN_NUMBER = 1;
+    public static final int LOTTO_MAX_NUMBER = 45;
     public static final int LOTTO_NUMBER_COUNT = 6;
     public static final int LOTTO_PRICE = 1000;
 
@@ -50,20 +55,6 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
-        }
-    }
-
-    private static void validateThousandUnitAmount(int money) {
-        if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.AMOUNT_NOT_IN_THOUSANDS.getMessage());
-        }
-    }
-
-    private void validateDuplicated(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_NUMBER.getMessage());
-        }
+        validateExactlySixNumber(numbers);
     }
 }
