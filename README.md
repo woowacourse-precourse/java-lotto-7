@@ -1,10 +1,10 @@
-Java Lotto Precourse
+# Java Lotto Precourse
 
-로또 프로그램
+## 로또 프로그램
 
-과제 명세
+## 과제 명세
 
-기능 요구 사항
+## 기능 요구 사항
 
 	•	로또 번호 범위: 1부터 45까지.
 	•	로또 발행: 1개의 로또는 중복되지 않는 6개의 숫자를 가짐.
@@ -22,13 +22,13 @@ Java Lotto Precourse
 	•	예외 처리:
 	•	IllegalArgumentException, IllegalStateException 등 명확한 예외 유형을 사용하여 처리.
 
-입력
+## 입력
 
 	•	로또 구입 금액: 1,000원 단위로 입력하며, 1,000원으로 나누어 떨어지지 않는 경우 예외 처리.
 	•	당첨 번호: 쉼표(,)로 구분된 숫자 형식으로 입력.
 	•	보너스 번호: 단일 숫자 형식으로 입력.
 
-프로그래밍 요구 사항
+## 프로그래밍 요구 사항
 
 	•	Indent Depth 제한: 최대 2까지만 허용.
 	•	삼항 연산자 미사용.
@@ -36,9 +36,9 @@ Java Lotto Precourse
 	•	else 미사용: 코드 간결화.
 	•	JUnit 5 및 AssertJ 사용: 기능 목록을 테스트 코드로 확인.
 
-설계 패턴: MVC 패턴
+## 설계 패턴: MVC 패턴
 
-구조
+## 구조
 
 	•	Model
 	•	Lotto
@@ -50,9 +50,9 @@ Java Lotto Precourse
 	•	Output
 	•	Service
 
-기능 상세
+## 기능 상세
 
-Model
+### Model
 
 	1.	Lotto
 	•	로또 번호를 저장하는 클래스.
@@ -60,20 +60,20 @@ Model
 	2.	User
 	•	사용자의 구매 로또 정보 및 당첨 내역을 저장하는 클래스.
 
-Controller
+### Controller
 
 	1.	Controller
 	•	전체 프로그램의 흐름을 제어하는 클래스.
 	•	입력값을 받아 모델과 서비스에 전달하고, 결과를 출력으로 넘김.
 
-Viewer
+### Viewer
 
 	1.	Input
 	•	사용자로부터 구입 금액, 당첨 번호, 보너스 번호를 입력받는 클래스.
 	2.	Output
 	•	사용자가 구매한 로또와 당첨 내역을 출력하는 클래스.
 
-Service
+### Service
 
 	1.	로또 발행 서비스
 	•	입력받은 금액에 따라 필요한 만큼의 로또를 발행.
@@ -88,3 +88,10 @@ Service
 	•	쉼표로 구분된 당첨 번호를 파싱하여 Lotto 모델에 저장.
 	6.	당첨 번호 유효성 판단 서비스
 	•	입력된 당첨 번호와 보너스 번호의 범위와 중복 여부를 확인하고, 유효하지 않으면 예외 발생.
+
+
+### Rank
+
+	맞춘갯수에 따른 금액과 BonusNumber을 맞춘것에 여부를 저장함
+    5개 맞춘이의 BonusNumber맞춘 여부가 중요하므로 5개 맞춘 당첨자의 BonusNumber만을 true,false를 집중적으로 지켜봄
+    enumClass이다
