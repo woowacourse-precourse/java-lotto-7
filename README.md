@@ -238,8 +238,8 @@ public class Lotto {
 9. 보너스 번호를 검증해라 → BonusNumber
 10. 보너스 번호를 기억해라 → WinningLotto
 11. 로또를 구매해라 → LottoMachine
-12. 로또 결과를 계산해라 → LottoRankManager
-13. 로또 등수에 대한 정보를 알아라 → LottoRankManager
+12. 로또 등수를 반환해라 → WinningLotto
+13. 로또 등수에 대한 정보를 알아라 → LottoRank
 14. 결과를 출력해라 → LottoGameOutputView
 
 # TDD
@@ -251,7 +251,7 @@ public class Lotto {
 - LottoTickets
     - [ ]  구입 금액은 1,000원 단위이다.
     - [ ]  양의 정수가 아닌 경우 예외 처리한다.
-    - [ ]  1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
+    - [ ]  1,000원 단위로 나누어 떨어지지 않는 경우 예외 처리한다.
 - LottoNumber
     - [ ]  로또 번호의 숫자 범위는 1 ~ 45까지이다.
     - [ ]  1 ~ 45 범위의 숫자가 아니면 예외 처리한다.
@@ -267,14 +267,13 @@ public class Lotto {
     - [ ]  보너스 번호를 입력 받는다.
     - [ ]  보너스 번호는 1개이다.
 - WinningLotto
-    - [ ]  당첨 번호와 중복되지 않는다.
+    - [ ]  당첨 번호와 보너스 번호가 중복되지 않는다.
     - [ ]  당첨 번호와 보너스 번호를 안다.
+    - [ ]  로또 등수를 반환한다.
 - LottoMachine
-    - [ ]  로또를 발행한다.
-    - [ ]  구입 금액에 해당하는 만큼 로또를 발행한다.(로또 1장 가격: 1,000원)
-- LottoRankManager
+    - [ ]  로또 티켓 수량만큼 로또를 교환해준다.
+- LottoRank
     - [ ]  로또 등수에 대한 정보를 안다.
-    - [ ]  로또 결과를 계산한다.
 - LottoGameOutputView
     - [ ]  발행한 로또 수량을 출력한다.
     - [ ]  발행한 로또 번호를 출력한다.
