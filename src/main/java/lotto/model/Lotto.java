@@ -26,8 +26,8 @@ public class Lotto {
         }
     }
 
-    public void addBonusNumber(int boundNumber) {
-        this.numbers.add(boundNumber);
+    public void addBonusNumber(int bonusNumber) {
+        this.numbers.add(bonusNumber);
         if (numbers.size() != new HashSet<>(numbers).size()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_BONUS_NUMBER_DUPLICATE_ERROR.toString());
         }
