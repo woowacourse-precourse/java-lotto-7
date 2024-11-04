@@ -60,12 +60,14 @@ public class LottoGame {
 
     private int countMatchNumbers(Lotto lotto) {
         return (int) lotto.getNumbers().stream()
-                .filter(winningLottos::contains)
+                .filter(number -> winningLottos.stream()
+                        .anyMatch(winningNumber -> winningNumber.equals(number)))
                 .count();
     }
 
     private boolean checkBonusNumber(Lotto lotto) {
-        return lotto.getNumbers().contains(bonusNumber);
+        return lotto.getNumbers().stream()
+                .anyMatch(number -> number.equals(bonusNumber));
     }
 
     private void updateResult(LottoResult result) {
