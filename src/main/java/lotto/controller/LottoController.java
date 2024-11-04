@@ -28,8 +28,8 @@ public class LottoController {
 
     private BuyingPrice lottoPayment() {
         outputView.askBuyingPriceView();
-        int price = inputView.inputBuyingPriceView();
-        return new BuyingPrice(price);
+        String buyingPrice = inputView.inputBuyingPriceView();
+        return new BuyingPrice(buyingPrice);
     }
 
     private List<Lotto> publishLottos(BuyingPrice buyingPrice) {
