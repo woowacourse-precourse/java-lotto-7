@@ -41,4 +41,24 @@ public class LottoServiceTest {
         List<Integer> expected = List.of(3, 1, 1, 1, 1, 1);
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    void 수익률_계산() {
+        int money = 2_000_000_000;
+        List<Integer> lottoResults = List.of(0, 0, 4, 7, 1, 3); // 당첨금: 130_565_000
+
+        double rate = service.calculateRate(money, lottoResults);
+
+        assertThat(rate).isEqualTo(6.53);
+    }
+
+    @Test
+    void 수익률_제로_계산() {
+        int money = 1_000;
+        List<Integer> lottoResults = List.of(0, 0, 0, 0, 0, 0); // 당첨금: 0
+
+        double rate = service.calculateRate(money, lottoResults);
+
+        assertThat(rate).isEqualTo(0);
+    }
 }
