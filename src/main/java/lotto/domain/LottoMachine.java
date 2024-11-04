@@ -10,7 +10,7 @@ import lotto.domain.common.Random;
 
 public class LottoMachine {
 
-	private static final int LOTTO_PRICE = 1000;
+	public static final int LOTTO_PRICE = 1000;
 
 	public List<Lotto> purchaseLottos(Money money, Random randoms) {
 		validatePurchaseMoneyUnit(money);
