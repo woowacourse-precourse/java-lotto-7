@@ -2,7 +2,7 @@ package lotto.utils;
 
 import lotto.error.LottoErrorMessage;
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.constant.LottoNumber;
+import lotto.constants.LottoNumber;
 
 import java.util.List;
 import java.util.stream.Collectors;

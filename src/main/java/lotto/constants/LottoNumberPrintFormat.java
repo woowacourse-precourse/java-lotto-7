@@ -1,4 +1,4 @@
-package lotto.model.lotto.constant;
+package lotto.constants;
 
 public final class LottoNumberPrintFormat {
 
