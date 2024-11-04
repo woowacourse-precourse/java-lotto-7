@@ -46,10 +46,11 @@ public class LottoService {
     }
 
     //당첨 번호 입력
-    public Lotto win_number(String numbers) {
+    public Lotto win_number() {
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
+                String numbers = Console.readLine();
                 String[] numberStrings = numbers.split(",");
                 List<Integer> numberList = new ArrayList<>();
 
@@ -70,20 +71,31 @@ public class LottoService {
         return lotto_nums.contains(number);
     }
 
-    public int bonus(String number) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        if (!(number != null && number.matches("\\d+"))) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자입니다.");
+    public int bonus() {
+        int bonusNum = 0;
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                String number = Console.readLine();
+
+                if (!(number != null && number.matches("\\d+"))) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자입니다.");
+                }
+
+                bonusNum = Integer.parseInt(number.trim());
+                if (bonusNum < 1 || bonusNum > 45) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 값이어야 합니다.");
+                }
+
+                if (checkDuplicate(bonusNum)) {
+                    throw new IllegalArgumentException("[ERROR] 중복되는 로또 번호입니다.");
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        int bonus_num = Integer.parseInt(number.trim());
-        if (bonus_num < 1 || bonus_num > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 값이어야 합니다.");
-        }
-        LottoService lottoService = new LottoService(lotto_nums);
-        if (lottoService.checkDuplicate(bonus_num)) {
-            throw new IllegalArgumentException("[ERROR] 중복되는 로또 번호입니다.");
-        }
-        return bonus_num;
+        return bonusNum;
     }
 
     // 로또 발행
@@ -94,7 +106,7 @@ public class LottoService {
             List<Integer> numberList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             make_lottos.add(new Lotto(numberList));
         }
-        System.out.println(ea + "개를 구매했습니다.");
+        System.out.println("\n" +ea + "개를 구매했습니다.");
     }
 
     // 발행 로또 출력
