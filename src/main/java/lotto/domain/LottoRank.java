@@ -20,16 +20,8 @@ public enum LottoRank {
         this.messageFormat = messageFormat;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public int getPrize() {
         return prize;
-    }
-
-    public String getMessageFormat() {
-        return messageFormat;
     }
 
     public String getFormattedPrize() {
