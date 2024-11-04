@@ -35,4 +35,26 @@ class GameResultsTest {
 		assertThat(gameResults.getCountBy(Rank.THIRD)).isEqualTo(2);
 		assertThat(gameResults.getCountBy(Rank.FIFTH)).isEqualTo(1);
 	}
+	@Test
+	void 당첨되지_않은_로또는_횟수가_0이다(){
+		// given
+		Lotto lotto6 = new Lotto(List.of(10, 11, 12, 13, 14, 15));
+		List<Lotto> lottos = List.of(lotto6);
+
+		WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
+		BonusNumber bonusNumber = new BonusNumber(7);
+
+		GameResults gameResults = new GameResults();
+
+		// when
+		gameResults.calculateGameResult(lottos, winningLotto, bonusNumber);
+
+		// then
+		assertThat(gameResults.getCountBy(Rank.FIRST)).isEqualTo(0);
+		assertThat(gameResults.getCountBy(Rank.SECOND)).isEqualTo(0);
+		assertThat(gameResults.getCountBy(Rank.THIRD)).isEqualTo(0);
+		assertThat(gameResults.getCountBy(Rank.FOURTH)).isEqualTo(0);
+		assertThat(gameResults.getCountBy(Rank.FIFTH)).isEqualTo(0);
+	}
+
 }
