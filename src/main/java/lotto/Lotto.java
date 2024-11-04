@@ -20,6 +20,12 @@ public class Lotto {
         return lottoNumbers.contains(number);
     }
 
+    public int getSameCount(Lotto lotto) {
+        return (int) lottoNumbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
     private void validate(List<Integer> numbers) {
         validateLottoCountSize(numbers);
         validateDuplication(numbers);
