@@ -10,7 +10,8 @@ public enum ErrorMessage {
     INVALID_WINNING_NUMBERS_ERROR("당첨 번호는 6개의 숫자로 구성되어야 합니다. 다시 입력해 주세요."),
     DUPLICATE_WINNING_NUMBER_ERROR("당첨 번호에 중복된 숫자가 있습니다. 중복 없이 6개의 숫자를 다시 입력해 주세요."),
     INVALID_LOTTO_NUMBER_COUNT_ERROR("로또 번호는 6개여야 합니다."),
-    DUPLICATE_LOTTO_NUMBERS_ERROR("로또 번호는 중복될 수 없습니다.")
+    DUPLICATE_LOTTO_NUMBERS_ERROR("로또 번호는 중복될 수 없습니다."),
+    EMPTY_LOTTO_LIST_ERROR("로또 목록은 비어 있을 수 없습니다. 티켓을 추가해 주세요.")
     ;
 
     private final String message;
