@@ -25,8 +25,7 @@ public class ConsoleOutput {
         ConsoleUtils.printMessageWithNewLine(STATISTIC_TITLE);
         ConsoleUtils.printMessageWithNewLine(DVIDER_STRING);
 
-        Map<Prize, Integer> completePrizeMap = getCompletePrizeMap(input);
-        printPrizeStatistics(completePrizeMap);
+        printPrizeStatistics(input.prizeCountMap());
         printProfitRate(input.profitRate());
     }
 
