@@ -68,13 +68,13 @@ public class LottoService {
     }
 
     private void bonusNumbersNotNullValidator(String bonusNumber) {
-        if (bonusNumber.isBlank()) {
+        if (bonusNumber == null || bonusNumber.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 입력되지 않았습니다.");
         }
     }
 
     private void moneyNotNullValidator(String inputMoney) {
-        if (inputMoney.isBlank()) {
+        if (inputMoney == null || inputMoney.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 로또를 구매하려는 금액을 입력해 주세요.");
         }
     }
@@ -88,7 +88,7 @@ public class LottoService {
     }
 
     private void winningNumbersNotNullValidator(String inputWinningNumbers) {
-        if (inputWinningNumbers.isBlank()) {
+        if (inputWinningNumbers == null || inputWinningNumbers.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 입력되지 않았습니다.");
         }
     }
