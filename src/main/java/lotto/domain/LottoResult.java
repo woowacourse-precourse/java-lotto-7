@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.enums.Constants;
 
 public class LottoResult {
     private Map<String, Integer> result;
@@ -50,10 +51,10 @@ public class LottoResult {
     }
 
     public void calculatePrize() {
-        this.prize = result.get("three") * 5000 +
-                result.get("four") * 50000 +
-                result.get("five") * 1500000 +
-                result.get("fiveBonus") * 30000000 +
-                result.get("six") * 2000000000;
+        this.prize = result.get("three") * Constants.THREE_PRIZE.getValue() +
+                result.get("four") * Constants.FOUR_PRIZE.getValue() +
+                result.get("five") * Constants.FIVE_PRIZE.getValue() +
+                result.get("fiveBonus") * Constants.FIVE_BONUS_PRIZE.getValue() +
+                result.get("six") * Constants.SIX_PRIZE.getValue();
     }
 }
