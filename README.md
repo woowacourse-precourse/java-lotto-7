@@ -1,8 +1,6 @@
 # java-lotto-precourse
 
 ## 기능
-- 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받기
-
 - 로또 구입 금액을 1000원 단위로 입력받기
   - IllegalArgumentException 발생
     - 숫자가 아닌 값을 입력받을 경우
