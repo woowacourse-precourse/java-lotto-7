@@ -6,7 +6,7 @@ import lotto.constants.messageType.InputMessageType;
 public class InputMessage {
 
     public static String inputClientMoney() {
-        System.out.println(InputMessageType.INPUT_GUIDE_MESSAGE.getMessage());
+        System.out.println(InputMessageType.INPUT_MONEY_GUIDE_MESSAGE.getMessage());
         return Console.readLine().trim();
     }
 

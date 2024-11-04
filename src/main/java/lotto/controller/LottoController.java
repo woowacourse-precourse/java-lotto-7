@@ -7,6 +7,7 @@ import lotto.model.LottoHandler;
 import lotto.model.RankingHandler;
 import lotto.utils.LottoPurchaseValidation;
 import lotto.view.InputMessage;
+import lotto.view.OutputMessage;
 
 public class LottoController {
 
@@ -34,7 +35,9 @@ public class LottoController {
 
         customer.buyLottoTickets(clientMoney);
         lottoHandler.buyLottos(customer.getLottoTickets());
-        System.out.println(lottoHandler.getLottoList());
+
+        OutputMessage.buyLottoCount(customer.getLottoTickets());
+        OutputMessage.buyLottoResults(lottoHandler.getLottoList());
     }
 
     private void inputWinningNumbers() {

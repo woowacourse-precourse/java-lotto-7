@@ -1,12 +1,12 @@
 package lotto.constants.messageType;
 
-public enum InputMessageType {
+public enum OutputMessageType {
 
-    INPUT_MONEY_GUIDE_MESSAGE("구입금액을 입력해 주세요.");
+    OUTPUT_BUY_LOTTO_MESSAGE_GUIDE("개를 구매했습니다.");
 
     private final String message;
 
-    InputMessageType(String message) {
+    OutputMessageType(String message) {
         this.message = message;
     }
 
