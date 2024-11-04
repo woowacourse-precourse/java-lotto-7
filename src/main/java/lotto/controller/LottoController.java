@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningCombinations;
 import lotto.dto.BonusNumber;
 import lotto.dto.LottoResult;
 import lotto.dto.PurchaseAmount;
@@ -15,10 +15,8 @@ public class LottoController {
         Lottos lottos = new Lottos(purchaseAmount);
         showLottoNumbers(purchaseAmount, lottos);
 
-        Lotto winningLotto = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
-
-
+        WinningNumbers winningLotto = getWinningNumbers();
+        WinningCombinations winningCombinations = getBonusNumber(winningLotto);
     }
 
     public PurchaseAmount getValidLottoPurchaseAmount() {
@@ -38,23 +36,23 @@ public class LottoController {
         OutputView.printLottoResult(lottoResult);
     }
 
-    public Lotto getWinningNumbers() {
+    public WinningNumbers getWinningNumbers() {
         try {
             WinningNumbers winningNumbers = new WinningNumbers(InputView.inputWinningNumbers());
-            return winningNumbers.getWinningLotto();
+            return winningNumbers;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningNumbers();
         }
     }
 
-    public int getBonusNumber() {
+    public WinningCombinations getBonusNumber(WinningNumbers winningNumbers) {
         try {
             BonusNumber bonusNumber = new BonusNumber(InputView.inputBonusNumber());
-            return bonusNumber.getBonusNumber();
+            return new WinningCombinations(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(winningNumbers);
         }
     }
 }

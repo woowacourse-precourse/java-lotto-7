@@ -24,7 +24,14 @@ public class WinningNumbers {
         }
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
+    public List<Integer> getWinningLotto() {
+        return winningLotto.getNumbers();
+    }
+
+    public int countMatchedNumbers(List<Integer> numbers) {
+        return (int) winningLotto.getNumbers()
+                .stream()
+                .filter(numbers::contains)
+                .count();
     }
 }
