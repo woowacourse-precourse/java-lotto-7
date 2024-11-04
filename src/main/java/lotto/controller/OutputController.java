@@ -21,6 +21,10 @@ public class OutputController {
         outputView.printResult(result);
     }
 
+    public void printProfit(double profit) {
+        outputView.printProfit(profit);
+    }
+
     public void printError(String message) {
         outputView.printError(message);
     }
