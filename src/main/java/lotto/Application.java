@@ -127,9 +127,6 @@ public class Application {
         System.out.println("\n당첨 통계");
         System.out.println("---");
 
-        for (int i = 5; i >= 1; i--) {
-
-        }
         for (Map.Entry<String, Integer> rank : lottoResult.entrySet()) {
             String lottoRank = generateLottoRank(rank.getKey());
             System.out.printf("%s - %d개\n", lottoRank, rank.getValue());
