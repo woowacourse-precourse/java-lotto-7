@@ -29,7 +29,7 @@ public class LottoServiceTest {
         winningLottoCounter = new WinningLottoCounter();
         lottoFormatter = new LottoFormatter(winningLottoCounter);
         winningLottoCalculate = new WinningLottoCalculate(winningLottoCounter,lottoFormatter);
-        lottoService = new LottoService(lottoManager, lottoFormatter, winningLottoCounter, winningLottoCalculate);
+        lottoService = new LottoService(lottoManager, lottoFormatter, winningLottoCounter, winningLottoCalculate, lottoValidator);
 
         lottoService.callCreateLottos(6);
     }

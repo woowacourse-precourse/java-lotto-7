@@ -22,7 +22,7 @@ public class AppConfig {
         LottoNumbersGenerator lottoNumbersGenerator = new LottoNumbersGenerator(lottoValidator);
         LottoManager lottoManager = new LottoManager(lottoNumbersGenerator);
         WinningLottoCalculate winningLottoCalculate = new WinningLottoCalculate(winningLottoCounter, lottoFormatter);
-        LottoService lottoService = new LottoService(lottoManager, lottoFormatter, winningLottoCounter, winningLottoCalculate);
+        LottoService lottoService = new LottoService(lottoManager, lottoFormatter, winningLottoCounter, winningLottoCalculate, lottoValidator);
         return new LottoController(inputView, outputView, lottoService);
     }
 }

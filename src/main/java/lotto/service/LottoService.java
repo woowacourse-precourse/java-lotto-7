@@ -9,6 +9,7 @@ import lotto.domain.WinningLotto.WinningLottoCounter;
 import lotto.dto.WinningLottoResultDTO;
 import lotto.parser.business.LottoParser;
 import lotto.parser.util.ParseUtils;
+import lotto.validator.LottoValidator;
 
 import java.util.*;
 
@@ -17,12 +18,14 @@ public class LottoService {
     private final LottoFormatter lottoFormatter;
     private final WinningLottoCounter winningLottoCounter;
     private final WinningLottoCalculate winningLottoCalculate;
+    private final LottoValidator lottoValidator;
 
-    public LottoService(LottoManager lottoManager, LottoFormatter lottoFormatter, WinningLottoCounter winningLottoCounter, WinningLottoCalculate winningLottoCalculate) {
+    public LottoService(LottoManager lottoManager, LottoFormatter lottoFormatter, WinningLottoCounter winningLottoCounter, WinningLottoCalculate winningLottoCalculate, LottoValidator lottoValidator) {
         this.lottoManager = lottoManager;
         this.lottoFormatter = lottoFormatter;
         this.winningLottoCounter = winningLottoCounter;
         this.winningLottoCalculate = winningLottoCalculate;
+        this.lottoValidator = lottoValidator;
     }
 
     public void callCreateLottos(int buyLottoCount) {
@@ -38,11 +41,12 @@ public class LottoService {
     }
 
     public void recordWinningLotto(String winningNumbers, String bonusNumber) {
-        List<Integer> parsedWinNumbers = LottoParser.parseWinningNumbers(winningNumbers);
+        List<Integer> parsedWinningNumbers = LottoParser.parseWinningNumbers(winningNumbers);
+        lottoValidator.validateLottoNumbersDuplication(parsedWinningNumbers);
         int parsedBonusNumber = ParseUtils.convertToNumber(bonusNumber);
 
         for (Lotto lotto : lottoManager.getLottos()) {
-            int matchedCount = calculateEqualWinningNumberBySingleLotto(parsedWinNumbers, lotto);
+            int matchedCount = calculateEqualWinningNumberBySingleLotto(parsedWinningNumbers, lotto);
             boolean hasBonusNumber = hasBonusNumberInLottoNumbers(parsedBonusNumber, lotto);
             WinningLotto winningLotto = WinningLotto.from(matchedCount, hasBonusNumber);
             winningLottoCounter.incrementCount(winningLotto);
