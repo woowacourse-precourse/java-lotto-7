@@ -1,10 +1,12 @@
-package lotto.domain;
+package lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto.Lotto;
 import lotto.domain.Lotto.LottoFactory;
+import lotto.domain.TicketPrice;
+import lotto.dto.LottosDto;
 
 public class Lottos {
     private final static int START_LOTTO_INDEX = 0;
@@ -12,8 +14,8 @@ public class Lottos {
     private final List<Lotto> lottos;
 
 
-    public Lottos(Price price) {
-        this.ticketCount = price.convertToTicket();
+    public Lottos(TicketPrice ticketPrice) {
+        this.ticketCount = ticketPrice.convertToTicket();
         this.lottos = createLottos();
     }
 
@@ -25,22 +27,11 @@ public class Lottos {
         return lottosNumber;
     }
 
-    public String getLottosToString() {
-        StringBuilder result = new StringBuilder();
-        for (int i = START_LOTTO_INDEX; i < lottos.size(); i++) {
-            result.append(lottos.get(i));
-            if (i < lottos.size() - 1) {
-                result.append("\n");
-            }
-        }
-        return result.toString();
+    public LottosDto toDto() {
+        return LottosDto.of(lottos, ticketCount);
     }
 
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
-    }
-
-    public int getTicketCount() {
-        return ticketCount;
     }
 }

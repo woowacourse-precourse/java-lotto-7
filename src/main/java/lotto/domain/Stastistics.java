@@ -3,7 +3,9 @@ package lotto.domain;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.domain.Lotto.Lotto;
-import lotto.domain.Lotto.Number;
+import lotto.domain.Lotto.LottoNumber;
+import lotto.domain.Lotto.Lottos;
+import lotto.domain.Lotto.WinningLotto;
 import lotto.dto.StatisticsDto;
 
 public class Stastistics {
@@ -37,10 +39,10 @@ public class Stastistics {
     }
 
     private int getMatchNumber(Lotto randomLotto, WinningLotto winningLotto) {
-        List<Number> winningNumbers = winningLotto.getWinningLottoNum();
-        List<Number> myNumbers = randomLotto.getLottoNumbers();
-        return (int) myNumbers.stream()
-                .filter(winningNumbers::contains)
+        List<LottoNumber> winningLottoNumbers = winningLotto.getWinningLottoNum();
+        List<LottoNumber> myLottoNumbers = randomLotto.getLottoNumbers();
+        return (int) myLottoNumbers.stream()
+                .filter(winningLottoNumbers::contains)
                 .count();
     }
 

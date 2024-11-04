@@ -1,12 +1,12 @@
 package lotto.domain;
 
-public class Price {
+public class TicketPrice {
     private static final String INVALID_PRICE_RANGE_ERROR_MESSAGE = "[ERROR] 로또 구입 금액은 1000원 이상이어야 합니다.";
     private static final String INVALID_PRICE_UNIT_ERROR_MESSAGE = "[ERROR] 로또 구입 금액은 1000원 단위어야 합니다.";
     private static final int UNIT_PRICE = 1000;
     private final int value;
 
-    public Price(final int value) {
+    public TicketPrice(final int value) {
         validatePrice(value);
         this.value = value;
     }

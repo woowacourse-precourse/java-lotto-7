@@ -12,55 +12,55 @@ import java.util.stream.Collectors;
 public class Lotto {
     private static final String INVALID_NUMBER_SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String INVALID_DUPLICATED_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
-    private final List<Number> lottoNumbers;
+    private final List<LottoNumber> lottoLottoNumbers;
 
-    protected Lotto(List<Number> numbers) {
-        validateLotto(numbers);
-        this.lottoNumbers = sortLottoNumber(numbers);
+    protected Lotto(List<LottoNumber> lottoNumbers) {
+        validateLotto(lottoNumbers);
+        this.lottoLottoNumbers = sortLottoNumber(lottoNumbers);
     }
 
-    private List<Number> sortLottoNumber(List<Number> numbers) {
-        return numbers.stream()
-                .sorted(Comparator.comparing(Number::getValue))
+    private List<LottoNumber> sortLottoNumber(List<LottoNumber> lottoNumbers) {
+        return lottoNumbers.stream()
+                .sorted(Comparator.comparing(LottoNumber::getValue))
                 .collect(Collectors.toList());
     }
 
-    private void validateLotto(List<Number> numbers) {
-        validateNumberSize(numbers);
-        validateDuplicatedNumber(numbers);
+    private void validateLotto(List<LottoNumber> lottoNumbers) {
+        validateNumberSize(lottoNumbers);
+        validateDuplicatedNumber(lottoNumbers);
     }
 
-    private void validateNumberSize(List<Number> numbers) {
-        if (isValidNumberSize(numbers)) {
+    private void validateNumberSize(List<LottoNumber> lottoNumbers) {
+        if (isValidNumberSize(lottoNumbers)) {
             throw new IllegalArgumentException(INVALID_NUMBER_SIZE_ERROR_MESSAGE);
         }
     }
 
-    private boolean isValidNumberSize(List<Number> numbers) {
-        return numbers.size() != LOTTO_NUMBER_SIZE;
+    private boolean isValidNumberSize(List<LottoNumber> lottoNumbers) {
+        return lottoNumbers.size() != LOTTO_NUMBER_SIZE;
     }
 
-    private void validateDuplicatedNumber(List<Number> numbers) {
+    private void validateDuplicatedNumber(List<LottoNumber> lottoNumbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
-        for (Number number : numbers) {
-            if (hasDuplicatedNumber(uniqueNumbers, number)) {
+        for (LottoNumber lottoNumber : lottoNumbers) {
+            if (hasDuplicatedNumber(uniqueNumbers, lottoNumber)) {
                 throw new IllegalArgumentException(INVALID_DUPLICATED_ERROR_MESSAGE);
             }
         }
     }
 
-    private boolean hasDuplicatedNumber(Set<Integer> uniqueNumbers, Number number) {
-        return !uniqueNumbers.add(number.getValue());
+    private boolean hasDuplicatedNumber(Set<Integer> uniqueNumbers, LottoNumber lottoNumber) {
+        return !uniqueNumbers.add(lottoNumber.getValue());
     }
 
     @Override
     public String toString() {
-        return lottoNumbers.stream()
+        return lottoLottoNumbers.stream()
                 .map(number -> String.valueOf(number.getValue()))
                 .collect(Collectors.joining(", ", "[", "]"));
     }
 
-    public List<Number> getLottoNumbers() {
-        return Collections.unmodifiableList(lottoNumbers);
+    public List<LottoNumber> getLottoNumbers() {
+        return Collections.unmodifiableList(lottoLottoNumbers);
     }
 }

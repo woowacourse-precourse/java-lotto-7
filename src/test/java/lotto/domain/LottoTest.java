@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import lotto.domain.Lotto.Lotto;
 import lotto.domain.Lotto.LottoFactory;
-import lotto.domain.Lotto.Number;
+import lotto.domain.Lotto.LottoNumber;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
@@ -45,8 +45,8 @@ class LottoTest {
     void 로또_번호는_오름차순으로_정렬_되어야_한다() {
         Lotto lotto = LottoFactory.createManualLotto("1,5,3,2,6,4");
 
-        List<Number> numbers = lotto.getLottoNumbers();
+        List<LottoNumber> lottoNumbers = lotto.getLottoNumbers();
 
-        assertThat(numbers).extracting(Number::getValue).isSorted();
+        assertThat(lottoNumbers).extracting(LottoNumber::getValue).isSorted();
     }
 }

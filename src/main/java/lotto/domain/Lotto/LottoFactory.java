@@ -18,22 +18,22 @@ public class LottoFactory {
     }
 
     public static Lotto createManualLotto(String input) {
-        List<Number> parsedNumbers = parseStringInput(input);
-        return new Lotto(parsedNumbers);
+        List<LottoNumber> parsedLottoNumbers = parseStringInput(input);
+        return new Lotto(parsedLottoNumbers);
     }
 
-    private static List<Number> createLottoNumber() {
+    private static List<LottoNumber> createLottoNumber() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
                 LOTTO_NUMBER_SIZE);
         return randomNumbers.stream()
-                .map(Number::new)
+                .map(LottoNumber::new)
                 .collect(Collectors.toList());
     }
 
-    private static List<Number> parseStringInput(String input) {
+    private static List<LottoNumber> parseStringInput(String input) {
         List<Integer> rawWinningLotto = InputParser.convertStringToList(input);
         return rawWinningLotto.stream()
-                .map(Number::new)
+                .map(LottoNumber::new)
                 .collect(Collectors.toList());
     }
 }

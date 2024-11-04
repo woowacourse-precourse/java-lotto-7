@@ -2,11 +2,11 @@ package lotto.controller;
 
 import lotto.domain.Lotto.Lotto;
 import lotto.domain.Lotto.LottoFactory;
-import lotto.domain.Lottos;
-import lotto.domain.Lotto.Number;
-import lotto.domain.Price;
+import lotto.domain.Lotto.Lottos;
+import lotto.domain.Lotto.LottoNumber;
+import lotto.domain.TicketPrice;
 import lotto.domain.Stastistics;
-import lotto.domain.WinningLotto;
+import lotto.domain.Lotto.WinningLotto;
 import lotto.dto.LottosDto;
 import lotto.dto.StatisticsDto;
 import lotto.util.InputParser;
@@ -23,10 +23,10 @@ public class LottoController {
     }
 
     public void run() {
-        Price price = inputBuyLotto();
+        TicketPrice ticketPrice = inputBuyLotto();
 
-        Lottos randomLottos = new Lottos(price);
-        LottosDto lottosDto = LottosDto.of(randomLottos.getLottos(), randomLottos.getTicketCount());
+        Lottos randomLottos = new Lottos(ticketPrice);
+        LottosDto lottosDto = randomLottos.toDto();
         outputRandomLottoNumber(lottosDto);
 
         Lotto WinningLottoNum = inputWinningLotto();
@@ -41,11 +41,11 @@ public class LottoController {
         inputView.closeConsole();
     }
 
-    private Price inputBuyLotto() {
+    private TicketPrice inputBuyLotto() {
         while (true) {
             try {
                 String rawPrice = inputView.readPriceInput();
-                return new Price(InputParser.parseInt(rawPrice));
+                return new TicketPrice(InputParser.parseInt(rawPrice));
             } catch (IllegalArgumentException e) {
                 outputView.printResult(e.getMessage());
             }
@@ -72,7 +72,7 @@ public class LottoController {
         while (true) {
             try {
                 String rawBonusNum = inputView.readBonusNumber();
-                return new WinningLotto(WinningLottoNum, new Number(rawBonusNum));
+                return new WinningLotto(WinningLottoNum, new LottoNumber(rawBonusNum));
             } catch (IllegalArgumentException e) {
                 outputView.printResult(e.getMessage());
             }

@@ -2,11 +2,11 @@ package lotto.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import lotto.domain.Lotto.Lotto;
 import lotto.domain.Lotto.LottoFactory;
+import lotto.domain.Lotto.Lottos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,21 +16,13 @@ class LottosTest {
 
     @BeforeEach
     void setUp() {
-        Price price = new Price(ticketCount * 1000);
-        lottos = new Lottos(price);
+        TicketPrice ticketPrice = new TicketPrice(ticketCount * 1000);
+        lottos = new Lottos(ticketPrice);
     }
 
     @Test
     void 로또_생성_갯수_확인() {
         assertThat(lottos.getLottos().size()).isEqualTo(ticketCount);
-    }
-
-    @Test
-    void 로또_출력_형식_확인() {
-        String lottoString = lottos.getLottosToString();
-        String[] lines = lottoString.split("\n");
-
-        assertThat(lines.length).isEqualTo(ticketCount);
     }
 
     @Test
