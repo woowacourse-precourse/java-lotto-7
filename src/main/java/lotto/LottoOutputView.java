@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ public class LottoOutputView {
         System.out.println("---");
         Arrays.stream(WinningRank.values())
                 .filter(rank -> rank != WinningRank.NONE)
+                .sorted(Comparator.reverseOrder())
                 .forEach(rank -> printWinningRank(rank, statistics.getOrDefault(rank, 0)));
         System.out.printf("총 수익률은 %.1f%%입니다.\n", returnRate);
     }
