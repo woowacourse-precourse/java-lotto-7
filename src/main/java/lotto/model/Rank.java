@@ -30,6 +30,13 @@ public enum Rank {
         this.prize = prize;
     }
 
+    public static Rank of(long count, boolean hasBonus) {
+        if (count == SECOND.count && hasBonus) {
+            return SECOND;
+        }
+        return Optional.ofNullable(RANK_CACHE.get(count)).orElse(Rank.MISS);
+    }
+
     public int getCount() {
         return count;
     }
