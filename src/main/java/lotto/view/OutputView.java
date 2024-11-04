@@ -34,7 +34,7 @@ public class OutputView {
         System.out.println(Outputs.BONUS_REQUEST.getMessage());
     }
 
-    public void printStatistics() {
+    public void printStatHeader() {
         System.out.println(Outputs.STATISTICS.getMessage());
     }
 

@@ -32,22 +32,12 @@ public class LottoController {
     public void play() {
         Money money = tryUntilSuccess(() -> new Money(getMoney()));
 
-        generator.setMoney(money.getAmount());
-        List<Ticket> tickets = generator.getTickets();
-        outputView.printTicketNumbers(tickets);
+        List<Ticket> tickets = getTickets(money);
 
         Lotto lotto = tryUntilSuccess(() -> new Lotto(getLotto()));
         Bonus bonus = tryUntilSuccess(() -> new Bonus(getBonus(), lotto.getNumbers()));
 
-        RankCounter counter = new RankCounter(tickets, lotto, bonus);
-        List<Long> rankCount = counter.getRankCount();
-
-        RevenuePercentCalculator calculator = new RevenuePercentCalculator(rankCount);
-        BigDecimal revenuePercent = calculator.getRevenuePercent();
-
-        outputView.printStatistics();
-        outputView.printRanks(rankCount);
-        outputView.printRevenuePercent(revenuePercent);
+        getStatistics(tickets, lotto, bonus);
     }
 
     private <T> T tryUntilSuccess(Supplier<T> function) {
@@ -70,6 +60,14 @@ public class LottoController {
         return InputParser.parseLong(money);
     }
 
+    private List<Ticket> getTickets(Money money) {
+        generator.setMoney(money.getAmount());
+        List<Ticket> tickets = generator.getTickets();
+        outputView.printTicketNumbers(tickets);
+
+        return tickets;
+    }
+
     private List<Integer> getLotto() {
         outputView.printLottoRequest();
         String lotto = inputView.getUserInput();
@@ -88,5 +86,17 @@ public class LottoController {
         validator.validate();
 
         return InputParser.parseInt(bonus);
+    }
+
+    private void getStatistics(List<Ticket> tickets, Lotto lotto, Bonus bonus) {
+        RankCounter counter = new RankCounter(tickets, lotto, bonus);
+        List<Long> rankCount = counter.getRankCount();
+
+        RevenuePercentCalculator calculator = new RevenuePercentCalculator(rankCount);
+        BigDecimal revenuePercent = calculator.getRevenuePercent();
+
+        outputView.printStatHeader();
+        outputView.printRanks(rankCount);
+        outputView.printRevenuePercent(revenuePercent);
     }
 }
