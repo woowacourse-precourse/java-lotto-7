@@ -1,7 +1,10 @@
 package lotto.validation;
 
 import static lotto.util.Constant.LOTTO_PRICE_UNIT;
+import static lotto.util.Constant.MAX_LOTTO_NUMBER;
 import static lotto.util.Constant.MAX_PURCHASE_AMOUNT;
+import static lotto.util.Constant.MIN_LOTTO_NUMBER;
+import static lotto.util.Constant.WINNING_NUMBER_COUNT;
 
 import java.util.List;
 import lotto.util.MessageSource;
@@ -18,7 +21,7 @@ public class Validator {
     }
 
     public void validateWinningNumbers(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
+        if (winningNumbers.size() != WINNING_NUMBER_COUNT) {
             throw new IllegalArgumentException(MessageSource.getMessage("error.invalid_winning_number_count"));
         }
         if (winningNumbers.stream().anyMatch(num -> num < 1 || num > 45)) {
@@ -27,7 +30,7 @@ public class Validator {
     }
 
     public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(MessageSource.getMessage("error.invalid_number_range"));
         }
         if (winningNumbers.contains(bonusNumber)) {

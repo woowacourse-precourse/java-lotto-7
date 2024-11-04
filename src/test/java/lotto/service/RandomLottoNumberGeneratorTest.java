@@ -1,5 +1,8 @@
 package lotto.service;
 
+import static lotto.util.Constant.MAX_LOTTO_NUMBER;
+import static lotto.util.Constant.MIN_LOTTO_NUMBER;
+import static lotto.util.Constant.WINNING_NUMBER_COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -14,8 +17,8 @@ class RandomLottoNumberGeneratorTest {
     @DisplayName("1에서 45 사이의 중복되지 않는 6개의 로또 번호가 생성되는지 확인")
     void 로또_번호_생성_범위와_중복_검증() {
         List<Integer> numbers = generator.generateNumber();
-        assertThat(numbers).hasSize(6);
-        assertThat(numbers).allMatch(num -> num >= 1 && num <= 45);
+        assertThat(numbers).hasSize(WINNING_NUMBER_COUNT);
+        assertThat(numbers).allMatch(num -> num >= MIN_LOTTO_NUMBER && num <= MAX_LOTTO_NUMBER);
         assertThat(numbers).doesNotHaveDuplicates();
     }
 }
