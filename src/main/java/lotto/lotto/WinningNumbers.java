@@ -11,9 +11,14 @@ public class WinningNumbers {
     }
 
     public static WinningNumbers of(String... rawNumbers) {
-        List<Integer> numbers = Arrays.stream(rawNumbers)
-                .map(Integer::parseInt)
-                .toList();
+        List<Integer> numbers = null;
+        try {
+            numbers = Arrays.stream(rawNumbers)
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호의 형식이 잘못되었습니다.");
+        }
 
         return new WinningNumbers(numbers);
     }
