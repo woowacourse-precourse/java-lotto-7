@@ -22,4 +22,10 @@ public class MoneyTest {
         assertThatThrownBy(() -> Money.from("500"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 구입_금액이_기준_금액으로_나누어_지지_않으면_예외가_발생한다() {
+        assertThatThrownBy(() -> Money.from("2700"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
