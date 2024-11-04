@@ -22,7 +22,9 @@ public class InputView {
 
     private String readLine(String message) {
         System.out.println(message);
-        return Console.readLine();
+        String input = Console.readLine();
+        System.out.print(System.lineSeparator());
+        return input;
     }
 
     public void printException(Exception exception) {
