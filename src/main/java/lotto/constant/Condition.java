@@ -1,7 +1,7 @@
 package lotto.constant;
 
 public enum Condition {
-    ONLY_NUMBERS("[^0-9]|\\s");
+    ONLY_NUMBERS("[^0-9,]|\\s|,,+");
 
     private final String value;
 
