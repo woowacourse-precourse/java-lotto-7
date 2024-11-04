@@ -7,7 +7,8 @@ public enum ErrorMessage {
     INVALID_PURCHASE_AMOUNT("구입금액은 1000, 2000, ..., 100000 중 하나의 값이어야 합니다."),
     INVALID_WINNING_NUMBERS("당첨 번호들이 포함된 문자열은 2자리 이하의 숫자 6개를 ,로 연결한 형태여야 합니다."),
     DUPLICATED_WINNING_NUMBERS("당첨 번호는 중복될 수 없습니다."),
-    WINNING_NUMBER_OUT_OF_RANGE("당첨 번호는 1 이상, 45 이하의 정수 값이어야 합니다.");
+    WINNING_NUMBER_OUT_OF_RANGE("당첨 번호는 1 이상, 45 이하의 정수 값이어야 합니다."),
+    INVALID_BONUS_NUMBER("보너스 번호는 1 이상, 45 이하의 정수 값이어야 합니다."),;
 
     private final String message;
 

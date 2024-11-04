@@ -28,7 +28,7 @@ public class LottoController {
         PurchaseAmount purchaseAmount = tryInputPurchaseAmount();
         Lottos lottos = issueLottos(purchaseAmount);
         WinningNumbers winningNumbers = tryInputWinningNumbers();
-        BonusNumber bonusNumber = inputBonusNumber();
+        BonusNumber bonusNumber = tryInputBonusNumber();
         LottosResult lottosResult = calculateLottosResult(lottos, winningNumbers, bonusNumber);
         showLottosResult(lottosResult);
     }
@@ -80,7 +80,7 @@ public class LottoController {
         }
     }
 
-    private BonusNumber inputBonusNumber() {
+    private BonusNumber tryInputBonusNumber() {
         while (true) {
             outputView.printBonusNumberMessage();
             try {

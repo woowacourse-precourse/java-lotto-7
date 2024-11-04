@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
 public class InputValidator {
     private static final String BLANK = " ";
     private static final Pattern PURCHASE_AMOUNT_PATTERN = Pattern.compile("^[1-9][0-9]?000|100000$");
-    private static final Pattern WINNING_NUMBERS_PATTERN = Pattern.compile("^([0-9]{1,2},){5}[0-9]{1,2}");
+    private static final Pattern WINNING_NUMBERS_PATTERN = Pattern.compile("^([0-9]{1,2},){5}[0-9]{1,2}$");
+    private static final Pattern BONUS_NUMBER_PATTERN = Pattern.compile("^[1-9]|([1-3][0-9])|(4[0-5])$");
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
 
@@ -46,6 +47,12 @@ public class InputValidator {
         Set<Integer> uniqueWinningNumbers = new HashSet<>(winningNumbers);
         if (uniqueWinningNumbers.size() != winningNumbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WINNING_NUMBERS.getErrorMessage());
+        }
+    }
+
+    public static void validateBonusNumber(String bonusNumber) {
+        if (!BONUS_NUMBER_PATTERN.matcher(bonusNumber).matches()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getErrorMessage());
         }
     }
 }
