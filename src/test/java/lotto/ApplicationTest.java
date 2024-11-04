@@ -1,16 +1,18 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.domain.constant.ErrorMessage.NOT_INTEGER;
+import static lotto.domain.constant.ErrorMessage.PRICE_UNMATCHED;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 class ApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_MESSAGE = "[error] 정수만 입력할 수 있습니다.";
 
     @Test
     void 기능_테스트() {
@@ -51,6 +53,42 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("금액 입력시 1000단위가 아닐경우 예외처리")
+    @Test
+    void 금액_입력시_1000단위가_아닐경우_예외처리() {
+        assertSimpleTest(() -> {
+            runException("101");
+            assertThat(output()).contains(PRICE_UNMATCHED.getMessage());
+        });
+    }
+
+    @DisplayName("금액 입력시 0인 경우 예외처리")
+    @Test
+    void 금액_입력시_0인경우_예외처리() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(PRICE_UNMATCHED.getMessage());
+        });
+    }
+
+    @DisplayName("당첨번호 입력시 숫자가 아닐경우 예외처리")
+    @Test
+    void 당첨번호_입력시_숫자가_아닐경우_예외처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "a,1,2,3,4,5");
+            assertThat(output()).contains(NOT_INTEGER.getMessage());
+        });
+    }
+
+    @DisplayName("당첨번호 입력시 구분자가 쉼표가 아닐경우 예외처리")
+    @Test
+    void 당첨번호_입력시_구분자가_쉼표가_아닐경우_예외처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1|2|3|4|5|6");
+            assertThat(output()).contains(NOT_INTEGER.getMessage());
         });
     }
 
