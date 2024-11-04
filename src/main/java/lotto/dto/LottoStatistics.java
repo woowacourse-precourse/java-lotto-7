@@ -1,29 +1,32 @@
 package lotto.dto;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
-import lotto.model.Lotto;
-import lotto.model.Lottos;
+import lotto.model.LottoResult;
 import lotto.model.Rank;
-import lotto.model.WinningLotto;
 
 public record LottoStatistics(
-    Map<RankDTO, Integer> statistics,
-    double profit
+        Map<RankDTO, Integer> statistics,
+        double profit
 ) {
-    public static LottoStatistics from(WinningLotto winningLotto, Lottos lottos) {
+    public static LottoStatistics from(LottoResult lottoResult, int amount) {
         Map<RankDTO, Integer> statistics = new TreeMap<>();
-        Arrays.stream(Rank.values()).forEach(rank -> statistics.put(RankDTO.from(rank), 0));
-        for (Lotto lotto : lottos.getLottos()) {
-            Rank rank = winningLotto.calculateRank(lotto);
-            RankDTO dto = RankDTO.from(rank);
-            statistics.put(dto, statistics.get(dto) + 1);
-        }
+        lottoResult.getResult().forEach((rank, value) -> putRank(
+                statistics,
+                rank,
+                value
+        ));
         return new LottoStatistics(
                 statistics,
-                Math.round(lottos.calculateProfit(winningLotto) * 10000) / 100.0
+                lottoResult.computeProfit(amount)
         );
+    }
+
+    private static void putRank(Map<RankDTO, Integer> statistics, Rank rank, int value) {
+        if (rank == Rank.LAST) {
+            return;
+        }
+        statistics.put(RankDTO.from(rank), value);
     }
 
     public record RankDTO(
