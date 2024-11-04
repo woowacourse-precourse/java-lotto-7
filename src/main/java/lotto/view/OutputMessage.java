@@ -9,7 +9,7 @@ public class OutputMessage {
     }
 
     public static void buyLottoResults(String buyLottoResults) {
-        System.out.println(buyLottoResults);
+        System.out.println(buyLottoResults + "\n");
     }
 
 }

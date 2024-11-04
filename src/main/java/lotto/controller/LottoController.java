@@ -41,9 +41,8 @@ public class LottoController {
     }
 
     private void inputWinningNumbers() {
-        String rawWinningNumbers = Console.readLine();
+        String rawWinningNumbers = InputMessage.inputWinningNumbers();
         lottoHandler.inputWinningLottoNumbers(rawWinningNumbers);
-        System.out.println(lottoHandler.getWinningLottoNumbers().getNumbers());
     }
 
     private void inputBonusNumber() {

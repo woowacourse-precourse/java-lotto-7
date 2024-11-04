@@ -10,4 +10,9 @@ public class InputMessage {
         return Console.readLine().trim();
     }
 
+    public static String inputWinningNumbers() {
+        System.out.println(InputMessageType.INPUT_WINNING_NUMBERS_MESSAGE.getMessage());
+        return Console.readLine().trim();
+    }
+
 }
