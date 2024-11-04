@@ -7,7 +7,6 @@ import lotto.domain.generator.LottoGenerator;
 import lotto.util.ExceptionMessages;
 
 public class Lottos {
-
     private final int amounts;
     private final List<Lotto> lottos;
 
@@ -46,5 +45,9 @@ public class Lottos {
         return lottos.stream()
                 .map(lotto -> lotto.getNumbers().toString())
                 .collect(Collectors.toList());
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }
