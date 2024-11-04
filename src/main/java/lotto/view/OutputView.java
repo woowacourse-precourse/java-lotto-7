@@ -28,4 +28,30 @@ public class OutputView {
         print("");
     }
 
+    public void printStatics(String message, List<Match> matches) {
+        print(message);
+        for (Match match : Match.values()) {
+            StringBuilder sb = new StringBuilder();
+            int count = getSize(matches, match);
+            sb.append(match.getMatchCount()).append("개 일치");
+            if (match.isBonusMatch()) {
+                sb.append(", 보너스 볼 일치");
+            }
+            sb.append(" (");
+            sb.append(getMoney(match)).append("원) - ").append(count).append("개");
+            print(sb.toString());
+        }
+    }
+
+    private static String getMoney(Match match) {
+        return String.format("%,d", match.getMoney());
+    }
+
+    private static int getSize(List<Match> matches, Match match) {
+        return matches.stream()
+                .filter(match::equals)
+                .toList()
+                .size();
+    }
+
 }

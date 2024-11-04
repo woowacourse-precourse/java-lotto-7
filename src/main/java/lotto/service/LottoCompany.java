@@ -33,4 +33,15 @@ public class LottoCompany {
                 .map(lotto -> Match.findMatch(lotto.countMatch(winningNumber), lotto.checkBonusMatch(bonusNumber))
                 ).toList();
     }
+
+    public double calculateROI(List<Match> matches) {
+        double investAmount = matches.size() * LOTTO_PRICE;
+        double profit = matches.stream()
+                .filter(Objects::nonNull)
+                .map(match -> match.getMoney())
+                .reduce(0, (a, b) -> a + b);
+        BigDecimal bd = new BigDecimal(profit / investAmount * 100);
+        bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
 }
