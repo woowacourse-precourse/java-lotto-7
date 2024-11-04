@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.BuyController;
+import lotto.controller.ResultController;
 import lotto.service.LottoMachine;
 import lotto.view.InputValidator;
 import lotto.view.InputView;
@@ -14,5 +15,8 @@ public class Application {
         final LottoMachine lottoMachine = new LottoMachine();
         final OutputView outputView = new OutputView();
         final BuyController buyController = new BuyController(inputView, lottoMachine, outputView);
+        buyController.buy();
+        final ResultController resultController = new ResultController(inputView, lottoMachine, outputView);
+        resultController.result();
     }
 }
