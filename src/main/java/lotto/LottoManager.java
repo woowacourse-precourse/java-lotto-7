@@ -1,0 +1,91 @@
+package lotto;
+
+import lotto.domain.Attempt;
+import lotto.domain.BonusLotto;
+import lotto.domain.Lotto;
+
+import java.util.*;
+
+public class LottoManager {
+    private final Attempt attempt;
+    private final Lotto lotto;
+    private final BonusLotto bonusLotto;
+    private final List<Lotto> randomLottos;
+
+    public LottoManager(Attempt attempt, Lotto lotto, BonusLotto bonusLotto,List<Lotto> randomLottos) {
+        this.attempt = attempt;
+        this.lotto = lotto;
+        this.bonusLotto = bonusLotto;
+        this.randomLottos = randomLottos;
+    }
+
+    public Map<LottoPrize, Integer> doLotto() {
+        //기본 로또 당첨 비교
+        Map<LottoPrize, Integer> lottoPrizes = initializePrizeMap();
+
+        for(Lotto randomLotto: randomLottos) {
+            int result = lotto.compareLottoNumber(randomLotto.getNumbers());
+            updatePrizeMap(lottoPrizes, result);
+        }
+        return lottoPrizes;
+    }
+
+    private void updatePrizeMap(Map<LottoPrize, Integer> prizes, int result) {
+        if (result == 6) {
+            incrementPrizeCount(prizes, LottoPrize.SIX_MATCH);
+            return;
+        }
+        if (result == 5) {
+            if (isBonusMatched()) {
+                incrementPrizeCount(prizes, LottoPrize.FIVE_MATCH_BONUS);
+                return;
+            }
+            incrementPrizeCount(prizes, LottoPrize.FIVE_MATCH);
+            return;
+        }
+        if (result == 4) {
+            incrementPrizeCount(prizes, LottoPrize.FOUR_MATCH);
+            return;
+        }
+        if (result == 3) {
+            incrementPrizeCount(prizes, LottoPrize.THREE_MATCH);
+        }
+    }
+
+    private boolean isBonusMatched() {
+        return lotto.compareLottoNumber(List.of(bonusLotto.getNumber())) == 1;
+    }
+
+    private void incrementPrizeCount(Map<LottoPrize, Integer> prizeMap, LottoPrize prize) {
+        prizeMap.put(prize, prizeMap.get(prize) + 1);
+    }
+
+    private Map<LottoPrize, Integer> initializePrizeMap() {
+        //출력 순서 보장을 위해 HashMap이 아닌 LinkedHashMap을 사용
+        Map<LottoPrize, Integer> prizes = new LinkedHashMap<>();
+        Arrays.stream(LottoPrize.values())
+                .forEach(prize -> prizes.put(prize, 0));
+        return prizes;
+    }
+
+    /**
+     * 수익룰 = 총 수익 / 투자 비용 * 100
+     */
+    public double getROI(Map<LottoPrize, Integer> prizeMap) {
+        int usedCash = attempt.getCashAmount();
+        int totalPrize = prizeMap.entrySet()
+                .stream()
+                .map(entry -> entry.getKey().getPrize() * entry.getValue())
+                .reduce(0, Integer::sum);
+
+        return (double) totalPrize / usedCash * 100.0;
+    }
+
+    public int getLottoAmount() {
+        return attempt.getLottoAmount();
+    }
+
+    public List<Lotto> getRandomLottoList() {
+        return randomLottos;
+    }
+}
