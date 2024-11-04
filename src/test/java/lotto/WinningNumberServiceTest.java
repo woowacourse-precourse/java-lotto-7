@@ -39,4 +39,11 @@ public class WinningNumberServiceTest {
         assertThat(winning.getNumbers().size()).isEqualTo(6);
         assertThat(winning.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
+
+    @Test
+    void 보너스_번호_생성_테스트() {
+        WinningNumber winning = winningNumberService.createWinningNumber(winningNumber, bonusNumber);
+
+        assertThat(winning.getBonusNumber()).isEqualTo(7);
+    }
 }
