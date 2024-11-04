@@ -31,6 +31,11 @@ public class TestConstants {
     public static Integer MATCH_COUNT_5 = 5;
     public static Integer MATCH_COUNT_6 = 6;
     public static Integer UP_MATCH_COUNt = 7;
+    public static Long MATCH_3_NUMBERS_PRIZE = 5000L;
+    public static Long MATCH_4_NUMBERS_PRIZE = 50000L;
+    public static Long MATCH_5_NUMBERS_PRIZE = 1500000L;
+    public static Long MATCH_5_NUMBERS_WITH_BONUS_NUMBER_PRIZE = 30000000L;
+    public static Long MATCH_6_NUMBERS = 2000000000L;
 
     public static boolean HAS_BONUS_NUMBER = true;
     public static boolean NO_BONUS_NUMBER = false;

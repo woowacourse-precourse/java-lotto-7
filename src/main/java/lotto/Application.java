@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoMachine;
+import lotto.service.LottoRankCounter;
 import lotto.service.LottoService;
 import lotto.service.PurchaseService;
 import lotto.service.WinningNumbersService;
@@ -15,7 +16,8 @@ public class Application {
                 new OutputView(),
                 new PurchaseService(),
                 new LottoService(),
-                new WinningNumbersService()
+                new WinningNumbersService(),
+                new LottoRankCounter()
         );
 
         lottoMachine.run();

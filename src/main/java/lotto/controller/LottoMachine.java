@@ -6,6 +6,7 @@ import lotto.domain.LottoRank;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 import lotto.dto.WinningRankCountDto;
+import lotto.service.LottoRankCounter;
 import lotto.service.LottoService;
 import lotto.service.PurchaseService;
 import lotto.service.WinningNumbersService;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.common.Constants.*;
-import static lotto.service.LottoRankCounter.countWinningRanks;
 
 public class LottoMachine {
     private final InputView inputView;
@@ -24,15 +24,18 @@ public class LottoMachine {
     private final PurchaseService purchaseService;
     private final LottoService lottoService;
     private final WinningNumbersService winningNumbersService;
+    private final LottoRankCounter lottoRankCounter;
 
     public LottoMachine(InputView inputView, OutputView outputView,
                         PurchaseService purchaseService, LottoService lottoService,
-                        WinningNumbersService winningNumbersService) {
+                        WinningNumbersService winningNumbersService,
+                        LottoRankCounter lottoRankCounter) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.purchaseService = purchaseService;
         this.lottoService = lottoService;
         this.winningNumbersService = winningNumbersService;
+        this.lottoRankCounter = lottoRankCounter;
     }
 
     public void run () {
@@ -43,6 +46,8 @@ public class LottoMachine {
         WinningNumbers winningNumbers = getWinningNumbers();
 
         WinningRankCountDto winningRankCountDto = getWinningRanks(lottos, winningNumbers);
+
+        lottoRankCounter.getProfitRate(winningRankCountDto, lottoTicketCount);
     }
 
     public Lottos generateLottos (Integer lottoTicketCount) {
@@ -91,7 +96,7 @@ public class LottoMachine {
     private WinningRankCountDto getWinningRanks (Lottos lottos, WinningNumbers winningNumbers) {
         List<LottoRank> WinningRanks = winningNumbersService.getWinningRanks(lottos, winningNumbers);
 
-        WinningRankCountDto winningRankCountDto = countWinningRanks(WinningRanks);
+        WinningRankCountDto winningRankCountDto = lottoRankCounter.countWinningRanks(WinningRanks);
         outputView.printWinningDetails(winningRankCountDto);
 
         return winningRankCountDto;

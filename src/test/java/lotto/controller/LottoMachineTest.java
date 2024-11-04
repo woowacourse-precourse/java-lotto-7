@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
+import lotto.service.LottoRankCounter;
 import lotto.service.LottoService;
 import lotto.service.PurchaseService;
 import lotto.service.WinningNumbersService;
@@ -18,7 +19,8 @@ class LottoMachineTest {
             new OutputView(),
             new PurchaseService(),
             new LottoService(),
-            new WinningNumbersService()
+            new WinningNumbersService(),
+            new LottoRankCounter()
     );
 
     @Test

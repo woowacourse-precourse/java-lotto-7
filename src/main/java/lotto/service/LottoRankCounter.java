@@ -11,7 +11,7 @@ import static lotto.domain.LottoRank.getLottoRanksWithoutNoRank;
 
 public class LottoRankCounter {
 
-    public static WinningRankCountDto countWinningRanks(List<LottoRank> lottoRanks) {
+    public WinningRankCountDto countWinningRanks(List<LottoRank> lottoRanks) {
         List<LottoRank> allLottoRanks = getLottoRanksWithoutNoRank();
 
         Map<LottoRank, Long> rankCounts = allLottoRanks.stream()
@@ -22,5 +22,29 @@ public class LottoRankCounter {
         }
 
         return new WinningRankCountDto(rankCounts);
+    }
+
+    public void getProfitRate(WinningRankCountDto winningRankCountDto, Integer lottoTicketCount) {
+        Long winningPrize = getWinningPrize(winningRankCountDto);
+    }
+
+    public long getWinningPrize(WinningRankCountDto winningRankCountDto) {
+        List<LottoRank> availableRanks = getLottoRanksWithoutNoRank();
+
+        long winningPrize = 0L;
+
+        for (LottoRank lottoRank : availableRanks) {
+            winningPrize += getWinningPrizePerRank(lottoRank, winningRankCountDto);
+        }
+
+        return winningPrize;
+    }
+
+    private Long getWinningPrizePerRank (LottoRank lottoRank, WinningRankCountDto winningRankCountDto) {
+        Integer prizeMoney = lottoRank.getPrizeMoney();
+
+        Long winningCount = winningRankCountDto.getRankCount(lottoRank);
+
+        return prizeMoney * winningCount;
     }
 }
