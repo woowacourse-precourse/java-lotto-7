@@ -13,8 +13,10 @@ public class Application {
         int purchase = InputView.inputPurchase();
         List<List<Integer>> lottoLists = LottoMachine.generateLotto(purchase);
         OutputView.printLottoNumbers(lottoLists);
+
         String inputWinningNumbers = InputView.inputWinningNumbers();
         List<Integer> winningNumbers = InputController.parseIntegerList(inputWinningNumbers);
+
         int inputBonusNumber = InputView.inputBonusNumber();
         int bonusNumber = InputController.validateBonusNumber(inputBonusNumber);
 
