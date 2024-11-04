@@ -11,7 +11,6 @@ import lotto.view.ErrorMessage;
 
 public class LottoValidator {
 
-    // 모든 검증을 수행하는 validate 메서드
     public static void validate(List<Integer> numbers) {
         validateLottoNumberCount(numbers);
         validateLottoNumberRange(numbers);
