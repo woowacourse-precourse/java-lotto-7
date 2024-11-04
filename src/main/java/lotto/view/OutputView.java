@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 import static lotto.view.message.OutputMessage.*;
 public class OutputView {
-    private static final String PREFIX = ", ";
-    private static final String SUFFIX = ", ";
+    private static final String PREFIX = "[";
+    private static final String SUFFIX = "]";
     private static final String SEPARTOR = ", ";
     public static void printTicketAmount(int ticketAmount) {
         System.out.println();
