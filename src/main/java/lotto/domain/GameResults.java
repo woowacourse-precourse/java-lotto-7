@@ -21,16 +21,16 @@ public class GameResults {
 		}
 	}
 
-	public double getRoundedProfitRate() {
+	public double getRoundedProfitRate(List<Lotto> lottos) {
 		double profit = 0;
-		double purchaseAmount = 0;
+		double purchaseAmount = lottos.size() * LottoMachine.LOTTO_PRICE;
 
 		for (Rank rank : Rank.values()) {
 			Integer matchCount = gameResultMap.getOrDefault(rank, 0);
 			profit += matchCount * rank.getPrizeMoney();
 		}
 
-		double profitRate = profit / purchaseAmount;
+		double profitRate = (profit / purchaseAmount) * 100.0;
 
 		return Math.round(profitRate * 100) / 100.0;
 	}
