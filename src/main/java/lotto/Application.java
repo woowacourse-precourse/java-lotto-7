@@ -67,7 +67,7 @@ public class Application {
             sum += map.get(lottoRank) * lottoRank.getPrize();
         }
 
-        System.out.printf("총 수익률은 %.1f%%입니다.", (double) sum * 100 / amount);
+        System.out.printf("총 수익률은 %,.1f%%입니다.", (double) sum * 100 / amount);
     }
 
     private static void putIfNone(Map<LottoRank, Integer> map, LottoRank rank) {
