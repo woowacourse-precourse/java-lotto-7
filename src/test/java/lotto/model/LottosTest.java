@@ -34,6 +34,7 @@ public class LottosTest {
         DrawResults result = lottos.getDrawResult(winningLotto, 7);
 
         // then
-        assertThat(result.getDrawResults().size()).isEqualTo(3);
+        assertThat(result.getDrawResults()).isEqualTo(
+                List.of(new DrawResult(6, false), new DrawResult(3, false), new DrawResult(4, false)));
     }
 }

@@ -2,6 +2,7 @@ package lotto.model;
 
 import static lotto.constant.DrawType.NO_MATCH;
 
+import java.util.Objects;
 import lotto.constant.DrawType;
 
 public class DrawResult {
@@ -21,6 +22,22 @@ public class DrawResult {
             }
         }
         return NO_MATCH;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof DrawResult that)) {
+            return false;
+        }
+        return result == that.result && hasBonusResult == that.hasBonusResult;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(result, hasBonusResult);
     }
 
 }
