@@ -22,15 +22,12 @@ public class LottoService {
     private static final int FOUR = 4;
     private static final int FIVE = 5;
     private static final int SIX = 6;
-    PrintService printService = PrintService.createPrintService();
-    LottoGenerator lottoGenerator = LottoGenerator.createLottoGenerator();
+    private final PrintService printService;
+    private final LottoGenerator lottoGenerator;
 
-    private LottoService() {
-
-    }
-
-    public static LottoService createLottoService() {
-        return new LottoService();
+    public LottoService(PrintService printService, LottoGenerator lottoGenerator) {
+        this.printService = printService;
+        this.lottoGenerator = lottoGenerator;
     }
 
     public List<int[]> calculateMatched(LottoGroup lottoGroup, Lotto winnerLotto,

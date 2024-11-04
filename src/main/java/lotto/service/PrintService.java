@@ -21,12 +21,8 @@ public class PrintService {
     private static final int FIVE_BONUS_EARN = 30000000;
     private static final int SIX_EARN = 2000000000;
 
-    private PrintService() {
+    public PrintService() {
 
-    }
-
-    public static PrintService createPrintService() {
-        return new PrintService();
     }
 
     public void printNoticeBuyAmount(int amount) {
