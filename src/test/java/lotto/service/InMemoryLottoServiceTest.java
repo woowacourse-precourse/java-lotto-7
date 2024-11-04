@@ -77,7 +77,7 @@ class InMemoryLottoServiceTest {
     void convertToNumbers_Invalid_Test() {
         assertThatThrownBy(() -> lottoService.convertToNumbers("1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 번호는 6개여야 합니다.");
+                .hasMessageContaining("[ERROR] 로또 번호는 6개여야 합니다.");
     }
 
     @Test
