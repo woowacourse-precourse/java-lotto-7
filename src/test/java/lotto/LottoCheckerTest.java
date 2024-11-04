@@ -129,4 +129,37 @@ public class LottoCheckerTest {
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)))
         );
     }
+
+    @DisplayName("로또 번호와 당첨 번호가 같으면 +1, 보너스 번호와 같으면 +10을 반환하는 메서드")
+    @ParameterizedTest
+    @MethodSource("isWinningLotto")
+    void isWinningLottoTest(int count, int num) {
+        assertTrue(lottoChecker.isWinningLotto(count, num) > 0);
+    }
+
+    public static Stream<Arguments> isWinningLotto() {
+        return Stream.of(
+                Arguments.of(0, 1),
+                Arguments.of(0, 2),
+                Arguments.of(0, 3),
+                Arguments.of(0, 4),
+                Arguments.of(0, 5),
+                Arguments.of(0, 6),
+                Arguments.of(0, 7)
+        );
+    }
+
+    @DisplayName("로또 번호와 당첨 번호가 다를 경우 0을 반환하는 isWinningLotto 메서드")
+    @ParameterizedTest
+    @MethodSource("isWinningLottoNotSame")
+    void isWinningLottoNotSameTest(int count, int num) {
+        assertEquals(0, lottoChecker.isWinningLotto(count, num));
+    }
+
+    public static Stream<Arguments> isWinningLottoNotSame() {
+        return Stream.of(
+                Arguments.of(0, 8),
+                Arguments.of(0, 33)
+        );
+    }
 }
