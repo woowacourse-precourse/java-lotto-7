@@ -23,7 +23,7 @@ public class LottoController {
 
     public void run() {
         Lottos lottos = lottoService.buyLottos(inputPrice());
-        printBoughtLottoInfo(lottos);
+        printBoughtLottoInfo(LottosDTO.from(lottos));
         WinningLotto winningLotto = inputWinningLotto();
         LottoStatisticsDTO lottoStatistics = lottoService.getStatistics(winningLotto, lottos);
         outputView.printStatistics(lottoStatistics);
@@ -60,8 +60,8 @@ public class LottoController {
         });
     }
 
-    private void printBoughtLottoInfo(Lottos lottos) {
-        outputView.printDisplayBuyCountMessage(LottosDTO.from(lottos));
+    private void printBoughtLottoInfo(LottosDTO lottosDTO) {
+        outputView.printDisplayBuyCountMessage(lottosDTO);
     }
 
     private <T> T handleInput(Supplier<T> inputSupplier) {
