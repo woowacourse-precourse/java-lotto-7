@@ -1,13 +1,10 @@
 package lotto.controller;
 
-import static lotto.error.ErrorType.INVALID_NUMBER_FORMAT;
-
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoResultDto;
-import lotto.error.exception.InvalidNumberFormatException;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -41,8 +38,8 @@ public class LottoController {
 
     private int getLottoCount() {
         return retryUntilValidInput(() -> {
-            int amount = parseInt(inputView.getPurchaseAmount());
-            return lottoService.getLottoCountByAmount(amount);
+            String purchaseAmount = inputView.getPurchaseAmount();
+            return lottoService.getLottoCountByAmount(purchaseAmount);
         });
     }
 
@@ -60,18 +57,9 @@ public class LottoController {
     private int getBonusNumber(Lotto winningLotto) {
         return retryUntilValidInput(() -> {
             String bonusNumberInput = inputView.getBonusNumber();
-            int bonusNumber = parseInt(bonusNumberInput);
-            winningLotto.validateBonusNumber(bonusNumber);
-            return bonusNumber;
+            winningLotto.validateBonusNumber(bonusNumberInput);
+            return Integer.parseInt(bonusNumberInput);
         });
-    }
-
-    private int parseInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new InvalidNumberFormatException(INVALID_NUMBER_FORMAT);
-        }
     }
 
     private <T> T retryUntilValidInput(Supplier<T> supplier) {

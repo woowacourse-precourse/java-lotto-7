@@ -6,6 +6,7 @@ import static lotto.constants.LottoConstants.LOTTO_SIZE;
 import static lotto.error.ErrorType.DUPLICATION_NUM;
 import static lotto.error.ErrorType.INSUFFICIENT_OR_EXCESSIVE_NUMBERS;
 import static lotto.error.ErrorType.INVALID_BONUS_NUM;
+import static lotto.error.ErrorType.INVALID_NUMBER_FORMAT;
 import static lotto.error.ErrorType.OUT_OF_RANGE_NUMBER;
 
 import java.util.HashSet;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 import lotto.error.exception.InvalidBonusNumberException;
 import lotto.error.exception.InvalidLottoNumberException;
+import lotto.error.exception.InvalidNumberFormatException;
 import lotto.generator.LottoGenerator;
 
 public class Lotto {
@@ -44,7 +46,14 @@ public class Lotto {
         return numbers;
     }
 
-    public void validateBonusNumber(int bonusNumber) {
+    public void validateBonusNumber(String bonusNumberInput) {
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(bonusNumberInput);
+        } catch (NumberFormatException e) {
+            throw new InvalidNumberFormatException(INVALID_NUMBER_FORMAT);
+        }
+
         if (numbers.contains(bonusNumber)) {
             throw new InvalidBonusNumberException(INVALID_BONUS_NUM);
         }
