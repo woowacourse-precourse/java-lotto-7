@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -9,6 +10,7 @@ public class Lotto {
         validateQuantity(numbers);
         validateNumberRange(numbers);
         this.numbers = numbers;
+        sortNumbers(this.numbers);
     }
 
     private void validateQuantity(List<Integer> numbers) {
@@ -23,5 +25,9 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
+    }
+
+    private void sortNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 }
