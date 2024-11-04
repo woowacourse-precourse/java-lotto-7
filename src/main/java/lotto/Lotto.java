@@ -12,10 +12,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public boolean hasBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
-    }
-
     public int getMatchCount(Lotto winningLotto) {
         return (int) numbers.stream()
                 .filter(winningLotto.numbers::contains)
