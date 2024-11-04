@@ -81,7 +81,8 @@ public class OutputView {
 
 	private String getWinningResult(WinningResultDto winningResult) {
 		return getMatchingMessage(winningResult.matchCount(), winningResult.hasBonusNumber()) + WINNING_RESULT_PREFIX
-			+ String.format(PRIZE_FORMAT, winningResult.prize()) + WON + WINNING_RESULT_SUFFIX + WINNING_RESULT_DELIMITER + winningResult.winningCount() + COUNT;
+			+ String.format(PRIZE_FORMAT, winningResult.prize()) + WON + WINNING_RESULT_SUFFIX
+			+ WINNING_RESULT_DELIMITER + winningResult.winningCount() + COUNT;
 	}
 
 	private String getMatchingMessage(int count, boolean hasBonusNumber) {
