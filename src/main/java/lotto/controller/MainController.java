@@ -1,6 +1,11 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.domain.CustomLottoGenerator;
+import lotto.domain.Lotto;
+import lotto.domain.LottoMachine;
 import lotto.view.InputView;
+import lotto.view.LottoDto;
 import lotto.view.OutputView;
 
 public class MainController {
@@ -13,7 +18,14 @@ public class MainController {
     }
 
     public void run() {
+        // 구입금액 입력
         Integer price = inputView.scanPrice();
 
+        // 구매내역 출력
+        LottoMachine lottoMachine = new LottoMachine(new CustomLottoGenerator());
+        List<Lotto> purchasedLottos = lottoMachine.generateLottos(price);
+        outputView.printLottoList(purchasedLottos.stream()
+                .map(lotto -> new LottoDto(lotto.getNumbers()))
+                .toList());
     }
 }
