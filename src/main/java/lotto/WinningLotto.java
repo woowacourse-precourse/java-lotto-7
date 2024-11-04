@@ -10,6 +10,11 @@ public class WinningLotto {
     private Lotto winningLotto;
     private int bonusNumber;
 
+    private static final String INVALID_LOTTO_RANGE_MESSAGE = "1부터 45 사이의 숫자를 입력해야 합니다";
+    private static final String DUPLICATE_BONUS_NUMBER_MESSAGE = "당첨번호와 중복됩니다.";
+    private static final int BONUS_NUMBER_MIN = 1;
+    private static final int BONUS_NUMBER_MAX = 45;
+
     public WinningLotto(Lotto winningLotto, int bonusNumber) {
         validate(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
@@ -17,12 +22,12 @@ public class WinningLotto {
     }
 
     private void validate(Lotto winningLotto, int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber >= 45) {
-            throw new IllegalArgumentException("1부터 45 사이의 숫자를 입력해야 합니다");
+        if (bonusNumber < BONUS_NUMBER_MIN || bonusNumber >= BONUS_NUMBER_MAX) {
+            throw new IllegalArgumentException(INVALID_LOTTO_RANGE_MESSAGE);
         }
 
         if (winningLotto.hasNumber(bonusNumber)) {
-            throw new IllegalArgumentException("당첨번호와 중복됩니다.");
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER_MESSAGE);
         }
     }
 
@@ -39,10 +44,9 @@ public class WinningLotto {
 
     private Map<LottoPrize, Integer> initResult() {
         Map<LottoPrize, Integer> winningResult = new EnumMap<>(LottoPrize.class);
-        for(LottoPrize prize : LottoPrize.values()) {
+        for (LottoPrize prize : LottoPrize.values()) {
             winningResult.put(prize, 0);
         }
         return winningResult;
     }
-
 }
