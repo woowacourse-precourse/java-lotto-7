@@ -1,4 +1,4 @@
-package lotto.model.domain;
+package lotto.model;
 
 import lotto.status.ErrorMessages;
 import lotto.status.LottoConstants;
