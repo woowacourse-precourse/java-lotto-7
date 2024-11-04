@@ -47,10 +47,26 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 예외_테스트_숫자가_아닌_입력() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_MESSAGE + " 숫자가 아닙니다.");
+        });
+    }
+
+    @Test
+    void 예외_테스트_천원_단위가_아닌_입력() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE + " 1000으로 나누어 떨어지지 않습니다.");
+        });
+    }
+
+    @Test
+    void 예외_테스트_잘못된_당첨번호_입력() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,a");
+            assertThat(output()).contains(ERROR_MESSAGE + " 숫자가 아닙니다.");
         });
     }
 
