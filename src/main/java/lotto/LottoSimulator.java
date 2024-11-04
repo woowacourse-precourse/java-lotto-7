@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public class LottoSimulator {
@@ -32,9 +31,20 @@ public class LottoSimulator {
     }
 
     private WinningLotto getWinningLotto() {
-        List<Integer> winningNumbers = requestValidInput(InputHandler::requestWinningNumber, OutputHandler::printInputWinningNumbers);
-        int bonusNumber = requestValidInput(InputHandler::requestBonusNumber, OutputHandler::printInputBonusNumbers);
-        return new WinningLotto(winningNumbers, bonusNumber);
+        Lotto winningNumbers = getWinningNumbers();
+        WinningLotto winningLotto = requestValidInput(() -> // 보너스 번호 입력받기
+                        new WinningLotto(winningNumbers, InputHandler.requestBonusNumber()),
+                OutputHandler::printInputBonusNumbers
+        );
+        return winningLotto;
+    }
+
+    private Lotto getWinningNumbers() {
+        Lotto winningNumbers = requestValidInput(
+                () -> new Lotto(InputHandler.requestWinningNumber()),
+                OutputHandler::printInputWinningNumbers
+        );
+        return winningNumbers;
     }
 
     private <T> T requestValidInput(Supplier<T> inputMethod, Runnable outputMethod) {

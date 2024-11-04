@@ -6,7 +6,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class LottoWinningCalculatorTest {
-    WinningLotto winningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+    Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+    WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
 
     @Test
     void 당첨_1등_테스트() {

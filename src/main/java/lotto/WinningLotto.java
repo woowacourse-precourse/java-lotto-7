@@ -1,41 +1,41 @@
 package lotto;
 
 import static lotto.ErrorMessage.DUPLICATE_BONUS_NUMBER;
-import static lotto.ErrorMessage.INVALID_BONUS_NUMBER_RANGE;
+import static lotto.ErrorMessage.INVALID_BONUS_NUMBER_FORMAT;
+import static lotto.LottoConstants.MAXIMUM_LOTTO_NUMBER;
+import static lotto.LottoConstants.MINIMUM_LOTTO_NUMBER;
 
-import java.util.ArrayList;
-import java.util.List;
+public class WinningLotto {
+    private final Lotto winningNumbers;
+    private final int bonusNumber;
 
-public class WinningLotto extends Lotto {
-    int bonusNumber;
-
-    public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        super(winningNumbers);
-        validateBonusNumber(winningNumbers, bonusNumber);
+    public WinningLotto(Lotto winningNumbers, int bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+    private void validateBonusNumber(int bonusNumber) {
         checkBonusNumberRange(bonusNumber);
-        checkDuplication(winningNumbers, bonusNumber);
+        checkDuplication(bonusNumber);
     }
 
     private void checkBonusNumberRange(int bonusNumber) {
-        try {
-            checkSingleNumberRange(bonusNumber);
-        }catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_RANGE);
-        }
+        if (bonusNumber < MINIMUM_LOTTO_NUMBER || bonusNumber > MAXIMUM_LOTTO_NUMBER)
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_FORMAT);
     }
-    private void checkDuplication(List<Integer> winningNumbers, int bonusNumber) {
-        List<Integer> combinedNumbers = new ArrayList<>(winningNumbers);
-        combinedNumbers.add(bonusNumber);
-        try {
-            super.checkDuplication(combinedNumbers);
-        }catch (IllegalArgumentException e) {
+
+    private void checkDuplication(int bonusNumber) {
+        if (winningNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER);
         }
     }
 
+    public Lotto getWinningNumbers() {
+        return winningNumbers;
+    }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

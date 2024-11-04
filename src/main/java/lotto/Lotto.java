@@ -29,7 +29,7 @@ public class Lotto {
         }
     }
 
-    protected void checkDuplication(List<Integer> numbers) {
+    private void checkDuplication(List<Integer> numbers) {
         long numbersCount = numbers.stream().
                 distinct().
                 count();
@@ -45,7 +45,7 @@ public class Lotto {
                 });
     }
 
-    protected void checkSingleNumberRange(int number) {
+    private void checkSingleNumberRange(int number) {
         if (number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER)
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
     }

@@ -9,8 +9,8 @@ public class LottoWinningCalculator {
 
     public static LottoWinningResult calculateWinningResults(LottoTickets lottoTickets, WinningLotto winningLotto) {
         LottoWinningResult results = new LottoWinningResult();
-        List<Integer> winningNumbers = winningLotto.getNumbers();
-        int bonusNumber = winningLotto.bonusNumber;
+        List<Integer> winningNumbers = winningLotto.getWinningNumbers().getNumbers();
+        int bonusNumber = winningLotto.getBonusNumber();
 
         lottoTickets.getLottoTickets().forEach(ticket -> evaluateTicket(ticket, winningNumbers, bonusNumber, results));
         return results;
