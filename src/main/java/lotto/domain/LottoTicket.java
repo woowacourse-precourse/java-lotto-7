@@ -27,11 +27,21 @@ public class LottoTicket {
     public int getCount(){
         return count;
     }
+    public int getPrice(){
+        return price;
+    }
     public List<Lotto> getLottoTickets(){
         return lottoTickets;
     }
     public HashMap<Rank, Integer> getResult(){
         return result;
+    }
+    public long getProfitSum(){
+        long sum = 0;
+        for(Rank rank : getResult().keySet()){
+            sum += (long) rank.getPrize() * getResult().get(rank);
+        }
+        return sum;
     }
     private void validatePrice(int price){
         if(price < PRICE_TICKET || price > PRICE_MAX){

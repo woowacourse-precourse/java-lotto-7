@@ -17,6 +17,9 @@ public enum Rank {
         this.matchBonus = matchBonus;
     }
 
+    public int getPrize(){
+        return prize;
+    }
     public static Rank assign(int matchLotto, boolean matchBonus) {
         if(matchLotto == 6){ return FIRST; }
         if(matchLotto == 5 && matchBonus){ return SECOND; }
