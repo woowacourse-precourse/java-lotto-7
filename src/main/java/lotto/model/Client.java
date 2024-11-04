@@ -20,4 +20,8 @@ public class Client {
             lottos.add(lotto);
         }
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }
