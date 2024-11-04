@@ -61,6 +61,7 @@ public class LottoController {
     public List<Rank> draw(List<Lotto> lotties) {
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber();
+        validateDuplicatedBonusNumber(winningNumbers, bonusNumber);
         LottoService lottoService = new LottoService(winningNumbers, bonusNumber);
         List<Rank> ranks = new ArrayList<>();
 
@@ -78,9 +79,9 @@ public class LottoController {
         outputView.showResult(ranks);
     }
 
-    public void validateInputContainsOnlyDigits(String input) {
-        if (!input.matches(digitRegex)) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+    public void validateDuplicatedBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복없이 입력해야 합니다.");
         }
     }
 }
