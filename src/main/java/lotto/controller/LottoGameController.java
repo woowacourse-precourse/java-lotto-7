@@ -20,9 +20,9 @@ public class LottoGameController {
             outputView.printTickets(tickets);
 
             List<Integer> winningNumbers = inputView.inputWinningNumbers();
-            int bonusNumber = inputView.inputBonusNumber();
 
             Lotto winningLotto = new Lotto(winningNumbers);
+            int bonusNumber = inputView.inputBonusNumber();
             winningLotto.validateWinningNumbers(winningNumbers, bonusNumber);
 
             LottoResult result = lottoMachine.calculateResult(tickets, winningNumbers, bonusNumber);
