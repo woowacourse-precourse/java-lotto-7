@@ -11,7 +11,6 @@ public enum ErrorMessage {
     INVALID_LOTTO_RANGE("로또 번호는 1~45 사이여야 합니다.");
 
 
-
     private static final String PREFIX = "[ERROR]";
     private final String message;
 

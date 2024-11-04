@@ -54,7 +54,7 @@ public class LottoController {
         }
     }
 
-    private void setBonusNumber () {
+    private void setBonusNumber() {
         while (true) {
             try {
                 bonusNumber = new BonusNumber(inputView.inputBonusNumber(),
