@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class LottoTickets {
     private Lotto generateLottoTicket() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
-        // Collections.sort(randomNumbers);
+        Collections.sort(randomNumbers);
 
         return new Lotto(randomNumbers);
     }
