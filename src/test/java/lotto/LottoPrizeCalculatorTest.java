@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import lotto.model.Lotto;
 import lotto.model.LottoPrizeCalculator;
 import lotto.model.LottoTickets;
 import lotto.model.Prize;

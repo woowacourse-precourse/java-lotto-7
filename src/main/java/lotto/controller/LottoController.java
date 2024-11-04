@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import static lotto.validation.PurchaseAmountValidator.*;
-import static lotto.validation.WinningNumberValidator.parseValidatedBonusNumber;
+import static lotto.validation.WinningNumberValidator.parseAndValidateBonusNumber;
 import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;
 
@@ -61,7 +61,7 @@ public class LottoController {
 
     private List<Integer> parseWinningNumbersWithValidation(String winningNumberInput) {
         try {
-            return WinningNumberValidator.parseValidatedWinningNumber(winningNumberInput);
+            return WinningNumberValidator.parseAndValidateWinningNumbers(winningNumberInput);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
             return requestWinningNumbers();
@@ -75,7 +75,7 @@ public class LottoController {
 
     private int parseBonusNumberWithValidation(String bonusNumberInput, List<Integer> winningNumbers) {
         try {
-            return parseValidatedBonusNumber(bonusNumberInput, winningNumbers);
+            return parseAndValidateBonusNumber(bonusNumberInput, winningNumbers);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
             return requestBonusNumber(winningNumbers);
