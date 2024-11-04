@@ -49,7 +49,7 @@ public class LottoService {
             totalWinningMoney += lottoRank.getPrize() * lottoRankMap.get(lottoRank);
         }
         double result = (double) totalWinningMoney / purchaseAmount * 100;
-        return Math.round(result * 10) /10.0  ;
+        return Math.round(result * 10) / 10.0;
 
     }
 
@@ -66,10 +66,6 @@ public class LottoService {
     public int calCulateLottoAmount(int purchaseAmount) {
         return purchaseAmount / Lotto.lottoPrice;
     }
-
-
-
-
 
 
 }

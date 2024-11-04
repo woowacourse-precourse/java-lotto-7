@@ -26,9 +26,9 @@ public class LottoController {
 
         Lotto lotto = new Lotto(view.getLottoNumber());
 
-        String bonusNumber = view.getBonusNumber();
+        int bonusNumber = view.getBonusNumber();
 
-        Map<LottoRank, Integer> lottoRankMap = lottoService.calculateStatistic(lotto.getNumbers(), Integer.parseInt(bonusNumber), lottos);
+        Map<LottoRank, Integer> lottoRankMap = lottoService.calculateStatistic(lotto.getNumbers(), bonusNumber, lottos);
         view.printStaticsOfWinning(lottoRankMap.get(LottoRank.Fifth), lottoRankMap.get(LottoRank.Fourth), lottoRankMap.get(LottoRank.Third), lottoRankMap.get(LottoRank.Second), lottoRankMap.get(LottoRank.First));
 
         double rateOfReturnMoney = lottoService.calculateRateOfReturnMoney(lottoRankMap, purchaseAmount);
