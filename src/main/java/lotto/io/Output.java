@@ -34,7 +34,11 @@ public class Output {
     }
 
     public void outputSummary(double incomePercent) {
-        System.out.printf("총 수익률은 %.1f%%입니다\n", incomePercent * 100);
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        numberFormat.setMinimumFractionDigits(1);
+        numberFormat.setMaximumFractionDigits(1);
+        String formattedValue = numberFormat.format(incomePercent * 100) + "%";
+        System.out.printf("총 수익률은 %s입니다.\n", formattedValue);
     }
 
     private int[] sortAndCountingWinningType(List<WinningType> winningTypes) {
