@@ -9,8 +9,7 @@ import lotto.model.Lotto;
 public class InputHandler {
 
     public int readPurchaseAmount() {
-        String input = readLine();
-        final int amount = parseToInteger(input);
+        final int amount = parseToInteger(readLine());
         validatePositive(amount);
         return amount;
     }
