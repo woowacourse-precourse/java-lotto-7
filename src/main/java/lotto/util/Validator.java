@@ -6,8 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.constants.LottoConstants.MAX_NUMBER;
-import static lotto.constants.LottoConstants.MIN_NUMBER;
+import static lotto.constants.LottoConstants.*;
 import static lotto.constants.LottoErrorMessage.*;
 import static lotto.constants.PurchaseAmountErrorMessage.BELOW_MINIMUM_AMOUNT;
 import static lotto.constants.PurchaseAmountErrorMessage.NOT_DIVISIBLE_BY_MINIMUM;
@@ -19,6 +18,19 @@ public abstract class Validator {
     public static void validateTotalAmount(int purchaseAmount) {
         hasMinimum(purchaseAmount);
         isDivisibleByMinimumAmount(purchaseAmount);
+    }
+
+    public static void validateIntList(List<Integer> intList) {
+        validateSize(intList);
+        validateUniqueNumbers(intList);
+        intList.forEach(Validator::validateInRange);
+    }
+
+    public static void validateNumber(int number, Lotto jackpotNumber) {
+        validateInRange(number);
+        if (jackpotNumber.getNumbers().contains(number)) {
+            throw new IllegalArgumentException(DUPLICATE_INPUT_NUMBER.getMessage());
+        }
     }
 
     private static void hasMinimum(int purchaseAmount) {
@@ -33,28 +45,15 @@ public abstract class Validator {
         }
     }
 
-    public static void validateIntList(List<Integer> intList) {
-        validateSize(intList);
-        validateUniqueNumbers(intList);
-        intList.forEach(Validator::validateInRange);
-    }
-
     private static void validateSize(List<Integer> intList) {
         if (intList.size() != 6) {
             throw new IllegalArgumentException(INVALID_NUMBER_SIZE.getMessage());
         }
     }
 
-    public static void validateUniqueNumbers(List<Integer> intList) {
+    private static void validateUniqueNumbers(List<Integer> intList) {
         Set<Integer> uniqueSet = new HashSet<>(intList);
         if (uniqueSet.size() != intList.size()) {
-            throw new IllegalArgumentException(DUPLICATE_INPUT_NUMBER.getMessage());
-        }
-    }
-
-    public static void validateNumber(int number, Lotto jackpotNumber) {
-        validateInRange(number);
-        if (jackpotNumber.getNumbers().contains(number)) {
             throw new IllegalArgumentException(DUPLICATE_INPUT_NUMBER.getMessage());
         }
     }

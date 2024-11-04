@@ -1,10 +1,12 @@
 package lotto.util;
 
+import lotto.constants.PurchaseAmountErrorMessage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static lotto.constants.LottoErrorMessage.*;
+import static lotto.constants.PurchaseAmountErrorMessage.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class ValidatorTest {
@@ -15,7 +17,8 @@ class ValidatorTest {
         int input = 0;
         // when & then
         assertThatThrownBy(() -> Validator.validateTotalAmount(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BELOW_MINIMUM_AMOUNT.getMessage());
     }
 
     @Test
@@ -24,7 +27,8 @@ class ValidatorTest {
         int input = 999;
         // when & then
         assertThatThrownBy(() -> Validator.validateTotalAmount(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BELOW_MINIMUM_AMOUNT.getMessage());
     }
 
     @Test
@@ -33,7 +37,8 @@ class ValidatorTest {
         int input = 1999;
         // when & then
         assertThatThrownBy(() -> Validator.validateTotalAmount(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_DIVISIBLE_BY_MINIMUM.getMessage());
     }
 
     @Test
