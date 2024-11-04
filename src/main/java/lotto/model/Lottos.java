@@ -21,17 +21,17 @@ public class Lottos {
     }
 
     public static Lottos fromCount(int lottosCount) {
-        List<Lotto> lottos = Stream.generate(() ->
-                        {
-                            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
-                                    MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT));
-                            randomNumbers.sort(Comparator.naturalOrder());
-                            return new Lotto(randomNumbers);
-                        }
-                )
+        List<Lotto> lottos = Stream.generate(Lottos::generateLotto)
                 .limit(lottosCount)
                 .toList();
         return new Lottos(lottos);
+    }
+
+    private static Lotto generateLotto() {
+        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT));
+        randomNumbers.sort(Comparator.naturalOrder());
+        return new Lotto(randomNumbers);
     }
 
     public List<String> getLottoNumbers() {
