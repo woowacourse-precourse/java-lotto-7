@@ -31,24 +31,32 @@ public class RankCalculatorController {
 
     public void printResult(Map<Rank, Integer> result) {
         ioComponent.getOutputView().printStaticsFormat();
+        List<Rank> sortedRanks = sortRanks();
+        sortedRanks.forEach(rank -> printSingleResult(rank, result));
+    }
 
-        List<Rank> sortedRanks = Arrays.stream(Rank.values())
+    private List<Rank> sortRanks() {
+        return Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.MISS)
                 .sorted(Comparator.comparingInt(Rank::getPrize))
                 .toList();
+    }
 
-        for (Rank rank : sortedRanks) {
-            int rankCount = result.getOrDefault(rank, Limit.DEFAULT.getValue());
-            ioComponent.getOutputView().printWinningResult(rank.getCountOfMatch(), rank.getPrize(), rankCount);
-        }
+    private void printSingleResult(Rank rank, Map<Rank, Integer> result) {
+        int rankCount = result.getOrDefault(rank, Limit.DEFAULT.getValue());
+        ioComponent.getOutputView().printWinningResult(rank.getCountOfMatch(), rank.getPrize(), rankCount);
+
     }
 
     public float calculateProfit(Map<Rank, Integer> result, int ticketCount) {
-        int totalPrize = result.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
-                .sum();
-
+        int totalPrize = calculateTotalPrize(result);
         int totalSpent = ticketCount * Limit.UNIT_PRICE.getValue();
         return new Statics().calculateProfit(totalSpent, totalPrize);
+    }
+
+    private int calculateTotalPrize(Map<Rank, Integer> result) {
+        return result.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
     }
 }
