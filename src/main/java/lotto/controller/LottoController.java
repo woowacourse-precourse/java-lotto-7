@@ -35,54 +35,68 @@ public class LottoController {
     }
 
     public void run() {
-        String buyingAmount;
-        long amount;
-        List<Lotto> lottos;
-        while (true) {
-            try {
-                buyingAmount = inputView.getInputAmount();
-                inputValidator.validateInputAmount(buyingAmount);
-                amount = parser.parseStringToLong(buyingAmount);
-                lottos = lottoMarket.sellLottos(amount);
-                outputView.printBuyingLottoCount(amount);
-                outputView.printLottos(lottos);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        String inputWinnerNumbers;
-        List<Integer> winnerNumbers;
-        while (true) {
-            try {
-                inputWinnerNumbers = inputView.getInputWinnerNumbers();
-                inputValidator.validateInputNumbers(inputWinnerNumbers);
-                winnerNumbers = parser.parseInputToNumbers(inputWinnerNumbers);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        Lotto winnerLotto = new Lotto(winnerNumbers);
+        long purchaseAmount = getPurchaseAmount();
+        List<Lotto> lottos = lottoMarket.sellLottos(purchaseAmount);
 
-        String bonusNumber;
-        int bonusNum;
-        while (true) {
-            try {
-                bonusNumber = inputView.getInputBonusNumber();
-                inputValidator.validateInputBonusNumber(winnerNumbers, bonusNumber);
-                bonusNum = parser.parseStringToInt(bonusNumber);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        displayLottos(purchaseAmount, lottos);
+        displayLottoResults(lottos, purchaseAmount);
+    }
 
+    private void displayLottoResults(List<Lotto> lottos, long purchaseAmount) {
+        Lotto winnerLotto = getWinnerLotto();
+        int bonusNum = getBonusNumberAfterCompareToWinnerLotto(winnerLotto);
+        LottoResult lottoResults = calculateLottoResult(lottos, winnerLotto, bonusNum, purchaseAmount);
 
+        outputView.printLottoResults(lottoResults);
+    }
+
+    private void displayLottos(long purchaseAmount, List<Lotto> lottos) {
+        outputView.printBuyingLottoCount(purchaseAmount);
+        outputView.printLottos(lottos);
+    }
+
+    private LottoResult calculateLottoResult(List<Lotto> lottos, Lotto winnerLotto, int bonusNum, long amount) {
         Map<Lotto, LottoRank> lottoRankResults = lottoRankDeterminer.determineLottoRanks(lottos, winnerLotto, bonusNum);
-        LottoResult lottoResult = lottoStatisticsCalculator.calculateStatistic(lottoRankResults, amount);
+        return lottoStatisticsCalculator.calculateStatistic(lottoRankResults, amount);
+    }
 
-        outputView.printLottoResults(lottoResult);
+    private long getPurchaseAmount() {
+        String purchaseAmount;
+        while (true) {
+            try {
+                purchaseAmount = inputView.getInputAmount();
+                inputValidator.validateInputAmount(purchaseAmount);
+                return parser.parseStringToLong(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Lotto getWinnerLotto() {
+        while (true) {
+            try {
+                String inputWinnerNumbers = inputView.getInputWinnerNumbers();
+                inputValidator.validateInputNumbers(inputWinnerNumbers);
+                List<Integer> winnerNumbers = parser.parseInputToNumbers(inputWinnerNumbers);
+                return new Lotto(winnerNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getBonusNumberAfterCompareToWinnerLotto(Lotto winnerLotto) {
+        while (true) {
+            try {
+                String bonusNumber = inputView.getInputBonusNumber();
+                inputValidator.validateInputBonusNumber(winnerLotto.getNumbers(), bonusNumber);
+                return parser.parseStringToInt(bonusNumber);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
 
