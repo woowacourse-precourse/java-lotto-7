@@ -6,14 +6,17 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Application {
 
     public static List<Lotto> lottos = new ArrayList<>();
     public static List<Integer> winningLotto;
     public static int bonusNumber;
+    public static Map<Rank, Integer> rankCounter = new HashMap<>();
 
     public static int stringToNum(String input) {
         try {
@@ -120,7 +123,8 @@ public class Application {
                 winningCount += lotto.checkNumber(num);
             }
 
-            Rank r = Rank.checkRank(winningCount, lotto.checkNumber(bonusNumber));
+            Rank rank = Rank.checkRank(winningCount, lotto.checkNumber(bonusNumber));
+            rankCounter.put(rank, rankCounter.get(rank) + 1);
         }
     }
 
