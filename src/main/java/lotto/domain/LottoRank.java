@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.LottoValueConstant.NON_RANK;
+import static lotto.constant.LottoValueConstant.SECOND_RANK;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,10 +24,10 @@ public enum LottoRank {
         this.prize = prize;
     }
 
-    static Map<String, Integer> LottoRankCollector() {
+    public static Map<String, Integer> LottoRankCollector() {
         Map<String, Integer> rankCounts = new HashMap<>();
         for (LottoRank rank : LottoRank.values()) {
-            rankCounts.put(rank.name(), 0); // 초기값 설정
+            rankCounts.put(rank.name(), 0);
         }
         return rankCounts;
     }
@@ -39,19 +42,23 @@ public enum LottoRank {
     }
 
     public static String valueOf(int matchCount, boolean matchBonus) {
+        if (isSecondRank(matchCount, matchBonus)) {
+            return SECOND_RANK;
+        }
+        return getRankNameByMatchCount(matchCount);
+    }
+
+    private static boolean isSecondRank(int matchCount, boolean matchBonus) {
+        return matchCount == 5 && matchBonus;
+    }
+
+    private static String getRankNameByMatchCount(int matchCount) {
         for (LottoRank rank : values()) {
-            if (rank.matchCount == matchCount) {
-                if (matchCount == 5 && matchBonus == false) {
-                    return "THIRD";
-                }
-                if (matchCount == 5 && matchBonus == true) {
-                    return "SECOND";
-                }
+            if (matchCount == rank.matchCount) {
                 return rank.name();
             }
-
         }
-        return "NONE";
+        return NON_RANK;
     }
 }
 
