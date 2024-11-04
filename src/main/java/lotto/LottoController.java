@@ -19,5 +19,6 @@ public class LottoController {
         Integer lottoAmount = utils.convertInputToCash(input);
 
         List<Lotto> lottos = lottoService.getLotto(lottoAmount);
+        outputView.printLottoAmount(lottoAmount);
     }
 }
