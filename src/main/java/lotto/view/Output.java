@@ -6,7 +6,7 @@ import lotto.model.Lottos;
 
 public class Output {
 
-    public void printPurchaseAmount(){
+    public void printPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 

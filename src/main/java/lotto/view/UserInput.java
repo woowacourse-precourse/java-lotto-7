@@ -4,12 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
+import lotto.Parser;
 import lotto.Validator;
 
 public class UserInput {
     public int getPurchaseAmount() {
         String input = Console.readLine();
-        int amount = Integer.parseInt(input);
+        int amount = Parser.convertStrToInt(input);
 
         Validator.validatePositiveAmount(amount);
         Validator.validatePurchaseAmount(amount);
@@ -24,7 +25,7 @@ public class UserInput {
         List<Integer> winNumbers = new ArrayList<>();
 
         for (String number : numbers) {
-            int num = Integer.parseInt(number);
+            int num = Parser.convertStrToInt(number);
             Validator.validateNumberRange(num);
             winNumbers.add(num);
         }
@@ -35,7 +36,7 @@ public class UserInput {
     }
 
     public static int inputBonusNumber(List<Integer> winNumbers) {
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        int bonusNumber = Parser.convertStrToInt(Console.readLine());
 
         Validator.validateNumberRange(bonusNumber);
         Validator.validateBonusDuplicate(winNumbers, bonusNumber);
