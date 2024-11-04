@@ -41,7 +41,7 @@ public class LottoController {
         outputController.displayYield(yield);
     }
 
-    private List<Lotto> generateLottos(int count) {
+    List<Lotto> generateLottos(int count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             lottos.add(new Lotto(LottoUtils.generateRandomLottoNumbers()));
