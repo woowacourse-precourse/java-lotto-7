@@ -52,11 +52,7 @@ public class LottoController {
             try {
                 bonusNumber = LottoView.getBonusNumber();
 
-                Set<Integer> nonDuplicateNumbers = new HashSet<>(winningNumbers);
-                nonDuplicateNumbers.add(bonusNumber);
-                if (nonDuplicateNumbers.size() != 7) {
-                    throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력할 수 없습니다.");
-                }
+                validateBonusNumber(winningNumbers, bonusNumber);
 
                 break;
             } catch (Exception e) {
@@ -96,5 +92,11 @@ public class LottoController {
 
         // 수익률 계산 및 출력
         LottoView.printReturnRate(totalPrize, inputCash);
+    }
+
+    private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
     }
 }
