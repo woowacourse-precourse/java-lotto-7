@@ -15,11 +15,11 @@ public class AmountValidator implements AmountValidation{
         try {
             int amount = Integer.parseInt(amountInput);
             if (amount < MINIMUM_AMOUNT || amount % AMOUNT_UNIT != 0) {
-                throw new IllegalArgumentException(ErrorMessages.INVALID_AMOUNT_UNIT.getMessage());
+                throw new IllegalArgumentException(ErrorMessages.INVALID_AMOUNT_UNIT);
             }
             return amount;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_AMOUNT_FORMAT.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_AMOUNT_FORMAT);
         }
     }
 }

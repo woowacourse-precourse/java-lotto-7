@@ -22,7 +22,7 @@ class AmountValidatorTest {
     void validateInvalidAmountUnit() {
         String input = "1500";
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> amountValidator.validate(input));
-        assertEquals(ErrorMessages.INVALID_AMOUNT_UNIT.getMessage(), exception.getMessage(), "올바르지 않은 금액 단위 입력 시의 예외 메시지가 예상과 다릅니다.");
+        assertEquals(ErrorMessages.INVALID_AMOUNT_UNIT, exception.getMessage(), "올바르지 않은 금액 단위 입력 시의 예외 메시지가 예상과 다릅니다.");
     }
 
     @Test
@@ -30,7 +30,7 @@ class AmountValidatorTest {
     void validateInvalidAmountFormat() {
         String input = "abcd";
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> amountValidator.validate(input));
-        assertEquals(ErrorMessages.INVALID_AMOUNT_FORMAT.getMessage(), exception.getMessage(), "잘못된 형식의 입력에 대한 예외 메시지가 예상과 다릅니다.");
+        assertEquals(ErrorMessages.INVALID_AMOUNT_FORMAT, exception.getMessage(), "잘못된 형식의 입력에 대한 예외 메시지가 예상과 다릅니다.");
     }
 
     @Test
@@ -38,6 +38,6 @@ class AmountValidatorTest {
     void validateAmountBelowMinimum() {
         String input = "500";
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> amountValidator.validate(input));
-        assertEquals(ErrorMessages.INVALID_AMOUNT_UNIT.getMessage(), exception.getMessage(), "1000 미만의 금액 입력에 대한 예외 메시지가 예상과 다릅니다.");
+        assertEquals(ErrorMessages.INVALID_AMOUNT_UNIT, exception.getMessage(), "1000 미만의 금액 입력에 대한 예외 메시지가 예상과 다릅니다.");
     }
 }

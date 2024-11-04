@@ -16,14 +16,14 @@ public class LottoNumbers {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_COUNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_COUNT);
         }
         if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_RANGE);
         }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER);
         }
     }
 

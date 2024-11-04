@@ -33,7 +33,7 @@ public class BonusNumberValidatorTest {
 
         // When & Then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validator.validate(input));
-        assertEquals(ErrorMessages.INVALID_BONUS_NUMBER_RANGE.getMessage(), exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_BONUS_NUMBER_RANGE, exception.getMessage());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class BonusNumberValidatorTest {
 
         // When & Then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validator.validate(input));
-        assertEquals(ErrorMessages.INVALID_BONUS_NUMBER_INPUT.getMessage(), exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_BONUS_NUMBER_INPUT, exception.getMessage());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class BonusNumberValidatorTest {
 
         // When & Then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validator.validateBonusNumber(input, winningNumbers));
-        assertEquals(ErrorMessages.DUPLICATE_BONUS_NUMBER.getMessage(), exception.getMessage());
+        assertEquals(ErrorMessages.DUPLICATE_BONUS_NUMBER, exception.getMessage());
     }
 
     @Test

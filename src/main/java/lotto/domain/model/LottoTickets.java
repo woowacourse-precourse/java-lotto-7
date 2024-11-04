@@ -10,7 +10,7 @@ public class LottoTickets {
 
     public LottoTickets(List<Lotto> tickets) {
         if (tickets == null || tickets.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessages.EMPTY_LOTTO_TICKET_LIST.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.EMPTY_LOTTO_TICKET_LIST);
         }
         this.tickets = tickets;
     }

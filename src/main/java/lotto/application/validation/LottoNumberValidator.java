@@ -28,20 +28,20 @@ public class LottoNumberValidator implements LottoNumberValidation {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_NUMBER_INPUT.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_NUMBER_INPUT);
         }
     }
     @Override
     public void validateNumbers(List<Integer> numbers) {
         if (numbers.size() != REQUIRED_NUMBER_COUNT) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_COUNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_COUNT);
         }
         if (numbers.stream().anyMatch(num -> num < MIN_NUMBER || num > MAX_NUMBER)) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_RANGE);
         }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER);
         }
     }
 }

@@ -34,7 +34,7 @@ public class LottoNumberValidatorTest {
 
         // When & Then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validator.validate(input));
-        assertEquals(ErrorMessages.INVALID_WINNING_NUMBER_COUNT.getMessage(), exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_WINNING_NUMBER_COUNT, exception.getMessage());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class LottoNumberValidatorTest {
 
         // When & Then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validator.validate(input));
-        assertEquals(ErrorMessages.INVALID_WINNING_NUMBER_RANGE.getMessage(), exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_WINNING_NUMBER_RANGE, exception.getMessage());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class LottoNumberValidatorTest {
 
         // When & Then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validator.validate(input));
-        assertEquals(ErrorMessages.DUPLICATE_WINNING_NUMBER.getMessage(), exception.getMessage());
+        assertEquals(ErrorMessages.DUPLICATE_WINNING_NUMBER, exception.getMessage());
     }
 
     @Test
@@ -67,6 +67,6 @@ public class LottoNumberValidatorTest {
 
         // When & Then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validator.validate(input));
-        assertEquals(ErrorMessages.INVALID_NUMBER_INPUT.getMessage(), exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_NUMBER_INPUT, exception.getMessage());
     }
 }

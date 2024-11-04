@@ -25,19 +25,19 @@ public class BonusNumberValidator implements BonusNumberValidation {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_BONUS_NUMBER_INPUT.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_BONUS_NUMBER_INPUT);
         }
     }
     @Override
     public void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_BONUS_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_BONUS_NUMBER_RANGE);
         }
     }
     @Override
     public void validateNoOverlap(int bonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_BONUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_BONUS_NUMBER);
         }
     }
 }
