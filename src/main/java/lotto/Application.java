@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.app.LottoApp;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoApp lottoApp = LottoAppDownloader.downLoad();
+        lottoApp.start();
     }
 }
