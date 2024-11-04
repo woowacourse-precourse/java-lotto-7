@@ -1,8 +1,8 @@
 package lotto.model;
 
-import static lotto.Exception.ExceptionErrorMessage.DUPLICATED_LOTTO_NUMBER_MESSAGE;
-import static lotto.Exception.ExceptionErrorMessage.OUT_OF_RANGE_LOTTO_NUMBER_MESSAGE;
-import static lotto.Exception.ExceptionErrorMessage.OUT_OF_RANGE_LOTTO_SIZE_MESSAGE;
+import static lotto.exception.ExceptionErrorMessage.DUPLICATED_LOTTO_NUMBER_MESSAGE;
+import static lotto.exception.ExceptionErrorMessage.OUT_OF_RANGE_LOTTO_NUMBER_MESSAGE;
+import static lotto.exception.ExceptionErrorMessage.OUT_OF_RANGE_LOTTO_SIZE_MESSAGE;
 import static lotto.constant.LottoValue.LOTTO_NUMBERS_LENGTH;
 import static lotto.constant.LottoValue.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoValue.MIN_LOTTO_NUMBER;

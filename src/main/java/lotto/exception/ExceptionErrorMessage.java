@@ -1,4 +1,4 @@
-package lotto.Exception;
+package lotto.exception;
 
 public enum ExceptionErrorMessage {
     INPUT_BLANK_MESSAGE("공백이 입력되었습니다."),

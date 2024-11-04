@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.Exception.ExceptionErrorMessage.INPUT_EXIST_REMAINS_MESSAGE;
+import static lotto.exception.ExceptionErrorMessage.INPUT_EXIST_REMAINS_MESSAGE;
 import static lotto.constant.LottoValue.LOTTO_PRICE;
 
 public class Calculator {

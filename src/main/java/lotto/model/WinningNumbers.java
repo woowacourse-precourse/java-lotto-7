@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.Exception.ExceptionErrorMessage.DUPLICATED_LOTTO_NUMBER_MESSAGE;
+import static lotto.exception.ExceptionErrorMessage.DUPLICATED_LOTTO_NUMBER_MESSAGE;
 
 import java.util.HashSet;
 import java.util.Set;
