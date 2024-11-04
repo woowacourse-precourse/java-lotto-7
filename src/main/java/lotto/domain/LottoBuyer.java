@@ -52,32 +52,40 @@ public class LottoBuyer {
     }
 
     public void addMoney(final int matchingCount, final boolean isBonus) {
-        if (matchingCount <= 2) {
+        if (matchingCount == 6) {
+            addSixMatchPrize();
             return;
         }
-
-        if (matchingCount == 3) {
-            lottoWinningAmount += MATCH_THREE_NUMBERS_WINNING_AMOUNT;
-            return;
-        }
-
-        if (matchingCount == 4) {
-            lottoWinningAmount += MATCH_FOUR_NUMBERS_WINNING_AMOUNT;
-            return;
-        }
-
-        if (matchingCount == 5 && !isBonus) {
-            lottoWinningAmount += MATCH_FIVE_NUMBERS_WINNING_AMOUNT;
-            return;
-        }
-
         if (matchingCount == 5) {
+            addFiveMatchPrize(isBonus);
+            return;
+        }
+        if (matchingCount == 4) {
+            addFourMatchPrize();
+            return;
+        }
+        if (matchingCount == 3) {
+            addThreeMatchPrize();
+        }
+    }
+
+    private void addSixMatchPrize() {
+        lottoWinningAmount += MATCH_SIX_NUMBERS_WINNING_AMOUNT;
+    }
+
+    private void addFiveMatchPrize(final boolean isBonus) {
+        if (isBonus) {
             lottoWinningAmount += MATCH_FIVE_NUMBERS_AND_BONUS_WINNING_AMOUNT;
             return;
         }
+        lottoWinningAmount += MATCH_FIVE_NUMBERS_WINNING_AMOUNT;
+    }
 
-        if (matchingCount == 6) {
-            lottoWinningAmount += MATCH_SIX_NUMBERS_WINNING_AMOUNT;
-        }
+    private void addFourMatchPrize() {
+        lottoWinningAmount += MATCH_FOUR_NUMBERS_WINNING_AMOUNT;
+    }
+
+    private void addThreeMatchPrize() {
+        lottoWinningAmount += MATCH_THREE_NUMBERS_WINNING_AMOUNT;
     }
 }
