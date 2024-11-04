@@ -49,4 +49,20 @@ public class LottoService {
         boolean bonusMatch = lotto.getNumbers().contains(inputLottoNumber.getBonusNumber());
         return Rank.valueOf(matchCount, bonusMatch);
     }
+
+    public int calculateTotalPrize(Map<Rank, Integer> rankResult) {
+        int totalPrize = 0;
+        for (Map.Entry<Rank, Integer> entry : rankResult.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += rank.getPrize() * count;
+        }
+        return totalPrize;
+    }
+
+    public double calculateYield(int totalPrize, int purchaseAmount) {
+        if (purchaseAmount == 0) return 0;
+        double yield = (double) totalPrize / purchaseAmount * 100;
+        return Math.round(yield * 100) / 100.0; // 소수점 둘째 자리 반올림
+    }
 }

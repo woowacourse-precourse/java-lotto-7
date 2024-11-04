@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -24,5 +25,11 @@ public class OutputView {
                 System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getFormattedPrize() + ") - " + rankResult.get(rank) + "개");
             }
         }
+    }
+
+    public static void printYield(double yield) {
+        DecimalFormat df = new DecimalFormat("#.##");
+        String formattedYield = df.format(yield);
+        System.out.println("총 수익률은 " + formattedYield + "%입니다.");
     }
 }

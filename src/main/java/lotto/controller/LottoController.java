@@ -21,5 +21,9 @@ public class LottoController {
         InputLottoNumber inputLottoNumber = new InputLottoNumber(InputView.getWinningNumbers(), InputView.getBonusNumber());
         Map<Rank, Integer> rankResult = lottoService.getRankResult(lottos, inputLottoNumber);
         OutputView.printRankResult(rankResult);
+
+        int totalPrize = lottoService.calculateTotalPrize(rankResult);
+        double yield = lottoService.calculateYield(totalPrize, purchaseAmount);
+        OutputView.printYield(yield);
     }
 }
