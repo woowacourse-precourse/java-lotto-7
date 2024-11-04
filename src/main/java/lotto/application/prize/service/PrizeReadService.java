@@ -3,6 +3,7 @@ package lotto.application.prize.service;
 import static lotto.application.prize.message.Message.UNVALID_PRIZE_ID;
 
 import lotto.application.prize.domain.Prize;
+import lotto.application.prize.dto.PrizeResponse;
 import lotto.application.prize.repository.PrizeReadRepository;
 
 public class PrizeReadService {

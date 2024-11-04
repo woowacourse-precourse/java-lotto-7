@@ -1,4 +1,4 @@
-package lotto.application.prize.service;
+package lotto.application.prize.dto;
 
 import lotto.application.prize.domain.PrizeNumberResult;
 

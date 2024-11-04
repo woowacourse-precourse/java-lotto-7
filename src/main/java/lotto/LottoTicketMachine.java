@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.application.prize.service.PrizeResponse;
+import lotto.application.prize.dto.PrizeResponse;
 import lotto.application.ticket.dto.TicketResponse;
 import lotto.usecase.CompileStatisticsUsecase;
 import lotto.usecase.CreatePrizeUsecase;
@@ -25,7 +25,7 @@ public class LottoTicketMachine {
     public void run() {
         TicketResponse ticketResponse = createTicketUsecase.execute();
         PrizeResponse prizeResponse = createPrizeUsecase.execute();
-        
+
         compileStatisticsUsecase.execute(ticketResponse, prizeResponse);
     }
 

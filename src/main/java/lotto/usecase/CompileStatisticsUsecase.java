@@ -1,6 +1,6 @@
 package lotto.usecase;
 
-import lotto.application.prize.service.PrizeResponse;
+import lotto.application.prize.dto.PrizeResponse;
 import lotto.application.statistics.controller.StatisticsController;
 import lotto.application.statistics.dto.StatisticsResponse;
 import lotto.application.statistics.view.StatisticsOutputView;

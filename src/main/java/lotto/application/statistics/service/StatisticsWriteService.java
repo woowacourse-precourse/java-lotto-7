@@ -1,6 +1,6 @@
 package lotto.application.statistics.service;
 
-import lotto.application.prize.service.PrizeResponse;
+import lotto.application.prize.dto.PrizeResponse;
 import lotto.application.statistics.domain.Statistics;
 import lotto.application.statistics.domain.StatisticsResult;
 import lotto.application.statistics.dto.StatisticsResponse;

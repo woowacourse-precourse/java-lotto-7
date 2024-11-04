@@ -1,8 +1,8 @@
 package lotto.application.prize.controller;
 
 import java.util.List;
+import lotto.application.prize.dto.PrizeResponse;
 import lotto.application.prize.service.PrizeReadService;
-import lotto.application.prize.service.PrizeResponse;
 import lotto.application.prize.service.PrizeWriteService;
 
 public class PrizeController {
