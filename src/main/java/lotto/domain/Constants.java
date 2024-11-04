@@ -14,6 +14,6 @@ public class Constants {
     public final static int PRIZEMONEY1 = 2000000000;
     public final static int PRIZEMONEY2 = 30000000;
     public final static int PRIZEMONEY3 = 1500000;
-    public final static int PRIZEMONEY4 = 500000;
+    public final static int PRIZEMONEY4 = 50000;
     public final static int PRIZEMONEY5 = 5000;
 }

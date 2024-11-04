@@ -31,7 +31,8 @@ public class LottoProfitCalculator {
         }
         int totalSpent = issuedLotto.size() * LOTTO_PRICE;
         int totalPrize = calculateTotalPrize();
-        output.result(rankingCounts, totalSpent, totalPrize);
+        double profitRate = ((double) totalPrize / totalSpent) * 100;
+        output.result(rankingCounts, profitRate);
     }
 
     private int calculateTotalPrize() {

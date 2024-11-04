@@ -8,8 +8,7 @@ public class LottoWinningNumber {
     Input input = new Input();
 
     public List<Integer> input() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         return input.winningNumber();
     }
 }

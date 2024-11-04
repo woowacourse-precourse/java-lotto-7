@@ -39,7 +39,7 @@ public class LottoPurchase {
     }
 
     private List<Integer> generateLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_NUM_COUNT);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_NUM_COUNT));
         Collections.sort(numbers);
         lotto = new Lotto(numbers);
         return numbers;
