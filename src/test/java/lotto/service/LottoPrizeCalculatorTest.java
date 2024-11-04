@@ -70,4 +70,19 @@ public class LottoPrizeCalculatorTest {
         int prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
         assertEquals(0, prize);
     }
+
+    @DisplayName("수익률 계산 테스트")
+    @Test
+    public void shouldCalculateYieldRateCorrectly() {
+        Lottos lottos = new Lottos(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(7, 8, 9, 10, 11, 12))
+        ));
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+        int prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
+        int purchaseAmount = 2_000;
+        double yieldRate = calculator.calculateYield(prize, purchaseAmount);
+        assertEquals(1_000_000.0, yieldRate, 0.01);
+    }
 }
