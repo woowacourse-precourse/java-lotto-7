@@ -29,7 +29,7 @@ public class MakeNumber {
 
 	public void sort(List<Integer> list) {
 		for (int i = 0; i < list.size() - 1; i++) {
-			bubbleSort(list, i);
+			bubbleSort(list, i);	
 		}
 	}
 
