@@ -24,10 +24,10 @@ class LottoTest {
 
     @Test
     void testValidatePurchaseAmount_ValidAmount() {
-        assertDoesNotThrow(() -> Lotto.validate_Purchase_amount(5000));
+        assertDoesNotThrow(() -> Lotto.validatePurchaseAmount(5000));
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            Lotto.validate_Purchase_amount(5500);
+            Lotto.validatePurchaseAmount(5500);
         });
         assertEquals("[ERROR] 로또 구입 금액은 천원 단위로 구매하여야 합니다.", exception.getMessage());
     }
@@ -35,7 +35,7 @@ class LottoTest {
     @Test
     void testValidateWinningNumbersCount_InvalidCount() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            Lotto.validate_winningNumbers_count(5);
+            Lotto.validateWinningNumbersCount(5);
         });
         assertEquals("[ERROR] 당첨 번호는 6개 입력하여야 합니다.", exception.getMessage());
     }
@@ -44,7 +44,7 @@ class LottoTest {
     void testValidateNoDuplicatesWinningNumbers_WithDuplicates() {
         int[] numbersWithDuplicates = {1, 2, 3, 4, 5, 5};
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            Lotto.validateNoDuplicates_winningNumbers(numbersWithDuplicates);
+            Lotto.validateNoDuplicatesWinningNumbers(numbersWithDuplicates);
         });
         assertEquals("[ERROR] 중복된 숫자가 있습니다: 5", exception.getMessage());
     }
@@ -54,14 +54,14 @@ class LottoTest {
         int[] winningNumbers = {1, 2, 3, 4, 5, 6};
         int bonusNumber = 1;
 
-        assertThatThrownBy(() -> Lotto.validateNoDuplicates_bonusNumber(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> Lotto.validateNoDuplicatesBonusNumber(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다: 1");
     }
 
     @Test
     void testValidateWinningNumbersLowerBound() {
-        assertThatThrownBy(() -> Lotto.validate_winningNumbers_lower_45(100))
+        assertThatThrownBy(() -> Lotto.validateWinningNumber(100))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }

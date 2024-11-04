@@ -21,7 +21,7 @@ public class Lotto {
         }
     }
 
-    public static void validate_Purchase_amount(int purchase_amount) {
+    public static void validatePurchaseAmount(int purchase_amount) {
         if (purchase_amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 천원 단위로 구매하여야 합니다.");
         }
@@ -49,42 +49,43 @@ public class Lotto {
         }
 
         print_Lotto(lottoList);
-
         return lottoList;
     }
 
     public static void print_Lotto(List<Lotto> lottoList) {
         System.out.println(lottoList.size() + "개를 구매했습니다.");
-        for (int i = 0; i < lottoList.size(); i++) {
-            System.out.println(lottoList.get(i).getNumbers());
-        }
+        lottoList.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
     public static int[] parse_winNumberArray(String winning_numbers) {
         String[] winningString = winning_numbers.split(",");
-
         int[] winningNumbers = new int[winningString.length];
+
         for (int i = 0; i < winningString.length; i++) {
             // 각 요소를 정수로 변환
             winningNumbers[i] = Integer.parseInt(winningString[i].trim());
-            validate_winningNumbers_lower_45(winningNumbers[i]);
+            validateWinningNumber(winningNumbers[i]);
         }
-        validateNoDuplicates_winningNumbers(winningNumbers);
-        validate_winningNumbers_count(winningString.length);
+
+        validateNoDuplicatesWinningNumbers(winningNumbers);
+        validateWinningNumbersCount(winningString.length);
 
         return winningNumbers;
     }
-    public static void validate_winningNumbers_lower_45(int winningNum) {
+
+    public static void validateWinningNumber(int winningNum) {
         if (winningNum < 1 || winningNum > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
-    public static void validate_winningNumbers_count(int winningNumbers_count) {
-        if (winningNumbers_count != 6) {
+
+    public static void validateWinningNumbersCount(int count) {
+        if (count != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입력하여야 합니다.");
         }
     }
-    public static void validateNoDuplicates_winningNumbers(int[] numbers) {
+
+    public static void validateNoDuplicatesWinningNumbers(int[] numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (int number : numbers) {
             if (!uniqueNumbers.add(number)) {
@@ -92,10 +93,9 @@ public class Lotto {
             }
         }
     }
-    public static void validateNoDuplicates_bonusNumber(int[] winningNumbers, int bonus_number) {
-        Set<Integer> winningSet = new HashSet<>();
 
-        // winningNumbers를 Set으로 변환하여 중복 검사 용이하게 함
+    public static void validateNoDuplicatesBonusNumber(int[] winningNumbers, int bonus_number) {
+        Set<Integer> winningSet = new HashSet<>();
         for (int number : winningNumbers) {
             winningSet.add(number);
         }
@@ -104,6 +104,7 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다: " + bonus_number);
         }
     }
+
     public static int countMatches(Lotto myLotto, int[] winningNumbers) {
         Set<Integer> winningSet = new HashSet<>();
         for (int number : winningNumbers) {
@@ -122,23 +123,22 @@ public class Lotto {
         return matchCount;
     }
 
-    public static int[] updateMatchCountArray(int matchCount, boolean hasBonusNumber, int[] matchCountArray) {
-        if (matchCount >= 0 && matchCount <= 6) {
-            matchCountArray[matchCount]++; // 0~6개의 일치 번호
-        }
-        if (matchCount == 5 && hasBonusNumber) {
-            matchCountArray[7]++; // 5개 일치 + 보너스 번호
-        }
-        return matchCountArray;
-    }
-
     public static void checkLottoMatch(Lotto myLotto, int[] winningNumbers, int bonus_number, int[] matchCountArray) {
         int matchCount = countMatches(myLotto, winningNumbers); // 일치 번호 개수 세기
         boolean hasBonusNumber = myLotto.getNumbers().contains(bonus_number); // 보너스 번호가 있는지 확인
         updateMatchCountArray(matchCount, hasBonusNumber, matchCountArray); // 배열 업데이트
     }
 
-    public static void print_WinResult(int matchNum,int matchCount) {
+    public static void updateMatchCountArray(int matchCount, boolean hasBonusNumber, int[] matchCountArray) {
+        if (matchCount >= 0 && matchCount <= 6) {
+            matchCountArray[matchCount]++; // 0~6개의 일치 번호
+        }
+        if (matchCount == 5 && hasBonusNumber) {
+            matchCountArray[7]++; // 5개 일치 + 보너스 번호
+        }
+    }
+
+    public static void printWinResult(int matchNum,int matchCount) {
         if(matchNum == 3) {
             System.out.println(matchNum+"개 일치 (5,000원) - " + matchCount + "개");
         }
@@ -159,6 +159,7 @@ public class Lotto {
     public static int calculateIncome(int[] matchCountArray) {
         int[] prizeMoney = {0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000};
         int totalIncome = 0;
+
         for (int i = 0; i < matchCountArray.length; i++) {
             totalIncome += matchCountArray[i] * prizeMoney[i];
         }
