@@ -6,6 +6,7 @@ import static lotto.model.LotteryRank.FOURTH;
 import static lotto.model.LotteryRank.SECOND;
 import static lotto.model.LotteryRank.THIRD;
 
+import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,10 @@ public class OutputView {
     }
 
     public void printReturnRate(double returnRate) {
-        System.out.println("총 수익률은 " + String.format("%.1f", returnRate) + "%입니다.");
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String formattedIntegerPart = numberFormat.format((long) returnRate); // 정수 부분은 3자리마다 쉼표로 구분
+        String formattedDecimalPart = String.format("%.1f", returnRate).split("\\.")[1]; // 소수 부분 추출
+        System.out.println("총 수익률은 " + formattedIntegerPart + "." + formattedDecimalPart + "%입니다.");
     }
 
     public void printInvalidInputErrorMessage(String errorMessage) {
