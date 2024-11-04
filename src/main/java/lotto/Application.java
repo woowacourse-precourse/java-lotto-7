@@ -9,10 +9,7 @@ public class Application {
         TouchScreen touchScreen = new TouchScreen();
 
         touchScreen.inputMoney();
-
-
-        TrialHistory trialHistory = touchScreen.getTrialHistory();
-        touchScreen.pushDraw(trialHistory.getTotalCount());
+        touchScreen.pushDraw();
 
 
 

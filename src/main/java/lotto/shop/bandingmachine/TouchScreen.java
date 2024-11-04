@@ -20,7 +20,8 @@ public class TouchScreen {
         getCount();
     }
 
-    public void pushDraw(Integer totalCount) {
+    public void pushDraw() {
+        Integer totalCount = trialHistory.getTotalCount();
         validatePaid();
         getDrawnNumbers(totalCount);
         UserStorage.save(trialHistory.getDrawnNumberPacks());
