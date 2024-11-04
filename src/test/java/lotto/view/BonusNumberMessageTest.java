@@ -40,7 +40,7 @@ public class BonusNumberMessageTest extends NsTest {
     }
 
     @Test
-    @DisplayName("잘못된 형식의 보너스 당첨 번호일 경우")
+    @DisplayName("잘못된 형식의 보너스 당첨 번호일 경우 테스트")
     void 잘못된_형식_보너스_당첨_번호_입력_테스트() {
         assertSimpleTest(() -> {
             runException("5000", "1,2,3,4,5,6", "십사");
@@ -49,7 +49,7 @@ public class BonusNumberMessageTest extends NsTest {
     }
 
     @Test
-    @DisplayName("보너스 번호가 당첨번호에 이미 존재할 경우")
+    @DisplayName("보너스 번호가 당첨번호에 이미 존재할 경우 테스트")
     void 보너스_번호가_이미_존재할_경우() {
         assertSimpleTest(() -> {
             runException("5000", "1,2,3,4,5,6", "6");
