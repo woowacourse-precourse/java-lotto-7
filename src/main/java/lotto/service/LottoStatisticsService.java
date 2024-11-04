@@ -42,7 +42,7 @@ public class LottoStatisticsService {
 
         return winningPrize;
     }
-    public void addRank(Map<LottoRank, Integer> matchedByRank, LottoRank rank) {
+    private void addRank(Map<LottoRank, Integer> matchedByRank, LottoRank rank) {
         matchedByRank.put(rank, matchedByRank.getOrDefault(rank, 0) + 1);
     }
 }
