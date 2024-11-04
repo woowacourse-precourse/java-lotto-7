@@ -7,6 +7,10 @@ import java.util.List;
 public class Lotto {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_NOT_SIX_NUMBERS = " 로또 번호는 6개여야 합니다.";
+    private static final String ERROR_DUPLICATE_NUMBERS =" 로또 번호는 중복될 수 없습니다.";
+
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -22,7 +26,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + ERROR_NOT_SIX_NUMBERS);
         }
     }
 
@@ -31,7 +35,7 @@ public class Lotto {
         for (int i = 0; i < numbers.size() - 1; i++) {
 
             if(numbers.get(i).equals(numbers.get(i+1))){
-                throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(ERROR_MESSAGE + ERROR_DUPLICATE_NUMBERS);
             }
 
         }

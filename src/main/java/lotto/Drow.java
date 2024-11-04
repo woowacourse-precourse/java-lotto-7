@@ -9,7 +9,16 @@ public class Drow {
 
     List<Integer> drowNumbers = new ArrayList<>(); // 당첨 번호
     Integer bonusNumber; // 보너스 번호
+
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String INPUT_DRAW_NUMBERS_PROMPT = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";
+    private static final String ERROR_IS_NOT_NUMBER = "당첨 번호와 보너스 번호는 슷지만 입력할 수 있습니다.";
+    private static final String ERROR_NUMBER_COUNT = "당첨 번호는 6개여야 합니다.";
+    private static final String ERROR_DUPLICATE_NUMBER = "당첨 번호는 서로 중복되지 않아야합니다.";
+    private static final String ERROR_DUPLICATE_BONUS = "보너스 번호는 당첨 번호와 중복되지 않아야합니다.";
+    private static final String ERROR_NUMBER_RANGE_SMALL = "당첨 번호는 1보다 커야합니다.";
+    private static final String ERROR_NUMBER_RANGE_BIG = "당첨 번호는 45보다 작아야합니다.";
 
     /// 당첨 번호 입력 및 예외처리
     public void inputDrowNumbers() {
@@ -18,7 +27,7 @@ public class Drow {
 
         do {// 유효한 값을 입력받을때까지 반복
             validation = true;
-            String userInput = inputNumbers("당첨 번호를 입력해 주세요."); // 당첨번호 입력
+            String userInput = inputNumbers(INPUT_DRAW_NUMBERS_PROMPT); // 당첨번호 입력
             validation = validateDrowNumberInput(userInput); // 당첨번호 입력 관련 예외처리
             setDrowNumbers(userInput); // 당첨번호 저장
             validation = validateDuplicateNumber(drowNumbers); // 당첨번호 중복 관련 예외처리
@@ -34,7 +43,7 @@ public class Drow {
 
         do {
             validation = true;
-            String userInput = inputNumbers("보너스 번호를 입력해 주세요."); //보너스번호 입력
+            String userInput = inputNumbers(INPUT_BONUS_NUMBER_PROMPT); //보너스번호 입력
             validation = validateNumber(userInput); // 보너스번호 입력 관련 예외처리
             setBonusNumber(userInput); // 보너스번호 저장
             validation = validateDuplicateBonusNumber(drowNumbers, bonusNumber); // 보너스번호 중복 관련 예외처리
@@ -96,7 +105,7 @@ public class Drow {
 
         try {
             if (numbersSet.size() < 6) { // 중복되는 숫자가 있어, numberSet의 길이가 6이되지 않을 경우
-                throw new IllegalArgumentException("당첨 번호 중복되지 않아야합니다.");
+                throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBER);
             }
 
             return true;
@@ -112,7 +121,7 @@ public class Drow {
 
         try {
             if (inputNumbers.length != 6) {
-                throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
+                throw new IllegalArgumentException(ERROR_NUMBER_COUNT);
             }
             return true;
 
@@ -148,7 +157,7 @@ public class Drow {
         try {
 
             if (numbersSet.contains(bonusNumber)) { // 보너스 번호가 당첨 숫자에 포함될 경우
-                throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복되지 않아야합니다.");
+                throw new IllegalArgumentException(ERROR_DUPLICATE_BONUS);
             }
             return true;
 
@@ -167,7 +176,7 @@ public class Drow {
             return true;
 
         } catch (NumberFormatException e) {
-            System.out.println(ERROR_MESSAGE + " " + "당첨 번호와 보너스 번호는 슷지만 입력할 수 있습니다.");
+            System.out.println(ERROR_MESSAGE + " " + ERROR_IS_NOT_NUMBER);
             return false;
         }
     }
@@ -178,20 +187,20 @@ public class Drow {
         try {
 
             if (number < 1) {
-                throw new IllegalArgumentException("당첨 번호는 1보다 커야합니다.");
+                throw new IllegalArgumentException(ERROR_NUMBER_RANGE_SMALL);
             }
             if (number > 45) {
-                throw new IllegalArgumentException("당첨 번호는 45보다 작아야합니다.");
+                throw new IllegalArgumentException(ERROR_NUMBER_RANGE_BIG);
             }
             return true;
 
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE+" "+e.getMessage());
+            System.out.println(ERROR_MESSAGE + " " + e.getMessage());
             return false;
         }
     }
 
-    public void drowLottos(List<Lotto> lottos){
+    public void drowLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             compareNumber(lotto);
         }
@@ -213,7 +222,7 @@ public class Drow {
     }
 
     /// 일치하는 번호의 갯수 계산
-    private int getValidCount(Set<Integer> numbersSet){
+    private int getValidCount(Set<Integer> numbersSet) {
 
         int count = 0;
 
@@ -227,7 +236,7 @@ public class Drow {
     }
 
     /// 보너스 번호 일치 여부 계산
-    private boolean getBonus(Set<Integer> numbersSet){
+    private boolean getBonus(Set<Integer> numbersSet) {
         return numbersSet.contains(bonusNumber);
     }
 
