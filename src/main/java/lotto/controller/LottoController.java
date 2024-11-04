@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.constants.LottoErrorMessages;
 import lotto.model.Lotto;
 import lotto.service.LottosServiceInterface;
 import lotto.validator.InputValidatorInterface;
@@ -56,7 +57,7 @@ public class LottoController {
         String purchaseAmountInput = inputView.readPurchaseAmount();
         return inputValidator.validatePurchaseAmount(purchaseAmountInput);
       } catch (IllegalArgumentException e) {
-        System.out.println("[ERROR] 유효하지 않은 금액입니다. 다시 입력해주세요.");
+        System.out.println(LottoErrorMessages.INVALID_PURCHASE_AMOUNT);
       }
     }
   }
@@ -67,7 +68,7 @@ public class LottoController {
         String winningNumbersInput = inputView.readWinningNumbers();
         return inputValidator.validateWinningNumbers(winningNumbersInput);
       } catch (IllegalArgumentException e) {
-        System.out.println("[ERROR] 유효하지 않은 당첨 번호입니다.");
+        System.out.println(LottoErrorMessages.INVALID_WINNING_NUMBER);
       }
     }
   }
@@ -78,7 +79,7 @@ public class LottoController {
         String bonusNumberInput = inputView.readBonusNumber();
         return inputValidator.validateBonusNumber(bonusNumberInput, validatedWinningNumbers);
       } catch (IllegalArgumentException e) {
-        System.out.println("[ERROR] 유효하지 않은 보너스 번호입니다.");
+        System.out.println(LottoErrorMessages.INVALID_BONUS_NUMBER);
       }
     }
   }

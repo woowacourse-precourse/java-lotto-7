@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constants.LottoConstants;
+import lotto.constants.LottoErrorMessages;
 
 public class InputValidator implements InputValidatorInterface{
 
@@ -12,11 +13,11 @@ public class InputValidator implements InputValidatorInterface{
     try {
       purchaseAmount = Integer.parseInt(amount);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
+      throw new IllegalArgumentException(LottoErrorMessages.INVALID_NUMBER_FORMAT);
     }
 
     if (purchaseAmount <= 0 || purchaseAmount % LottoConstants.LOTTO_PRICE != 0) {
-      throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+      throw new IllegalArgumentException(LottoErrorMessages.INVALID_PURCHASE_AMOUNT_FORMAT);
     }
     return purchaseAmount;
   }
@@ -27,7 +28,7 @@ public class InputValidator implements InputValidatorInterface{
         .collect(Collectors.toList());
 
     if (numbers.size() != LottoConstants.NUMBER_COUNT || hasInvalidRange(numbers)) {
-      throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자 6개여야 합니다.");
+      throw new IllegalArgumentException(LottoErrorMessages.INVALID_WINNING_NUMBER_RANGE);
     }
     return numbers;
   }
@@ -37,10 +38,10 @@ public class InputValidator implements InputValidatorInterface{
     try {
       parsedBonusNumber = Integer.parseInt(bonusNumber);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
+      throw new IllegalArgumentException(LottoErrorMessages.INVALID_BONUS_NUMBER_FORMAT);
     }
     if (parsedBonusNumber < LottoConstants.MIN_NUMBER || parsedBonusNumber > LottoConstants.MAX_NUMBER || winningNumbers.contains(parsedBonusNumber)) {
-      throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자 중 당첨 번호와 중복되지 않는 숫자여야 합니다.");
+      throw new IllegalArgumentException(LottoErrorMessages.INVALID_BONUS_NUMBER_RANGE);
     }
     return parsedBonusNumber;
   }
