@@ -10,6 +10,7 @@ public class WinningStatistics {
     //통계, 수익률 -> 출력
     private final CheckingWinningService checkingWinningService;
 
+
     public WinningStatistics(CheckingWinningService checkingWinningService) {
         this.checkingWinningService = checkingWinningService;
     }
@@ -20,7 +21,7 @@ public class WinningStatistics {
         return checkingWinningService.calculateRanks(numberOfMatches);
     }
 
-    public double getRateOfWinning() {
-
+    public double getRateOfWinning(Map<RankConstant, Integer> ranks, int payment) {
+        return checkingWinningService.calculateRateOfReturn(ranks, payment);
     }
 }

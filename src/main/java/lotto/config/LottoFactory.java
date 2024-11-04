@@ -2,15 +2,9 @@ package lotto.config;
 
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.view.Publishing_OutputTicketsView;
-import lotto.view.Purchasing_OutputView;
-import lotto.view.Winning_InputView;
-import lotto.controller.WinningController;
-import lotto.controller.PublishingController;
-import lotto.controller.PurchasingController;
+import lotto.view.*;
+import lotto.controller.*;
 import lotto.validator.PaymentValidator;
-import lotto.view.Purchasing_InputView;
-import lotto.view.Winning_OutputView;
 
 public class LottoFactory {
     private final Purchasing_InputView purchasingInputView;
@@ -38,5 +32,10 @@ public class LottoFactory {
         List<Lotto> LottoTickets = publishingController.publishLottoTickets();
 
         WinningController winningController = new WinningController(LottoTickets, winningInputView, winningOutputView);
+        winningController.presentRanksAndRates();
+    }
+
+    private void createPurchasingController() {
+
     }
 }

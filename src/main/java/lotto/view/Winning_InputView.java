@@ -7,7 +7,7 @@ public class Winning_InputView {
     private String inputBonusNumber;
 
     public String getInputWinningNumbers() {
-        if (inputWinningNumbers.isBlank()) {
+        if (inputWinningNumbers == null) {
             System.out.println("당첨 번호를 입력해 주세요.");
             this.inputWinningNumbers = readLine();
             System.out.println();
@@ -18,7 +18,7 @@ public class Winning_InputView {
     }
 
     public String getInputBonusNumber() {
-        if (inputBonusNumber.isBlank()) {
+        if (inputBonusNumber == null) {
             System.out.println("보너스 번호를 입력해 주세요.");
             this.inputBonusNumber = readLine();
             System.out.println();

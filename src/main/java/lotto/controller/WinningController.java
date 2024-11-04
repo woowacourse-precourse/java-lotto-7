@@ -28,7 +28,15 @@ public class WinningController {
         winningStatistics = new WinningStatistics(checkingWinningService);
     }
 
-    public Map<RankConstant, Integer> presentWinningLottoTickets() {
+    public void presentRanksAndRates() {
+        Map<RankConstant, Integer> ranks = getRanksOfLottoTickets();
+        winningOutputView.printRanks(ranks);
+        int payment = LottoTickets.size() * 1_000;
+        double rateOfReturn = winningStatistics.getRateOfWinning(ranks, payment);
+        winningOutputView.printRateOfWinning(rateOfReturn);
+    }
+
+    private Map<RankConstant, Integer> getRanksOfLottoTickets() {
         List<Integer> winningNumbers = setWinningNumbers();
         int bonusNumber = setBonusNumber();
         return winningStatistics.getRanks(winningNumbers, bonusNumber, LottoTickets);
@@ -53,5 +61,6 @@ public class WinningController {
             return setBonusNumber();
         }
     }
+
 
 }

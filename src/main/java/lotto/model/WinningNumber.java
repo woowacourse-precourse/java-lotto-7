@@ -3,7 +3,6 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.service.CheckingWinningService;
 
 public class WinningNumber {
     private static String DELIMITER = ",";
