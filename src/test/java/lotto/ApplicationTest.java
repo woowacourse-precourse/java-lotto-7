@@ -47,20 +47,47 @@ class ApplicationTest extends NsTest {
 //        );
 //    }
 
-//    @Test
-//    void 예외_테스트() {
-//        assertSimpleTest(() -> {
-//            runException("1000j");
-//            assertThat(output()).contains(ERROR_MESSAGE);
-//        });
-//    }
+    @Test
+    void 예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Test
-    void 빈_구매금액_입력시_예외_테스트() {
+    void 빈_입력_예외_테스트() {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> Application.validateInput(""))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ERROR_MESSAGE + " 입력값이 비어 있습니다");
+        });
+    }
+
+    @Test
+    void 공백_포함_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.validateInput("1 2 3"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ERROR_MESSAGE + " 입력에 공백이 포함되어 있습니다");
+        });
+    }
+
+    @Test
+    void 최소금액_미만_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.validatePurchaseAmount(-1))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ERROR_MESSAGE + " 로또 구입 금액은 최소 1000원 이상이어야 합니다");
+        });
+    }
+
+    @Test
+    void 구매금액_단위_미만_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.validatePurchaseAmount(10500))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ERROR_MESSAGE + " 로또 구입 금액은 1000원 단위로 입력해야 합니다");
         });
     }
 
