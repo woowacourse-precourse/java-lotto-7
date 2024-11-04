@@ -1,46 +1,47 @@
 package lotto.validate;
 
-import java.util.Arrays;
+import lotto.LottoConstants;
+
 import java.util.List;
 
 public class ValidateInput {
-    private static final int LOTTO_PRICE = 1000;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int LOTTO_NUMBER_COUNT = 6;
+    public static int validateAmount(String amountInput) {
+        int amount = validateNumeric(amountInput);
 
-    public static int validateAmount(String amountInput){
-        try {
-            int amount = Integer.parseInt(amountInput);
-            if (amount < LOTTO_PRICE || amount % LOTTO_PRICE != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
-            }
-            return amount;
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 금액은 숫자로 입력하셔야 합니다.");
+        if (amount % LottoConstants.LOTTO_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
+
+        return amount;
     }
 
-
-    public static void validateWinningNumbers(List<Integer> winningNumbers){
-        if (winningNumbers.size() != 6) {
+    public static void validateWinningNumbers(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != LottoConstants.LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException("[ERROR] 6개의 중복되지 않는 숫자를 입력해야 합니다.");
         }
 
-        for(int parsedNumber : winningNumbers){
-            if (parsedNumber < MAX_NUMBER || parsedNumber > MAX_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이여야 합니다: " + parsedNumber);
-            }
+        winningNumbers.forEach(ValidateInput::validateNumberInRange);
+    }
+
+    public static int validateBonusNumber(String inputBonusNumber) {
+        int bonusNumber = validateNumeric(inputBonusNumber);
+
+        validateNumberInRange(bonusNumber);
+
+        return bonusNumber;
+    }
+
+    private static int validateNumeric(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다.");
         }
     }
 
-
-
-    public static int validateBonusNumber(String inputBonusNumber){
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
-        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
-            throw new IllegalArgumentException("");
+    private static void validateNumberInRange(int number) {
+        if (number < LottoConstants.MIN_NUMBER.getValue() || number > LottoConstants.MAX_NUMBER.getValue()) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이여야 합니다.");
         }
-        return bonusNumber;
     }
 }
