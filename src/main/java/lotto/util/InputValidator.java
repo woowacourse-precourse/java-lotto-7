@@ -97,6 +97,7 @@ public class InputValidator implements Validator{
         }
     }
 
+    @Override
     public void checkDuplicate(Integer bonusNumber, Lotto lotto) {
         lotto.getLottoNumbers().forEach(lottoNumber -> {
             if (lottoNumber.equals(bonusNumber)) {
