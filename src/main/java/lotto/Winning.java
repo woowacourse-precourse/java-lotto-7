@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Winning {
@@ -16,6 +17,15 @@ public class Winning {
     private void validateWinningNumbers(int[] numbers) {
         if (numbers.length != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+        for(int number : numbers) {
+            if(number<1||number>45) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자입니다.");
+            }
+        }
+        long distinctCount = Arrays.stream(numbers).distinct().count();
+        if(distinctCount!=numbers.length) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
         }
     }
 
