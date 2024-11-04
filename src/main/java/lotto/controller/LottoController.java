@@ -14,6 +14,7 @@ import lotto.application.model.WinningRanking;
 import lotto.application.support.LottoInputParser;
 import lotto.application.model.Model;
 import lotto.application.service.LottoService;
+import lotto.application.support.Retryer;
 import lotto.common.Consts;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -45,31 +46,19 @@ public class LottoController extends AbstractController<String, Model>{
     }
 
     private Set<Lotto> buyLotto(){
-        int amount = inputAndParseAmount();
-
-        while(amount == -1){
-            amount = inputAndParseAmount();
-        }
+        int amount = retryUntilNoError(this::inputAndParseAmount);
 
         return lottoService.buyLotto(amount);
     }
 
     private void setLottoWinningNumber(){
-        List<Integer> winningNumber = inputAndParseWinningNumber();
-
-        while(winningNumber.isEmpty()){
-            winningNumber = inputAndParseWinningNumber();
-        }
+        List<Integer> winningNumber = retryUntilNoError(this::inputAndParseWinningNumber);
 
         lottoService.setWinningNumbers(winningNumber);
     }
 
     private void setLottoBonusNumber(){
-        int bonusNumber = inputAndParseBonusNumber();
-
-        while(bonusNumber==-1){
-            bonusNumber = inputAndParseBonusNumber();
-        }
+        int bonusNumber = retryUntilNoError(this::inputAndParseBonusNumber);
 
         lottoService.setBonusNumber(bonusNumber);
     }

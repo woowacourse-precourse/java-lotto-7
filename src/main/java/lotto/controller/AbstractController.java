@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.Collection;
 import java.util.Map;
 import lotto.application.model.Model;
+import lotto.application.support.Retryer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -35,6 +36,18 @@ public abstract class AbstractController<I,O> {
     public void output(Collection<? extends O> output, String message){
         System.out.println(message);
         output.forEach(outputView::print);
+    }
+
+    public <R> R retryUntilNoError(Retryer<R> retryer){
+        R result;
+        while(true) {
+            try {
+                result = retryer.excute();
+                break;
+            } catch (IllegalArgumentException e){
+            }
+        }
+        return result;
     }
 
 }
