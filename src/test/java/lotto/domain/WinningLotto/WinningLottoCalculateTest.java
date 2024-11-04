@@ -59,4 +59,15 @@ public class WinningLottoCalculateTest {
 
         Assertions.assertThat(rateOfReturn).isEqualTo(expectedRateOfReturn);
     }
+
+    @Test
+    void 로또_구입_금액_단위_예외_테스트() {
+        int buyLottoMoney = 1020;
+
+        Assertions.assertThatThrownBy(() -> {
+                    winningLottoCalculate.calculateBuyLottoCount(buyLottoMoney);
+                })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("구매 금액은 1,000 단위여야 합니다.");
+    }
 }

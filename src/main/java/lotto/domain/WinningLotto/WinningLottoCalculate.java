@@ -23,6 +23,7 @@ public class WinningLottoCalculate {
     }
 
     public int calculateBuyLottoCount(int buyLottoMoney) {
+        validateBuyAmount(buyLottoMoney);
         int lottoCount = buyLottoMoney / LOTTO_PRICE;
         return lottoCount;
     }
@@ -39,5 +40,11 @@ public class WinningLottoCalculate {
     private double calculateRateOfReturn(int buyLottoMoney, long totalPrize) {
         double rateOfReturn = ((double) totalPrize / buyLottoMoney) * PERCENTAGE_MULTIPLIER;
         return rateOfReturn;
+    }
+
+    private void validateBuyAmount(int buyLottoMoney) {
+        if (buyLottoMoney % 1000 != 0) {
+            throw new IllegalArgumentException("구매 금액은 1,000 단위여야 합니다.");
+        }
     }
 }
