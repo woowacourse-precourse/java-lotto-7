@@ -4,8 +4,11 @@ import lotto.util.NumberSorter;
 
 import java.util.*;
 
+import static lotto.domain.WinningState.FIRST_PRIZE;
+
 public class Lotto {
     private final List<Integer> numbers;
+    private WinningState winningState;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -23,6 +26,33 @@ public class Lotto {
 
     public boolean validateNumberRange(int number) {
         return 1 <= number && number <= 45;
+    }
+
+    public String checkWinner(List<Integer> winningNumbers, int bonusNumber) {
+        List<Integer> commonList = new ArrayList<>(numbers);
+        commonList.retainAll(winningNumbers);
+        if (commonList.size() == 6) {
+            return "FIRST_PRIZE";
+        }
+        winningNumbers.add(bonusNumber);
+        return checkPrize(winningNumbers);
+    }
+    public String checkPrize(List<Integer> winningNumbers) {
+        List<Integer> commonList = new ArrayList<>(numbers);
+        commonList.retainAll(winningNumbers);
+        if (commonList.size() == 6) {
+            return "SECOND_PRIZE";
+        }
+        if (commonList.size() == 5) {
+            return "THIRD_PRIZE";
+        }
+        if (commonList.size() == 4) {
+            return "FOURTH_PRIZE";
+        }
+        if (commonList.size() == 3) {
+            return "FIFTH_PRIZE";
+        }
+        return "NO_LUCK";
     }
 
     @Override
