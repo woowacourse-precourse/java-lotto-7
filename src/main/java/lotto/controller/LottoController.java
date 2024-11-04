@@ -29,12 +29,13 @@ public class LottoController {
     }
 
     private static PurchasePrice inputPurchasePrice() {
-        try {
-            String purchasePrice = InputView.readPurchasePrice();
-            return new PurchasePrice(purchasePrice);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputPurchasePrice();
+        while(true){
+            try {
+                String purchasePrice = InputView.readPurchasePrice();
+                return new PurchasePrice(purchasePrice);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
