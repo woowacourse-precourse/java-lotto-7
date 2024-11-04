@@ -28,6 +28,7 @@ public class LottoStatisticsCalculator {
     }
 
     private double calculateProfitRate(int buyAmount, long totalPrize) {
-        return ((double) totalPrize / buyAmount) * 100;
+        double profitRate = ((double) totalPrize / buyAmount) * 100;
+        return Math.round(profitRate * 100) / 100.0;
     }
 }
