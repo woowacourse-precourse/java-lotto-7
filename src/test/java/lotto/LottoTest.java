@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Machine;
+import lotto.model.Result;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

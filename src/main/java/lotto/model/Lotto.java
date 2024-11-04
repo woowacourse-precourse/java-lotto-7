@@ -3,7 +3,6 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.Result;
 
 public class Lotto {
     private final List<Integer> numbers;

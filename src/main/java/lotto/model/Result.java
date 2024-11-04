@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public enum Result {
     FIFTH(3, false, 5000, 0),
