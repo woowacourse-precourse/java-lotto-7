@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.model.Lotto;
+import lotto.model.LottoResults;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -88,6 +90,29 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("2222");
             assertThat(output()).contains(PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND_MESSAGE.getMessage());
+        });
+    }
+
+    @Test
+    void 수익률_계산_테스트() {
+        assertSimpleTest(() -> {
+            long purchaseAmount = 6000;
+            List<Lotto> lottos = List.of(
+                    new Lotto(List.of(1,2,3,41,15,6)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26))
+
+            );
+            List<Integer> winningNumbers = List.of(1,2,3,4,5,34);
+            int bonusNumber = 7;
+            LottoResults lottoResults = new LottoResults(purchaseAmount, lottos, winningNumbers, bonusNumber);
+            lottoResults.calResults();
+            double expectedValue = 83.33;
+            double result = lottoResults.getTotalProfitRate();
+            assertThat(result).isEqualTo(expectedValue);
         });
     }
 
