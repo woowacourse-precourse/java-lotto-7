@@ -9,20 +9,18 @@ import lotto.ui.dto.WinningCountByPrize;
 
 public class WinningStatistics {
 
-    private final Map<LottoRank, Integer> result = new HashMap<>();
+    private final Map<LottoRank, Integer> result;
 
     public WinningStatistics() {
-        for (LottoRank lottoRank : LottoRank.values()) {
-            result.put(lottoRank, 0);
-        }
+        this.result = new HashMap<>();
     }
 
     public void addWinCountByRank(LottoRank lottoRank) {
-        result.put(lottoRank, result.get(lottoRank) + 1);
+        result.put(lottoRank, getWinningCountByRank(lottoRank) + 1);
     }
 
     private int getWinningCountByRank(LottoRank lottoRank) {
-        return result.get(lottoRank);
+        return result.getOrDefault(lottoRank, 0);
     }
 
     public BigDecimal getTotalPrize() {

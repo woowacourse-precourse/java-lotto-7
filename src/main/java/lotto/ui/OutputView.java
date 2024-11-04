@@ -14,6 +14,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS_MESSAGE = "\n당첨통계";
     private static final String DIVIDER = "---";
     private static final String EMPTY = "";
+    private static final int SECOND = 2;
 
     public void displayPurchasedLotto(PurchasedLottoResponse response) {
         System.out.printf(PURCHASE_COUNT_MESSAGE_FORMAT, response.getLottoCount());
@@ -41,7 +42,7 @@ public class OutputView {
     }
 
     private static String determineBonusMessage(WinningCountByPrize winningCountByPrize) {
-        if (winningCountByPrize.getRank() == 2) {
+        if (winningCountByPrize.getRank() == SECOND) {
             return MATCH_BONUS_MESSAGE;
         }
         return EMPTY;
