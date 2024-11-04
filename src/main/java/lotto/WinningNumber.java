@@ -59,6 +59,7 @@ public class WinningNumber {
         return numberList;
     }
 
+    
     public void bonusNumber() {
         while (true) {
             try {
