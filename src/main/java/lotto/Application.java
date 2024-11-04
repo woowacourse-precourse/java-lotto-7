@@ -192,7 +192,7 @@ class MainController {
 
 class UserView {
 	public static void printInputGuide() {
-		System.out.println("구입금액을 입력해주세요.");
+		System.out.println("구입금액을 입력해 주세요.");
 	}
 
 	public static void printLottoNumber(int purchaseCount) {
@@ -219,10 +219,10 @@ class UserView {
 	}
 
 	public static void printWinningStatistics(int[] gradingCount) {
-		System.out.println("3개 일치 (5000원) - " + gradingCount[5] + "개");
+		System.out.println("3개 일치 (5,000원) - " + gradingCount[5] + "개");
 		System.out.println("4개 일치 (50,000원) - " + gradingCount[4] + "개");
 		System.out.println("5개 일치 (1,500,000원) - " + gradingCount[3] + "개");
-		System.out.println("5개 일치, 보너스 볼 일치 : (30,000,000원) - " + gradingCount[2] + "개");
+		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + gradingCount[2] + "개");
 		System.out.println("6개 일치 (2,000,000,000원) - " + gradingCount[1] + "개");
 	}
 	
