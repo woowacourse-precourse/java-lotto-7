@@ -8,15 +8,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoParser {
-    private final String input;
 
-    public LottoParser(String input) {
-        this.input = input;
-    }
-
-    public Lotto parse() {
+    public static Lotto parse(String input) {
         try {
-            List<String> splitNumbers = this.splitByComma();
+            List<String> splitNumbers = splitByComma(input);
             List<Integer> numbers = parseInteger(splitNumbers);
             validateNumbers(numbers);
             return new Lotto(numbers);
@@ -27,11 +22,11 @@ public class LottoParser {
         }
     }
 
-    private List<String> splitByComma() {
+    private static List<String> splitByComma(String input) {
         return Arrays.stream(input.split(",")).map(String::trim).toList();
     }
 
-    private List<Integer> parseInteger(List<String> splitNumbers) {
+    private static List<Integer> parseInteger(List<String> splitNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for (String number : splitNumbers) {
             Integer parsedNumber = Integer.parseInt(number);
@@ -40,13 +35,13 @@ public class LottoParser {
         return numbers;
     }
 
-    private void validateNumbers(List<Integer> numbers) {
+    private static void validateNumbers(List<Integer> numbers) {
         for (Integer number : numbers) {
             validate(number);
         }
     }
 
-    private void validate(Integer number) {
+    private static void validate(Integer number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(ErrorMessage.lottoNumberOutOfRange);
         }

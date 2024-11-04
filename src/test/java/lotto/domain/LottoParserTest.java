@@ -15,15 +15,13 @@ class LottoParserTest {
         // given
         String input1 = "0,1,2,3,4,5";
         String input2 = "1,2,3,4,5, 46";
-        LottoParser lottoParser1 = new LottoParser(input1);
-        LottoParser lottoParser2 = new LottoParser(input2);
 
         // when
         Throwable exception1 = assertThrows(IllegalArgumentException.class, () -> {
-            lottoParser1.parse();
+            LottoParser.parse(input1);
         });
         Throwable exception2 = assertThrows(IllegalArgumentException.class, () -> {
-            lottoParser2.parse();
+            LottoParser.parse(input2);
         });
 
         // then
@@ -36,10 +34,9 @@ class LottoParserTest {
     void parseTest() {
         // given
         String input = "1,2,3,4,5,6";
-        LottoParser lottoParser = new LottoParser(input);
 
         // when
-        Lotto lotto = lottoParser.parse();
+        Lotto lotto = LottoParser.parse(input);
 
         // then
         for(int i = 1; i <= 6; i ++) {
