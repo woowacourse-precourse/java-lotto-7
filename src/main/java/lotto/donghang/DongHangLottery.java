@@ -1,13 +1,18 @@
 package lotto.donghang;
 
 import lotto.AppConfig;
+import lotto.draw.DrawController;
+import lotto.draw.Rank;
 import lotto.io.InputReader;
 import lotto.io.OutputWriter;
+import lotto.util.InputParser;
 import lotto.util.InputValidator;
 import lotto.vendingmachine.Lotto;
 import lotto.vendingmachine.VendingMachineController;
+import lotto.vendingmachine.VendingMachineRepository;
 
 import java.util.List;
+import java.util.Map;
 
 public class DongHangLottery {
 
@@ -30,6 +35,30 @@ public class DongHangLottery {
                 System.out.println(iae.getMessage());
             }
         }
+    }
+
+    public static void drawWinningLotteryNumbers() {
+        DrawController drawController = appConfig.drawController();
+
+        Lotto winningNumber = drawWinningNumbers();
+        int bonus = drawBonusNumber(winningNumber.getNumbers());
+        WinningLotto winningLotto = new WinningLotto(winningNumber, bonus);
+
+        drawController.checkResult(winningLotto);
+
+
+    }
+
+    private static Lotto drawWinningNumbers() {
+
+    }
+
+    private static int drawBonusNumber(List<Integer> winningNumber) {
+
+    }
+
+    public static void announceResult() {
+
     }
 
 }
