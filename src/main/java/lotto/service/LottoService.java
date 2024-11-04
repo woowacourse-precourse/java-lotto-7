@@ -2,12 +2,13 @@ package lotto.service;
 
 import lotto.model.SystemLotto;
 import lotto.model.UserLotto;
+import lotto.model.WinningLotto;
 import lotto.util.Constants;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
+
+import static lotto.model.WinningLotto.*;
 
 public class LottoService {
     private List<List<Integer>> purchasedLotto = new ArrayList<>();
@@ -42,7 +43,7 @@ public class LottoService {
         return sortedLotto;
     }
 
-    public Map<String, Integer> matchLotto(UserLotto userLotto) {
+    public void matchLotto(UserLotto userLotto) {
         List<Integer> matchingCounts = new ArrayList<>();
         List<Boolean> matchingBonus = new ArrayList<>();
 
@@ -55,29 +56,34 @@ public class LottoService {
             matchingBonus.add(isContainBonus);
         }
 
-        return determineWinningRank(matchingCounts, matchingBonus);
+        determineWinningRank(matchingCounts, matchingBonus);
     }
 
-    private Map<String, Integer> determineWinningRank(List<Integer> matchingCounts, List<Boolean> matchingBonus) {
-        Map<String, Integer> winningRank = new HashMap<>();
-
+    private void determineWinningRank(List<Integer> matchingCounts, List<Boolean> matchingBonus) {
         for (int i = 0; i < matchingCounts.size(); i++) {
-            String key = winningResult(matchingCounts.get(i), matchingBonus.get(i));
+            WinningLotto winningLotto = winningResult(matchingCounts.get(i), matchingBonus.get(i));
 
-            int winningCount = winningRank.getOrDefault(key, 0) + Constants.WINNING_INCREMENT;
-            winningRank.put(key, winningCount);
+            if (winningLotto != null) {
+                winningLotto.incrementMatchCount();
+            }
         }
-
-        return winningRank;
     }
 
-    private String winningResult(int count, Boolean isBonusMatched) {
-        if (count == Constants.WINNING_SECOND_COUNT && isBonusMatched) {
-            return Constants.WINNING_SECOND_STATUS;
+    private WinningLotto winningResult(int count, Boolean isBonusMatched) {
+        if (count == 3) {
+            return THREE_MATCH;
         }
-
-        if (count >= Constants.WINNING_MIN_COUNT) {
-            return count + Constants.WINNING_COUNT_SUFFIX;
+        if (count == 4) {
+            return FOUR_MATCH;
+        }
+        if (count == 5 && isBonusMatched) {
+            return FIVE_MATCH_BONUS;
+        }
+        if (count == 5) {
+            return FIVE_MATCH;
+        }
+        if (count == 6) {
+            return SIX_MATCH;
         }
 
         return null;

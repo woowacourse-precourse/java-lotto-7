@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.model.UserLotto;
 
+import lotto.model.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,7 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -50,12 +50,12 @@ class LottoServiceTest {
         userLotto.setNumbers("1,2,3,4,5,6");
         userLotto.setBonusNumber("7");
 
-        Map<String, Integer> result = lottoService.matchLotto(userLotto);
+        lottoService.matchLotto(userLotto);
 
-        assertThat(result).containsEntry("3개 일치", 1);
-        assertThat(result).containsEntry("4개 일치", 1);
-        assertThat(result).containsEntry("5개 일치", 1);
-        assertThat(result).containsEntry("5개 일치, 보너스 볼 일치", 1);
-        assertThat(result).containsEntry("6개 일치", 1);
+        assertThat(WinningLotto.THREE_MATCH.getMatchCount()).isEqualTo(1);
+        assertThat(WinningLotto.FOUR_MATCH.getMatchCount()).isEqualTo(1);
+        assertThat(WinningLotto.FIVE_MATCH.getMatchCount()).isEqualTo(1);
+        assertThat(WinningLotto.FIVE_MATCH_BONUS.getMatchCount()).isEqualTo(1);
+        assertThat(WinningLotto.SIX_MATCH.getMatchCount()).isEqualTo(1);
     }
 }
