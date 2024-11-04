@@ -14,23 +14,17 @@ public class SingleResult {
     public void countUp() {this.count++;}
     public void bonusCountUp() {this.bonusCount++;}
 
+    private void calculateRank(){
+        this.rank = 6;
+        if (this.count == 6) this.rank = 1;
+        if (this.count == 5 && this.bonusCount == 1) this.rank = 2;
+        if (this.count == 5) this.rank = 3;
+        if (this.count == 4) this.rank = 4;
+        if (this.count == 3) this.rank = 5;
+    }
+
     public int getRank() {
-        if (this.count == 6){
-            this.rank = 1;
-        }
-        else if (this.count == 5 && this.bonusCount == 1){
-            this.rank = 2;
-        }
-        else if (this.count == 5){
-            this.rank = 3;
-        }
-        else if (this.count == 4){
-            this.rank = 4;
-        }
-        else if (this.count == 3){
-            this.rank = 5;
-        }
-        else this.rank = 6;
+        calculateRank();
         return this.rank;
     }
 

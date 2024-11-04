@@ -62,6 +62,4 @@ public class CalculateResult {
         printWinCounts(winCounts);
         printLottoReturn(lottoReturn);
     }
-
-
 }
