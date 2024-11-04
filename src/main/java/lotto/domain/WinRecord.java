@@ -12,8 +12,8 @@ public class WinRecord {
         setWinRecord(winRecordInput);
     }
 
-    public static WinRecord getWinRecord(){
-        if(winRecordInstance == null) throw new IllegalArgumentException("[ERROR] 싱글톤 객체가 생성되기 전에 불렀습니다.");
+    public static WinRecord getWinRecord() {
+        if (winRecordInstance == null) throw new IllegalArgumentException("[ERROR] 싱글톤 객체가 생성되기 전에 불렀습니다.");
         return winRecordInstance;
     }
 
@@ -30,7 +30,7 @@ public class WinRecord {
         }
     }
 
-    public List<Integer> getWinRecordCounts(){
+    public List<Integer> getWinRecordCounts() {
         return winRecord;
     }
 

@@ -84,7 +84,7 @@ public class WinningLottoTest {
     void checkWinningNumbersCountOverError(int testNum) {
         WinningLotto.resetInstance();
         List<Integer> test = new ArrayList<>();
-        for(int i = 1; i<=testNum; i++){
+        for (int i = 1; i <= testNum; i++) {
             test.add(i);
         }
         String errorMessage = "[ERROR] 로또 번호는 6개여야 합니다.";

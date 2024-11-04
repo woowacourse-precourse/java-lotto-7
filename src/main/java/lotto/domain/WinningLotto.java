@@ -8,14 +8,14 @@ public class WinningLotto extends Lotto {
     private static WinningLotto winningLottoInstance;
     private final int bonusNumber;
 
-    private WinningLotto(List<Integer> numbers, int bonusNumber){
+    private WinningLotto(List<Integer> numbers, int bonusNumber) {
         super(numbers);
         new ValidatorLottoNumber(numbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto getWinningLotto(){
-        if(winningLottoInstance == null) throw new IllegalArgumentException("[ERROR] 싱글톤 객체가 생성되기 전에 불렀습니다.");
+    public static WinningLotto getWinningLotto() {
+        if (winningLottoInstance == null) throw new IllegalArgumentException("[ERROR] 싱글톤 객체가 생성되기 전에 불렀습니다.");
         return winningLottoInstance;
     }
 
