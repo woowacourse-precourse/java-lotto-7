@@ -23,7 +23,7 @@ public class LottoController {
         printLottoTickets(lottoTickets);
         WinningNumbers winningNumbers = lottoService.inputWinningNumbers();
         prizeCalculator.checkWinningNumbers(winningNumbers, lottoTickets);
-        printWinningStatistics();
+        printWinningStatistics(purchaseAmount);
     }
 
     private void printLottoTickets(List<Lotto> lottoTickets){
@@ -33,7 +33,7 @@ public class LottoController {
         }
     }
 
-    private void printWinningStatistics() {
+    private void printWinningStatistics(int purchaseAmount) {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Prize prize : Prize.values()) {
@@ -47,10 +47,12 @@ public class LottoController {
             }
 
             prizeMessage.append(String.format(" (%,d원) - %d개", prize.getPrizeAmount(), count));
-
             System.out.println(prizeMessage);
         }
-    }
 
+        double yield = prizeCalculator.calculateYield(purchaseAmount * 1000); //개수 * 1000 = 금액
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", Math.round(yield * 10) / 10.0);
+
+    }
 
 }

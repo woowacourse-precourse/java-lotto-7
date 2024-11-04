@@ -43,6 +43,13 @@ public class PrizeCalculator {
         }
     }
 
+    public double calculateYield(int purchaseAmount) {
+        int totalPrize = prizeCountMap.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
+                .sum();
+        return (double) totalPrize / purchaseAmount * 100;
+    }
+
     public Map<Prize, Integer> getPrizeCountMap() {
         return prizeCountMap;
     }
