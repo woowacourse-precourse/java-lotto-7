@@ -22,6 +22,7 @@ public class WinningResult {
 
         int[] rankCount = calculateRankCount(); // 등수 카운트 계산
         printRankResults(rankCount);            // 결과 출력
+        double profitRate = calculateProfitRate(rankCount, total); // 수익률 계산
     }
 
     int[] calculateRankCount() {
@@ -42,6 +43,19 @@ public class WinningResult {
         System.out.printf("5개 일치 (1,500,000원) - %d개%n", rankCount[LottoRank.THIRD.ordinal()]);
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", rankCount[LottoRank.SECOND.ordinal()]);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", rankCount[LottoRank.FIRST.ordinal()]);
+    }
+
+    double calculateProfitRate(int[] rankCount, int total) {
+        int totalPrize = calculateTotalPrize(rankCount);
+        return (double) totalPrize / total * 0.1;
+    }
+
+    private int calculateTotalPrize(int[] rankCount) {
+        int totalPrize = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            totalPrize += rankCount[rank.ordinal()] * rank.getPrize();
+        }
+        return totalPrize;
     }
 
 
