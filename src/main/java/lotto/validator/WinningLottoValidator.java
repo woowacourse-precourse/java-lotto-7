@@ -21,6 +21,8 @@ public class WinningLottoValidator {
     private static final String DELIMITER = ",";
 
     public static List<Integer> validateWinningNumbers(String input) {
+        validateBlank(input);
+
         List<Integer> winningNumbers = Arrays.stream(input.split(DELIMITER))
                 .peek(WinningLottoValidator::validateBlank)
                 .map(WinningLottoValidator::validateType)
@@ -43,7 +45,7 @@ public class WinningLottoValidator {
 
     private static int validateType(String input) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
             throw new IllegalTypeException(
                     String.format(INVALID_TYPE_INPUT.getMessage(), INPUT, TYPE)
