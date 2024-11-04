@@ -34,10 +34,19 @@ class InputNumberValidatorTest {
                 .hasMessage(ErrorMessage.PURCHASE_LIMIT_REACHED.getMessage());
     }
 
-    @DisplayName("구입 금액이 0이거나 음수일 경우에는 IllegalArgumentException 예외를 발생시킨다.")
+    @DisplayName("구입 금액이 음수일 경우에는 IllegalArgumentException 예외를 발생시킨다.")
     @Test
-    void 구입_금액이_0이거나_음수일_경우_예외가_발생한다() {
+    void 구입_금액이_음수일_경우_예외가_발생한다() {
         String invalidInput = "-1000";
+        assertThatThrownBy(() -> inputNumberValidator.validatePaymentPriceValue(invalidInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.MINIMUM_PURCHASE_AMOUNT.getMessage());
+    }
+
+    @DisplayName("구입 금액이 0일 경우에는 IllegalArgumentException 예외를 발생시킨다.")
+    @Test
+    void 구입_금액이_0일_경우_예외가_발생한다() {
+        String invalidInput = "0";
         assertThatThrownBy(() -> inputNumberValidator.validatePaymentPriceValue(invalidInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.MINIMUM_PURCHASE_AMOUNT.getMessage());
@@ -50,6 +59,35 @@ class InputNumberValidatorTest {
         assertThatThrownBy(() -> inputNumberValidator.validatePaymentPriceValue(invalidInput))
                 .isInstanceOf(ArithmeticException.class)
                 .hasMessage(ErrorMessage.INVALID_PURCHASE_UNIT.getMessage());
+    }
+
+    @DisplayName("보너스 번호가 유효하지 않은 경우에는 NumberFormatException 예외를 발생시킨다.")
+    @Test
+    void 보너스_번호가_유효하지_않은_경우() {
+        String invalidBonusNumber = "a";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> InputNumberValidator.validateBonusNumberType(invalidBonusNumber))
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessage(ErrorMessage.INVALID_BONUS_NUMBER_COUNT.getMessage());
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되는 경우에는 IllegalArgumentException 예외를 발생시킨다.")
+    @Test
+    void 보너스_번호가_중복되는_경우() {
+        String invalidBonusNumber = "1";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatCode(() -> InputNumberValidator.validateBonusNumberValue(invalidBonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
+    }
+
+    @DisplayName("보너스 번호가 유효한 경우 예외가 발생하지 않는다.")
+    @Test
+    void 보너스_번호가_유효한_경우() {
+        String validBonusNumber = "7";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatCode(() -> InputNumberValidator.validateBonusNumberValue(validBonusNumber, winningNumbers))
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("유효한 구입 금액 입력 시 PaymentPriceDTO 객체를 반환한다.")
@@ -115,19 +153,19 @@ class InputNumberValidatorTest {
         assertThat(result).isFalse();
     }
 
-    @DisplayName("로또 번호가 6개가 아닌 경우 isMatchedLottoSize 메서드가 true를 반환한다.")
+    @DisplayName("로또 번호가 6개가 아닌 경우 isNotMatchedLottoSize 메서드가 true를 반환한다.")
     @Test
     void 로또_번호가_6개가_아닌_경우() {
         String invalidSizeInput = "1, 2, 3, 4, 5";
-        boolean result = InputNumberValidator.isMatchedLottoSize(invalidSizeInput);
+        boolean result = InputNumberValidator.isNotMatchedLottoSize(invalidSizeInput);
         assertThat(result).isTrue();
     }
 
-    @DisplayName("로또 번호가 정확히 6개인 경우 isMatchedLottoSize 메서드가 false를 반환한다.")
+    @DisplayName("로또 번호가 정확히 6개인 경우 isNotMatchedLottoSize 메서드가 false를 반환한다.")
     @Test
     void 로또_번호가_정확히_6개인_경우() {
         String validSizeInput = "1, 2, 3, 4, 5, 6";
-        boolean result = InputNumberValidator.isMatchedLottoSize(validSizeInput);
+        boolean result = InputNumberValidator.isNotMatchedLottoSize(validSizeInput);
         assertThat(result).isFalse();
     }
 
@@ -145,34 +183,5 @@ class InputNumberValidatorTest {
         String uniqueInput = "1, 2, 3, 4, 5, 6";
         boolean result = InputNumberValidator.isDuplicated(uniqueInput);
         assertThat(result).isFalse();
-    }
-
-    @DisplayName("보너스 번호가 유효하지 않은 경우 예외를 발생시킨다.")
-    @Test
-    void 보너스_번호가_유효하지_않은_경우() {
-        String invalidBonusNumber = "a";
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        assertThatThrownBy(() -> InputNumberValidator.validateBonusNumberType(invalidBonusNumber))
-                .isInstanceOf(NumberFormatException.class)
-                .hasMessage(ErrorMessage.INVALID_BONUS_NUMBER_COUNT.getMessage());
-    }
-
-    @DisplayName("보너스 번호가 당첨 번호와 중복되는 경우 예외를 발생시킨다.")
-    @Test
-    void 보너스_번호가_중복되는_경우() {
-        String invalidBonusNumber = "1";
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        assertThatCode(() -> InputNumberValidator.validateBonusNumberValue(invalidBonusNumber, winningNumbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
-    }
-
-    @DisplayName("보너스 번호가 유효한 경우 예외가 발생하지 않는다.")
-    @Test
-    void 보너스_번호가_유효한_경우() {
-        String validBonusNumber = "7";
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        assertThatCode(() -> InputNumberValidator.validateBonusNumberValue(validBonusNumber, winningNumbers))
-                .doesNotThrowAnyException();
     }
 }
