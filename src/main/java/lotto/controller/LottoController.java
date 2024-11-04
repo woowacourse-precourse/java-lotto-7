@@ -8,16 +8,14 @@ import lotto.purchase.event.MoneyCreatedEvent;
 public class LottoController {
 
     InputService inputService;
-    EventPublisher eventPublisher;
 
     public LottoController(InputService inputService,
                            EventPublisher eventPublisher) {
         this.inputService = inputService;
-        this.eventPublisher = eventPublisher;
     }
 
     public void run() {
         Money money = inputService.getMoney();
-        eventPublisher.publish(new MoneyCreatedEvent(money));
+        inputService.start(money);
     }
 }

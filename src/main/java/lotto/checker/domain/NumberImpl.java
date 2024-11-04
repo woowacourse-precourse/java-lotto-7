@@ -21,9 +21,7 @@ public abstract class NumberImpl implements Number {
             return;
         throw new IllegalArgumentException(ERROR_MESSAGE + " " +message +"는 1~45 사이의 숫자여야 합니다.");
     }
-
-
-
+    
     public boolean hasContent(String number ) {
         return number != null && !number.isEmpty();
     }

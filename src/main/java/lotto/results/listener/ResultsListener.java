@@ -9,7 +9,6 @@ import lotto.shared.event.DomainEvent;
 import lotto.shared.event.EventListener;
 import lotto.shared.event.EventOrchestrator;
 import lotto.shared.event.EventPublisher;
-import lotto.shared.application.OutputService;
 
 public class ResultsListener implements EventListener {
 

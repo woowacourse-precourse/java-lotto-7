@@ -7,9 +7,9 @@ import lotto.shared.event.*;
 
 public class CheckerListener implements EventListener {
 
-    EventPublisher eventPublisher;
-    EventOrchestrator eventOrchestrator;
-    FortuneMachineService fortuneMachineService;
+    private final EventPublisher eventPublisher;
+    private final EventOrchestrator eventOrchestrator;
+    private final FortuneMachineService fortuneMachineService;
 
     public CheckerListener(EventPublisher eventPublisher,
                          FortuneMachineService fortuneMachineService,

@@ -13,8 +13,8 @@ public class WinningNumbers extends NumberImpl implements Iterable<Integer> {
 
     public WinningNumbers(String rawWinningNumbers) {
         String trimWinningNumbers = rawWinningNumbers.trim();
-        validateBlank(trimWinningNumbers, getDomain());
         List<String> splitWinningNumbers = split(trimWinningNumbers);
+        validateBlank(trimWinningNumbers, getDomain());
         validateSize(splitWinningNumbers);
         List<Integer> winningNumbers = validateNumbers(splitWinningNumbers);
         validateDuplicate(winningNumbers, getDomain());
@@ -23,7 +23,8 @@ public class WinningNumbers extends NumberImpl implements Iterable<Integer> {
     }
 
     private List<String> split(String numbers) {
-        return Arrays.stream(numbers.split(",")).toList();
+        return Arrays.stream(numbers.split(","))
+                .toList();
     }
 
     private List<Integer> validateNumbers(List<String> numbers) {

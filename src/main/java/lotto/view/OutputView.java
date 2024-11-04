@@ -15,6 +15,6 @@ public interface OutputView {
 
     void showResults(Results results, Money money);
 
-    String isSecond(Result result, Integer rank);
+    String isSecond(Result result);
 
 }

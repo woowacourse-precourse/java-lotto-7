@@ -3,6 +3,8 @@ package lotto.purchase.domain;
 import lotto.common.NumberConstants;
 import lotto.checker.domain.NumberImpl;
 
+import static lotto.common.ErrorMessage.ERROR_MESSAGE;
+
 public class Money extends NumberImpl {
 
     private final long money;
@@ -19,11 +21,11 @@ public class Money extends NumberImpl {
     private void validateThousandUnit(long money) {
         if (isDivisibleBy(money))
             return;
-        throw new IllegalArgumentException("구입 금액은 1000 단위여야 합니다.");
+        throw new IllegalArgumentException(ERROR_MESSAGE + " 구입 금액은 1000 단위여야 합니다.");
     }
 
     private boolean isDivisibleBy(Long money) {
-        return money / NumberConstants.LOTTO_COST != 0;
+        return money % NumberConstants.LOTTO_COST == 0;
     }
 
     public long value() {

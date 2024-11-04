@@ -5,6 +5,8 @@ import lotto.purchase.domain.Money;
 import java.util.Iterator;
 import java.util.List;
 
+import static lotto.common.NumberConstants.TOTAL_RANK_TYPES;
+
 public class Results implements Iterable<Result> {
 
     private final List<Result> results;
@@ -17,6 +19,14 @@ public class Results implements Iterable<Result> {
         return String.format("%.1f", results.stream()
                 .map(result -> result.getROI(money))
                 .reduce(0.0, Double::sum));
+    }
+
+    public int[] getCountOfRank() {
+        int[] count = new int[TOTAL_RANK_TYPES];
+        results.stream()
+                .map(Result::rank)
+                .forEach(rank -> count[rank]++);
+        return count;
     }
 
     @Override

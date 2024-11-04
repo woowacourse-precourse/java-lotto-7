@@ -7,6 +7,9 @@ import lotto.results.domain.Results;
 
 import java.util.stream.IntStream;
 
+import static lotto.common.NumberConstants.SECOND_RANK;
+import static lotto.common.NumberConstants.TOTAL_RANK_TYPES;
+
 public class OutputViewImpl implements OutputView {
 
     public void showLottos(Lottos lottos) {
@@ -27,25 +30,26 @@ public class OutputViewImpl implements OutputView {
     public void showResults(Results results, Money money) {
         System.out.println("\n당첨 통계\n" + "---");
 
-        int[] o = new int[6];
-        results.forEach(result -> {
-            o[result.rank()]++;
-        });
-
-        IntStream.iterate(5, n -> n - 1)
-                .limit(5)
+        int[] count = results.getCountOfRank();
+        IntStream.range(1, TOTAL_RANK_TYPES)
+                .map(n -> TOTAL_RANK_TYPES - n)
                 .forEach(rank -> {
                     Result result = Result.findByRank(rank);
-                    System.out.println(result.getWinningNumberCount() + "개 일치" + isSecond(result, rank) + " (" + result.getPrize() + "원) - " + o[rank] + "개");
+                    String matchCount = result.getWinningNumberCount() + "개 일치";
+                    String secondPlace = isSecond(result);
+                    String prizeInfo = String.format("(" + result.getPrize() + "원)");
+                    String countInfo = String.format(" - %d개", count[rank]);
+
+                    System.out.println(String.join("", matchCount, secondPlace, prizeInfo, countInfo));
                 });
 
         System.out.println("총 수익률은 " + results.getSumOfROI(money) + "%입니다.");
     }
 
-    public String isSecond(Result result, Integer rank) {
-        if (result.rank() == 2) {
-            return ", 보너스 볼 일치";
+    public String isSecond(Result result) {
+        if (result.rank() == SECOND_RANK) {
+            return ", 보너스 볼 일치 ";
         }
-        return "";
+        return " ";
     }
 }
