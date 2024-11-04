@@ -50,6 +50,6 @@ public class LottoService {
 	}
 
 	public ReturnRate calculateReturnRate(Winning winning, PurchaseMoney purchaseMoney) {
-		return new ReturnRate(purchaseMoney.getMoney(), winning.getTotalPrize());
+		return new ReturnRate(purchaseMoney.money(), winning.getTotalPrize());
 	}
 }

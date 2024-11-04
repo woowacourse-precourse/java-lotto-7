@@ -1,12 +1,10 @@
 package lotto.model.domain;
 
-public class PurchaseMoney {
+public record PurchaseMoney(int money) {
 	private static final int MINIMUM_MONEY_SIZE = 1000;
-	private final int money;
 
-	public PurchaseMoney(int money) {
+	public PurchaseMoney {
 		validate(money);
-		this.money = money;
 	}
 
 	private void validate(int money) {
@@ -28,9 +26,5 @@ public class PurchaseMoney {
 
 	public int getLottoCount() {
 		return money / MINIMUM_MONEY_SIZE;
-	}
-
-	public int getMoney() {
-		return money;
 	}
 }

@@ -29,7 +29,7 @@ class LottoServiceTest {
 	@Test
 	void 구입금액_생성_확인() {
 		PurchaseMoney purchaseMoney = lottoService.createPurchaseMoney(1000);
-		assertThat(purchaseMoney.getMoney()).isEqualTo(1000);
+		assertThat(purchaseMoney.money()).isEqualTo(1000);
 	}
 
 	@DisplayName("로또 개수 계산 테스트")
