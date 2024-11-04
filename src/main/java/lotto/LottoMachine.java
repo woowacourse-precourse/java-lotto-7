@@ -13,26 +13,20 @@ public class LottoMachine {
 		this.bonusNumber = bonusNumber;
 	}
 
-	public Result informWinningResults(List<Lotto> lottos, int money) {
-		Map<Prize, Integer> winningResults = new EnumMap<>(Prize.class);
-
-		initializeResultToZero(winningResults);
+	public Result check(List<Lotto> lottos, int money) {
+		Map<Prize, Integer> winningResults = initializeResultToZero();
 
 		for (Lotto lotto : lottos) {
-			recordWinningResult(lotto, winningNumbers, bonusNumber, winningResults);
+			int matchCount = lotto.countMatchingNumbers(winningNumbers);
+			boolean hasBonus = lotto.hasBonus(bonusNumber);
+
+			Prize prize = Prize.rank(matchCount, hasBonus);
+			winningResults.put(prize, winningResults.getOrDefault(prize, 0) + 1);
 		}
 
 		double prizeRate = caculatePrizeRate(money, winningResults);
 
 		return parseResult(winningResults, prizeRate);
-	}
-
-	private static void recordWinningResult(Lotto lotto, List<Integer> winningNumbers, int bonusNumber, Map<Prize, Integer> winningResults) {
-		int matchCount = lotto.countMatchingNumbers(winningNumbers);
-		boolean hasBonus = lotto.hasBonus(bonusNumber);
-
-		Prize prize = Prize.rank(matchCount, hasBonus);
-		winningResults.put(prize, winningResults.getOrDefault(prize, 0) + 1);
 	}
 
 	private Result parseResult(Map<Prize, Integer> winningResults, double prizeRate) {
@@ -46,10 +40,14 @@ public class LottoMachine {
 		);
 	}
 
-	private static void initializeResultToZero(Map<Prize, Integer> winningResults) {
+	private Map<Prize, Integer> initializeResultToZero() {
+		Map<Prize, Integer> winningResults = new EnumMap<>(Prize.class);
+
 		for (Prize prize : Prize.values()) {
 			winningResults.put(prize, 0);
 		}
+
+		return winningResults;
 	}
 
 	private static double caculatePrizeRate(int money, Map<Prize, Integer> winningResults) {
