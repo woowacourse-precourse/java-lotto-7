@@ -9,11 +9,11 @@ public class Seller {
 
     public List<Lotto> issueLottoesWith(Money money) {
         validateNoChanges(money);
-        return issueRandomLottoes(money.countAffordableFor(LOTTO_PRICE));
+        return issueRandomLottoes(money.countAvailableFrom(LOTTO_PRICE));
     }
 
     private void validateNoChanges(Money money) {
-        if (money.hasChangesWith(LOTTO_PRICE)) {
+        if (money.hasChangeWith(LOTTO_PRICE)) {
             throw new IllegalArgumentException("금액이 나눠 떨어지지 않습니다");
         }
     }

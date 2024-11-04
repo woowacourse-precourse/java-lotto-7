@@ -2,6 +2,7 @@ package lotto;
 
 public class Money {
 
+    private final static String NEGATIVE_NUMBER_EXCEPTION_MESSAGE = "금액은 음수일 수 없습니다";
     private final long amount;
 
     public Money(long amount) {
@@ -11,15 +12,15 @@ public class Money {
 
     private void validateNonNegative(long amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException("금액은 음수일 수 없습니다");
+            throw new IllegalArgumentException(NEGATIVE_NUMBER_EXCEPTION_MESSAGE);
         }
     }
 
-    public boolean hasChangesWith(long price) {
+    public boolean hasChangeWith(long price) {
         return amount % price != 0;
     }
 
-    public long countAffordableFor(long price) {
+    public long countAvailableFrom(long price) {
         return amount / price;
     }
 
