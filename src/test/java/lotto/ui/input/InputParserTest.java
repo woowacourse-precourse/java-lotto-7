@@ -4,10 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import lotto.model.domain.BonusNumber;
+import lotto.model.domain.PurchaseAmount;
 import org.junit.jupiter.api.Test;
 
 class InputParserTest {
-    private final InputParser parser = new InputParser(",", new InputValidator());
+    private final InputParser parser = new InputParser();
 
     @Test
     void 구매금액_파싱() {
@@ -15,10 +17,10 @@ class InputParserTest {
         String amount = "50000";
 
         //when
-        Integer parsedAmount = parser.parsePurchaseAmount(amount);
+        PurchaseAmount purchaseAmount = parser.parsePurchaseAmount(amount);
 
         //then
-        assertThat(parsedAmount).isEqualTo(50000);
+        assertThat(purchaseAmount.get()).isEqualTo(50000);
     }
 
     @Test
@@ -36,7 +38,7 @@ class InputParserTest {
         String input = "1,2,3,4,5,6";
 
         //then
-        List<Integer> winningNumbers = parser.parseWinningNumbers(input);
+        List<Integer> winningNumbers = parser.parseWinningNumbers(",", input);
 
         //then
         assertThat(winningNumbers.size()).isEqualTo(6);
@@ -49,7 +51,7 @@ class InputParserTest {
         String input = "1,2,3a,4,5,6";
 
         //then
-        assertThrows(NumberFormatException.class, () -> parser.parseWinningNumbers(input));
+        assertThrows(NumberFormatException.class, () -> parser.parseWinningNumbers(",", input));
     }
 
     @Test
@@ -58,10 +60,10 @@ class InputParserTest {
         String input = "3";
 
         //when
-        Integer bonusNumber = parser.parseBonusNumber(input);
+        BonusNumber bonusNumber = parser.parseBonusNumber(input);
 
         //then
-        assertThat(bonusNumber).isEqualTo(3);
+        assertThat(bonusNumber.get()).isEqualTo(3);
     }
 
     @Test
