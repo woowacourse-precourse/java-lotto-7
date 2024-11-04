@@ -31,19 +31,19 @@ public class LottoService implements LottoConstants {
 
             if (count == 6) {
                 rank[0]++;
-                break;
+                continue;
             }
             if (count == 5 && accordBonusNumber(ticket.getNumbers(), bonus)) {
                 rank[1]++;
-                break;
+                continue;
             }
             if (count == 5) {
                 rank[2]++;
-                break;
+                continue;
             }
             if (count == 4) {
                 rank[3]++;
-                break;
+                continue;
             }
             if (count == 3) {
                 rank[4]++;
