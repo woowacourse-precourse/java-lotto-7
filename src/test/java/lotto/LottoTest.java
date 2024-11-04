@@ -2,6 +2,8 @@ package lotto;
 
 import lotto.domain.number.LottoNumber;
 import lotto.domain.ticket.Lotto;
+import lotto.domain.ticket.Lottos;
+import lotto.domain.ticket.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -83,5 +85,26 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 null일 수 없습니다.");
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 때 예외가 발생한다 (자주 놓치는 경계값)")
+    @Test
+    void validateBonusNumberDuplication() {
+        // 경계값: 당첨 번호의 마지막 숫자와 같은 보너스 번호
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThatThrownBy(() -> new WinningLotto(winningNumbers, 6))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+    }
+
+    @DisplayName("빈 로또 리스트로 당첨 결과를 계산할 때 예외가 발생한다 (실제 운영 시 발생할 수 있는 케이스)")
+    @Test
+    void validateEmptyLottosList() {
+        List<Lotto> emptyLottos = new ArrayList<>();
+
+        assertThatThrownBy(() -> new Lottos(emptyLottos))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 최소 1개 이상의 로또를 구매해야 합니다.");
     }
 }
