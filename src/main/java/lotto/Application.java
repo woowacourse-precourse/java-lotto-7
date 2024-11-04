@@ -14,6 +14,9 @@ public class Application {
 
         // 로또 번호 랜덤 선택 및 출력
         List<Lotto> lottos = RunLotto.generateLottos(purchasePrice);
+        List<Integer> inputWinNum = Input.inputWinNum();
+
+        int bonusNum = Input.inputBonusNum(inputWinNum);
 
 
     }
