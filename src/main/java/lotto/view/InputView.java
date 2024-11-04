@@ -11,6 +11,7 @@ public class InputView {
     public int inputPurchaseAmount() {
         String purchaseAmount = Console.readLine();
         validateInput(purchaseAmount);
+        InputValidator.validatePurchaseAmount(purchaseAmount);
         return Converter.parse(purchaseAmount);
     }
 
