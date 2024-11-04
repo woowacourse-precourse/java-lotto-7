@@ -36,7 +36,8 @@ public class Application {
 
         spaceString();
         printer.printBonusNumberNotice();
-        String bonusNumbers = Console.readLine();
+        String bonusNumber = Console.readLine();
+        lotto.bonusValidate(bonusNumber);
         spaceString();
 
     }
