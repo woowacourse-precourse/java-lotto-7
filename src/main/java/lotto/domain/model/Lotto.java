@@ -33,7 +33,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
+    public List<Integer> getNumberValues() {
         return numbers.stream()
                 .map(LottoNumber::getNumber)
                 .toList();

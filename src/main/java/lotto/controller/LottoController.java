@@ -25,7 +25,7 @@ public class LottoController {
         outputView.printTicketGuide(ticket);
         RandomLottos randomLottos = lottoService.createRandomLottos(ticket);
         for (Lotto lotto : randomLottos.lottos()) {
-            outputView.printNumbers(lotto.getNumbers());
+            outputView.printNumbers(lotto.getNumberValues());
         }
 
         String winningNumberInput = inputView.getWinningNumberInput();
