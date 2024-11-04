@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.constants.Constants.LOTTO_NUMBER_COUNT;
+import static lotto.constants.LottoConstants.LOTTO_NUMBER_COUNT;
 import static lotto.validator.LottoNumberValidator.validateRange;
 
 import lotto.validator.PurchaseAmountValidator;

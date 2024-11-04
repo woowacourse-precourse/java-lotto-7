@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import static lotto.constants.Constants.LOTTO_NUMBER_COUNT;
-import static lotto.constants.Constants.MAX_LOTTO_NUMBER;
-import static lotto.constants.Constants.MIN_LOTTO_NUMBER;
+import static lotto.constants.LottoConstants.LOTTO_NUMBER_COUNT;
+import static lotto.constants.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.constants.LottoConstants.MIN_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
