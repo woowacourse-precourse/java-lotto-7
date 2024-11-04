@@ -27,25 +27,58 @@ public class LottoController {
 
     public void startProgram() {
         LottoDto lottoDto = new LottoDto();
-        String inputPurchaseAmount = lottoInputView.inputPurchaseAmount();
-        lottoValidator.validatePurchaseAmount(inputPurchaseAmount);
-        //dto에 세팅
-        //구맥 개수 제한이 필요하다.
 
-        List<Lotto> lottoes = lottoService.createLottoes(Integer.parseInt(inputPurchaseAmount));
+        String purchaseAmount = "";
+        purchaseAmount = inputPurchaseAmount();
+        //구매 개수 제한을 둘 필요있다.
+
+        List<Lotto> lottoes = lottoService.createLottoes(Integer.parseInt(purchaseAmount));
         lottoOutputView.printPurchaseResult(lottoes);
 
-        String inputWinningNumbers = lottoInputView.inputWinningNumbers();
-        lottoValidator.validateWinningNumbers(inputWinningNumbers);
-        lottoDto.updateWinningNumbers(inputWinningNumbers);
-        //dto에 세팅
+        String winningNumbers = "";
+        winningNumbers = inputWinningNumbers();
+        lottoDto.updateWinningNumbers(winningNumbers);
 
-        String inputBonusNumber = lottoInputView.inputBonusNumber();
-        lottoValidator.validateBonusNumber(lottoDto.getWinningNumbers(), inputBonusNumber);
-        lottoDto.updateBonusNumber(inputBonusNumber);
-        //dto에 세팅
+        String bonusNumber = "";
+        bonusNumber = inputBonusNumber();
+        lottoDto.updateBonusNumber(bonusNumber);
 
         WinningStatisticsResponseDto winningStatisticsDto = lottoService.getWinningStatistics(lottoes, lottoDto);
         lottoOutputView.printWinningStatisticsResult(winningStatisticsDto);
+    }
+
+    private String inputPurchaseAmount() {
+        String purchaseAmount = "";
+        try {
+            purchaseAmount = lottoInputView.inputPurchaseAmount();
+            lottoValidator.validatePurchaseAmount(purchaseAmount);
+        } catch (IllegalArgumentException error) {
+            lottoOutputView.printErrorMessage(error.getMessage());
+            inputPurchaseAmount();
+        }
+        return purchaseAmount;
+    }
+
+    private String inputWinningNumbers() {
+        String winningNumbers = "";
+        try {
+            winningNumbers = lottoInputView.inputWinningNumbers();
+            lottoValidator.validateWinningNumbers(winningNumbers);
+        } catch (IllegalArgumentException error) {
+            lottoOutputView.printEnterAndMessage(error.getMessage());
+            inputWinningNumbers();
+        }
+        return winningNumbers;
+    }
+
+    private String inputBonusNumber() {
+        String bonusNumber = "";
+        try {
+            bonusNumber = lottoInputView.inputBonusNumber();
+        } catch (IllegalArgumentException error) {
+            lottoOutputView.printEnterAndMessage(error.getMessage());
+            inputBonusNumber();
+        }
+        return bonusNumber;
     }
 }

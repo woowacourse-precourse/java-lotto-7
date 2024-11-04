@@ -16,6 +16,11 @@ public class LottoOutputView {
         System.out.println(message);
     }
 
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+        System.out.println();
+    }
+
     public void printPurchaseResult(List<Lotto> lottoes) {
         System.out.println();
         System.out.println(lottoes.size() + LottoConstant.PURCHASE_COUNT_MESSAGE);
