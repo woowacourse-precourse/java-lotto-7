@@ -1,10 +1,14 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +25,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_비교_기능_테스트() {
+        Lotto lotto1 = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        Lotto lotto2 = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        assertThat(lotto1).isEqualTo(lotto2);
+    }
 }
