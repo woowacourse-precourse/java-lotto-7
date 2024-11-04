@@ -2,6 +2,7 @@ package lotto.shop.bandingmachine;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.MessageCenter;
 
@@ -30,8 +31,14 @@ public class DrawSystem {
 
     void runDraw() {
         List<Integer> mainNumbers = drawMainNumbers();
+        mainNumbers = sort(mainNumbers);
         Integer bonusNumber = drawBonusNumber(mainNumbers);
         addDrawResult(mainNumbers, bonusNumber);
+    }
+
+    List<Integer> sort(List<Integer> mainNumbers) {
+        Collections.sort(mainNumbers);
+        return mainNumbers;
     }
 
     private void addDrawResult(List<Integer> mainNumbers, Integer bonusNumber) {

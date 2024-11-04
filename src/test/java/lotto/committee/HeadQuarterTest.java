@@ -105,6 +105,6 @@ public class HeadQuarterTest {
                 .hasMessage(MessageCenter.ERROR_PICK.get());
     }
 
-    
+
 
 }
