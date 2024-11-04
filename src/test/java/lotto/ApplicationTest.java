@@ -176,7 +176,7 @@ class ApplicationTest extends NsTest {
         );
     }
     @Test
-    void 예외_테스트() {
+    void 구입금액_문자입력시_예외발생() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
@@ -184,15 +184,15 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트2() {
+    void 당첨번호_중복입력시_예외발생() {
         assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5");
+            runException("1000", "1,2,3,4,5,5");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
     @Test
-    void 예외_테스트3() {
+    void 당첨번호_범위넘길시_예외발생() {
         assertSimpleTest(() -> {
             runException("1000", "1,52,3,4,5,6");
             assertThat(output()).contains(ERROR_MESSAGE);
@@ -200,9 +200,17 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트4() {
+    void 구입금액_천원단위_아닐경우_예외발생() {
         assertSimpleTest(() -> {
             runException("8400");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_입력오류시_예외발생() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "입력");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

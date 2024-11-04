@@ -4,6 +4,7 @@ import lotto.Common.Validator;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Domain.Lotto;
 
+import java.text.Format;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,7 +34,9 @@ public class InputView {
 
     public int requestBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonus = Integer.parseInt(Console.readLine());
+        String line = Console.readLine();
+        if (!Formatter.canParseInt(line)) throw new IllegalArgumentException("보너스 번호는 숫자만 입력해야 합니다.");
+        int bonus = Integer.parseInt(line);
         Validator.validateNumberRange(bonus);
         return bonus;
     }
