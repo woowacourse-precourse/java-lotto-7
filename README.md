@@ -24,6 +24,13 @@
 - [x] view
     - [x] InputView : 사용자에게 입력을 요구하는 안내 메세지를 출력하고, 입력을 받는 클래스입니다.
     - [x] OutputView : 사용자에게 결과에 해당하는 메세지를 출력하는 클래스입니다.
+- [x] test
+  - [x] ApplicationTest : 8000원과 로또 번호를 입력했을 때 중간 점검 테스트 케이스가 있습니다. 등수별 테스트 케이스가 존재합니다. 모든 구현이 끝난 후, 점검하는 테스트 케이스가 있습니다. 잘못된 값을 넣었을 때 확인하는 테스트 케이스가 있습니다.
+  - [x] BonusNumberTest : BonusNumber 생성자에 잘못된 값을 인자로 넣었을 때, IllegalArgumentException를 발생시키고 올바른 안내 문자를 출력하는지 확인하는 테스트 케이스가 존재합니다.
+  - [x] LottoTest : Lotto 생성자에 잘못된 값을 인자로 넣었을 때, IllegalArgumentException를 발생시키고 올바른 안내 문자를 출력하는지 확인하는 테스트 케이스가 존재합니다.
+  - [x] MoneyTest: Money 생성자에 잘못된 값을 인자로 넣었을 때, IllegalArgumentException를 발생시키고 올바른 안내 문자를 출력하는지 확인하는 테스트 케이스가 존재합니다.
+  - [x] ParserTest: Parser 클래스의 stringToInt 메서드에 잘못된 인자를 넣었을 때, IllegalArgumentException를 발생시키고 올바른 안내 문자를 출력하는지 확인하는 테스트 케이스가 존재합니다.
+
 ---
 ## 🚴‍♂️ 기능 목록
 - [x] 사용자에게 "구입 금액을 입력해 주세요." 출력합니다.
