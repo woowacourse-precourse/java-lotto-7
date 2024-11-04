@@ -9,8 +9,8 @@ public class LottoWinningNumbers {
     private final int bonusWinningNumber;
 
     private LottoWinningNumbers(Set<Integer> winningNumbers, int bonusWinningNumber) {
-        validateDuplicateBonusNumber(bonusWinningNumber);
         this.winningNumbers = winningNumbers;
+        validateDuplicateBonusNumber(bonusWinningNumber);
         this.bonusWinningNumber = bonusWinningNumber;
     }
 

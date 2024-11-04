@@ -7,7 +7,7 @@ public class LottoResult {
 
     private final Map<LottoPrize, Long> prizeCounts = new EnumMap<>(LottoPrize.class);
     private long totalProfit;
-    private long userPurchaseMoney;
+    private final long userPurchaseMoney;
 
     private LottoResult(long userPurchaseMoney) {
         for (LottoPrize prize : LottoPrize.values()) {

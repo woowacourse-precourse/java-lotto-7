@@ -31,7 +31,7 @@ public class LottoApplication {
         OutputView.showPurchasedLottos(lottos);
 
         Set<Integer> winningNumbers = InputView.inputWinningNumbers();
-        int bonusNumber = InputView.inputBonusWinningNumber();
+        int bonusNumber = InputView.inputBonusWinningNumber(winningNumbers);
         LottoWinningNumbers lottoWinningNumbers = lottoWinningNumbersController
             .determineLottoWinningNumbers(winningNumbers, bonusNumber);
 
