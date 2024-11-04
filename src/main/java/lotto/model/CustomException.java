@@ -32,26 +32,25 @@ public class CustomException extends Exception {
         bonusNumberRangeCheck(bonusNumber);
     }
 
-    private int purchaseOnlyIntCheck(String purchase){
-        try{
+    private int purchaseOnlyIntCheck(String purchase) {
+        try {
             return Integer.parseInt(purchase);
-        }catch(IllegalArgumentException e){
-            System.out.println("구매 금액은 숫자만 입력해주세요.");
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자만 입력해주세요.");
         }
-        return 0;
     }
     private void purchaseAmountCheck(int amount){
         if(amount < MINIMUM_PURCHASE_AMOUNT){
-            throw new IllegalArgumentException("구매 금액은 "+MINIMUM_PURCHASE_AMOUNT+"원 이상이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 "+MINIMUM_PURCHASE_AMOUNT+"원 이상이어야 합니다.");
         }
         if(amount % PURCHASE_AMOUNT_UNIT != 0){
-            throw new IllegalArgumentException("구매 금액은 "+PURCHASE_AMOUNT_UNIT+"원 단위로 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 "+PURCHASE_AMOUNT_UNIT+"원 단위로 입력해주세요.");
         }
     }
     private String[] winningNumberCountCheck(String inputWinningNumbers){
         String[] numberStrings = inputWinningNumbers.split(",");
         if (numberStrings.length != REQUIRED_NUMBER_COUNT) {
-            throw new IllegalArgumentException(REQUIRED_NUMBER_COUNT+"개의 숫자를 "+DELIMITER+"로 구분하여 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] "+REQUIRED_NUMBER_COUNT+"개의 숫자를 "+DELIMITER+"로 구분하여 입력해주세요.");
         }
         return numberStrings;
     }
@@ -61,27 +60,27 @@ public class CustomException extends Exception {
             for (String numberString : winningNumbers) {
                 int number = Integer.parseInt(numberString.trim());
                 if (number < MIN || number > MAX) {
-                    throw new IllegalArgumentException("각 번호는 " + MIN + "부터 " + MAX + " 사이의 숫자여야 합니다.");
+                    throw new IllegalArgumentException("[ERROR] 각 번호는 " + MIN + "부터 " + MAX + " 사이의 숫자여야 합니다.");
                 }
                 if (!winningNumberSet.add(number)) {
-                    throw new IllegalArgumentException("각 번호는 중복될 수 없습니다.");
+                    throw new IllegalArgumentException("[ERROR] 각 번호는 중복될 수 없습니다.");
                 }
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("번호는 숫자만 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 번호는 숫자만 입력해야 합니다.");
         }
     }
     private int bonusNumberOnlyIntCheck(String inputBonusNumber){
         try{
             return Integer.parseInt(inputBonusNumber);
         }catch(NumberFormatException e){
-            System.out.println("당첨 보너스 번호는 숫자 1개만 입력 가능합니다.");
+            System.out.println("[ERROR] 당첨 보너스 번호는 숫자 1개만 입력 가능합니다.");
         }
         return 0;
     }
     private void bonusNumberRangeCheck(int bounsNumber){
         if(bounsNumber < MIN || bounsNumber > MAX){
-            throw new IllegalArgumentException("당첨 보너스 번호는 "+MIN+"이상 "+MAX+"이하 의 숫자만 가능합니다");
+            throw new IllegalArgumentException("[ERROR] 당첨 보너스 번호는 "+MIN+"이상 "+MAX+"이하 의 숫자만 가능합니다");
         }
     }
 }
