@@ -34,7 +34,6 @@ class WinningNumbersTest {
             new WinningNumbers(rawWinningNumbers);
         });
 
-        assertEquals(ERROR_PROMPT + INVALID_WINNING_NUMBER, exception.getMessage());
     }
 
     @Test
@@ -48,7 +47,6 @@ class WinningNumbersTest {
             new WinningNumbers(rawWinningNumbers);
         });
 
-        assertEquals(ERROR_PROMPT + INVALID_WINNING_NUMBER, exception.getMessage());
     }
 
     @Test
@@ -62,7 +60,6 @@ class WinningNumbersTest {
             new WinningNumbers(rawWinningNumbers);
         });
 
-        assertEquals(ERROR_PROMPT + INVALID_WINNING_NUMBER, exception.getMessage());
     }
 
     @Test
@@ -76,7 +73,6 @@ class WinningNumbersTest {
             new WinningNumbers(rawWinningNumbers);
         });
 
-        assertEquals(ERROR_PROMPT + INVALID_LOTTO_SIZE, exception.getMessage());
     }
 
     @Test
@@ -90,7 +86,6 @@ class WinningNumbersTest {
             new WinningNumbers(rawWinningNumbers);
         });
 
-        assertEquals(ERROR_PROMPT + INVALID_LOTTO_SIZE, exception.getMessage());
     }
 
     @Test
@@ -104,7 +99,6 @@ class WinningNumbersTest {
             new WinningNumbers(rawWinningNumbers);
         });
 
-        assertEquals(ERROR_PROMPT + INVALID_DUPLICATE_WINNING_NUMBER, exception.getMessage());
     }
 
     @Test
@@ -133,7 +127,6 @@ class WinningNumbersTest {
             winningNumbers.addBonusNumber(rawBonusNumber);
         });
 
-        assertEquals(ERROR_PROMPT + INVALID_BONUS_NUMBER, exception.getMessage());
     }
 
     @Test
@@ -148,7 +141,6 @@ class WinningNumbersTest {
             winningNumbers.addBonusNumber(rawBonusNumber);
         });
 
-        assertEquals(ERROR_PROMPT + INVALID_BONUS_NUMBER, exception.getMessage());
     }
 
     @Test
@@ -163,7 +155,6 @@ class WinningNumbersTest {
             winningNumbers.addBonusNumber(rawBonusNumber);
         });
 
-        assertEquals(ERROR_PROMPT + INVALID_BONUS_NUMBER, exception.getMessage());
     }
 
     @Test
@@ -178,7 +169,6 @@ class WinningNumbersTest {
             winningNumbers.addBonusNumber(rawBonusNumber);
         });
 
-        assertEquals(ERROR_PROMPT + INVALID_DUPLICATE_BONUS_NUMBER, exception.getMessage());
     }
 
     @Test

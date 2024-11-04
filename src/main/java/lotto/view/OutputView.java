@@ -14,6 +14,10 @@ public class OutputView {
         return ERROR_PROMPT + errorMessage;
     }
 
+    public static void printErrorMessage (String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public void printLottos (Lottos lottos) {
         printLineBreak();
         printLottoCount(lottos.size());

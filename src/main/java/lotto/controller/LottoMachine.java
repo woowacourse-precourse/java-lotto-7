@@ -72,9 +72,7 @@ public class LottoMachine {
 
 
     private Integer lottoPurchase () {
-        String rawPurchaseAmount = inputView.getPurchaseAmount();
-
-        return purchaseService.purchaseLotto(rawPurchaseAmount);
+        return purchaseService.purchaseLotto();
     }
 
     private List<Integer> generateRandomNumbers () {
@@ -82,13 +80,9 @@ public class LottoMachine {
     }
 
     private WinningNumbers getWinningNumbers () {
-        String inputWinningNumbers = inputView.getWinningNumbers();
+        WinningNumbers winningNumbers = winningNumbersService.getWinningNumbers();
 
-        WinningNumbers winningNumbers = winningNumbersService.getWinningNumbers(inputWinningNumbers);
-
-        String rawBonusNumber = inputView.getBonusNumber();
-
-        winningNumbersService.getBonusNumber(winningNumbers, rawBonusNumber);
+        winningNumbersService.getBonusNumber(winningNumbers);
 
         return winningNumbers;
     }

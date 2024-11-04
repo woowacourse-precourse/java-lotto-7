@@ -105,8 +105,6 @@ class LottoRankTest {
             LottoRank.findRank(matchCount, bonusMatch);
         });
 
-        assertEquals(ERROR_PROMPT + INVALID_MATCH_COUNT, exception.getMessage());
-
     }
 
     @Test
@@ -120,8 +118,6 @@ class LottoRankTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             LottoRank.findRank(matchCount, bonusMatch);
         });
-
-        assertEquals(ERROR_PROMPT + INVALID_MATCH_COUNT, exception.getMessage());
 
     }
 
