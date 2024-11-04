@@ -57,5 +57,6 @@ public class LottoController {
         );
 
         outputView.printWinningResult(winningResults);
+        outputView.printRateOfReturn(rateOfReturn);
     }
 }
