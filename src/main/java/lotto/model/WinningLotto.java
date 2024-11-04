@@ -40,10 +40,6 @@ public class WinningLotto {
         }
     }
 
-    public int getSize() {
-        return LOTTO_SIZE;
-    }
-
     public List<Integer> getWinNumbers() {
         return winNumbers.stream().toList();
     }
