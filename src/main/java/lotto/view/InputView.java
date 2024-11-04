@@ -38,14 +38,14 @@ public class InputView {
         return winningLotto;
     }
 
-    public static Bonus inputBonusNumber(Lotto winningNumber){
+    public static Bonus inputBonusNumber(Lotto winningLotto){
         Bonus number = null;
 
         while (number == null){
             System.out.print(RunMessage.INPUT_BONUS_MESSAGE.getMessage());
             try {
                 String input = Console.readLine();
-                number = new Bonus(winningNumber.getNumbers(), Bonus.parseBonusNumber(input));
+                number = new Bonus(winningLotto.getNumbers(), Bonus.parseBonusNumber(input));
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
