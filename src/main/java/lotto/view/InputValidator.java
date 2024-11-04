@@ -29,6 +29,7 @@ public class InputValidator {
         validateEmptyInput(winningNumbers);
         String sanitizedNumbers = NumberFormatter.removeAllWhiteSpaces(winningNumbers);
         validateNoWhiteSpaceInBetween(sanitizedNumbers);
+        validateComma(sanitizedNumbers);
         validateContainsOnlyCommaAndDigits(sanitizedNumbers);
     }
 
@@ -115,6 +116,13 @@ public class InputValidator {
     private void validateBonusNumberInRange(int bonusNumber) {
         if (bonusNumber < LOTTO_START_NUMBER || bonusNumber > LOTTO_END_NUMBER) {
             throw new IllegalArgumentException(ERROR_HEADER.getValue() + "범위를 벗어난 번호입니다.");
+        }
+    }
+
+    private void validateComma(String input) {
+        if (input.contains(",,") || input.startsWith(",") || input.endsWith(",")) {
+            throw new IllegalArgumentException(
+                    ERROR_HEADER.getValue() + "당첨 번호는 숫자와 숫자 사이에 하나의 콤마만 사용해야 하며, 양 끝에 콤마가 없어야 합니다.");
         }
     }
 

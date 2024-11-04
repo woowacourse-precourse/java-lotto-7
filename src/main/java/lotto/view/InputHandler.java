@@ -15,14 +15,20 @@ public class InputHandler {
      * @return 구입한 로또 개수
      */
     public int getNumberOfLottoTickets() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String purchaseAmount = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String purchaseAmount = Console.readLine();
 
-        inputValidator.validateStringTypeAmount(purchaseAmount);
-        int purchaseAmountAsInt = NumberFormatter.parseToInt(purchaseAmount);
-        inputValidator.validateIntegerTypeAmount(purchaseAmountAsInt);
+                inputValidator.validateStringTypeAmount(purchaseAmount);
+                int purchaseAmountAsInt = NumberFormatter.parseToInt(purchaseAmount);
+                inputValidator.validateIntegerTypeAmount(purchaseAmountAsInt);
 
-        return purchaseAmountAsInt / LOTTO_PRICE;
+                return purchaseAmountAsInt / LOTTO_PRICE;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
@@ -30,14 +36,20 @@ public class InputHandler {
      * @return 6개의 당첨번호가 담긴 리스트
      */
     public List<Integer> getWinningNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String winningNumbers = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("\n당첨 번호를 입력해 주세요.");
+                String winningNumbers = Console.readLine();
 
-        inputValidator.validateWinningNumbers(winningNumbers);
-        List<Integer> lottoNumbers = NumberFormatter.parseToList(winningNumbers);
-        inputValidator.validateLottoNumbers(lottoNumbers);
+                inputValidator.validateWinningNumbers(winningNumbers);
+                List<Integer> lottoNumbers = NumberFormatter.parseToList(winningNumbers);
+                inputValidator.validateLottoNumbers(lottoNumbers);
 
-        return lottoNumbers;
+                return lottoNumbers;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
@@ -45,10 +57,16 @@ public class InputHandler {
      * @return 1개의 1이상 45 이하의 정수
      */
     public int getBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        String bonusNumber = Console.readLine();
-        inputValidator.validateBonusNumber(bonusNumber);
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                String bonusNumber = Console.readLine();
 
-        return NumberFormatter.parseToInt(bonusNumber);
+                inputValidator.validateBonusNumber(bonusNumber);
+                return NumberFormatter.parseToInt(bonusNumber);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
