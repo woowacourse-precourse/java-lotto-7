@@ -5,7 +5,8 @@ public enum Error {
     CAPTION("[ERROR] "),
     NOT_FIX_SIZE(CAPTION.message + "로또 번호는 %d개여야 합니다."),
     DUPLICATED_NUMBER(CAPTION.message + "같은 숫자는 중복될 수 없습니다."),
-    NOT_NUMERIC("숫자 이외엔 입력할 수 없습니다.");
+    NOT_NUMERIC(CAPTION.message + "숫자 이외엔 입력할 수 없습니다."),
+    REMAIN_EXISTS(CAPTION.message + "가격은 %,d원 단위로 입력해야 합니다.");
 
     private final String message;
 
