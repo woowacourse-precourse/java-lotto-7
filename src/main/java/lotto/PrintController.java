@@ -11,11 +11,11 @@ public class PrintController {
     //구입금액
     public int inputPurchaseNumber() {
         while (true) {
-            try{
+            try {
                 System.out.println("구입금액을 입력해 주세요");
                 String purchaseNumber = Console.readLine();
                 return lottoController.parsePurchaseNumber(purchaseNumber);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -58,7 +58,7 @@ public class PrintController {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String bonusNumber = Console.readLine();
                 int parseBonusNumber = lottoController.parseBonusNumber(bonusNumber);
-                WinNumbers.validate(winNumbers,parseBonusNumber);
+                WinNumbers.validate(winNumbers, parseBonusNumber);
                 return parseBonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
