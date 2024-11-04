@@ -40,7 +40,7 @@ class OutputControllerTest {
         outputController.printAllLotteries(lottoContainer);
 
         Assertions.assertThat(printResult.toString())
-                .isEqualTo("2개를 구매했습니다.\n"
+                .isEqualTo("\n2개를 구매했습니다.\n"
                 + "[1, 2, 3, 4, 5, 6]\n"
                 + "[2, 3, 4, 5, 6, 7]\n");
     }
@@ -51,7 +51,7 @@ class OutputControllerTest {
 
         outputController.printStatisticResults(new Results(List.of(LottoResults.THIRD, LottoResults.SECOND)));
         Assertions.assertThat(printResult.toString())
-                .isEqualTo("당첨 통계\n"
+                .isEqualTo("\n당첨 통계\n"
                         + "---\n"
                         + "3개 일치 (5,000원) - 0개\n"
                         + "4개 일치 (50,000원) - 0개\n"
