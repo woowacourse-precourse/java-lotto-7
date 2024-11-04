@@ -18,7 +18,7 @@ public class OutputView {
     private static final String DELIMITER = "---";
     private static final String RESULT_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String SECOND_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    private static final String RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
+    private static final String RATE_OF_RETURN = "총 수익률은 %,.1f%%입니다.";
 
     public void renderError(String message) {
         System.out.printf("[ERROR] %s" + NEWLINE, message);
