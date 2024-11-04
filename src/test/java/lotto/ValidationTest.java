@@ -24,4 +24,10 @@ public class ValidationTest {
         assertThatThrownBy(() -> Validation.validateBonusNumber("string"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_번호가_1부터_45까지가_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> Validation.validateBonusNumber("46"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

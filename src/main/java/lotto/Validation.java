@@ -34,11 +34,14 @@ public class Validation {
         if (isNotInteger(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
+        if (isNotInRange(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45까지 입력 가능합니다.");
+        }
     }
 
-    public static boolean isNotInteger(String money) {
+    public static boolean isNotInteger(String num) {
         try {
-            Integer.parseInt(money);
+            Integer.parseInt(num);
             return false;
         } catch (NumberFormatException e) {
             return true;
