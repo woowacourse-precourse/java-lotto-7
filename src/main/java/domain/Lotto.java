@@ -13,6 +13,10 @@ public class Lotto {
         sortNumbers(this.numbers);
     }
 
+    public static Lotto of(List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
