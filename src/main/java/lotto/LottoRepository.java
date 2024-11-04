@@ -27,7 +27,7 @@ public class LottoRepository {
     }
 
     //로또 구입 메서드 구현
-    private int getPurchaseAmount() {
+    public int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         try {
             int amount = Integer.parseInt(Console.readLine());
@@ -41,7 +41,7 @@ public class LottoRepository {
     }
 
     //로또 구입 갯수 메서드 구현
-    private void purchaseLottos(int amount) {
+    public void purchaseLottos(int amount) {
         int count = amount / lotto_Price;
         System.out.printf("%d개를 구매했습니다.\n", count);
         for (int i = 0; i < count; i++) {
@@ -50,13 +50,13 @@ public class LottoRepository {
     }
 
     //당첨 번호 메서드 구현
-    private Lotto getWinningLotto() {
+    public Lotto getWinningLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         return parseLottoNumbers(input);
     }
     //입력값 처리 메서드
-    private Lotto parseLottoNumbers(String input) {
+    public Lotto parseLottoNumbers(String input) {
         String[] parts = input.split(",");
         List<Integer> numbers = new ArrayList<>();
         for (String part : parts) {
@@ -66,7 +66,7 @@ public class LottoRepository {
     }
 
     //보너스 번호 입력 구현
-    private int getBonusNumber() {
+    public int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
         if (bonusNumber < 1 || bonusNumber > 45) {
@@ -75,7 +75,7 @@ public class LottoRepository {
         return bonusNumber;
     }
     //구매한 로또 번호 출력
-    private void displayPurchasedLottos() {
+    public void displayPurchasedLottos() {
         for (Lotto lotto : purchasedLottos) {
             System.out.println(lotto.getNumbers());
         }
