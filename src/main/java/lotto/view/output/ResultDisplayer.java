@@ -7,6 +7,7 @@ import lotto.model.Lottos;
 public class ResultDisplayer {
 
     private static final String LOTTO_COUNT_MESSAGE_SUFFIX = "개를 구매했습니다.";
+    private static final String YIELD_MESSAGE = "총 수익률은 ";
 
     public void showPurchasedLottos(int lottoCount, Lottos lottos) {
         System.out.println(lottoCount + LOTTO_COUNT_MESSAGE_SUFFIX);
@@ -26,5 +27,9 @@ public class ResultDisplayer {
                         winningCounts.getOrDefault(rank, 0));
             }
         }
+    }
+
+    public void showYield(double yield) {
+        System.out.printf("%s%.1f%%입니다.%n", YIELD_MESSAGE, yield);
     }
 }

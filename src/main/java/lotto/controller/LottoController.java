@@ -69,5 +69,6 @@ public class LottoController {
 
     private void displayResults(Map<WinningRank, Integer> winningCounts, double yield) {
         resultDisplayer.showWinningStatistics(winningCounts);
+        resultDisplayer.showYield(yield);
     }
 }
