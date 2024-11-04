@@ -10,18 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoSimulator {
-    private final ConsoleOutputHandler consoleOutputHandler = new ConsoleOutputHandler();
-    private final ConsoleInputHandler consoleInputHandler = new ConsoleInputHandler();
     public void run() {
-        consoleOutputHandler.buyAmountMessage();
-        String buyAmountString = consoleInputHandler.buyAmount();
+        ConsoleOutputHandler.buyAmountMessage();
+        String buyAmountString = ConsoleInputHandler.buyAmount();
         BuyAmount buyAmount = new BuyAmount(buyAmountString);
         int lottoAmount = buyAmount.lottoAmount();
-        consoleOutputHandler.lottoAmountMessage(lottoAmount);
+        ConsoleOutputHandler.lottoAmountMessage(lottoAmount);
         List<Lotto> lottoList = new ArrayList<>();
         for(int i = 0; i < lottoAmount; i++){
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6));
             lottoList.add(lotto);
+            lotto.lottoNumberOut();
         }
     }
 }
