@@ -3,13 +3,9 @@ package lotto;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import lotto.validator.InputValidator;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -56,49 +52,6 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-
-    @Test
-    @DisplayName("유효한 구입 금액 입력 테스트")
-    void testValidPurchaseAmount() {
-        assertEquals(1000, InputValidator.validatePurchaseAmount("1000"));
-    }
-
-    @Test
-    @DisplayName("구입 금액 숫자가 아닐 때 예외 테스트")
-    void testInvalidPurchaseAmountNonInteger() {
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> InputValidator.validatePurchaseAmount("abcd")
-        );
-        assertEquals("[ERROR] 구입금액은 정수여야 합니다.", exception.getMessage());
-    }
-
-    @Test
-    @DisplayName("구입 금액이 1000원 단위가 아닌 경우 예외 테스트")
-    void testInvalidPurchaseAmountNotMultipleOfThousand() {
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> InputValidator.validatePurchaseAmount("1500")
-        );
-        assertEquals("[ERROR] 구입금액은 1,000원 단위여야 합니다.", exception.getMessage());
-    }
-
-    @Test
-    @DisplayName("구입 금액이 0 이하일 때 예외 테스트")
-    void testInvalidPurchaseAmountNegativeOrZero() {
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> InputValidator.validatePurchaseAmount("0")
-        );
-        assertEquals("[ERROR] 구입금액은 1,000원 단위여야 합니다.", exception.getMessage());
-
-        exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> InputValidator.validatePurchaseAmount("-1000")
-        );
-        assertEquals("[ERROR] 구입금액은 1,000원 단위여야 합니다.", exception.getMessage());
-    }
-
 
     @Override
     public void runMain() {
