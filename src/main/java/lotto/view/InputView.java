@@ -21,8 +21,6 @@ public class InputView {
         } catch (PriceToBuyLottoException e) {
             e.printErrorMessage();
             priceToBuyLotto = getPriceToBuyLotto();
-        } finally {
-            Console.close();
         }
         return priceToBuyLotto;
     }
@@ -35,8 +33,6 @@ public class InputView {
         } catch (WinningLottoNumberException e) {
             e.printErrorMessage();
             winningLottoNumber = getWinningLottoNumber();
-        } finally {
-            Console.close();
         }
         return winningLottoNumber;
     }
