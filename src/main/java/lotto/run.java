@@ -43,11 +43,13 @@ public class run {
 
         // 6. 통계 출력
         LottoStatisticsOutputView.printStatistics(results);
+
         // 7. 수익률 계산
         LottoStatistics lottoStatistics = new LottoStatistics(results, numberOfLottos * 1000);
         double profitRate = lottoStatistics.calculateProfitRate();
 
-        // 8. 수익률 출력
-        System.out.printf("총 수익률은 %.2f%%입니다.%n", profitRate);
+        // 8. 수익률을 소수점 첫째 자리에서 반올림하여 출력
+        double roundedProfitRate = Math.round(profitRate * 10.0) / 10.0; // 첫째 자리에서 반올림
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", roundedProfitRate); // 출력 형식 수정
     }
 }
