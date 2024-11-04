@@ -71,4 +71,11 @@ public class InputTest {
 		String number = "6";
 		assertThrows(IllegalArgumentException.class, () -> input.validateDuplicateBonusNumber(numbers, number));
 	}
+
+	@Test
+	@DisplayName("입력이 빈 문자열인지 검증 테스트")
+	void 입력이_빈_문자열인지_검증하는_테스트() {
+		String s = "";
+		assertThrows(IllegalArgumentException.class, () -> input.validateEmpty(s));
+	}
 }
