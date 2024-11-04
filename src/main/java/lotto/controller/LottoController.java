@@ -30,7 +30,7 @@ public class LottoController {
         }
     }
 
-    public void assignWinningNumbers() {
+    private void assignWinningNumbers() {
         try {
             String numbers = lottoView.readWinningNumbers();
             lottoService.assignWinningLotto(numbers);
