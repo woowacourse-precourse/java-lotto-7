@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.LottoMarket;
+import lotto.domain.Money;
 import lotto.domain.NumbersComparator;
 import lotto.domain.ProfitRatioCalculator;
 import lotto.domain.SixNumbers;
@@ -12,7 +13,9 @@ import lotto.view.InputView;
 
 public class LottoService {
 
-    public List<Lotto> buyLotto(int money) {
+    public List<Lotto> buyLotto() {
+        int inputMoney = InputView.readMoney();
+        Money money = new Money(inputMoney);
         LottoMarket lottoMarket = new LottoMarket();
         return lottoMarket.buyLotto(money);
     }

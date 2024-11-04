@@ -18,8 +18,7 @@ public class Controller {
 
     public void run() {
 
-        int inputMoney = readMoney();
-        List<Lotto> myLottos = buyLotto(inputMoney);
+        List<Lotto> myLottos = buyLotto();
         OutputView.showLottoNumbers(myLottos);
 
         WinningNumbers winningNumbers = getWinningNumbers();
@@ -30,21 +29,10 @@ public class Controller {
 
     }
 
-    private int readMoney() {
+    private List<Lotto> buyLotto() {
         for (int i=0; i<MAX_TRY; i++) {
             try {
-                return InputView.readMoney();
-            } catch (RuntimeException e) {
-                printError(e.getMessage());
-            }
-        }
-        throw new LottoException(ExceptionCode.MAX_TRY_ERROR);
-    }
-
-    private List<Lotto> buyLotto(int money) {
-        for (int i=0; i<MAX_TRY; i++) {
-            try {
-                return lottoService.buyLotto(money);
+                return lottoService.buyLotto();
             } catch (RuntimeException e) {
                 printError(e.getMessage());
             }
