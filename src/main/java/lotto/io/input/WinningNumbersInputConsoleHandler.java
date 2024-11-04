@@ -12,7 +12,12 @@ public class WinningNumbersInputConsoleHandler {
 
     public String[] askWinningNumber() {
         String rawWinningNumber = Console.readLine();
+        String[] rawWinningNumberSplit = rawWinningNumber.split(RAW_NUMBER_SEPARATOR);
 
-        return rawWinningNumber.split(RAW_NUMBER_SEPARATOR);
+        for (int i = 0; i < rawWinningNumberSplit.length; i++) {
+            rawWinningNumberSplit[i] = rawWinningNumberSplit[i].trim();
+        }
+
+        return rawWinningNumberSplit;
     }
 }
