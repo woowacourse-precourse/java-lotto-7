@@ -1,6 +1,6 @@
 package lotto.view;
 
-public class OutputProfitRate {
+public class OutputProfitRateView {
 
   private static final String MESSAGE_PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
 

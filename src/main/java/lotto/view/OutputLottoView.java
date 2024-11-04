@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 
 import java.util.List;
 
-public class OutputLotto {
+public class OutputLottoView {
 
   private static final String MESSAGE_PURCHASED_TICKETS = "%d개를 구매했습니다.";
 
