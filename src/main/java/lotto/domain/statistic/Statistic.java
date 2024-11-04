@@ -5,21 +5,35 @@ import lotto.domain.prize.WinningStatus;
 import lotto.domain.user.User.UserLottoInfo;
 
 public class Statistic {
-
-    private int fifth = 0;
-    private int fourth = 0;
-    private int third = 0;
-    private int second = 0;
     private int first = 0;
+    private int second = 0;
+    private int third = 0;
+    private int fourth = 0;
+    private int fifth = 0;
 
-    public double getInterestRate(List<UserLottoInfo> userLottoInfos, Integer purchaseCost) {
-        double sum = userLottoInfos.stream()
-                .mapToInt(userLottoInfo -> userLottoInfo.getWinningStatus()
+    public double getInterestRate(List<UserLottoInfo> userLottoInfos, long purchaseCost) {
+        long sum = getPrizeSum(userLottoInfos);
+
+        double yield = transformToPercentage(purchaseCost, sum);
+
+        return roundToTwoDecimalPlaces(yield);
+    }
+
+    private static long getPrizeSum(List<UserLottoInfo> userLottoInfos) {
+        return userLottoInfos.stream()
+                .mapToLong(userLottoInfo -> userLottoInfo.getWinningStatus()
                         .getWinningMoney())
                 .sum();
-
-        return (sum / purchaseCost) * 100;
     }
+
+    private static double transformToPercentage(long sum, long purchaseCost) {
+        return sum / (double)purchaseCost * 100;
+    }
+
+    private static double roundToTwoDecimalPlaces(double yield) {
+        return Math.round(yield * 10) / 10.0;
+    }
+
 
     public void setWinningStatistics(List<UserLottoInfo> lottoInfos) {
         for (UserLottoInfo userlottoInfo : lottoInfos) {
