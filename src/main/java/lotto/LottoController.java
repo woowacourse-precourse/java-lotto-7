@@ -4,10 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.lang.Math.round;
 
@@ -123,7 +120,9 @@ public class LottoController {
     }
 
     public void printWinningReport() {
-        List<Integer> winningListKeys = winningList.keySet().stream().sorted().toList();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        List<Integer> winningListKeys = winningList.keySet().stream().sorted(Comparator.reverseOrder()).toList();
         for (int key : winningListKeys) {
             if (key == 5) {
                 System.out.printf("3개 일치 (5,000원) - %d개\n", winningList.get(key));
