@@ -1,6 +1,6 @@
 package lotto.dto;
 
-import lotto.constant.LottoRank;
+import lotto.domain.LottoRank;
 
 public record WinningResultDto(
         int matchCount,

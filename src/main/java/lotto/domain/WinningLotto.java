@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static lotto.constant.ExceptionMessage.DUPLICATE_BONUS;
 
-import lotto.constant.LottoRank;
 import lotto.vo.LottoNumber;
 
 public class WinningLotto {

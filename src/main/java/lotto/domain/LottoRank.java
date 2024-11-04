@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.domain;
 
 import java.util.Arrays;
 
@@ -28,7 +28,11 @@ public enum LottoRank {
     }
 
     private boolean matches(int matchCount, boolean hasBonusMatch) {
-        return this.matchCount == matchCount && this.hasBonusMatch == hasBonusMatch;
+        if (this.matchCount == 5) {
+            return this.matchCount == matchCount && this.hasBonusMatch == hasBonusMatch;
+        }
+
+        return this.matchCount == matchCount;
     }
 
     public static boolean isWinning(LottoRank lottoRank) {

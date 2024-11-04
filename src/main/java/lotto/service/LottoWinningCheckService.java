@@ -2,9 +2,9 @@ package lotto.service;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.constant.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPayment;
+import lotto.domain.LottoRank;
 import lotto.domain.WinningLotto;
 import lotto.dto.WinningResultDto;
 import lotto.dto.WinningStatisticsDto;
