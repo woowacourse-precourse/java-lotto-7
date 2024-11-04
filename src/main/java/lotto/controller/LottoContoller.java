@@ -21,14 +21,7 @@ public class LottoContoller {
 
         outputView.printLottoLogs(lottoService.generateLottoLogs());
 
-        String winningNumbersInput = inputView.inputWinningNumbers();
-        String bonusNumberInput = inputView.inputBonusNumber();
-
-        LottoReport lottoReport = lottoService.generateLottoReport(
-                purchaseAmount,
-                winningNumbersInput,
-                bonusNumberInput
-        );
+        LottoReport lottoReport = promptLottoReport(purchaseAmount);
 
         outputView.printWinningReport(lottoReport.winningReport());
         outputView.printProfitRate(lottoReport.profitRate());
@@ -47,4 +40,24 @@ public class LottoContoller {
         }
         return purchaseAmount;
     }
+
+    private LottoReport promptLottoReport(String purchaseAmount) {
+        LottoReport lottoReport;
+        while (true) {
+            try {
+                String winningNumbersInput = inputView.inputWinningNumbers();
+                String bonusNumberInput = inputView.inputBonusNumber();
+                lottoReport = lottoService.generateLottoReport(
+                    purchaseAmount,
+                    winningNumbersInput,
+                    bonusNumberInput
+                );
+                break;
+            } catch (Exception e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return lottoReport;
+    }
+
 }
