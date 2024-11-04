@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class OutputView {
 
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] ";
     private static final String OUTPUT_LOTTO_PURCHASE_AMOUNT = "개를 구매했습니다.";
     private static final String OUTPUT_LOTTO_RESULT_HEAD = "당첨 통계\n---";
     private static final String OUTPUT_LOTTO_RESULT_FIFTH = "3개 일치 (5,000원) - ";
@@ -40,5 +41,9 @@ public class OutputView {
 
     public static void outputRevenue(double revenue){
         System.out.println(OUTPUT_LOTTO_RESULT_REVENUE + revenue + OUTPUT_LOTTO_RESULT_REVENUE_TAIL);
+    }
+
+    public static void outputError(String message){
+        System.out.println(ERROR_MESSAGE_FORMAT + message);
     }
 }
