@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -55,5 +56,27 @@ class LottoTest {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         assertThatCode(() -> new Lotto(numbers))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("로또 번호와 당첨 번호를 비교하여 등수를 반환한다.")
+    void match_returnsCorrectRank() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 7, 8, 9), 4);
+
+        Rank rank = lotto.match(winningLotto);
+
+        assertThat(rank).isEqualTo(Rank.FIFTH);
+    }
+
+    @Test
+    @DisplayName("보너스 번호 일치 시 등수를 올바르게 반환한다.")
+    void match_bonusNumberMatch_returnsCorrectRank() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+        WinningLotto winningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+
+        Rank rank = lotto.match(winningLotto);
+
+        assertThat(rank).isEqualTo(Rank.SECOND);
     }
 }
