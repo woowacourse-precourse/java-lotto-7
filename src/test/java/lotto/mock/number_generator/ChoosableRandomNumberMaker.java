@@ -6,10 +6,6 @@ public class ChoosableRandomNumberMaker extends MockedRandomNumberGenerator {
 
     private final List<Integer> numbers;
 
-    public ChoosableRandomNumberMaker() {
-        this(List.of());
-    }
-
     public ChoosableRandomNumberMaker(List<Integer> numbers) {
         this.numbers = numbers;
     }
