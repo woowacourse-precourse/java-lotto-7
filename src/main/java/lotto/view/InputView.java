@@ -32,12 +32,12 @@ public class InputView {
         }
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
                 OutputView.notifyEnterBonusNumber();
                 String input = Console.readLine();
-                return BonusNumberValidator.validateBonusNumber(input);
+                return BonusNumberValidator.validateBonusNumber(input, winningNumbers);
             } catch (Exception e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

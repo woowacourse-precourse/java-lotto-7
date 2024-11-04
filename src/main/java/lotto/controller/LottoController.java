@@ -45,7 +45,7 @@ public class LottoController {
         List<Integer> winningNumbers = InputView.getWinningNumbers();
 
         OutputView.printBlankLine();
-        int bonusNumber = InputView.getBonusNumber();
+        int bonusNumber = InputView.getBonusNumber(winningNumbers);
 
         return new Computer(winningNumbers, bonusNumber);
     }

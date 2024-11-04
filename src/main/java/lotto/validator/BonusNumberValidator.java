@@ -1,17 +1,26 @@
 package lotto.validator;
 
+import java.util.List;
 import lotto.info.LottoInfo;
 import lotto.message.ErrorMessage;
 
 public class BonusNumberValidator {
     private static final String DEFAULT_ERROR_MESSAGE = "[ERROR] ";
 
-    public static int validateBonusNumber(String input) {
+    public static int validateBonusNumber(String input, List<Integer> winningNumbers) {
         validateSingleNumber(input);
         int bonusNumber = parseAndValidateInteger(input);
         validatePositive(bonusNumber);
         validateRange(bonusNumber);
+        validateNoDuplicate(bonusNumber, winningNumbers);
         return bonusNumber;
+    }
+
+    private static void validateNoDuplicate(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(
+                    DEFAULT_ERROR_MESSAGE + ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE.getMessage());
+        }
     }
 
     private static void validateSingleNumber(String input) {
