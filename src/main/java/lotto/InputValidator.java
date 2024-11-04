@@ -34,7 +34,6 @@ public class InputValidator {
 
         validateCount(result);
         validateUnique(result);
-        Collections.sort(result);
 
         return Collections.unmodifiableList(result);
     }

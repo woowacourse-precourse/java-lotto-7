@@ -51,13 +51,13 @@ public class LottoData {
                 .append(matches.stream().filter(enumLottoPrice -> enumLottoPrice.equals(EnumLottoPrice.MATCH_6))
                         .count()).append("개\n");
 
-        System.out.println(result);
+        System.out.print(result);
     }
 
     private void printRate() {
         StringBuilder result = new StringBuilder();
         double value = ( (double) this.winningAmount / (generatedLottos.size() * MINIMUM_MONEY)) * 100;
-        result.append("총 수익률은 ").append(String.format("%.1f", value)).append("% 입니다.");
+        result.append("총 수익률은 ").append(String.format("%.1f", value)).append("%입니다.");
 
         System.out.println(result);
     }

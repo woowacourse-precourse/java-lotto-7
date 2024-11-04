@@ -12,7 +12,6 @@ public class LottoMachine {
 
         for (int i = 0; i < quntity; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
             result.add(new Lotto(numbers));
         }
 
@@ -26,9 +25,10 @@ public class LottoMachine {
         int size = generatedLottos.size();
         StringBuilder result = new StringBuilder();
 
-        result.append("\n").append(size).append("개 구매했습니다.\n");
+        result.append("\n").append(size).append("개를 구매했습니다.\n");
         for(int i = 0; i < size; i++) {
-            List<Integer> numbers = generatedLottos.get(i).getNumbers();
+            List<Integer> numbers = new ArrayList<>(generatedLottos.get(i).getNumbers());
+            Collections.sort(numbers);
             result.append("[");
             numbers.forEach(e -> result.append(e).append(", "));
             result.replace(result.length()-2, result.length(), "]\n");
