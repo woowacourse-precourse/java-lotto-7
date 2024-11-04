@@ -1,11 +1,9 @@
 package lotto.controller;
 
-import java.util.List;
-
 import lotto.model.LottoBundle;
 import lotto.model.LottoCreator;
 import lotto.model.Price;
-import lotto.model.PurchaseLottoResultGenerator;
+import lotto.model.PurchasedLottoResultsDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -39,9 +37,8 @@ public class LottoCreateController {
 
 	private LottoBundle purchaseLotto(Price price) {
 		LottoBundle lottoBundle = new LottoBundle(price, lottoCreator);
-		PurchaseLottoResultGenerator purchaseLottoResultGenerator = new PurchaseLottoResultGenerator();
-		List<List<String>> purchaseLottoResult = purchaseLottoResultGenerator.generatePurchaseLottoResult(lottoBundle);
-		outputView.printPurchasedLottoResultMessage(lottoBundle.getCount(), purchaseLottoResult);
+		PurchasedLottoResultsDto purchasedLottoResultsDto = PurchasedLottoResultsDto.from(lottoBundle);
+		outputView.printPurchasedLottoResultMessage(lottoBundle.getCount(), purchasedLottoResultsDto);
 		return lottoBundle;
 	}
 }
