@@ -2,38 +2,71 @@ package lotto.view;
 
 import java.text.NumberFormat;
 import lotto.dto.lottoDto.LottoResponse;
+import lotto.dto.lottoWinningResultDto.LottoWinningResult;
 import lotto.dto.lottoWinningResultDto.LottoWinningResultResponse;
+import lotto.message.OutputMessage;
 import lotto.model.Lotto;
 
 public class OutputViewImpl implements OutputView {
     @Override
     public void printIssuedLotto(LottoResponse lottoResponse) {
-        System.out.println(lottoResponse.lottoCount() + "개를 구매했습니다.");
+        System.out.println(lottoResponse.lottoCount() + OutputMessage.ISSUED_LOTTO_MESSAGE.getOutputMessage());
         for (Lotto lotto : lottoResponse.issuedLotto()) {
             System.out.println(lotto.toString());
         }
     }
 
-    // TODO: 리팩토링 해라잉
     @Override
-    public void printLottoResult(LottoWinningResultResponse lottoWinningResultResponse) {
+    public void printLottoResult(LottoWinningResultResponse response) {
+        LottoWinningResult winningResult = response.lottoWinningResult();
+
+        System.out.println(OutputMessage.WINNING_STATISTICS.getOutputMessage());
+
+        printThreeMatches(winningResult.fifthPlaceNumber());
+        printFourMatches(winningResult.fourthPlaceNumber());
+        printFiveMatches(winningResult.thirdPlaceNumber());
+        printFiveAndBonusBallMatches(winningResult.secondPlaceNumber());
+        printSixMatches(winningResult.firstPlaceNumber());
+
+        printRateOfReturn(response.winningAmount());
+    }
+
+    private void printThreeMatches(int lottoResult) {
+        System.out.println(
+                OutputMessage.THREE_MATCHES_MESSAGE.getOutputMessage() + lottoResult
+                        + OutputMessage.MATCHES_MESSAGE_SUFFIX.getOutputMessage());
+    }
+
+    private void printFourMatches(int lottoResult) {
+        System.out.println(
+                OutputMessage.FOUR_MATCHES_MESSAGE.getOutputMessage() + lottoResult
+                        + OutputMessage.MATCHES_MESSAGE_SUFFIX.getOutputMessage());
+    }
+
+    private void printFiveAndBonusBallMatches(int lottoResult) {
+        System.out.println(
+                OutputMessage.FIVE_AND_BONUS_BALL_MATCHES_MESSAGE.getOutputMessage() + lottoResult
+                        + OutputMessage.MATCHES_MESSAGE_SUFFIX.getOutputMessage());
+    }
+
+    private void printFiveMatches(int lottoResult) {
+        System.out.println(
+                OutputMessage.FIVE_MATCHES_MESSAGE.getOutputMessage() + lottoResult
+                        + OutputMessage.MATCHES_MESSAGE_SUFFIX.getOutputMessage());
+    }
+
+    private void printSixMatches(int lottoResult) {
+        System.out.println(
+                OutputMessage.SIX_MATCHES_MESSAGE.getOutputMessage() + lottoResult
+                        + OutputMessage.MATCHES_MESSAGE_SUFFIX.getOutputMessage());
+    }
+
+    private void printRateOfReturn(double rateOfReturn) {
         NumberFormat f = NumberFormat.getInstance();
         f.setGroupingUsed(false);
 
-        System.out.println("당첨 통계");
-        System.out.println(
-                "3개 일치 (5,000원) - " + lottoWinningResultResponse.lottoWinningResult().fifthPlaceNumber() + "개");
-        System.out.println(
-                "4개 일치 (50,000원) - " + lottoWinningResultResponse.lottoWinningResult().fourthPlaceNumber() + "개");
-        System.out.println(
-                "5개 일치 (1,500,000원) - " + lottoWinningResultResponse.lottoWinningResult().thirdPlaceNumber() + "개");
-        System.out.println(
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoWinningResultResponse.lottoWinningResult().secondPlaceNumber()
-                        + "개");
-        System.out.println(
-                "6개 일치 (2,000,000,000원) - " + lottoWinningResultResponse.lottoWinningResult().firstPlaceNumber() + "개");
-
-        System.out.println("총 수익률은 " + lottoWinningResultResponse.winningAmount() + "%입니다.");
-
+        System.out.println(OutputMessage.RATE_OF_RETURN_MESSAGE_PREFIX.getOutputMessage()
+                + rateOfReturn
+                + OutputMessage.RATE_OF_RETURN_MASSAGE_SUFFIX.getOutputMessage());
     }
 }
