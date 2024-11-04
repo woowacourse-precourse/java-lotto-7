@@ -15,16 +15,8 @@ public final class Lottos {
         return lottos.size();
     }
 
-    private int getPrice() {
+    public int getAmount() {
         return getLottosCount() * LOTTO_PRICE;
-    }
-
-    public double calculateProfit(WinningLotto winningLotto) {
-        double sum = lottos.stream()
-                .map(winningLotto::calculateRank)
-                .mapToLong(Rank::getPrice)
-                .sum();
-        return sum / getPrice();
     }
 
     public List<Lotto> getLottos() {
