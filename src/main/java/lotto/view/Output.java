@@ -15,7 +15,6 @@ public class Output {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
-        System.out.println();
     }
 
     public void printLottoResult(List<Integer> lottoSameSize, double rate) {
