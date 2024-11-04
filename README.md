@@ -222,6 +222,80 @@
 
 ---
 
+## 테스트 코드 설명
+
+**LottoStatisticsTest**
+
+- **`setUp()`**
+    - 각 테스트 전에 `LottoStatistics` 객체를 초기화.
+
+- **`calculateStatistics()`**
+    - 로또 리스트와 당첨 번호를 통해 올바르게 통계가 계산되는지 테스트. `SECOND`와 `FIFTH` 순위에 대한 결과 값을 검증.
+
+- **`calculateProfit()`**
+    - 구입 금액 대비 수익률이 정확하게 계산되는지 검증. 1등 당첨 티켓으로 수익률이 기대대로 200,000,000%인지 확인.
+
+---
+
+**LottoTest**
+
+- **`로또_번호의_개수가_6개가_넘어가면_예외가_발생한다()`**
+    - 로또 번호 개수가 6개를 초과하면 예외가 발생하는지 검증.
+
+- **`로또_번호에_중복된_숫자가_있으면_예외가_발생한다()`**
+    - 로또 번호에 중복된 숫자가 포함될 경우 예외가 발생하는지 검증.
+
+---
+
+**LottoTicketsTest**
+
+- **`createLottoTickets_withValidPurchaseAmount()`**
+    - 유효한 구매 금액으로 생성된 `LottoTickets` 객체가 올바른 로또 수량을 가지는지 확인.
+
+- **`getPurchaseAmount_returnsCorrectAmount()`**
+    - `getPurchaseAmount` 메소드가 구입 금액을 정확히 반환하는지 검증.
+
+---
+
+**PurchaseAmountTest**
+
+- **`createPurchaseAmount_withValidAmount()`**
+    - 유효한 금액을 통해 생성된 `PurchaseAmount` 객체가 올바른 로또 수와 금액을 반환하는지 확인.
+
+**PurchaseAmountValidatorTest**
+
+- **`validateAmount_withValidAmount()`**
+    - 1000원이라는 유효한 금액에 대해 예외가 발생하지 않는지 검증.
+
+- **`validateAmount_withAmountBelowMinimum()`**
+    - 최소 금액보다 적은 500원을 입력할 경우, `PURCHASE_MIN_PRICE` 예외 메시지가 발생하는지 확인.
+
+- **`validateAmount_withAmountExceedMaximum()`**
+    - 최대 금액보다 많은 1000000원을 입력할 경우, `PURCHASE_MAX_PRICE` 예외 메시지가 발생하는지 확인.
+
+- **`validateAmount_withNonDivisibleAmount()`**
+    - 1000원 단위로 나누어지지 않는 1500원을 입력할 경우, `PURCHASE_INVALID_DIVISIBILITY` 예외 메시지가 발생하는지 확인.
+
+---
+
+**WinningNumbersValidatorTest**
+
+- **`validateWinningNumbers_withInvalidSize()`**
+    - 6개 미만의 당첨 번호(5개)를 입력할 경우, `LOTTO_INVALID_NUMBER_COUNT` 예외 메시지가 발생하는지 확인.
+
+- **`validateWinningNumbers_withOutOfRangeNumber()`**
+    - 1부터 45 범위를 벗어난 46을 포함하는 당첨 번호를 입력할 경우, `LOTTO_NUMBER_OUT_OF_RANGE` 예외 메시지가 발생하는지 확인.
+
+- **`validateWinningNumbers_withDuplicateNumbers()`**
+    - 당첨 번호에 중복된 숫자가 포함된 경우, `LOTTO_DUPLICATE_NUMBER` 예외 메시지가 발생하는지 확인.
+
+- **`validateBonusNumber_withOutOfRangeBonus()`**
+    - 보너스 번호가 45를 초과하는 46일 경우, `LOTTO_NUMBER_OUT_OF_RANGE` 예외 메시지가 발생하는지 확인.
+
+- **`validateBonusNumber_withDuplicateWithWinningNumbers()`**
+    - 보너스 번호가 당첨 번호와 중복되는 경우, `BONUS_NUMBER_DUPLICATE` 예외 메시지가 발생하는지 확인.
+---
+
 ## 기능 목록
 
 1. [x] 구입 금액 입력
