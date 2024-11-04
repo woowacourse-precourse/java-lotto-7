@@ -13,7 +13,9 @@ import lotto.dto.WinningDto;
 public class LottoService {
 
     private static final String FORMAT_PATTERN = "#,##0.0";
-
+    private static final double ROUNDING_BASE = 100.0;
+    private static final int INCREMENT_VALUE = 1;
+    
     public WinningDto statisticsNumbers(LottoDto lottoDto) {
         List<Integer> matchStatistics = calculateLottoNumber(lottoDto, lottoDto.getLottos(),
                 lottoDto.getWinningNumbers());
@@ -33,7 +35,9 @@ public class LottoService {
     }
 
     private List<Integer> initializeMatchStatistics() {
-        return new ArrayList<>(List.of(0, 0, 0, 0, 0, 0, 0, 0));
+        return new ArrayList<>(
+                List.of(MINIMUM_NUMBER.value, MINIMUM_NUMBER.value, MINIMUM_NUMBER.value, MINIMUM_NUMBER.value,
+                        MINIMUM_NUMBER.value, MINIMUM_NUMBER.value, MINIMUM_NUMBER.value, MINIMUM_NUMBER.value));
     }
 
     private void processLotto(LottoDto lottoDto, List<Integer> winningNumbers, List<Integer> matchStatistics,
@@ -45,12 +49,12 @@ public class LottoService {
     private static void updateMatchStatistics(LottoDto lottoDto, Lotto lotto, int matchedCount,
                                               List<Integer> matchStatistics) {
         if (isBonusMatch(lottoDto, lotto, matchedCount)) {
-            matchStatistics.set(FIVE_AND_BONUS.index, matchStatistics.get(FIVE_AND_BONUS.index) + 1);
+            matchStatistics.set(FIVE_AND_BONUS.index, matchStatistics.get(FIVE_AND_BONUS.index) + INCREMENT_VALUE);
             return;
         }
 
         if (isValidMatchCount(matchedCount, matchStatistics)) {
-            matchStatistics.set(matchedCount, matchStatistics.get(matchedCount) + 1);
+            matchStatistics.set(matchedCount, matchStatistics.get(matchedCount) + INCREMENT_VALUE);
         }
     }
 
@@ -60,7 +64,7 @@ public class LottoService {
                 .count();
 
         if (matchedCount == SIX.winningCount) {
-            return 7;
+            return SIX.index;
         }
 
         return (int) matchedCount;
@@ -99,7 +103,7 @@ public class LottoService {
     }
 
     private static String formatProfitPercentage(double profitPercentage) {
-        profitPercentage = Math.round(profitPercentage * PERCENTAGE_BASE.value) / 100.0;
+        profitPercentage = Math.round(profitPercentage * PERCENTAGE_BASE.value) / ROUNDING_BASE;
         DecimalFormat decimalFormat = new DecimalFormat(FORMAT_PATTERN);
         return decimalFormat.format(profitPercentage);
     }
