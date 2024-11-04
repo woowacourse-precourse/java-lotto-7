@@ -1,7 +1,7 @@
 package lotto.util.parser;
 
 public class BuyingPriceParser {
-    private static final String INVALID_FORMAT_ERROR = "구입금액은 숫자만 입력 가능합니다.";
+    private static final String INVALID_FORMAT_ERROR = "[ERROR] 구입금액은 숫자만 입력 가능합니다.";
 
     public static int toIntStringPriceParser(String buyingPriceInput) throws IllegalArgumentException  {
         try {

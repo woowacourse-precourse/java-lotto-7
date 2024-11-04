@@ -7,7 +7,7 @@
 
 ## Domain
 
-- [ ] 돈을 입력받는 BuyingPrice 객체
+- [ ] 입력 받은 돈을 저장하는 BuyingPrice 객체
 
 
 - [ ] 랜덤으로 발행한 로또를 list로 저장하는 Lotto 객체
@@ -43,6 +43,8 @@
 
 ## Util
 
+### Parser
+
 - [ ] 보너스 번호(String)를 int형으로 파싱해주는 BonusNumberParser 객체
 
 
@@ -50,6 +52,17 @@
 
 
 - [ ] 당첨 번호(String)을 쉼표와 int형의 리스트로 파싱해주는 WinningLottoParser 객체
+
+
+### Validator
+
+- [ ] 다른 Validator들의 상속을 위한 추상 클래스 Validator
+
+
+- [ ] 로또를 검증해주는 LottoValidator
+
+
+- [ ] 입력받는 돈을 검증해주는 BuyingPriceValidator
 
 
 ## View
