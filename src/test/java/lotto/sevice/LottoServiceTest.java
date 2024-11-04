@@ -36,20 +36,25 @@ class LottoServiceTest {
         List<List<Integer>> ls1 = List.of(
                 List.of(1,2,3,4,5,6),
                 List.of(1,2,3,4,5,7),
-                List.of(1,2,3,41,42,44),
-                List.of(1,2,31,41,42,44),
-                List.of(1,20,31,41,42,44)
+                List.of(1,2,3,4,5,   44),
+                List.of(1,2,3,4,   42,44),
+                List.of(1,2,3,   41,42,44)
                 );
         List<Integer> win = List.of(1,2,3,4,5,6);
         int bonus = 7;
         //when
         List<Integer> res = lottoService.countWinLotto(ls1,win,bonus);
         //then
-        assertThat(res.contains(10)).isTrue();
-        assertThat(res.contains(6)).isTrue();
-        assertThat(res.contains(3)).isTrue();
-        assertThat(res.contains(2)).isTrue();
-        assertThat(res.contains(1)).isTrue();
+//        assertThat(res.contains(10)).isTrue();
+//        assertThat(res.contains(6)).isTrue();
+//        assertThat(res.contains(5)).isTrue();
+//        assertThat(res.contains(4)).isTrue();
+//        assertThat(res.contains(3)).isTrue();
+        assertThat(res.get(0)).isEqualTo(1);
+        assertThat(res.get(1)).isEqualTo(1);
+        assertThat(res.get(2)).isEqualTo(1);
+        assertThat(res.get(3)).isEqualTo(1);
+        assertThat(res.get(4)).isEqualTo(1);
 
     }
 

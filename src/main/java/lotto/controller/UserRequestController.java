@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.RandomLotto;
+import lotto.model.WinLotto;
 import lotto.sevice.InputValidService;
 import lotto.sevice.LottoService;
 
@@ -16,6 +17,8 @@ public class UserRequestController {
     RandomLotto randomLotto;
     Lotto lotto;
     static int bonusNumber;
+    List<Integer> winCounts;
+    WinLotto[] winLotto;
 
     public void inputMoney(String money){
         if(inputValidService.isMoney(money)){
@@ -39,12 +42,27 @@ public class UserRequestController {
         if(inputValidService.isBonusNumber(bonusNum)){
             bonusNumber = Integer.parseInt(bonusNum);
             winCountLotto();
+            statistics();
         }
         error("로또 보너스 번호의 입력이 잘 못 되었습니다.");
     }
 
+    public void totalRevenue(){
+        lottoService.totalRevenueMoney(winCounts);
+    }
+
+    public void statistics(){
+        winLotto = WinLotto.values();
+        int i=0;
+        for(WinLotto w : winLotto){
+            w.setWin(winCounts.get(i));
+            i++;
+        }
+        lottoMessage(winLotto);
+    }
+
     public void winCountLotto(){
-        List<Integer> winCounts = lottoService.countWinLotto(
+        winCounts = lottoService.countWinLotto(
                 randomLotto.getLotto(),
                 lotto.getNumbers(),
                 bonusNumber);

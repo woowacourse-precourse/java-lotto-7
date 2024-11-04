@@ -1,6 +1,7 @@
 package lotto.sevice;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -24,17 +25,41 @@ public class LottoService {
     public List<Integer> countWinLotto(List<List<Integer>> lottos,
                                        List<Integer> winLotto,
                                        int bonus){
-        List<Integer> res = new ArrayList<>();
+        List<Integer> equalsNum = new ArrayList<>();
 
         for(List<Integer> lotto : lottos){
             int cnt1 = lotto.stream().filter(o -> winLotto.stream()
                     .anyMatch(Predicate.isEqual(o))).toList().size();
             int cnt2 = lotto.stream().filter(o -> o == bonus).toList().size();
             if(cnt1 == 5 && cnt2 == 1){
-                res.add(cnt1*2);
+                equalsNum.add(cnt1*2);
+            }else{
+                equalsNum.add(cnt1);
             }
-            res.add(cnt1);
         }
+        List<Integer> res =  statisticNumbers(equalsNum);
         return res;
     }
+
+    public List<Integer> statisticNumbers(List<Integer> winCounts){
+        Integer[] arr = new Integer[5];
+        Arrays.fill(arr, 0);
+
+        for(int tmp : winCounts){
+            if(tmp == 3){
+                arr[0] += 1;
+            }else if (tmp == 4){
+                arr[1] += 1;
+            }else if (tmp == 5){
+                arr[2] += 1;
+            }else if (tmp == 10){
+                arr[3] += 1;
+            }else if (tmp == 6){
+                arr[4] += 1;
+            }
+        }
+        return List.of(arr);
+    }
+
+//    public int totalRevenueMoney(List<Integer> winCounts){}
 }
