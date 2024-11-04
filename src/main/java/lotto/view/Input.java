@@ -26,6 +26,14 @@ public class Input {
         return winningNumbers;
     }
 
+    public static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        checkInput(input);
+        int bonusNumber = checkNumber(input);
+        return bonusNumber;
+    }
+
     private static void checkInput(String input) {
         if (input == null || input.trim().isEmpty())
             throw new IllegalArgumentException("[ERROR] 입력이 비어있습니다.");
