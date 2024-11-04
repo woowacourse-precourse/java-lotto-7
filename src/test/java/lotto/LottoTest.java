@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoTest {
     private static Stream<String> invalidInput() {
@@ -67,5 +68,45 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorStatus.INVALID_NUMBER_SIZE.getMessage());
+    }
+
+    @DisplayName("모든 번호가 일치하면 1등이다.")
+    @Test
+    void 모든_번호가_일치하면_1등이다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int rank = lotto.draw(List.of(1, 2, 3, 4, 5, 6), 7);
+        assertThat(rank).isEqualTo(1);
+    }
+
+    @DisplayName("5개의 번호가 일치하고 보너스 번호까지 일치하면 2등이다.")
+    @Test
+    void 다섯개의_번호가_일치하고_보너스_번호까지_일치하면_2등이다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int rank = lotto.draw(List.of(1, 2, 3, 4, 5, 11), 6);
+        assertThat(rank).isEqualTo(2);
+    }
+
+    @DisplayName("5개의 번호가 일치하고, 보너스 번호가 다르면 3등이다.")
+    @Test
+    void 다섯개의_번호가_일치하고_보너스_번호가_다르면_3등이다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int rank = lotto.draw(List.of(1, 2, 3, 4, 5, 11), 12);
+        assertThat(rank).isEqualTo(3);
+    }
+
+    @DisplayName("4개의 번호가 일치하면 4등이다.")
+    @Test
+    void 네개의_번호가_일치하면_4등이다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int rank = lotto.draw(List.of(1, 2, 3, 4, 10, 11), 12);
+        assertThat(rank).isEqualTo(4);
+    }
+
+    @DisplayName("3개의 번호가 일치하면 5등이다.")
+    @Test
+    void 세개의_번호가_일치하면_5등이다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int rank = lotto.draw(List.of(1, 2, 3, 11, 12, 13), 14);
+        assertThat(rank).isEqualTo(5);
     }
 }
