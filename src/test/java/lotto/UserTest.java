@@ -3,7 +3,9 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.entry;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,5 +30,15 @@ class UserTest {
         assertThat(user.countRank(lottos, winnigNumbers, bonusNumber)).hasSize(3).contains(entry(Rank.SECOND, 1))
                 .contains(entry(Rank.FOURTH, 1))
                 .contains(entry(Rank.ZERO, 2));
+    }
+
+    @DisplayName("수익률 계산")
+    @Test
+    void calculateReturn() {
+        Map<Rank, Integer> winnings = new HashMap<>();
+        winnings.put(Rank.FIFTH, 1);
+        int purchaseAmount = 8000;
+
+        assertThat(user.calculateReturn(winnings, purchaseAmount)).isEqualTo(62.5);
     }
 }
