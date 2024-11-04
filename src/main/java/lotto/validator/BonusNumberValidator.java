@@ -15,7 +15,7 @@ public class BonusNumberValidator {
 
     public static void validate(int bonusNumber, Lotto winningLotto) {
         validateNumberRange(bonusNumber);
-        validateDuplicate(bonusNumber, winningLotto);
+        validateDuplicate(LottoNumber.of(bonusNumber), winningLotto);
     }
 
     private static void validateNumberRange(int number) {
@@ -24,9 +24,8 @@ public class BonusNumberValidator {
         }
     }
 
-    private static void validateDuplicate(int bonusNumber, Lotto winningLotto) {
-        LottoNumber lottoNumber = LottoNumber.of(bonusNumber);
-        if (winningLotto.contains(lottoNumber)) {
+    private static void validateDuplicate(LottoNumber number, Lotto winningLotto) {
+        if (winningLotto.contains(number)) {
             throw new IllegalArgumentException(ERROR_DUPLICATE);
         }
     }
