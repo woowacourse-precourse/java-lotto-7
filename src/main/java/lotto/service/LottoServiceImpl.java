@@ -27,6 +27,7 @@ public class LottoServiceImpl implements LottoService {
     public Lotto parseAndValidateWinningNumbers(String winningNumbersInput) {
         WinningNumberValidator.validateWinningNumbersInput(winningNumbersInput);
         List<Integer> parsedWinningNumbers = parseWinningNumbers(winningNumbersInput);
+
         return new Lotto(parsedWinningNumbers);
     }
 
@@ -35,6 +36,7 @@ public class LottoServiceImpl implements LottoService {
         BonusNumberValidator.validateBonusNumberInput(bonusNumberInput);
         int bonusNumber = parseBonusNumber(bonusNumberInput);
         BonusNumberValidator.validateBonusNumber(winningNumbers.getNumbers(), bonusNumber);
+
         return bonusNumber;
     }
 

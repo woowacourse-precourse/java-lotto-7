@@ -13,8 +13,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoServiceTest {
     private static final String VALID_PURCHASE_AMOUNT = "5000";
+    private static final String VALID_WINNING_NUMBERS_INPUT = "1,2,3,4,5,6";
+    private static final String VALID_BONUS_NUMBER_INPUT = "7";
     private static final int EXPECTED_LOTTO_COUNT = 5;
-    private static final int PERCENTAGE_CONVERSION_FACTOR = 100;
+    private static final int EXPECTED_RETURN_ON_INVESTMENT = 40_000_000;
 
     private LottoService lottoService;
 
@@ -28,6 +30,23 @@ class LottoServiceTest {
     void 로또_티켓_생성_테스트() {
         LottoTicket lottoTicket = lottoService.generateLottoTicket(VALID_PURCHASE_AMOUNT);
         assertThat(lottoTicket.getLottos()).hasSize(EXPECTED_LOTTO_COUNT);
+    }
+
+    @DisplayName("올바른 당첨 번호 입력 시 Lotto 객체 반환 테스트")
+    @Test
+    void 당첨_번호_파싱_검증_테스트() {
+        Lotto winningNumbers = lottoService.parseAndValidateWinningNumbers(VALID_WINNING_NUMBERS_INPUT);
+
+        assertThat(winningNumbers.getNumbers()).isEqualTo(TestConstants.EXPECTED_WINNING_NUMBERS);
+    }
+
+    @DisplayName("올바른 보너스 번호 입력 시 정수 반환 테스트")
+    @Test
+    void 보너스_번호_파싱_검증_테스트() {
+        Lotto winningNumbers = lottoService.parseAndValidateWinningNumbers(VALID_WINNING_NUMBERS_INPUT);
+        int bonusNumber = lottoService.parseAndValidateBonusNumber(VALID_BONUS_NUMBER_INPUT, winningNumbers);
+
+        assertThat(bonusNumber).isEqualTo(TestConstants.EXPECTED_BONUS_NUMBER);
     }
 
     @DisplayName("파싱한 당첨 번호와 보너스 번호로 WinningLotto 객체 생성 테스트")
@@ -65,8 +84,6 @@ class LottoServiceTest {
                 .containsEntry(Rank.FOURTH, TestConstants.EXPECTED_FOURTH_COUNT)
                 .containsEntry(Rank.FIFTH, TestConstants.EXPECTED_FIFTH_COUNT)
                 .containsEntry(Rank.NONE, TestConstants.EXPECTED_NONE_COUNT);
-
-        double expectedReturnOnInvestment = (Rank.FIRST.getPrizeMoney() / (double) Integer.parseInt(VALID_PURCHASE_AMOUNT)) * PERCENTAGE_CONVERSION_FACTOR;
-        assertThat(lottoResult.getReturnOnInvestment()).isEqualTo(expectedReturnOnInvestment);
+        assertThat(lottoResult.getReturnOnInvestment()).isEqualTo(EXPECTED_RETURN_ON_INVESTMENT);
     }
 }
