@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.List;
 import java.util.ArrayList;
 
 public class LottoMachine {
@@ -11,7 +10,7 @@ public class LottoMachine {
     }
 
     public void runMachine() {
-        initAmount();
+        initAmountAndTicketNumber();
         issueLottoTickets();
         initUserPick();
         ResultCalculator.calculateResult(data);
@@ -20,14 +19,17 @@ public class LottoMachine {
 
     public Data getData() { return data; }
 
-    private void initAmount() {
+    private void initAmountAndTicketNumber() {
+        int amount = getAmount();
+        data.setAmountAndTicketNumber(amount);
+        Printer.printMessage(data.getTicketNumber() + Constants.INFORM_TICKET_NUMBERS);
+    }
+
+    private int getAmount() {
         while (true) {
             Printer.printMessage(Constants.INFORM_INPUT_AMOUNT);
             try {
-                int amount = Parser.parseAmount(Reader.readInput());
-                data.setAmountAndTicketNumber(amount);
-                Printer.printMessage(data.getTicketNumber() + Constants.INFORM_TICKET_NUMBERS);
-                break;
+                return Parser.parseAmount(Reader.readInput());
             } catch (IllegalArgumentException e) {
                 Printer.printErrorMessage(e.getMessage());
             }
@@ -43,37 +45,31 @@ public class LottoMachine {
     }
 
     private void initUserPick() {
-        ArrayList<Integer> numbers = initUserPickNumbers();
-        int bonus = initUserPickBonus(numbers);
+        ArrayList<Integer> numbers = getUserPickNumbers();
+        int bonus = getUserPickBonus(numbers);
         UserPick userPick = new UserPick(numbers, bonus);
         data.setUserPick(userPick);
     }
 
-    private ArrayList<Integer> initUserPickNumbers() {
-        ArrayList<Integer> numbers;
+    private ArrayList<Integer> getUserPickNumbers() {
         while (true) {
             Printer.printMessage(Constants.INFORM_INPUT_USER_PICK_NUMBERS);
             try {
-                numbers = Parser.parseUserPickNumbers(Reader.readInput());
-                break;
+                return Parser.parseUserPickNumbers(Reader.readInput());
             } catch (IllegalArgumentException e) {
                 Printer.printErrorMessage(e.getMessage());
             }
         }
-        return numbers;
     }
 
-    private int initUserPickBonus(ArrayList<Integer> numbers) {
-        int bonus = 0;
+    private int getUserPickBonus(ArrayList<Integer> numbers) {
         while (true) {
             Printer.printMessage(Constants.INFORM_INPUT_USER_PICK_BONUS);
             try {
-                bonus = Parser.parseUserPickBonus(Reader.readInput(), numbers);
-                break;
+                return Parser.parseUserPickBonus(Reader.readInput(), numbers);
             } catch (IllegalArgumentException e) {
                 Printer.printErrorMessage(e.getMessage());
             }
         }
-        return bonus;
     }
 }

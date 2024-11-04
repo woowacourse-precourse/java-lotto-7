@@ -8,7 +8,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         this.numbers = numbers;
-//        sortNumbers(numbers);
         validate(numbers);
     }
 
@@ -20,8 +19,4 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
-
-//    private static void sortNumbers(ArrayList<Integer> randomNumbers) {
-//        randomNumbers.sort(null);
-//    }
 }

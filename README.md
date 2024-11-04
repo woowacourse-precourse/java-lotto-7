@@ -183,7 +183,6 @@ public class Lotto {
 ## 기능 목록
 - 사용자로부터 입력을 받는다.
     - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
-    - 빈 문자열은 허용되지 않는다.
     - 입력받은 값을 출력한다.
 
 - 예외 상황을 처리한다.
@@ -227,7 +226,6 @@ public class Lotto {
     - 입력 안내 문구를 출력한다: “보너스 번호를 입력해 주세요.”
     - 입력 값은 유효해야 한다.
         - 숫자만 입력해야 한다.
-        - 숫자를 1개 입력해야 한다.
         - 중복되지 않아야 한다.
         - 숫자 범위는 1~45까지이다.
     - 입력 값이 유효하지 않으면 예외 처리하고 입력을 다시 받는다.
@@ -235,7 +233,7 @@ public class Lotto {
 
 - 추첨 결과를 계산한다.
     - enum 클래스 Rank를 활용한다.
-    - 로또 번호와 당첨 번호를 비교하여 해당하는 Rank에 저장한다.
+    - 로또 번호와 당첨 번호를 비교하여 해당하는 Result에 저장한다.
 
 - 추첨 결과를 출력한다.
     - 결과 안내 문구를 출력한다: “당첨 통계\n---”
@@ -243,4 +241,4 @@ public class Lotto {
     - 수익률을 출력한다: “총 수익률은 n%입니다.”
         - `당첨 금액 / 구입 금액 * 100`으로 계산한 결과의 소수점 둘째 자리에서 반올림한다.
 ## 플로우 차트
-![lotto](https://github.com/user-attachments/assets/1a6a830b-8e7b-4c8e-945e-3841ef008749)
+![lotto](https://github.com/user-attachments/assets/e1198ad1-ae3b-4b67-9990-dfc593a0c7e8)

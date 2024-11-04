@@ -9,6 +9,9 @@ public class Constants {
     static final String FORM_ERROR_MESSAGE = "[ERROR] ";
     static final String FORM_RANKS_NORMAL_MESSAGE = "%d개 일치 (%s원) - %d개%n";
     static final String FORM_RANKS_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개%n";
+    static final String FORM_STATISTICS_MESSAGE = "총 수익률은 %s%%입니다.%n";
+    static final String FORM_PRIZE = "#,###";
+    static final String FORM_RATE = "#,##0.0";
     static final String INPUT_ERROR_EMPTY = "값이 입력되지 않았습니다.";
     static final String INPUT_ERROR_ONLY_DIGIT = "숫자만 입력 가능합니다.";
     static final String INPUT_ERROR_ONLY_DIGIT_COMMA = "숫자와 쉼표만 입력 가능합니다.";

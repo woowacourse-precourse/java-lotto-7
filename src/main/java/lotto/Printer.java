@@ -32,7 +32,7 @@ public class Printer {
     private static void setValuesAndCallPrintRanks(Data data) {
         for (Result result : data.getResults()) {
             int rankCount = result.getRank().getMatchCount();
-            DecimalFormat decimalFormat = new DecimalFormat("#,###");
+            DecimalFormat decimalFormat = new DecimalFormat(Constants.FORM_PRIZE);
             String prize = decimalFormat.format(result.getRank().getPrize());
             int matchCount = result.getWonCount();
 
@@ -55,11 +55,11 @@ public class Printer {
     private static void printStatistics(Data data) {
         double rate = ResultCalculator.calculateRateOfReturn(data);
         String rateString = setRateString(rate);
-        System.out.printf("총 수익률은 %s%%입니다.%n", rateString);
+        System.out.printf(Constants.FORM_STATISTICS_MESSAGE, rateString);
     }
 
     private static String setRateString(double rate) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        DecimalFormat decimalFormat = new DecimalFormat(Constants.FORM_RATE);
         return decimalFormat.format(rate);
     }
 }

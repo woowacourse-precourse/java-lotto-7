@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-@Disabled
+//@Disabled
 class ReaderTest {
     @Test
     void 입력_테스트() {
@@ -16,18 +16,5 @@ class ReaderTest {
         String input = Reader.readInput();
 
         assertThat(input).isEqualTo(dummyInput);
-    }
-
-    @Test
-    void 빈_문자열_테스트() {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> {
-                    String dummyInput = "";
-                    TestUtils.setInputStream(dummyInput);
-
-                    String input = Reader.readInput();
-
-                    assertThat(dummyInput).isEqualTo(input);
-                });
     }
 }

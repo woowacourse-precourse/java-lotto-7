@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-
 public class Parser {
     public static int parseAmount(String input) {
         Validator.validateAmount(input);

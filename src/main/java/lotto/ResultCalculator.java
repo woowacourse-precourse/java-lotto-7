@@ -5,16 +5,19 @@ import java.text.DecimalFormat;
 
 public class ResultCalculator {
     public static void calculateResult(Data data) {
-        for (Lotto ticket : data.getLottoTickets()) {
-            UserPick userPick = data.getUserPick();
+        UserPick userPick = data.getUserPick();
 
+        for (Lotto ticket : data.getLottoTickets()) {
             boolean matchedBonus = checkMatchedBonus(userPick, ticket);
             int matchedCount = countCommonNumbers(userPick, ticket);
-
             int rank = getRankByMatchedNumbers(matchedCount, matchedBonus);
-            if (rank != -1) {
-                data.getResultAt(rank).increaseWonCount();
-            }
+            updateResultForRank(data, rank);
+        }
+    }
+
+    private static void updateResultForRank(Data data, int rank) {
+        if (rank != -1) {
+            data.getResultAt(rank).increaseWonCount();
         }
     }
 
