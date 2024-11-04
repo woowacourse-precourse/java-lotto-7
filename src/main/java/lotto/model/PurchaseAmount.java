@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.constants.ErrorMessages;
+
 public class PurchaseAmount{
     public static final Integer LOTTE_PRICE=1000;
     private final Integer money;
@@ -16,14 +18,14 @@ public class PurchaseAmount{
 
     private void validateDivisibleByLottoPrice(Integer money) {
         if(money%LOTTE_PRICE!=0){
-            throw new IllegalArgumentException("[ERROR] 1000으로 나누져야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.AMOUNT_MUST_BE_DIVISIBLE_BY_1000);
         }
 
     }
 
     private void validateNonNegative(Integer money) {
         if(money<=0){
-            throw new IllegalArgumentException("[ERROR] 금액은 0보다 커야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.AMOUNT_MUST_BE_POSITIVE);
         }
     }
 

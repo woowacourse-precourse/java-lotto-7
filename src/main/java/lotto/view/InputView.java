@@ -1,6 +1,9 @@
 package lotto.view;
 
 
+import lotto.constants.ErrorMessages;
+import lotto.constants.Messages;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +13,7 @@ public class InputView {
     public static int readPurchaseAmount() {
         while (true) {
             try {
-                System.out.println("구입 금액을 입력해 주세요");
+                System.out.println(Messages.INPUT_PURCHASE_AMOUNT);
                 String input = readLine();
                 validateNumber(input);
                 return Integer.parseInt(input);
@@ -23,7 +26,7 @@ public class InputView {
     public static List<Integer> readWinningNumbers() {
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println(Messages.INPUT_WINNING_NUMBERS);
                 String input = readLine();
                 return parseNumbers(input);
             } catch (IllegalArgumentException e) {
@@ -35,7 +38,7 @@ public class InputView {
     public static int readBonusNumber() {
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println(Messages.INPUT_BONUS_NUMBER);
                 String input = readLine();
                 validateNumber(input);
                 return Integer.parseInt(input);
@@ -61,7 +64,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ErrorMessages.INPUT_NUMBERS_ONLY);
         }
     }
 }

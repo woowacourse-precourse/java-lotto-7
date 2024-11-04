@@ -1,5 +1,7 @@
 package lotto.service;
 
+import lotto.constants.ErrorMessages;
+
 import java.util.List;
 
 public class BonusNumber {
@@ -20,19 +22,19 @@ public class BonusNumber {
 
     private void validateNoDuplicateWithWinningNumbers(Integer bonus, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_DUPLICATE_WITH_WINNING_NUMBER);
         }
     }
 
     private void validateRange(Integer bonus) {
         if(bonus <1|| bonus >45){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 범위를 벗어납니다.");
+            throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE);
         }
     }
 
     private void validateNull(Integer bonus) {
         if(bonus ==null){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해주세요");
+            throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_REQUIRED);
         }
     }
 
