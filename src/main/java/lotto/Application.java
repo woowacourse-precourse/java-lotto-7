@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.text.NumberFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -38,6 +39,7 @@ public class Application {
                         .toList();
 
                 validate(numbers);
+                isDuplicated(numbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -50,7 +52,7 @@ public class Application {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 specNum = Integer.valueOf(Console.readLine());
                 validateOne(specNum);
-                duplicateTest(numbers, specNum);
+                isSpecNumDuplicated(numbers, specNum);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -74,13 +76,13 @@ public class Application {
             System.out.println(entry.getKey().getDescription() + " "
                     + "(" + NumberFormat.getNumberInstance().format(entry.getKey().getPrize())
                     + "원) - " + entry.getValue() + "개");
-            if(entry.getValue()!=0){
+            if (entry.getValue() != 0) {
                 ROI += entry.getKey().getPrize();
             }
         }
-        ROI = ROI/(amount*1000) * 100;
+        ROI = ROI / (amount * 1000) * 100;
         String formattedValue = String.format("%.2f", ROI);
-        System.out.println("총 수익률은"+formattedValue+"%입니다.");
+        System.out.println("총 수익률은 " + formattedValue + "%입니다.");
     }
 
     static void validate(List<Integer> numbers) {
@@ -92,7 +94,14 @@ public class Application {
         }
     }
 
-    static void duplicateTest(List<Integer> numbers, Integer number) {
+    static void isDuplicated(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = numbers.stream().collect(Collectors.toSet());
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 숫자는 중복될 수 없습니다.");
+        }
+    }
+
+    static void isSpecNumDuplicated(List<Integer> numbers, Integer number) {
         if (numbers.contains(number)) {
             throw new IllegalArgumentException("[ERROR] 숫자는 중복될 수 없습니다.");
         }
