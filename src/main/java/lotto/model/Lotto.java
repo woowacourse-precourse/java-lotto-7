@@ -14,6 +14,8 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        validateDuplicationOfWinningNumbers(numbers); // 중복 검증 추가
+        validateRange(numbers); // 범위 검증 추가
     }
 
     // TODO: 추가 기능 구현
