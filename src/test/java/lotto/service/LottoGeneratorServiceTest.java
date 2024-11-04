@@ -1,49 +1,27 @@
 package lotto.service;
 
-import lotto.view.InputView;
-import lotto.view.TestInputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoGeneratorServiceTest {
-
-    private LottoPurchaseService lottoGeneratorService;
-    private InputView inputView;
+    private LottoGeneratorService lottoGeneratorService;
 
     @BeforeEach
     void setUp() {
-        lottoGeneratorService = new LottoPurchaseService(inputView);
-    }
-
-
-    @Test
-    void 천원단위_아닐시_예외발생() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            lottoGeneratorService.checkThousandUnit(1500);
-        });
-        assertEquals("[ERROR] 구입금액은 1000원 단위여야 합니다.", exception.getMessage());
+        this.lottoGeneratorService = new LottoGeneratorService();
     }
 
     @Test
-    void 천원단위일시_참_반환() {
-        boolean result = lottoGeneratorService.checkThousandUnit(10000);
-        assertTrue(result);
+    void 범위_안의_6개의_숫자리스트_반환() {
+        List<Integer> list = lottoGeneratorService.generateSixNumbers();
+        assertEquals(6, list.size());
+        for (Integer number : list) {
+            assertTrue(number >= 1 && number <= 45);
+        }
     }
-
-    @Test
-    void 잘못된_값_입력시_다시_입력요청후_1000반환() {
-        TestInputView testInputView = new TestInputView("-10", "0", "abc", "1500", "1000");
-        LottoPurchaseService lottoGeneratorService = new LottoPurchaseService(testInputView);
-        int result = lottoGeneratorService.repeatPromptPurchaseAmount();
-        assertEquals(1000, result);
-    }
-
-    @Test
-    void 금액_입력시_구매한_로또갯수_반환() {
-        int result = lottoGeneratorService.calculateLottoCount(15000);
-        assertEquals(15, result);
-    }
-
 }
