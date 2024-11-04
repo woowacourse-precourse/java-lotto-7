@@ -42,7 +42,7 @@ public class WinningNumberValidator extends BaseValidator{
                 .allMatch(Character::isDigit);
     }
 
-    public static void validateWinningNumberrDuplicate(List<Integer> winningNumbers, int inputNumber) {
+    public static void validateWinningNumberDuplicate(List<Integer> winningNumbers, int inputNumber) {
         for (int winningNumber: winningNumbers){
             validateDuplicate(inputNumber,winningNumber);
         }

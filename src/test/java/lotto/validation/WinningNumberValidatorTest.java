@@ -104,7 +104,7 @@ class WinningNumberValidatorTest {
     @ValueSource(ints = {1,31,41,29,16})
     void 당첨_번호_숫자_중복_예외(int inputNumber){
         List<Integer> winningNumbers = List.of(1,31,41,29,16); // 리스트에 5개의 당첨번호가 들어가있고, 마지막 당첨번호를 넣는 차례라 가정
-        Assertions.assertThatThrownBy(() -> WinningNumberValidator.validateWinningNumberrDuplicate(winningNumbers,inputNumber))
+        Assertions.assertThatThrownBy(() -> WinningNumberValidator.validateWinningNumberDuplicate(winningNumbers,inputNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_WINNING_NUMBER_DUPLICATE.toString());
     }
@@ -114,7 +114,7 @@ class WinningNumberValidatorTest {
     void 당첨_번호_중복_없음_통과(){
         List<Integer> winningNumbers = List.of(1,31,41,29,16);
         int inputNumber = 34;
-        WinningNumberValidator.validateWinningNumberrDuplicate(winningNumbers,inputNumber);
+        WinningNumberValidator.validateWinningNumberDuplicate(winningNumbers,inputNumber);
     }
 
     @DisplayName("당첨 번호가 1~45 사이의 값이 아니면 IllegalArgumentException 발생")
