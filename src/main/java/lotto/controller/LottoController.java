@@ -1,9 +1,12 @@
 package lotto.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.Lotto;
+import lotto.model.LottoPrize;
 import lotto.util.BonusNumberValidator;
-import lotto.util.GenerateLotto;
+import lotto.model.GenerateLotto;
 import lotto.util.PurchaseValidator;
 import lotto.util.WinningLottoValidator;
 import lotto.view.InputView;
@@ -29,6 +32,28 @@ public class LottoController {
             OutputView.printBonusNumber();
             int bonusNumber = InputView.getBonusNumber();
             BonusNumberValidator.validate(bonusNumber, winningLotto);
+
+            Map<LottoPrize, Integer> prizeCount = new HashMap<>();
+            int totalPrize = 0;
+
+            for (LottoPrize prize : LottoPrize.values()) {
+                prizeCount.put(prize, 0);
+            }
+
+            for (Lotto lotto : lottos) {
+                int matchCount = (int) lotto.getNumbers().stream()
+                        .filter(winningLotto::contains)
+                        .count();
+                boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+                LottoPrize lottoPrize = LottoPrize.getLottoPrize(matchCount, bonusMatch);
+
+                prizeCount.put(lottoPrize, prizeCount.get(lottoPrize) + 1);
+                totalPrize += lottoPrize.getPrize();
+            }
+
+            double profit = ((double) totalPrize / purchaseAmount) * 100;
+            OutputView.printMatchResult(prizeCount);
+            OutputView.printProfit(profit);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
