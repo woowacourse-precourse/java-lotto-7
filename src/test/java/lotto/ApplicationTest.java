@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.exception.LottoExceptionMessage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -54,6 +56,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("보너스 번호와 당첨번호가 같다면 예외를 발생한다.")
+    @Test
+    void 보너스_번호와_당첨번호가_같다면_예외를_발생한다() {
+        assertSimpleTest(() -> {
+            runException("10000","1,2,3,4,5,6","6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});
