@@ -44,8 +44,10 @@ public class InputValidator {
             .collect(Collectors.toList());
 
         checkLottoNumbersLength(numbers);
+        checkDuplication(numbers);
         return numbers;
     }
+
     public int getValidNumber(String input) {
         try {
             int number = Integer.parseInt(input);
@@ -56,6 +58,11 @@ public class InputValidator {
         }
     }
 
+    public void checkDuplication(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호를 입력할 수 없습니다. ");
+        }
+    }
 
     public void checkLottoNumbersLength(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBERS_SIZE) {
