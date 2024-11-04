@@ -29,10 +29,10 @@ public class LottoController {
         printMyLottos(myLottos);
 
         WinningLotto winningLotto = readWinningLotto();
-        System.out.println();
+        outputView.printNewLine();
 
         BonusNumber bonusNumber = readBonusNumber();
-        System.out.println();
+        outputView.printNewLine();
 
         LottoBank lottoBank = new LottoBank();
         LottoResult lottoResult = lottoBank.evaluate(winningLotto, myLottos, bonusNumber);
@@ -55,10 +55,10 @@ public class LottoController {
     }
 
     private void printMyLottos(List<Lotto> myLottos) {
-        System.out.println();
+        outputView.printNewLine();
         outputView.printLotto(myLottos.size());
         outputView.printLottoDetail(BuyLottosDTO.from(myLottos));
-        System.out.println();
+        outputView.printNewLine();
     }
 
     private WinningLotto readWinningLotto() {
