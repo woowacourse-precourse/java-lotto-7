@@ -22,7 +22,7 @@ public class Input {
 
     public static void validatePurchaseAmount(int purchaseAmount){
         if((purchaseAmount % 1000) != 0 && (purchaseAmount / 1000) < 1){
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000 이상의, 1000단위 정수로 입력하여야 합니다");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000 이상의, 1000단위 정수로 입력해야 합니다");
         }
     }
     public static List<Integer> inputWinnerNumbers(){
@@ -32,6 +32,27 @@ public class Input {
             return Arrays.stream(winningNumbersInString.split(",")).map(element -> Integer.parseInt(element)).collect(Collectors.toList());
         }catch (IllegalArgumentException e){
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+        }
+    }
+    
+    public static int inputBonusNumber(List<Integer> winningNumbers) throws IllegalArgumentException{
+        int bonusNumber;
+        try{
+            bonusNumber = Integer.parseInt(Console.readLine());
+        }
+        catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수로 입력해야 합니다.");
+        }
+        validateBonusNumber(bonusNumber, winningNumbers);
+        return bonusNumber;
+    }
+
+    public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) throws IllegalArgumentException{
+        if(bonusNumber < 1 && bonusNumber > 45){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 내에 있는 정수입니다.");
+        }
+        if(winningNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 기존 당첨번호와 중복될 수 없습니다.");
         }
     }
 }
