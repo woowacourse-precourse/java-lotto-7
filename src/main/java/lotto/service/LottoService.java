@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.exception.ErrorMessage.INVALID_PURCHASE_MONEY;
@@ -25,7 +26,8 @@ public class LottoService {
     }
 
     public Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUM_MIN, LOTTO_NUM_MAX, LOTTO_SIZE);
+        List<Integer> numbers;
+        numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_NUM_MIN, LOTTO_NUM_MAX, LOTTO_SIZE));
         numbers.sort(Integer::compareTo);
         return new Lotto(numbers);
     }
