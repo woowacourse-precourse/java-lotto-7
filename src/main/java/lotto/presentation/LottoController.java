@@ -24,37 +24,37 @@ public class LottoController {
     }
 
     public void run() {
-        IssuedLotto issuedLotto = purchaseAmountProcess();
+        IssuedLotto issuedLotto = generateLottoFromPurchaseAmount();
         outputView.printIssuedLottos(issuedLotto.getIssuedLottos());
 
-        LottoResult lottoResult = lottoResultProcess();
+        LottoResult lottoResult = generateLottoResult();
 
         LottoStatisticsDto lottoStatisticsDto = lottoService.calculateLottoStatistics(lottoResult, issuedLotto);
         outputView.printLottoRateOfProfit(lottoStatisticsDto);
     }
 
-    private IssuedLotto purchaseAmountProcess() {
+    private IssuedLotto generateLottoFromPurchaseAmount() {
         try {
             String purchaseAmount = inputView.getValidPurchaseAmount();
             return lottoService.createIssuedRandomLotto(parseToInt(purchaseAmount));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return purchaseAmountProcess();
+            return generateLottoFromPurchaseAmount();
         }
     }
 
-    private LottoResult lottoResultProcess() {
+    private LottoResult generateLottoResult() {
         try {
-            List<Integer> winningNumbers = winningNumbersProcess();
-            int bonusNumber = bonusNumberProcess(winningNumbers);
+            List<Integer> winningNumbers = getValidatedWinningNumbers();
+            int bonusNumber = getValidatedBonusNumber(winningNumbers);
             return lottoService.createLottoResult(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return lottoResultProcess();
+            return generateLottoResult();
         }
     }
 
-    private List<Integer> winningNumbersProcess() {
+    private List<Integer> getValidatedWinningNumbers() {
         List<String> inputWinningNumbers = inputView.getValidWinningNumbers();
         List<Integer> winningNumbers = inputWinningNumbers.stream()
                 .map(winningNumber -> Integer.parseInt(winningNumber))
@@ -63,7 +63,7 @@ public class LottoController {
         return winningNumbers;
     }
 
-    private int bonusNumberProcess(List<Integer> winningNumbers) {
+    private int getValidatedBonusNumber(List<Integer> winningNumbers) {
         String inputBonusNumber = inputView.getValidBonusNumber(winningNumbers);
         LottoResultValidator.bonusNumberValidate(parseToInt(inputBonusNumber), winningNumbers);
         return parseToInt(inputBonusNumber);
