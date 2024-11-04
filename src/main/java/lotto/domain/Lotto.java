@@ -11,9 +11,11 @@ public class Lotto {
     private static final String REQUEST_UNIT_OF_1000_MESSAGE = LOTTO_PRICE + "원 단위로 입력해주세요.";
 
     private final Amount inputAmount;
+
     private Tickets tickets = new Tickets(new ArrayList<>());
 
-    public Lotto(int amount) {
+
+    public Lotto(int amount ) {
         validateAmount(amount);
         this.inputAmount = new Amount(amount);
     }
@@ -45,6 +47,10 @@ public class Lotto {
         }
     }
 
+    public int getTicketCount() {
+        return tickets.getTicketCount();
+    }
+
     public Map<Rank, Integer> getResult(FirstTicket firstTicket) {
         return tickets.getResult(firstTicket);
     }
@@ -70,6 +76,12 @@ public class Lotto {
 
     private boolean isPurchasable(int ticketCount) {
         return ticketCount <= inputAmount.getAmountDivide(LOTTO_PRICE);
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
     }
 
     // TODO: 추가 기능 구현

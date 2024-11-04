@@ -1,24 +1,30 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.utils.RandomNumbersGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("로또 구매개수 입력이 14000일 때 자동으로 생성되는 티켓의 개수는 14개여야 합니다.")
+    void lottoCreateValidTest() {
+        Lotto lotto = new Lotto(14000, new RandomNumbersGenerator());
+        int ticketCount = lotto.getTicketCount();
+        assertThat(ticketCount).isEqualTo(14);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+    @DisplayName("투입금액으로 만들 수 있는 티켓의 개수보다 입력된 티켓의 개수가 더 크면 예외를 반환해야 합니다.")
+    void validateTicketCountTest() {
+        Lotto lotto = new Lotto(1000);
+        int ticketCount = 2;
+        assertThatThrownBy(() -> lotto.validateTicketCount(ticketCount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
