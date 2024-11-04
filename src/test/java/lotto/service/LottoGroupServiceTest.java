@@ -19,15 +19,15 @@ class LottoGroupServiceTest {
         int bonusNumber = 7;
 
         List<Lotto> userLottos = Arrays.asList(
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), // 6개 일치
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7))  // 5개 일치 + 보너스
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7))
         );
         LottoGroup lottoGroup = new LottoGroup(userLottos);
 
         lottoGroupService.calculateResults(lottoGroup, winningLotto, bonusNumber);
 
         Map<Winning, Integer> matchCounts = lottoGroup.getMatchCounts();
-        assertEquals(1, matchCounts.get(Winning.SIXTH));  // 1등 당첨 개수
+        assertEquals(1, matchCounts.get(Winning.SIXTH));
         assertEquals(1, matchCounts.get(Winning.FIFTH_WITH_BONUS));
 
         int expectedTotalPrize = Winning.SIXTH.getPrice() + Winning.FIFTH_WITH_BONUS.getPrice();

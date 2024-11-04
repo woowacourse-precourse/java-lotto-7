@@ -27,7 +27,6 @@ public class OutputView {
     }
 
     public void responseUserLottoNumber(LottoGroup lottoGroup) {
-        System.out.println("구입한 로또 번호:");
         lottoGroup.getLottos().forEach(lotto -> {
             System.out.println(lotto.getNumbers());
         });
