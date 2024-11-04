@@ -3,11 +3,14 @@ package lotto.service;
 import lotto.Lotto;
 import lotto.model.IssuedLotto;
 
+import javax.swing.plaf.basic.BasicOptionPaneUI;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
     public static int LOTTO_PRICES = 1000;
+    public static List<Integer> NUMBER = new ArrayList<>();
+    public static int BONUS_NUMBER = 0;
 
     private final IssuedLotto issuedLotto;
 
@@ -25,13 +28,16 @@ public class LottoService {
     }
 
     public void winningNumber(String winningNum) {
-        List<Integer> number = new ArrayList<>();
         List<String> numString = List.of(winningNum.split(","));
 
         for (String num : numString) {
-            number.add(Integer.parseInt(num.trim()));
+            NUMBER.add(Integer.parseInt(num.trim()));
         }
 
-        Lotto lotto = new Lotto(number);
+        Lotto lotto = new Lotto(NUMBER);
+    }
+
+    public void bonusNumber(String bonusNum) {
+        BONUS_NUMBER = Integer.parseInt(bonusNum);
     }
 }

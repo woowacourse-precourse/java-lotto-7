@@ -28,5 +28,8 @@ public class LottoController {
 
         outputService.printWinningNumberMessage();
         lottoService.winningNumber(Console.readLine());
+
+        outputService.printBonusNumberMessage();
+        lottoService.bonusNumber(Console.readLine());
     }
 }
