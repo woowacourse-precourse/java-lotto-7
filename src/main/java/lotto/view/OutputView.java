@@ -51,4 +51,8 @@ public class OutputView {
     public void printProfitRate(double profitRate) {
         System.out.printf(OUTPUT_PROFIT_MESSAGE, profitRate);
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

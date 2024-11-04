@@ -49,7 +49,7 @@ public class LottoController {
             LottoSeller seller = new LottoSeller();
             return seller.sell(moneyDTO);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return buyLottos();
         }
     }
@@ -67,7 +67,7 @@ public class LottoController {
             WinningLotto winningLotto = new WinningLotto(winningLottoDTO.numbers());
             return winningLotto;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return readWinningLotto();
         }
     }
@@ -78,7 +78,7 @@ public class LottoController {
             BonusNumber bonusNumber = new BonusNumber(bonusDTO.number());
             return bonusNumber;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return readBonusNumber();
         }
     }
