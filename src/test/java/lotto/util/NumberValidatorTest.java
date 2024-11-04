@@ -3,7 +3,7 @@ package lotto.util;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
-import lotto.error.ErrorType;
+import lotto.error.ErrorMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +28,7 @@ class NumberValidatorTest {
 
         //should
         assertThatIllegalArgumentException().isThrownBy(() -> numberValidator.validateRange(number, min, max))
-                .withMessageContaining(ErrorType.EXCEEDED_NUMBER_RANGE);
+                .withMessageContaining(ErrorMessage.EXCEEDED_NUMBER_RANGE);
     }
 
     @DisplayName("숫자 단위가 맞지 않아 예외가 발생한다.")
@@ -40,7 +40,7 @@ class NumberValidatorTest {
 
         //should
         assertThatIllegalArgumentException().isThrownBy(() -> numberValidator.validateUnit(number, unit))
-                .withMessageContaining(ErrorType.INVALID_MONEY_FORMAT);
+                .withMessageContaining(ErrorMessage.INVALID_MONEY_FORMAT);
     }
 
     @DisplayName("숫자가 숫자 리스트의 요소에 포함되어 있어 예외가 발생한다.")
@@ -52,6 +52,6 @@ class NumberValidatorTest {
 
         //should
         assertThatIllegalArgumentException().isThrownBy(() -> numberValidator.validateContains(numbers, number))
-                .withMessageContaining(ErrorType.DUPLICATED_BONUS_NUMBER);
+                .withMessageContaining(ErrorMessage.DUPLICATED_BONUS_NUMBER);
     }
 }

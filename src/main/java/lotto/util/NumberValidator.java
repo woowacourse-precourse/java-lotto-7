@@ -1,7 +1,7 @@
 package lotto.util;
 
 import java.util.List;
-import lotto.error.ErrorType;
+import lotto.error.ErrorMessage;
 import lotto.error.exception.InvalidNumberException;
 
 public class NumberValidator<T extends Number & Comparable<T>> {
@@ -16,21 +16,21 @@ public class NumberValidator<T extends Number & Comparable<T>> {
 
     public NumberValidator<T> validateRange(final T number, final T min, final T max) {
         if (isExceedsRange(number, min, max)) {
-            throw new InvalidNumberException(ErrorType.EXCEEDED_NUMBER_RANGE);
+            throw new InvalidNumberException(ErrorMessage.EXCEEDED_NUMBER_RANGE);
         }
         return this;
     }
 
     public NumberValidator<T> validateUnit(final T number, final T unit) {
         if (isInvalidUnit(number, unit)) {
-            throw new InvalidNumberException(ErrorType.INVALID_MONEY_FORMAT);
+            throw new InvalidNumberException(ErrorMessage.INVALID_MONEY_FORMAT);
         }
         return this;
     }
 
     public NumberValidator<T> validateContains(final List<T> numbers, final T number) {
         if (isContainsNumber(numbers, number)) {
-            throw new InvalidNumberException(ErrorType.DUPLICATED_BONUS_NUMBER);
+            throw new InvalidNumberException(ErrorMessage.DUPLICATED_BONUS_NUMBER);
         }
         return this;
     }

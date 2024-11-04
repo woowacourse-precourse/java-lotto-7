@@ -2,7 +2,7 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.error.ErrorType;
+import lotto.error.ErrorMessage;
 import lotto.error.exception.InvalidNumberException;
 
 public class InputConvertor {
@@ -21,7 +21,7 @@ public class InputConvertor {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new InvalidNumberException(ErrorType.INVALID_NUMBER_FORMAT);
+            throw new InvalidNumberException(ErrorMessage.INVALID_NUMBER_FORMAT);
         }
     }
 }

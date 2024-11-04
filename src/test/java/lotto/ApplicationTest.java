@@ -1,7 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.error.ErrorType;
+import lotto.error.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -107,7 +107,7 @@ class ApplicationTest extends NsTest {
     void inputMoneyUnitTest() {
         assertSimpleTest(() -> {
             runException("100");
-            assertThat(output()).contains(ErrorType.INVALID_MONEY_FORMAT);
+            assertThat(output()).contains(ErrorMessage.INVALID_MONEY_FORMAT);
         });
     }
 
@@ -116,7 +116,7 @@ class ApplicationTest extends NsTest {
     void inputMoneyRangeTest() {
         assertSimpleTest(() -> {
             runException("9999999999999999999");
-            assertThat(output()).contains(ErrorType.INVALID_NUMBER_FORMAT);
+            assertThat(output()).contains(ErrorMessage.INVALID_NUMBER_FORMAT);
         });
     }
 

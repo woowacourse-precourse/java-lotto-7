@@ -1,7 +1,7 @@
 package lotto.util;
 
 import java.util.List;
-import lotto.error.ErrorType;
+import lotto.error.ErrorMessage;
 import lotto.error.exception.InvalidNumbersException;
 
 public class ListValidator<T> {
@@ -16,14 +16,14 @@ public class ListValidator<T> {
 
     public ListValidator<T> validateSize(final List<T> values, final int size) {
         if (isInvalidNumbersSize(values, size)) {
-            throw new InvalidNumbersException(ErrorType.INVALID_WINNING_NUMBER_SIZE);
+            throw new InvalidNumbersException(ErrorMessage.INVALID_WINNING_NUMBER_SIZE);
         }
         return this;
     }
 
     public ListValidator<T> validateDuplicate(final List<T> values) {
         if (isDuplicate(values)) {
-            throw new InvalidNumbersException(ErrorType.DUPLICATED_WINNING_NUMBERS);
+            throw new InvalidNumbersException(ErrorMessage.DUPLICATED_WINNING_NUMBERS);
         }
         return this;
     }
