@@ -16,7 +16,6 @@ public class InputManager {
 
     public int getMoney() {
         MoneyValidator moneyValidator = new MoneyValidator();
-
         try {
             int money = moneyValidator.validate(view.getUserInput());// 금액 입력
             return money; // 유효한 금액이면 반환
@@ -30,7 +29,6 @@ public class InputManager {
 
     public List<Integer> getWinningNumbers() {
         WinningNumberValidator winningNumberValidator = new WinningNumberValidator();
-
         try {
             List<Integer> winningNumbers = winningNumberValidator.validate(view.getWinningNumbers());// 금액 입력
             return winningNumbers;

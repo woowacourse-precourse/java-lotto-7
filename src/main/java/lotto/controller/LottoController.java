@@ -20,7 +20,6 @@ public class LottoController {
     }
 
     public void run(User user) {
-
         buyTickets(user);
         setupWinningNumbers();
         printResults(user);
