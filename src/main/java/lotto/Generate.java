@@ -7,12 +7,13 @@ import java.util.List;
 
 public class Generate {
 
-    public List<Lotto> lottos(int cost){
+    public List<Lotto> lottos(int cost) {
         List<Lotto> lottos = new ArrayList<>();
+        cost = cost / 1000;
         System.out.println(cost + "개를 구매했습니다.");
 
         for (int i = 0; i < cost; i++) {
-            List<Integer> randomNumbers = randomNumbers();
+            List<Integer> randomNumbers = new ArrayList<>(randomNumbers());
             Collections.sort(randomNumbers);
 
             lottos.add(new Lotto(randomNumbers));
@@ -24,7 +25,7 @@ public class Generate {
     }
 
 
-    private List<Integer> randomNumbers(){
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
+    private List<Integer> randomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
