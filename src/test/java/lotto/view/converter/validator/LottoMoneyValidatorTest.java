@@ -1,8 +1,7 @@
-package lotto.service;
+package lotto.view.converter.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.view.converter.validator.LottoMoneyValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
