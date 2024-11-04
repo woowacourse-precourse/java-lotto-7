@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 
 public class InputView {
 
@@ -14,7 +13,7 @@ public class InputView {
 
         inputValidator.validateNumeric(price);
 
-        return Cash.from(Integer.parseInt(price));
+        return Cash.from(Converter.parseInt(price));
     }
 
     public Lotto inputNumbers() {
@@ -24,11 +23,7 @@ public class InputView {
 
         inputValidator.validateNumbersByComma(numbers);
 
-        return Lotto.from(
-            Arrays.stream(numbers.split(","))
-                .map(Integer::parseInt)
-                .toList()
-        );
+        return Lotto.from(Converter.splitComma(numbers));
     }
 
     public BonusNumber inputNumber(Lotto lotto) {
@@ -38,7 +33,7 @@ public class InputView {
 
         inputValidator.validateNumeric(number);
 
-        int bonusNumber = Integer.parseInt(number);
+        int bonusNumber = Converter.parseInt(number);
         lotto.validateDuplicateByBonusNumber(bonusNumber);
 
         return new BonusNumber(bonusNumber);
