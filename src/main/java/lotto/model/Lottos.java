@@ -31,6 +31,10 @@ public class Lottos {
         return lottos;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     public Map<Rank, Integer> getWinningStatistics() {
         return winningStatistics;
     }
