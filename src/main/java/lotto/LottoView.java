@@ -13,11 +13,11 @@ public class LottoView {
             try {
                 System.out.println("구입 금액을 입력해 주세요.");
                 int purchaseAmount = Integer.parseInt(Console.readLine());
-                if (purchaseAmount % 1000 != 0){
+                if (purchaseAmount % 1000 != 0) {
                     throw new IllegalArgumentException();
                 }
                 return purchaseAmount;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR]: 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
             }
         }
@@ -27,17 +27,30 @@ public class LottoView {
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
-                StringTokenizer st = new StringTokenizer(Console.readLine(), ",");
-                List<Integer> numbers = new ArrayList<>();
-                while (st.hasMoreTokens()) {
-                    numbers.add(Integer.parseInt(st.nextToken()));
-                }
+                List<Integer> numbers = inputNumbers();
                 return new Lotto(numbers);
-            }catch (IllegalArgumentException e){
-                System.out.println("[ERROR]: 로또 번호는 중복되지 않은 6개 숫자입니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]: 로또 번호는 중복되지 않은 1~45범위의 6개 숫자입니다.");
             }
         }
 
+    }
+
+    private static List<Integer> inputNumbers() {
+        StringTokenizer st = new StringTokenizer(Console.readLine(), ",");
+        List<Integer> numbers = new ArrayList<>();
+
+        while (st.hasMoreTokens()) {
+            int number = Integer.parseInt(st.nextToken().trim()); // Trim whitespace around the number
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(); // Provide a clearer error message
+            }
+            if (numbers.contains(number)) {
+                throw new IllegalArgumentException(); // Check for duplicates
+            }
+            numbers.add(number);
+        }
+        return numbers;
     }
 
     public static int inputBonusNumber() {
