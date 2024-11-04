@@ -19,4 +19,5 @@ public class LottoResultDto {
     public double getProfitRate() {
         return profitRate;
     }
+
 }
