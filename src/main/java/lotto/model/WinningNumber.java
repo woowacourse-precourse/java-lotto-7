@@ -1,5 +1,8 @@
 package lotto.model;
 
+import lotto.util.ErrorMessage;
+import lotto.util.Message;
+
 public class WinningNumber {
     private final Lotto winningNumber;
     private final BonusNumber bonusNumber;
@@ -20,7 +23,8 @@ public class WinningNumber {
 
     private void validateDuplication(Lotto winningNumber, BonusNumber bonusNumber){
         if(winningNumber.getNumbers().contains(bonusNumber.getBonusNumber())){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 될 수 없습니다.");
+            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
+                    + ErrorMessage.UNIQUE_BONUS_NUMBER.getError());
         }
     }
 

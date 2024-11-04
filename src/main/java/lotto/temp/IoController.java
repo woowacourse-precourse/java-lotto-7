@@ -2,6 +2,8 @@ package lotto.temp;
 
 import lotto.model.Lotto;
 import lotto.util.CommonIo;
+import lotto.util.ErrorMessage;
+import lotto.util.Message;
 
 import java.util.List;
 
@@ -20,7 +22,8 @@ public class IoController {
         try {
             return io.convertStringToInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자만 입력 가능합니다.", e);
+            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
+                    + ErrorMessage.INVALID_NUMBER.getError(), e);
         }
     }
 

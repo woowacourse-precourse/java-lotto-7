@@ -25,19 +25,19 @@ public enum Rank {
     }
 
     public static Rank valueOf(int matchCount, boolean isBonusMatch) {
-        if (matchCount == 6) {
+        if (matchCount == FIRST.getCountOfMatch()) {
             return FIRST;
         }
-        if (matchCount == 5 && isBonusMatch) {
+        if (matchCount == SECOND.getCountOfMatch() && isBonusMatch) {
             return SECOND;
         }
-        if (matchCount == 5) {
+        if (matchCount == THIRD.getCountOfMatch()) {
             return THIRD;
         }
-        if (matchCount == 4) {
+        if (matchCount == FOURTH.getCountOfMatch()) {
             return FOURTH;
         }
-        if (matchCount == 3) {
+        if (matchCount == FIFTH.getCountOfMatch()) {
             return FIFTH;
         }
         return MISS;

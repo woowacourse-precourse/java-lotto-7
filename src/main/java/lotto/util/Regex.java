@@ -2,6 +2,7 @@ package lotto.util;
 
 public enum Regex {
     ONLY_DIGIT("^[0-9]*$"),
+    ONLY_DIGIT_WITH_COMMA("^[0-9,]*$"),
     DELIMITER_COMMA(","),
     DIGIT_AND_ALPHABET("^[a-zA-Z0-9]*$"),
     ;

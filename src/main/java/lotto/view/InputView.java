@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.util.CommonIo;
+import lotto.util.Message;
 
 public class InputView {
     private final CommonIo io;
@@ -10,15 +11,15 @@ public class InputView {
     }
 
     public void printRequestPurchase() {
-        io.printMessage("구입금액을 입력해 주세요.");
+        io.printMessage(Message.REQUEST_MONEY_INPUT.getSentence());
     }
 
     public void printRequestWinningNumbers(){
-        io.printMessage("당첨 번호를 입력해 주세요.");
+        io.printMessage(Message.REQUEST_WINNING_NUMBER_INPUT.getSentence());
     }
 
     public void printRequestBonusNumber(){
-        io.printMessage("보너스 번호를 입력해 주세요.");
+        io.printMessage(Message.REQUEST_BONUS_NUMBER_INPUT.getSentence());
     }
 
 }

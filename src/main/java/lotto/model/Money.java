@@ -1,5 +1,9 @@
 package lotto.model;
 
+import lotto.util.ErrorMessage;
+import lotto.util.Limit;
+import lotto.util.Message;
+
 public class Money {
     private final int amount;
 
@@ -13,7 +17,7 @@ public class Money {
     }
 
     public Ticket toTickets(){
-        int ticketCount = this.amount / 1000;
+        int ticketCount = this.amount / Limit.UNIT_PRICE.getValue();
         return new Ticket(ticketCount);
     }
 
@@ -23,14 +27,16 @@ public class Money {
     }
 
     private void validateRange(int amount){
-        if(amount < 1000 || amount > 100000){
-            throw new IllegalArgumentException("[ERROR] 로또 구입 최소 금액은 1000원 최대 금액은 100000원 입니다.");
+        if(amount < Limit.MIN_AMOUNT.getValue() || amount > Limit.MAX_AMOUNT.getValue()){
+            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
+            + ErrorMessage.MONEY_RANGE.getError());
         }
     }
 
     private void validateDividableUnitPrice(int amount){
-        if (amount % 1000 != 0){
-            throw new IllegalArgumentException("[ERROR] 로또 구입은 1000원 단위로 가능합니다.");
+        if (amount % Limit.UNIT_PRICE.getValue() != Limit.DEFAULT.getValue()){
+            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
+                    + ErrorMessage.MONEY_UNIT.getError());
         }
     }
 }

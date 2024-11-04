@@ -7,6 +7,7 @@ import lotto.model.WinningNumber;
 import lotto.temp.IoComponent;
 import lotto.temp.Statics;
 import lotto.util.CommonIo;
+import lotto.util.Limit;
 import lotto.view.OutputView;
 
 import java.util.Arrays;
@@ -39,7 +40,7 @@ public class RankCalculatorController {
                 .toList();
 
         for (Rank rank : sortedRanks) {
-            int rankCount = result.getOrDefault(rank, 0);
+            int rankCount = result.getOrDefault(rank, Limit.DEFAULT.getValue());
             ioComponent.getOutputView().printWinningResult(rank.getCountOfMatch(), rank.getPrize(), rankCount);
         }
     }
@@ -49,7 +50,7 @@ public class RankCalculatorController {
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
 
-        int totalSpent = ticketCount * 1000;
+        int totalSpent = ticketCount * Limit.UNIT_PRICE.getValue();
         return new Statics().calculateProfit(totalSpent, totalPrize);
     }
 }

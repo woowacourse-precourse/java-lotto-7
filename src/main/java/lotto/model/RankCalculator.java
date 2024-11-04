@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.util.Limit;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,11 +34,11 @@ public class RankCalculator {
         Map<Rank,Integer> ranks = new HashMap<>();
 
         for (Rank rank : Rank.values()) {
-            ranks.put(rank, 0);
+            ranks.put(rank, Limit.DEFAULT.getValue());
         }
 
         for (Rank rank : ranking) {
-            ranks.put(rank, ranks.get(rank) + 1);
+            ranks.put(rank, ranks.get(rank) + Limit.INCREASE_UNIT.getValue());
         }
 
         return ranks;

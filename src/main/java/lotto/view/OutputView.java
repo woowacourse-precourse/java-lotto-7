@@ -1,6 +1,8 @@
 package lotto.view;
 
+import lotto.model.Rank;
 import lotto.util.CommonIo;
+import lotto.util.Message;
 
 import java.text.NumberFormat;
 
@@ -12,26 +14,28 @@ public class OutputView {
     }
 
     public void printTicketCount(int ticketCount){
-        io.printMessage(ticketCount + "개를 구매했습니다.");
+        io.printMessage(ticketCount + Message.TICKET_PURCHASE_RESULT.getSentence());
     }
 
     public void printStaticsFormat(){
-        io.printMessage("당첨 통계");
-        io.printMessage("---");
+        io.printMessage(Message.STATICS.getSentence());
+        io.printMessage(Message.THREE_DASH.getSentence());
     }
 
     public void printWinningResult(int matchCount, int prize, int rankCount){
         String formattedPrize = NumberFormat.getInstance().format(prize);
-        if(prize == 30000000){
-            io.printMessage(matchCount +"개 일치, 보너스 볼 일치 (" + formattedPrize + "원) - " + rankCount + "개");
+        if(prize == Rank.SECOND.getPrize()){
+            io.printMessage(matchCount + Message.MATCH_COUNT_WITH_BONUS_NUMBER.getSentence()
+                    + formattedPrize + Message.MONEY_UNIT.getSentence() + rankCount + Message.COUNT_UNIT.getSentence());
         }
-        if(prize != 30000000){
-            io.printMessage(matchCount +"개 일치 (" + formattedPrize + "원) - " + rankCount + "개");
+        if(prize != Rank.SECOND.getPrize()){
+            io.printMessage(matchCount +Message.MATCH_COUNT.getSentence()
+                    + formattedPrize + Message.MONEY_UNIT.getSentence() + rankCount + Message.COUNT_UNIT.getSentence());
         }
     }
 
     public void printProfit(float profit) {
-        io.printMessage("총 수익률은 " + profit + "%입니다.");
+        io.printMessage(Message.PROFIT_PREFIX.getSentence() + profit + Message.PROFIT_SUFFIX.getSentence());
     }
 
 }

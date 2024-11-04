@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.util.Limit;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -13,7 +14,9 @@ public class LottoGenerator {
     }
 
     private List<Integer> createRandomLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(Limit.MIN_LOTTO_NUMBER.getValue(),
+                Limit.MAX_LOTTO_NUMBER.getValue(),
+                Limit.LOTTO_NUMBER_COUNT.getValue());
     }
 
     private List<Integer> arrangeLottoNumbers(List<Integer> numbers) {
@@ -29,7 +32,7 @@ public class LottoGenerator {
     }
 
     public List<Lotto> createMultipleLottos(int ticketCount) {
-        List<Lotto> lottos = IntStream.range(0, ticketCount)
+        List<Lotto> lottos = IntStream.range(Limit.DEFAULT.getValue(), ticketCount)
                 .mapToObj(i -> createSingleLotto())
                 .toList();
 
