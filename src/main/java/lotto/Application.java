@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,8 @@ public class Application {
 
         Map<Integer, Integer> results = calculateResults(lottos, winningNumbers, bonusNumber);
 
-        // TODO: 로또 번호 출력
+        Map<Integer, Integer> results = calculateResults(lottos, winningNumbers, bonusNumber);
+        printResults(results, purchaseAmount);
     }
 
 
@@ -152,5 +154,40 @@ public class Application {
             return 5;
         }
         return 0;
+    }
+
+    public static void printResults(Map<Integer, Integer> results, int purchaseAmount) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        int totalPrize = 0;
+        int[] prizes = {0, 2000000000, 30000000, 1500000, 50000, 5000};
+
+        for (int i = 1; i <= 5; i++) {
+            int count = results.getOrDefault(i, 0);
+            totalPrize += count * prizes[i];
+            printRankResult(i, count);
+        }
+
+        double profit = ((double) totalPrize / purchaseAmount) * 100;
+        profit = Math.round(profit * 10) / 10.0;
+        System.out.println("총 수익률은 " + profit + "%입니다.");
+    }
+
+    public static void printRankResult(int rank, int count) {
+        if (rank == 1) {
+            System.out.println("6개 일치 (2,000,000,000원) - " + count + "개");
+        }
+        if (rank == 2) {
+            System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count + "개");
+        }
+        if (rank == 3) {
+            System.out.println("5개 일치 (1,500,000원) - " + count + "개");
+        }
+        if (rank == 4) {
+            System.out.println("4개 일치 (50,000원) - " + count + "개");
+        }
+        if (rank == 5) {
+            System.out.println("3개 일치 (5,000원) - " + count + "개");
+        }
     }
 }
