@@ -1,13 +1,11 @@
 package lotto;
 
 import java.util.List;
-import java.util.EnumMap;
-import java.util.Map;
-
-
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -18,8 +16,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        List<Integer> duplicationCheck = numbers.stream().distinct().collect(Collectors.toList());
+        if (duplicationCheck.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안됩니다.");
+        }
     }
 
-
-    // TODO: 추가 기능 구현
 }
