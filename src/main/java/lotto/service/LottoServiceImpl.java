@@ -53,11 +53,17 @@ public class LottoServiceImpl implements LottoService {
     }
 
     private int calculateLottoCount(String purchaseAmountInput) {
+        int purchaseAmount = parseAndValidatePurchaseAmount(purchaseAmountInput);
+
+        return convertToLottoCount(purchaseAmount);
+    }
+
+    private int parseAndValidatePurchaseAmount(String purchaseAmountInput) {
         PurchaseAmountValidator.validatePurchaseAmountInput(purchaseAmountInput);
         int purchaseAmount = parsePurchaseAmount(purchaseAmountInput);
         PurchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
 
-        return convertToLottoCount(purchaseAmount);
+        return purchaseAmount;
     }
 
     private int parsePurchaseAmount(String purchaseAmountInput) {
