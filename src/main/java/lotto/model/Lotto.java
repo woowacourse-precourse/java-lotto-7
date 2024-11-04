@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.ErrorMessages;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,13 +27,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다. 현재 크기: " + numbers.size());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_SIZE + "현재 크기: " + numbers.size());
         }
         if (numbers.stream().anyMatch(n -> n < MIN_LOTTO_NUMBER || n > MAX_LOTTO_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1과 45 사이여야 합니다. 현재 번호: " + numbers);
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE + "현재 번호: " + numbers);
         }
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다. 현재 번호: " + numbers);
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_LOTTO_NUMBER + "현재 번호: " + numbers);
         }
     }
 
