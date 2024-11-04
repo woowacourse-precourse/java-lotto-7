@@ -9,23 +9,34 @@ _간단한 로또 발매기를 구현한다._
 ## 기능 목록 📋
 
 ```markdown
-src/main/java/lotto/
-├── 메인(Application)/        # 애플리케이션 메인
-│   ├── 컨트롤러(Controller)/
-│   │   └── 컨트롤러                 # 애플리케이션의 흐름을 관리
-│   ├── 모델(Model)/
-│   │   ├── 로또                    # 로또 번호를 나타내는 클래스
-│   │   ├── 우승 로또                # 우승 로또 번호를 나타내는 클래스
-│   │   └── 당첨 통계                # 로또 구매 통계를 나타내는 클래스
-│   ├── 서비스(Service)/
-│   │   ├── 로또 서비스              # 로또 생성 및 통계 계산 로직
-│   │   └── 검증                    # 입력 검증 로직
-│   └── 뷰(View)/
-│           ├── 입력                # 사용자 입력 처리
-│           └── 출력                # 결과 출력 처리
-test/java/lotto/
-├── ApplicationTest      # 통합 테스트
-└── LottoTest            # 단위 테스트
+src
+├── main
+│   └── java
+│       └── lotto
+│           ├── Application.java                // 프로그램의 진입점
+│           ├── controller
+│           │   └── Controller.java             // 컨트롤러 클래스
+│           ├── model
+│           │   ├── ErrorMessage.java           // 에러 메시지 관리하는 열거형
+│           │   ├── Lotto.java                  // 로또 클래스
+│           │   ├── LottoReward.java            // 로또 당첨 금액을 관리하는 열거형
+│           │   ├── Statistics.java             // 당첨 통계 클래스
+│           │   └── WinningLotto.java           // 당첨 번호와 보너스 번호를 저장하는 클래스
+│           ├── service
+│           │   ├── LottoService.java           // 로또 생성, 통계 계산 클래스
+│           │   └── Validator.java              // 유효성 검사 클래스
+│           ├── util
+│           │   └── Parser.java                 // 파싱 클래스
+│           └── view
+│               ├── Input.java                  // 사용자 입력 클래스
+│               ├── Output.java                 // 출력 클래스
+│               └── Prompt.java                 // 입력 안내 메시지 열거형
+└── test
+    └── java
+        └── lotto
+            ├── ApplicationTest.java            // 애플리케이션의 통합 테스트를 수행하는 클래스
+            └── LottoTest.java                  // Lotto 클래스의 단위 테스트를 수행하는 클래스
+
 ```
 
 ## 예외 처리 목록 ✅
@@ -67,3 +78,9 @@ test/java/lotto/
 - 작은 단위 테스트부터 진행하기
 - Java Enum을 적용하여 구현하기
     * 에러 메시지나 당첨 금액에 적용하면 될 듯
+
+
+#### 마치면서
+- 하드코딩 줄이기, 개인적인 습관이기도 하고 크게 고려하면서 작성하지 않았어서 어려웠었다.
+- 마지막에 계속 테스트가 통과하지 않아서 열받았었는데 알고보니 2등 & 보너스 상금을 잘못 적었음
+- MVC 패턴을 처음으로 적용하기 기존과 다르게 많이 시도했는데 아직은 갈 길이 많이 남은 것 같다.
