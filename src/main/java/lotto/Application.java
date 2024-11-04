@@ -80,8 +80,6 @@ public class Application {
                 System.out.println("[ERROR] "+ e.getMessage());
             }
         }
-
-
     }
 
     public void getWinningLottoNum(){
@@ -89,11 +87,9 @@ public class Application {
             throw new IllegalStateException("이미 당첨번호를 입력 받았습니다.");
         }
         while(true){
-            System.out.println();
-            System.out.println("당첨 번호를 입력해주세요.");
-            String input = Console.readLine();
+            System.out.println("\n당첨 번호를 입력해주세요.");
             try{
-                List<Integer> winningLottoNum = validateWinningLotto(input);
+                List<Integer> winningLottoNum = validateWinningLotto(Console.readLine());
                 this.winningLotto = new Lotto(winningLottoNum);
                 break;
             }
@@ -106,15 +102,13 @@ public class Application {
 
     public void getWinningBonusNum(){
         while(true){
-            System.out.println();
-            System.out.println("보너스 번호를 입력해 주세요.");
-            String input = Console.readLine();
+            System.out.println("\n보너스 번호를 입력해 주세요.");
             try {
-                int bonusNum = validateBonusNum(input);
+                int bonusNum = validateBonusNum(Console.readLine());
                 if (this.winningLotto.getNumbers().contains(bonusNum)) {
                     throw new IllegalArgumentException("보너스 번호는 로또 번호와 동일할 수 없습니다.");
                 }
-                this.bonusNumber = validateBonusNum(input);
+                this.bonusNumber = bonusNum;
                 break;
             }
             catch(IllegalArgumentException e){
@@ -174,25 +168,18 @@ public class Application {
     }
 
     //당첨 상수 찾는 메소드
-    private WinningStatistics findWinningStatistics(int matchingCount, boolean hasBonus){
-
-        if(matchingCount==WinningStatistics.SIX_MATCH.getMatchCount()){
-            return WinningStatistics.SIX_MATCH;
+    private WinningStatistics findWinningStatistics(int matchingCount, boolean hasBonus) {
+        for (WinningStatistics stats : WinningStatistics.values()) {
+            if (stats.getMatchCount() == matchingCount) {
+                if (stats == WinningStatistics.FIVE_MATCH_BONUS && hasBonus) {
+                    return WinningStatistics.FIVE_MATCH_BONUS;
+                }
+                if (stats != WinningStatistics.FIVE_MATCH_BONUS) {
+                    return stats;
+                }
+            }
         }
-        if((matchingCount==WinningStatistics.FIVE_MATCH_BONUS.getMatchCount())&&(hasBonus)){
-            return WinningStatistics.FIVE_MATCH_BONUS;
-        }
-        if(matchingCount==WinningStatistics.FIVE_MATCH.getMatchCount()){
-            return WinningStatistics.FIVE_MATCH;
-        }
-        if(matchingCount==WinningStatistics.FOUR_MATCH.getMatchCount()){
-            return WinningStatistics.FOUR_MATCH;
-        }
-        if(matchingCount==WinningStatistics.THREE_MATCH.getMatchCount()){
-            return WinningStatistics.THREE_MATCH;
-        }
-
-        return null; //해당없음
+        return null; // 해당 없음
     }
 
     //수익률 계산 메소드
