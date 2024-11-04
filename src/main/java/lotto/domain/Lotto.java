@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstants.LOTTO_NUMBERS_COUNT;
 import static lotto.exception.lotto.LottoErrorCode.INVALID_DUPLICATE_LOTTO_NUMBERS;
 import static lotto.exception.lotto.LottoErrorCode.INVALID_LOTTO_LENGTH;
 
@@ -7,6 +8,7 @@ import java.util.List;
 import lotto.exception.LottoException;
 
 public class Lotto {
+
     private final List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -20,7 +22,7 @@ public class Lotto {
     }
 
     private void validateLottoNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS_COUNT.getIntValue()) {
             throw new LottoException(INVALID_LOTTO_LENGTH);
         }
     }

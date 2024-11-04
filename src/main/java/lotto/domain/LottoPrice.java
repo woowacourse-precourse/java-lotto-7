@@ -1,13 +1,12 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstants.LOTTO_UNIT_PRICE;
 import static lotto.exception.lottoPrice.LottoPriceErrorCode.INVALID_LOTTO_PRICE;
 
 import java.math.BigDecimal;
 import lotto.exception.LottoException;
 
 public class LottoPrice {
-
-    private static final BigDecimal LOTTO_UNIT_PRICE = BigDecimal.valueOf(1000);
 
     private final BigDecimal price;
 
@@ -21,7 +20,7 @@ public class LottoPrice {
     }
 
     public BigDecimal getCanPurchaseLottoCount() {
-        return price.divide(LOTTO_UNIT_PRICE);
+        return price.divide(LOTTO_UNIT_PRICE.getBigDecimalValue());
     }
 
     private void validate(int price) {
@@ -29,7 +28,7 @@ public class LottoPrice {
     }
 
     private void validatePrice(int price) {
-        if (price >= LOTTO_UNIT_PRICE.intValue() || price % LOTTO_UNIT_PRICE.intValue() != 0) {
+        if (price < LOTTO_UNIT_PRICE.getIntValue() || price % LOTTO_UNIT_PRICE.getIntValue() != 0) {
             throw new LottoException(INVALID_LOTTO_PRICE);
         }
     }
