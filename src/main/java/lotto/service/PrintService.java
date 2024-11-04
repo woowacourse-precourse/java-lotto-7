@@ -31,7 +31,7 @@ public class PrintService {
 
     public void printNoticeBuyAmount(int amount) {
         System.out.println(
-                amount + LottoInfoMessages.NOTICE_BUY_AMOUNT_START.text());
+            amount + LottoInfoMessages.NOTICE_BUY_AMOUNT_START.text());
         System.out.println();
     }
 
@@ -42,7 +42,7 @@ public class PrintService {
     }
 
     public void printWrongRange() {
-        System.out.println(LottoErrorMessages.NUMBER_RANGE_ERROR.text());
+        System.out.println(LottoErrorMessages.NUMBER_RANGE_ERROR.addErrorText());
     }
 
     public void printBonusNumbers(int bonusNumber) {
@@ -52,7 +52,7 @@ public class PrintService {
     }
 
     public void printWrongBonusNumber(int bonusNumber) {
-        System.out.println(LottoErrorMessages.BONUS_NUMBER_IS_DUPLICATED_ERROR.text());
+        System.out.println(LottoErrorMessages.BONUS_NUMBER_IS_DUPLICATED_ERROR.addErrorText());
     }
 
     public void printWinnerNumbersInfo() {
@@ -70,12 +70,12 @@ public class PrintService {
         }
         float earningRate = calculateEarning(matchedResult, pay);
         System.out.printf((StatisticsMessages.STATISTICS_RESULT.text()),
-                matchedResult[THREE],
-                matchedResult[FOUR],
-                matchedResult[FIVE],
-                matchedResult[FIVE_BONUS],
-                matchedResult[SIX],
-                earningRate);
+            matchedResult[THREE],
+            matchedResult[FOUR],
+            matchedResult[FIVE],
+            matchedResult[FIVE_BONUS],
+            matchedResult[SIX],
+            earningRate);
     }
 
     private float calculateEarning(int[] matchedResult, int pay) {
@@ -110,7 +110,6 @@ public class PrintService {
     private void printBuyLottoList() {
         System.out.println(LottoInfoMessages.BUY_LOTTO_LIST.text());
     }
-
 
     public void printSyntaxError() {
         System.out.println(LottoErrorMessages.SYNTAX_NUMBER_ERROR.addErrorText());
