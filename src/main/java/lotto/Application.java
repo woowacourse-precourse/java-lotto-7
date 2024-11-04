@@ -102,54 +102,57 @@ public class Application {
 
 
     private static int getBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        try {
-            int bonusNumber = Integer.parseInt(Console.readLine());
-            if (bonusNumber < 1 || bonusNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        while (true) {
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            try {
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                validateBonusNumber(bonusNumber);
+                return bonusNumber; // 유효한 보너스 번호 입력 시 반환
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 숫자 형식이어야 합니다. 다시 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " 다시 입력해 주세요.");
             }
-            return bonusNumber;
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 보너스 번호는 숫자 형식이어야 합니다.");
-            System.exit(0);  // 프로그램 종료
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.exit(0);
         }
-        return -1;
+    }
+
+    private static void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 
     private static int[] calculateWinStatus(List<Lotto> lottoList, List<Integer> winNumbers, int bonusNumber) {
         int[] winStatus = new int[5];
         for (Lotto lotto : lottoList) {
-            int count = 0;
-            for (Integer target : winNumbers) {
-                if (lotto.contains(target)) {
-                    count++;
-                }
-
-                if (count == 5 && lotto.contains(bonusNumber)) {
-                    count = 7;
-                }
-            }
+            int count = getCount(lotto, winNumbers, bonusNumber);
             updateWinStatus(winStatus, count);
         }
         return winStatus;
     }
 
-    private static void updateWinStatus(int[] winStatus, int count) {
-        if (count == 3) {
-            winStatus[0]++;
-        } else if (count == 4) {
-            winStatus[1]++;
-        } else if (count == 5) {
-            winStatus[2]++;
-        } else if (count == 7) {
-            winStatus[3]++;
-        } else if (count == 6) {
-            winStatus[4]++;
+    private static int getCount(Lotto lotto, List<Integer> winNumbers, int bonusNumber) {
+        int count = 0;
+        for (Integer target : winNumbers) {
+            if (lotto.contains(target)) {
+                count++;
+            }
         }
+        // 보너스 볼 일치 여부 확인을 별도로 분리
+        if (count == 5 && lotto.contains(bonusNumber)) {
+            count = 7;
+        }
+        return count;
     }
+
+    private static void updateWinStatus(int[] winStatus, int count) {
+        if (count == 3) winStatus[0]++;
+        if (count == 4) winStatus[1]++;
+        if (count == 5) winStatus[2]++;
+        if (count == 7) winStatus[3]++;
+        if (count == 6) winStatus[4]++;
+    }
+
 
     private static void printStatisticsAndProfit(int[] winStatus, int totalCost) {
         int[] prizes = {5000, 50000, 1500000, 30000000, 2000000000};
