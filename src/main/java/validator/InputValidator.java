@@ -9,7 +9,8 @@ public class InputValidator {
     public static boolean validatePurchaseAmount(String input) {
         try {
             int amount = Integer.parseInt(input);
-            if (amount < 1000 || amount % 1000 != 0) {
+            if (amount < LottoConstants.TICKET_PRICE.getValue() || amount %
+                    LottoConstants.TICKET_PRICE.getValue() != 0) {
                 throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASE_AMOUNT_UNIT.getMessage());
             }
             return true;
