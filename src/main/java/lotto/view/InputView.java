@@ -19,6 +19,8 @@ public class InputView {
             int price = Integer.parseInt(Console.readLine());
             validator.validatePrice(price);
             return price;
+        } catch (NumberFormatException exception) {
+            throw new NumberFormatException(ErrorMessage.INVALID_VALUE.getMessage());
         } catch (IllegalArgumentException exception) {
             throw exception;
         } catch (Exception exception) {
@@ -31,6 +33,8 @@ public class InputView {
             List<Integer> winning = inputLottoNumbers();
             validator.validateLottoNumber(winning);
             return winning;
+        } catch (NumberFormatException exception) {
+            throw new NumberFormatException(ErrorMessage.INVALID_VALUE.getMessage());
         } catch (IllegalArgumentException exception) {
             throw exception;
         } catch (Exception exception) {
@@ -45,6 +49,8 @@ public class InputView {
             validator.validateLottoNumber(value);
             validator.validateDuplicated(winningNumbers, value);
             return value;
+        } catch (NumberFormatException exception) {
+            throw new NumberFormatException(ErrorMessage.INVALID_VALUE.getMessage());
         } catch (IllegalArgumentException exception) {
             throw exception;
         } catch (Exception exception) {
