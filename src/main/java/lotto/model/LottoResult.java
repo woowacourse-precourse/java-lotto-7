@@ -59,6 +59,9 @@ public class LottoResult {
     }
 
     public void finalizeLottoResultsProcess(int lottoAmount) {
+        if (result.isEmpty()) {
+            throw new IllegalStateException("[ERROR] 로또 결과가 존재하지 않아 수익률을 계산할 수 없습니다.");
+        }
         printResults();
         double profitRate = computeProfitRate(lottoAmount);
         printProfitRate(profitRate);

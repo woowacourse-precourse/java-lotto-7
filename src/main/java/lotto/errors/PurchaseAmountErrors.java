@@ -27,8 +27,12 @@ public class PurchaseAmountErrors {
 
     // 구입 금액이 1000원 미만일 경우
     public void validateMinimumPurchaseAmount(int amount) {
+        if (amount < 0) {
+            throw new IllegalStateException("[ERROR] 유효하지 않은 로또 구입 금액입니다.");
+        }
         if (amount < 1000) {
             throw new IllegalArgumentException("[ERROR] 최소 구입 금액은 1000원입니다.");
         }
+
     }
 }

@@ -5,6 +5,9 @@ import java.util.*;
 public class LottoChecker {
 
     public void lottoCheckingProcess(List<Lotto> allLottos, List<Integer> winningNumbers, Integer bonusNumber, LottoResult lottoResult) {
+        if (allLottos.isEmpty()) {
+            throw new IllegalStateException("[ERROR] 로또 목록이 비어 있어 당첨 결과를 처리할 수 없습니다.");
+        }
         for (Lotto lotto : allLottos) {
             Map<String, Object> result = analyzeLottoResult(lotto, winningNumbers, bonusNumber);
             lottoResult.recordResult((Integer) result.get("matchCount"), (Boolean) result.get("isBonusMatched"));
