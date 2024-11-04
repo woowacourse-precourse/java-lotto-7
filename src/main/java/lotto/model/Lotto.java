@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,12 +18,14 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-    private void duplicationCheck(List<Integer> numbers){
+
+    private void duplicationCheck(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("로또 번호에 중복이 존재합니다.");
         }
     }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

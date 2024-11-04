@@ -1,6 +1,7 @@
-package lotto;
+package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.factory.LottoFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ public class LottoList {
                 .mapToObj(i -> LottoFactory.createLotto(getRandomNum()))
                 .collect(Collectors.toList());
     }
+
     private static List<Integer> getRandomNum() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
