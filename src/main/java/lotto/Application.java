@@ -14,6 +14,7 @@ public class Application {
         try {
             int amount = inputAmount(); // 구입 금액 입력받기
             List<Lotto> purchasedLottos = purchaseLottos(amount / LOTTO_PRICE); // 구매한 로또 수량만큼 로또 생성
+            printLottos(purchasedLottos); // 구매한 로또 번호 출력
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage()); // 예외 발생 시 에러 메시지 출력
         }
@@ -37,7 +38,7 @@ public class Application {
 
      // 로또 구매 및 로또 번호 생성
     private static List<Lotto> purchaseLottos(int count) {
-        System.out.println(count + "개를 구매했습니다.");
+        System.out.println("\n" + count + "개를 구매했습니다.");
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             lottos.add(new Lotto(generateLottoNumbers())); // count 수만큼 로또 생성하여 리스트에 추가
@@ -52,4 +53,11 @@ public class Application {
         return numbers;
     }
 
+
+    // 구매한 로또 번호 출력
+    private static void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
 }
