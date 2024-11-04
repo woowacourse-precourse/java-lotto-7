@@ -1,6 +1,7 @@
 package lotto.parser;
 
-import static lotto.model.Constants.MULTIPLES_OF_LOTTO_PRICE;
+import static lotto.constant.Constants.DELIMITER;
+import static lotto.constant.Constants.LOTTO_PRICE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +27,7 @@ public class InputParser {
 
         InputValidator.isMultiplesOfThousand(purchaseAmount);
 
-        return purchaseAmount / MULTIPLES_OF_LOTTO_PRICE;
+        return purchaseAmount / LOTTO_PRICE;
     }
 
     /**
@@ -36,7 +37,7 @@ public class InputParser {
         InputValidator.isWinningNumbersBlank(winningNumbers);
 
         try{
-            List<Integer> winningNumberList = Arrays.stream(winningNumbers.split(","))
+            List<Integer> winningNumberList = Arrays.stream(winningNumbers.split(DELIMITER))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.constant.Constants.LOTTO_SIZE;
+
 import java.util.List;
 import lotto.message.ErrorMessage;
 
@@ -12,7 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.UNAVAILABLE_LOTTO_NUMBERS_LENGTH.getMessage());
         }
     }

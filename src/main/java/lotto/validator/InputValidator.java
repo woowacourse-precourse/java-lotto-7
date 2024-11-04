@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.model.Constants.MULTIPLES_OF_LOTTO_PRICE;
+import static lotto.constant.Constants.LOTTO_PRICE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -22,7 +22,7 @@ public class InputValidator {
      * 구매 금액 1000배수 체크
      */
     public static void isMultiplesOfThousand(int purchaseAmount) {
-        if (purchaseAmount % MULTIPLES_OF_LOTTO_PRICE != 0 || purchaseAmount < 1000) {
+        if (purchaseAmount % LOTTO_PRICE != 0 || purchaseAmount < LOTTO_PRICE) {
             throw new InputException(ErrorMessage.UNAVAILABLE_PURCHASE_AMOUNT.getMessage());
         }
     }

@@ -4,7 +4,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.message.SystemMessage;
-import lotto.model.Constants;
+import lotto.constant.Constants;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
 
