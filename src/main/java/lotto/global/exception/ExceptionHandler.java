@@ -15,11 +15,8 @@ public class ExceptionHandler {
         return instance;
     }
 
-    public IllegalArgumentException handleException(Exception e) {
-        return new IllegalArgumentException(createErrorMessage(e));
+    public static String createErrorMessage(String message) {
+        return ERROR_PREFIX + message;
     }
 
-    private String createErrorMessage(Exception e) {
-        return ERROR_PREFIX + e.getMessage();
-    }
 }
