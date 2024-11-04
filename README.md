@@ -143,15 +143,10 @@ BUILD SUCCESSFUL in 0s
 
 ### 1. `문자열 덧셈 계산기` - 기능 요구 사항 세부 정리
 ✅ **`Application` 클래스**
-- 사용자 입력 처리 및 유효성 검증
-- 구입 금액 입력 및 로또 발행
-- 당첨 번호 및 보너스 번호 입력
-- 당첨 결과 계산
-- 수익률 계산
-- 결과 출력
+- 로또 미션 시작하기
 
 ✅ **`Lotto` 클래스**
-- 자동차 객체의 상태 관리 및 전진 동작 수행
+- Lotto 객체의 상태 관리 및 당첨 체크
 
   ☑️ `Lotto` 메소드 (`생성자`)
   - 로또 번호 초기화
@@ -159,6 +154,7 @@ BUILD SUCCESSFUL in 0s
   ☑️ `validate` 메소드
   - 로또 번호가 6개인지 검사
   - 로또 번호의 범위가 1 ~ 45 사이인지 검사
+  - 로또 번호에 중복된 숫자가 있는지 검사
   
   ☑️ `getNumbers` 메소드
   - 로또 번호 리스트 반환
@@ -186,11 +182,11 @@ BUILD SUCCESSFUL in 0s
 ✅ **`LottoResult` 클래스**
 - 등수 및 상금 관리
   
-  ☑️ `calculateResult` 메소드
-  - 당첨 로또 및 보너스 번호 비교 등수 계산
+  ☑️ `calculateRank` 메소드
+  - 로또 번호 및 보너스 번호 당첨 개수 비교 후 등수 계산
   
-  ☑️ `calculatePrize` 메소드
-  - 당첨 결과 상금 계산 후 반환
+  ☑️ `calculateProfitRate` 메소드
+  - 수익률 계산 후 반환
 
 ✅ **`LottoView` 클래스**
 - 입출력 관리
@@ -209,14 +205,46 @@ BUILD SUCCESSFUL in 0s
 
   ☑️ `printResult` 메소드
   - 당첨 통계 및 총 수익률 출력
+
+✅ **`LottoController` 클래스**
+- 동작 구조 관리
+  
+  ☑️ `start` 메소드
+  - 사용자 입력 처리 및 유효성 검증
+  - 구입 금액 입력 및 로또 발행
+  - 당첨 번호 및 보너스 번호 입력
+  - 당첨 결과 계산
+  - 수익률 계산
+  - 결과 출력
+ 
+✅ **`LottoRank` 클래스 (Enum)**
+- 당첨 등수 관련 열거형 데이터 정의
+- 각 등수 값 입력
+    
+    ☑️ `LottoRank` 메소드 (생성자)
+    - 로또 번호 일치 개수 및 당첨 금액 초기화
+    
+    ☑️ `getMatchCount` 메소드 
+    - 로또 번호 일치 개수 반환
+    
+    ☑️ `getPrize` 메소드
+    - 당첨 금액 반환
+    
+    ☑️ `getLottoRank` 메소드
+    - 로또 번호 일치 개수와 보너스 일치 여부 판단
+
   
 ### 2. 예외처리
 ✅ **`Lotto` 클래스 - `validate` 메소드**
 - 로또 번호가 6개인지 검사
 - 로또 번호의 범위가 1 ~ 45 사이인지 검사
+- 로또 번호에 중복된 값이 있는지 검사
 
 ✅ **`LottoMachine` 클래스 - `validateAmount` 메소드**
 -  구입 금액이 1,000원 단위가 아닐 경우 예외 발생
+
+✅ **`LottoController` 클래스**
+-  잘못된 입력형식을 입력한 경우 예외 발생
 
 ---
 
@@ -227,6 +255,8 @@ BUILD SUCCESSFUL in 0s
 ☑️ 로또 번호가 제대로 생성될 경우
 
 ☑️ 로또 번호가 6개가 안 될 경우
+
+☑️ 로또 번호에 중복된 값이 있을 경우
 
 ☑️ 로또 번호의 값이 범위를 초과할 경우
 
@@ -240,19 +270,13 @@ BUILD SUCCESSFUL in 0s
 
 ### 3. LottoResultTest
 
-☑️ 당첨 통계 계산이 제대로 동작하는 경우
-
 ☑️ 수익률 계산이 제대로 동작하는 경우
 
-### 4. LottoViewTest
+### 4. ApplicationTest
 
-☑️ 금액 출력 형식
+☑️ 기능 테스트
 
-☑️ 로또 번호 출력 형식
-
-☑️ 당첨 결과 출력 형식
-
-☑️ 수익률 출력 형식
+☑️ 예외 테스트
 
 ---
 
@@ -295,7 +319,7 @@ BUILD SUCCESSFUL in 0s
   - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 **사용 예시**
 - 1에서 45 사이의 중복되지 않은 정수 6개 반환
-```
+```java
 Randoms.pickUniqueNumbersInRange(1, 45, 6);
 ```
 
@@ -305,7 +329,7 @@ Randoms.pickUniqueNumbersInRange(1, 45, 6);
 - numbers의 접근 제어자인 private은 변경할 수 없다.
 - Lotto의 패키지를 변경할 수 있다.
 
-```
+```java
 public class Lotto {
     private final List<Integer> numbers;
 
