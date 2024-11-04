@@ -52,7 +52,7 @@ public class LottoPrize {
     private Rank determineRank(List<Integer> prizeNumbers, List<Integer> userNumbers) {
         int matchCount = checkMatchCount(prizeNumbers, userNumbers);
         BonusCheck bonusCheck = checkBonusMatch(userNumbers);
-        return matchRank(matchCount, bonusCheck);
+        return Rank.matchRank(matchCount, bonusCheck);
     }
 
     private int checkMatchCount(List<Integer> prizeNumbers, List<Integer> userNumbers) {
@@ -66,18 +66,5 @@ public class LottoPrize {
             return BonusCheck.TRUE;
         }
         return BonusCheck.FALSE;
-    }
-
-    private Rank matchRank(int matchCount, BonusCheck bonusCheck) {
-        return Arrays.stream(Rank.values())
-                .filter(rank -> findMatchedRank(matchCount, bonusCheck, rank))
-                .findFirst()
-                .orElse(NOTHING);
-    }
-
-    private boolean findMatchedRank(int matchedCount, BonusCheck bonusCheck, Rank rank) {
-        return rank.getMatchedCount() == matchedCount &&
-                (rank.isBonusMatched() == BonusCheck.ALL ||
-                        rank.isBonusMatched() == bonusCheck);
     }
 }

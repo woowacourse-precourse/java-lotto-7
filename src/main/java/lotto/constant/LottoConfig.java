@@ -1,5 +1,7 @@
 package lotto.constant;
 
+import java.util.Arrays;
+
 public class LottoConfig {
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
@@ -41,6 +43,18 @@ public class LottoConfig {
 
         public long getPrizeMoney() {
             return prizeMoney;
+        }
+
+        public static Rank matchRank(int matchCount, BonusCheck bonusCheck) {
+            return Arrays.stream(Rank.values())
+                    .filter(rank -> findMatchedRank(matchCount, bonusCheck, rank))
+                    .findFirst()
+                    .orElse(NOTHING);
+        }
+
+        private static boolean findMatchedRank(int matchedCount, BonusCheck bonusCheck, Rank rank) {
+            return rank.matchedCount == matchedCount &&
+                    (rank.isBonusMatched == BonusCheck.ALL || rank.isBonusMatched == bonusCheck);
         }
     }
 }
