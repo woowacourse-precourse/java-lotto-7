@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.config.Config;
+import lotto.model.Lotto;
+import lotto.model.PrizeRank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

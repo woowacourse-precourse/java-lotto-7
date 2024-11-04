@@ -2,9 +2,9 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
-import lotto.Message;
-import lotto.PrizeRank;
+import lotto.model.Lotto;
+import lotto.message.Message;
+import lotto.model.PrizeRank;
 
 public class OutputView {
     public void printLottos(int purchaseAmount, List<Lotto> lottos) {

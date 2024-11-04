@@ -1,4 +1,4 @@
-package lotto;
+package lotto.message;
 
 public enum ErrorMessage {
     INVALID_PURCHASE_PRICE("[ERROR] 구입금액은 1,000원 단위의 숫자만 허용됩니다."),

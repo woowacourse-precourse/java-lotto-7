@@ -1,7 +1,7 @@
 package lotto.util;
 
-import lotto.ErrorMessage;
-import lotto.Lotto;
+import lotto.message.ErrorMessage;
+import lotto.model.Lotto;
 
 public class Validator {
     public int validatePurchasePrice(String purchasePriceInput) {

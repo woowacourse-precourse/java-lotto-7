@@ -1,6 +1,7 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
+import lotto.message.ErrorMessage;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
