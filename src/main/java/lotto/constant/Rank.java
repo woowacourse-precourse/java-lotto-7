@@ -10,8 +10,6 @@ public enum Rank {
     SIX_MATCH(6, 2000000000),
     NO_MATCH(0, 0);
 
-    private final int matchCount;
-    private final long winnings;
     private static final Map<String, Rank> rankMap = Map.of(
             "6", SIX_MATCH,
             "5-true", FIVE_MATCH_BONUS,
@@ -20,13 +18,16 @@ public enum Rank {
             "3", THREE_MATCH
     );
 
+    private final int matchCount;
+    private final long winnings;
+
     Rank(int matchCount, long winnings) {
         this.matchCount = matchCount;
         this.winnings = winnings;
     }
 
     public static Rank getRank(int matchCount, boolean hasBonus) {
-        if (matchCount == 5)
+        if (matchCount == FIVE_MATCH.getMatchCount())
             return rankMap.getOrDefault(matchCount + "-" + hasBonus, NO_MATCH);
         return rankMap.getOrDefault(Integer.toString(matchCount), NO_MATCH);
     }
