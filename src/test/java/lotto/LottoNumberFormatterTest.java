@@ -109,8 +109,22 @@ public class LottoNumberFormatterTest {
 
     public static Stream<Arguments> hasDuplicateNumException() {
         return Stream.of(
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6),
-                Arguments.of(List.of(1, 1, 2, 3, 4, 5), 7)
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6)
+        );
+    }
+
+    @DisplayName("당첨 번호들의 중 중복이 있을 경우")
+    @ParameterizedTest
+    @MethodSource("hasDuplicateWinningNumException")
+    void hasDuplicateWinningNumExceptionTest(List<Integer> winningNums) {
+        assertThatThrownBy(() -> lottoNumberFormatter.hasDuplicateWinningNum(winningNums)).isInstanceOf(
+                IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+
+    }
+
+    public static Stream<Arguments> hasDuplicateWinningNumException() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 5))
         );
     }
 
