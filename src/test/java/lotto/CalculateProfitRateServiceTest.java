@@ -24,7 +24,7 @@ public class CalculateProfitRateServiceTest {
         int totalPurchaseAmount = 1000000;
         int totalPrize = (1 * 2_000_000_000) + (2 * 30_000_000) + (5 * 5_000);
 
-        double expectedProfitRate = ((double) totalPrize / totalPurchaseAmount) * 100;
+        double expectedProfitRate = (((double) totalPrize / 1000) / totalPurchaseAmount) * 100;
         double actualProfitRate = CalculateProfitRateService.calculateProfitRate(results, totalPurchaseAmount);
 
         assertThat(actualProfitRate).isEqualTo(expectedProfitRate);
