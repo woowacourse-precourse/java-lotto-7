@@ -4,6 +4,9 @@ import lotto.dto.BuyingPrice;
 import lotto.dto.Buyer;
 import lotto.io.OutputHandler;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class LottoGame {
     private final BuyingPrice buyingPrice;
     private final Lottos lottos;
@@ -22,7 +25,7 @@ public class LottoGame {
     }
 
     private void computeYield(int totalWinningPrice) {
-        double yield = (double) totalWinningPrice / buyingPrice.getPrice();
+        double yield = (double) totalWinningPrice / buyingPrice.getPrice() * 100;
         OutputHandler.printYield(yield);
     }
 }

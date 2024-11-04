@@ -36,7 +36,9 @@ public class OutputHandler {
     }
 
     public static void printYield(double yield) {
-        System.out.printf("총 수익률은 %.2f%%입니다.", yield);
+        String formatted = String.format("%.2f", yield);
+        double roundedValue = Double.parseDouble(formatted);
+        System.out.printf("총 수익률은 %s%%입니다.", roundedValue);
     }
 
     private OutputHandler() {}
