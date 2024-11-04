@@ -1,0 +1,27 @@
+package lotto.dto.input;
+
+import static lotto.exception.ErrorMessage.*;
+
+public record BonusNumberInput(String input) {
+
+    public BonusNumberInput {
+        validate(input);
+    }
+
+    private void validate(String input) {
+        validateLottoNumbersNotNull(input);
+        validateLottoNumbersNotEmpty(input);
+    }
+
+    private void validateLottoNumbersNotNull(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException(NULL_INPUT.getMessage());
+        }
+    }
+
+    private void validateLottoNumbersNotEmpty(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
+        }
+    }
+}
