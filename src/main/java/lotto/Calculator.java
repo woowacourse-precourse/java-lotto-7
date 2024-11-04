@@ -58,8 +58,7 @@ public class Calculator {
         prizeCounter.getPrizeCount().getOrDefault(Calculator.WinningType.FIFTH_PRIZE, 0) * 5_000;
 
     int totalSpent = purchaseAmount.getPurchaseQuantity() * 1000;
-    float profitRate = ((float) totalPrizeMoney / totalSpent) * 100;
-    return Math.round(profitRate * 100) / 100.0f;
+    return ((float) totalPrizeMoney / totalSpent) * 100;
   }
 
 

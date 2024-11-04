@@ -16,6 +16,7 @@ public class LottoWinningNumbers {
   private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
   public int[] inputWinningNumber() {
+    System.out.println();
     System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
     int[] winningNumber = Arrays.stream(Console.readLine().split(","))
         .mapToInt(Integer::parseInt)
