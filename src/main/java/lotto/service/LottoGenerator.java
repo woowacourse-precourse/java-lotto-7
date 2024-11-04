@@ -17,7 +17,7 @@ public class LottoGenerator {
     }
 
     public static List<Integer> generateLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_NUMBER_COUNT);
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, 6));
         lottoNumbers.sort(Integer::compareTo);
         return lottoNumbers;
     }

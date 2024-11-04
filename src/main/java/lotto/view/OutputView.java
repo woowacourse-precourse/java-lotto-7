@@ -23,7 +23,7 @@ public class OutputView {
 
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.NONE) {
-                System.out.printf("%d개 일치%s (%d원) - %d개%n",
+                System.out.printf("%d개 일치%s (%,d원) - %d개%n",
                         rank.getMatchCount(),
                         getBonusText(rank),
                         rank.getPrize(),
