@@ -10,11 +10,13 @@ import lotto.domain.validator.ParamsValidator;
 final public class LottoStatics {
 
     private final EnumMap<LottoPrize, Long> prizeCount;
+    private final double incomePercent;
     private final Money money;
 
     private LottoStatics(List<Lotto> lottos, WinningLotto winningLotto, Money money) {
         this.prizeCount = calculatePrizeCount(lottos, winningLotto);
         this.money = money;
+        this.incomePercent = calculateIncomePercent();
     }
 
     private static EnumMap<LottoPrize, Long> calculatePrizeCount(
@@ -36,6 +38,16 @@ final public class LottoStatics {
         return prizeCount;
     }
 
+    private double calculateIncomePercent() {
+        return (calculateTotalIncome() * 100.0) / (double) this.money.getAmount();
+    }
+
+    private long calculateTotalIncome() {
+        return prizeCount.keySet().stream()
+                .mapToLong(lottoPrize -> lottoPrize.prizeMoney * prizeCount.get(lottoPrize))
+                .sum();
+    }
+
     public static LottoStatics of(List<Lotto> lottos, WinningLotto winningLotto, Money money) {
         ParamsValidator.validateParamsNotNull(LottoStatics.class, lottos, winningLotto, money);
 
@@ -46,14 +58,7 @@ final public class LottoStatics {
         return new EnumMap<>(this.prizeCount);
     }
 
-    public float getIncomeRate() {
-        return (float) calculateTotalIncome() / this.money.getAmount();
-    }
-
-    private long calculateTotalIncome() {
-        return prizeCount.keySet().stream()
-                .map(lottoPrize -> lottoPrize.prizeMoney * prizeCount.get(lottoPrize))
-                .reduce(Long::sum)
-                .orElse(0L);
+    public double getIncomePercent() {
+        return this.incomePercent;
     }
 }

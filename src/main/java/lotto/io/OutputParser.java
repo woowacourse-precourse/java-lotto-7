@@ -1,5 +1,7 @@
 package lotto.io;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import lotto.dto.IncomeStatics;
 import lotto.dto.PrizeStatics;
 import lotto.dto.PurchasedLottos;
@@ -61,14 +63,17 @@ public class OutputParser {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("총 수익률은 ");
-        stringBuilder.append(formatRate(incomeStatics.incomeRate()));
+        stringBuilder.append(formatPercent(incomeStatics.incomePercent()));
         stringBuilder.append("%입니다.");
 
         return stringBuilder.toString();
     }
 
-    private static String formatRate(final float rate) {
-        return String.valueOf((float) Math.round(rate * 1000) / 10);
+    private static String formatPercent(final double incomePercent) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
+
+        return decimalFormat.format(incomePercent);
     }
 
     public String parseExceptionMessage(final Exception e) {
