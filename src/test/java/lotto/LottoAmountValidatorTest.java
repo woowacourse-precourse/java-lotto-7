@@ -58,4 +58,14 @@ class LottoAmountValidatorTest {
 
         assertThat(result).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("구입 금액에 공백이 포함되어 있으면 예외가 발생한다.")
+    void validatePurchaseAmountWithBlankSpace() {
+        String amount = "1 000";
+
+        assertThatThrownBy(() -> LottoAmountValidator.validatePurchaseAmout(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INPUT_HAS_BLANK.getMessage());
+    }
 }

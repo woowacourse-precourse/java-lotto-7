@@ -50,4 +50,14 @@ class WinningNumberValidatorTest {
 
         assertThat(result).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
     }
+
+    @Test
+    @DisplayName("당첨 번호에 공백이 포함되어 있으면 예외가 발생한다.")
+    void validateWinningNumberWithBlankSpace() {
+        String[] winningNumbers = {"1", "2", "3", "4", "5", "6 7"};
+
+        assertThatThrownBy(() -> WinningNumberValidator.validateWinningNumber(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INPUT_HAS_BLANK.getMessage());
+    }
 }

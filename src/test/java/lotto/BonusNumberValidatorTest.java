@@ -60,4 +60,14 @@ class BonusNumberValidatorTest {
 
         assertThat(result).isEqualTo(7);
     }
+
+    @Test
+    @DisplayName("보너스 번호에 공백이 포함되어 있으면 예외가 발생한다.")
+    void validateBonusNumberWithBlankSpace() {
+        String bonusNumber = "1 2";
+
+        assertThatThrownBy(() -> BonusNumberValidator.validateBonusNumber(bonusNumber, Set.of(3, 4, 5, 6, 7, 8)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INPUT_HAS_BLANK.getMessage());
+    }
 }
