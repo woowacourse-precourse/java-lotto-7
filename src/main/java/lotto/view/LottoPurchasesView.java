@@ -1,30 +1,24 @@
 package lotto.view;
 
-import java.util.List;
-import lotto.dto.LottosDto;
-import lotto.model.domain.Lotto;
+import lotto.dto.LottoPurchasesDto;
 
 public class LottoPurchasesView implements View {
 
     private static final String LOTTO_PURCHASES_OUTPUT_HEADLINE = "%n%d개를 구매했습니다.";
-    private final LottosDto lottosDto;
+    private final LottoPurchasesDto lottoPurchasesDto;
 
-    public LottoPurchasesView(LottosDto lottosDto) {
-        this.lottosDto = lottosDto;
+    public LottoPurchasesView(LottoPurchasesDto lottoPurchasesDto) {
+        this.lottoPurchasesDto = lottoPurchasesDto;
     }
 
-    private void showHeadLine(List<Lotto> myLottos) {
-        System.out.printf((LOTTO_PURCHASES_OUTPUT_HEADLINE) + "%n", myLottos.size());
+    private void showHeadLine() {
+        System.out.printf((LOTTO_PURCHASES_OUTPUT_HEADLINE) + "%n", lottoPurchasesDto.getNumberOfPurchase());
     }
-
 
     @Override
     public String display() {
-        List<Lotto> myLottos = lottosDto.getMyLottos();
-        showHeadLine(myLottos);
-        for (Lotto myLotto : myLottos) {
-            System.out.println(myLotto.showLottoNumbers());
-        }
+        showHeadLine();
+        System.out.printf(lottoPurchasesDto.getPurchasesMessage() + "%n");
         return null;
     }
 }
