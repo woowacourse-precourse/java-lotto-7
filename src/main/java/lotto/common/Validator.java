@@ -9,6 +9,7 @@ public class Validator {
     private static final String REGEX_INVALID_DELIMITER_PATTERN = ".*[^,\\w\\s].*";
     private static final Pattern validNumber = Pattern.compile(REGEX_NUMBER_PATTERN);
     private static final Pattern InvalidDelimiter = Pattern.compile(REGEX_INVALID_DELIMITER_PATTERN);
+    private static final int LOTTO_SIZE = 6;
 
     public void validatePrice(int price) {
         isPositivePrice(price);
@@ -54,6 +55,12 @@ public class Validator {
     public void checkForDuplicates(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(ExceptionCode.LOTTO_DOES_NOT_UNIQUE.message());
+        }
+    }
+
+    public void validateNumberCount(int count) {
+        if (count != LOTTO_SIZE) {
+            throw new IllegalArgumentException(ExceptionCode.INVALID_LOTTO_SIZE.message());
         }
     }
 

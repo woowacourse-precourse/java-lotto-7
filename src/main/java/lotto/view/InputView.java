@@ -42,7 +42,9 @@ public class InputView {
                 String input = Console.readLine();
                 String trimmedInput = input.replaceAll(" ", "");
                 validator.validateDelimiter(trimmedInput);
-                return splitNumbers(trimmedInput);
+                List<Integer> numbers = splitNumbers(trimmedInput);
+                validateNumbers(numbers);
+                return numbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -50,19 +52,18 @@ public class InputView {
     }
 
     private List<Integer> splitNumbers(String input) {
-        List<Integer> numbers = Optional.of(input)
+        return Optional.of(input)
                 .filter(number -> number.contains(NUMBER_DELIMITER))
                 .map(number -> Arrays.stream(number.split(NUMBER_DELIMITER))
                         .map(Integer::parseInt)
                         .toList())
                 .orElseGet(() -> List.of(Integer.parseInt(input)));
-        numbers.forEach(this::validateRangeOfNumber);
-        validator.checkForDuplicates(numbers);
-        return numbers;
     }
 
-    private void validateRangeOfNumber(int number) {
-        validator.isNumberInRange(String.valueOf(number));
+    private void validateNumbers(List<Integer> numbers) {
+        validator.validateNumberCount(numbers.size());
+        numbers.forEach(number -> validator.isNumberInRange(String.valueOf(number)));
+        validator.checkForDuplicates(numbers);
     }
 
     public String getBonusNumber() {
