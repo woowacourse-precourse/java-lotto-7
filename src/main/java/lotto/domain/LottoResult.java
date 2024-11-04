@@ -50,6 +50,6 @@ public class LottoResult {
     }
 
     public double calculateYield(LottoCreate lottoCreate) {
-        return (double) calculateTotalPrize() / lottoCreate.getLottoCount() * 100;
+        return (double) calculateTotalPrize() / lottoCreate.getPurchasePrice() * 100;
     }
 }
