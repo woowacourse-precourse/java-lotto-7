@@ -1,7 +1,13 @@
 package lotto;
 
-import javax.swing.SwingConstants;
 import lotto.exception.ErrorCode;
+import lotto.handler.InputHandler;
+import lotto.handler.OutputHandler;
+import java.util.List;
+
+import lotto.BonusNumber;
+import lotto.Lotto;
+
 
 public class WinningNumber {
 
@@ -12,7 +18,7 @@ public class WinningNumber {
     public WinningNumber(final Lotto winningRegularLotto,final BonusNumber bonusNumber) {
         this.winningRegularLotto = winningRegularLotto;
         validateBonusNumber(bonusNumber);
-        this.BonusNumber = bonusNumber;
+        this.bonusNumber = bonusNumber;
     }
 
     private void validateBonusNumber(final BonusNumber bonusNumber) {
@@ -31,3 +37,4 @@ public class WinningNumber {
     }
 
 }
+
