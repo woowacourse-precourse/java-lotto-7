@@ -58,6 +58,23 @@ class InputViewTest extends NsTest {
                 .hasMessage(ErrorMessage.LOTTO_NUMBER_FORMAT);
     }
 
+    @Test
+    @DisplayName("입력한 보너스 번호가 숫자인지")
+    void validateInputBonusNumber() {
+        run("1");
+        assertThat(inputView.inputBonusNumber()).isEqualTo(1);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"bonus", "보너스", "$"})
+    @DisplayName("입력한 보너스 번호가 숫자가 아니라면 예외처리 되는지")
+    void invalidInputBonusNumber(String inputBonusNumber) {
+        run(inputBonusNumber);
+        assertThatThrownBy(() -> inputView.inputBonusNumber())
+                .isInstanceOf(InputNumberFormatException.class)
+                .hasMessage(ErrorMessage.INPUT_NUMBER_FORMAT);
+    }
+
     @Override
     protected void runMain() {}
 }
