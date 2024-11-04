@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -11,11 +8,7 @@ import static java.lang.Integer.parseInt;
 
 public class Lotto {
     private final List<Integer> numbers;
-    int tickets = 0;
-    int bonusNum = 0;
-
-    int price = 0;
-    int prize = 0;
+    static int prize = 0;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -38,8 +31,10 @@ public class Lotto {
             }
         }
     }
+    public static void main(String[] args) {
+        int tickets = 0;
+        int price = 0;
 
-    public void main() {
         System.out.println("구입금액을 입력해 주세요.");
 
         try {
@@ -61,22 +56,31 @@ public class Lotto {
             System.out.println(randomTickets.get(i));
         }
 
-        lottoNumInput();
-        printMethod(randomTickets);
+        List<Integer> inputNumbers = lottoNumInput();
+        Lotto lotto = new Lotto(inputNumbers);
+        printMethod(randomTickets, price, lotto.numbers);
     }
 
-    public void lottoNumInput(){
+    // 로또 번호 입력 메소드
+    public static List<Integer> lottoNumInput() {
+        List<Integer> numbers = new ArrayList<>(); // 입력받은 번호를 저장할 리스트
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        for (String num : input.split(",")) {
-            numbers.add(Integer.parseInt(num.trim()));
-        }
+
         try {
-            Lotto lotto = new Lotto(numbers);
+            // 입력된 번호를 리스트에 추가
+            for (String num : input.split(",")) {
+                numbers.add(Integer.parseInt(num.trim()));
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return numbers;
+    }
 
+    // 보너스 번호 입력 메소드
+    private static int bonusNumInput() {
+        int bonusNum = 0;
         System.out.println("보너스 번호를 입력해 주세요.");
         try {
             bonusNum = parseInt(Console.readLine());
@@ -84,13 +88,15 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("보너스번호는 1~45의 정수 입니다.");
+            System.out.println("보너스 번호는 1~45의 정수입니다.");
         }
+        return bonusNum;
     }
 
-    public void printMethod(List<List<Integer>> randomTickets){
+
+    public static void printMethod(List<List<Integer>> randomTickets, int price, List<Integer> numbers){
         LottoChecker lottoChecker = new LottoChecker();
-        lottoChecker.lottoChecker(numbers, randomTickets, bonusNum);
+        lottoChecker.lottoChecker(numbers, randomTickets, bonusNumInput());
 
         List<Integer> winTickets = lottoChecker.getWinTickets();
 
