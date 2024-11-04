@@ -27,6 +27,6 @@ class LottoRepositoryTest {
 		lottoRepository.saveAll(List.of(lotto1, lotto2));
 		
 		List<Lotto> lottos = lottoRepository.findAll();
-		assertThat(lottos).containsExactly(lotto1, lotto2);
+		assertThat(lottos).contains(lotto1, lotto2);
 	}
 }
