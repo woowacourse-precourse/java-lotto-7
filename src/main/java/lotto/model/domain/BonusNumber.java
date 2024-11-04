@@ -26,4 +26,8 @@ public class BonusNumber {
 			throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복되지 않아야 합니다.");
 		}
 	}
+
+	public int getBonusNumber() {
+		return bonusNumber;
+	}
 }
