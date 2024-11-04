@@ -1,6 +1,6 @@
-package lotto.view;
+package lotto.valid;
 
-import lotto.valid.InputValidator;
+import lotto.view.LottoView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,13 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
-public class LottoViewTest {
-    private LottoView lottoView;
-
-    @BeforeEach
-    void setUp() {
-        this.lottoView = new LottoView();
-    }
+public class InputValidatorTest {
 
     @DisplayName("구입 금액 입력이 1,000원 단위일 때 올바르게 처리되는지 확인")
     @ParameterizedTest
