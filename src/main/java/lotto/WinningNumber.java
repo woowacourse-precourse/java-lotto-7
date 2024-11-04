@@ -15,4 +15,8 @@ public class WinningNumber {
     public int findMatchCount(Lotto userLotto) {
         return this.lotto.findMatchCount(userLotto);
     }
+
+    public boolean hasMatchingBonusNumberWith(Lotto userLotto) {
+        return userLotto.hasSameNumber(bonusNumber);
+    }
 }
