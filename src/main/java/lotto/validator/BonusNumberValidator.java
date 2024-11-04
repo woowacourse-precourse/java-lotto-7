@@ -3,6 +3,7 @@ package lotto.validator;
 import static lotto.constant.ErrorCode.DUPLICATE_BONNUS_NUMBER;
 
 import lotto.domain.Lotto;
+import lotto.view.OutputView;
 
 public class BonusNumberValidator {
 
@@ -19,7 +20,7 @@ public class BonusNumberValidator {
 
     private void validateBonusNumberInLottoNumbers(final int bonusNumber, final Lotto lotto) {
         if (lotto.isContainNumber(bonusNumber)) {
-            throw new IllegalArgumentException(DUPLICATE_BONNUS_NUMBER.getMessage());
+            OutputView.printError(DUPLICATE_BONNUS_NUMBER.getMessage());
         }
     }
 

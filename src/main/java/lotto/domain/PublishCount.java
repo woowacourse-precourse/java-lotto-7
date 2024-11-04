@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static lotto.constant.ErrorCode.OVER_PUBLIST_COUNT;
 
+import lotto.view.OutputView;
+
 public class PublishCount {
 
     private static PublishCount instance;
@@ -14,7 +16,7 @@ public class PublishCount {
 
     private void validate(int initialCount) {
         if (initialCount > 30) {
-            throw new IllegalArgumentException(OVER_PUBLIST_COUNT.getMessage());
+            OutputView.printError(OVER_PUBLIST_COUNT.getMessage());
         }
     }
 

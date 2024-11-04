@@ -38,6 +38,10 @@ public class OutputView {
         System.out.println("총 수익률은 " + formattedProfit + "%입니다.");
     }
 
+    public static void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     private String numberFormat(final List<Integer> publishLottoNumbers) {
         String numbersString = publishLottoNumbers.stream()
             .map(String::valueOf)
