@@ -25,6 +25,10 @@ public class Money {
         buyRegulationValidate(money);
     }
 
+    public int getQuantity(int money) {
+        return money / 1000;
+    }
+
     public int getMoney() {
         return money;
     }
