@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.constants.OutputViewConstant;
+
 import java.text.NumberFormat;
 import java.util.Arrays;
 
@@ -44,9 +46,7 @@ public enum Winning {
 
     public String toString() {
         if (this != Winning.NO_WIN) {
-            StringBuilder sb = new StringBuilder();
-            makeString(sb);
-            return sb.toString();
+            return makeString();
         }
         return "";
     }
@@ -72,16 +72,19 @@ public enum Winning {
                 && this.isMatchBonusNumber == isMatchBonusNumber;
     }
 
-    private void makeString(StringBuilder sb) {
-        sb.append(winningNumberMatch)
-                .append("개 일치");
+    private String makeString() {
         if (isMatchBonusNumber) {
-            sb.append(", 보너스 볼 일치");
+            return formatMessage(OutputViewConstant.SECOND_PLACE_RESULT_MESSAGE);
         }
-        sb.append(" (")
-                .append(NumberFormat.getInstance().format(prizeMoney))
-                .append("원) - ")
-                .append(count)
-                .append("개\n");
+        return formatMessage(OutputViewConstant.EXCEPT_SECOND_PLACE_RESULT_MESSAGE);
+    }
+
+    private String formatMessage(String format) {
+        return String.format(
+                format,
+                winningNumberMatch,
+                NumberFormat.getInstance().format(prizeMoney),
+                count
+        );
     }
 }
