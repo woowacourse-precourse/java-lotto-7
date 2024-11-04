@@ -1,7 +1,11 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoRepository;
 import lotto.util.InputParser;
 import lotto.util.InputValidator;
+import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,9 +15,25 @@ public class LottoManager {
     private InputValidator inputValidator = new InputValidator();
     private InputParser inputParser = new InputParser();
     private OutputView outputView = new OutputView();
+    private LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
+    private LottoRepository lottoRepository = new LottoRepository();
+
     public void startLotto() {
         int purchasePrice = getPurchasePrice();
+        creatLottos(purchasePrice);
 
+    }
+
+    private void creatLottos(int purchasePrice) {
+        int lottoCount = purchasePrice / 1000;
+        outputView.printCount(lottoCount);
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> lottoNumber = lottoNumberGenerator.generate();
+            lottoNumber.sort((x, y) -> x - y);
+            outputView.printLottoNumber(lottoNumber);
+            lottoRepository.save(new Lotto(lottoNumber));
+        }
+        outputView.printBlank();
     }
 
     private int getPurchasePrice() {
