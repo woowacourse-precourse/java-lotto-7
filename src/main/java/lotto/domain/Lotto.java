@@ -21,19 +21,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        if (!Validation.isDuplicate(numbers)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_PRESENT.getErrorMessage());
+        }
         if (!Validation.isCorrectSize(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getErrorMessage());
-        }
-        if (Validation.isDuplicate(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_PRESENT.getErrorMessage());
         }
         if (!Validation.isCorrectRange(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getErrorMessage());
         }
-    }
-
-    public void printNumbers() {
-        System.out.println(this.numbers);
     }
 
     public List<Integer> getNumbers() {

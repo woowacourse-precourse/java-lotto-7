@@ -33,7 +33,17 @@ public class InputView {
         if (!Validation.isCorrectFormat(input)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_FORMAT.getErrorMessage());
         }
-        return parseString(input);
+        List<Integer> winningNumbers = parseString(input);
+        if (!Validation.isCorrectSize(winningNumbers)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getErrorMessage());
+        }
+        if (!Validation.isCorrectRange(winningNumbers)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getErrorMessage());
+        }
+        if (Validation.isDuplicate(winningNumbers)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_PRESENT.getErrorMessage());
+        }
+        return winningNumbers;
     }
 
     public static int getBonusNumber() {
@@ -48,7 +58,7 @@ public class InputView {
         }
         return Integer.parseInt(input);
     }
-    
+
     private static List<Integer> parseString(String input) {
         String[] tokens = input.split(inputDelimiter);
         return Arrays.stream(tokens).map(Integer::parseInt).toList();

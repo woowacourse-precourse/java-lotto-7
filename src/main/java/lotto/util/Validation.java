@@ -47,6 +47,10 @@ public class Validation {
 
     public static boolean isDuplicate(List<Integer> numbers) {
         Set<Integer> numbersWithoutDuplicate = new HashSet<>(numbers);
-        return numbersWithoutDuplicate.size() != numbers.size();
+        return numbersWithoutDuplicate.size() == numbers.size();
+    }
+
+    private boolean hasDuplicate(int bonusNumber, List<Integer> winningNumbers) {
+        return winningNumbers.contains(bonusNumber);
     }
 }
