@@ -7,10 +7,10 @@ import java.util.Set;
 public class ExceptionController {
     public void isValidCost(String cost) {
         try {
-            notNumeric(cost);
             emptyInput(cost);
             blankInput(cost);
             haveBlankInput(cost);
+            notNumeric(cost);
             lowCost(cost);
             notPlus(cost);
         } catch (NumberFormatException e) {
@@ -48,14 +48,6 @@ public class ExceptionController {
         }
     }
 
-    private void notNumeric(String input) {
-        try {
-            Long.parseLong(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력값은 숫자여야 합니다.");
-        }
-    }
-
     private void emptyInput(String input) {
         if (input.isEmpty() || input == null) {
             throw new IllegalArgumentException("입력값은 공백일 수 없습니다.");
@@ -71,6 +63,14 @@ public class ExceptionController {
     private void haveBlankInput(String input) {
         if (input.contains(" ")) {
             throw new IllegalArgumentException("입력값에 공백이 포함되어 있습니다. 입력값 사이에 공백을 넣지 마세요.");
+        }
+    }
+
+    private void notNumeric(String input) {
+        try {
+            Long.parseLong(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력값은 정수 숫자여야 합니다.");
         }
     }
 
@@ -90,7 +90,7 @@ public class ExceptionController {
 
     private void anotherSomething(String input) {
         if (!input.matches("^[0-9,]+$")) {
-            throw new IllegalArgumentException("입력에는 숫자와 콤마만 사용할 수 있습니다.");
+            throw new IllegalArgumentException("입력에는 정수 숫자와 콤마만 사용할 수 있습니다.");
         }
     }
 
@@ -132,7 +132,7 @@ public class ExceptionController {
     private void oneNumberInRange(String input) {
         int number = Integer.parseInt(input);
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("숫자는 1에서 45 사이여야 합니다.");
+            throw new IllegalArgumentException("숫자는 1에서 45 사이의 정수여야 합니다.");
         }
     }
 

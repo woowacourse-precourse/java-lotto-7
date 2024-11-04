@@ -1,6 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.lottoController.ExceptionController;
+import lotto.lottoModel.LottoDTO;
+import lotto.lottoService.LottoMainService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,9 +12,17 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private LottoMainService lottoMainService;
+
+    @BeforeEach
+    void setUp() {
+        lottoMainService = new LottoMainService();
+    }
 
     @Test
     void 기능_테스트() {
@@ -47,10 +59,62 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void testBuyLotto() {
+        // given
+        String cost = "3000";  // 3000원이면 3개의 로또 구매
+
+        // when
+        lottoMainService.buyLotto(cost);
+        List<LottoDTO> allLottos = lottoMainService.getAllLottosAsDTO();
+
+        // then
+        assertEquals(3, allLottos.size());  // 3개의 로또가 생성되었는지 확인
+    }
+
+    @Test
+    void testConvertHitLotto() {
+        // given
+        String hitNumbers = "1,2,3,4,5,6";
+
+        // when
+        List<Integer> result = lottoMainService.covertHitLotto(hitNumbers);
+
+        // then
+        assertEquals(6, result.size());
+        assertTrue(result.contains(1));
+        assertTrue(result.contains(6));
+    }
+
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void testNotCost() {
+        assertSimpleTest(() -> {
+            runException("a");
+            assertThat(output()).contains("정수");
+        });
+    }
+
+    @Test
+    void testBlankCost() {
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains("입력값은 띄어쓰기만 있어선 안됩니다.");
+        });
+    }
+
+    @Test
+    void testCost() {
+        assertSimpleTest(() -> {
+            runException("42.2");
+            assertThat(output()).contains("정수");
         });
     }
 
