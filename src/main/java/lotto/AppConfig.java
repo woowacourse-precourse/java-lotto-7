@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.winning.DrawController;
+import lotto.winning.WinningController;
 import lotto.winning.DrawService;
 import lotto.winning.DrawServiceImpl;
 
@@ -20,8 +20,8 @@ public class AppConfig {
         return new VendingMachineServiceImpl(vendingMachineRepository());
     }
 
-    public DrawController drawController() {
-        return new DrawController(drawService());
+    public WinningController drawController() {
+        return new WinningController(drawService());
     }
 
     public DrawService drawService() {

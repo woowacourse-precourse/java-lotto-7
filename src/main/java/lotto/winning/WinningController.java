@@ -4,11 +4,11 @@ import lotto.donghang.WinningLotto;
 
 import java.util.Map;
 
-public class DrawController {
+public class WinningController {
 
     private final DrawService drawService;
 
-    public DrawController(DrawService drawService) {
+    public WinningController(DrawService drawService) {
         this.drawService = drawService;
     }
 

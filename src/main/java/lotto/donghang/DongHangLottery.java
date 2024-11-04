@@ -1,7 +1,7 @@
 package lotto.donghang;
 
 import lotto.AppConfig;
-import lotto.winning.DrawController;
+import lotto.winning.WinningController;
 import lotto.winning.Rank;
 import lotto.io.InputReader;
 import lotto.io.OutputWriter;
@@ -38,7 +38,7 @@ public class DongHangLottery {
     }
 
     public static void drawWinningLotteryNumbers() {
-        DrawController drawController = appConfig.drawController();
+        WinningController drawController = appConfig.drawController();
 
         Lotto winningNumber = drawWinningNumbers();
         int bonus = drawBonusNumber(winningNumber.getNumbers());
