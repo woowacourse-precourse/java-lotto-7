@@ -13,7 +13,7 @@ public class LottoMachine {
 
     public Lottos issue(long lottoCount) {
         LongStream.range(0, lottoCount).forEach(i -> {
-            Lotto lotto = new Lotto(generateNumbers());
+            Lotto lotto = Lotto.from(generateNumbers());
             lottos.addLotto(lotto);
         });
         return lottos;

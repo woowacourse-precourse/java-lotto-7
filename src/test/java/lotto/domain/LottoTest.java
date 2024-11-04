@@ -22,14 +22,14 @@ public class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -40,7 +40,7 @@ public class LottoTest {
         List<Integer> numbers = List.of(12, 5, 7, 8, 1);
 
         // when & then
-        assertThatCode(() -> new Lotto(numbers))
+        assertThatCode(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_SIZE_ERROR.getMessage());
 
@@ -53,7 +53,7 @@ public class LottoTest {
         List<Integer> numbers = List.of(12, 12, 12, 4, 6, 8);
 
         // when & then
-        assertThatCode(() -> new Lotto(numbers))
+        assertThatCode(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBERS_DUPLICATE.getMessage());
     }
@@ -65,7 +65,7 @@ public class LottoTest {
         List<Integer> numbers = List.of(31, 12, 1, 7, 45, 26);
 
         // when
-        Lotto lotto = new Lotto(numbers);
+        Lotto lotto = Lotto.from(numbers);
         List<LottoNumber> lottoLottoNumbers = lotto.getNumbers();
         System.out.println(lottoLottoNumbers);
 
@@ -87,7 +87,7 @@ public class LottoTest {
         List<Integer> numbers = Arrays.stream(lottoInput.split(","))
                 .map(Integer::parseInt)
                 .toList();
-        Lotto lotto = new Lotto(numbers);
+        Lotto lotto = Lotto.from(numbers);
         WinningNumbers winningNumbers = new WinningNumbers(winningInput);
 
         // when
@@ -110,7 +110,7 @@ public class LottoTest {
                 .map(Integer::parseInt)
                 .toList();
         Number bonusNumber = new LottoNumber(bonusInput);
-        Lotto lotto = new Lotto(numbers);
+        Lotto lotto = Lotto.from(numbers);
 
         // when
         boolean bonus = lotto.hasBonusNumber(bonusNumber);

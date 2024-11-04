@@ -10,10 +10,15 @@ public class Lotto extends LottoForm {
     private final String DELIMITER = ", ";
     private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        this.numbers = validateAndSort(numbers).stream()
+    private Lotto(List<Integer> numbers) {
+        this.numbers = numbers.stream()
                 .map(LottoNumber::new)
                 .toList();
+    }
+
+    public static Lotto from(List<Integer> rawIntegers) {
+        List<Integer> integers = validateAndSort(rawIntegers);
+        return new Lotto(integers);
     }
 
     @Override
