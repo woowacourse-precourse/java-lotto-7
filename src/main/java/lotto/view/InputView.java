@@ -76,7 +76,7 @@ public class InputView {
     }
 
     private static void rangeDuplicate(Lotto winLotto, int bonus) {
-        if(winLotto.getNumbers().contains(bonus)) {
+        if (winLotto.getNumbers().contains(bonus)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호 사이에 중복이 있어서는 안 됩니다.");
         }
     }
