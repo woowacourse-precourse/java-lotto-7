@@ -22,5 +22,15 @@ public class LottoController {
 
 		printBonusNumberRequest();
 		int bonusNumber = getBonusNumber(winningNumbers);
+
+		LottoResult result = calculateResult(purchasedLottos, winningNumbers, bonusNumber);
+	}
+
+	private LottoResult calculateResult(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
+		return new LottoResult(
+			purchasedLottos.stream()
+				.map(lotto -> lotto.calculateMatchResult(winningNumbers, bonusNumber))
+				.toList()
+		);
 	}
 }

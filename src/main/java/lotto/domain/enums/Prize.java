@@ -14,6 +14,20 @@ public enum Prize {
 		this.prize = prize;
 	}
 
+	public static Prize valueOf(int matchCount, boolean bonusMatch) {
+		if (matchCount == 6)
+			return FIRST;
+		if (matchCount == 5 && bonusMatch)
+			return SECOND;
+		if (matchCount == 5)
+			return THIRD;
+		if (matchCount == 4)
+			return FOURTH;
+		if (matchCount == 3)
+			return FIFTH;
+		return NO_MATCH;
+	}
+
 	public int getPrize() {
 		return prize;
 	}
