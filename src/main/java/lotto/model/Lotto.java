@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private static final String REQUEST_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
 
     public Lotto(List<Integer> numbers) {
         isCountEqualsToSix(numbers);
@@ -45,7 +44,7 @@ public class Lotto {
     }
 
     public static String getRequestMessage() {
-        return REQUEST_NUMBER_MESSAGE;
+        return "당첨 번호를 입력해 주세요.";
     }
 
 
