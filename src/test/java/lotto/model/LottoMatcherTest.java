@@ -3,8 +3,8 @@ package lotto.model;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,11 +15,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class LottoMatcherTest {
     @ParameterizedTest
     @DisplayName("총 얻은 금액")
-    @MethodSource("getTotalEarningArguments")
-    void 얻은_금액(WinningLotto winningLotto, List<List<Integer>> randomNumbers, int earned) {
+    @MethodSource("getTotalEarningsArguments")
+    void 얻은_금액(WinningLotto winningLotto, List<List<Integer>> randomNumbers, final int totalEarnings) {
         List<Integer> first = randomNumbers.getFirst();
-        List<List<Integer>> rest = randomNumbers.stream()
-                .collect(Collectors.toList()); // toList는 unmodifiableList로 변경을 못하기 때문에, collect(Collectors.toList()) 사용
+        List<List<Integer>> rest = new ArrayList<>(randomNumbers); // randomNumbers는 List.of로 만들어져 변경할 수 없어 새로 생성
         rest.removeFirst();
 
         assertRandomUniqueNumbersInRangeTest(
@@ -29,14 +28,15 @@ public class LottoMatcherTest {
                             winningLotto
                     );
 
-                    assertThat(lottoMatcher.getTotalEarning().toInteger()).isEqualTo(earned);
+                    assertThat(lottoMatcher.getTotalEarnings().toInteger()).
+                            isEqualTo(totalEarnings);
                 },
                 first,
-                rest.toArray(new List[]{}) // List를 varargs로 바꾸기 위해서
+                rest.toArray(new List[]{}) // List를 varargs로 바꾸기 위해서 toArray 사용
         );
     }
 
-    static Stream<Arguments> getTotalEarningArguments() {
+    static Stream<Arguments> getTotalEarningsArguments() {
         return Stream.of(
                 Arguments.of(
                         new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7),

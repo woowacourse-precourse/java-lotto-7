@@ -35,7 +35,7 @@ public class OutputView {
     public void printPrizeStats(LottoMatcher lottoMatcher, LottoPurchaseMoney lottoPurchaseMoney) {
         System.out.printf(PRIZE_START_MESSAGE);
 
-        for (Prize prize : Prize.prizesOrderedBy(Prize.earningAscending())) {
+        for (Prize prize : Prize.prizesOrderedBy(Prize.earningsAscending())) {
             System.out.printf(
                     PRIZE_FORMAT,
                     prize.getDescription(),
@@ -43,7 +43,7 @@ public class OutputView {
             );
         }
 
-        Money totalEarning = lottoMatcher.getTotalEarning();
-        System.out.printf(EARNING_RATE_FORMAT, invested.getEarningRate(totalEarning));
+        Money totalEarnings = lottoMatcher.getTotalEarnings();
+        System.out.printf(EARNING_RATE_FORMAT, lottoPurchaseMoney.getEarningsRate(totalEarnings));
     }
 }

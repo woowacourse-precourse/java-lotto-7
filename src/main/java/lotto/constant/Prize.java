@@ -13,20 +13,20 @@ public enum Prize {
 
     private final int lottoNumberMatchCount;
     private final boolean shouldMatchBonus;
-    private final int earning;
+    private final int earnings;
     private final String description;
 
-    Prize(final int lottoNumberMatchCount, final boolean shouldMatchBonus, final int earning, String description) {
+    Prize(final int lottoNumberMatchCount, final boolean shouldMatchBonus, final int earnings, String description) {
         this.lottoNumberMatchCount = lottoNumberMatchCount;
         this.shouldMatchBonus = shouldMatchBonus;
-        this.earning = earning;
+        this.earnings = earnings;
         this.description = description;
     }
 
     public static Prize getPrize(final int matchedLottoNumberCount, final boolean matchedBonus) {
         // 조건에 맞는 상품이 여러 개일 수 있어서 당첨금이 가장 큰 거부터 확인
         // 예: 2등, 3등; 보너스밖에 차이가 없다.
-        for (Prize prize : prizesOrderedBy(earningDescending())) {
+        for (Prize prize : prizesOrderedBy(earningsDescending())) {
             if (prize.matches(matchedLottoNumberCount, matchedBonus)) {
                 return prize;
             }
@@ -52,16 +52,16 @@ public enum Prize {
                 .toList();
     }
 
-    public static Comparator<Prize> earningAscending() {
-        return (a, b) -> a.getEarning() - b.getEarning();
+    public static Comparator<Prize> earningsAscending() {
+        return (a, b) -> a.getEarnings() - b.getEarnings();
     }
 
-    public static Comparator<Prize> earningDescending() {
-        return (a, b) -> b.getEarning() - a.getEarning();
+    public static Comparator<Prize> earningsDescending() {
+        return (a, b) -> b.getEarnings() - a.getEarnings();
     }
 
-    public int getEarning() {
-        return earning;
+    public int getEarnings() {
+        return earnings;
     }
 
     public String getDescription() {

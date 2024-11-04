@@ -19,15 +19,15 @@ public class MoneyTest {
     class FeatureTest {
         @ParameterizedTest
         @DisplayName("수익률")
-        @MethodSource("earningRateArguments")
-        void 수익률(int investedMoney, int earnedMoney, double earningRate) {
+        @MethodSource("earningsRateArguments")
+        void 수익률(final int investedMoney, final int earnedMoney, final double earningsRate) {
             Money invested = new Money(investedMoney);
             Money earned = new Money(earnedMoney);
 
-            assertThat(invested.getEarningRate(earned)).isEqualTo(earningRate);
+            assertThat(invested.getEarningsRate(earned)).isEqualTo(earningsRate);
         }
 
-        static Stream<Arguments> earningRateArguments() {
+        static Stream<Arguments> earningsRateArguments() {
             return Stream.of(
                     Arguments.of(1000, 5000, 500),
                     Arguments.of(8000, 5000, 62.5),
@@ -43,7 +43,7 @@ public class MoneyTest {
         @ParameterizedTest
         @DisplayName("음수")
         @ValueSource(ints = {-1, -42, -333})
-        void 수익률(int money) {
+        void 음수(final int money) {
             assertThatThrownBy(() -> new Money(money))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(NEGATIVE_MONEY.getMessage());

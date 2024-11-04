@@ -62,7 +62,11 @@ public class LottoPurchaseMoneyTest {
 
         @ParameterizedTest
         @DisplayName("로또 가격 단위가 아님")
-        @ValueSource(ints = {LOTTO_PRICE + 1, LOTTO_PRICE + 3, LOTTO_PRICE + 7})
+        @ValueSource(ints = {
+                LOTTO_PRICE + LOTTO_PRICE / 2,
+                LOTTO_PRICE + LOTTO_PRICE / 3,
+                LOTTO_PRICE + LOTTO_PRICE / 5
+        })
         void 돈이_로또_가격_단위_아님(final int money) {
             assertThatThrownBy(() -> new LottoPurchaseMoney(money))
                     .isInstanceOf(IllegalArgumentException.class)
