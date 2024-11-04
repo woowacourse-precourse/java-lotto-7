@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import lotto.domain.number.LottoNumber;
 import lotto.domain.ticket.Lotto;
 
 public class BonusNumberValidator {
@@ -24,7 +25,8 @@ public class BonusNumberValidator {
     }
 
     private static void validateDuplicate(int bonusNumber, Lotto winningLotto) {
-        if (winningLotto.contains(bonusNumber)) {
+        LottoNumber lottoNumber = LottoNumber.of(bonusNumber);
+        if (winningLotto.contains(lottoNumber)) {
             throw new IllegalArgumentException(ERROR_DUPLICATE);
         }
     }

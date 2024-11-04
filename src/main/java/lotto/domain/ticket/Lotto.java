@@ -1,10 +1,10 @@
 package lotto.domain.ticket;
 
+import lotto.domain.number.LottoNumber;
+import lotto.validator.LottoNumberValidator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.domain.number.LottoNumber;
-import lotto.validator.LottoNumberValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -20,13 +20,13 @@ public class Lotto {
     }
 
     public boolean contains(LottoNumber number) {
-        return numbers.contains(number);
+        return numbers.contains(number.getValue());
     }
 
     public int countMatch(Lotto other) {
         int matchCount = 0;
         for (int number : numbers) {
-            if (other.contains(number)) {
+            if (other.numbers.contains(number)) {
                 matchCount++;
             }
         }
