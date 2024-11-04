@@ -16,4 +16,8 @@ public class OutputMessage {
         System.out.println(OutputMessageType.OUTPUT_WINNING_STATISTICS.getMessage());
     }
 
+    public static void winningsYield(double yield) {
+        System.out.printf(OutputMessageType.OUTPUT_WINNING_YIELD.getMessage(), yield);
+    }
+
 }
