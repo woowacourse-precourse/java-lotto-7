@@ -1,6 +1,8 @@
 package lotto.util.enums;
 
 public enum ExceptionMessages {
+    INVALID_LOTTO_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
+    DUPLICATE_LOTTO_NUMBER("로또 번호는 중복될 수 없습니다."),
     NOT_DIVIDED_BY_LOTTO_PRICE("구입 금액은 1,000원 단위로 입력해야 합니다."),
     EXCEEDS_PURCHASE_LIMIT("복권 및 복권기금법에 의해서 1회 구매 한도는 10만원 입니다."),
     EMPTY_INPUT("입력이 비어있습니다."),
