@@ -17,6 +17,9 @@ public class Application {
     public static final int THIRD_PRIZE = 1500000;
     public static final int FOURTH_PRIZE = 50000;
     public static final int FIFTH_PRIZE = 5000;
+    public static final int STRING_MAX_LENGTH = 11;
+    public static final int MAX_BUY_PRICE = 2000000000;
+    public static final int MIN_BUY_PRICE = 1000;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -38,6 +41,7 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         String input_price = Console.readLine();
         try{
+            checkHandable(input_price);
             int price = validatePrice(input_price);
             return price;
         }catch(IllegalArgumentException e){
@@ -46,18 +50,24 @@ public class Application {
         }
     }
 
+    private static void checkHandable(String input_price){
+        if(input_price.length() >= STRING_MAX_LENGTH){
+            throw new IllegalArgumentException("[ERROR] Purchasing price should be less than or equal 2 billions won.");
+        }
+    }
+
     private static int validatePrice(String buy_input){
         try{
             int price = Integer.parseInt(buy_input);
-            if(price <= 0){
-                throw new IllegalArgumentException("[ERROR] Lotto prices should be 1000 won or over.");
+            if(price < MIN_BUY_PRICE || price >= MAX_BUY_PRICE){
+                throw new IllegalArgumentException("[ERROR] Lotto prices should be between 1000 and 2 billions.");
             }
             if(price % UNIT_OF_LOTTO != 0){
                 throw new IllegalArgumentException("[ERROR] The unit of lotto prices should be 1000 won.");
             }
             return price;
         }catch(NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] Lotto number must have number formats/2 billions as max price");
+            throw new IllegalArgumentException("[ERROR] Lotto number must have number formats");
         }
     }
 

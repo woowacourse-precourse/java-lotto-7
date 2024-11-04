@@ -8,6 +8,7 @@
 &ensp; - 1000원 단위로 받기  
 &ensp; - Number가 아닌 경우 / Positive가 아닌 경우 / 1000원으로 나누어 떨어지지 않는 경우 -> Exception  
 &ensp; - Price가 blank를 포함할 경우 -> Exception  
+&ensp; - Input의 최댓값은 20억으로 설정, readLine()으로 받으면서 parsing 전에 자릿수가 11자리 이상일 경우 미리 Exception
 
 ## 당첨 번호 input 받기
 &ensp; - 쉼표로 구분된 6개의 숫자 받기  
