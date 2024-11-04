@@ -48,4 +48,8 @@ public class Winning {
 			rankCounts.put(rank, rankCounts.get(rank) + 1);
 		}
 	}
+
+	public Map<Rank, Integer> getRankCounts() {
+		return rankCounts;
+	}
 }

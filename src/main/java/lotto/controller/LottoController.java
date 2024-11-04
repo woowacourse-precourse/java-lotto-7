@@ -34,6 +34,8 @@ public class LottoController {
 
 		WinningDTO winningDTO = new WinningDTO(winningNumber, bonusNumber);
 		Winning winning = lottoService.checkWinningNumber(lottoBundle, winningDTO);
+
+		OutputView.printWinningStatistics(winning.getRankCounts());
 	}
 
 	private PurchaseMoney getPurchaseMoney() {
