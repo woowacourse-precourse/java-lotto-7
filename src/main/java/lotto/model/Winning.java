@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public enum Winning {
     FIRST(6, false, 2_000_000_000),
@@ -26,6 +28,20 @@ public enum Winning {
                         && winning.matchCount == matchCount)
                 .findFirst()
                 .orElse(Winning.NONE);
+    }
+
+    public static List<Winning> sortedByMatchCount() {
+        return Arrays.stream(Winning.values())
+                .sorted(Comparator.comparingInt(Winning::matchCount))
+                .toList();
+    }
+
+    public int matchCount() {
+        return matchCount;
+    }
+
+    public boolean isBonusNumberMatched() {
+        return isBonusNumberMatched;
     }
 
     public long prizeMoney() {

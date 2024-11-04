@@ -55,5 +55,7 @@ public class LottoController {
         double rateOfReturn = lottoResultService.calculateRateOfReturn(
                 PurchaseAmount.from(InputUtils.parseStringToInt(purchaseAmount)), winningResults
         );
+
+        outputView.printWinningResult(winningResults);
     }
 }

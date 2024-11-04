@@ -1,12 +1,16 @@
 package lotto.view;
 
+import java.text.NumberFormat;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.controller.response.LottoIssuingResponse;
 import lotto.controller.response.LottoIssuingResponse.LottoDto;
+import lotto.model.Winning;
 
 public class OutputView {
 
     private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
+    private static final String WINNING_RESULT_MESSAGE = "%d개 일치%s (%s원) - %d개\n";
     private static final String LOTTO_DELIMITER = ", ";
 
     public void printLottoTickets(LottoIssuingResponse response) {
@@ -25,5 +29,26 @@ public class OutputView {
 
         System.out.print(lottoResult);
         System.out.println("]");
+    }
+
+    public void printWinningResult(Map<Winning, Integer> winningResults) {
+        NumberFormat formatter = NumberFormat.getInstance();
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println();
+        Winning.sortedByMatchCount().forEach(winning -> {
+            String bonusNumberMessage = "";
+            if (winning.isBonusNumberMatched()) {
+                bonusNumberMessage = ", 보너스 볼 일치";
+            }
+            System.out.printf(
+                    WINNING_RESULT_MESSAGE,
+                    winning.matchCount(),
+                    bonusNumberMessage,
+                    formatter.format(winning.prizeMoney()),
+                    winningResults.get(winning)
+            );
+        });
     }
 }
