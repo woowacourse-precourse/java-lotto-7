@@ -9,10 +9,18 @@ import java.util.List;
 public class LottoService {
 
     private static final int LOTTO_PRICE = 1000;
+    private static LottoService instance;
     private final LottoGenerator lottoGenerator;
 
-    public LottoService(LottoGenerator lottoGenerator) {
+    private LottoService(LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
+    }
+
+    public static LottoService getInstance(LottoGenerator lottoGenerator) {
+        if (instance == null) {
+            instance = new LottoService(lottoGenerator);
+        }
+        return instance;
     }
 
     public List<Lotto> buyLottos(int price) {
