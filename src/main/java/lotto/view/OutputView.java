@@ -27,6 +27,8 @@ public class OutputView {
 	private static final String WON = "원";
 	private static final String PRIZE_FORMAT = "%,d";
 	private static final String DECIMAL_FORMAT = "#,###.#";
+	private static final String MATCHING_MESSAGE = "개 일치";
+	private static final String BONUS_BALL_MATCHING_MESSAGE = ", 보너스 볼 일치";
 	private static final String PROFIT_RATE_MESSAGE = "총 수익률은 ";
 	private static final String PERCENT_MESSAGE = "%입니다.";
 
@@ -81,9 +83,9 @@ public class OutputView {
 	}
 
 	private String getMatchingMessage(int count, boolean hasBonusNumber) {
-		String matchingMessage = count + "개 일치";
+		String matchingMessage = count + MATCHING_MESSAGE;
 		if (hasBonusNumber) {
-			return matchingMessage + ", 보너스 볼 일치";
+			return matchingMessage + BONUS_BALL_MATCHING_MESSAGE;
 		}
 		return matchingMessage;
 	}
