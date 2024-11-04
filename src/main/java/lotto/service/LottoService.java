@@ -30,7 +30,7 @@ public class LottoService {
     }
 
     public Lotto parseWinningNumberForLotto(String winningNumber) {
-        String[] numbers = winningNumber.split(",");
+        String[] numbers = Parse.splitByComma(winningNumber);
 
         return new Lotto(Arrays.stream(numbers)
                 .map(String::trim)

@@ -3,10 +3,11 @@ package lotto.util;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
-import lotto.exception.LottoException;
 import lotto.exception.LottoException.InvalidLottoPriceTypeException;
 
 public class Parse {
+
+    private static final String COMMA = ",";
 
     public static int stringToInt(String value) {
         try {
@@ -20,6 +21,10 @@ public class Parse {
         NumberFormat formatter = NumberFormat.getInstance(Locale.US);
 
         return formatter.format(number);
+    }
+
+    public static String[] splitByComma(String value) {
+        return value.split(COMMA);
     }
 
 }
