@@ -39,6 +39,14 @@ public class LottoTickets {
         return winningStatistics;
     }
 
+    public double calculateProfitRate(Map<Ranking, Integer> winningStatistics, int purchaseAmount) {
+        int profit = getProfit(winningStatistics);
+
+        if (purchaseAmount == 0) {
+            return 0.0;
+        }
+        return (double) (profit - purchaseAmount) / purchaseAmount * 100;
+    }
 
     private void generateLottoTickets(int ticketCount) {
         for (int i = 0; i < ticketCount; i++) {
@@ -49,5 +57,16 @@ public class LottoTickets {
 
     private List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    private int getProfit(Map<Ranking, Integer> winningStatistics) {
+        int profit = 0;
+
+        for (Ranking ranking : winningStatistics.keySet()) {
+            int count = winningStatistics.get(ranking);
+            profit += ranking.getPrize() * count;
+        }
+
+        return profit;
     }
 }
