@@ -4,6 +4,8 @@ package lotto.validator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.dto.PurchaseAmountDto;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -37,10 +39,11 @@ public class PurchaseAmountTest extends NsTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 금액이_아무런_값을_갖지_않는_경우() throws Exception{
+    @ParameterizedTest
+    @ValueSource(strings = {""," "})
+    void 금액이_아무런_값을_갖지_않는_경우(final String input) throws Exception{
         assertThatThrownBy(() -> {
-            PurchaseAmountValidator.validate("");
+            PurchaseAmountValidator.validate(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 

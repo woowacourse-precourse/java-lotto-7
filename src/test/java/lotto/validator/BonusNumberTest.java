@@ -2,22 +2,18 @@ package lotto.validator;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BonusNumberTest extends NsTest {
 
-    @Test
-    void 보너스_번호가_아무런_값을_갖지_않는_경우() throws Exception {
+    @ParameterizedTest
+    @ValueSource(strings = {""," "})
+    void 보너스_번호가_아무런_값을_갖지_않는_경우(final String input) throws Exception {
         assertThatThrownBy(() -> {
-            BonusNumberValidator.validate("");
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 보너스_번호에_공백을_입력한_경우() throws Exception {
-        assertThatThrownBy(() -> {
-            BonusNumberValidator.validate(" ");
+            BonusNumberValidator.validate(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
