@@ -6,6 +6,4 @@ public interface LottoConstants {
     int LOTTO_UNIT_PRICE = 1_000;
     int MAX_LOTTO_PURCHASE_AMOUNT = 100_000;
     int SIX_PICK = 6;
-    int BONUS_PICK = 1;
-
 }
