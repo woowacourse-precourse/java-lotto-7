@@ -45,9 +45,11 @@ public class InputValidator {
     private static boolean hasEdgeSeparator(String message) {
         return startsWithSeparator(message) || endsWithSeparator(message);
     }
+
     private static boolean startsWithSeparator(String message) {
         return message.startsWith(SEPARATOR);
     }
+
     private static boolean endsWithSeparator(String message) {
         return message.endsWith(SEPARATOR);
     }
