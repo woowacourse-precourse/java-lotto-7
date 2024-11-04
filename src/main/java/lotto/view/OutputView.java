@@ -30,7 +30,10 @@ public class OutputView {
         for (WinningResult result : WinningResult.values()) {
             int count = winningResults.getOrDefault(result, 0);
             boolean hasBonus = result == WinningResult.SECOND_PLACE;
-            System.out.println(result.formatResult(count, hasBonus));
+
+            if (result != WinningResult.NONE) {
+                System.out.println(result.formatResult(count, hasBonus));
+            }
         }
     }
 

@@ -1,12 +1,12 @@
 package lotto.model;
 
 public enum WinningResult {
-    FIRST_PLACE(6, 2000000000),
-    SECOND_PLACE(5, 30000000),
-    THIRD_PLACE(5, 1500000),
-    FOURTH_PLACE(4, 50000),
+    NONE(0, 0),
     FIFTH_PLACE(3, 5000),
-    NONE(0, 0);
+    FOURTH_PLACE(4, 50000),
+    THIRD_PLACE(5, 1500000),
+    SECOND_PLACE(5, 30000000),
+    FIRST_PLACE(6, 2000000000);
 
     private final int matchedNumberCount;
     private final int prize;
