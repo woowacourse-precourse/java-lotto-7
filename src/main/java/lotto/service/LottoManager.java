@@ -6,12 +6,19 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.service.domain.lotto.Lotto;
 import lotto.service.domain.lotto.LottoBuyer;
+import lotto.service.domain.lotto.LottoNumber;
+import lotto.service.domain.lotto.LottoReward;
+import lotto.service.domain.lottoresult.LottoWinCalculator;
+import lotto.service.domain.lottoresult.LottoWinNumber;
 import lotto.service.domain.money.Budget;
 import lotto.service.domain.numbergenerator.RandomNumberGenerator;
 import lotto.service.domain.numbergenerator.WoowaLottoGenerator;
+import lotto.service.domain.statistics.StatisticsReport;
 
 public class LottoManager implements LottoValueProvider {
     private LottoBuyer lottoBuyer;
+    private LottoWinNumber lottoWinNumber;
+    private StatisticsReport statisticsReport;
 
     @Override
     public List<Lotto> makePurchasedLotto(int money) {
@@ -33,7 +40,11 @@ public class LottoManager implements LottoValueProvider {
     }
 
     @Override
-    public void makeWinningStatistics() {
+    public StatisticsReport makeWinningStatistics(List<Integer> winnngNumber, int bonusNumber) {
+        this.lottoWinNumber = new LottoWinNumber(new Lotto(winnngNumber), new LottoNumber(bonusNumber));
+        List<LottoReward> lottoRewardsInfo = LottoWinCalculator.calculateReward(this.lottoBuyer, this.lottoWinNumber);
+        this.statisticsReport = new StatisticsReport(lottoRewardsInfo, this.lottoBuyer);
 
+        return statisticsReport;
     }
 }

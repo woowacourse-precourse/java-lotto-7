@@ -7,8 +7,22 @@ import java.util.stream.Collectors;
 
 public class InputReader {
     public int readInteger() {
-        String input = Console.readLine();
-        return Integer.parseInt(input);
+        while(true){
+            String input = Console.readLine();
+            try {
+                return validateNotNumber(input);
+            }catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 숫자만 입력해야 합니다.");
+            }
+        }
+    }
+
+    private int validateNotNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Integer> readIntegerList() {

@@ -29,16 +29,16 @@ public class StatisticsReport { // 책임: 통계를 넘겨 준다. 이걸로 �
     }
 
     private void calculateProfitRate() {
-        int seedMoney = lottoBuyer.getBudget().getBudget();
+        double seedMoney = lottoBuyer.getBudget().getBudget();
 
         lottoRewardInfo.forEach
                 (winInfoKey -> countLottoReward.put(winInfoKey, countLottoReward.get(winInfoKey) + 1));
 
-        int sumReward = countLottoReward.entrySet().stream()
+        double sumReward = countLottoReward.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
 
-        this.profitRate = (double) (sumReward / seedMoney) * PERCENT;
+        this.profitRate = (double) (sumReward * PERCENT) / seedMoney;
     }
 
     public List<LottoReward> getLottoRewardInfo() {
