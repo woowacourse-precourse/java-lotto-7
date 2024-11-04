@@ -6,4 +6,6 @@ public class LottoProperties {
     public static final int LOTTO_NUMBER_END = 45;
     public static final int LOTTO_NUMBER_QUANTITY = 6;
     public static final int LOTTO_REVENUE_RATE = 100;
+    public static final int ROUNDING_SCALE = 2;
+    public static final double SCALE_FACTOR = Math.pow(10, ROUNDING_SCALE);
 }
