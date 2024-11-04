@@ -13,8 +13,8 @@ public class LottoMatcher {
 
         for (Lotto lotto : lottos.getLottos()) {
             int matchCount = calculateMatchCount(lotto, winNumbers);
+            boolean bonusMatch = isBonusMatch(lotto, bonusNumber, matchCount);
 
-            boolean bonusMatch = (matchCount == 5) && lotto.getNumbers().contains(bonusNumber);
             LottoRule rule = LottoRule.getWinInfo(matchCount, bonusMatch);
             matchInfo.put(rule, matchInfo.getOrDefault(rule, 0) + 1);
         }
@@ -29,6 +29,10 @@ public class LottoMatcher {
             }
         }
         return matchCount;
+    }
+
+    private boolean isBonusMatch(Lotto lotto, int bonusNumber, int matchCount) {
+        return (matchCount == 5) && lotto.getNumbers().contains(bonusNumber);
     }
 
 }
