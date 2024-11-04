@@ -8,6 +8,9 @@ import java.util.stream.IntStream;
 
 public class LottoFactory {
     public List<Lotto> createLottos(Money money) {
+        if (money == null) {
+            throw new IllegalStateException("금액이 초기화되지 않았습니다.");
+        }
         return IntStream.range(0, money.getLottoCount())
                 .mapToObj(i -> createLotto())
                 .collect(Collectors.toList());
