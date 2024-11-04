@@ -56,7 +56,7 @@ public class LottoController {
 
 		return lottoService.checkWinningNumber(lottoBundle, winningDTO);
 	}
-	
+
 	private LottoBundle createLottoBundle(int lottoCount) {
 		LottoBundle lottoBundle = lottoService.createLottoBundle(lottoCount);
 		OutputView.promptLottoNumbers(lottoBundle);
