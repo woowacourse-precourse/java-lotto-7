@@ -1,5 +1,8 @@
 package lotto.model.domain;
 
+import static lotto.model.domain.NumberConstant.MIN_RANGE_NUMBER;
+import static lotto.model.domain.NumberConstant.MAX_RANGE_NUMBER;
+
 import java.util.List;
 
 public class BonusNumber {
@@ -16,7 +19,7 @@ public class BonusNumber {
 	}
 
 	private void overInRange(List<Integer> winningNumber) {
-		if (!winningNumber.stream().allMatch(number -> number >= 1 && number <= 45)) {
+		if (!winningNumber.stream().allMatch(number -> number >= MIN_RANGE_NUMBER && number <= MAX_RANGE_NUMBER)) {
 			throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이여야 합니다.");
 		}
 	}

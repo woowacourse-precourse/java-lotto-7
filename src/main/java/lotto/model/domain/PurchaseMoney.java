@@ -2,6 +2,7 @@ package lotto.model.domain;
 
 public record PurchaseMoney(int money) {
 	private static final int MINIMUM_MONEY_SIZE = 1000;
+	private static final int REMAIN_OF_DIVIDE_MONEY = 0;
 
 	public PurchaseMoney {
 		validate(money);
@@ -19,7 +20,7 @@ public record PurchaseMoney(int money) {
 	}
 
 	private void divideThousand(int input) {
-		if (input % MINIMUM_MONEY_SIZE != 0) {
+		if (input % MINIMUM_MONEY_SIZE != REMAIN_OF_DIVIDE_MONEY) {
 			throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
 		}
 	}
