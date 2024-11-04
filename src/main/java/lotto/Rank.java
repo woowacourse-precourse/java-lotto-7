@@ -25,11 +25,19 @@ public enum Rank {
     }
 
     public static String getRankInfo(Rank rank) {
+        if (rank == Rank.SECOND) {
+            return rank.matchCount + "개 일치, 보너스 볼 일치 (" + String.format("%,d", rank.prize) + "원)";
+        }
         return rank.matchCount + "개 일치 (" + String.format("%,d", rank.prize) + "원)";
     }
 
     public static Rank findRank(long matchCount, boolean matchBonus) {
-        return Arrays.stream(values()).filter(v -> v.matchCount == matchCount && v.matchBonus == matchBonus)
+        return Arrays.stream(values()).filter(v -> {
+                    if (matchCount == 5) {
+                        return v.matchCount == matchCount && v.matchBonus == matchBonus;
+                    }
+                    return v.matchCount == matchCount;
+                })
                 .findFirst()
                 .orElse(ZERO);
     }
