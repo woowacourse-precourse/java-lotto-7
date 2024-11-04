@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.message;
 
 public enum LottoInfoMessages {
     INSERT_PAY("구입금액을 입력해 주세요."),
@@ -11,7 +11,7 @@ public enum LottoInfoMessages {
             Enter를 누르면 자동으로 번호를 입력합니다."""),
     INSERT_NUMBERS_MIDDLE("""
             (수동 구매 갯수가 [\s"""),
-    INSERT_NUMBERS_END(" ]개 남았습니다."),
+    INSERT_NUMBERS_END(" ]개 남았습니다.)"),
     TOTAL_BUY_AMOUNT("""
         개를 구매했습니다.
         [구입 번호 목록]"""),
