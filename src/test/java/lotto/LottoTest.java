@@ -52,6 +52,21 @@ class LottoTest {
                 .hasMessageContaining("[ERROR] 로또 번호는 1~45 사이의 숫자를 입력해주세요.");
     }
 
+    @DisplayName("로또 번호가 중복하여 입력할 경우 에외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {2, 3, 4, 5, 6})
+    void duplicatedLottoTest(int lotto) {
+        // given
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> new Lotto(List.of(lotto, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 중복되면 안 됩니다.");
+
+    }
+
     @DisplayName("올바른 로또 번호를 입력하면 로또 번호를 저장한다.")
     @Test
     void createLottoTest() {
