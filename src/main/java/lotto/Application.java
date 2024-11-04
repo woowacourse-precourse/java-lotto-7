@@ -9,5 +9,8 @@ public class Application {
         lottoMachine.printLottos();
         lottoMachine.inputWinnigNumbers(Console.readLine());
         lottoMachine.inputBonusNumbers(Console.readLine());
+        lottoMachine.initPrizeMap();
+        lottoMachine.makePrizeMap();
+        lottoMachine.printPrize();
     }
 }
