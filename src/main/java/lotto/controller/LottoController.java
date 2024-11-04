@@ -17,20 +17,38 @@ public class LottoController {
     }
 
     public void run() {
-        Purchase purchase = InputRetryHandler.handleInput(() -> {
+        Purchase purchase = handlePurchase();
+        buyAndPrintLottos(purchase);
+
+        WinningNumbers winningNumbers = handleWinningNumbersInput();
+        BonusNumber bonusNumber = handleBonusNumberInput(winningNumbers);
+
+        calculateAndPrintStatistics(winningNumbers, bonusNumber, purchase);
+    }
+
+    private Purchase handlePurchase() {
+        return InputRetryHandler.handleInput(() -> {
             int amount = inputView.readPurchaseAmount();
             return new Purchase(amount);
         }, outputView);
+    }
 
+    private void buyAndPrintLottos(Purchase purchase) {
         lottoGame.buyLottos(purchase.getLottoCount());
         outputView.printLottos(lottoGame.getLottos());
+    }
 
-        WinningNumbers winningNumbers = InputRetryHandler.handleInput(
+    private WinningNumbers handleWinningNumbersInput() {
+        return InputRetryHandler.handleInput(
                 () -> new WinningNumbers(inputView.readWinningNumbers()), outputView);
+    }
 
-        BonusNumber bonusNumber = InputRetryHandler.handleInput(
+    private BonusNumber handleBonusNumberInput(WinningNumbers winningNumbers) {
+        return InputRetryHandler.handleInput(
                 () -> new BonusNumber(inputView.readBonusNumber(), winningNumbers), outputView);
+    }
 
+    private void calculateAndPrintStatistics(WinningNumbers winningNumbers, BonusNumber bonusNumber, Purchase purchase) {
         Statistics statistics = new Statistics(lottoGame.getLottos(), winningNumbers, bonusNumber, purchase);
         outputView.printStatistics(statistics.getResults(), statistics.calculateYield());
     }
