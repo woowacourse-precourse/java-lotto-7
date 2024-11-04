@@ -1,6 +1,5 @@
 package lotto;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,9 @@ public class LottoMachine {
         outputView.printLottoPurchaseDetails(lottos);
 
         WinningLotto winningLotto = createWinningLottoFromInput();
+        LottoResult lottoResult = determineResults(lottos, winningLotto);
 
+        outputView.printStatistics(lottoResult, amount);
     }
 
     private int getLottoCount(int amount) {
