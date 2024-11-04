@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.*;
@@ -30,6 +27,8 @@ public class GamePlay {
         buyLotto();
         winningLotto = getWinningLotto();
         bonusNumber = getBonusNumber();
+
+        calculateLotto();
     }
 
     private int getBonusNumber() {
@@ -81,5 +80,33 @@ public class GamePlay {
         }
 
         System.out.println(sb.toString());
+    }
+
+    private void calculateLotto() {
+        Map<Rank, Integer> results = new EnumMap<>(Rank.class);
+        for(Rank rank : Rank.values()){
+            results.put(rank, 0);
+        }
+
+        for(Lotto lotto : lottos){
+            Rank rank = calculateRank(lotto);
+            if(rank != null){
+                results.put(rank, results.get(rank) + 1);
+            }
+        }
+    }
+
+    private Rank calculateRank(Lotto lotto) {
+        int matchCount = 0;
+        boolean matchBonus = false;
+        for(int number : winningLotto.getNumbers()){
+            if(lotto.contains(number)){
+                matchCount++;
+            }
+        }
+
+        if(lotto.contains(bonusNumber)) matchBonus = true;
+
+        return Rank.valueOf(matchCount, matchBonus);
     }
 }
