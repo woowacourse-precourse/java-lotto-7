@@ -92,6 +92,10 @@
 - Application : 로또 발행기 동작
 ```
 
+![image](https://github.com/user-attachments/assets/c222db98-6e69-40d6-8022-220f91270af7)
+
+![image](https://github.com/user-attachments/assets/3baba283-ee4e-4afb-b301-58696590cf92)
+
 <br>
 
 ## 💡 목차
