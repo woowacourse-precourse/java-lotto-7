@@ -8,6 +8,8 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.DisplayName;
+
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -47,12 +49,55 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    @DisplayName("구입 금액이 잘못된 형식일 경우 예외 발생 테스트")
+    void 잘못된_형식_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    @DisplayName("구입 금액이 음수일 경우 예외 발생")
+    void 음수_금액_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("구입 금액이 0원일 경우 예외 발생")
+    void 영_금액_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("구입 금액이 1000원 단위가 아닐 경우 예외 발생")
+    void 천원_단위_아닌_금액_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("유효한 금액 입력 테스트")
+    void 유효한_금액_입력_테스트() {
+        assertSimpleTest(() -> {
+            run("5000", "1,2,3,4,5,6", "7"); // 구매 금액, 당첨 번호, 보너스 번호 순서로 입력 제공
+            assertThat(output()).contains(
+                    "5개를 구매했습니다.",
+                    "당첨 통계",
+                    "3개 일치 (5,000원) -",
+                    "총 수익률은 "
+            );
+        });
+    }
+
 
     @Override
     public void runMain() {
