@@ -48,7 +48,7 @@ public class OutputHandler {
     }
 
     private void displayProfitMargin(LottoStatistics lottoStatistics, int purchaseAmount) {
-        int prizeAmount = lottoStatistics.calculatePrizeMoney();
+        long prizeAmount = lottoStatistics.calculatePrizeMoney();
         double profitMargin = lottoStatistics.calculateProfitMargin(purchaseAmount, prizeAmount);
         String fomattedProfitMargin = String.format("%.1f", profitMargin);
 
