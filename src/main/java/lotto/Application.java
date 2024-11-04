@@ -11,12 +11,14 @@ import java.util.Locale;
 
 public class Application {
     public static void main(String[] args) {
-        int attempts = validateBetAmount();
+        int betAmount = validateBetAmount();
+        int attempts = getAttempts(betAmount);
         List<List<Integer>> entryLists = printEntries(attempts);
         List<Integer> lottoNumbers = enterLottoNumbers();
         int bonusNumber = enterBonusNumber(lottoNumbers);
         EnumMap<LottoResults, Integer> calculator = resetEnumMap();
         printResults(entryLists, lottoNumbers, bonusNumber, attempts, calculator);
+        printReturnRate(betAmount, calculator);
     }
 
     private static int validateBetAmount() {
@@ -32,6 +34,10 @@ public class Application {
         if (betAmount % 1000 != 0) {
             throw new IllegalArgumentException("베팅 금액이 1000원 단위가 아닙니다");
         }
+        return betAmount;
+    }
+
+    private static int getAttempts(int betAmount) {
         int attempts = betAmount / 1000;
         System.out.println(attempts + "개를 구매했습니다.");
         return attempts;
@@ -112,8 +118,7 @@ public class Application {
             updateResults(calculator, LottoResults.FOUR_MATCH);
         }
         if (matchedNumbers.size() == 5) {
-            updateResults(calculator, LottoResults.FIVE_MATCH);
-            checkBonus(i, entryLists, bonusNumber, calculator);
+            checkBonus(i, entryLists, bonusNumber, calculator, matchedNumbers);
         }
         if (matchedNumbers.size() == 6) {
             updateResults(calculator, LottoResults.SIX_MATCH);
@@ -125,11 +130,23 @@ public class Application {
     }
 
     private static void checkBonus(int i, List<List<Integer>> entryLists, int bonusNumber,
-                                   EnumMap<LottoResults, Integer> calculator) {
-        if (entryLists.get(i).contains(bonusNumber)) {
+                                   EnumMap<LottoResults, Integer> calculator, List<Integer> matchedNumbers) {
+        if (matchedNumbers.size() == 5 && entryLists.get(i).contains(bonusNumber)) {
             updateResults(calculator, LottoResults.FIVE_BONUS_MATCH);
+        }
+        if (matchedNumbers.size() == 5 && !entryLists.get(i).contains(bonusNumber)) {
+            updateResults(calculator, LottoResults.FIVE_MATCH);
         }
     }
 
+    private static void printReturnRate(int betAmount, EnumMap<LottoResults, Integer> calculator) {
+        int sum = 0;
+        for (LottoResults result : LottoResults.values()) {
+            sum += result.getPrize() * calculator.get(result);
+        }
+        double returnRate = (double) sum / betAmount;
+        returnRate = Math.round(returnRate * 100.0) / 100.0;
+        System.out.println("총 수익률은 : " + returnRate + "%입니다");
+    }
 
 }
