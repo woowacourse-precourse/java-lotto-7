@@ -36,7 +36,15 @@ public class LottoController {
         LottoView.printLottos(lottoCount, lottos);
 
         // 당첨 번호 입력 받기
-        List<Integer> winningNumbers = LottoView.getWinningNumbers();
+        List<Integer> winningNumbers = null;
+        while (true) {
+            try {
+                winningNumbers = LottoView.getWinningNumbers();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         // 보너스 번호 입력 받기
         Integer bonusNumber = LottoView.getBonusNumber();
