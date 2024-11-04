@@ -4,11 +4,11 @@ import lotto.controller.LottoController;
 import lotto.service.LottoResultService;
 import lotto.service.LottoSalesService;
 
-public class AppConfig {
+public class LottoControllerConfig {
     private final LottoSalesService lottoSalesService;
     private final LottoResultService lottoResultService;
 
-    public AppConfig(LottoSalesService lottoSalesService, LottoResultService lottoResultService) {
+    public LottoControllerConfig(LottoSalesService lottoSalesService, LottoResultService lottoResultService) {
         this.lottoSalesService = lottoSalesService;
         this.lottoResultService = lottoResultService;
     }
