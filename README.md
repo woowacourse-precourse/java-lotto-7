@@ -27,6 +27,7 @@ output:
 Constant
 
 1. 에러 메세지 관리하는 enum 클래스 생성
+2. Lotto 번호에 관한 상수 생성
 
 Domain
 
