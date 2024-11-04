@@ -22,18 +22,6 @@ public final class WinningLotto {
         return lotto.containsLottoNumber(bonusNumber.getLottoNumber());
     }
 
-    public Rank calculateRank(Lotto lotto) {
-        return Rank.of(matchCount(lotto), containsBonusNumber(lotto));
-    }
-
-    private long matchCount(Lotto lotto) {
-        return this.lotto.getNumbers().stream().filter(lotto.getNumbers()::contains).count();
-    }
-
-    private boolean containsBonusNumber(Lotto lotto) {
-        return lotto.getNumbers().contains(bonusNumber.getLottoNumber());
-    }
-
     public Lotto getLotto() {
         return lotto;
     }
