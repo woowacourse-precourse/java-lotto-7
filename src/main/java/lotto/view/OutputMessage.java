@@ -20,4 +20,12 @@ public class OutputMessage {
         System.out.printf(OutputMessageType.OUTPUT_WINNING_YIELD.getMessage(), yield);
     }
 
+    public static void winningNumberCorrect(int count, String expressWinnings, int correctLottoCount) {
+        System.out.printf(OutputMessageType.OUTPUT_WINNING_NUMBER_CORRECT.getMessage(), count, expressWinnings, correctLottoCount);
+    }
+
+    public static void winningNumberCorrectWithBonus(int count, String expressWinnings, int correctLottoCount) {
+        System.out.printf(OutputMessageType.OUTPUT_WINNING_NUMBER_CORRECT_BONUS.getMessage(), count, expressWinnings, correctLottoCount);
+    }
+
 }

@@ -13,13 +13,13 @@ public enum Ranking {
 
     final private int count;
     final private int winnings;
-    final private String strWinnings;
+    final private String expressWinnings;
     final private boolean isWinning;
 
-    Ranking(int count, int winnings, String strWinnings, boolean isWinning) {
+    Ranking(int count, int winnings, String expressWinnings, boolean isWinning) {
         this.count = count;
         this.winnings = winnings;
-        this.strWinnings = strWinnings;
+        this.expressWinnings = expressWinnings;
         this.isWinning = isWinning;
     }
 
@@ -31,8 +31,8 @@ public enum Ranking {
         return winnings;
     }
 
-    public String getStrWinnings() {
-        return strWinnings;
+    public String getExpressWinnings() {
+        return expressWinnings;
     }
 
     public boolean isWinning() {

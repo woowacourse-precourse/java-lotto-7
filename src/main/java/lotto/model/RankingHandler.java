@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constants.Ranking;
+import lotto.view.OutputMessage;
 
 import java.util.Map;
 
@@ -16,12 +17,12 @@ public class RankingHandler {
         }
     }
 
-    private void resultOutput(Ranking ranking, int count) {
+    private void resultOutput(Ranking ranking, int correctLottoCount) {
         if (ranking == Ranking.FIVE_BONUS) {
-            System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n", ranking.getCount(), ranking.getStrWinnings(), count);
+            OutputMessage.winningNumberCorrect(ranking.getCount(), ranking.getExpressWinnings(), correctLottoCount);
             return;
         }
-        System.out.printf("%d개 일치 (%s원) - %d개%n", ranking.getCount(), ranking.getStrWinnings(), count);
+        OutputMessage.winningNumberCorrectWithBonus(ranking.getCount(), ranking.getExpressWinnings(), correctLottoCount);
     }
 
 
