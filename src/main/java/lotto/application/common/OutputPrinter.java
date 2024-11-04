@@ -1,4 +1,4 @@
-package lotto.application.ticket.view.output;
+package lotto.application.common;
 
 public class OutputPrinter {
 
@@ -8,9 +8,14 @@ public class OutputPrinter {
         this.messageBuilder = new StringBuilder();
     }
 
-    public void appendLine(String message) {
+    public void appendWithLine(String message) {
         messageBuilder.append(message).append('\n');
     }
+
+    public void appendLine() {
+        messageBuilder.append('\n');
+    }
+
 
     public void execute() {
         System.out.print(messageBuilder.toString());
