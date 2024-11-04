@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import static lotto.LottoConstants.*;
+import lotto.model.Lotto;
+
+import static lotto.constants.LottoConstants.*;
 
 public class LottoGenerator {
     public List<Lotto> generate(int count) {

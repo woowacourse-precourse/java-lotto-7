@@ -3,6 +3,8 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import lotto.enums.Rank;
+import lotto.model.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

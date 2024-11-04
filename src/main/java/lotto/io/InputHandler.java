@@ -1,10 +1,12 @@
-package lotto;
+package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static lotto.LottoConstants.*;
+import lotto.model.Lotto;
+
+import static lotto.constants.LottoConstants.*;
 
 public class InputHandler {
     public int budgetInput() {

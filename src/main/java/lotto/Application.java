@@ -2,6 +2,10 @@ package lotto;
 
 import java.util.List;
 import java.util.Map;
+import lotto.enums.Rank;
+import lotto.io.InputHandler;
+import lotto.io.OutputHandler;
+import lotto.model.Lotto;
 
 public class Application {
     private InputHandler inputHandler;

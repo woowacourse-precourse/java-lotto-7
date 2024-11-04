@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.enums.Rank;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

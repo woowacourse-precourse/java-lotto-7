@@ -3,6 +3,8 @@ package lotto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.enums.Rank;
+import lotto.model.Lotto;
 
 public class LottoResult {
 

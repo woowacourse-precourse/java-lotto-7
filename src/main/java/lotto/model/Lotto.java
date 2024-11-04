@@ -1,8 +1,8 @@
-package lotto;
+package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import static lotto.LottoConstants.*;
+import static lotto.constants.LottoConstants.*;
 
 public class Lotto {
     private final List<Integer> numbers;

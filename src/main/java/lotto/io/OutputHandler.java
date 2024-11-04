@@ -1,7 +1,9 @@
-package lotto;
+package lotto.io;
 
 import java.util.List;
 import java.util.Map;
+import lotto.model.Lotto;
+import lotto.enums.Rank;
 
 public class OutputHandler {
 
