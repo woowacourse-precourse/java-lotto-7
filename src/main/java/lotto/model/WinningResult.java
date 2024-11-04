@@ -11,4 +11,12 @@ public class WinningResult {
             results.put(rank, 0);
         }
     }
+
+    public void addResult(Rank rank) {
+        results.put(rank, results.get(rank) + 1);
+    }
+
+    public int getCount(Rank rank) {
+        return results.get(rank);
+    }
 }
