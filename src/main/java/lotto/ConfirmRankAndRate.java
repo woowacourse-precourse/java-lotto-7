@@ -34,6 +34,18 @@ public class ConfirmRankAndRate {
         this.bonusNumber=inputData;
     }
 
+    public void setRankCount(int[] inputData) {
+        this.rankCount=inputData;
+    }
+
+    public double getRateOfReturn() {
+        return rateOfReturn;
+    }
+
+    public int[] getRankCount() {
+        return rankCount;
+    }
+
     public void countRankCount() {
 
         //인덱스 1에는 1등인 사람수 저장
@@ -51,8 +63,8 @@ public class ConfirmRankAndRate {
     public boolean check1st(Lotto lotto) {
         List<Integer> purchaseLottoNums=lotto.getNumbers();
         List<Integer> winningLottoNums=this.LottoWinningNumbers;
-        int purchaseNum=this.purchaseAmount/1000;
-        for(int i=0;i<purchaseNum;i++) {
+        int lottoNumSize=6;
+        for(int i=0;i<lottoNumSize;i++) {
             if(purchaseLottoNums.get(i) !=winningLottoNums.get(i)) {
                 return false;
             }
@@ -64,10 +76,10 @@ public class ConfirmRankAndRate {
     public boolean check2st(Lotto lotto) {
         List<Integer> purchaseLottoNums=lotto.getNumbers();
         List<Integer> winningLottoNums=this.LottoWinningNumbers;
-        int purchaseNum=this.purchaseAmount/1000;
+        int lottoNumSize=6;
         int incorrectNum=0;
         boolean bonusNumCorrect=false;
-        for(int i=0;i<purchaseNum;i++) {
+        for(int i=0;i<lottoNumSize;i++) {
             if(purchaseLottoNums.get(i) !=winningLottoNums.get(i)) { incorrectNum+=1; }
             if(purchaseLottoNums.get(i) == bonusNumber) { bonusNumCorrect=true; }
         }
@@ -78,10 +90,10 @@ public class ConfirmRankAndRate {
     public boolean check3st(Lotto lotto) {
         List<Integer> purchaseLottoNums=lotto.getNumbers();
         List<Integer> winningLottoNums=this.LottoWinningNumbers;
-        int purchaseNum=this.purchaseAmount/1000;
+        int lottoNumSize=6;
         int incorrectNum=0;
         boolean bonusNumCorrect=false;
-        for(int i=0;i<purchaseNum;i++) {
+        for(int i=0;i<lottoNumSize;i++) {
             if(purchaseLottoNums.get(i) !=winningLottoNums.get(i)) { incorrectNum+=1; }
             if(purchaseLottoNums.get(i) == bonusNumber) { bonusNumCorrect=true; }
         }
@@ -92,10 +104,10 @@ public class ConfirmRankAndRate {
     public boolean check4st(Lotto lotto) {
         List<Integer> purchaseLottoNums=lotto.getNumbers();
         List<Integer> winningLottoNums=this.LottoWinningNumbers;
-        int purchaseNum=this.purchaseAmount/1000;
+        int lottoNumSize=6;
         int incorrectNum=0;
         boolean bonusNumCorrect=false;
-        for(int i=0;i<purchaseNum;i++) {
+        for(int i=0;i<lottoNumSize;i++) {
             if(purchaseLottoNums.get(i) !=winningLottoNums.get(i)) { incorrectNum+=1; }
         }
         if(incorrectNum==2) { return true; }
@@ -105,10 +117,10 @@ public class ConfirmRankAndRate {
     public boolean check5st(Lotto lotto) {
         List<Integer> purchaseLottoNums=lotto.getNumbers();
         List<Integer> winningLottoNums=this.LottoWinningNumbers;
-        int purchaseNum=this.purchaseAmount/1000;
+        int lottoNumSize=6;
         int incorrectNum=0;
         boolean bonusNumCorrect=false;
-        for(int i=0;i<purchaseNum;i++) {
+        for(int i=0;i<lottoNumSize;i++) {
             if(purchaseLottoNums.get(i) !=winningLottoNums.get(i)) { incorrectNum+=1; }
         }
         if(incorrectNum==3) { return true; }
