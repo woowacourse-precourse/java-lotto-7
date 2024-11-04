@@ -2,6 +2,10 @@ package lotto.controller;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.Arrays;
+import java.util.List;
+import lotto.model.Lotto;
+
 public class InputHandler {
 
     public int readPurchaseAmount() {
@@ -9,6 +13,15 @@ public class InputHandler {
         final int amount = parseToInteger(input);
         validatePositive(amount);
         return amount;
+    }
+
+    public Lotto readWinningNumber() {
+        final String regex = ",";
+        final String input = readLine();
+        final List<Integer> number = Arrays.stream(input.split(regex))
+                .map(Integer::parseInt)
+                .toList();
+        return new Lotto(number);
     }
 
     private static int parseToInteger(String input) {
