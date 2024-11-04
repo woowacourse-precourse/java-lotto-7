@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 
 public class LottoResultTest {
 
+    private final int LOTTO_PRICE = 1000;
+
     @Test
     void 로또_결과_출력_형식과_반환율_확인() {
         //Given
@@ -32,8 +34,16 @@ public class LottoResultTest {
         Map<Ranking, Long> results = lottoResult.getResults();
         double returnRate = lottoResult.getReturnRate();
 
-        //Then
-        assertThat(returnRate).isEqualTo(100);
+        //수익률 계산
+        double totalPrize = results.entrySet().stream()
+                .mapToDouble(entry -> entry.getValue() * entry.getKey().getPrizeAmount())
+                        .sum();
+        int purchasedCount = purchasedLotto.size();
+        double expectedReturnRate = (totalPrize/(purchasedCount * LOTTO_PRICE)) * 100;
+        expectedReturnRate = Math.round(expectedReturnRate * 10.0) / 10.0;
+
+        //Then(출력과 반올림 형태가 똑같은지 체크)
+        assertThat(returnRate).isEqualTo(expectedReturnRate);
         String expectOutput = "3개 일치 (5,000원) - 1개\n"
                 + "4개 일치 (50,000원) - 0개\n"
                 + "5개 일치 (1,500,000원) - 0개\n"
