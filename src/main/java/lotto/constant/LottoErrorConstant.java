@@ -14,6 +14,6 @@ public class LottoErrorConstant {
     public static final String ERROR_BONUS_NUMBER_RANGE = "보너스 번호는 1~45 사이여야 합니다.";
     public static final String ERROR_BONUS_NUMBER_NO_DUPLICATES = "보너스 번호는 당첨 번호와 중복 될수 없습니다.";
 
-    public static final String ERROR_EXCEED_PRICE = String.format("최대 %d 까지 구매할 수 있습니다.",MAX_PRICE);
+    public static final String ERROR_EXCEED_PRICE = String.format("최대 %,d원 까지 구매할 수 있습니다.",MAX_PRICE);
 
 }
