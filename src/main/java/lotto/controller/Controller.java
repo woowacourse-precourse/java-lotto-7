@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.domain.WinningLotto;
@@ -28,6 +29,8 @@ public class Controller {
 
         WinningLotto winningNumbers = getWinningLotto();
         displayStatistics(lottos, winningNumbers, amount);
+
+        Console.close();
     }
 
     private List<Lotto> purchaseLottos(int amount) {
