@@ -18,6 +18,10 @@ public class PurchaseAmount {
         }
     }
 
+    public long getAmount() {
+        return amount;
+    }
+
     public int getBuyCount() {
         return (int) (amount / MIN_UNIT_PRICE);
     }

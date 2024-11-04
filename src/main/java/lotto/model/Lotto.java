@@ -1,7 +1,6 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,18 +9,32 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public static Lotto generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
 
         return new Lotto(numbers);
     }
 
-    public boolean contains(int number) {
-        return numbers.contains(number);
+    public LottoRank getRank(Lotto winNumbers, int bonusNumber) {
+        int countOfMatch = countOfMatch(winNumbers);
+        boolean containsBonusNumber = containsBonusNumber(bonusNumber);
+
+        return LottoRank.valueOf(countOfMatch, containsBonusNumber);
+    }
+
+    public boolean containsBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    private int countOfMatch(Lotto lotto) {
+        return (int) lotto.numbers.stream()
+                .filter(this.numbers::contains)
+                .count();
     }
 
     private void validate(List<Integer> numbers) {

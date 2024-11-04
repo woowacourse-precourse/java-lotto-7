@@ -20,6 +20,12 @@ public class Lottos {
         return lottos.size();
     }
 
+    public List<LottoRank> matchLottos(Lotto winNumbers, int bonusNumber) {
+        return lottos.stream()
+                .map(lotto -> lotto.getRank(winNumbers, bonusNumber))
+                .collect(Collectors.toList());
+    }
+
     @Override
     public String toString() {
         return lottos.stream()

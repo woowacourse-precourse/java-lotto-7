@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoRanks;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinLotto;
@@ -21,8 +22,11 @@ public class LottoMachine {
     public void lottery() {
         PurchaseAmount purchaseAmount = initializePurchaseAmount();
         Lottos purchasedLottos = purchaseLottos(purchaseAmount);
-        WinLotto winNumbers = initializeWinLotto();
+        WinLotto winLotto = initializeWinLotto();
 
+        LottoRanks lottoRanks = new LottoRanks(purchasedLottos, winLotto);
+
+        outputView.printLottoResult(lottoRanks, purchaseAmount);
     }
 
     private WinLotto initializeWinLotto() {
