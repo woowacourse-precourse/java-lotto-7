@@ -10,8 +10,8 @@ public class Application {
     public static void main(String[] args) {
         String input_text = "";
         int purchaseAmount = 0;
-        int bonusNum = 0;
         List<Integer> winningNums = new ArrayList<>();
+        int bonusNum = 0;
         List<Lotto> lottos = new ArrayList<Lotto>();
         int[] winningResult = new int[7];
         long totalWinning = 0;
@@ -20,16 +20,7 @@ public class Application {
         InputHandler inputHandler = new InputHandler();
         LottoWinningChecker winningChecker;
 
-        while (true) {
-            try {
-                System.out.println(GuideMessage.INPUT_PURCHASE_AMOUNT.getMessage());
-                input_text = Console.readLine();
-                purchaseAmount = inputHandler.readPurchaseAmount(input_text);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        purchaseAmount = inputHandler.getPurchaseAmount();
 
         for (int i = 0; i < purchaseAmount; i++) {
             List<Integer> nums = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -41,27 +32,8 @@ public class Application {
             System.out.println(lotto.toString());
         }
 
-        while (true) {
-            try {
-                System.out.println(GuideMessage.INPUT_WINNING_NUMBERS.getMessage());
-                input_text = Console.readLine();
-                winningNums = inputHandler.readWinningNumbers(input_text);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        while (true) {
-            try {
-                System.out.println(GuideMessage.INPUT_WINNING_BONUS.getMessage());
-                input_text = Console.readLine();
-                bonusNum = inputHandler.readBonusNumber(input_text);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        winningNums = inputHandler.getWinningNumbers();
+        bonusNum = inputHandler.getBonusNumber();
 
         winningChecker = new LottoWinningChecker(winningNums, bonusNum);
 

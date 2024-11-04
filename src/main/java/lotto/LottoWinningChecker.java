@@ -13,7 +13,7 @@ public class LottoWinningChecker {
     }
 
     public int getWinningGrade(Lotto lotto) {
-        int winningMatched = 1;
+        int winningMatched = 0;
 
         for (int winningNumber : winningNumbers) {
             if (lotto.contains(winningNumber)) {
@@ -21,6 +21,10 @@ public class LottoWinningChecker {
             }
         }
 
+        return findRankByMatched(lotto, winningMatched);
+    }
+
+    private int findRankByMatched(Lotto lotto, int winningMatched) {
         if (winningMatched == 6) {
             return 1;
         }
