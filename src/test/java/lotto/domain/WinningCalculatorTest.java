@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningCalculatorTest {
     private WinningCalculator winningCalculator;
@@ -49,6 +51,14 @@ public class WinningCalculatorTest {
     public void 보너스번호저장_중복예외_테스트() {
         winningCalculator.saveWinningLotto(winningLotto);
         assertThatThrownBy(() -> winningCalculator.saveBonusNumber(6))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46})
+    public void 보너스번호저장_범위예외_테스트(int value) {
+        winningCalculator.saveWinningLotto(winningLotto);
+        assertThatThrownBy(() -> winningCalculator.saveBonusNumber(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
