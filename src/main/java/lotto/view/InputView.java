@@ -29,4 +29,18 @@ public class InputView {
                 .collect(Collectors.toList());
         return new Lotto(numbers);
     }
+
+    public static LottoNumber inputBonusNumber(Lotto winningLotto) {
+        System.out.println("보너스 번호를 입력해주세요.");
+        try {
+            int number = Integer.parseInt(Console.readLine().trim());
+            LottoNumber bonusNumber = new LottoNumber(number);
+            if (winningLotto.contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 올바른 보너스 번호를 입력해주세요.");
+        }
+    }
 }
