@@ -17,7 +17,7 @@ class MainNumberTest {
     }
 
     @Test
-    void 번호_개수_6개_체크() {
+    void 번호_개수_6개_아닐_시_예외() {
         assertThatThrownBy(() -> new MainNumber("1,2,3,4,5,6,7"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -36,7 +36,7 @@ class MainNumberTest {
 
 
     @Test
-    void 중복_체크() {
+    void 중복_요소_존재_예외() {
         assertThatThrownBy(() -> new MainNumber("1,2,3,4,5,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
