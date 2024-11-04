@@ -9,4 +9,11 @@ public class LottoResults {
     public LottoResults(Lotto winningNumbers, int bonusNumber) {
         checker = new Checker(winningNumbers, bonusNumber);
     }
+
+    public List<LottoResult> getLottoResults(Lotties lotties) {
+        this.lottoResults = lotties.getLotties().stream()
+                .map(lotto -> checker.check(lotto))
+                .toList();
+        return lottoResults;
+    }
 }

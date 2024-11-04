@@ -39,9 +39,9 @@ LottoResult
 -[x] 기록한 정보를 전달한다.
 
 LottoResults
--[ ] LottoResult를 생성한다.
+-[x] LottoResult를 생성한다.
 -[x] Check 객체를 생성한다.
--[ ] LottoResults를 관리한다.
+-[x] LottoResult를 관리한다.
 
 Analyst
 -[ ] 당첨된 복권의 개수를 계산한다.
