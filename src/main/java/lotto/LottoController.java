@@ -42,7 +42,10 @@ public class LottoController {
             if (matchNumbers.size() == 6) {
                 price += 2000000000;
             }
-            if (matchNumbers.size() == 5) {
+            if (matchNumbers.size() == 5 && lottoService.haveBonusNumber(lottoNumbers, bonusNumber)) {
+                price += 30000000;
+            }
+            if (matchNumbers.size() == 5 && !lottoService.haveBonusNumber(lottoNumbers, bonusNumber)) {
                 price += 1500000;
             }
             if (matchNumbers.size() == 4) {

@@ -64,4 +64,14 @@ public class LottoService {
 
         return lottos;
     }
+
+    public Boolean haveBonusNumber(List<Integer> numbers, Integer bonusNumber) {
+        Boolean haveBonusNumber = false;
+
+        if (numbers.contains(bonusNumber)) {
+            return true;
+        }
+
+        return haveBonusNumber;
+    }
 }
