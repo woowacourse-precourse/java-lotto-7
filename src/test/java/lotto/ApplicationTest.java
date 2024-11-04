@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -46,10 +48,29 @@ class ApplicationTest extends NsTest {
         );
     }
 
-    @Test
-    void 예외_테스트() {
+    @ParameterizedTest
+    @ValueSource(strings = {"1000j", " ", "-", "10000000000000000"})
+    void 구입금액_예외_테스트(String inputText) {
         assertSimpleTest(() -> {
-            runException("1000j");
+            runException(inputText);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1000j", ",,", "1,,2,,,", " ", "-", "-9", "10000000000000000"})
+    void 당첨번호_예외_테스트(String inputText) {
+        assertSimpleTest(() -> {
+            runException("2000", inputText);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1000j", " ", "-", "-9", "1000000000000000"})
+    void 보너스번호_예외_테스트(String inputText) {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6", inputText);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
