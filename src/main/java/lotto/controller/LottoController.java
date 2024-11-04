@@ -51,6 +51,6 @@ public class LottoController {
         for (Map.Entry<String, Integer> entry : results.entrySet()) {
             awards += WinningState.valueOf(entry.getKey()).getAmount() * entry.getValue();
         }
-        LottoView.printROR((double) awards / (turn * PRICE));
+        LottoView.printROR((double) awards * 100 / purchasePrice);
     }
 }
