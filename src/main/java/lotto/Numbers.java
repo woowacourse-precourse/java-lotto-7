@@ -6,23 +6,25 @@ import java.util.Collections;
 import java.util.List;
 
 public class Numbers {
-    private List<Integer> numbers;
+    private static List<Integer> randomNumbers;
 
     private void makeNumbers(){
-        this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        this.randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     private void sortNumbers(List<Integer> numbers){
         Collections.sort(numbers);
     }
 
-    public void Numbers(){
+    public Numbers(){
         makeNumbers();
-        sortNumbers(numbers);
+        sortNumbers(randomNumbers);
     }
 
-    public List<Integer> getNumbers(){
-        return numbers;
+    public static List<Integer> get(){
+        return randomNumbers;
     }
+
+
 
 }

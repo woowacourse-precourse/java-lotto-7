@@ -1,9 +1,16 @@
 package lotto;
 
 public class Amount {
-    private int amount;
+    private static int amount;
 
-    public Amount(){}
+
+    /*public Amount(int amount){
+        this.amount = amount;
+    }
+
+    public Amount() {
+
+    }*/
 
     //입력 값을 Long으로 변환
     private long toLong(String input){
@@ -13,7 +20,9 @@ public class Amount {
     //money가 1000원 단위인지 확인
     private void validate(long money){
         if(money % 1000L !=0){
-            throw new IllegalArgumentException("enum으로 구현할것");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        }else if(money<1000){
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 이상이여야 합니다.");
         }
     }
 
@@ -27,14 +36,14 @@ public class Amount {
         this.amount = money/1000;
     }
 
-    public void Amount(String input){
+    public Amount(String input){
         Long longMoney = toLong(input);
         validate(longMoney);
         int money = toInt(longMoney);
         toAmount(money);
     }
 
-    public int getAmount(){
-        return this.amount;
+    public static int get(){
+        return amount;
     }
 }
