@@ -19,7 +19,7 @@ public class InputView {
 
     public static Lotto inputWinningNumbers() {
         String winningNumber = Console.readLine();
-        LottoNumbersValidator.validateAboutComma(winningNumber);
+        LottoNumbersValidator.validateLottoNumberFormat(winningNumber);
 
         List<Integer> winningNumbers = Arrays.stream(winningNumber.split(COMMA))
                 .map(Integer::parseInt)
