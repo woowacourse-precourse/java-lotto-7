@@ -2,10 +2,17 @@ package lotto.service;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoRepository;
 
 class LottoServiceTest {
 	private final LottoService lottoService = LottoService.getInstance();
@@ -53,5 +60,33 @@ class LottoServiceTest {
 		assertThatThrownBy(() -> lottoService.saveBonusNumber(bonusNumber))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("[ERROR]");
+	}
+
+	@Nested
+	@DisplayName("로또 구매 테스트")
+	class BuyTest {
+		private final LottoRepository lottoRepository = LottoRepository.getInstance();
+
+		@AfterEach
+		void tearDown() {
+			lottoRepository.clear();
+		}
+
+		@DisplayName("로또 구매에 성공한다.")
+		@ParameterizedTest
+		@ValueSource(ints = {1000, 10000, 100000})
+		void buyTest(int amount) {
+			List<Lotto> lotto = lottoService.buy(amount);
+			assertThat(lotto).hasSize(amount / 1000);
+		}
+
+		@DisplayName("로또 구매 금액이 1000단위가 아니면 예외를 던진다.")
+		@ParameterizedTest
+		@ValueSource(ints = {999, 1999})
+		void validateAmountTest(int amount) {
+			assertThatThrownBy(() -> lottoService.buy(amount))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessageContaining("[ERROR]");
+		}
 	}
 }
