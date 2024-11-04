@@ -11,7 +11,6 @@ public class OutputView {
 
     public String resultToString(double revenueRate) {
         StringBuilder sb = new StringBuilder();
-        double roundRevenueRate = getRoundRevenueRate(revenueRate);
         sb.append(OutputViewConstant.RESULT_HEADER);
         Arrays.stream(Winning.values()).forEach(winning -> sb.append(winning.toString()));
         sb.append(String.format(OutputViewConstant.REVENUE_RATE_MESSAGE, revenueRate));
