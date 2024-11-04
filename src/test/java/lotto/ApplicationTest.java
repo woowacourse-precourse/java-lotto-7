@@ -1,15 +1,19 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
 class ApplicationTest extends NsTest {
+
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
@@ -49,10 +53,65 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
-            runException("1000j");
+            runException("1000j", "8000", "1,2,3,4,5,6", "7");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @ParameterizedTest
+    @MethodSource("purchaseAmount")
+    void 구입_금액_예외_테스트(String wrongInput) {
+        assertSimpleTest(() -> {
+            runException(wrongInput, "8000", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    public static Stream<Arguments> purchaseAmount() {
+        return Stream.of(
+                Arguments.of("-8000"),
+                Arguments.of("100"),
+                Arguments.of("1000000000"),
+                Arguments.of("999")
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("firstPlaceNumbers")
+    void 일등_당첨_번호_예외_테스트(String wrongInput) {
+        assertSimpleTest(() -> {
+            runException("8000", wrongInput, "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    public static Stream<Arguments> firstPlaceNumbers() {
+        return Stream.of(
+                Arguments.of("1:2:3:4:5:6"),
+                Arguments.of("1,2,3,4,45,46"),
+                Arguments.of("1,2,3,4,5,6,7"),
+                Arguments.of("1,2,1,2,3,4"),
+                Arguments.of("e,1,2,3,4,5")
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("bonusNumber")
+    void 보너스_번호_예외_테스트(String wrongInput) {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", wrongInput, "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    public static Stream<Arguments> bonusNumber() {
+        return Stream.of(
+                Arguments.of("1"),
+                Arguments.of("46"),
+                Arguments.of("e")
+        );
+    }
+
 
     @Override
     public void runMain() {
