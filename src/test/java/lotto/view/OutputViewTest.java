@@ -74,7 +74,7 @@ class OutputViewTest {
             );
             WinningStatisticsDto statistics = new WinningStatisticsDto(
                     winningCounts,
-                    37_512.1
+                    37.5120
             );
 
             // when
@@ -92,7 +92,7 @@ class OutputViewTest {
                             5개 일치 (1,500,000원) - 0개
                             5개 일치, 보너스 볼 일치 (30,000,000원) - 1개
                             6개 일치 (2,000,000,000원) - 0개
-                            총 수익률은 37,512.1%입니다.
+                            총 수익률은 3,751.2%입니다.
                             """
                     );
         }
