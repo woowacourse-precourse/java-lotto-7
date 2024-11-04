@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final int SIZE = 6;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUM = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -14,7 +18,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
@@ -24,7 +28,7 @@ public class Lotto {
         }
 
         for (int value : numbers) {
-            if (value < 1 || value > 45) {
+            if (value < MIN_NUMBER || value > MAX_NUM) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1과 45사이여야 합니다.");
             }
         }
