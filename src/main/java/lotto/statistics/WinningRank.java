@@ -78,7 +78,7 @@ public enum WinningRank {
     }
 
     private static boolean isMatchSecond(int requiredMatch, boolean hasBonus) {
-        return requiredMatch == 5 && hasBonus;
+        return requiredMatch == SECOND.requiredMatch && hasBonus;
     }
 
     private static WinningRank getWinningRank(int requiredMatch) {
