@@ -15,11 +15,9 @@ public class LottoController {
     public void purchaseLotto() {
         PurchaseCost purchaseCost = inputPurchaseCost();
 
-        int purchasedLottoCount = purchaseCost.calculateBuyableLottoCount();
-        OutputView.outputPurchasedLottoCount(purchasedLottoCount);
-        PurchasedLottos purchasedLottos = new PurchasedLottos(purchaseLotto(purchasedLottoCount));
+        PurchasedLottos purchasedLottos = purchase(purchaseCost);
 
-        WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers());
+        WinningNumbers winningNumbers = inputWinningNumbers();
         int bonusNumber = inputBonusNumber(winningNumbers);
 
         LottoGame lottoGame = new LottoGame(purchasedLottos, winningNumbers, bonusNumber);
@@ -39,7 +37,15 @@ public class LottoController {
         }
     }
 
-    private List<Lotto> purchaseLotto(int purchaseCount) {
+    private PurchasedLottos purchase(PurchaseCost purchaseCost) {
+        int purchasedLottoCount = purchaseCost.calculateBuyableLottoCount();
+        OutputView.outputPurchasedLottoCount(purchasedLottoCount);
+
+        List<Lotto> purchasedLottos = generateLottoWithPurchaseCount(purchasedLottoCount);
+        return new PurchasedLottos(purchasedLottos);
+    }
+
+    private List<Lotto> generateLottoWithPurchaseCount(int purchaseCount) {
         List<Lotto> purchasedLottos = new ArrayList<>();
         for (int i=0; i<purchaseCount; i++) {
             List<Integer> randomlyGeneratedNumbers = RandomNumberCreator.generateRandomNumbers();
@@ -50,17 +56,25 @@ public class LottoController {
         return purchasedLottos;
     }
 
-    private List<Integer> inputWinningNumbers() {
-        String rawWinningNumbers = InputView.inputWinningNumbers();
-        return WinningNumberParser.parseWinningNumbers(rawWinningNumbers);
+    private WinningNumbers inputWinningNumbers() {
+        try {
+            String rawWinningNumbers = InputView.inputWinningNumbers();
+            List<Integer> parsedWinningNumbers = WinningNumberParser.parseWinningNumbers(rawWinningNumbers);
+            return new WinningNumbers(parsedWinningNumbers);
+        } catch (IllegalArgumentException exception) {
+            return inputWinningNumbers();
+        }
     }
 
     private int inputBonusNumber(WinningNumbers winningNumbers) {
-        int bonusNumber = NumberParser.parseToInteger(InputView.inputBonusNumber());
-        winningNumbers.checkBonusDuplicate(bonusNumber);
-        BonusNumberValidator.validateUnderFourtySix(bonusNumber);
-
-        return bonusNumber;
+        try {
+            int bonusNumber = NumberParser.parseToInteger(InputView.inputBonusNumber());
+            winningNumbers.checkBonusDuplicate(bonusNumber);
+            BonusNumberValidator.validateUnderFourtySix(bonusNumber);
+            return bonusNumber;
+        } catch (IllegalArgumentException exception) {
+            return inputBonusNumber(winningNumbers);
+        }
     }
 
     private void outputProfitRate(int purchaseCost, Map<String, Integer> matchedCount) {
