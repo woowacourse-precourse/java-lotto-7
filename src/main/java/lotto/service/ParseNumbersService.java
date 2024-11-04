@@ -2,7 +2,6 @@ package lotto.service;
 
 import static lotto.constants.ErrorMessage.INPUT_CAN_NOT_BE_BLANK;
 import static lotto.constants.ErrorMessage.LOTTO_CAN_NOT_HAVE_CHARACTER;
-import static lotto.constants.ErrorMessage.LOTTO_CAN_NOT_HAVE_BLANK;
 
 import java.util.Arrays;
 import java.util.List;
@@ -50,6 +49,4 @@ public class ParseNumbersService {
             throw new IllegalArgumentException(LOTTO_CAN_NOT_HAVE_CHARACTER.get());
         }
     }
-
-
 }
