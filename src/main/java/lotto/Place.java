@@ -14,7 +14,7 @@ public enum Place {
     public final int needHitCount;
     public final boolean needHitBonusNumber;
 
-    private Place(long prize, int needHitCount, boolean needHitBonusNumber) {
+    Place(long prize, int needHitCount, boolean needHitBonusNumber) {
         this.prize = prize;
         this.needHitCount = needHitCount;
         this.needHitBonusNumber = needHitBonusNumber;
