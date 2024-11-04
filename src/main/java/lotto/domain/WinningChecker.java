@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.LottoValueConstant.LOTTO_PRICE;
+import static lotto.constant.LottoValueConstant.NON_RANK;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,15 +12,23 @@ public class WinningChecker {
         Map<String, Integer> lottoRankCount = LottoRank.LottoRankCollector();
 
         for (List<Integer> userLotto : userLottos) {
-            int matchCount = lotto.matching(userLotto);
-            boolean matchBonus = bonus.matching(userLotto);
-            String rank = LottoRank.valueOf(matchCount, matchBonus);
-            if (rank == "NONE") {
-                continue;
-            }
-            lottoRankCount.put(rank, lottoRankCount.get(rank) + 1);
+            String rank = determineRank(bonus, lotto, userLotto);
+            updateRankCount(lottoRankCount, rank);
         }
+
         return lottoRankCount;
+    }
+
+    private String determineRank(Bonus bonus, Lotto lotto, List<Integer> userLotto) {
+        int matchCount = lotto.matching(userLotto);
+        boolean matchBonus = bonus.matching(userLotto);
+        return LottoRank.valueOf(matchCount, matchBonus);
+    }
+
+    private void updateRankCount(Map<String, Integer> rankCountMap, String rank) {
+        if (!rank.equals(NON_RANK)) {
+            rankCountMap.put(rank, rankCountMap.get(rank) + 1);
+        }
     }
 
     public static double calculateReturn(Map<String, Integer> matchingResult, int ticketNumbers) {
@@ -25,8 +36,7 @@ public class WinningChecker {
         for (LottoRank rank : LottoRank.values()) {
             sum += rank.getPrize() * matchingResult.get(rank.name());
         }
-        double result = sum / (ticketNumbers * 1000) * 100;
+        double result = ((double)(sum / (ticketNumbers * LOTTO_PRICE))) * 100;
         return result;
     }
-
 }
