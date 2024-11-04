@@ -41,10 +41,10 @@ public class ViewInput {
                 String winningNumber = Console.readLine();
                 String[] winningNumberArray = winningNumber.split(",");
                 winningNumberList.clear();
-                for (String s : winningNumberArray) { winningNumberList.add(Integer.parseInt(s.trim()));}
+                for (String s : winningNumberArray) { winningNumberList.add(Integer.parseInt(s.trim())); }
                 validatorWinningNumber(winningNumberList);
                 return winningNumberList;
-            }catch(NumberFormatException | IllegalStateException e) { System.out.println(ILLEGAL_NUMBER_FORMAT_ERROR_MESSAGE + e.getMessage());;}
+            }catch(NumberFormatException | IllegalStateException e) { System.out.println(ILLEGAL_NUMBER_FORMAT_ERROR_MESSAGE + e.getMessage());}
         }
     }
 
@@ -84,7 +84,6 @@ public class ViewInput {
             }
         }
     }
-
 
     private void validatorLuckyNumber(int luckyNumber, List<Integer> winningNumberList){
         if(luckyNumber < 0 || luckyNumber > 45){

@@ -48,8 +48,10 @@ public class Lotto {
         int correct = countCorrect(numbers, winningNumber);
         if (correct == 6) {
             return LottoPrizeMoney.FIRST;
+        } else if (correct == 5 && numbers.contains(luckyNumber)) {
+            return LottoPrizeMoney.SECOND;
         } else if (correct == 5) {
-            return numbers.contains(luckyNumber) ? LottoPrizeMoney.SECOND: LottoPrizeMoney.THIRD;
+            return LottoPrizeMoney.THIRD;
         } else if (correct == 4) {
             return LottoPrizeMoney.FOURTH;
         } else if (correct == 3) {
@@ -72,7 +74,6 @@ public class Lotto {
                 + LottoPrizeMoney.FIFTH.getPrizeMoney() * countFifth;
         return (float) totalPrize / (purchaseAmount * 1000) * 100;
     }
-
 
     private boolean hasDuplicate(List<Integer> list) {
         Set<Integer> set = new HashSet<>(list);
