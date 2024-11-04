@@ -37,10 +37,11 @@ public class Validation {
     public static void validateDuplicateNumbers(List<Integer> input) {
         Set<Integer> uniqueNumbers = new HashSet<>();
 
-        for (Integer number : input) {
-            if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException(ErrorStatus.DUPLICATE_NUMBER.getMessage());
-            }
+        boolean hasDuplicate = input.stream()
+                .anyMatch(number -> !uniqueNumbers.add(number));
+
+        if (hasDuplicate) {
+            throw new IllegalArgumentException(ErrorStatus.DUPLICATE_NUMBER.getMessage());
         }
     }
 
