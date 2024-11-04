@@ -10,7 +10,7 @@ public class OutputView {
     private static final String ARRAY_SEPARATOR = ", ";
     private static final String EXCEPTION_PREFIX = "[ERROR] ";
 
-    public void printPurchase(List<Lotto> lottos) {
+    public void printHowMany(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
     }
 
@@ -18,7 +18,7 @@ public class OutputView {
         System.out.println(EXCEPTION_PREFIX + detailedMessage);
     }
 
-    public void printIssuedLottoes(List<Lotto> lottoes) {
+    public void printIssuedLottos(List<Lotto> lottoes) {
         for (Lotto lotto : lottoes) {
             printNumbers(lotto);
         }
