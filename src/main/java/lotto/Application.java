@@ -16,7 +16,7 @@ public class Application {
         purchaseController.purchaseLottos();
 
         List<Integer> winningNumbers = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumber();
+        int bonusNumber = InputView.getBonusNumber(winningNumbers);
 
         OutputView.printPurchasedLottos(purchaseController.getPurchasedLottos());
 
