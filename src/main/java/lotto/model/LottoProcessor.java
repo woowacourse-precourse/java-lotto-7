@@ -1,18 +1,16 @@
-package lotto;
+package lotto.model;
 
-import java.util.HashMap;
+import lotto.model.Lotto;
+import lotto.model.LottoType;
+
 import java.util.List;
 import java.util.Map;
 
 public class LottoProcessor {
-    private final Map<LottoType, Integer> lottoStorage = new HashMap<>();
+    private final Map<LottoType, Integer> lottoStorage;
 
-    public LottoProcessor() {
-        lottoStorage.put(LottoType.FIRST_PLACE, 0);
-        lottoStorage.put(LottoType.SECOND_PLACE, 0);
-        lottoStorage.put(LottoType.THIRD_PLACE, 0);
-        lottoStorage.put(LottoType.FOURTH_PLACE, 0);
-        lottoStorage.put(LottoType.FIFTH_PLACE, 0);
+    public LottoProcessor(Map<LottoType, Integer> lottoStorage) {
+        this.lottoStorage = lottoStorage;
     }
 
     public Map<LottoType, Integer> lottoPick(List<List<Integer>> purchaseLottoNumbers, Lotto lotto,
