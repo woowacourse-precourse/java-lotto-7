@@ -25,6 +25,7 @@ public class InputController {
     public Lotto getLotto() {
         final String input = this.readTrimmedInput();
         final List<String> lottoNumbers = Arrays.stream(input.split(","))
+                .map(number -> number.trim())
                 .collect(Collectors.toList());
         for (final String number : lottoNumbers) {
             validateNumber(number);
