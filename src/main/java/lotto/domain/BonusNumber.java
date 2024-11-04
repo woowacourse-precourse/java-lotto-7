@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.utils.ErrorMessages;
 import lotto.utils.ValidatorFactory;
 import lotto.validation.Validator;
 
@@ -11,6 +10,8 @@ public class BonusNumber {
     private final int number;
 
     public BonusNumber(int number, WinningNumbers winningNumbers) {
+        ValidatorFactory.validateWinningNumbersState(winningNumbers);
+
         validateBonusNumber(number, winningNumbers);
         this.number = number;
     }

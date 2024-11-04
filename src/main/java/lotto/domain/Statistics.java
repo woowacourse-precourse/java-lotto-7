@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Map;
 import java.util.List;
+import lotto.utils.ValidatorFactory;
 
 public class Statistics {
     private final Map<Rank, Integer> results;
@@ -18,6 +19,8 @@ public class Statistics {
     }
 
     public double calculateYield() {
+        ValidatorFactory.validateStatisticsState(results, purchaseAmount);
+
         YieldCalculator calculator = new YieldCalculator();
         return calculator.calculateYield(results, purchaseAmount);
     }
