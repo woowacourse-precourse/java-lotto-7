@@ -14,8 +14,9 @@ import lotto.endpoint.AbstractIOHandler;
 
 
 public class ApplicationRunner extends AbstractIOHandler {
-    private final static String PURCHASE_QUANTITY_MESSAGE = "%d개를 구매했습니다.";
+    private static final String PURCHASE_QUANTITY_MESSAGE = "%d개를 구매했습니다.";
     private static final String DELIMITER = ",";
+
     private final DrawController drawController;
     private final PurchaseController purchaseController;
 
