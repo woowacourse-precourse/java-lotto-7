@@ -14,4 +14,15 @@ public class InputView {
 
     }
 
+    public void requestWinningNumber() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public String inputWinningNumber() {
+        String winNum = Console.readLine();
+        return winNum;
+    }
+
+
 }
