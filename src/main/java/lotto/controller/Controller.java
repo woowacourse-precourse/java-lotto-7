@@ -22,7 +22,7 @@ public class Controller {
     public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.calculator = new Calculator();
+        this.calculator = Calculator.getInstance();
         this.issuer = new Issuer();
     }
 
@@ -99,7 +99,7 @@ public class Controller {
 
     private void printLottoResults() {
         lottoResults.initLottoResults(lottos);
-        Analyst analyst = new Analyst();
+        Analyst analyst = Analyst.getInstance();
         outputView.printLottoResults(analyst.calculateWinLottoCount(lottoResults.getLottoResults()));
         outputView.printLottoStatics(analyst.calculateYield(lottoResults.getLottoResults()));
     }

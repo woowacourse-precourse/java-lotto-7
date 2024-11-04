@@ -11,6 +11,12 @@ import static lotto.exception.ExceptionErrorMessage.INPUT_ZERO_NUMBER_MESSAGE;
 import java.util.regex.Pattern;
 
 public class InputPurchaseAmountValidator implements InputValidator {
+    private static final InputPurchaseAmountValidator INSTANCE = new InputPurchaseAmountValidator();
+
+    public static InputPurchaseAmountValidator getInstance() {
+        return INSTANCE;
+    }
+
     public void validate(String input) {
         if (isBlank(input)) {
             throw new IllegalArgumentException(INPUT_BLANK_MESSAGE.toString());

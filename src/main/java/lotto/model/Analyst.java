@@ -6,6 +6,13 @@ import static lotto.constant.LottoValue.LOTTO_RANK_GRADE;
 import java.util.List;
 
 public class Analyst {
+    private static final Analyst INSTANCE = new Analyst();
+
+    private Analyst() {}
+
+    public static Analyst getInstance() {
+        return INSTANCE;
+    }
     public int[] calculateWinLottoCount(List<LottoResult> LottoResults) {
         int[] winLottoCount = new int[LOTTO_RANK_GRADE.getValue()];
         for (LottoResult lottoResult : LottoResults) {

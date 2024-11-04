@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CalculatorTest {
-    private final Calculator calculator = new Calculator();
+    private final Calculator calculator = Calculator.getInstance();
 
     @Test
     public void 만원_압력시_10장의_복권을_살_수있다() {

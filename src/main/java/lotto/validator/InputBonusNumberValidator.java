@@ -14,6 +14,12 @@ import static lotto.exception.ExceptionErrorMessage.OUT_OF_RANGE_LOTTO_NUMBER_ME
 import java.util.regex.Pattern;
 
 public class InputBonusNumberValidator implements InputValidator {
+    private static final InputBonusNumberValidator INSTANCE = new InputBonusNumberValidator();
+
+    public static InputBonusNumberValidator getInstance() {
+        return INSTANCE;
+    }
+
     public void validateBeforeParsing(String input) {
         if (isBlank(input)) {
             throw new IllegalArgumentException(INPUT_BLANK_MESSAGE.toString());

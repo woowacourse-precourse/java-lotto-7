@@ -9,9 +9,9 @@ import lotto.validator.InputPurchaseAmountValidator;
 import lotto.validator.InputWinningLottoValidatior;
 
 public class InputView {
-    private final InputPurchaseAmountValidator inputPurchaseAmountValidator = new InputPurchaseAmountValidator();
-    private final InputWinningLottoValidatior inputWinningLottoValidatior = new InputWinningLottoValidatior();
-    private final InputBonusNumberValidator inputBonusNumberValidator = new InputBonusNumberValidator();
+    private final InputPurchaseAmountValidator inputPurchaseAmountValidator = InputPurchaseAmountValidator.getInstance();
+    private final InputWinningLottoValidatior inputWinningLottoValidatior = InputWinningLottoValidatior.getInstance();
+    private final InputBonusNumberValidator inputBonusNumberValidator = InputBonusNumberValidator.getInstance();
 
     public String inputPurchaseAmount() {
         String input = Console.readLine();

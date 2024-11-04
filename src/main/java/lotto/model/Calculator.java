@@ -1,10 +1,19 @@
 package lotto.model;
 
-import static lotto.exception.ExceptionErrorMessage.INPUT_EXIST_REMAINS_MESSAGE;
 import static lotto.constant.LottoValue.LOTTO_PRICE;
+import static lotto.exception.ExceptionErrorMessage.INPUT_EXIST_REMAINS_MESSAGE;
 
 public class Calculator {
     private final int REMAINS = 0;
+    private static final Calculator instance = new Calculator();
+
+    private Calculator() {
+
+    }
+
+    public static Calculator getInstance() {
+        return instance;
+    }
 
     public int getLottoCount(String purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);

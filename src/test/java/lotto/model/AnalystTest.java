@@ -15,7 +15,7 @@ public class AnalystTest {
 
     @BeforeEach
     public void setUp() {
-        analyst = new Analyst();
+        analyst = Analyst.getInstance();
     }
 
     @Test
