@@ -20,6 +20,10 @@ public class Buyer {
         return this.lottos;
     }
 
+    public HashMap<Rank, Integer> getResultLotto() {
+        return this.resultLotto;
+    }
+
     private void initResultLotto() {
         for (Rank rank : Rank.values()) {
             this.resultLotto.put(rank, 0);
