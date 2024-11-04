@@ -35,6 +35,12 @@ public class Application {
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String lottoNumber = Console.readLine();
+        List<Integer> winningNumbers = new ArrayList<>();
+        String[] eachNumbers = lottoNumber.split(",");
+
+        for (String number : eachNumbers) {
+            winningNumbers.add(Integer.parseInt(number));
+        }
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = 0;
