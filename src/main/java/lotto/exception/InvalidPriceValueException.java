@@ -2,8 +2,8 @@ package lotto.exception;
 
 import lotto.constant.LottoErrorMessage;
 
-public class InvalidPriceException extends IllegalArgumentException {
-    public InvalidPriceException() {
+public class InvalidPriceValueException extends IllegalArgumentException {
+    public InvalidPriceValueException() {
         super(LottoErrorMessage.LOTTO_PRICE_ERROR);
     }
 }
