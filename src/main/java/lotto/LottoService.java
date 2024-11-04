@@ -11,7 +11,7 @@ public class LottoService {
         this.bonusNumber = bonusNumber;
     }
 
-    public Rank draw(Lotto lotto) {
+    public Rank match(Lotto lotto) {
         int totalBonusNumber = 0;
         List<Integer> lottoNumbers = lotto.getNumbers();
 
