@@ -1,8 +1,5 @@
 package lotto.controller;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.constant.DrawType;
@@ -10,6 +7,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.Lottos;
 import lotto.model.dto.LottoGameResult;
+import lotto.utils.ResultFormatter;
 import lotto.validator.PurchasePriceValidator;
 import lotto.validator.WinningNumValidator;
 import lotto.view.InputView;
@@ -18,7 +16,6 @@ import lotto.view.OutputView;
 public class LottoGameController {
 
     private final static int LOTTO_PRICE = 1000;
-    private final static int MATCH_NUM_EDGE_CASE = 5;
 
     private LottoGame lottoGame;
 
@@ -26,13 +23,16 @@ public class LottoGameController {
     private final OutputView outputView;
     private final PurchasePriceValidator purchasePriceValidator;
     private final WinningNumValidator winningNumValidator;
+    private final ResultFormatter resultFormatter;
 
     public LottoGameController(InputView inputView, OutputView outputView,
-                               PurchasePriceValidator purchasePriceValidator, WinningNumValidator winningNumValidator) {
+                               PurchasePriceValidator purchasePriceValidator, WinningNumValidator winningNumValidator,
+                               ResultFormatter resultFormatter) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.purchasePriceValidator = purchasePriceValidator;
         this.winningNumValidator = winningNumValidator;
+        this.resultFormatter = resultFormatter;
     }
 
     public void run() {
@@ -47,7 +47,10 @@ public class LottoGameController {
 
         Map<DrawType, Integer> drawResult = lottoGame.generateDrawResult();
         double earns = lottoGame.calculateEarns(drawResult, purchasePrice);
-        showDrawResults(drawResult, earns);
+
+        Map<DrawType, Integer> formattedResult = resultFormatter.formatResult(drawResult);
+        List<LottoGameResult> formattedFinalResult = resultFormatter.formatFinalResult(formattedResult);
+        outputView.showDrawResults(formattedFinalResult, earns);
     }
 
     private String getPurchasePrice() {
@@ -118,45 +121,4 @@ public class LottoGameController {
         }
     }
 
-    private void showDrawResults(Map<DrawType, Integer> drawResult, double earns) {
-        List<LottoGameResult> result = new ArrayList<>();
-
-        Map<DrawType, Integer> formattedFinalResult = formatFinalResult(drawResult);
-
-        for (Map.Entry<DrawType, Integer> entry : formattedFinalResult.entrySet()) {
-            DrawType drawType = entry.getKey();
-            int matchNum = getMatchNum(drawType);
-            int matchPrize = drawType.getPrize();
-            int matchCount = entry.getValue();
-            result.add(new LottoGameResult(matchNum, matchPrize, matchCount));
-        }
-
-        outputView.showDrawResults(result, earns);
-    }
-
-    private Map<DrawType, Integer> formatFinalResult(Map<DrawType, Integer> drawResult) {
-        List<Map.Entry<DrawType, Integer>> entryList = new ArrayList<>(drawResult.entrySet());
-
-        entryList.sort(Comparator.comparingInt(entry -> getMatchNum(entry.getKey())));
-        if (!entryList.isEmpty()) {
-            entryList.remove(entryList.getFirst());
-        }
-
-        Map<DrawType, Integer> formattedResult = new LinkedHashMap<>();
-        for (Map.Entry<DrawType, Integer> entry : entryList) {
-            formattedResult.put(entry.getKey(), entry.getValue());
-        }
-
-        return formattedResult;
-    }
-
-    private int getMatchNum(DrawType drawType) {
-        int matchNum;
-        try {
-            matchNum = Integer.parseInt(drawType.getValue());
-        } catch (NumberFormatException e) {
-            matchNum = MATCH_NUM_EDGE_CASE;
-        }
-        return matchNum;
-    }
 }
