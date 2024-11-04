@@ -87,4 +87,37 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorCode.LOTTO_NUMBER_RANGE_ERROR.getMessage());
     }
+
+    @DisplayName("입력 된 로또 당첨 번호에 중복된 숫자가 있는 경우 예외 발생.")
+    @Test
+    void validWinningNumberTest_lottoNumberDuplicate() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+        // when // then
+        assertThatThrownBy(() -> inputValidator.validWinningNumber(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
+    }
+
+    @DisplayName("입력 된 String 타입의 보너스 번호가 숫자가 아닌 경우 예외 발생.")
+    @Test
+    void parseBonusNumberTest() {
+        // given
+        String bonusNumber = "유준혁킹왕짱";
+        // when // then
+        assertThatThrownBy(() -> inputValidator.parseBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.BONUS_NUMBER_TYPE_ERROR.getMessage());
+    }
+
+    @DisplayName("입력 된 보너스 번호가 1부터 45사이가 아닌 경우 예외 발생.")
+    @Test
+    void validBonusNumberTest() {
+        // given
+        Integer bonusNumber = 46;
+        // when // then
+        assertThatThrownBy(() -> inputValidator.validBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.LOTTO_NUMBER_RANGE_ERROR.getMessage());
+    }
 }
