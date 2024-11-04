@@ -26,4 +26,13 @@ public class ParserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith(ERROR_PREFIX);
     }
+
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(strings = {"", " ", "1.0", "1k"})
+    void 보너스_번호가_숫자_외_문자가_있으면_예외가_발생한다(String input) {
+        assertThatThrownBy(() -> Parser.parseInputToNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith(ERROR_PREFIX);
+    }
 }
