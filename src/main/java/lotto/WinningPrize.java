@@ -7,11 +7,11 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum WinningPrize {
-    FIRST(6, 2000000000, false),
-    SECOND(5, 30000000, true),
-    THIRD(5, 1500000, false),
+    FIFTH(3, 5000, false),
     FOURTH(4, 50000, false),
-    FIFTH(3, 5000, false);
+    THIRD(5, 1500000, false),
+    SECOND(5, 30000000, true),
+    FIRST(6, 2000000000, false);
 
     private final int matchCount;         // 일치해야 하는 번호 개수
     private final int prize;               // 상금
