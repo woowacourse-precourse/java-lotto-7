@@ -8,6 +8,10 @@ import java.util.List;
 public class PurchaseLotto {
     private final List<Lotto> lottos = new ArrayList<>();
 
+    public int getLottoCount() {
+        return lottos.size();
+    }
+
     public void salesLotto(int lottoMoney) {
         int lottoCount = lottoMoney / 1000;
         System.out.println(lottoCount + "개를 구매했습니다. ");
