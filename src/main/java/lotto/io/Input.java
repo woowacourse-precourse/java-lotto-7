@@ -40,7 +40,7 @@ public class Input {
 	public static int readBonusLotto() {
 		System.out.println(BONUS_LOTTO_INPUT_MESSAGE);
 		int bonusNumber =  validateLottoPurchaseAmountFormat(Console.readLine());
-		validateLottoNumber(bonusNumber);
+		validateLottoNumberRange(bonusNumber);
 		return bonusNumber;
 	}
 
@@ -50,7 +50,7 @@ public class Input {
 				.collect(Collectors.toList());
 	}
 
-	private static void validateLottoNumber(int number) {
+	private static void validateLottoNumberRange(int number) {
 		if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
 			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
 		}
