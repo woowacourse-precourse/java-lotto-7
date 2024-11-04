@@ -17,4 +17,8 @@ public class InputParser {
         }
         return winningNumberList;
     }
+
+    public int parseBonusNumber(String bonusNumber) {
+        return Integer.parseInt(bonusNumber);
+    }
 }

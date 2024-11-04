@@ -17,4 +17,11 @@ public class InputView {
         System.out.println();
         return winningNumbers;
     }
+
+    public String getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine();
+        System.out.println();
+        return bonusNumber;
+    }
 }

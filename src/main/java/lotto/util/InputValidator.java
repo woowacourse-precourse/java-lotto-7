@@ -25,6 +25,19 @@ public class InputValidator {
             throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
         }
         if (!isValidLottoNumbers(winningNumbers)) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    public void validateBonusNumber(String bonusNumber) {
+        if (bonusNumber.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
+        }
+        if (!bonusNumber.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
+        }
+        int parsedBonusNumber = Integer.parseInt(bonusNumber);
+        if (parsedBonusNumber < 1 || parsedBonusNumber > 45) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }

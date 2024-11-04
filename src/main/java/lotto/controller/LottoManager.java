@@ -23,9 +23,24 @@ public class LottoManager {
         int purchasePrice = getPurchasePrice();
         creatLottos(purchasePrice);
 
-        List<Integer> winningNumbers = getWinningNumbers();
+        List<Integer> winningNumbers = getWinningNumbers(); // todo 입력한 수 중 중복 있는지 확인
+        int bonusNumber = getBonusNumber(); // todo 당첨번호와 겹치는지 확인
 
+    }
 
+    private int getBonusNumber() {
+        int bonusNumberResult = 0;
+        while (true) {
+            try {
+                String bonusNumber = inputView.getBonusNumber();
+                inputValidator.validateBonusNumber(bonusNumber);
+                bonusNumberResult = inputParser.parseBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return bonusNumberResult;
     }
 
     private List<Integer> getWinningNumbers() {
@@ -34,7 +49,7 @@ public class LottoManager {
             try {
                 String winningNumbers = inputView.getWinningNumbers();
                 inputValidator.validateWinningNumbers(winningNumbers);
-                inputParser.parseWinningNumbers(winningNumbers);
+                winningNumberList = inputParser.parseWinningNumbers(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
