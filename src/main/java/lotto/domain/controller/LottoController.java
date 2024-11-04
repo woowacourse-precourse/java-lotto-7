@@ -4,6 +4,7 @@ import lotto.domain.Lotteries;
 import lotto.domain.Lotto;
 import lotto.domain.service.LottoService;
 import lotto.domain.util.Statistics;
+import lotto.global.exception.ExceptionHandler;
 import lotto.global.io.InputConsole;
 import lotto.global.io.OutputConsole;
 
@@ -32,11 +33,16 @@ public class LottoController {
     }
 
     public void play() {
-        Lotteries lotteries = purchaseLotteries();
-        Lotto winningNumber = setWinningNumber();
-        Integer bonusNumber = setBonusNumber();
+        try {
+            Lotteries lotteries = purchaseLotteries();
+            Lotto winningNumber = setWinningNumber();
+            Integer bonusNumber = setBonusNumber();
 
-        calculateProfit(lotteries, winningNumber, bonusNumber);
+            calculateProfit(lotteries, winningNumber, bonusNumber);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ExceptionHandler.createErrorMessage(e.getMessage()), e);
+        }
+
     }
 
     private Lotteries purchaseLotteries() {
