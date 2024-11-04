@@ -9,21 +9,21 @@ import service.LottoResultService;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoResultService lottoResultService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoResultService lottoResultService) {
+    public LottoController(InputView inputView, OutputView outputView, LottoResultService lottoResultService){
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoResultService = lottoResultService;
     }
 
-    public void run() {
+    public void run(){
         List<Lotto> lottos = getMoneyAndBuyLotto();
-
         printPublicedLottos(lottos);
 
         Lotto winningLotto = getWinningLotto();
@@ -36,36 +36,46 @@ public class LottoController {
 
     }
 
-    public List<Lotto> getMoneyAndBuyLotto() {
-        try {
-            outputView.showHowMuchMoneyToBuyLotto();
-            int moneyForLotto = inputView.getLottoBuyMoney();
-            LottoGenerator lottoGenerator = LottoGenerator.of(moneyForLotto);
-            return lottoGenerator.publicLottos(); // 입력이 올바르면 로또 리스트 반환
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return getMoneyAndBuyLotto();
+    public List<Lotto> getMoneyAndBuyLotto(){
+        while (true) {
+            try {
+                outputView.showHowMuchMoneyToBuyLotto();
+                int moneyForLotto = inputView.getLottoBuyMoney();
+                LottoGenerator lottoGenerator = LottoGenerator.of(moneyForLotto);
+
+                return lottoGenerator.publicLottos(); // 입력이 올바르면 로또 리스트 반환
+            }
+            catch (Exception e) {
+                if(e instanceof NoSuchElementException){
+                    break;
+                }
+                System.out.println(e.getMessage());
+            }
         }
+        return List.of();
     }
 
-
-    private void printPublicedLottos(List<Lotto> lottos) {
+    private void printPublicedLottos(List<Lotto> lottos){
         outputView.showPublicedLottos(lottos);
     }
 
-    private Lotto getWinningLotto() {
+    private Lotto getWinningLotto(){
         while (true) {
             try {
                 outputView.enterWinningNumberForLotto();
                 List<Integer> lottoNum = inputView.getWinningLottoNum();
                 return new Lotto(lottoNum);
             } catch (Exception e) {
+                if(e instanceof NoSuchElementException){
+                    break;
+                }
                 System.out.println(e.getMessage());
             }
         }
+        return null;
     }
 
-    private Integer getBonusLottoNumber(Lotto winningLotto) {
+    private Integer getBonusLottoNumber(Lotto winningLotto){
         while (true) {
             try {
                 outputView.enterBonusNumberForLotto();
@@ -73,12 +83,16 @@ public class LottoController {
                 winningLotto.validateBonusNumber(bonusNum);
                 return bonusNum;
             } catch (Exception e) {
+                if(e instanceof NoSuchElementException){
+                    break;
+                }
                 System.out.println(e.getMessage());
             }
         }
+        return 0;
     }
 
-    private void printLottoResult(Map<LottoRank, Integer> lottoResult, int lottoNumber) {
+    private void printLottoResult(Map<LottoRank, Integer> lottoResult, int lottoNumber){
         outputView.showLottoResults(lottoResult);
         double profitRate = lottoResultService.getProfitRate(lottoResult, lottoNumber);
         outputView.showProfitRate(profitRate);

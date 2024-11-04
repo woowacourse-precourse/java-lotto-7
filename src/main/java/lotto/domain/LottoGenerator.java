@@ -19,7 +19,7 @@ public class LottoGenerator {
         return new LottoGenerator(money);
     }
 
-    private void validateMoney(int money){
+    public static void validateMoney(int money){
         if(money<0){
             throw new IllegalArgumentException("로또 구매 금액은 음수가 될 수 없습니다.");
         }
