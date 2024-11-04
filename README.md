@@ -32,19 +32,19 @@
   - [x] calculate rate of return
 
 - provide user interface
-  - [ ] read input money from user 
-  - [ ] calculate a number of Lotto user buy
-  - [ ] read input winning number and **bonus number from user**
-  - [ ] print bought Lotto info that places ", " between numbers
-  - [ ] print winning Lotto info with the thousand separator from bought Lotto info
-  - [ ] repeat read input when input is invalid
-  - [ ] print rate of return
+  - [x] read input money from user 
+  - [x] calculate a number of Lotto user buy
+  - [x] read input winning number and **bonus number from user**
+  - [x] print bought Lotto info that places ", " between numbers
+  - [x] print winning Lotto info with the thousand separator from bought Lotto info
+  - [x] repeat read input when input is invalid
+  - [x] print rate of return
   - [x] validate money input
   - [x] validate winning numbers input
   - [x] validate bonus number input
 
 - handle user request
-  - [ ] deliver user request and info 
+  - [x] deliver user request and info 
 
 ### Validation relation
 
