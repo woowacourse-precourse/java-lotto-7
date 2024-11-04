@@ -167,7 +167,7 @@ https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=
         </tr>
         <tr>
             <td>LottoConfiguration</td>
-            <td>class</td>
+            <td>enum</td>
             <td>로또 애플리케이션의 전반적인 설정 값을 관리하는 클래스입니다. 로또 가격, 상수 등을 정의합니다.</td>
         </tr>
         <tr>
@@ -223,6 +223,24 @@ https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=
             <td>LottoService</td>
             <td>class</td>
             <td>로또 로직을 수행하는 서비스 클래스입니다. 비즈니스 로직을 처리하며, 컨트롤러와 엔티티 간의 중재 역할을 합니다.</td>
+        </tr>
+         <tr>
+            <td rowspan="3">
+                <img src="https://raw.githubusercontent.com/mallowigi/iconGenerator/master/assets/icons/folders/db.svg?sanitize=true" />
+                dto
+            <td>LottoControllerInputDto</td>
+            <td>record</td>
+            <td>사용자로부터 입력을 받는 클래스입니다. 콘솔을 통해 입력을 처리하고 반환합니다.</td>
+        </tr>
+         <tr>
+            <td>PrizeCountEntry</td>
+            <td>record</td>
+            <td>사용자로부터 입력을 받는 클래스입니다. 콘솔을 통해 입력을 처리하고 반환합니다.</td>
+        </tr>
+         <tr>
+            <td>ProfitStaticsDto</td>
+            <td>record</td>
+            <td>사용자로부터 입력을 받는 클래스입니다. 콘솔을 통해 입력을 처리하고 반환합니다.</td>
         </tr>
         <tr>
             <td rowspan="5">
@@ -290,37 +308,37 @@ https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=
         </tr>
         <tr>
             <td>ExceptionMessage</td>
-            <td>class</td>
-            <td>예외 메시지를 관리하는 클래스입니다. 예외와 관련된 메시지를 일관성 있게 관리합니다.</td>
+            <td>interface</td>
+            <td>예외 메시지를 관리하는 인터페이스입니다. 예외와 관련된 메시지를 일관성 있게 관리합니다.</td>
         </tr>
         <tr>
             <td>InputParserExceptionMessage</td>
-            <td>class</td>
+            <td>enum</td>
             <td>입력 파싱과 관련된 예외 메시지를 정의하는 클래스입니다.</td>
         </tr>
         <tr>
             <td>LottoConfigurationExceptionMessage</td>
-            <td>class</td>
+            <td>enum</td>
             <td>로또 설정과 관련된 예외 메시지를 정의하는 클래스입니다.</td>
         </tr>
         <tr>
             <td>LottoExceptionMessage</td>
-            <td>class</td>
+            <td>enum</td>
             <td>로또 관련 예외 메시지를 정의하는 클래스입니다. 로또 로직과 관련된 예외 메시지를 관리합니다.</td>
         </tr>
         <tr>
             <td>ProfitReportExceptionMessage</td>
-            <td>class</td>
+            <td>enum</td>
             <td>수익 보고서와 관련된 예외 메시지를 정의하는 클래스입니다.</td>
         </tr>
         <tr>
             <td>PurchaseExceptionMessage</td>
-            <td>class</td>
+            <td>enum</td>
             <td>구매와 관련된 예외 메시지를 정의하는 클래스입니다.</td>
         </tr>
         <tr>
             <td>WinningNumbersExceptionMessage</td>
-            <td>class</td>
+            <td>enum</td>
             <td>우승 번호 관련 예외 메시지를 정의하는 클래스입니다.</td>
         </tr>
     </tbody>
