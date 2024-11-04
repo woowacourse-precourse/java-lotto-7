@@ -5,7 +5,6 @@ import lotto.enums.CustomError;
 import lotto.enums.LottoResultType;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -16,16 +15,13 @@ public class LottoMachine {
         if (purchaseAmount < 1000 || purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(CustomError.INVALID_PURCHASE_INPUT.getErrorMessage());
         }
-
         List<Lotto> lotto = new ArrayList<>();
-
         for (int lottoCnt = 0; lottoCnt < (purchaseAmount / 1000); lottoCnt++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottoNumbers.sort(Comparator.naturalOrder());
-
-            lotto.add(new Lotto(lottoNumbers));
+            lotto.add(
+                    new Lotto(lottoNumbers.stream().sorted().toList())
+            );
         }
-
         return lotto;
     }
 
