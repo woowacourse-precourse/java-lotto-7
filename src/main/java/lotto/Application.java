@@ -1,9 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-
-import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Application {
     public static void main(String[] args) {
@@ -11,6 +11,7 @@ public class Application {
         int lottoCount = purchaseAmount / 1000;
         List<Lotto> purchasedLottos = Lotto.generateLottos(lottoCount);
         printPurchasedLottos(purchasedLottos);
+        List<Integer> winningNumbers = getWinningNumbers();
     }
 
     private static int getPurchaseAmount() {
@@ -29,5 +30,16 @@ public class Application {
             Collections.sort(numbers);
             System.out.println(numbers);
         }
+    }
+
+    private static List<Integer> getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        String[] splitInput = input.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String number : splitInput) {
+            winningNumbers.add(Integer.parseInt(number.trim()));
+        }
+        return winningNumbers;
     }
 }
