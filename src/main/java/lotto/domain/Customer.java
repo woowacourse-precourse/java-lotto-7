@@ -1,6 +1,16 @@
 package lotto.domain;
 
+import static lotto.domain.Rank.FIFTH;
+import static lotto.domain.Rank.FIRST;
+import static lotto.domain.Rank.FOURTH;
+import static lotto.domain.Rank.MISS;
+import static lotto.domain.Rank.SECOND;
+import static lotto.domain.Rank.THIRD;
+import static lotto.domain.Rank.values;
+
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -40,5 +50,11 @@ public class Customer {
                 .mapToObj(i -> Lotto.from(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
                 .forEach(lotto -> lottos.addLotto(lotto));
         return lottos;
+    }
+
+    private EnumMap<Rank, Integer> initRankMap() {
+        EnumMap<Rank, Integer> rankMap = new EnumMap<>(Rank.class);
+        Arrays.stream(values()).forEach(rank -> rankMap.put(rank, 0));
+        return rankMap;
     }
 }
