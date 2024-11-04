@@ -198,14 +198,16 @@ public class Application {
     }
 
     public static void printResults(Map<Integer, Integer> results, int purchaseAmount) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println("당첨 통계\n---");
         int totalPrize = 0;
 
-        for (int i = 1; i <= 5; i++) {
-            int count = results.getOrDefault(i, 0);
-            totalPrize += count * PRIZES[i];
-            printRankResult(i, count);
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.NONE) {
+                continue;
+            }
+            int count = results.getOrDefault(rank, 0);
+            totalPrize += count * rank.getPrize();
+            printRankResult(rank, count);
         }
 
         double profit = ((double) totalPrize / purchaseAmount) * 100;
@@ -213,21 +215,12 @@ public class Application {
         System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 
-    public static void printRankResult(int rank, int count) {
-        if (rank == 1) {
-            System.out.println("6개 일치 (2,000,000,000원) - " + count + "개");
+
+    public static void printRankResult(Rank rank, int count) {
+        if (rank == Rank.SECOND) {
+            System.out.println("5개 일치, 보너스 볼 일치 (" + rank.getPrize() + "원) - " + count + "개");
+            return;
         }
-        if (rank == 2) {
-            System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count + "개");
-        }
-        if (rank == 3) {
-            System.out.println("5개 일치 (1,500,000원) - " + count + "개");
-        }
-        if (rank == 4) {
-            System.out.println("4개 일치 (50,000원) - " + count + "개");
-        }
-        if (rank == 5) {
-            System.out.println("3개 일치 (5,000원) - " + count + "개");
-        }
+        System.out.println(rank.matchCount + "개 일치 (" + rank.getPrize() + "원) - " + count + "개");
     }
 }
