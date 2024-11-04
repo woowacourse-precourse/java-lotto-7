@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 public class LottoCollection {
     private final List<Lotto> tickets;
@@ -51,10 +51,9 @@ public class LottoCollection {
             }
         }
         revenueRate = (double) totalprize / budget;
-        revenueRate = Math.round(revenueRate * 10) / 10.0; // 소수점 둘째자리에서 반올림
 
         // print revenue with formatted type (, 포함)
-        NumberFormat formatter = NumberFormat.getInstance();
+        DecimalFormat formatter = new DecimalFormat("#,##0.0");
         String formattedRevenue = formatter.format(revenueRate);
 
         System.out.println("총 수익률은 " + formattedRevenue + "%입니다.");
