@@ -13,11 +13,11 @@ public class LottoPurchaser {
     private final LottoRepository lottoRepository;
     private double totalLottoProfit = 0;
     private final Map<LottoRankAward, Integer> rankCountsStorage = new LinkedHashMap<>();
-    private int age;
+    //private int age;
 
-    public LottoPurchaser(int lottoPrice, int purchaserAge){
+    public LottoPurchaser(int lottoPrice){
         this.lottoPurchaseAmount = lottoPrice;
-        this.age = purchaserAge;
+        //this.age = purchaserAge;
         this.lottoRepository = new InMemoryLottoRepository();
         initRankCounts();
     }

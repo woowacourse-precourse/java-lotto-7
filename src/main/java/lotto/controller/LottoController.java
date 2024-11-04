@@ -34,19 +34,19 @@ public class LottoController {
     public void startLotto(){
         LottoPurchaseInputView inputView = new LottoPurchaseInputView(inputProvider, numberConverter);
         int lottoPurchasePrice = getLottoPurchasePrice(inputView);
-        int lottoPurchaserAge = getPurchaserAge(inputView);
+        //int lottoPurchaserAge = getPurchaserAge(inputView);
         int lottoPurchaseCount = calculateLottoCount(lottoPurchasePrice);
 
-        LottoPurchaser lottoPurchaser = new LottoPurchaser(lottoPurchasePrice, lottoPurchaserAge);
+        LottoPurchaser lottoPurchaser = new LottoPurchaser(lottoPurchasePrice);
 
         printLottoPurchaseCount(lottoPurchaseCount);
         issueLottos(lottoPurchaser, lottoPurchaseCount);
         printLottoResult(lottoPurchaser, getWinningLottoNumbers());
     }
 
-    private int getPurchaserAge(LottoPurchaseInputView inputView){
-        return inputView.getAge();
-    }
+//    private int getPurchaserAge(LottoPurchaseInputView inputView){
+//        return inputView.getAge();
+//    }
 
     private int getLottoPurchasePrice(LottoPurchaseInputView inputView){
         return inputView.getPurchasePrice();
