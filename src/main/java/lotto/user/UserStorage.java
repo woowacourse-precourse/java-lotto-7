@@ -14,7 +14,12 @@ public class UserStorage {
     }
 
     public static List<DrawnNumbers> get() {
+        validateDrawnPacks(drawnNumberPacks);
         return drawnNumberPacks;
+    }
+
+    public static List<DrawnNumbers> clean() {
+        return UserStorage.drawnNumberPacks = null;
     }
 
     private static void validateDrawnPacks(List<DrawnNumbers> drawnNumberPacks) {

@@ -17,8 +17,8 @@ public class PrinterTest {
     Printer printer = new Printer();
 
     @Test
-    @DisplayName("유저 구매 기록이 비어있거나 NULL이면 예외가 발생한다")
-    void 유저_구매_기록이_비어있거나_NULL이면_예외가_발생한다() {
+    @DisplayName("유저 구매 기록이 NULL이면 예외가 발생한다")
+    void 유저_구매_기록이_NULL이면_예외가_발생한다() {
         assertThatThrownBy(() -> printer.getPrintedPaper())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MessageCenter.ERROR_USERSTORAGE.get());

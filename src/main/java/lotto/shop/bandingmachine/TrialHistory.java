@@ -1,6 +1,7 @@
 package lotto.shop.bandingmachine;
 
 import java.util.List;
+import lotto.MessageCenter;
 
 public class TrialHistory {
 
@@ -38,7 +39,14 @@ public class TrialHistory {
     }
 
     public List<DrawnNumbers> getDrawnNumberPacks() {
+        validateNotNULL();
         return drawnNumberPacks;
+    }
+
+    private void validateNotNULL() {
+        if (drawnNumberPacks == null || drawnNumberPacks.isEmpty()) {
+            throw new IllegalArgumentException(MessageCenter.ERROR_SAVE.get());
+        }
     }
 
 }

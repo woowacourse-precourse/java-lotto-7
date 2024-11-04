@@ -8,7 +8,9 @@ public enum MessageCenter {
     ERROR_NULL("[ERROR] 추첨결과 저장 과정에서 에러가 발생하였습니다."),
     ERROR_MONEY("[ERROR] 금액을 잘못 입력했습니다. 다시 입력해 주세요."),
     ERROR_USERSTORAGE("[ERROR] 구매기록이 없습니다."),
-    ERROR_COUNT("[ERROR] 구매장수를 인식할 수 없습니다.");
+    ERROR_COUNT("[ERROR] 구매장수를 인식할 수 없습니다."),
+    ERROR_PAYMENT("[ERROR] 결제 내역을 찾을 수 없습니다."),
+    ERROR_SAVE("[ERROR] 저장된 내역이 없습니다.");
 
 
     private final String msg;

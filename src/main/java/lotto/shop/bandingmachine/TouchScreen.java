@@ -21,6 +21,7 @@ public class TouchScreen {
     }
 
     public void pushDraw(Integer totalCount) {
+        validatePaid();
         getDrawnNumbers(totalCount);
         UserStorage.save(trialHistory.getDrawnNumberPacks());
         System.out.println(trialHistory.getTotalCount() + MessageCenter.COUNT.get());
@@ -46,5 +47,12 @@ public class TouchScreen {
         Integer payment = trialHistory.getPayment();
         Integer totalCount = pos.checkCount(payment);
         trialHistory.saveTotalCount(totalCount);
+    }
+
+    void validatePaid() {
+        Integer payment = trialHistory.getPayment();
+        if (payment == null || payment <= 0) {
+            throw new IllegalArgumentException(MessageCenter.ERROR_PAYMENT.get());
+        }
     }
 }
