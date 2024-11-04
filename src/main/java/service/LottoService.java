@@ -1,19 +1,13 @@
 package service;
 
 
-import lotto.Lotto;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class LottoService {
-    private Lotto getLotto(String input) {
+    public int[] getLotto(String input) {
         String[] list = input.split(",");
-        List<Integer> numbers = new ArrayList<>();
-        for (String s : list) {
-            numbers.add(Integer.parseInt(s));
+        int[] numbers = new int[list.length];
+        for (int i = 0; i < list.length; i++) {
+            numbers[i] = Integer.parseInt(list[i]);
         }
-        return new Lotto(numbers);
+        return numbers;
     }
 }

@@ -26,6 +26,7 @@ public class LottoController {
         setLottoAmount(result);
         setLottos(result);
         setWinningNumbers(result);
+        setBonusNumber(result);
     }
 
     private LottoResult getTotalCost() {
@@ -47,11 +48,19 @@ public class LottoController {
             lottos.add(lotto);
             outputView.printLotto(lotto);
         }
+        System.out.println();
         result.setPurchasedLottos(lottos);
     }
 
     private void setWinningNumbers(LottoResult result) {
         String input = inputView.getLottoNumbers();
+        result.setWinningNumbers(lottoService.getLotto(input));
+        System.out.println();
+    }
 
+    private void setBonusNumber(LottoResult result) {
+        String input = inputView.getBonusNumber();
+        result.setBonusNumber(Integer.parseInt(input));
+        System.out.println();
     }
 }
