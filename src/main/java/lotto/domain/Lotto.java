@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -14,7 +14,14 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if (hasDuplicateNumber(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또에 중복된 숫자가 존재합니다.");
+        }
     }
-
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+    private boolean hasDuplicateNumber(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
+    }
 }
