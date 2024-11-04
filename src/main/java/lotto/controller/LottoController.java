@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.BuyingPrice;
-import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.service.BuyingPriceService;
 import lotto.service.CreateLottoService;
 import lotto.service.LottoStatisticsService;
@@ -18,6 +15,7 @@ public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final CreateLottoService createLottoService = new CreateLottoService();
+    private final LottoStatisticsService statisticsService = new LottoStatisticsService();
 
 
     public void start() {
@@ -34,7 +32,8 @@ public class LottoController {
         String bonusNumber = inputView.inputBonusNumberView();
         WinningLotto winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
         List<LottoResult> lottoResults = WinningCalculateService.calculateLottoResults(lottos, winningLotto);
-        LottoStatisticsService.printStatistics(lottoResults, buyingPrice.getPrice());
+        LottoStatistics lottoStatistics = statisticsService.calculateStatistics(lottoResults, buyingPrice.getPrice());
+        outputView.printStatistics(lottoStatistics);
     }
 
 }
