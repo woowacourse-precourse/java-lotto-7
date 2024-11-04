@@ -41,15 +41,19 @@ public class Money {
         List<Lotto> tickets = new ArrayList<>();
         int count = amount / LotteryConst.PRICE.getValue();
         for (int i = GlobalConstant.INIT_VAL.getValue(); i < count; i++) {
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
-                    LotteryConst.MIN.getValue(),
-                    LotteryConst.MAX.getValue(),
-                    LotteryConst.AMOUNT.getValue()));
+            List<Integer> numbers = new ArrayList<>(getUniqueNumbers());
             Collections.sort(numbers);
             tickets.add(new Lotto(numbers));
         }
 
         return new Tickets(tickets);
+    }
+
+    private static List<Integer> getUniqueNumbers() {
+        return Randoms.pickUniqueNumbersInRange(
+                LotteryConst.MIN.getValue(),
+                LotteryConst.MAX.getValue(),
+                LotteryConst.AMOUNT.getValue());
     }
 
     public double calcRateOfReturn(long sumOfPrize) {
