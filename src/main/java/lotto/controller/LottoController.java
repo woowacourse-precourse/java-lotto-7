@@ -1,9 +1,12 @@
 package lotto.controller;
 
 import lotto.domain.PurchaseAmount;
+import lotto.dto.LottoResponse;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
     private final InputView inputView;
@@ -19,6 +22,7 @@ public class LottoController {
     public void run() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         generateLottos(purchaseAmount);
+        outputView.printFormattedLottoNumbers(findGeneratedLottos());
     }
 
 
@@ -34,5 +38,9 @@ public class LottoController {
         int lottoCount = purchaseAmount.calculatePurchasableLottoCount();
         outputView.printPurchasableLottoCount(lottoCount);
         lottoService.generateLottos(lottoCount);
+    }
+
+    private List<LottoResponse> findGeneratedLottos() {
+        return lottoService.findAll();
     }
 }
