@@ -26,8 +26,10 @@ public class OutputView {
     public void printLottoResults(double rate, List<Integer> lottoResults) {
         System.out.println();
         System.out.println(ViewMessages.PRINT_RESULT_COMMENT.getMessage());
-        for (int i = 1; i < lottoResults.size(); i++) {
-            Rank rank = Rank.values()[i];
+        for (Rank rank : Rank.values()) {
+            if (rank.getRank() == Rank.NONE.getRank()) {
+                continue;
+            }
             int matchCount = rank.getMatchCount();
             int prize = rank.getPrize();
             int count = lottoResults.get(rank.getRank());
