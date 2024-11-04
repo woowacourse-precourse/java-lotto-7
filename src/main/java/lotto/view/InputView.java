@@ -2,13 +2,11 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.draw_numbers.DrawNumbersBuilder;
-import lotto.utils.DrawNumbersValidator;
 import lotto.utils.PaymentValidator;
 
 public class InputView {
 
     private final PaymentValidator paymentValidator = new PaymentValidator();
-    private final DrawNumbersValidator drawNumbersValidator = new DrawNumbersValidator();
 
     public long getPayment() {
         System.out.println("구입금액을 입력해 주세요.");
