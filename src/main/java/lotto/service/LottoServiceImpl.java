@@ -36,24 +36,31 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public double computeProfitRate(String purchaseAmount, String winningNumbers, String bonusNumber) {
         List<Integer> numericWinningNumbers = parseIntegerList(winningNumbers);
+        int numericBonusNumber = Integer.parseInt(bonusNumber);
+
         validateLottoNumbers(numericWinningNumbers);
+        validateLottoNumber(numericBonusNumber);
+
         return (double) lottoRepository.generatePrizeStreamBy(
-                numericWinningNumbers,
-                        Integer.parseInt(bonusNumber)
-                )
+                numericWinningNumbers, numericBonusNumber)
                 .map(LottoRule::getPrize)
                 .mapToInt(Integer::intValue)
                 .sum()
-                / safeParsePurchaseAmount(purchaseAmount);
+                /
+                safeParsePurchaseAmount(purchaseAmount);
     }
 
     @Override
     public List<String> generateWinningReport(String winningNumbers, String bonusNumber) {
         List<Integer> numericWinningNumbers = parseIntegerList(winningNumbers);
+        int numericBonusNumber = Integer.parseInt(bonusNumber);
+
         validateLottoNumbers(numericWinningNumbers);
+        validateLottoNumber(numericBonusNumber);
+
         Map<Object, Long> prizeCountMap = lottoRepository.generatePrizeStreamBy(
                 numericWinningNumbers,
-                Integer.parseInt(bonusNumber))
+                numericBonusNumber)
                 .collect(Collectors.groupingBy(i -> i, Collectors.counting()));
 
         return Arrays.stream(LottoRule.values())
@@ -105,11 +112,18 @@ public class LottoServiceImpl implements LottoService {
 
     private void validateLottoNumbers(List<Integer> numbers) {
         validateSize(numbers);
+        numbers.forEach(this::validateLottoNumber);
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void validateLottoNumber(Integer number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이여야 합니다.");
         }
     }
 }
