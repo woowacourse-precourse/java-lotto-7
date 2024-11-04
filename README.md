@@ -119,214 +119,230 @@ feat(로그인): 소셜 로그인 기능 추가
 BREAKING CHANGE: 기존 로그인 API의 응답 형식이 변경되었습니다.
 ```
 
-# MVC 아키텍처
+# MVC 아키텍처 설계 가이드
 
-## 🧩 구성 요소 및 예제 코드
+## 🎯 프로젝트 구조
+```
+src
+├── main
+│   └── java
+│       └── project
+│           ├── Application.java
+│           ├── constant
+│           │   └── CommonConstants.java
+│           ├── controller
+│           │   ├── MainController.java
+│           │   ├── InputController.java
+│           │   └── OutputController.java
+│           ├── model
+│           │   ├── domain
+│           │   │   ├── Entity.java
+│           │   │   └── ValueObject.java
+│           │   └── factory
+│           │       └── ModelFactory.java
+│           ├── service
+│           │   ├── BusinessService.java
+│           │   └── ValidationService.java
+│           ├── view
+│           │   ├── InputView.java
+│           │   ├── OutputView.java
+│           │   ├── ConsoleInputView.java
+│           │   └── ConsoleOutputView.java
+│           └── util
+│               ├── InputValidator.java
+│               └── Parser.java
+└── test
+    └── java
+        └── project
+            ├── model
+            ├── service
+            └── util
+```
 
-### Application
-- 프로그램의 시작점
+## 📦 계층별 설명
+
+### 1. Application
+- 프로그램의 진입점
+- 의존성 주입 및 초기 설정 담당
 
 ```java
 public class Application {
     public static void main(String[] args) {
+        // 의존성 객체 생성
         InputView inputView = new ConsoleInputView();
         OutputView outputView = new ConsoleOutputView();
-        InputValidator inputValidator = new InputValidator();
-        ModelFactory modelFactory = new ModelFactory();
+        InputValidator validator = new InputValidator();
+        BusinessService service = new BusinessService();
         
-        Controller controller = new Controller(inputView, outputView, inputValidator, modelFactory);
+        // 컨트롤러 생성 및 실행
+        MainController controller = new MainController(
+            inputView, outputView, validator, service);
         controller.run();
     }
 }
 ```
 
-### 컨트롤러 (Controller)
-- 주요 게임 루프 관리
-- 사용자 입력 처리 및 모델 프로세싱
-- 뷰와 모델 컴포넌트 간 조정
+### 2. Controller Layer
+- 사용자 요청 처리 및 흐름 제어
+- Model과 View 사이의 중재자 역할
 
 ```java
-public class Controller {
-    private final InputView inputView;
-    private final OutputView outputView;
-    private final InputValidator inputValidator;
-    private final ModelFactory modelFactory;
+public class MainController {
+    private final InputController inputController;
+    private final OutputController outputController;
+    private final BusinessService businessService;
 
-    public Controller(InputView inputView, OutputView outputView,
-                      InputValidator inputValidator, ModelFactory modelFactory) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.inputValidator = inputValidator;
-        this.modelFactory = modelFactory;
+    public MainController(InputView inputView, OutputView outputView, 
+                         InputValidator validator, BusinessService service) {
+        this.inputController = new InputController(inputView, validator);
+        this.outputController = new OutputController(outputView);
+        this.businessService = service;
     }
 
     public void run() {
         try {
-            String input = getValidInput();
-            Model model = modelFactory.createModel(input);
-            String result = model.process();
-            outputView.printResult(result);
+            // 1. 입력 받기
+            UserRequest request = inputController.getUserRequest();
+            
+            // 2. 비즈니스 로직 처리
+            BusinessResult result = businessService.process(request);
+            
+            // 3. 결과 출력
+            outputController.displayResult(result);
         } catch (Exception e) {
-            outputView.printError(e.getMessage());
-        }
-    }
-
-    private String getValidInput() {
-        while (true) {
-            try {
-                String input = inputView.readInput();
-                inputValidator.validate(input);
-                return input;
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
+            outputController.handleError(e);
         }
     }
 }
 ```
 
-### 뷰 (View)
-- **입력뷰 (InputView)**: 사용자 입력 읽기 인터페이스
-- **출력뷰 (OutputView)**: 출력 표시 인터페이스
+### 3. Model Layer
+- 비즈니스 도메인 객체들
+- 상태와 행위를 가진 객체들의 집합
+
+```java
+// Entity 예시
+public class Entity {
+    private final String id;
+    private String name;
+    private final Map<String, Object> attributes;
+
+    public Entity(String id, String name) {
+        validateId(id);
+        this.id = id;
+        this.name = name;
+        this.attributes = new HashMap<>();
+    }
+
+    public void addAttribute(String key, Object value) {
+        attributes.put(key, value);
+    }
+}
+
+// Value Object 예시
+public class ValueObject {
+    private final String value;
+
+    public ValueObject(String value) {
+        validate(value);
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+}
+```
+
+### 4. Service Layer
+- 비즈니스 로직 처리
+- Model 객체들을 조작하는 처리 담당
+
+```java
+public class BusinessService {
+    private final ModelFactory modelFactory;
+    private final ValidationService validationService;
+
+    public BusinessResult process(UserRequest request) {
+        // 1. 유효성 검증
+        validationService.validate(request);
+        
+        // 2. 모델 생성
+        Entity entity = modelFactory.createEntity(request);
+        
+        // 3. 비즈니스 로직 처리
+        return processBusinessLogic(entity);
+    }
+}
+```
+
+### 5. View Layer
+- 사용자 인터페이스 담당
+- 입력과 출력 인터페이스 정의
 
 ```java
 public interface InputView {
     String readInput();
-}
-
-public class ConsoleInputView implements InputView {
-    @Override
-    public String readInput() {
-        return camp.nextstep.edu.missionutils.Console.readLine();
-    }
+    int readNumber();
 }
 
 public interface OutputView {
-    void printResult(String result);
-    void printError(String error);
-}
-
-public class ConsoleOutputView implements OutputView {
-    @Override
-    public void printResult(String result) {
-        System.out.println(result);
-    }
-
-    @Override
-    public void printError(String error) {
-        System.out.println("[ERROR] " + error);
-    }
+    void displayResult(String result);
+    void displayError(String message);
 }
 ```
 
-### 모델 (Model)
-- **모델 (Model)**: 게임 로직 인터페이스
-- **모델팩토리 (ModelFactory)**: 적절한 모델 인스턴스 생성
-
-```java
-public interface Model {
-    String process();
-}
-
-public class DefaultModel implements Model {
-    private final String input;
-
-    public DefaultModel(String input) {
-        this.input = input;
-    }
-
-    @Override
-    public String process() {
-        return "처리된 결과: " + input;
-    }
-}
-
-public class ModelFactory {
-    public Model createModel(String input) {
-        return new DefaultModel(input);
-    }
-}
-```
-
-### 유틸리티
-- **입력검증기 (InputValidator)**: 사용자 입력 유효성 검사
+### 6. Util Layer
+- 공통 유틸리티 기능 제공
+- 입력 검증, 파싱 등의 헬퍼 클래스들
 
 ```java
 public class InputValidator {
-    public void validate(String input) {
-        if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("입력이 비어있습니다.");
+    public void validate(String input, ValidationRule rule) {
+        if (!rule.isSatisfied(input)) {
+            throw new IllegalArgumentException(rule.getErrorMessage());
         }
-        // 추가적인 검증 규칙을 여기에 구현
+    }
+}
+
+public class Parser {
+    public static <T> T parse(String input, Class<T> type) {
+        // 문자열을 특정 타입으로 파싱하는 로직
     }
 }
 ```
-## 프로젝트 구조
 
-```
-src
-├── main
-│   └── java
-│       └── com
-│           └── example
-│               ├── Application.java
-│               ├── controller
-│               │   └── Controller.java
-│               ├── model
-│               │   ├── Model.java
-│               │   ├── DefaultModel.java
-│               │   └── ModelFactory.java
-│               ├── view
-│               │   ├── input
-│               │   │   ├── InputView.java
-│               │   │   └── ConsoleInputView.java
-│               │   └── output
-│               │       ├── OutputView.java
-│               │       └── ConsoleOutputView.java
-│               └── util
-│                   └── InputValidator.java
-└── test
-    └── java
-        └── com
-            └── example
-                ├── controller
-                ├── model
-                ├── view
-                └── util
-```
+## ✨ 설계 원칙
 
-## 패키지 설명
+1. **단일 책임 원칙 (SRP)**
+    - 각 클래스는 하나의 책임만 가짐
+    - 변경 사유가 하나만 존재하도록 설계
 
-1. `com.example`: 프로젝트의 루트 패키지
-  - `Application.java`: 프로그램의 진입점
+2. **의존성 주입 (DI)**
+    - 구체 클래스가 아닌 인터페이스에 의존
+    - 테스트 용이성 확보
 
-2. `com.example.controller`: 컨트롤러 관련 클래스
-  - `Controller.java`: 주요 게임 로직을 관리하고 Model과 View를 조정
+3. **계층 분리**
+    - 각 계층은 자신의 역할만 수행
+    - 다른 계층과의 결합도를 최소화
 
-3. `com.example.model`: 모델 관련 클래스
-  - `Model.java`: 모델 인터페이스
-  - `DefaultModel.java`: 기본 모델 구현
-  - `ModelFactory.java`: 모델 객체 생성을 담당하는 팩토리 클래스
+4. **캡슐화**
+    - 내부 구현을 숨기고 인터페이스만 노출
+    - 변경의 영향 범위를 최소화
 
-4. `com.example.view`: 뷰 관련 클래스
-  - `input`: 입력 관련 클래스
-    - `InputView.java`: 입력 뷰 인터페이스
-    - `ConsoleInputView.java`: 콘솔 기반 입력 뷰 구현
-  - `output`: 출력 관련 클래스
-    - `OutputView.java`: 출력 뷰 인터페이스
-    - `ConsoleOutputView.java`: 콘솔 기반 출력 뷰 구현
+5. **확장성**
+    - 새로운 기능 추가가 용이하도록 설계
+    - 기존 코드 수정 없이 확장 가능
 
-5. `com.example.util`: 유틸리티 클래스
-  - `InputValidator.java`: 사용자 입력 유효성 검사 클래스
+## 🔍 테스트 전략
 
-## ✨ 주요 특징
+1. **단위 테스트**
+    - 각 컴포넌트별 독립적인 테스트
+    - Mocking을 통한 의존성 제거
 
-1. **모듈성**: 관심사의 명확한 분리로 유지보수 용이
-2. **확장성**: 새로운 기능이나 모델 추가가 쉬움
-3. **테스트 용이성**: 의존성 주입을 통한 단위 테스트 용이
-4. **유연성**: 인터페이스를 통한 다양한 입출력 구현 가능
-5. **오류 처리**: 중앙집중식 오류 관리
-6. **재사용성**: 모델팩토리를 통한 다양한 게임 모델 관리
+2. **통합 테스트**
+    - 여러 컴포넌트의 상호작용 테스트
+    - 실제 동작 시나리오 검증
 
 ## 📅 개발 계획
 
