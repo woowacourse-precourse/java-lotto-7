@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
@@ -13,10 +14,7 @@ public class InputTest {
   private Input input;
   private String readLine;
 
-  @BeforeEach
-  void setUp() throws Exception {
-    this.input = new Input(readLine);
-  }
+
 
   public InputStream setReadLine(String readLine) {
     return new ByteArrayInputStream(readLine.getBytes());
@@ -40,7 +38,7 @@ public class InputTest {
     int actualAmount = input.readAmount();
     int expectAmount = 8000;
 
-    int actualRequest = this.input.getLottoCounts(actualAmount);
+    int actualRequest = input.getLottoCounts(actualAmount);
     int expectRequest = 8;
     //then
     assertEquals(expectAmount, actualAmount);
@@ -68,6 +66,7 @@ public class InputTest {
   void readBonusNumberTest() {
     // given
     String given = "7";
+    Input input = new Input(given);
     System.setIn(setReadLine(given));
 
     // when
@@ -97,4 +96,13 @@ public class InputTest {
 //    assertEquals(expect, actual);
 //  }
 
+  //    구매 가능 범위를 초과한 경우 (최대 10만원) : NumberFormatException
+  @DisplayName("구매 가능 범위를 초과한 경우 (최대 10만원) : NumberFormatException")
+  @Test
+  void IllegalArgumentExceptionTest_2_되도_않는_영어이름_테스트_4() {
+
+    String invalid = "100001";
+    assertThatThrownBy(() -> new Input(invalid))
+        .isInstanceOf(NumberFormatException.class);
+  }
 }

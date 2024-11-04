@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.domain.ExceptionType.ILLEGAL_ARGUMENT;
+import static lotto.domain.ExceptionType.ILLEGAL_STATE;
 import static lotto.domain.ExceptionType.OUT_OF_RANGE;
 import static lotto.domain.MAGIC_NUMBER.SIZE;
 import static lotto.domain.MAGIC_NUMBER.START;
@@ -27,6 +28,12 @@ public class Lotto {
 //        2. 예1) 입력 가능 범위를 초과한 경우 OUT_OF_RANGE 예외 처리하며 로또 구매 가능 금액 문구를 출력하고 정상 문구 재입력을 요청
         if (numbers.size() > SIZE.getMagicNumber()) {
             throw new IndexOutOfBoundsException(OUT_OF_RANGE.getMessage());
+        }
+        // 로또 번호에 중복된 숫자가 있으면 예외가 발생한다.
+        for (int i = 0; i < SIZE.getMagicNumber() -1; i++) {
+            if (numbers.get(i).equals(numbers.get(i+1))) {
+                throw new IllegalStateException(ILLEGAL_STATE.getMessage());
+            }
         }
 
     }

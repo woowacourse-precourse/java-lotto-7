@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.domain.ExceptionType.OUT_OF_RANGE_AMOUNT;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,15 @@ import java.util.Scanner;
 public class Input {
 
   public Input(String enteredValue) {
+    // 10만원이 넘는 로또 구매는 도박입니다. 도박은 중독입니다
+    validate(enteredValue);
     this.enteredValue = enteredValue;
+  }
+
+  private static void validate(String enteredValue) {
+    if (Integer.parseInt(enteredValue) > 100000) {
+      throw new NumberFormatException(OUT_OF_RANGE_AMOUNT.getMessage());
+    }
   }
 
   private String enteredValue;
