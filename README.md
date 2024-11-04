@@ -74,34 +74,33 @@ src
  - [ ] 로또 게임 실행 (Lotto Start)
 
 ## 상수 (Constant)
-- [ ] 로또 게임 상수
-- [ ] 수익률 계산기 상수
+- [ ] 로또 게임 상수 (Lotto Constant)
 
 ## 모델 (Model)
- - [ ] 로또 결과 (Lottery Result)
- - [ ] 로또 종이 (Lotto Ticket)
  - [ ] 로또 (Lotto)
- - [ ] 로또 기계 (Lottery Machine)
+ - [ ] 로또 모음 (Lotto Bundle)
+ - [ ] 로또 기계 (Lotto Machine)
+ - [ ] 로또 결과 이넘 (Lotto Match Result)
+ - [ ] 로또 결과 (Lotto Result)
  - [ ] 수익률 계산기 (Profit Calculator)
+ - [ ] 로또 당첨 번호 (Winning Numbers)
 
 ## 서비스 (Service)
- - [ ] 로또 종이 서비스 (Lotto Ticket Service)
- - [ ] 로또 기계 서비스 (Lottery Machine Service)
+ - [ ] 로또 결과 서비스 (Lotto Result Service)
+ - [ ] 로또 서비스 (Lotto Service)
  - [ ] 수익률 계산기 서비스 (Profit Calculator Service)
- - [ ] 로또 결과 서비스 (Lottery Result Service)
 
 ## 검증 (Validation)
- - [ ] 로또 종이 검증
- - [ ] 로또 기계 검증
- - [ ] 수익률 계산기 검증
+ - [ ] 로또 검증 (Lotto Validator)
+ - [ ] 로또 구입 금액 검증 (Lotto Amount Validator)
+ - [ ] 로또 번호 검증 (Lotto Number Validator)
 
 ## 예외 처리 (Exception)
- - [ ] 예외 부모 클래스
- - [ ] 로또 게임 예외
+ - [ ] 로또 게임 예외 (Lotto Exception)
  - [ ] 수익률 게산기 예외
 
 ## 유틸 (Utils)
- - [ ] 랜덤 번호 제공
+ - [ ] 랜덤 번호 제공 (Lotto Number Generator)
 
 ## 출력 (Output View)
  - [x] 발행한 로또 수량 출력
