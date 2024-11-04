@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -34,7 +36,7 @@ public class LottoNumber {
 
 	private static void checkLottoNumberRange(int number) {
 		if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-			throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상 45 이하이어야 합니다.");
+			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
 		}
 	}
 
