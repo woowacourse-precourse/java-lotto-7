@@ -112,7 +112,7 @@ public class LottoService {
         return LottoWinType.NO_MATCH.getType();
     }
 
-    public Double calculateEarningRate(Long money, List<Integer> lottoMatchResults) {
+    public BigDecimal calculateEarningRate(Long money, List<Integer> lottoMatchResults) {
         BigInteger sumAllResults = BigInteger.ZERO;
         for (LottoWinType winType : LottoWinType.values()) {
             if (!winType.getType().equals(LottoWinType.NO_MATCH.getType())) {
@@ -125,6 +125,6 @@ public class LottoService {
         BigDecimal sumAsDecimal = new BigDecimal(sumAllResults.multiply(BigInteger.valueOf(100)));
         BigDecimal divisor = new BigDecimal(money);
         BigDecimal divide = sumAsDecimal.divide(divisor, 2, RoundingMode.HALF_UP);
-        return divide.doubleValue();
+        return divide;
     }
 }

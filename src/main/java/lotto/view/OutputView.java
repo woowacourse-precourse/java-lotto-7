@@ -1,6 +1,8 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class OutputView {
         }
     }
 
-    public static void outputEarningRate(Double earningRate) {
+    public static void outputEarningRate(BigDecimal earningRate) {
         System.out.printf("총 수익률은 %.1f%%입니다.", earningRate);
     }
 }
