@@ -2,7 +2,7 @@ package lotto.global;
 
 public enum LottoPrize {
 
-    FIRST(6, false, "2,000,000"),
+    FIRST(6, false, "2,000,000,000"),
     SECOND(5, true, "30,000,000"),
     THIRD(5, false, "1,500,000"),
     FOURTH(4, false, "50,000"),
