@@ -10,19 +10,20 @@ import lotto.domain.PrizeResult;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.util.StringToIntegerConverter;
 
 public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
     public void start() {
-        Money money = executeWithRetry(() -> new Money(inputView.enterMoney()));
+        Money money = executeWithRetry(() -> new Money(covertToInteger(inputView.enterMoney())));
 
         LottoTicket lottoTicket = generateLottoTickets(money);
 
         WinningLotto winningLotto = executeWithRetry(() -> {
             String originWinningNumber = inputView.enterWinningNumber();
-            Integer bonusNumber = inputView.enterBonusNumber();
+            Integer bonusNumber = covertToInteger(inputView.enterBonusNumber());
             return new WinningLotto(convertToLottoFormat(originWinningNumber), bonusNumber);
         });
 
@@ -52,6 +53,10 @@ public class LottoController {
         return Arrays.stream(inputValue.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private int covertToInteger(String inputValue) {
+        return StringToIntegerConverter.convert(inputValue);
     }
 
     private <T> T executeWithRetry(Supplier<T> supplier) {

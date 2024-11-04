@@ -3,9 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    public Integer enterMoney() {
+    public String enterMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(inputValue());
+        return inputValue();
     }
 
     public String enterWinningNumber(){
@@ -13,9 +13,9 @@ public class InputView {
         return inputValue();
     }
 
-    public Integer enterBonusNumber() {
+    public String enterBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(inputValue());
+        return inputValue();
     }
 
     public String inputValue(){
