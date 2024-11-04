@@ -12,11 +12,21 @@ public class WinningResult {
     }
 
     private int calculatePrize(int matchCount, boolean bonusMatch) {
-        if (matchCount == 6) return 2_000_000_000;
-        if (matchCount == 5 && bonusMatch) return 30_000_000;
-        if (matchCount == 5) return 1_500_000;
-        if (matchCount == 4) return 50_000;
-        if (matchCount == 3) return 5_000;
+        if (matchCount == 6) {
+            return 2_000_000_000;
+        }
+        if (matchCount == 5 && bonusMatch) {
+            return 30_000_000;
+        }
+        if (matchCount == 5) {
+            return 1_500_000;
+        }
+        if (matchCount == 4) {
+            return 50_000;
+        }
+        if (matchCount == 3) {
+            return 5_000;
+        }
         return 0;
     }
 

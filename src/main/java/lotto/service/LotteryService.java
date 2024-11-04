@@ -56,7 +56,8 @@ public class LotteryService {
     }
 
 
-    private void calculateWinningCounts(List<Lotto> tickets, LotteryDrawMachine drawMachine, Map<String, Integer> resultCounts) {
+    private void calculateWinningCounts(List<Lotto> tickets, LotteryDrawMachine drawMachine,
+                                        Map<String, Integer> resultCounts) {
         for (Lotto ticket : tickets) {
             WinningResult result = WinningVerifierService.verifyLotto(ticket, drawMachine);
             addWinningResult(result, resultCounts);

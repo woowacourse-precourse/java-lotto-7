@@ -9,6 +9,7 @@ import java.util.List;
 
 public class LotteryNumberGenerator {
     public static List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getValue(), MAX_NUMBER.getValue(), LOTTO_NUMBERS_COUNT.getValue());
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getValue(), MAX_NUMBER.getValue(),
+                LOTTO_NUMBERS_COUNT.getValue());
     }
 }
