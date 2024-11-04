@@ -1,6 +1,6 @@
 package lotto.service;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.model.BonusNumber;
@@ -20,7 +20,7 @@ public class LottoResultService {
     }
 
     public Map<Winning, Integer> getWinningResults(List<Lotto> lottoTickets) {
-        Map<Winning, Integer> winningResults = new HashMap<>();
+        Map<Winning, Integer> winningResults = new EnumMap<>(Winning.class);
 
         lottoTickets.forEach(lotto -> {
             int matchCount = winningNumbers.getMatchCount(lotto);
