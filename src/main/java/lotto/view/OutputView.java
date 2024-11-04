@@ -18,7 +18,6 @@ public class OutputView {
         sb.append(START_SHOW_RESULT).append("\n");
         sb.append(DELIMITER).append("\n");
         sb = lottoResult.result(sb);
-        sb.append("총 수익률은 ").append(lottoResult.computeProfitRate()).append("% 입니다.");
         System.out.println(sb);
     }
 }

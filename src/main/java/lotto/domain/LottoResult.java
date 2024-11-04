@@ -21,11 +21,13 @@ public class LottoResult {
         sb.append("5개 일치 (1,500,000원) - ").append(prizeIntegerMap.getOrDefault(LottoPrize.THIRD, 0)).append("개").append("\n");
         sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(prizeIntegerMap.getOrDefault(LottoPrize.SECOND, 0)).append("개").append("\n");
         sb.append("6개 일치 (2,000,000,000원) - ").append(prizeIntegerMap.getOrDefault(LottoPrize.FIRST, 0)).append("개").append("\n");
+        sb.append("총 수익률은 ").append(computeProfitRate()).append("%입니다.");
         return sb;
     }
 
-    public long computeProfitRate() {
-        return totalEarning / inputMoney.amount() * 100;
+    private String computeProfitRate() {
+        double profitRate = (double) totalEarning / inputMoney.amount() * 100;
+        return String.format("%.1f", Math.round(profitRate * 10) / 10.0); // 첫째 자리만 표시하고 둘째 자리 반올림
     }
 
     private Map<LottoPrize,Integer> updateMap(List<LottoPrize> result) {
