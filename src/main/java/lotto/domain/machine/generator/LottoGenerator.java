@@ -11,7 +11,11 @@ public class LottoGenerator {
     }
 
     public Lotto issueLotto() {
-        return Lotto.from(numberGenerator.generate().stream().sorted().toList());
+        return Lotto.from(numberGenerator.generate()
+                .stream()
+                .sorted()
+                .toList()
+        );
     }
 
 }

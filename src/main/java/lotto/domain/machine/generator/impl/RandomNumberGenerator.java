@@ -6,9 +6,13 @@ import lotto.domain.machine.generator.NumberGenerator;
 
 public class RandomNumberGenerator implements NumberGenerator {
 
+    private static final int MIN_RANGE = 1;
+    private static final int MAX_RANGE = 45;
+    private static final int PICK_COUNT = 6;
+
     @Override
     public List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, PICK_COUNT);
     }
 
 }

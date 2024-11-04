@@ -19,14 +19,16 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final ExceptionHandler exceptionHandler;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, ExceptionHandler exceptionHandler) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.exceptionHandler = exceptionHandler;
     }
 
     public void run() {
-        LottoMoney lottoMoney = createLottoMoney();
+        LottoMoney lottoMoney = exceptionHandler.retry(this::createLottoMoney);
         LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator(), lottoMoney);
         List<Lotto> lottos = lottoMachine.issueLottos();
 
@@ -34,35 +36,21 @@ public class LottoController {
         winningStatisticsProcess(lottos, lottoMoney);
     }
 
-    private Lotto createWinningLotto() {
-        try {
-            return new LottoGenerator(inputView::displayReadWinningNumbers).issueLotto();
-        } catch (IllegalArgumentException e) {
-            outputView.displayException(e.getMessage());
-        }
-        return createWinningLotto();
+    private LottoMoney createLottoMoney() {
+        return LottoMoney.from(inputView.displayReadPurchaseAmount());
     }
 
-    private LottoMoney createLottoMoney() {
-        try {
-            return LottoMoney.from(inputView.displayReadPurchaseAmount());
-        } catch (IllegalArgumentException e) {
-            outputView.displayException(e.getMessage());
-        }
-        return createLottoMoney();
+    private Lotto createWinningLotto() {
+        return new LottoGenerator(inputView::displayReadWinningNumbers).issueLotto();
     }
 
     private WinningNumber createWinningNumber(Lotto winningLotto) {
-        try {
-            return new WinningNumber(winningLotto, LottoNumber.from(inputView.displayReadBonusNumber()));
-        } catch (IllegalArgumentException e) {
-            outputView.displayException(e.getMessage());
-        }
-        return createWinningNumber(winningLotto);
+        return new WinningNumber(winningLotto, LottoNumber.from(inputView.displayReadBonusNumber()));
     }
 
     private void winningStatisticsProcess(List<Lotto> lottos, LottoMoney lottoMoney) {
-        WinningNumber winningNumber = createWinningNumber(createWinningLotto());
+        Lotto winningLotto = exceptionHandler.retry(this::createWinningLotto);
+        WinningNumber winningNumber = exceptionHandler.retry(() -> createWinningNumber(winningLotto));
         WinningStatistics statistics = calculateStatistics(lottos, winningNumber);
 
         outputView.displayWinningStatistics(LottoStatisticsResponse.of(
