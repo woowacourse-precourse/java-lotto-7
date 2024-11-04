@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.common.Constants;
 import lotto.common.Prompts;
+import lotto.dto.LottoPurchaseDTO;
+import lotto.model.Lotto;
 import lotto.view.InputView;
 
 public class InputParser {
@@ -35,5 +37,13 @@ public class InputParser {
         String rawBonusNumber = inputView.requireBonusNumber();
         int bonusNumber = Integer.parseInt(rawBonusNumber);
         return bonusNumber;
+    }
+
+    public LottoPurchaseDTO lottoPurchaseDTO() {
+        int parsedPrice = parsePrice();
+        List<Integer> parsedLottoNumbers = parseLottoNumbers();
+        int parsedBonusNumber = parseBonusNumber();
+
+        return new LottoPurchaseDTO(parsedPrice, parsedLottoNumbers, parsedBonusNumber);
     }
 }

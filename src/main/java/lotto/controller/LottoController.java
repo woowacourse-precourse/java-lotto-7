@@ -22,12 +22,7 @@ public class LottoController {
     }
 
     public void start() {
-        int parsedPrice = inputParser.parsePrice();
-        List<Integer> parsedLottoNumbers = inputParser.parseLottoNumbers();
-        int parsedBonusNumbers = inputParser.parseBonusNumber();
-
-        lottoService.lottoInnerLogic();
-
+        inputParser.lottoPurchaseDTO();
         outputView.showStatistics();
     }
 
