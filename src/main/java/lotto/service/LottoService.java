@@ -9,6 +9,7 @@ import lotto.global.string.ErrorConstants;
 import lotto.model.Lotto;
 
 public class LottoService {
+    private ResultService resultService = new ResultService();
     private int money;
     private List<List<Integer>> lottoTickets = new ArrayList<>();
     private Lotto lotto;
@@ -80,6 +81,7 @@ public class LottoService {
             boolean containsBonus = ticket.contains(lotto.getBonusNumber());
             int winningAmount = matchedNumbersList.size();
 
+            resultService.updatePrizeCount(winningAmount, containsBonus);
         }
     }
 
