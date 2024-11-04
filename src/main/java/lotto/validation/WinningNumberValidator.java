@@ -5,16 +5,16 @@ import lotto.exception.ErrorMessage;
 
 public class WinningNumberValidator extends BaseValidator{
 
+    public static void validateWinningNumberInputAll(String input){
+        BaseValidator.validateBasicAll(input);
+        validateDelimiter(input);
+        validateBetweenDelimiter(input);
+    }
+
     public static void validateBetweenDelimiter(String input) {
         String[] winningNumbers = input.split(",",-1); // -1을 limit으로 넣어주어 문자열의 마지막이 구분자인 경우도 검출
         for (String number: winningNumbers){
             throwIfEmpty(number.trim().isEmpty());
-        }
-    }
-
-    private static void throwIfEmpty(boolean state){
-        if (state){
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_NO_EMPTY_BETWEEN_DELIMITER.toString());
         }
     }
 
@@ -37,14 +37,22 @@ public class WinningNumberValidator extends BaseValidator{
         }
     }
 
-    private static boolean hasOnlyDigits(final String input) {
-        return input.chars()
-                .allMatch(Character::isDigit);
-    }
 
     public static void validateWinningNumberDuplicate(List<Integer> winningNumbers, int inputNumber) {
         for (int winningNumber: winningNumbers){
             validateDuplicate(inputNumber,winningNumber);
+        }
+    }
+
+    public static void validateNumberRange(int winningNumber) {
+        if (winningNumber<1 || winningNumber > 45){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_OUT_OF_RANGE.toString());
+        }
+    }
+
+    private static void throwIfEmpty(boolean state){
+        if (state){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_NO_EMPTY_BETWEEN_DELIMITER.toString());
         }
     }
 
@@ -54,9 +62,8 @@ public class WinningNumberValidator extends BaseValidator{
         }
     }
 
-    public static void validateNumberRange(int winningNumber) {
-        if (winningNumber<1 || winningNumber > 45){
-            throw new IllegalArgumentException(ErrorMessage.ERROR_OUT_OF_RANGE.toString());
-        }
+    private static boolean hasOnlyDigits(final String input) {
+        return input.chars()
+                .allMatch(Character::isDigit);
     }
 }
