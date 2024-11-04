@@ -25,7 +25,7 @@ public class Application {
 
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> input = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt).toList();
-        Lotto winning = new Lotto(input);
+        Lotto winningNums = new Lotto(input);
         System.out.println();
 
         System.out.println("보너스 번호를 입력해 주세요.");
@@ -37,29 +37,20 @@ public class Application {
 
         Map<LottoRank, Integer> cntMap = init();
 
-        for(Lotto lotto : lottos) {
-            LottoRank lottoRank = matchLotto(lotto, winning, bonusNum);
-            put(cntMap, lottoRank);
+        for (Lotto lotto : lottos) {
+            LottoRank lottoRank = matchLotto(lotto, winningNums, bonusNum);
+            putIfNone(cntMap, lottoRank);
         }
 
-        for(LottoRank lottoRank : cntMap.keySet()) {
+        for (LottoRank lottoRank : cntMap.keySet()) {
             String choiceText = lottoRank.chooseText(lottoRank, cntMap.get(lottoRank));
             System.out.println(choiceText);
         }
 
-        printTotalReturnRate(amount, cntMap);
+        printTotalReturnRate(cntMap, amount);
     }
 
-    private static void printTotalReturnRate(int amount, Map<LottoRank, Integer> cntMap) {
-        int sum = 0;
-        for(LottoRank lottoRank : cntMap.keySet()) {
-            sum += cntMap.get(lottoRank) * lottoRank.getPrize();
-        }
-
-        System.out.printf("총 수익률은 %.1f%%입니다.", (double) sum * 100 / amount);
-    }
-
-    private static EnumMap<LottoRank, Integer> init(){
+    private static EnumMap<LottoRank, Integer> init() {
         EnumMap<LottoRank, Integer> map = new EnumMap<>(LottoRank.class);
         map.put(FIFTH, 0);
         map.put(FOURTH, 0);
@@ -69,23 +60,27 @@ public class Application {
         return map;
     }
 
-    private static LottoRank matchLotto(Lotto lotto, Lotto answer, int bonusNum) {
+    private static void printTotalReturnRate(Map<LottoRank, Integer> map, int amount) {
+        int sum = 0;
+        for (LottoRank lottoRank : map.keySet()) {
+            sum += map.get(lottoRank) * lottoRank.getPrize();
+        }
+
+        System.out.printf("총 수익률은 %.1f%%입니다.", (double) sum * 100 / amount);
+    }
+
+    private static void putIfNone(Map<LottoRank, Integer> map, LottoRank rank) {
+        if (rank == LottoRank.NONE) return;
+        map.put(rank, map.get(rank) + 1);
+    }
+
+    private static LottoRank matchLotto(Lotto lotto, Lotto winningNums, int bonusNum) {
         int matchCnt = (int) lotto.getNumbers().stream()
-                .filter(answer.getNumbers()::contains)
+                .filter(winningNums.getNumbers()::contains)
                 .count();
         boolean hasBonus = lotto.getNumbers().contains(bonusNum);
         return LottoRank.getRank(matchCnt, hasBonus);
     }
-
-    private static void put(Map<LottoRank, Integer> map, LottoRank rank){
-        if(rank != LottoRank.NONE) {
-            map.put(rank, map.get(rank) + 1);
-        }
-    }
-
-
-
-
 
     private static void printLotto(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
@@ -93,13 +88,13 @@ public class Application {
         }
     }
 
-    private static Lotto buyLotto(){
+    private static Lotto buyLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
-    private static List<Lotto> generateLotto(int cnt){
+    private static List<Lotto> generateLotto(int cnt) {
         List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i < cnt; i++) {
+        for (int i = 0; i < cnt; i++) {
             lottos.add(buyLotto());
         }
         return lottos;
