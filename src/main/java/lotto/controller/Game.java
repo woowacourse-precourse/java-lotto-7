@@ -40,7 +40,7 @@ public class Game {
 
     private void readWinningNumbers() {
         OutputView.requestWinningNumbers();
-        winningNumbers = new Lotto(InputView.readNumbers());
+        winningNumbers = InputView.readWinningNumbers();
         OutputView.requestBonusNumber();
         bonusNumber = InputView.readNumber();
     }

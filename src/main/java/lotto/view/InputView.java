@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.model.Lotto;
+
 import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -23,23 +25,23 @@ public class InputView {
         return money;
     }
 
-    public static List<Integer> readNumbers() {
+    public static Lotto readWinningNumbers() {
         String input = readLine();
         try {
-            return convertInputToNumbers(input);
+            return convertInputToWinningNumbers(input);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorOfRequestNumbers();
-            return readNumbers();
+            return readWinningNumbers();
         }
     }
 
-    private static List<Integer> convertInputToNumbers(String input) throws IllegalArgumentException {
+    private static Lotto convertInputToWinningNumbers(String input) throws IllegalArgumentException {
         String trimmedInput = input.replaceAll(" ", "");
         List<Integer> Numbers = new ArrayList<>();
         for (String rawNumber : trimmedInput.split(",")) {
             Numbers.add(Integer.parseInt(rawNumber));
         }
-        return Numbers;
+        return new Lotto(Numbers);
     }
 
     public static int readNumber() {
