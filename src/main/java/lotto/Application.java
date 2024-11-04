@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class Application {
 
     public static List<Lotto> lottos = new ArrayList<>();
-    public static Lotto winningLotto;
+    public static List<Integer> winningLotto;
     public static int bonusNumber;
 
     public static int stringToNum(String input) {
@@ -72,7 +72,7 @@ public class Application {
             checkRange(element);
             numbers.add(element);
         }
-        winningLotto = new Lotto(numbers);
+        winningLotto = numbers;
     }
 
     public static void makeWinningLotto() {
@@ -89,17 +89,32 @@ public class Application {
         }
     }
 
+    public static void checkBounsVaild(int bonus) {
+        for (Integer e : winningLotto) {
+            if (e == bonus) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호가 로또 번호와 중복입니다.");
+            }
+        }
+    }
+
     public static void makeBonusNum() {
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 int n = stringToNum(readLine());
                 checkRange(n);
-                winningLotto.checkBounsVaild(n);
-
+                checkBounsVaild(n);
+                bonusNumber = n;
+                break;
             } catch (Exception e) {
                 System.out.println(e);
             }
+        }
+    }
+
+    public static void checkWinning() {
+        for (Lotto lotto : lottos) {
+
         }
     }
 
@@ -111,5 +126,6 @@ public class Application {
     public static void main(String[] args) {
         buyLotto();
         inputWinningLotto();
+        checkWinning();
     }
 }

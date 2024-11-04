@@ -28,11 +28,4 @@ public class Lotto {
         return '[' + outputStirng + ']';
     }
 
-    public void checkBounsVaild(int bonus) {
-        for (Integer e : numbers) {
-            if (e == bonus) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호가 로또 번호와 중복입니다.");
-            }
-        }
-    }
 }
