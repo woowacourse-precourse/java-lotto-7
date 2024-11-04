@@ -16,17 +16,20 @@ public class OutputView {
     }
 
     public void printStatistics(Map<Rank, Integer> results, double yield) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        Rank.streamValidRanks().forEach(rank -> {
+        Rank[] ranks = {Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST};
+        for (Rank rank : ranks) {
             System.out.println(rank.getFormattedResult(results.getOrDefault(rank, 0)));
-        });
+        }
 
         System.out.printf("총 수익률은 %.1f%%입니다.%n", yield);
     }
 
     public void printError(String message) {
+        System.out.println();
         System.out.println(message);
     }
 }
