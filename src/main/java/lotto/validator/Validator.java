@@ -32,15 +32,21 @@ public class Validator {
         validateUniqueLottoNumber(numbers, size);
         return lottoNumber;
     }
-    public int validateBonusNumber(int bonusNumber, String winningNumber) {
-        if (validateNumberRange(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_NUMBER_UNDER_ZERO_OVER_FORTY_FIVE));
+    public int validateBonusNumber(String bonusNumberInput, String winningNumber) {
+        try {
+            int bonusNumber = Integer.parseInt(bonusNumberInput);
+            if (validateNumberRange(bonusNumber)) {
+                throw new IllegalArgumentException(
+                        ErrorMessages.printError(ErrorMessages.ERROR_NUMBER_UNDER_ZERO_OVER_FORTY_FIVE));
+            }
+            if (!containsWinningNumbers(bonusNumber, winningNumber)) {
+                throw new IllegalArgumentException(
+                        ErrorMessages.printError(ErrorMessages.ERROR_BONUS_NUMBER_IS_NOT_EQUAL_WINNING_NUMBER));
+            }
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_BONUS_NUMBER_IS_NOT_STRING));
         }
-        if (!containsWinningNumbers(bonusNumber, winningNumber)) {
-            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_BONUS_NUMBER_IS_NOT_EQUAL_WINNING_NUMBER));
-        }
-
-        return bonusNumber;
     }
 
     private boolean containsWinningNumbers(int bonusNumber, String winningNumber) {

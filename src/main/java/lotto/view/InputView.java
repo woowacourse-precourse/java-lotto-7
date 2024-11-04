@@ -41,7 +41,7 @@ public class InputView {
             try {
                 System.out.println();
                 System.out.println(PRINT_BONUS_NUMBER);
-                int input = Integer.parseInt(Console.readLine());
+                String input = Console.readLine();
                 return validator.validateBonusNumber(input, winningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
