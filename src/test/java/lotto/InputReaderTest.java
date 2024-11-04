@@ -112,4 +112,37 @@ class InputReaderTest {
         });
         assertEquals(e.getMessage(), "서로 다른 당첨 번호 6개를 입력해 주세요.");
     }
+
+    @Test
+    @DisplayName("당첨 번호를 정상적으로 입력했을 때")
+    void BonusNumber_ShouldNotReturnException() {
+        String testString = "1,2,3,4,5,6\n7";
+        System.setIn(new ByteArrayInputStream(testString.getBytes()));
+        assertDoesNotThrow(() -> {
+            Lotto winningLotto = inputReader.readWinningNumbers();
+            int bonus = inputReader.readBonusNumber(winningLotto);
+        });
+    }
+    @Test
+    @DisplayName("보너스 번호가 1이상 45이하가 아닐 때")
+    void BonusNumberOutOfRange_ShouldReturnException() {
+        String testString = "1,2,3,4,5,6\n78";
+        System.setIn(new ByteArrayInputStream(testString.getBytes()));
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            Lotto winningLotto = inputReader.readWinningNumbers();
+            int bonus = inputReader.readBonusNumber(winningLotto);
+        });
+        assertEquals(e.getMessage(), "당첨 번호는 1이상 45이하 숫자로 입력해 주세요.");
+    }
+    @Test
+    @DisplayName("보너스 번호가 당첨번호와 중복될 때")
+    void BonusNumberHasDuplicateWithWinningNumbers_ShouldReturnException() {
+        String testString = "1,2,3,4,5,6\n5";
+        System.setIn(new ByteArrayInputStream(testString.getBytes()));
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            Lotto winningLotto = inputReader.readWinningNumbers();
+            int bonus = inputReader.readBonusNumber(winningLotto);
+        });
+        assertEquals(e.getMessage(), "보너스 번호는 당첨번호와 달라야 합니다.");
+    }
 }

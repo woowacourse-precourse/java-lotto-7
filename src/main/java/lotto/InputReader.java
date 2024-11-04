@@ -25,4 +25,10 @@ public class InputReader {
                 .collect(Collectors.toList());
         return new Lotto(numbers);
     }
+
+    public int readBonusNumber(Lotto winningLotto){
+        String bonusNumber = Console.readLine();
+        validation.validateBonusNumber(winningLotto, bonusNumber);
+        return Integer.parseInt(bonusNumber);
+    }
 }
