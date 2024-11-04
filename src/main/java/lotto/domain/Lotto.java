@@ -44,6 +44,9 @@ public class Lotto {
         }
     }
 
+    public Boolean contains(int number) {
+        return numbers.contains(number);
+    }
 
     public List<Integer> getNumbers() {
         return numbers;
