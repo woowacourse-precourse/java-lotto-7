@@ -82,8 +82,8 @@ public class LottoWinningNumbers {
 
     public void validateBonusNumberInput(String bonusNumberInput) {
         if (!bonusNumberInput.matches("^([1-9]|[1-3][0-9]|4[0-5])$")) {
-            System.out.println(Constants.WRONG_LENGTH);
-            throw new IllegalArgumentException(Constants.WRONG_LENGTH);
+            System.out.println(Constants.WRONG_RANGE);
+            throw new IllegalArgumentException(Constants.WRONG_RANGE);
         }
         if (winningNumbers.contains(Integer.parseInt(bonusNumberInput))) {
             System.out.println(Constants.DUPLICATE_BONUS_NUMBER);
