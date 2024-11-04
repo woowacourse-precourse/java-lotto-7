@@ -13,9 +13,9 @@ public interface OutputView {
 
     void showCommentForBonusNumber();
 
-    void showCommentForLottoResult();
+    void showCommentForWinningResults();
 
-    void showLottoResult(LottoRank award, BigDecimal count);
+    void showWinningResult(LottoRank award, BigDecimal count);
 
     void showProfitRate(BigDecimal profitRate);
 

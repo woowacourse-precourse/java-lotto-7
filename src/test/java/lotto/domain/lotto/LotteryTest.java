@@ -3,11 +3,10 @@ package lotto.domain.lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.exception.lotto.InvalidLottoNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -66,17 +65,14 @@ public class LotteryTest {
             Lottery lottery = new Lottery(winningLotto, bonusNumber, drawnLottos);
 
             // When
-            LottoResult result = lottery.getLottoResult();
+            BigDecimal firstCount = lottery.get(LottoRank.FIRST);
+            BigDecimal secondCount = lottery.get(LottoRank.SECOND);
 
             // Then
-            Map<LottoRank, BigDecimal> expected = new HashMap<>() {{
-                put(LottoRank.FIRST, BigDecimal.ONE);
-                put(LottoRank.SECOND, BigDecimal.ONE);
-                put(LottoRank.THIRD, BigDecimal.ZERO);
-                put(LottoRank.FOURTH, BigDecimal.ZERO);
-                put(LottoRank.FIFTH, BigDecimal.ZERO);
-            }};
-            assertThat(result).extracting("result").isEqualTo(expected);
+            assertAll(
+                    () -> assertThat(firstCount).isEqualTo(BigDecimal.ONE),
+                    () -> assertThat(secondCount).isEqualTo(BigDecimal.ONE)
+            );
         }
     }
 

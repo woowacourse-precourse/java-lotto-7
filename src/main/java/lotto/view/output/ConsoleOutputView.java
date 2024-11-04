@@ -27,12 +27,12 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showCommentForLottoResult() {
+    public void showCommentForWinningResults() {
         System.out.println(System.lineSeparator() + "당첨 통계");
     }
 
     @Override
-    public void showLottoResult(final LottoRank lottoRank, final BigDecimal count) {
+    public void showWinningResult(final LottoRank lottoRank, final BigDecimal count) {
         System.out.printf(lottoRank.getFormat() + System.lineSeparator(), lottoRank.getMatchCount(),
                 lottoRank.getAward(), count);
     }

@@ -8,7 +8,6 @@ import lotto.domain.lotto.Lottery;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.LottoRank;
-import lotto.domain.lotto.LottoResult;
 import lotto.domain.price.PurchasePrice;
 import lotto.domain.quantity.Quantity;
 import lotto.support.converter.IntegerConverter;
@@ -39,8 +38,7 @@ public class LottoController {
         LottoNumber bonusNumber = makeBonusNumber();
 
         Lottery lottery = new Lottery(winningLotto, bonusNumber, drawnLottos);
-        getLottoResult(lottery.getLottoResult());
-        calculateProfitRate(lottery.calculateProfitRate());
+        getWinningResults(lottery);
     }
 
     private Quantity calculateQuantity() {
@@ -73,17 +71,14 @@ public class LottoController {
         return LottoNumber.valueOf(converter.convertFrom(inputBonusNumber));
     }
 
-    private void getLottoResult(final LottoResult lottoResult) {
-        outputView.showCommentForLottoResult();
+    private void getWinningResults(final Lottery lottery) {
+        outputView.showCommentForWinningResults();
         Arrays.stream(LottoRank.values())
                 .sorted(Comparator.comparing(LottoRank::getMatchCount))
                 .forEach(lottoRank -> {
-                    BigDecimal count = lottoResult.get(lottoRank);
-                    outputView.showLottoResult(lottoRank, count);
+                    BigDecimal count = lottery.get(lottoRank);
+                    outputView.showWinningResult(lottoRank, count);
                 });
-    }
-
-    private void calculateProfitRate(final BigDecimal profitRate) {
-        outputView.showProfitRate(profitRate);
+        outputView.showProfitRate(lottery.calculateProfitRate());
     }
 }
