@@ -1,11 +1,13 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.dto.LottoResponse;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
@@ -23,6 +25,8 @@ public class LottoController {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         generateLottos(purchaseAmount);
         outputView.printFormattedLottoNumbers(findGeneratedLottos());
+
+        Lotto winningLotto = readWinningLottoNumbers();
     }
 
 
@@ -42,5 +46,15 @@ public class LottoController {
 
     private List<LottoResponse> findGeneratedLottos() {
         return lottoService.findAll();
+    }
+
+    private Lotto readWinningLottoNumbers() {
+        outputView.promptLottoNumbers();
+        String lottoNumbersInput = inputView.readLottoNumbersInput();
+        List<Integer> winningLottoNumbers = Arrays.stream(lottoNumbersInput.split(","))
+                .map(Integer::parseInt)
+                .toList();
+
+        return new Lotto(winningLottoNumbers);
     }
 }
