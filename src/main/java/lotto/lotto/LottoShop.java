@@ -2,23 +2,23 @@ package lotto.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.ErrorMassageConstants;
+import lotto.constant.ErrorMessageConstants;
 import lotto.constant.LottoConstants;
 
 public class LottoShop {
 
-    LottoNumberService lottoNumberService = new LottoNumberService();
+    LottoNumberPicker lottoNumberPicker = new LottoNumberPicker();
 
     public List<Lotto> buyLottos(Long money) {
         if (validateMoney(money) == false) {
-            System.out.println(ErrorMassageConstants.VALUE_IS_NOT_DIVISIBLE_BY_1000);
-            throw new IllegalArgumentException(ErrorMassageConstants.VALUE_IS_NOT_DIVISIBLE_BY_1000);
+            System.out.println(ErrorMessageConstants.VALUE_IS_NOT_DIVISIBLE_BY_1000);
+            throw new IllegalArgumentException(ErrorMessageConstants.VALUE_IS_NOT_DIVISIBLE_BY_1000);
         }
 
         List<Lotto> lottos = new ArrayList<>();
         while (money > 0) {
             money = money - LottoConstants.LOTTO_PRICE;
-            Lotto lotto = new Lotto(lottoNumberService.createRandomNumbers());
+            Lotto lotto = new Lotto(lottoNumberPicker.createRandomNumbers());
             lottos.add(lotto);
         }
         return lottos;

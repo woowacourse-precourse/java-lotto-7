@@ -2,9 +2,9 @@ package lotto.io;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.ErrorMassageConstants;
+import lotto.constant.ErrorMessageConstants;
 
-public class InputService {
+public class InputUtils {
 
     public List<String> splitByComma(String input) {
         return new ArrayList<>(List.of(input.split(", ")));
@@ -16,7 +16,7 @@ public class InputService {
             try {
                 result.add(Integer.parseInt(s));
             } catch (NumberFormatException e) {
-                System.out.println(ErrorMassageConstants.VALUE_IS_NOT_INT);
+                System.out.println(ErrorMessageConstants.VALUE_IS_NOT_INT);
                 throw new IllegalArgumentException();
             }
         }
