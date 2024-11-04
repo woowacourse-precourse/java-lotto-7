@@ -33,5 +33,22 @@ public class Application {
             }
             return lottos;
         }
+
+        private static List<Integer> inputWinningNumbers() {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String input = Console.readLine().trim();
+            List<Integer> winningNumbers = Arrays.stream(input.split(","))
+                    .map(Integer::parseInt).collect(Collectors.toList());
+
+            if (winningNumbers.size() != 6 || !isValidLottoNumbers(winningNumbers)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            }
+            return winningNumbers;
+        }
+
+        private static boolean isValidLottoNumbers(List<Integar> numbers) {
+            return numbers.stream().allMatch(num -> num >= 1 && num <= 45) &&
+                    numbers.stream().distinct().count() == numbers.size();
+        }
     }
 }
