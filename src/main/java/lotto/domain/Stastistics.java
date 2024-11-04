@@ -3,9 +3,14 @@ package lotto.domain;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.domain.Lotto.Lotto;
+import lotto.domain.Lotto.Number;
 import lotto.dto.StatisticsDto;
 
 public class Stastistics {
+    private final static int INIT_VALUE = 0;
+    private final static int MATCH_COUNT = 1;
+    private final static int UNIT_PRICE = 1000;
+    private final static int UNIT_PERCENTAGE = 100;
     private final EnumMap<Rank, Integer> rankStatistics;
     private final float profitRate;
 
@@ -18,14 +23,14 @@ public class Stastistics {
         EnumMap<Rank, Integer> rankStatistics = new EnumMap<>(Rank.class);
 
         for (Rank rank : Rank.values()) {
-            rankStatistics.put(rank, 0);
+            rankStatistics.put(rank, INIT_VALUE);
         }
 
         randomLottos.getLottos().forEach(randomLotto -> {
             int matchCount = getMatchNumber(randomLotto, winningLotto);
             boolean hasBonus = hasSameNumber(randomLotto, winningLotto);
             Rank rank = Rank.matchLottoRank(matchCount, hasBonus);
-            rankStatistics.put(rank, rankStatistics.get(rank) + 1);
+            rankStatistics.put(rank, rankStatistics.get(rank) + MATCH_COUNT);
         });
 
         return rankStatistics;
@@ -48,7 +53,7 @@ public class Stastistics {
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
 
-        return ((float) totalPrize / (ticketCount * 1000) * 100);
+        return ((float) totalPrize / (ticketCount * UNIT_PRICE) * UNIT_PERCENTAGE);
     }
 
     public StatisticsDto toDto() {

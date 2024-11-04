@@ -2,8 +2,10 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.domain.Lotto.Lotto;
+import lotto.domain.Lotto.Number;
 
 public class WinningLotto {
+    private static final String INVALID_DUPLICATED_NUMBER_ERROR_MESSAGE = "[ERROR] 당첨 번호와 중복된 번호를 입력할 수 없습니다.";
     private final Lotto winningLottoNum;
     private final Number bonusNum;
 
@@ -15,7 +17,7 @@ public class WinningLotto {
 
     private void validateDuplicate(Lotto winningLottoNum, Number bonusNum) {
         if (hasDuplicateBonusNumber(winningLottoNum, bonusNum)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복된 번호를 입력할 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_DUPLICATED_NUMBER_ERROR_MESSAGE);
         }
     }
 

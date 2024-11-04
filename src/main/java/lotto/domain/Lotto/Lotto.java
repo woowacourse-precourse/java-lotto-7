@@ -1,19 +1,22 @@
 package lotto.domain.Lotto;
 
+import static lotto.domain.Lotto.LottoConstants.LOTTO_NUMBER_SIZE;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.domain.Number;
 
 public class Lotto {
-    private final List<Number> numbers;
+    private static final String INVALID_NUMBER_SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
+    private static final String INVALID_DUPLICATED_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
+    private final List<Number> lottoNumbers;
 
     protected Lotto(List<Number> numbers) {
         validateLotto(numbers);
-        this.numbers = sortLottoNumber(numbers);
+        this.lottoNumbers = sortLottoNumber(numbers);
     }
 
     private List<Number> sortLottoNumber(List<Number> numbers) {
@@ -29,19 +32,19 @@ public class Lotto {
 
     private void validateNumberSize(List<Number> numbers) {
         if (isValidNumberSize(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_SIZE_ERROR_MESSAGE);
         }
     }
 
     private boolean isValidNumberSize(List<Number> numbers) {
-        return numbers.size() != 6;
+        return numbers.size() != LOTTO_NUMBER_SIZE;
     }
 
     private void validateDuplicatedNumber(List<Number> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (Number number : numbers) {
             if (hasDuplicatedNumber(uniqueNumbers, number)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(INVALID_DUPLICATED_ERROR_MESSAGE);
             }
         }
     }
@@ -52,12 +55,12 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.stream()
+        return lottoNumbers.stream()
                 .map(number -> String.valueOf(number.getValue()))
                 .collect(Collectors.joining(", ", "[", "]"));
     }
 
     public List<Number> getLottoNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return Collections.unmodifiableList(lottoNumbers);
     }
 }

@@ -1,8 +1,11 @@
-package lotto.domain;
+package lotto.domain.Lotto;
 
+import static lotto.domain.Lotto.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.domain.Lotto.LottoConstants.MIN_LOTTO_NUMBER;
 import static lotto.util.InputParser.parseInt;
 
 public class Number {
+    private final static String INVALID_NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1에서 45 사이어야 합니다.";
     private final int value;
 
     public Number(final int value) {
@@ -21,12 +24,12 @@ public class Number {
 
     private void validateNumberRange(int value) {
         if (isNotValidRange(value)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE);
         }
     }
 
     private boolean isNotValidRange(int value) {
-        return value < 1 || value > 45;
+        return value < MIN_LOTTO_NUMBER || value > MAX_LOTTO_NUMBER;
     }
 
     @Override

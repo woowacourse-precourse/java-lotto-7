@@ -1,10 +1,12 @@
 package lotto.domain.Lotto;
 
+import static lotto.domain.Lotto.LottoConstants.LOTTO_NUMBER_SIZE;
+import static lotto.domain.Lotto.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.domain.Lotto.LottoConstants.MIN_LOTTO_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.domain.Lotto.Lotto;
-import lotto.domain.Number;
 import lotto.util.InputParser;
 
 public class LottoFactory {
@@ -21,7 +23,8 @@ public class LottoFactory {
     }
 
     private static List<Number> createLottoNumber() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
+                LOTTO_NUMBER_SIZE);
         return randomNumbers.stream()
                 .map(Number::new)
                 .collect(Collectors.toList());

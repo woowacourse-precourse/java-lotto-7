@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto.Lotto;
 import lotto.domain.Lotto.LottoFactory;
 import lotto.domain.Lottos;
-import lotto.domain.Number;
+import lotto.domain.Lotto.Number;
 import lotto.domain.Price;
 import lotto.domain.Stastistics;
 import lotto.domain.WinningLotto;

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.domain.Lotto.Lotto;
 import lotto.domain.Lotto.LottoFactory;
+import lotto.domain.Lotto.Number;
 import org.junit.jupiter.api.Test;
 
 class WinningLottoTest {
