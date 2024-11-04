@@ -15,7 +15,7 @@ public class LottoMachine {
         int ticketCount = cash.getTicketCount();
         List<Lotto> tickets = createTickets(ticketCount);
 
-        lottoTickets = new LottoTickets(tickets);
+        lottoTickets = LottoTickets.from(tickets);
     }
 
     public LottoTickets currentLottoTickets() {

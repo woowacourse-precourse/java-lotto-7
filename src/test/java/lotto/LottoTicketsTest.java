@@ -18,7 +18,7 @@ class LottoTicketsTest {
             .toList();
 
         //when
-        LottoTickets lottoTickets = new LottoTickets(lottos);
+        LottoTickets lottoTickets = LottoTickets.from(lottos);
 
         //then
         assertThat(lottoTickets.toString()).containsAnyOf("[", "]");

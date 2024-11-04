@@ -7,8 +7,12 @@ public class LottoTickets {
 
     private final List<Lotto> lottos;
 
-    public LottoTickets(List<Lotto> lottos) {
+    private LottoTickets(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public static LottoTickets from(List<Lotto> lottos) {
+        return new LottoTickets(lottos);
     }
 
     public List<Lotto> getLottos() {
