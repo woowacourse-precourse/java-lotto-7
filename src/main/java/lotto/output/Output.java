@@ -31,10 +31,10 @@ public class Output {
         write(output);
     }
 
-    public void writeLottoPrize(Map<LottoPrize, Integer> map, Double roi) {
+    public void writeLottoPrize(Map<LottoPrize, Integer> lottoPrizes, Double roi) {
         write("당첨 통계");
         write("---");
-        map.forEach(this::writeDetailResult);
+        lottoPrizes.forEach(this::writeDetailResult);
         write("총 수익률은 %.1f%%입니다.", roi);
     }
 
@@ -52,8 +52,8 @@ public class Output {
                 result);
     }
 
-    public void writeLottoList(List<List<Integer>> lottoList) {
-        lottoList.forEach(
+    public void writeLottoList(List<List<Integer>> lottos) {
+        lottos.forEach(
                 lotto ->  write("[%d, %d, %d, %d, %d, %d]", lotto.toArray())
         );
     }

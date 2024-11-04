@@ -24,7 +24,7 @@ public class LottoRunner {
                 () -> parser.parseInt(input.read()),
                 Attempt::new
         );
-        List<Lotto> randomLottoList = makeRandomLottoListAndWrite(attempt);
+        List<Lotto> randomLottos = makeRandomLottosAndWrite(attempt);
 
         output.write(Output.ASK_LOTTO_NUMBER);
         Lotto lotto = retry(
@@ -38,7 +38,7 @@ public class LottoRunner {
                 BonusLotto::new
         );
 
-        lottoManager = new LottoManager(attempt, lotto, bonusLotto, randomLottoList);
+        lottoManager = new LottoManager(attempt, lotto, bonusLotto, randomLottos);
         input.close();
     }
 
@@ -63,16 +63,16 @@ public class LottoRunner {
         }
     }
 
-    private List<List<Integer>> convertLottoListToIntegerList(List<Lotto> lottoList) {
+    private List<List<Integer>> convertLottosToIntegerList(List<Lotto> lottoList) {
         return lottoList.stream()
                 .map(Lotto::getNumbers)
                 .toList();
     }
 
-    private List<Lotto> makeRandomLottoListAndWrite(Attempt attempt) {
-        List<Lotto> lottoList = Lotto.makeRandomLottoList(attempt.getLottoAmount());
+    private List<Lotto> makeRandomLottosAndWrite(Attempt attempt) {
+        List<Lotto> lottos = Lotto.makeRandomLottoList(attempt.getLottoAmount());
         output.write(Output.CONFIRM_BUY_AMOUNT, attempt.getLottoAmount());
-        output.writeLottoList(convertLottoListToIntegerList(lottoList));
-        return lottoList;
+        output.writeLottoList(convertLottosToIntegerList(lottos));
+        return lottos;
     }
 }

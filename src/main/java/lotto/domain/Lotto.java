@@ -55,11 +55,11 @@ public class Lotto {
     }
 
     public static List<Lotto> makeRandomLottoList(Integer amount) {
-        List<Lotto> lottoList = new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
-            lottoList.add(Lotto.makeRandomLotto());
+            lottos.add(Lotto.makeRandomLotto());
         }
-        return lottoList;
+        return lottos;
     }
 
     //getter

@@ -10,20 +10,20 @@ public class LottoManager {
     private final Attempt attempt;
     private final Lotto lotto;
     private final BonusLotto bonusLotto;
-    private final List<Lotto> randomLottoList;
+    private final List<Lotto> randomLottos;
 
-    public LottoManager(Attempt attempt, Lotto lotto, BonusLotto bonusLotto,List<Lotto> randomLottoList) {
+    public LottoManager(Attempt attempt, Lotto lotto, BonusLotto bonusLotto,List<Lotto> randomLottos) {
         this.attempt = attempt;
         this.lotto = lotto;
         this.bonusLotto = bonusLotto;
-        this.randomLottoList = randomLottoList;
+        this.randomLottos = randomLottos;
     }
 
     public Map<LottoPrize, Integer> doLotto() {
         //기본 로또 당첨 비교
         Map<LottoPrize, Integer> lottoPrizeMap = initializePrizeMap();
 
-        for(Lotto randomLotto: randomLottoList) {
+        for(Lotto randomLotto: randomLottos) {
             int result = lotto.compareLottoNumber(randomLotto.getNumbers());
             updatePrizeMap(lottoPrizeMap, result);
         }
@@ -62,10 +62,10 @@ public class LottoManager {
 
     private Map<LottoPrize, Integer> initializePrizeMap() {
         //출력 순서 보장을 위해 HashMap이 아닌 LinkedHashMap을 사용
-        Map<LottoPrize, Integer> prizeMap = new LinkedHashMap<>();
+        Map<LottoPrize, Integer> prizes = new LinkedHashMap<>();
         Arrays.stream(LottoPrize.values())
-                .forEach(prize -> prizeMap.put(prize, 0));
-        return prizeMap;
+                .forEach(prize -> prizes.put(prize, 0));
+        return prizes;
     }
 
     /**
@@ -86,6 +86,6 @@ public class LottoManager {
     }
 
     public List<Lotto> getRandomLottoList() {
-        return randomLottoList;
+        return randomLottos;
     }
 }

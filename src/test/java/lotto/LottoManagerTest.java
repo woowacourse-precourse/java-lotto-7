@@ -101,9 +101,9 @@ public class LottoManagerTest {
     }
 
     private Map<LottoPrize, Integer> initializePrizeMap() {
-        Map<LottoPrize, Integer> prizeMap = new LinkedHashMap<>();
+        Map<LottoPrize, Integer> prizes = new LinkedHashMap<>();
         Arrays.stream(LottoPrize.values())
-                .forEach(prize -> prizeMap.put(prize, 0));
-        return prizeMap;
+                .forEach(prize -> prizes.put(prize, 0));
+        return prizes;
     }
 }
