@@ -24,13 +24,16 @@ public class PurchaseController {
 
     public void purchaseLottos() {
         inputView.printRequestPurchase();
+        repeatCreation();
+        outputView.printTicketCount(ticketService.getTicketCount());
+    }
+
+    private void repeatCreation(){
         repeatUntilValid(() -> {
             String rawAmount = ioController.inputPurchaseAmount();
             int amount = ioController.convertInputToInt(rawAmount);
             ticketService.createTicket(amount);
-            return amount;
-        },commonIo);
-        outputView.printTicketCount(ticketService.getTicketCount());
+            return null;
+        }, commonIo);
     }
-
 }
