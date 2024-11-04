@@ -11,6 +11,7 @@ import lotto.LottoResult;
 import lotto.Lottos;
 import lotto.generator.RandomNumberGenerator;
 import lotto.service.LottoService;
+import validator.InputValidator;
 import view.InputView;
 import view.OutputView;
 
@@ -34,8 +35,16 @@ public class LottoController {
     }
 
     private BigDecimal readPurchaseAmount() {
-        OutputView.printPurchaseAmountMessage();
-        return InputView.readPurchaseAmount();
+        while (true) {
+            try {
+                OutputView.printPurchaseAmountMessage();
+                BigDecimal purchaseAmount = InputView.readPurchaseAmount();
+                InputValidator.validatePurchaseAmount(purchaseAmount);
+                return purchaseAmount;
+            } catch (IllegalArgumentException error) {
+                OutputView.printExceptionMessage(error);
+            }
+        }
     }
 
     private BigDecimal calculateAndPrintPurchaseQuantity(BigDecimal purchaseAmount) {
@@ -52,18 +61,34 @@ public class LottoController {
 
     private LottoPurchaseInfo createLottoPurchaseInfo(BigDecimal purchaseAmount) {
         List<Integer> lottoNumbers = readLottoNumbers();
-        int bonusNumber = readBonusNumber();
+        int bonusNumber = readBonusNumber(lottoNumbers);
         return new LottoPurchaseInfo(purchaseAmount, lottoNumbers, bonusNumber);
     }
 
     private List<Integer> readLottoNumbers() {
-        OutputView.printLottoNumbersMessage();
-        return InputView.readLottoNumbers();
+        while (true) {
+            try {
+                OutputView.printLottoNumbersMessage();
+                List<Integer> lottoNumbers = InputView.readLottoNumbers();
+                InputValidator.validateLottoNumbers(lottoNumbers);
+                return lottoNumbers;
+            } catch (IllegalArgumentException error) {
+                OutputView.printExceptionMessage(error);
+            }
+        }
     }
 
-    private int readBonusNumber() {
-        OutputView.printBonusNumberMessage();
-        return InputView.readBonusNumber();
+    private int readBonusNumber(List<Integer> lottoNumbers) {
+        while (true) {
+            try {
+                OutputView.printBonusNumberMessage();
+                int bonusNumber = InputView.readBonusNumber();
+                InputValidator.validateBonusNumber(bonusNumber, lottoNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException error) {
+                OutputView.printExceptionMessage(error);
+            }
+        }
     }
 
     private LottoResult calculateAndPrintLottoResult(Lottos lottos, LottoPurchaseInfo lottoPurchaseInfo) {
