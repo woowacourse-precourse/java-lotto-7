@@ -63,20 +63,37 @@ public class LottoCliInputAdapter {
 
     private PurchaseAmount promptPurchaseAmount() {
         outputPort.writeMessage(PROMPT_PURCHASE_AMOUNT.getMessage());
-        String value = Console.readLine();
-        inputValidator.validateAmount(value);
+        return readPurchaseAmount();
+    }
 
-        return PurchaseAmount.from(NumberParser.parseNumber(value));
+    private PurchaseAmount readPurchaseAmount() {
+        try {
+            String value = Console.readLine();
+            inputValidator.validateAmount(value);
+            return PurchaseAmount.from(NumberParser.parseNumber(value));
+        } catch (IllegalArgumentException exception) {
+            outputPort.writeMessage(exception.getMessage());
+            return readPurchaseAmount(); // 재귀 호출로 다시 입력 받음
+        }
     }
 
     private WinningNumber promptWinningNumber() {
-        List<Integer> numbers = promptNumbers();
-        Integer bonusNumber = promptBonusNumber();
-
-        return WinningNumber.of(numbers, bonusNumber);
+        return readWinningNumber();
     }
 
-    private List<Integer> promptNumbers() {
+    private WinningNumber readWinningNumber() {
+        try {
+            List<Integer> numbers = requestWinningNumber();
+            Integer bonusNumber = requestBonusNumber();
+
+            return WinningNumber.of(numbers, bonusNumber);
+        } catch (IllegalArgumentException exception) {
+            outputPort.writeMessage(exception.getMessage());
+            return readWinningNumber();
+        }
+    }
+
+    private List<Integer> requestWinningNumber() {
         outputPort.writeMessage(PROMPT_WINNING_NUMBER.getMessage());
         String winningNumber = Console.readLine();
         inputValidator.validateLotto(winningNumber);
@@ -84,7 +101,7 @@ public class LottoCliInputAdapter {
         return NumberParser.parseLottoNumbers(winningNumber);
     }
 
-    private Integer promptBonusNumber() {
+    private Integer requestBonusNumber() {
         outputPort.writeNewline();
         outputPort.writeMessage(PROMPT_BONUS_NUMBER.getMessage());
         String bonusNumber = Console.readLine();
