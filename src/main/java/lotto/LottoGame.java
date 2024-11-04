@@ -38,47 +38,27 @@ public class LottoGame {
 
     private CorrectLotto createCorrectLotto() {
         Lotto lotto = createCorrectNumbers();
-        int bonusNumber = createBonusNumber();
+        BonusNumber bonusNumber = createBonusNumber(lotto);
 
-        try {
-            return new CorrectLotto(lotto, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return createCorrectLotto();
-        }
+        return new CorrectLotto(lotto, bonusNumber);
     }
 
     private Lotto createCorrectNumbers() {
         try {
-            List<Integer> numbers = LottoInput.inputCorrectNumbers().stream()
-                    .map(input -> {
-                        try {
-                            return Integer.parseInt(input);
-                        } catch (Exception e) {
-                            throw new IllegalArgumentException("[ERROR] 당첨번호는 1~45의 정수이어야 합니다.");
-                        }
-                    })
-                    .toList();
-            return new Lotto(numbers);
+            return CorrectLotto.createCorrectNumber(LottoInput.inputCorrectNumbers());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return createCorrectNumbers();
         }
     }
 
-    private int createBonusNumber() {
+    private BonusNumber createBonusNumber(Lotto lotto) {
         try {
-            int bonusNumber = Integer.parseInt(LottoInput.inputBonusNumber());
-            if (bonusNumber < 1 || bonusNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-            return bonusNumber;
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            return createBonusNumber();
+            String input = LottoInput.inputBonusNumber();
+            return BonusNumber.from(input, lotto);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return createBonusNumber();
+            return createBonusNumber(lotto);
         }
     }
 

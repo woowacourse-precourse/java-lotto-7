@@ -1,15 +1,30 @@
 package lotto;
 
+import lotto.view.LottoInput;
+
 import java.util.List;
 
 public class CorrectLotto {
     private final Lotto lotto;
-    private final int bonusNumber;
+    private final BonusNumber bonusNumber;
 
-    public CorrectLotto(Lotto lotto, int bonusNumber) {
-        validateDuplicate(lotto, bonusNumber);
+    public CorrectLotto(Lotto lotto, BonusNumber bonusNumber) {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
+    }
+
+    public static Lotto createCorrectNumber(List<String> inputs) {
+        List<Integer> numbers = inputs.stream()
+                .map(
+                    input -> {
+                    try {
+                        return Integer.parseInt(input);
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException("[ERROR] 당첨번호는 1~45의 정수이어야 합니다.");
+                    }
+                })
+                .toList();
+        return new Lotto(numbers);
     }
 
     private void validateDuplicate(Lotto lotto, int bonusNumber) {
