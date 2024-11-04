@@ -73,11 +73,11 @@ public class Validator {
             if (winningDigits.size() != LottoConstants.LOTTERY_NUMBER_COUNT) {
                 throw new IllegalArgumentException(LOTTERY_NUMBER_COUNT_ERROR_MESSAGE);
             }
-
-            for (Integer winningDigit : winningDigits) {
+            winningDigits.forEach(winningDigit -> {
                 checkIsPositiveNumber(winningDigit);
                 checkIsLotteryRange(winningDigit);
-            }
+            });
+
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(COMMON_ERROR_MESSAGE +  e.getMessage());
         }
