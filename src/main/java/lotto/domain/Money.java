@@ -25,4 +25,16 @@ public class Money {
     public static Money from(int money) {
         return new Money(money);
     }
+
+    public Money plus(Money otherMoney) {
+        return from(this.money + otherMoney.money);
+    }
+
+    public int countOfBuyLotto() {
+        return this.money / LOTTO_PRICE;
+    }
+
+    public int getMoney() {
+        return money;
+    }
 }
