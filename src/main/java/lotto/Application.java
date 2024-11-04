@@ -156,16 +156,14 @@ public class Application {
         }
     }
 
-    public static Map<Integer, Integer> calculateResults(List<Lotto> lottos, List<Integer> winningNumbers,
+    public static Map<Rank, Integer> calculateResults(List<Lotto> lottos, List<Integer> winningNumbers,
             int bonusNumber) {
-        Map<Integer, Integer> resultMap = new HashMap<>();
+        Map<Rank, Integer> resultMap = new HashMap<>();
         for (Lotto lotto : lottos) {
             int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers);
             boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
-            int rank = getRank(matchCount, bonusMatch);
-            if (rank != 0) {
-                resultMap.put(rank, resultMap.getOrDefault(rank, 0) + 1);
-            }
+            Rank rank = Rank.valueOf(matchCount, bonusMatch);
+            resultMap.put(rank, resultMap.getOrDefault(rank, 0) + 1);
         }
         return resultMap;
     }
