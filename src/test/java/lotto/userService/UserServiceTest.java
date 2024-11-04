@@ -55,17 +55,17 @@ public class UserServiceTest extends NsTest {
     @CsvSource(value = {"1000,2000","3000,4000"})
     void 사용자_조회_테스트(String firstValue, String secondValue) {
         // given
-        User firstUser = userRepository.save(new User(firstValue));
-        User secondUser = userRepository.save(new User(secondValue));
+        int firstUserId = userService.save(firstValue);
+        int secondUserId = userService.save(secondValue);
 
         // when
-        User findFirstUser = userService.findById(firstUser.getId());
-        User findSecondUser = userService.findById(secondUser.getId());
+        User findFirstUser = userService.findById(firstUserId);
+        User findSecondUser = userService.findById(secondUserId);
 
 
         // then
-        assertThat(firstUser).isEqualTo(findFirstUser);
-        assertThat(secondUser).isEqualTo(findSecondUser);
+        assertThat(findFirstUser).isEqualTo(userRepository.findById(0));
+        assertThat(findSecondUser).isEqualTo(userRepository.findById(1));
     }
 
     @DisplayName("유효한 구입 금액으로 사용자가 생성된다.")
@@ -73,14 +73,13 @@ public class UserServiceTest extends NsTest {
     @ValueSource(strings = {"1000", "2000", "5000"})
     void 유효한_구입_금액으로_사용자_생성(String validPurchasePrice) {
         // given
-        User user = new User(validPurchasePrice);
-        userRepository.save(user);
+        int userId = userService.save(validPurchasePrice);
 
         // when
-        User findUser = userService.findById(user.getId());
+        User findUser = userService.findById(userId);
 
         // then
-        assertThat(user).isNotNull();
+        assertThat(findUser).isNotNull();
         assertThat(findUser.getPurchasePrice()).isEqualTo(Integer.parseInt(validPurchasePrice));
     }
 

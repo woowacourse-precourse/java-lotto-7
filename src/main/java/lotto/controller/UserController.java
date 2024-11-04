@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.LottoResult;
 import lotto.service.UserService;
 import lotto.service.UserWinningResultService;
+import lotto.view.ErrorOutputView;
 
 public class UserController {
     // 싱글톤 패턴
@@ -18,7 +19,13 @@ public class UserController {
     }
 
     public int getUserIdByInputPurchasePrice() {
-        return userService.inputPurchasePriceForUser();
+        while(true) {
+            try {
+                return userService.inputPurchasePriceForUser();
+            } catch (IllegalArgumentException e) {
+                ErrorOutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     public void getPurchaseLottoTickets(int userId) {

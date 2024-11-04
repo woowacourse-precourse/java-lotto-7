@@ -30,23 +30,19 @@ public class UserService {
         return instance;
     }
 
+    public int save(String purchasePrice) {
+        User user = new User(purchasePrice);
+        return userRepository.save(user).getId();
+    }
+
     public User findById(int id) {
         return userRepository.findById(id);
     }
 
     public int inputPurchasePriceForUser() {
-        int accessCount = ACCESS_COUNT.getValue();
-        for (int count = 0; count < accessCount; count++) {
-            String purchasePrice = inputPurchasePrice();
-            try {
-                User user = new User(purchasePrice);
-                return userRepository.save(user).getId();
-            } catch (IllegalArgumentException e) {
-                ErrorOutputView.printErrorMessage(e.getMessage());
-            }
-        }
-        ProgramExit.run(accessCount);
-        return -1;
+        String purchasePrice = inputPurchasePrice();
+        return save(purchasePrice);
+
     }
 
     private String inputPurchasePrice() {
