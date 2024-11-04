@@ -14,6 +14,10 @@ public class LottoMoney {
         }
     }
 
+    public int getPurchaseCount() {
+        return money / 1000;
+    }
+
     public int getMoney() {
         return money;
     }
