@@ -51,4 +51,16 @@ public class ResultTest {
                                 6개 일치 (2,000,000,000원) - 1개"""
                 );
     }
+
+    @Test
+    void 결과에_맞게_수익률을_계산한다() {
+        Result result = new Result(winningLotto, bonus, userTickets);
+        int purchaseAmount = userTickets.size() * 1000;
+
+        double totalPrize = 2000000000 + 30000000 + 1500000 + 50000 + 5000;
+        String expectedPercentage = String.format("%.1f", totalPrize / purchaseAmount * 100);
+
+        assertThat(result.calculateStatistic(purchaseAmount))
+                .isEqualTo(expectedPercentage);
+    }
 }
