@@ -17,6 +17,12 @@ public class CollectionValidator {
         }
     }
 
+    public static void validateDuplicate(List<Integer> numbers,Integer number) {
+        if(numbers.contains(number)) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBERS_EXIST);
+        }
+    }
+
     public static void validateSize(List<Integer> elements, int size) {
         if (elements.size() != size) {
             throw new IllegalArgumentException(String.format(SIZE_INVALID, elements.size()));
