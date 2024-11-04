@@ -36,13 +36,13 @@ public class LottoResultService {
     }
 
     private int countMatchingNumbers(Lotto lotto, WinningNumbers winningNumbers) {
-        return (int) lotto.getNumbers().stream()
+        return (int) lotto.numbers().stream()
                 .filter(winningNumbers.numbers()::contains)
                 .count();
     }
 
     private boolean isMatchBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
-        return lotto.getNumbers().contains(bonusNumber.number());
+        return lotto.numbers().contains(bonusNumber.number());
     }
 
     private long calculateTotalPrizeMoney(LottoResult lottoResult) {
