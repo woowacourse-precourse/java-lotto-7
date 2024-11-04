@@ -23,7 +23,7 @@ public class Output {
     }
 
     public void printPurchaseCount(int count) {
-        System.out.println(count + "개를 구매했습니다.");
+        System.out.println("\n" + count + "개를 구매했습니다.");
     }
 
     public void printPurchasedLottos(List<Lotto> lottos) {
@@ -35,7 +35,7 @@ public class Output {
     public void printStatistics(Statistics statistics, int purchaseAmount) {
         Map<Integer, Integer> results = statistics.getResults();
 
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         System.out.println("6개 일치 (" + MATCHSIX + ") - " + results.getOrDefault(1, 0) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (" + MATCHFIVEBONUS + ") - " + results.getOrDefault(2, 0) + "개");
