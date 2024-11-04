@@ -90,7 +90,7 @@ public class Money {
     @Override
     public String toString() {
         String formattedMoney = FORMATTER.format(this.value);
-        return String.format("(%s%s)", formattedMoney, WON.value);
+        return String.format("%s%s", formattedMoney, WON.value);
     }
 
     private void validateRemainder() {

@@ -54,10 +54,10 @@ public enum RankCondition {
 
     public String toStringMessage() {
         if (this == SECOND) {
-            String template = "%d개 일치, 보너스 볼 일치 %s";
+            String template = "%d개 일치, 보너스 볼 일치 (%s)";
             return generateMessageFrom(template, matchingCount, prizeAmount.toString());
         }
-        String template = "%d개 일치 %s";
+        String template = "%d개 일치 (%s)";
         return generateMessageFrom(template, matchingCount, prizeAmount.toString());
     }
 
