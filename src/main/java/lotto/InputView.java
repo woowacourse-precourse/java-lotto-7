@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
+import lotto.EnumManagement.InputViewEnum;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -14,32 +15,32 @@ public class InputView {
 
     public InputView() {
         this.lottoPurchase = lottoPurchase();
-        this.lottoCount = lottoPurchase/LOTTO_PRICE;
+        this.lottoCount = lottoPurchase / LOTTO_PRICE;
     }
 
     public int lottoPurchase() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(InputViewEnum.PURCHASE_AMOUNT.getMessage());
         String lottoPurchase = Console.readLine();
         return Integer.parseInt(lottoPurchase);
     }
 
     public void bonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(InputViewEnum.BONUS_NUMBER.getMessage());
         String bonusNumber = Console.readLine();
-        this.bonusNumber =  Integer.parseInt(bonusNumber);
+        this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
     public void lottoNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(InputViewEnum.LOTTO_NUMBER.getMessage());
         String rawNumbers = Console.readLine();
         String[] rawNumberSplit = rawNumbers.split(",");
-
         List<Integer> lottoNumbers = new ArrayList<>();
 
         for (String numberInput : rawNumberSplit) {
             int number = Integer.parseInt(numberInput);
             lottoNumbers.add(number);
         }
+
         this.lottoNumbers = lottoNumbers;
     }
 
@@ -61,7 +62,7 @@ public class InputView {
         return lottoNumbers;
     }
 
-    public int getLottoCount(){
+    public int getLottoCount() {
         return lottoCount;
     }
 }

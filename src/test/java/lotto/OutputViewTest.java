@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 class OutputViewTest{
     @Test
     public void 로또_출력_테스트() {
-        String input = "8000\n1,2,3,4,5,6\n7\n";
+        String input = "2000\n1,2,3,4,5,6\n7\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 

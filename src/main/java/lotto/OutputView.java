@@ -1,7 +1,9 @@
 package lotto;
 
+import lotto.EnumManagement.OutputViewEnum;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +12,7 @@ public class OutputView {
     private List<List<Integer>> boughtLottoNumbers;
 
     public void outputLottoNumbers() {
-        System.out.println(boughtLottoNumbers.size() + "개를 구매했습니다.");
+        System.out.println(boughtLottoNumbers.size() + OutputViewEnum.BOUGHT_LOTTO_COUNT.getMessage());
         for (List<Integer> boughtLottoNumber : boughtLottoNumbers) {
             System.out.println(boughtLottoNumber);
         }
@@ -31,17 +33,16 @@ public class OutputView {
     }
 
     public void lottoWinOutput(List<Integer> lottoMatchTable){
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + lottoMatchTable.get(0) + "개");
-        System.out.println("4개 일치 (50,000원) - " + lottoMatchTable.get(1)+ "개");
-        System.out.println("5개 일치 (1,500,000원) - " + lottoMatchTable.get(2) + "개");
-        System.out.println("6개 일치 (30,000,000원) - " + lottoMatchTable.get(3) + "개");
-        System.out.println("7개 일치 (2,000,000,000원) - " + lottoMatchTable.get(4)+ "개");
+        System.out.println(OutputViewEnum.WINNING_STAT.getMessage());
+        for(int i = 0 ; i < lottoMatchTable.size() ; i++) {
+            System.out.println(OutputViewEnum.values()[i].getMessage() + lottoMatchTable.get(i) + OutputViewEnum.COUNT.getMessage());
+        }
     }
 
-    public void lottoReturnRateOutput(String lottoReturnRate){
-        System.out.println("총 수익률은 " + lottoReturnRate + "% 입니다.");
+    public void lottoReturnRateOutput(double lottoReturnRate){
+        DecimalFormat df = new DecimalFormat(OutputViewEnum.LOTTO_RETURN_RATE_FORMAT.getMessage());
+        String lottoReturnRateOutput = df.format(lottoReturnRate);
+        System.out.println(OutputViewEnum.LOTTO_RETURN_RATE.getMessage() + lottoReturnRateOutput + OutputViewEnum.PERCENT.getMessage());
     }
 
     public List<List<Integer>> getBoughtLottoNumbers() {
