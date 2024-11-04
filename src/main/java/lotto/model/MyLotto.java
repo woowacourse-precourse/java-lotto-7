@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyLotto {
@@ -7,6 +8,10 @@ public class MyLotto {
 
     public MyLotto(final List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public static MyLotto emptyMyLotto() {
+        return new MyLotto(new ArrayList<>());
     }
 
     public void addLotto(final Lotto lotto) {
