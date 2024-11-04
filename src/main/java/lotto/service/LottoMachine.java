@@ -12,7 +12,7 @@ import lotto.util.NumberGenerate;
 public class LottoMachine {
 
     public static final int LOTTO_PRICE = 1000;
-    public static final int MONEY_MAX = 1000000;
+    public static final int MONEY_MAX = 1_000_000;
     public static final int LOTTO_NUM_START = 1;
     public static final int LOTTO_NUM_END = 45;
     public static final int LOTTO_NUM_SIZE = 6;
