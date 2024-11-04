@@ -59,12 +59,12 @@ public class InputView {
 
     private void validateWinningLotto(String input) {
         List<String> parsed = parseWithDelimiter(input, COMMA);
-        validateSize(parsed, LOTTO_SIZE);
+        validateSize(parsed);
         validateInteger(parsed);
     }
 
-    private void validateSize(List<String> target, int size) {
-        if (target.size() != size) {
+    private void validateSize(List<String> target) {
+        if (target.size() != InputView.LOTTO_SIZE) {
             throw new IllegalArgumentException("당첨 번호의 개수는 6개여야 합니다.");
         }
     }
@@ -78,4 +78,6 @@ public class InputView {
             throw new IllegalArgumentException("당첨 번호는 정수여야 합니다.");
         }
     }
+
+
 }
