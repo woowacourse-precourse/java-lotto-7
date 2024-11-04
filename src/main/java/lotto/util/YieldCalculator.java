@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.text.DecimalFormat;
 import lotto.model.WinningDetails;
 
 public class YieldCalculator {
@@ -17,7 +18,8 @@ public class YieldCalculator {
 
         double yield = (double) totalPrize / purchasedAmount * PERCENTAGE_MULTIPLIER;
 
-        return String.format("%.1f", yield);
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        return decimalFormat.format(yield);
     }
 
     private int getTotalPrize() {
