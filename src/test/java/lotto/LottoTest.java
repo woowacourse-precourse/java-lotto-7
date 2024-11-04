@@ -21,5 +21,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 1보다 작거나 45보다 크다면 예외가 발생한다.")
+    @Test
+    void 로또_번호가_1보다_작거나_45보다_크다면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 0, 1, 2, 3, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
