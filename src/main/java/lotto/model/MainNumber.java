@@ -26,12 +26,6 @@ public class MainNumber {
         return Parser.parseElements(inputValue);
     }
 
-    private void validate(List<Integer> elements) {
-        checkElementCount(elements);
-        checkWinningNumberRange(elements);
-        checkDuplicate(elements);
-    }
-
     private List<Integer> convertType(List<String> elements) throws IllegalArgumentException {
         try {
             return elements.stream()
@@ -40,6 +34,12 @@ public class MainNumber {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_NUMBER_OR_RANGE_EXCESS.getMessage());
         }
+    }
+
+    private void validate(List<Integer> elements) {
+        checkElementCount(elements);
+        checkWinningNumberRange(elements);
+        checkDuplicate(elements);
     }
 
     private void checkElementCount(List<Integer> numbers) {
