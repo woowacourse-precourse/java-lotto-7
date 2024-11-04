@@ -2,6 +2,7 @@ package lotto.service;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -72,5 +73,18 @@ public class LottoServiceTest {
         AssertionsForClassTypes.assertThat(finalResult.get(Prize.FOUR_MATCH)).isEqualTo(0);
         AssertionsForClassTypes.assertThat(finalResult.get(Prize.FIVE_BONUS_MATCH)).isEqualTo(1);
     }
-}
+
+    @Test
+    @DisplayName("최종 결과 계산이 올바른지 확인")
+    void 최종_결과_테스트() {
+        // when
+        Map<Prize, Integer> matchCounts = lottoService.determineFinalResults(winningNumbers, bonusNumber, lottos);
+        BigDecimal calculatedRate = lottoService.calculateRate(matchCounts, purchaseAmount);
+
+        // Debugging output
+        System.out.println("Calculated Rate: " + calculatedRate);
+
+        // then
+        AssertionsForClassTypes.assertThat(calculatedRate).isEqualTo(new BigDecimal("375062.5"));
+    }
 }
