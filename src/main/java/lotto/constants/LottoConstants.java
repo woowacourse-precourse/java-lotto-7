@@ -1,13 +1,19 @@
 package lotto.constants;
 
-public class LottoConstants {
+public enum LottoConstants {
 
-  public static final int MIN_NUMBER = 1;
-  public static final int MAX_NUMBER = 45;
-  public static final int LOTTO_PRICE = 1000;
-  public static final int NUMBER_COUNT = 6;
+  MIN_NUMBER(1),
+  MAX_NUMBER(45),
+  LOTTO_PRICE(1000),
+  NUMBER_COUNT(6);
 
-  private LottoConstants() {
-    // 인스턴스화 방지
+  private final int value;
+
+  LottoConstants(int value) {
+    this.value = value;
+  }
+
+  public int getValue() {
+    return value;
   }
 }
