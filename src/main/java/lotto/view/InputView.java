@@ -16,4 +16,15 @@ public class InputView {
             }
         }
     }
+
+    public List<Integer> getWinningNumbers() {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                return inputValidator.getValidWinningNumbers(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
