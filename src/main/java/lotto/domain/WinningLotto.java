@@ -5,13 +5,11 @@ import lotto.util.ExceptionMessages;
 
 public class WinningLotto {
     private final Lotto lotto;
-    private final List<Integer> numbers;
     private final int bonusNumber;
 
     private WinningLotto(Lotto lotto, int bonusNumber) {
         validate(lotto, bonusNumber);
         this.lotto = lotto;
-        this.numbers = lotto.getNumbers();
         this.bonusNumber = bonusNumber;
     }
 
@@ -29,7 +27,7 @@ public class WinningLotto {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return lotto.getNumbers();
     }
 
     public int getBonusNumber() {
