@@ -19,7 +19,8 @@ public class Bonus {
     }
 
     private void validateNotContainsBonusBall(Lotto winningLotto) {
-        if (containsBonusBall(winningLotto))
+        if (containsBonusBall(winningLotto)) {
             throw new IllegalArgumentException(BONUS_NUMBER_ALREADY_IN_WINNING_NUMBERS.getMessage());
+        }
     }
 }

@@ -10,8 +10,9 @@ public class InputValidator {
     private static final String COMMA = ",";
 
     protected static void validateNotNullOrBlank(String input) {
-        if (input == null || input.isBlank())
+        if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(INVALID_NULL_OR_BLANK.getMessage());
+        }
     }
 
     protected static void validateIsNumeric(String input) {

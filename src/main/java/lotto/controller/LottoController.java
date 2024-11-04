@@ -47,10 +47,10 @@ public class LottoController {
     }
 
     private Tickets generateTickets(TicketCount ticketCount) {
-            Tickets tickets = new Tickets(ticketCount.getCount());
-            List<String> ticketsInfo = tickets.getTicketsInfo();
-            outputView.printTicketNumbers(ticketsInfo);
-            return tickets;
+        Tickets tickets = new Tickets(ticketCount.getCount());
+        List<String> ticketsInfo = tickets.getTicketsInfo();
+        outputView.printTicketNumbers(ticketsInfo);
+        return tickets;
     }
 
     private Winning getWinningNumbers() {
