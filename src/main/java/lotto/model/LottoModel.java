@@ -70,6 +70,22 @@ public class LottoModel {
         return winningInfo;
     }
 
+    public double calculateRateOfReturn(int LottoPrice ) {
+        int lottoCount = lottoRepository.size();
+        int totalExpense = lottoCount* LottoPrice;
+        int totalReturn = 0;
+        int rate = 100;
+
+        Map<PrizeTier,Integer> winningInfo = this.getWinningInfo();
+
+        PrizeTier[] winningPrizes = PrizeTier.getWinningPrizeTierValues();
+
+        for(PrizeTier prize : winningPrizes){
+            totalReturn += prize.getPrizeMoney();
+        }
+
+        return totalReturn/(double) totalExpense * rate;
+    }
 
     private Lotto createLotto(){
         NumberList numberList = new NumberList();
@@ -79,6 +95,7 @@ public class LottoModel {
 
         return newLotto;
     }
+
 
     private Map<PrizeTier,Integer> initWinningInfo(){
         Map<PrizeTier,Integer> prizeTierMap = new EnumMap<>(PrizeTier.class);
