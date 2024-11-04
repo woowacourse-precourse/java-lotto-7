@@ -66,4 +66,10 @@ public class InputValidator {
 			throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45의 범위여야 합니다");
 		}
 	}
+
+	public static void validateBonusNotInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+		if (winningNumbers.contains(bonusNumber)) {
+			throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
+		}
+	}
 }

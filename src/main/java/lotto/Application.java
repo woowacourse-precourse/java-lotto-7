@@ -16,6 +16,7 @@ public class Application {
         printLottos(lottos);
 
         List<Integer> winningNumbers = repeatUntilNoException(() -> inputWinningNumbers());
+        int bonusNumber = repeatUntilNoException(() -> drawBonus(winningNumbers));
     }
 
     private static int inputMoney() {
@@ -58,6 +59,21 @@ public class Application {
                     return Integer.parseInt(input);
                 })
                 .toList();
+    }
+
+    private static int drawBonus(List<Integer> winningNumbers) {
+        int bonus = inputBonusNumber();
+        InputValidator.validateBonusNotInWinningNumbers(winningNumbers, bonus);
+        return bonus;
+    }
+
+    private static int inputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요");
+        String rawNumber = Console.readLine().trim();
+
+        InputValidator.validateNumberInLottoRange(rawNumber);
+
+        return Integer.parseInt(rawNumber);
     }
 
     private static <T> T repeatUntilNoException(Supplier<T> inputFunction) {
