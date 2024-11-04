@@ -16,7 +16,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos generate(RandomNumberGenerator randomNumberGenerator, int size) {
+    public static Lottos generate(int size, RandomNumberGenerator randomNumberGenerator) {
         return new Lottos(IntStream.range(0, size)
                 .mapToObj(iteration -> Lotto.generate(randomNumberGenerator))
                 .toList());

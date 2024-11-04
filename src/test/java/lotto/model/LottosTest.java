@@ -50,7 +50,7 @@ public class LottosTest {
         int expected = lottoCount;
 
         // when
-        int actual = getLottos(Lottos.generate(realRandomNumberGenerator, lottoCount)).size();
+        int actual = getLottos(Lottos.generate(lottoCount, realRandomNumberGenerator)).size();
 
         // then
         assertThat(actual).isEqualTo(expected);
@@ -61,7 +61,7 @@ public class LottosTest {
     void 로또_당첨_통계를_반환한다(int lottoCount) {
 
         // given
-        Lottos lottos = Lottos.generate(realRandomNumberGenerator, lottoCount);
+        Lottos lottos = Lottos.generate(lottoCount, realRandomNumberGenerator);
 
         LottoNumbers lottoNumbers = LottoNumbers.generate(WINNING_LOTTO_NUMBER_SIZE, sequentialRandomNumberGenerator);
         LottoNumber bonusNumber = LottoNumber.from(WINNING_LOTTO_NUMBER_SIZE + 1);
@@ -85,7 +85,7 @@ public class LottosTest {
     void 로또들의_번호를_반환한다(int lottoCount) {
 
         // given
-        Lottos generatedLottos = Lottos.generate(sequentialRandomNumberGenerator, lottoCount);
+        Lottos generatedLottos = Lottos.generate(lottoCount, sequentialRandomNumberGenerator);
         List<LottoNumbers> expected = getLottos(generatedLottos).stream()
                 .map(Lotto::getLottoNumbers)
                 .toList();
