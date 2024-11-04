@@ -22,6 +22,4 @@ public enum LottoPrize {
   public int getMatchCount() {
     return matchCount;
   }
-
-
 }
