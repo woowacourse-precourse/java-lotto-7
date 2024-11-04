@@ -51,7 +51,7 @@ public class Application {
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자를 입력해 주세요.");
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }
