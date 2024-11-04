@@ -38,7 +38,7 @@ public class InputView {
         }
     }
 
-    public int inputLottoNumber(List<Integer> winningNumbers) {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
         try {
             String sentence = Console.readLine();
             int value = Integer.parseInt(sentence);

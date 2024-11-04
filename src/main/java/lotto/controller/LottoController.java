@@ -41,7 +41,7 @@ public class LottoController {
 
         int bonusNumber;
         outputView.printGuide(GuideMessage.INPUT_BONUS);
-        bonusNumber = inputView.inputLottoNumber(winningNumber);
+        bonusNumber = inputView.inputBonusNumber(winningNumber);
         outputView.printBlank();
 
         Map<String, Integer> countPrize = lottoService.countPrize(purchasedLotto, winningNumber, bonusNumber);
