@@ -20,7 +20,7 @@ public class InputReader {
 
     public int readBonusNumber() {
         try {
-            System.out.println("보너스 번호를 입력해 주세요.");
+            System.out.println("\n보너스 번호를 입력해 주세요.");
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException nfe) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력하지 않았습니다.");
