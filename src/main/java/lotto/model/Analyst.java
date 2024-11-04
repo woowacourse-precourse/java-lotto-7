@@ -17,6 +17,9 @@ public class Analyst {
 
     public double calculateYield(List<LottoResult> LottoResults) {
         int totalEarn = calculateTotalEarn(LottoResults);
+        if (totalEarn == 0) {
+            return 0;
+        }
         return ((double) totalEarn / (LottoResults.size() * LOTTO_PRICE.getValue()) * 100);
     }
 
