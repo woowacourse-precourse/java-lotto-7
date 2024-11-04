@@ -10,6 +10,7 @@ public class LottoController {
         int ticketCount = purchaseAmount / 1000;
 
         WinningNumbers winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
     }
 
     private int getPurchaseAmount() {
@@ -39,6 +40,28 @@ public class LottoController {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private int getBonusNumber(WinningNumbers winningNumbers) {
+        while (true) {
+            try {
+                String input = InputView.readBonusNumber();
+                int bonusNumber = parseNumber(input);
+                validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber, WinningNumbers winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
         }
     }
 
