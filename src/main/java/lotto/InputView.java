@@ -8,19 +8,26 @@ public class InputView {
         while (true) {
             OutputView.promptPurchaseAmount();
             String input = Console.readLine();
-            if (isValidPurchaseAmount(input)) {
+            String validationError = getValidationError(input);
+            if (validationError == null) {
                 return Integer.parseInt(input);
             } else {
-                OutputView.printErrorMessage(ErrorConstants.INVALID_PURCHASE_AMOUNT_ERROR);
+                OutputView.printErrorMessage(validationError);
             }
         }
     }
 
-    protected static boolean isValidPurchaseAmount(final String input) {
-        if (!input.matches("\\d+")) {
-            return false;
+    protected static String getValidationError(final String input) {
+        if (!input.matches("-?\\d+")) {
+            return ErrorConstants.INVALID_PURCHASE_AMOUNT_NOT_A_NUMBER;
         }
         int amount = Integer.parseInt(input);
-        return amount > 0 && amount % 1000 == 0;
+        if (amount <= 0) {
+            return ErrorConstants.INVALID_PURCHASE_AMOUNT_NOT_POSITIVE;
+        }
+        if (amount % 1000 != 0) {
+            return ErrorConstants.INVALID_PURCHASE_AMOUNT_NOT_IN_THOUSANDS;
+        }
+        return null;
     }
 }
