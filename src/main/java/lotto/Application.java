@@ -41,7 +41,7 @@ public class Application {
 
             int purchaseAmount = lottoCount * 1000;
 
-            Map<Integer, Integer> matchCounts = calculateAllLineMatches(winningNumbers, lottoNumbers, bonusNumber);
+            Map<LottoRank, Integer> matchCounts = calculateAllLineMatches(winningNumbers, lottoNumbers, bonusNumber);
             double profitRate = calculateProfitRate(matchCounts, purchaseAmount);
 
             printMatchStatistics(matchCounts, profitRate);
@@ -213,12 +213,12 @@ public class Application {
         return matchCount;
     }
 
-    public static void printMatchStatistics(Map<Integer, Integer> matchCounts, double profitRate) {
-        System.out.println(THREE_MATCH_MESSAGE + matchCounts.getOrDefault(3, 0) + UNIT);
-        System.out.println(FOUR_MATCH_MESSAGE + matchCounts.getOrDefault(4, 0) + UNIT);
-        System.out.println(FIVE_MATCH_MESSAGE + matchCounts.getOrDefault(5, 0) + UNIT);
-        System.out.println(FIVE_MATCH_BONUS_MESSAGE + matchCounts.getOrDefault(-5, 0) + UNIT);
-        System.out.println(SIX_MATCH_MESSAGE + matchCounts.getOrDefault(6, 0) + UNIT);
+    public static void printMatchStatistics(Map<LottoRank, Integer> matchCounts, double profitRate) {
+        System.out.println(THREE_MATCH_MESSAGE + matchCounts.getOrDefault(LottoRank.FIFTH_RANK, 0) + UNIT);
+        System.out.println(FOUR_MATCH_MESSAGE + matchCounts.getOrDefault(LottoRank.FOURTH_RANK, 0) + UNIT);
+        System.out.println(FIVE_MATCH_MESSAGE + matchCounts.getOrDefault(LottoRank.THIRD_RANK, 0) + UNIT);
+        System.out.println(FIVE_MATCH_BONUS_MESSAGE + matchCounts.getOrDefault(LottoRank.SECOND_RANK, 0) + UNIT);
+        System.out.println(SIX_MATCH_MESSAGE + matchCounts.getOrDefault(LottoRank.FIFTH_RANK, 0) + UNIT);
 
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
