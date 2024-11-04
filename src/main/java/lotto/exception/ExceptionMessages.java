@@ -1,6 +1,7 @@
 package lotto.exception;
 
 public enum ExceptionMessages {
+
     INPUT_WHITESPACE("[ERROR] 입력은 비어있을 수 없습니다! 다시 입력해주세요."),
     NOT_DIGIT("[ERROR] 숫자가 아닌 문자가 입력되었습니다! 다시 입력해주세요."),
     AMOUNT_OUT_OF_RANGE("[ERROR] 2,147,483,647을 초과하는 수는 금액으로 입력하실 수 없습니다! 다시 입력해주세요."),

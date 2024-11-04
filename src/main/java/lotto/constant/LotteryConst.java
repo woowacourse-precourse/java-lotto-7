@@ -1,6 +1,7 @@
 package lotto.constant;
 
 public enum LotteryConst {
+
     PRICE(1000),
     AMOUNT(6),
     MIN(1),
