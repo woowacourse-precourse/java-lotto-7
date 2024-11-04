@@ -71,7 +71,7 @@ class LottoTest {
         assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
-    @DisplayName("toString 메서드가 올바른 문자열을 반환한다.")
+    @DisplayName("올바른 로또 양식을 만든다.")
     @Test
     void toStringTest() {
         List<Integer> numbers = List.of(3, 1, 4, 6, 5, 2);
