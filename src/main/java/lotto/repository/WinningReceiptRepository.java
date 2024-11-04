@@ -31,6 +31,18 @@ public class WinningReceiptRepository {
         return GameStatus.LOWEST_GAME_COUNT.get();
     }
 
+    public Boolean prizeConditionExist() {
+        return !prizeConditions.isEmpty();
+    }
+
+    public Long orderPrizeMoneySum(PrizeCondition prizeCondition) {
+        return prizeCondition.getPrizeMoney() * prizeConditions.get(prizeCondition);
+    }
+
+    public List<PrizeCondition> getPrizeConditions() {
+        return new ArrayList<>(prizeConditions.keySet());
+    }
+
     public static WinningReceiptRepository getInstance() {
         if (instance == null) {
             instance = new WinningReceiptRepository();
