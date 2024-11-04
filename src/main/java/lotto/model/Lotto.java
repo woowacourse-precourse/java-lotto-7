@@ -7,8 +7,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoPolicy lottoPolicy = new LottoPolicy();
-        lottoPolicy.checkLottoPolicy(numbers);
+        new LottoPolicy().checkLottoPolicy(numbers);
         this.numbers = numbers;
     }
 

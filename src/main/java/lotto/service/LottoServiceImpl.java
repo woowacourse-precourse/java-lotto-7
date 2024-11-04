@@ -32,8 +32,7 @@ public class LottoServiceImpl implements LottoService {
     public Money inputLottoMoney() {
         String userInputMoney = inputView.inputMoney();
         try {
-            Money money = new Money(userInputMoney);
-            return money;
+            return new Money(userInputMoney);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputLottoMoney();
@@ -102,7 +101,6 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public LottoWinningResult analyzeWinningResult(LottoWinningNumbers lottoWinningNumbers,
                                                    List<Lotto> issuedLotto) {
-
         List<Integer> lottoResult = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         for (Lotto lotto : issuedLotto) {
             int lottoRank = getRank(lottoWinningNumbers, lotto);
@@ -157,7 +155,6 @@ public class LottoServiceImpl implements LottoService {
 
         return (double) Math.round(lottoWinningAmount / money * 1000) / 10;
     }
-
 
     @Override
     public void printAnalyzedLottoStatus(LottoWinningResultResponse lottoWinningResultResponse) {

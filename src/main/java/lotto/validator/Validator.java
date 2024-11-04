@@ -55,7 +55,7 @@ public class Validator {
     public static void shouldBeOnlyNumber(String money) {
         for (int i = 0; i < money.length(); i++) {
             char number = money.charAt(i);
-            if (!lotto.util.Validator.isNumber(number)) {
+            if (!isNumber(number)) {
                 throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMBER.getErrorMessage());
             }
         }
@@ -88,6 +88,10 @@ public class Validator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.IS_TOO_LARGE.getErrorMessage());
         }
+    }
+
+    public static boolean isNumber(char number) {
+        return '0' <= number && number <= '9';
     }
 
 }

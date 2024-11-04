@@ -27,11 +27,10 @@ class LottoPolicyTest {
         // given
         List<Integer> lotto = new ArrayList<>(List.of(1, 2, 3, 4, 5, 1));
 
+        // then
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             lottoPolicy.checkLottoPolicy(lotto);
         });
-
-        // then
         org.assertj.core.api.Assertions.assertThat(exception.getMessage()).contains("[ERROR]");
     }
 
@@ -40,11 +39,10 @@ class LottoPolicyTest {
         // given
         List<Integer> lotto = new ArrayList<>(List.of(1, 2, 3, 4, 5));
 
+        // then
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             lottoPolicy.checkLottoPolicy(lotto);
         });
-
-        // then
         org.assertj.core.api.Assertions.assertThat(exception.getMessage()).contains("[ERROR]");
     }
 
@@ -53,12 +51,10 @@ class LottoPolicyTest {
         // given
         List<Integer> lotto = new ArrayList<>(List.of(6, 1, 2, 3, 4, 5));
 
+        // then
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             lottoPolicy.checkLottoPolicy(lotto);
         });
-
-        // then
         org.assertj.core.api.Assertions.assertThat(exception.getMessage()).contains("[ERROR]");
-
     }
 }

@@ -12,22 +12,21 @@ import lotto.model.Money;
 public interface LottoService {
 
     // About Issue Lotto
-    public Money inputLottoMoney();
+    Money inputLottoMoney();
 
-    public int calculatePurchasableLottoCount(Money money);
+    int calculatePurchasableLottoCount(Money money);
 
-    public List<Lotto> issueLotto(int purchasableLottoCount);
+    List<Lotto> issueLotto(int purchasableLottoCount);
 
-    public void printIssuedLotto(LottoResponse lottoResponse);
+    void printIssuedLotto(LottoResponse lottoResponse);
 
-    
     // About Analyze Lotto
-    public LottoWinningResultRequest inputLottoWinningResult();
+    LottoWinningResultRequest inputLottoWinningResult();
 
-    public LottoWinningResult analyzeWinningResult(LottoWinningNumbers lottoWinningNumbers, List<Lotto> issuedLotto);
+    LottoWinningResult analyzeWinningResult(LottoWinningNumbers lottoWinningNumbers, List<Lotto> issuedLotto);
 
-    public double analyzeLottoRateOfReturn(LottoWinningResult lottoWinningResult, int lottoCount);
+    double analyzeLottoRateOfReturn(LottoWinningResult lottoWinningResult, int lottoCount);
 
-    public void printAnalyzedLottoStatus(LottoWinningResultResponse lottoWinningResultResponse);
+    void printAnalyzedLottoStatus(LottoWinningResultResponse lottoWinningResultResponse);
 
 }

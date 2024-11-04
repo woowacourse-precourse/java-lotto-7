@@ -4,9 +4,9 @@ import lotto.model.Lotto;
 
 public interface InputView {
 
-    public String inputMoney();
+    String inputMoney();
 
-    public String inputWinningNumbers();
+    String inputWinningNumbers();
 
-    public String inputBonusNumber(Lotto lotto);
+    String inputBonusNumber(Lotto lotto);
 }

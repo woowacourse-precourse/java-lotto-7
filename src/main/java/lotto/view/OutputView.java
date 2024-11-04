@@ -5,7 +5,7 @@ import lotto.dto.lottoWinningResultDto.LottoWinningResultResponse;
 
 public interface OutputView {
 
-    public void printIssuedLotto(LottoResponse lottoResponse);
+    void printIssuedLotto(LottoResponse lottoResponse);
 
-    public void printLottoResult(LottoWinningResultResponse lottoWinningResultResponse);
+    void printLottoResult(LottoWinningResultResponse lottoWinningResultResponse);
 }

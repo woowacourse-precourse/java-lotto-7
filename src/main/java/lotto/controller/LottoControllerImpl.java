@@ -49,14 +49,12 @@ public class LottoControllerImpl implements LottoController {
 
     @Override
     public void issueLottoEnd(LottoResponse lottoResponse) {
-
         lottoService.printIssuedLotto(lottoResponse);
     }
 
 
     @Override
     public void runAnalyzeLotto(List<Lotto> issuedLotto) {
-
         LottoWinningNumbers lottoWinningNumbers = analyzeLottoStart();
         LottoWinningResultResponse lottoWinningResultResponse = analyzeLottoProgress(lottoWinningNumbers, issuedLotto);
         analyzeLottoEnd(lottoWinningResultResponse);
@@ -65,16 +63,15 @@ public class LottoControllerImpl implements LottoController {
     @Override
     public LottoWinningNumbers analyzeLottoStart() {
         LottoWinningResultRequest lottoWinningResultRequest = lottoService.inputLottoWinningResult();
-
         int bonusNumber = Integer.parseInt(lottoWinningResultRequest.bonusNumber());
         List<Integer> numbers = StringParser.parse(lottoWinningResultRequest.winningNumbers());
+        
         return new LottoWinningNumbers(new Lotto(numbers), bonusNumber);
     }
 
     @Override
     public LottoWinningResultResponse analyzeLottoProgress(LottoWinningNumbers lottoWinningNumbers,
                                                            List<Lotto> issuedLotto) {
-
         LottoWinningResult lottoWinningResult = lottoService.analyzeWinningResult(lottoWinningNumbers, issuedLotto);
         int lottoCount = issuedLotto.size();
         double lottoRateOfReturn = lottoService.analyzeLottoRateOfReturn(lottoWinningResult, lottoCount);

@@ -6,8 +6,7 @@ public enum InputMessage {
     INPUT_WINNING_NUMBERS_MESSAGE("당첨 번호를 입력해 주세요."),
 
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요.");
-
-
+    
     private final String inputMessage;
 
     InputMessage(String inputMessage) {
