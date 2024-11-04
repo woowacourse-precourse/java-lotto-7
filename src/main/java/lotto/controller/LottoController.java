@@ -28,7 +28,7 @@ public class LottoController {
         outputView.responseUserLottoNumber(lottoGroup);
 
         outputView.askLottoNumbers();
-        List<Integer> winningNumbers = parseLottoNumbers(inputView.inputLottoNumbersView());
+        List<Integer> winningNumbers = inputView.inputLottoNumbersView();
         outputView.askBonusNumber();
         int bonusNumber = Integer.parseInt(inputView.inputBonusNumberView());
 
@@ -47,14 +47,5 @@ public class LottoController {
             lottos.add(new Lotto(numbers));
         }
         return lottos;
-    }
-
-    private List<Integer> parseLottoNumbers(String input) {
-        String[] parts = input.split(",");
-        List<Integer> numbers = new ArrayList<>();
-        for (String part : parts) {
-            numbers.add(Integer.parseInt(part.trim()));
-        }
-        return numbers;
     }
 }

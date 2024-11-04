@@ -4,6 +4,7 @@ import static lotto.constants.Constants.*;
 import static lotto.utils.InputUtil.*;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.validator.UserBuyingValidator;
 
 public class InputView {
@@ -19,9 +20,9 @@ public class InputView {
         }
     }
 
-    public String inputLottoNumbersView() {
+    public List<Integer> inputLottoNumbersView() {
         String lottoNumbers = Console.readLine();
-        return lottoNumbers;
+        return lottoNumberParser(lottoNumbers);
     }
 
     public String inputBonusNumberView() {
