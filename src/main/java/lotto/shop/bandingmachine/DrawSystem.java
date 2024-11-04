@@ -37,8 +37,9 @@ public class DrawSystem {
     }
 
     List<Integer> sort(List<Integer> mainNumbers) {
-        Collections.sort(mainNumbers);
-        return mainNumbers;
+        List<Integer> sorted = new ArrayList<>(mainNumbers);
+        Collections.sort(sorted);
+        return sorted;
     }
 
     private void addDrawResult(List<Integer> mainNumbers, Integer bonusNumber) {

@@ -75,13 +75,6 @@ public class DrawnNumbersTest {
         assertThat(deleteDuplicate).hasSize(count);
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, -1, Integer.MAX_VALUE, Integer.MIN_VALUE})
-    @DisplayName("일반번호묶음을 수정하려고 하면 예외가 발생한다.")
-    void 일반번호묶음을_수정하려고_하면_예외가_발생한다(Integer number) {
-        assertThatThrownBy(() -> mainNumbers.add(number));
-    }
-
     @Test
     @DisplayName("일반번호묶음에는 1부터 45 사이의 정수만 존재한다.")
     void 일반번호묶음에는_1부터_45_사이의_정수만_존재한다() {

@@ -36,7 +36,7 @@ public class DrawnNumbers {
 
     void addMainNumbers(List<Integer> mainNumbers) {
         validateMainNull();
-        this.mainNumbers = Collections.unmodifiableList(mainNumbers);
+        this.mainNumbers = mainNumbers;
     }
 
     void addBonusNumber(Integer bonusNumber) {

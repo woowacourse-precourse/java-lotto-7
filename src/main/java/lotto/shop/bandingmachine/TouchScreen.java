@@ -15,7 +15,6 @@ public class TouchScreen {
 
 
     public void inputMoney() {
-        MessageCenter.START.print();
         getMoney();
         getCount();
     }

@@ -17,7 +17,7 @@ public enum MessageCenter {
     RESULT_RATE_START("총 수익률은 "),
     RESULT_RATE_FINISH("%입니다."),
     NEW_LINE(""),
-    ERROR("[ERROR] "),
+    ERROR("[ERROR] 처리 과정에서 에러가 발생하였습니다."),
     ERROR_PICK("[ERROR] 당첨번호를 잘못 입력했습니다. 다시 입력해 주세요."),
     ERROR_NOTNULL("[ERROR] 기추첨결과가 존재합니다."),
     ERROR_NULL("[ERROR] 추첨결과 저장 과정에서 에러가 발생하였습니다."),

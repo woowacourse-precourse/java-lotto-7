@@ -41,30 +41,25 @@ public class Pos {
             validatePositive(parsedWon);
             validateCount(parsedWon);
         } catch (IllegalArgumentException e) {
-            throwException();
+            throw new IllegalArgumentException(MessageCenter.ERROR_MONEY.get());
         }
     }
 
     void validatePositive(Integer parsedWon) {
         if (parsedWon <= 0) {
-            throwException();
+            throw new IllegalArgumentException(MessageCenter.ERROR_MONEY.get());
         }
     }
 
     private void validateBlank(String textWon) {
         if (textWon == null || textWon.isEmpty()) {
-            throwException();
+            throw new IllegalArgumentException(MessageCenter.ERROR_MONEY.get());
         }
     }
 
     void validateCount(Integer parsedWon) {
         if (parsedWon % divider != 0) {
-            throwException();
+            throw new IllegalArgumentException(MessageCenter.ERROR_MONEY.get());
         }
     }
-
-    void throwException() {
-        throw new IllegalArgumentException(MessageCenter.ERROR_MONEY.get());
-    }
-
 }
