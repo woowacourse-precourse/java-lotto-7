@@ -46,7 +46,7 @@
 ### Validation relation
 
 - provide validation logic
-   - [ ] validate string whether string is numeric or not
-   - [ ] validate string whether numeric string is out of Int type range or not
-   - [ ] validate string whether numeric string is positive or not
-   - [ ] validate string whether string is blank or not
+   - [x] validate string whether string is numeric or not
+   - [x] validate string whether numeric string is out of Int type range or not
+   - [x] validate string whether numeric string is positive or not
+   - [x] validate string whether string is blank or not
