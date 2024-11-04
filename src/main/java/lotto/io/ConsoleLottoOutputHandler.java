@@ -2,6 +2,8 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
+import lotto.model.LottoResult;
 
 import java.util.List;
 
@@ -33,6 +35,18 @@ public class ConsoleLottoOutputHandler implements LottoOutputHandler {
     @Override
     public void showBonusNumberPrompt() {
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    @Override
+    public void showResults(LottoResult result) {
+        System.out.println("당첨 통계\n---");
+
+        for (LottoRank rank : LottoRank.values()) {
+            int count = result.getCountForRank(rank);
+            if (rank != LottoRank.NONE) {
+                System.out.println(rank.getDescription() + ": " + count + "개");
+            }
+        }
     }
 
     @Override

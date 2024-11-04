@@ -1,6 +1,7 @@
 package lotto.io;
 
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public interface LottoOutputHandler {
     void showWinningNumbersPrompt();
 
     void showBonusNumberPrompt();
+
+    void showResults(LottoResult result);
 
     void showPurchasedLottoCount(int count);
 
