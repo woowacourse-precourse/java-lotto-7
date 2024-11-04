@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.NoSuchElementException;
 import java.util.function.Function;
+import lotto.constants.ErrorMessages;
 import lotto.dto.LottoStatisticsDto;
 import lotto.dto.LottosDto;
 import lotto.model.BonusNumber;
@@ -27,7 +28,7 @@ public class LottoController {
             LottoStatistics calculate = calculate(lottoTickets, winningNumbers, bonusNumber, purchaseAmount);
             OutputView.printStatistics(LottoStatisticsDto.from(calculate));
         } catch (NoSuchElementException e) {
-            OutputView.printErrorMessage("[ERROR] 실제로 불가능한 상황에서 의미없는 반복 실행을 방지하기 위해 종료됩니다.");
+            OutputView.printErrorMessage(ErrorMessages.IMPOSSIBLE_SITUATION.formatMessage());
         }
     }
 

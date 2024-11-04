@@ -2,6 +2,8 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import lotto.constants.ErrorMessages;
+
 public class InputView {
     private InputView() {
     }
@@ -10,7 +12,7 @@ public class InputView {
         String purchaseAmount = readLine().trim();
 
         if (purchaseAmount.isEmpty()) {
-            throw new IllegalArgumentException("빈 값을 입력할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessages.EMPTY_INPUT.formatMessage());
         }
 
         return purchaseAmount;
