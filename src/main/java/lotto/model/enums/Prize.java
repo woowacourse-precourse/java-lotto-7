@@ -16,6 +16,10 @@ public enum Prize {
         this.message = message;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public String getMessage() {
         return message;
     }

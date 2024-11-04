@@ -3,8 +3,10 @@ package lotto.ui;
 import static lotto.constant.ViewConstant.BUY_LOTTO_MESSAGE_FORMAT;
 import static lotto.constant.ViewConstant.CONTOUR;
 import static lotto.constant.ViewConstant.LOTTO_RESULT_MESSAGE;
+import static lotto.constant.ViewConstant.PRIZE_RATE_FORMAT;
 import static lotto.constant.ViewConstant.PRIZE_RESULT_FORMAT;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.controller.dto.PrizeResultInfo;
 import lotto.controller.dto.PrizeResultsDto;
@@ -37,5 +39,9 @@ public class OutputView {
                 ))
                 .reduce((result1, result2) -> result1 + "\n" + result2)
                 .orElse(""));
+    }
+
+    public void printPrizeRate(BigDecimal rate) {
+        System.out.printf((PRIZE_RATE_FORMAT) + "%n", rate);
     }
 }

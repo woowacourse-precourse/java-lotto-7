@@ -1,13 +1,12 @@
 package lotto.model.lottoInfo;
 
 import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.controller.dto.LottoResult;
 import lotto.controller.dto.PrizeResultInfo;
 import lotto.controller.dto.PrizeResultsDto;
+import lotto.model.enums.Prize;
 import lotto.model.enums.Rank;
 
 public class LottoGame {
@@ -37,10 +36,6 @@ public class LottoGame {
         return winningNumbers.getWinningNumbers();
     }
 
-    public Integer getBonusNumber() {
-        return bonusNumber.getBonusNumber();
-    }
-
     public Rank calculateRank(List<Integer> numbers) {
         long matchCount = numbers.stream()
                 .filter(winningNumbers
@@ -67,5 +62,15 @@ public class LottoGame {
                     return PrizeResultInfo.from(rank, priceByRank.getByRank(rank), count);
                 })
                 .toList();
+    }
+
+    public long calculateTotalPrize(List<Rank> ranks) {
+        Map<Rank, Long> rankCounting = Rank.groupByRank(ranks);
+        return rankCounting.entrySet().stream()
+                .mapToLong(entry -> {
+                    Prize prize = priceByRank.getByRank(entry.getKey());
+                    return prize.getAmount() * entry.getValue();
+                })
+                .sum();
     }
 }

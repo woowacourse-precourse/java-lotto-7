@@ -8,4 +8,5 @@ public class ViewConstant {
     public static final String LOTTO_RESULT_MESSAGE = "당첨 통계";
     public static final String CONTOUR = "---";
     public static final String PRIZE_RESULT_FORMAT = "%s (%s) - %d개";
+    public static final String PRIZE_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
 }

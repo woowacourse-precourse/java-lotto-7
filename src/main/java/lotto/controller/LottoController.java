@@ -2,7 +2,6 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.controller.dto.LottoResult;
-import lotto.controller.dto.PrizeResultsDto;
 import lotto.model.LottoPurchaseHistory;
 import lotto.model.lottoInfo.LottoGame;
 import lotto.model.lottoInfo.PrizeDataImpl;
@@ -29,10 +28,9 @@ public class LottoController {
         printPurchaseHistory(lottoPurchaseHistory);
 
         initLottoGame(lottoGame);
-        PrizeResultsDto prizeResult = lottoGame.getPrizeResult(lottoService
-                .playLottoGame(lottoGame, lottoPurchaseHistory)
-        );
-        outputView.printLottoResult(prizeResult);
+        LottoResult lottoResult = lottoService.playLottoGame(lottoGame, lottoPurchaseHistory);
+        outputView.printLottoResult(lottoGame.getPrizeResult(lottoResult));
+        outputView.printPrizeRate(lottoService.calculatePrizeRate(lottoGame, lottoResult, money));
     }
 
     private void initLottoGame(LottoGame lottoGame) {
