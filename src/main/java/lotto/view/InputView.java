@@ -25,20 +25,12 @@ public class InputView {
         while (true) {
             System.out.println(SystemMessage.INPUT_WINNING_NUMBERS.getMessage());
             String inputNumbers = Console.readLine();
-
             List<Integer> winningNumbers = Arrays.stream(inputNumbers.split(","))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-
             try {
-                if (winningNumbers.size() > 6) {
-                    throw new IllegalArgumentException(ErrorMessage.NUMBER_LENGTH.getMessage());
-                }
-                Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
-                if (uniqueNumbers.size() < winningNumbers.size()) {
-                    throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
-                }
-
+                validateWinningNumbersLength(winningNumbers);
+                validateWinningNumbersDuplicate(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -54,6 +46,19 @@ public class InputView {
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
             }
+        }
+    }
+
+    private void validateWinningNumbersLength(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_LENGTH.getMessage());
+        }
+    }
+
+    private void validateWinningNumbersDuplicate(List<Integer> winningNumbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
+        if (uniqueNumbers.size() < winningNumbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
         }
     }
 }
