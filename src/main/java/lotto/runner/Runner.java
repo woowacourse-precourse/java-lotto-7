@@ -20,13 +20,14 @@ public class Runner {
         int lottoPrice = InputParser.parseLottoPrice(InputView.inputLottoPurchase());
         List<Lotto> purchasedLottos = getLottos(lottoService, lottoPrice);
 
-        Lotto winningLotto = getWinningLotto();
+        List<Integer> winningLottoNumbers = InputParser.parseLottoNumber(InputView.inputLottoNumber());
+        Lotto winningLotto = Lotto.of(winningLottoNumbers);
 
         int bonusNumber = InputParser.parseBonusNumber(InputView.inputBonusNumber());
 
         List<LottoPrize> results = getLottoPrizes(purchasedLottos, lottoService, winningLotto, bonusNumber);
 
-        getProfit(lottoService, results, lottoPrice);
+        getProfitRate(lottoService, results, lottoPrice);
     }
 
     private static List<Lotto> getLottos(LottoService lottoService, int lottoPrice) {
@@ -35,12 +36,7 @@ public class Runner {
         return purchasedLottos;
     }
 
-    private static Lotto getWinningLotto() {
-        List<Integer> winningLottoNumbers = InputParser.parseLottoNumber(InputView.inputLottoNumber());
-        return Lotto.of(winningLottoNumbers);
-    }
-
-    private static void getProfit(LottoService lottoService, List<LottoPrize> results, int lottoPrice) {
+    private static void getProfitRate(LottoService lottoService, List<LottoPrize> results, int lottoPrice) {
         double profitRate = lottoService.calculateProfitRate(results, lottoPrice);
         OutputView.printProfit(profitRate);
     }

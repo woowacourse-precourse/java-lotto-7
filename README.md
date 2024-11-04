@@ -101,6 +101,6 @@ Exception이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 �
     - [x] 사용자가 구매한 로또 총 금액과 당첨 금액을 비교하여 수익률 계산
     - [x] 수익률을 소수점 둘째 자리에서 반올림하여 출력
 
-- [ ] **예외 처리**
-    - [ ] 입력 값이 잘못되었을 때 `IllegalArgumentException`을 발생시키고 `[ERROR]` 메시지를 출력
-    - [ ] 잘못된 값이 입력될 경우 해당 부분부터 입력을 다시 받도록 구현
+- [x] **예외 처리**
+    - [x] 입력 값이 잘못되었을 때 `IllegalArgumentException`을 발생시키고 `[ERROR]` 메시지를 출력
+    - [x] 잘못된 값이 입력될 경우 해당 부분부터 입력을 다시 받도록 구현
