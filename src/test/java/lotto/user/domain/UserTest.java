@@ -3,11 +3,9 @@ package lotto.user.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
-import lotto.lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class UserTest {
@@ -30,40 +28,13 @@ class UserTest {
         assertThat(user).isNotNull();
     }
 
-    @DisplayName("참 | 로또를 구매할 수 있는 경우")
-    @Test
-    void should_ReturnTrue_When_CanBuyLotto() {
-        User user = new User(1000);
+    @DisplayName("성공 | 구매할 수 있는 로또의 개수")
+    @ParameterizedTest
+    @CsvSource(value = {"1000, 1", "2000, 2", "3000, 3", "4000, 4", "5000, 5", "6000, 6", "7000, 7", "8000, 8",
+            "9000, 9"})
+    void should_ReturnNumberOfLottos_When_CanBuyLotto(int money, int expected) {
+        User user = new User(money);
 
-        assertThat(user.canBuyLotto()).isTrue();
-    }
-
-    @DisplayName("거짓 | 로또를 구매할 수 없는 경우")
-    @Test
-    void should_ReturnFalse_When_CanNotBuyLotto() {
-        User user = new User(0);
-
-        assertThat(user.canBuyLotto()).isFalse();
-    }
-
-    @DisplayName("성공 | 로또를 구매하는 경우")
-    @Test
-    void should_BuyLotto_When_Buy() {
-        User user = new User(1000);
-
-        user.buy(Lotto.issue(List.of(1, 2, 3, 4, 5, 6)));
-
-        assertThat(user.canBuyLotto()).isFalse();
-        assertThat(user.hasLotto(Lotto.issue(List.of(1, 2, 3, 4, 5, 6)))).isTrue();
-    }
-
-    @DisplayName("예외 | 로또를 구매할 수 없는 경우")
-    @Test
-    void should_ThrowException_When_CanNotBuyLotto() {
-        User user = new User(0);
-
-        assertThatThrownBy(() -> user.buy(Lotto.issue(List.of(1, 2, 3, 4, 5, 6)))
-        ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+        assertThat(user.calculateAvailableNumberOfLotto()).isEqualTo(expected);
     }
 }

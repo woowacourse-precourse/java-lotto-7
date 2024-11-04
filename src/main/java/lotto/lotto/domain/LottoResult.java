@@ -36,9 +36,9 @@ public enum LottoResult {
                 .orElse(LOSE);
     }
 
-    public static int getTotalPrize(List<LottoResult> results) {
+    public static long getTotalPrize(List<LottoResult> results) {
         return results.stream()
-                .mapToInt(LottoResult::getPrize)
+                .mapToLong(LottoResult::getPrize)
                 .sum();
     }
 

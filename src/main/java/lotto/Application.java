@@ -18,25 +18,25 @@ public class Application {
     }
 
     public static void run(InputView inputView, OutputView outputView) {
-        int money = inputView.readMoney();
-        User user = User.of(money);
+        User user = User.of(inputView.readMoney());
 
-        while (user.canBuyLotto()) {
+        int numberOfLotto = user.calculateAvailableNumberOfLotto();
+        for (int i = 0; i < numberOfLotto; i++) {
             user.buy(Lotto.issue());
         }
 
         outputView.printUserLottos(user);
 
-        List<Integer> winNumbers = inputView.readWinNumbers();
-        int bonusNumber = inputView.readBonusNumber();
-
-        LottoAnswer answer = LottoAnswer.issue(winNumbers, bonusNumber);
-
+        LottoAnswer answer = LottoAnswer.issue(
+                inputView.readWinNumbers(),
+                inputView.readBonusNumber()
+        );
         List<LottoResult> results = user.match(answer);
+
         outputView.printResults(results);
 
-        System.out.println("LottoResult.getTotalPrize(results) = " + LottoResult.getTotalPrize(results));
-        BigDecimal ratio = user.calculateRatio(LottoResult.getTotalPrize(results));
-        System.out.println("ratio = " + ratio);
+        BigDecimal ratio = user.calculateProfitRatio(LottoResult.getTotalPrize(results));
+
+        outputView.printProfitRation(ratio);
     }
 }

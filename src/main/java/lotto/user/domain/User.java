@@ -34,16 +34,11 @@ public class User {
     }
 
     public void buy(Lotto lotto) {
-        if (!canBuyLotto()) {
-            throw new IllegalArgumentException("[ERROR] 로또를 구매할 수 없습니다.");
-        }
-
-        money -= Lotto.PRICE;
         lottos.add(lotto);
     }
 
-    public boolean canBuyLotto() {
-        return money >= Lotto.PRICE;
+    public int calculateAvailableNumberOfLotto() {
+        return money / Lotto.PRICE;
     }
 
     public List<LottoResult> match(LottoAnswer answer) {
@@ -52,12 +47,11 @@ public class User {
                 .toList();
     }
 
-    public BigDecimal calculateRatio(int totalPrize) {
-        return BigDecimal.valueOf(totalPrize).divide(BigDecimal.valueOf(money), 1, RoundingMode.HALF_UP);
-    }
-
-    public boolean hasLotto(Lotto lotto) {
-        return lottos.contains(lotto);
+    public BigDecimal calculateProfitRatio(long totalPrize) {
+        return BigDecimal.valueOf(totalPrize)
+                .divide(BigDecimal.valueOf(money), 3, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(1), 1, RoundingMode.HALF_UP);
     }
 
     public List<Lotto> getLottos() {
