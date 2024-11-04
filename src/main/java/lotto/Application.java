@@ -1,21 +1,23 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.model.service.LottoGenerator;
+import lotto.ui.error.ErrorView;
 import lotto.model.service.LottoService;
-import lotto.view.input.InputParser;
-import lotto.view.input.InputValidator;
-import lotto.view.input.InputView;
-import lotto.view.output.OutputView;
+import lotto.ui.input.InputParser;
+import lotto.ui.input.InputView;
+import lotto.ui.output.OutputView;
+import lotto.util.UIExecutor;
 
 public class Application {
     public static void main(String[] args) {
+        ErrorView errorView = new ErrorView();
+        UIExecutor uiExecutor = new UIExecutor(errorView);
+        InputView inputView = new InputView(new InputParser());
         OutputView outputView = new OutputView();
-        InputView inputView = new InputView(new InputParser(",", new InputValidator()), outputView);
-        LottoService lottoService = new LottoService(new LottoGenerator());
-        LottoController lottoController = new LottoController(inputView, outputView, lottoService);
+        LottoService lottoService = new LottoService();
+
+        LottoController lottoController = new LottoController(uiExecutor, inputView, outputView, lottoService);
 
         lottoController.run();
-
     }
 }
