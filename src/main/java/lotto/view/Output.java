@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Rank;
 
 public class Output {
     public void printPayResult(List<Lotto> lottos) {
@@ -12,4 +13,17 @@ public class Output {
         }
 
     }
+
+    public void lottoResultTitle() {
+        System.out.println("당첨 통계\n---");
+    }
+
+    public void lottoResultWinning(Rank rank, int count) {
+        System.out.printf("%d개 일치 (%s원) - %d개", rank.getGoal(), rank.getStrPrize(), count);
+    }
+
+    public void lottoResultTotalRevenue(double revenue) {
+        System.out.printf("총 수익률은 %f%입니다.", revenue);
+    }
+
 }
