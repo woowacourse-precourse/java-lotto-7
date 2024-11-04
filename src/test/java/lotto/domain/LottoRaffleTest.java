@@ -23,10 +23,9 @@ class LottoRaffleTest {
     void 당첨번호가_로또번호범위에서벗어나면_예외가발생한다() {
 
         BONUS_NUMBER = 7;
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 47));
-
+        List<Integer> notInRangeNumber = List.of(1, 2, 3, 4, 5, 47);
         assertThatThrownBy(() ->
-                new LottoRaffle(lotto, BONUS_NUMBER))
+                new LottoRaffle(new Lotto(notInRangeNumber), BONUS_NUMBER))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

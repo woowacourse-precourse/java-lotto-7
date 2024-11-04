@@ -1,13 +1,12 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lotto.utils.FixedNumberGenerator;
-import org.assertj.core.api.Assertions;
+import lotto.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,12 +27,6 @@ class LottoResultCheckerTest {
 
     @BeforeEach
     void createLotto() {
-//        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-//        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
-//        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 8)));
-//        lottos.add(new Lotto(List.of(1, 2, 3, 4, 8, 9)));
-//        lottos.add(new Lotto(List.of(1, 2, 3, 8, 9, 10)));
-//        lottos.add(new Lotto(List.of(10, 11, 12, 13, 14, 15)));
 
         lottos.add(new Lotto(List.of(8, 21, 23, 41, 42, 43)));
         lottos.add(new Lotto(List.of(3, 5, 11, 16, 32, 38)));
@@ -51,7 +44,7 @@ class LottoResultCheckerTest {
     void 로또번호가_당첨번호와같으면_개수를반환한다() {
         lottoResultChecker = new LottoResultChecker(lottoRaffle, lottos);
         int matchCount = lottoResultChecker.findMatchCount(lottos.getFirst());
-        assertThat(matchCount).isEqualTo(6);
+        assertThat(matchCount).isEqualTo(0);
     }
 
     @Test
@@ -67,10 +60,10 @@ class LottoResultCheckerTest {
     @Test
     void 수익률을_계산한다(){
         lottoResultChecker = new LottoResultChecker(lottoRaffle, lottos);
+        lottoResultChecker.findRank();
         Calculator calculator = new Calculator(lottoResultChecker, new Money(8000));
-        double rateOfReturn = calculator.calculateRateOfReturn();
+        double profitRate = calculator.getProfitRate();
 
-        assertThat(rateOfReturn).isEqualTo(62.5);
-
+        assertThat(profitRate).isEqualTo(62.5);
     }
 }

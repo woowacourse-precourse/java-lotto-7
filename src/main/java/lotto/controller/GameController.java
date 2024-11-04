@@ -18,7 +18,7 @@ public class GameController {
         Money money = gameService.createMoney(getPurchaseMoney());
 
         LotteryMachine lotteryMachine = gameService.purchaseLotto(money);
-        OutputView.printPurchaseLotto(lotteryMachine);
+        OutputView.printPurchaseLotto(lotteryMachine,money);
 
         InputView.requestWinningNumber();
         List<Integer> winningNumbers = getWinningNumbers();

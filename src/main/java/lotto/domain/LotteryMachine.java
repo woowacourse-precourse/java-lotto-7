@@ -9,11 +9,9 @@ public class LotteryMachine {
 
     private final List<Lotto> purchaseLotto = new ArrayList<>();
     private final LottoNumberGenerator lottoNumberGenerator;
-    private final Money money;
 
-    public LotteryMachine(LottoNumberGenerator lottoNumberGenerator, Money money) {
+    public LotteryMachine(LottoNumberGenerator lottoNumberGenerator) {
         this.lottoNumberGenerator = lottoNumberGenerator;
-        this.money = money;
     }
 
     public List<Lotto> getPurchaseLotto() {
@@ -24,12 +22,12 @@ public class LotteryMachine {
         return new Lotto(lottoNumberGenerator.generate());
     }
 
-    public int getLottoQuantity() {
+    public int getLottoQuantity(Money money) {
         return money.getPaymentAmount() / LOTTO_PRICE;
     }
 
-    public void createLottoByPayment() {
-        int amount = getLottoQuantity();
+    public void createLottoByPayment(Money money) {
+        int amount = getLottoQuantity(money);
         for (int i = 0; i < amount; i++) {
             purchaseLotto.add(createLottoTicket());
         }

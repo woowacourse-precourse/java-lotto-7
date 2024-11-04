@@ -9,12 +9,13 @@ import java.util.Map;
 import lotto.domain.LotteryMachine;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResultChecker;
+import lotto.domain.Money;
 import lotto.domain.Rank;
 
 public class OutputView {
 
-    public static void printPurchaseLotto(LotteryMachine lotteryMachine) {
-        System.out.printf("\n%d개를 구매했습니다.\n", lotteryMachine.getLottoQuantity());
+    public static void printPurchaseLotto(LotteryMachine lotteryMachine, Money money) {
+        System.out.printf("\n%d개를 구매했습니다.\n", lotteryMachine.getLottoQuantity(money));
         List<Lotto> purchaseLotto = lotteryMachine.getPurchaseLotto();
         for (Lotto lotto : purchaseLotto) {
             List<Integer> numbers = new ArrayList<>(lotto.getNumbers());

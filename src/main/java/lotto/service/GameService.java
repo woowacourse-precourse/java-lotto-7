@@ -16,8 +16,8 @@ public class GameService {
     }
 
     public LotteryMachine purchaseLotto(Money money) {
-        LotteryMachine lotteryMachine = new LotteryMachine(new RandomNumberGenerator(), money);
-        lotteryMachine.createLottoByPayment();
+        LotteryMachine lotteryMachine = new LotteryMachine(new RandomNumberGenerator());
+        lotteryMachine.createLottoByPayment(money);
         return lotteryMachine;
     }
 
