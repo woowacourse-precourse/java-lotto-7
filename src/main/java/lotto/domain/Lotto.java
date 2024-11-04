@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.exception.lotto.DuplicatedLottoNumberException;
-import lotto.exception.lotto.InvalidRangeLottoNumberException;
-import lotto.exception.lotto.InvalidSizeLottoNumberException;
+import lotto.exception.DuplicatedLottoNumberException;
+import lotto.exception.InvalidRangeLottoNumberException;
+import lotto.exception.InvalidSizeLottoNumberException;
 
 public class Lotto {
     private final List<Integer> numbers;

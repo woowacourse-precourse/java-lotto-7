@@ -3,8 +3,8 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.exception.winningLotto.DuplicatedWinningNumberException;
-import lotto.exception.winningLotto.InvalidRangeWinningNumberException;
+import lotto.exception.DuplicatedWinningNumberException;
+import lotto.exception.InvalidRangeLottoNumberException;
 
 public class WinningLotto {
     private final Lotto winningLotto;

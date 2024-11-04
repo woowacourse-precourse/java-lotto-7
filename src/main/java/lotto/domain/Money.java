@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import lotto.exception.Money.DivideMoneyException;
-import lotto.exception.Money.NegativeMoneyException;
+import lotto.exception.DivideMoneyException;
 
 public class Money {
     private final int money;

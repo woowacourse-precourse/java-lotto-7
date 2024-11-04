@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import lotto.exception.lotto.DuplicatedLottoNumberException;
-import lotto.exception.lotto.InvalidRangeLottoNumberException;
-import lotto.exception.lotto.InvalidSizeLottoNumberException;
+import lotto.exception.DuplicatedLottoNumberException;
+import lotto.exception.InvalidRangeLottoNumberException;
+import lotto.exception.InvalidSizeLottoNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -23,11 +23,11 @@ class LottoTest {
     void 로또_번호가_범위를_벗어나면_예외발생() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(InvalidRangeLottoNumberException.class)
-                .hasMessageContaining("[ERROR] 로또 당첨 번호는 1~45 사이의 정수여야 합니다.");
+                .hasMessageContaining("[ERROR] 로또 번호는 1~45 사이의 정수여야 합니다.");
 
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(InvalidRangeLottoNumberException.class)
-                .hasMessageContaining("[ERROR] 로또 당첨 번호는 1~45 사이의 정수여야 합니다.");
+                .hasMessageContaining("[ERROR] 로또 번호는 1~45 사이의 정수여야 합니다.");
     }
 
     @DisplayName("로또 번호에 중복이 있으면 예외가 발생한다.")

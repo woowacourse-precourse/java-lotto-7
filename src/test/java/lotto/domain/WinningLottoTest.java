@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import lotto.exception.winningLotto.DuplicatedWinningNumberException;
-import lotto.exception.winningLotto.InvalidRangeWinningNumberException;
+import lotto.exception.DuplicatedWinningNumberException;
+import lotto.exception.InvalidRangeLottoNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;

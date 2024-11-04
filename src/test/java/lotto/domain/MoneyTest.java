@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import lotto.exception.Money.DivideMoneyException;
-import lotto.exception.Money.NegativeMoneyException;
+import lotto.exception.DivideMoneyException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
