@@ -5,9 +5,8 @@ import lotto.io.Output;
 public class WoowahanLottoCompany {
     private final LottoMachin lottoMachin;
 
-    //회사는 여러개일까 한 개일까?
     public WoowahanLottoCompany() {
-        lottoMachin = new LottoMachin();
+        lottoMachin = LottoMachin.getMachine();
     }
 
     public void enterForLottoPurchase(Consumer consumer) {

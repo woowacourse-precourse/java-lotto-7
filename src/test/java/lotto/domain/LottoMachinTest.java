@@ -33,7 +33,7 @@ class LottoMachinTest {
     @BeforeEach
     void setUp() {
         consumer = new Consumer();
-        machine = new LottoMachin();
+        machine = LottoMachin.getMachine();
         output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
     }
@@ -135,7 +135,7 @@ class LottoMachinTest {
 
         assertThatThrownBy(() -> machine.inputWinningNumbersTo(consumer))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessage.LOTTO_NUMBER_COUNT.getErrorMessage());
+                .hasMessage(LottoErrorMessage.LOTTO_NUMBER_COUNT_ERROR.getErrorMessage());
     }
 
     @DisplayName("로또 머신이 구매자에게 보너스 번호를 입력받는 숫자 성공 테스트")

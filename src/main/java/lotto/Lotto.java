@@ -29,7 +29,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoCondition.MAX_COUNT.getConditionNumber()) {
-            throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_COUNT.getErrorMessage());
+            throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_COUNT_ERROR.getErrorMessage());
         }
         validateDuplicateNumbers(numbers);
     }
@@ -39,7 +39,7 @@ public class Lotto {
         while (leftPointer < LottoCondition.MAX_COUNT.getConditionNumber()) {
             for (int rightPointer = leftPointer + 1; rightPointer < LottoCondition.MAX_COUNT.getConditionNumber(); rightPointer++) {
                 if (numbers.get(leftPointer) == numbers.get(rightPointer)) {
-                    throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_LOTTO_NUMBER.getErrorMessage());
+                    throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_LOTTO_NUMBER_ERROR.getErrorMessage());
                 }
             }
             leftPointer++;

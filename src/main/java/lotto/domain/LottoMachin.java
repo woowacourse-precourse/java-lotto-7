@@ -18,7 +18,19 @@ public class LottoMachin {
     private static final int PERCENTAGE_MULTIPLIER = 100;
     private static final int ROUNDING_SCALE = 10;
     private static final Long INIT_TOTAL_MONEY = 0L;
-    private final LottoMatchCounter counter = new LottoMatchCounterImpl();
+    private static LottoMachin instance;
+    private final LottoMatchCounter counter;
+
+    private LottoMachin() {
+        counter = new LottoMatchCounterImpl();
+    }
+
+    public static LottoMachin getMachine() {
+        if (instance == null) {
+            instance = new LottoMachin();
+        }
+        return instance;
+    }
 
     public void sellTo(Consumer consumer) {
         int quantity = consumer.getQuantityPurchaseLottoBy(Input.getMoneyForPurchaseLotto());

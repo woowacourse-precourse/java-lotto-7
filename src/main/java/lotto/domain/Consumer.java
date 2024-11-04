@@ -60,14 +60,12 @@ public class Consumer {
         return resultMatchCount;
     }
 
-    // test용
     public boolean selectedWinnerNumberIsEqualsTo(Lotto expectedLotto) {
         return selectWinnerLotto
                 .getNumbers()
                 .equals(expectedLotto.getNumbers());
     }
 
-    // test용
     public boolean selectedBonusNumberIsEqualsTo(int expectedBonusNumber) {
         return bonusNumber == expectedBonusNumber;
     }
