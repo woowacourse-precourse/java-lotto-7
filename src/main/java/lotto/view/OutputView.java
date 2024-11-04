@@ -10,4 +10,5 @@ public interface OutputView {
     void printWinningStatistics(LottoResult lottoResult);
 
     void printReturnOnInvestment(double returnOnInvestment);
+    void printErrorMessage(String errorMessage);
 }

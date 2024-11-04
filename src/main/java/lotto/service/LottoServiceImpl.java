@@ -14,19 +14,30 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public LottoTicket generateLottoTicket(String purchaseAmountInput) {
         int lottoCount = calculateLottoCount(purchaseAmountInput);
+
         return new LottoTicket(new RandomLottoNumberGenerator(), lottoCount);
     }
 
     @Override
-    public WinningLotto createWinningLotto(String winningNumbersInput, String bonusNumberInput) {
-        List<Integer> winningNumbers = parseWinningNumbers(winningNumbersInput);
+    public WinningLotto createWinningLotto(Lotto winningNumbers, int bonusNumber) {
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
 
+    @Override
+    public Lotto parseAndValidateWinningNumbers(String winningNumbersInput) {
+        WinningNumberValidator.validateWinningNumbersInput(winningNumbersInput);
+        List<Integer> parsedWinningNumbers = parseWinningNumbers(winningNumbersInput);
+        return new Lotto(parsedWinningNumbers);
+    }
+
+    @Override
+    public int parseAndValidateBonusNumber(String bonusNumberInput, Lotto winningNumbers) {
         BonusNumberValidator.validateBonusNumberInput(bonusNumberInput);
         int bonusNumber = parseBonusNumber(bonusNumberInput);
-        BonusNumberValidator.validateBonusNumber(winningNumbers, bonusNumber);
-
-        return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+        BonusNumberValidator.validateBonusNumber(winningNumbers.getNumbers(), bonusNumber);
+        return bonusNumber;
     }
+
 
     @Override
     public LottoResult createLottoResult(LottoTicket lottoTicket, WinningLotto winningLotto, String purchaseAmountInput) {
@@ -58,13 +69,12 @@ public class LottoServiceImpl implements LottoService {
     }
 
     private List<Integer> parseWinningNumbers(String winningNumbersInput) {
-        WinningNumberValidator.validateWinningNumbersInput(winningNumbersInput);
-
         return Arrays.stream(winningNumbersInput.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
     }
+
     private int parseBonusNumber(String bonusNumberInput) {
         return Integer.parseInt(bonusNumberInput.trim());
     }

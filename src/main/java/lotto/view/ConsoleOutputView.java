@@ -36,6 +36,11 @@ public class ConsoleOutputView implements OutputView {
         System.out.printf("총 수익률은 %.1f%%입니다.%n", returnOnInvestment);
     }
 
+    @Override
+    public void printErrorMessage(String errorMessage) {
+        System.out.println("[ERROR] " + errorMessage);
+    }
+
     private String formatResultMessage(Rank rank, int count) {
         if (rank == Rank.SECOND) {
             return String.format("5개 일치, 보너스 볼 일치 (%s원) - %d개",

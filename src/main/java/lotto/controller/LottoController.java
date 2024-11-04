@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoTicket;
 import lotto.domain.WinningLotto;
@@ -19,28 +20,63 @@ public class LottoController {
     }
 
     public void run() {
-        String purchaseAmountInput = getPurchaseAmount();
-
+        String purchaseAmountInput = getPurchaseAmountInput();
         LottoTicket lottoTicket = generateAndPrintLottoTicket(purchaseAmountInput);
-        WinningLotto winningLotto = getAndCreateWinningLotto();
-        LottoResult lottoResult = createAndPrintLottoResult(lottoTicket, winningLotto, purchaseAmountInput);
 
+        Lotto winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
+        WinningLotto winningLotto = createWinningLotto(winningNumbers, bonusNumber);
+
+        LottoResult lottoResult = createAndPrintLottoResult(lottoTicket, winningLotto, purchaseAmountInput);
         printReturnOnInvestment(lottoResult.getReturnOnInvestment());
     }
 
-    private String getPurchaseAmount() {
-        return inputView.getPurchaseAmountInput();
+    private String getPurchaseAmountInput() {
+        while (true) {
+            try {
+                return inputView.getPurchaseAmountInput();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private LottoTicket generateAndPrintLottoTicket(String purchaseAmountInput) {
-        LottoTicket lottoTicket = lottoService.generateLottoTicket(purchaseAmountInput);
-        outputView.printLottoTicket(lottoTicket);
-        return lottoTicket;
+        while (true) {
+            try {
+                LottoTicket lottoTicket = lottoService.generateLottoTicket(purchaseAmountInput);
+                outputView.printLottoTicket(lottoTicket);
+                return lottoTicket;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                purchaseAmountInput = getPurchaseAmountInput();
+            }
+        }
     }
 
-    private WinningLotto getAndCreateWinningLotto() {
-        String winningNumbers = inputView.getWinningNumbersInput();
-        String bonusNumber = inputView.getBonusNumberInput();
+    private Lotto getWinningNumbers() {
+        while (true) {
+            try {
+                String winningNumbersInput = inputView.getWinningNumbersInput();
+                return lottoService.parseAndValidateWinningNumbers(winningNumbersInput);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private int getBonusNumber(Lotto winningNumbers) {
+        while (true) {
+            try {
+                String bonusNumberInput = inputView.getBonusNumberInput();
+                return lottoService.parseAndValidateBonusNumber(bonusNumberInput, winningNumbers);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private WinningLotto createWinningLotto(Lotto winningNumbers, int bonusNumber) {
         return lottoService.createWinningLotto(winningNumbers, bonusNumber);
     }
 

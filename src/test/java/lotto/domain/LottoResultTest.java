@@ -12,8 +12,8 @@ class LottoResultTest {
     private static final int EXPECTED_FIRST_COUNT = 2;
     private static final int EXPECTED_SECOND_COUNT = 1;
     private static final int EXPECTED_THIRD_COUNT = 0;
-    private static final int PURCHASE_AMOUNT = 10_000;
-    private static final int PERCENTAGE_CONVERSION_FACTOR = 100;
+    private static final int PURCHASE_AMOUNT = 8_000;
+    private static final double EXPECTED_RETUN_ON_INVESTMENT = 62.5;
 
     private LottoResult lottoResult;
 
@@ -47,12 +47,9 @@ class LottoResultTest {
     @DisplayName("수익률 계산 기능이 정상적으로 동작하는지 테스트")
     @Test
     void 수익률_계산_테스트() {
-        lottoResult.addResult(Rank.FIRST);
         lottoResult.addResult(Rank.FIFTH);
-
         lottoResult.calculateReturnOnInvestment(PURCHASE_AMOUNT);
-        double expectedReturnOnInvestment = ((double) (Rank.FIRST.getPrizeMoney() + Rank.FIFTH.getPrizeMoney()) / PURCHASE_AMOUNT) * PERCENTAGE_CONVERSION_FACTOR;
 
-        assertThat(lottoResult.getReturnOnInvestment()).isEqualTo(expectedReturnOnInvestment);
+        assertThat(lottoResult.getReturnOnInvestment()).isEqualTo(EXPECTED_RETUN_ON_INVESTMENT);
     }
 }

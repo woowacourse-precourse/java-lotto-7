@@ -13,8 +13,12 @@ public class Application {
         LottoService lottoService = new LottoServiceImpl();
         InputView inputView = new ConsoleInputView();
         OutputView outputView = new ConsoleOutputView();
-
         LottoController lottoController = new LottoController(lottoService, inputView, outputView);
-        lottoController.run();
+
+        try {
+            lottoController.run();
+        } catch (IllegalStateException e) {
+            outputView.printErrorMessage(e.getMessage());
+        }
     }
 }
