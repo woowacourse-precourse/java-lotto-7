@@ -23,7 +23,7 @@ public class LottoAnswer {
         }
     }
 
-    private boolean contain(Integer number) {
+    public boolean contain(Integer number) {
         return numbers.contains(number);
     }
 }
