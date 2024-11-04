@@ -22,8 +22,24 @@ public class WinStatistics {
     }
 
     public void recordResult(int winCategory) {
-        if (winResults.containsKey(winCategory)) {
-            winResults.put(winCategory, winResults.get(winCategory) + 1);
+        if (winCategory == 6) {
+            winResults.put(1, winResults.get(1) + 1);
+            return;
+        }
+        if (winCategory == 5) {
+            winResults.put(2, winResults.get(2) + 1);
+            return;
+        }
+        if (winCategory == 4) {
+            winResults.put(3, winResults.get(3) + 1);
+            return;
+        }
+        if (winCategory == 3) {
+            winResults.put(4, winResults.get(4) + 1);
+            return;
+        }
+        if (winCategory == 2) {
+            winResults.put(5, winResults.get(5) + 1);
         }
     }
 

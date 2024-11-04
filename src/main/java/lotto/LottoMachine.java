@@ -5,101 +5,104 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.HashSet;
 
 public class LottoMachine {
     private final LottoTicketGenerator ticketGenerator = new LottoTicketGenerator();
 
     public void start() {
         int purchaseAmount = getPurchaseAmount();
+        validatePurchaseAmount(purchaseAmount);
 
-        try {
-            PurchaseValidator.validate(purchaseAmount);
-            int ticketCount = purchaseAmount / 1000;
-            List<Lotto> purchasedTickets = ticketGenerator.generateTickets(ticketCount);
+        List<Lotto> purchasedTickets = purchaseTickets(purchaseAmount);
+        printPurchasedTickets(purchasedTickets);
 
-            System.out.printf("%d개를 구매했습니다.\n", ticketCount);
-            purchasedTickets.forEach(ticket -> System.out.println(ticket.getNumbers()));
+        Set<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
 
-            // 당첨 번호와 보너스 번호 입력
-            Set<Integer> winningNumbers = getWinningNumbers();
-            int bonusNumber = getBonusNumber(winningNumbers);
+        WinningChecker winningChecker = new WinningChecker(winningNumbers, bonusNumber);
+        WinStatistics statistics = new WinStatistics();
 
-            WinningChecker winningChecker = new WinningChecker(winningNumbers, bonusNumber);
-            WinStatistics statistics = new WinStatistics();
+        // 당첨 결과 확인 및 기록
+        purchasedTickets.forEach(ticket -> {
+            int winCategory = winningChecker.checkWinning(ticket);
+            statistics.recordResult(winCategory);
 
-            // 당첨 결과 확인
-            for (Lotto ticket : purchasedTickets) {
-                int winCategory = winningChecker.checkWinning(ticket);
-                statistics.recordResult(winCategory);
-            }
+        });
 
-            // 최종 결과 출력
-            statistics.printStatistics();
-            System.out.printf("총 수익률은 %.1f%%입니다.\n", statistics.calculateProfitRate(purchaseAmount));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        printStatistics(statistics, purchaseAmount);
     }
 
     private int getPurchaseAmount() {
-        while (true) {
-            try {
-                System.out.println("구입 금액을 입력해 주세요.");
-                return Integer.parseInt(Console.readLine());
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해 주세요.");
-            }
+        System.out.println("구입 금액을 입력해 주세요.");
+        return readIntegerInput();
+    }
+
+    private void validatePurchaseAmount(int purchaseAmount) {
+        if (purchaseAmount < 1000 || purchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
         }
+    }
+
+    private List<Lotto> purchaseTickets(int purchaseAmount) {
+        int ticketCount = purchaseAmount / 1000;
+        return ticketGenerator.generateTickets(ticketCount);
+    }
+
+    private void printPurchasedTickets(List<Lotto> tickets) {
+        System.out.printf("%d개를 구매했습니다.\n", tickets.size());
+        tickets.forEach(ticket -> System.out.println(ticket.getNumbers()));
     }
 
     private Set<Integer> getWinningNumbers() {
-        while (true) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요 (예: 1,2,3,4,5,6):");
-                Set<Integer> winningNumbers = Stream.of(Console.readLine().split(","))
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toSet());
+        System.out.println("당첨 번호를 입력해 주세요 (예: 1,2,3,4,5,6):");
+        Set<Integer> numbers = readUniqueNumbers(6);
 
-                // 당첨 번호는 6개여야 하고 중복이 없어야 함
-                if (winningNumbers.size() != 6) {
-                    System.out.println("[ERROR] 당첨 번호는 중복되지 않은 6개의 숫자여야 합니다.");
-                    continue;
-                }
-
-                // 각 숫자가 1부터 45 사이인지 검사
-                if (winningNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-                    System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                    continue;
-                }
-
-                return winningNumbers;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자 형식이 잘못되었습니다. 다시 입력해 주세요.");
-            }
+        if (!isValidLottoNumbers(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+        return numbers;
     }
 
     private int getBonusNumber(Set<Integer> winningNumbers) {
-        while (true) {
-            try {
-                System.out.println("보너스 번호를 입력해 주세요:");
-                int bonusNumber = Integer.parseInt(Console.readLine());
+        System.out.println("보너스 번호를 입력해 주세요:");
+        int bonusNumber = readIntegerInput();
 
-                // 보너스 번호는 1부터 45 사이여야 하고, 당첨 번호와 중복되지 않아야 함
-                if (bonusNumber < 1 || bonusNumber > 45) {
-                    System.out.println("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-                    continue;
-                }
-                if (winningNumbers.contains(bonusNumber)) {
-                    System.out.println("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
-                    continue;
-                }
-
-                return bonusNumber;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해 주세요.");
-            }
+        if (!isValidLottoNumber(bonusNumber) || winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자이며, 당첨 번호와 중복되지 않아야 합니다.");
         }
+        return bonusNumber;
+    }
+
+    private void printStatistics(WinStatistics statistics, int purchaseAmount) {
+        statistics.printStatistics();
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", statistics.calculateProfitRate(purchaseAmount));
+    }
+
+    private int readIntegerInput() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            return readIntegerInput();
+        }
+    }
+
+    private Set<Integer> readUniqueNumbers(int count) {
+        try {
+            return Stream.of(Console.readLine().split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toSet());
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자 형식이 잘못되었습니다. 다시 입력해 주세요.");
+            return readUniqueNumbers(count);
+        }
+    }
+
+    private boolean isValidLottoNumbers(Set<Integer> numbers) {
+        return numbers.size() == 6 && numbers.stream().allMatch(this::isValidLottoNumber);
+    }
+
+    private boolean isValidLottoNumber(int number) {
+        return number >= 1 && number <= 45;
     }
 }
