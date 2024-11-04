@@ -17,6 +17,10 @@ public class Application {
         WinningResultCalculator calculator = new WinningResultCalculator();
         List<Lotto> userLottos = lottoPurchase.generateLottos(lottoPurchase.inputPurchaseAmount("8000") / 1000);
         Map<Rank, Integer> results = calculator.calculateResults(userLottos, winningNumbers, bonusNumber);
+
         calculator.printResults(results);
+
+        double profitRate = calculator.calculateProfitRate(results, 8000);
+        calculator.printProfitRate(profitRate);
     }
 }

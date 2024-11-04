@@ -34,4 +34,16 @@ public class WinningResultCalculator {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + results.get(Rank.SECOND) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + results.get(Rank.FIRST) + "개");
     }
+
+    public double calculateProfitRate(Map<Rank, Integer> results, int totalCost) {
+        int totalPrize = results.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        double profitRate = (double) totalPrize / totalCost * 100;
+        return Math.round(profitRate * 10) / 10.0;
+    }
+
+    public void printProfitRate(double profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+    }
 }
