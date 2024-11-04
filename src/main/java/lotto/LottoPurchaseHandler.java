@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class LottoPurchaseHandler {
         printConfirmPurchase(lottoPurchaseCount);
 
         for (int n = 0; n< lottoPurchaseCount; n++) {
-            List<Integer> randomLotto = getOneRandomLotto();
+            List<Integer> randomLotto = new ArrayList<>(getOneRandomLotto());
             randomLotto.sort(Comparator.naturalOrder());
             randomLottoBundle.add(randomLotto);
 
