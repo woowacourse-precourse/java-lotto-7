@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class BonusNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46, 10000, -10000})
-    @DisplayName("1부터 45사이의 숫자 아니면 예외가 발생한다.")
+    @DisplayName("from - 1부터 45사이의 숫자 아니면 예외가 발생한다.")
     void failMakeBonusNumberWhenInvalidRange(int bonus) {
         assertThatThrownBy(() -> BonusNumber.from(bonus))
                 .isInstanceOf(LottoException.class)
