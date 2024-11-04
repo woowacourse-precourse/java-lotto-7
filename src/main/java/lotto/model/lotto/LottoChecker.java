@@ -8,18 +8,13 @@ import java.util.Optional;
 
 public class LottoChecker {
 
-    private final DrawNumbers drawNumbers;
-
-    public LottoChecker(DrawNumbers drawNumbers) {
-        this.drawNumbers = drawNumbers;
-    }
-
-    public double calcRevenueRate(List<Lotto> lottos, long lottoCount) {
-        Long totalPrize = calcTotalPrize(lottos);
+    public double calcRevenueRate(List<Lotto> lottos, DrawNumbers drawNumbers) {
+        long lottoCount = lottos.size();
+        Long totalPrize = calcTotalPrize(lottos, drawNumbers);
         return ((double) totalPrize * 100) / (lottoCount * Lotto.PRICE);
     }
 
-    private Long calcTotalPrize(List<Lotto> lottos) {
+    private Long calcTotalPrize(List<Lotto> lottos, DrawNumbers drawNumbers) {
         Optional<Long> optionalTotalPrize = lottos.stream()
                 .map(lotto -> {
                     Winning winning = lotto.checkWinner(drawNumbers);

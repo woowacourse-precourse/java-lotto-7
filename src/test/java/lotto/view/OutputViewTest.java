@@ -53,10 +53,10 @@ public class OutputViewTest {
     @Test
     void winningCountTest() {
         LottoPublisher lottoPublisher = makeLottoPublisher();
-        LottoChecker lottoChecker = new LottoChecker(HACKED_PLACE.getDrawNumbers());
+        LottoChecker lottoChecker = new LottoChecker();
 
         List<Lotto> lottos = lottoPublisher.publishLotto(LOTTO_COUNT);
-        lottoChecker.calcRevenueRate(lottos, LOTTO_COUNT);
+        lottoChecker.calcRevenueRate(lottos, HACKED_PLACE.getDrawNumbers());
         Assertions.assertEquals(LOTTO_COUNT, Winning.THIRD_PLACE.getCount());
     }
 
@@ -66,10 +66,10 @@ public class OutputViewTest {
         OutputView outputView = new OutputView();
 
         LottoPublisher lottoPublisher = makeLottoPublisher();
-        LottoChecker lottoChecker = new LottoChecker(HACKED_PLACE.getDrawNumbers());
+        LottoChecker lottoChecker = new LottoChecker();
 
         List<Lotto> lottos = lottoPublisher.publishLotto(LOTTO_COUNT);
-        double revenueRate = lottoChecker.calcRevenueRate(lottos, LOTTO_COUNT);
+        double revenueRate = lottoChecker.calcRevenueRate(lottos, HACKED_PLACE.getDrawNumbers());
         double roundRevenueRate = Math.round(revenueRate * 100) / 100.0;
 
         String str = makeExpectResult(roundRevenueRate);
