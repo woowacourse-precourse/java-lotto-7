@@ -22,7 +22,7 @@ public class Application {
 
         WinningLotto winningLotto =  inputView.readWinningLotto();
 
-        LotteryStatistics statistics = lotties.computeStatistics(winningLotto);
+        LotteryStatistics statistics = lotties.computeStatistics(winningLotto, budget);
         outputView.printStatistics(statistics);
     }
 }

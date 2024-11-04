@@ -17,6 +17,7 @@ public class InputView {
 
     public Budget readBudget() {
         String input = promptForBudget();
+        System.out.println();
         return makeBudget(input);
     }
 
@@ -40,6 +41,7 @@ public class InputView {
 
     public WinningLotto readWinningLotto() {
         Lotto lotto = readWinningNumbers();
+        System.out.println();
         return lotWinningLotto(lotto);
     }
 
@@ -89,6 +91,7 @@ public class InputView {
 
     private int readBonusNumber() {
         String input = promptForBonusNumber();
+        System.out.println();
         return parseBonusNumber(input);
     }
 
