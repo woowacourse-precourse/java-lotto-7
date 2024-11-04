@@ -15,15 +15,16 @@ public class LottoTicketGenerator {
         return tickets;
     }
 
+
     private Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        // 리스트를 변경 가능하게 복사한 후 정렬 수행
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
 
         // Lotto 인스턴스 생성 및 반환
-        Lotto lotto = new Lotto(numbers);
-        printLottoNumbers(numbers);
-        return lotto;
+        return new Lotto(numbers);
     }
+
 
     private void printLottoNumbers(List<Integer> numbers) {
         System.out.println(numbers);
