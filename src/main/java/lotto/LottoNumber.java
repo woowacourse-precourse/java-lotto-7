@@ -1,8 +1,5 @@
 package lotto;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public enum LottoNumber {
     ONE(1),
     TWO(2),
