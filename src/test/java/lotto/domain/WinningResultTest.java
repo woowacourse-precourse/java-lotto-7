@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,15 +30,19 @@ public class WinningResultTest {
         //given
         WinningResult winningResult = new WinningResult();
 
-        winningResult.increaseRankScore(LottoRank.SECOND);
-        winningResult.increaseRankScore(LottoRank.SECOND);
-        winningResult.increaseRankScore(LottoRank.FIRST);
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
+
+        WinningLotto WinningLotto = new WinningLotto(new Lotto(List.of(1,2,3,4,5,6)), 7);
+
+        winningResult.matchLottosAndWinningLotto(lottos, WinningLotto);
 
         //when
         long totalReward = winningResult.sumTotalReward();
 
         //then
-        assertThat(totalReward).isEqualTo(2_060_000_000);
+        assertThat(totalReward).isEqualTo(2_030_000_000);
     }
 
     @Test
@@ -45,8 +51,13 @@ public class WinningResultTest {
         // given
         WinningResult winningResult = new WinningResult();
 
-        winningResult.increaseRankScore(LottoRank.THIRD);
-        winningResult.increaseRankScore(LottoRank.FIFTH);
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 16)));
+        lottos.add(new Lotto(List.of(1, 2, 3, 14, 15, 17)));
+
+        WinningLotto WinningLotto = new WinningLotto(new Lotto(List.of(1,2,3,4,5,6)), 7);
+
+        winningResult.matchLottosAndWinningLotto(lottos, WinningLotto);
 
         // when
         double result = winningResult.calculateRateOfReturn(5000);
