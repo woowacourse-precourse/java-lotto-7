@@ -5,7 +5,6 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-    //numbers는 곧 당첨 번호
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;

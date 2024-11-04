@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.Service.LottoService;
+import lotto.service.LottoService;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,12 +22,16 @@ public class LottoServiceTest {
     @Test
     void 로또서비스를_통해_로또클래스에_도달한다(){
         String input = "1,2,3,4,5,6";
-        Lotto lotto = lottoService.WinningNumberSplit();
+        Lotto lotto = lottoService.winningNumberSplit();
         List<Integer> expectedNumbers = Arrays.asList(1,2,3,4,5,6);
 
         assertThat(lotto.getNumbers()).isEqualTo(expectedNumbers);
 
     }
 
+    @Test
+    void 로또_당첨번호_시작하기(){
+
+    }
 
 }
