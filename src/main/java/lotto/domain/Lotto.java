@@ -1,20 +1,35 @@
 package lotto.domain;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+
+    private static final int LOTTO_NUMBERS_SIZE = 6;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+        List<LottoNumber> lottoNumbers = numbers.stream()
+                .map(LottoNumber::new)
+                .sorted()
+                .toList();
+        validate(lottoNumbers);
+        this.numbers = lottoNumbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private void validate(List<LottoNumber> lottoNumbers) {
+        if (lottoNumbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+
+        int uniqueNumbersCount = new HashSet<>(lottoNumbers).size();
+        if (uniqueNumbersCount != LOTTO_NUMBERS_SIZE) {
+            throw new IllegalArgumentException("[ERROR] 중복된 로또 숫자가 존재합니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<LottoNumber> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
 }

@@ -10,8 +10,8 @@ public class Cost {
     }
 
     private void validate(int cost) {
-        if(cost < LOTTO_PRICE) {
-            throw new IllegalArgumentException("로또 구입 금액보다 적은 금액을 입력하실 수 없습니다.");
+        if (cost < LOTTO_PRICE) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액보다 적은 금액을 입력하실 수 없습니다.");
         }
     }
 
