@@ -1,15 +1,12 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintController {
+public class OutputController {
 
-    LottoController lottoController = new LottoController();
     StatisticsController statisticsController = new StatisticsController();
 
-    //로또출력
     public List<Lotto> printLottos(int purchaseNumber) {
 
         System.out.println(purchaseNumber + "개를 구매했습니다.");
@@ -25,7 +22,6 @@ public class PrintController {
         return lottos;
     }
 
-    //당첨통계
     public LottoResult printStatistics(List<Lotto> lottos, WinNumbers winNumbers) {
         System.out.println("당첨 통계\n---");
         LottoResult lottoResult = statisticsController.calculateWinnings(lottos, winNumbers);
@@ -37,7 +33,6 @@ public class PrintController {
         return lottoResult;
     }
 
-    //수익률
     public void printRateOfReturn(LottoResult lottoResult, int purchaseNumber) {
         double rateOfReturn = statisticsController.calculateRateOfReturn(lottoResult.totalWinnings(), purchaseNumber);
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
