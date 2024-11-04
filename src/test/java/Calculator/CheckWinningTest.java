@@ -48,6 +48,7 @@ public class CheckWinningTest {
         expected.put(3, 1);
         expected.put(4, 0);
         expected.put(5, 0);
+        expected.put(6, 0);
 
         assertEquals(expected, result);
     }

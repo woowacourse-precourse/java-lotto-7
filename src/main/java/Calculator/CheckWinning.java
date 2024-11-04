@@ -25,7 +25,7 @@ public class CheckWinning {
     // 보너스 번호 없이 확인하는 경우 1 ~ 5등까지 확인
     public Map<Integer, Integer> check(List<Lotto> myLottos, HashSet<Integer> winningNumbers, int bonusNumber) {
         Map<Integer, Integer> localResult = new HashMap<>();
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i <= 6; i++) {
             localResult.put(i, 0);
         }
 
