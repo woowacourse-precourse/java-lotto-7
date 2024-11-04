@@ -38,11 +38,22 @@ public class LottoController {
         try {
             return Integer.parseInt(input.trim());
         } catch (Exception e) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("올바른 로또 번호 형식이 아닙니다.");
         }
     }
 
     public WinNumbers mapWimNumbers(List<Integer> winNumber, int bonusNumber) {
         return new WinNumbers(winNumber, bonusNumber);
+    }
+
+    public int calculateWinnings(List<Lotto> lottos, WinNumbers winNumbers) {
+        int totalWinnings = 0;
+        int[] rankCount = new int[Rank.values().length];
+        for (Lotto lotto : lottos) {
+            Rank rank = lotto.matchWinNumbers(winNumbers.getWinNumbers(), winNumbers.getBonusNumber());
+            rankCount[rank.ordinal()]++;
+            totalWinnings += rank.getPrizeMoney();
+        }
+        return totalWinnings;
     }
 }
