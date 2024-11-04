@@ -22,7 +22,7 @@ public class LottoController {
         outputService.showGeneratedLottoNumbers(generatedLotto);
 
         int[] winningNumbers = inputService.getWinningNumbers();
-        int bonusNumber = inputService.getBonusNumber();
+        int bonusNumber = inputService.getBonusNumber(winningNumbers);
         Map<Prize, Integer> prizeCount = lottoService.calculateMathLotto(winningNumbers, bonusNumber, generatedLotto);
         outputService.showWinnerStatistic(prizeCount);
 

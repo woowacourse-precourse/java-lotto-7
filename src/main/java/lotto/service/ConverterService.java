@@ -52,9 +52,14 @@ public class ConverterService {
         return result;
     }
 
-    public static int convertBonusNumber(String bonusNumber) {
+    public static int convertBonusNumber(String enteredBonusNumber, int[] winningNumbers) {
         try {
-            return Integer.parseInt(bonusNumber);
+            int bonusNumber = Integer.parseInt(enteredBonusNumber);
+            for (int winningNumber : winningNumbers) {
+                if (bonusNumber == winningNumber) {
+                    throw new IllegalArgumentException(DUPLICATED_NUMBERS);
+                }
+            }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBERS);
         }

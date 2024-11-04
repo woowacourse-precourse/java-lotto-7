@@ -28,14 +28,14 @@ public class InputService {
         return this.getWinningNumbers();
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(int[] winningNumbers) {
         System.out.println(BONUS_NUMBER_INSTRUCTION);
         String enteredBonusNumber = Console.readLine();
         try {
-            return ConverterService.convertBonusNumber(enteredBonusNumber);
+            return ConverterService.convertBonusNumber(enteredBonusNumber, winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return this.getBonusNumber();
+        return this.getBonusNumber(winningNumbers);
     }
 }
