@@ -47,8 +47,8 @@ public class InputValidator {
     }
 
     public static void checkDuplicateWinningNumbers(List<Integer> numbers) {
-        Set<Integer> temp = new HashSet<>(numbers);
-        if (numbers.size() != temp.size())
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (numbers.size() != uniqueNumbers.size())
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 숫자로 이루어져야 합니다.");
     }
 
