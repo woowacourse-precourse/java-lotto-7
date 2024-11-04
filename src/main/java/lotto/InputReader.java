@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class InputReader {
 
-    Validation validation;
+    private Validation validation;
     InputReader(Validation validation){
         this.validation = validation;
     }
