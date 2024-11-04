@@ -1,4 +1,4 @@
-package lotto.model.common;
+package lotto.model.constant;
 
 public class LottoRules {
     public static final int MIN_LOTTO_VALUE = 1;

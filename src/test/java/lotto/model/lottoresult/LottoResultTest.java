@@ -1,10 +1,13 @@
-package lotto.model;
+package lotto.model.lottoresult;
 
-import static lotto.model.LottoRank.FIRST_PRIZE;
-import static lotto.model.LottoRank.SECOND_PRIZE;
-import static lotto.model.LottoRank.THIRD_PRIZE;
+import static lotto.model.lottoresult.LottoRank.FIRST_PRIZE;
+import static lotto.model.lottoresult.LottoRank.SECOND_PRIZE;
+import static lotto.model.lottoresult.LottoRank.THIRD_PRIZE;
 
 import java.util.List;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.Lottos;
+import lotto.model.lotto.PrizeLotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

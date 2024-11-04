@@ -2,11 +2,11 @@ package lotto;
 
 import java.util.List;
 import lotto.exception.LottoException;
-import lotto.model.Budget;
-import lotto.model.Lotto;
-import lotto.model.LottoResult;
-import lotto.model.Lottos;
-import lotto.model.PrizeLotto;
+import lotto.model.lotto.Budget;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.Lottos;
+import lotto.model.lotto.PrizeLotto;
+import lotto.model.lottoresult.LottoResult;
 import lotto.util.BudgetValidator;
 import lotto.util.LottoNumberParser;
 import lotto.view.ErrorView;

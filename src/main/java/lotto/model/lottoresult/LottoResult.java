@@ -1,9 +1,11 @@
-package lotto.model;
+package lotto.model.lottoresult;
 
-import static lotto.model.common.LottoRules.LOTTO_PRICE;
+import static lotto.model.constant.LottoRules.LOTTO_PRICE;
 
 import java.util.List;
 import java.util.Objects;
+import lotto.model.lotto.Lottos;
+import lotto.model.lotto.PrizeLotto;
 
 public class LottoResult {
     private final List<LottoRank> LottoRanks;

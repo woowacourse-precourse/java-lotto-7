@@ -1,7 +1,8 @@
 package lotto.view;
 
-import lotto.model.LottoResult;
-import lotto.model.Lottos;
+import lotto.model.lotto.Lottos;
+import lotto.model.lottoresult.LottoResult;
+import lotto.view.builder.OutputFormatBuilder;
 
 public class OutputView {
 

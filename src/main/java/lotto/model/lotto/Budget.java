@@ -1,7 +1,7 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import static lotto.exception.LottoErrorStatus.INVALID_BUDGET_UNIT;
-import static lotto.model.common.LottoRules.LOTTO_PRICE;
+import static lotto.model.constant.LottoRules.LOTTO_PRICE;
 
 import lotto.exception.LottoException;
 

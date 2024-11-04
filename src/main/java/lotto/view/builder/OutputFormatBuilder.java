@@ -1,12 +1,12 @@
-package lotto.view;
+package lotto.view.builder;
 
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lotto.model.Lotto;
-import lotto.model.LottoRank;
-import lotto.model.LottoResult;
-import lotto.model.Lottos;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.Lottos;
+import lotto.model.lottoresult.LottoRank;
+import lotto.model.lottoresult.LottoResult;
 
 public class OutputFormatBuilder {
     private static final String BUY_AMOUNT_FORMAT = "\n%,d개를 구매했습니다.\n";

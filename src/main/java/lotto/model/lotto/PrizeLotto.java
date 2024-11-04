@@ -1,9 +1,9 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import static lotto.exception.LottoErrorStatus.LOTTO_NUMBER_DUPLICATED;
 import static lotto.exception.LottoErrorStatus.LOTTO_NUMBER_OUT_OF_RANGE;
-import static lotto.model.common.LottoRules.MAX_LOTTO_VALUE;
-import static lotto.model.common.LottoRules.MIN_LOTTO_VALUE;
+import static lotto.model.constant.LottoRules.MAX_LOTTO_VALUE;
+import static lotto.model.constant.LottoRules.MIN_LOTTO_VALUE;
 
 import java.util.List;
 import lotto.exception.LottoException;

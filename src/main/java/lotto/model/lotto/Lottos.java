@@ -1,9 +1,9 @@
-package lotto.model;
+package lotto.model.lotto;
 
-import static lotto.model.common.LottoRules.LOTTO_PRICE;
-import static lotto.model.common.LottoRules.LOTTO_SIZE;
-import static lotto.model.common.LottoRules.MAX_LOTTO_VALUE;
-import static lotto.model.common.LottoRules.MIN_LOTTO_VALUE;
+import static lotto.model.constant.LottoRules.LOTTO_PRICE;
+import static lotto.model.constant.LottoRules.LOTTO_SIZE;
+import static lotto.model.constant.LottoRules.MAX_LOTTO_VALUE;
+import static lotto.model.constant.LottoRules.MIN_LOTTO_VALUE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

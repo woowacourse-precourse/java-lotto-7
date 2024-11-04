@@ -1,6 +1,8 @@
-package lotto.model;
+package lotto.model.lottoresult;
 
 import java.util.List;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.PrizeLotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

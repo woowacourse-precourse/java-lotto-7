@@ -1,6 +1,8 @@
-package lotto.model;
+package lotto.model.lottoresult;
 
 import java.util.Arrays;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.PrizeLotto;
 
 public enum LottoRank {
     FIRST_PRIZE(1, 6, false, 2_000_000_000),
