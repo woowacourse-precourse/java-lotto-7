@@ -34,7 +34,9 @@ public class Handler {
     List<Integer> numbers = new ArrayList<>();
     int random = Randoms.pickNumberInRange(1, 45);
     for (int i = START.getMagicNumber(); i < SIZE.getMagicNumber(); i++) {
-      numbers.add(random);
+      if (!numbers.contains(random)) {
+        numbers.add(random);
+      }
     }
     return numbers;
   }
