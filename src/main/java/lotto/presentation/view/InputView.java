@@ -1,5 +1,7 @@
 package lotto.presentation.view;
 
+import static lotto.common.ExceptionMessage.INVALID_NUMBER_FORMAT;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -10,12 +12,11 @@ import lotto.common.validator.LottoValidator;
 public class InputView {
     public int getValidPurchaseAmount() {
         try {
-            System.out.println("구입금액을 입력해 주세요.");
-            String inputPurchaseAmount = Console.readLine().replace(" ", "");
+            String inputPurchaseAmount = inputValue("구입금액을 입력해 주세요.");
             validatePurchaseAmount(inputPurchaseAmount);
             return Integer.parseInt(inputPurchaseAmount);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자 형식이 잘못되었습니다. 다시 입력해주세요.");
+            System.out.println(INVALID_NUMBER_FORMAT.getMessage());
             return getValidPurchaseAmount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -25,15 +26,14 @@ public class InputView {
 
     public List<Integer> getValidWinningNumbers() {
         try {
-            System.out.println("당첨 번호를 입력해 주세요.");
-            String inputWinningNumbers = Console.readLine().replace(" ", "");
+            String inputWinningNumbers = inputValue("당첨 번호를 입력해 주세요.");
             String[] splitInputWinningNumbers = inputWinningNumbers.split(",");
             validateWinningNumbers(splitInputWinningNumbers);
             return Arrays.stream(splitInputWinningNumbers).map(winningNumber ->
                     Integer.parseInt(winningNumber)
             ).toList();
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자 형식이 잘못되었습니다. 다시 입력해주세요.");
+            System.out.println(INVALID_NUMBER_FORMAT.getMessage());
             return getValidWinningNumbers();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -43,17 +43,22 @@ public class InputView {
 
     public int getValidBonusNumber(List<Integer> winningNumbers) {
         try {
-            System.out.println("보너스 번호를 입력해 주세요.");
-            String inputBonusNumber = Console.readLine().replace(" ", "");
+            String inputBonusNumber = inputValue("보너스 번호를 입력해 주세요.");
             validateBonusNumber(inputBonusNumber, winningNumbers);
             return Integer.parseInt(inputBonusNumber);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자 형식이 잘못되었습니다. 다시 입력해주세요.");
+            System.out.println(INVALID_NUMBER_FORMAT.getMessage());
             return getValidBonusNumber(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getValidBonusNumber(winningNumbers);
         }
+    }
+
+    private String inputValue(String placeholder) {
+        System.out.println(placeholder);
+        String input = Console.readLine().replace(" ", "");
+        return input;
     }
 
     private void validatePurchaseAmount(String inputPurchaseAmount) {
@@ -79,7 +84,7 @@ public class InputView {
 
     private void isDigit(String inputPurchaseAmount) {
         if (!inputPurchaseAmount.matches("^[0-9]+$")) {
-            throw new IllegalArgumentException("[ERROR] 값은 숫자로 입력해주세요.");
+            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 }

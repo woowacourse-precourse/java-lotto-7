@@ -1,17 +1,21 @@
 package lotto.common.validator;
 
+import static lotto.common.ExceptionMessage.ERROR_INVALID_PURCHASE_AMOUNT_UNIT;
+import static lotto.common.ExceptionMessage.ERROR_MAXIMUM_PURCHASE_AMOUNT;
+import static lotto.common.ExceptionMessage.ERROR_MINIMUM_PURCHASE_AMOUNT;
+
 import lotto.common.LottoConfig;
 
 public class IssuedLottoValidator {
     public static void validate(int lottoPurchaseAmount) {
         if (lottoPurchaseAmount == 0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 이상 입력해주세요.");
+            throw new IllegalArgumentException(ERROR_MINIMUM_PURCHASE_AMOUNT.getMessage());
         }
         if (isInvalidPurchaseAmount(lottoPurchaseAmount)) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해주세요.");
+            throw new IllegalArgumentException(ERROR_INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
         }
         if (lottoPurchaseAmount > LottoConfig.LOTTO_PURCHASE_LIMIT.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 10,000원 이하로 입력해주세요.");
+            throw new IllegalArgumentException(ERROR_MAXIMUM_PURCHASE_AMOUNT.getMessage());
         }
     }
 
