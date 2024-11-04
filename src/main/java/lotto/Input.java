@@ -8,7 +8,7 @@ import java.util.List;
 public class Input {
     private static final String INPUT_DELIM = ",";
 
-    private String inputAmount(){
+    private static String inputAmount(){
         System.out.println(InputMessage.AMOUNT_INPUT_MESSAGE.getMessage());
         String amount = Console.readLine();
         InputValidator.validateMoneyIsNumber(amount);
@@ -16,7 +16,7 @@ public class Input {
         return amount;
     }
 
-    public Money setMoney(){
+    public static Money setMoney(){
         String input = inputAmount();
         int amount = Integer.parseInt(input);
 
@@ -31,7 +31,7 @@ public class Input {
         return input;
     }
 
-    public Lotto setWinningNumbers(){
+    public static Lotto setWinningNumbers(){
         String input = winnigNumbers();
         List<Integer> numbers = new ArrayList<>();
         for(String s : input.split(INPUT_DELIM)){
@@ -42,7 +42,7 @@ public class Input {
     }
 
 
-    private String bonusNumers(){
+    private static String bonusNumbers(){
         System.out.println(InputMessage.BONUS_INPUT_MESSAGE.getMessage());
         String input = Console.readLine();
         InputValidator.validateBonus(input);
@@ -50,8 +50,8 @@ public class Input {
         return input;
     }
 
-    public Integer setBonusNumber(){
-        return Integer.parseInt(bonusNumers());
+    public static Integer setBonusNumber(){
+        return Integer.parseInt(bonusNumbers());
     }
 
 }
