@@ -9,16 +9,18 @@ public class Validator {
     private static final int LOTTO_GAME_START_NUMBER = 1;
     private static final int LOTTO_GAME_END_NUMBER = 45;
     private static final int LOTTO_GAME_NUMBERS_SIZE = 6;
+    private static final String IS_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 구입 금액은 숫자이어야 합니다.";
+    private static final String IS_VALIDATE_PRICE_EXCEPTION_MESSAGE= "[ERROR] 구입 금액은 1000 단위이어야 합니다.";
     private static final String IS_SIX_NUMBERS_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String IS_BETWEEN_LOTTO_RANGE_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String IS_NOT_DUPPLICATE_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 중복되지 않는 숫자여야 합니다.";
 
     public static void validateAmount(String amount) {
         if (!isNumbers(amount)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자이어야 합니다.");
+            throw new IllegalArgumentException(IS_NUMBER_EXCEPTION_MESSAGE);
         }
         if (!isValidateAmount(amount)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000 단위이어야 합니다.");
+            throw new IllegalArgumentException(IS_VALIDATE_PRICE_EXCEPTION_MESSAGE);
         }
     }
 
