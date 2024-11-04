@@ -1,8 +1,11 @@
 package lotto.service;
 
+import static lotto.eunm.LottoConstants.PERCENTAGE_BASE;
+import static lotto.eunm.LottoConstants.TICKET_PRICE_UNIT;
 import static lotto.eunm.WinningResult.*;
 import static org.assertj.core.api.Assertions.*;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,6 +20,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoServiceTest {
+
+    private static final String FORMAT_PATTERN = "#,##0.0";
+    private static final double ROUNDING_BASE = 100.0;
 
     private LottoService lottoService;
 
@@ -37,7 +43,7 @@ class LottoServiceTest {
 
         Map<WinningResult, Integer> winningCount = winningDto.getWinningCount();
         assertThat(winningCount.values()).containsAll(Arrays.asList(0, 0, 0, 0, 0));
-        assertThat(winningDto.getPrice()).isEqualTo(0.0);
+        assertThat(winningDto.getPrice()).isEqualTo("0.0");
     }
 
     @DisplayName("부분 일치할 때 (3개 번호 일치)")
@@ -106,8 +112,11 @@ class LottoServiceTest {
         assertThat(winningDto.getPrice()).isEqualTo(calculateWinningPrice(SIX.prizeMoney));
     }
 
-    private double calculateWinningPrice(int totalPrize) {
-        return ((double) totalPrize / 1000) * 100;
+    private String  calculateWinningPrice(int totalPrize) {
+        double price = ((double) totalPrize / TICKET_PRICE_UNIT.value) * PERCENTAGE_BASE.value;
+        price = Math.round(price * PERCENTAGE_BASE.value) / ROUNDING_BASE;
+        DecimalFormat decimalFormat = new DecimalFormat(FORMAT_PATTERN);
+        return decimalFormat.format(price);
     }
 
 }
