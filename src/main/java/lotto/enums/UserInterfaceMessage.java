@@ -14,7 +14,13 @@ public enum UserInterfaceMessage {
     ERROR_INPUT_BUY_INFO(ERROR_PREFIX.getValue() + "로또 구입 금액을 1,000원 단위로 입력해주세요."),
     ERROR_NUMBER_INCLUSIVE(ERROR_PREFIX.getValue() + "로또 번호는 %d부터 %d 사이의 숫자여야 합니다."),
     ERROR_INPUT_BONUS_NUMBER_DUPLICATED(ERROR_PREFIX.getValue() + "보너스 번호는 입력하신 당첨번호와 중복될 수 없습니다."),
-    ERROR_INPUT_BONUS_NUMBER_INCLUSIVE(ERROR_PREFIX.getValue() + "보너스 번호는 %d부터 %d 사이의 숫자여야 합니다.");
+    ERROR_INPUT_BONUS_NUMBER_INCLUSIVE(ERROR_PREFIX.getValue() + "보너스 번호는 %d부터 %d 사이의 숫자여야 합니다."),
+    EA("개"),
+    REWARDS_THREE_MATCH(" (5,000원)"),
+    REWARDS_FORE_MATCH(" (50,000원)"),
+    REWARDS_FIVE_MATCH(" (1,500,000원)"),
+    REWARDS_FIVE_BONUS_MATCH(", 보너스 볼 일치 (30,000,000원)"),
+    REWARDS_SIX_MATCH(" (2,000,000,000원)");
 
     private String value;
     UserInterfaceMessage(String value) {

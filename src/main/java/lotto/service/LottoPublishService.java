@@ -9,7 +9,6 @@ import lotto.enums.UserInterfaceMessage;
 
 public class LottoPublishService {
     private List<Lotto> publishedLottoNumbers = new ArrayList<>();
-
     private Integer lottoPrice;
     private Integer boughtLottoCount;
 
@@ -22,6 +21,11 @@ public class LottoPublishService {
 
     public static LottoPublishService getInstance() {
         return InnerLottoPublishService.INSTANCE;
+    }
+
+
+    public Integer getLottoPrice() {
+        return lottoPrice;
     }
 
     public void clearPublishedLottoNumbers() {

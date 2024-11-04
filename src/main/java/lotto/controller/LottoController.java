@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.repository.Lotto;
 import lotto.service.LottoBonusService;
 import lotto.service.LottoInputDrawNumberService;
+import lotto.service.LottoNumberCompareService;
 import lotto.service.LottoPublishService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -14,6 +15,8 @@ public class LottoController {
     LottoInputDrawNumberService lottoInputDrawNumberService = LottoInputDrawNumberService.getInstance();
     LottoPublishService lottoPublishService = LottoPublishService.getInstance();
     LottoBonusService lottoBonusService = LottoBonusService.getInstance();
+    private LottoNumberCompareService lottoNumberCompareService = LottoNumberCompareService.getInstance();
+
 
     public LottoController() {
         this.inputView = new InputView();
@@ -21,10 +24,27 @@ public class LottoController {
     }
 
     public void startLottoGame() {
-        this.buyLotto();
-        this.lottoPublish();
-        this.saveDrawNumbers();
-        this.saveBonusNumbers();
+        buyLotto();
+        lottoPublish();
+        saveDrawNumbers();
+        saveBonusNumbers();
+        processDrawResult();
+        printResult();
+    }
+
+    private void printResult() {
+        outputView.printResultMessage();
+        outputView.printRewardResult(lottoNumberCompareService.getMatchResult());
+        outputView.printEarnings(lottoNumberCompareService.getEarnings());
+    }
+
+    private void processDrawResult() {
+        lottoNumberCompareService.inputNumber(lottoPublishService.getPublishedLottoNumbers(),
+                lottoInputDrawNumberService.getLottoDrawNumber(), lottoBonusService.getLottoBonusNumber(),
+                lottoPublishService.getLottoPrice());
+
+        lottoNumberCompareService.initMatchResult();
+        lottoNumberCompareService.calcResult();
     }
 
     private void saveBonusNumbers() {
