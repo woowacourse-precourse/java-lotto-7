@@ -7,8 +7,8 @@ import static lotto.validator.ValidationMessage.INVALID_PURCHASE_PRICE;
 import lotto.exception.InvalidInputException;
 
 public record LottoPurchasePrice(int price) {
-
     private static final int REMAINDER = 0;
+    private static final int NON_NEGATIVE_THRESHOLD = 0;
 
     public LottoPurchasePrice {
         validateNonNegativePrice(price);
@@ -16,7 +16,7 @@ public record LottoPurchasePrice(int price) {
     }
 
     private void validateNonNegativePrice(int price) {
-        if (price <= 0) {
+        if (price <= NON_NEGATIVE_THRESHOLD) {
             throw new InvalidInputException(INVALID_NEGATIVE_PRICE.getMessage());
         }
     }
