@@ -8,7 +8,7 @@ public enum Rank {
     FIFTH(5000,3,"3개 일치 (5,000원)"),
     NONE(0,0,"당첨되지 않음");
 
-    private final int prize;   // 상금을 나타내는 필드
+    private final int prize;
     private final int match_count;
     private final String message;
 
