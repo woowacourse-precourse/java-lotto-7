@@ -13,11 +13,11 @@ public class LottoGroup {
         return new LottoGroup(lottoList);
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return this.lottos;
     }
 
-    public int getSize(){
+    public int getSize() {
         return lottos.size();
     }
 }
