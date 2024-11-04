@@ -1,5 +1,7 @@
 package lotto;
 
+import InputOutput.InputView;
+
 import java.util.*;
 
 public class Lotto {
@@ -16,4 +18,14 @@ public class Lotto {
         }
     }
 
+    public static List<List<Integer>> createLottoTickets(int ticket) {
+        List<List<Integer>> lottoTickets = new ArrayList<>();
+
+        for (int i = 0; i < ticket; i++) {
+            List<Integer> randomNumbers = InputView.random();
+            Collections.sort(randomNumbers);
+            lottoTickets.add(randomNumbers);
+        }
+        return lottoTickets;
+    }
 }
