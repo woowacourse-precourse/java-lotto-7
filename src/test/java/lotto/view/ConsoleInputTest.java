@@ -13,7 +13,7 @@ public class ConsoleInputTest {
     class 구입금액_입력_테스트 {
 
         @Test
-        void 정상__구입금액_입력() {
+        void 성공__구입금액_입력() {
             // given
             List<String> inputs = List.of("1000");
             String expect = "1000";
@@ -27,7 +27,7 @@ public class ConsoleInputTest {
         }
 
         @Test
-        void 정상__구입금액_빈문자열() {
+        void 성공__구입금액_빈문자열() {
             List<String> inputs = List.of("");
             String expect = "";
 
@@ -44,7 +44,7 @@ public class ConsoleInputTest {
     class 당첨번호_입력_테스트 {
 
         @Test
-        void 정상__당첨번호_입력() {
+        void 성공__당첨번호_입력() {
             List<String> inputs = List.of("1, 2, 3, 4, 5, 6");
             String expect = "1, 2, 3, 4, 5, 6";
 
@@ -57,7 +57,7 @@ public class ConsoleInputTest {
         }
 
         @Test
-        void 정상__당첨번호_빈문자열() {
+        void 성공__당첨번호_빈문자열() {
             List<String> inputs = List.of("");
             String expect = "";
 
@@ -74,7 +74,7 @@ public class ConsoleInputTest {
     class 보너스번호_입력_테스트 {
 
         @Test
-        void 정상__보너스번호_입력() {
+        void 성공__보너스번호_입력() {
             List<String> inputs = List.of("1");
             String expect = "1";
 
@@ -87,7 +87,7 @@ public class ConsoleInputTest {
         }
 
         @Test
-        void 정상__보너스번호_입력_빈문자열() {
+        void 성공__보너스번호_입력_빈문자열() {
             List<String> inputs = List.of("1");
             String expect = "1";
 

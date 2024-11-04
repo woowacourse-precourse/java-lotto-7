@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class PrizeTest {
 
     @Test
-    void 등수_찾기_테스트_1등() {
+    void 성공__등수_찾기_테스트_1등() {
         // given
         int matchCount = 6;
 
@@ -20,7 +20,7 @@ class PrizeTest {
     }
 
     @Test
-    void 등수_찾기_테스트_2등() {
+    void 성공__등수_찾기_테스트_2등() {
         // given
         int matchCount = 5;
 
@@ -32,7 +32,7 @@ class PrizeTest {
     }
 
     @Test
-    void 등수_찾기_테스트_3등_메인번호() {
+    void 성공__등수_찾기_테스트_3등_메인번호() {
         // given
         int matchCount = 5;
 
@@ -44,7 +44,7 @@ class PrizeTest {
     }
 
     @Test
-    void 등수_찾기_테스트_3등_보너스포함() {
+    void 성공__등수_찾기_테스트_3등_보너스포함() {
         // given
         int matchCount = 4;
 
@@ -56,7 +56,7 @@ class PrizeTest {
     }
 
     @Test
-    void 등수_찾기_테스트_4등_메인번호() {
+    void 성공__등수_찾기_테스트_4등_메인번호() {
         // given
         int matchCount = 4;
 
@@ -68,7 +68,7 @@ class PrizeTest {
     }
 
     @Test
-    void 등수_찾기_테스트_4등_보너스포함() {
+    void 성공__등수_찾기_테스트_4등_보너스포함() {
         // given
         int matchCount = 3;
 
@@ -80,7 +80,7 @@ class PrizeTest {
     }
 
     @Test
-    void 등수_찾기_테스트_5등_메인번호() {
+    void 성공__등수_찾기_테스트_5등_메인번호() {
         // given
         int matchCount = 3;
 
@@ -92,7 +92,7 @@ class PrizeTest {
     }
 
     @Test
-    void 등수_찾기_테스트_5등_보너스포함() {
+    void 성공__등수_찾기_테스트_5등_보너스포함() {
         // given
         int matchCount = 2;
 
@@ -104,7 +104,7 @@ class PrizeTest {
     }
 
     @Test
-    void 등수_찾기_테스트_미당첨_2개() {
+    void 성공__등수_찾기_테스트_미당첨_2개() {
         // given
         int matchCount = 2;
 
@@ -116,7 +116,7 @@ class PrizeTest {
     }
 
     @Test
-    void 등수_찾기_테스트_미당첨_1개_보너스포함() {
+    void 성공__등수_찾기_테스트_미당첨_1개_보너스포함() {
         // given
         int matchCount = 1;
 
@@ -128,7 +128,7 @@ class PrizeTest {
     }
 
     @Test
-    void 등수_찾기_테스트_미당첨_0개() {
+    void 성공__등수_찾기_테스트_미당첨_0개() {
         // given
         int matchCount = 0;
 
@@ -140,7 +140,7 @@ class PrizeTest {
     }
 
     @Test
-    void 등수_찾기_테스트_미당첨_0개_보너스포함() {
+    void 성공__등수_찾기_테스트_미당첨_0개_보너스포함() {
         // given
         int matchCount = 0;
 

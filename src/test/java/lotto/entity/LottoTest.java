@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 class LottoTest {
 
     @Test
-    void 로또_번호_정상_테스트() {
+    void 성공__로또_번호_정상_테스트() {
         // given
         List<Integer> integers = List.of(1, 2, 3, 20, 44, 45);
 
@@ -29,7 +29,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호_정렬_테스트() {
+    void 성공__로또_번호_정렬_테스트() {
         // given
         List<Integer> integers = List.of(20, 5, 3, 10, 44, 45);
 
@@ -41,7 +41,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
+    void 실패__로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         // given
         List<Integer> integers = List.of(1, 2, 3, 4, 5, 6, 7);
 
@@ -54,7 +54,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호의_개수가_부족할떄() {
+    void 실패__로또_번호의_개수가_부족할떄() {
         // given
         List<Integer> integers = List.of(1, 2, 3, 4);
 
@@ -67,7 +67,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+    void 실패__로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         // given
         List<Integer> integers = List.of(1, 2, 3, 4, 5, 5);
 
@@ -80,7 +80,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호에_정해진_범위를_벗어나는_숫자가_있으면_예외가_발생한다_위로() {
+    void 실패__로또_번호에_정해진_범위를_벗어나는_숫자가_있으면_예외가_발생한다_위로() {
         // given
         List<Integer> integers = List.of(1, 2, 3, 4, 5, 46);
 
@@ -93,7 +93,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호에_정해진_범위를_벗어나는_숫자가_있으면_예외가_발생한다_아래로() {
+    void 실패__로또_번호에_정해진_범위를_벗어나는_숫자가_있으면_예외가_발생한다_아래로() {
         // given
         List<Integer> integers = List.of(1, 2, 3, 4, 5, 0);
 
@@ -106,7 +106,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호에_음수가_들어갔을때() {
+    void 실패__로또_번호에_음수가_들어갔을때() {
         // given
         List<Integer> integers = List.of(1, 2, 3, 4, 5, -10);
 
@@ -119,7 +119,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호_객체가_널이_들어갔을떄() {
+    void 실패__로또_번호_객체가_널이_들어갔을떄() {
         // given
         List<Integer> integers = null;
 
@@ -132,7 +132,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호_객체가_비어있을때() {
+    void 실패__로또_번호_객체가_비어있을때() {
         // given
         List<Integer> integers = List.of();
 
@@ -145,7 +145,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호중_NULL이_있을때() {
+    void 실패__로또_번호중_NULL이_있을때() {
         // given
         List<Integer> integers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, null));
 
@@ -158,7 +158,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_contains_테스트() {
+    void 성공__로또_contains_테스트() {
         // given
         List<Integer> integers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
 

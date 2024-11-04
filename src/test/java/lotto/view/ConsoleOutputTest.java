@@ -24,7 +24,7 @@ public class ConsoleOutputTest {
     }
 
     @Test
-    void 수익_통계_출력_테스트() {
+    void 성공__수익_통계_출력_테스트() {
         // given
         ProfitStatisticsDto dto = new ProfitStatisticsDto(
                 Map.of(
@@ -58,7 +58,7 @@ public class ConsoleOutputTest {
     }
 
     @Test
-    void 수익_통계_출력_퍼센트_반올림_테스트_버림() {
+    void 성공__수익_통계_출력_퍼센트_반올림_테스트_버림() {
         // given
         ProfitStatisticsDto dto = new ProfitStatisticsDto(
                 Map.of(
@@ -92,7 +92,7 @@ public class ConsoleOutputTest {
     }
 
     @Test
-    void 수익_통계_출력_퍼센트_반올림_테스트_올림() {
+    void 성공__수익_통계_출력_퍼센트_반올림_테스트_올림() {
         // given
         ProfitStatisticsDto dto = new ProfitStatisticsDto(
                 Map.of(
@@ -126,7 +126,7 @@ public class ConsoleOutputTest {
     }
 
     @Test
-    void printPurchasedLottos() {
+    void 성공__구매한_로또_출력() {
         // given
         List<Lotto> lottos = List.of(
                 new Lotto(List.of(8, 21, 23, 41, 42, 43)),
