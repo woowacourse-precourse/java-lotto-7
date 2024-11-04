@@ -42,6 +42,9 @@ public class Input {
         if (cost % LOTTO_CHARGE != ZERO) {
             throw new IllegalArgumentException("[ERROR] 구매 비용은 1,000원 단위로 입력할 수 있습니다.");
         }
+        if (cost < ZERO) {
+            throw new IllegalArgumentException("[ERROR] 구매 비용은 양수이여야 합니다.");
+        }
 
         return cost;
     }
