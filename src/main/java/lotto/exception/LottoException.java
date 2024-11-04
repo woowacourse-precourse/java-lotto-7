@@ -7,7 +7,7 @@ public abstract class LottoException extends RuntimeException {
 	private final ErrorMessage errorMessage;
 
 	public LottoException(ErrorMessage errorMessage) {
-		super(errorMessage.getErrorMessage());
+		super(errorMessage.getMessage());
 		this.errorMessage = errorMessage;
 	}
 
