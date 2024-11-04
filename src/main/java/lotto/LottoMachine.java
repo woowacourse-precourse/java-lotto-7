@@ -37,4 +37,22 @@ public class LottoMachine {
     public List<Lotto> getMyLottos(){
         return myLottos;
     }
+
+    public List<Prize> calculateStatistics(List<Lotto> myLottos, List<Integer> winningNumbers, int bonusNumber){
+        return myLottos.stream()
+                .map(lotto ->{
+                    int matchCount = lotto.countMatches(winningNumbers);
+                    boolean matchBonus = lotto.contains(bonusNumber);
+                    return Prize.valueOf(matchCount, matchBonus);
+                })
+                .collect(Collectors.toList());
+    }
+
+    public double calculateProfitRate(List<Prize> results, int purchaseAmount){
+        int totalPrize = results.stream()
+                .mapToInt(Prize::getPrize)
+                .sum();
+
+        return ((double) totalPrize / purchaseAmount * 100);
+    }
 }

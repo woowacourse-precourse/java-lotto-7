@@ -18,4 +18,18 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS);
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int countMatches(List<Integer> winningNumbers){
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean contains(int number){
+        return numbers.contains(number);
+    }
 }
