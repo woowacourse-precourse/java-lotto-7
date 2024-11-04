@@ -29,10 +29,10 @@ public class LottoController {
         PurchaseLottoView.printPurchasedLottos(purchasedLottos);
 
         // 당첨 번호 입력
-        List<Integer> winningNumbers = WinningLottoInputView.inputWinningLottoNumbers();
+        List<Integer> winningNumbers = inputWinningNumbers();
 
         // 보너스 번호 입력
-        int bonusNumber = WinningLottoInputView.inputBonusNumber();
+        int bonusNumber = inputBonusNumber();
 
         // 로또 검증 및 결과 계산
         LottoVerification lottoVerification = new LottoVerification(winningNumbers, bonusNumber);
