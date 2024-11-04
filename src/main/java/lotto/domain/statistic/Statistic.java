@@ -14,7 +14,7 @@ public class Statistic {
     public double getInterestRate(List<UserLottoInfo> userLottoInfos, long purchaseCost) {
         long sum = getPrizeSum(userLottoInfos);
 
-        double yield = transformToPercentage(purchaseCost, sum);
+        double yield = transformToPercentage(sum, purchaseCost);
 
         return roundToTwoDecimalPlaces(yield);
     }
@@ -27,7 +27,7 @@ public class Statistic {
     }
 
     private static double transformToPercentage(long sum, long purchaseCost) {
-        return sum / (double)purchaseCost * 100;
+        return sum / (double) purchaseCost * 100;
     }
 
     private static double roundToTwoDecimalPlaces(double yield) {
