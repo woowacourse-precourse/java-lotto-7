@@ -46,4 +46,9 @@ public class BonusNumber {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨번호와 중복됩니다.");
         }
     }
+
+    public int getBonusNumber() {
+        return this.BONUS_NUMBER;
+    }
+
 }

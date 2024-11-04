@@ -32,7 +32,11 @@ public class Purchase {
     }
 
     public List<Lotto> getLottoNumbers() {
-        return lottoNumbers;
+        return this.lottoNumbers;
+    }
+
+    public int getPurchaseAmount() {
+        return this.PURCHASE_AMOUNT;
     }
 
     private void validateNull(String purchaseAmount) {

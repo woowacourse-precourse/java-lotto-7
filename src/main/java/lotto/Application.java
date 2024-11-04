@@ -2,17 +2,18 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Application {
-//    private static int PURCHASE_AMOUNT;
-    private static List<Integer> LOTTO_NUMBER;
-    private static int BONUS_NUMBER;
+    private static List<Integer> lottoNumber;
     private static Purchase purchase;
     private static Lotto lotto;
     private static BonusNumber bonusNumber;
+    private static List<Lotto> LottoNumbers;
+    private static int[] rank = new int[5];
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -22,6 +23,9 @@ public class Application {
         printPurchaseLottoNumbers();
         saveLottoNumbers();
         saveBonusNumber();
+        getRank();
+        printStatistic();
+        printEarningsRate();
     }
 
     private static void savePurchaseAmount() {
@@ -38,7 +42,7 @@ public class Application {
 
     private static void printPurchaseLottoNumbers() {
         System.out.println();
-        List<Lotto> LottoNumbers = purchase.getLottoNumbers();
+        LottoNumbers = purchase.getLottoNumbers();
         System.out.println(LottoNumbers.size() + "개를 구매했습니다.");
         for(Lotto lotto : LottoNumbers) {
             System.out.println(lotto.getLottoNumber());
@@ -51,7 +55,7 @@ public class Application {
         String input = Console.readLine();
         LottoNumberValidator lottoNumberValidator = new LottoNumberValidator(input);
         // 입력된 문자열을 정수 리스트로 변환
-        LOTTO_NUMBER = Arrays.stream(input.split(","))
+        lottoNumber = Arrays.stream(input.split(","))
 //                .map(String::trim) // 공백 제거
                 .map(Integer::parseInt) // String을 Integer로 변환
                 .collect(Collectors.toList());
@@ -62,7 +66,7 @@ public class Application {
         while(true){
             try {
                 String input = getLottoNumbers();
-                lotto = new Lotto(LOTTO_NUMBER);
+                lotto = new Lotto(lottoNumber);
                 return;
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
@@ -75,11 +79,46 @@ public class Application {
             System.out.println();
             System.out.println("보너스 번호를 입력해 주세요.");
             try {
-                bonusNumber = new BonusNumber(Console.readLine(), LOTTO_NUMBER);
+                bonusNumber = new BonusNumber(Console.readLine(), lottoNumber);
                 return;
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static void getRank() {
+        for(Lotto numbers : LottoNumbers){
+            int count = (int) numbers.getLottoNumber().stream()
+                    .filter(lottoNumber::contains) // list2에 포함된 요소만 필터링
+                    .count();
+            if(count == 3) rank[0] += 1;
+            if(count == 4) rank[1] += 1;
+            if(count == 5) {
+                if(numbers.getLottoNumber().contains(bonusNumber.getBonusNumber())) {
+                    rank[3] += 1;
+                    continue;
+                }
+                rank[2] += 1;
+            }
+            if(count == 6) rank[4] += 1;
+        }
+    }
+
+    private static void printStatistic() {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + rank[0] + "개");
+        System.out.println("4개 일치 (50,000원) - " + rank[1] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + rank[2] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rank[3] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + rank[4] + "개");
+    }
+
+    private static void printEarningsRate() {
+        float EARNINGS = 5000 * rank[0] + 50000 * rank[1] + 1500000 * rank[2] + 30000000 * rank[3] + 2000000000 * rank[4];
+        float EARNINGS_RATE = (EARNINGS / purchase.getPurchaseAmount()) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", EARNINGS_RATE);
     }
 }

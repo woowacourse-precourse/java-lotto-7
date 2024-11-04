@@ -18,7 +18,7 @@ public class LottoNumberValidator {
 
     private void validateWrongInput(String input) {
         // 다른 구분자나 숫자가 포함되어 있는지 확인하기
-        if(!input.matches("^[1-9,]*$")) {
+        if(!input.matches("^[0-9,]*$")) {
             throw new IllegalArgumentException("[ERROR] 숫자와 구분자','외에 다른문자가 포함되어 있습니다.");
         }
     }
