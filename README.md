@@ -1,4 +1,15 @@
 # java-lotto-precourse
+## Table of Contents 📑
+
+- 애플리케이션 소개
+- 기능 목록
+- Use Case 시나리오
+- Use Case  다이어그램
+- MVC 구조
+- 확장 가능성 고려 사항
+- 클래스 다이어그램
+
+---
 
 ## 📖 애플리케이션 소개
 ### 개요
