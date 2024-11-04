@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,11 +25,13 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        DecimalFormat formatter = new DecimalFormat("#,###");
+
         for (Prize prize : Prize.values()) {
             if (prize != Prize.NONE) {
-                System.out.printf("%s (%d원) - %d개%n",
+                System.out.printf("%s (%s원) - %d개%n",
                         prize.getDescription(),
-                        prize.getPrizeMoney(),
+                        formatter.format(prize.getPrizeMoney()),
                         results.get(prize));
             }
         }
