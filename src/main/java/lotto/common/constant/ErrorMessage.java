@@ -18,7 +18,8 @@ public enum ErrorMessage {
     BONUS_NUMBER_FORMAT_ERROR("보너스 번호 형식이 알맞지 않습니다."),
     BONUS_NUMBER_MUST_NOT_BE_NULL("보너스 번호는 null일 수 없습니다."),
     THERE_IS_INVALID_NUMBER_IN_BONUS_NUMBER("보너스 번호는 1~45의 값만 가능합니다."),
-    WINNING_NUMBER_CONTAINS_BONUS_NUMBER("보너스 번호는 당첨 번호에 포함될 수 없습니다.");
+    WINNING_NUMBER_CONTAINS_BONUS_NUMBER("보너스 번호는 당첨 번호에 포함될 수 없습니다."),
+    WINNING_NUMBER_COUNT_ERROR("당첨 번호는 6글자여야 합니다.");
 
     private final String errorMessage;
     private final String errorLogo = "[ERROR] ";

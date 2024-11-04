@@ -18,6 +18,7 @@ public class WinningLottoNumberValidator {
     public static void validateWinningLottoNumber(List<Integer> winningNumbers){
         throwExceptionIfDuplicateNumber(winningNumbers);
         throwExceptionIfNumberIsNotValid(winningNumbers);
+        throwExceptionIfSizeIsOver(winningNumbers);
     }
 
     public static void throwExceptionPrefixOrSuffixIsComma(String userInputWinningNumbers){
@@ -38,6 +39,12 @@ public class WinningLottoNumberValidator {
 
         if(!isValid){
             throw new WinningLottoNumberException(THERE_IS_INVALID_NUMBER_IN_WINNING_LOTTO);
+        }
+    }
+
+    private static void throwExceptionIfSizeIsOver(List<Integer> winningNumbers){
+        if(winningNumbers.size() != DEFAULT_LOTTO.getCountOfLottoNumber()){
+            throw new WinningLottoNumberException(WINNING_NUMBER_COUNT_ERROR);
         }
     }
 }
