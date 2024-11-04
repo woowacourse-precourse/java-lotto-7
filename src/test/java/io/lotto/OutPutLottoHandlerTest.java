@@ -55,11 +55,11 @@ class OutPutLottoHandlerTest {
         // given
         int price = 8000;
         int profit = 5000;
-        
+
         // when
-        double profitRate = outPutLottoHandler.getProfitRate(price, profit);
+        String profitRate = outPutLottoHandler.getProfitRate(price, profit);
 
         // then
-        assertThat(profitRate).isEqualTo(62.5);
+        assertThat(profitRate).isEqualTo("62.5");
     }
 }
