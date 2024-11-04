@@ -33,4 +33,4 @@ Lottos
 
 
 WinningType
-- [ ] 일치하는 번호 수에 따른 금액 Enum
+- [x] 일치하는 번호 수에 따른 금액 Enum
