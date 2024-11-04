@@ -2,8 +2,8 @@ package lotto.view;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.Lotto;
-import lotto.Rank;
+import lotto.model.Lotto;
+import lotto.model.Rank;
 
 public class OutputView {
 

@@ -1,7 +1,12 @@
-package lotto;
+package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoGenerator;
+import lotto.model.LottoService;
+import lotto.model.Rank;
+import lotto.model.StringParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

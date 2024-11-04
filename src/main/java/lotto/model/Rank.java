@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public enum Rank {
     FIRST(6, 0, 2_000_000_000),      // 1등: 6개 숫자 일치 (보너스 숫자는 필요 없음)
