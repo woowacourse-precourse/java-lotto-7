@@ -58,18 +58,6 @@ public class InputMiddleController {
         }
     }
 
-//    private void validateWinningNumbers(List<Integer> numbers) {
-//        if (numbers.size() != 6) {
-//            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_COUNT.getMessage());
-//        }
-//        if (numbers.stream().distinct().count() != numbers.size()) {
-//            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBERS.getMessage());
-//        }
-//        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-//            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
-//        }
-//    }
-
     private Bonus getValidatedBonusNumber(Lotto lotto) {
         while (true) {
             try {
@@ -80,15 +68,6 @@ public class InputMiddleController {
             }
         }
     }
-
-//    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-//        if (winningNumbers.contains(bonusNumber)) {
-//            throw new IllegalArgumentException(DUPLICATE_WINNING_AND_BONUS_NUMBER.getMessage());
-//        }
-//        if (bonusNumber < 1 || bonusNumber > 45) {
-//            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
-//        }
-//    }
 
     public WinningLotto getValidatedWinningLotto(Lotto lotto, Bonus bonus) {
         return new WinningLotto(lotto, bonus);
