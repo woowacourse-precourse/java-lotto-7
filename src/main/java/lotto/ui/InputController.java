@@ -9,7 +9,6 @@ import lotto.domain.LottoPayment;
 import lotto.exception.LottoArgumentException;
 
 public class InputController {
-
     private static final String BLANK_INPUT_ERROR_MESSAGE = "공백은 허용되지 않습니다.";
     private static final String ITS_NOT_NUMBER_ERROR_MESSAGE = "숫자가 아닙니다.";
     private static final String REPEATED_SEPARATOR_ERROR_MESSAGE = "구분자가 반복되고 있습니다.";

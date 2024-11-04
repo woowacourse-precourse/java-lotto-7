@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import lotto.common.LottoNumbers;
 
 public class LottoGenerator {
-
     public Lotto random() {
         final List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                 LottoNumbers.START.get(),

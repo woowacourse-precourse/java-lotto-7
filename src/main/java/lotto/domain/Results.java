@@ -5,7 +5,6 @@ import java.util.List;
 import lotto.common.LottoResults;
 
 public class Results {
-
     private static final BigDecimal HUNDRED = new BigDecimal("100");
     private final List<LottoResults> lottoResults;
 
