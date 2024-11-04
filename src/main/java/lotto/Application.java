@@ -15,6 +15,7 @@ public class Application {
             printPurchasedLottos(purchasedLottos);
 
             List<Integer> winningNumbers = getWinningNumbers();
+            int bonusNumber = getBonusNumber();
     }
 
     // 구입 금액 입력 처리
@@ -64,4 +65,15 @@ public class Application {
         }
         return new ArrayList<>(winningNumbers);
     }
+
+    // 보너스 번호 입력
+    private static int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine().trim());
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이여야 합니다.");
+        }
+        return bonusNumber;
+    }
+
 }
