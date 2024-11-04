@@ -30,4 +30,13 @@ public class LottoCheck {   // 로또 당첨 및 등수확인
 
         return lottoRankResult(match, bonusMatch);
     }
+
+    public int prizeInfo(int rank) {
+        if (rank == 1) return 2000000000;
+        if (rank == 2) return 30000000;
+        if (rank == 3) return 1500000;
+        if (rank == 4) return 50000;
+        if (rank == 5) return 5000;
+        return 0;
+    }
 }
