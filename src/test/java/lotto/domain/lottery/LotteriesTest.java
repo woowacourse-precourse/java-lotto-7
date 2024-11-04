@@ -68,7 +68,7 @@ class LotteriesTest {
         Lottery lotto4 = new Lotto(List.of(13, 2, 33, 5, 35, 36));
         Lotteries lotteries = Lotteries.newInstance(List.of(lotto1, lotto2, lotto3, lotto4));
         //when
-        List<WinningNumberMatchCountVO> winningNumberMatchCountVOS = lotteries.WinningNumberMatchCount(
+        List<WinningNumberMatchCountVO> winningNumberMatchCountVOS = lotteries.winningNumberMatchCount(
                 List.of(1, 2, 33, 4, 5, 6));
 
         //then

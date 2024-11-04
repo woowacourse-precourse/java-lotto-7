@@ -2,13 +2,13 @@ package lotto.domain.tier;
 
 public class LottoTier implements Tier {
 
-    private final Integer winningMatchCount;
+    private final Integer requiredMatchCount;
     private final Boolean needsBonusNumberMatch;
     private final Long winningAmount;
 
-    private LottoTier(Integer winningMatchCount, Boolean needsBonusNumberMatch, Long winningAmount
+    private LottoTier(Integer requiredMatchCount, Boolean needsBonusNumberMatch, Long winningAmount
     ) {
-        this.winningMatchCount = winningMatchCount;
+        this.requiredMatchCount = requiredMatchCount;
         this.needsBonusNumberMatch = needsBonusNumberMatch;
         this.winningAmount = winningAmount;
     }
@@ -18,8 +18,8 @@ public class LottoTier implements Tier {
     }
 
     @Override
-    public Integer getWinningMatchCount() {
-        return winningMatchCount;
+    public Integer getRequiredMatchCount() {
+        return requiredMatchCount;
     }
 
     @Override

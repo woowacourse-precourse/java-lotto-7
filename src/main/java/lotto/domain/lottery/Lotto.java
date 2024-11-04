@@ -2,7 +2,6 @@ package lotto.domain.lottery;
 
 import java.util.List;
 import lotto.controller.LottoPolicy;
-import lotto.domain.lottery.Lottery;
 import lotto.exception.ExceptionMessage;
 
 public class Lotto implements Lottery {
@@ -24,13 +23,11 @@ public class Lotto implements Lottery {
                     ExceptionMessage.ERROR.getMessage() + ExceptionMessage.INPUT_DUPLICATE_NUMBER.getMessage());
         }
     }
-
     private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != LottoPolicy.WINNING_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
-
     // TODO: 추가 기능 구현
     @Override
     public List<Integer> getNumbers() {
@@ -42,5 +39,4 @@ public class Lotto implements Lottery {
         long count = numbers.stream().filter(winningNumbers::contains).count();
         return Integer.parseInt(Long.toString(count));
     }
-
 }

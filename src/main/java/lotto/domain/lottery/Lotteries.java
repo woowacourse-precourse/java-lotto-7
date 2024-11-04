@@ -19,7 +19,7 @@ public class Lotteries {
         return new ArrayList<>(lotteries);
     }
 
-    public List<WinningNumberMatchCountVO> WinningNumberMatchCount(List<Integer> winningNumbers){
+    public List<WinningNumberMatchCountVO> winningNumberMatchCount(List<Integer> winningNumbers){
         List<WinningNumberMatchCountVO> winningNumberMatchCountVOS = new ArrayList<>();
         for (Lottery lottery :lotteries) {
             Integer counted = lottery.countMatchingWinningNumbers(winningNumbers);

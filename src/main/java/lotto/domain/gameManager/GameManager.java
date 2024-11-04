@@ -3,17 +3,20 @@ package lotto.domain.gameManager;
 import java.util.List;
 import lotto.controller.Policy;
 import lotto.controller.TierPolicy;
+import lotto.controller.dto.LotteryStatisticsResultDTO;
 import lotto.domain.lottery.Lotteries;
+import lotto.domain.statistics.LotteryStatisticsHistory;
 import lotto.domain.statistics.Statistics;
 
 public interface GameManager {
 
-    Lotteries initLottery(Policy policy, int inputAmount);
+    Lotteries generateLottery(Policy policy, int inputAmount);
 
     int calculateBuyCount(int lotteryAmount, int inputAmount);
 
-    List<Statistics> initStatistics(TierPolicy tierPolicy);
+    List<Statistics> initStatistics();
 
-    void checkWinningStatus(Lotteries boughtLotteries,List<Integer> winningNumbers,int bonusNumber);
+    LotteryStatisticsResultDTO checkWinningLottery(int inputAmount,Lotteries boughtLotteries, List<Integer> winningNumbers,
+                                                   int bonusNumber, LotteryStatisticsHistory lotteryStatisticsHistory);
 
 }

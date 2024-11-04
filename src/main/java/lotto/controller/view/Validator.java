@@ -26,6 +26,7 @@ public class Validator {
         this.validatePurchasedAmount(purchasedAmount);
 
     }
+
     private void validateNumber(String input){
         String integerRegex = policy.getIntegerRegex();
         if(!input.matches(integerRegex)){
@@ -33,6 +34,7 @@ public class Validator {
                     ExceptionMessage.INPUT_NUMBER_EXCEPTION.getMessage());
         }
     }
+
     private void validateZeroAmount(int input){
         if(input==policy.getZero()){
             throw new IllegalArgumentException(ExceptionMessage.ERROR.getMessage() +
@@ -46,6 +48,7 @@ public class Validator {
                     ExceptionMessage.INPUT_NUMBER_POSITIVE.getMessage());
         }
     }
+
     private void validatePurchasedAmount(int amount){
         if(!((amount % policy.getAmountPolicy()) == 0)){
             throw new IllegalArgumentException(ExceptionMessage.ERROR.getMessage() +
@@ -68,6 +71,7 @@ public class Validator {
         validateWinningNumberSize(verifiedWinningNumbers);
         return verifiedWinningNumbers;
     }
+
     private void checkDelimiterOrThrow(String input) {
         if(!input.contains(policy.getDelimiter())){
             throw new IllegalArgumentException(ExceptionMessage.ERROR.getMessage()+policy.getDelimiter()+ExceptionMessage.INPUT_CHECK_DELIMITER.getMessage());

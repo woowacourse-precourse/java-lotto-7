@@ -1,6 +1,7 @@
 package lotto.controller;
 
 public class LottoPolicy implements Policy {
+    //TODO : validator
     public static int LOTTO_AMOUNT = 1000;
     public static int MIN_NUMBER = 1;
     public static int MAX_NUMBER = 45;

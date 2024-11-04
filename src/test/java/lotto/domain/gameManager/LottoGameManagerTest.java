@@ -1,12 +1,16 @@
 package lotto.domain.gameManager;
 
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import lotto.controller.LottoPolicy;
 import lotto.controller.LottoTierPolicy;
 import lotto.controller.Policy;
 import lotto.controller.TierPolicy;
+import lotto.controller.dto.LotteryStatisticsResultDTO;
 import lotto.domain.lottery.Lotteries;
+import lotto.domain.statistics.LotteryStatisticsHistory;
 import lotto.domain.statistics.Statistics;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -18,11 +22,11 @@ class LottoGameManagerTest {
     @Test
     void initLottery() {
         //given
-        GameManager gameManager = new LottoGameManager();
+        GameManager gameManager = LottoGameManager.ofInstance(new LottoTierPolicy());
         Policy policy = new LottoPolicy();
 
         //when
-        Lotteries lotteries = gameManager.initLottery(policy, 5000);
+        Lotteries lotteries = gameManager.generateLottery(policy, 5000);
 
         //then
         Assertions.assertThat(lotteries.getLottery().size()).isEqualTo(5);
@@ -32,7 +36,8 @@ class LottoGameManagerTest {
     @Test
     void calculateBuyCount() {
         //given
-        GameManager gameManager = new LottoGameManager();
+        GameManager gameManager = LottoGameManager.ofInstance(new LottoTierPolicy());
+        ;
         //when
         int boughtLotteryCount = gameManager.calculateBuyCount(1000, 5000);
 
@@ -46,23 +51,28 @@ class LottoGameManagerTest {
     void initStatistics() {
         //given
         TierPolicy tierPolicy = new LottoTierPolicy();
-        GameManager gameManager = new LottoGameManager();
+        GameManager gameManager = LottoGameManager.ofInstance(tierPolicy);
+        ;
         //when
-        List<Statistics> statistics = gameManager.initStatistics(tierPolicy);
+        List<Statistics> statistics = gameManager.initStatistics();
         //then
         Assertions.assertThat(statistics.size()).isEqualTo(5);
     }
+
     @DisplayName("초기화되었을때 당첨복권의 개수는 모두 0개이다.")
     @Test
     void initStatistics2() {
         //given
         TierPolicy tierPolicy = new LottoTierPolicy();
-        GameManager gameManager = new LottoGameManager();
+        GameManager gameManager = LottoGameManager.ofInstance(tierPolicy);
+        ;
         //when
-        List<Statistics> statistics = gameManager.initStatistics(tierPolicy);
+        List<Statistics> statistics = gameManager.initStatistics();
         List<Long> initWinningCounts = statistics.stream().map(Statistics::getWinningLottoCount).toList();
         //then
         Assertions.assertThat(initWinningCounts).containsOnly(0L);
 
     }
+
+
 }

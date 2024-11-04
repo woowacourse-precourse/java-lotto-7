@@ -11,8 +11,7 @@ public class LotteryStatisticsHistory {
     private LotteryStatisticsHistory() {
         this.lotteryStatisticsHistory = new HashMap<>();
     }
-
-    public LotteryStatisticsHistory initInstance(List<LottoDrawStatistics> lottoDrawStatistics) {
+    public static LotteryStatisticsHistory initInstance() {
         return new LotteryStatisticsHistory();
     }
 
@@ -23,4 +22,10 @@ public class LotteryStatisticsHistory {
     public void addLotteryStatisticsHistory(Long round,List<Statistics> statistics){
         lotteryStatisticsHistory.put(round, List.copyOf(statistics));
     }
+
+    public Long getSize(){
+        return Long.parseLong(String.valueOf(lotteryStatisticsHistory.size()));
+    }
+
+
 }

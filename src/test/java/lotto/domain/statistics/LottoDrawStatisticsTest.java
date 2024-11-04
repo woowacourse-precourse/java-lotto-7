@@ -33,10 +33,10 @@ class LottoDrawStatisticsTest {
         Tier tier5 = LottoTier.initWinningTier(3, false, 5_000L);
         Statistics lottoDrawStatistics = LottoDrawStatistics.initStatistics(tier5);
         //when
-        Statistics statistics = lottoDrawStatistics.updateWinningLottoCount(2L);
+        lottoDrawStatistics.updateWinningLottoCount();
 
         //then
-        Assertions.assertThat(statistics.getWinningLottoCount()).isEqualTo(2);
+        Assertions.assertThat(lottoDrawStatistics.getWinningLottoCount()).isEqualTo(1);
     }
 
     @DisplayName("해당등수의 당첨금 합계를 구한다.")
@@ -45,9 +45,10 @@ class LottoDrawStatisticsTest {
         //given
         Tier tier5 = LottoTier.initWinningTier(3, false, 5_000L);
         Statistics lottoDrawStatistics = LottoDrawStatistics.initStatistics(tier5);
-        Statistics statistics = lottoDrawStatistics.updateWinningLottoCount(2L);
         //when
-        BigInteger bigInteger = statistics.calculateWinningAmount();
+        lottoDrawStatistics.updateWinningLottoCount();
+        lottoDrawStatistics.updateWinningLottoCount();
+        BigInteger bigInteger = lottoDrawStatistics.calculateWinningAmount();
         //then
         Assertions.assertThat(bigInteger).isEqualTo(10000);
     }
