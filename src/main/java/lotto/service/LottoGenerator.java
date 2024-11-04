@@ -1,18 +1,23 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.ValidateValues;
 import lotto.model.Lotto;
 
 import java.util.*;
 
 public class LottoGenerator {
 
-    public List<Lotto> generateLotto(int count) {
+    public List<Lotto> generateLotto(String inputPurchaseAmount) {
+        int purchaseAmount = ValidateValues.purchaseAmount(inputPurchaseAmount);
+        int count = purchaseAmount / 1000;
+
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(lottoNumbers);
-            lottos.add(new Lotto(lottoNumbers));
+            List<Integer> mutableLottoNumbeers = new ArrayList<>(lottoNumbers);
+            Collections.sort(mutableLottoNumbeers);
+            lottos.add(new Lotto(mutableLottoNumbeers));
         }
         return lottos;
     }
