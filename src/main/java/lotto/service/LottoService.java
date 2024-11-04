@@ -40,7 +40,7 @@ public class LottoService {
     }
 
     private List<Integer> generateLottoNumbers() {
-        List<Integer> numbers = pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
+        List<Integer> numbers = new ArrayList<>(pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT));
         Collections.sort(numbers);
         return numbers;
     }

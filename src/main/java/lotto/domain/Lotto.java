@@ -17,6 +17,15 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         checkLottoSize(numbers);
         checkDuplication(numbers);
+        for(int number:numbers){
+            checkNumberRange(number);
+        }
+    }
+
+    private static void checkNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(INVALID_RANGE);
+        }
     }
 
     private void checkDuplication(List<Integer> numbers) {
