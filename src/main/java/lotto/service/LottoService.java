@@ -1,6 +1,10 @@
 package lotto.service;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.config.EnvironmentVariables.LOTTO_NUMBER_COUNT;
+import static lotto.config.EnvironmentVariables.LOTTO_NUMBER_RANGE_END;
+import static lotto.config.EnvironmentVariables.LOTTO_NUMBER_RANGE_START;
+import static lotto.config.EnvironmentVariables.LOTTO_UNIT_COST;
 
 import java.util.List;
 import java.util.Map;
@@ -9,6 +13,7 @@ import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.dto.BonusLottoNumber;
+import lotto.dto.BuyLottos;
 import lotto.dto.LottoPurchaseCost;
 import lotto.dto.MatchLottoResult;
 import lotto.dto.RateOfReturn;
@@ -16,14 +21,9 @@ import lotto.dto.WinningLottoNumbers;
 import lotto.enums.Rank;
 
 public class LottoService {
-    private static final int LOTTO_UNIT_COST = 1000;
-    private static final int LOTTO_NUMBER_RANGE_START = 1;
-    private static final int LOTTO_NUMBER_RANGE_END = 45;
-    private static final int LOTTO_NUMBER_COUNT = 6;
-
-    public List<Lotto> buyLottos(LottoPurchaseCost lottoPurchaseCost) {
+    public BuyLottos buyLottos(LottoPurchaseCost lottoPurchaseCost) {
         int purchaseCount = lottoPurchaseCost.amount() / LOTTO_UNIT_COST;
-        return createLottos(purchaseCount);
+        return BuyLottos.of(createLottos(purchaseCount));
     }
 
     private List<Lotto> createLottos(int purchaseCount) {
@@ -34,11 +34,11 @@ public class LottoService {
     }
 
     public MatchLottoResult matchLottoNumber(
-            List<Lotto> lottos, WinningLottoNumbers winningLottoNumbers, BonusLottoNumber bonusLottoNumber
+            BuyLottos buyLottos, WinningLottoNumbers winningLottoNumbers, BonusLottoNumber bonusLottoNumber
     ) {
         LottoResult lottoResult = new LottoResult();
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : buyLottos.numbers()) {
             int matchCount = lotto.countWinningMatches(winningLottoNumbers.numbers());
             boolean isBonusNumberMatch = lotto.hasBonusMatch(bonusLottoNumber.number());
             lottoResult.addResult(Rank.getRankByResult(matchCount, isBonusNumberMatch));

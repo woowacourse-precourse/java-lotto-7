@@ -1,10 +1,12 @@
 package lotto.validator;
 
+import static lotto.config.EnvironmentVariables.LOTTO_NUMBER_RANGE_END;
+import static lotto.config.EnvironmentVariables.LOTTO_NUMBER_RANGE_START;
+import static lotto.config.LottoRegularExpression.LOTTO_NUMBER_REGEX;
+
 import lotto.dto.WinningLottoNumbers;
 
 public class LottoBonusNumberValidator {
-    private static final String LOTTO_BONUS_NUMBER_REGEX = "^[0-9]+$";
-
     private LottoBonusNumberValidator() {
     }
 
@@ -15,18 +17,18 @@ public class LottoBonusNumberValidator {
             checkDuplicateInWinningLottoNumber(lottoBonusNumber, winningLottoNumbers);
         } catch (NumberFormatException e) {
             checkIncludeSpecialCharacters(inputLottoBonusNumber);
-            throw new IllegalArgumentException("로또 당첨 번호는 0 이상 45 이하입니다");
+            throw new IllegalArgumentException("로또 당첨 번호는 1 이상 45 이하입니다");
         }
     }
 
     private static void checkLottoBonusNumberRange(int lottoBonusNumber) {
-        if (0 >= lottoBonusNumber || lottoBonusNumber > 45) {
-            throw new IllegalArgumentException("로또 보너스 번호는 0 이상 45 이하입니다");
+        if (LOTTO_NUMBER_RANGE_START > lottoBonusNumber || lottoBonusNumber > LOTTO_NUMBER_RANGE_END) {
+            throw new IllegalArgumentException("로또 보너스 번호는 1 이상 45 이하입니다");
         }
     }
 
     private static void checkIncludeSpecialCharacters(String lottoBonusNumber) {
-        if (!lottoBonusNumber.matches(LOTTO_BONUS_NUMBER_REGEX)) {
+        if (!lottoBonusNumber.matches(LOTTO_NUMBER_REGEX)) {
             throw new IllegalArgumentException("로또 보너스 번호는 숫자로 입력해야 합니다.");
         }
     }
