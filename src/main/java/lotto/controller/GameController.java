@@ -21,8 +21,8 @@ public class GameController {
     public void play() {
         try {
             getAmount();
-            printNumberOfLottoPurcased();
-            generateLottos();
+            printNumberOfLottoPurchased();
+            generateLotto();
             getWinnerNumber();
             getBonusNumber();
             getPrize();
@@ -46,11 +46,11 @@ public class GameController {
         numberOfLottoPurchased = amountCalculator.getNumberOfLottoPurchased();
     }
 
-    private void printNumberOfLottoPurcased() {
+    private void printNumberOfLottoPurchased() {
         OutputView.printNumberOfLottoPurchased(numberOfLottoPurchased);
     }
 
-    private void generateLottos() {
+    private void generateLotto() {
         userLottoNumbers = new ArrayList<>();
         for (int i = 0; i < numberOfLottoPurchased; i++) {
             LottoMachine lottoMachine = new LottoMachine();
@@ -90,8 +90,8 @@ public class GameController {
     }
 
     private void getPrize() {
-        for (Lotto usernumber : userLottoNumbers) {
-            prize += LottoCalculator.calculatePrize(usernumber.getNumbers(), winnerLottoNumber.getNumbers(), bonusNumber);
+        for (Lotto userNumber : userLottoNumbers) {
+            prize += LottoCalculator.calculatePrize(userNumber.getNumbers(), winnerLottoNumber.getNumbers(), bonusNumber);
         }
     }
 
