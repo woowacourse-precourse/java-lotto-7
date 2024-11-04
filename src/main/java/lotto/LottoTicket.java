@@ -12,13 +12,21 @@ public class LottoTicket {
     private static final int COUNT = 6;
 
     private final List<Lotto> lottos;
+    private final Money purchaseAmount;
 
     public LottoTicket() {
-        this(new ArrayList<>());
+        this(new ArrayList<>(), null);
     }
 
-    private LottoTicket(List<Lotto> lottos) {
+    public LottoTicket(Money purchaseAmount) {
+        this.lottos = new ArrayList<>();
+        this.purchaseAmount = purchaseAmount;
+        createLotto(purchaseAmount.calculateLottoQuantity());
+    }
+
+    public LottoTicket(List<Lotto> lottos, Money purchaseAmount) {
         this.lottos = lottos;
+        this.purchaseAmount = purchaseAmount;
     }
 
     public List<Lotto> createLotto(int lottoQuantity) {
@@ -29,5 +37,17 @@ public class LottoTicket {
             lottos.add(Lotto.with(result));
         }
         return lottos;
+    }
+
+    public int getLottoQuantity() {
+        return purchaseAmount.calculateLottoQuantity();
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public Money getPurchaseAmount() {
+        return purchaseAmount;
     }
 }

@@ -52,4 +52,9 @@ public class WinningNumbers {
         return lotto.hasBall(bonusNumber);
     }
 
+    public WinningResult calculateResult(LottoTicket lottoTicket) {
+        Map<Rank, Integer> rankCounts = countRank(lottoTicket.getLottos());
+        return new WinningResult(rankCounts, lottoTicket.getPurchaseAmount());
+    }
+
 }

@@ -4,15 +4,12 @@ import lotto.Ball;
 import lotto.Lotto;
 import lotto.LottoTicket;
 import lotto.Money;
-import lotto.Rank;
 import lotto.WinningNumbers;
 import lotto.WinningResult;
 import lotto.view.ConsoleInput;
 import lotto.view.ConsoleOutput;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 public class LottoGame {
     private final ConsoleInput input;
@@ -24,18 +21,19 @@ public class LottoGame {
     }
 
     public void play() {
-        BigDecimal amount = input.readPurchaseAmount();
-        Money money = new Money(amount);
-        int lottoQuantity = money.calculateLottoQuantity();
-        LottoTicket lottoTicket = new LottoTicket();
-        List<Lotto> lottos = lottoTicket.createLotto(lottoQuantity);
-        output.printLottoTicket(lottoQuantity, lottos);
+        Money money = new Money(input.readPurchaseAmount());
+        LottoTicket lottoTicket = new LottoTicket(money);
+        output.printLottoTicket(lottoTicket);
 
-        List<Integer> numbers = input.readWinningNumbers();
-        int bonusNumber = input.readBonusNumber();
-        WinningNumbers winningNumbers = new WinningNumbers(Lotto.with(numbers), Ball.valueOf(bonusNumber));
-        Map<Rank, Integer> rankCounts = winningNumbers.countRank(lottos);
-        WinningResult winningResult = new WinningResult(rankCounts, money);
+        WinningNumbers winningNumbers = enterWinningNumbers();
+        WinningResult winningResult = winningNumbers.calculateResult(lottoTicket);
         output.printPrizeStatistics(winningResult);
     }
+
+    private WinningNumbers enterWinningNumbers() {
+        List<Integer> numbers = input.readWinningNumbers();
+        int bonusNumber = input.readBonusNumber();
+        return new WinningNumbers(Lotto.with(numbers), Ball.valueOf(bonusNumber));
+    }
+
 }

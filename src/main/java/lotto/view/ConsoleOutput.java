@@ -1,17 +1,16 @@
 package lotto.view;
 
-import lotto.Lotto;
+import lotto.LottoTicket;
 import lotto.Rank;
 import lotto.WinningResult;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class ConsoleOutput {
-    public void printLottoTicket(int lottoQuantity, List<Lotto> lottos) {
-        System.out.println("\n" + lottoQuantity + "개를 구매했습니다.");
-        lottos.forEach(
+    public void printLottoTicket(LottoTicket lottoTicket) {
+        System.out.println("\n" + lottoTicket.getLottoQuantity() + "개를 구매했습니다.");
+        lottoTicket.getLottos().forEach(
                 lotto -> System.out.println(lotto.getNumbers())
         );
     }
@@ -28,13 +27,19 @@ public class ConsoleOutput {
         Set<Map.Entry<Rank, Integer>> entries = counts.entrySet();
         for (Map.Entry<Rank, Integer> entry : entries) {
             Rank rank = entry.getKey();
-            if (rank.isMatchBonus()) {
-                System.out.println(rank.getMatchCount() + "개 일치, 보너스 볼 일치 (" + rank.getFormattedPrize() + "원) - " + entry.getValue() + "개");
-            }
-            if (rank == Rank.NONE) {
-                System.out.println();
-            }
-            System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getFormattedPrize() + "원) - " + entry.getValue() + "개");
+            printRankCount(entry, rank);
         }
+    }
+
+    private static void printRankCount(Map.Entry<Rank, Integer> entry, Rank rank) {
+        if (rank.isMatchBonus()) {
+            System.out.println(rank.getMatchCount() + "개 일치, 보너스 볼 일치 (" + rank.getFormattedPrize() + "원) - " + entry.getValue() + "개");
+            return;
+        }
+        if (rank == Rank.NONE) {
+            System.out.println();
+            return;
+        }
+        System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getFormattedPrize() + "원) - " + entry.getValue() + "개");
     }
 }
