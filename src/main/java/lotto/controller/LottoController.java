@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.enums.Constants.PURCHASE_AMOUNT_UNIT;
+import static lotto.enums.Constants.ZERO_VALUE;
 import static lotto.util.Validator.validateBonusNumber;
 import static lotto.util.Validator.validatePurchaseAmount;
 import static lotto.util.Validator.validateWinningNumbers;
@@ -44,7 +46,7 @@ public class LottoController {
     }
 
     private void generateAndDisplayLottos(int purchaseAmount) {
-        int lottoCount = purchaseAmount / 1000;
+        int lottoCount = purchaseAmount / PURCHASE_AMOUNT_UNIT.getValue();
         lottoService.generateLottos(lottoCount);
         outputView.printLottoCount(lottoCount);
 
@@ -88,7 +90,7 @@ public class LottoController {
     private void printResults(Rank rank, Map<Rank, Integer> results) {
         int matchCount = rank.getMatchCount();
         int winningAmount = rank.getWinningAmount();
-        int winningCount = results.getOrDefault(rank, 0);
+        int winningCount = results.getOrDefault(rank, ZERO_VALUE.getValue());
 
         if (rank.isRequiresBonus()) {
             outputView.printMatchWithBonusResult(matchCount, winningAmount, winningCount);
