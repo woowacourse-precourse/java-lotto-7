@@ -21,7 +21,7 @@ public class LottoPurchaseController {
 
     private void purchaseLotto(long purchasedLottoCount, Lottos lottos) {
         for (int count = 0; count < purchasedLottoCount; count++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers);
             Lotto lotto = Lotto.createLotto(numbers);
             lottos.addLotto(lotto);
