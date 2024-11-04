@@ -5,7 +5,6 @@ import lotto.domain.InputDomain;
 import lotto.exception.ExceptionHandler;
 import lotto.validator.Validator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -69,7 +68,6 @@ public class InputView {
                 return bonusNumber;
             }
         }
-
     }
 
     private static int readBonusNumber() {

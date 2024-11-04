@@ -14,16 +14,16 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        Validator.validateSize(numbers);
-        Validator.validateDuplication(numbers);
-        Validator.validateRange(numbers);
-    }
-
     // TODO: 추가 기능 구현
     public static List<Integer> generateLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers.stream().sorted().collect(Collectors.toList());
+    }
+
+    private void validate(List<Integer> numbers) {
+        Validator.validateSize(numbers);
+        Validator.validateDuplication(numbers);
+        Validator.validateRange(numbers);
     }
 
     public List<Integer> getNumbers() {

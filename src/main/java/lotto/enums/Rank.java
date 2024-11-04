@@ -12,12 +12,20 @@ public enum Rank {
 
     private final int matchCount;
     private final boolean matchBonus;
-    private final int prize;;
+    private final int prize;
 
     Rank(int matchCount, boolean matchBonus, int prize) {
         this.matchCount = matchCount;
         this.matchBonus = matchBonus;
         this.prize = prize;
+    }
+
+    public static Rank findRank(int matchCount, boolean matchBonus) {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.matchCount == matchCount)
+                .filter(rank -> !rank.matchBonus || matchBonus)
+                .findFirst()
+                .orElse(NONE);
     }
 
     public int getMatchCount() {
@@ -30,13 +38,5 @@ public enum Rank {
 
     public int getPrize() {
         return prize;
-    }
-
-    public static Rank findRank(int matchCount, boolean matchBonus){
-        return Arrays.stream(Rank.values())
-                .filter(rank -> rank.matchCount == matchCount)
-                .filter(rank -> !rank.matchBonus || matchBonus)
-                .findFirst()
-                .orElse(NONE);
     }
 }
