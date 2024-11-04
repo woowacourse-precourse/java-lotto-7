@@ -1,7 +1,9 @@
 package lotto;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Utils {
     public static int parseNumber(String str){
@@ -22,6 +24,10 @@ public class Utils {
             numbers.add(parseNumber(numStr.trim()));
         }
         return numbers;
+    }
+    public static String numberFomatting(int num){
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
+        return numberFormat.format(num);
     }
     private static void validString(String str){
         if(str.matches(".*[^0-9,\\s].*")){
