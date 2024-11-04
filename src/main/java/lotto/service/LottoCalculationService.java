@@ -37,7 +37,11 @@ public class LottoCalculationService {
         double sum = IntStream.rangeClosed(rankCnts.getFirstRank(), rankCnts.size())
                 .mapToDouble(rank -> calcReturn(rankCnts, rank))
                 .sum();
-        return sum / (buyer.getLottoCnt() * PRICE_PER_LOTTO) * 100;
+        return calcRateOfReturn(sum, buyer.getLottoCnt());
+    }
+
+    private double calcRateOfReturn(double sum, int lottoCnt) {
+        return sum / (lottoCnt * PRICE_PER_LOTTO) * 100;
     }
 
     private long calcReturn(LottoRankCounter rankCnts, int rank) {

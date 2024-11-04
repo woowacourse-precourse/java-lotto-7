@@ -25,7 +25,7 @@ public class PaymentService {
             validatePayment(payment);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return -1;
+            return UNINITIALIZED;
         }
         return payment;
     }
@@ -38,7 +38,7 @@ public class PaymentService {
     }
 
     private void validateThousandUnitAmount(long payment) {
-        if (payment % 1000 != 0) {
+        if (payment % PRICE_PER_LOTTO != 0) {
             throw new BusinessException(ErrorMessage.NON_DIVISIBLE_BY_LOTTO_PRICE);
         }
     }
