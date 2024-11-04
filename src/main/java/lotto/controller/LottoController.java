@@ -38,7 +38,7 @@ public class LottoController {
 
     }
 
-    private void printReturnRate(Lottos lottos, Integer lottoCount){
+    private void printReturnRate(Lottos lottos, Integer lottoCount) {
         double returnPrice = getReturnRate(lottos, lottoCount);
         OutputView.getInstance().printTotalReturnRate(returnPrice);
     }
@@ -50,12 +50,12 @@ public class LottoController {
         OutputView.getInstance().printLottos(lottoCount, lottosString);
     }
 
-    private void printResult(Map<WinningType, Integer> winningResult){
+    private void printResult(Map<WinningType, Integer> winningResult) {
         String resultString = toResultString(winningResult);
         OutputView.getInstance().printWinningResult(resultString);
     }
 
-    private String toResultString(Map<WinningType, Integer> winningResult){
+    private String toResultString(Map<WinningType, Integer> winningResult) {
         StringBuilder stringBuilder = new StringBuilder();
         for (WinningType key : WinningType.values()) {
             stringBuilder.append(generateWinningTypeString(key, winningResult.get(key)));
@@ -64,14 +64,16 @@ public class LottoController {
         return stringBuilder.toString();
     }
 
-    private String generateWinningTypeString(WinningType winningType, Integer count){
-        if(winningType.equals(WinningType.NOTHING)){
+    private String generateWinningTypeString(WinningType winningType, Integer count) {
+        if (winningType.equals(WinningType.NOTHING)) {
             return "";
         }
-        if(winningType.equals(WinningType.FIVE_BONUS)){
-            return String.format(WINNING_TYPE_BONUS_BALL_STRING_FORMAT, winningType.getMatchCount(), winningType.getPrize(), count) + "\n";
+        if (winningType.equals(WinningType.FIVE_BONUS)) {
+            return String.format(WINNING_TYPE_BONUS_BALL_STRING_FORMAT, winningType.getMatchCount(),
+                    winningType.getPrize(), count) + "\n";
         }
-        return String.format(WINNING_TYPE_STRING_FORMAT, winningType.getMatchCount(), winningType.getPrize(), count) + "\n";
+        return String.format(WINNING_TYPE_STRING_FORMAT, winningType.getMatchCount(), winningType.getPrize(), count)
+                + "\n";
     }
 
     private String getLottosString(List<Lotto> lottos) {
@@ -142,8 +144,8 @@ public class LottoController {
         }
     }
 
-    private double getReturnRate(Lottos lottos, Integer lottoCount){
+    private double getReturnRate(Lottos lottos, Integer lottoCount) {
         Long totalPrize = lottos.getTotalPrize();
-        return ((double)totalPrize - lottoCount) / lottoCount * 100 ;
+        return ((double) totalPrize - lottoCount) / lottoCount * 100;
     }
 }

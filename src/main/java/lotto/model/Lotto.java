@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,7 +45,7 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicate(final Integer number, final Set<Integer> numberSet){
+    private void validateDuplicate(final Integer number, final Set<Integer> numberSet) {
         if (!numberSet.contains(number)) {
             numberSet.add(number);
             return;
@@ -58,7 +57,7 @@ public class Lotto {
         numbers.forEach(this::isInRange);
     }
 
-    public WinningType checkWinningNumbers(List<Integer> winningNumbers, Integer bonusNumber){
+    public WinningType checkWinningNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
         int matchCount = 0;
         boolean matchBonus = false;
         matchCount += matchNumbers(winningNumbers);
@@ -67,7 +66,7 @@ public class Lotto {
         return WinningType.getWinningType(matchCount, matchBonus);
     }
 
-    private Integer matchNumbers(List<Integer> winningNumbers){
+    private Integer matchNumbers(List<Integer> winningNumbers) {
         int matchCount = 0;
         for (Integer number : numbers) {
             matchCount += isMatched(winningNumbers, number);
@@ -75,15 +74,15 @@ public class Lotto {
         return matchCount;
     }
 
-    private Integer isMatched(List<Integer> winningNumbers, Integer number){
-        if(winningNumbers.contains(number)){
+    private Integer isMatched(List<Integer> winningNumbers, Integer number) {
+        if (winningNumbers.contains(number)) {
             return 1;
         }
         return 0;
     }
 
-    private boolean matchBonus(Integer bonusNumber){
-        if(numbers.contains(bonusNumber)){
+    private boolean matchBonus(Integer bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
             return true;
         }
         return false;
@@ -96,13 +95,13 @@ public class Lotto {
         }
     }
 
-    public String toPrintList(){
+    public String toPrintList() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
-        if(numbers.size() > 0){
+        if (numbers.size() > 0) {
             stringBuilder.append(numbers.get(0));
         }
-        for(int i = 1 ; i < numbers.size() ; i ++){
+        for (int i = 1; i < numbers.size(); i++) {
             stringBuilder.append(", " + numbers.get(i));
         }
         stringBuilder.append("]");

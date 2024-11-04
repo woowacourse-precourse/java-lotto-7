@@ -9,6 +9,7 @@ public class OutputView {
     private static final String WINNING_RESULT_HEADER_MESSAGE = "당첨 통계\n--";
 
     private static final String TOTAL_RETURN_RATE_FORMAT = "총 수익률은 %.1f%% 입니다";
+
     private OutputView() {
     }
 
@@ -32,16 +33,16 @@ public class OutputView {
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
     }
 
-    public void printBonusNumberInput(){
+    public void printBonusNumberInput() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
     }
 
-    public void printWinningResult(String resultString){
+    public void printWinningResult(String resultString) {
         System.out.println(WINNING_RESULT_HEADER_MESSAGE);
         System.out.println(resultString);
     }
 
-    public void printTotalReturnRate(Double returnRate){
-        System.out.println(String.format(TOTAL_RETURN_RATE_FORMAT,returnRate));
+    public void printTotalReturnRate(Double returnRate) {
+        System.out.println(String.format(TOTAL_RETURN_RATE_FORMAT, returnRate));
     }
 }

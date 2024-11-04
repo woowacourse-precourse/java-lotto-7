@@ -11,20 +11,20 @@ public enum WinningType {
         this.matchCount = matchCount;
     }
 
-    public static WinningType getWinningType(Integer matchCount, boolean matchBonus){
-        if(matchCount == 3){
+    public static WinningType getWinningType(Integer matchCount, boolean matchBonus) {
+        if (matchCount == 3) {
             return THREE;
         }
-        if(matchCount == 4){
+        if (matchCount == 4) {
             return FOUR;
         }
-        if(matchCount == 5 && !matchBonus){
+        if (matchCount == 5 && !matchBonus) {
             return FIVE;
         }
-        if(matchCount == 5 && matchBonus){
+        if (matchCount == 5 && matchBonus) {
             return FIVE_BONUS;
         }
-        if(matchCount == 6){
+        if (matchCount == 6) {
             return SIX;
         }
         return NOTHING;

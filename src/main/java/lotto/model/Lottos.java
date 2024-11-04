@@ -44,7 +44,7 @@ public class Lottos {
         return winningResult;
     }
 
-    public Long getTotalPrize(){
+    public Long getTotalPrize() {
         Long totalPrize = 0L;
 
         for (WinningType winningType : winningResult.keySet()) {
@@ -68,7 +68,7 @@ public class Lottos {
         }
     }
 
-    private void checkDuplicateNumber(final Integer number, final Set<Integer> numberSet){
+    private void checkDuplicateNumber(final Integer number, final Set<Integer> numberSet) {
         if (!numberSet.contains(number)) {
             numberSet.add(number);
             return;
