@@ -43,5 +43,6 @@ public class Application {
         spaceString();
 
         LottoResultProcessor result = new LottoResultProcessor(customer.getMoney(), lotto.getWinNumbers(), producer.getLottoNumbers(), bonusNumber);
+        printer.printFinalResult(result);
     }
 }
