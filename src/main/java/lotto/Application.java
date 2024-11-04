@@ -14,7 +14,8 @@ public class Application {
         int money = getInputMoney();
         LottoMachine lottoMachine = new LottoMachine(money);
         List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getInputBonusNumber();
+        int bonusNumber = getInputBonusNumber(winningNumbers);
+        lottoMachine.checkWinning(winningNumbers, bonusNumber);
     }
 
     public static int getInputMoney() {
@@ -55,12 +56,12 @@ public class Application {
         }
     }
 
-    public static int getInputBonusNumber() {
+    public static int getInputBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(Console.readLine());
-                validateBonusNumber(bonusNumber);
+                validateBonusNumber(bonusNumber, winningNumbers);
                 System.out.println();
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
@@ -69,9 +70,12 @@ public class Application {
         }
     }
 
-    public static void validateBonusNumber(int bonusNumber) {
+    public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
         }
     }
 }
