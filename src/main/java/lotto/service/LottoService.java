@@ -3,7 +3,6 @@ package lotto.service;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumberGenerator;
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
 
