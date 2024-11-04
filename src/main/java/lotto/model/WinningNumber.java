@@ -24,7 +24,7 @@ public class WinningNumber {
         String[] separateWinningNumber = Utils.separateStr(input, SEPARATOR);
 
         if (!Arrays.stream(separateWinningNumber)
-                .allMatch(num -> Utils.isContainInRange(num))) {
+                .allMatch(num -> Utils.isContainInRange(num, Utils.MIN_LOTTO_NUMBER, Utils.MAX_LOTTO_NUMBER))) {
             Error.reject(Error.RANGE_MSG);
         }
 

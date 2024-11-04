@@ -17,7 +17,7 @@ public class BonusNumber {
             Error.reject(Error.INVALID_MSG);
         }
 
-        if (!Utils.isContainInRange(input)) {
+        if (!Utils.isContainInRange(input, Utils.MIN_LOTTO_NUMBER, Utils.MAX_LOTTO_NUMBER)) {
             Error.reject(Error.RANGE_MSG);
         }
     }
