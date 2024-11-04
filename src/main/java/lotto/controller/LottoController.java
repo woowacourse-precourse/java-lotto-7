@@ -1,12 +1,10 @@
 package lotto.controller;
 
+import lotto.constant.LottoConstant;
 import lotto.dto.LottoRequestDto;
 import lotto.model.Lotto;
 import lotto.service.LottoService;
 import lotto.util.LottoConverter;
-import lotto.validator.BonusNumberValidator;
-import lotto.validator.LottoNumbersValidator;
-import lotto.validator.PurchaseAmountValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,7 +22,7 @@ public class LottoController {
 
     public void run() {
         String purchaseAmount = inputView.getValidatePurchaseAmount();
-        int userAmount = Integer.parseInt(purchaseAmount) / 1000;
+        int userAmount = Integer.parseInt(purchaseAmount) / LottoConstant.LOTTO_PRICE.getValue();
         List<Lotto> userLottos = new ArrayList<>();
         for (int i = 0; i < userAmount; i++) {
             userLottos.add(LottoService.createLotto());
