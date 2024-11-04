@@ -72,9 +72,7 @@ public class LottServiceImpl implements LottoService {
     @Override
     public double calculateYield(Long totalPrize, int purchaseAmount) {
         if (purchaseAmount == 0) return 0;
-        System.out.println(totalPrize + ", " + purchaseAmount);
         double yield = ((double) totalPrize / purchaseAmount) * 100;
-        System.out.println(yield);
         return roundToTwoDecimalPlaces(yield);
     }
 
