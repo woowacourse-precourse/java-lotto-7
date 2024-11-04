@@ -19,7 +19,7 @@ public class Application {
         Printer printer = new Printer();
         InputHandler inputHandler = new InputHandler();
         printer.printBudgetNotice();
-        String money = Console.readLine();
+        String money = inputHandler.getUserInput();
         Customer customer = new Customer(money);
         spaceString();
 
