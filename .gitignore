@@ -4,6 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+src/test/java/lotto/ApplicationTest.java
 
 ### STS ###
 .apt_generated
