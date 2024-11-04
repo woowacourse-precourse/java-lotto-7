@@ -12,8 +12,12 @@ public class UserLottosTest {
         assertThatThrownBy(() -> new UserLottos(purchaseAmount1))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
 
-        int purchaseAmount2 = 123456;
+        int purchaseAmount2 = -123456;
         assertThatThrownBy(() -> new UserLottos(purchaseAmount2))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+
+        int purchaseAmount3 = 123456;
+        assertThatThrownBy(() -> new UserLottos(purchaseAmount3))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
