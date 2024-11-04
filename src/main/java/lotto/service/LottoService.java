@@ -35,12 +35,12 @@ public class LottoService {
                     checkMatchBonusNumber(lotto, winningNumbers));
         }
     }
-    public int checkMatchLottoNumbers(Lotto lotto, LottoWinningNumbers winningNumbers) {
+    private int checkMatchLottoNumbers(Lotto lotto, LottoWinningNumbers winningNumbers) {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumbers.getWinningNumbers()::contains)
                 .count();
     }
-    public boolean checkMatchBonusNumber(Lotto lotto, LottoWinningNumbers winningNumbers) {
+    private boolean checkMatchBonusNumber(Lotto lotto, LottoWinningNumbers winningNumbers) {
         return lotto.getNumbers().contains(winningNumbers.getBonusNumber());
     }
 
