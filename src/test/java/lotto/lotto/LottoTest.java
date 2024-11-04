@@ -1,11 +1,10 @@
-package lotto;
+package lotto.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
-import lotto.lotto.Lotto;
 import lotto.lotto.providable.NumbersProvidable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
