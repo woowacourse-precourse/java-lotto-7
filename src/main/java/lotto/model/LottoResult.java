@@ -1,20 +1,19 @@
 package lotto.model;
 
+import lotto.constant.LottoRank;
+
 public class LottoResult {
-    private final String winningScore;
-    private final int winningsMoney;
+    private final LottoRank lottoRank;
 
-    public LottoResult(String winningScore, int winningsMoney) {
-        this.winningScore = winningScore;
-        this.winningsMoney = winningsMoney;
+    public LottoResult(LottoRank lottoRank) {
+        this.lottoRank = lottoRank;
     }
 
-    public String getWinningScore() {
-        return winningScore;
+    public String getLottoRank() {
+        return lottoRank.getRank();
     }
 
-    public int getWinningsMoney() {
-        return winningsMoney;
+    public int getWinnings() {
+        return lottoRank.getPrizeMoney();
     }
-
 }
