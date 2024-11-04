@@ -4,11 +4,11 @@ import lotto.util.MoneyValidator;
 import lotto.util.ViewUtil;
 import lotto.view.PurchaseView;
 
-public class InputController {
+public class InputMoneyController {
 
     private final PurchaseView purchaseView;
 
-    public InputController(final PurchaseView purchaseView) {
+    public InputMoneyController(final PurchaseView purchaseView) {
         this.purchaseView = purchaseView;
     }
 
