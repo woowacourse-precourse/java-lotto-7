@@ -17,7 +17,7 @@ public class InputView {
                 String purchaseAmount = Console.readLine();
                 validatePurchaseAmount(purchaseAmount);
                 Console.close();
-                return Integer.parseInt(purchaseAmount);
+                return Integer.parseInt(purchaseAmount) / MONEY_UNIT;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
