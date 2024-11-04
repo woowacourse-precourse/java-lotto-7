@@ -38,5 +38,27 @@ class LottoTest {
         assertThat(matchingCount).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("보너스 번호가 로또 번호에 포함되는지 확인한다")
+    void 보너스_번호_포함_테스트() {
+        // given
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoNumbers);
 
+        // when & then
+        boolean containsBonus = lotto.containsBonusNumber(5);
+        assertThat(containsBonus).isTrue();
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 로또 번호에 포함되지 않았는지 확인한다")
+    void 보너스_번호_비포함_테스트() {
+        // given
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        // when & then
+        boolean containsBonus = lotto.containsBonusNumber(7);
+        assertThat(containsBonus).isFalse();
+    }
 }
