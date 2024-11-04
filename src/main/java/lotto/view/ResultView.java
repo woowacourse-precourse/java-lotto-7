@@ -24,16 +24,20 @@ public class ResultView {
      *
      * @param results 당첨 등수별 당첨 횟수 Map
      */
-    public void printResults(Map<LottoRank, Integer> results) {
+    public void printResults(
+            Map<LottoRank, Integer> results,
+            double yield
+    ) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.NONE) {
-                System.out.printf("%d개 일치 (%d원) - %d개%n",
-                        rank.getMatchCount(),
+                System.out.printf("%s (%,d원) - %d개%n",
+                        rank.getDescription(),
                         rank.getPrize(),
                         results.getOrDefault(rank, 0));
             }
         }
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", yield);
     }
 }

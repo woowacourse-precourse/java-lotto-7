@@ -41,4 +41,22 @@ public class LottoService {
         LottoResultCalculator calculator = new LottoResultCalculator(winningNumbers, bonusNumber);
         return calculator.calculateResults(tickets);
     }
+
+    /**
+     * 총 수익률을 계산하는 메서드
+     *
+     * @param purchaseAmount 구입 금액
+     * @param results 당첨 등수별 당첨 횟수 Map
+     * @return 수익률 (퍼센트)
+     */
+    public double calculateYield(
+            int purchaseAmount,
+            Map<LottoRank, Integer> results
+    ) {
+        long totalPrize = results.entrySet().stream()
+                .mapToLong(entry -> (long)entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        return (double) totalPrize / purchaseAmount * 100;
+    }
+
 }
