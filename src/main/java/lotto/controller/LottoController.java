@@ -23,8 +23,10 @@ public class LottoController {
     public void run() {
         int purchaseCount = setPurchaseCount();
         output.printLottoCount(purchaseCount);
+
         Lottos lottos = lottoService.generateLottos(purchaseCount);
         output.printLottoNumbers(lottos);
+
         WinningLotto winningLotto = setWinningLotto();
         Console.close();
 
@@ -35,47 +37,37 @@ public class LottoController {
     }
 
     private int setPurchaseCount() {
-        while (true) {
-            String purchaseAmount = input.getPurchaseAmount();
-            try {
-                return lottoService.getValidPurchaseCount(purchaseAmount);
-            } catch (IllegalArgumentException e) {
-                output.printExceptionMessage(e.getMessage());
-            }
-        }
+        return validateInput(() -> lottoService.getValidPurchaseCount(input.getPurchaseAmount()));
     }
 
     private WinningLotto setWinningLotto() {
-        while (true) {
-            try {
-                Lotto lotto = setLotto();
-                int bonusNum = setBonusNumber();
-                return new WinningLotto(lotto, bonusNum);
-            } catch (IllegalArgumentException e) {
-                output.printExceptionMessage(e.getMessage());
-            }
-        }
+        return validateInput(() -> {
+            Lotto lotto = setLotto();
+            int bonusNum = setBonusNumber();
+            return new WinningLotto(lotto, bonusNum);
+        });
     }
 
     private Lotto setLotto() {
+        return validateInput(() -> lottoService.getValidLotto(input.getWinningNumber()));
+    }
+
+    private int setBonusNumber() {
+        return validateInput(() -> lottoService.getValidBonusNumber(input.getBonusNumber()));
+    }
+
+    private <T> T validateInput(InputSupplier<T> inputSupplier) {
         while (true) {
             try {
-                String winNumbers = input.getWinningNumber();
-                return lottoService.getValidLotto(winNumbers);
+                return inputSupplier.get();
             } catch (IllegalArgumentException e) {
                 output.printExceptionMessage(e.getMessage());
             }
         }
     }
 
-    private int setBonusNumber() {
-        while (true) {
-            try {
-                String bonusNumber = input.getBonusNumber();
-                return lottoService.getValidBonusNumber(bonusNumber);
-            } catch (IllegalArgumentException e) {
-                output.printExceptionMessage(e.getMessage());
-            }
-        }
+    @FunctionalInterface
+    private interface InputSupplier<T> {
+        T get();
     }
 }
