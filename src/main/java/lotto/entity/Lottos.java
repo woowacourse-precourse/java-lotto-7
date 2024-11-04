@@ -56,5 +56,15 @@ public class Lottos {
         if (numbers.size() != new HashSet<>(numbers).size()) {
             throw new IllegalArgumentException(ErrorStatus.DUPLICATE_NUMBER.getMessage());
         }
+
+        // 로또 숫자 값 1~45 사이의 값인지 체크
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(ErrorStatus.NUMBER_OUT_OF_RANGE.getMessage());
+            }
+        }
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ErrorStatus.NUMBER_OUT_OF_RANGE.getMessage());
+        }
     }
 }
