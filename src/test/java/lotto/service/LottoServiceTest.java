@@ -1,4 +1,4 @@
-package service;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,6 @@ import lotto.dto.LottoWinningNumbers;
 import lotto.dto.lottoWinningResultDto.LottoWinningResult;
 import lotto.model.Lotto;
 import lotto.model.Money;
-import lotto.service.LottoService;
-import lotto.service.LottoServiceImpl;
 import lotto.view.InputView;
 import lotto.view.InputViewImpl;
 import org.assertj.core.api.Assertions;

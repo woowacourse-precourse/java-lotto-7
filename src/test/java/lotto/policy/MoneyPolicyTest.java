@@ -1,23 +1,19 @@
-package policy;
+package lotto.policy;
 
-import java.util.ArrayList;
-import java.util.List;
-import lotto.policy.LottoPolicy;
-import lotto.policy.LottoPolicyImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class LottoPolicyTest {
-    LottoPolicy lottoPolicy = new LottoPolicyImpl();
+class MoneyPolicyTest {
+    MoneyPolicy moneyPolicy = new MoneyPolicyImpl();
 
     @Test
-    public void 로또의_숫자는_1에서_45_사이의_숫자가_아니라면_예외를_발생시켜야_한다() {
+    public void 돈은_숫자만_입력_되어야_한다() {
         // given
-        List<Integer> lotto = new ArrayList<>(List.of(1, 2, 3, 4, 5, 100));
+        String money = "asdf";
 
         // when
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            lottoPolicy.checkLottoPolicy(lotto);
+            moneyPolicy.checkMoneyPolicy(money);
         });
 
         // then
@@ -25,12 +21,13 @@ class LottoPolicyTest {
     }
 
     @Test
-    public void 로또의_숫자는_중복_되어선_안된다() {
+    public void 아무것도_입력되지_않으면_예외를_발생시킨다() {
         // given
-        List<Integer> lotto = new ArrayList<>(List.of(1, 2, 3, 4, 5, 1));
+        String money = "";
 
+        // when
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            lottoPolicy.checkLottoPolicy(lotto);
+            moneyPolicy.checkMoneyPolicy(money);
         });
 
         // then
@@ -38,12 +35,13 @@ class LottoPolicyTest {
     }
 
     @Test
-    public void 로또의_숫자_개수는_6개여야_한다() {
+    public void 돈이_1000으로_나누어_떨어지지않으면_예외를_발생시킨다() {
         // given
-        List<Integer> lotto = new ArrayList<>(List.of(1, 2, 3, 4, 5));
+        String money = "11100";
 
+        // when
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            lottoPolicy.checkLottoPolicy(lotto);
+            moneyPolicy.checkMoneyPolicy(money);
         });
 
         // then
@@ -51,16 +49,17 @@ class LottoPolicyTest {
     }
 
     @Test
-    public void 로또는_오름차순_정렬이_되어있어야_한다() {
+    public void 돈이_int_범위를_넘어서면_예외를_발생시킨다() {
         // given
-        List<Integer> lotto = new ArrayList<>(List.of(6, 1, 2, 3, 4, 5));
+        String money = "10000000000000000000000000000000000000000000000000";
 
+        // when
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            lottoPolicy.checkLottoPolicy(lotto);
+            moneyPolicy.checkMoneyPolicy(money);
         });
 
         // then
         org.assertj.core.api.Assertions.assertThat(exception.getMessage()).contains("[ERROR]");
-
     }
+
 }
