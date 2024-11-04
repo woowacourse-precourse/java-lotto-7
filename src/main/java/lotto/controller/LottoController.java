@@ -26,7 +26,7 @@ public class LottoController {
         lottoTickets = purchaseLotto();
         Output.printLottoTickets(lottoTickets);
 
-        setLuckyNumbers();
+        inputValidate();
 
         new Output(ticketRank(), profitRate());
     }
@@ -51,7 +51,7 @@ public class LottoController {
         return lotto.createLottoBundle(amount / LottoConstants.LOTTO_UNIT_PRICE);
     }
 
-    private void setLuckyNumbers() {
+    private void inputValidate() {
         luckyNumbers = new LuckyNumbers().processSetWinningNumbers().getLuckyNumbers();
         bonusNumber = new BonusNumber(luckyNumbers).processSetBonusNumber().getBonusNumber();
     }
