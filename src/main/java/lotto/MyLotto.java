@@ -17,4 +17,10 @@ public class MyLotto {
     public int getCount() {
         return myLotto.size();
     }
+
+    public void print() {
+        System.out.println(getCount()+"개를 구매했습니다.");
+        myLotto.stream()
+                .forEach(System.out::println);
+    }
 }

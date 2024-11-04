@@ -17,4 +17,11 @@ class LottoGameTest {
         assertThatThrownBy(() -> new LottoGame("1234"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 당첨_번호가_숫자가_아니면_예외가_발생한다() {
+        LottoGame lottoGame = new LottoGame("8000");
+        assertThatThrownBy(() -> lottoGame.matchNumbers("string"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
