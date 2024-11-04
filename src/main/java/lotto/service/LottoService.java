@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.LottoConfig;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.LottoNumbers;
@@ -12,8 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoService {
-    private static final int PRICE_PER_LOTTO = 1000;
-    private static final int LOTTO_SIZE = 6;
 
     public void validatePurchaseAmount(String input) {
         try {
@@ -25,16 +24,16 @@ public class LottoService {
     }
 
     private void validateAmountRange(int amount) {
-        if (amount < PRICE_PER_LOTTO) {
+        if (amount < LottoConfig.LOTTO_PRICE) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
         }
-        if (amount % PRICE_PER_LOTTO != 0) {
+        if (amount % LottoConfig.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
         }
     }
 
     public int calculateLottoCount(int purchaseAmount) {
-        return purchaseAmount / PRICE_PER_LOTTO;
+        return purchaseAmount / LottoConfig.LOTTO_PRICE;
     }
 
     public List<Lotto> generateLottos(int count) {
@@ -46,9 +45,10 @@ public class LottoService {
     }
 
     private Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_SIZE);
-        LottoNumbers.validateNumbers(numbers);
-        return new Lotto(numbers);
+        return new Lotto(Randoms.pickUniqueNumbersInRange(
+                LottoConfig.MIN_NUMBER,
+                LottoConfig.MAX_NUMBER,
+                LottoConfig.LOTTO_SIZE));
     }
 
     public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
