@@ -6,12 +6,14 @@ import java.util.Map;
 
 public class PrizeResult {
 
+    private static final int DEFAULT_VALUE = 0;
+    
     private final Map<Prize, Integer> prizes;
 
     public PrizeResult() {
         prizes = new EnumMap<>(Prize.class);
         Arrays.stream(Prize.values())
-                .forEach(prize -> prizes.put(prize, 0));
+                .forEach(prize -> prizes.put(prize, DEFAULT_VALUE));
     }
 
     public void calculatePrizes(WinningLotto winningLotto, Lottos lottos) {
