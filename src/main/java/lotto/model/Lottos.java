@@ -12,6 +12,8 @@ import lotto.util.StringParser;
 
 public class Lottos {
 
+    private static final int PRICE_PER_TICKET = 1000;
+
     private List<Lotto> lottos;
     private int number;
     private Map<Rank, Integer> winningStatistics;
@@ -38,5 +40,10 @@ public class Lottos {
         winningAmount =  winningStatistics.entrySet().stream()
                 .map(r -> StringParser.stringToInt(r.getKey().getPrize()) * r.getValue())
                 .reduce(0, Integer::sum);
+    }
+
+    public float getRateOfReturn() {
+        float value = (float) winningAmount / (float) (number * PRICE_PER_TICKET) * 100;
+        return (float) (Math.round(value * 100.0) / 100.0);
     }
 }
