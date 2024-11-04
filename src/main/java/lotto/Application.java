@@ -107,7 +107,27 @@ public class Application {
         return jackpotNumbers;
     }
 
-    
+    private static int getValidBonusBall() {
+        String input = Console.readLine();
+        int bonusBall = parseBonusBall(input);   
+        validateBonusBallRange(bonusBall);      
+        return bonusBall;
+    }
+
+    private static int parseBonusBall(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "보너스 번호는 숫자로 입력해 주세요.");
+        }
+    }
+
+    private static void validateBonusBallRange(int bonusBall) {
+        if (bonusBall < 1 || bonusBall > 45) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+        }
+    }
+
 
 
  
