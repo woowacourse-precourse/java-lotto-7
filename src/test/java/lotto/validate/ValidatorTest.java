@@ -65,6 +65,7 @@ class ValidatorTest {
 
     @Test
     void 보너스_번호가_당첨_번호와_중복이면_예외() {
+        // given
         String winningNumber = "1,2,3,4,5,6";
 
         assertThatThrownBy(() -> bonusNumberFormula.isDuplicate("6", winningNumber))
