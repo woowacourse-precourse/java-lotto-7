@@ -13,16 +13,14 @@ public class Lotto {
 
     public int countMatchingWinningNumbers(List<Integer> winningNumbers){
         int count = 0;
-        for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.get(i).equals(winningNumbers.get(i))) count++;
-        }
+        for (Integer winningNumber : winningNumbers)
+            if (numbers.contains(winningNumber)) count++;
         return count;
     }
 
     public boolean isMatchBonusNumber(int bonusNumber){
-        for (int number : numbers){
+        for (int number : numbers)
             if (number == bonusNumber) return true;
-        }
         return false;
     }
 
