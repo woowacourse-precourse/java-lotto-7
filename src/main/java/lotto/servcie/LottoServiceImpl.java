@@ -23,7 +23,7 @@ public class LottoServiceImpl implements LottoService {
     
     @Override
     public void buyLotto(SpendingMoney money) {
-        BoughtLottos boughtLottos = BoughtLottos.getOfSpendingMoney(money);
+        BoughtLottos boughtLottos = BoughtLottos.getFromSpendingMoney(money);
         repository.saveLottos(boughtLottos);
     }
     
