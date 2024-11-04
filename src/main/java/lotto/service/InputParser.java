@@ -5,16 +5,14 @@ import lotto.common.Prompts;
 import lotto.view.InputView;
 
 public class InputParser {
-    String rawPrice = InputView.requirePrice();
-    String rawLottoNumbers = InputView.requireLottoNumbers();
-    String rawBonusNumber = InputView.requireBonusNumber();
-
-    public int parsePrice() {
+    public static int parsePrice() {
+        String rawPrice = InputView.requirePrice();
         int price = Integer.parseInt(rawPrice);
         return price;
     }
 
-    public List<Integer> parseLottoNumbers() {
+    public static List<Integer> parseLottoNumbers() {
+        String rawLottoNumbers = InputView.requireLottoNumbers();
         List<String> lottoNumbers = List.of(rawLottoNumbers.split(Prompts.INPUT_DELIMITER));
         List<Integer> convertedLottoNumbers = List.of();
 
@@ -25,7 +23,8 @@ public class InputParser {
         return convertedLottoNumbers;
     }
 
-    public int parseBonusNumber() {
+    public static int parseBonusNumber() {
+        String rawBonusNumber = InputView.requireBonusNumber();
         int bonusNumber = Integer.parseInt(rawBonusNumber);
         return bonusNumber;
     }
