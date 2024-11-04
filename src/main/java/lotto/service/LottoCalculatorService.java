@@ -6,7 +6,7 @@ import lotto.domain.User;
 import lotto.domain.UserLotto;
 import lotto.view.OutputView;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,10 +16,8 @@ public class LottoCalculatorService {
 
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int BONUS_NUMBER_INDEX = 6;
-    private static final int THREE_MATHE_NUMBER = THREE_MATCH.getMatchNumber();
-    private static final int FIVE_MATHE_NUMBER = FIVE_MATCH.getMatchNumber();
 
-    private final Map<LottoRanking, Integer> winningCount = new HashMap<>();
+    private final Map<LottoRanking, Integer> winningCount = new EnumMap<>(LottoRanking.class);
 
     public LottoCalculatorService() {
         for (LottoRanking lottoRanking : values()) {
@@ -56,31 +54,18 @@ public class LottoCalculatorService {
     }
 
     private void duplicateLottoNumberCalculate(UserLotto userLottoNumber, int duplicateNumber, List<Integer> winningLotto) {
-        for (LottoRanking ranking : values()) {
-            countDuplicateLottoNumber(userLottoNumber, ranking, duplicateNumber, winningLotto);
-        }
+        LottoRanking lottoRanking = getLottoRanking(duplicateNumber, matchesBonusNumberCondition(userLottoNumber, winningLotto));
+        addWinningCount(lottoRanking);
     }
 
-    private void countDuplicateLottoNumber(UserLotto userLottoNumber, LottoRanking ranking, int duplicateNumber, List<Integer> winningLotto) {
-        if (duplicateNumber < THREE_MATHE_NUMBER || duplicateNumber != ranking.getMatchNumber()) {
-            return;
-        }
-
-        if (duplicateNumber == FIVE_MATHE_NUMBER && matchesBonusNumberCondition(userLottoNumber, ranking, winningLotto)) {
-            addWinningCount(ranking);
-            return;
-        }
-
-        if (duplicateNumber != FIVE_MATHE_NUMBER) {
-            addWinningCount(ranking);
-        }
-    }
-
-    private boolean matchesBonusNumberCondition(UserLotto userLottoNumber, LottoRanking ranking, List<Integer> winningLotto) {
-        return userLottoNumber.getLottoNumber().contains(winningLotto.get(BONUS_NUMBER_INDEX)) == ranking.isBonusMatch();
+    private boolean matchesBonusNumberCondition(UserLotto userLottoNumber, List<Integer> winningLotto) {
+        return userLottoNumber.getLottoNumber().contains(winningLotto.get(BONUS_NUMBER_INDEX));
     }
 
     private void addWinningCount(LottoRanking ranking) {
+        if (ranking == null) {
+            return;
+        }
         winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
     }
 

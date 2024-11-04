@@ -28,4 +28,23 @@ public enum LottoRanking {
     public boolean isBonusMatch() {
         return bonusMatch;
     }
+
+    public static LottoRanking getLottoRanking(int duplicateNumber, boolean hasBonusNumber) {
+        if (duplicateNumber == SIX_MATCH.getMatchNumber()) {
+            return SIX_MATCH;
+        }
+        if (duplicateNumber == FIVE_BONUS_MATCH.getMatchNumber() && hasBonusNumber) {
+            return FIVE_BONUS_MATCH;
+        }
+        if (duplicateNumber == FIVE_MATCH.getMatchNumber()) {
+            return FIVE_MATCH;
+        }
+        if (duplicateNumber == FOUR_MATCH.getMatchNumber()) {
+            return FOUR_MATCH;
+        }
+        if (duplicateNumber == THREE_MATCH.getMatchNumber()) {
+            return THREE_MATCH;
+        }
+        return null;
+    }
 }
