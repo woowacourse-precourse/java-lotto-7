@@ -19,6 +19,7 @@ public class LottoController {
 
     public void run() {
 
+        // 구매 금액 입력
         String purchasePriceInput;
         int purchaseAmount;
 
@@ -33,10 +34,12 @@ public class LottoController {
             }
         }
 
+        // 로또 발행
         lottoService.generateLottoNumbers(purchaseAmount);
 
         outputView.printLottoTicketCountAndNumbers(purchaseAmount, lottoService.getLottoTickets());
 
+        // 당첨 번호 입력
         String winningNumbersInput;
 
         while (true) {
@@ -51,6 +54,7 @@ public class LottoController {
             }
         }
 
+        // 보너스 번호 입력
         String bonusNumberInput;
         int bonusNumber;
 
