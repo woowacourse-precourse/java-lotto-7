@@ -32,10 +32,10 @@ public class WinningNumbersInput implements Input<Lotto, String[]> {
     public void validate(String[] input) {
         for (String oneNumber : input) {
             if (inputValidator.isEmptyInput(oneNumber)) {
-                throw new EmptyInputException(INVALID_WINNING_NUMBER_FORMAT.getMessages());
+                throw new EmptyInputException(INVALID_WINNING_NUMBER_FORMAT.getMessage());
             }
             if (inputValidator.containsWhiteSpace(oneNumber)) {
-                throw new InvalidInputException(WINNING_NUMBERS_CONTAINS_WHITESPACE.getMessages());
+                throw new InvalidInputException(WINNING_NUMBERS_CONTAINS_WHITESPACE.getMessage());
             }
         }
 

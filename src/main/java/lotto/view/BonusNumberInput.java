@@ -37,22 +37,22 @@ public class BonusNumberInput implements Input<Integer, String> {
     @Override
     public void validate(String input) {
         if (inputValidator.isEmptyInput(input)) {
-            throw new EmptyInputException(EMPTY_INPUT.getMessages());
+            throw new EmptyInputException(EMPTY_INPUT.getMessage());
         }
         if (!inputValidator.isNumeric(input)) {
-            throw new InvalidInputException(NONE_NUMERIC_INPUT.getMessages());
+            throw new InvalidInputException(NONE_NUMERIC_INPUT.getMessage());
         }
         if (!inputValidator.isNumberInLottoRange(input)) {
-            throw new InvalidInputException(OUT_OF_LOTTO_NUMBER_RANGE.getMessages());
+            throw new InvalidInputException(OUT_OF_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
     private void validateDuplication(String bonusNumber, Lotto winningNumbers) {
         if (winningNumbers == null) {
-            throw new InvalidStateException(EMPTY_WINNING_NUMBERS.getMessages());
+            throw new InvalidStateException(EMPTY_WINNING_NUMBERS.getMessage());
         }
         if (winningNumbers.containsNumber(Integer.parseInt(bonusNumber))) {
-            throw new InvalidInputException(DUPLICATED_LOTTO_NUMBER.getMessages());
+            throw new InvalidInputException(DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }
 }

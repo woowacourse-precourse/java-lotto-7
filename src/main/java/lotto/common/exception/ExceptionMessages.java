@@ -14,13 +14,13 @@ public enum ExceptionMessages {
     ;
 
     private static final String ERROR_PREFIX = "[ERROR] ";
-    private final String messages;
+    private final String message;
 
-    ExceptionMessages(String messages) {
-        this.messages = messages;
+    ExceptionMessages(String message) {
+        this.message = message;
     }
 
-    public String getMessages() {
-        return ERROR_PREFIX + messages;
+    public String getMessage() {
+        return ERROR_PREFIX + message;
     }
 }

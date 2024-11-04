@@ -29,16 +29,16 @@ public class PurchaseAmountInput implements Input<Integer, String> {
     @Override
     public void validate(String input) {
         if (inputValidator.isEmptyInput(input)) {
-            throw new EmptyInputException(EMPTY_INPUT.getMessages());
+            throw new EmptyInputException(EMPTY_INPUT.getMessage());
         }
         if (!inputValidator.isNumeric(input)) {
-            throw new InvalidInputException(NONE_NUMERIC_INPUT.getMessages());
+            throw new InvalidInputException(NONE_NUMERIC_INPUT.getMessage());
         }
         if (!inputValidator.isIntegerRange(input)) {
-            throw new InvalidInputException(OUT_OF_INTEGER_RANGE.getMessages());
+            throw new InvalidInputException(OUT_OF_INTEGER_RANGE.getMessage());
         }
         if (!inputValidator.isMultipleOfUnitPrice(input)) {
-            throw new InvalidInputException(NOT_MULTIPLE_OF_UNIT_PRICE.getMessages());
+            throw new InvalidInputException(NOT_MULTIPLE_OF_UNIT_PRICE.getMessage());
         }
     }
 }
