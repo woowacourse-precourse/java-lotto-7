@@ -15,7 +15,7 @@ public class ProfitTest {
 
     @ParameterizedTest
     @MethodSource("generateLottoData")
-    void 수익률_계산을_잘_하는지_확인한다(List<Lotto> userLotto, String moneyInput, double expectedProfit) {
+    void 수익률_계산을_잘_하는지_확인한다(List<Lotto> userLotto, String moneyInput, String expectedProfit) {
         Money money = Money.from(moneyInput);
         Lottos lottos = Lottos.from(userLotto);
         LottoResult lottoResult = LottoResult.of(lottos, winNumber);
@@ -28,19 +28,28 @@ public class ProfitTest {
         return Stream.of(
                 Arguments.of(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)))
                         , "1000"
-                        , 200000000.0),
+                        , "200000000.0"),
+                Arguments.of(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                                new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                        , "2000"
+                        , "200000000.0"),
+                Arguments.of(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                                new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                        , "3000"
+                        , "200000000.0"),
                 Arguments.of(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)),
                                 new Lotto(List.of(1, 2, 3, 4, 5, 8)),
                                 new Lotto(List.of(30, 31, 32, 33, 34, 35)))
                         , "3000"
-                        , 1050000.0),
+                        , "1050000.0"),
                 Arguments.of(List.of(new Lotto(List.of(10, 11, 12, 13, 14, 15)),
                                 new Lotto(List.of(1, 2, 3, 10, 11, 12)),
                                 new Lotto(List.of(5, 6, 7, 8, 9, 10)),
                                 new Lotto(List.of(1, 2, 3, 4, 19, 20)),
                                 new Lotto(List.of(40, 41, 42, 43, 44, 45)))
                         , "5000"
-                        , 1100.0)
+                        , "1100.0")
         );
     }
 }
