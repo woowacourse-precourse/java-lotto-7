@@ -47,4 +47,14 @@ public class Lotto {
             throw new InvalidLottoNumbersDuplicateException();
         }
     }
+
+    public int getMatchLottoNumber(WinningNumbers winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::isContain)
+                .count();
+    }
+
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
 }

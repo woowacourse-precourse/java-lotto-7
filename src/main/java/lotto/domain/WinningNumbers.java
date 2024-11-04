@@ -38,4 +38,12 @@ public class WinningNumbers {
             throw new InvalidWinningNumbersDuplicateException();
         }
     }
+
+    public boolean isContain(int number) {
+        return winningNumbers.contains(number);
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }
