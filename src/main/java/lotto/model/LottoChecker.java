@@ -44,10 +44,6 @@ public class LottoChecker {
         return Rank.of(match, isBonus);
     }
 
-    public List<Rank> getResult() {
-        return result;
-    }
-
     public Map<Integer, Integer> getResultMap() {
         Map<Integer, Integer> resultMap = new HashMap<>();
         for (Rank rank : result) {

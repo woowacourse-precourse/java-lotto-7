@@ -30,14 +30,6 @@ public enum Rank {
         return PLACE_NO;
     }
 
-    public int getMatch() {
-        return match;
-    }
-
-    public boolean getBonus() {
-        return bonus;
-    }
-
     public int getReward() {
         return reward;
     }

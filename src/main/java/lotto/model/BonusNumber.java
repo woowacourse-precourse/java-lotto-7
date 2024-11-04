@@ -32,7 +32,7 @@ public class BonusNumber {
     }
 
     private void checkPositiveNumber(int bonusNumber) {
-        if (!(ZERO < bonusNumber)) {
+        if (ZERO >= bonusNumber) {
             throw new IllegalArgumentException(NEGATIVE_NUMBER);
         }
     }

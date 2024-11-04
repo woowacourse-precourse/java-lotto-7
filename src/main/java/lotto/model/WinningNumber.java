@@ -68,10 +68,6 @@ public class WinningNumber {
         return result;
     }
 
-    public List<Integer> getAllNumbers() {
-        return allNumbers;
-    }
-
     public int getBonusNumber() {
         return bonusNumber.getBonusNumber();
     }
