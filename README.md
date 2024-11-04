@@ -1,3 +1,59 @@
+### **클래스 다이어그램**
+![lotto-diagram](https://github.com/user-attachments/assets/9ecfb5fd-d6c0-43f7-88d7-f1442a698dd5)
+
+### **완성 프로젝트 구조**
+```
+└─lotto
+    │  Application.java
+    │  DrawGames.java
+    │
+    ├─controller
+    │      LottoController.java
+    │      LottoControllerFactory.java
+    │
+    ├─exception
+    │  │  EmptyInputException.java
+    │  │  NotNumberException.java
+    │  │
+    │  ├─administrator
+    │  │      LottoNumbersDuplicationException.java
+    │  │      LottoNumbersMustBeSixException.java
+    │  │      NotNumberOrCommaException.java
+    │  │      OutOfRangeLottoNumberException.java
+    │  │
+    │  └─user
+    │          LottoMaximumExceededException.java
+    │          NotEnoughMoneyException.java
+    │          NotThousandUnitException.java
+    │
+    ├─model
+    │  ├─administrator
+    │  │      Lotto.java
+    │  │      LottoBonusNumber.java
+    │  │
+    │  ├─statistic
+    │  │      LottoStatisticsDto.java
+    │  │      Match.java
+    │  │      MatchList.java
+    │  │
+    │  └─user
+    │          LotteryMachine.java
+    │          LottoNumbers.java
+    │          LottoResultDto.java
+    │
+    ├─service
+    │      LottoAdministratorService.java
+    │      LottoUserService.java
+    │
+    ├─util
+    │      LottoConstant.java
+    │      ValidateUtil.java
+    │
+    └─view
+           InputView.java
+           OutputView.java
+```
+
 ## 지난주 피드백
 - 도메인을 불변 객체로 만들어서 객체를 새로 생성할 경우 메모리 용량의 문제나 이후 Spring을 사용했을 때 Proxy 객체의 참조에 문제가 발생할 수도 있다. 속성에 변화가 있을 수 있는 도메인은 가변할 수 있도록 만들자.
 - 도메인에서 서비스 의존성을 주입받는 것은 의존성 역전 원칙에 어긋난다. 도메인에서 서비스로 데이터가 흘러가는 계층적 흐름을 유지하자.
@@ -148,57 +204,4 @@ private final List<Integer> numbers;
 
     // TODO: 추가 기능 구현
 }
-```
-
-### **완성 프로젝트 구조**
-```
-└─lotto
-    │  Application.java
-    │  DrawGames.java
-    │
-    ├─controller
-    │      LottoController.java
-    │      LottoControllerFactory.java
-    │
-    ├─exception
-    │  │  EmptyInputException.java
-    │  │  NotNumberException.java
-    │  │
-    │  ├─administrator
-    │  │      LottoNumbersDuplicationException.java
-    │  │      LottoNumbersMustBeSixException.java
-    │  │      NotNumberOrCommaException.java
-    │  │      OutOfRangeLottoNumberException.java
-    │  │
-    │  └─user
-    │          LottoMaximumExceededException.java
-    │          NotEnoughMoneyException.java
-    │          NotThousandUnitException.java
-    │
-    ├─model
-    │  ├─administrator
-    │  │      Lotto.java
-    │  │      LottoBonusNumber.java
-    │  │
-    │  ├─statistic
-    │  │      LottoStatisticsDto.java
-    │  │      Match.java
-    │  │      MatchList.java
-    │  │
-    │  └─user
-    │          LotteryMachine.java
-    │          LottoNumbers.java
-    │          LottoResultDto.java
-    │
-    ├─service
-    │      LottoAdministratorService.java
-    │      LottoUserService.java
-    │
-    ├─util
-    │      LottoConstant.java
-    │      ValidateUtil.java
-    │
-    └─view
-           InputView.java
-           OutputView.java
 ```
