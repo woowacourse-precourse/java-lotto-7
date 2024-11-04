@@ -10,7 +10,18 @@ import static lotto.LottoData.*;
 public class Application {
     public static void main(String[] args) {
 
-        List<Integer> winPrice = Randoms.pickUniqueNumbersInRange(START_NUM.getNum(), END_NUM.getNum(), BALLS.getNum());
-        Lotto lotto = new Lotto(winPrice);
+        Input input = new Input();
+        LottoMachine lottoMachine = new LottoMachine();
+
+        int money = input.useMoney();
+        Lotto winPrice = input.checkNumber();
+        int bonus = input.bonus();
+
+        MyLotto myLotto = new MyLotto(winPrice, bonus);
+
+        lottoMachine.action(money / 1000, myLotto);
+
     }
+
+    // b z
 }

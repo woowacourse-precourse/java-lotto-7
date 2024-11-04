@@ -23,16 +23,20 @@ public class Input {
         return money;
     }
 
-    public List<Integer> checkNumber() {
+    public Lotto checkNumber() {
         String[] numbers = input().split(",");
         List<Integer> balls = new ArrayList<>();
         for (String number : numbers) {
             balls.add(Integer.parseInt(number));
         }
-        return balls;
+        return new Lotto(balls);
     }
 
     private String input() {
         return Console.readLine();
+    }
+
+    public int bonus() {
+        return Integer.parseInt(input());
     }
 }
