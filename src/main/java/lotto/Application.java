@@ -15,6 +15,7 @@ public class Application {
         int bonusNumber = inputController.inputBonusNumber(winNumber);
 
         WinNumbers winNumbers = new WinNumbers(winNumber, bonusNumber);
+
         LottoResult lottoResult = outputController.printStatistics(lottos, winNumbers);
         outputController.printRateOfReturn(lottoResult,purchaseNumber);
     }
