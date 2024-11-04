@@ -44,10 +44,10 @@ public class Lotto {
 		return false;
 	}
 
-	public int compareNumbers(List<Integer> lottos, List<Integer> luckyNumber, int bonusNumber) {
+	public int getMatchCount(List<Integer> lottos, List<Integer> luckyNumber, int bonusNumber) {
 		return (int) lottos.stream()
-			.filter(luckyNumber::contains)
-			.filter(num -> lottos.contains(bonusNumber))
+			.filter(num -> luckyNumber.stream()
+			.anyMatch(i -> i == num) || num == bonusNumber)
 			.count();
 	}
 
@@ -55,7 +55,7 @@ public class Lotto {
 		long total = 0;
 		for(Lotto lotto : lottos) {
 			List<Integer> numbers = lotto.getNumbers();
-			int matchCount = compareNumbers(numbers, luckyNumber, bonusNumber);
+			int matchCount = getMatchCount(numbers, luckyNumber, bonusNumber);
 			total += Prize.getPrize(matchCount, isBonusMatch(numbers, bonusNumber)).getReward();
 		}
 		return total;
