@@ -70,6 +70,8 @@ class LottoGameControllerTest extends NsTest {
     @CsvSource({
             "0, , , '[ERROR] 구입 금액은 양수이며 1,000원 단위여야 합니다.'",
             "1500, , , '[ERROR] 구입 금액은 양수이며 1,000원 단위여야 합니다.'",
+            "1001000, , , '[ERROR] 구입 금액이 너무 큽니다. 최대 금액은 1,000,000원입니다.'",
+            "2000000, , , '[ERROR] 구입 금액이 너무 큽니다. 최대 금액은 1,000,000원입니다.'",
             "1000j, , , '[ERROR] 입력값은 숫자여야 합니다.'",
             "8000, '0,2,3,4,5,6', 7, '[ERROR] 로또 번호는 1부터 45 사이여야 합니다.'",
             "8000, '1,2,3,4,5,46', 7, '[ERROR] 로또 번호는 1부터 45 사이여야 합니다.'",
@@ -93,5 +95,5 @@ class LottoGameControllerTest extends NsTest {
     public void runMain() {
         controller.run();
     }
-    
+
 }
