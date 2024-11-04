@@ -13,17 +13,17 @@ import lotto.domain.PrizeTier;
 
 public class LottoService {
 
-    private final RandomLottoNumberGenerator randomLottoNumberGenerator;
+    private final LottoNumberGenerator lottoNumberGenerator;
 
-    public LottoService(RandomLottoNumberGenerator randomLottoNumberGenerator) {
-        this.randomLottoNumberGenerator = randomLottoNumberGenerator;
+    public LottoService(LottoNumberGenerator lottoNumberGenerator) {
+        this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
     public LotteryBuyer buyLotto(Integer purchaseAmount) {
         int count = purchaseAmount / LOTTO_PRICE_UNIT;
         List<Lotto> lotteries = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            Lotto lotto = new Lotto(randomLottoNumberGenerator.generateNumber());
+            Lotto lotto = new Lotto(lottoNumberGenerator.generateNumber());
             lotteries.add(lotto);
         }
         return new LotteryBuyer(lotteries);
