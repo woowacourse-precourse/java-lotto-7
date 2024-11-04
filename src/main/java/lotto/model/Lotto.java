@@ -21,8 +21,9 @@ public class Lotto {
         return numbers;
     }
 
-    public void validateBonusBall(int num){
-        validateNumArrange(num);
+    public void validateBonusBall(int bonusBall){
+        validateNumArrange(bonusBall);
+        validateNoDuplicatesWithBonusBall(bonusBall);
     }
 
     private void validate (List<Integer> numbers) {
