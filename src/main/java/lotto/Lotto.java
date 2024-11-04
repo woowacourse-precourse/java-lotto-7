@@ -60,4 +60,8 @@ public class Lotto {
 		}
 		return total;
 	}
+
+	public double calculateEarningRate(long total, int payment) {
+		return (double) total / payment * 100;
+	}
 }
