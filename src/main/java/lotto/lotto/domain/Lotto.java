@@ -2,6 +2,7 @@ package lotto.lotto.domain;
 
 import lotto.lotto.validator.LottoValidator;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -18,7 +19,7 @@ public class Lotto {
     }
 
     public List<Integer> info() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 
     public boolean isContains(int number) {
