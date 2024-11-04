@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -21,10 +22,11 @@ public class OutputHandler {
         System.out.println(RESULT_MESSAGE);
         for (Map.Entry<Rank, Integer> entry : rankCount.entrySet()) {
             Rank rank = entry.getKey();
-            System.out.println(resultMessageFormat(rank,entry.getValue()));
+            if (rank.getMatchNumbers() != 0){
+                System.out.println(resultMessageFormat(rank,entry.getValue()));
+            }
         }
         System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
-
     }
 
     private String makeLottoNumberStringFormat(Lotto lotto) {
@@ -45,11 +47,12 @@ public class OutputHandler {
 
     private String resultMessageFormat(Rank rank, int count) {
         StringBuilder sb = new StringBuilder();
+        NumberFormat numberFormat = NumberFormat.getInstance();
         sb.append(rank.getMatchNumbers()).append("개 일치");
         if (rank.getMatchNumbers() == 5 && rank.getIsBonusMatch()) {
-            sb.append(", 보너스 불 일치 ");
+            sb.append(", 보너스 불 일치");
         }
-        sb.append(" (").append(rank.getWinningPrice()).append(") ");
+        sb.append(" (").append(numberFormat.format(rank.getWinningPrice())).append("원)");
         sb.append(" - ").append(count).append("개");
         return sb.toString();
     }

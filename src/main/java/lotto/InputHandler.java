@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+//TODO 숫자 다 상수로 수정
+
 public class InputHandler {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private final static int LOTTO_NUM_SIZE = 6;
@@ -28,7 +30,7 @@ public class InputHandler {
     public List<Integer> getWinnerNumber() {
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println("\n당첨 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 List<Integer> winnerNumbers = Arrays.stream(input.split(","))
                         .map(String::trim)
@@ -46,7 +48,7 @@ public class InputHandler {
     public int getBonusNumber(List<Integer> winnerNumbers) {
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println("\n보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(Console.readLine());
                 checkNumber(bonusNumber);
                 checkBonusNumberDuplicateWithWinnerNumbers(winnerNumbers, bonusNumber);
