@@ -43,7 +43,7 @@ public class LottoController {
         view.printLottoNumbers(lottoNumbers);
 
         // 당첨 번호 입력 및 저장
-        while(!setWinninNumber());
+        while(!setWinningNumber());
 
         // 보너스 번호 입력
         bonusNumber = view.getBonusNumber();
@@ -72,7 +72,7 @@ public class LottoController {
             }
         }
     }
-    public boolean setWinninNumber(){
+    public boolean setWinningNumber(){
         try{
             winningNumbers = new LinkedList<>();
             String numberString = view.getWinningNumbers();
