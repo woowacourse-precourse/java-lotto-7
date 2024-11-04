@@ -1,46 +1,14 @@
 package lotto;
 
-import static view.message.ExceptionMessage.DUPLICATE_NUMBER_EXCEPTION_MESSAGE;
-import static view.message.ExceptionMessage.LOTTO_NUMBERS_COUNT_EXCEPTION_MESSAGE;
-import static view.message.ExceptionMessage.LOTTO_NUMBER_RANGE_EXCEPTION_MESSAGE;
-
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateLottoNumbersCount(numbers);
-        validateLottoNumberRange(numbers);
-        validateDuplicateNumber(numbers);
         this.numbers = numbers;
-    }
-
-    private void validateLottoNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(LOTTO_NUMBERS_COUNT_EXCEPTION_MESSAGE);
-        }
-    }
-
-    private void validateLottoNumberRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_EXCEPTION_MESSAGE);
-            }
-        }
-    }
-
-    private void validateDuplicateNumber(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-
-        for (Integer number : numbers) {
-            if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException(DUPLICATE_NUMBER_EXCEPTION_MESSAGE + number);
-            }
-        }
     }
 
     public int countMatchingNumbers(Lotto otherLotto) {
