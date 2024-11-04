@@ -58,4 +58,12 @@ class ApplicationTest extends NsTest {
     public void runMain() {
         Application.main(new String[]{});
     }
+
+    @Test
+    public void 로또_번호_출력_테스트() {
+        Lotto lotto = new Lotto();
+        List<Integer> numbers = lotto.getNumbers();
+
+
+    }
 }
