@@ -32,11 +32,21 @@ public class Calculate {
     }
 
     private int matchPrizeMoney(int matchCount, boolean isBonusNumberMatch) {
-        if (matchCount == 3) return 5000;
-        if (matchCount == 4) return 50000;
-        if (matchCount == 5 && !isBonusNumberMatch) return 1500000;
-        if (matchCount == 5) return 30000000;
-        if (matchCount == 6) return 2000000000;
+        if (matchCount == 3) {
+            return 5000;
+        }
+        if (matchCount == 4) {
+            return 50000;
+        }
+        if (matchCount == 5 && !isBonusNumberMatch) {
+            return 1500000;
+        }
+        if (matchCount == 5) {
+            return 30000000;
+        }
+        if (matchCount == 6) {
+            return 2000000000;
+        }
         return 0;
     }
 }
