@@ -47,6 +47,10 @@ public enum LottoRank {
         if (numberMatchingCount == 6) {
             return FIRST;
         }
+        return calculateLottoRankByBonusNumber(containsBonusNumber);
+    }
+
+    private static LottoRank calculateLottoRankByBonusNumber(boolean containsBonusNumber) {
         if (containsBonusNumber) {
             return SECOND;
         }
