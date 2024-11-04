@@ -1,26 +1,22 @@
 package service;
 
 import camp.nextstep.edu.missionutils.Console;
+import object.Money;
 
 public class MoneyService {
 
-    private int getMoney() {
+    public int getMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        int money = Integer.parseInt(Console.readLine());
-
-        return money;
+        return Integer.parseInt(Console.readLine());
     }
 
-    private int convertQuantity(int money) {
+    public int convertQuantity(Money money) {
         int quantity = 0;
 
-        if (money >= 1000) {
-            quantity = money / 1000;
+        if (money.getMoney() >= 1000) {
+            quantity = money.getMoney() / 1000;
         }
         return quantity;
     }
 
-    public int lottoQuantityInput() {
-        return convertQuantity(getMoney());
-    }
 }

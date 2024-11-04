@@ -49,4 +49,10 @@ public class LottoService {
     public List<Integer> winNumbersInput() {
         return convertWinNumbers(splitWinNumbers(getWinNumbers()));
     }
+
+
+    private int getBonusNumberInput() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
+    }
 }

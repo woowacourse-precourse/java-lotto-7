@@ -4,8 +4,7 @@ public class Money {
     private final int money;
 
     public Money(int money) {
-        minimumPriceValidate(money);
-        buyRegulationValidate(money);
+        validate(money);
         this.money = money;
     }
 
@@ -20,4 +19,14 @@ public class Money {
             throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 구입할 수 있습니다.");
         }
     }
+
+    private void validate(int money) {
+        minimumPriceValidate(money);
+        buyRegulationValidate(money);
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
 }
