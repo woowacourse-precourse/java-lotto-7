@@ -3,19 +3,19 @@ package lotto.model;
 import java.util.List;
 
 public class Issuer {
-    private LottoNumberGenerator lottoNumberGenerator;
+    private LottoNumbersGenerator lottoNumbersGenerator;
 
     public Issuer() {
-        lottoNumberGenerator = new LottoNumberGenerator();
+        lottoNumbersGenerator = new LottoNumbersGenerator();
     }
 
-    public Lotties issueLotties(int notIssuedlottiesCount) {
-        Lotties lotties = new Lotties();
-        while (notIssuedlottiesCount > 0) {
-            List<Integer> numbers = lottoNumberGenerator.getNumbers();
-            lotties.addLotto(numbers);
-            notIssuedlottiesCount--;
+    public Lottos issueLottos(int notIssuedlottosCount) {
+        Lottos lottos = new Lottos();
+        while (notIssuedlottosCount > 0) {
+            List<Integer> numbers = lottoNumbersGenerator.getLottoNumbers();
+            lottos.addLotto(numbers);
+            notIssuedlottosCount--;
         }
-        return lotties;
+        return lottos;
     }
 }
