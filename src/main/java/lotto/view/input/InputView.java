@@ -2,15 +2,16 @@ package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.view.output.Printer;
+import lotto.exception.InputError;
+import lotto.exception.ErrorHandler;
 
 public class InputView {
     private final InputParser parser;
-    private final Printer printer;
+    private final ErrorHandler errorHandler;
 
-    public InputView(InputParser parser, Printer printer) {
+    public InputView(InputParser parser, ErrorHandler errorHandler) {
         this.parser = parser;
-        this.printer = printer;
+        this.errorHandler = errorHandler;
 
     }
 
@@ -21,10 +22,10 @@ public class InputView {
                 return parser.parsePurchaseAmount(amount);
 
             } catch (NumberFormatException numberFormatException) {
-                printer.printError(InputError.IS_NOT_NUMBER);
+                errorHandler.printError(InputError.IS_NOT_NUMBER);
 
             } catch (IllegalArgumentException illegalArgumentException) {
-                printer.printError(illegalArgumentException.getMessage());
+                errorHandler.printError(illegalArgumentException.getMessage());
             }
         }
     }
@@ -34,15 +35,13 @@ public class InputView {
             try {
                 String winningNumbers = Console.readLine();
                 return parser.parseWinningNumbers(winningNumbers);
-
             } catch (NumberFormatException numberFormatException) {
-                printer.printError(InputError.IS_NOT_NUMBER);
+                errorHandler.printError(InputError.IS_NOT_NUMBER);
 
             } catch (IllegalArgumentException illegalArgumentException) {
-                printer.printError(illegalArgumentException.getMessage());
+                errorHandler.printError(illegalArgumentException.getMessage());
             }
         }
-
     }
 
     public int getBonusNumber() {
@@ -50,13 +49,15 @@ public class InputView {
             try {
                 String bonusNumber = Console.readLine();
                 return parser.parseBonusNumber(bonusNumber);
-
             } catch (NumberFormatException numberFormatException) {
-                printer.printError(InputError.IS_NOT_NUMBER);
-
+                errorHandler.printError(InputError.IS_NOT_NUMBER);
             } catch (IllegalArgumentException illegalArgumentException) {
-                printer.printError(illegalArgumentException.getMessage());
+                errorHandler.printError(illegalArgumentException.getMessage());
             }
         }
+    }
+
+    public void close() {
+        Console.close();
     }
 }

@@ -1,14 +1,14 @@
 package lotto.view.input;
 
 import static lotto.model.domain.LottoConstant.*;
-import static lotto.view.input.InputError.*;
+import static lotto.exception.InputError.*;
 
 public class InputValidator {
 
     public void validateAmount(Integer amount) {
-        validateAmountUnit(amount);
-        validateMaxAmount(amount);
         validateMinAmount(amount);
+        validateMaxAmount(amount);
+        validateAmountUnit(amount);
     }
 
     private void validateAmountUnit(Integer amount) {
@@ -28,10 +28,5 @@ public class InputValidator {
             throw new IllegalArgumentException(MIN_AMOUNT_ERR);
         }
     }
-
-
-
-
-
 
 }
