@@ -8,4 +8,12 @@ public class WinningLotto {
         this.winningLotto = winningLotto;
         this.bonus = bonus;
     }
+
+    public Rank findRank(Lotto lotto) {
+        return Rank.of(winningLotto.countMatching(lotto), hasBonus(lotto));
+    }
+
+    private boolean hasBonus(Lotto lotto) {
+        return lotto.contains(bonus.getNumber());
+    }
 }
