@@ -35,7 +35,7 @@ public class GameResults {
 		return Math.round(profitRate * 100) / 100.0;
 	}
 
-	public Map<Rank, Integer> getGameResultMap() {
-		return gameResultMap;
+	public int getCountBy(Rank rank){
+		return gameResultMap.getOrDefault(rank, 0);
 	}
 }

@@ -30,9 +30,9 @@ class GameResultsTest {
 		gameResults.calculateGameResult(lottos, winningLotto, bonusNumber);
 
 		// then
-		assertThat(gameResults.getGameResultMap().get(Rank.FIRST)).isEqualTo(1);
-		assertThat(gameResults.getGameResultMap().get(Rank.SECOND)).isEqualTo(1);
-		assertThat(gameResults.getGameResultMap().get(Rank.THIRD)).isEqualTo(2);
-		assertThat(gameResults.getGameResultMap().get(Rank.FIFTH)).isEqualTo(1);
+		assertThat(gameResults.getCountBy(Rank.FIRST)).isEqualTo(1);
+		assertThat(gameResults.getCountBy(Rank.SECOND)).isEqualTo(1);
+		assertThat(gameResults.getCountBy(Rank.THIRD)).isEqualTo(2);
+		assertThat(gameResults.getCountBy(Rank.FIFTH)).isEqualTo(1);
 	}
 }

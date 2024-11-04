@@ -23,10 +23,8 @@ public class OutputView {
 		printMessage("당첨 통계");
 		printMessage("---");
 
-		Map<Rank, Integer> gameResultMap = gameResults.getGameResultMap();
-
 		for (Rank rank : Rank.values()) {
-			String resultMessage = String.format(rank.getWinningMessage(), gameResultMap.getOrDefault(rank, 0));
+			String resultMessage = String.format(rank.getWinningMessage(), gameResults.getCountBy(rank));
 			printMessage(resultMessage);
 		}
 
