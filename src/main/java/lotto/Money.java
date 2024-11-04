@@ -18,5 +18,13 @@ public class Money {
     public boolean hasChangesWith(long price) {
         return amount % price != 0;
     }
+
+    public long countAffordableFor(long price) {
+        return amount / price;
+    }
+
+    public long getAmount() {
+        return amount;
+    }
 }
 
