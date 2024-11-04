@@ -34,4 +34,8 @@ public class Output {
                 );
         System.out.println(result);
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println("[ERROR] " + message);
+    }
 }
