@@ -56,11 +56,23 @@ public class Application {
     }
 
     private static Lotto getWinningLotto() {
-        return null;
+        System.out.println("당첨 번호를 입력해 주세요. (쉼표로 구분)");
+        String input = Console.readLine();
+        List<Integer> winningNumbers = parseInputNumbers(input);
+        return new Lotto(winningNumbers);
     }
 
     private static int getBonusNumber() {
         return 0;
+    }
+
+    private static List<Integer> parseInputNumbers(String input) {
+        String[] tokens = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String token : tokens) {
+            numbers.add(Integer.parseInt(token.trim()));
+        }
+        return numbers;
     }
 
     private static void checkResults(List<Lotto> lottos, Lotto winningLotto, int bonusNumber, int moneySpent) {
