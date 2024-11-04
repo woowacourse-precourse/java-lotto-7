@@ -49,7 +49,7 @@ public class LottoController {
                 String winningNumbers = inputView.inputWinningNumbers();
                 WinningNumberParser winningNumberParser = new WinningNumberParser();
 
-                List<Integer> winningNumber = winningNumberParser.comma(winningNumbers);
+                List<Integer> winningNumber = winningNumberParser.split(winningNumbers);
                 WinningNumbers.initialInstance(winningNumber);
                 break;
             } catch (IllegalArgumentException e) {
