@@ -1,6 +1,6 @@
 package lotto.dto;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class UserInputDTO {
     private Lotto winningLotto;
