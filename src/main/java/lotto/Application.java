@@ -1,10 +1,12 @@
 package lotto;
 
+import lotto.domain.LottoRank;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -19,6 +21,6 @@ public class Application {
         Lotto winningNumbers = InputView.inputWinningNumbers();
         int bonusNumber = InputView.inputBonusNumber(winningNumbers);
 
-        
+        Map<LottoRank, Integer> result = lottoService.calculateLottoResults(userLotto, winningNumbers, bonusNumber);
     }
 }
