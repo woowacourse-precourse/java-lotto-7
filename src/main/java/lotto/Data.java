@@ -11,11 +11,9 @@ public class Data {
     private ArrayList<Result> results;
 
     public Data() {
-
         lottoTickets = new ArrayList<Lotto>();
         results = new ArrayList<Result>();
         initResults();
-
     }
 
     public int getAmount() { return amount; }

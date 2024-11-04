@@ -10,7 +10,7 @@ public class Reader {
             input = Console.readLine();
             Printer.printMessage(input);
         } catch (NoSuchElementException e) {
-            ErrorHandler.printAndThrow(Constants.INPUT_ERROR_EMPTY);
+            ErrorHandler.throwException(Constants.INPUT_ERROR_EMPTY);
         }
         return input;
     }

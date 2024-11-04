@@ -28,7 +28,9 @@ public class LottoMachine {
                 data.setAmountAndTicketNumber(amount);
                 Printer.printMessage(data.getTicketNumber() + Constants.INFORM_TICKET_NUMBERS);
                 break;
-            } catch (IllegalArgumentException e) {}
+            } catch (IllegalArgumentException e) {
+                Printer.printMessage(e.getMessage());
+            }
         }
     }
 
@@ -54,7 +56,9 @@ public class LottoMachine {
             try {
                 numbers = Parser.parseUserPickNumbers(Reader.readInput());
                 break;
-            } catch (IllegalArgumentException e) {}
+            } catch (IllegalArgumentException e) {
+                Printer.printMessage(e.getMessage());
+            }
         }
         return numbers;
     }
@@ -66,7 +70,9 @@ public class LottoMachine {
             try {
                 bonus = Parser.parseUserPickBonus(Reader.readInput(), numbers);
                 break;
-            } catch (IllegalArgumentException e) {}
+            } catch (IllegalArgumentException e) {
+                Printer.printMessage(e.getMessage());
+            }
         }
         return bonus;
     }

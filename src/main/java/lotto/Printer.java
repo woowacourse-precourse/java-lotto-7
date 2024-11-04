@@ -59,13 +59,14 @@ public class Printer {
     }
 
     private static String setRateString(double rate) {
-        DecimalFormat decimalFormat;
-        if (rate % 1 == 0) {
-            decimalFormat = new DecimalFormat("#,###");
-        }
-        else {
-            decimalFormat = new DecimalFormat("#,##0.0");
-        }
+        DecimalFormat decimalFormat = setNumberFormat(rate);
         return decimalFormat.format(rate);
+    }
+
+    private static DecimalFormat setNumberFormat(double number) {
+        if (number % 1 == 0) {
+            return new DecimalFormat("#,###");
+        }
+        return new DecimalFormat("#,##0.0");
     }
 }

@@ -28,41 +28,41 @@ public class Validator {
     private static void isOnlyDigits(String input) {
         for (char c : input.toCharArray()) {
             if (Character.isDigit(c) == false) {
-                ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+                ErrorHandler.throwException(Constants.INPUT_ERROR_ONLY_DIGIT);
             }
         }
     }
 
     private static void isAmountInRange(int amount) {
         if (amount < Constants.AMOUNT_MIN || Constants.AMOUNT_MAX < amount) {
-            ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+            ErrorHandler.throwException(Constants.INPUT_ERROR_AMOUNT_RANGE);
         }
     }
 
     private static void isValidAmountUnit(int amount) {
         if ((amount % Constants.AMOUNT_UNIT) != 0) {
-            ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+            ErrorHandler.throwException(Constants.INPUT_ERROR_AMOUNT_UNIT);
         }
     }
 
     private static void isOnlyDigitsAndCommas(String input) {
         for (char c : input.toCharArray()) {
             if (Character.isDigit(c) == false && c != ',') {
-                ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+                ErrorHandler.throwException(Constants.INPUT_ERROR_ONLY_DIGIT_COMMA);
             }
         }
     }
 
     private static void isValidNumbersCount(ArrayList<Integer> numbers) {
         if (numbers.size() != Constants.NUMBER_COUNT) {
-            ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+            ErrorHandler.throwException(Constants.INPUT_ERROR_NUMBER_COUNT);
         }
     }
 
     private static void isNumbersInRange(ArrayList<Integer> numbers) {
         for (int i : numbers) {
             if (i < Constants.NUMBER_MIN || Constants.NUMBER_MAX < i) {
-                ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+                ErrorHandler.throwException(Constants.INPUT_ERROR_NUMBER_RANGE);
             }
         }
     }
@@ -71,7 +71,7 @@ public class Validator {
         boolean[] checkedNumbers = new boolean[46];
         for (int i : numbers) {
             if (checkedNumbers[i] == true) {
-                ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+                ErrorHandler.throwException(Constants.INPUT_ERROR_NUMBER_UNIQUE);
             }
             checkedNumbers[i] = true;
         }
@@ -79,14 +79,14 @@ public class Validator {
 
     private static void isBonusInRange(int bonus) {
         if (bonus < Constants.NUMBER_MIN || Constants.NUMBER_MAX < bonus) {
-            ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+            ErrorHandler.throwException(Constants.INPUT_ERROR_NUMBER_RANGE);
         }
     }
 
     private static void isBonusUnique(int bonus, ArrayList<Integer> numbers) {
         for (int number : numbers) {
             if (number == bonus) {
-                ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+                ErrorHandler.throwException(Constants.INPUT_ERROR_NUMBER_UNIQUE);
             }
         }
     }
