@@ -1,12 +1,19 @@
 package lotto;
 
-import lotto.messages.SystemMessage;
+import lotto.constants.LottoRank;
+import lotto.constants.SystemMessage;
+import lotto.model.Lotto;
+import lotto.model.LottoList;
 
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class LottoManager {
+
+    public static LottoList getLottoList(int price) {
+        return new LottoList(LottoManager.getTotal(price));
+    }
 
     public static int getTotal(int price) {
         return price / 1000;
