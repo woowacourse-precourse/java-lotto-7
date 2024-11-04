@@ -6,14 +6,8 @@ public class LottoCreator {
 
     public int chooseNumberOfLotto(int purchasePrice){
         int numberOfLotto=INITIAL_NUMBER_OF_LOTTO;
-            try{
-                whetherPossiblePurchasePrice(purchasePrice);
-                numberOfLotto = purchasePrice/LOTTO_PRICE;
-            }
-            catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-
+        whetherPossiblePurchasePrice(purchasePrice);
+        numberOfLotto = purchasePrice/LOTTO_PRICE;
         return numberOfLotto;
     }
 
