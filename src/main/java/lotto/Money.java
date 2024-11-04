@@ -22,6 +22,9 @@ public class Money {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 양의 정수여야 합니다.");
         }
+        if (amount <= 0) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 양의 정수여야 합니다.");
+        }
 
         return amount;
     }
