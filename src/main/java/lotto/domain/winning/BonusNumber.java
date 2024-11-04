@@ -18,7 +18,7 @@ public class BonusNumber {
         return lotto.hasNumber(number);
     }
 
-    protected int getNumber() {
+    public int getNumber() {
         return number;
     }
 

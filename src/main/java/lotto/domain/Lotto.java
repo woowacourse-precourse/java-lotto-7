@@ -13,6 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers.sort(Integer::compareTo);
         this.numbers = numbers;
     }
 
@@ -24,5 +25,10 @@ public class Lotto {
         NumbersValidation.validateSize(numbers, SIZE_LOTTO_NUMBERS);
         NumbersValidation.validateDuplicate(numbers, DUPLICATED_LOTTO_NUMBERS);
         NumbersValidation.validateAllRange(numbers, RANGE_LOTTO_NUMBER);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

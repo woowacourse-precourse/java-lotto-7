@@ -26,7 +26,7 @@ public class WinningNumbers {
             .count();
     }
 
-    protected List<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
