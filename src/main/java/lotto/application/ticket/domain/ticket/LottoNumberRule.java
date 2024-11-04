@@ -1,9 +1,13 @@
 package lotto.application.ticket.domain.ticket;
 
+import static lotto.application.ticket.constants.Constants.LOTTO_END_INCLUSIVE_NUMBER;
+import static lotto.application.ticket.constants.Constants.LOTTO_SIZE;
+import static lotto.application.ticket.constants.Constants.LOTTO_START_INCLUSIVE_NUMBER;
+
 public enum LottoNumberRule {
-    START_INCLUSIVE(1),
-    END_INCLUSIVE(45),
-    SIZE(6);
+    START_INCLUSIVE(LOTTO_START_INCLUSIVE_NUMBER),
+    END_INCLUSIVE(LOTTO_END_INCLUSIVE_NUMBER),
+    SIZE(LOTTO_SIZE);
 
     private int value;
 

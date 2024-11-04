@@ -1,6 +1,8 @@
 package lotto.application.ticket.domain.ticket;
 
-import static lotto.application.ticket.domain.payment.LottoPrice.BASIC_PRICE;
+import static lotto.application.ticket.constants.Constants.BASIC_PRICE;
+import static lotto.application.ticket.message.Message.CANT_NULL_ID;
+import static lotto.application.ticket.message.Message.CANT_NULL_LOTTO;
 
 import java.util.List;
 
@@ -38,13 +40,13 @@ public class Ticket {
 
     private static void validateId(Long id) {
         if (id == null) {
-            throw new IllegalArgumentException("[ERROR] 티켓 ID는 null일 수 없습니다.");
+            throw new IllegalArgumentException(CANT_NULL_ID);
         }
     }
 
     private static void validateLottos(Lottos lottos) {
         if (lottos == null) {
-            throw new IllegalArgumentException("[ERROR] 로또 목록은 null일 수 없습니다.");
+            throw new IllegalArgumentException(CANT_NULL_LOTTO);
         }
     }
 

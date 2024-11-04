@@ -1,12 +1,12 @@
 package lotto.application.ticket.view.input;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.application.ticket.message.Message.INPUT_MONEY_MESSAGE;
 
 import lotto.application.common.OutputPrinter;
 import lotto.application.common.ThousandWons.ThousandWons;
 
 public class TicketInputView {
-    private static final String INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
     private final OutputPrinter printer;
 
     public TicketInputView() {

@@ -1,8 +1,12 @@
 package lotto.application.ticket.domain.payment;
 
+import static lotto.application.ticket.constants.Constants.MAXIMUM_QUANTITY;
+import static lotto.application.ticket.constants.Constants.MINIMUM_QUANTITY;
+import static lotto.application.ticket.message.Message.MAXIMUM_QUANTITY_ERROR;
+import static lotto.application.ticket.message.Message.MINIMUM_QUANTITY_ERROR;
+
 public class LottoQuantity {
-    private static final int MINIMUM_QUANTITY = 1;
-    private static final int MAXIMUM_QUANTITY = 100;
+
 
     private final int value;
 
@@ -16,24 +20,20 @@ public class LottoQuantity {
         return new LottoQuantity(count);
     }
 
-    private void validate(int count) {
-        validateInValidRange(count);
-    }
-
     private static void validateInValidRange(int count) {
-        validateMinimumQuantity(count);
         validateMaximumQuantity(count);
-    }
-
-    private static void validateMaximumQuantity(int count) {
-        if (count < MINIMUM_QUANTITY) {
-            throw new IllegalArgumentException("[ERROR] 로또 수량은 1개 이상이어야 합니다.");
-        }
+        validateMinimumQuantity(count);
     }
 
     private static void validateMinimumQuantity(int count) {
+        if (count < MINIMUM_QUANTITY) {
+            throw new IllegalArgumentException(MINIMUM_QUANTITY_ERROR);
+        }
+    }
+
+    private static void validateMaximumQuantity(int count) {
         if (count > MAXIMUM_QUANTITY) {
-            throw new IllegalArgumentException("[ERROR] 로또 수량은 100개를 초과할 수 없습니다.");
+            throw new IllegalArgumentException(MAXIMUM_QUANTITY_ERROR);
         }
     }
 

@@ -1,10 +1,12 @@
 package lotto.application.ticket.domain.payment;
 
 
+import static lotto.application.ticket.constants.Constants.BASIC_PRICE;
+import static lotto.application.ticket.message.Message.NEED_MORE_MONEY;
+
 import lotto.application.common.ThousandWons.ThousandWons;
 
 public class LottoPrice {
-    public final static int BASIC_PRICE = 1000;
     private final int amount;
 
     private LottoPrice(int amount) {
@@ -21,7 +23,7 @@ public class LottoPrice {
 
     private void validateNotLessThanPrice(int moneyAmount) {
         if (moneyAmount < amount) {
-            throw new IllegalArgumentException("[ERROR] 구매 가능한 금액이 부족합니다.");
+            throw new IllegalArgumentException(NEED_MORE_MONEY);
         }
     }
 

@@ -1,12 +1,13 @@
 package lotto.application.ticket.view.output;
 
+import static lotto.application.ticket.message.Message.EMPTY_STRING;
+import static lotto.application.ticket.message.Message.LOTTO_FORMAT;
+import static lotto.application.ticket.message.Message.NUMBER_DELIMITER;
+import static lotto.application.ticket.message.Message.PURCHASE_MESSAGE;
+
 import java.util.List;
 
 public class LottoMessageFormatter {
-    private static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.";
-    private static final String LOTTO_FORMAT = "[%s]";
-    private static final String NUMBER_DELIMITER = ", ";
-
     public String formatPurchaseMessage(int count) {
         return String.format(PURCHASE_MESSAGE, count);
     }
@@ -15,7 +16,7 @@ public class LottoMessageFormatter {
         String numbersString = numbers.stream()
                 .map(String::valueOf)
                 .reduce((a, b) -> a + NUMBER_DELIMITER + b)
-                .orElse("");
+                .orElse(EMPTY_STRING);
 
         return String.format(LOTTO_FORMAT, numbersString);
     }
