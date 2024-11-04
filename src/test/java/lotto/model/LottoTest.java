@@ -62,9 +62,10 @@ class LottoTest {
         sequentialRandomNumberGenerator.setSizeWillBeGenerated(LOTTO_NUMBER_SIZE);
         Lotto lotto = Lotto.generateBy(sequentialRandomNumberGenerator);
 
+        LottoNumbers expected = LottoNumbers.generateBy(LOTTO_NUMBER_SIZE, sequentialRandomNumberGenerator);
+
         // when
         LottoNumbers actual = lotto.getLottoNumbers();
-        LottoNumbers expected = LottoNumbers.generateBy(LOTTO_NUMBER_SIZE, sequentialRandomNumberGenerator);
 
         // then
         assertThat(actual).isEqualTo(expected);
