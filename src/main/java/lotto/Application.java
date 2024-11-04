@@ -103,5 +103,11 @@ public class Application {
     }
 
     private static void displayProfit(Map<Rank, Integer> matchCounts, int moneySpent) {
+        long totalProfit = 0;
+        for (Rank rank : Rank.values()) {
+            totalProfit += (long) rank.getPrize() * matchCounts.get(rank);
+        }
+        double profitRate = (double) totalProfit / moneySpent * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 }
