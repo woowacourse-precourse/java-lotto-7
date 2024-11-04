@@ -36,7 +36,7 @@ public enum LottoRank {
 		return matchCount;
 	}
 
-	public void printInfo(){
-		System.out.println(message + matchCount);
+	public void printInfo(Integer lottoCounts){
+		System.out.println(message + lottoCounts + "개");
 	}
 }
