@@ -13,14 +13,16 @@ public class LottoCreate {
     public LottoCreate(int purchasePrice) {
         this.purchasePrice = purchasePrice;
         lottoCount = purchasePrice / 1000;
-        createLottos();
+        this.lottos = createLottos();
     }
 
-    public void createLottos() {
-        lottos = new ArrayList<>();
+    public List<Lotto> createLottos() {
+        List<Lotto> generatedLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            generatedLottos.add(new Lotto(numbers));
         }
+        return generatedLottos;
     }
 
     public int getPurchasePrice() {
@@ -32,6 +34,6 @@ public class LottoCreate {
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return new ArrayList<>(lottos);
     }
 }
