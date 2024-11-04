@@ -32,4 +32,16 @@ public class PrizeProvider {
                         )
                 );
     }
+
+    public double calculateRateOfReturn(final int purchaseAmount) {
+        final long totalWinningMoney = calculateTotalWinningMoney();
+        return (double) totalWinningMoney / purchaseAmount * 100;
+    }
+
+    private long calculateTotalWinningMoney() {
+        Map<WinningRank, Long> ranks = getCountedWinningRanks();
+        return ranks.entrySet().stream()
+                .mapToLong(rank -> rank.getKey().getMoney() * rank.getValue())
+                .sum();
+    }
 }
