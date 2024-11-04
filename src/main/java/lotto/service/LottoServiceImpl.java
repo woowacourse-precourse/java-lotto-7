@@ -42,7 +42,7 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public LottoReport generateLottoReport(String purchaseAmount, String winningNumbers, String bonusNumber) {
         List<Integer> numericWinningNumbers = parseIntegerList(winningNumbers);
-        int numericBonusNumber = Integer.parseInt(bonusNumber);
+        int numericBonusNumber = safeParseBonusNumber(bonusNumber);
         validateLottoNumbers(numericWinningNumbers);
         validateLottoNumber(numericBonusNumber);
 
@@ -111,7 +111,13 @@ public class LottoServiceImpl implements LottoService {
     }
 
     private List<Integer> parseIntegerList(String stringInput) {
-        return Arrays.stream(stringInput.split(SystemConstants.LOTTO_SERVICE_WINNING_NUMBERS_SEPARATOR))
+        validateNullInput(stringInput);
+        List<String> splitList = Arrays.stream(
+                stringInput.split(SystemConstants.LOTTO_SERVICE_WINNING_NUMBERS_SEPARATOR))
+                .toList();
+        splitList.forEach(this::validateNullInput);
+        return splitList
+                .stream()
                 .map(Integer::parseInt)
                 .toList();
     }
@@ -144,6 +150,17 @@ public class LottoServiceImpl implements LottoService {
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_LOTTO_COUNT.getMessage());
+        }
+    }
+
+    private int safeParseBonusNumber(String stringInput) {
+        validateNullInput(stringInput);
+        try {
+            int amount = Integer.parseInt(stringInput);
+            validateLottoNumber(amount);
+            return amount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_NOT_NUMERIC.getMessage(), e);
         }
     }
 
