@@ -2,6 +2,8 @@ package lotto.view;
 
 import java.util.List;
 
+import lotto.model.WinningResultsDto;
+
 public class OutputView {
 
 	public void printPurchasePriceInputMessage() {
@@ -30,6 +32,15 @@ public class OutputView {
 
 	public void printBonusNumberInputMessage() {
 		System.out.println("보너스 번호를 입력해 주세요.");
+	}
+
+	public void printWinningResultMessage(WinningResultsDto winningResults) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("\n");
+		stringBuilder.append("당첨 통계");
+		stringBuilder.append("\n");
+		stringBuilder.append("---");
+		stringBuilder.append("\n");
 	}
 
 	private String getLottoCountMessage(int count) {
