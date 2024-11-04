@@ -3,6 +3,7 @@ package lotto.domain;
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.constant.LottoRank;
 
 public class LottoProfit {
 

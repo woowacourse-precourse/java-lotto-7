@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constant.LottoRank;
 import lotto.util.NumberValidator;
 
 public class WinningNumbers {

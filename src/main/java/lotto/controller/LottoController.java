@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoProfit;
-import lotto.domain.LottoRank;
+import lotto.constant.LottoRank;
 import lotto.domain.LottoStore;
 import lotto.domain.Money;
 import lotto.domain.QuickLottoGenerator;
