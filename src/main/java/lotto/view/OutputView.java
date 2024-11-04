@@ -27,6 +27,8 @@ public class OutputView {
 	private static final String WON = "원";
 	private static final String PRIZE_FORMAT = "%,d";
 	private static final String DECIMAL_FORMAT = "#,###.#";
+	private static final String PROFIT_RATE_MESSAGE = "총 수익률은 ";
+	private static final String PERCENT_MESSAGE = "%입니다.";
 
 	public void printPurchasePriceInputMessage() {
 		System.out.println(PURCHASE_PRICE_INPUT_MESSAGE);
@@ -88,6 +90,6 @@ public class OutputView {
 
 	private String getProfitRateMessage(double profitRate) {
 		DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
-		return "총 수익률은 " + decimalFormat.format(profitRate) + "%입니다.";
+		return PROFIT_RATE_MESSAGE + decimalFormat.format(profitRate) + PERCENT_MESSAGE;
 	}
 }
