@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.controller.LottoController;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -50,6 +52,22 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입_금액이_1000_단위가_아닐_경우_예외_확인하는_테스트() {
+        assertSimpleTest(() -> {
+            runException("2500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호_개수가_부족할_경우_예외_확인하는_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
