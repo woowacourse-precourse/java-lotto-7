@@ -1,10 +1,21 @@
 package lotto;
 
+import static lotto.InputUtil.checkInputIsNotInNumbers;
+import static lotto.InputUtil.checkOverThanMinAndLessThanMax;
 import static lotto.InputUtil.isClearedByNum;
 import static lotto.InputUtil.isNumeric;
+import static lotto.InputUtil.isNumericWithCommas;
+import static lotto.InputUtil.splitByComma;
 import static lotto.Lotto.LOTTO_BASIC_PRICE;
+import static lotto.Lotto.LOTTO_MAX_NUM;
+import static lotto.Lotto.LOTTO_MIN_NUM;
+import static lotto.Lotto.checkLotto;
+import static lotto.Lotto.makeRandomLotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Application {
 
@@ -29,6 +40,15 @@ public class Application {
 
         // 구매 개수 출력
         System.out.println(purchasesCount + "개를 구매했습니다.\n");
+
+        // 구매한 로또 발행
+        List<Lotto> purchases = new ArrayList<>();
+        for (int i = 0; i < purchasesCount; i++) {
+            purchases.add(makeRandomLotto());
+            System.out.println(purchases.get(i).getNumbers());
+        }
+
     }
+
 
 }
