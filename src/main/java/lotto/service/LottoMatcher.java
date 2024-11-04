@@ -14,9 +14,7 @@ public class LottoMatcher {
         for (Lotto lotto : lottos.getLottos()) {
             int matchCount = calculateMatchCount(lotto, winNumbers);
             boolean bonusMatch = isBonusMatch(lotto, bonusNumber, matchCount);
-
-            LottoRule rule = LottoRule.getWinInfo(matchCount, bonusMatch);
-            matchInfo.put(rule, matchInfo.getOrDefault(rule, 0) + 1);
+            updateMatchInfo(matchInfo, matchCount, bonusMatch);
         }
         return matchInfo;
     }
@@ -35,4 +33,8 @@ public class LottoMatcher {
         return (matchCount == 5) && lotto.getNumbers().contains(bonusNumber);
     }
 
+    private void updateMatchInfo(Map<LottoRule, Integer> matchInfo, int matchCount, boolean bonusMatch) {
+        LottoRule rule = LottoRule.getWinInfo(matchCount, bonusMatch);
+        matchInfo.put(rule, matchInfo.getOrDefault(rule, 0) + 1);
+    }
 }
