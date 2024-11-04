@@ -19,4 +19,12 @@ public class LottoGenerator {
 
         return lottos;
     }
+
+    public static int generateBonusNumber(List<Integer> winningNumbers) {
+        int bonusNumber;
+        do {
+            bonusNumber = Randoms.pickNumberInRange(1, 45);
+        } while (winningNumbers.contains(bonusNumber));
+        return bonusNumber;
+    }
 }
