@@ -24,4 +24,8 @@ public class LottoCreate {
     public int getLottoCount() {
         return lottoCount;
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }
