@@ -9,6 +9,11 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
+    private static final int NUMBER_COUNT = 6;
+    private static final List<Rank> POINTTORANK = // 포인트를 순위와 연결시키기 위한 리스트
+            List.of(Rank.NO_LUCK, Rank.NO_LUCK, Rank.NO_LUCK,
+                    Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST);
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,7 +31,7 @@ public class Lotto {
      * @param numbers
      */
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBER_COUNT) {
             throw new LottoException(ErrorMessage.NOT_SIX_NUM);
         } else if (!Validator.inRangeList(numbers)) {
             throw new LottoException(ErrorMessage.NOT_IN_RANGE);
@@ -43,21 +48,18 @@ public class Lotto {
      * @return 순위
      */
     public Rank getRank(Lotto winner, int bonus) {
-        int winningNumCount = countCommon(winner.getNumbers());
+        int point = countMatch(winner.getNumbers());
 
-        if (winningNumCount == 6) {
-            return Rank.FIRST;
-        } else if (winningNumCount == 5) {
-            if (numbers.contains(bonus)) {
-                return Rank.SECOND;
-            }
-            return Rank.THIRD;
-        } else if (winningNumCount == 4) {
-            return Rank.FOURTH;
-        } else if (winningNumCount == 3) {
-            return Rank.FIFTH;
+        // 1등인 경우 1등에 맞춰주기 위해 1포인트 더해줌
+        if (isFirst(point)) {
+            point++;
         }
-        return Rank.NO_LUCK;
+        // 2등인 경우 3등과 달라야하기 때문에 1포인트 더해줌
+        if (isSecond(point, bonus)) {
+            point++;
+        }
+
+        return POINTTORANK.get(point);
     }
 
     /**
@@ -66,8 +68,29 @@ public class Lotto {
      * @param winner 당첨 번호 리스트
      * @return 당첨 번호 개수
      */
-    private int countCommon(List<Integer> winner) {
+    private int countMatch(List<Integer> winner) {
         return (int) numbers.stream().filter(winner::contains).count();
+    }
+
+    /**
+     * 1등 판별
+     *
+     * @param point 현재 포인트
+     * @return 1등이면 true
+     */
+    private boolean isFirst(int point) {
+        return point == NUMBER_COUNT;
+    }
+
+    /**
+     * 2등 판별
+     *
+     * @param point 현재 포인트
+     * @param bonus 보너스 번호
+     * @return 2등이면 true
+     */
+    private boolean isSecond(int point, int bonus) {
+        return point == NUMBER_COUNT - 1 && Validator.isContain(bonus, numbers);
     }
 
     /**
