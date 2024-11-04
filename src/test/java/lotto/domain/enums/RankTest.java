@@ -1,10 +1,8 @@
-package lotto.enums;
+package lotto.domain.enums;
 
-import org.junit.jupiter.api.BeforeEach;
+import lotto.domain.enums.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.lang.reflect.Field;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

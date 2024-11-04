@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.util;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,14 +9,14 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class InputDomainTest {
+public class InputConverterTest {
     @DisplayName("당첨 번호가 유효한 경우 테스트에 성공한다.")
     @Test
     void 당첨_번호가_유효한_경우_테스트에_성공한다() {
         String input = "1,2,3,4,5,6";
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
 
-        List<Integer> result = InputDomain.convertWinningNumber(input);
+        List<Integer> result = InputConverter.convertWinningNumber(input);
 
         assertThat(result).isEqualTo(expected);
     }
@@ -26,7 +26,7 @@ public class InputDomainTest {
     void 당첨_번호가_6개_미만인_경우_예외가_발생한다() {
         String input = "1,2,3,4,5";
 
-        assertThatThrownBy(() -> InputDomain.convertWinningNumber(input))
+        assertThatThrownBy(() -> InputConverter.convertWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,7 +35,7 @@ public class InputDomainTest {
     void 당첨_번호가_6개_초과인_경우_예외가_발생한다() {
         String input = "1,2,3,4,5,6,7";
 
-        assertThatThrownBy(() -> InputDomain.convertWinningNumber(input))
+        assertThatThrownBy(() -> InputConverter.convertWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -44,7 +44,7 @@ public class InputDomainTest {
     void 당첨_번호에_중복이_있는_경우_예외가_발생한다() {
         String input = "1,2,3,4,5,5";
 
-        assertThatThrownBy(() -> InputDomain.convertWinningNumber(input))
+        assertThatThrownBy(() -> InputConverter.convertWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -53,7 +53,7 @@ public class InputDomainTest {
     void 범위보다_작은_당첨_번호가_있는_경우_예외가_발생한다() {
         String input = "0,2,3,4,5,6";
 
-        assertThatThrownBy(() -> InputDomain.convertWinningNumber(input))
+        assertThatThrownBy(() -> InputConverter.convertWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -62,7 +62,7 @@ public class InputDomainTest {
     void 범위보다_큰_당첨_번호가_있는_경우_예외가_발생한다() {
         String input = "1,2,3,4,5,46";
 
-        assertThatThrownBy(() -> InputDomain.convertWinningNumber(input))
+        assertThatThrownBy(() -> InputConverter.convertWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -71,7 +71,7 @@ public class InputDomainTest {
     void 숫자가_아닌_당첨_번호가_있는_경우_예외가_발생한다() {
         String input = "1,2,3,4,5,삼";
 
-        assertThatThrownBy(() -> InputDomain.convertWinningNumber(input))
+        assertThatThrownBy(() -> InputConverter.convertWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -80,7 +80,7 @@ public class InputDomainTest {
     void 보너스_번호가_유효하다면_테스트에_성공한다() {
         String input = "7";
 
-        int result = InputDomain.convertBonusNumber(input);
+        int result = InputConverter.convertBonusNumber(input);
 
         assertThat(result).isEqualTo(7);
     }
@@ -90,7 +90,7 @@ public class InputDomainTest {
     void 범위보다_작은_보너스_번호가_있는_경우_예외가_발생한다() {
         String input = "0";
 
-        assertThatThrownBy(() -> InputDomain.convertBonusNumber(input))
+        assertThatThrownBy(() -> InputConverter.convertBonusNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -99,7 +99,7 @@ public class InputDomainTest {
     void 범위보다_큰_보너스_번호가_있는_경우_예외가_발생한다() {
         String input = "46";
 
-        assertThatThrownBy(() -> InputDomain.convertBonusNumber(input))
+        assertThatThrownBy(() -> InputConverter.convertBonusNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -108,7 +108,7 @@ public class InputDomainTest {
     void 숫자가_아닌_보너스_번호가_있는_경우_예외가_발생한다() {
         String input = "이십칠";
 
-        assertThatThrownBy(() -> InputDomain.convertBonusNumber(input))
+        assertThatThrownBy(() -> InputConverter.convertBonusNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

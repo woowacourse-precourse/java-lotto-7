@@ -1,11 +1,12 @@
-package lotto.domain;
+package lotto.domain.simulator;
 
-import lotto.enums.Rank;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.WinningNumbers;
+import lotto.domain.enums.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

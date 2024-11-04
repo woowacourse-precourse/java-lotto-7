@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.domain.simulator;
 
-import lotto.enums.Rank;
+import lotto.domain.enums.Rank;
 
 import java.util.Map;
 

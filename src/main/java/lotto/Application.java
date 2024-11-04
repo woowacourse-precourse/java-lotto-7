@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.domain.LottoGenerator;
-import lotto.domain.LottoMatcher;
-import lotto.domain.Statistics;
-import lotto.domain.WinningNumbers;
+import lotto.domain.simulator.LottoGenerator;
+import lotto.domain.simulator.LottoMatcher;
+import lotto.domain.simulator.Statistics;
+import lotto.domain.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

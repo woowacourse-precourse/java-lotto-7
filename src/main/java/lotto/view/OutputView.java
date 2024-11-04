@@ -1,9 +1,9 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
-import lotto.domain.OutputDomain;
-import lotto.domain.Statistics;
-import lotto.enums.Rank;
+import lotto.domain.model.Lotto;
+import lotto.domain.util.OutputFormatter;
+import lotto.domain.simulator.Statistics;
+import lotto.domain.enums.Rank;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +39,7 @@ public class OutputView {
 
     private static String makeMessage(Rank rank, int count) {
         return String.format(
-                OutputDomain.rankMessages.get(rank),
+                OutputFormatter.rankMessages.get(rank),
                 count
         );
     }

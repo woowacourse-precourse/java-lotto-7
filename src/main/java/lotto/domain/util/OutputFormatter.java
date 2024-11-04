@@ -1,11 +1,11 @@
-package lotto.domain;
+package lotto.domain.util;
 
-import lotto.enums.Rank;
+import lotto.domain.enums.Rank;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class OutputDomain {
+public class OutputFormatter {
     public static final Map<Rank, String> rankMessages = new HashMap<>();
 
     static {

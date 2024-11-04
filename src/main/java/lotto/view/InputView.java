@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.InputDomain;
+import lotto.domain.util.InputConverter;
 import lotto.exception.ExceptionHandler;
 import lotto.validator.Validator;
 
@@ -54,7 +54,7 @@ public class InputView {
             System.out.println("\n당첨 번호를 입력해 주세요.");
             String input = Console.readLine();
 
-            return InputDomain.convertWinningNumber(input);
+            return InputConverter.convertWinningNumber(input);
         } catch (IllegalArgumentException e) {
             ExceptionHandler.handleIllegalArgumentException(e);
             return null;
@@ -75,7 +75,7 @@ public class InputView {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             String input = Console.readLine();
 
-            return InputDomain.convertBonusNumber(input);
+            return InputConverter.convertBonusNumber(input);
         } catch (IllegalArgumentException e) {
             ExceptionHandler.handleIllegalArgumentException(e);
             return -1;

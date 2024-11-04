@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.util;
 
 import lotto.validator.Validator;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class InputDomain {
+public class InputConverter {
     public static List<Integer> convertWinningNumber(String input) {
         String[] tmp = input.split(",");
         List<String> convertedInput = Arrays.asList(tmp);
