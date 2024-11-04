@@ -9,6 +9,11 @@ public class Lotto {
     private static final int MAX_NUMBER = 45;
     private final List<Integer> numbers;
 
+    private static final String ERROR_LOTTO_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
+    private static final String ERROR_DUPLICATE_NUMBER = "[ERROR] 로또 번호에 중복된 숫자가 있습니다.";
+    private static final String ERROR_OUT_OF_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
@@ -18,19 +23,19 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ERROR_LOTTO_SIZE);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBER);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(n -> n < MIN_NUMBER || n > MAX_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR_OUT_OF_RANGE);
         }
     }
 
