@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import lotto.model.LottoManagementSystem;
+import lotto.model.LottoResult;
 import lotto.model.MyWallet;
+import lotto.model.YieldCalculator;
 import lotto.util.InputParser;
 import lotto.view.LottoView;
 
@@ -12,9 +14,12 @@ public class LottoController {
 
     private final MyWallet myWallet;
     private final LottoManagementSystem lottoManagementSystem;
+    private final LottoResult lottoResult;
 
-    public LottoController(LottoView lottoView) {
+
+    public LottoController(LottoView lottoView, YieldCalculator yieldCalculator) {
         this.lottoView = lottoView;
+        this.lottoResult = new LottoResult();
         this.myWallet = new MyWallet();
         this.lottoManagementSystem = new LottoManagementSystem();
     }
@@ -39,6 +44,7 @@ public class LottoController {
     }
 
     public void printStat(){
-
+        lottoManagementSystem.recordRanks(lottoResult,myWallet);
+        lottoView.printStat(lottoResult);
     }
 }

@@ -27,6 +27,16 @@ public class LottoManagementSystem {
         this.bonusNumber = bonusNumber;
     }
 
+    public void recordRanks(LottoResult lottoResult,MyWallet myWallet){
+        List<Lotto> lottos = myWallet.getLottos();
+        for (Lotto lotto : lottos) {
+            List<Integer> numbers = lotto.getNumbers();
+            int rank = returnRank(numbers);
+
+            lottoResult.addWin(rank);
+        }
+    }
+
     private int returnRank(List<Integer> numbers) {
         int matchCount = 0;
 

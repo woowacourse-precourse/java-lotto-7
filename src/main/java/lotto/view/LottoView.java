@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
+import lotto.model.YieldCalculator;
 
 import java.util.List;
 
@@ -51,6 +52,10 @@ public class LottoView {
         System.out.printf("5개 일치 (%,d원) - %d개\n", prizeAmounts[2], rankCounts[4]); // 5개 일치
         System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개\n", prizeAmounts[1], rankCounts[1]); // 5개 일치, 보너스
         System.out.printf("6개 일치 (%,d원) - %d개\n", prizeAmounts[0], rankCounts[0]); // 6개 일치
+    }
+
+    public void printYield(float yield){
+        System.out.println("총 수익률은" + yield + "입니다.");
     }
 
 }
