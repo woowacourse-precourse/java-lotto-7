@@ -35,7 +35,7 @@ public class LottoController {
         StatisticsLottoDTO stats = lottoMainService.getAllStatisticsAsDTO();
         outputView.statisticStart(stats);
         double profit = lottoMainService.sumPrize(stats,cost);
-        outputView.profitMessage(profit);
+        outputView.profitMessage(profit*100);
     }
 
     private String getValidatedCost(){

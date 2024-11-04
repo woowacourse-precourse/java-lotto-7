@@ -1,5 +1,6 @@
 package lotto.lottoService;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.stream.Collectors;
 import lotto.lottoModel.LottoDAO;
 import lotto.lottoModel.*;
@@ -9,6 +10,9 @@ import lotto.Utility.LottoNumberGenerator;
 import java.util.*;
 
 public class LottoMainService {
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
+    private static final int LIST_NUMBER = 6;
 
     private LottoDAO lottoDAO; //생성된 로또 번호
     private StatisticsLottoDAO statisticsDAO; //당첨 통계
@@ -24,7 +28,8 @@ public class LottoMainService {
         long numberOfBuy = calcCost / 1000;
 
         for (int i = 0; i < numberOfBuy; i++) {
-            Lotto lotto = new Lotto(LottoNumberGenerator.generateLottoNumbers());
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LIST_NUMBER);
+            Lotto lotto = new Lotto(numbers);
             lottoDAO.save(lotto); //생성된 로또 번호 저장
         }
     }
@@ -32,9 +37,12 @@ public class LottoMainService {
     //로또 객체 반환
     public List<LottoDTO> getAllLottosAsDTO() {
         List<Lotto> allLottos = lottoDAO.getAll(); //모든 생성된 로또 번호
-        return allLottos.stream()
-                .map(lotto -> new LottoDTO(lotto.getNumbers()))
-                .collect(Collectors.toList());
+        List<LottoDTO> list = new ArrayList<>();
+        for (Lotto lotto : allLottos) {
+            LottoDTO lottoDTO = new LottoDTO(lotto.getNumbers());
+            list.add(lottoDTO);
+        }
+        return list;
     }
 
     // 당첨 번호 저장
@@ -85,7 +93,7 @@ public class LottoMainService {
 
 
     // 상금 합계 계산 후 반환
-    public double sumPrize(StatisticsLottoDTO stats,String cost) {
+    public double sumPrize(StatisticsLottoDTO stats, String cost) {
         long sumPrize = 0;
         for (int i = 3; i <= 6; i++) {
             if (i == 5) {
@@ -95,8 +103,7 @@ public class LottoMainService {
             }
             sumPrize += LottoPrize.getPrize(i, false) * stats.getHitNumberValue(i);
         }
-        double profit = (double) (sumPrize/Integer.parseInt(cost));
-        return profit;
+        return (double) sumPrize / Integer.parseInt(cost);
     }
 
 }
