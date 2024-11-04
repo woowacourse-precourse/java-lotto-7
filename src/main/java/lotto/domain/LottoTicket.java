@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.service.Issuing;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoTicket {
@@ -10,6 +11,7 @@ public class LottoTicket {
     private static final int PRICE_MAX = 100_000;
     private final int price;
     private final List<Lotto> lottoTickets = new ArrayList<>();
+    private final HashMap<Rank, Integer> result = new HashMap<>();
     private int count;
 
     Issuing issue = new Issuing();
@@ -27,6 +29,9 @@ public class LottoTicket {
     }
     public List<Lotto> getLottoTickets(){
         return lottoTickets;
+    }
+    public HashMap<Rank, Integer> getResult(){
+        return result;
     }
     private void validatePrice(int price){
         if(price < PRICE_TICKET || price > PRICE_MAX){
