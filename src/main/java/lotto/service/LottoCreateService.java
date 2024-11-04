@@ -15,7 +15,7 @@ public class LottoCreateService {
         return createLottos(lottoCount);
     }
 
-    public Lottos createLottos(int lottoCount) {
+    private Lottos createLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = createRandomNumbers();
@@ -24,7 +24,7 @@ public class LottoCreateService {
         return new Lottos(lottos);
     }
 
-    public List<Integer> createRandomNumbers() {
+    private List<Integer> createRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(
             LottoConstant.LOTTO_NUMBER_MIN,
             LottoConstant.LOTTO_NUMBER_MAX,
@@ -32,7 +32,11 @@ public class LottoCreateService {
         );
     }
 
-    public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+    public Lotto createLotto(List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
+    public WinningLotto createWinningLotto(Lotto lotto, int bonusNumber) {
+        return new WinningLotto(lotto, bonusNumber);
     }
 }

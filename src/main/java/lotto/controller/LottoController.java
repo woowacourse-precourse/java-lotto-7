@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
+import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
@@ -58,8 +59,10 @@ public class LottoController {
     public WinningLotto getWinningLotto() {
         return retryOnException(() -> {
             List<Integer> winningNumbers = view.getWinningNumbers();
+            Lotto lotto = lottoCreateService.createLotto(winningNumbers);
+
             int bonusNumber = view.getBonusNumber();
-            return lottoCreateService.createWinningLotto(winningNumbers, bonusNumber);
+            return lottoCreateService.createWinningLotto(lotto, bonusNumber);
         });
     }
 
