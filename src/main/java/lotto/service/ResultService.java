@@ -12,6 +12,7 @@ import lotto.dto.result.IssuedTickets;
 import lotto.dto.result.MatchResults;
 import lotto.dto.result.ProfitResult;
 import lotto.dto.result.SortedIssuedTickets;
+import lotto.utils.formatter.ProfitFormatter;
 import lotto.utils.sorter.TicketSorter;
 import lotto.view.OutputView;
 
@@ -60,6 +61,7 @@ public class ResultService {
     private void printProfitRate(Map<Rank, Integer> rankCounts, PurchaseTotalPrice purchaseTotalPrice) {
         int totalPrizeAmount = PrizeCalculator.calculateTotalPrize(rankCounts);
         ProfitResult profitResult = ProfitCalculator.calculateProfit(purchaseTotalPrice.totalPrice(), totalPrizeAmount);
-        outputView.printProfitRate(profitResult.profitRate());
+        String formattedProfitRate = ProfitFormatter.formatProfitRate(profitResult.profitRate());
+        outputView.printProfitRate(formattedProfitRate);
     }
 }

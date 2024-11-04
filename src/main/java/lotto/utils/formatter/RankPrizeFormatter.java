@@ -34,6 +34,6 @@ public class RankPrizeFormatter {
     }
 
     private static String formatPrize(int prize) {
-        return NumberFormat.getNumberInstance(Locale.US).format(prize);
+        return NumberFormat.getNumberInstance(Locale.KOREA).format(prize);
     }
 }

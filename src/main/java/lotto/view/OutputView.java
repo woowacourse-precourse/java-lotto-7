@@ -13,7 +13,7 @@ public class OutputView {
     private static final String BONUS_NUMBER_INPUT_PROMPT = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
     private static final String STATISTICS_DIVIDER = "---";
-    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %s입니다.";
 
     public void printPurchaseTotalPricePrompt() {
         System.out.println(PURCHASE_TOTAL_PRICE_PROMPT);
@@ -46,7 +46,7 @@ public class OutputView {
         System.out.println(formattedStatistics);
     }
 
-    public void printProfitRate(BigDecimal profitRate) {
-        System.out.printf(PROFIT_RATE_MESSAGE + "%n", profitRate);
+    public void printProfitRate(String formattedProfitRate) {
+        System.out.printf(PROFIT_RATE_MESSAGE + "%n", formattedProfitRate);
     }
 }
