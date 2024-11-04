@@ -34,7 +34,7 @@ public class LottoService {
     public static void init(StringParser<List<Integer>> delimitedNumberParser,
                             StringParser<Integer> bonusNumberParser,
                             StringParser<Integer> moneyParser) {
-        assert instance == null : "Already initialized";
+        if (instance != null) return;
         instance = new LottoService(delimitedNumberParser, bonusNumberParser, moneyParser);
     }
 

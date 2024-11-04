@@ -27,7 +27,7 @@ public class LottoController {
     }
 
     public static void init(LottoService service, InputConsole input, OutputConsole output) {
-        assert instance == null : "Already been initialized";
+        if (instance != null) return;
         instance = new LottoController(service, input, output);
     }
 
