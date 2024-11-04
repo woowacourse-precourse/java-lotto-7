@@ -6,8 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.configuration.LottoConfiguration;
 import lotto.configuration.Prize;
-import lotto.exception.ExceptionUtils;
-import lotto.exception.ProfitReportExceptionMessage;
+import lotto.validator.ProfitReportVaildator;
 
 public class ProfitReport {
     private final List<Lotto> purchasedLottos;
@@ -16,8 +15,7 @@ public class ProfitReport {
     // constructor
 
     public ProfitReport(List<Lotto> purchasedLottos, WinningNumbers winningNumbers) {
-        validate(purchasedLottos, winningNumbers);
-
+        ProfitReportVaildator.validate(purchasedLottos, winningNumbers);
         this.purchasedLottos = purchasedLottos;
         this.winningNumbers = winningNumbers;
     }
@@ -75,12 +73,5 @@ public class ProfitReport {
         return Prize.findPrize(matchCount, matchBonus);
     }
 
-    private void validate(List<Lotto> purchasedLottos, WinningNumbers winningNumbers) {
-        if (purchasedLottos == null || purchasedLottos.isEmpty()) {
-            throw ExceptionUtils.IllegalArgument(ProfitReportExceptionMessage.NULL_OR_EMPTY_LOTTOS);
-        }
-        if (winningNumbers == null) {
-            throw ExceptionUtils.IllegalArgument(ProfitReportExceptionMessage.NULL_WINNING_NUMBERS);
-        }
-    }
+
 }
