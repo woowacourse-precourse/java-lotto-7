@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.NUMBER_DUPLICATE_ERROR_MESSAGE;
+import static lotto.constant.ErrorMessage.NUMBER_RANGE_ERROR_MESSAGE;
+import static lotto.constant.ErrorMessage.NUMBER_SIZE_ERROR_MESSAGE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,9 +11,6 @@ import java.util.List;
 public class Lotto {
     public static final int MIN_RANGE = 1;
     public static final int MAX_RANGE = 45;
-    public static final String NUMBER_SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
-    public static final String NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 %d와 %d사이 숫자여야합니다.";
-    public static final String NUMBER_DUPLICATE_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
 
     private final List<Integer> numbers;
 
@@ -43,19 +44,20 @@ public class Lotto {
 
     private void validateCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(NUMBER_SIZE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NUMBER_SIZE_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (hasNumberOutOfRange(numbers)) {
-            throw new IllegalArgumentException(String.format(NUMBER_RANGE_ERROR_MESSAGE, MIN_RANGE, MAX_RANGE));
+            throw new IllegalArgumentException(
+                    String.format(NUMBER_RANGE_ERROR_MESSAGE.getMessage(), MIN_RANGE, MAX_RANGE));
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (hasDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException(NUMBER_DUPLICATE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NUMBER_DUPLICATE_ERROR_MESSAGE.getMessage());
         }
     }
 
