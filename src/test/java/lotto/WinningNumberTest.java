@@ -17,6 +17,6 @@ class WinningNumberTest {
         assertThatThrownBy(() -> new WinningNumber(Lotto.createWinningRegularLotto("1,2,3,4,5,6"),new SpecialNumber(specialNumber)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorCode.LOTTO_NUMBER_MUST_NOT_DUPLICATE.getMessage());
-    }ㄱ
+    }
 
 }
