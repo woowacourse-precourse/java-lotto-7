@@ -39,4 +39,16 @@ public class Lottos {
 
         return conditions;
     }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+
+        for (Lotto lotto : lottos) {
+            sb.append(lotto.toString());
+            sb.append(System.lineSeparator());
+        }
+
+        return sb.toString();
+    }
 }
