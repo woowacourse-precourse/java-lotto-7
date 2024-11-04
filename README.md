@@ -16,8 +16,8 @@
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ## 구현 기능목록
-- [ ] 로또 구입 금액 입력 및 검증
-- [ ] 로또 티켓 생성
+- [x] 로또 구입 금액 입력 및 검증
+- [x] 로또 티켓 생성
 - [ ] 당첨 번호 입력 및 검증
 - [ ] 당첨 내역 및 당첨 수익률 통계
 - [ ] 예외처리
