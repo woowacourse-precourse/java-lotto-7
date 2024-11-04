@@ -20,6 +20,31 @@ public class Lotto {
     // TODO: 추가 기능 구현
 
     /**
+     * 로또 당첨번호와 보너스번호가 현재 로또의 번호와 몇개 일치하는지 판단합니다.
+     *
+     * @param gradingNumbers 비교대상이 될 로또 당첨번호
+     * @param bonusNumber    비교대상이 될 로또 보너스번호
+     * @return 길이 2인 배열의 0번째에는 일치하는 번호의 개수, 1번째에는 보너스번호의 일치여부가 담겨 반환됩니다.
+     */
+    private int[] calculateSameCount(List<Integer> gradingNumbers, int bonusNumber) {
+        int gradingNumbersPointer = 0, numbersPointer = 0;
+        int sameCount = 0, isBonusInclude = 0;
+        List<Integer> orderedNumbers = this.getSortedNumbers();
+        while (numbersPointer < orderedNumbers.size()) {
+            int gradeNumber = gradingNumbers.get(gradingNumbersPointer);
+            int compareNumber = orderedNumbers.get(numbersPointer);
+
+            if (gradeNumber == compareNumber) sameCount++;
+            if (bonusNumber == compareNumber) isBonusInclude = 1;
+
+            if (gradeNumber > compareNumber) numbersPointer++;
+            if (gradeNumber < compareNumber) gradingNumbersPointer++;
+        }
+
+        return new int[]{sameCount, isBonusInclude};
+    }
+
+    /**
      * 담겨있는 로또번호들을 정렬하여 반환합니다. 원본은 정렬되지 않습니다.
      *
      * @return 정렬된 로또번호 리스트
