@@ -19,5 +19,9 @@ public class Input {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.INDIVISIBLE_NUMBER);
         }
+
+        if (amount <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER);
+        }
     }
 }
