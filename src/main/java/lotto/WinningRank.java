@@ -26,4 +26,16 @@ public enum WinningRank {
             .findFirst()
             .orElse(NOTHING);
     }
+
+    public int calculatePrize(int count) {
+        return prizeAmount * count;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
 }
