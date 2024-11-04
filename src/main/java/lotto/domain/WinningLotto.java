@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.Lotto;
-
 public class WinningLotto {
 
     private static final int MIN_BONUS_NUMBER = 1;
