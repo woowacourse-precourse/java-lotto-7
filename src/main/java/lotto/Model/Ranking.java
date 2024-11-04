@@ -41,7 +41,10 @@ public enum Ranking {
     }
 
     private boolean isMatchingRank(int countOfMatch, boolean matchBonus) {
-        return this.matchingCount == countOfMatch && (this.bonusState == matchBonus);
+        if (this == SECOND) {
+            return this.matchingCount == countOfMatch && (this.bonusState == matchBonus);
+        }
+        return this.matchingCount == countOfMatch;
     }
 
     public String getMessage() {

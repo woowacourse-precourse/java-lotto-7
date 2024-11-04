@@ -10,8 +10,6 @@ import static lotto.constants.Constants.*;
 
 public class LottoNumbers {
 
-    public LottoNumbers() {
-    }
 
     //로또의 랜덤 숫자를 만드는 로직
     public static List<Integer> generateLottoNumbers() {
