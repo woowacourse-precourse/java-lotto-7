@@ -11,12 +11,10 @@ public class WinningNumbersValidator {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 
-    public static List<Integer> validate(String winningNumbersInput) {
-        List<Integer> winningNumbers = validateIsNumber(winningNumbersInput);
+    public static void validate(List<Integer> winningNumbers) {
         validateNumberRange(winningNumbers);
         validateNoDuplicates(winningNumbers);
         validateNumberCount(winningNumbers);
-        return winningNumbers;
     }
 
     private static void validateNumberRange(List<Integer> winningNumbers) {
@@ -40,14 +38,4 @@ public class WinningNumbersValidator {
         }
     }
 
-    private static List<Integer> validateIsNumber(String input) {
-        try {
-            return Arrays.stream(input.split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자 형태로 입력해야 합니다.");
-        }
-    }
 }
