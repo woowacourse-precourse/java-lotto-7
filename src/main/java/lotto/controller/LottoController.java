@@ -32,9 +32,8 @@ public class LottoController {
         WinnerLotto winnerLotto = inputWinner();
 
         long prize = lottoService.calculatePrize(lottoMachine.getLottoTickets(), winnerLotto);
-        double totalReturn = lottoService.totalReturn(lottoMachine, prize);
-        outputView.winningStatistics(totalReturn);
-
+        double earningRate = lottoService.totalReturn(lottoMachine, prize);
+        outputView.winningStatistics(earningRate);
     }
 
     private LottoMachine inputPrice() {

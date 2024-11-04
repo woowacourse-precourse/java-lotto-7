@@ -32,7 +32,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void winningStatistics(double totalReturn) {
+    public void winningStatistics(double earningRate) {
         System.out.println(RESULT_MESSAGE);
 
         for (LottoPrize value : LottoPrize.values()) {
@@ -48,6 +48,6 @@ public class OutputView {
                     , prize
                     , value.getCount());
         }
-        System.out.printf(TOTAL_RETURN, totalReturn);
+        System.out.printf(TOTAL_RETURN, earningRate);
     }
 }
