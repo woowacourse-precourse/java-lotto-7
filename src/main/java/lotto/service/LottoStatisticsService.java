@@ -12,7 +12,7 @@ public class LottoStatisticsService {
 
     public LottoStatistics calculateStatistics(List<LottoResult> results, int buyingPrice) {
         Map<Winning, Integer> winningStats = calculateWinningStatistics(results);
-        int totalWinningAmount = calculateTotalWinningAmount(results);
+        int totalWinningAmount = calculateTotalWinningPrize(results);
         double profitRate = calculateProfitRate(totalWinningAmount, buyingPrice);
 
         return new LottoStatistics(winningStats, profitRate);
@@ -33,7 +33,7 @@ public class LottoStatisticsService {
         return winningStats;
     }
 
-    private int calculateTotalWinningAmount(List<LottoResult> results) {
+    private int calculateTotalWinningPrize(List<LottoResult> results) {
         return results.stream()
                 .mapToInt(LottoResult::getPrize)
                 .sum();

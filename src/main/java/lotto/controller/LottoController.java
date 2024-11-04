@@ -44,7 +44,7 @@ public class LottoController {
 
     private WinningLotto getWinningLotto() {
         outputView.askWinningLotto();
-        String winningNumbers = inputView.inputLottoNumbersView();
+        String winningNumbers = inputView.inputWinningLottoNumbersView();
 
         outputView.askBonusNumber();
         String bonusNumber = inputView.inputBonusNumberView();

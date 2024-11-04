@@ -9,9 +9,9 @@ public class InputView {
         return buyingPrice;
     }
 
-    public String inputLottoNumbersView() {
-        String lottoNumbers = Console.readLine();
-        return lottoNumbers;
+    public String inputWinningLottoNumbersView() {
+        String winningLottoNumbers = Console.readLine();
+        return winningLottoNumbers;
     }
 
     public String inputBonusNumberView() {
