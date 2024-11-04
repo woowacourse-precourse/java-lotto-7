@@ -18,7 +18,7 @@ public class WinningLotto {
     }
 
     private void validateBonusNumberInRange(Integer bonusNumber) {
-        if (bonusNumber <= 0 || bonusNumber > 45) {
+        if (bonusNumber <1 || bonusNumber > 45) {
             throw new InvalidRangeWinningNumberException();
         }
     }
