@@ -12,4 +12,8 @@ public class LottoBuyer {
         this.lottos = lottoMachine.sell(purchaseAmount);
         return lottos;
     }
+
+    public RankResult checkWinning(WinningLotto winningLotto) {
+        return new RankResult(lottos.countMatching(winningLotto));
+    }
 }
