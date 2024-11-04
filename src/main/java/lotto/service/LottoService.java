@@ -23,8 +23,8 @@ public class LottoService {
 
 
     public List<Integer> sortLotto(List<Integer> numbers) {
-        Collections.sort(numbers);
-
-        return numbers;
+        List<Integer> sortedList = new ArrayList<>(numbers);
+        Collections.sort(sortedList);
+        return sortedList;
     }
 }
