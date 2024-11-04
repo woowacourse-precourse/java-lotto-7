@@ -1,18 +1,15 @@
 package lotto.util;
 
-import lotto.constant.Amount;
-import lotto.constant.ErrorMessage;
-import lotto.util.MatcherUtil;
-
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static lotto.constant.Amount.SINGLE_DIGIT;
 import static lotto.constant.Amount.THOUSAND;
 import static lotto.constant.Amount.ZERO;
 import static lotto.constant.Condition.ONLY_NUMBERS;
 import static lotto.constant.ErrorMessage.IS_NOT_DIVISIBLE_BY_THOUSAND;
 import static lotto.constant.ErrorMessage.IS_NOT_NUMBER;
+import static lotto.constant.ErrorMessage.IS_NOT_SINGLE_DIGIT;
 
 public class InputValidator {
     public void validateInputPurchaseAmount(String inputPurchaseAmount) {
@@ -38,8 +35,15 @@ public class InputValidator {
         }
     }
 
+    private void validateSingleDigit(String bonusNumber) {
+        if (bonusNumber.length() > SINGLE_DIGIT.getValue()) {
+            throw new IllegalArgumentException(IS_NOT_SINGLE_DIGIT.getValue());
+        }
+    }
+
     public void validateBonusNumber(String bonusNumber) {
         validateMatcherCondition(isNotNumber(bonusNumber));
+        validateSingleDigit(bonusNumber);
     }
 
 

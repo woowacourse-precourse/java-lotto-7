@@ -1,10 +1,6 @@
 package lotto;
 
-import lotto.constant.Amount;
-import lotto.constant.ErrorMessage;
-
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -27,18 +23,17 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicateWinningNumbers(List<Integer> numbers){
+    private void validateDuplicateWinningNumbers(List<Integer> numbers) {
         HashSet<Integer> hashSet = new HashSet<>(numbers);
 
-        if(hashSet.size() !=numbers.size()){
+        if (hashSet.size() != numbers.size()) {
             throw new IllegalArgumentException(WINNING_NUMBER_CONFLICT.getValue());
         }
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return Collections.unmodifiableList(this.numbers);
     }
-
 
 
     // TODO: 추가 기능 구현
