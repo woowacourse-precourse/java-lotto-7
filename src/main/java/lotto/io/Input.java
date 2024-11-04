@@ -1,6 +1,9 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import lotto.message.ErrorMessage;
 
 public class Input {
@@ -76,12 +79,14 @@ public class Input {
 
         winningNumber = winningNumber.replace(TARGET, REPLACEMENT);
         validateNumber(winningNumber);
+        validateRange(winningNumber);
     }
 
     private void validateBonusNumber(String bonusNumber) {
         validateInputExist(bonusNumber);
         validateNumber(bonusNumber);
         validatePositiveNumber(bonusNumber);
+        validateRange(bonusNumber);
     }
 
     private void validateInputExist(String input) {
@@ -107,6 +112,16 @@ public class Input {
     private void validatePositiveNumber(String input) {
         if (Integer.parseInt(input) <= 0) {
             throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER);
+        }
+    }
+
+    private void validateRange(String input) {
+        List<String> numbers = Arrays.asList(input.split(","));
+
+        for (String number : numbers) {
+            if (Integer.parseInt(number) < 1 && Integer.parseInt(number) > 45) {
+                throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE);
+            }
         }
     }
 
