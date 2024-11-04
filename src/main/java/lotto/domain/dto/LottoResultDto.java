@@ -9,4 +9,12 @@ public class LottoResultDto {
         this.winningNumber = winningNumber;
         this.isBonus = isBonus;
     }
+
+    public int getWinningNumber() {
+        return winningNumber;
+    }
+
+    public boolean getIsBonus() {
+        return isBonus;
+    }
 }

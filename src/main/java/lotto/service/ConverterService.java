@@ -2,6 +2,8 @@ package lotto.service;
 
 import lotto.constants.ConstraintConstants;
 import lotto.constants.ErrorViewConstants;
+import lotto.domain.dto.LottoResultDto;
+import lotto.enums.Prize;
 
 import static lotto.constants.ErrorViewConstants.*;
 import static lotto.service.ValidatorService.validatePurchaseAmount;
@@ -44,5 +46,9 @@ public class ConverterService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBERS);
         }
+    }
+
+    public static Prize convertLottoResultDtoToPrize(LottoResultDto lottoResultDto) {
+        return Prize.getPrizeByMatchCountAndBonus(lottoResultDto.getWinningNumber(), lottoResultDto.getIsBonus());
     }
 }
