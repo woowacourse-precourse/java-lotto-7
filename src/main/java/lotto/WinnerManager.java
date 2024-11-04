@@ -22,7 +22,7 @@ public class WinnerManager {
     private Integer bonusNumber;
 
 
-    WinnerManager(LottoWinnerNumberInputProcessor lottoWinnerNumberInputProcessor,
+    public WinnerManager(LottoWinnerNumberInputProcessor lottoWinnerNumberInputProcessor,
             BonusNumberInputProcessor bonusNumberInputProcessor) {
         this.lottoWinnerNumberInputProcessor = lottoWinnerNumberInputProcessor;
         this.bonusNumberInputProcessor = bonusNumberInputProcessor;

@@ -11,7 +11,7 @@ public class LottoBuyer {
     private Integer lottoPurchaseAmount;
     private ArrayList<Lotto> lottoTickets;
 
-    LottoBuyer(LottoPurchaseAmountInputProcessor lottoPurchaseAmountInput,
+    public LottoBuyer(LottoPurchaseAmountInputProcessor lottoPurchaseAmountInput,
             LottoVendingMachine lottoVendingMachine) {
         this.lottoPurchaseAmountInputProcessor = lottoPurchaseAmountInput;
         this.lottoVendingMachine = lottoVendingMachine;
