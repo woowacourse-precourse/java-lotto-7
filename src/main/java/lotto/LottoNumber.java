@@ -3,17 +3,20 @@ package lotto;
 public record LottoNumber(int value) {
     private static final String SIGNED_NUMBER_REGEX = "-?[0-9]+";
 
-    public LottoNumber(String value) {
-        this(validateLottoNumber(value));
+    public LottoNumber(String input) {
+        this(validateAndParse(input));
     }
 
-    private static int validateLottoNumber(String value) {
-        validateLetter(value);
-        return Integer.parseInt(value);
+    private static int validateAndParse(String input) {
+        validateLetter(input);
+        if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        return Integer.parseInt(input);
     }
 
-    private static void validateLetter(String value) {
-        if (isLetter(value)) {
+    private static void validateLetter(String input) {
+        if (isLetter(input)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 문자가 아닌 숫자여야 합니다.");
         }
     }
