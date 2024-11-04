@@ -19,15 +19,15 @@ public class LottoMachineTest {
 
         assertThatThrownBy(() -> lottoMachine.issueLottoTickets(1500))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
 
         assertThatThrownBy(() -> lottoMachine.issueLottoTickets(-1000))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
 
         assertThatThrownBy(() -> lottoMachine.issueLottoTickets(0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
     }
 
     @Test
@@ -66,7 +66,7 @@ public class LottoMachineTest {
 
         assertThatThrownBy(() -> lottoMachine.issueLottoTickets(500))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
     }
 
     @Test
@@ -76,10 +76,10 @@ public class LottoMachineTest {
 
         assertThatThrownBy(() -> lottoMachine.issueLottoTickets(0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
 
         assertThatThrownBy(() -> lottoMachine.issueLottoTickets(-1000))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
     }
 }
