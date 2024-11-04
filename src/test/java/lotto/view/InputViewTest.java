@@ -55,7 +55,7 @@ public class InputViewTest {
         System.setIn(inputStream);
 
         assertThatThrownBy(() -> inputView.inputPrice())
-                .isInstanceOf(NumberFormatException.class);
+                .isInstanceOf(IllegalArgumentException.class);
 
         System.setIn(System.in);
     }
@@ -66,8 +66,8 @@ public class InputViewTest {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("1, 2, 3, 4, 5, 6\n".getBytes());
         System.setIn(inputStream);
 
-        List<Integer> result = inputView.inputLottoNumbers();
-        assertThat(result).isEqualTo(List.of(1, 2, 3, 4));
+        List<Integer> result = inputView.inputWinningNumbers();
+        assertThat(result).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
 
         System.setIn(System.in);
     }
@@ -78,7 +78,7 @@ public class InputViewTest {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("45\n".getBytes());
         System.setIn(inputStream);
 
-        int result = inputView.inputBonusNumber();
+        int result = inputView.inputBonusNumber(List.of(1, 2, 3, 4, 5, 6));
         assertThat(result).isEqualTo(45);
 
         System.setIn(System.in);

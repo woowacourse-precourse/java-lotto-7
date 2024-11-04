@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.utils.ConstantMessage.GuideMessage;
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +18,8 @@ public class OutputViewTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        assertSimpleTest(() -> outputView.printLottoNumber(List.of(1, 2, 3, 4, 5, 6)));
-        assertThat(outputStream.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        assertSimpleTest(() -> outputView.printLottoNumber(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
+        assertThat(outputStream.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]\n");
         System.setOut(System.out);
     }
 
@@ -28,7 +29,7 @@ public class OutputViewTest {
         System.setOut(new PrintStream(outputStream));
 
         assertSimpleTest(() -> outputView.printGuide(GuideMessage.INPUT_PRICE));
-        assertThat(outputStream.toString()).isEqualTo("구입금액을 입력해 주세요.");
+        assertThat(outputStream.toString()).isEqualTo("구입금액을 입력해 주세요.\n");
         System.setOut(System.out);
     }
 }
