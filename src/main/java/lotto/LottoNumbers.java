@@ -7,6 +7,8 @@ import static constant.Message.INPUT_REQUEST_BONUS_NUMBER;
 import static constant.Message.INPUT_REQUEST_WINNING_NUMBERS;
 
 public class LottoNumbers {
+    private static final String DELIMITER = ",";
+
     private ArrayList<Integer> winningNumbers;
     private int bonusNumber;
 
@@ -18,7 +20,7 @@ public class LottoNumbers {
     private ArrayList<Integer> initWinningNumbers() {
         while (true) {
             String winningNumbersInput = getInputString(INPUT_REQUEST_WINNING_NUMBERS.getMessage());
-            String[] winningNumbersInputSplits = winningNumbersInput.split(",");
+            String[] winningNumbersInputSplits = winningNumbersInput.split(DELIMITER);
             try {
                 return getValidatedWinningNumbers(winningNumbersInputSplits);
             } catch (IllegalArgumentException e) {
