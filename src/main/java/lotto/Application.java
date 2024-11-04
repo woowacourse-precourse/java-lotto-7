@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 
 
@@ -36,9 +37,11 @@ public class Application {
 
         spaceString();
         printer.printBonusNumberNotice();
-        String bonusNumber = Console.readLine();
+        String bonusNumberStr = Console.readLine();
+        int bonusNumber = Integer.parseInt(bonusNumberStr);
         lotto.bonusValidate(bonusNumber);
         spaceString();
 
+        LottoResultProcessor result = new LottoResultProcessor(customer.getMoney(), lotto.getWinNumbers(), producer.getLottoNumbers(), bonusNumber);
     }
 }
