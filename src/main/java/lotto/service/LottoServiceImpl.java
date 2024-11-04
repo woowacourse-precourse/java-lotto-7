@@ -10,13 +10,17 @@ import lotto.dto.LottoDto;
 import lotto.repository.LottoRepository;
 import lotto.utils.LottoGenerator;
 
-public class LottoService {
+public class LottoServiceImpl {
     private final LottoRepository lottoRepository;
     private LottoAnswer lottoAnswer;
     private BonusNumber bonusNumber;
 
-    public LottoService(LottoRepository lottoRepository) {
+    public LottoServiceImpl(LottoRepository lottoRepository) {
         this.lottoRepository = lottoRepository;
+    }
+
+    public void saveLottoAnswer(List<Integer> lottoAnswer) {
+        this.lottoAnswer = new LottoAnswer(lottoAnswer);
     }
 
     public int getLottoCount(int money) {
@@ -39,10 +43,6 @@ public class LottoService {
         return lottoRepository.findAll().stream()
                 .map(lotto -> new LottoDto(lotto.getLottoNumbers()))
                 .collect(Collectors.toList());
-    }
-
-    public void saveLottoAnswer(List<Integer> lottoAnswer) {
-        this.lottoAnswer = new LottoAnswer(lottoAnswer);
     }
 
     public void saveBonusNumber(Integer bonusNumber) {
