@@ -1,25 +1,26 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class LottoTest {
+public class LottoTest {
+
     @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+    public void 로또_번호_정상_생성() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+        assertThat(lotto.getNumbers()).isEqualTo(numbers);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+    public void 로또_번호_6개가_아닌경우_예외처리() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Lotto(numbers));
+        assertThat(exception.getMessage()).isEqualTo("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }
