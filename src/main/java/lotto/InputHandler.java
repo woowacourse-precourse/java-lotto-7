@@ -16,6 +16,7 @@ public abstract class InputHandler {
     }
     public static int getBonusNumber(String input,List<Integer> winningNumber) {
         Validator.validateInput(input,winningNumber);
+        
         return Integer.parseInt(Console.readLine());
     }
 }
