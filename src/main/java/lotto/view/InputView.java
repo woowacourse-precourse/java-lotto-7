@@ -16,53 +16,98 @@ public class InputView {
     private static final String NUMBER_DELIMITER = ",";
 
     public static int inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String amount = readLine();
-        addBlankLine();
-        validatePurchaseAmount(amount);
-        return Integer.parseInt(amount);
+        int purchaseAmount = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            System.out.println("구입금액을 입력해 주세요.");
+            String amount = readLine();
+            addBlankLine();
+
+            try {
+                validatePurchaseAmount(amount);
+                purchaseAmount = Integer.parseInt(amount);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return purchaseAmount;
     }
 
-    private static void validatePurchaseAmount(String amount) {
+    static void validatePurchaseAmount(String amount) {
+        if (amount == null || amount.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해야 합니다.");
+        }
         if (!NUMERIC_REGEX.matcher(amount).matches()) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해야 합니다.");
         }
-        if (Integer.parseInt(amount) % 1000 != 0) {
+        int convertAmount = Integer.parseInt(amount);
+        if (convertAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력해야 합니다.");
         }
     }
 
     public static Lotto inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = readLine();
-        addBlankLine();
-        validateWinningNumbers(input);
-        List<Integer> winningNumbers = convertWinningNumbers(input);
-        return new Lotto(winningNumbers);
+        Lotto winningNumbers = null;
+        List<Integer> inputWinningNumbers = null;
+        boolean validInput = false;
+
+        while (!validInput) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String input = readLine();
+            addBlankLine();
+
+            try {
+                validateWinningNumbers(input);
+                inputWinningNumbers = convertWinningNumbers(input);
+                winningNumbers = new Lotto(inputWinningNumbers);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningNumbers;
     }
 
-    private static void validateWinningNumbers(String input) {
+    static void validateWinningNumbers(String input) {
         if (!WINNING_NUMBERS_REGEX.matcher(input).matches()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자와 쉼표로만 입력해야 합니다.");
         }
     }
 
-    private static List<Integer> convertWinningNumbers(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(NUMBER_DELIMITER))
+    private static List<Integer> convertWinningNumbers(String inputWinningNumbers) {
+        return Arrays.stream(inputWinningNumbers.split(NUMBER_DELIMITER))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
     public static int inputBonusNumber(Lotto winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = readLine();
-        addBlankLine();
-        validateBonusNumber(bonusNumber, winningNumbers);
-        return Integer.parseInt(bonusNumber);
+        int bonusNumber = -1;
+        boolean validInput = false;
+
+        while (!validInput) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String input = readLine();
+            addBlankLine();
+
+            try {
+                validateBonusNumber(input, winningNumbers);
+                bonusNumber = Integer.parseInt(input);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return bonusNumber;
     }
 
-    private static void validateBonusNumber(String bonusNumber, Lotto winningNumbers) {
+    static void validateBonusNumber(String bonusNumber, Lotto winningNumbers) {
+        if (bonusNumber == null || bonusNumber.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
+        }
         if (!NUMERIC_REGEX.matcher(bonusNumber).matches()) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
         }

@@ -18,7 +18,7 @@ public class LottoService {
         List<Lotto> lotto = new ArrayList<>();
 
         for (int i = 0; i < numberOfLotto; i++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT);
+            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT));;
             Collections.sort(randomNumbers);
             lotto.add(new Lotto(randomNumbers));
         }
