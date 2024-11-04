@@ -18,7 +18,7 @@ public enum Prize {
         if (count < 0) {
             throw new IllegalArgumentException("[ERROR] 당첨 횟수는 음수가 될 수 없습니다.");
         }
-        if (count > 2000000000) {
+        if (count > 1000000000) {
             throw new IllegalArgumentException("[ERROR] 당첨 횟수는 10억회를 초과할 수 없습니다.");
         }
         return prizeMoney * count;
