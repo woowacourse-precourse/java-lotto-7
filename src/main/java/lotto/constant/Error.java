@@ -17,14 +17,14 @@ public class Error {
 
     public static final String SIZE_LOTTO_NUMBERS = String.format("%s 로또 번호는 반드시 %d개여야 합니다.", PREFIX, SIZE_NUMBERS);
     public static final String DUPLICATED_LOTTO_NUMBERS = String.format("%s 로또 번호는 중복될 수 없습니다.", PREFIX);
-    public static final String RANGE_LOTTO_NUMBER = String.format("%s 로또 번호는 %d이상 %d이하만 가능합니다.", PREFIX, MIN_NUMBER, MAX_NUMBER);
+    public static final String RANGE_LOTTO_NUMBER = String.format("%s 로또 번호는 %d부터 %d 사이의 숫자여야 합니다.", PREFIX, MIN_NUMBER, MAX_NUMBER);
 
     public static final String SIZE_WINNING_NUMBERS = String.format("%s 당첨 번호는 반드시 %d개여야 합니다.", PREFIX, SIZE_NUMBERS);
     public static final String DUPLICATED_WINNING_NUMBERS = String.format("%s 당첨 번호는 중복될 수 없습니다.", PREFIX);
-    public static final String RANGE_WINNING_NUMBER = String.format("%s 당첨 번호는 %d이상 %d이하만 가능합니다.", PREFIX, MIN_NUMBER, MAX_NUMBER);
+    public static final String RANGE_WINNING_NUMBER = String.format("%s 당첨 번호는 %d부터 %d 사이의 숫자여야 합니다.", PREFIX, MIN_NUMBER, MAX_NUMBER);
 
     public static final String DUPLICATED_WINNING_BONUS_NUMBERS = String.format("%s 당첨 번호와 보너스 번호는 겹칠 수 없습니다.", PREFIX);
-    public static final String RANGE_BONUS_NUMBER = String.format("%s 보너스 번호는 %d이상 %d이하만 가능합니다.", PREFIX, MIN_NUMBER, MAX_NUMBER);
+    public static final String RANGE_BONUS_NUMBER = String.format("%s 보너스 번호는 %d부터 %d 사이의 숫자여야 합니다.", PREFIX, MIN_NUMBER, MAX_NUMBER);
 
     public static final String TYPE_MISMATCH_INTEGER = String.format("%s 반드시 정수만 입력 가능합니다.", PREFIX);
 }
