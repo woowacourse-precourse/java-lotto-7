@@ -3,6 +3,8 @@ package lotto.controller;
 import static lotto.constant.ErrorMessage.INVALID_NUMERIC_INPUT;
 import static lotto.constant.ErrorMessage.INVALID_PURCHASE_AMOUNT;
 import static lotto.constant.ErrorMessage.PRINT_ERROR_MESSAGE;
+import static lotto.constant.GameValue.DIVIDE_FOR_TICKET_COUNT_NUMBER;
+import static lotto.constant.GameValue.MIN_BUYING_AMOUNT;
 
 import java.util.List;
 import lotto.Bonus;
@@ -21,7 +23,7 @@ public class InputMiddleController {
         while (true) {
             try {
                 String buyingAmount = inputView.startLottoGameAndReadBuyingPrice();
-                return parseAndValidateAmount(buyingAmount) / 1000;
+                return parseAndValidateAmount(buyingAmount) / DIVIDE_FOR_TICKET_COUNT_NUMBER.getValue();
             } catch (IllegalArgumentException e) {
                 System.out.println(PRINT_ERROR_MESSAGE.getMessage() + e.getMessage());
             }
@@ -33,7 +35,7 @@ public class InputMiddleController {
             throw new IllegalArgumentException(INVALID_NUMERIC_INPUT.getMessage());
         }
         int amount = Integer.parseInt(buyingAmount);
-        if (amount <= 0 || amount % 1000 != 0) {
+        if (amount <= MIN_BUYING_AMOUNT.getValue() || amount % DIVIDE_FOR_TICKET_COUNT_NUMBER.getValue() != 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
         return amount;
