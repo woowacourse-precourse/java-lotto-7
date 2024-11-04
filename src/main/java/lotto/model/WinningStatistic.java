@@ -1,41 +1,52 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.NumberFormat;
+import java.util.EnumMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class WinningStatistic {
-    public enum PrizeTier {
-        FIRST, SECOND, THIRD, FOURTH, FIFTH
-    }
-
-    private final List<Integer> prizeCounts;
+    private final Map<PrizeTier, Integer> prizeCounts;
     private final double profitRate;
 
-    public WinningStatistic(double profitRate) {
-        this.profitRate = Math.round(profitRate * 100) / 100.0;
-        this.prizeCounts = new ArrayList<>();
-        for (int i = 0; i < PrizeTier.values().length; i++) {
-            prizeCounts.add(0);
+    public WinningStatistic() {
+        this.profitRate = -1;
+        this.prizeCounts = new EnumMap<>(PrizeTier.class);
+        for (PrizeTier tier : PrizeTier.values()) {
+            prizeCounts.put(tier, 0);
         }
     }
 
+    private WinningStatistic(Map<PrizeTier, Integer> prizeCounts, double profitRate) {
+        this.prizeCounts = prizeCounts;
+        this.profitRate = Math.round(profitRate * 100) / 100.0;
+    }
+
+    public WinningStatistic createWithProfitRate(WinningStatistic statistic, double profitRate) {
+        return new WinningStatistic(statistic.prizeCounts, profitRate);
+    }
+
     public void addPrizeCount(PrizeTier tier) {
-        prizeCounts.set(tier.ordinal(), prizeCounts.get(tier.ordinal()) + 1);
+        prizeCounts.put(tier, prizeCounts.get(tier) + 1);
     }
 
     @Override
     public String toString() {
-        return String.format(
-                """
-                        3개 일치 (5,000원) - %d개
-                        4개 일치 (50,000원) - %d개
-                        5개 일치 (1,500,000원) - %d개
-                        5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
-                        6개 일치 (2,000,000,000원) - %d개
-                        총 수익률은 %.1f%%입니다.""",
-                prizeCounts.get(PrizeTier.FIFTH.ordinal()), prizeCounts.get(PrizeTier.FOURTH.ordinal()),
-                prizeCounts.get(PrizeTier.THIRD.ordinal()), prizeCounts.get(PrizeTier.SECOND.ordinal()),
-                prizeCounts.get(PrizeTier.FIRST.ordinal()), profitRate
-        );
+        StringBuilder result = new StringBuilder();
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+
+        for (PrizeTier tier : PrizeTier.values()) {
+            String formattedPrize = numberFormat.format(tier.getPrizeAmount());
+            if (tier == PrizeTier.SECOND) {
+                result.append(String.format("5개 일치, 보너스 볼 일치 (%s원) - %d개\n",
+                        formattedPrize, prizeCounts.getOrDefault(tier, 0)));
+                continue;
+            }
+
+            result.append(String.format("%d개 일치 (%s원) - %d개\n",
+                    tier.getMatchCount(), formattedPrize, prizeCounts.getOrDefault(tier, 0)));
+        }
+        result.append(String.format("총 수익률은 %.1f%%입니다.", profitRate));
+        return result.toString();
     }
 }
