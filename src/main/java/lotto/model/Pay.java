@@ -8,7 +8,7 @@ public class Pay {
     private Pay(String input) {
         try {
             this.money = Integer.parseInt(input);
-경            if (this.money < 1000) {
+            if (this.money < 1000) {
                 throw new IllegalArgumentException();
             }
             this.amount = money / 1000;
@@ -22,10 +22,6 @@ public class Pay {
 
     public static Pay createPay(String input) {
         return new Pay(input);
-    }
-
-    public int getMoney() {
-        return this.money;
     }
 
     public int getAmount() {
