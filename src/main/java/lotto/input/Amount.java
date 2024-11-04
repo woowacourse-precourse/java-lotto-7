@@ -24,7 +24,7 @@ public class Amount {
             isNumer(price);
             LottoDomain.setPrice(price); // 가격 설정
         } catch (NumberFormatException e) {
-            System.out.println(InputValidationMessage.MESSAGE_NUMBER.getMessage()); // 오류 메시지 출력
+            //System.out.println(InputValidationMessage.MESSAGE_NUMBER.getMessage()); // 오류 메시지 출력
             throw new IllegalArgumentException(InputValidationMessage.MESSAGE_NUMBER.getMessage());
         }
     }
@@ -32,7 +32,7 @@ public class Amount {
     private static void isNumer(int price) {
 
         if (!judgeNumber(price)) {
-            System.out.println(InputValidationMessage.MESSAGE_MODULAR.getMessage());
+           // System.out.println(InputValidationMessage.MESSAGE_MODULAR.getMessage());
             throw new IllegalArgumentException(InputValidationMessage.MESSAGE_MODULAR.getMessage());
         }
 

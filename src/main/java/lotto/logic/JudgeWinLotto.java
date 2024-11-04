@@ -16,7 +16,7 @@ public class JudgeWinLotto {
 
     public static void calculateResults(List<List<Integer>> lottoNumbersList, List<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
         if (lottoNumbersList == null || winningNumbers == null || lottoNumbersList.isEmpty() || winningNumbers.isEmpty()) {
-            throw new IllegalArgumentException("로또 번호 목록과 당첨 번호는 비어 있거나 null일 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호 목록과 당첨 번호는 비어 있거나 null일 수 없습니다.");
         }
 
         Map<Integer, Integer> matchCountMap = new HashMap<>();
