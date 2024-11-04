@@ -41,14 +41,9 @@ public class UserLottos {
     private List<Lotto> createLottos() {
         List<Lotto> lottos = new ArrayList<>();
         for(int i = 0; i < this.quantity; i++) {
-            lottos.add(new Lotto(createRandomLottoNumbers()));
+            lottos.add(new Lotto(LottoNumbersCreator.createRandomLottoNumbers()));
         }
         return lottos;
-    }
-
-    private List<Integer> createRandomLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LottoInfo.FIRST_NUMBER.getInfo(), LottoInfo.LAST_NUMBER.getInfo(),
-                LottoInfo.NUMBER_COUNT.getInfo());
     }
 
     public int getQuantity() {
