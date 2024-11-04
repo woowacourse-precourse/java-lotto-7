@@ -62,8 +62,7 @@ public class LottoVendingMachine {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 1; i <= (money / 1000); i++) {
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            lottos.add(new Lotto(numbers));
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
 
         return lottos;
