@@ -40,7 +40,7 @@ public class LottoDrawServiceTest {
 
         lottoRepository.saveBonusNumbers(bonus);
         lottoRepository.saveWinningNumbers(winningLotto);
-        lottoRepository.saveLottoNumbers(userLottoNumbers);
+        lottoRepository.saveUserLottoNumbers(userLottoNumbers);
 
         Map<String, Integer> expectedResults = LottoRank.LottoRankCollector();
         expectedResults.put("FIRST", 1);

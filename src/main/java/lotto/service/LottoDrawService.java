@@ -12,7 +12,7 @@ public class LottoDrawService {
     public Map<String, Integer> checkWinning(LottoRepository lottoRepository) {
         Bonus bonus = getBonusNumber(lottoRepository);
         Lotto winningLotto = getWinningNumbers(lottoRepository);
-        List<List<Integer>> userLottoNumbers = getUserLottoNumbers(lottoRepository);
+        List<List<Integer>> userLottoNumbers = getUserLotto(lottoRepository);
 
         return calculateMatchingResults(bonus, winningLotto, userLottoNumbers);
     }
@@ -25,8 +25,8 @@ public class LottoDrawService {
         return lottoRepository.getWinningNumbers();
     }
 
-    private List<List<Integer>> getUserLottoNumbers(LottoRepository lottoRepository) {
-        return lottoRepository.getLottoNumbers();
+    private List<List<Integer>> getUserLotto(LottoRepository lottoRepository) {
+        return lottoRepository.getUserLottoNumbers();
     }
 
     private Map<String, Integer> calculateMatchingResults(Bonus bonus, Lotto winningLotto, List<List<Integer>> userLottoNumbers) {

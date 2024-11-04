@@ -22,11 +22,11 @@ public class LottoTicketService {
     }
 
     private void saveLottoNumber(List<List<Integer>> lottoNumber, LottoRepository lottoRepository) {
-        lottoRepository.saveLottoNumbers(lottoNumber);
+        lottoRepository.saveUserLottoNumbers(lottoNumber);
     }
 
     public List<List<Integer>> getLottoNumbers(LottoRepository lottoRepository) {
-        return lottoRepository.getLottoNumbers();
+        return lottoRepository.getUserLottoNumbers();
     }
 
 }

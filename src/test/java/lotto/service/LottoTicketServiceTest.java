@@ -37,7 +37,7 @@ class LottoTicketServiceTest {
 
         lottoTicketService.generateLottoNumbers(numberOfLottos, lottoRepository);
 
-        List<List<Integer>> savedLottoNumbers = lottoRepository.getLottoNumbers();
+        List<List<Integer>> savedLottoNumbers = lottoRepository.getUserLottoNumbers();
 
         assertEquals(numberOfLottos, savedLottoNumbers.size());
 
@@ -56,6 +56,6 @@ class LottoTicketServiceTest {
 
         List<List<Integer>> retrievedLottoNumbers = lottoTicketService.getLottoNumbers(lottoRepository);
 
-        assertEquals(lottoRepository.getLottoNumbers(), retrievedLottoNumbers);
+        assertEquals(lottoRepository.getUserLottoNumbers(), retrievedLottoNumbers);
     }
 }

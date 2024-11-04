@@ -12,12 +12,12 @@ public class InMemoryLottoRepository implements LottoRepository {
     private Bonus bonus;
 
     @Override
-    public void saveLottoNumbers(List<List<Integer>> lottoNumbers) {
+    public void saveUserLottoNumbers(List<List<Integer>> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
     }
 
     @Override
-    public List<List<Integer>> getLottoNumbers() {
+    public List<List<Integer>> getUserLottoNumbers() {
         return lottoNumbers;
     }
 

@@ -6,9 +6,9 @@ import lotto.domain.Lotto;
 
 public interface LottoRepository {
 
-    void saveLottoNumbers(List<List<Integer>> lottoNumbers);
+    void saveUserLottoNumbers(List<List<Integer>> lottoNumbers);
 
-    List<List<Integer>> getLottoNumbers();
+    List<List<Integer>> getUserLottoNumbers();
 
     void saveWinningNumbers(Lotto winningLotto);
 
