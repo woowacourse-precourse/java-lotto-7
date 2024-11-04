@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbersInput{
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] 잘못된 형식의 입력입니다.";
+
     public Lotto inputNumbers() {
         List<Integer> numbers;
         while (true) {
@@ -15,7 +17,7 @@ public class WinningNumbersInput{
                 numbers = splitNumbers(numberSet);
                 return new Lotto(numbers);
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 잘못된 형식의 입력입니다.");
+                System.out.println(ERROR_MESSAGE_FORMAT);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
