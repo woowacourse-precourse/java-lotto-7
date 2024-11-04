@@ -21,19 +21,19 @@ public class LottoService {
         while (true) {
             try {
                 if (!LottoUtils.isNumber(input)) {
-                    System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
+                    outputView.printError(ErrorMessage.INVALID_INPUT_MESSAGE);
                     throw new IllegalArgumentException();
                 }
 
                 cash = Integer.parseInt(input);
 
                 if (cash < MINIMUM_CASH_UNIT) {
-                    System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
+                    outputView.printError(ErrorMessage.INVALID_INPUT_MESSAGE);
                     throw new IllegalArgumentException();
                 }
 
                 if (cash % MINIMUM_CASH_UNIT != 0) {
-                    System.out.println(ErrorMessage.INVALID_CASH_MESSAGE.getMessage());
+                    outputView.printError(ErrorMessage.INVALID_CASH_MESSAGE);
                     throw new IllegalArgumentException();
                 }
 

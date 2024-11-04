@@ -16,6 +16,7 @@ public class OutputView {
     private static final String WINNING_DETAIL_2TH_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String WINNING_DETAIL_1TH_MESSAGE = "6개 일치 (2,000,000,000원) - %d개\n";
     private static final String EARNING_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
 
     public OutputView() {
@@ -59,6 +60,6 @@ public class OutputView {
     }
 
     public void printError(ErrorMessage errorMessage) {
-        System.out.println(errorMessage.getMessage());
+        System.out.println(ERROR_PREFIX + errorMessage.getMessage());
     }
 }
