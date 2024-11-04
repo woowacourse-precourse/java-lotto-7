@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.utils.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,6 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -63,7 +61,7 @@ class ApplicationTest extends NsTest {
     void cantBuy() {
         assertSimpleTest(() -> {
             runException("999");
-            assertThat(output().contains(ERROR_MESSAGE));
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
@@ -72,7 +70,7 @@ class ApplicationTest extends NsTest {
     void checkDivisible() {
         assertSimpleTest(() -> {
             runException("1234");
-            assertThat(output().contains(ERROR_MESSAGE));
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
@@ -81,7 +79,7 @@ class ApplicationTest extends NsTest {
     void checkNumberSame() {
         assertSimpleTest(() -> {
             runException("5000", "1,2,3,4,5,5", "7");
-            assertThat(output().contains(ERROR_MESSAGE));
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
@@ -90,7 +88,7 @@ class ApplicationTest extends NsTest {
     void checkNumberSize() {
         assertSimpleTest(() -> {
             runException("5000", "1,2,3,4,5,50", "6");
-            assertThat(output().contains(ERROR_MESSAGE));
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
@@ -99,7 +97,7 @@ class ApplicationTest extends NsTest {
     void checkBonus() {
         assertSimpleTest(() -> {
             runException("5000", "1,2,3,4,5,6", "6");
-            assertThat(output().contains(ERROR_MESSAGE));
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
@@ -108,7 +106,7 @@ class ApplicationTest extends NsTest {
     void checkBonusSize() {
         assertSimpleTest(() -> {
             runException("5000", "1,2,3,4,5,6", "50");
-            assertThat(output().contains(ERROR_MESSAGE));
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
