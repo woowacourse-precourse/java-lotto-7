@@ -10,15 +10,14 @@ import java.util.Set;
 import lotto.exception.user.LottoMaximumExceededException;
 import lotto.exception.user.NotEnoughMoneyException;
 import lotto.exception.user.NotThousandUnitException;
-import lotto.util.ValidateUtil;
 
 public class LotteryMachine {
 
     private final List<LottoNumbers> lottoNumbersList;
     private final int lotteryCount;
 
-    public LotteryMachine(final String insertedMoney) {
-        lotteryCount = createLotteryCount(insertedMoney);
+    public LotteryMachine(final int funds) {
+        lotteryCount = createLotteryCount(funds);
         lottoNumbersList = createLotteryNumbersList();
     }
 
@@ -34,29 +33,18 @@ public class LotteryMachine {
 
     private List<LottoNumbers> createLotteryNumbersList() {
         List<LottoNumbers> resultNumbersList = new ArrayList<>();
-        for (int left = 0; left < lotteryCount; left++) {
+        for (int lottery = 0; lottery < lotteryCount; lottery++) {
             resultNumbersList.add(new LottoNumbers());
         }
 
         return resultNumbersList;
     }
 
-    private int createLotteryCount(final String insertedMoney) {
-        ValidateUtil.validateNumber(insertedMoney);
-
-        final int funds = parseToInt(insertedMoney);
+    private int createLotteryCount(final int funds) {
         validateMaxLotteryCount(funds);
         validateCostUnit(funds);
 
         return funds / COST_UNIT.getNumber();
-    }
-
-    private int parseToInt(final String insertedMoney) {
-        try {
-            return Integer.parseInt(insertedMoney);
-        } catch (NumberFormatException e) {
-            throw new LottoMaximumExceededException();
-        }
     }
 
     private void validateMaxLotteryCount(final int funds) {

@@ -4,30 +4,18 @@ import static lotto.util.LottoConstant.LOTTO_NUMBER_END_WITH;
 import static lotto.util.LottoConstant.LOTTO_NUMBER_START_WITH;
 
 import lotto.exception.administrator.OutOfRangeLottoNumberException;
-import lotto.util.ValidateUtil;
 
 public class LottoBonusNumber {
 
     private final int bonusNumber;
 
-    public LottoBonusNumber(final String bonusNumberInput) {
-        bonusNumber = parseToString(bonusNumberInput);
+    public LottoBonusNumber(final int bonusNumber) {
+        validateRange(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public int getBonusNumber() {
         return bonusNumber;
-    }
-
-    private int parseToString(final String bonusNumberInput) {
-        ValidateUtil.validateNumber(bonusNumberInput);
-
-        try {
-            int result = Integer.parseInt(bonusNumberInput);
-            validateRange(result);
-            return result;
-        } catch (NumberFormatException e) {
-            throw new OutOfRangeLottoNumberException();
-        }
     }
 
     private void validateRange(final int number) {
