@@ -26,4 +26,10 @@ public class WinningResult {
     public int getRankCount(Rank rank) {
         return rankCountMap.get(rank);
     }
+
+    public int calculateTotalPrize() {
+        return rankCountMap.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
 }
