@@ -2,6 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.domain.dto.WinningNumbersDto;
+import lotto.view.validation.BonusNumberValidator;
 import lotto.view.validation.PriceValidator;
 import lotto.view.validation.WinningNumbersValidator;
 
@@ -21,9 +23,8 @@ public class InputView {
         return WinningNumbersValidator.validate(Console.readLine());
     }
 
-    public static String bonusNumber() {
+    public static int bonusNumber(WinningNumbersDto winningNumbersDto) {
         System.out.println(BONUS_NUMBER_MESSAGE);
-        return Console.readLine();
+        return BonusNumberValidator.validate(winningNumbersDto, Console.readLine());
     }
-
 }
