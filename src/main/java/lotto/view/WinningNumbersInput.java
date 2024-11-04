@@ -14,6 +14,7 @@ import lotto.common.validator.InputValidator;
 import lotto.domain.Lotto;
 
 public class WinningNumbersInput implements Input<Lotto, String[]> {
+    private static final String DELIMITER = ",";
     private InputValidator inputValidator = new InputValidator();
 
     @Override
@@ -46,7 +47,7 @@ public class WinningNumbersInput implements Input<Lotto, String[]> {
     }
 
     private String[] splitWinningNumbers(String input) {
-        return input.split(",", -1);
+        return input.split(DELIMITER, -1);
     }
 
     private List<Integer> convertToIntegerList(String[] input) {
