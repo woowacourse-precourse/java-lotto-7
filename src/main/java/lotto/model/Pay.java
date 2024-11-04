@@ -1,0 +1,36 @@
+package lotto.model;
+
+public class Pay {
+    private int money;
+    private int amount;
+    private int change;
+
+    private Pay(String input) {
+        try {
+            this.money = Integer.parseInt(input);
+            if (this.money > 1000 || this.money < 0) {
+                throw new NumberFormatException();
+            }
+            this.amount = money % 1000;
+            this.change = money / 1000;
+        } catch (NumberFormatException e) {
+            throw e;
+        }
+    }
+
+    public static Pay createPay(String input) {
+        return new Pay(input);
+    }
+
+    public int getMoney() {
+        return this.money;
+    }
+
+    public int getAmount() {
+        return this.amount;
+    }
+
+    public int getChange() {
+        return this.change;
+    }
+}

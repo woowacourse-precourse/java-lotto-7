@@ -1,10 +1,14 @@
 package lotto.service;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.generator.LottoGenerator;
+import lotto.message.LottoErrorMessages;
+import lotto.message.LottoInfoMessages;
+import lotto.model.Pay;
 
 public class LottoService {
     private static final int MATCHED_LIST_LENGTH = 5;
@@ -100,5 +104,17 @@ public class LottoService {
         int[] matched = new int[MATCHED_LIST_LENGTH];
         matched[bonusCheckNumber]++;
         return matched;
+    }
+
+    public Pay payInput() {
+        try {
+            System.out.println(LottoInfoMessages.INSERT_PAY.text());
+            String payInput = Console.readLine();
+            Pay pay = Pay.createPay(payInput);
+            return pay;
+        } catch (NumberFormatException e) {
+            System.out.println(LottoErrorMessages.PAY_INPUT_ERROR.addErrorText());
+            return payInput();
+        }
     }
 }
