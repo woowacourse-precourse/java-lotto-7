@@ -23,4 +23,7 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getLottoNums() {
+        return numbers;
+    }
 }
