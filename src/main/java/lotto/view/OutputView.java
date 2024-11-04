@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.constant.Constants.DEFAULT_STATISTIC_COUNT;
+
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -28,7 +30,7 @@ public class OutputView {
                 continue;
             }
 
-            int count = results.getOrDefault(rank, 0);
+            int count = results.getOrDefault(rank, DEFAULT_STATISTIC_COUNT);
             String formattedPrize = numberFormat.format(rank.getPrizeMoney());
 
             if (rank == Rank.SECOND) {
