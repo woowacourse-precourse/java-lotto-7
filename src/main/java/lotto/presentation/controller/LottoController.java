@@ -1,7 +1,9 @@
 package lotto.presentation.controller;
 
+import lotto.application.dto.LottoTicketsDTO;
 import lotto.application.service.LottoService;
 import lotto.application.validation.BaseValidation;
+import lotto.domain.model.LottoTickets;
 import lotto.presentation.view.InputView;
 import lotto.presentation.view.OutputView;
 
@@ -21,6 +23,12 @@ public class LottoController {
 
     public void start() {
         int amount = getValidAmount();
+
+        lottoService.purchaseLotto(amount);
+
+        LottoTickets lottoTickets = lottoService.getLottoTicketsFromRepository();
+        LottoTicketsDTO lottoTicketsDTO = new LottoTicketsDTO(lottoTickets.getTickets());
+        outputView.printLottoTickets(lottoTicketsDTO);
     }
 
     private int getValidAmount() {

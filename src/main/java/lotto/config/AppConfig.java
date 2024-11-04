@@ -4,6 +4,7 @@ import lotto.application.service.LottoService;
 import lotto.application.validation.AmountValidator;
 import lotto.application.validation.BaseValidation;
 import lotto.domain.generator.LottoNumberGeneratorImpl;
+import lotto.infrastructure.repository.LottoRepositoryImpl;
 import lotto.presentation.controller.LottoController;
 import lotto.presentation.view.InputView;
 import lotto.presentation.view.OutputView;
@@ -16,9 +17,12 @@ public class AppConfig {
     }
 
     public LottoService lottoService() {
-        return new LottoService(new LottoNumberGeneratorImpl());
+        return new LottoService(new LottoNumberGeneratorImpl(), LottoRepositoryImpl());
     }
 
+    public LottoRepositoryImpl LottoRepositoryImpl() {
+        return new LottoRepositoryImpl();
+    }
     public InputView inputView() {
         return new InputView();
     }
