@@ -1,7 +1,7 @@
 package lotto;
 
 public enum Rank {
-    //당첨 등수와 상금
+
     FRIST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000 ),
     THIRD(5, false, 1_500_000),
