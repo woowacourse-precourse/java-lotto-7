@@ -22,4 +22,9 @@ public class Lotto {
         }
     }
 
+    //중복 확인
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
 }
