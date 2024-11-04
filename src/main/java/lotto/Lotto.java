@@ -25,6 +25,22 @@ public class Lotto {
         }
     }
 
+    // 당첨 번호와의 일치 개수 계산
+    public int getMatchCount(List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    // 보너스 번호 포함 여부 확인
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();
