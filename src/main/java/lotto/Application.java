@@ -1,13 +1,7 @@
-package lotto.app;
+package lotto;
 
 import java.util.List;
 import java.util.Map;
-import lotto.config.AppConfig;
-import lotto.domain.Lotto;
-import lotto.domain.Score;
-import lotto.service.LottoService;
-import lotto.view.InputHandler;
-import lotto.view.OutputHandler;
 
 public class Application {
     private final InputHandler inputHandler;

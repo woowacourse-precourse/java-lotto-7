@@ -1,10 +1,9 @@
-package lotto.service;
+package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.domain.Lotto;
 
 public class LottoGenerator {
     public Lotto generateByNums(List<Integer> nums) {

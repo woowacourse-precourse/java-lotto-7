@@ -1,12 +1,4 @@
-package lotto.config;
-
-import lotto.view.InputHandler;
-import lotto.util.InputValidator;
-import lotto.service.LottoGenerator;
-import lotto.service.LottoResultChecker;
-import lotto.service.LottoService;
-import lotto.view.OutputHandler;
-import lotto.app.Application;
+package lotto;
 
 public class AppConfig {
     public static Application createApplication() {

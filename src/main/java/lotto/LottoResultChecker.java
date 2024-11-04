@@ -1,8 +1,6 @@
-package lotto.service;
+package lotto;
 
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.Score;
 
 public class LottoResultChecker {
     public Score calculateScore(Lotto comparedLotto, Lotto winningLotto, int bonusNum) {

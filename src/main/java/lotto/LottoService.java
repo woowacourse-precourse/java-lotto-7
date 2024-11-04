@@ -1,11 +1,9 @@
-package lotto.service;
+package lotto;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.Lotto;
-import lotto.domain.Score;
 
 public class LottoService {
     private final LottoGenerator lottoGenerator;

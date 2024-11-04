@@ -2,8 +2,6 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.domain.Lotto;
-import lotto.service.LottoGenerator;
 import org.junit.jupiter.api.Test;
 
 class LottoGeneratorTest {

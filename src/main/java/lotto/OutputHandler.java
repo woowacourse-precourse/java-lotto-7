@@ -1,9 +1,7 @@
-package lotto.view;
+package lotto;
 
 import java.util.List;
 import java.util.Map;
-import lotto.domain.Lotto;
-import lotto.domain.Score;
 
 public class OutputHandler {
     public void printLottos(List<Lotto> lottos) {

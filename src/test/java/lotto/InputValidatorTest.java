@@ -2,7 +2,6 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-import lotto.util.InputValidator;
 import org.junit.jupiter.api.Test;
 
 class InputValidatorTest {
