@@ -3,7 +3,6 @@ package lotto.model;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import lotto.view.InputView;
 
 public class LottoCommittee {
 
@@ -91,6 +90,4 @@ public class LottoCommittee {
         );
         return rankingCountMap;
     }
-
-
 }
