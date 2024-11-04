@@ -15,8 +15,8 @@ public record PurchasedLottoResultDto(
 	private static List<String> getPurchaseLottoResult(List<LottoNumber> numbers) {
 		return numbers.stream()
 				.map(LottoNumber::getNumber)
-				.map(String::valueOf)
 				.sorted()
+				.map(String::valueOf)
 				.toList();
 	}
 }
