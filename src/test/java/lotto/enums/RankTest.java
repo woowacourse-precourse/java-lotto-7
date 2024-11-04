@@ -9,16 +9,6 @@ import java.lang.reflect.Field;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RankTest {
-
-    @BeforeEach
-    void set() throws Exception {
-        for (Rank rank : Rank.values()) {
-            Field countField = Rank.class.getDeclaredField("count");
-            countField.setAccessible(true);
-            countField.set(rank, 0);
-        }
-    }
-
     @DisplayName("6개 수 일치")
     @Test
     void findFirstRank() {

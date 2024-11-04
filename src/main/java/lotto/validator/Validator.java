@@ -13,7 +13,7 @@ public class Validator {
         }
 
         int value = Integer.parseInt(input);
-        if (value % DIVIDER != 0) {
+        if (value % DIVIDER != 0  || value < 1000) {
             throw new IllegalArgumentException("1,000으로 나눌 수 없는 값이 입력되었습니다.");
         }
     }
