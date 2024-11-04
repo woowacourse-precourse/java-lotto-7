@@ -48,6 +48,29 @@ public class InputView {
         }
     }
 
+    public static int requestBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            OutputView.promptBonusNumberInput();
+            String input = Console.readLine();
+            try {
+                return parseAndValidateBonusNumber(input, winningNumbers);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    protected static int parseAndValidateBonusNumber(String input, List<Integer> winningNumbers) {
+        int bonusNumber = parseNumber(input);
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ErrorConstants.INVALID_BONUS_NUMBER_RANGE);
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorConstants.INVALID_BONUS_NUMBER_DUPLICATE);
+        }
+        return bonusNumber;
+    }
+
     protected static List<Integer> parseAndValidateWinningNumbers(String input) {
         String[] numberStrings = input.split(WINNING_NUMBER_DELIMITER);
         if (numberStrings.length != 6) {
@@ -77,4 +100,5 @@ public class InputView {
             throw new IllegalArgumentException(ErrorConstants.INVALID_WINNING_NUMBER_FORMAT);
         }
     }
+
 }

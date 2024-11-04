@@ -28,5 +28,14 @@ public class Application {
             return;
         }
 
+        // Step 4: 보너스 번호 입력
+        int bonusNumber;
+        try {
+            bonusNumber = InputView.requestBonusNumber(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return;
+        }
+
     }
 }

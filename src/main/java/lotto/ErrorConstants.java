@@ -9,4 +9,6 @@ public class ErrorConstants {
     public static final String INVALID_WINNING_NUMBER_RANGE = "[ERROR] 당첨 번호는 1에서 45 사이의 숫자여야 합니다.";
     public static final String INVALID_WINNING_NUMBER_DUPLICATE = "[ERROR] 당첨 번호는 중복되지 않아야 합니다.";
     public static final String INVALID_WINNING_NUMBER_FORMAT = "[ERROR] 당첨 번호는 숫자로만 구성되어야 합니다.";
+    public static final String INVALID_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.";
+    public static final String INVALID_BONUS_NUMBER_DUPLICATE = "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.";
 }
