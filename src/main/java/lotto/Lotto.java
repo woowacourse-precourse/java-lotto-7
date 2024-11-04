@@ -23,7 +23,7 @@ public class Lotto {
         }
     }
 
-    public void print() {
+    public void printNumbers() {
         System.out.println(numbers);
     }
 
