@@ -21,14 +21,14 @@ public class LottoResultChecker {
         return winningResult;
     }
 
-    public int calculateMatchCount(Lotto lotto) {
+    private int calculateMatchCount(Lotto lotto) {
         return (int) lotto.getNumbers()
                 .stream()
                 .filter(drawnNumbers.getWinningNumbers()::contains)
                 .count();
     }
 
-    public boolean hasBonusMatch(Lotto lotto) {
+    private boolean hasBonusMatch(Lotto lotto) {
         return lotto.getNumbers()
                 .contains(drawnNumbers.getBonusNumber().getValue());
     }
