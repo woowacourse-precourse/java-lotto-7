@@ -226,6 +226,7 @@ lotto/
   │── 📂 model
   │   └── LottoTest.java
   ├── 📂 util
+  │   ├── LottoOperatorTest.java
   │   ├── PurchaseUtilsTest.java
   │   └── WinningNumberUtilsTest.java
   └── 📂 validation
