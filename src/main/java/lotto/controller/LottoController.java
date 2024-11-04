@@ -70,6 +70,7 @@ public class LottoController {
             outputView.printWinningNumbersMessage();
             try {
                 List<Integer> winningNumbers = inputView.inputWinningNumbers();
+                InputValidator.validateUniqueWinningNumbers(winningNumbers);
                 winningNumbers.forEach(InputValidator::validateWinningNumber);
                 outputView.nextLine();
                 return WinningNumbers.from(winningNumbers);

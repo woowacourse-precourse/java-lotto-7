@@ -1,5 +1,8 @@
 package lotto.exception;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class InputValidator {
@@ -36,6 +39,13 @@ public class InputValidator {
     public static void validateWinningNumber(Integer winningNumber) {
         if (winningNumber < LOTTO_MIN_NUMBER || winningNumber > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE.getErrorMessage());
+        }
+    }
+
+    public static void validateUniqueWinningNumbers(List<Integer> winningNumbers) {
+        Set<Integer> uniqueWinningNumbers = new HashSet<>(winningNumbers);
+        if (uniqueWinningNumbers.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WINNING_NUMBERS.getErrorMessage());
         }
     }
 }
