@@ -1,6 +1,7 @@
 package lotto.util;
 
 import lotto.service.LottoService;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -105,5 +106,15 @@ class ValidatorTest {
         assertThat(illegalArgumentException.getMessage()).isEqualTo(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
     }
 
+    @Test
+    @DisplayName("입력이 null 일때")
+    void validateInputValueIsNullTest(){
+        String testInput = null;
 
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
+            Validator.validateLottoNumbers(testInput);
+        });
+
+        Assertions.assertThat(illegalArgumentException.getMessage()).isEqualTo(EMPTY_INPUT_VALUE_ERROR.getErrorMessage());
+    }
 }
