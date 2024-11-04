@@ -13,5 +13,8 @@ public class InputController {
         InputService.getLottoAmount();
     }
 
+    public static String winningNumsInput() {
+        return readLine();
+    }
 
 }

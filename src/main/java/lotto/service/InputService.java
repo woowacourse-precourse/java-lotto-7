@@ -2,6 +2,7 @@ package lotto.service;
 
 import static lotto.view.InputController.purchase;
 
+// 입력 값들에 대한 처리 진짜 로직
 public class InputService {
     public static int lottoAmount;
 
@@ -17,4 +18,5 @@ public class InputService {
         }
         lottoAmount = purchase/1000;
     }
+
 }
