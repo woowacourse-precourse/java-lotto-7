@@ -9,6 +9,7 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.Rank;
+import lotto.model.RankCalculator;
 import lotto.model.WinningNumber;
 import lotto.model.WinningNumberGenerator;
 import lotto.service.TicketService;
@@ -46,7 +47,7 @@ public class Application {
             return new WinningNumber(winningNumbers, bonusNumber);
         }, ioComponent.getCommonIo());
 
-        RankCalculatorController rankCalculatorController = new RankCalculatorController(winningNumber,ioComponent);
+        RankCalculatorController rankCalculatorController = new RankCalculatorController(winningNumber,ioComponent, new RankCalculator());
 
         Map<Rank,Integer> result = rankCalculatorController.calculateResult(lottos);
 

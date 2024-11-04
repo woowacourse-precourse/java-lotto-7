@@ -19,8 +19,8 @@ public class RankCalculatorController {
     private final WinningNumber winningNumber;
     private final IoComponent ioComponent;
 
-    public RankCalculatorController(WinningNumber winningNumber, IoComponent ioComponent) {
-        this.rankCalculator = new RankCalculator();
+    public RankCalculatorController(WinningNumber winningNumber, IoComponent ioComponent , RankCalculator rankCalculator) {
+        this.rankCalculator = rankCalculator;
         this.winningNumber = winningNumber;
         this.ioComponent = ioComponent;
     }
