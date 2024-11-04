@@ -12,7 +12,7 @@ public class LottoMachine {
     private static InputReader inputReader = new InputReader();
     private static LottoRandomNumberGenerator lottoRandomNumberGenerator = new LottoRandomNumberGenerator();
 
-    public void readLottoPrice() {
+    public int readLottoPrice() {
         System.out.println("구입금액을 입력해 주세요");
         String money = inputReader.readUserInput();
         while (Integer.parseInt(money) / LOTTO_PER_PRICE != 0) {
@@ -20,6 +20,7 @@ public class LottoMachine {
             money = inputReader.readUserInput();
         }
         userMoney = Integer.parseInt(money);
+        return userMoney;
     }
 
     public int calculateLottoCount(int userMoney) {
@@ -37,4 +38,5 @@ public class LottoMachine {
             lotto.add(purchaseLotto());
         }
     }
+
 }
