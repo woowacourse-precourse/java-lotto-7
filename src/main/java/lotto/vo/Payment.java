@@ -1,13 +1,12 @@
 package lotto.vo;
 
 import lotto.util.Parser;
+import lotto.util.Validator;
 
 import static lotto.common.ErrorMessage.INTEGER_RANGE_EXCESS;
 import static lotto.common.ErrorMessage.NOT_NUMBER_OR_RANGE_EXCESS;
 
 public class Payment {
-    private static final int ZERO = 0;
-    private static final int THOUSAND = 0;
     private final int money;
 
     public Payment(final String inputValue) {
@@ -16,30 +15,16 @@ public class Payment {
         this.money = money;
     }
 
-    private int parseToInt(final String inputValue) {
+    private int parseToInt(final String inputValue) throws IllegalArgumentException{
         try {
             return Parser.parseStringToInt(inputValue);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_OR_RANGE_EXCESS.getMessage(), e);
-        } catch (IllegalArgumentException e) {  // TODO: 알맞은 Exception으로 변환
-            throw new IllegalArgumentException(INTEGER_RANGE_EXCESS.getMessage());
+            throw new IllegalArgumentException(NOT_NUMBER_OR_RANGE_EXCESS.getMessage());
         }
     }
 
-    private void validate(final int money) {
-        checkNegative(money);
-        checkMultiplesOfThousand(money);
-    }
-
-    private void checkNegative(int money) {
-        if (money < ZERO) {
-            throw new IllegalArgumentException(); // TODO: 알맞은 Exception으로 변환
-        }
-    }
-
-    private void checkMultiplesOfThousand(int money) {
-        if (money % THOUSAND != ZERO) {
-            throw new IllegalArgumentException(); // TODO: 알맞은 Exception으로 변환
-        }
+    private void validate(final int money) throws IllegalArgumentException {
+        Validator.checkNegative(money);
+        Validator.checkMultiplesOfThousand(money);
     }
 }
