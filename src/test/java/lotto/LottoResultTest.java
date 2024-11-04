@@ -2,9 +2,11 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
@@ -30,5 +32,20 @@ public class LottoResultTest {
         // then
         assertThat(lottoResult.getRankCounts()
                               .get(rank)).isEqualTo(initialCount + 1);
+    }
+
+    @Test
+    void 로또_3등_두_번_당첨되어서_총_상금은_삼백만_원이다() {
+        // given
+        lottoResult.addRankCount(LottoRank.THIRD);
+        lottoResult.addRankCount(LottoRank.THIRD);
+
+        BigDecimal expectedTotalPrize = new BigDecimal("3000000");
+
+        // when
+        BigDecimal totalPrize = lottoResult.calculateTotalPrize();
+
+        // then
+        assertThat(totalPrize).isEqualTo(expectedTotalPrize);
     }
 }
