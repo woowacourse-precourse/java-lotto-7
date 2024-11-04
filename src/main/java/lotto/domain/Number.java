@@ -1,11 +1,9 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import lotto.domain.numberPicker.NumberPicker;
 import lotto.domain.validator.ParamsValidator;
-import lotto.exception.number.CreatedNumberDuplicatedException;
 import lotto.exception.number.NumberCreationCountExceedException;
 import lotto.exception.number.NumberOutOfRangeException;
 
@@ -46,7 +44,6 @@ final public class Number implements Comparable<Number> {
 
         validateCreationCountWithinLimit(count);
         List<Integer> numbers = numberPicker.pickUniqueNumbersInRange(MIN_VALUE, MAX_VALUE, count);
-        validatePickedNumbersNotDuplicated(numbers);
 
         return from(numbers);
     }
@@ -55,12 +52,6 @@ final public class Number implements Comparable<Number> {
         int maxCreationCount = MAX_VALUE - MIN_VALUE + 1;
         if (count > maxCreationCount) {
             throw new NumberCreationCountExceedException(maxCreationCount);
-        }
-    }
-
-    private static void validatePickedNumbersNotDuplicated(List<Integer> numbers) {
-        if (new HashSet<>(numbers).size() != numbers.size()) {
-            throw new CreatedNumberDuplicatedException();
         }
     }
 
