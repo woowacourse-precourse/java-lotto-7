@@ -10,7 +10,7 @@ import lotto.model.lotto.generator.LottoGenerator;
 import lotto.model.lotto.generator.RandomLottoGenerator;
 
 public class LottoStore {
-    private final List<Lotto> lottoNumbers = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
 
     public LottoStore(Long purchaseAmount) {
         this(new RandomLottoGenerator(), purchaseAmount);
@@ -24,12 +24,12 @@ public class LottoStore {
     private void generateLottos(LottoGenerator lottoGenerator, long purchaseAmount) {
         int lottoCount = (int) (purchaseAmount / LOTTO_PURCHASE_AMOUNT);
         for (int i = 0; i < lottoCount; i++) {
-            lottoNumbers.add(new Lotto(lottoGenerator.generateLotto()));
+            lottos.add(new Lotto(lottoGenerator.generateLotto()));
         }
     }
 
-    public List<Lotto> getLottoNumbers() {
-        return List.copyOf(lottoNumbers);
+    public List<Lotto> getLottos() {
+        return List.copyOf(lottos);
     }
 
     private void validatePurchaseAmount(long purchaseAmount) {

@@ -32,12 +32,12 @@ public class LottoController {
 
     private LottoStore createLottoStore(Long purchaseAmount) {
         LottoStore lottoStore = new LottoStore(purchaseAmount);
-        view.printRottos(lottoStore.getLottoNumbers());
+        view.printRottos(lottoStore.getLottos());
         return lottoStore;
     }
 
     private void calculateStatistics(LottoStore lottoStore, List<Integer> winningNumbers, Integer bonusNumber, Long purchaseAmount) {
-        LottoPrizeCalculator calculator = new LottoPrizeCalculator(lottoStore.getLottoNumbers(), new Lotto(winningNumbers), bonusNumber);
+        LottoPrizeCalculator calculator = new LottoPrizeCalculator(lottoStore.getLottos(), new Lotto(winningNumbers), bonusNumber);
         Map<LottoPrizeInfo, Integer> prizeCounts = calculator.getPrizeCounts();
         Double rate = calculator.calculateProfitRate(purchaseAmount);
         view.printStatistics(prizeCounts, rate);
@@ -46,8 +46,7 @@ public class LottoController {
     private Long getValidatedPurchaseAmount() {
         while (true) {
             try {
-                String input = view.inputPurchaseAmount();
-                return PurchaseAmountValidator.validate(input);
+                return PurchaseAmountValidator.validate(view.inputPurchaseAmount());
             } catch (IllegalArgumentException e) {
                 view.printError(e.getMessage());
             }

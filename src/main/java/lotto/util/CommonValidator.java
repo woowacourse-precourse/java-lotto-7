@@ -2,9 +2,11 @@ package lotto.util;
 
 import static lotto.exception.ErrorBase.*;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class CommonValidator {
 
@@ -17,6 +19,17 @@ public class CommonValidator {
     public static Long parseLong(String input, String errorMessage) {
         try {
             return Long.parseLong(input.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
+    public static List<Integer> parseIntegerList(String input, String delimiter, String errorMessage) {
+        try {
+            return Arrays.stream(input.split(delimiter, -1))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(errorMessage);
         }

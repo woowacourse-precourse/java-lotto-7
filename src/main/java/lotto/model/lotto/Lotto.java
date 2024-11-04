@@ -11,38 +11,37 @@ import java.util.List;
 import java.util.Objects;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Integer> lottoNumbers;
 
-    public Lotto(List<Integer> numbers) {
-        validateLottoNumbers(numbers);
-        this.numbers = List.copyOf(numbers.stream().sorted().toList());
+    public Lotto(List<Integer> lottoNumbers) {
+        validateLottoNumbers(lottoNumbers);
+        this.lottoNumbers = List.copyOf(lottoNumbers.stream().sorted().toList());
     }
 
-
     public int getMatchCount(Lotto winnerNumbers) {
-        return (int) numbers.stream()
-                .filter(winnerNumbers.getNumbers()::contains)
+        return (int) lottoNumbers.stream()
+                .filter(winnerNumbers.getLottoNumbers()::contains)
                 .count();
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public List<Integer> getLottoNumbers() {
+        return lottoNumbers;
     }
 
     public boolean hasBonus(Integer bonusNumber) {
-        return numbers.contains(bonusNumber);
+        return lottoNumbers.contains(bonusNumber);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Lotto lotto)) return false;
-        return Objects.equals(numbers, lotto.numbers);
+        return Objects.equals(lottoNumbers, lotto.lottoNumbers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numbers);
+        return Objects.hash(lottoNumbers);
     }
 
     private void validateLottoNumbers(List<Integer> numbers) {

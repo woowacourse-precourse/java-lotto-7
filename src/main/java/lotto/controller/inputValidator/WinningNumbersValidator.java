@@ -5,6 +5,7 @@ import static lotto.exception.ErrorBase.LOTTO_NUMBERS_DUPLICATE;
 import static lotto.exception.ErrorBase.LOTTO_NUMBERS_INVALID_SIZE;
 import static lotto.exception.ErrorBase.LOTTO_NUMBERS_OUT_OF_RANGE;
 import static lotto.exception.ErrorBase.WINNING_NUMBERS_NON_NUMERIC;
+import static lotto.util.CommonValidator.parseIntegerList;
 import static lotto.util.CommonValidator.validateNoDuplicates;
 import static lotto.util.CommonValidator.validateNumberRange;
 import static lotto.util.CommonValidator.validateSize;
@@ -25,23 +26,12 @@ public class WinningNumbersValidator {
 
     public static List<Integer> validate(String winningNumbers) {
         validateNotBlank(winningNumbers, BLANK_WINNING_NUMBERS.getMessage());
-        List<Integer> parsedWinNumbers = parseIntegerList(winningNumbers, WINNING_NUMBERS_NON_NUMERIC.getMessage());
+        List<Integer> parsedWinningNumbers = parseIntegerList(winningNumbers, DELIMITER, WINNING_NUMBERS_NON_NUMERIC.getMessage());
 
-        validateSize(parsedWinNumbers, LOTTO_NUMBERS_COUNT);
-        validateNoDuplicates(parsedWinNumbers);
-        validateNumberRange(parsedWinNumbers, LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
+        validateSize(parsedWinningNumbers, LOTTO_NUMBERS_COUNT);
+        validateNoDuplicates(parsedWinningNumbers);
+        validateNumberRange(parsedWinningNumbers, LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
 
-        return parsedWinNumbers;
-    }
-
-    private static List<Integer> parseIntegerList(String input, String errorMessage) {
-        try {
-            return Arrays.stream(input.split(DELIMITER, -1))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(errorMessage);
-        }
+        return parsedWinningNumbers;
     }
 }

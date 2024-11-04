@@ -57,7 +57,6 @@ public class LottoView {
 
         PRIZE_ORDER.forEach(prizeInfo -> printPrizeInfo(prizeInfo, prizeCounts.getOrDefault(prizeInfo, 0)));
 
-        outputConsumer.accept("");
         outputConsumer.accept(String.format(YIELD, rate));
     }
 
@@ -68,7 +67,7 @@ public class LottoView {
     }
 
     private void printLotto(Lotto lotto) {
-        String formattedNumbers = lotto.getNumbers().stream()
+        String formattedNumbers = lotto.getLottoNumbers().stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
         outputConsumer.accept(formattedNumbers);
