@@ -46,7 +46,7 @@ public class LottoGame {
     }
 
     private List<Lotto> getLottos(Price price) {
-        return new LottoGenerator(price).getLottoList();
+        return new LottoGenerator(price).getLottos();
     }
 
     private void printLottos(List<Lotto> lottos) {
