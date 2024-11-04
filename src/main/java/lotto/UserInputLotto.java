@@ -13,8 +13,9 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
                 validatePurchaseAmount(amount);
 
                 return amount;
-            } catch
-                (IllegalArgumentException e) {
+            } catch (NumberFormatException e) {
+                printErrorMessage("[ERROR] 올바른 숫자를 입력하세요.");
+            } catch (IllegalArgumentException e) {
                 printErrorMessage(e.getMessage());
             }
         }
