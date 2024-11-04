@@ -16,7 +16,11 @@ public class PurchaseAmount {
         return new PurchaseAmount(money);
     }
 
-    public long get() {
-        return money / 1000;
+    public int getAmount() {
+        return (int) money / 1000;
+    }
+
+    public long getBudget() {
+        return money;
     }
 }

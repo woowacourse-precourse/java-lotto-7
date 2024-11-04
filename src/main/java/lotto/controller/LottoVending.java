@@ -1,9 +1,10 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.LottoStatistics;
 import lotto.model.PurchaseAmount;
 import lotto.parser.NumberParser;
 import lotto.validator.BonusNumberValidator;
@@ -12,6 +13,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoVending {
+    public static final String WINNING_NUMBERS_DELIMITER = ",";
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -36,14 +38,15 @@ public class LottoVending {
     private Lotto getWinningNumbersUntilValid() {
         while (true) {
             try {
-                List<Integer> winningNumbers = new ArrayList<>();
-
                 String winningNumbersInput = inputView.getWinningNumbers();
 
-                for (String winningNumberInput : winningNumbersInput.split(",")) {
-                    Integer winningNumber = NumberParser.parseInteger(winningNumberInput);
-                    winningNumbers.add(winningNumber);
-                }
+                List<String> separatedWinningNumbersInput = List.of(
+                    winningNumbersInput.split(WINNING_NUMBERS_DELIMITER));
+
+                List<Integer> winningNumbers = separatedWinningNumbersInput.stream()
+                    .map(NumberParser::parseInteger)
+                    .collect(Collectors.toList());
+
                 return new Lotto(winningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
@@ -66,57 +69,19 @@ public class LottoVending {
     }
 
     public void take() {
-        // 구입 금액 입력, 검증 및 파싱
         outputView.printPurchaseAmountMessage();
         PurchaseAmount amount = getPurchaseAmountUntilValid();
-
-        // 당첨 번호 입력, 검증 및 파싱
         outputView.printWinningNumbersMessage();
         Lotto winningNumbers = getWinningNumbersUntilValid();
-
-        //보너스 번호 입력
         outputView.printBonusNumberMessage();
         Integer bonusNumber = getBonusNumbersUntilValid(winningNumbers);
 
-        // 로또 발행
-        LottoGenerator lottoGenerator = LottoGenerator.generate(amount.get());
-        outputView.printLottos(lottoGenerator.getLottos());
-
-        // 당첨 통계
-        int matchedThree = 0;
-        int matchedFour = 0;
-        int matchedFive = 0;
-        int matchedFiveAndBonus = 0;
-        int matchedSix = 0;
-        for (Lotto lotto : lottoGenerator.getLottos()) {
-            long matchedCount = lotto.getMatchNumbersCount(winningNumbers);
-            if (matchedCount == 3) {
-                matchedThree++;
-            }
-            if (matchedCount == 4) {
-                matchedFour++;
-            }
-            if (matchedCount == 5) {
-                if (lotto.isNumbersContains(bonusNumber)) {
-                    matchedFiveAndBonus++;
-                } else {
-                    matchedFive++;
-                }
-            }
-            if (matchedCount == 6) {
-                matchedSix++;
-            }
-        }
-        System.out.println("당첨 통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + matchedThree + "개");
-        System.out.println("4개 일치 (50,000원) - " + matchedFour + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + matchedFive + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchedFiveAndBonus + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + matchedSix + "개");
-        int totalEarnings =
-            5000 * matchedThree + 50000 * matchedFour + 1500000 * matchedFive + 30000000 * matchedFiveAndBonus
-                + 2000000000 * matchedSix;
-        float totalEarningsRate = (float) totalEarnings / (amount.get() * 1000) * 100;
-        System.out.println("총 수익률은 " + String.format("%.1f", totalEarningsRate) + "%입니다.");
+        LottoGenerator lottoGenerator = LottoGenerator.generate(amount.getAmount());
+        List<Lotto> lottos = lottoGenerator.getLottos();
+        outputView.printLottos(lottos);
+        LottoStatistics stats = LottoStatistics.create(lottos, winningNumbers, bonusNumber);
+        outputView.printLottoResult(stats.getMatchResult());
+        float totalEarningsRate = (float) stats.getTotalEarnings() / amount.getBudget() * 100;
+        outputView.printTotalEarningsRate(totalEarningsRate);
     }
 }
