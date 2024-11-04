@@ -66,7 +66,7 @@ public class LottoRound {
             profit += LottoConstant.WINNING_PRIZE_VALUES[i] * wonHistoryCount;
         }
 
-        return roundRate((float) profit / totalIssuePrice);
+        return roundRate((float) profit / totalIssuePrice * 100);
     }
 
     public void setWinNumbers(List<Integer> gradingNumbers, int bonusNumbers) {
