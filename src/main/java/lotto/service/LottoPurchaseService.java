@@ -21,12 +21,14 @@ public class LottoPurchaseService {
 		this.lottoTicketStore = lottoTicketStore;
 	}
 
-	public void buyLottos() {
+	public List<Lotto> buyLottos() {
 		int purchaseAmount = inputView.getPurchaseAmount();
 		int purchaseCount = purchaseAmount / LOTTO_PRICE.getValue();
 
 		outputView.printPurchaseCountMessage(purchaseCount);
 		List<Lotto> lottos = lottoTicketStore.createLottoTickets(purchaseCount);
 		outputView.printLottoList(lottos);
+
+		return lottos;
 	}
 }
