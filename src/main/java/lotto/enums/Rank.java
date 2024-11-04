@@ -1,12 +1,11 @@
 package lotto.enums;
 
 public enum Rank {
-    THREE(3, 5000, "3개 일치"),
-    FOUR(4, 50000, "4개 일치"),
-    FIVE_AND_BONUS(5, 1500000 ,"5개 일치, 보너스 볼 일치"),
-    FIVE(5, 30000000, "5개 일치"),
-    SIX(6, 2000000000, "6개 일치"),
-    ;
+    THREE(3, 5_000, "3개 일치"),
+    FOUR(4, 50_000, "4개 일치"),
+    FIVE(5, 1_500_000, "5개 일치"),
+    FIVE_AND_BONUS(5, 30_000_000, "5개 일치, 보너스 볼 일치"),
+    SIX(6, 2_000_000_000, "6개 일치");
 
     private final int match;
     private final int prize;
