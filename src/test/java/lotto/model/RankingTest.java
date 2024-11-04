@@ -14,7 +14,9 @@ public class RankingTest {
         "6, false, FIRST_PLACE",
         "5, true, SECOND_PLACE",
         "5, false, THIRD_PLACE",
+        "4, true, FOURTH_PLACE",
         "4, false, FOURTH_PLACE",
+        "3, true, FIFTH_PLACE",
         "3, false, FIFTH_PLACE",
         "2, false, LOSE",
         "0, false, LOSE"
