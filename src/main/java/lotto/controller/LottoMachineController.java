@@ -25,19 +25,25 @@ public class LottoMachineController {
 
     public void run() {
         CustomerLotto customerLotto = createCustomerLotto();
-        WinningLotto winningLotto = createWinningLotto();
+        printCustomerLotto(customerLotto);
+        WinningLotto winningLotto = createWinningLotto(inputWinningLottoNumbers());
         displayLottoResults(customerLotto, winningLotto);
     }
 
     private CustomerLotto createCustomerLotto() {
         List<Lotto> tickets = purchaseTickets();
-        CustomerLotto customerLotto = CustomerLotto.of(tickets);
-        outputView.printGeneratedTickets(GeneratedTickets.from(customerLotto));
-        return customerLotto;
+        return CustomerLotto.of(tickets);
     }
 
-    private WinningLotto createWinningLotto() {
-        List<Integer> winningLottoNumbers = inputView.readWinningLottoNumbers();
+    private void printCustomerLotto(CustomerLotto customerLotto) {
+        outputView.printGeneratedTickets(GeneratedTickets.from(customerLotto));
+    }
+
+    private List<Integer> inputWinningLottoNumbers() {
+        return inputView.readWinningLottoNumbers();
+    }
+
+    private WinningLotto createWinningLotto(List<Integer> winningLottoNumbers) {
         Lotto winningLotto = createValidLotto(winningLottoNumbers);
         BonusNumber bonusNumber = createBonusNumber(winningLottoNumbers);
         return WinningLotto.of(winningLotto, bonusNumber);
