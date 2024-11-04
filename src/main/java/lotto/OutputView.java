@@ -46,6 +46,14 @@ public class OutputView {
         this.boughtLottoNumbers = lottos;
     }
 
+    public void lottoWinOutput(List<Integer> lottoMatchTable){
+        System.out.println("3개 일치 (5,000원) - " + lottoMatchTable.get(0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + lottoMatchTable.get(1)+ "개");
+        System.out.println("5개 일치 (1,500,000원) - " + lottoMatchTable.get(2) + "개");
+        System.out.println("6개 일치 (30,000,000원) - " + lottoMatchTable.get(3) + "개");
+        System.out.println("7개 일치 (2,000,000,000원) - " + lottoMatchTable.get(4)+ "개");
+    }
+
     public List<List<Integer>> getBoughtLottoNumbers() {
         return boughtLottoNumbers;
     }
