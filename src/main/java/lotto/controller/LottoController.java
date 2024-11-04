@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.controller.dto.LottoResult;
 import lotto.model.LottoPurchaseHistory;
 import lotto.model.lottoInfo.LottoGame;
-import lotto.model.lottoInfo.PriceDataImpl;
+import lotto.model.lottoInfo.PrizeDataImpl;
 import lotto.model.lottoInfo.StandardLottoPrice;
 import lotto.service.LottoService;
 import lotto.ui.InputView;
@@ -21,7 +21,7 @@ public class LottoController {
     private static final NumberValidator numberValidator = new NumberValidator();
 
     public void run() {
-        LottoGame lottoGame = new LottoGame(new StandardLottoPrice(), new PriceDataImpl());
+        LottoGame lottoGame = new LottoGame(new StandardLottoPrice(), new PrizeDataImpl());
 
         int money = inputMoney(lottoGame.getPrice());
         LottoPurchaseHistory lottoPurchaseHistory = buyLotto(money, lottoGame.getPrice());

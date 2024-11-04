@@ -2,13 +2,13 @@ package lotto.model.lottoInfo;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.model.enums.Price;
+import lotto.model.enums.Prize;
 import lotto.model.enums.Rank;
 
-public abstract class PriceData {
-    protected Map<Rank, Price> prizeByRank = new HashMap<>();
+public abstract class PrizeData {
+    protected Map<Rank, Prize> prizeByRank = new HashMap<>();
 
-    public PriceData() {
+    public PrizeData() {
         initializePrizes();
     }
 

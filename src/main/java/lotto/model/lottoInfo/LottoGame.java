@@ -7,9 +7,9 @@ public class LottoGame {
     private WinningNumber winningNumbers;
     private BonusNumber bonusNumber;
     private final LottoPrice price;
-    private final PriceData priceByRank;
+    private final PrizeData priceByRank;
 
-    public LottoGame(LottoPrice price, PriceData priceByRank) {
+    public LottoGame(LottoPrice price, PrizeData priceByRank) {
         this.price = price;
         this.priceByRank = priceByRank;
     }

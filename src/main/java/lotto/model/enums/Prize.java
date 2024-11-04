@@ -1,6 +1,6 @@
 package lotto.model.enums;
 
-public enum Price {
+public enum Prize {
     FIRST_PRICE("2,000,000,000원"),
     SECOND_PRICE("30,000,000원"),
     THIRD_PRICE("1,500,000원"),
@@ -10,7 +10,7 @@ public enum Price {
 
     private final String message;
 
-    Price(String message) {
+    Prize(String message) {
         this.message = message;
     }
 
