@@ -32,4 +32,18 @@ class LottoTest {
         assertThatThrownBy(() -> new LottoProvider(1200, new User()))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호가 45보다 클 경우 예외가 발생한다.")
+    @Test
+    void 로또_번호가_45보다_클_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> Input.validateLottoNumberRange(46))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 1보다 작을 경우 예외가 발생한다.")
+    @Test
+    void 로또_번호가_1보다_작을_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> Input.validateLottoNumberRange(0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
