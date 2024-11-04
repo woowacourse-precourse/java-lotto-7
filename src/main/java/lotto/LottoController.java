@@ -66,6 +66,8 @@ public class LottoController {
             }
         }
 
-        Float earningRate = (float) price / lottoService.convertInputToCash(input);
+        Float earningRate = (float) price / lottoService.convertInputToCash(input) * 100;
+
+        outputView.printWinningDetail(count1st, count2nd, count3rd, count4th, count5th, earningRate);
     }
 }
