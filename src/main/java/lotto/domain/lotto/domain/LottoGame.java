@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.domain.lotto.util.LottoConverter;
 
 public class LottoGame {
@@ -80,5 +81,11 @@ public class LottoGame {
 
     public int getCost() {
         return cost;
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningLottos.stream()
+                .map(LottoNumber::getLottoNumber)
+                .collect(Collectors.toList());
     }
 }

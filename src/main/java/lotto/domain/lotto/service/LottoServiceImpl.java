@@ -11,14 +11,11 @@ import lotto.domain.lotto.dto.response.LottoGameRes;
 
 public class LottoServiceImpl implements LottoService {
 
-    private static LottoServiceImpl instance;
+    private static final LottoServiceImpl instance = new LottoServiceImpl();
 
     private LottoServiceImpl() {}
 
     public static LottoServiceImpl getInstance() {
-        if (instance == null) {
-            instance = new LottoServiceImpl();
-        }
         return instance;
     }
 
@@ -49,6 +46,12 @@ public class LottoServiceImpl implements LottoService {
         double profitRate = calculateProfitRate(results, lottoGame.getCost());
 
         return LottoGameRes.of(results, profitRate);
+    }
+
+    @Override
+    public List<Integer> getWinningNumbers() {
+        validateGameExists();
+        return lottoGame.getWinningNumbers();  
     }
 
     /**

@@ -7,6 +7,9 @@ import lotto.domain.lotto.presentation.LottoController;
 import lotto.domain.lotto.service.LottoService;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+import lotto.global.exception.ErrorMessage;
 
 
 public class LottoConsole {
@@ -43,20 +46,24 @@ public class LottoConsole {
     private int inputPurchaseAmount() {
         CommandWriter.write(PURCHASE_AMOUNT_MESSAGE);
         String input = CommandReader.read();
+        validatePurchaseAmount(input);
+        return Integer.parseInt(input);
+    }
+
+    private void validatePurchaseAmount(String input) {
         try {
             int amount = Integer.parseInt(input);
             if (amount > 100000000) {
-                throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 100,000,000원을 초과할 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_MAXIMUM.getMessage());
             }
             if (amount < 1000) {
-                throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 이상이어야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_MINIMUM.getMessage());
             }
             if (amount % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 로또 구입은 1,000원 단위로 가능합니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
             }
-            return amount;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_NOT_NUMBER.getMessage());
         }
     }
 
@@ -76,15 +83,68 @@ public class LottoConsole {
 
     private List<Integer> inputWinningNumbers() {
         CommandWriter.write(WINNING_NUMBERS_MESSAGE);
-        return Arrays.stream(CommandReader.read().split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
+        String input = CommandReader.read();
+        return validateAndParseWinningNumbers(input);
+    }
+
+    private List<Integer> validateAndParseWinningNumbers(String input) {
+        try {
+            if (!input.contains(",")) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
+            }
+
+            List<Integer> numbers = Arrays.stream(input.split(","))
+                    .map(String::trim)
+                    .map(this::parseNumber)
+                    .collect(Collectors.toList());
+
+            validateWinningNumbers(numbers);
+            return numbers;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_NOT_NUMBER.getMessage());
+        }
     }
 
     private int inputBonusNumber() {
         CommandWriter.write(BONUS_NUMBER_MESSAGE);
-        return Integer.parseInt(CommandReader.read());
+        String input = CommandReader.read();
+        return validateAndParseBonusNumber(input);
+    }
+
+    private int validateAndParseBonusNumber(String input) {
+        try {
+            int bonusNumber = Integer.parseInt(input.trim());
+            validateBonusNumberDuplicate(bonusNumber);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_NOT_NUMBER.getMessage());
+        }
+    }
+
+    private void validateWinningNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_SIZE.getMessage());
+        }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_DUPLICATE.getMessage());
+        }
+    }
+
+    private void validateBonusNumberDuplicate(int bonusNumber) {
+        List<Integer> winningNumbers = controller.getWinningNumbers();
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_DUPLICATE.getMessage());
+        }
+    }
+
+    private int parseNumber(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_NOT_NUMBER.getMessage());
+        }
     }
 
     private void printResults() {

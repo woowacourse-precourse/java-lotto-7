@@ -34,4 +34,8 @@ public class LottoController {
     public LottoGameRes getGameResult() {
         return lottoService.getGameResult();
     }
+
+    public List<Integer> getWinningNumbers() {
+        return lottoService.getWinningNumbers();
+    }
 }

@@ -15,4 +15,6 @@ public interface LottoService {
     void createAndPlayGame(LottoGameReq request);
 
     LottoGameRes getGameResult();
+
+    List<Integer> getWinningNumbers();
 }
