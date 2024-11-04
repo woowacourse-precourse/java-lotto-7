@@ -34,7 +34,7 @@ public class Customer {
         return Math.round(yield * CalculateType.ROUNDING_SCALE.getIntValue()) / CalculateType.ROUNDING_DIVISOR.getValue();
     }
 
-    public long getResultSum() {
+    private long getResultSum() {
         long sum = LottoType.ZERO_MONEY.getValue();
         for (Ranking ranking : lottoResults.keySet()) {
             sum += (long) ranking.getWinnings() * lottoResults.get(ranking);
