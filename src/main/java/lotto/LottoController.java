@@ -10,6 +10,7 @@ public class LottoController {
     private InputView inputView;
     private OutputView outputView;
     private LottoGenerator lottoGenerator;
+    private final String digitRegex = "^[0-9]+$";
 
     public LottoController(InputView inputView, OutputView outputView, LottoGenerator lottoGenerator) {
         this.inputView = inputView;
@@ -18,17 +19,36 @@ public class LottoController {
     }
 
     public int getPurchaseAmount() {
-        return Integer.parseInt(inputView.readPurchaseAmount());
+        while (true) {
+            try {
+                String input = inputView.readPurchaseAmount();
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 숫자만 입력해주세요.");
+            }
+        }
     }
 
     public List<Integer> getWinningNumbers() {
-        String winningNumbers = inputView.readWinningNumbers();
-        return StringParser.parseStringToWinningNumbers(winningNumbers);
+        while (true) {
+            try {
+                String input = inputView.readWinningNumbers();
+                return StringParser.parseStringToWinningNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 숫자만 입력해주세요.");
+            }
+        }
     }
 
     public int getBonusNumber() {
-        String bonusNumber = inputView.readBonusNumber();
-        return Integer.parseInt(bonusNumber);
+        while (true) {
+            try {
+                String input = inputView.readBonusNumber();
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 숫자만 입력해주세요.");
+            }
+        }
     }
 
     public List<Lotto> buyLotties(){
@@ -56,5 +76,11 @@ public class LottoController {
         List<Lotto> lotties = buyLotties();
         List<Rank> ranks = draw(lotties);
         outputView.showResult(ranks);
+    }
+
+    public void validateInputContainsOnlyDigits(String input) {
+        if (!input.matches(digitRegex)) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+        }
     }
 }
