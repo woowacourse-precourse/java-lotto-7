@@ -37,15 +37,15 @@ public enum Prize {
         return rank;
     }
 
-    public int getMatchNumbers () {
+    public int getMatchNumbers() {
         return matchNumbers;
     }
 
-    public String getMoney () {
+    public String getMoney() {
         return prizeMoney;
     }
 
-    public double money () {
+    public double money() {
         return Double.parseDouble(prizeMoney.replace(",", ""));
     }
 }
