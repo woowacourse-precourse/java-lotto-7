@@ -1,7 +1,13 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.*;
+import lotto.domain.Lotto;
+import lotto.domain.LottoConstants;
+import lotto.domain.LottoRank;
+import lotto.domain.PurchasedLottos;
+import lotto.parser.BonusNumberParser;
+import lotto.parser.PurchaseAmountParser;
+import lotto.parser.WinningNumbersParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -10,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class LottoManager {
+public class LottoController {
     private PurchasedLottos purchasedLottos;
     private Set<Integer> winningNumbers;
     private int bonusNumber;

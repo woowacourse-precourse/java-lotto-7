@@ -1,7 +1,8 @@
-package lotto;
+package lotto.domain;
+
+import lotto.domain.Lotto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PurchasedLottos {
     private final List<Lotto> purchasedLottos;

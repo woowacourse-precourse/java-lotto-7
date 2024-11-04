@@ -1,5 +1,7 @@
-package lotto;
+package lotto.parser;
 
+
+import lotto.domain.LottoConstants;
 
 import java.util.Set;
 
