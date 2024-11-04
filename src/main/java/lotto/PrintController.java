@@ -58,7 +58,7 @@ public class PrintController {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String bonusNumber = Console.readLine();
                 int parseBonusNumber = lottoController.parseBonusNumber(bonusNumber);
-                WinNumbers.validate(winNumbers, parseBonusNumber);
+                Validator.validateBonusNumber(winNumbers, parseBonusNumber);
                 return parseBonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
