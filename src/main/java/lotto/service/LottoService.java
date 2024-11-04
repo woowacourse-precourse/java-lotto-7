@@ -16,13 +16,13 @@ public class LottoService {
 
     public List<Lotto> generateLottos(int numberOfTickets) {
         List<Lotto> lottos = new ArrayList<>();
-        List<Integer> numbers = null;
-        Lotto lotto = null;
 
         for (int i = 0; i < numberOfTickets; i++) {
-            numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBERS_COUNT);
-            numbers.sort(Integer::compareTo); //오름차순 정렬
-            lotto = new Lotto(numbers);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX,
+                LOTTO_NUMBERS_COUNT);
+            numbers = new ArrayList<>(numbers);
+            numbers.sort(Integer::compareTo); // 오름차순 정렬
+            Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
         return lottos;
@@ -32,7 +32,7 @@ public class LottoService {
         int matchCount;
         boolean bonusMatch;
         Statistics statistics = new Statistics();
-        
+
         for (Lotto lotto : purchasedLottos) {
             matchCount = lotto.getMatchCount(winningLotto.getWinningNumbers());
             bonusMatch = lotto.getNumbers().contains(winningLotto.getBonusNumber());
