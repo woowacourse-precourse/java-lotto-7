@@ -14,19 +14,19 @@ public class WinningNumbers {
 
     private final List<Integer> numbers;
 
-    private final BonusNumber bonusNumber;
+    private final int bonusNumber;
 
-    public WinningNumbers(List<Integer> inputNumbers, BonusNumber bonusNumber) {
+    public WinningNumbers(List<Integer> inputNumbers, int bonusNumber) {
         this.numbers = inputNumbers;
         validateNumbers();
 
         this.bonusNumber = bonusNumber;
-        validateBonusDuplicated();
+        validateBonusNumber();
     }
 
     private void validateNumbers() {
         validateSixNumbers();
-        validateRange();
+        numbers.forEach(this::validateRange);
         validateDuplicated();
         sortNumbers();
     }
@@ -37,11 +37,8 @@ public class WinningNumbers {
         }
     }
 
-    private void validateRange() {
-        boolean isRange = numbers.stream()
-                .allMatch(number -> number >= NUMBERS_RANGE_START && number <= NUMBERS_RANGE_END);
-
-        if (!isRange) {
+    private void validateRange(int number) {
+        if (number < NUMBERS_RANGE_START || number > NUMBERS_RANGE_END) {
             throw new LottoException(ExceptionCode.OUT_OF_RANGE);
         }
     }
@@ -60,6 +57,11 @@ public class WinningNumbers {
         Collections.sort(numbers);
     }
 
+    private void validateBonusNumber() {
+        validateBonusDuplicated();
+        validateRange(bonusNumber);
+    }
+
     private void validateBonusDuplicated() {
         if (numbers.contains(bonusNumber)) {
             throw new LottoException(ExceptionCode.DUPICATED_ERROR);
@@ -68,11 +70,11 @@ public class WinningNumbers {
 
     public List<Integer> getWinningNumbers() {
         List<Integer> winningNumbers = numbers;
-        winningNumbers.add(bonusNumber.getBonusNumber());
+        winningNumbers.add(bonusNumber);
         return winningNumbers;
     }
 
     public int getBonusNumber() {
-        return bonusNumber.getBonusNumber();
+        return bonusNumber;
     }
 }
