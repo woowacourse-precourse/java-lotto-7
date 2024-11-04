@@ -9,14 +9,18 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigInteger;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
 import lotto.repository.LottoRepositoryImpl;
+import store.service.StoreService;
 
 public class LottoService {
 
+    private final StoreService storeService;
     private final LottoRepositoryImpl lottoRepository;
 
-    public LottoService(LottoRepositoryImpl lottoRepository) {
+    public LottoService(StoreService storeService, LottoRepositoryImpl lottoRepository) {
+        this.storeService = storeService;
         this.lottoRepository = lottoRepository;
     }
 
@@ -48,5 +52,9 @@ public class LottoService {
     private List<Integer> sortingNumbers(List<Integer> numbers) {
         numbers.sort(Comparator.naturalOrder());
         return numbers;
+    }
+
+    public Map<String, Integer> requestCheckLottoResult() {
+        //TODO: 본인이 가진 로또 전부를 가지고 상점에게 당첨 결과 조회를 요청한다.
     }
 }

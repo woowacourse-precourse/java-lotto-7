@@ -76,4 +76,11 @@ class LottoServiceTest {
         assertThatThrownBy(() -> lottoService.create(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("로또의 당첨 결과를 조회할 수 있다.")
+    void t006() {
+
+        assertThat(lottoService.requestCheckLottoResult()).containsKeys()
+    }
 }

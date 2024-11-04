@@ -25,6 +25,11 @@ public class LottoController {
         lottoOutputView.printLottoNumbers(lottoService.getAll());
     }
 
+    public void checkLottoResult() {
+        //TODO: 보유한 로또가 당첨되었는지 결과 조회를 요청한다
+        lottoService.requestCheckLottoResult();
+    }
+
     //FIXME: BigInteger로 변환하는 것, Controller에서 처리하는 것이 맞는가?
     private BigInteger paying() {
 
