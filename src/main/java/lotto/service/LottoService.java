@@ -105,12 +105,13 @@ public class LottoService {
         return new WinningNumber(validWinNumbers);
     }
 
-    public int validateBonusNumber(String bonusNumber) {
+    public int validateBonusNumber(String bonusNumber, WinningNumber winningNumberObject) {
         Validator.isBlank(bonusNumber);
         Validator.isPositiveNumber(bonusNumber);
 
         int parsedBonusNumber = parseBonusNumberToInt(bonusNumber);
         Validator.isBetweenOneAndFortyFive(parsedBonusNumber);
+        Validator.isBonusNumberDuplicateWithWinNumber(parsedBonusNumber, winningNumberObject);
 
         return parsedBonusNumber;
     }

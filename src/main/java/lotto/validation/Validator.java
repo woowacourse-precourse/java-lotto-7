@@ -1,7 +1,9 @@
 package lotto.validation;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import lotto.domain.WinningNumber;
 import lotto.enums.ErrorMessage;
 
 public class Validator {
@@ -56,6 +58,14 @@ public class Validator {
             throw new IllegalStateException(ErrorMessage.INPUT_NUMBER_DUPLICATE_ERROR.getMessage());
         }
         existNumbers.add(parsedWinNumber);
+    }
+
+    public static void isBonusNumberDuplicateWithWinNumber(int parsedBonusNumber, WinningNumber winningNumberObject) {
+        List<Integer> existWinningNumber = winningNumberObject.getWinningNumbers();
+
+        if (existWinningNumber.contains(parsedBonusNumber)) {
+            throw new IllegalStateException(ErrorMessage.INPUT_NUMBER_DUPLICATE_ERROR.getMessage());
+        }
     }
 }
 

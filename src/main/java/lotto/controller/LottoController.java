@@ -21,6 +21,7 @@ public class LottoController {
     private LottoCollection lottoCollection;
     private String winningNumber;
     private String bonusNumber;
+    private WinningNumber winningNumberObject;
 
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
@@ -103,6 +104,7 @@ public class LottoController {
 
         // split 후, 검증
         WinningNumber validWinNumber = lottoService.validateSplitWinNumber(splitWinningNumber);
+        this.winningNumberObject = validWinNumber;
     }
 
     public void inputBonusNumber() {
@@ -111,7 +113,7 @@ public class LottoController {
     }
 
     public void validateBonusNumber() {
-        int parsedBonusNumber = lottoService.validateBonusNumber(bonusNumber);
+        int parsedBonusNumber = lottoService.validateBonusNumber(bonusNumber, winningNumberObject);
         BonusNumber bonusNumber = lottoService.addBonusNumber(parsedBonusNumber);
     }
 
