@@ -15,19 +15,21 @@ public class WinningNumbersParser {
 
         return Arrays.stream(input.split(WINNING_NUMBERS_DEFAULT_DELIMITER))
                 .map(String::trim)
-                .map(part -> {
-                    try {
-                        return Integer.parseInt(part);
-                    } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException(LOTTO_NUMBER_NOT_INTEGER_ERROR);
-                    }
-                })
+                .map(WinningNumbersParser::parseIntOrThrow)
                 .toList();
     }
 
     private static void validateNotEmpty(String input) {
         if (isEmpty(input)) {
             throw new IllegalArgumentException(INPUT_EMPTY_ERROR);
+        }
+    }
+
+    private static int parseIntOrThrow(String part) {
+        try {
+            return Integer.parseInt(part);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_NOT_INTEGER_ERROR);
         }
     }
 }
