@@ -10,7 +10,9 @@ public enum ErrorMessage {
     PRICE_MUST_NOT_BE_NULL("로또를 사려는 가격은 null일 수 없습니다."),
     PRICE_SHOULD_BE_SMALLER_THAN_LIMITS("로또를 사려는 가격은 2,000,000,000을 넘을 수 없습니다."),
     THERE_IS_DUPLICATE_NUMBER_IN_LOTTO("로또에 중복된 값이 있습니다."),
-    NOT_MATCH_LOTTO_COUNT_WITH_PRICE("로또 가격과 개수가 일치하지 않습니다.");
+    NOT_MATCH_LOTTO_COUNT_WITH_PRICE("로또 가격과 개수가 일치하지 않습니다."),
+    WINNING_LOTTO_NUMBER_FORMAT_ERROR("당첨 번호 형식이 알맞지 않습니다."),
+    THERE_IS_DUPLICATE_NUMBER_IN_WINNING_LOTTO("당첨 번호에 중복된 숫자가 있습니다.");
 
     private final String errorMessage;
     private final String errorLogo = "[ERROR] ";
