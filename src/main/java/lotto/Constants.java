@@ -12,6 +12,9 @@ public final class Constants {
     public static final String RESULT_FORMAT = "%s (%s원) - %d개%n";
     public static final String MATCH_COUNT_SUFFIX = "개 일치";
     public static final String BONUS_BALL_MATCH = ", 보너스 볼 일치";
+    public static final String LOTTO_NUMBERS_SEPARATOR = ", ";
+    public static final String LOTTO_NUMBERS_PREFIX = "[";
+    public static final String LOTTO_NUMBERS_SUFFIX = "]";
 
     // 금액 관련 상수
     public static final int LOTTO_PRICE = 1000;
