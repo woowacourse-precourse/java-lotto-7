@@ -1,3 +1,5 @@
+package lotto;
+
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.domain.error.InputErrorMessage;
 import lotto.Application;
