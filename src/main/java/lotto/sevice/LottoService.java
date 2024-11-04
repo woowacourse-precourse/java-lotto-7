@@ -14,6 +14,7 @@ import java.util.Map;
 public class LottoService {
     private final LottoGenerator generator;
     private static final int LOTTO_PRICE = 1000;
+    private static final int HUNDRED = 100;
 
     public LottoService() {
         this.generator = new LottoGenerator();
@@ -52,6 +53,6 @@ public class LottoService {
                 .sum();
 
         int totalPurchaseAmount = purchaseCount * LOTTO_PRICE;
-        return ((double) totalPrize / totalPurchaseAmount) * 100;
+        return ((double) totalPrize / totalPurchaseAmount) * HUNDRED;
     }
 }
