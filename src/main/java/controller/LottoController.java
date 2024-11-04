@@ -27,12 +27,14 @@ public class LottoController {
         setLottos(result);
         setWinningNumbers(result);
         setBonusNumber(result);
+        printResult(result);
     }
 
     private LottoResult getTotalCost() {
         LottoResult result = new LottoResult();
         String purchaseAmount = inputView.getCost();
         result.setPurchaseAmount(Integer.parseInt(purchaseAmount));
+        System.out.println();
         return result;
     }
 
@@ -62,5 +64,9 @@ public class LottoController {
         String input = inputView.getBonusNumber();
         result.setBonusNumber(Integer.parseInt(input));
         System.out.println();
+    }
+
+    private void printResult(LottoResult result) {
+        outputView.showResult(result);
     }
 }

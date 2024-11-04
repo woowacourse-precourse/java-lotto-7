@@ -8,6 +8,11 @@ import view.OutputView;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        new LottoController(new InputView(), new OutputView(), new LottoService()).run();
+        try {
+            new LottoController(new InputView(), new OutputView(new LottoService()), new LottoService()).run();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
