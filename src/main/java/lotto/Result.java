@@ -1,15 +1,16 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Result {
     private final Map<String, Integer> hitResult;
 
     public Result(Lotto winningLotto, int bonusNumber, List<Lotto> userTickets) {
-        Map<String, Integer> hitResult = createResult(winningLotto, bonusNumber, userTickets);
-        this.hitResult = hitResult;
+        this.hitResult = createResult(winningLotto, bonusNumber, userTickets);;
     }
 
     private Map<String, Integer> createResult(Lotto winningLotto, int bonusNumber, List<Lotto> userTickets) {
@@ -37,6 +38,13 @@ public class Result {
     private void rankingCount(int hitCount, boolean bonusHit, Map<String, Integer> hitResult) {
         String rankName = Ranking.getEnumName(hitCount, bonusHit);
         hitResult.put(rankName, hitResult.getOrDefault(rankName, 0) + 1);
+    }
+
+    public String getResult() {
+        return Arrays.stream(Ranking.values())
+                .filter(rank -> !rank.name().equals(Ranking.NO_RANK.name()))
+                .map(rank -> rank.getRankingMessage(this.hitResult.getOrDefault(rank.name(), 0)))
+                .collect(Collectors.joining("\n"));
     }
 
     public Map<String, Integer> getHitResult() {

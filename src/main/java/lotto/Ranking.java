@@ -26,4 +26,13 @@ public enum Ranking {
                 .findFirst().orElse(NO_RANK);
         return ranking.name();
     }
+
+    public String getRankingMessage(int count) {
+        String bonus = "";
+        if (this.bonusHit) {
+            bonus = ", 보너스 볼 일치";
+        }
+
+        return String.format("%d개 일치%s (%,d원) - %d개", this.hitCount, bonus, this.prize, count);
+    }
 }
