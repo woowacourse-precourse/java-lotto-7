@@ -18,7 +18,6 @@ public class LottoController {
 
         DrawNumbers drawNumbers = InputView.enterWinningNumbers();
         LottoResult lottoResult= getPrizeResult(lottos, drawNumbers);
-        //TotalGain totalGain = new TotalGain(lottoResult, paymentInput);
 
         OutputView.showResult(lottoResult,paymentInput);
     }

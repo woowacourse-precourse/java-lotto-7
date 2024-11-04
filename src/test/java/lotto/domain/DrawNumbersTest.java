@@ -25,6 +25,4 @@ class DrawNumbersTest {
                 isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.DUPLICATED_BONUS_NUMBER);
     }
-
-
 }

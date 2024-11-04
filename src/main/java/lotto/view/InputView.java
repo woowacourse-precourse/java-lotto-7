@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+
 import lotto.domain.BonusNumber;
 import lotto.domain.PaymentInput;
 import lotto.domain.DrawNumbers;
