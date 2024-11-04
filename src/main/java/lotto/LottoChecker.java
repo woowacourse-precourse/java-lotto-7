@@ -3,11 +3,11 @@ package lotto;
 import java.util.List;
 
 public class LottoChecker {
-    private static final int LOTTO_1_PRIZE = 2000000000;
-    private static final int LOTTO_2_PRIZE = 30000000;
-    private static final int LOTTO_3_PRIZE = 1500000;
-    private static final int LOTTO_4_PRIZE = 50000;
-    private static final int LOTTO_5_PRIZE = 5000;
+    private static final int LOTTO_1_PRIZE = Prize.PRIZE_1.prize();
+    private static final int LOTTO_2_PRIZE = Prize.PRIZE_2.prize();
+    private static final int LOTTO_3_PRIZE = Prize.PRIZE_3.prize();
+    private static final int LOTTO_4_PRIZE = Prize.PRIZE_4.prize();
+    private static final int LOTTO_5_PRIZE = Prize.PRIZE_5.prize();
     private static final int TICKET_PRICE = 1000;
 
     private static final int LOTTO_NUMS_COUNT = 6;
