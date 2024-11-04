@@ -16,11 +16,7 @@ public class Application {
 
         List<Lotto> playerLottos = createPlayerLottos();
         output.printPurchaseLotto(playerLottos);
-
-        //당첨 번호 입력
-        List<Integer> winningNumbers = input.askWinningNumbers();
-        int bonusNumber = input.askBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+        WinningLotto winningLotto = createWinningLotto();
         Map<String, Integer> winningResult = winningLotto.getWinningResult(playerLottos);
         LottoStatistics lottoStatistics = new LottoStatistics();
         output.printWinningResult(winningResult, lottoStatistics.calculateYield(money, winningResult));
@@ -31,6 +27,18 @@ public class Application {
             try {
                 int money = input.askPurchaseAmount();
                 return lottoMachine.purchaseLotto(money);
+            } catch (IllegalArgumentException e) {
+                output.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private static WinningLotto createWinningLotto() {
+        while (true) {
+            try {
+                List<Integer> winningNumbers = input.askWinningNumbers();
+                int bonusNumber = input.askBonusNumber();
+                return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
             } catch (IllegalArgumentException e) {
                 output.printErrorMessage(e.getMessage());
             }
