@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.enums.Rank;
 import lotto.model.Lotto;
 import lotto.model.UserLotto;
@@ -55,17 +57,43 @@ public class UserLottoController {
             }
         }
     }
-
     public void printWinningStatistics(UserLotto userLotto) {
-        Map<Rank, Integer> statistics = userLottoService.calculateWinningStatistics(
+        Map<Rank, Integer> statistics = calculateWinningStatistics(userLotto);
+        List<String> messages = getMessages();
+        List<Integer> prizes = getPrizes();
+        List<Integer> counts = getCounts(statistics);
+
+        OutputView.printWinningStatistics(messages, prizes, counts);
+
+        int totalPrize = userLottoService.calculateTotalPrize(statistics);
+        double rateOfReturn = calculateRateOfReturn(totalPrize, userLotto.getLottos().size());
+        OutputView.printRateOfReturn(rateOfReturn);
+    }
+
+    private Map<Rank, Integer> calculateWinningStatistics(UserLotto userLotto) {
+        return userLottoService.calculateWinningStatistics(
             userLotto.getLottos(),
             userLotto.getDefaultLottoNumbers(),
             userLotto.getBonusNumber()
         );
-        int totalPrize = userLottoService.calculateTotalPrize(statistics);
-        double rateOfReturn = calculateRateOfReturn(totalPrize, userLotto.getLottos().size());
-        OutputView.printWinningStatistics(statistics);
-        OutputView.printRateOfReturn(rateOfReturn);
+    }
+
+    private List<String> getMessages() {
+        return Arrays.stream(Rank.values())
+            .map(Rank::getMessage)
+            .collect(Collectors.toList());
+    }
+
+    private List<Integer> getPrizes() {
+        return Arrays.stream(Rank.values())
+            .map(Rank::getPrize)
+            .collect(Collectors.toList());
+    }
+
+    private List<Integer> getCounts(Map<Rank, Integer> statistics) {
+        return Arrays.stream(Rank.values())
+            .map(rank -> statistics.getOrDefault(rank, 0))
+            .collect(Collectors.toList());
     }
 
     private double calculateRateOfReturn(int totalPrize, int totalLottos) {
