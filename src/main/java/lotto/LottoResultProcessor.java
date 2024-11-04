@@ -27,4 +27,49 @@ public class LottoResultProcessor {
             enumResult.put(value.name(), 0);
         }
     }
+
+    private void countCorrect(List<Integer> lotto) {
+        int correctNum = 0;
+        boolean hasBonus = false;
+        for (int number : lotto) {
+            if (winNumbers.contains(number)) {
+                correctNum++;
+            }
+            if (number == bonusNum) {
+                hasBonus = true;
+            }
+        }
+        classifyResult(correctNum, hasBonus);
+    }
+
+    public void classifyResult(Integer count, boolean hasBonus) {
+        String correctName = EnumValue.winningResult(hasBonus, count);
+        if (!correctName.equals("NO_CORRECT")) {
+            int correctValue = enumResult.get(correctName);
+            enumResult.put(correctName, correctValue + 1);
+        }
+    }
+
+    public void getResult() {
+        for (List<Integer> lotto : lottos) {
+            countCorrect(lotto);
+        }
+    }
+
+    public double calculateRatio(int totalMoney) {
+        double ratio = (double) totalMoney / (double) initMoney * 100;
+        double roundedNum = Math.round(ratio * 100) / 100.0; // 3.14
+
+        return roundedNum;
+    }
+
+    public double getTotalProfit() {
+        int totalMoney = 0;
+        for (String name : enumResult.keySet()) {
+            int winningMoney = EnumValue.valueOf(name).getMoney();
+            int matchCount = enumResult.get(name);
+            totalMoney += winningMoney * matchCount;
+        }
+        return calculateRatio(totalMoney);
+    }
 }
