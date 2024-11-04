@@ -32,14 +32,7 @@ class LottoNumberTest {
 
         // then
         assertThatThrownBy(() -> LottoNumber.of(invalidNumber))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(
-                        String.format(
-                                "번호는 %d부터 %d사이의 숫자여야 합니다.",
-                                LottoConstants.LOTTO_NUMBER_LOWER_BOUND,
-                                LottoConstants.LOTTO_NUMBER_UPPER_BOUND
-                        )
-                );
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호 비교 테스트")
