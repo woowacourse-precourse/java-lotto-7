@@ -2,6 +2,7 @@ package lotto;
 
 import static lotto.Inputor.getLottoDrawCount;
 import static lotto.LottoGenerator.generateLottos;
+import static lotto.OutputPrinter.printLotto;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class LottoApplication {
         }
 
         List<Lotto> lottos = generateLottos(lottoDrawCount);
-
+        printLotto(lottos);
     }
 
 
