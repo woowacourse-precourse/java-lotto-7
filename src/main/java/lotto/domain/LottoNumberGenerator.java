@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoNumberGenerator {
-    private Lotto generateLotto(){
+    public static Lotto generateLotto(){
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
         Collections.sort(lottoNumbers);
 
@@ -16,7 +16,7 @@ public class LottoNumberGenerator {
         return lotto;
     }
 
-    private List<Lotto> generateLottoNumbers(int amountOfLotto){
+    public static List<Lotto> generateLottoNumbers(int amountOfLotto){
         List<Lotto> lottos = new ArrayList<>();
         for(int i = 0 ; i < amountOfLotto ; i++){
             lottos.add(generateLotto());

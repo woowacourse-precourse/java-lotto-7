@@ -10,6 +10,11 @@ public enum WinningRank {
 
     private final int numberOfCorrectNumber;
     private final int prizeMoneyAmount;
+
+    public boolean isBonusNumberCorrect() {
+        return isBonusNumberCorrect;
+    }
+
     private final boolean isBonusNumberCorrect;
 
     WinningRank(int numberOfCorrectNumber, int prizeMoneyAmount, boolean isBonusNumberCorrect){
@@ -21,15 +26,22 @@ public enum WinningRank {
     public static WinningRank calculateLottoRank(int numberOfCorrectNumber, boolean isBonusNumberCorrect){
         WinningRank lottoWinningRank = LOSE;
         for(WinningRank winningRank: WinningRank.values()){
-            if(winningRank.isBonusNumberCorrect == isBonusNumberCorrect && winningRank.numberOfCorrectNumber == numberOfCorrectNumber){
-                lottoWinningRank = winningRank;
+            if(winningRank.getnumberOfCorrectNumber() == numberOfCorrectNumber){
+                if(winningRank.getnumberOfCorrectNumber() == 5 && winningRank.isBonusNumberCorrect() == isBonusNumberCorrect)
+                    lottoWinningRank = winningRank;
+                else
+                    lottoWinningRank = winningRank;
             }
         }
         return lottoWinningRank;
     }
 
 
-    public int getWinningAmount() {
+    public int getnumberOfCorrectNumber() {
+        return numberOfCorrectNumber;
+    }
+
+    public int getPrizeMoneyAmount(){
         return prizeMoneyAmount;
     }
 }
