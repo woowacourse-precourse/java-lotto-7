@@ -14,4 +14,11 @@ class ValidatorTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 구입금액_단위_예외_테스트() {
+        assertThatThrownBy(() -> {
+            Validator validator = new Validator();
+            validator.validateAmountUnit(2500);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
