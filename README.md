@@ -1,5 +1,11 @@
 # java-lotto-precourse
 
+## 프로그램 기술 및 라이브러리 사용
+- JDK 21
+- gradle
+- JUnit 5, AsertJ
+- camp.nextstep.edu.missionutils에서 제공하는 Randoms 및 Console API 사용
+
 ## 로또 발매기 당첨 기준 및 금액
 사용자가 구입한 로또 수만큼 발행하여 당첨 번호에 맞는지 확인해 통계를 낸다. <br>
 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
