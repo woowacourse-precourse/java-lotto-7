@@ -17,6 +17,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 당첨번호_잘못된_개수_입력_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5");  // 6개가 아닌 당첨 번호 입력
+            assertThat(output()).contains(ERROR_MESSAGE);  // 출력에 [ERROR] 메시지가 포함되었는지 확인
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
