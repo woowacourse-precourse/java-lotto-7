@@ -29,7 +29,7 @@ public class LottoResultCalculator {
         return Math.round(((double) totalPrize / purchaseAmount * 100) * 10) / 10.0; // 소수점 둘째 자리 반올림
     }
 
-    private int calculateTotalPrize(Map<Rank, Integer> statistics) {
+    protected int calculateTotalPrize(Map<Rank, Integer> statistics) {
         int totalPrize = 0;
         for (Map.Entry<Rank, Integer> entry : statistics.entrySet()) {
             Rank rank = entry.getKey();
