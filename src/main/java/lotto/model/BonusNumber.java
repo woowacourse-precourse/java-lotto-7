@@ -13,4 +13,8 @@ public class BonusNumber {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자는 1이상 45이하의 숫자여야 합니다.");
         }
     }
+
+    public int getNumber() {
+        return number;
+    }
 }
