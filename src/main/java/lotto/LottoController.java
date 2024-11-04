@@ -23,7 +23,13 @@ public class LottoController {
     private int getValidatedPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        return lottoService.validatePurchaseAmount(input);
+        int validate = 0;
+        try{
+            validate = lottoService.validatePurchaseAmount(input);
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
+        }
+        return validate;
     }
     private Lotto getUserNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
