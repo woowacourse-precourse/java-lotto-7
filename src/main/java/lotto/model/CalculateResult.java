@@ -32,7 +32,7 @@ public class CalculateResult {
                 result.countUp();
             }
         }
-        if (numbers.contains(this.bonusNumber)) {
+        if (result.getCount() == 5 && numbers.contains(this.bonusNumber)) {
             result.bonusCountUp();
         }
         return result;

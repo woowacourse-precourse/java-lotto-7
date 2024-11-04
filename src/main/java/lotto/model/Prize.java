@@ -32,9 +32,6 @@ public enum Prize {
             if (prize.matchCount == count && prize.bonusCount == bonusCount) {
                 return prize.getAmount();
             }
-            if (prize.matchCount == count) {
-                return prize.getAmount();
-            }
         }
         return 0;
     }

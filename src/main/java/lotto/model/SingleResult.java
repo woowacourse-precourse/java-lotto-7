@@ -14,10 +14,8 @@ public class SingleResult {
     public void countUp() { this.count++; }
     public void bonusCountUp() { this.bonusCount++; }
 
-    public int getRank(){
-        return Prize.getIndex(this.prize);
-    }
-
+    public int getCount() { return count; }
+    public int getRank(){ return Prize.getIndex(this.prize);}
     public int getPrize() {
         this.prize = Prize.calculatePrize(count, bonusCount);
         return prize;
