@@ -7,10 +7,15 @@ public enum ExceptionMessage {
     INVALID_NUMBER_INPUT("%s는 %d로 나누어 떨어져야 합니다."),
     INVALID_DUPLICATION_INPUT("%s에 중복값이 있습니다.");
 
+    private static final String PREFIX = "[ERROR] ";
     private final String message;
 
     ExceptionMessage(String message) {
-        this.message = "[ERROR] " + message;
+        this.message = PREFIX + message;
+    }
+
+    public static String getPrefix() {
+        return PREFIX;
     }
 
     public String getMessage() {
