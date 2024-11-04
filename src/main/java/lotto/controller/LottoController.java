@@ -2,13 +2,9 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.service.LottoService;
 import lotto.service.LottosServiceInterface;
-import lotto.validator.InputValidator;
 import lotto.validator.InputValidatorInterface;
-import lotto.view.InputView;
 import lotto.view.InputViewInterface;
-import lotto.view.OutputView;
 import lotto.view.OutputViewInterface;
 
 public class LottoController {
