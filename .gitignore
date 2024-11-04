@@ -1,35 +1,42 @@
-HELP.md
-.gradle
+# Gradle
+.gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
 
-### STS ###
+# STS
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
+# IntelliJ IDEA
+.idea/
 *.iws
 *.iml
 *.ipr
 out/
+*.log
+*.hprof
+*.jmf
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
 
-### VS Code ###
+# VS Code
 .vscode/
 
-### Mac OS ###
+# Mac OS
 .DS_Store
+
+# Other system files
+Thumbs.db
+ehthumbs.db
