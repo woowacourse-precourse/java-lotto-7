@@ -44,4 +44,8 @@ public enum Prize {
     public String getMoney () {
         return prizeMoney;
     }
+
+    public double money () {
+        return Double.parseDouble(prizeMoney.replace(",", ""));
+    }
 }
