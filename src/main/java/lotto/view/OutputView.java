@@ -6,9 +6,9 @@ import java.util.List;
 
 public class OutputView {
 
-    public static String ORDER_NUMBER_MESSAGE = "개를 구매했습니다.";
+    public static String ORDER_NUMBER_MESSAGE = "\n개를 구매했습니다.";
     public static String TOTAL_PROFIT_MESSAGE = "총 수익률은 %.1f%% 입니다.";
-    public static String PREFIX_WINNING_AMOUNT = "당첨 통계" + "\n---";
+    public static String PREFIX_WINNING_AMOUNT = "\n당첨 통계" + "\n---";
     public static final String WINNING_MESSAGE = "%d개 일치 (%,.0f원) - %d개";
     public static final String WINNING_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%,.0f원) - %d개";
     private static final int BONUS_MATCH_INDEX = 7;
