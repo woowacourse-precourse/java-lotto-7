@@ -11,17 +11,17 @@ public class Application {
 
         System.out.println("구입금액을 입력해 주세요.");
         int amount = Source.inputAmountOrBonusNumber(Console.readLine());
-        System.out.println();
         List<Lotto> tickets = store.purchase(amount);
-        System.out.println(tickets.size() + "개를 구매했습니다.");
+        System.out.println("\n" + tickets.size() + "개를 구매했습니다.");
         tickets.forEach(System.out::println);
 
-        System.out.println("당첨번호를 입력해 주세요.");
+        System.out.println("\n당첨번호를 입력해 주세요.");
         String[] winningInput = Source.inputWinningNumber(Console.readLine());
         Lotto winningNumbers = Source.parseNumbers(winningInput);
 
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = Source.inputAmountOrBonusNumber(Console.readLine());
+
+
     }
 }
