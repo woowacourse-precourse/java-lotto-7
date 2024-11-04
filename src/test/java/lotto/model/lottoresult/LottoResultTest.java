@@ -9,8 +9,10 @@ import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
 import lotto.model.lotto.PrizeLotto;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("로또 결과 생성 모델 테스트")
 class LottoResultTest {
 
     @Test
