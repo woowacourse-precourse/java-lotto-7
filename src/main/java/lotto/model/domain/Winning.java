@@ -24,7 +24,7 @@ public class Winning {
 	}
 
 	private void calculateRanks() {
-		lottoBundle.getLottoBundle().forEach(this::updateRankCount);
+		lottoBundle.lottoBundle().forEach(this::updateRankCount);
 	}
 
 	private void updateRankCount(Lotto lotto) {

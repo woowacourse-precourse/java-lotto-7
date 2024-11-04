@@ -19,6 +19,6 @@ class LottoBundleTest {
 
 		LottoBundle lottoBundle = LottoBundle.of(lottoList);
 
-		assertThat(lottoBundle.getLottoBundle()).isEqualTo(lottoList);
+		assertThat(lottoBundle.lottoBundle()).isEqualTo(lottoList);
 	}
 }

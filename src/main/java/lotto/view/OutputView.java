@@ -19,7 +19,7 @@ public class OutputView {
 	}
 
 	public static void promptLottoNumbers(LottoBundle lottoBundle) {
-		lottoBundle.getLottoBundle().forEach(lotto -> {
+		lottoBundle.lottoBundle().forEach(lotto -> {
 			String formattedNumbers = lotto.getNumbers().stream()
 				.sorted()
 				.map(String::valueOf)

@@ -43,7 +43,7 @@ class LottoServiceTest {
 	@Test
 	void 로또_번들_생성_확인() {
 		LottoBundle lottoBundle = lottoService.createLottoBundle(3);
-		assertThat(lottoBundle.getLottoBundle()).hasSize(3);
+		assertThat(lottoBundle.lottoBundle()).hasSize(3);
 	}
 
 	@DisplayName("당첨 번호 DTO 생성 테스트")
