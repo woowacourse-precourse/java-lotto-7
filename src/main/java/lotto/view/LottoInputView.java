@@ -23,9 +23,7 @@ public class LottoInputView {
     }
 
     private List<Integer> parseNumbers(String input) {
-        if (input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 비어 있을 수 없습니다.");
-        }
+        validateInput(input);
         return Arrays.stream(input.split(","))
                 .map(String::trim)
                 .filter(num -> !num.isEmpty())
@@ -34,9 +32,13 @@ public class LottoInputView {
     }
 
     private int parseSingleNumber(String input) {
+        validateInput(input);
+        return Integer.parseInt(input.trim());
+    }
+
+    private void validateInput(String input) {
         if (input.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력 값은 비어 있을 수 없습니다.");
         }
-        return Integer.parseInt(input.trim());
     }
 }
