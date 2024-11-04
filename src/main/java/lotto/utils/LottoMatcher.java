@@ -3,13 +3,12 @@ package lotto.utils;
 import lotto.BonusNumber;
 import lotto.Lotto;
 import lotto.WinningNumber;
-import lotto.constant.PrizeMoney;
 
 import java.util.List;
 
 import static lotto.constant.PrizeMoney.*;
 
-public class Matcher {
+public class LottoMatcher {
 
     public static Long match(Lotto lotto, WinningNumber winningNumber, BonusNumber bonusNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
@@ -42,7 +41,10 @@ public class Matcher {
         if (matchCount == 4) {
             return FORTH_PRIZE.getPrize();
         }
+        if (matchCount == 3) {
+            return FIFTH_PRIZE.getPrize();
+        }
 
-        return FIFTH_PRIZE.getPrize();
+        return 0L;
     }
 }
