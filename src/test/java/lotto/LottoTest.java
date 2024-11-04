@@ -69,8 +69,6 @@ class LottoTest {
         LottoWinningChecker checker = new LottoWinningChecker(tickets, List.of(1, 2, 3, 4, 5, 6), 7);
         List<Integer> expectedPlaceCount = List.of(1, 1, 0, 0, 0);  // 1등 1개, 2등 1개, 나머지 0개
 
-        checker.matchTicketsWithWinningNumbers();
-
         assertThat(checker.getPlaceCount()).isEqualTo(expectedPlaceCount);
     }
 }
