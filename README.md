@@ -23,8 +23,7 @@ Lotties
 -[x] Lotto 객체를 관리한다.
 
 LottoNumberGenerator
--[ ] 로또 번호를 생성한다.
--[ ] 1~45 사이의 숫자인지 검증한다.
+-[x] 로또 번호를 생성한다.
 
 Calculator
 -[ ] 입력받은 돈을 바탕으로 구매한 로또 개수를 계산한다.
