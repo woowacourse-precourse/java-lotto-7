@@ -1,12 +1,24 @@
 package lotto.model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class WinningResult {
-    private final HashMap<Reward, Integer> rankCount = new HashMap<>();
+    private HashMap<Reward, Integer> rankCount;
 
     public void put(Reward reward) {
         rankCount.put(reward, rankCount.getOrDefault(reward,0)+1);
+    }
+
+    public WinningResult() {
+        rankCount = new HashMap<>() {{
+            put(Reward.FIRST, 0);
+            put(Reward.SECOND, 0);
+            put(Reward.THIRD, 0);
+            put(Reward.FOURTH, 0);
+            put(Reward.FIFTH, 0);
+            put(Reward.NONE, 0);
+        }};
     }
 
     public double getProfitRate(Amount amount){
