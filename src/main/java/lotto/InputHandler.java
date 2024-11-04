@@ -69,10 +69,14 @@ public class InputHandler {
     }
 
     private static List<Integer> parseInput(String input) {
-        return Arrays.stream(input.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        try {
+            return Arrays.stream(input.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_NOT_INTEGER.getMessage());
+        }
     }
 
 }

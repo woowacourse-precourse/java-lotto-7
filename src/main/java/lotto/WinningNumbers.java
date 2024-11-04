@@ -29,15 +29,10 @@ public class WinningNumbers {
     }
 
     public static void validateNumber(Integer number) {
-        try {
-            if (number < LottoRules.MIN_NUMBER || number > LottoRules.MAX_NUMBER) {
-                throw new IllegalArgumentException(
-                        String.format(ErrorMessage.OUT_OF_BOUNDS.getMessage(), LottoRules.MIN_NUMBER,
-                                LottoRules.MAX_NUMBER));
-            }
-        } catch (NumberFormatException e) {
+        if (number < LottoRules.MIN_NUMBER || number > LottoRules.MAX_NUMBER) {
             throw new IllegalArgumentException(
-                    String.format(ErrorMessage.NUMBER_NOT_INTEGER.getMessage(), number));
+                    String.format(ErrorMessage.OUT_OF_BOUNDS.getMessage(), LottoRules.MIN_NUMBER,
+                            LottoRules.MAX_NUMBER));
         }
     }
 
