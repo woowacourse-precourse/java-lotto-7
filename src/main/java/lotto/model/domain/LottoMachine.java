@@ -4,19 +4,25 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstantValue;
 
 public class LottoMachine {
-    private int money;
-    private int lottoCount;
+    private final int money;
+    private final int lottoCount;
 
     public LottoMachine(int money) {
         isPaymentOverMaxLimitValidator(money);
-        isPaymentDivisionByThousandValidator(money);
+        isPaymentDivisionByLottoPriceValidator(money);
         this.money = money;
-        this.lottoCount = money/1000;
+        this.lottoCount = money / LottoConstantValue.LOTTO_PRICE.getValue();
     }
+
     public Lotto singleLottoGenerator() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(
+                LottoConstantValue.LOTTO_MIN_NUM.getValue(),
+                LottoConstantValue.LOTTO_MAX_NUM.getValue(),
+                LottoConstantValue.LOTTO_PRICE.getValue()
+        ));
     }
 
     public List<Lotto> multipleLottoGenerator() {
@@ -35,18 +41,17 @@ public class LottoMachine {
         return lottoCount;
     }
 
-    private void isPaymentOverMaxLimitValidator(int money){
-        if (money > 100_000) {
+    private void isPaymentOverMaxLimitValidator(int money) {
+        if (money > LottoConstantValue.LOTTO_MAX_PAYMENT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.IS_PAYMENT_OVER_MAX_LIMIT_VALIDATOR.getMessage());
         }
     }
 
-    private void isPaymentDivisionByThousandValidator(int money) {
-        if (money <= 0 || money % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.IS_PAYMENT_DIVISION_BY_THOUSAND_VALIDATOR.getMessage());
+    private void isPaymentDivisionByLottoPriceValidator(int money) {
+        if (money <= 0 || money % LottoConstantValue.LOTTO_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(ErrorMessage.IS_PAYMENT_DIVISION_BY_LOTTO_PRICE_VALIDATOR.getMessage());
         }
     }
-
 
 
 }
