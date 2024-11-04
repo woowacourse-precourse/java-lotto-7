@@ -39,7 +39,7 @@ class LottoServiceTest {
 
   @Test
   @DisplayName("[success]getPrice : 로또 가격 확인")
-  void getPrice_verify_() {
+  void getPrice_shouldReturnCorrectPrice() {
     assertThat(lottoService.getPrice())
         .isEqualTo(LottoConstant.PRICE);
   }
