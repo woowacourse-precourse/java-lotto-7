@@ -84,7 +84,7 @@ https://github.com/user-attachments/assets/0d52a9a8-b0ca-43d0-8293-99804867376f
 
 ## 5. 테스트 커버리지 리포트
 - 예외 상황을 제외한 테스트 커버리지 실행 결과
-<img width="733" alt="test-coverage-report" src="https://github.com/user-attachments/assets/bf620d8d-d835-4a81-ace8-c2299d29ec8a">
+<img width="741" alt="test-coverage-report" src="https://github.com/user-attachments/assets/c4d2cf50-63ed-486e-ba99-b9ddb998e71f">
 
 ---
 
