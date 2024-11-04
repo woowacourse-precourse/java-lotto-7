@@ -1,10 +1,11 @@
 package lotto.service.handler;
 
 
+import lotto.dto.WinningNumbersRequestDto;
 import lotto.service.validator.BonusNumberValidator;
 
 public class BonusNumberHandler {
-    public static boolean handle(String purchaseAmount) {
-        return BonusNumberValidator.validateBlank(purchaseAmount) && BonusNumberValidator.validateDataType(purchaseAmount) && BonusNumberValidator.validateRange(purchaseAmount);
+    public static boolean handle(String bonusNumber, WinningNumbersRequestDto winningNumbersRequestDto) {
+        return BonusNumberValidator.validateBlank(bonusNumber) && BonusNumberValidator.validateDataType(bonusNumber) && BonusNumberValidator.validateRange(bonusNumber) && BonusNumberValidator.validateDuplicate(bonusNumber, winningNumbersRequestDto);
     }
 }
