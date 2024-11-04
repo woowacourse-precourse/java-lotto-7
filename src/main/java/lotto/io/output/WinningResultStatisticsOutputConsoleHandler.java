@@ -26,6 +26,12 @@ public class WinningResultStatisticsOutputConsoleHandler {
 
         System.out.println(resultView);
     }
-
+    
+    public void showTotalRevenue(double revenue) {
+        String revenueFormatted = df.format(revenue);
+        System.out.printf(
+                "총 수익률은 %s입니다.%n", revenueFormatted
+        );
+    }
 
 }
