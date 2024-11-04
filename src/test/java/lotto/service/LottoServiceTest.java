@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import lotto.constant.ErrorMessages;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
@@ -59,7 +60,7 @@ class LottoServiceTest {
 
         assertThatThrownBy(() -> new Lotto(duplicateNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 당첨 번호와 중복되지 않아야 합니다.");
+                .hasMessage(ErrorMessages.ERROR_DUPLICATE_LOTTO_NUMBER);
     }
 
 }

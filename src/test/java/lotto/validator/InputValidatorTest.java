@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import lotto.constant.ErrorMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ class InputValidatorTest {
                 IllegalArgumentException.class,
                 () -> PurchaseValidator.validatePurchaseAmount("abcd")
         );
-        assertEquals("[ERROR] 구입금액은 정수여야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_NON_INTEGER_AMOUNT, exception.getMessage());
     }
 
     @Test
@@ -31,7 +32,7 @@ class InputValidatorTest {
                 IllegalArgumentException.class,
                 () -> PurchaseValidator.validatePurchaseAmount("1500")
         );
-        assertEquals("[ERROR] 구입금액은 1,000원 단위여야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_AMOUNT_NOT_MULTIPLE_OF_UNIT, exception.getMessage());
     }
 
     @Test
@@ -41,13 +42,13 @@ class InputValidatorTest {
                 IllegalArgumentException.class,
                 () -> PurchaseValidator.validatePurchaseAmount("0")
         );
-        assertEquals("[ERROR] 구입금액은 1,000원 단위여야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_AMOUNT_NOT_MULTIPLE_OF_UNIT, exception.getMessage());
 
         exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> PurchaseValidator.validatePurchaseAmount("-1000")
         );
-        assertEquals("[ERROR] 구입금액은 1,000원 단위여야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_AMOUNT_NOT_MULTIPLE_OF_UNIT, exception.getMessage());
     }
 
     @Test
@@ -65,7 +66,7 @@ class InputValidatorTest {
                 IllegalArgumentException.class,
                 () -> WinningNumberValidator.validateWinningNumbers(List.of("1", "2", "a", "4", "5", "6"))
         );
-        assertEquals("[ERROR] 로또 번호는 정수여야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_NON_INTEGER_LOTTO_NUMBER, exception.getMessage());
     }
 
     @Test
@@ -75,7 +76,7 @@ class InputValidatorTest {
                 IllegalArgumentException.class,
                 () -> WinningNumberValidator.validateWinningNumbers(List.of("1", "2", "3", "4", "5"))
         );
-        assertEquals("[ERROR] 당첨 번호는 6개의 숫자여야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_INVALID_WINNING_NUMBER_COUNT, exception.getMessage());
     }
 
     @Test
@@ -85,13 +86,13 @@ class InputValidatorTest {
                 IllegalArgumentException.class,
                 () -> WinningNumberValidator.validateWinningNumbers(List.of("0", "2", "3", "4", "5", "6"))
         );
-        assertEquals("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_WINNING_NUMBER_OUT_OF_RANGE, exception.getMessage());
 
         exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> WinningNumberValidator.validateWinningNumbers(List.of("1", "2", "3", "4", "5", "46"))
         );
-        assertEquals("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_WINNING_NUMBER_OUT_OF_RANGE, exception.getMessage());
     }
 
     @Test
@@ -101,7 +102,7 @@ class InputValidatorTest {
                 IllegalArgumentException.class,
                 () -> WinningNumberValidator.validateWinningNumbers(List.of("1", "2", "3", "4", "5", "5"))
         );
-        assertEquals("[ERROR] 당첨 번호는 중복되지 않아야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_DUPLICATE_WINNING_NUMBER, exception.getMessage());
     }
 
     @Test
@@ -128,13 +129,13 @@ class InputValidatorTest {
                 IllegalArgumentException.class,
                 () -> BonusNumberValidator.validateBonusNumber("0", List.of(1, 2, 3, 4, 5, 6))
         );
-        assertEquals("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_BONUS_NUMBER_OUT_OF_RANGE, exception.getMessage());
 
         exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> BonusNumberValidator.validateBonusNumber("46", List.of(1, 2, 3, 4, 5, 6))
         );
-        assertEquals("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_BONUS_NUMBER_OUT_OF_RANGE, exception.getMessage());
     }
 
     @Test
@@ -144,6 +145,6 @@ class InputValidatorTest {
                 IllegalArgumentException.class,
                 () -> BonusNumberValidator.validateBonusNumber("5", List.of(1, 2, 3, 4, 5, 6))
         );
-        assertEquals("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessages.ERROR_DUPLICATE_BONUS_NUMBER, exception.getMessage());
     }
 }

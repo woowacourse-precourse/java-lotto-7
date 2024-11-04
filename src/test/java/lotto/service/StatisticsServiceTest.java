@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.constant.ErrorMessages;
 import lotto.model.LottoResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,7 +34,7 @@ class StatisticsServiceTest {
 
         assertThatThrownBy(() -> statisticsService.calculateRateEarning(lottoResultCount, 0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입 금액은 0보다 커야 합니다.");
+                .hasMessage(ErrorMessages.ERROR_PURCHASE_AMOUNT_GREATER_THAN_ZERO);
     }
 
     @Test
@@ -43,6 +44,6 @@ class StatisticsServiceTest {
 
         assertThatThrownBy(() -> statisticsService.calculateRateEarning(lottoResultCount, -1000))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입 금액은 0보다 커야 합니다.");
+                .hasMessage(ErrorMessages.ERROR_PURCHASE_AMOUNT_GREATER_THAN_ZERO);
     }
 }

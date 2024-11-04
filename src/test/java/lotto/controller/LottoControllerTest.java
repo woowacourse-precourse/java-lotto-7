@@ -3,10 +3,6 @@ package lotto.controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
 import lotto.service.LottoService;
 import lotto.service.StatisticsService;
@@ -38,22 +34,6 @@ class LottoControllerTest {
 
         assertEquals(expectedLottoCount, lottoTicket.getLottos().size(),
                 "로또 생성 수가 예상과 일치하지 않습니다.");
-    }
-
-    @Test
-    @DisplayName("당첨 번호와 보너스 번호를 사용해 올바른 통계와 수익률을 계산하는지 테스트")
-    void testCalculateStatisticsAndRateEarning() {
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
-
-        LottoTicket lottoTicket = lottoService.generateLottos(5000);
-        Map<LottoResult, Integer> result = lottoService.calculateStatisticsLottoResult(lottoTicket, winningNumbers,
-                bonusNumber);
-
-        double rateEarning = statisticsService.calculateRateEarning(result, 5000);
-
-        System.out.printf("당첨 통계: %s%n", result);
-        System.out.printf("총 수익률: %.1f%%%n", rateEarning);
     }
 
     @Test
