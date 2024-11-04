@@ -5,6 +5,8 @@ import java.util.stream.Stream;
 import lotto.domain.Amount;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
+import lotto.domain.LottoWinningRule;
 import lotto.domain.LottoWinningStatistics;
 import lotto.domain.WinningNumber;
 import org.assertj.core.api.Assertions;
@@ -16,10 +18,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 class LottoDrawTest {
 
     private LottoDraw lottoDraw;
+    private LottoWinningStatistics statistics;
 
     @BeforeEach
     void setUp() {
-        lottoDraw = new LottoDraw(new LottoWinningStatistics());
+        statistics = new LottoWinningStatistics();
+        lottoDraw = new LottoDraw(statistics);
     }
 
     static Stream<Arguments> winningNumberFactory() {
@@ -65,6 +69,34 @@ class LottoDrawTest {
 
         //When
         boolean actual = lottoDraw.compareBonusNumber(lotto, bonusNumber);
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> totalPrizeFactory() {
+        return Stream.of(
+                Arguments.arguments(List.of(LottoRank.FIFTH, LottoRank.FIFTH, LottoRank.FIFTH,
+                        LottoRank.FOURTH, LottoRank.FOURTH,
+                        LottoRank.THIRD, LottoRank.THIRD,
+                        LottoRank.SECOND,
+                        LottoRank.FIRST,
+                        LottoRank.NONE, LottoRank.NONE))
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("totalPrizeFactory")
+    public void 총_당첨상금_테스트(List<LottoRank> ranks) throws Exception {
+        //Given
+        long expected = 0L;
+        for (LottoRank rank : ranks) {
+            statistics.update(rank);
+            expected += LottoWinningRule.getPrize(rank);
+        }
+
+        //When
+        double actual = lottoDraw.calcTotalPrize();
 
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);

@@ -36,8 +36,7 @@ public class LottoDraw {
         for (Lotto lotto : lottoBundle.getBundle()) {
             int matchesWinning = compareWinningNumber(lotto, winningNumber);
             boolean isMatchBonus = compareBonusNumber(lotto, bonusNumber);
-            LottoRank rank = LottoWinningRule.getRank(matchesWinning, isMatchBonus);
-            statistics.update(rank);
+            statistics.update(LottoWinningRule.getRank(matchesWinning, isMatchBonus));
         }
     }
 

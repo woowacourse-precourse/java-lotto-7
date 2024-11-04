@@ -19,16 +19,38 @@ public class LottoMachine {
 
 
     public void purchase(LottoPurchasePrompt prompt) {
+        /*
+         * Console Input
+         * */
         amount = prompt.enterAmount();
+
+        /*
+         * Business Logic
+         * */
         bundle = new LottoBundle(amount.getValue() / LOTTO_PRICE);
+
+        /*
+         * Console Output
+         * */
         prompt.printPurchased(bundle.retrieveLottoNumbers());
     }
 
     public void draw(LottoDrawPrompt prompt) {
+        /*
+         * Console Input
+         * */
         WinningNumber winningNumber = prompt.enterWinningNumber();
         BonusNumber bonusNumber = prompt.enterBonusNumber(winningNumber);
+
+        /*
+         * Business Logic
+         * */
         lottoDraw.draw(bundle, winningNumber, bonusNumber);
         double returnRate = lottoDraw.calcReturnRate(lottoDraw.calcTotalPrize(), amount);
+
+        /*
+         * Console Output
+         * */
         prompt.printDrawResult(statistics);
         prompt.printReturnRate(returnRate);
     }
