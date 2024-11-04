@@ -64,8 +64,8 @@ public class LottoGeneratorTest {
     @ValueSource(strings = {"1000", "1000000000", "1000000", "55000"})
     void 정상_동작_테스트(String input) {
         LottoGenerator lottoGenerator = new LottoGenerator(new Price(input));
-        int validLottoListSize = Integer.parseInt(input) / UNIT_PRICE;
+        int validLottosSize = Integer.parseInt(input) / UNIT_PRICE;
 
-        assertThat(lottoGenerator.getLottoList().size()).isEqualTo(validLottoListSize);
+        assertThat(lottoGenerator.getLottos().size()).isEqualTo(validLottosSize);
     }
 }

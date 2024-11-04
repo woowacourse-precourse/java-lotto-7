@@ -465,7 +465,7 @@ public class LottoResultTest {
     }
 
     private static Stream<Arguments> 정상_동작_테스트() {
-        List<Lotto> lottoList = List.of(
+        List<Lotto> lottos = List.of(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                 new Lotto(List.of(10, 11, 12, 13, 14, 15)),
                 new Lotto(List.of(10, 11, 12, 13, 14, 15)),
@@ -477,7 +477,7 @@ public class LottoResultTest {
         );
 
         return Stream.of(
-                Arguments.arguments("8000", lottoList, "4,5,6,7,8,9", "10")
+                Arguments.arguments("8000", lottos, "4,5,6,7,8,9", "10")
         );
     }
 }

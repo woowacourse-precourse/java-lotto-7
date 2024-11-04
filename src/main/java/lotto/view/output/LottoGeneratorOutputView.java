@@ -14,15 +14,15 @@ public class LottoGeneratorOutputView implements OutputView {
 
     @Override
     public void print() {
-        printLottoListSize();
-        printLottoList();
+        printLottosSize();
+        printLottos();
     }
 
-    private void printLottoListSize(){
+    private void printLottosSize(){
         System.out.printf(OutputMessage.LOTTO_COUNT.getMessage(), lottos.size());
     }
 
-    private void printLottoList(){
+    private void printLottos(){
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers().toString());
         }

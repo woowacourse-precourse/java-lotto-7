@@ -20,14 +20,14 @@ public class LottoGenerator {
         this.price = price;
         lottos = new ArrayList<>();
 
-        generateLottoList();
+        generateLottos();
     }
 
-    public List<Lotto> getLottoList() {
+    public List<Lotto> getLottos() {
         return lottos;
     }
 
-    private void generateLottoList() {
+    private void generateLottos() {
         for (int i = 0; i < calculateCountOfLotto(); i++) {
             lottos.add(generateLottoNumber());
         }
