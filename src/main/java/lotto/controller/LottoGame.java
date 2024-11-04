@@ -21,13 +21,20 @@ public class LottoGame {
     }
 
     public void play() {
-        Money money = new Money(input.readPurchaseAmount());
-        LottoTicket lottoTicket = new LottoTicket(money);
-        output.printLottoTicket(lottoTicket);
+        while (true) {
+            try {
+                Money money = new Money(input.readPurchaseAmount());
+                LottoTicket lottoTicket = new LottoTicket(money);
+                output.printLottoTicket(lottoTicket);
 
-        WinningNumbers winningNumbers = enterWinningNumbers();
-        WinningResult winningResult = winningNumbers.calculateResult(lottoTicket);
-        output.printPrizeStatistics(winningResult);
+                WinningNumbers winningNumbers = enterWinningNumbers();
+                WinningResult winningResult = winningNumbers.calculateResult(lottoTicket);
+                output.printPrizeStatistics(winningResult);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private WinningNumbers enterWinningNumbers() {
