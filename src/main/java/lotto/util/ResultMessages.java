@@ -1,7 +1,7 @@
 package lotto.util;
 
 public enum ResultMessages {
-    WINNING_STATICS("당첨 통계"),
+    WINNING_STATICS("\n당첨 통계"),
     DIVIDER("---"),
     FIFTH_PRIZE("3개 일치 (5,000원) - %d개"),
     FOURTH_PRIZE("4개 일치 (50,000원) - %d개"),
