@@ -33,4 +33,8 @@ public class BonusNumber {
     private void validateNoDuplicate(WinningNumber winningNumber) {
         if(winningNumber.isContainsNumber(bonusNumber)) throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 없이 입력되어야 합니다.");
     }
+
+    public boolean isContainsNumber(int number){
+        return bonusNumber == number;
+    }
 }

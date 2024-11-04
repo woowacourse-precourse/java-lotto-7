@@ -23,4 +23,23 @@ public class Lotto {
     public void lottoNumberOut(){
         ConsoleOutputHandler.buyLottoNumberMessage(numbers);
     }
+
+    public int matchingWinningNumber(WinningNumber winningNumber) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winningNumber.isContainsNumber(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean matchingBounsNumber(BonusNumber bonusNumber){
+        for (Integer number : numbers) {
+            if (bonusNumber.isContainsNumber(number)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
