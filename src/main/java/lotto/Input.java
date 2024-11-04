@@ -44,13 +44,13 @@ public class Input {
         return List.of(inputs);
     }
 
-    private static void validatePrice(int price) {
+    public static void validatePrice(int price) {
         if (price < 0 || price % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액이 올바르지 않습니다.");
         }
     }
 
-    private static void validateWinningNumbers(List<Integer> winningNumbers) {
+    public static void validateWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
@@ -71,7 +71,7 @@ public class Input {
     }
 
 
-    private static void validateNumberRange(int num) {
+    public static void validateNumberRange(int num) {
         if (num <= 0 || num  >= 46) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
