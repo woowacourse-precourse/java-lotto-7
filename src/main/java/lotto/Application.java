@@ -2,16 +2,20 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.sql.Array;
+
 import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+
 public class Application {
     public static void main(String[] args) {
         int attempts= validateBetAmount();
-        printEntries(attempts);
+        List<List<Integer>> entryLists = printEntries(attempts);
         List<Integer> lottoNumbers = enterLottoNumbers();
-        enterBonusNumber(lottoNumbers);
+        int bonusNumber = enterBonusNumber(lottoNumbers);
+        printResults(entryLists, lottoNumbers, bonusNumber, attempts);
     }
 
     private static int validateBetAmount(){
@@ -31,17 +35,19 @@ public class Application {
         System.out.println(attempts + "개를 구매했습니다.");
         return attempts;
     }
-    private static void printEntries(int attempts) {
-        List<List<Integer>> lists = new ArrayList<>();
+    private static List<List<Integer>> printEntries(int attempts) {
+        List<List<Integer>> entryLists = new ArrayList<>();
         for(int i=0; i<attempts; i++){
             List<Integer> entries;
             entries = Randoms.pickUniqueNumbersInRange(1,45,6);
             entries.sort(Comparator.naturalOrder());
-            lists.add(entries);
+            entryLists.add(entries);
         }
         for(int j=0; j<attempts; j++){
-            System.out.println(lists.get(j));
+            System.out.println(entryLists.get(j));
         }
+
+        return entryLists;
     }
 
     private static List<Integer> enterLottoNumbers(){
@@ -69,4 +75,7 @@ public class Application {
         }
         return bonusNumber;
     }
+
+
+
 }
