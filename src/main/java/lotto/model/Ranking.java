@@ -23,6 +23,10 @@ public enum Ranking {
         return prize;
     }
 
+    public int getMatchNumber() {
+        return matchNumber;
+    }
+
     public int getCount() {
         return count;
     }
@@ -31,7 +35,12 @@ public enum Ranking {
         this.count++;
     }
 
-    public void resetCount() {
-        this.count = 0;
+    public static Ranking findByMatchCountAndBonus(int matchCount, boolean isBonusMatched) {
+        for (Ranking ranking : Ranking.values()) {
+            if (ranking.matchNumber == matchCount && ranking.isBonusMatched == isBonusMatched) {
+                return ranking;
+            }
+        }
+        return NONE;
     }
 }
