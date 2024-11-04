@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.util.BonusNumberParser;
 import lotto.util.WinningLottoParser;
 
 import java.util.List;
@@ -9,14 +10,14 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(String input, String bonusNumberInput) {
+        List<Integer> parsedNumbers = WinningLottoParser.parseWinningNumbers(input);
+        int parsedBonusNumber = BonusNumberParser.toIntStringBonusNumberParser(bonusNumberInput);
 
-        numbers = WinningLottoParser.parseWinningNumbers(input);
+        validateNumbers(parsedNumbers);
+        validateBonusNumber(parsedNumbers, parsedBonusNumber);
 
-
-        validateNumbers(numbers);
-        validateBonusNumber(numbers, bonusNumber);
-        this.numbers = numbers;
-        this.bonusNumber = bonusNumber;
+        this.numbers = parsedNumbers;
+        this.bonusNumber = parsedBonusNumber;
     }
 
     public List<Integer> getNumbers() {
