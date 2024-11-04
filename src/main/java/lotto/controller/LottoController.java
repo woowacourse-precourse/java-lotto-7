@@ -28,7 +28,7 @@ public class LottoController {
             }
         }
 
-
+        lottoService.generateLottoNumbers(purchaseAmount);
     }
 
 }
