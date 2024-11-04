@@ -43,45 +43,58 @@
 - 각 등수별 당첨 수량과 상금을 출력한다.
 - 전체 수익률을 출력한다.
 
+---
 
 ## 기능 구현 목록
 
-### 1. 모델 (Model)
-- **Lotto 클래스**
-  - [x] 생성자 구현: 번호 유효성 검사를 포함하여 6개의 번호를 초기화한다.
-  - [x] 번호 유효성 검사 메서드 구현: 번호의 중복, 범위(1~45) 체크.
+### 기능 구현 (MVC)
 
-- **LottoService 클래스**
-  - [x] 로또 번호 생성 메서드 구현: `generateLottos(int quantity)`로 주어진 수량만큼 로또 번호를 생성한다.
-  - [x] 당첨 결과 체크 메서드 구현: `checkResults(List<Lotto> purchasedLotto, List<Integer> usersLotto, int bonusNumber)`로 당첨 통계를 계산한다.
-  - [x] 일치하는 번호 개수 카운트 메서드 구현: `countMatchingNumbers(List<Integer> eachPurchasedLotto, List<Integer> usersLotto)`.
+### 1. Model
 
-- **LottoStatistics 클래스**
-  - [x] 통계 초기화: 각 등수별 통계 초기화 구현.
-  - [x] 통계 증가 메서드 구현: 특정 등수에 대한 카운트를 증가시키는 `increment(String key)` 메서드 구현.
-  - [x] 수익 계산 메서드 구현: `calculateTotalEarnings()`로 총 수익을 계산.
-  - [x] 통계 출력 메서드 구현: `printStatistics()`로 통계 정보를 출력.
+- **Lotto**
+  - 한 장의 6자리 로또 인스턴스 생성자
+  - 유효성 검사 : 1~45 사이 숫자로 구성된 6개의 중복되지 않는 번호인지 검사
+- **LottoGameState**
+  - 사용자의 로또, 사용자의 보너스 번호, 구매한 N장의 랜덤 로또, 로또 매치 통계 데이터 보관
+- **LottoMatchEnum**
+  - 로또 매치 통계 데이터 Enum 자료화 클래스
+- **LottoStatistic**
+  - N장 로또의 당첨 통계를 관리하는 클래스
 
-### 2. 뷰 (View)
-- **LottoView 클래스**
-    - [x] 로또 구매 수 출력 메서드 구현: 구매한 로또 수를 출력.
-    - [x] 로또 번호 출력 메서드 구현: 생성된 로또 번호를 출력.
-    - [x] 통계 출력 메서드 구현: 통계 정보를 출력.
-    - [x] 오류 메시지 출력 메서드 구현: 오류 메시지를 출력.
-    - [x] 사용자 입력 메서드 구현:
-        - 로또 구입 금액을 입력받는다.
-        - 당첨 번호를 입력받는다.
-        - 보너스 번호를 입력받는다.
+### 2. View
 
-### 3. 컨트롤러 (Controller)
-- **LottoController 클래스**
-    - [x] 시작 메서드 구현: `start()`로 프로그램의 흐름을 제어한다.
-    - [x] 사용자 입력 처리 및 예외 처리: 입력값을 검증하고 잘못된 입력 시 오류 처리.
-    - [x] 로또 구매 및 결과 확인 흐름 구현: 로또 번호 생성 및 당첨 결과를 확인하고 통계 출력.
+- **ErrorView**
+  - 발생가능한 예외 출력 기능
+- **InputView / OutputView**
+  - 기본 로또게임 내 입출력 기능 수행
 
-### 4. 애플리케이션 실행
-- **Application 클래스**
-    - [x] main 메서드 구현: `LottoController`의 인스턴스를 생성하고 `start()` 메서드를 호출하여 프로그램을 시작한다.
+### 3. Controller
+
+- **LottoController**
+  - 사용자 입력, 시스템 출력, 유효성 검사, 로또 결과 로직 컨트롤러
+- **LottoValidator**
+  - 사용자 입력에 대한 유효성 검사 및 재입력 기능 수행
+
+### 4. Services
+
+- **LottoService**
+  - Controller의 Model 데이터 관련 요청 처리 기능 수행
+    - Model에 속한 클래스 객체 생성 및 반환
+    - 객체 데이터 변경 메서드 호출 수행
+
+### **5. Util**
+
+- **LottoErrorMessages**
+  - 에러 관련 문자열 보관
+- **LottoPrintMessages**
+  - 출력 관련 문자열 보관
+
+### 6. Exceptions
+
+- **LottoException**
+  - 각 예외처리 경우에 따른 예외 클래스
+
+--- 
 
 ## 기능 구현 로그
 
@@ -175,4 +188,11 @@
   - 각 경우에 따라 올바른 예외클래스가 호출되도록 수정합니다.
 - **오타 및 공백 수정**
   - 불필요한 주석 및 공백을 제거합니다.
-- **Lotto, LottoGameState를 class record로 변경합니다.
+  - **Lotto, LottoGameState를 class record로 변경합니다.
+
+### 24.11.04.(월).2
+- **예외처리 로직 수정**
+  - 예외처리 문자열 전달 시 ERROR_FLAG 를 포함하지 않는 문제를 수정합니다.
+  - 사용자 구입금액 입력 시 누락된 예외 케이스를 추가합니다.
+- **테스트 케이스 복구**
+  - 기존 로그에서 삭제된 테스트 케이스를 복구합니다.

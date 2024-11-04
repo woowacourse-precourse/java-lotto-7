@@ -28,11 +28,25 @@ public class LottoStatistic implements LottoStatistics {
         compareLotteries(randomLotteries, userLotto, bonusNumber);
     }
 
-    private  void compareLotteries(List<Lotto> randomLotteries, Lotto userLotto, int bonusNumber) {
-        for (Lotto lotto : randomLotteries) {
-            int matchCount = countMatchingNumbers(lotto.numbers(), userLotto);
-            boolean bonusMatch = lotto.numbers().contains(bonusNumber);
+    private int countMatchingNumbers(List<Integer> userNumbers, List<Integer> randomNumbers) {
+        int count = 0;
+        for (Integer number : randomNumbers) {
+            if (userNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
 
+    private void compareLotteries(List<Lotto> randomLotteries, Lotto userLotto, int bonusNumber) {
+        List<Integer> userNumbers = userLotto.numbers(); // 사용자 로또 번호
+        for (Lotto lotto : randomLotteries) {
+            List<Integer> randomNumbers = lotto.numbers(); // 랜덤 로또 번호
+            int matchCount = countMatchingNumbers(userNumbers, randomNumbers);
+
+            boolean bonusMatch = matchCount == 5 && randomNumbers.contains(bonusNumber);
+
+            // 카테고리 결정
             LottoMatchEnum category = LottoMatchEnum.getCategory(matchCount, bonusMatch);
             if (category != null) {
                 increment(category);
@@ -57,17 +71,8 @@ public class LottoStatistic implements LottoStatistics {
         yield = totalEarnings > 0 ? Math.round((totalEarnings / amount) * 10000.0) / 100.0 : 0.0;
     }
 
-    private int countMatchingNumbers(List<Integer> randomLotteries, Lotto userLotto) {
-        int count = 0;
-        for (Integer number : randomLotteries) {
-            if (userLotto.numbers().contains(number)) {
-                count++;
-            }
-        }
-        return count;
-    }
 
-    private Map<String, Integer> getStatistics() {
+    public Map<String, Integer> getStatistics() {
         Map<String, Integer> statistics = new HashMap<>();
         for (LottoMatchEnum match : LottoMatchEnum.values()) {
             statistics.put(match.getDisplayName(), matchCounts[match.ordinal()]);

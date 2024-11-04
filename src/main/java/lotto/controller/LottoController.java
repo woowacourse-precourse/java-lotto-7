@@ -1,5 +1,6 @@
 package lotto.controller;
 import lotto.exceptions.LottoException;
+import lotto.exceptions.LottoNumberFormatException;
 import lotto.model.Lotto;
 import lotto.model.LottoStatistics;
 import lotto.services.LottoServices;
@@ -78,6 +79,8 @@ public class LottoController {
                 return value;
             } catch(LottoException e) {
                 ErrorView.displayError(e);
+            } catch (NumberFormatException e) {
+                ErrorView.displayError(new LottoNumberFormatException());
             }
         }
     }
