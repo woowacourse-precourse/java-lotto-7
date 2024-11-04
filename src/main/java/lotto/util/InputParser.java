@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.exception.InputErrorMessage;
 
 public class InputParser {
-    private static final String INTEGER_REGEX = "^[0-9]*$";
+    private static final String INTEGER_REGEX = "^-?[0-9]*$";
     private static final String DELIMITER = ",";
 
     private InputParser() {
