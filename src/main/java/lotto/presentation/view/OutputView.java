@@ -8,6 +8,10 @@ import lotto.domain.LottoRank;
 import lotto.dto.LottoStatisticsDto;
 
 public class OutputView {
+    public void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public void printIssuedLottos(List<Lotto> issuedLottos) {
         System.out.println(issuedLottos.size() + "개를 구매했습니다.");
         issuedLottos.forEach(this::printIssuedLotto);

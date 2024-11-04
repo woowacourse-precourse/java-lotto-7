@@ -38,7 +38,7 @@ public class LottoController {
             String purchaseAmount = inputView.getValidPurchaseAmount();
             return lottoService.createIssuedRandomLotto(parseToInt(purchaseAmount));
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e.getMessage());
             return generateLottoFromPurchaseAmount();
         }
     }
@@ -49,7 +49,7 @@ public class LottoController {
             int bonusNumber = getValidatedBonusNumber(winningNumbers);
             return lottoService.createLottoResult(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e.getMessage());
             return generateLottoResult();
         }
     }
