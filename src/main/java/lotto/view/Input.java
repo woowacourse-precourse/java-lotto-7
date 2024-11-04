@@ -64,16 +64,16 @@ public class Input {
     }
 
     private static void checkWinningNumbers(List<Integer> winningNumbers) {
-        checkDuplicateNumber(winningNumbers);
-        checkRangeNumber(winningNumbers);
+        checkDuplicateWinningNumbers(winningNumbers);
+        checkRangeWinningNumbers(winningNumbers);
     }
 
-    private static void checkDuplicateNumber(List<Integer> numbers) {
+    private static void checkDuplicateWinningNumbers(List<Integer> numbers) {
         if(numbers.size()!=numbers.stream().distinct().count())
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 숫자로 이루어져야 합니다.");
     }
 
-    private static void checkRangeNumber(List<Integer> numbers) {
+    private static void checkRangeWinningNumbers(List<Integer> numbers) {
         for(Integer number:numbers) {
             if(number < 1 || number > 45)
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 범위여야 합니다." + number);
