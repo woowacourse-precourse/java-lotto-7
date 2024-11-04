@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.service.input.InputService;
 import lotto.service.input.InputServiceImpl;
 import lotto.service.input.converter.MoneyInputConverterService;
-import lotto.service.input.validator.MoneyInputValidator;
+import lotto.service.input.validator.MoneyInputValidatorService;
 import lotto.service.purchase.LottoMachineService;
 import lotto.service.purchase.LottoMachineServiceImpl;
 import lotto.service.purchase.PurchaseService;
@@ -18,7 +18,7 @@ public class PurchaseController {
     private final InputService<Long> inputService;
 
     public PurchaseController () {
-        inputService = new InputServiceImpl<>(new MoneyInputValidator(), new MoneyInputConverterService());
+        inputService = new InputServiceImpl<>(new MoneyInputValidatorService(), new MoneyInputConverterService());
     }
 
     public void run(){

@@ -3,11 +3,11 @@ package lotto.service.input.validator;
 import java.math.BigInteger;
 import java.util.List;
 
-public class LuckyBallInputValidator extends CommonValidator implements InputValidatorService {
+public class LuckyBallInputValidatorService extends CommonValidatorService implements InputValidatorService {
 
     private final List<String> ballEntry;
 
-    public LuckyBallInputValidator(List<String> ballEntry) {
+    public LuckyBallInputValidatorService(List<String> ballEntry) {
         this.ballEntry = ballEntry;
     }
 

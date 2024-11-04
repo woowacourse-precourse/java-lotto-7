@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-public class BallEntryValidator extends CommonValidator implements InputValidatorService{
+public class BallEntryValidatorService extends CommonValidatorService implements InputValidatorService{
 
     private final String separator = ",";
     private static List<String> ballInputEntry;

@@ -1,6 +1,6 @@
 package lotto.service.input.validator;
 
-public class CommonValidator implements InputValidatorService{
+public class CommonValidatorService implements InputValidatorService{
 
     @Override
     public void validate(String input) {

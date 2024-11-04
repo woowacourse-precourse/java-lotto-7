@@ -5,8 +5,8 @@ import lotto.service.input.InputService;
 import lotto.service.input.InputServiceImpl;
 import lotto.service.input.converter.BallEntryConverterService;
 import lotto.service.input.converter.BallInputConverterService;
-import lotto.service.input.validator.BallEntryValidator;
-import lotto.service.input.validator.LuckyBallInputValidator;
+import lotto.service.input.validator.BallEntryValidatorService;
+import lotto.service.input.validator.LuckyBallInputValidatorService;
 import lotto.service.lotteryhost.HostService;
 import lotto.service.lotteryhost.HostServiceImpl;
 import lotto.view.UserInput;
@@ -23,13 +23,13 @@ public class HostController {
     }
 
     private void getBallEntry() {
-        ballEntryInputService = new InputServiceImpl<>(new BallEntryValidator(), new BallEntryConverterService());
+        ballEntryInputService = new InputServiceImpl<>(new BallEntryValidatorService(), new BallEntryConverterService());
         getInput(ballEntryInputService, InputInfo.WINNING_NUMBER);
     }
 
     private void getLuckyBall() {
         luckyBallInputService = new InputServiceImpl<>(
-                new LuckyBallInputValidator(BallEntryValidator.getBallInputEntry()), new BallInputConverterService());
+                new LuckyBallInputValidatorService(BallEntryValidatorService.getBallInputEntry()), new BallInputConverterService());
         getInput(luckyBallInputService, InputInfo.LUCKY_NUMBER);
     }
 

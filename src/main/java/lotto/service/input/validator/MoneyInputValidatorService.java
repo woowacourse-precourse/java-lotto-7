@@ -2,7 +2,7 @@ package lotto.service.input.validator;
 
 import java.math.BigInteger;
 
-public class MoneyInputValidator extends CommonValidator implements InputValidatorService {
+public class MoneyInputValidatorService extends CommonValidatorService implements InputValidatorService {
 
     @Override
     public void validate(String input) {
