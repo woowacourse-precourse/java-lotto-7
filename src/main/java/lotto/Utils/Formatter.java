@@ -9,7 +9,6 @@ import lotto.Domain.Lottos;
 import lotto.Domain.WinningResult;
 import lotto.Domain.WinningRules;
 import lotto.Messages.OutputMessage;
-import lotto.View.OutputView;
 
 public class Formatter {
 

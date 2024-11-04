@@ -20,7 +20,8 @@ public class Lotto {
     }
 
     private static List<Integer> generateNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LottoConstants.LOTTO_START_NUMBER, LottoConstants.LOTTO_END_NUMBER, LottoConstants.LOTTO_NUMBER_COUNT);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LottoConstants.LOTTO_START_NUMBER,
+                LottoConstants.LOTTO_END_NUMBER, LottoConstants.LOTTO_NUMBER_COUNT);
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }

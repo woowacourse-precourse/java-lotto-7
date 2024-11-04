@@ -1,15 +1,12 @@
 package lotto;
 
-import lotto.Domain.Lotto;
-import lotto.Domain.WinningNumbers;
-import lotto.Messages.ErrorMessage;
-import lotto.Messages.OutputMessage;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import lotto.Domain.Lotto;
+import lotto.Domain.WinningNumbers;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
