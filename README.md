@@ -228,5 +228,3 @@
 - **Application.java**
   - 애플리케이션의 진입점으로, `LottoController`를 생성하고 실행합니다.
 
-## 프로젝트 구조
-
