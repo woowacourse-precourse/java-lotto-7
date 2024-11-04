@@ -5,8 +5,9 @@ import java.util.List;
 public class LottoCreator {
 
     public Lotto createLotto(List<Integer> lottoNumbers) {
-        return new Lotto(lottoNumbers.stream()
+        List<LottoNumber> numbers = lottoNumbers.stream()
                 .map(LottoNumber::new)
-                .toList());
+                .toList();
+        return new Lotto(numbers);
     }
 }
