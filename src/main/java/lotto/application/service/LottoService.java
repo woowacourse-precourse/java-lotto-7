@@ -1,6 +1,5 @@
 package lotto.application.service;
 
-import lotto.application.dto.LottoTicketsDTO;
 import lotto.domain.generator.LottoNumberGenerator;
 import lotto.domain.model.*;
 import lotto.domain.result.LottoResult;

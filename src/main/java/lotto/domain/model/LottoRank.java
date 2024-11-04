@@ -43,9 +43,11 @@ public enum LottoRank {
     public int getPrize() {
         return prize;
     }
+
     public int getMatchCount() {
         return matchCount;
     }
+
     public String getDescription() {
         return description;
     }

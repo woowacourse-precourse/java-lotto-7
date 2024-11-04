@@ -22,6 +22,4 @@ public class AmountValidator implements AmountValidation{
             throw new IllegalArgumentException(ErrorMessages.INVALID_AMOUNT_FORMAT.getMessage());
         }
     }
-
-
 }

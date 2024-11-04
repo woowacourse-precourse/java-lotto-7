@@ -4,8 +4,6 @@ import lotto.application.dto.LottoTicketsDTO;
 import lotto.application.service.LottoService;
 import lotto.application.validation.BaseValidation;
 import lotto.application.validation.BonusNumberValidation;
-import lotto.application.validation.BonusNumberValidator;
-import lotto.application.validation.LottoNumberValidator;
 import lotto.domain.model.LottoNumbers;
 import lotto.domain.model.LottoTickets;
 import lotto.domain.result.LottoResult;
@@ -23,7 +21,7 @@ public class LottoController {
     private final BaseValidation<List<Integer>> lottoNumberValidator;
     private final BonusNumberValidation bonusNumberValidator;
 
-    public LottoController(InputView inputView, OutputView outputView, BaseValidation<Integer> amountValidator, LottoService lottoService, BaseValidation<List<Integer>> lottoNumberValidator, BonusNumberValidation  bonusNumberValidator) {
+    public LottoController(InputView inputView, OutputView outputView, BaseValidation<Integer> amountValidator, LottoService lottoService, BaseValidation<List<Integer>> lottoNumberValidator, BonusNumberValidation bonusNumberValidator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.amountValidator = amountValidator;
@@ -61,6 +59,7 @@ public class LottoController {
             }
         }
     }
+
     private LottoNumbers getValidWinningNumbers() {
         while (true) {
             try {
@@ -72,6 +71,7 @@ public class LottoController {
             }
         }
     }
+
     private int getValidBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {

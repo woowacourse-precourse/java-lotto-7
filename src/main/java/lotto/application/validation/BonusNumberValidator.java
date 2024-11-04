@@ -1,6 +1,5 @@
 package lotto.application.validation;
 import lotto.util.ErrorMessages;
-
 import java.util.List;
 
 public class BonusNumberValidator implements BonusNumberValidation {

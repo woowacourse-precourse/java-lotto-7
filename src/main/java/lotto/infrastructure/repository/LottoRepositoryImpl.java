@@ -5,7 +5,7 @@ import lotto.domain.model.LottoTickets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoRepositoryImpl implements LottoRepository{
+public class LottoRepositoryImpl implements LottoRepository {
     private List<LottoTickets> storage = new ArrayList<>();
 
     @Override
