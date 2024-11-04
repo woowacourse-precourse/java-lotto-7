@@ -12,6 +12,7 @@
 #### 2. 금액에 따른 로또 번호 출력
 - "n개를 구매했습니다."와 함께 n개의 로또 번호 출력
   - 오름차순 정렬
+    - Lotto 클래스에서 오름차순 정렬 확인용 toString 메서드 오버라이드
 - Random 값 추출은 ```camp.nextstep.edu.missionutils.Randoms```의 ```pickUniqueNumbersInRange()```를 활용
   - 예시) ```Randoms.pickUniqueNumbersInRange(1, 45, 6);```
 
