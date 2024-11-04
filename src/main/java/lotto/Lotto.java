@@ -19,4 +19,8 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int getLottoCount(int payment) {
+        return payment / 1000;
+    }
 }
