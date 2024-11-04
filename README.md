@@ -13,6 +13,7 @@
 - [x] Lotto 클래스 추가 구현
   - [x] 매직넘버 상수화: 6
   - [x] 중복이 있는 경우 예외 처리
+  - [x] 오름차순 정렬하여 저장
 
 - [x] WinningNumbers 클래스 구현
   - [x] 멤버변수: Lotto lotto, LottoNumber bonusNumber
@@ -22,14 +23,15 @@
   - [x] First ~ Fifth, MISS
 
 - [ ] LottoMachine 클래스 구현
-  - [x] 멤버변수: List<Prize> prizes
+  - [x] 멤버변수: List<Lotto> lottos, List<Prize> prizes
   - [ ] run 메서드. 사용자 입력 받고 결과 출력
   - [x] 랜덤한 로또 번호를 뽑는 메서드
   - [ ] 뽑은 번호를 가지고 prizes를 업데이트 하는 메서드
 
-- [ ] InputView 클래스 구현
-  - [ ] readPurchaseAmount() 구현
-  - [ ] readWinningNumbers() 구현
+- [x] InputView 클래스 구현
+  - [x] readPurchaseAmount() 구현
+  - [x] readWinningNumbers() 구현
+  - [x] retry() 구현
 
 - [ ] OutputView 클래스 구현
   - [ ] printPurchaseQuantity(Money money)
