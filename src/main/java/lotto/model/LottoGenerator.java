@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoGenerator {
+    public static final Money LOTTO_AMOUNT = new Money(1_000L);
+
     private static Lotto generate() {
         List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
@@ -14,7 +16,7 @@ public class LottoGenerator {
     }
 
     public static Lottos generate(Money receivedMoney) {
-        return generate((long) receivedMoney.divide(new Money(1_000L)));
+        return generate((long) receivedMoney.divide(LOTTO_AMOUNT));
     }
 
     public static Lottos generate(long count) {
