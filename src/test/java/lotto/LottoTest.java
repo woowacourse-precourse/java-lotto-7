@@ -55,4 +55,21 @@ public class LottoTest {
 
         assertEquals(FIFTH.getWinningPrize() / PRICE, calculate);
     }
+
+    @Test
+    void 천원으로_구매한_로또가_4등에_당첨되면_수익률은_50_퍼센트() {
+        // given
+        WinningLotto winningLotto = WinningLotto.of(List.of(1, 2, 3, 4, 39, 40), 41);
+        // when
+        EnumMap<Rank, Integer> result = customer.result(winningLotto);
+        double calculate = customer.calculate(result);
+        // then
+        assertEquals(result.get(FIFTH), 0);
+        assertEquals(result.get(FOURTH), 1);
+        assertEquals(result.get(THIRD), 0);
+        assertEquals(result.get(SECOND), 0);
+        assertEquals(result.get(FIRST), 0);
+
+        assertEquals(FOURTH.getWinningPrize() / PRICE, calculate);
+    }
 }
