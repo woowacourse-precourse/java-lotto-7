@@ -6,7 +6,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.WinningLotto;
-import lotto.util.Validator;
+import lotto.util.Config;
 
 public class LottoService {
     private final List<Lotto> lottoTickets = new ArrayList<>();
@@ -21,31 +21,15 @@ public class LottoService {
 
     // 로또 번호 생성 (1부터 45까지 중복 없는 6개의 번호)
     private List<Integer> generateLottoNumbers() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                Config.LOTTO_NUMBER_START, Config.LOTTO_NUMBER_END, Config.LOTTO_NUMBER_COUNT));
         numbers.sort(Integer::compareTo);
         return numbers;
     }
 
-    // 당첨 번호와 보너스 번호 설정
+
     public void setWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-    }
-
-    // 문자열 입력된 당첨 번호를 파싱하여 리스트로 변환
-    public List<Integer> parseWinningNumbers(String input) {
-        String[] numberStrings = input.split(",");
-        List<Integer> numbers = new ArrayList<>();
-
-        for (String num : numberStrings) {
-            int number = Validator.validateAndParseNumber(num.trim());
-            numbers.add(number);
-        }
-
-        Validator.validateLottoNumberCount(numbers);
-        Validator.validateLottoNumberRange(numbers);
-        Validator.validateLottoNumberDuplication(numbers);
-
-        return numbers;
     }
 
     // 당첨 결과 계산
@@ -60,8 +44,7 @@ public class LottoService {
     }
 
     // 수익률 계산
-    public double calculateYield(int moneySpent) {
-        List<Rank> results = calculateResults();
+    public double calculateYield(int moneySpent, List<Rank> results) {
         int totalPrize = results.stream().mapToInt(Rank::getPrize).sum();
         return ((double) totalPrize / moneySpent) * 100;
     }
