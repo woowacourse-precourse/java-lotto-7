@@ -34,16 +34,56 @@ public class InputView {
         System.out.println(LINE_BREAK + "당첨 번호를 입력해주세요 (구분은 쉼표로):");
         String input = Console.readLine();
 
-        return Arrays.stream(input.split(","))
+        // 빈 입력 체크
+        if (input.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호를 입력해야 합니다.");
+        }
+
+        // 쉼표로 시작하는 경우
+        if (input.startsWith(",")) {
+            throw new IllegalArgumentException("[ERROR] 번호는 쉼표로 시작할 수 없습니다.");
+        }
+
+        List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(String::trim)         // 각 요소 공백 제거
-                .map(Integer::parseInt)    // 정수로 변환
+                .map(s -> {
+                    try {
+                        return Integer.parseInt(s);
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException("[ERROR] 유효한 정수를 입력해야 합니다: " + s);
+                    }
+                })
                 .collect(Collectors.toList());
+
+        // 로또 번호가 6개가 아니거나 중복되는 경우 추가 검증
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+
+        return numbers;
     }
 
     // 보너스 번호 입력 받기
-    public static int getBonusNumber() {
-        System.out.println(LINE_BREAK + "보너스 번호를 입력해주세요: ");
+    public static int getBonusNumber(List<Integer> winningNumbers) {
+        System.out.println("보너스 번호를 입력해주세요: ");
         String input = Console.readLine();
-        return Integer.parseInt(input);
+
+        try {
+            int bonusNumber = Integer.parseInt(input.trim());
+            if (!isBonusNumberValid(bonusNumber, winningNumbers)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 정수를 입력해주세요.");
+        }
+    }
+
+    private static boolean isBonusNumberValid(int bonusNumber, List<Integer> winningNumbers) {
+        return bonusNumber > 0 && bonusNumber <= 45 && !winningNumbers.contains(bonusNumber);
     }
 }

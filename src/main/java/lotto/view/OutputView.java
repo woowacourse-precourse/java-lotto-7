@@ -12,10 +12,6 @@ import java.util.Map;
 public class OutputView {
     private static final String LINE_BREAK = "\n";
 
-    public void printErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
-    }
-
     public static void printLottoAmount(int input) {
         System.out.println(LINE_BREAK + input + "개를 구매했습니다.");
     }

@@ -25,7 +25,7 @@ public class LottoController {
         List<Integer> winningNumber = InputView.getWinLottoNumbers();
 
         //보너스 넘버 입력
-        int bonusNumber = InputView.getBonusNumber();
+        int bonusNumber = InputView.getBonusNumber(winningNumber);
 
         // 당첨 결과 계산
         LottoResult lottoResult = new LottoResult(purchasedLottos, winningNumber, bonusNumber);
