@@ -14,6 +14,7 @@ public class OutputView {
 	private static final String PURCHASE_PRICE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
 	private static final String WINNING_LOTTO_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
 	private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
+	private static final String WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---\n";
 	private static final String NEW_LINE = "\n";
 	private static final String DECIMAL_FORMAT = "#,###.#";
 
@@ -46,11 +47,7 @@ public class OutputView {
 
 	public void printWinningResultMessage(WinningResultsDto winningResults) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(NEW_LINE);
-		stringBuilder.append("당첨 통계");
-		stringBuilder.append(NEW_LINE);
-		stringBuilder.append("---");
-		stringBuilder.append(NEW_LINE);
+		stringBuilder.append(WINNING_STATISTICS_MESSAGE);
 		stringBuilder.append(winningResults.winningResults().stream()
 				.map(this::getWinningResult)
 				.collect(Collectors.joining()));
