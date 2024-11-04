@@ -54,4 +54,7 @@ public class OutputView {
                 .size();
     }
 
+    public void printROI(double roi) {
+        System.out.println("총 수익률은 " + roi + "%입니다.");
+    }
 }
