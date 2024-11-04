@@ -96,11 +96,11 @@ src
  - [ ] 로또 번호 검증 (Lotto Number Validator)
 
 ## 예외 처리 (Exception)
- - [ ] 로또 게임 예외 (Lotto Exception)
+ - [x] 로또 게임 예외 (Lotto Exception)
  - [ ] 수익률 게산기 예외
 
 ## 유틸 (Utils)
- - [ ] 랜덤 번호 제공 (Lotto Number Generator)
+ - [x] 랜덤 번호 제공 (Lotto Number Generator)
 
 ## 출력 (Output View)
  - [x] 발행한 로또 수량 출력
