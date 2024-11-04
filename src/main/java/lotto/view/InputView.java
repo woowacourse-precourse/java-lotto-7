@@ -12,21 +12,37 @@ public class InputView {
     public int getLottoBuyMoney(){
         String msg = Console.readLine();
         InputValidator.validateInput(msg);
-        return Integer.parseInt(msg);
+        try{
+            return Integer.parseInt(msg);
+        }
+        catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자 형식에 맞지 않습니다.");
+        }
     }
 
     public List<Integer> getWinningLottoNum(){
         String msg = Console.readLine();
         InputValidator.validateInput(msg);
-        return Arrays.stream(msg.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        try{
+            return Arrays.stream(msg.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException("[ERROR] 숫자 형식에 맞지 않습니다.");
+        }
+
     }
 
     public Integer getBonnusLottoNum(){
         String msg = Console.readLine();
         InputValidator.validateInput(msg);
-        return Integer.parseInt(msg);
+        try{
+            return Integer.parseInt(msg);
+        }
+        catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자 형식에 맞지 않습니다.");
+        }
     }
 }
