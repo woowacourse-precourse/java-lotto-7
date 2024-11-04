@@ -54,5 +54,5 @@
 ### Throwing Exception logic
 
 - throw Exception with printing exception message
-   - [ ] print Exception Message
-   - [ ] throw IllegalArgumentException exception
+   - [x] print Exception Message
+   - [x] throw IllegalArgumentException exception
