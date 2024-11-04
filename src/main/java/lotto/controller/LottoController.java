@@ -2,10 +2,10 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import lotto.model.Lotto;
+import lotto.model.lotto.Lotto;
 import lotto.model.LottoPrizeCalculator;
-import lotto.model.LottoPrizes;
-import lotto.model.Lottos;
+import lotto.model.lottoprize.LottoPrizes;
+import lotto.model.lotto.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;

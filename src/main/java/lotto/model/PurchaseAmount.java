@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.exception.ErrorCode;
+import lotto.model.lotto.Lotto;
 
 public class PurchaseAmount {
     private static final int MIN_PURCHASE_AMOUNT = 0;

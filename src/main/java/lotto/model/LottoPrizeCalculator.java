@@ -5,6 +5,8 @@ import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.model.lottoprize.LottoPrize;
+import lotto.model.lottoprize.LottoPrizes;
 
 public class LottoPrizeCalculator {
     private static final int YIELD_SCALE = 1;

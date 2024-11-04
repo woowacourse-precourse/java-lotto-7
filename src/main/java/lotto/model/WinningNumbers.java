@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.HashSet;
 import lotto.exception.ErrorCode;
+import lotto.model.lotto.Lotto;
 
 public class WinningNumbers {
     private final Lotto mainNumbers;

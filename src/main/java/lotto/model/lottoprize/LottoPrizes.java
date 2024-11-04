@@ -1,7 +1,10 @@
-package lotto.model;
+package lotto.model.lottoprize;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.model.WinningNumbers;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.Lottos;
 
 public class LottoPrizes {
     private final List<LottoPrize> lottoPrizes;

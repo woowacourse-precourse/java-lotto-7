@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lottoprize;
 
 import java.text.NumberFormat;
 import java.util.Arrays;
