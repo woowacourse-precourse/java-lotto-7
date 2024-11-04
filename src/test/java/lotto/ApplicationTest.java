@@ -95,6 +95,16 @@ class ApplicationTest extends NsTest {
 
     }
 
+    @Test
+    @DisplayName("구입한 당첨번호 중 1부터 45 사이가 아닌 값이 존재하면 예외처리하는 테스트")
+    public void requestWinningNumbersExceptionTest() {
+        //given
+        String str = "1,47,3,4,5,6";
+        //when, then
+        assertThrows(IllegalArgumentException.class,
+                () -> exceptionHandler.validateWinningNumbers(str));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
