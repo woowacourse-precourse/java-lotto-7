@@ -1,9 +1,14 @@
 package lotto.controller;
 
+import static lotto.view.InputView.WINNING_LOTTO_MESSAGE;
+
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
@@ -32,10 +37,29 @@ public class LottoController {
     }
 
     public List<Integer> splitWinningNumbers(String winningNumber) {
-        return Arrays.stream(winningNumber.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        while (true) {
+            try {
+                List<Integer> numbers = Arrays.stream(winningNumber.split(","))
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+
+                if (numbers.size() != 6) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+
+                }
+                Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+                if (uniqueNumbers.size() != 6) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호에는 중복이 없어야 합니다.");
+                }
+                
+                return numbers; // 올바른 번호 개수면 반환
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // 에러 메시지 출력
+                System.out.println(WINNING_LOTTO_MESSAGE);
+                winningNumber = Console.readLine(); // 새로 입력받기
+            }
+        }
     }
 
     public int checkCorrectCount(Lotto lotto, List<Integer> winningNumbers) {

@@ -21,16 +21,16 @@ public class LottoResult {
 
     private void initializeRankCounts() {
         for (Prize prize : Prize.values()) {
-            prizeCounts.put(prize, 0);  // 각 Rank의 초기 당첨 횟수를 0으로 설정
+            prizeCounts.put(prize, 0);
         }
     }
 
     public void increasePrizeCount(Prize prize) {
-        prizeCounts.put(prize, prizeCounts.get(prize) + 1); // 해당 Rank의 당첨 횟수를 1 증가
+        prizeCounts.put(prize, prizeCounts.get(prize) + 1);
     }
 
     public int getRankCount(Prize prize) {
-        return prizeCounts.getOrDefault(prize, 0); // 해당 Rank의 당첨 횟수를 반환
+        return prizeCounts.getOrDefault(prize, 0);
     }
 
     public void setTotalPrize(int totalPrize) {
