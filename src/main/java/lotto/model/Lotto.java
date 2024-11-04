@@ -41,14 +41,17 @@ public class Lotto {
 
     private void validateNumberDuplicate(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>();
-
         for (Integer number : numbers) {
-            if (!numberSet.contains(number)) {
-                numberSet.add(number);
-                continue;
-            }
-            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR);
+            validateDuplicate(number, numberSet);
         }
+    }
+
+    private void validateDuplicate(final Integer number, final Set<Integer> numberSet){
+        if (!numberSet.contains(number)) {
+            numberSet.add(number);
+            return;
+        }
+        throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR);
     }
 
     private void validateNumberRange(List<Integer> numbers) {

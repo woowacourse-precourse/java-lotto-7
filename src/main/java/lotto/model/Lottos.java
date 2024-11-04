@@ -64,13 +64,18 @@ public class Lottos {
     private void validateWinningNumbersDuplicate(final List<Integer> winningNumbers) {
         Set<Integer> winningNumberSet = new HashSet<>();
         for (Integer winningNumber : winningNumbers) {
-            if (winningNumberSet.contains(winningNumber)) {
-                throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATION_ERROR_MESSAGE);
-            }
-
-            winningNumberSet.add(winningNumber);
+            checkDuplicateNumber(winningNumber, winningNumberSet);
         }
     }
+
+    private void checkDuplicateNumber(final Integer number, final Set<Integer> numberSet){
+        if (!numberSet.contains(number)) {
+            numberSet.add(number);
+            return;
+        }
+        throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATION_ERROR_MESSAGE);
+    }
+
 
     private void validateWinningNumbersRange(final List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
