@@ -40,7 +40,7 @@ public class LottoController {
             try {
                 inputView.requestPurchaseAmount();
                 String purchaseAmountInput = inputView.inputPurchaseAmount();
-                PurchaseAmountValidator.validatePurchaseAmount(purchaseAmountInput); // Validator 사용
+                PurchaseAmountValidator.validatePurchaseAmount(purchaseAmountInput);
                 return Integer.parseInt(purchaseAmountInput.trim());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -72,10 +72,10 @@ public class LottoController {
     private int getValidBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                inputView.requestWinningBounusNumber();
+                inputView.requestWinningBonusNumber();
                 String bonusNumInput = inputView.inputWinningBonusNumber();
                 BonusNumberValidator.validateBonusNumber(bonusNumInput, winningNumbers);
-                return inputParser.convertWinningBonusNumber(bonusNumInput);
+                return Integer.parseInt(bonusNumInput.trim());
             } catch (IllegalArgumentException | IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
