@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -18,9 +17,4 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
-        }
-    }
 }
