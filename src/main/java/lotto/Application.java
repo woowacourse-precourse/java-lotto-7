@@ -11,7 +11,7 @@ public class Application {
 
     public static void main(String[] args) {
         LottoShop shop = new LottoShop();
-        int money = repeatUntilSuccess(Application::inputMoney());
+        int money = repeatUntilSuccess(Application::inputMoney);
         List<Lotto> lottos = shop.sell(money);
 
         System.out.println("\n%d개를 구매했습니다.".formatted(lottos.size()));
