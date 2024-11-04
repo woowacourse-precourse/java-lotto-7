@@ -3,6 +3,7 @@ package lotto.domain;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import lotto.exception.LottoExceptionMessage;
 
 public class LottoProfitCalculator {
 
@@ -27,13 +28,13 @@ public class LottoProfitCalculator {
 
     private void validate(int payment) {
         if (payment == 0) {
-            throw new IllegalArgumentException("구매금액이 0원일 시 수익률을 계산할 수 없습니다.");
+            throw new IllegalArgumentException(LottoExceptionMessage.PROFIT_WITH_ZERO_AMOUNT);
         }
     }
 
     private void validateNegative(BigDecimal profit, int payment) {
         if (payment < 0 || profit.longValue() < 0) {
-            throw new IllegalArgumentException("구매금액은 0보다 커야 합니다.");
+            throw new IllegalArgumentException(LottoExceptionMessage.NATURAL_NUMBER_PAYMENT);
         }
     }
 }

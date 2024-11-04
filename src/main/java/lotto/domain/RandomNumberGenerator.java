@@ -5,7 +5,9 @@ import java.util.List;
 
 public class RandomNumberGenerator {
 
-    public List<Integer> generate(int startInclusive, int endInclusive, int count) throws IllegalArgumentException {
+    public List<Integer> generate(int startInclusive, int endInclusive, int count)
+        throws IllegalArgumentException {
+
         return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
     }
 }

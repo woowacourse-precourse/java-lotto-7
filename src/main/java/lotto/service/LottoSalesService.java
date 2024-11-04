@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.RandomNumberGenerator;
+import lotto.exception.LottoExceptionMessage;
 
 public class LottoSalesService {
 
@@ -25,20 +26,20 @@ public class LottoSalesService {
         if (payment % 1000 == 0) {
             return payment / 1000;
         }
-        throw new IllegalArgumentException("로또는 1000원 단위로 구입할 수 있습니다.");
+        throw new IllegalArgumentException(LottoExceptionMessage.PAYMENT_DIVISIBLE_BY_THE_LOTTO_PRICE);
     }
 
     private void validateQuantity(int quantity) throws IllegalArgumentException {
         if (quantity < 0) {
-            throw new IllegalArgumentException("수량은 0보다 작을 수 없습니다.");
+            throw new IllegalArgumentException(LottoExceptionMessage.POSITIVE_OR_ZERO_QUANTITIES);
         } else if (quantity == Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("수량은 Integer.MAX_VALUE 보다 클 수 없습니다.");
+            throw new IllegalArgumentException(LottoExceptionMessage.QUANTITIES_LESS_THAN_INTEGER_MAX_VALUE);
         }
     }
 
     private void validatePayment(int payment) throws IllegalArgumentException {
         if (payment <= 0) {
-            throw new IllegalArgumentException("구입 금액은 0보다 커야 합니다.");
+            throw new IllegalArgumentException(LottoExceptionMessage.PAYMENT_MORE_THAN_ZERO);
         }
     }
 }

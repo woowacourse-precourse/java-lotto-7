@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
+import lotto.exception.LottoExceptionMessage;
 import lotto.service.LottoResultAnalysisService;
 import lotto.service.LottoSalesService;
 import lotto.view.InputView;
@@ -26,6 +27,7 @@ public class LottoController {
         // TODO: Input이 Null인지 확인!!
         int payment;
         List<Lotto> lottos;
+
         while (true) {
             outputView.printPaymentRequestMessage();
             payment = inputView.readPayment();
@@ -44,6 +46,7 @@ public class LottoController {
         List<Rank> winningResults;
         List<Integer> winningStatistics;
         String lottoProfitRate;
+
         while (true) {
             outputView.printWinningNumbersRequestMessage();
             winningNumbers = inputView.readWinningNumbers();
@@ -63,7 +66,7 @@ public class LottoController {
             } catch (IllegalArgumentException e) {
                 OutputView.printExceptionMessage(e.getMessage());
             } catch (Exception e) {
-                OutputView.printExceptionMessage("예기치 못한 예외가 발생하였습니다.");
+                OutputView.printExceptionMessage(LottoExceptionMessage.THROWING_UNEXPECTED_EXCEPTION);
             }
         }
 

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.exception.LottoExceptionMessage;
 
 public class LottoNumber {
 
@@ -29,7 +30,7 @@ public class LottoNumber {
 
     private static void validate(final int number) {
         if (number < LOTTO_NUM_MIN_VALUE || number > LOTTO_NUM_MAX_VALUE) {
-            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이여야 합니다.");
+            throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUMBERS_RANGE_RESTRICTION);
         }
     }
 

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.LottoExceptionMessage;
 
 public class Lotto {
 
@@ -32,10 +33,10 @@ public class Lotto {
     // TODO: 추후 메서드 분리
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUMBERS_COUNT_LIMIT);
         }
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(LottoExceptionMessage.UNIQUE_LOTTO_NUMBERS);
         }
     }
 }
