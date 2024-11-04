@@ -36,7 +36,7 @@ public class Lotto {
             .allMatch(number -> number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER);
 
         if (!isInRange) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 " + MIN_LOTTO_NUMBER + "에서 " + MAX_LOTTO_NUMBER + " 사이여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호 범위를 확인해주세요");
         }
     }
     public void printLottoNumbers() {
