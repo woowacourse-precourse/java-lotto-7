@@ -44,4 +44,12 @@ class WinningNumbersTest {
         WinningNumbers winningNumbers = new WinningNumbers(input);
         assertThat(winningNumbers.getNumbers()).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
     }
+
+    @Test
+    @DisplayName("당첨 번호 입력에 잘못된 구분자가 포함된 경우 예외가 발생한다.")
+    void winningNumbersInvalidDelimiter() {
+        String input = "1;2;3;4;5;6"; // 세미콜론 사용
+        assertThatThrownBy(() -> new WinningNumbers(input))
+                .isInstanceOf(NumberFormatException.class);
+    }
 }
