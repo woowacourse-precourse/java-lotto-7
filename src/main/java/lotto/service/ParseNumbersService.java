@@ -35,12 +35,19 @@ public class ParseNumbersService {
     private void validate(List<String> winningNumbers) {
         for (String winningNumber : winningNumbers) {
             validateIsBlank(winningNumber);
+            validateHasCharacter(winningNumber);
         }
     }
 
     private void validateIsBlank(String winningNumber) {
         if (winningNumber == null || winningNumber.isBlank()) {
             throw new IllegalArgumentException(INPUT_CAN_NOT_BE_BLANK.get());
+        }
+    }
+
+    private void validateHasCharacter(String winningNumber) {
+        if (HAS_CHARACTER_PATTERN.matcher(winningNumber).find()) {
+            throw new IllegalArgumentException(LOTTO_CAN_NOT_HAVE_CHARACTER.get());
         }
     }
 
