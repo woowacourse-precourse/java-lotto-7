@@ -16,14 +16,15 @@ public class InputController {
                 throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 합니다.");
             }
             return purchase;
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자값이어야 합니다.");
         }
     }
+
     public static List<Integer> parseIntegerList(String input) {
         List<Integer> result = new ArrayList<>();
         try {
-            for (String num: input.split(",")) {
+            for (String num : input.split(",")) {
                 int parsedNum = Integer.parseInt(num);
                 if (parsedNum > 45 | parsedNum < 1) {
                     throw new IllegalArgumentException("[ERROR] 당첨번호는 1~45 사이여야 합니다.");
