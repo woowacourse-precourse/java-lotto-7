@@ -23,8 +23,8 @@ public class LottoController {
 
         // 당첨 결과 계산
         LottoCompare lottoCompare = new LottoCompare();
-        List<Integer> matchCounts = lottoCompare.compareLottoNumbers(lotto.getNumbers(), lottoNumberLists, bonusNumber);
-        Map<WinningType, Integer> counts = lottoCompare.storeNumbers(matchCounts, lottoNumberLists, bonusNumber);
+        List<Integer> result = lottoCompare.compareLottoNumbers(lotto.getNumbers(), lottoNumberLists, bonusNumber);
+        Map<WinningType, Integer> counts = lottoCompare.storeNumbers(result);
 
         // 당첨 내역 출력
         WinningDetailsDisplay winningDetailsDisplay = new WinningDetailsDisplay();
