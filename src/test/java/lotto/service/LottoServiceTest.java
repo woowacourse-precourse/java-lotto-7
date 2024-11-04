@@ -3,8 +3,8 @@ package lotto.service;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.WinningLotto;
+import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
