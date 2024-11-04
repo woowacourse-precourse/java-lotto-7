@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -31,6 +32,8 @@ class LottoTest {
     @DisplayName("로또 번호가 정상적으로 입력되는 경우")
     @Test
     void 로또_번호가_정상적으로_입력되는_경우() {
-        new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+        assertEquals(numbers, lotto.getNumbers());
     }
 }
