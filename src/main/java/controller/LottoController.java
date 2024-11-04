@@ -16,22 +16,26 @@ public class LottoController {
 
 
     public void run(){
-        String inputPurchaseAmount = inputView.inputPurchaseAmount();
-        int purchaseAmount = lottoService.purchaseAmount(inputPurchaseAmount);
-        int count = purchaseAmount /1000;
+        try {
+            String inputPurchaseAmount = inputView.inputPurchaseAmount();
+            int purchaseAmount = lottoService.purchaseAmount(inputPurchaseAmount);
+            int count = purchaseAmount / 1000;
 
-        List<Lotto> lottoList = lottoService.publishLotto(count);
-        outputView.publishLotto(count, lottoList);
+            List<Lotto> lottoList = lottoService.publishLotto(count);
+            outputView.publishLotto(count, lottoList);
 
-        String winningNumber = inputView.inputWinningNumber();
-        Lotto lotto = lottoService.inputWinningNumber(winningNumber);
+            String winningNumber = inputView.inputWinningNumber();
+            Lotto lotto = lottoService.inputWinningNumber(winningNumber);
 
-        int bonusNumber = lottoService.bonusNumber(inputView.inputBonusNumber(), lotto);
+            int bonusNumber = lottoService.bonusNumber(inputView.inputBonusNumber(), lotto);
 
-        Map<Rank, Integer> rankCount = lottoService.calculateStatistics(lottoList, lotto, bonusNumber);
-        outputView.printStatistics(rankCount);
+            Map<Rank, Integer> rankCount = lottoService.calculateStatistics(lottoList, lotto, bonusNumber);
+            outputView.printStatistics(rankCount);
 
-        double rate = lottoService.totalReturn(rankCount, purchaseAmount);
-        outputView.printTotalReturn(rate);
+            double rate = lottoService.totalReturn(rankCount, purchaseAmount);
+            outputView.printTotalReturn(rate);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+        }
     }
 }
