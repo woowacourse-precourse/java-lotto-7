@@ -14,6 +14,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public boolean contain(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicates(numbers);
