@@ -18,7 +18,6 @@ public class LottoController {
     }
 
     private static void buyLottos() {
-
         lottoService.buyLottos();
     }
 
@@ -42,7 +41,7 @@ public class LottoController {
                 String bonus = InputView.inputBonusNumber();
                 InputValidator.validBonus(bonus);
                 lottoService.setBonusNumber(Integer.parseInt(bonus));
-                break; // 유효한 번호가 입력되면 루프 종료
+                break;
             } catch (IllegalArgumentException e) {
 
             }

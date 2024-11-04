@@ -27,7 +27,7 @@ public class InputValidator {
     private static void validSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             ErrorMessage.printError(ErrorMessage.SIZE_ERROR);
-            throw new IndexOutOfBoundsException(ErrorMessage.SIZE_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.SIZE_ERROR);
         }
     }
 

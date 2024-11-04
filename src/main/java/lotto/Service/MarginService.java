@@ -10,16 +10,10 @@ public class MarginService {
 
     public void calculateProfitMargin() {
         value = (sellingPrice / costPrice) * 100;
-        if (sellingPrice == 0) {
-            value = 0;
-        }
     }
 
     public double round() {
         double scale = Math.pow(10, DecimalPlaces);
-        if (value == 0) {
-            return 0;
-        }
         return Math.round(value * scale) / scale;
     }
 

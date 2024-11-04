@@ -14,7 +14,6 @@ public class LottoService {
     private List<Integer> winningNumbers;
     private int bonusNumber;
     private static int payment;
-
     private int lottoCount;
 
     public void buyLottos() {
@@ -26,7 +25,7 @@ public class LottoService {
                 lottoCount = amount / 1000;
                 addLottos(lottoCount);
                 break;
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | ArithmeticException e) {
 
             }
         }
@@ -44,18 +43,12 @@ public class LottoService {
     }
 
     public List<Integer> inputLottoNumbers(String input) {
-        while (true) {
-            try {
-                validateInput(input);
-                return parseLottoNumbers(input);
-            } catch (IllegalArgumentException e) {
-
-            }
-        }
+        validateInput(input);
+        return parseLottoNumbers(input);
     }
 
     private void validateInput(String input) {
-        InputValidator.validInput(input); // 입력 유효성 검사
+        InputValidator.validInput(input);
     }
 
     private List<Integer> parseLottoNumbers(String input) {

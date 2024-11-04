@@ -45,4 +45,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.EMPTY_VALUE_ERROR);
     }
+
+    @DisplayName("로또 번호에 음수가 있으면 예외가 발생한다.")
+    @Test
+    void 로또_번호에_음수가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 2, 3, 4, 5, -1)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.NON_NUMERIC_ERROR);
+    }
 }
