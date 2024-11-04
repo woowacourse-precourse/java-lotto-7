@@ -3,11 +3,12 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class LottoWinningNumbers {
 
-  private int[] winningNumber;
+  private Lotto winningNumber;
 
   private int bonusNumber;
 
@@ -38,12 +39,6 @@ public class LottoWinningNumbers {
     if (!isValidRange) {
       throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
-    Set<Integer> uniqueNumbers = new HashSet<>();
-    for (int number : winningNumber) {
-      if (!uniqueNumbers.add(number)) {
-        throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
-      }
-    }
     return true;
   }
 
@@ -58,7 +53,10 @@ public class LottoWinningNumbers {
     try {
       int[] winningNumber = inputWinningNumber();
       validateWinningNumber(winningNumber);
-      this.winningNumber = winningNumber;
+      List<Integer> winningNum = Arrays.stream(winningNumber)
+          .boxed()
+          .toList();
+      this.winningNumber = new Lotto(winningNum);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       assignWinningNumber();
@@ -78,7 +76,10 @@ public class LottoWinningNumbers {
   }
 
   public int[] getWinningNumber() {
-    return winningNumber;
+    int[] intArray = this.winningNumber.getNumbers().stream()
+        .mapToInt(Integer::intValue)
+        .toArray();
+    return intArray;
   }
 
   public int getBonusNumber() {
