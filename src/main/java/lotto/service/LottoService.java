@@ -13,13 +13,13 @@ import lotto.exception.LottoExceptionType;
 import lotto.exception.MoneyExceptionType;
 
 public class LottoService {
-    private static final int LOTTO_PRIZE = 1000;
+    private static final long LOTTO_PRIZE = 1000;
 
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
     private final LottoResultChecker lottoResultChecker = new LottoResultChecker();
 
     private Money money;
-    private int numOfLottos;
+    private long numOfLottos;
     private List<Lotto> lottos = new ArrayList<>();
     private Lotto winningNumber;
     private Bonus bonusNumber;
@@ -30,7 +30,7 @@ public class LottoService {
         }
 
         try {
-            money = new Money(Integer.parseInt(moneyInput.trim()));
+            money = new Money(Long.parseLong(moneyInput.trim()));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(MoneyExceptionType.NOT_INTEGER_MONEY.getMessage());
         }
@@ -85,7 +85,7 @@ public class LottoService {
         return lottos;
     }
 
-    public Map<List<Integer>, Long> getLottoStatistics() {
+    public Map<List<Integer>, Double> getLottoStatistics() {
         lottoResultChecker.lottoChecker(lottos, winningNumber, bonusNumber);
         return Map.of(getLottoResult(), getLottoRateOfReturn());
     }
@@ -94,8 +94,8 @@ public class LottoService {
         return lottoResultChecker.getResult();
     }
 
-    private long getLottoRateOfReturn() {
-        return lottoResultChecker.getPrize();
+    private double getLottoRateOfReturn() {
+        return Math.round((double) lottoResultChecker.getPrize() / money.getMoney()) * 100;
     }
 
 }
