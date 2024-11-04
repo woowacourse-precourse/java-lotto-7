@@ -17,7 +17,15 @@ public class WinningNumbersValidator {
         return winningNumbers;
     }
 
+    private static void validateNotEmpty(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    DEFAULT_ERROR_MESSAGE + ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE.getMessage());
+        }
+    }
+
     private static List<Integer> parseAndValidateInput(String input) {
+        validateNotEmpty(input);
         String[] tokens = input.split(",");
         if (tokens.length != LottoInfo.COUNT.getNumber()) {
             throw new IllegalArgumentException(
