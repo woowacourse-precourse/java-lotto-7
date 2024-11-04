@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.global.ErrorMessage.*;
+import static lotto.global.LottoConstant.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Lotto {
 	}
 
 	private void validate(List<Integer> numbers) {
-		if (numbers.size() != 6) {
+		if (numbers.size() != LOTTO_NUMBER_COUNT) {
 			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
 		}
 
