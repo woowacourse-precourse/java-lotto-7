@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validate;
 
 public class WinningNumberFormula {
     public void isContainsNotInteger(String input) {

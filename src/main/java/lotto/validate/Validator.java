@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validate;
 
 public class Validator {
     private final CommonFormula commonFormula = new CommonFormula();

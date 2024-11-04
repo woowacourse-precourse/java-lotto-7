@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validate;
 
 public class BonusNumberFormula {
     public void isInteger(String input) {

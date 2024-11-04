@@ -1,4 +1,9 @@
-package lotto;
+package lotto.manager;
+
+import lotto.io.IO;
+import lotto.Lotto;
+import lotto.WinningStandard;
+import lotto.io.OutputFormatter;
 
 import java.util.List;
 import java.util.Map;

@@ -1,7 +1,8 @@
-package lotto;
+package lotto.manager;
 
 import camp.nextstep.edu.missionutils.Randoms;
-
+import lotto.Lotto;
+import lotto.WinningStandard;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;

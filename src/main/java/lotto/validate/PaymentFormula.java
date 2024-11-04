@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validate;
 
 public class PaymentFormula {
     public void isLong(String input) {

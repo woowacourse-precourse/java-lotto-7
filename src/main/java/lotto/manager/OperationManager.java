@@ -1,4 +1,7 @@
-package lotto;
+package lotto.manager;
+
+import lotto.io.IO;
+import lotto.validate.Validator;
 
 public class OperationManager {
     private final IO io = new IO();

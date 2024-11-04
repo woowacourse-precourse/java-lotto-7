@@ -1,4 +1,7 @@
-package lotto;
+package lotto.io;
+
+import lotto.Lotto;
+import lotto.WinningStandard;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,7 +22,6 @@ public class OutputFormatter {
         if (place.isMatchingBonusNumber()) {
             bonus = ", 보너스 볼 일치";
         }
-
         return String.format("%d개 일치%s (%s원) - %d개", place.getMatchingNumber(), bonus, place.getPrizeForPrint(), count);
     }
 

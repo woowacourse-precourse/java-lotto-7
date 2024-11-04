@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validate;
 
 public class CommonFormula {
     public void isInputEmpty(String input) {
