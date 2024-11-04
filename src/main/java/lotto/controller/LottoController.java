@@ -21,31 +21,38 @@ public class LottoController {
     private Map<String, Integer> results;
 
     public LottoController() {
-        this.purchasePrice = InputParser.parsePurchasePrice(LottoView.inputPurchasePrice());
-        this.turn = purchasePrice / PRICE;
-        this.lottos = new Lotto[this.turn];
-        this.results = new HashMap<>();
-        for (WinningState state : WinningState.values()) {
-            results.put(state.name(), 0);
+        try {
+            this.purchasePrice = InputParser.parsePurchasePrice(LottoView.inputPurchasePrice());
+            this.turn = purchasePrice / PRICE;
+            this.lottos = new Lotto[this.turn];
+            this.results = new HashMap<>();
+            for (WinningState state : WinningState.values()) {
+                results.put(state.name(), 0);
+            }
+        } catch (IllegalArgumentException e) {
+            LottoView.printException(e);
         }
     }
 
     public void runLotto() {
-        LottoView.printTurn(turn);
+        try {
+            LottoView.printTurn(turn);
+            for (int i = 0; i < turn; i++) {
+                lottos[i] = new Lotto(RandomNumbersGenerator.create());
+                LottoView.printLotto(lottos[i].toString());
+            }
 
-        for (int i = 0; i < turn; i++) {
-            lottos[i] = new Lotto(RandomNumbersGenerator.create());
-            LottoView.printLotto(lottos[i].toString());
+            drawLotto();
+
+            for (int i = 0; i < turn; i++) {
+                String result = lottos[i].checkWinner(winningNumbers, bonusNumber);
+                int count = results.get(result);
+                results.put(result, ++count);
+            }
+            LottoView.printResult(results, turn);
+        } catch (IllegalArgumentException e) {
+            LottoView.printException(e);
         }
-
-        drawLotto();
-
-        for (int i = 0; i < turn; i++) {
-            String result = lottos[i].checkWinner(winningNumbers, bonusNumber);
-            int count = results.get(result);
-            results.put(result, ++count);
-        }
-        LottoView.printResult(results, turn);
     }
 
     public void drawLotto() {

@@ -49,4 +49,8 @@ public class LottoView {
     public static void printROR(double result) {
         System.out.printf("총 수익률은 %.1f%%입니다.", result);
     }
+
+    public static void printException(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }
