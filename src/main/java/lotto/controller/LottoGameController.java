@@ -47,11 +47,14 @@ public class LottoGameController {
     }
 
     private WinningLotto inputValidWinningLotto() {
+        // 당첨 번호는 한 번만 입력 받고 보너스 번호가 중복되는 경우 다시 입력을 받는다
+        WinningNumbers winningNumbers = inputValidWinningNumbers();
+        BonusNumber bonusNumber;
+
         while (true) {
             try {
-                WinningNumbers winningNumbers = inputValidWinningNumbers();
-                BonusNumber bonusNumber = inputValidBonusNumber();
-                return new WinningLotto(winningNumbers, bonusNumber);
+                bonusNumber = inputValidBonusNumber();
+                return WinningLotto.of(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 LottoGameOutputView.printErrorMessage(e.getMessage());
             }

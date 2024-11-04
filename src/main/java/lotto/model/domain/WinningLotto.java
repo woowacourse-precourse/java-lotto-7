@@ -1,20 +1,20 @@
 package lotto.model.domain;
 
+import static lotto.constant.ErrorMessages.DUPLICATE_BONUS_NUMBER_ERROR;
+
 public class WinningLotto {
 
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
 
-    public WinningLotto(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public static WinningLotto of(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         validateNoDuplicate(winningNumbers, bonusNumber);
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    private void validateNoDuplicate(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        if (winningNumbers.getNumbers().contains(bonusNumber.getBonusNumber())) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
+    public WinningLotto(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
     public LottoRank determineRank(Lotto lotto) {
@@ -25,5 +25,11 @@ public class WinningLotto {
         boolean isBonusMatched = lotto.getNumbers().contains(bonusNumber.getBonusNumber().getNumber());
 
         return LottoRank.of(matchCount, isBonusMatched);
+    }
+
+    private static void validateNoDuplicate(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        if (winningNumbers.getNumbers().contains(bonusNumber.getBonusNumber())) {
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER_ERROR);
+        }
     }
 }

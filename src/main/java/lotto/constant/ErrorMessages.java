@@ -7,6 +7,7 @@ public class ErrorMessages {
     public static final String LOTTO_NUMBER_COUNT_ERROR = "로또 번호는 정확히 6개여야 합니다.";
     public static final String DUPLICATE_LOTTO_NUMBER_ERROR = "로또 번호는 중복될 수 없습니다.";
     public static final String EMPTY_INPUT_ERROR = "입력 값이 비어 있습니다. 값을 입력해 주세요.";
+    public static final String DUPLICATE_BONUS_NUMBER_ERROR = "보너스 번호는 당첨 번호와 중복될 수 없습니다. 다른 번호를 입력해 주세요.";
 
     private ErrorMessages() {
     }

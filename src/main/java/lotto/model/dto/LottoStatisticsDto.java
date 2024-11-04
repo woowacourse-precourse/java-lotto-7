@@ -17,9 +17,10 @@ public class LottoStatisticsDto {
         this.profitRate = calculateProfitRate(lottoTickets);
     }
 
+    // LottoRank를 역순으로 출력(꼴등 ~ 일등순)
     private List<LottoRankCount> calculateSortedRankCounts(List<LottoRank> lottoResults) {
         List<LottoRank> ranks = new ArrayList<>(List.of(LottoRank.values()));
-        Collections.reverse(ranks);  // LottoRank를 역순으로 출력
+        Collections.reverse(ranks);
 
         return ranks.stream()
                 .filter(rank -> rank != LottoRank.FAIL)
