@@ -175,13 +175,13 @@
 
 - DTO에 대한 검증 로직을 담당
 
-### **WinnerLottoValidator**
+### **LottoValidator**
 
 - 당첨 번호와 보너스 번호에 대한 검증 로직을 담당
 
 ## **[dto]**
 
-### **BonusLottoNumBerInput**
+### **BonusLottoNumberInput**
 
 - 보너스 당첨 번호를 저장
 
@@ -220,7 +220,7 @@
 
 - [x]  [java-lotto-7](https://github.com/woowacourse-precourse/java-lotto-7) 저장소를 Fork & Clone
 - [x]  `README.md`에 구현할 기능 목록을 정리해 추가
-- [ ]  Git의 커밋 단위는 앞 단계에서 `README.md`에 정리한 기능 목록 단위로 추가한다.
+- [x]  Git의 커밋 단위는 앞 단계에서 `README.md`에 정리한 기능 목록 단위로 추가한다.
     - [AngularJS Git Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)을 참고해 커밋 메시지를 작성한다.
 - [ ]  완료 후 Pull Request
 - [ ]  우아한테크코스 지원 플랫폼에 소감 작성 후 제출
@@ -228,26 +228,26 @@
 
 # **✅ 프로그래밍 요구 사항**
 
-- [ ]  JDK 21 버전에서 실행 가능해야 한다.
-- [ ]  애플리케이션 실행의 시작점은`Application`의`main()`이다.
-- [ ]  `build.gradle`파일은 변경할 수 없으며, 제공된 라이브러리 이외의 외부 라이브러리는 사용하지 않는다.
-- [ ]  애플리케이션 종료 시`System.exit()`를 호출하지 않는다.
-- [ ]  프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 등의 이름을 바꾸거나 이동하지 않는다.
-- [ ]  [Java Style Guide](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/java)를 원칙으로 프로그래밍한다.
-- [ ]  indent(인덴트, 들여쓰기) depth를 `3`이 넘지 않도록 구현한다. `2`까지만 허용한다.
-- [ ]  3항 연산자를 쓰지 않는다.
-- [ ]  함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
-- [ ]  JUnit 5와 AssertJ를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
+- [x]  JDK 21 버전에서 실행 가능해야 한다.
+- [x]  애플리케이션 실행의 시작점은`Application`의`main()`이다.
+- [x]  `build.gradle`파일은 변경할 수 없으며, 제공된 라이브러리 이외의 외부 라이브러리는 사용하지 않는다.
+- [x]  애플리케이션 종료 시`System.exit()`를 호출하지 않는다.
+- [x]  프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 등의 이름을 바꾸거나 이동하지 않는다.
+- [x]  [Java Style Guide](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/java)를 원칙으로 프로그래밍한다.
+- [x]  indent(인덴트, 들여쓰기) depth를 `3`이 넘지 않도록 구현한다. `2`까지만 허용한다.
+- [x]  3항 연산자를 쓰지 않는다.
+- [x]  함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
+- [x]  JUnit 5와 AssertJ를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
     - 테스트 도구 사용법이 익숙하지 않다면 아래 문서를 참고하여 학습한 후 테스트를 구현한다.
         - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide)
         - [AssertJ User Guide](https://assertj.github.io/doc)
         - [AssertJ Exception Assertions](https://www.baeldung.com/assertj-exception-assertion)
         - [Guide to JUnit 5 Parameterized Tests](https://www.baeldung.com/parameterized-tests-junit-5)
-- [ ]  함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+- [x]  함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
     - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
-- [ ]  else 예약어를 쓰지 않는다.
-- [ ]  Java Enum을 적용하여 프로그램을 구현한다.
-- [ ]  구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- [x]  else 예약어를 쓰지 않는다.
+- [x]  Java Enum을 적용하여 프로그램을 구현한다.
+- [x]  구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
     - 단위 테스트 작성이 익숙하지 않다면 `LottoTest`를 참고하여 학습한 후 테스트를 작성한다.
 
 ## **라이브러리 요구 사항**
@@ -286,19 +286,19 @@ public class Lotto {
 
 - [x]  README를 상세하게 작성한다
 - [x]  기능 목록을 구현해야 할 기능 목록 뿐만 아니라 예외 상황도 함께 정리한다
-- [ ]  기능 목록을 업데이트한다
-- [ ]  코드 내에서 문자열이나 숫자 값을 하드 코딩하지 않는다
-- [ ]  클래스는 상수, 멤버 변수, 생성자, 메서드 순으로 작성한다
-- [ ]  변수 이름에 자료형은 사용하지 않는다
-- [ ]  한 메서드가 한 가지 기능만 담당하게 한다.
-- [ ]  메서드가 한 가지 기능을 하는지 확인하는 기준을 세운다.
-- [ ]  테스트를 작성하는 이유에 대해 본인의 경험을 토대로 정리해본다.
-- [ ]  처음부터 큰 단위의 테스트를 만들지 않는다.
+- [x]  기능 목록을 업데이트한다
+- [x]  코드 내에서 문자열이나 숫자 값을 하드 코딩하지 않는다
+- [x]  클래스는 상수, 멤버 변수, 생성자, 메서드 순으로 작성한다
+- [x]  변수 이름에 자료형은 사용하지 않는다
+- [x]  한 메서드가 한 가지 기능만 담당하게 한다.
+- [x]  메서드가 한 가지 기능을 하는지 확인하는 기준을 세운다.
+- [x]  테스트를 작성하는 이유에 대해 본인의 경험을 토대로 정리해본다.
+- [x]  처음부터 큰 단위의 테스트를 만들지 않는다.
 
 # **⛳️ 3주차 목표**
 
-- [ ]  MVC 패턴 적용
-- [ ]  TDD 개발 방법론 준수
-- [ ]  자바의 Streams API 연습 및 활용
-- [ ]  람다 표현식을 효과적으로 코드에 적용
-- [ ]  SOLID 원칙 준수
+- [x]  MVC 패턴 적용
+- [x]  TDD 개발 방법론 준수
+- [x]  자바의 Streams API 연습 및 활용
+- [x]  람다 표현식을 효과적으로 코드에 적용
+- [x]  SOLID 원칙 준수
