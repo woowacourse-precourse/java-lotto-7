@@ -16,9 +16,9 @@ import lotto.domain.Rank;
 import lotto.domain.RankCount;
 
 public class LottoService {
-    private static final int MIN_rank_COUNT = 3;
-    private static final String rank_NAME_PREFIX = "MATCHES_";
-    private static final String rank_BONUS_MATCH_NAME_SUFFIX = "_BONUS_MATCH";
+    private static final int MIN_RANK_COUNT = 3;
+    private static final String RANK_NAME_PREFIX = "MATCHES_";
+    private static final String RANK_BONUS_MATCH_NAME_SUFFIX = "_BONUS_MATCH";
 
     public Lottos issueLottos(Amount amount) {
         return new Lottos(IntStream.range(0, getIssuedCount(amount))
@@ -62,7 +62,7 @@ public class LottoService {
     }
 
     private void calculateRankCount(RankCount rankCount, int matchCount, boolean isBonusMatch) {
-        if (matchCount < MIN_rank_COUNT) {
+        if (matchCount < MIN_RANK_COUNT) {
             return;
         }
         String rankName = getRankName(matchCount, isBonusMatch);
@@ -70,9 +70,9 @@ public class LottoService {
     }
 
     private String getRankName(int matchCount, boolean isBonusMatch) {
-        String rankName = rank_NAME_PREFIX + matchCount;
+        String rankName = RANK_NAME_PREFIX + matchCount;
         if (matchCount == 5 && isBonusMatch) {
-            rankName += rank_BONUS_MATCH_NAME_SUFFIX;
+            rankName += RANK_BONUS_MATCH_NAME_SUFFIX;
         }
         return rankName;
     }
