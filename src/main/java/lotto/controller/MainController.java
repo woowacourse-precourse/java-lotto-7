@@ -16,11 +16,11 @@ import static lotto.view.InputView.readWinningNumbers;
 import static lotto.view.OutputView.printLottoBundleResultHeader;
 import static lotto.view.OutputView.printLottoRankResult;
 import static lotto.view.OutputView.printTotalProfit;
+import static lotto.utils.Parser.parseStringToIntegerList;
+import static lotto.utils.Parser.parseStringToInteger;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 
 public class MainController {
@@ -39,8 +39,9 @@ public class MainController {
     public static Wallet makeWallet() {
         while (true) {
             try {
-                String purchaseMoney = readPurchaseMoney();
-                return new Wallet(purchaseMoney);
+                String purchaseMoneyInput = readPurchaseMoney();
+                Integer parsedPurchaseMoney = parseStringToInteger(purchaseMoneyInput);
+                return new Wallet(parsedPurchaseMoney);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -56,10 +57,8 @@ public class MainController {
         while (true) {
             try {
                 String winningNumbersInput = readWinningNumbers();
-                // TODO. Refactor to parser
-                List<Integer> winningNumbers = Arrays.stream(winningNumbersInput.split(",")).mapToInt(Integer::valueOf).boxed().collect(Collectors.toList());  
-                // 여기서 exception이 발생하면 어떤 exception이지?
-                return new WinningNumbers(winningNumbers);
+                List<Integer> parsedWinningNumbers = parseStringToIntegerList(winningNumbersInput);
+                return new WinningNumbers(parsedWinningNumbers);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -70,9 +69,9 @@ public class MainController {
         while (true) {
             try {
                 String bonusNumberInput = readBonusNumber();
-                Integer bonusNumberArgument = Integer.parseInt(bonusNumberInput);
+                Integer parsedBonusNumber = parseStringToInteger(bonusNumberInput);
 
-                BonusNumber bonusNumber = new BonusNumber(winningNumbers.getWinningNumbers(), bonusNumberArgument);
+                BonusNumber bonusNumber = new BonusNumber(winningNumbers.getWinningNumbers(), parsedBonusNumber);
 
                 return bonusNumber;
             } catch (Exception e) {
@@ -110,7 +109,7 @@ public class MainController {
     public static void calculateProfit(LottoRanks lottoRanks, Wallet wallet) {
         Double totalReward = Double.valueOf(lottoRanks.getLottoRanks().stream().mapToInt(LottoRank::getReward).sum());
         System.out.println(totalReward + " " + wallet.getMoney());
-        Double profit = totalReward / wallet.getMoney();
+        Double profit = (totalReward / wallet.getMoney()) * 100;
         printTotalProfit(profit);
     }
 }

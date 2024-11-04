@@ -7,22 +7,16 @@ public class Wallet {
 
     private final Integer money;
 
-    public Wallet(String purchaseMoney) {
+    public Wallet(Integer purchaseMoney) {
         validate(purchaseMoney);
-        this.money = Integer.parseInt(purchaseMoney);
+        this.money = purchaseMoney;
     }
 
-    private void validate(String purchaseMoney) {
-        int money;
-        try {
-            money = Integer.parseInt(purchaseMoney);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_INTEGER_EXCEPTION_MESSAGE);
-        }
-        if (money % 1000 != 0) {
+    private void validate(Integer purchaseMoney) {
+        if (purchaseMoney % 1000 != 0) {
             throw new IllegalArgumentException(CHANGE_EXSIT_EXCEPTION_MESSAGE);
         }
-        if (money < 1000 || money > 1_000_000) {
+        if (purchaseMoney < 1000 || purchaseMoney > 1_000_000) {
             throw new IllegalArgumentException(OUT_OF_RANGE_EXCEPTION_MESSAGE);
         }
     }
