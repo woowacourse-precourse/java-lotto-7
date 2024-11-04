@@ -40,4 +40,8 @@ public enum WinningResult {
         String bonusPart = hasBonus ? ", 보너스 볼 일치" : "";
         return String.format("%d개 일치%s (%,d원) - %d개", matchedNumberCount, bonusPart, prize, count);
     }
+
+    public int getPrize() {
+        return prize;
+    }
 }

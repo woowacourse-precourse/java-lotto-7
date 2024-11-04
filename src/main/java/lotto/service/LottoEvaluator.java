@@ -24,4 +24,22 @@ public class LottoEvaluator {
 
         return winningResults;
     }
+
+    public double evaluateProfitRate(Map<WinningResult, Integer> winningResults, int lottoPurchaseAmount) {
+        int profit = evaluateProfit(winningResults);
+        double profitRate = ((double) profit / lottoPurchaseAmount) * 100;
+
+        return Math.round(profitRate * 100.0) / 100.0;
+    }
+
+    private int evaluateProfit(Map<WinningResult, Integer> winningResults) {
+        int profit = 0;
+
+        for (Map.Entry<WinningResult, Integer> entry : winningResults.entrySet()) {
+            int prize = entry.getKey().getPrize();
+            profit += (prize * entry.getValue());
+        }
+
+        return profit;
+    }
 }
