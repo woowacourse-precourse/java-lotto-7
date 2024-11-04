@@ -1,7 +1,16 @@
-package lotto;
+package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import lotto.model.InputParser;
+import lotto.validation.InputValidate;
+import lotto.model.Lotto;
+import lotto.model.LottoGenerator;
+import lotto.model.LottoResultChecker;
+import lotto.model.LottoStatistics;
+import lotto.model.WinningRank;
+import lotto.view.InputHandler;
+import lotto.view.OutputHandler;
 
 public class LottoController {
     private final InputHandler inputHandler;

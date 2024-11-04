@@ -1,8 +1,9 @@
-package lotto;
+package lotto.model;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.validation.InputValidate;
 
 public class InputParser {
     private static final String DELIMITER = ",";

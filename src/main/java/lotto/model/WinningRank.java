@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public enum WinningRank {
     FIFTH(3, 5_000, false),

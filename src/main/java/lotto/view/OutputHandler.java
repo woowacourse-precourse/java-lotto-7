@@ -1,9 +1,10 @@
-package lotto;
+package lotto.view;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import lotto.model.WinningRank;
 
 public class OutputHandler {
     private static final String PURCHASE_COUNT_MESSAGE = "\n%d개를 구매했습니다.";
