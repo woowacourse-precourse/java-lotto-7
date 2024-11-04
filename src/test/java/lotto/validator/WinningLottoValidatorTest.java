@@ -3,10 +3,12 @@ package lotto.validator;
 import static lotto.message.ExceptionMessage.INVALID_BLANK_INPUT;
 import static lotto.message.ExceptionMessage.INVALID_DUPLICATION_INPUT;
 import static lotto.message.ExceptionMessage.INVALID_RANGE_INPUT;
+import static lotto.message.ExceptionMessage.INVALID_SIZE_INPUT;
 import static lotto.message.ExceptionMessage.INVALID_TYPE_INPUT;
 import static lotto.validator.WinningLottoValidator.INPUT;
 import static lotto.validator.WinningLottoValidator.MAX_VALUE;
 import static lotto.validator.WinningLottoValidator.MIN_VALUE;
+import static lotto.validator.WinningLottoValidator.SIZE;
 import static lotto.validator.WinningLottoValidator.TYPE;
 import static lotto.validator.WinningLottoValidator.validateWinningNumbers;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -47,6 +49,17 @@ class WinningLottoValidatorTest {
                 .hasMessageStartingWith(ExceptionMessage.getPrefix())
                 .hasMessage(
                         String.format(INVALID_RANGE_INPUT.getMessage(), INPUT, MIN_VALUE, MAX_VALUE)
+                );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5", "1", "1,2,3,4,5,6,7"})
+    void 당첨_번호_목록의_사이즈가_6이_아니면_예외가_발생한다(String input) {
+        assertThatThrownBy(() -> validateWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith(ExceptionMessage.getPrefix())
+                .hasMessage(
+                        String.format(INVALID_SIZE_INPUT.getMessage(), INPUT, SIZE, TYPE)
                 );
     }
 
