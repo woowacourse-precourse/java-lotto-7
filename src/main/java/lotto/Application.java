@@ -7,18 +7,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class Application {
-    private static final String RESULT =
-            """
-			\n당첨 통계
-			---
-			3개 일치 (5,000원) - %s개
-			4개 일치 (50,000원) - %s개
-			5개 일치 (1,500,000원) - %s개
-			5개 일치, 보너스 볼 일치 (30,000,000원) - %s개
-			6개 일치 (2,000,000,000원) - %s개
-			총 수익률은 %.1f%%입니다.
-			""";
-
     private static final String DELIMITER = ",";
 
     public static void main(String[] args) {
@@ -34,7 +22,7 @@ public class Application {
 
         LottoMachine machine = new LottoMachine();
         Result result = machine.informWinningResults(lottos, winningNumbers, bonusNumber, money);
-        printResult(result);
+        System.out.println(result.formatted());
     }
 
     private static int inputMoney() {
@@ -88,17 +76,6 @@ public class Application {
         InputValidator.validateNumberInLottoRange(rawNumber);
 
         return Integer.parseInt(rawNumber);
-    }
-
-    private static void printResult(Result result) {
-        System.out.println(RESULT.formatted(
-                result.fifth(),
-                result.fifth(),
-                result.third(),
-                result.second(),
-                result.first(),
-                result.prizeRate()
-        ));
     }
 
     private static <T> T repeatUntilNoException(Supplier<T> inputFunction) {
