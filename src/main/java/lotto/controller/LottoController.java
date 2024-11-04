@@ -52,8 +52,6 @@ public class LottoController {
                 outputView.printExceptionMessage(e.getMessage());
             }
         }
-
-
     }
 
     private Lotto setLotto() {
