@@ -39,6 +39,27 @@ public class Output {
         System.out.println("---");
     }
 
+    public static void printLottoRankResult(Map<LottoWinningRanks, Integer> rankCounts) {
+        createRankMessages().forEach((rank, message) -> {
+            int count = rankCounts.getOrDefault(rank, 0);
+            System.out.printf("%s - %d개%n", message, count);
+        });
+    }
+
+    public static void printRateOfReturn(double rateOfReturn) {
+        System.out.printf("총 수익률은 %,.1f%%입니다.%n", rateOfReturn);
+    }
+
+    private static Map<LottoWinningRanks, String> createRankMessages() {
+        Map<LottoWinningRanks, String> messages = new LinkedHashMap<>();
+        messages.put(LottoWinningRanks.FIFTH, "3개 일치 (5,000원)");
+        messages.put(LottoWinningRanks.FOURTH, "4개 일치 (50,000원)");
+        messages.put(LottoWinningRanks.THIRD, "5개 일치 (1,500,000원)");
+        messages.put(LottoWinningRanks.SECOND, "5개 일치, 보너스 볼 일치 (30,000,000원)");
+        messages.put(LottoWinningRanks.FIRST, "6개 일치 (2,000,000,000원)");
+        return messages;
+    }
+
     private static void printBlankLine() {
         System.out.println();
     }
