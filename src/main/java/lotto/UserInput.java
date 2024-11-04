@@ -7,7 +7,7 @@ public class UserInput {
 
     LottoService lottoService = new LottoService();
 
-    public int numberOfTickets() {
+    public int purchaseToNumberOfTickets() {
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
             String purchase = Console.readLine();

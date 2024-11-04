@@ -12,7 +12,7 @@ public class Application {
         LottoService lottoService = new LottoService();
         UserInput userInput = new UserInput();
 
-        int numberOfTickets = userInput.numberOfTickets();
+        int numberOfTickets = userInput.purchaseToNumberOfTickets();
         System.out.println();
 
         System.out.println(numberOfTickets + "개를 구매했습니다.");
