@@ -5,7 +5,6 @@ import static lotto.model.Winning.toStringWithoutNone;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.LottoValue;

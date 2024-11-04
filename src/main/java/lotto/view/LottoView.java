@@ -1,9 +1,5 @@
 package lotto.view;
 
-import static lotto.model.Lotto.MAX_RANGE;
-import static lotto.model.Lotto.MAX_SIZE;
-import static lotto.model.Lotto.MIN_RANGE;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.Arrays;
