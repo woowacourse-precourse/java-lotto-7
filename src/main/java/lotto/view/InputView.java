@@ -14,8 +14,14 @@ public class InputView {
     public Long inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String inputMoney = readLine();
-        Long money = inputValidator.parseMoney(inputMoney);
-        inputValidator.validMoney(money);
+        Long money;
+        try {
+            money = inputValidator.parseMoney(inputMoney);
+            inputValidator.validMoney(money);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputMoney();
+        }
         return money;
     }
 
@@ -23,8 +29,14 @@ public class InputView {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = readLine();
-        List<Integer> winningNumber = inputValidator.parseNumbers(input);
-        inputValidator.validWinningNumber(winningNumber);
+        List<Integer> winningNumber;
+        try {
+            winningNumber = inputValidator.parseNumbers(input);
+            inputValidator.validWinningNumber(winningNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumbers();
+        }
         return winningNumber;
     }
 
@@ -32,8 +44,14 @@ public class InputView {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = readLine();
-        Integer bonusNumber = inputValidator.parseBonusNumber(input);
-        inputValidator.validBonusNumber(bonusNumber);
+        Integer bonusNumber;
+        try {
+            bonusNumber = inputValidator.parseBonusNumber(input);
+            inputValidator.validBonusNumber(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
+        }
         return bonusNumber;
     }
 }
