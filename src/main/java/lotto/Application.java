@@ -14,6 +14,5 @@ public class Application {
         Controller controller = new Controller(inputView, outputView, lottoGenerator);
 
         controller.run();
-
     }
 }
