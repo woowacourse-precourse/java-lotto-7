@@ -21,19 +21,24 @@
 
 - [x] Prize enum 클래스 구현
   - [x] First ~ Fifth, MISS
+  - [x] amount, matchCount, needBonusMatch를 가지고 있도록
+  - [x] 상 관련 비즈니스 로직을 담당하도록
 
-- [ ] LottoMachine 클래스 구현
+- [x] WinnigResult 클래스 구현
+  - [x] 당첨 prize들을 저장하고 수익률 계산을 담당하도록
+
+- [x] LottoMachine 클래스 구현
   - [x] 멤버변수: List<Lotto> lottos, List<Prize> prizes
-  - [ ] run 메서드. 사용자 입력 받고 결과 출력
-  - [x] 랜덤한 로또 번호를 뽑는 메서드
-  - [ ] 뽑은 번호를 가지고 prizes를 업데이트 하는 메서드
+  - [x] run 메서드. 사용자 입력 받고 결과 출력
+  - [x] 로또를 구매하는 메서드
 
 - [x] InputView 클래스 구현
-  - [x] readPurchaseAmount() 구현
-  - [x] readWinningNumbers() 구현
+  - [x] readPurchaseAmount
+  - [x] readWinningNumbers
+  - [x] parseNumbers, parseNumber: 숫자 형식 입력 아닐 시 예외 처리
   - [x] retry() 구현
 
-- [ ] OutputView 클래스 구현
-  - [ ] printPurchaseQuantity(Money money)
-  - [ ] printLottoNumbers(Lotto lotto): LottoMachine에서 랜덤 번호를 뽑을 때마다 실행
-  - [ ] printWinningResult(WinningResult winningResult): 당첨 내역, 수익률 출력
+- [x] OutputView 클래스 구현
+  - [x] printPurchaseQuantity: 구매 개수 출력
+  - [x] printLottos: 구매한 로또 번호를 출력
+  - [x] printWinningResult: 당첨 내역, 수익률 출력
