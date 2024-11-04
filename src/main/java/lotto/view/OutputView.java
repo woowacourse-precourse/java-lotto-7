@@ -5,7 +5,6 @@ import lotto.model.LottoResult;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Map;
 
 public class OutputView {
@@ -16,10 +15,10 @@ public class OutputView {
         return instance;
     }
     public void printPurchaseCount(int count){
-        System.out.println(count+PRINT_PURCHASE_NUMBER_MESSAGE);
+        System.out.println("\n"+count+PRINT_PURCHASE_NUMBER_MESSAGE);
     }
     public void printLottoReslt(LottoResult lottoResult){
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         for (LottoRank rank : Arrays.stream(LottoRank.values()).sorted(Comparator.reverseOrder()).toList()) {
             if (rank != null) {

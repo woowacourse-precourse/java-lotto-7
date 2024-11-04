@@ -1,11 +1,9 @@
 package lotto;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.LottoRank;
 
 public class Lotto {
