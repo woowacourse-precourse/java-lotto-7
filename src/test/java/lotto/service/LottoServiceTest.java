@@ -4,8 +4,8 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.dto.LottoStatistics;
-import lotto.dto.LottoStatistics.RankDTO;
+import lotto.dto.LottoStatisticsDTO;
+import lotto.dto.LottoStatisticsDTO.RankDTO;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
@@ -17,7 +17,7 @@ public class LottoServiceTest {
 
     private final LottoService lottoService = new LottoService();
 
-    private LottoStatistics lottoStatistics;
+    private LottoStatisticsDTO lottoStatistics;
 
     @Test
     void 구매한_로또들의_결과를_확인한다() {

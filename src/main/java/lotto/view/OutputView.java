@@ -11,7 +11,7 @@ import static lotto.view.Message.INPUT_PRICE_MESSAGE;
 import static lotto.view.Message.getResultInfo;
 
 import java.util.stream.Collectors;
-import lotto.dto.LottoStatistics;
+import lotto.dto.LottoStatisticsDTO;
 import lotto.dto.LottosDTO;
 
 public class OutputView {
@@ -49,7 +49,7 @@ public class OutputView {
         INPUT_LOTTO_BONUS_NUMBER_MESSAGE.print();
     }
 
-    public void printStatistics(LottoStatistics lottoStatistics) {
+    public void printStatistics(LottoStatisticsDTO lottoStatistics) {
         PrintStringBuilder stringBuilder = new PrintStringBuilder();
         appendStatisticsHeader(stringBuilder);
         appendStatisticsContent(stringBuilder, lottoStatistics);
@@ -62,7 +62,7 @@ public class OutputView {
         stringBuilder.appendLine(DISPLAY_RESULT_TITLE_DIVIDER.format());
     }
 
-    private void appendStatisticsContent(PrintStringBuilder stringBuilder, LottoStatistics lottoStatistics) {
+    private void appendStatisticsContent(PrintStringBuilder stringBuilder, LottoStatisticsDTO lottoStatistics) {
         lottoStatistics.statistics().forEach(((rankDTO, count) -> stringBuilder.appendLine(getResultInfo(
                 rankDTO.rank(),
                 rankDTO.matchCount(),

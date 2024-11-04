@@ -5,7 +5,7 @@ import static lotto.util.Parser.parseLottoNumberInteger;
 import static lotto.util.Parser.parsePriceInteger;
 
 import java.util.function.Supplier;
-import lotto.dto.LottoStatistics;
+import lotto.dto.LottoStatisticsDTO;
 import lotto.dto.LottosDTO;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
@@ -25,7 +25,7 @@ public class LottoController {
         Lottos lottos = lottoService.buyLottos(inputPrice());
         printBoughtLottoInfo(lottos);
         WinningLotto winningLotto = inputWinningLotto();
-        LottoStatistics lottoStatistics = lottoService.getStatistics(winningLotto, lottos);
+        LottoStatisticsDTO lottoStatistics = lottoService.getStatistics(winningLotto, lottos);
         outputView.printStatistics(lottoStatistics);
     }
 

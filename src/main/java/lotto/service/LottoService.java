@@ -1,7 +1,7 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.dto.LottoStatistics;
+import lotto.dto.LottoStatisticsDTO;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoRankEvaluator;
@@ -18,12 +18,12 @@ public class LottoService {
         return lottoShop.buy(price);
     }
 
-    public LottoStatistics getStatistics(WinningLotto winningLotto, Lottos lottos) {
+    public LottoStatisticsDTO getStatistics(WinningLotto winningLotto, Lottos lottos) {
         LottoRankEvaluator lottoRankEvaluator = new LottoRankEvaluator(winningLotto);
         LottoResult lottoResult = new LottoResult();
         lottos.getLottos()
                 .forEach(lotto -> lottoResult.putResult(lottoRankEvaluator.evaluateRank(lotto)));
-        return LottoStatistics.from(lottoResult, lottos.getAmount());
+        return LottoStatisticsDTO.from(lottoResult, lottos.getAmount());
     }
 
     public WinningLotto generateWinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {

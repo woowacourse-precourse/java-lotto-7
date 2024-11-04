@@ -5,18 +5,18 @@ import java.util.TreeMap;
 import lotto.model.LottoResult;
 import lotto.model.Rank;
 
-public record LottoStatistics(
+public record LottoStatisticsDTO(
         Map<RankDTO, Integer> statistics,
         double profit
 ) {
-    public static LottoStatistics from(LottoResult lottoResult, int amount) {
+    public static LottoStatisticsDTO from(LottoResult lottoResult, int amount) {
         Map<RankDTO, Integer> statistics = new TreeMap<>();
         lottoResult.getResult().forEach((rank, value) -> putRank(
                 statistics,
                 rank,
                 value
         ));
-        return new LottoStatistics(
+        return new LottoStatisticsDTO(
                 statistics,
                 lottoResult.computeProfit(amount)
         );
