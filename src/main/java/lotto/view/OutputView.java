@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.enums.ViewMessage.OUTPUT_LOTTO_COUNT;
 import static lotto.enums.ViewMessage.OUTPUT_RESULT;
+import static lotto.enums.ViewMessage.OUTPUT_YIELD;
 
 import java.text.NumberFormat;
 import java.util.Arrays;
@@ -37,11 +38,12 @@ public class OutputView {
         System.out.println(numbers);
     }
 
-    public void printResults(Map<Prize, Integer> prizeCount) {
+    public void printResults(Map<Prize, Integer> prizeCount, double yield) {
         printResultMessage();
         Arrays.stream(Prize.values())
                 .sorted(Comparator.reverseOrder())
                 .forEach(prize -> printPrizeResult(prize, prizeCount));
+        printYield(yield);
     }
 
     private void printResultMessage() {
@@ -61,4 +63,9 @@ public class OutputView {
         NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
         return numberFormat.format(amount);
     }
+
+    private void printYield(double yield) {
+        System.out.printf(OUTPUT_YIELD.getMessage() + "%.1f%%\n", yield);
+    }
+
 }

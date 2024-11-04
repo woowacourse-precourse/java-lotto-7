@@ -23,6 +23,14 @@ public class LottoResultChecker {
         return prizeCount;
     }
 
+    public double getYield(Map<Prize, Integer> prizeCount, Lottos lottos) {
+        int purchaseAmount = lottos.getCount() * 1000;
+        long totalPrize = prizeCount.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getPrizeAmount() * entry.getValue())
+                .sum();
+        return (double) totalPrize / purchaseAmount * 100;
+    }
+
     private void addPrizeIfEligible(int matchCount, boolean hasBonus, Map<Prize, Integer> prizeCount) {
         if (matchCount >= 3) {
             Prize prize = Prize.findPrize(matchCount, hasBonus);
