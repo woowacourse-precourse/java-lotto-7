@@ -2,6 +2,8 @@ package lotto.controller;
 
 import global.utils.Validator;
 import java.math.BigInteger;
+import java.util.Map;
+import lotto.constant.LottoRanking;
 import lotto.service.LottoService;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
@@ -26,8 +28,9 @@ public class LottoController {
     }
 
     public void checkLottoResult() {
-        //TODO: 보유한 로또가 당첨되었는지 결과 조회를 요청한다
-        lottoService.requestCheckLottoResult();
+        Map<LottoRanking, Integer> matchedResults = lottoService.getMatchedResults();
+        double profitRate = lottoService.calculateProfitRate(matchedResults);
+        lottoOutputView.printFinalResult(matchedResults, profitRate);
     }
 
     //FIXME: BigInteger로 변환하는 것, Controller에서 처리하는 것이 맞는가?

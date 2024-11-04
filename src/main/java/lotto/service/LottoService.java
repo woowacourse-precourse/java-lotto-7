@@ -6,10 +6,14 @@ import static lotto.constant.LottoStatic.LOTTO_START_NUMBER;
 import static lotto.constant.LottoStatic.PURCHASE_AMOUNT_UNIT;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import lotto.constant.LottoRanking;
 import lotto.model.Lotto;
 import lotto.repository.LottoRepositoryImpl;
 import store.service.StoreService;
@@ -54,7 +58,30 @@ public class LottoService {
         return numbers;
     }
 
-    public Map<String, Integer> requestCheckLottoResult() {
-        //TODO: 본인이 가진 로또 전부를 가지고 상점에게 당첨 결과 조회를 요청한다.
+    public Map<LottoRanking, Integer> getMatchedResults() {
+        List<Lotto> lottos = getAll();
+        return storeService.getMatchedResult(lottos);
+    }
+
+    public double calculateProfitRate(Map<LottoRanking, Integer> matchedResults) {
+        long purchasedAmount = getAll().size() * PURCHASE_AMOUNT_UNIT;
+        int totalProfit = calculateTotalProfit(matchedResults);
+
+        double profitRate = (purchasedAmount / totalProfit) * 100.0;
+//        BigDecimal halfUpRate = new BigDecimal(profitRate).setScale(2, RoundingMode.HALF_UP);
+//        profitRate = Math.round(profitRate * 100) / 100.0;
+
+        return profitRate;
+    }
+
+    private int calculateTotalProfit(Map<LottoRanking, Integer> matchedResults) {
+        int totalProfit = 0;
+
+        for(LottoRanking rank : LottoRanking.values()) {
+            int count = matchedResults.get(rank);
+            totalProfit += rank.getPrize() * count;
+        }
+
+        return totalProfit;
     }
 }
