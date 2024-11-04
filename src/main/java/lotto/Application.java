@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        String purchaseAmountInput = Prompt.promptPurchaseAmount();
-        LottoPurchaser lottoPurchaser = new LottoPurchaser(purchaseAmountInput);
+        LottoPurchaser lottoPurchaser = Prompt.promptPurchaseAmount();
         List<Lotto> purchasedLottos = lottoPurchaser.purchaseLotto();
         printPurchasedLottos(purchasedLottos);
         Lotto winningLotto = Prompt.promptWinningLotto();
+        BonusNumber bonusNumber = Prompt.promptBonusNumber();
     }
 
     private static void printPurchasedLottos(List<Lotto> purchasedLottos) {
