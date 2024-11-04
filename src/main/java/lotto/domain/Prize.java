@@ -4,12 +4,12 @@ import java.util.Arrays;
 
 public enum Prize {
 
-    SIX_MATCHES("6개 일치", 6, false, 2_000_000_000),
-    FIVE_MATCHES_WITH_BONUS("5개 일치, 보너스 볼 일치", 5, true, 30_000_000),
-    FIVE_MATCHES("5개 일치", 5, false, 1_500_000),
-    FOUR_MATCHES("4개 일치", 4, false, 50_000),
+    NO_MATCH("꽝", 0, false, 0),
     THREE_MATCHES("3개 일치", 3, false, 5_000),
-    NO_MATCH("꽝", 0, false, 0);
+    FOUR_MATCHES("4개 일치", 4, false, 50_000),
+    FIVE_MATCHES("5개 일치", 5, false, 1_500_000),
+    FIVE_MATCHES_WITH_BONUS("5개 일치, 보너스 볼 일치", 5, true, 30_000_000),
+    SIX_MATCHES("6개 일치", 6, false, 2_000_000_000);
 
     private final String matchDescription;
     private final int requiredMatchCount;
@@ -26,9 +26,10 @@ public enum Prize {
     public static Prize valueOf(int matchCount, boolean bonusMatch) {
         return Arrays.stream(Prize.values())
                 .filter(rank -> rank.isMatch(matchCount, bonusMatch))
-                .findFirst()
+                .min((p1, p2) -> Boolean.compare(p2.requiresBonusMatch, p1.requiresBonusMatch))
                 .orElse(NO_MATCH);
     }
+
 
     public boolean isMatch(int matchCount, boolean bonusMatch) {
         if (this.requiredMatchCount != matchCount) {
