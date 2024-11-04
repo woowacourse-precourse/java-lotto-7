@@ -11,7 +11,7 @@ public class PickRandomLotto {
     private int numberOfLottos;
     private List<List<Integer>> generatedLottos;
 
-    public PickRandomLotto(int lottoAmount) {
+    public PickRandomLotto(int numberOfLottos) {
         this.numberOfLottos = numberOfLottos;
         this.generatedLottos = new ArrayList<>();
         generatedLottos();

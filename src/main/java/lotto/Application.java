@@ -4,33 +4,44 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        InputMoneyToBuy inputMoneyToBuy = new InputMoneyToBuy();
+        int moneyAmount = inputMoneyToBuy.inputMoneyToBuy();
+
+        CalculateLottoAmount calculateLottoAmount = new CalculateLottoAmount(moneyAmount);
+        int numberOfLottos = calculateLottoAmount.getLottoAmount();
+
+        PickRandomLotto pickRandomLotto = new PickRandomLotto(numberOfLottos);
+        List<List<Integer>> lottoNumbers = pickRandomLotto.getGeneratedLottos();
+
+        OutputLottoNumber outputLottoNumber = new OutputLottoNumber();
+        outputLottoNumber.printLottoNumbers(lottoNumbers);
+
         InputLottoNumber inputLottoNumber = new InputLottoNumber();
         List<Integer> winningNumbers = inputLottoNumber.inputLottoNumber();
 
         InputBonusNumber inputBonusNumber = new InputBonusNumber(winningNumbers);
         int bonusNumber = inputBonusNumber.getBonusNumber();
 
-        PickRandomLotto pickRandomLotto = new PickRandomLotto(lottoAmount);
-        List<List<Integer>> userLottos = pickRandomLotto.getLottos();
 
-        // 3. 구매한 로또 번호 출력
-        OutputLottoNumber outputLottoNumber = new OutputLottoNumber();
-        outputLottoNumber.printLottoNumbers(userLottos);
-
-        // 4. 당첨 번호와 비교하여 당첨 내역 계산
         CompareLottoWinning compareLottoWinning = new CompareLottoWinning(winningNumbers, bonusNumber);
-        compareLottoWinning.calculateResults(userLottos);
+        compareLottoWinning.calculateResults(lottoNumbers);
 
-        // 5. 당첨 내역 출력
         OutputWinningAmount outputWinningAmount = new OutputWinningAmount();
         outputWinningAmount.printWinningStatistics(compareLottoWinning.getMatchCounts());
 
-        // 6. 수익률 계산 및 출력
         int totalEarnings = calculateTotalEarnings(compareLottoWinning.getMatchCounts());
         CalculateEarningRate calculateEarningRate = new CalculateEarningRate();
-        double earningRate = calculateEarningRate.calculate(totalEarnings, purchaseAmount);
-
+        double earningRate = calculateEarningRate.calculate(totalEarnings, moneyAmount);
+        calculateEarningRate.printEarningRate(earningRate);
     }
+    private static int calculateTotalEarnings(int[] matchCounts) {
+        int totalEarnings = 0;
+        totalEarnings += matchCounts[3] * 5000;           // 3개 일치
+        totalEarnings += matchCounts[4] * 50000;          // 4개 일치
+        totalEarnings += matchCounts[5] * 1500000;        // 5개 일치
+        totalEarnings += matchCounts[2] * 30000000;       // 5개 + 보너스 일치
+        totalEarnings += matchCounts[1] * 2000000000;     // 6개 일치
+        return totalEarnings;
+    }
+}
 
-}
-}

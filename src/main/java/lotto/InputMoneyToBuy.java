@@ -18,7 +18,4 @@ public class InputMoneyToBuy {
         }
         return moneyAmount;
     }
-    public int getMoneyAmount() {
-            return moneyAmount;
-    }
 }
