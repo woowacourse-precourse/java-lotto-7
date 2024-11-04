@@ -18,7 +18,7 @@ public class PurchaseAmountTest {
                 .hasMessage("[ERROR] 구입금액을 숫자로 입력해주세요.");
     }
 
-    @DisplayName("구입금액 입력 실패 : 문자 입력")
+    @DisplayName("구입금액 입력 실패 : 1000원으로 나눠지지 않는 수 입력")
     @Test
     void validateDivisibleByThousandTest() {
         String rawPurchaseAmount = "3030";
@@ -28,7 +28,7 @@ public class PurchaseAmountTest {
                 .hasMessage("[ERROR] 구입금액을 1000원 단위로 입력해주세요.");
     }
 
-    @DisplayName("")
+    @DisplayName("구입금액에 따른 로또 개수를 반환한다.")
     @Test
     void calculateLottoCountTest() {
         PurchaseAmount purchaseAmount = new PurchaseAmount("3000");

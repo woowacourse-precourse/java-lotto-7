@@ -31,10 +31,12 @@ public class WinningCombination {
         return rankCounts;
     }
 
-    public double calculateProfitRate(Map<Rank, Integer> rankCounts, int totalSpent) {
+    public double calculateProfitRate(Map<Rank, Integer> rankCounts, PurchaseAmount purchaseAmount) {
         int totalPrize = rankCounts.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getWinningMoney() * entry.getValue())
                 .sum();
+
+        int totalSpent = purchaseAmount.calculateLottoCount() * 1000;
 
         return ((double) totalPrize / totalSpent) * 100;
     }
