@@ -10,4 +10,10 @@ public class WinningLotto {
         this.winningLotto = new Lotto(winningNumbers);
         this.bonusNumber = bonusNumber;
     }
+
+    public Rank calculateRank(Lotto purchaserLotto) {
+        int matchCount = winningLotto.countMatchingNumbers(purchaserLotto.getNumbers());
+        boolean hasBonus = purchaserLotto.hasBonusNumber(bonusNumber);
+        return Rank.getRank(matchCount, hasBonus);
+    }
 }
