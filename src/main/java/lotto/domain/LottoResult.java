@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class LottoResult {
     private final Map<LottoRank,Integer> rankCountMap = new EnumMap<>(LottoRank.class);
-    
+
     public LottoResult() {
         for(LottoRank rank : LottoRank.values()) {
             rankCountMap.put(rank,0);
@@ -27,6 +27,9 @@ public class LottoResult {
         for(LottoRank rank : rankCountMap.keySet()) {
             int count = rankCountMap.getOrDefault(rank,0);
             Prize += (long) rank.getPrize() * count;
+            if(Prize < 0) {
+                throw new ArithmeticException("오버플로우 발생");
+            }
         }
         return Prize;
     }
