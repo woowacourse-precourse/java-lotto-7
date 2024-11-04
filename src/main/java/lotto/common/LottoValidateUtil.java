@@ -3,6 +3,9 @@ package lotto.common;
 public class LottoValidateUtil {
     private static final int LOTTO_PRICE = 1000;
     private static final int LOTTO_PURCHASE_LIMIT = 100000;
+    private static final int LOTTO_NUMBERS_COUNT = 6;
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
 
     private LottoValidateUtil() {
     }
