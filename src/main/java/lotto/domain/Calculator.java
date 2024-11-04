@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class Calculator {
+    private static final double PERCENT_MULTIPLIER = 100.0;
     private final LottoResultChecker lottoResultChecker;
     private final Money money;
     private double profitRate;
@@ -21,7 +22,6 @@ public class Calculator {
     private void calculateProfitRate() {
 
         int paymentAmount = money.getPaymentAmount();
-        //lottoResultChecker.findRank();
         Map<Rank, Integer> rankCount = lottoResultChecker.getRankCount();
 
         double totalProfit = 0;
@@ -30,6 +30,6 @@ public class Calculator {
             Integer count = entry.getValue();
             totalProfit += (prize * count);
         }
-        profitRate = (totalProfit / paymentAmount) * 100;
+        profitRate = (totalProfit / paymentAmount) * PERCENT_MULTIPLIER;
     }
 }

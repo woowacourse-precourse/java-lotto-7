@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.utils.LottoNumberGenerator;
 
 public class LotteryMachine {
@@ -28,8 +29,7 @@ public class LotteryMachine {
 
     public void createLottoByPayment(Money money) {
         int amount = getLottoQuantity(money);
-        for (int i = 0; i < amount; i++) {
-            purchaseLotto.add(createLottoTicket());
-        }
+        IntStream.range(0,amount)
+                .forEach(i->purchaseLotto.add(createLottoTicket()));
     }
 }
