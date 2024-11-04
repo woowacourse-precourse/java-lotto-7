@@ -1,12 +1,17 @@
 package lotto.input;
 
+import lotto.validation.Validation;
+
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputHandler {
+
     public int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
+        String inputPurchaseAmount = readLine();
+        Validation.validatedPurchaseAmount(inputPurchaseAmount);
         return Integer.parseInt(readLine());
     }
     public String inputWinningNumbers() {
