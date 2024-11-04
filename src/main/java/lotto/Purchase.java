@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Purchase {
     private final int PURCHASE_AMOUNT;
-    private final List<Lotto> lottoNumbers = new ArrayList<>();
+    private List<Lotto> lottoNumbers = new ArrayList<>();
 
     public Purchase(String purchaseAmount) {
         validateNull(purchaseAmount);
@@ -26,7 +26,8 @@ public class Purchase {
         int LOTTO_NUMBER = PURCHASE_AMOUNT / 1000;
         for (int i = 0; i < LOTTO_NUMBER; i++) {
             List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(lottoNumber);
+            List<Integer> sortedNumbers = new ArrayList<>(lottoNumber);
+            Collections.sort(sortedNumbers);
             lottoNumbers.add(new Lotto(lottoNumber));
         }
     }
