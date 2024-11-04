@@ -13,25 +13,27 @@ import java.util.stream.IntStream;
 
 public class LottoGame {
     private final LottoGenerator lottoGenerator = new LottoGenerator();
-    private final List<Lotto> purchasedLottos;
+    private final Lottos purchasedLottos;
 
     public LottoGame(int purchaseAmount) {
         int numberOfLottos = purchaseAmount / Limit.LOTTO_PRICE;
         this.purchasedLottos = generateLottos(numberOfLottos);
     }
 
-    private List<Lotto> generateLottos(int count) {
-        return IntStream.range(0, count)
-                .mapToObj(i -> lottoGenerator.generate())
-                .collect(Collectors.toList());
+    private Lottos generateLottos(int count) {
+        return new Lottos(
+                IntStream.range(0, count)
+                        .mapToObj(i -> lottoGenerator.generate())
+                        .collect(Collectors.toList())
+        );
     }
 
-    public List<Lotto> getPurchasedLottos() {
+    public Lottos getPurchasedLottos() {
         return purchasedLottos;
     }
 
     public Map<LottoRank, Integer> calculateStatistics(Lotto winningLotto, int bonusNumber) {
-        Lottos lottos = new Lottos(purchasedLottos);
+        Lottos lottos = new Lottos(purchasedLottos.getLottos());
         return lottos.calculateRank(winningLotto, bonusNumber);
     }
 

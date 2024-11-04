@@ -4,6 +4,7 @@ import lotto.common.IOMessage;
 import lotto.common.LottoRank;
 import lotto.controller.LottoGame;
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -13,9 +14,9 @@ public class OutputView {
 
     private static final NumberFormat numberFormat = NumberFormat.getInstance();
 
-    public static void printPurchasedLottos(List<Lotto> lottos) {
-        System.out.printf(IOMessage.LOTTO_COUNT_MESSAGE, lottos.size());
-        lottos.forEach(OutputView::printLottoNumbers);
+    public static void printPurchasedLottos(Lottos purchLottos) {
+        System.out.printf(IOMessage.LOTTO_COUNT_MESSAGE, purchLottos.size());
+        purchLottos.forEachLotto(OutputView::printLottoNumbers);
     }
 
     private static void printLottoNumbers(Lotto lotto) {

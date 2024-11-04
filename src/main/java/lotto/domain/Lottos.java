@@ -5,6 +5,7 @@ import lotto.common.LottoRank;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -15,6 +16,14 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public int size() {
+        return lottos.size();
+    }
+
+    public void forEachLotto(Consumer<Lotto> action) {
+        lottos.forEach(action);
     }
 
     public Map<LottoRank, Integer> calculateRank(Lotto winningLotto, int bonusNumber) {
