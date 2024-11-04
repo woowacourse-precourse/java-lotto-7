@@ -29,5 +29,11 @@ public class Application {
         // 5. 보너스 번호 입력
         int bonus = IntegerValidator.numberValidator(InputView.inputBonus());
         Bonus bonusNumber = new Bonus(bonus, winningNumbers.getNumbers());
+
+        // 6. 로또가 당첨되었는지 확인
+        for (List<Integer> lotto : lottos) {
+            Rate info = Rate.getRank(Result.matchLotto(lotto, winningNumbers.getNumbers()),
+                    Result.matchBonus(lotto, bonusNumber.getNumber()));
+        }
     }
 }
