@@ -20,7 +20,6 @@ public class LottoController {
     }
 
     public void run() {
-        int money;
         Pocket pocket;
         Lotto winningLottoNumbers;
         BonusNumber bonusNumber;
