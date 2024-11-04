@@ -35,11 +35,18 @@ public class Lotto {
     }
 
     private List<Integer> getNumbersFromUser() {
-        String inputNumbers = Console.readLine();
-        return validateAndParseNumbers(inputNumbers);
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String inputNumbers = Console.readLine();
+                return ParseNumbers(inputNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private List<Integer> validateAndParseNumbers(String inputNumbers) {
+    private List<Integer> ParseNumbers(String inputNumbers) {
         String[] numberStrings = inputNumbers.split(",");
         if (numberStrings.length != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
