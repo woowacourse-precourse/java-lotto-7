@@ -1,9 +1,7 @@
 package lotto.view;
 
-import lotto.model.Lotto;
-import lotto.model.LottoCreate;
-
-import java.util.Arrays;
+import lotto.domain.Lotto;
+import lotto.domain.LottoCreate;
 
 public class Output {
     public static void printLottos(LottoCreate lottoCreate) {
