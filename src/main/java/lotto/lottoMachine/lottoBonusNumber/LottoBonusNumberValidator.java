@@ -1,7 +1,7 @@
 package lotto.lottoMachine.lottoBonusNumber;
 
 import java.util.List;
-import lotto.utils.StaticFinalMessages;
+import lotto.lottoMachine.utils.StaticFinalMessages;
 
 public class LottoBonusNumberValidator {
     public boolean validateAllThing(String bonusNumber, List<Integer> seperatedLottoWinningNumbers) {

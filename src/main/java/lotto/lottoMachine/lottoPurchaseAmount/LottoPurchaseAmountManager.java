@@ -1,6 +1,6 @@
 package lotto.lottoMachine.lottoPurchaseAmount;
 
-import lotto.utils.StaticFinalMessages;
+import lotto.lottoMachine.utils.StaticFinalMessages;
 
 public class LottoPurchaseAmountManager {
     private final LottoPurchaseAmountInputter lottoPurchaseAmountInputter;

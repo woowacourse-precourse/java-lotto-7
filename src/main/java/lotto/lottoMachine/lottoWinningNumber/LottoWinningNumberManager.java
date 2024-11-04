@@ -1,7 +1,7 @@
 package lotto.lottoMachine.lottoWinningNumber;
 
 import java.util.List;
-import lotto.utils.StaticFinalMessages;
+import lotto.lottoMachine.utils.StaticFinalMessages;
 
 public class LottoWinningNumberManager {
     private final LottoWinningNumberInputter lottoWinningNumberInputter;
