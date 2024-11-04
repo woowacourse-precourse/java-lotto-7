@@ -16,7 +16,7 @@ public class PurchaseService {
     public double calculateWinningPercent(List<WinningResult> results) {
         int totalPrize = calculateTotalPrize(results);
         int investment = price;
-        return ((double)totalPrize - investment) / investment * 100;
+        return ((double)totalPrize) / investment * 100;
     }
 
     private int calculateTotalPrize(List<WinningResult> results) {
