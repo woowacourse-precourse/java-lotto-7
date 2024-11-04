@@ -28,6 +28,10 @@ public class OutputHandler {
         System.out.println(WINNING_STATICS_OUTPUT_MESSAGE.getMessage());
 
         for (Rank rank : Rank.values()) {
+            if (rank == Rank.NONE) {
+                continue;
+            }
+
             int count = winningStatics.getWinningCount(rank);
             String prize = NumberFormat.getInstance().format(rank.getPrize());
             System.out.println(
