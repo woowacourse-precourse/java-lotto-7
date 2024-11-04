@@ -41,6 +41,10 @@ public class LottoConfiguration {
         return bonusNumber;
     }
 
+    public void fixedLotto(List<Lotto> lottos){
+        this.lottos = lottos;
+    }
+
     private int calculateLottoCount(int purchaseAmount){
         int lottoCount = purchaseAmount / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");
