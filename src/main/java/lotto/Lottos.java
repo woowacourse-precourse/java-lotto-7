@@ -16,6 +16,29 @@ public class Lottos {
         return lottos.size();
     }
 
+    public Map<Rank, Integer> calculateStatistics(WinningLotto winningLotto) {
+        Map<Rank, Integer> rankCounts = new HashMap<>();
+
+        for (Lotto lotto : lottos) {
+            Rank rank = winningLotto.calculateRank(lotto);
+            rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
+        }
+        return rankCounts;
+    }
+
+    public double calculateProfitRate(Map<Rank, Integer> rankCounts, int purchaseAmount) {
+        int totalPrize = 0;
+
+        for (Map.Entry<Rank, Integer> entry : rankCounts.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += rank.getPrize() * count;
+        }
+
+        double rate = (double) totalPrize / purchaseAmount * 100;
+        return Math.round(rate * 100) / 100.0;
+    }
+
     @Override
     public String toString() {
         return lottos.stream()

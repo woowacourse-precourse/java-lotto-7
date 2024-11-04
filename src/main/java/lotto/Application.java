@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -12,6 +12,8 @@ public class Application {
 
         WinningLotto winningLotto = promptForWinningLotto();
 
+        Map<Rank, Integer> statistics = lottos.calculateStatistics(winningLotto);
+        double profitRate = lottos.calculateProfitRate(statistics, purchaseAmount.getAmount());
     }
 
     private static PurchaseAmount promptForPurchaseAmount() {
