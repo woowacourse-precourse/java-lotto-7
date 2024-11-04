@@ -192,7 +192,7 @@ public class Application {
         System.out.println(FIVE_MATCH_BONUS_MESSAGE + matchCounts.getOrDefault(-5, 0) + UNIT);
         System.out.println(SIX_MATCH_MESSAGE + matchCounts.getOrDefault(6, 0) + UNIT);
 
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", profitRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
     public static double calculateProfitRate(Map<Integer, Integer> matchCounts, int purchaseAmount) {
