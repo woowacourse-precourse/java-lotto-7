@@ -1,5 +1,33 @@
 # java-lotto-precourse
 
+### **파일 구조**
+
+```
+main
+└── java
+    └── lotto
+        ├── controller
+        │   └── MainController
+        ├── domain
+        │   ├── Lotto
+        │   └── LottoPrizeMap
+        ├── enums
+        │   ├── ErrorMessage
+        │   ├── InputMessage
+        │   ├── LottoPrize
+        │   └── OutputMessage
+        ├── service
+        │   ├── CalculateProfitRate
+        │   ├── LottoDraw
+        │   └── LottoWinning
+        ├── validate
+        │   └── LottoValidator
+        └── view
+            ├── InputView
+            └── OutputView
+    └── Application
+```
+---
 ### **기능 목록**
 
 - [x]  로또 구입 금액 입력
