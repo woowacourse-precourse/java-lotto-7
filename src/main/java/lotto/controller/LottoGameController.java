@@ -12,6 +12,9 @@ public class LottoGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private static final String WRONG_INPUT_MONEY = "[ERROR] 구입 금액은 1,000원 단위로 입력해 주세요.";
+    private static final String WRONG_INPUT_STRING = "[ERROR] 숫자를 입력해 주세요.";
+
 
     public LottoGameController() {
         this.inputView = new InputView();
@@ -21,10 +24,11 @@ public class LottoGameController {
     public void run() {
         int paidMoney = getPaidMoney();
         LotteryMachine machine = new LotteryMachine(paidMoney);
+        machine.drawLottos();
         outputView.printLottos(machine.getLottos());
 
         List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = inputView.inputBonusNumber();
+        int bonusNumber = getBonusNumber();
 
         LottoChecker checker = new LottoChecker(winningNumbers, bonusNumber);
         WinningRank.winningCounts(machine.getLottos(), checker);
@@ -37,11 +41,12 @@ public class LottoGameController {
     private int getPaidMoney() {
         while (true) {
             try {
-                return inputView.purchaseLotto();
+                int paidMoney = inputView.purchaseLotto();
+                return paidMoney;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+                System.out.println(WRONG_INPUT_STRING);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+                System.out.println(WRONG_INPUT_MONEY);
             }
         }
     }
@@ -50,10 +55,23 @@ public class LottoGameController {
         while (true) {
             try {
                 return inputView.inputWinningNumber();
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new IllegalArgumentException("[ERROR] 당첨 숫자는 6개만 입력해 주세요.");
+            } catch (NumberFormatException e) {
+                System.out.println(WRONG_INPUT_STRING);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
 
+    private int getBonusNumber() {
+        while (true) {
+            try {
+                return inputView.inputBonusNumber();
+            } catch (NumberFormatException e) {
+                System.out.println(WRONG_INPUT_STRING);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
