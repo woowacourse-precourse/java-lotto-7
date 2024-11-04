@@ -25,7 +25,7 @@ public class PurchaseAmountValidator implements Validator<String> {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_AMOUNT_FORMAT.getFormattedMessage(input));
+            throw new IllegalArgumentException(INVALID_AMOUNT_FORMAT.getMessage());
         }
     }
 

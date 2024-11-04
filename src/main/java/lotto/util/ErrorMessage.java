@@ -18,8 +18,4 @@ public enum ErrorMessage {
     public String getMessage() {
         return message;
     }
-
-    public String getFormattedMessage(Object... args) {
-        return message.formatted(args);
-    }
 }
