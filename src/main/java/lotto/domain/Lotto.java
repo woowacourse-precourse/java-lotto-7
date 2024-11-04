@@ -14,6 +14,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
+
     private void validate(List<Integer> numbers) {
         if (!isSizeSix(numbers.size())) {
             throw new IllegalArgumentException(LOTTO_NUMBER_LENGTH_ERROR);
