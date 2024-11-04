@@ -7,17 +7,22 @@ public class Payment {
 
     private static final int LOTTO_PRICE = 1000;
 
+    private final int money;
     private final int lottoCount;
 
-    private Payment(int lottoCount) {
+    private Payment(int money, int lottoCount) {
+        this.money = money;
         this.lottoCount = lottoCount;
     }
 
     public static Payment of(int money){
         validateMoney(money);
-        return new Payment(calculateLottoCount(money));
+        return new Payment(money, calculateLottoCount(money));
     }
 
+    public int getMoney(){
+        return this.money;
+    }
     public int getLottoCount(){
         return this.lottoCount;
     }
