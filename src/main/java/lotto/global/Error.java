@@ -10,7 +10,6 @@ public enum Error {
     LOTTO_NUMBER_IS_NOT_BETWEEN_1_AND_46("[ERROR] 로또 번호는 1과 46 사이의 번호이어야 합니다.");
 
 
-
     private String errorMsg;
 
     Error(String errorMsg) {

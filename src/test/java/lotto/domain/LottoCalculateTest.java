@@ -27,7 +27,7 @@ class LottoCalculateTest {
                 8);
         LottoScore lottoScore = lottoCalculate.getLottoScores().get(0);
 
-        Assertions.assertEquals(lottoScore,THIRD);
+        Assertions.assertEquals(lottoScore, THIRD);
     }
 
     @Test
@@ -36,7 +36,7 @@ class LottoCalculateTest {
                 7);
         LottoScore lottoScore = lottoCalculate.getLottoScores().get(0);
 
-        Assertions.assertEquals(lottoScore,SECOND);
+        Assertions.assertEquals(lottoScore, SECOND);
     }
 
     @Test
@@ -45,6 +45,6 @@ class LottoCalculateTest {
                 11);
         LottoScore lottoScore = lottoCalculate.getLottoScores().get(0);
 
-        Assertions.assertEquals(lottoScore,NO_PRIZE);
+        Assertions.assertEquals(lottoScore, NO_PRIZE);
     }
 }

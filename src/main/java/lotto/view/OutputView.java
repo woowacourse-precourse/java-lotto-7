@@ -44,6 +44,7 @@ public class OutputView {
             matchPattern = LOTTO_NUMBER_CORRECT_RESULT.getMsg();
         }
 
-        return String.format(matchPattern, lottoScore.getCorrectLottoNumberCounts(), lottoScore.getWinningMoney(), count);
+        return String.format(matchPattern, lottoScore.getCorrectLottoNumberCounts(), lottoScore.getWinningMoney(),
+                count);
     }
 }

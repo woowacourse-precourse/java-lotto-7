@@ -23,6 +23,7 @@ class LottoResultTest {
     void setUp() {
         lottoResult = new LottoResult();
     }
+
     @Test
     void 로또_갯수에_따른_각_등수_갯수_반환() {
         Map<LottoScore, Integer> lottoScore = lottoResult.integrateLottoScore(
@@ -35,7 +36,7 @@ class LottoResultTest {
 
     @Test
     void 로또_수익률_계산() {
-        int money=10000;
+        int money = 10000;
 
         lottoResult.integrateLottoScore(List.of(FIFTH));
         double lottoProfit = lottoResult.calculateLottoProfit(money);

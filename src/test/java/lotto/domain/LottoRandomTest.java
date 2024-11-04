@@ -12,7 +12,7 @@ class LottoRandomTest {
     @Test
     void 랜덤으로_생성한_번호들이_오름차순으로_정렬() {
         LottoRandom lottoRandom = new LottoRandom();
-        int lottoCounts=2;
+        int lottoCounts = 2;
         List<Lotto> lottos = lottoRandom.generateLottoRandom(lottoCounts);
 
         for (Lotto lotto : lottos) {

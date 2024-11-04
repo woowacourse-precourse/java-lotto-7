@@ -62,7 +62,8 @@ public class LottoController {
         return inputView.inputLottoBonusNumber(numbers);
     }
 
-    private List<LottoScore> calculateLotto(List<Integer> winningLottoNumber, List<Lotto> randomLottoNumbers, int bonusNumber) {
+    private List<LottoScore> calculateLotto(List<Integer> winningLottoNumber, List<Lotto> randomLottoNumbers,
+                                            int bonusNumber) {
         LottoCalculate lottoCalculate = new LottoCalculate();
 
         lottoCalculate.calculateLottoNumbers(winningLottoNumber, randomLottoNumbers, bonusNumber);
