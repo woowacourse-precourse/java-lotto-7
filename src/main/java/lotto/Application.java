@@ -19,5 +19,8 @@ public class Application {
 
         LottoGame game = InputHandler.getWinningNumbers();
         Map<Integer, Integer> ranks = lottoService.calculateRanks(lottos, game);
+
+        long totalMoney = lottoService.getTotalMoney(ranks);
+        double rate = lottoService.calculateRate(money, totalMoney);
     }
 }
