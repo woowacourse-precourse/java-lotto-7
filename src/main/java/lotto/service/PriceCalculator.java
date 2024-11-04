@@ -21,7 +21,6 @@ public class PriceCalculator {
     }
 
     private void validatePrice(String input){
-        lottoPurchaseValidator.validatePurchasePrice(input);;
+        lottoPurchaseValidator.validate(input);;
     }
-
 }
