@@ -1,5 +1,10 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import lotto.constant.LottoConfig.Rank;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
@@ -9,12 +14,6 @@ import lotto.service.LottoPrize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 class LottoPrizeTest {
 
     private Lotto lotto;
@@ -23,7 +22,7 @@ class LottoPrizeTest {
     private List<Lotto> tickets = new ArrayList<>();
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         bonus = new Bonus(7);
         lottoPrize = new LottoPrize(lotto, bonus);
@@ -34,12 +33,12 @@ class LottoPrizeTest {
         tickets.add(new Lotto(List.of(1, 2, 3, 4, 8, 9)));
         tickets.add(new Lotto(List.of(1, 2, 3, 7, 8, 9)));
         tickets.add(new Lotto(List.of(1, 2, 7, 8, 9, 10)));
-        tickets.add(new Lotto(List.of(1, 7, 8, 9, 10,11)));
+        tickets.add(new Lotto(List.of(1, 7, 8, 9, 10, 11)));
         tickets.add(new Lotto(List.of(8, 9, 10, 11, 12, 13)));
     }
 
     @Test
-    void rankLotto() {
+    void 로또_당첨을_확인한다() {
         Lottos lottos = new Lottos(tickets);
         Map<Rank, Integer> rankCount = lottoPrize.determineLottoPrizes(lottos);
 
