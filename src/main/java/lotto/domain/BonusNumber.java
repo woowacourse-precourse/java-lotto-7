@@ -16,6 +16,10 @@ public class BonusNumber {
         return bonusNumber;
     }
 
+    public boolean compareNumber(int number) {
+        return bonusNumber == number;
+    }
+
     private void validateOutOfRangeNumber(int bonusNumber) {
         if (bonusNumber > LotteryConst.MAX.getValue() || bonusNumber < LotteryConst.MIN.getValue()) {
             throw new IllegalArgumentException(ExceptionMessages.NUMBER_OUT_OF_RANGE.getMessage());

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import lotto.constant.LotteryConst;
@@ -15,6 +14,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    // 자동 발행된 로또의 수량 및 번호를 출력하기 위한 Getter
     public List<Integer> getUnmodifiableNumbers() {
         return Collections.unmodifiableList(numbers);
     }
@@ -47,8 +47,14 @@ public class Lotto {
         }
     }
 
-    // 보너스 번호로 입력한 번호가 당첨 번호에 이미 존재하는지 확인하기 위해 사용하는 메서드
     public boolean isLottoContainThisNumber(int number) {
         return numbers.contains(number);
+    }
+
+    public Result compareToWinningInfo(WinningInfo winningInfo) {
+        int hitCount = numbers.stream().mapToInt(winningInfo::isWinningNumberContainThisNumber).sum();
+        int bonusCount = numbers.stream().mapToInt(winningInfo::isBonusNumberSameAsThis).sum();
+
+        return new Result(hitCount, bonusCount);
     }
 }
