@@ -9,7 +9,10 @@ import java.util.stream.Collectors;
 
 public class InputReader {
 
-    Validation validation = new Validation();
+    Validation validation;
+    InputReader(Validation validation){
+        this.validation = validation;
+    }
     public int readLottoPrice(){
         String lottoPrice = Console.readLine();
         validation.validateLottoPrice(lottoPrice);
