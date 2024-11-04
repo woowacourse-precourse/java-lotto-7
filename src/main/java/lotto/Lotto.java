@@ -52,16 +52,21 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        Collections.sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {
+        boolean[] numberFlags = new boolean[46];
+
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ERROR.COUNT.getMessage());
         }
 
         for (int number : numbers) {
             validateNumber(number);
+            if (numberFlags[number]) {
+                throw new IllegalArgumentException(ERROR.DUPLICATE.getMessage());
+            }
+            numberFlags[number] = true;
         }
     }
 
@@ -72,7 +77,9 @@ public class Lotto {
     }
 
     public void printNumbers() {
-        System.out.println(numbers);
+        List<Integer> tempNumbers = new ArrayList<>(numbers);
+        tempNumbers.sort(Comparator.naturalOrder());
+        System.out.println(tempNumbers);
     }
 
     public RANK checkWinning(boolean[] winningNumberFlags, int bonusNumber) {

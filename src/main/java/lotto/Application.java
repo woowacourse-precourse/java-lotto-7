@@ -159,7 +159,7 @@ public class Application {
 
     private static void printROR(int cost, long prizeSum) {
         double ROR = (double)prizeSum / cost * 100;
-        System.out.printf("총 수익률은 %s입니다.\n", String.format("%.1f", ROR));
+        System.out.printf("총 수익률은 %s%%입니다.\n", String.format("%.1f", ROR));
     }
 
     public static void main(String[] args) {
