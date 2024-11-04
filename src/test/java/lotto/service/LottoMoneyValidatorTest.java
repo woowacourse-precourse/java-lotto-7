@@ -19,8 +19,8 @@ public class LottoMoneyValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {14001, -1000})
-    void 구입금액은_양수이고_1000원으로_나누어_떨어져야_한다(int money) {
+    @ValueSource(strings = {"14001", "-1000", "0"})
+    void 구입금액은_양수이고_1000원으로_나누어_떨어져야_한다(String money) {
 
         //when & then
         assertThatThrownBy(() -> lottoMoneyValidator.validate(money))

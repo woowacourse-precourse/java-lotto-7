@@ -6,7 +6,7 @@ public class LottoMoneyValidator {
 
     public void validate(String money) {
         try {
-            Integer.parseInt(money);
+            validate(Integer.parseInt(money));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
         }
