@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
-import lotto.model.LottoWinningNumber;
+import lotto.model.WinningNumber;
 import lotto.service.ApplicationService;
 import lotto.service.ProcessService;
 import lotto.view.Result;
@@ -22,7 +22,7 @@ public class ApplicationController {
     }
 
     public void start(List<Integer> winningNumbers, int bonusNumber) {
-        LottoWinningNumber winningNumber = appService.inputWinningNumber(winningNumbers, bonusNumber);
+        WinningNumber winningNumber = appService.inputWinningNumber(winningNumbers, bonusNumber);
 
         Result.view(processController.checkWin(this.lottos, winningNumber));
     }

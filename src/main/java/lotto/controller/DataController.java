@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
-import lotto.model.LottoWinningNumber;
+import lotto.model.WinningNumber;
 import lotto.service.DataService;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public class DataController {
         this.dataService = dataService;
     }
 
-    public LottoWinningNumber createWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
+    public WinningNumber createWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
         return dataService.createWinningNumber(winningNumbers, bonusNumber);
     }
 

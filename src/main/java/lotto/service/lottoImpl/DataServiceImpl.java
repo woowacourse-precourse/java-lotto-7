@@ -1,16 +1,16 @@
 package lotto.service.lottoImpl;
 
 import lotto.model.Lotto;
-import lotto.model.LottoWinningNumber;
+import lotto.model.WinningNumber;
 
 import java.util.List;
 
 public interface DataServiceImpl {
-    LottoWinningNumber createWinningNumber(List<Integer> winningNumbers, int bonusNumber);
+    WinningNumber createWinningNumber(List<Integer> winningNumbers, int bonusNumber);
 
     List<Lotto> createLottos(int tickets);
 
-    List<Integer> readWinningNumber(LottoWinningNumber winningNumber);
+    List<Integer> readWinningNumber(WinningNumber winningNumber);
 
-    int readBonusNumber(LottoWinningNumber winningNumber);
+    int readBonusNumber(WinningNumber winningNumber);
 }

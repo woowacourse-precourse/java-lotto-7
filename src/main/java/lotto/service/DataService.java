@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.model.Lotto;
-import lotto.model.LottoWinningNumber;
+import lotto.model.WinningNumber;
 import lotto.service.lottoImpl.DataServiceImpl;
 import lotto.service.lottoImpl.RandomNumberServiceImpl;
 
@@ -15,8 +15,8 @@ public class DataService implements DataServiceImpl {
     }
 
     @Override
-    public LottoWinningNumber createWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
-        return new LottoWinningNumber(winningNumbers, bonusNumber);
+    public WinningNumber createWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
+        return new WinningNumber(winningNumbers, bonusNumber);
     }
 
     @Override
@@ -25,12 +25,12 @@ public class DataService implements DataServiceImpl {
     }
 
     @Override
-    public List<Integer> readWinningNumber(LottoWinningNumber winningNumber) {
+    public List<Integer> readWinningNumber(WinningNumber winningNumber) {
         return winningNumber.getLottoWinningNumber();
     }
 
     @Override
-    public int readBonusNumber(LottoWinningNumber winningNumber) {
+    public int readBonusNumber(WinningNumber winningNumber) {
         return winningNumber.getBonusNumber();
     }
 }

@@ -1,8 +1,8 @@
 package lotto.service;
 
 import lotto.model.Lotto;
-import lotto.model.LottoResult;
-import lotto.model.LottoWinningNumber;
+import lotto.model.Result;
+import lotto.model.WinningNumber;
 import lotto.service.lottoImpl.ProcessServiceImpl;
 
 import java.util.List;
@@ -51,11 +51,11 @@ public class ProcessService implements ProcessServiceImpl {
     }
 
     @Override
-    public LottoResult matchNumber(List<Lotto> lottos, LottoWinningNumber winningNumbers) {
+    public Result matchNumber(List<Lotto> lottos, WinningNumber winningNumbers) {
         this.winningLottoNumber = winningNumbers.getLottoWinningNumber();
         this.winningBonusNumber = winningNumbers.getBonusNumber();
 
-        LottoResult result = new LottoResult();
+        Result result = new Result();
         for (Lotto lotto : lottos) {
             result.setResult(this.key(lotto.getNumbers()));
         }
@@ -64,7 +64,7 @@ public class ProcessService implements ProcessServiceImpl {
     }
 
     @Override
-    public String calculateRate(int tickets, LottoResult result) {
+    public String calculateRate(int tickets, Result result) {
         Map<Integer, Integer> lottoResult = result.getLottoResult();
 
         double sum = 0;

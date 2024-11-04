@@ -2,7 +2,7 @@ package lotto.service;
 
 import lotto.controller.DataController;
 import lotto.model.Lotto;
-import lotto.model.LottoWinningNumber;
+import lotto.model.WinningNumber;
 import lotto.service.lottoImpl.ApplicationServiceImpl;
 import lotto.util.Output;
 
@@ -20,7 +20,7 @@ public class ApplicationService implements ApplicationServiceImpl {
     }
 
     @Override
-    public LottoWinningNumber inputWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
+    public WinningNumber inputWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
         return dataController.createWinningNumber(winningNumbers, bonusNumber);
     }
 }

@@ -1,13 +1,13 @@
 package lotto.service.lottoImpl;
 
 import lotto.model.Lotto;
-import lotto.model.LottoResult;
-import lotto.model.LottoWinningNumber;
+import lotto.model.Result;
+import lotto.model.WinningNumber;
 
 import java.util.List;
 
 public interface ProcessServiceImpl {
-    LottoResult matchNumber(List<Lotto> lottos, LottoWinningNumber winningNumbers);
+    Result matchNumber(List<Lotto> lottos, WinningNumber winningNumbers);
 
-    String calculateRate(int tickets, LottoResult result);
+    String calculateRate(int tickets, Result result);
 }

@@ -7,12 +7,12 @@ import lotto.enumValue.ResultMessage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LottoResult {
+public class Result {
     private final int ZERO = Number.ZERO.getValue();
 
     private Map<Integer, Integer> lottoResult = new HashMap<>();
 
-    public LottoResult() {
+    public Result() {
         lottoResult.put(ZERO, ZERO);
         lottoResult.put(Number.FIFTH.getValue(), ZERO);
         lottoResult.put(Number.FOURTH.getValue(), ZERO);

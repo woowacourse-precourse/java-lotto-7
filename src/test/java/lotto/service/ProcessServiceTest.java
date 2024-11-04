@@ -4,8 +4,8 @@ import lotto.enumValue.CommonMessage;
 import lotto.enumValue.Number;
 import lotto.enumValue.ResultMessage;
 import lotto.model.Lotto;
-import lotto.model.LottoResult;
-import lotto.model.LottoWinningNumber;
+import lotto.model.Result;
+import lotto.model.WinningNumber;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class ProcessServiceTest {
 
     @Test
     void 수익률_계산_테스트() {
-        LottoResult result = new LottoResult();
+        Result result = new Result();
         result.setResult(Number.FIFTH.getValue());
         result.setResult(Number.THIRD.getValue());
         result.setResult(Number.SECOND.getValue());
@@ -37,12 +37,12 @@ public class ProcessServiceTest {
 
     @Test
     void 티켓별_당첨_결과_저장_테스트() {
-        LottoWinningNumber winningNumber = new LottoWinningNumber(List.of(1, 2, 3, 4, 5, 6), BONUS_NUMBER);
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), BONUS_NUMBER);
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 8, 9)));
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
 
-        LottoResult result = processService.matchNumber(lottos, winningNumber);
+        Result result = processService.matchNumber(lottos, winningNumber);
 
         List<String> answer = Arrays.asList(ResultMessage.FIFTH.getDescription()+Number.ZERO.getValue(),
                 ResultMessage.THIRD.getDescription()+Number.ZERO.getValue(),
