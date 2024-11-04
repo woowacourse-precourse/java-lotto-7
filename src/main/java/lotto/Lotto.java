@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,6 +23,11 @@ public class Lotto {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
+        }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에는 중복된 숫자가 없어야 합니다.");
         }
     }
 
@@ -50,17 +57,5 @@ public class Lotto {
         }
 
         return LottoRank.NONE;
-    }
-
-    public List<Integer> getNumbers() {
-        return this.numbers;
-    }
-
-    @Override
-    public String toString() {
-        return "Lotto{" +
-                "numbers=" + numbers +
-                ", bonusNumber=" + bonusNumber +
-                '}';
     }
 }

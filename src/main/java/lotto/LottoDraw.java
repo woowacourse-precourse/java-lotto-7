@@ -12,16 +12,20 @@ public class LottoDraw {
         System.out.println("당첨 번호를 입력해 주세요");
         String firstInput = Console.readLine();
 
-        List<Integer> list = Arrays.stream(firstInput.split(","))
-                .mapToInt(Integer::parseInt)
-                .boxed().collect(Collectors.toList());
-
         try {
+            List<Integer> list = Arrays.stream(firstInput.split(","))
+                    .mapToInt(Integer::parseInt)
+                    .boxed().collect(Collectors.toList());
+
             Lotto lotto = new Lotto(list);
 
             return lotto;
+        } catch(NumberFormatException e) {
+            System.out.println("[ERROR] 숫자 형식이 잘못되었습니다. 다시 입력해 주세요.");
+
+            return inputWinningNumbers();
         } catch(IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
 
             return inputWinningNumbers();
         }
