@@ -24,11 +24,21 @@ public class LottoStore {
 
     public Lottos issueLottos(final int pay) {
         validatePayment(pay);
-        return new Lottos(
-                Stream.generate(this::generateLotto)
-                        .limit(pay / LOTTO_PRICE)
-                        .toList()
-        );
+
+        final List<Lotto> lottos = createLottosByAmount(pay);
+
+        return new Lottos(lottos);
+    }
+
+    private List<Lotto> createLottosByAmount(final int pay) {
+        final int lottoQuantity = pay / LOTTO_PRICE;
+
+        final List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < lottoQuantity; i++) {
+            lottos.add(generateLotto());
+        }
+        return lottos;
     }
 
     private Lotto generateLotto() {

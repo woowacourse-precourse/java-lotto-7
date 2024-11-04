@@ -20,7 +20,7 @@ public class LottoNumberGeneratorTest {
         final Lotto lotto = fixedNumberGenerator.generateLotto();
 
         // then
-        assertThat(lotto.getNumbers().size()).isEqualTo(6);
+        assertThat(lotto.size()).isEqualTo(6);
     }
 
     @Test

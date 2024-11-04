@@ -18,12 +18,12 @@ public class LottoResultChecker {
     public static final int MATCH_FIVE = 5;
     public static final int MATCH_SIX = 6;
 
-    private final List<Integer> winningNumbers;
+    private final Lotto winningNumbers;
     private final int bonusNumber;
 
     public LottoResultChecker(final List<Integer> winningNumbers, final int bonusNumber) {
         validateNumber(winningNumbers, bonusNumber);
-        this.winningNumbers = winningNumbers;
+        this.winningNumbers = new Lotto(winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 
@@ -32,12 +32,11 @@ public class LottoResultChecker {
     }
 
     public Lotto checkRank(final Lotto lotto) {
-        final Set<Integer> winningNumbers = new HashSet<>(this.winningNumbers);
-
-        final long matchingCount = lotto.getNumbers().stream().filter(winningNumbers::contains).count();
-        final boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
+        final long matchingCount = lotto.countWinningNumbers(this.winningNumbers);
+        final boolean hasBonus = lotto.containsBonusNumber(this.bonusNumber);
 
         final LottoRank rank = validRank(matchingCount, hasBonus);
+
         return lotto.withRank(rank);
     }
 

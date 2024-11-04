@@ -5,8 +5,10 @@ import lotto.domain.exception.LottoException;
 import lotto.domain.exception.LottoNumberExceptionMessage;
 import lotto.util.ValidLottoNumber;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto implements Iterable<Integer> {
 
@@ -23,10 +25,6 @@ public class Lotto implements Iterable<Integer> {
         validate(numbers);
         this.numbers = numbers.stream().sorted().toList();
         this.rank = rank;
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 
     public LottoRank getRank() {
@@ -47,8 +45,24 @@ public class Lotto implements Iterable<Integer> {
         }
     }
 
-    public Lotto withRank(LottoRank rank) {
+    public long countWinningNumbers(final Lotto winningLottos) {
+        return this.numbers.stream().filter(winningLottos::containsNumber).count();
+    }
+
+    public boolean containsBonusNumber(final int bonusNumber) {
+        return this.numbers.contains(bonusNumber);
+    }
+
+    private boolean containsNumber(final int number) {
+        return this.numbers.contains(number);
+    }
+
+    public Lotto withRank(final LottoRank rank) {
         return new Lotto(this.numbers, rank);
+    }
+
+    public int size() {
+        return this.numbers.size();
     }
 
     @Override
