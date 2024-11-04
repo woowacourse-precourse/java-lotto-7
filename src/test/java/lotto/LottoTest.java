@@ -18,7 +18,7 @@ class LottoTest {
     static final Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     static final List<List<Integer>> rangeExceptionNumbers = List.of(
             List.of(1, 2, 3, 4, 5, Lotto.NUMBER_MAX + 1),
-            List.of(1, 2, 3, 4, 5, Lotto.NUMBER_MIN -1)
+            List.of(1, 2, 3, 4, 5, Lotto.NUMBER_MIN - 1)
     );
     static final List<List<Integer>> sizeExceptionNumbers = List.of(
             List.of(1, 2, 3, 4, 5),
@@ -54,6 +54,23 @@ class LottoTest {
     @Test
     void 번호_정렬() {
         assertThat(new Lotto(List.of(5, 4, 3, 2, 1, 6)).toString()).contains("[1, 2, 3, 4, 5, 6]");
+    }
+
+    @ParameterizedTest
+    @MethodSource("lottoAndMatchCount")
+    void 로또_당첨_개수(Lotto lotto, int count) {
+        assertThat(lotto.contains(winner)).isEqualTo(count);
+    }
+
+    private static List<Arguments> lottoAndMatchCount() {
+        return List.of(
+                Arguments.of(new Lotto(List.of(1, 41, 42, 43, 44, 45)), 1),
+                Arguments.of(new Lotto(List.of(1, 2, 42, 43, 44, 45)), 2),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 43, 44, 45)), 3),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 44, 45)), 4),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 45)), 5),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6)
+        );
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성

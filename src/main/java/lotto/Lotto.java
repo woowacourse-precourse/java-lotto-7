@@ -1,17 +1,25 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private static final int NUMBER_SIZE = 6;
-    private static final int NUMBER_MIN = 1;
-    private static final int NUMBER_MAX = 45;
+    public static final int NUMBER_SIZE = 6;
+    public static final int NUMBER_MIN = 1;
+    public static final int NUMBER_MAX = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = sort(numbers);
+    }
+
+    static public Lotto of(String numbers) {
+        return new Lotto(Arrays.stream(numbers.split(","))
+                .map(Integer::parseInt)
+                .toList());
     }
 
     private void validate(List<Integer> numbers) {
@@ -50,8 +58,23 @@ public class Lotto {
                 .toList();
     }
 
-    //- [x] 번호를 정렬한다.
-    //- [ ] 우승 로또와 맞는 개수를 전달한다.
-    //- [ ] 보너스볼을 체크한다.
-    //- [x] 로또 번호를 전달한다.
+    public int contains(Lotto winner) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winner.contain(number)) count++;
+        }
+
+        return count;
+    }
+
+    public boolean contain(Integer number) {
+        return numbers.contains(number);
+    }
+
+    // TODO: 구현 기능 목록
+    //  - [x] 번호의 유효성을 체크한다.
+    //  - [x] 번호를 정렬한다.
+    //  - [x] 우승 로또와 맞는 개수를 전달한다.
+    //  - [x] 보너스볼을 체크한다.
+    //  - [x] 로또 번호를 전달한다.
 }
