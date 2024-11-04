@@ -29,4 +29,8 @@ public class Validator {
         }
         return true;
     }
+
+    public static boolean isEmpty(String input){
+        return input == null || input.trim().isEmpty();
+    }
 }
