@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +41,9 @@ public class Application {
     private static List<Lotto> generateTickets(int ticketCount) {
         List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            tickets.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(numbers);
+            tickets.add(new Lotto(numbers));
         }
         return tickets;
     }
