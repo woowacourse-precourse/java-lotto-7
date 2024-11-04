@@ -8,7 +8,7 @@ public class LottoNumber {
     }
     private void vaildateNumberRange(int number){
         if(number <1 || number>45){
-            throw new IllegalArgumentException("[ERROR] 번호는 1-45의 숫자여야 합니다.");
+            throw new IllegalArgumentException(" 번호는 1-45의 숫자여야 합니다.");
         }
     }
 

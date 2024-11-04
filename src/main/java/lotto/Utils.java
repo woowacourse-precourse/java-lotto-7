@@ -9,7 +9,7 @@ public class Utils {
             return Integer.parseInt(str);
         }
         catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
+            throw new IllegalArgumentException(" 숫자를 입력해주세요");
         }
 
     }
@@ -25,7 +25,7 @@ public class Utils {
     }
     private static void validString(String str){
         if(str.matches(".*[^0-9,\\s].*")){
-            throw new IllegalArgumentException("[ERROR] 숫자와 , 를 입력해주세요");
+            throw new IllegalArgumentException(" 숫자와 , 를 입력해주세요");
         }
     }
 }

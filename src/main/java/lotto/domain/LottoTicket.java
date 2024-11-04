@@ -45,10 +45,10 @@ public class LottoTicket {
     }
     private void validatePrice(int price){
         if(price < PRICE_TICKET || price > PRICE_MAX){
-            throw new IllegalArgumentException("[ERROR] 로또 티켓은 10먼원까지 구입 가능합니다.");
+            throw new IllegalArgumentException(" 로또 티켓은 10먼원까지 구입 가능합니다.");
         }
         if(checkMoneyChange(price) != 0 ){
-            throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위로만 판매 가능합니다.");
+            throw new IllegalArgumentException("로또는 1,000원 단위로만 판매 가능합니다.");
         }
     }
     private int priceChangeToTicket(int price){
