@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
-import lotto.domain.Lotto;
 import lotto.dto.BonusLottoNumber;
 import lotto.dto.BuyLottos;
 import lotto.dto.LottoPurchaseCost;
@@ -31,7 +29,8 @@ public class LottoController {
         WinningLottoNumbers winningLottoNumbers = getWinningLottoNumbers();
         BonusLottoNumber bonusLottoNumber = getBonusLottoNumber(winningLottoNumbers);
 
-        MatchLottoResult matchLottoResult = lottoService.matchLottoNumber(buyLottos, winningLottoNumbers, bonusLottoNumber);
+        MatchLottoResult matchLottoResult = lottoService.matchLottoNumber(buyLottos, winningLottoNumbers,
+                bonusLottoNumber);
         RateOfReturn rateOfReturn = lottoService.calcRateOfReturn(lottoPurchaseCost, matchLottoResult);
         outputView.printResult(matchLottoResult, rateOfReturn);
     }
