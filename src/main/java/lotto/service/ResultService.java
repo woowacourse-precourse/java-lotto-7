@@ -41,7 +41,7 @@ public class ResultService {
         winnerMoney += calculateMap.getOrDefault(50, 0) * 30000000;
         winnerMoney += calculateMap.getOrDefault(6, 0) * 2000000000;
 
-        return (winnerMoney - money) / (double) money * 100;
+        return winnerMoney / (double) money * 100;
     }
 
     public void loopResult(Lottos lottos) {
