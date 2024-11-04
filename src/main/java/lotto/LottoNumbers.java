@@ -29,12 +29,12 @@ public class LottoNumbers {
         }
     }
 
-    private ArrayList<Integer> getValidatedWinningNumbers(String[] winningNumbersInputSplits) {
+    public ArrayList<Integer> getValidatedWinningNumbers(String[] winningNumbersInputSplits) {
         validateWinningNumbers(winningNumbersInputSplits);
         return parseIntWinningNumbers(winningNumbersInputSplits);
     }
 
-    private void validateWinningNumbers(String[] winningNumbersInputSplits) {
+    public void validateWinningNumbers(String[] winningNumbersInputSplits) {
         Validator.validateWinningNumbersCount(winningNumbersInputSplits);
         Validator.validateNumericStrings(winningNumbersInputSplits);
         ArrayList<Integer> winningNumbers = parseIntWinningNumbers(winningNumbersInputSplits);
@@ -42,7 +42,7 @@ public class LottoNumbers {
         Validator.validateUniqueNumbers(winningNumbers);
     }
 
-    private ArrayList<Integer> parseIntWinningNumbers(String[] winningNumbersInputSplits) {
+    public ArrayList<Integer> parseIntWinningNumbers(String[] winningNumbersInputSplits) {
         ArrayList<Integer> winningNumbers = new ArrayList<>();
         for (String winningNumbersInputSplit : winningNumbersInputSplits) {
             winningNumbers.add(Integer.parseInt(winningNumbersInputSplit));
@@ -61,12 +61,12 @@ public class LottoNumbers {
         }
     }
 
-    private int getValidatedBonusNumber(ArrayList<Integer> winningNumbers, String bonusNumberInput) {
+    public int getValidatedBonusNumber(ArrayList<Integer> winningNumbers, String bonusNumberInput) {
         validateBonusNumber(winningNumbers, bonusNumberInput);
         return Integer.parseInt(bonusNumberInput);
     }
 
-    private void validateBonusNumber(ArrayList<Integer> winningNumbers, String bonusNumberInput) {
+    public void validateBonusNumber(ArrayList<Integer> winningNumbers, String bonusNumberInput) {
         Validator.validateNumericString(bonusNumberInput);
         int bonusNumber = Integer.parseInt(bonusNumberInput);
         Validator.validateLottoNumberInRange(bonusNumber);

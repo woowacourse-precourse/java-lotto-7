@@ -59,13 +59,13 @@ class ValidatorTest {
 
     @Test
     void validateNumericStrings_모두_정수로_변환_가능한_문자열() {
-        String[] strings = {"1","2","3","4"};
+        String[] strings = { "1", "2", "3", "4" };
 
         assertThatNoException().isThrownBy(() -> Validator.validateNumericStrings(strings));
     }
     @Test
     void validateNumericStrings_정수로_변환_불가능한_문자열_포함() {
-        String[] strings = {"1","2","c","4"};
+        String[] strings = { "1", "2", "c", "4" };
 
         assertThatThrownBy(() -> Validator.validateNumericStrings(strings))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -118,14 +118,14 @@ class ValidatorTest {
 
     @Test
     void validateWinningNumbersCount_6개인_경우() {
-        String[] strings = {"1", "2", "3", "4", "5", "6"};
+        String[] strings = { "1", "2", "3", "4", "5", "6" };
 
         assertThatNoException().isThrownBy(() -> Validator.validateWinningNumbersCount(strings));
     }
     @Test
     void validateWinningNumbersCount_6개가_아닌_경우() {
-        String[] strings1 = {"1", "2", "3", "4", "5"};
-        String[] strings2 = {"1", "2", "3", "4", "5", "6", "7"};
+        String[] strings1 = { "1", "2", "3", "4", "5" };
+        String[] strings2 = { "1", "2", "3", "4", "5", "6", "7" };
 
         assertThatThrownBy(() -> Validator.validateWinningNumbersCount(strings1))
                 .isInstanceOf(IllegalArgumentException.class);
