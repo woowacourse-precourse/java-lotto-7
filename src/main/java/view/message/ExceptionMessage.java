@@ -16,4 +16,5 @@ public class ExceptionMessage {
     public static final String LOTTO_NUMBER_RANGE_EXCEPTION_MESSAGE = "로또 번호는 1 이상 45 이하의 값을 입력해야 합니다.";
     public static final String COMMA_SEPARATED_NUMBERS_REGEX = "^[0-9,]+$";
     public static final String FORMAT_EXCEPTION_MESSAGE = "로또 번호는 쉼표(,)로 구분된 숫자 형식이어야 합니다.";
+    public static final String DUPLICATE_NUMBER_EXCEPTION_MESSAGE = "로또 번호는 중복될 수 없습니다. 중복된 번호: ";
 }
