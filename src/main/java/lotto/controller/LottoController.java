@@ -44,9 +44,8 @@ public class LottoController {
 
         String yield = lottoPrizes.calculateYield(lottoBudget.getValue());
 
-        System.out.println("당첨 통계" + System.lineSeparator() + "---");
         List<String> matchStatistics = lottoPrizes.calculateMatchStatistics();
-        matchStatistics.forEach(System.out::println);
+        outputView.printMatchStatistics(matchStatistics);
 
         System.out.println("총 수익률은 " + yield + "%입니다.");
     }
