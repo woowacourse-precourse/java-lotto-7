@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoProfitCalculator {
@@ -14,7 +15,7 @@ public class LottoProfitCalculator {
     }
 
     public List<LottoRank> getLottoRanks() {
-        return lottoRanks;
+        return Collections.unmodifiableList(lottoRanks);
     }
 
     public double calculateRateOfProfit() {

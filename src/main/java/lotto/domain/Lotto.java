@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.validator.LottoValidator;
 
@@ -8,10 +9,10 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         LottoValidator.validate(numbers);
-        this.numbers = List.copyOf(numbers);
+        this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
-        return List.copyOf(numbers);
+        return Collections.unmodifiableList(numbers);
     }
 }
