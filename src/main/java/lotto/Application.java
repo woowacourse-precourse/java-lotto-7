@@ -17,6 +17,7 @@ public class Application {
         String tmpWinNumber;
         List<Integer> winNumbers = new ArrayList<>();
         Integer bonusNumber;
+        int[] winStatus = new int[5];
 
         while (true) {
             try {
@@ -64,6 +65,67 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         bonusNumber = Integer.parseInt(Console.readLine());
 
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+
+        for (Lotto list: LottoList){
+            Integer count=0;
+            for (Integer target : winNumbers){
+                if (list.contains(target)){
+                    count++;
+                }
+
+                if (count==5){
+                    if (list.contains(bonusNumber)){
+                        count=7;
+                    }
+                }
+            }
+            if (count==3){
+                winStatus[0]+=1;
+            }
+            if (count==4){
+                winStatus[1]+=1;
+            }
+            if (count==5){
+                winStatus[2]+=1;
+            }
+            if (count==7){
+                winStatus[3]+=1;
+            }
+            if (count==6){
+                winStatus[4]+=1;
+            }
+
+        }
+        Integer sum=0;
+        for(int i=0; i<5; i++){
+            if (i ==0){
+                System.out.println("3개 일치 (5,000원) - "+winStatus[0]+"개");
+                sum +=(5000*winStatus[0]);
+            }
+            if (i ==1){
+                System.out.println("4개 일치 (50,000원) - "+winStatus[1]+"개");
+                sum +=(50000*winStatus[1]);
+            }
+            if (i ==2){
+                System.out.println("5개 일치 (1,500,000원) - "+winStatus[2]+"개");
+                sum +=(1500000*winStatus[2]);
+            }
+            if (i ==3){
+                System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+winStatus[3]+"개");
+                sum +=(30000000*winStatus[3]);
+            }
+            if (i ==4){
+                System.out.println("6개 일치 (2,000,000,000원) - "+winStatus[4]+"개");
+                sum +=(2000000000*winStatus[4]);
+            }
+        }
+
+        double profitRate = ((double) sum / Integer.parseInt(lottoValue)) * 100;
+        System.out.println("총 수익률은 "+String.format("%.1f",profitRate)+"%입니다.");
 
 
 

@@ -19,4 +19,11 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public boolean contains(Integer num){
+        if (numbers.contains(num)){
+            return true;
+        }
+        return false;
+    }
 }
