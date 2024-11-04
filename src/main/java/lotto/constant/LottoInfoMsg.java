@@ -23,7 +23,6 @@ public enum LottoInfoMsg {
     }
 
     public static String getMatchedResultMsgByForm(LottoRank rank, int count) {
-
         if (rank == LottoRank.SECOND_RANK) {
             return MATCHED_RESULT_SECOND_RANK_PRINT_FORM.getMsg()
                     .formatted(rank.getCorrectCount(), applyPrizeFormat(rank.getPrize()), count) + "\n";

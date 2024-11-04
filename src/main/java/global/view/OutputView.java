@@ -3,7 +3,7 @@ package global.view;
 import static lotto.constant.LottoInfoMsg.PROFIT_RATE_PRINT_FORM;
 import static lotto.constant.LottoInfoMsg.START_PRINT_LOTTO_NUMBERS;
 import static lotto.constant.LottoInfoMsg.START_PRINT_MATCHED_RESULT;
-import static lotto.constant.LottoStatic.ERROR_MSG_PREFIX;
+import static global.constant.GlobalStatic.ERROR_MSG_PREFIX;
 
 import global.exception.ErrorCode;
 import java.util.List;

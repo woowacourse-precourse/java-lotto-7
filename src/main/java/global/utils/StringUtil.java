@@ -1,6 +1,6 @@
 package global.utils;
 
-import static lotto.constant.LottoStatic.WEEKLY_NUMBER_SEPARATOR;
+import static global.constant.GlobalStatic.WEEKLY_NUMBER_SEPARATOR;
 
 import global.exception.ErrorCode;
 import global.view.OutputView;

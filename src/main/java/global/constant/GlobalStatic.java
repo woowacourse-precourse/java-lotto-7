@@ -1,8 +1,8 @@
-package lotto.constant;
+package global.constant;
 
-public class LottoStatic {
+public class GlobalStatic {
     public static final Long PURCHASE_AMOUNT_UNIT = 1000L;
-    public static final String ERROR_MSG_PREFIX = "[ERROR] ";   //TODO: 위치 이동?
+    public static final String ERROR_MSG_PREFIX = "[ERROR] ";
     public static final Integer LOTTO_START_NUMBER = 1;
     public static final Integer LOTTO_END_NUMBER = 45;
     public static final Integer LOTTO_NUMBER_COUNTS = 6;

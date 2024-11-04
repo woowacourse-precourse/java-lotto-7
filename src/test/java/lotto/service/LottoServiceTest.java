@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.constant.LottoStatic.PURCHASE_AMOUNT_UNIT;
+import static global.constant.GlobalStatic.PURCHASE_AMOUNT_UNIT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

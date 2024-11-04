@@ -11,7 +11,7 @@ import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.constant.LottoStatic;
+import global.constant.GlobalStatic;
 
 public class Validator {
 
@@ -21,7 +21,7 @@ public class Validator {
     }
 
     private static void lottoNumberCountValidate(List<Integer> numbers) {
-        if (numbers.size() != LottoStatic.LOTTO_NUMBER_COUNTS) {
+        if (numbers.size() != GlobalStatic.LOTTO_NUMBER_COUNTS) {
             OutputView.printErrorMsgWithReason(ErrorCode.LOTTO_NUMBER_COUNT_MISMATCH, String.valueOf(numbers));
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_COUNT_MISMATCH.getMsg());
         }
@@ -46,7 +46,7 @@ public class Validator {
     }
 
     private static void purchaseAmountUnitValidate(BigInteger purchaseAmount) {
-        if (!purchaseAmount.remainder(BigInteger.valueOf(LottoStatic.PURCHASE_AMOUNT_UNIT)).equals(BigInteger.ZERO)) {
+        if (!purchaseAmount.remainder(BigInteger.valueOf(GlobalStatic.PURCHASE_AMOUNT_UNIT)).equals(BigInteger.ZERO)) {
             OutputView.printErrorMsgWithReason(ErrorCode.PURCHASE_AMOUNT_UNIT_MISMATCH, purchaseAmount.toString());
             throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_UNIT_MISMATCH.getMsg());
         }
@@ -71,7 +71,7 @@ public class Validator {
     }
 
     private static void splitWeeklyNumbersCountValidate(List<String> splitWeeklyNumbers) {
-        if (splitWeeklyNumbers.size() != LottoStatic.LOTTO_NUMBER_COUNTS) {
+        if (splitWeeklyNumbers.size() != GlobalStatic.LOTTO_NUMBER_COUNTS) {
             OutputView.printErrorMsgWithReason(ErrorCode.WEEKLY_NUMBERS_COUNT_MISMATCH,
                     String.valueOf(splitWeeklyNumbers.size()));
             throw new IllegalArgumentException(ErrorCode.WEEKLY_NUMBERS_COUNT_MISMATCH.getMsg());
@@ -87,8 +87,8 @@ public class Validator {
     }
 
     private static void separatorAtStartOrEndValidate(String input) {
-        if (input.startsWith(LottoStatic.WEEKLY_NUMBER_SEPARATOR) ||
-                input.endsWith(LottoStatic.WEEKLY_NUMBER_SEPARATOR)) {
+        if (input.startsWith(GlobalStatic.WEEKLY_NUMBER_SEPARATOR) ||
+                input.endsWith(GlobalStatic.WEEKLY_NUMBER_SEPARATOR)) {
             OutputView.printErrorMsgWithReason(ErrorCode.INPUT_CANNOT_INCLUDE_BLANK, input);
             throw new IllegalArgumentException(ErrorCode.INPUT_CANNOT_INCLUDE_BLANK.getMsg());
         }
@@ -141,7 +141,7 @@ public class Validator {
     }
 
     private static void lottoNumberRangeValidate(int number) {
-        if (number < LottoStatic.LOTTO_START_NUMBER || number > LottoStatic.LOTTO_END_NUMBER) {
+        if (number < GlobalStatic.LOTTO_START_NUMBER || number > GlobalStatic.LOTTO_END_NUMBER) {
             OutputView.printErrorMsgWithReason(ErrorCode.LOTTO_NUMBER_RANGE_MISMATCH, String.valueOf(number));
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_RANGE_MISMATCH.getMsg());
         }

@@ -1,9 +1,9 @@
 package lotto.service;
 
-import static lotto.constant.LottoStatic.LOTTO_END_NUMBER;
-import static lotto.constant.LottoStatic.LOTTO_NUMBER_COUNTS;
-import static lotto.constant.LottoStatic.LOTTO_START_NUMBER;
-import static lotto.constant.LottoStatic.PURCHASE_AMOUNT_UNIT;
+import static global.constant.GlobalStatic.LOTTO_END_NUMBER;
+import static global.constant.GlobalStatic.LOTTO_NUMBER_COUNTS;
+import static global.constant.GlobalStatic.LOTTO_START_NUMBER;
+import static global.constant.GlobalStatic.PURCHASE_AMOUNT_UNIT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;

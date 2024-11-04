@@ -1,10 +1,10 @@
 package global.exception;
 
-import static lotto.constant.LottoStatic.LOTTO_END_NUMBER;
-import static lotto.constant.LottoStatic.LOTTO_NUMBER_COUNTS;
-import static lotto.constant.LottoStatic.LOTTO_START_NUMBER;
-import static lotto.constant.LottoStatic.PURCHASE_AMOUNT_UNIT;
-import static lotto.constant.LottoStatic.WEEKLY_NUMBER_COUNTS;
+import static global.constant.GlobalStatic.LOTTO_END_NUMBER;
+import static global.constant.GlobalStatic.LOTTO_NUMBER_COUNTS;
+import static global.constant.GlobalStatic.LOTTO_START_NUMBER;
+import static global.constant.GlobalStatic.PURCHASE_AMOUNT_UNIT;
+import static global.constant.GlobalStatic.WEEKLY_NUMBER_COUNTS;
 
 public enum ErrorCode {
 
