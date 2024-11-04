@@ -22,5 +22,4 @@ public class LottoRevenueCalculator {
                 .sum();
         return (double) moneyEarned / moneySpent * 100;
     }
-
 }
