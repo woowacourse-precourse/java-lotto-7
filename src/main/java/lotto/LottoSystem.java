@@ -2,9 +2,6 @@ package lotto;
 
 import static lotto.constant.PurchaseConfig.PURCHASE_UNIT;
 
-import java.util.Map;
-
-import lotto.constant.LottoConfig.Rank;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
@@ -27,7 +24,7 @@ public class LottoSystem {
         LottosPrizeCount lottosPrizeCount = lottoPrize.determineLottoPrizes(lottos);
         Double rateOfReturn = lottoPrize.calculateRateOfReturn(lottosPrizeCount, purchase);
 
-        printLottoSummary(lottosPrizeCount.getPrizeCounts(), rateOfReturn);
+        printLottoSummary(lottosPrizeCount, rateOfReturn);
     }
 
     private Purchase settingPurchase() {
@@ -52,8 +49,8 @@ public class LottoSystem {
         return InputHandler.repeatInputBonusNumber(lotto);
     }
 
-    private static void printLottoSummary(Map<Rank, Integer> result, Double rateOfReturn) {
-        OutputHandler.printLottoResult(result);
+    private static void printLottoSummary(LottosPrizeCount lottosPrizeCount, Double rateOfReturn) {
+        OutputHandler.printLottoResult(lottosPrizeCount);
         OutputHandler.printRateOfReturn(rateOfReturn);
     }
 }

@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import static lotto.constant.LottoConfig.Rank.NOTHING;
 import static lotto.constant.SystemConfig.HUNDRED_PERCENT;
@@ -30,16 +29,10 @@ public class LottoPrize {
     }
 
     public Double calculateRateOfReturn(LottosPrizeCount lottosPrizeCount, Purchase purchase) {
-        long totalPrizeMoney = calculateTotalPrizeMoney(lottosPrizeCount.getPrizeCounts());
+        long totalPrizeMoney = lottosPrizeCount.getTotalPrizeMoney();
         int cost = purchase.getCost();
         double rateOfReturn = ((double) totalPrizeMoney / cost) * HUNDRED_PERCENT;
         return roundToFirstDecimal(rateOfReturn);
-    }
-
-    private long calculateTotalPrizeMoney(Map<Rank, Integer> prizeCounts) {
-        return Stream.of(Rank.values())
-                .mapToLong(rank -> rank.calculatePrizeMoney(prizeCounts.getOrDefault(rank, DEFAULT_VALUE)))
-                .sum();
     }
 
     private static double roundToFirstDecimal(double rateOfReturn) {

@@ -3,8 +3,7 @@ package lotto.util;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.constant.LottoConfig.Rank;
-
-import java.util.Map;
+import lotto.model.LottosPrizeCount;
 
 import static lotto.constant.IOMessage.BLANK_LINE;
 import static lotto.constant.IOMessage.OUTPUT_BONUS_RESULT;
@@ -12,7 +11,6 @@ import static lotto.constant.IOMessage.OUTPUT_COUNT;
 import static lotto.constant.IOMessage.OUTPUT_HEAD;
 import static lotto.constant.IOMessage.OUTPUT_RATE_OF_RETURN;
 import static lotto.constant.IOMessage.OUTPUT_RESULT;
-import static lotto.constant.SystemConfig.DEFAULT_VALUE;
 
 public class OutputHandler {
 
@@ -27,14 +25,14 @@ public class OutputHandler {
         }
     }
 
-    public static void printLottoResult(Map<Rank, Integer> results) {
+    public static void printLottoResult(LottosPrizeCount prizeCount) {
         output(BLANK_LINE.getMessage());
         output(OUTPUT_HEAD.getMessage());
         for (Rank rank : Rank.values()) {
             if (rank == Rank.NOTHING) {
                 continue;
             }
-            Integer count = results.getOrDefault(rank, DEFAULT_VALUE);
+            Integer count = prizeCount.getCountForRank(rank);
             output(getLottoResultForm(rank, count));
         }
     }
