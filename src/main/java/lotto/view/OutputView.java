@@ -22,9 +22,17 @@ public class OutputView {
     }
 
     public static void displayResult(LottoResult lottoResult) {
-        System.out.println(LottoOutputMessage.LOTTO_WINNING_RESULT_MESSAGE.getMessage());
+        displayResultOpening();
+        displayMatchingCounts(lottoResult.matchingCountResults());
+        displayMatchingRate(lottoResult.rate());
+    }
+
+    private static void displayResultOpening() {
+        System.out.println(NEW_LINE + LottoOutputMessage.LOTTO_WINNING_RESULT_MESSAGE.getMessage());
         System.out.println(LottoOutputMessage.LOTTO_RESULT_BOUNDARY_MESSAGE.getMessage());
-        List<MatchingCountResult> matchingCountResults = lottoResult.matchingCountResults();
+    }
+
+    private static void displayMatchingCounts(List<MatchingCountResult> matchingCountResults) {
         for (MatchingCountResult matchingCountResult : matchingCountResults) {
             if (matchingCountResult.getWinningCondition().getMatchCount() > 0) {
                 System.out.print(matchingCountResult.getWinningCondition().toString());
@@ -32,8 +40,11 @@ public class OutputView {
                         matchingCountResult.getConditionCount() + PIECE + NEW_LINE);
             }
         }
+    }
+
+    private static void displayMatchingRate(double rate) {
         System.out.println(LottoOutputMessage.LOTTO_RESULT_RATE_MESSAGE.getMessage()
-                + lottoResult.rate()
+                + rate
                 + PERCENT + LottoOutputMessage.LOTTO_LAST_WORD_MESSAGE.getMessage());
     }
 }
