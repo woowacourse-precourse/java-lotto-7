@@ -9,7 +9,9 @@ public enum ErrorStatus {
     INVALID_COUNT_OF_LOTTO_NUMBERS("[ERROR] 로또 번호는 6개여야 합니다."),
     INVALID_LOTTO_INPUT("[ERROR] 로또 번호 입력은 숫자와 쉼표(,)만 허용됩니다."),
     INVALID_BONUS_INPUT("[ERROR] 보너스 번호는 숫자만 입력 가능합니다."),
-    MONEY_OUT_OF_RANGE("[ERROR] 로또 구입 금액은 2,147,483,000원까지 허용됩니다.");
+    MONEY_OUT_OF_RANGE("[ERROR] 로또 구입 금액은 2,147,483,000원까지 허용됩니다."),
+    INVALID_MONEY_INPUT("[ERROR] 로또 구입 입력에는 숫자만 입력 가능합니다."),
+    WINNING_NUMBER_TOO_BIG("[ERROR] 입력한 숫자가 너무 큽니다.");
 
     private final String message;
 
