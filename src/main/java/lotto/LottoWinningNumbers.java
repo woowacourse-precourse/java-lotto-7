@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class LottoWinningNumbers {
 
@@ -30,13 +32,19 @@ public class LottoWinningNumbers {
 
   private boolean validateWinningNumber(int[] winningNumber) {
     if (winningNumber.length != 6) {
-      throw new IllegalArgumentException("[ERROR] 당첨 번호가 6자리가 아니면 안됩니다.");
+      throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
     }
-    boolean isValid = Arrays.stream(winningNumber).allMatch(num -> num >= 1 && num <= 45);
-    if (!isValid) {
-      throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 합니다.");
+    boolean isValidRange = Arrays.stream(winningNumber).allMatch(num -> num >= 1 && num <= 45);
+    if (!isValidRange) {
+      throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
-    return isValid;
+    Set<Integer> uniqueNumbers = new HashSet<>();
+    for (int number : winningNumber) {
+      if (!uniqueNumbers.add(number)) {
+        throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+      }
+    }
+    return true;
   }
 
   private boolean validateBonusNumber(int bonusNumber) {
