@@ -12,6 +12,10 @@ public class UserResponseView {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
+    public static void lottoMessage(int[] lotto){
+        System.out.println(lotto);
+    }
+
     public static void winLottoMessage(){
         System.out.println("당첨 번호를 입력해 주세요.");
     }

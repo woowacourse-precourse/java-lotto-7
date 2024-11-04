@@ -13,5 +13,6 @@ public class Application {
         startMessage();
         String money = Console.readLine();
         userRequestController.inputMoney(money);
+
     }
 }
