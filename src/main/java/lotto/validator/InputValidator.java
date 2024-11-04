@@ -54,4 +54,9 @@ public class InputValidator {
         if(number < 1 || number > 45)
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 범위여야 합니다." + number);
     }
+
+    public static void checkWinningNumbersContainsBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if(winningNumbers.contains(bonusNumber))
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다." + bonusNumber);
+    }
 }
