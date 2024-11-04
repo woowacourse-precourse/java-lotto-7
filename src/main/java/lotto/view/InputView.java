@@ -5,6 +5,10 @@ import lotto.validation.InputValidator;
 
 public class InputView {
 
+    private InputView() {
+
+    }
+
     public static String inputPurchaseAmount() {
         String input = inputWithValidation();
         return input;

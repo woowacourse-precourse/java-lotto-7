@@ -11,6 +11,10 @@ import java.util.Map;
 
 public class OutputView {
 
+    private OutputView() {
+
+    }
+
     public static void printPurchaseAmountInputMessage() {
         System.out.println(LottoMessage.INPUT_PURCHASE_AMOUNT.getMessage());
     }
