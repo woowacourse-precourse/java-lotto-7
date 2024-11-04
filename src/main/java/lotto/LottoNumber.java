@@ -8,9 +8,17 @@ public record LottoNumber(int value) {
     }
 
     private static int validateLottoNumber(String value) {
-        if (!value.matches(SIGNED_NUMBER_REGEX)) {
+        validateLetter(value);
+        return Integer.parseInt(value);
+    }
+
+    private static void validateLetter(String value) {
+        if (isLetter(value)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 문자가 아닌 숫자여야 합니다.");
         }
-        return Integer.parseInt(value);
+    }
+
+    private static boolean isLetter(String value) {
+        return !value.matches(SIGNED_NUMBER_REGEX);
     }
 }
