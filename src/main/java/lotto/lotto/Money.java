@@ -2,10 +2,23 @@ package lotto.lotto;
 
 import java.text.NumberFormat;
 
-public record Money(int value) {
+public class Money {
 
-    public Money {
+    private final int value;
+
+    public Money(int value) {
         validate(value);
+        this.value = value;
+    }
+
+    public Money(String textValue) {
+        int value = Integer.parseInt(textValue);
+        validate(value);
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     private static void validate(int value) {
@@ -23,6 +36,10 @@ public record Money(int value) {
         if (value % amount != 0) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public double getRateBy(Money money) {
+        return ((double) (value - money.value) / money.value) * 100;
     }
 
     @Override
