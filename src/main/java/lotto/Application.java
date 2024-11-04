@@ -63,7 +63,12 @@ public class Application {
     }
 
     private static int getBonusNumber() {
-        return 0;
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        return bonusNumber;
     }
 
     private static List<Integer> parseInputNumbers(String input) {
