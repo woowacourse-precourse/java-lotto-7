@@ -4,6 +4,7 @@ package lotto.view;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
@@ -12,6 +13,7 @@ import lotto.domain.Money;
 import lotto.domain.PrizeResult;
 
 public class OutputView {
+    private static final String WINNING_STATISTICS = "\n당첨 통계\n---";
     private static final String RESULT_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String SECOND_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
@@ -33,13 +35,28 @@ public class OutputView {
     }
 
     public void winningDetails(PrizeResult prizeResult, Money money) {
-        System.out.println("\n당첨 통계\n" + "---");
-        Arrays.stream(LottoRank.values())
-                .filter(prize -> !prize.equals(LottoRank.NONE))
-                .sorted((a, b) -> Integer.compare(a.getMatchCount(), b.getMatchCount())) // matchCount로 정렬
-                .forEach(prize -> System.out.println(getPrintResultPrize(prize, prizeResult)));
-        System.out.printf((RATE_OF_RETURN) + "\n", calculateRateOfReturn(prizeResult, money));
+        printHeader();
+        printPrizeStatistics(prizeResult);
+        printRateOfReturn(prizeResult, money);
+    }
 
+    private void printHeader() {
+        System.out.println(WINNING_STATISTICS);
+    }
+
+    private void printPrizeStatistics(PrizeResult prizeResult) {
+        Arrays.stream(LottoRank.values())
+                .filter(this::isWinningRank)
+                .sorted(Comparator.comparingInt(LottoRank::getMatchCount))
+                .forEach(prize -> System.out.println(getPrintResultPrize(prize, prizeResult)));
+    }
+
+    private boolean isWinningRank(LottoRank prize) {
+        return !prize.equals(LottoRank.NONE);
+    }
+
+    private void printRateOfReturn(PrizeResult prizeResult, Money money) {
+        System.out.printf((RATE_OF_RETURN) + "\n", calculateRateOfReturn(prizeResult, money));
     }
 
 
