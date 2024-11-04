@@ -25,27 +25,30 @@ public class LottoGame {
         this.output = output;
     }
 
-    public void purchase() {
-        PurchaseAmount purchaseAmount = retryUntilValid(() -> {
+    public void play() {
+        PurchaseAmount purchaseAmount = purchase();
+        LottoTicket lottoTicket = draw(purchaseAmount);
+        WinningCombination winningCombination = announceResults();
+        match(lottoTicket, winningCombination);
+    }
+
+    private PurchaseAmount purchase() {
+        return retryUntilValid(() -> {
             String rawPurchaseAmount = input.readPurchaseAmount();
             return new PurchaseAmount(rawPurchaseAmount);
         });
-
-        draw(purchaseAmount);
     }
 
-    private void draw(PurchaseAmount purchaseAmount) {
+    private LottoTicket draw(PurchaseAmount purchaseAmount) {
         NumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
-
         LottoDrawer lottoDrawer = new LottoDrawer(purchaseAmount, randomNumbersGenerator);
         LottoTicket lottoTicket = lottoDrawer.generateLottos();
 
         output.printLottoTicket(lottoTicket);
-
-        result(lottoTicket);
+        return lottoTicket;
     }
 
-    private void result(LottoTicket lottoTicket) {
+    private WinningCombination announceResults() {
         Lotto winningLotto = retryUntilValid(() -> {
             List<Integer> winningNumbers = input.readWinningLotto();
             return new Lotto(winningNumbers);
@@ -56,15 +59,10 @@ public class LottoGame {
             return new Bonus(rawBonusNumber);
         });
 
-        WinningCombination winningCombination = retryUntilValid(() ->
-                new WinningCombination(winningLotto, bonus)
-        );
-
-        match(lottoTicket, winningCombination);
+        return new WinningCombination(winningLotto, bonus);
     }
 
     private void match(LottoTicket lottoTicket, WinningCombination winningCombination) {
-
         Map<Rank, Integer> lottoResult = winningCombination.lottoWinningResult(lottoTicket);
     }
 
