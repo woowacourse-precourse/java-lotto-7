@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.*;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class LottoService {
 
@@ -96,5 +97,12 @@ public class LottoService {
         System.out.println(ea + "개를 구매했습니다.");
     }
 
-
+    // 발행 로또 출력
+    public void printLottos() {
+        for (Lotto lotto : make_lottos) {
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers()); // 수정 가능한 리스트로 복사
+            Collections.sort(numbers);
+            System.out.println(numbers);
+        }
+    }
 }
