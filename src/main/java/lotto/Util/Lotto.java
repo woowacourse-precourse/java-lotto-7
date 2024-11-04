@@ -1,6 +1,5 @@
-package lotto.util;
+package lotto.Util;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class Lotto {
@@ -14,7 +13,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-
     public int buyLotto(int money) {
         int remainder = money % LOTTO_PRICE;
 
@@ -24,8 +22,11 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR]" + remainder + "원으로는 구매가 불가능합니다." + neededMoney + "원 더 채워주세요");
         }
         return amount;
-
     }
+
+    /*public List<Integer> drawLotto(List<Integer> numbers) {
+
+    }*/
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
@@ -40,5 +41,7 @@ public class Lotto {
         }*/
     }
 
-    //while()행동시작하고 끝나면 IllegalStatementException e;
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
 }

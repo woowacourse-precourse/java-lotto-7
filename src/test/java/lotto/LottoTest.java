@@ -1,9 +1,8 @@
 package lotto;
 
-import lotto.util.Lotto;
+import lotto.Util.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.MasterDetailListProcessor;
 
 import java.util.List;
 
