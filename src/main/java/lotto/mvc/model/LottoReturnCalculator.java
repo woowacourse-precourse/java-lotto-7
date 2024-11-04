@@ -4,10 +4,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.EnumMap;
-import java.util.Map;
 
 public class LottoReturnCalculator {
-
     public static BigDecimal calculateTotalReturn(EnumMap<LottoWinningAmount, Integer> winningCounts,
                                                   long purchaseAmount) {
         BigInteger totalAmount = calculateTotalWinningAmount(winningCounts);
@@ -16,10 +14,10 @@ public class LottoReturnCalculator {
                 .multiply(BigDecimal.valueOf(100));
     }
 
-    private static BigInteger calculateTotalWinningAmount(Map<LottoWinningAmount, Integer> winningCounts) {
+    private static BigInteger calculateTotalWinningAmount(EnumMap<LottoWinningAmount, Integer> winningCounts) {
         BigInteger totalAmount = BigInteger.ZERO;
 
-        for (Map.Entry<LottoWinningAmount, Integer> entry : winningCounts.entrySet()) {
+        for (EnumMap.Entry<LottoWinningAmount, Integer> entry : winningCounts.entrySet()) {
             LottoWinningAmount winningAmount = entry.getKey();
             int count = entry.getValue();
 

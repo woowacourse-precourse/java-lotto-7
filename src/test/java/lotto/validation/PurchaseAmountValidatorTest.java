@@ -1,4 +1,4 @@
-package lotto.mvc.validation;
+package lotto.validation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrowsExactly;

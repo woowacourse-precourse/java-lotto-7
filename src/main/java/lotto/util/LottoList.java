@@ -1,7 +1,8 @@
-package lotto.mvc.model;
+package lotto.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.mvc.model.Lotto;
 
 public class LottoList {
     private List<Lotto> bunchOfLottoes;

@@ -1,14 +1,17 @@
 package lotto.mvc.model;
 
+import static lotto.mvc.model.LottoWinningAmount.FIVE_PLUS_BONUS;
+import static lotto.util.Constants.COUNT_OF_LOTTO_NUMBER;
+import static lotto.util.Constants.LOTTO_END_NUMBER;
+import static lotto.util.Constants.LOTTO_PRICE_UNIT;
+import static lotto.util.Constants.LOTTO_START_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.EnumMap;
 import java.util.List;
+import lotto.util.LottoList;
 
 public class LottoManager {
-    private static final int LOTTO_PRICE_UNIT = 1000;
-    private static final int LOTTO_START_NUMBER = 1;
-    private static final int LOTTO_END_NUMBER = 45;
-    private static final int COUNT_OF_LOTTO_NUMBER = 6;
     private LottoList lottoes;
     private WinningLotto winningLotto;
 
@@ -74,7 +77,7 @@ public class LottoManager {
     }
 
     private boolean isMatchBonus(Lotto lotto, int matchCount, int bonus) {
-        if (matchCount == 5 && lotto.getNumbers().contains(bonus)) {
+        if (matchCount == FIVE_PLUS_BONUS.getCount() && lotto.getNumbers().contains(bonus)) {
             return true;
         }
 

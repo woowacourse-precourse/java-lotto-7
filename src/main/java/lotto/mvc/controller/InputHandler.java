@@ -1,66 +1,66 @@
 package lotto.mvc.controller;
 
+import static lotto.util.Constants.DELIMITER;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.mvc.model.Lotto;
-import lotto.mvc.validation.LottoBonusNumberValidator;
-import lotto.mvc.validation.LottoNumberValidator;
-import lotto.mvc.validation.PurchaseAmountValidator;
 import lotto.mvc.view.InputView;
+import lotto.validation.LottoBonusNumberValidator;
+import lotto.validation.LottoNumberValidator;
+import lotto.validation.PurchaseAmountValidator;
 
 public class InputHandler {
-    private static final String DELIMITER = ",";
     private static final String REPLACEMENT_OF_DELIMITER = "";
     private InputView inputView = new InputView();
 
-    public long getPurchaseAmount() {
+    private <T> T doLoop(Supplier<T> inputFunction) {
         while (true) {
             try {
-                inputView.showPurchaseAmountMsg();
-
-                String purchaseAmount = inputView.getUserInput();
-                purchaseAmount = trimInput(purchaseAmount);
-                purchaseAmount = removeDelimiter(purchaseAmount);
-
-                PurchaseAmountValidator.isValid(purchaseAmount);
-
-                return Long.parseLong(purchaseAmount);
+                return inputFunction.get();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public long getPurchaseAmount() {
+        return doLoop(() -> {
+            inputView.showPurchaseAmountMsg();
+
+            String purchaseAmount = inputView.getUserInput();
+            purchaseAmount = trimInput(purchaseAmount);
+            purchaseAmount = removeDelimiter(purchaseAmount);
+
+            PurchaseAmountValidator.isValid(purchaseAmount);
+
+            return Long.parseLong(purchaseAmount);
+        });
     }
 
     public List<Integer> getLottoWinningNumbers() {
-        while (true) {
-            try {
-                inputView.showLottoWinningNumberMsg();
-                String winningNumber = inputView.getUserInput();
-                winningNumber = trimInput(winningNumber);
+        return doLoop(() -> {
+            inputView.showLottoWinningNumberMsg();
+            String winningNumber = inputView.getUserInput();
+            winningNumber = trimInput(winningNumber);
 
-                LottoNumberValidator.isValid(winningNumber);
+            LottoNumberValidator.isValid(winningNumber);
 
-                return extractLottoNumber(winningNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+            return extractLottoNumber(winningNumber);
+        });
     }
 
     public int getLottoBonusNumber(Lotto winningLotto) {
-        while (true) {
-            try {
-                inputView.showLottoBonusNumberMsg();
-                String bonusNumber = inputView.getUserInput();
-                bonusNumber = trimInput(bonusNumber);
+        return doLoop(() -> {
+            inputView.showLottoBonusNumberMsg();
+            String bonusNumber = inputView.getUserInput();
+            bonusNumber = trimInput(bonusNumber);
 
-                LottoBonusNumberValidator.isValid(winningLotto, bonusNumber);
+            LottoBonusNumberValidator.isValid(winningLotto, bonusNumber);
 
-                return Integer.parseInt(bonusNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+            return Integer.parseInt(bonusNumber);
+        });
     }
 
     private String trimInput(String input) {

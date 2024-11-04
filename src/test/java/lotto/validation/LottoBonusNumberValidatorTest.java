@@ -1,4 +1,4 @@
-package lotto.mvc.validation;
+package lotto.validation;
 
 import java.util.List;
 import lotto.mvc.model.Lotto;
@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@DisplayName("로또 보너스 번호 입력에 대한 검증")
 public class LottoBonusNumberValidatorTest {
     static Lotto lotto;
 
@@ -22,7 +23,7 @@ public class LottoBonusNumberValidatorTest {
     @NullAndEmptySource
     void test1(String input) {
         Assertions.assertThatThrownBy(() -> LottoBonusNumberValidator.isValid(lotto, input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 
     @DisplayName("예외 테스트 - 문자를 입력했을 때")
@@ -30,7 +31,7 @@ public class LottoBonusNumberValidatorTest {
     @ValueSource(strings = {"ㅁ", ",", "/", "\"", "a", "1.1"})
     void test2(String input) {
         Assertions.assertThatThrownBy(() -> LottoBonusNumberValidator.isValid(lotto, input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 
     @DisplayName("예외 테스트 - int 범위를 넘어가는 수를 입력했을 때")
@@ -38,7 +39,7 @@ public class LottoBonusNumberValidatorTest {
     @ValueSource(strings = {"21212121212", "2147483648"})
     void test3(String input) {
         Assertions.assertThatThrownBy(() -> LottoBonusNumberValidator.isValid(lotto, input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 
     @DisplayName("예외 테스트 - 음수를 입력했을 때")
@@ -46,7 +47,7 @@ public class LottoBonusNumberValidatorTest {
     @ValueSource(strings = {"-1", "-11", "-44"})
     void test4(String input) {
         Assertions.assertThatThrownBy(() -> LottoBonusNumberValidator.isValid(lotto, input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 
     @DisplayName("예외 테스트 - 0을 입력했을 때")
@@ -54,7 +55,7 @@ public class LottoBonusNumberValidatorTest {
     @ValueSource(strings = {"0"})
     void test5(String input) {
         Assertions.assertThatThrownBy(() -> LottoBonusNumberValidator.isValid(lotto, input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 
     @DisplayName("예외 테스트 - 1 ~ 45 사이의 정수가 아닌 수를 입력했을 때")
@@ -62,7 +63,7 @@ public class LottoBonusNumberValidatorTest {
     @ValueSource(strings = {"46", "80", "100"})
     void test6(String input) {
         Assertions.assertThatThrownBy(() -> LottoBonusNumberValidator.isValid(lotto, input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 
     @DisplayName("예외 테스트 - 당첨 번호에 해당하는 수를 입력했을 때")
@@ -70,6 +71,6 @@ public class LottoBonusNumberValidatorTest {
     @ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
     void test7(String input) {
         Assertions.assertThatThrownBy(() -> LottoBonusNumberValidator.isValid(lotto, input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 }

@@ -20,23 +20,49 @@ public class LottoController {
     }
 
     public void run() {
-        long purchaseAmount = inputHandler.getPurchaseAmount();
+        long purchaseAmount = getPurchaseAmount();
 
-        int count = lottoManager.extractLottoCount(purchaseAmount);
+        int lottoCount = calculateLottoCount(purchaseAmount);
 
-        lottoManager.makeLottoes(count);
-        outputView.showPurchaseDetails(lottoManager.getLottoes(), count);
+        createAndDisplayLottoes(lottoCount);
 
+        getWinningLotto();
+
+        displayWinningStatistics(purchaseAmount);
+    }
+
+    private long getPurchaseAmount() {
+        return inputHandler.getPurchaseAmount();
+    }
+
+    private int calculateLottoCount(long purchaseAmount) {
+        return lottoManager.extractLottoCount(purchaseAmount);
+    }
+
+    private void createAndDisplayLottoes(int lottoCount) {
+        lottoManager.makeLottoes(lottoCount);
+        outputView.showPurchaseDetails(lottoManager.getLottoes(), lottoCount);
+    }
+
+    private void getWinningLotto() {
         lottoManager.setWinningLotto(inputHandler.getLottoWinningNumbers());
+        getBonusNumber();
+    }
+
+    private void getBonusNumber() {
         WinningLotto winningLotto = lottoManager.getWinningLotto();
         int bonusNumber = inputHandler.getLottoBonusNumber(winningLotto);
         lottoManager.setBonusNumber(bonusNumber);
+    }
 
+    private void displayWinningStatistics(long purchaseAmount) {
         EnumMap<LottoWinningAmount, Integer> winningCounts = lottoManager.checkLottoWinning();
         outputView.showWinningStatisticsDetails(winningCounts);
-
-        BigDecimal totalReturn = LottoReturnCalculator.calculateTotalReturn(winningCounts, purchaseAmount);
-
+        BigDecimal totalReturn = calculateTotalReturn(winningCounts, purchaseAmount);
         outputView.showTotalReturn(totalReturn);
+    }
+
+    private BigDecimal calculateTotalReturn(EnumMap<LottoWinningAmount, Integer> winningCounts, long purchaseAmount) {
+        return LottoReturnCalculator.calculateTotalReturn(winningCounts, purchaseAmount);
     }
 }

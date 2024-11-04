@@ -3,8 +3,8 @@ package lotto.mvc.view;
 import java.math.BigDecimal;
 import java.util.Map;
 import lotto.mvc.model.Lotto;
-import lotto.mvc.model.LottoList;
 import lotto.mvc.model.LottoWinningAmount;
+import lotto.util.LottoList;
 
 public class OutputView {
     private static final String NUMBER_OF_LOTTO_PURCHASES = "개를 구매했습니다.";
