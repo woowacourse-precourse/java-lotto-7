@@ -12,7 +12,7 @@ import lotto.view.OutputView;
 public class LottoGameController {
     private final InputController inputController;
 
-    public LottoGameController(InputController inputController, RandomGenerator randomGenerator) {
+    public LottoGameController(InputController inputController) {
         this.inputController = inputController;
     }
 
