@@ -42,8 +42,10 @@ public class GameController {
             try {
                 String purchaseStr = getPurchaseStr();
                 validateNullAndEmpty(purchaseStr);
+
                 int amount = InputParser.parseInteger(purchaseStr);
                 InputValidator.validatePurchaseAmount(amount);
+
                 return amount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + " 다시 입력해 주세요.");
@@ -69,6 +71,7 @@ public class GameController {
                 String bonusNumber = getBonusNumber();
                 validateNullAndEmpty(bonusNumber);
                 int bonus = InputParser.parseInteger(bonusNumber);
+
                 InputValidator.validateRange(bonus);
                 InputValidator.validateDuplicate(winningLotto, bonus);
                 return bonus;

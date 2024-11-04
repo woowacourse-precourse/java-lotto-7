@@ -2,14 +2,13 @@ package lotto.util;
 
 
 
+import static lotto.constant.Constants.LOTTO_NUMBER_RANGE_REGEX;
 import static lotto.exception.printException.throwIllegalArgException;
 
 import lotto.domain.Lotto;
 import lotto.exception.ErrorMessage;
 
 public class InputValidator {
-
-    private static final String LOTTO_NUMBER_RANGE_REGEX = "^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$";
 
     public static void validateNullAndEmpty(String input) {
         if (input == null || input.isEmpty()) {

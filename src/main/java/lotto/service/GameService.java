@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.constant.Constants.LOTTO_PRICE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +11,9 @@ import lotto.domain.Lotto;
 import lotto.domain.Winning;
 
 public class GameService {
-    private static final int LOTTO_PRICE = 1000;
 
     public Game createGame(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
-        return new Game(lottos, winningNumbers, bonusNumber);
+        return new Game(lottos, bonusNumber);
     }
 
     public List<Lotto> generateLottos(int amount) {

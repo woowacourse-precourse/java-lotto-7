@@ -57,7 +57,7 @@ public class GameTest {
 
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
-        Game game = new Game(lottos, winningLotto, bonusNumber);
+        Game game = new Game(lottos, bonusNumber);
 
         // when
         Map<Winning, Integer> results = game.compareNumbers(winningLotto);
@@ -77,7 +77,7 @@ public class GameTest {
         int purchaseAmount = 1000;
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
-        Game game = new Game(lottos, winningLotto, bonusNumber);
+        Game game = new Game(lottos, bonusNumber);
 
         // when
         Map<Winning, Integer> results = game.compareNumbers(winningLotto);
@@ -101,7 +101,7 @@ public class GameTest {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
 
-        Game game = new Game(lottos, winningLotto, bonusNumber);
+        Game game = new Game(lottos, bonusNumber);
 
         // when
         Map<Winning, Integer> results = game.compareNumbers(winningLotto);
@@ -130,7 +130,7 @@ public class GameTest {
         int purchaseAmount = 10000;
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
-        Game game = new Game(lottos, winningLotto, bonusNumber);
+        Game game = new Game(lottos, bonusNumber);
 
         // when
         Map<Winning, Integer> results = game.compareNumbers(winningLotto);

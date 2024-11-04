@@ -1,6 +1,7 @@
 package lotto.domain;
 
 
+import static lotto.constant.Constants.LOTTO_MAX_COUNT;
 import static lotto.exception.printException.throwIllegalArgException;
 
 import java.util.ArrayList;
@@ -10,19 +11,14 @@ import java.util.Map;
 import lotto.exception.ErrorMessage;
 
 public class Game {
-    private static final int LOTTO_MAX_COUNT = 100;
-    private static final int[] PRIZE_AMOUNTS = {5000, 50000, 1500000, 30000000, 2000000000};
-
     private final List<Lotto> lottos;
-    private Lotto winningLotto;
     private int bonusNumber;
     private List<Lotto> winningLottos;
 
-    public Game(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+    public Game(List<Lotto> lottos, int bonusNumber) {
         validateLottoMaxCount(lottos);
 
         this.lottos = lottos;
-        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
         this.winningLottos = new ArrayList<>();
     }
@@ -45,9 +41,9 @@ public class Game {
             Winning winning = Winning.valueOf(correctCount, bonusMatch);
             if (winning != null) {
                 results.put(winning, results.getOrDefault(winning, 0) + 1);
+                winningLottos.add(winningLotto);
             }
         }
-
         return results;
     }
 

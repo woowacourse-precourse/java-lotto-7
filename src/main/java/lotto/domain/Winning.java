@@ -30,7 +30,7 @@ public enum Winning {
             return FIVE_MATCH_WITH_BONUS;
         }
         return Arrays.stream(values())
-                .filter(rank -> rank.matchCount == matchCount)
+                .filter(winning -> winning.matchCount == matchCount)
                 .findFirst()
                 .orElse(null);
     }
