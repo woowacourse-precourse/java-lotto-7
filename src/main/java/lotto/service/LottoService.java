@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.global.string.AnswerConstants;
 import lotto.global.string.ErrorConstants;
+import lotto.model.Lotto;
 
 public class LottoService {
     private int money;
     private List<List<Integer>> lottoTickets = new ArrayList<>();
+    private Lotto lotto;
 
     /*
     구매금액에 따른 로또 번호 생성
@@ -25,6 +27,13 @@ public class LottoService {
             }
         }
         printLottoTickets(lottoTickets);
+    }
+
+    /*
+    로또 번호 저장
+     */
+    public void saveLottoNumber(List<Integer> numbers) {
+        this.lotto = new Lotto(numbers);
     }
 
     public void printLottoTickets(List<List<Integer>> lottoTickets) {
