@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constant.Constant.NUMBERS_MAX_COUNT;
 import static lotto.constant.Constant.NUMBERS_RANGE_END;
 import static lotto.constant.Constant.NUMBERS_RANGE_START;
 
@@ -25,7 +26,7 @@ public class SixNumbers {
     }
 
     private void validateSixNumbers() {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBERS_MAX_COUNT) {
             throw new LottoException(ExceptionCode.NON_SIX_NUMBERS);
         }
     }
