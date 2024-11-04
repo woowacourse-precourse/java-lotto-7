@@ -41,6 +41,10 @@ public class OutputView {
         System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 
+    public void displayErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     private void displayLotto(Lotto lotto) {
         System.out.print(OPEN_BRACKET);
         displayNumbers(lotto.getNumbers());

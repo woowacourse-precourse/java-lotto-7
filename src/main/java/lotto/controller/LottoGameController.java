@@ -27,8 +27,18 @@ public class LottoGameController {
     }
 
     public void run() {
-        inputView.displayLottoPurchaseAmountPrompt();
-        int lottoPurchaseAmount = parseNumber(inputView.readLottoPurchaseAmount());
+        int lottoPurchaseAmount = 0;
+
+        while (true) {
+            try {
+                inputView.displayLottoPurchaseAmountPrompt();
+                lottoPurchaseAmount = parseNumber(inputView.readLottoPurchaseAmount());
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.displayErrorMessage(e.getMessage());
+            }
+        }
+
         Lottos lottos = Lottos.from(lottoGenerator.issue(lottoPurchaseAmount));
         outputView.displayLottoCount(lottos);
         outputView.displayLottoNumbers(lottos);
@@ -62,6 +72,14 @@ public class LottoGameController {
     }
 
     private int parseNumber(String userInputNumber) {
-        return Integer.parseInt(userInputNumber);
+        int parsedNumber;
+
+        try {
+            parsedNumber = Integer.parseInt(userInputNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 정수 형태여야 합니다.");
+        }
+        
+        return parsedNumber;
     }
 }
