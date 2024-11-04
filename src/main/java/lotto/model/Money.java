@@ -7,6 +7,8 @@ public class Money {
     private static final Pattern numberPattern = Pattern.compile("^-?[0-9]+$");
     private static final int MONEY_UNIT_VALUE = 1000;
     private static final int LOWER_LIMIT = 0;
+    private static final int ZERO = 0;
+
 
     private final long value;
 
@@ -68,7 +70,7 @@ public class Money {
     }
 
     private void validateMinus(final String money) {
-        if (getParsedLong(money) < 0) {
+        if (getParsedLong(money) < LOWER_LIMIT) {
             throw new IllegalArgumentException(
                     DomainExceptionMessage.INVALID_MONEY_VALUE.getMessage()
             );
@@ -76,7 +78,7 @@ public class Money {
     }
 
     private void validateMoneyUnit(final String money) {
-        if (getParsedLong(money) % MONEY_UNIT_VALUE != 0) {
+        if (getParsedLong(money) % MONEY_UNIT_VALUE != ZERO) {
             throw new IllegalArgumentException(
                     DomainExceptionMessage.INVALID_MONEY_UNIT.getMessage()
             );
