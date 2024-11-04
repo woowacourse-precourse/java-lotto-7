@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
 
 public class RankCount {
@@ -19,6 +19,6 @@ public class RankCount {
     }
 
     public Map<Rank, Integer> getRankCount() {
-        return new HashMap<>(rankCount);
+        return Collections.unmodifiableMap(rankCount);
     }
 }
