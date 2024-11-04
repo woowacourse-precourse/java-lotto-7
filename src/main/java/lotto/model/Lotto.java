@@ -2,7 +2,6 @@ package lotto.model;
 
 import static lotto.message.ErrorMessage.LOTTO_SIZE_6;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -10,8 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sortNumbers(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumbers(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -20,8 +18,8 @@ public class Lotto {
         }
     }
 
-    private void sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream().sorted().toList();
     }
 
     public List<Integer> getNumbers() {
