@@ -33,7 +33,6 @@ public class Lottos {
             }
 
             boolean bonusMatch = (matchCount == 5) && lotto.getNumbers().contains(bonusNumber);
-
             LottoRule rule = LottoRule.getWinInfo(matchCount, bonusMatch);
             matchInfo.put(rule, matchInfo.getOrDefault(rule, 0) + 1);
         }
