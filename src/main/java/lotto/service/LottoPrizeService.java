@@ -105,8 +105,7 @@ public class LottoPrizeService {
 
     public static double calculateProfit(int totalPrize, int totalExpenditure){
         double profitRate = ((double) totalPrize / totalExpenditure) * 100;
-        return Math.round(profitRate * 100.0) / 100.0;
-
+        return Math.round(profitRate * 10.0) / 10.0;
     }
 
 }

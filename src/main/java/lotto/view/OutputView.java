@@ -12,7 +12,7 @@ public class OutputView {
     private static String DASH = "- ";
     private static String COUNTMEESSAGE = "개";
     private static String PRINT_TOTAL_INVESTMENT = "총 수익률은 ";
-    private static String PROFIT_RATE = "%.2f%% 입니다.";
+    private static String PROFIT_RATE = "%.1f%%입니다.";
 
     public static void getPrintTotalInvestment(double profit){
         String totalInvestmentMessage = PRINT_TOTAL_INVESTMENT + String.format(PROFIT_RATE, profit);
