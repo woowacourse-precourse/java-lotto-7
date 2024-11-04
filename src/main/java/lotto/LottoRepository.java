@@ -21,5 +21,13 @@ public class LottoRepository {
         }
         return amount;
     }
+    //로또 구입 갯수 메서드 구현
+    private void purchaseLottos(int amount) {
+        int count = amount / lotto_Price;
+        System.out.printf("%d개를 구매했습니다.\n", count);
+        for (int i = 0; i < count; i++) {
+            purchasedLottos.add(Lotto.generateRandomNumbers());
+        }
+    }
 }
 
