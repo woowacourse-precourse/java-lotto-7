@@ -10,8 +10,8 @@ public class Answer {
 	private Lotto answerLotto;
 	private int bonusLotto;
 
-	public Answer(List<Integer> answerLottos, int bonusLotto) {
-		this.answerLotto = new Lotto(answerLottos);
+	public Answer(Lotto answerLottos, int bonusLotto) {
+		this.answerLotto = answerLottos;
 		this.bonusLotto = bonusLotto;
 	}
 

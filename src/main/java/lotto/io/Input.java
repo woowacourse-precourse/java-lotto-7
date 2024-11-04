@@ -3,6 +3,7 @@ package lotto.io;
 import static lotto.exception.ExceptionMessage.*;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,18 +31,11 @@ public class Input {
 	}
 
 
-	public static List<Integer> readAnswerLotto() {
-		while (true) {
-			try {
-				System.out.println(ANSWER_LOTTO_INPUT_MESSAGE);
-				String input = Console.readLine();
-				List<Integer> answerLottoNumbers = parseLottoNumbers(input);
-				validateLottoNumbers(answerLottoNumbers);
-				return answerLottoNumbers;
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			}
-		}
+	public static Lotto readAnswerLotto() {
+		System.out.println(ANSWER_LOTTO_INPUT_MESSAGE);
+		String input = Console.readLine();
+		List<Integer> answerLottos = parseLottoNumbers(input);
+		return new Lotto(answerLottos);
 	}
 
 	public static int readBonusLotto() {
