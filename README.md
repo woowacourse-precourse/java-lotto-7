@@ -197,6 +197,9 @@
 
 <img width = "450" alt = "image" src="./image/flowchart(total).jpg">
 
+## 클래스 다이어그램
+<img width = "600" alt = "image" src="./image/classDiagram.jpg">
+
 ## 파일 구조
 
 ````
