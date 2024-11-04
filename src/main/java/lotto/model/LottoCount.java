@@ -14,20 +14,19 @@ public class LottoCount {
 
 
     private final int lottoCount;
-    private final InputValidator inputValidator;
 
 
     public LottoCount(String purchaseAmount, InputValidator inputValidator) {
-        this.inputValidator = inputValidator;
-        this.lottoCount = parsedLottoCount(purchaseAmount);
+        this.lottoCount = parsedLottoCount(purchaseAmount, inputValidator);
     }
 
     public int getLottoCount() {
         return lottoCount;
     }
 
-    private int parsedLottoCount(String purchaseAmount) {
-        int parsedAmount = getValidPurchaseAmount(purchaseAmount);
+
+    private int parsedLottoCount(String purchaseAmount, InputValidator inputValidator) {
+        int parsedAmount = getValidPurchaseAmount(purchaseAmount, inputValidator);
 
         return calculateLottoCount(parsedAmount);
     }
@@ -39,7 +38,7 @@ public class LottoCount {
         return parsedAmount / UNIT_PURCHASE_AMOUNT;
     }
 
-    private int getValidPurchaseAmount(String purchaseAmount) {
+    private int getValidPurchaseAmount(String purchaseAmount, InputValidator inputValidator) {
         String trimmedPurchaseAmount = purchaseAmount.trim();
         inputValidator.validateOnlyDigit(trimmedPurchaseAmount);
         int parsedAmount = parseInt(trimmedPurchaseAmount);
@@ -54,5 +53,4 @@ public class LottoCount {
             throw new InputErrorException(ErrorType.NEED_INTEGER);
         }
     }
-
 }

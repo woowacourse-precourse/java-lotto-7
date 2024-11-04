@@ -10,11 +10,9 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    private final InputValidator inputValidator;
 
     public Lotto(List<Integer> numbers, InputValidator inputValidator) {
-        this.inputValidator = inputValidator;
-        validate(numbers);
+        validate(numbers, inputValidator);
         this.numbers = numbers;
     }
 
@@ -22,7 +20,7 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers, InputValidator inputValidator) {
         inputValidator.checkIfEmpty(numbers);
         checkLottoNumberCount(numbers);
         inputValidator.checkDuplicate(numbers);

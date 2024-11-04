@@ -8,13 +8,11 @@ public class LottoBonusNumber {
 
     private Integer bonusNumber;
     private Lotto lotto;
-    private final InputValidator inputValidator;
 
 
     public LottoBonusNumber(String bonusNumber, Lotto lotto, InputValidator inputValidator) {
-        this.inputValidator = inputValidator;
         this.lotto = lotto;
-        this.bonusNumber = getValidBonusNumber(bonusNumber);
+        this.bonusNumber = getValidBonusNumber(bonusNumber, inputValidator);
 
     }
 
@@ -22,12 +20,11 @@ public class LottoBonusNumber {
         return bonusNumber;
     }
 
-    public Integer getValidBonusNumber(String bonusNumbers) {
+    public Integer getValidBonusNumber(String bonusNumbers, InputValidator inputValidator) {
         String trimmedLottoNumbers = bonusNumbers.trim();
         inputValidator.checkIfEmpty(trimmedLottoNumbers);
 
         inputValidator.validateOnlyDigit(bonusNumbers);
-
         Integer parsedBonusNumber = parseInt(bonusNumbers);
 
         inputValidator.checkValidRange(parsedBonusNumber);
