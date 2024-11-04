@@ -29,11 +29,11 @@ class StatisticsCalculatorTest {
 
     private HashMap<WinningRank, Integer> getTestRankCounts() {
         HashMap<WinningRank, Integer> testRankCounts = new HashMap<>();
-        rankCounts.put(WinningRank.FIRST, 0);
-        rankCounts.put(WinningRank.SECOND, 0);
-        rankCounts.put(WinningRank.THIRD, 0);
-        rankCounts.put(WinningRank.FOURTH, 1);
-        rankCounts.put(WinningRank.FIFTH, 1);
+        testRankCounts.put(WinningRank.FIRST, 0);
+        testRankCounts.put(WinningRank.SECOND, 0);
+        testRankCounts.put(WinningRank.THIRD, 0);
+        testRankCounts.put(WinningRank.FOURTH, 1);
+        testRankCounts.put(WinningRank.FIFTH, 1);
         return testRankCounts;
     }
 }

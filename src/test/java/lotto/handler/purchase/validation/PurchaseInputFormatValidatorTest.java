@@ -29,6 +29,6 @@ class PurchaseInputFormatValidatorTest {
     void validate_숫자가_아닐_때_예외_발생() {
         handlerToken.addContent(TokenType.PURCHASE_AMOUNT_DTO, PurchaseAmountDTO.create("5a000"));
         PurchaseInputFormatValidator validator = new PurchaseInputFormatValidator();
-        Assertions.assertThrows(NumberFormatException.class, () -> validator.validate(handlerToken));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> validator.validate(handlerToken));
     }
 }
