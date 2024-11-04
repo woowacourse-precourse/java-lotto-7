@@ -13,10 +13,12 @@ public class OutputView {
     public static final String WINNINGSTATUS_COUNT_DELIMITER = " - ";
     private static final String LOTTO_PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
     public static final String DECIMAL_FORMAT = "#,##0.0";
+    public static final String LOTTO_QUANTITY_MESSAGE = "%d개를 구매하셨습니다.";
 
     public void printPurchaseAmount(int lottoQuantity) {
         System.out.println();
-        System.out.println(lottoQuantity + "개를 구매했습니다.");
+        System.out.printf(LOTTO_QUANTITY_MESSAGE, lottoQuantity);
+        System.out.println();
     }
 
     public void printLottoNumbers(List<Integer> numbers){

@@ -7,6 +7,9 @@ import java.util.Map;
 
 public class LottoResult {
 
+    private static final int PROFIT_ROUNDING_FACTOR = 1000;
+    private static final double PROFIT_DIVISOR = 10.0;
+
     private final Map<WinningStatus, Integer> result = new EnumMap<>(WinningStatus.class);
 
     private LottoResult() {
@@ -38,6 +41,6 @@ public class LottoResult {
         int totalPrize = result.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
-        return Math.round(((double) totalPrize / purchaseAmount) * 1000) / 10.0;
+        return Math.round(((double) totalPrize / purchaseAmount) * PROFIT_ROUNDING_FACTOR) / PROFIT_DIVISOR;
     }
 }
