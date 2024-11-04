@@ -26,7 +26,8 @@ public class ResultView {
                 return;
             }
 
-            stringBuilder.append(rank.getMatchDescription())
+            // @todo 등수 여기서 출력
+            stringBuilder.append(getDescription(rank))
                     .append(String.format(" (%,d원) - ", rank.getPrize()))
                     .append(count).append("개\n");
         });
@@ -42,6 +43,13 @@ public class ResultView {
                 .append("%입니다.");
 
         return stringBuilder.toString();
+    }
+
+    public static String getDescription(Prize prize) {
+        if (prize == Prize.FIVE_MATCHES_WITH_BONUS) {
+            return "5개 일치, 보너스 볼 일치";
+        }
+        return prize.getRequiredMatchCount() + "개 일치";
     }
 
 }

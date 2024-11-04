@@ -35,15 +35,12 @@ public enum Prize {
         return this.requiresBonusMatch == bonusMatch || !this.requiresBonusMatch;
     }
 
-    public String getMatchDescription() {
-        if (this == FIVE_MATCHES_WITH_BONUS) {
-            return "5개 일치, 보너스 볼 일치";
-        }
-        return this.requiredMatchCount + "개 일치";
-    }
-
     public int getPrize() {
         return prize;
+    }
+
+    public int getRequiredMatchCount() {
+        return requiredMatchCount;
     }
 
 }
