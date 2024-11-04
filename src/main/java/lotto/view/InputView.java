@@ -15,7 +15,7 @@ public class InputView {
 
         String inputBuyAmount = Console.readLine();
 
-        //정수타입인지 확인
+        //자연수타입인지 확인
         if (validateBuyAmountNotNumber(inputBuyAmount)) {
             throw new IllegalArgumentException(ErrorMessage.NOTNUMBERBUYAMOUNT.getMessage());
         }

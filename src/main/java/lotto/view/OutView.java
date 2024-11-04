@@ -56,5 +56,11 @@ public class OutView {
         return numRightKey + " 일치 (" + winMoney + ") - " + correctCount + "개";
     }
 
+    //에러 처리
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
 
 }

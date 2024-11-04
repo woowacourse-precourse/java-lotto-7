@@ -14,14 +14,14 @@ public class InputViewTest extends NsTest {
     @DisplayName("구입금액이 1000원 단위가 아닌경우")
     public void Not1000PerBuyAmount() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("1200"))
+                assertThatThrownBy(() -> runException("500"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(ErrorMessage.NOTPER1000BUYAMOUNT.getMessage())
         );
     }
 
     @Test
-    @DisplayName("구입금액이 정수가 아닌경우")
+    @DisplayName("구입금액이 자연수가 아닌경우")
     public void NotNumberBuyAmount() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1000j"))

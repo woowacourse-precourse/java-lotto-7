@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.model.lotto.Lottos;
 import lotto.model.parseLotto.ParseLotto;
 import lotto.view.InputView;
@@ -16,16 +17,21 @@ public class LottoController {
 
     public LottoController() {
         //입출력 로직
-        buyAmount = InputView.inputBuyAmount();
-        winNumbersStr = InputView.inputWinNumbers();
-        bonusNumber = InputView.inputBonusNumber();
-        winNumbers = ParseLotto.splitWinNumber(winNumbersStr);
+        rerunTemplate(() -> {
+            buyAmount = InputView.inputBuyAmount();
+        });
+
+        rerunTemplate(() -> {
+            winNumbersStr = InputView.inputWinNumbers();
+            winNumbers = ParseLotto.splitWinNumber(winNumbersStr);
+        });
+
     }
 
     public void run() {
 
         //로또 발행
-        Lottos lottos = new Lottos(winNumbers, buyAmount, bonusNumber);
+        Lottos lottos = generateLottos();
         lottos.generateLotto();
         lottos.lottosSort();
 
@@ -40,6 +46,39 @@ public class LottoController {
 
         OutView.profitRatePrint(lottos.getProfitRate());
 
+
+    }
+
+    private Lottos generateLottos() {
+        return rerunTemplate(() -> {
+
+            bonusNumber = InputView.inputBonusNumber();
+
+
+            return new Lottos(winNumbers,buyAmount,bonusNumber);
+        });
+    }
+
+    private <T> T rerunTemplate(final Supplier<T> action) {
+        while (true) {
+            try {
+                return action.get();
+            } catch (IllegalArgumentException e) {
+                OutView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+
+    private void rerunTemplate(final Runnable action) {
+        while (true) {
+            try {
+                action.run();
+                break;
+            } catch (IllegalArgumentException e) {
+                OutView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
 }
