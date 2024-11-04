@@ -37,5 +37,10 @@ public class Lottos {
         if (money > 2147483000) {
             throw new IllegalArgumentException(ErrorStatus.MONEY_OUT_OF_RANGE.getMessage());
         }
+
+        // 로또 구입 금액이 1,000원 단위가 아닌 경우
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorStatus.INVALID_MONEY_AMOUNT.getMessage());
+        }
     }
 }
