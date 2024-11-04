@@ -4,7 +4,7 @@ import lotto.util.Limit;
 
 public class Profit {
     public static final int PERCENTAGE = 100;
-    public static final String PROFIT_STRING_FORMAT = "총 수익률은 %.1f%%입니다.";
+    public static final String PROFIT_STRING_FORMAT = "총 수익률은 %,.1f%%입니다.";
 
     private final double profit;
 
