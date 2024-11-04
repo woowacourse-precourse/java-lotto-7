@@ -21,6 +21,13 @@ public class Lotto {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getErrorMessage());
         }
+        numbers.forEach(this::validateLottoNumber);
+    }
+
+    private void validateLottoNumber(Integer lottoNumber) {
+        if (lottoNumber < LOTTO_MIN_NUMBER || lottoNumber > LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getErrorMessage());
+        }
     }
 
     public boolean contains(Integer number) {
