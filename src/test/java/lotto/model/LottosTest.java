@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class PurchasedLottosTest {
+class LottosTest {
 
     private NumbersGenerator numbersGenerator;
 
@@ -21,7 +21,7 @@ class PurchasedLottosTest {
     @DisplayName("로또 구매 테스트")
     void 로또_구매_테스트() {
         int purchaseCount = 3;
-        PurchasedLottos lottos = PurchasedLottos.purchase(purchaseCount, numbersGenerator);
+        Lottos lottos = Lottos.purchase(purchaseCount, numbersGenerator);
 
         List<Lotto> purchasedLottos = lottos.getLottos();
 

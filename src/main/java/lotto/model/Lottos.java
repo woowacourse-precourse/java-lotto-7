@@ -5,21 +5,21 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.util.NumbersGenerator;
 
-public class PurchasedLottos {
+public class Lottos {
 
     private final List<Lotto> lottos;
 
-    private PurchasedLottos(List<Lotto> lottos) {
+    private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static PurchasedLottos purchase(int purchaseCount, NumbersGenerator numbersGenerator) {
+    public static Lottos purchase(int purchaseCount, NumbersGenerator numbersGenerator) {
         List<Lotto> purchasedLottos = IntStream.range(0, purchaseCount)
                 .mapToObj(lotto -> Lotto.of(
                         numbersGenerator.generateNumbers(LottoConstants.MIN_LOTTO_NUMBER.getValue(),
                                 LottoConstants.MAX_LOTTO_NUMBER.getValue(), LottoConstants.LOTTO_COUNT.getValue())))
                 .toList();
-        return new PurchasedLottos(purchasedLottos);
+        return new Lottos(purchasedLottos);
     }
 
     public List<Lotto> getLottos() {

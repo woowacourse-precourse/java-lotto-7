@@ -6,21 +6,21 @@ import java.util.Map;
 
 public class LottoWinningChecker {
 
-    private final PurchasedLottos purchasedLottos;
+    private final Lottos lottos;
     private final WinningLotto winningLotto;
 
-    private LottoWinningChecker(PurchasedLottos purchasedLottos, WinningLotto winningLotto) {
-        this.purchasedLottos = purchasedLottos;
+    private LottoWinningChecker(Lottos lottos, WinningLotto winningLotto) {
+        this.lottos = lottos;
         this.winningLotto = winningLotto;
     }
 
-    public static LottoWinningChecker of(PurchasedLottos purchasedLottos, WinningLotto winningLotto) {
-        return new LottoWinningChecker(purchasedLottos, winningLotto);
+    public static LottoWinningChecker of(Lottos lottos, WinningLotto winningLotto) {
+        return new LottoWinningChecker(lottos, winningLotto);
     }
 
     public Map<LottoRank, Integer> getLottoWinningResult() {
         Map<LottoRank, Integer> lottoResult = new HashMap<>();
-        List<Lotto> lottos = purchasedLottos.getLottos();
+        List<Lotto> lottos = this.lottos.getLottos();
 
         for (Lotto lotto : lottos) {
             long matchingCount = lotto.matchingCountWith(winningLotto.getLotto());

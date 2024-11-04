@@ -7,7 +7,7 @@ import lotto.model.LottoConstants;
 import lotto.model.LottoRank;
 import lotto.model.LottoRevenueCalculator;
 import lotto.model.LottoWinningChecker;
-import lotto.model.PurchasedLottos;
+import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 import lotto.util.NumbersGenerator;
 import lotto.validator.MoneyValidator;
@@ -30,12 +30,12 @@ public class LottoController {
         int purchaseMoney = getMoney();
         int purchaseCount = calculatePurchaseCountBy(purchaseMoney);
 
-        PurchasedLottos purchasedLottos = PurchasedLottos.purchase(purchaseCount, numbersGenerator);
-        outputView.showPurchasedLottos(purchaseCount, purchasedLottos);
+        Lottos lottos = Lottos.purchase(purchaseCount, numbersGenerator);
+        outputView.showPurchasedLottos(purchaseCount, lottos);
 
         WinningLotto winningLotto = getWinningLotto();
 
-        Map<LottoRank, Integer> lottoResult = getLottoResult(purchasedLottos, winningLotto);
+        Map<LottoRank, Integer> lottoResult = getLottoResult(lottos, winningLotto);
         outputView.showLottoResult(lottoResult);
 
         double revenue = calculateLottoRevenue(lottoResult, purchaseMoney);
@@ -113,9 +113,9 @@ public class LottoController {
         return createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
     }
 
-    private Map<LottoRank, Integer> getLottoResult(PurchasedLottos purchasedLottos,
+    private Map<LottoRank, Integer> getLottoResult(Lottos lottos,
                                                    WinningLotto winningLotto) {
-        LottoWinningChecker lottoWinningChecker = LottoWinningChecker.of(purchasedLottos, winningLotto);
+        LottoWinningChecker lottoWinningChecker = LottoWinningChecker.of(lottos, winningLotto);
         return lottoWinningChecker.getLottoWinningResult();
     }
 

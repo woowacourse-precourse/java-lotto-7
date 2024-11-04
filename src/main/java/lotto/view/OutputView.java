@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
-import lotto.model.PurchasedLottos;
+import lotto.model.Lottos;
 
 public class OutputView {
 
@@ -32,7 +32,7 @@ public class OutputView {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
     }
 
-    public void showPurchasedLottos(int purchasedCount, PurchasedLottos purchasedLottos) {
+    public void showPurchasedLottos(int purchasedCount, Lottos purchasedLottos) {
         System.out.println();
         System.out.printf(LOTTO_PURCHASE_RESULT_MESSAGE, purchasedCount);
         List<Lotto> lottos = purchasedLottos.getLottos();
