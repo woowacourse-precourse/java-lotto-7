@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinningNumbers {
-    private List<Integer> winningNumbers;
-    private int bonusNumber;
+    private final List<Integer> winningNumbers;
+    private final int bonusNumber;
 
     public WinningNumbers(String winningNumbersInput, String bonusNumberInput) {
         this.winningNumbers = parseStringToIntegerList(winningNumbersInput);
