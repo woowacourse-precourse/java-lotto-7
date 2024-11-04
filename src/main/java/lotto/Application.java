@@ -2,6 +2,10 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoView view = new LottoView();
+        LottoLogic logic = new LottoLogic();
+
+        LottoController controller = new LottoController(view, logic);
+        controller.run();
     }
 }
