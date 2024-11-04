@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -17,6 +18,25 @@ public class LottoStatisticsDto {
         this.rateOfReturn = rateOfReturn;
     }
 
+    private String lottoPrizeToPrintFormat(LottoPrize lottoPrize, int count) {
+        return String.format("%d개 일치%s (%,d원) - %,d개",
+                lottoPrize.getMatchCount(),
+                hasBonus(lottoPrize),
+                lottoPrize.getMoney(),
+                count);
+    }
+
+    private String hasBonus(LottoPrize lottoPrize) {
+        if (lottoPrize.doesBonusNumberMatters()) {
+            return ", 보너스 볼 일치";
+        }
+        return "";
+    }
+
+    private String rateOfReturnToPrintFormat(double rateOfReturn) {
+        DecimalFormat df = new DecimalFormat("###,###.##");
+        return df.format(rateOfReturn);
+    }
 
     @Override
     public String toString() {
@@ -32,22 +52,8 @@ public class LottoStatisticsDto {
             sb.append(lottoPrizeToPrintFormat(lottoPrize, prizeCount.get(lottoPrize)))
                     .append(LINE_SEPARATOR);
         }
-        sb.append(String.format("총 수익률은 %,.2f%%입니다.", rateOfReturn));
+        sb.append(String.format("총 수익률은 %s%%입니다.", rateOfReturnToPrintFormat(rateOfReturn)));
         return sb.toString();
     }
 
-    private String lottoPrizeToPrintFormat(LottoPrize lottoPrize, int count) {
-        return String.format("%d개 일치%s (%,d원) - %,d개",
-                lottoPrize.getMatchCount(),
-                hasBonus(lottoPrize),
-                lottoPrize.getMoney(),
-                count);
-    }
-
-    private String hasBonus(LottoPrize lottoPrize) {
-        if (lottoPrize.doesBonusNumberMatters()) {
-            return ", 보너스 볼 일치";
-        }
-        return "";
-    }
 }
