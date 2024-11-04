@@ -34,7 +34,7 @@ public class Validator {
     }
 
     // related to string
-    public static void validateString(String string){
+    public static void validateBlankString(String string){
         if(string.isBlank()){
             throw new IllegalArgumentException(ExceptionMessage.EMPTY_STRING.getMessage());
         }

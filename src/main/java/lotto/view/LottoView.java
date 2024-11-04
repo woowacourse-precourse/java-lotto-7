@@ -52,7 +52,7 @@ public class LottoView {
         guideInputWinningNumbers();
 
         String rawNumbers = Console.readLine();
-        Validator.validateString(rawNumbers);
+        Validator.validateBlankString(rawNumbers);
         String[] rawNumberList = rawNumbers.split(LottoView.DELIMITERS);
 
         return transformToIntegerList(rawNumberList);
@@ -63,7 +63,7 @@ public class LottoView {
 
         String rawBonusNumber = Console.readLine();
 
-        Validator.validateString(rawBonusNumber);
+        Validator.validateBlankString(rawBonusNumber);
 
         return this.parseInt(rawBonusNumber);
     }
