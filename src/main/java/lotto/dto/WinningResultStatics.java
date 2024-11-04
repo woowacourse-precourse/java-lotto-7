@@ -4,15 +4,15 @@ import java.util.List;
 
 public class WinningResultStatics {
 
-    private final List<WinningNumbersStatics> winningNumbersStatics;
+    private final List<WinningStaticsPerConditions> winningNumbersStatics;
     private final String winningPrizeStatics;
 
-    public WinningResultStatics(List<WinningNumbersStatics> inputWinningNumbersStatics, String prizeSum) {
+    public WinningResultStatics(List<WinningStaticsPerConditions> inputWinningNumbersStatics, String prizeSum) {
         winningNumbersStatics = inputWinningNumbersStatics;
         winningPrizeStatics = prizeSum;
     }
 
-    public List<WinningNumbersStatics> getWinningNumbersStatics() {
+    public List<WinningStaticsPerConditions> getWinningNumbersStatics() {
         return winningNumbersStatics;
     }
 

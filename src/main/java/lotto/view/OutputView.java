@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.constants.IOMessageConstants;
 import lotto.dto.GeneratedNumbers;
-import lotto.dto.WinningNumbersStatics;
+import lotto.dto.WinningStaticsPerConditions;
 import lotto.dto.WinningResultStatics;
 
 public class OutputView {
@@ -37,7 +37,7 @@ public class OutputView {
     }
 
     public void printWinningStatics(WinningResultStatics winningResultStatics) {
-        List<WinningNumbersStatics> winningNumbersStatic = winningResultStatics.getWinningNumbersStatics();
+        List<WinningStaticsPerConditions> winningNumbersStatic = winningResultStatics.getWinningNumbersStatics();
         System.out.println(IOMessageConstants.WINNING_STATICS);
         System.out.println(IOMessageConstants.DASH);
         for (int i = 0; i < winningNumbersStatic.size(); i++) {
