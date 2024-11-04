@@ -35,4 +35,20 @@ class LottoTest {
         //then
         assertThat(result).isEqualTo("1, 2, 3, 4, 5, 6");
     }
+    
+    @DisplayName("로또는_당첨번호와_보너스번호를_입력_받아_자신의_당첨_순위를_확인하고_반환할_수_있다")
+    @Test
+    public void getRank() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 7);
+        WinningNumbers winningNumbers = WinningNumbers.of(numbers);
+        BonusNumber bonusNumber = BonusNumber.of(6);
+
+        //when
+        Rank result = lotto.getRank(winningNumbers, bonusNumber);
+
+        //then
+        assertThat(result).isEqualTo(Rank.SECOND);
+    }
 }
