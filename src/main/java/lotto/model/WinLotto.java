@@ -18,7 +18,6 @@ public class WinLotto {
         this.bonusNumber = bonusNumber;
     }
 
-
     public List<LottoRank> matchLottos(Lottos lottos) {
         return lottos.matchLottos(winNumbers, bonusNumber);
     }
