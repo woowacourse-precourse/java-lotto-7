@@ -8,10 +8,14 @@ public class LottoPublisher {
     public static final int LOTTO_PRICE = 1000;
     public static final int LOTTO_COUNT_SIZE = 6;
 
-    public static List<Lotto> publishLotto(int count) {
+    public static List<Lotto> publishLotto(PurchaseAmount purchaseAmount) {
         return Stream.generate(LottoPublisher::generateLotto)
-                .limit(count)
+                .limit(calculateLottoCount(purchaseAmount))
                 .toList();
+    }
+
+    private static int calculateLottoCount(PurchaseAmount purchaseAmount) {
+        return purchaseAmount.value() / LOTTO_PRICE;
     }
 
     private static Lotto generateLotto() {

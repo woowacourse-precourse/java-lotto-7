@@ -1,27 +1,28 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> lottoNumbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.lottoNumbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        this.numbers.sort(Integer::compareTo);
     }
 
     public List<Integer> getLottoNumbers (){
-        sort(lottoNumbers);
-        return lottoNumbers;
+        return numbers;
     }
 
     public Boolean contains(Integer number) {
-        return lottoNumbers.contains(number);
+        return numbers.contains(number);
     }
 
     public int getSameCount(Lotto lotto) {
-        return (int) lottoNumbers.stream()
+        return (int) numbers.stream()
                 .filter(lotto::contains)
                 .count();
     }
@@ -53,11 +54,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        sort(lottoNumbers);
-        return lottoNumbers.toString();
-    }
-
-    private void sort(List<Integer> numbers) {
-        numbers.sort(Integer::compareTo);
+        return numbers.toString();
     }
 }

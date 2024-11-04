@@ -15,6 +15,10 @@ public class WinningNumber {
         return lotto.contains(lottoNumber.value());
     }
 
+    public int getSameCount(Lotto lotto){
+        return this.lotto.getSameCount(lotto);
+    }
+
     private Lotto validateWinningNumber(String inputWinningNumber) {
         List<String> winningNumber = createStringList(inputWinningNumber);
         if (hasInvalidDelimiter(winningNumber)) {

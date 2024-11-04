@@ -18,4 +18,8 @@ public class LottoBuyer {
     public int getPurchaseAmount() {
         return purchaseAmount.value();
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }
