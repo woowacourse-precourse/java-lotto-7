@@ -85,7 +85,7 @@ public class LottoVending {
         Integer bonusNumber = getBonusNumbersUntilValid(winningNumbers);
 
         // 로또 발행
-        int amount = (int) (purchaseAmount / 1000);
+        long amount = purchaseAmount / 1000;
         Lottos lottos = Lottos.create(amount);
         outputView.printLottos(lottos.getLottos());
 
@@ -96,7 +96,7 @@ public class LottoVending {
         int matchedFiveAndBonus = 0;
         int matchedSix = 0;
         for (Lotto lotto : lottos.getLottos()) {
-            int matchedCount = lotto.getMatchedNumbers(winningNumbers).size();
+            long matchedCount = lotto.getMatchNumbersCount(winningNumbers);
             if (matchedCount == 3) {
                 matchedThree++;
             }
