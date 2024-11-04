@@ -54,6 +54,19 @@ public class OutputViewTest extends NsTest {
         );
     }
 
+    @DisplayName("수익률을 출력한다.")
+    @Test
+    void printProfitRateTest() {
+        // given
+        Result result = new Result();
+        result.addThreeNumberMatch();
+        result.addFourNumberMatch();
+        // when
+        outputView.printProfitRate(result, 10000L);
+        // then
+        assertThat(output()).contains("총 수익률은 550.0%입니다.");
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
