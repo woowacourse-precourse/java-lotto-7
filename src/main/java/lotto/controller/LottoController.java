@@ -15,11 +15,18 @@ public class LottoController {
     }
 
     public void run() {
+        UserLottoList userLottoList = getUserLotto();
+
+    }
+
+    private UserLottoList getUserLotto() {
         int money = inputController.getMoney();
         int lottoCount = MoneyToLottoCountUtil.moneyToLottoCount(money);
 
         UserLottoList userLottoList = new UserLottoList(lottoCount);
-
         userLottoListView.printUserLottoList(userLottoList.getNumberList());
+
+        return userLottoList;
     }
+
 }
