@@ -77,7 +77,7 @@ class MoneyTest {
     }
 
     @Test
-    void  금액이_비교할_금액보다_크다() {
+    void 금액이_비교할_금액보다_크다() {
         //given
         Money money = Money.from(2000);
         Money compareMoney = Money.from(1999);
