@@ -3,6 +3,8 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputHandlerTest {
@@ -23,6 +25,30 @@ public class InputHandlerTest {
         assertThatThrownBy(() -> InputHandler.validateLottoBudget(999))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> InputHandler.validateLottoBudget(1_001))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호가 정상적으로 입력되면 예외가 발생하지 않는다.")
+    @Test
+    void 당첨_번호가_정상적으로_입력되면_예외가_발생하지_않는다() {
+        InputHandler.validateWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @DisplayName("당첨 번호가 1~45 사이의 숫자가 아닌 경우 예외가 발생한다.")
+    @Test
+    void 당첨_번호가_1_45_사이의_숫자가_아닌_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> InputHandler.validateWinningNumbers(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> InputHandler.validateWinningNumbers(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호가 6개가 아닌 경우 예외가 발생한다.")
+    @Test
+    void 당첨_번호가_6개가_아닌_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> InputHandler.validateWinningNumbers(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> InputHandler.validateWinningNumbers(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
