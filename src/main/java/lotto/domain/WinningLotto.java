@@ -46,7 +46,7 @@ public class WinningLotto {
                 .toList();
 
         int duplicatedSize = duplicatedNumbers.size();
-        boolean hasBonusNumber = duplicatedNumbers.contains(bonusNumber);
+        boolean hasBonusNumber = lotto.getNumbers().contains(bonusNumber);
         increaseAmountBySize(duplicatedSize, hasBonusNumber);
     }
 
