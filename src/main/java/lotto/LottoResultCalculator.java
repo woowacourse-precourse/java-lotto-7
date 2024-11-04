@@ -47,7 +47,8 @@ public class LottoResultCalculator {
         totalRevenue += results.getOrDefault(Rank.FIFTH_PLACE, 0) * FIFTH_PLACE_PRIZE;
 
         if (totalAmount > 0) {
-            return ((double) totalRevenue / totalAmount) * 100;
+            double rateOfReturn = ((double) totalRevenue / totalAmount) * 100;
+            return Math.round(rateOfReturn * 100.0) / 100.0;
         }
 
         return 0;
