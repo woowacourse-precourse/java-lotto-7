@@ -16,5 +16,10 @@ public class Application {
             return amount;
         }
 
+        private static List<Lotto> purchaseLottos(int purchaseAmount) {
+            int lottoCount = purchaseAmount / 1000;
+            System.out.println(lottoCount + "개를 구매했습니다.");
+
+        }
     }
 }
