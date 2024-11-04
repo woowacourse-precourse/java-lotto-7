@@ -71,9 +71,20 @@ public class LottoServiceImpl implements LottoService {
     private String formatPrizeReport(LottoRule rule, Map<LottoRule, Long> prizeCountMap) {
         return String.format(SystemConstants.LOTTO_SERVICE_PRIZE_REPORT_FORMAT,
                 rule.getMatchCount(),
-                rule.isHasBonus() ? SystemConstants.LOTTO_SERVICE_PRIZE_REPORT_HAS_BONUS : "",
-                String.format(SystemConstants.LOTTO_SERVICE_PRIZE_REPORT_INNER_FORMAT, rule.getPrize()),
+                getBonusText(rule),
+                formatPrize(rule),
                 prizeCountMap.getOrDefault(rule, 0L));
+    }
+
+    private String getBonusText(LottoRule rule) {
+        if (rule.isHasBonus()) {
+            return SystemConstants.LOTTO_SERVICE_PRIZE_REPORT_HAS_BONUS;
+        }
+        return "";
+    }
+
+    private String formatPrize(LottoRule rule) {
+        return String.format(SystemConstants.LOTTO_SERVICE_PRIZE_REPORT_INNER_FORMAT, rule.getPrize());
     }
 
     private double computeProfitRate(List<LottoRule> lottoRuleList, int purchaseAmount){

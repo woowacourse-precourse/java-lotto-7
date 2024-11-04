@@ -47,10 +47,7 @@ public class LottoContoller {
                 String winningNumbersInput = inputView.inputWinningNumbers();
                 String bonusNumberInput = inputView.inputBonusNumber();
                 return lottoService.generateLottoReport(
-                    purchaseAmount,
-                    winningNumbersInput,
-                    bonusNumberInput
-                );
+                    purchaseAmount, winningNumbersInput, bonusNumberInput);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
