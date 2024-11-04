@@ -41,10 +41,15 @@ public class ProfitCalculator {
         return numbers.contains(bonusNumber);
     }
 
-    public int getWinningAmount(Map<Ranking, Integer> winningInfo) {
+    private int getWinningAmount(Map<Ranking, Integer> winningInfo) {
         return winningInfo.entrySet().stream()
                 .mapToInt(entry -> (int) entry.getKey().getWinningPrice() * entry.getValue())
                 .sum();
+    }
+
+    public float getLottoProfit(int winningAmount, int money) {
+        float lottoProfit = (float) (winningAmount - money) / money * 100 + 100;
+        return Math.round(lottoProfit * 100) / 100.0f;
     }
 
 }
