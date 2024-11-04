@@ -11,6 +11,8 @@ public class LottoMachine {
     private static final int LOTTO_SIZE = 6;
 
     public static List<Lotto> generateLottos(int purchaseAmount) {
+        validatePurchaseAmount(purchaseAmount);  // 구입 금액 검증
+
         int count = purchaseAmount / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -19,7 +21,13 @@ public class LottoMachine {
         return lottos;
     }
 
+    private static void validatePurchaseAmount(int purchaseAmount) {
+        if (purchaseAmount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+        }
+    }
+
     private static List<Integer> generateLottoNumbers() {
-        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER,MAX_NUMBER,LOTTO_SIZE));
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE));
     }
 }
