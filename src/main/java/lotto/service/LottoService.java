@@ -73,9 +73,11 @@ public class LottoService {
     }
 
     public List<Lotto> prepareCollectionForPrint(LottoCollection lottoCollection) {
-        List<Lotto> lottos = lottoCollection.getAllLotto();
-        for (Lotto lotto : lottos) {
-            Collections.sort(lotto.getNumbers());
+        List<Lotto> lottos = new ArrayList<>();
+        for (Lotto lotto : lottoCollection.getAllLotto()) {
+            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedNumbers);
+            lottos.add(new Lotto(sortedNumbers));
         }
         return lottos;
     }
