@@ -1,7 +1,9 @@
-package lotto.dto;
+package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.dto.BonusLottoNumber;
+import lotto.dto.WinningLottoNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

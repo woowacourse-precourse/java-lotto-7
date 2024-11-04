@@ -1,7 +1,8 @@
-package lotto.dto;
+package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.dto.LottoPurchaseCost;
 import org.junit.jupiter.api.Test;
 
 public class LottoPurchaseCostTest {
