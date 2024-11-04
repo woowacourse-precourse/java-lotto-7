@@ -12,19 +12,18 @@ public class InputView {
 
     public static int getPurchaseAmount() {
         int purchaseAmount;
-        while (true) {
-            try {
-                System.out.println("구입 금액을 입력해 주세요.");
-                purchaseAmount = Integer.parseInt(Console.readLine());
+        try {
+            System.out.println("구입 금액을 입력해 주세요.");
+            purchaseAmount = Integer.parseInt(Console.readLine());
 
-                // ValidationService를 사용하여 유효성 검사 수행
-                ValidationService.validatePurchaseAmount(purchaseAmount);
-                break; // 유효한 입력 시 반복문 탈출
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 입력한 금액이 유효하지 않습니다. 숫자만 입력해 주세요.");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            // ValidationService를 사용하여 유효성 검사 수행
+            ValidationService.validatePurchaseAmount(purchaseAmount);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 입력한 금액이 유효하지 않습니다. 숫자만 입력해 주세요.");
+            return getPurchaseAmount(); // 재귀 호출로 유효한 입력을 받을 때까지 반복
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getPurchaseAmount(); // 재귀 호출로 유효한 입력을 받을 때까지 반복
         }
         return purchaseAmount; // 유효한 입력 시 금액 반환
     }
