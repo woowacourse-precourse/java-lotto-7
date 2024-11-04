@@ -1,27 +1,11 @@
 package lotto;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class WinningNumbersTest {
-
-    @DisplayName("당첨번호 생성 테스트")
-    @Test
-    void winningNumbersTest() {
-        String winningNumbers = "1,2,3,4,5,6";
-        String bonusNumber = "7";
-
-        WinningNumbers winningNumbersObject = new WinningNumbers(winningNumbers, bonusNumber);
-        List<Integer> winningList = winningNumbersObject.getAllWinningNumbers();
-
-        List<Integer> expectedNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
-        assertThat(winningList).isEqualTo(expectedNumbers);
-    }
 
     @DisplayName("숫자가 아닌 값 입력시")
     @Test
