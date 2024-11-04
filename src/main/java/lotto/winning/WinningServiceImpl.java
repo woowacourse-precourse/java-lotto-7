@@ -31,6 +31,17 @@ public class WinningServiceImpl implements WinningService {
         return result;
     }
 
+    private Map<Rank, Integer> setInitialValue() {
+        Map<Rank, Integer> result = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.LOSING_TICKET) {
+                result.put(rank, 0);
+            }
+        }
+
+        return result;
+    }
+
     private void putWinningResult(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             int cnt = countMatchingNumber(lotto);
@@ -45,17 +56,6 @@ public class WinningServiceImpl implements WinningService {
 
             result.put(Rank.getWinningRank(cnt, isBonusMatch), result.get(Rank.getWinningRank(cnt, isBonusMatch)) + 1);
         }
-    }
-
-    private Map<Rank, Integer> setInitialValue() {
-        Map<Rank, Integer> result = new EnumMap<>(Rank.class);
-        for (Rank rank : Rank.values()) {
-            if (rank != Rank.LOSING_TICKET) {
-                result.put(rank, 0);
-            }
-        }
-
-        return result;
     }
 
     private int countMatchingNumber(Lotto lotto) {
