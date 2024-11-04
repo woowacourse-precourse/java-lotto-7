@@ -13,7 +13,7 @@ public class WinningNumbersTest {
     void 당첨_번호가_6개가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> new WinningNumbers("1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("당첨 번호는 6개의 숫자여야 합니다.");
+                .hasMessageContaining("당첨 번호는 올바른 형식이어야 합니다.");
     }
 
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
