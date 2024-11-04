@@ -3,7 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Seller {
+public class LottoMachine {
 
     private final static String CHANGE_EXCEPTION_MESSAGE = "금액이 나눠 떨어지지 않습니다";
     private final static int LOTTO_PRICE = 1000;
