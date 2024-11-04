@@ -2,11 +2,11 @@ package lotto.domain;
 
 import lotto.Lotto;
 
-public class WinningNumbers {
+public class WinningNumber {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningNumbers(Lotto winningLotto, int bonusNumber) {
+    public WinningNumber(Lotto winningLotto, int bonusNumber) {
         validateBonusNumber(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
