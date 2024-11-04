@@ -26,7 +26,7 @@ public class LottoController {
         outputView.printPurchaseCount(lottoCount.getCount());
 
         List<Lotto> lottos = lottoService.getLottosByCount(lottoCount);
-        List<LottoDto> lottoDtos = convertToDto(lottos);
+        List<LottoDto> lottoDtos = lottoService.convertToDto(lottos);
         outputView.printLottos(lottoDtos);
 
         Lotto winningLotto = getWinningNumber();
@@ -42,10 +42,6 @@ public class LottoController {
             String purchaseAmount = inputView.getPurchaseAmount();
             return lottoService.getLottoCountByAmount(purchaseAmount);
         });
-    }
-
-    private List<LottoDto> convertToDto(List<Lotto> lottos) {
-        return lottos.stream().map(lotto -> new LottoDto(lotto.getNumbers())).toList();
     }
 
     private Lotto getWinningNumber() {

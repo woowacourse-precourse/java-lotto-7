@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 import lotto.domain.LottoResult;
+import lotto.dto.LottoDto;
 import lotto.dto.LottoResultDto;
 import lotto.error.exception.InvalidNumberFormatException;
 import lotto.generator.LottoGenerator;
@@ -29,6 +30,10 @@ public class LottoService {
         return IntStream.range(0, lottoCount.getCount())
                 .mapToObj(i -> Lotto.createRandomNumberLotto(lottoGenerator))
                 .toList();
+    }
+
+    public List<LottoDto> convertToDto(List<Lotto> lottos) {
+        return lottos.stream().map(lotto -> new LottoDto(lotto.getNumbers())).toList();
     }
 
     public Lotto getWinningLotto(String winningNumberInput) {
