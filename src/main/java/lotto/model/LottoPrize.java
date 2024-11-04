@@ -23,6 +23,15 @@ public enum LottoPrize {
         this.prizeAmounts = prizeAmounts;
     }
 
+    public static LottoPrize matchPrize(int winningCount, int bonusCount) {
+        for (LottoPrize prize : LottoPrize.values()) {
+            if (isMatchedWinningCount(winningCount, prize) && isMatchedBonus(bonusCount, prize)) {
+                return prize;
+            }
+        }
+        return FAIL;
+    }
+
     public int getMatchingWinningCount() {
         return matchingWinningCount;
     }
@@ -41,5 +50,13 @@ public enum LottoPrize {
 
     public String getPrizeStatusMessage(int prizeCount) {
         return getPrizeDetails() + PRIZE_SEPARATOR + prizeCount + UNIT_COUNT;
+    }
+
+    private static boolean isMatchedWinningCount(int winningCount, LottoPrize prize) {
+        return winningCount == prize.getMatchingWinningCount();
+    }
+
+    private static boolean isMatchedBonus(int bonusCount, LottoPrize prize) {
+        return bonusCount == prize.getMatchingBonusCount();
     }
 }
