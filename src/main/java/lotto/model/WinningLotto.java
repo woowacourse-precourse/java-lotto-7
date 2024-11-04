@@ -17,6 +17,16 @@ public class WinningLotto {
         }
     }
 
+    public LottoRank matchLotto(Lotto lotto) {
+        int matchCount = (int) winningNumbers.getNumbers().stream()
+                .filter(winningNumber -> lotto.getNumbers().contains(winningNumber.getNumber()))
+                .count();
+
+        boolean bonus = lotto.getNumbers().contains(bonusNumber.getBonusNumber().getNumber());
+
+        return LottoRank.of(matchCount, bonus);
+    }
+
     public WinningNumbers getWinningNumbers() {
         return winningNumbers;
     }
