@@ -2,7 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
-import lotto.enums.LottoPrice;
+import lotto.enums.LottoPrize;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +15,7 @@ public class RandomNumbersDraw {
 
     public List<Lotto> randomLottoNumberDraw(int purchaseAmount) {
         List<Lotto> lottoDrawNumbers = new ArrayList<>();
-        for (int i = 0; i < purchaseAmount / LottoPrice.LOTTO_PRICE_UNIT.getPrice(); i++) {
+        for (int i = 0; i < purchaseAmount / LottoPrize.LOTTO_PRICE_UNIT.getPrize(); i++) {
             Lotto lotto = new Lotto(sortRandomNumbers());
             lottoDrawNumbers.add(lotto);
         }

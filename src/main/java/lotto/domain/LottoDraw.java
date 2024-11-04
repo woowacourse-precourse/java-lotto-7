@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.enums.LottoPrice;
+import lotto.enums.LottoPrize;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public class LottoDraw {
     private final List<Lotto> lottoDrawNumbers;
 
     public LottoDraw(int purchaseAmount, List<Lotto> lottoDrawNumbers) {
-        purchasesCount = purchaseAmount / LottoPrice.LOTTO_PRICE_UNIT.getPrice();
+        purchasesCount = purchaseAmount / LottoPrize.LOTTO_PRICE_UNIT.getPrize();
         this.lottoDrawNumbers = lottoDrawNumbers;
     }
 

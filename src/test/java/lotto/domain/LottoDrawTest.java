@@ -1,13 +1,14 @@
 package lotto.domain;
 
-import lotto.enums.LottoPrice;
+import lotto.enums.LottoPrize;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class LottoDrawTest {
     @Test
@@ -21,7 +22,7 @@ class LottoDrawTest {
         LottoDraw lottoDraw = new LottoDraw(purchaseAmount, lotto);
 
         assertEquals(
-                purchaseAmount / LottoPrice.LOTTO_PRICE_UNIT.getPrice(),
+                purchaseAmount / LottoPrize.LOTTO_PRICE_UNIT.getPrize(),
                 lottoDraw.getPurchasesCount()
         );
     }
