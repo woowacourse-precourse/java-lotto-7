@@ -2,7 +2,10 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import lotto.constant.DrawType;
 import lotto.model.Lotto;
+import lotto.model.LottoGame;
 import lotto.model.Lottos;
 import lotto.validator.PurchasePriceValidator;
 import lotto.validator.WinningNumValidator;
@@ -10,6 +13,8 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGameController {
+
+    private LottoGame lottoGame;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -28,14 +33,16 @@ public class LottoGameController {
 
     public void run() {
         String purchasePrice = getPurchasePrice();
-        Lottos lottos = Lottos.randomFrom(Integer.parseInt(purchasePrice) / LOTTO_PRICE);
-        outputView.showCreatedLottos(lottos.getLottos());
+        Lottos purchasedLottos = Lottos.randomFrom(Integer.parseInt(purchasePrice) / LOTTO_PRICE);
+        outputView.showCreatedLottos(purchasedLottos.getLottos());
 
         List<Integer> winningNum = getWinningNum();
         Lotto winningLotto = new Lotto(winningNum);
 
         String bonusNum = getBonusNum();
-
+        lottoGame = new LottoGame(purchasedLottos, winningLotto, Integer.parseInt(bonusNum));
+        lottoGame.draw();
+        Map<DrawType, Integer> drawTypeIntegerMap = lottoGame.generateDrawResult();
     }
 
     private String getPurchasePrice() {

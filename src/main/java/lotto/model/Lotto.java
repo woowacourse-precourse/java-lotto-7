@@ -49,4 +49,17 @@ public class Lotto {
         return Collections.unmodifiableList(this.numbers);
     }
 
+    public int calculateDrawResult(Lotto winningLotto) {
+        return (int) this.numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count();
+    }
+
+    public int calculateBonusResult(int bonusNum) {
+        int count = 0;
+        if (this.numbers.contains(bonusNum)) {
+            count++;
+        }
+        return count;
+    }
 }

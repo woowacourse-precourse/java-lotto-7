@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.dto.DrawResult;
+import lotto.model.dto.DrawResults;
 
 public class Lottos {
 
@@ -32,6 +34,28 @@ public class Lottos {
         }
 
         return allLottos;
+    }
+
+    public DrawResults getDrawResult(Lotto winningLotto, int bonusNum) {
+        List<DrawResult> results = new ArrayList<>();
+
+        for (Lotto singleLotto : lottos) {
+            results.add(generateResult(singleLotto, winningLotto, bonusNum));
+        }
+
+        return new DrawResults(results);
+    }
+
+    private DrawResult generateResult(Lotto singleLotto, Lotto winningLotto, int bonusNum) {
+        int calculateResult = singleLotto.calculateDrawResult(winningLotto);
+        boolean hasBonusNum = false;
+
+        if (calculateResult == 5) {
+            calculateResult += singleLotto.calculateBonusResult(bonusNum);
+            hasBonusNum = true;
+        }
+
+        return new DrawResult(calculateResult, hasBonusNum);
     }
 
 }
