@@ -40,6 +40,7 @@ public class LottoController {
 
     public void parseLottoWinningNumbers(String[] inputLottoWinningNumbers) {
         for(String LottoWinningNumber : inputLottoWinningNumbers) {
+            LottoWinningNumber = LottoWinningNumber.strip();
             validateParseLottoWinningNumber(LottoWinningNumber);
             lottoWinningNumbers.add(Integer.parseInt(LottoWinningNumber.strip()));
         }
