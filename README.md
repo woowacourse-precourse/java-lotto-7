@@ -106,14 +106,16 @@
 src/main/java/
   └── lotto/
         ├── Application.java                       // 애플리케이션 진입점
+        ├── controller/
+        │      ├── LottoGame.java                  // 로또 게임 전체 흐름을 관리하는 클래스        
         ├── domain/
-        │      ├── Lotto.java                      // 로또 티켓
+        │      ├── Lotto.java                      // 로또 티켓 클래스
         │      ├── LottoTickets.java               // 여러 로또 티켓을 관리하는 일급 컬렉션
-        │      ├── WinningLotto.java               // 당첨 번호 및 보너스 번호
+        │      ├── WinningLotto.java               // 당첨 번호 및 보너스 번호를 관리하는 클래스
+        │      ├── WinningResult.java              // 당첨 결과를 관리하는 클래스
         │      └── LottoPurchaseMoney.java         // 구입 금액을 관리하는 클래스
         ├── service/
-        │      ├── LottoGame.java                  // 로또 게임 전체 흐름을 관리하는 클래스
-        │      └── PrizeCalculator.java            // 당첨 결과를 계산하는 클래스
+        │      └── WinningResultService.java       // 당첨 결과를 처리하는 클래스
         ├── ui/
         │      ├── InputHandler.java               // 사용자 입력을 처리하는 클래스
         │      └── OutputHandler.java              // 결과 출력 처리 클래스
@@ -128,14 +130,16 @@ src/main/java/
 ```
 
 - Application.java: 애플리케이션의 시작점으로, 게임의 실행을 담당합니다.
+- controller 패키지:
+    - LottoGame.java: 로또 게임의 전체 흐름을 관리하며, 입력받은 구입 금액으로 티켓을 발행하고 당첨 번호와 비교하여 결과를 도출하는 클래스입니다.
 - domain 패키지:
     - Lotto.java: 6개의 번호로 이루어진 하나의 로또 티켓을 표현합니다.
     - LottoTickets.java: 사용자가 구입한 금액에 따라 발행된 여러 로또 티켓을 관리하는 일급 컬렉션입니다.
     - WinningLotto.java: 사용자가 입력한 당첨 번호와 보너스 번호를 관리하는 클래스입니다.
+    - WinningResult.java: 로또 당첨 결과를 관리하는 클래스입니다.
     - LottoPurchaseMoney.java: 구입 금액을 관리하고, 유효성을 검증하는 클래스입니다.
 - service 패키지:
-    - LottoGame.java: 로또 게임의 전체 흐름을 관리하며, 입력받은 구입 금액으로 티켓을 발행하고 당첨 번호와 비교하여 결과를 도출하는 클래스입니다.
-    - PrizeCalculator.java: 로또 티켓과 당첨 번호를 비교해 당첨 결과를 계산하는 클래스입니다.
+    - WinningResultService.java: 로또 티켓과 당첨 번호를 비교해 당첨 결과를 처리하는 클래스입니다.
 - ui 패키지:
     - InputHandler.java: 사용자로부터 입력을 받고, 해당 데이터를 처리하는 클래스입니다.
     - OutputHandler.java: 발행된 로또 번호, 당첨 결과 등을 출력하는 역할을 담당합니다.

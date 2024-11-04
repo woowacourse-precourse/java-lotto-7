@@ -32,13 +32,13 @@ class WinningResultServiceTest {
 
     @Test
     void 로또_티켓과_당첨번호를_비교하여_당첨결과를_계산한다() {
-        WinningResult result = winningResultService.calculateWinningResult(lottoTickets, winningLotto);
+        WinningResult result = winningResultService.determineWinningRanks(lottoTickets, winningLotto);
 
-        assertThat(result.getCount(Rank.FIRST)).isEqualTo(1);  // 1등
-        assertThat(result.getCount(Rank.SECOND)).isEqualTo(1); // 2등
-        assertThat(result.getCount(Rank.THIRD)).isEqualTo(1);  // 3등
-        assertThat(result.getCount(Rank.FOURTH)).isEqualTo(1); // 4등
-        assertThat(result.getCount(Rank.FIFTH)).isEqualTo(1);  // 5등
+        assertThat(result.getRankCount(Rank.FIRST)).isEqualTo(1);  // 1등
+        assertThat(result.getRankCount(Rank.SECOND)).isEqualTo(1); // 2등
+        assertThat(result.getRankCount(Rank.THIRD)).isEqualTo(1);  // 3등
+        assertThat(result.getRankCount(Rank.FOURTH)).isEqualTo(1); // 4등
+        assertThat(result.getRankCount(Rank.FIFTH)).isEqualTo(1);  // 5등
     }
 
     @Test
@@ -48,20 +48,20 @@ class WinningResultServiceTest {
                 new Lotto(List.of(16, 17, 18, 19, 20, 21))
         ));
 
-        WinningResult result = winningResultService.calculateWinningResult(noWinningTickets, winningLotto);
+        WinningResult result = winningResultService.determineWinningRanks(noWinningTickets, winningLotto);
 
-        assertThat(result.getCount(Rank.FIRST)).isEqualTo(0);
-        assertThat(result.getCount(Rank.SECOND)).isEqualTo(0);
-        assertThat(result.getCount(Rank.THIRD)).isEqualTo(0);
-        assertThat(result.getCount(Rank.FOURTH)).isEqualTo(0);
-        assertThat(result.getCount(Rank.FIFTH)).isEqualTo(0);
+        assertThat(result.getRankCount(Rank.FIRST)).isEqualTo(0);
+        assertThat(result.getRankCount(Rank.SECOND)).isEqualTo(0);
+        assertThat(result.getRankCount(Rank.THIRD)).isEqualTo(0);
+        assertThat(result.getRankCount(Rank.FOURTH)).isEqualTo(0);
+        assertThat(result.getRankCount(Rank.FIFTH)).isEqualTo(0);
     }
 
     @Test
     void 총_당첨금액을_정상적으로_계산한다() {
-        WinningResult result = winningResultService.calculateWinningResult(lottoTickets, winningLotto);
+        WinningResult result = winningResultService.determineWinningRanks(lottoTickets, winningLotto);
 
-        int totalPrize = winningResultService.calculateTotalPrize(result);
+        int totalPrize = result.calculateTotalPrize();
         assertThat(totalPrize).isEqualTo(
                 Rank.FIRST.getPrize() +
                         Rank.SECOND.getPrize() +

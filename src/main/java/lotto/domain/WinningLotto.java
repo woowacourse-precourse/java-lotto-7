@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.validator.WinningLottoValidator;
@@ -40,7 +39,13 @@ public class WinningLotto {
         return Integer.parseInt(input);
     }
 
-    public List<Integer> getWinningNumbers() {
-        return Collections.unmodifiableList(winningNumbers);
+    public int getMatchCount(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean hasBonusNumber(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 }
