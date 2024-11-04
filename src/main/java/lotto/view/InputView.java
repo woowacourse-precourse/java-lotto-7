@@ -11,7 +11,7 @@ public class InputView {
     private static final String INPUT_BONUS_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
 
-    public static void errorPrint(String errorMessage) {
+    public void errorPrint(String errorMessage) {
         System.out.print(ERROR);
         System.out.println(errorMessage);
     }

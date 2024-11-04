@@ -42,7 +42,7 @@ public class LottoController {
                 int amount = inputView.inputPrice();
                 return lottoService.createLottoMachine(amount);
             } catch (IllegalArgumentException e) {
-                InputView.errorPrint(e.getMessage());
+                inputView.errorPrint(e.getMessage());
             }
         }
     }
@@ -58,7 +58,7 @@ public class LottoController {
             try {
                 return new Lotto(parseNumbers());
             } catch (IllegalArgumentException e) {
-                InputView.errorPrint(e.getMessage());
+                inputView.errorPrint(e.getMessage());
             }
         }
     }
@@ -74,7 +74,7 @@ public class LottoController {
                 }
                 return winnerNumbers;
             } catch (NumberFormatException e) {
-                InputView.errorPrint(INVALID_LOTTO);
+                inputView.errorPrint(INVALID_LOTTO);
             }
         }
     }
@@ -85,7 +85,7 @@ public class LottoController {
                 int bonus = inputView.inputBonus();
                 return validateBonus(winnerLotto, bonus);
             } catch (IllegalArgumentException e) {
-                InputView.errorPrint(e.getMessage());
+                inputView.errorPrint(e.getMessage());
             }
         }
     }
@@ -96,13 +96,13 @@ public class LottoController {
         return bonus;
     }
 
-    private static void checkContains(Lotto winnerLotto, int bonus) {
+    private void checkContains(Lotto winnerLotto, int bonus) {
         if (winnerLotto.getNumbers().contains(bonus)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION);
         }
     }
 
-    private static void checkSame(int bonus) {
+    private void checkSame(int bonus) {
         if (!(1 <= bonus && bonus <= 45)) {
             throw new IllegalArgumentException(INVALID_RANGE);
         }
