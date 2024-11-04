@@ -18,4 +18,8 @@ public class WinningLotto {
         return bonusNumber;
     }
 
+    public List<Integer> getNumbers() {
+        return winningLotto.getNumbers();
+    }
+
 }
