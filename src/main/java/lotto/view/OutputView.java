@@ -15,9 +15,7 @@ public class OutputView {
     }
 
     public static void printUserLotto(List<Lotto> lottoNumbers) {
-        for (Lotto lotto : lottoNumbers) {
-            System.out.println(lotto);
-        }
+        lottoNumbers.forEach(System.out::println);
     }
 
     private static String formatNumber(long number) {
@@ -29,12 +27,17 @@ public class OutputView {
         System.out.println("---");
 
         Arrays.stream(Rank.values())
-                .sorted(Comparator.comparingInt(Rank::getMatchCount))
+                .filter(rank -> rank != Rank.FAIL)
+                .sorted(Comparator.comparingInt(Rank::getPrize))
                 .forEach(rank -> System.out.printf("%s (%s원) - %d개%n",
                         rank.getLabel(),
                         formatNumber(rank.getPrize()),
                         rankCount.getOrDefault(rank, 0)));
 
         System.out.printf("총 수익률은 %.1f%%입니다.%n", roi);
+    }
+
+    public static void printError(Exception e) {
+        System.out.println("[ERROR] 예기치 않은 오류가 발생했습니다: " + e.getMessage());
     }
 }

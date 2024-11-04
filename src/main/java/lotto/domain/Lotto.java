@@ -8,7 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers.stream().sorted().collect(Collectors.toList());
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -25,16 +25,16 @@ public class Lotto {
         }
     }
     public List<Integer> getNumbers(){
-        return numbers;
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 
     public boolean containsNumber(int number){
         return numbers.contains(number);
     }
 
-    public int matchNumber(Lotto other){
+    public int matchNumber(List<Integer> otherNumbers){
         return (int) this.numbers.stream()
-                .filter(other::containsNumber).count();
+                .filter(otherNumbers::contains).count();
     }
 
     @Override

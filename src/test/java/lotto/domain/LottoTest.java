@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -77,7 +78,7 @@ class LottoTest {
     void 다른_로또와_일치하는_번호의_개수를_정확하게_반환해야_한다() {
         Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(Arrays.asList(4, 5, 6, 7, 8, 9));
-        int matchCount = lotto1.matchNumber(lotto2);
+        int matchCount = lotto1.matchNumber(lotto2.getNumbers());
         assertThat(matchCount).isEqualTo(3);
     }
 }

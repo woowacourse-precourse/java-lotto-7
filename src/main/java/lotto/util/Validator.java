@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.util.List;
 import java.util.Set;
 
 public class Validator {
@@ -21,7 +22,7 @@ public class Validator {
         }
     }
 
-    public static void validateWinningNumbers(Set<Integer> winningNumbers) {
+    public static void validateWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("당첨 번호는 정확히 6개여야 합니다.");
         }
@@ -32,7 +33,7 @@ public class Validator {
         }
     }
 
-    public static void validateBonusNumber(String input, Set<Integer> winningNumbers) {
+    public static void validateBonusNumber(String input, List<Integer> winningNumbers) {
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException("보너스 번호는 숫자만 입력할 수 있습니다.");
         }

@@ -4,7 +4,6 @@ import static lotto.view.InputView.getPurchaseAmount;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Rank;
@@ -34,7 +33,7 @@ public class LottoGame {
             Map<Rank, Integer> rankCount = calculateRanks(winningResult);
             calculateAndDisplayROI(rankCount, purchaseAmount);
         }catch (Exception e){
-            System.out.println("[ERROR] 예기치 않은 오류가 발생했습니다: " + e.getMessage());
+            OutputView.printError(e);
         }
     }
 
@@ -56,7 +55,7 @@ public class LottoGame {
     }
 
     private LottoResult getWinningResult() {
-        Set<Integer> winningNumbers = InputView.getWinningNumbers();
+        List<Integer> winningNumbers = InputView.getWinningNumbers();
         int bonusNumber = InputView.getBonusNumber(winningNumbers);
         return new LottoResult(winningNumbers, bonusNumber);
     }
