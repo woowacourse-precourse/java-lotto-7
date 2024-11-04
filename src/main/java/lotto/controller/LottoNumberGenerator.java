@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoNumberGenerator {
-    private static final int LOTTO_MIN = 1;
-    private static final int LOTTO_MAX = 45;
-    private static final int LOTTO_NUMBER_COUNT = 6;
+    private final int LOTTO_MIN = 1;
+    private final int LOTTO_MAX = 45;
+    private final int LOTTO_NUMBER_COUNT = 6;
 
     public List<Lotto> issueLottos(int amount) {
         List<Lotto> issuedLottos = new ArrayList<>();
