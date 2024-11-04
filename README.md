@@ -39,6 +39,7 @@
   - [ ] print winning Lotto info with the thousand separator from bought Lotto info
   - [ ] repeat read input when input is invalid
   - [ ] print rate of return
+  - [ ] validate money input
 
 - handle user request
   - [ ] deliver user request and info 

@@ -32,25 +32,20 @@ public class LottoView {
     public String readMoney(){
         this.guideInputMoney();
         String money = Console.readLine();
-        /*TODO
-            - 1000원 단위로 나누어 떨어지는지 유효성 검사 추가하기
-        */
-        validateIntString(money);
+
+        this.validateMoney(money);
 
         return money;
     }
 
     public int readBuyingLottoCount(){
         try {
-            int money = 0;
             String rawMoney = this.readMoney();
-            money = this.parseInt(rawMoney);
+            int money = this.parseInt(rawMoney);
             return money/ LottoView.LOTTO_PRICE;
         }catch (IllegalArgumentException exception){
             return readBuyingLottoCount();
         }
-
-
     }
 
     public List<Integer> readWinningNumbers(){
@@ -97,6 +92,10 @@ public class LottoView {
             printPrizeInfo(key,winningCount);
         }
 
+    }
+
+    public void validateMoney(String money) throws IllegalArgumentException{
+        Validator.validateDivisible(this.parseInt(money),LottoView.LOTTO_PRICE);
     }
 
     /*TODO
