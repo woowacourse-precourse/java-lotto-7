@@ -36,7 +36,7 @@ public class LottoService {
     }
 
     private List<Lotto> issueLottos(Integer count) {
-        List<Lotto> lottos = lottoManager.purchase(count);
+        List<Lotto> lottos = lottoManager.purchaseLotto(count);
         lottos.forEach(lottoRepository::add);
         return lottos;
     }

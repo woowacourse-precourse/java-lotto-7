@@ -14,7 +14,7 @@ public enum LottoManager {
         return (int) (purchaseAmount / LOTTO_PRICE);
     }
 
-    public List<Lotto> purchase(int count) {
+    public List<Lotto> purchaseLotto(int count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = Lotto.createNumbers();
