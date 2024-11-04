@@ -11,6 +11,10 @@ public class WinningNumber {
         this.lotto = validateWinningNumber(inputWinningNumber);
     }
 
+    public Boolean contains(LottoNumber lottoNumber) {
+        return lotto.contains(lottoNumber.value());
+    }
+
     private Lotto validateWinningNumber(String inputWinningNumber) {
         List<String> winningNumber = createStringList(inputWinningNumber);
         if (hasInvalidDelimiter(winningNumber)) {
