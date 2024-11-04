@@ -29,9 +29,8 @@ public class Output {
                         count);
             }
             System.out.printf(MATCH_RESULT_MESSAGE, rank.getMatchCount(), formatPrize(rank.getPrize()), count);
-
-            System.out.printf(PROFIT_RATE_MESSAGE, profitRate);
         }
+        System.out.printf(PROFIT_RATE_MESSAGE, profitRate);
     }
 
     private static String formatPrize(int prize) {
