@@ -6,6 +6,7 @@ import java.util.List;
 public class Buyer {
     private List<Lotto> lottos;
     private final HashMap<Rank, Integer> resultLotto = new HashMap<>();
+    private static final int PERCENTAGE = 100;
 
     public Buyer() {
         initResultLotto();
@@ -73,6 +74,6 @@ public class Buyer {
                 total += (key.getPrize() * resultLotto.get(key));
             }
         }
-        return Double.parseDouble(String.format("%.1f", (total / cost) * 100));
+        return Double.parseDouble(String.format("%.1f", (total / cost) * PERCENTAGE));
     }
 }
