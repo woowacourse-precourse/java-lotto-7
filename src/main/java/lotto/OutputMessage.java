@@ -12,4 +12,5 @@ public class OutputMessage {
     public static final String MATCH_MESSAGE_FORMAT = "%d개 일치 (%d원) - %d개%n";
     public static final String WINNING_STATISTICS_HEADER = "당첨 통계";
     public static final String DASH_LINE = "---";
+    public static final String TOTAL_PROFIT_RATE_MESSAGE_FORMAT = "총 수익률: %.2f%%\n";
 }

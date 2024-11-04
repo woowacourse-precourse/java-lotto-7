@@ -5,6 +5,7 @@ import static lotto.OutputMessage.INPUT_BONUS_NUMBER_MESSAGE;
 import static lotto.OutputMessage.INPUT_PURCHASE_AMOUNT_MESSAGE;
 import static lotto.OutputMessage.INPUT_WINNING_NUMBERS_MESSAGE;
 import static lotto.OutputMessage.PURCHASE_QUANTITY_INFORMATION_MESSAGE;
+import static lotto.OutputMessage.TOTAL_PROFIT_RATE_MESSAGE_FORMAT;
 import static lotto.OutputMessage.WINNING_STATISTICS_HEADER;
 
 import java.util.List;
@@ -41,5 +42,9 @@ public class OutputHandler {
             boolean bonusMatchRequired = prize.requiresBonus();
             System.out.print(prize.getFormattedMessage(count, bonusMatchRequired));
         }
+    }
+
+    public void printTotalProfitRate(double totalProfitRate) {
+        System.out.printf(TOTAL_PROFIT_RATE_MESSAGE_FORMAT, totalProfitRate);
     }
 }
