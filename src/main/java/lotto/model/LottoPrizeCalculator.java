@@ -48,8 +48,4 @@ public class LottoPrizeCalculator {
         mutableLottoNumbers.retainAll(winningNumber);
         return mutableLottoNumbers.size();
     }
-
-    public int getTotalAmount() {
-        return totalAmount;
-    }
 }

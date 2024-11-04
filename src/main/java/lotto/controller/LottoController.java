@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import static lotto.model.LottoPrizeCalculator.*;
 import static lotto.validation.PurchaseAmountValidator.*;
 import static lotto.validation.WinningNumberValidator.parseValidatedBonusNumber;
 import static lotto.view.InputView.*;
@@ -51,7 +50,7 @@ public class LottoController {
 
     private WinningLotto generateWinningLotto() {
         List<Integer> winningNumbers = requestWinningNumbers();
-        int bonusNumber = requestBonusNumberWithValidation(winningNumbers);
+        int bonusNumber = requestBonusNumber(winningNumbers);
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
@@ -69,7 +68,7 @@ public class LottoController {
         }
     }
 
-    private int requestBonusNumberWithValidation(List<Integer> winningNumbers) {
+    private int requestBonusNumber(List<Integer> winningNumbers) {
         printBonusNumberInputMessage();
         return parseBonusNumberWithValidation(userInput(), winningNumbers);
     }
@@ -79,7 +78,7 @@ public class LottoController {
             return parseValidatedBonusNumber(bonusNumberInput, winningNumbers);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
-            return requestBonusNumberWithValidation(winningNumbers);
+            return requestBonusNumber(winningNumbers);
         }
     }
 
