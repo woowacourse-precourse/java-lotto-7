@@ -29,11 +29,14 @@ public class Lotto {
         return true;
     }
 
-    public void bonusValidate(String number) {
-        int bonusNumber = Integer.parseInt(number);
-        if (numbers.contains(bonusNumber)) {
+    public void bonusValidate(int number) {
+        if (numbers.contains(number)) {
             throw new IllegalArgumentException("[ERROR] 기존 번호와 보너스 번호가 중복된니다.");
         }
+    }
+
+    public List<Integer> getWinNumbers() {
+        return numbers;
     }
 
     // TODO: 추가 기능 구현
