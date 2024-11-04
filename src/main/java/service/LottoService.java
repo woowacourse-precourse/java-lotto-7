@@ -43,6 +43,7 @@ public class LottoService {
     public List<Integer> splitWinningNumber(String winningNumber){
         return Arrays.stream(winningNumber.split(","))
                 .map(String::trim)
+                .filter(s -> !s.isEmpty())
                 .map(Integer::parseInt)
                 .toList();
     }
