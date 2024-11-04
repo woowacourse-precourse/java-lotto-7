@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
+    private static final String IS_DIGIT_PATTERN = "^[0-9]+$";
+
     public String getValidPurchaseAmount() {
         String inputPurchaseAmount = inputValue("구입금액을 입력해 주세요.");
         isDigit(inputPurchaseAmount);
@@ -39,7 +41,7 @@ public class InputView {
     }
 
     private void isDigit(String inputPurchaseAmount) {
-        if (!inputPurchaseAmount.matches("^[0-9]+$")) {
+        if (!inputPurchaseAmount.matches(IS_DIGIT_PATTERN)) {
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
         }
     }
