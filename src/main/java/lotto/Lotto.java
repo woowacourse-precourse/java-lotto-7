@@ -40,7 +40,7 @@ public class Lotto {
     private void printEachLottoNumber(int i) {
         System.out.print(numbers.get(i));
         if (i != numbers.size() - 1) {
-            System.out.print(",");
+            System.out.print(", ");
         }
     }
 
