@@ -61,5 +61,4 @@ public class Calculator {
     return ((float) totalPrizeMoney / totalSpent) * 100;
   }
 
-
 }
