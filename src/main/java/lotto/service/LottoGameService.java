@@ -1,10 +1,14 @@
 package lotto.service;
 
+import static lotto.constant.Constants.DELIMITER;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoIssuer;
 import lotto.model.LottoPurchase;
+import lotto.validator.LottoNumberValidator;
 import lotto.validator.LottoPurchaseValidator;
 import lotto.view.InputView;
 
@@ -36,5 +40,25 @@ public class LottoGameService {
             tickets.add(lotto);
         }
         return tickets;
+    }
+
+    public List<Integer> inputWinningNumbers() {
+        while (true) {
+            try {
+                String input = InputView.inputWinningNumbers();
+                List<Integer> winningNumbers = parseWinningNumbers(input);
+                LottoNumberValidator.validate(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> parseWinningNumbers(String input) {
+        return Arrays.stream(input.split(DELIMITER))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
     }
 }

@@ -13,5 +13,6 @@ public class LottoGameController {
         LottoPurchase lottoPurchase = lottoGameService.inputPurchaseAmount();
         List<Lotto> purchasedLotto = lottoGameService.generateLottoTickets(lottoPurchase);
         OutputView.printPurchasedLotto(purchasedLotto);
+        List<Integer> winningNumbers = lottoGameService.inputWinningNumbers();
     }
 }

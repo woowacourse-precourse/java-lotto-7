@@ -8,4 +8,9 @@ public class InputView {
         System.out.println(RequestMessage.REQUEST_LOTTO_PURCHASE_AMOUNT.getMessage());
         return Console.readLine().trim();
     }
+
+    public static String inputWinningNumbers() {
+        System.out.println(RequestMessage.REQUEST_LOTTO_TICKET_NUMBER.getMessage());
+        return Console.readLine().trim();
+    }
 }
