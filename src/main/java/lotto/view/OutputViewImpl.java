@@ -66,7 +66,7 @@ public class OutputViewImpl implements OutputView {
         f.setGroupingUsed(false);
 
         System.out.println(OutputMessage.RATE_OF_RETURN_MESSAGE_PREFIX.getOutputMessage()
-                + rateOfReturn
+                + f.format(rateOfReturn)
                 + OutputMessage.RATE_OF_RETURN_MASSAGE_SUFFIX.getOutputMessage());
     }
 }
