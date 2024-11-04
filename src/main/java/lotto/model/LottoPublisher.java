@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoPublisher {
 
@@ -17,7 +18,7 @@ public class LottoPublisher {
     public LottoPublisher(int repeatCount) {
         for (int i = 0; i < repeatCount; i++) {
             List<Integer> lotto = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBERS_COUNT);
-            //Collections.sort(lotto);
+            lotto = lotto.stream().sorted().collect(Collectors.toList());
             publishedLotto.add(lotto);
         }
     }

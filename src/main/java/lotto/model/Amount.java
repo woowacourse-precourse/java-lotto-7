@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.List;
-
 public class Amount extends ValidationManager {
     private final int amount;
     private static final String REQUEST_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";

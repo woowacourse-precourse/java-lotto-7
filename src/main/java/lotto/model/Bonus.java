@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.List;
-
 public class Bonus extends ValidationManager {
     private final int bonusNumber;
     private static final  String REQUEST_BONUS_MESSAGE = "보너스 번호를 입력해 주세요.";

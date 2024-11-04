@@ -14,7 +14,6 @@ public class LottoMatchEvaluator {
     public void matchLottoNumbers(List<Integer> lottoNumber, int bonusNumber, LottoPublisher lottoPublisher) {
         List<List<Integer>> publishedLottos = lottoPublisher.getPublishedLotto();
         boolean matchedBonus = false;
-        System.out.println( "Published bonus: "+publishedLottos );
 
         for (int i = 0; i < publishedLottos.size(); i++) {
             int matchingLottoCount = (int) publishedLottos.get(i).stream().filter(lottoNumber::contains).count();
@@ -37,7 +36,7 @@ public class LottoMatchEvaluator {
             int lottoWinningCount = (int) lottoResults.stream()
                     .filter(lotto -> lotto.getMatchingCount() == rankMatchingcount).count();
 
-            if (ranks[i].getMatchingBonus() == true) {
+            if (ranks[i].getMatchingBonus()) {
                 int bonusWinnigCount = (int) lottoResults.stream()
                         .filter(lotto -> lotto.isMatchingBonus() && lotto.getMatchingCount() == rankMatchingcount)
                         .count();
