@@ -25,20 +25,16 @@ public class LottoController {
 
     public void run() {
         String cost = getValidatedCost(); // 유효성 검증
-        buyAndPrintLotto(cost);
-
-        List<LottoDTO> allLottosAsDTO = lottoMainService.getAllLottosAsDTO();
-        outputView.printLottoNumbers(allLottosAsDTO);
-        processHitNumbers();
-        HitLottoDTO dto = lottoMainService.getAllHitLottosAsDTO();
-        lottoMainService.retainLotto(allLottosAsDTO, dto.getAllHitNumbers());
-        StatisticsLottoDTO stats = lottoMainService.getAllStatisticsAsDTO();
-        outputView.statisticStart(stats);
-        double profit = lottoMainService.sumPrize(stats,cost);
-        outputView.profitMessage(profit*100);
+        buyAndPrintLotto(cost); //로또 구매 개수 및 번호 생성 저장
+        List<LottoDTO> allLottosAsDTO = lottoMainService.getAllLottosAsDTO(); // 로또 번호 객체 DTO로 가져옴
+        outputView.printLottoNumbers(allLottosAsDTO); // 로또 번호 공개
+        processHitNumbers(); // 당첨 번호 및 보너스 번호 입력 및 저장
+        HitLottoDTO dto = lottoMainService.getAllHitLottosAsDTO(); // 당첨 번호 객체 DTO로 가져옴
+        lottoMainService.retainLotto(allLottosAsDTO, dto.getAllHitNumbers()); // 로또 번호와 당첨 번호 비교 및 통계 갱신
+        calculateAndDisplayStatistics(cost); // 통계 공개
     }
 
-    private String getValidatedCost(){
+    private String getValidatedCost(){ // 구매 비용 유효성 검증
         while (true) {
             String cost = inputView.PrintStartMsg();
             try {
@@ -51,20 +47,18 @@ public class LottoController {
     }
 
     private void buyAndPrintLotto(String cost){
-        outputView.howManyBuy(cost);
-        lottoMainService.buyLotto(cost);
+        outputView.howManyBuy(cost); // #개 구매 메시지
+        lottoMainService.buyLotto(cost); // 로또 실제 구매 및 저장
     }
 
     private void processHitNumbers() {
-        String hitLottoInput = getValidatedHitLotto();
-        String bonusNumberInput = inputView.PrintBonusLottoInputMsg();
-
-        // 유효성 검증 추가
-
-        lottoMainService.saveHitLotto(hitLottoInput, bonusNumberInput);
+        String hitLottoInput = getValidatedHitLotto(); // 당첨 번호 유효성 검사
+        List<Integer> hitLotto = lottoMainService.covertHitLotto(hitLottoInput); //당첨 번호 리스트 변환
+        String bonusNumberInput = getValidateBonusNumber(hitLotto); // 보너스 번호 유효성 검사
+        lottoMainService.saveHitLotto(hitLotto, bonusNumberInput); //당첨 번호 저장
     }
 
-    private String getValidatedHitLotto(){
+    private String getValidatedHitLotto(){ // 당첨 번호 유효성 검사
         while(true){
             String hitLottoInput = inputView.PrintLottoInputMsg();
             try{
@@ -76,14 +70,23 @@ public class LottoController {
         }
     }
 
+    private String getValidateBonusNumber(List<Integer> hitLottoInput){ // 보너스 번호 유효성 검사
+        while(true){
+            String bonusNumberInput = inputView.PrintBonusLottoInputMsg();
+            try{
+                exceptionController.isValidBonusNumbers(bonusNumberInput,hitLottoInput);
+                return bonusNumberInput;
+            } catch(IllegalArgumentException e) {
+                System.out.println("[ERROR] "+e.getMessage());
+            }
+        }
+    }
+
 
     private void calculateAndDisplayStatistics(String cost) {
-        StatisticsLottoDTO stats = lottoMainService.getAllStatisticsAsDTO();
-
-        outputView.statisticStart(stats);
-
-        double profit = lottoMainService.sumPrize(stats, cost);
-
-        outputView.profitMessage(profit);
+        StatisticsLottoDTO stats = lottoMainService.getAllStatisticsAsDTO(); // 통계 객체 DTO로 가져옴
+        outputView.statisticStart(stats); // 통계 공개
+        double profit = lottoMainService.sumPrize(stats,cost); // 수익 계산
+        outputView.profitMessage(profit*100); //수익 공개
     }
 }
