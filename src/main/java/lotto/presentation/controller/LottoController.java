@@ -3,6 +3,8 @@ package lotto.presentation.controller;
 import lotto.application.dto.LottoTicketsDTO;
 import lotto.application.service.LottoService;
 import lotto.application.validation.BaseValidation;
+import lotto.application.validation.BonusNumberValidation;
+import lotto.application.validation.BonusNumberValidator;
 import lotto.application.validation.LottoNumberValidator;
 import lotto.domain.model.LottoNumbers;
 import lotto.domain.model.LottoTickets;
@@ -18,13 +20,15 @@ public class LottoController {
     private final BaseValidation<Integer> amountValidator;
     private final LottoService lottoService;
     private final BaseValidation<List<Integer>> lottoNumberValidator;
+    private final BonusNumberValidation bonusNumberValidator;
 
-    public LottoController(InputView inputView, OutputView outputView, BaseValidation<Integer> amountValidator, LottoService lottoService, BaseValidation<List<Integer>> lottoNumberValidator) {
+    public LottoController(InputView inputView, OutputView outputView, BaseValidation<Integer> amountValidator, LottoService lottoService, BaseValidation<List<Integer>> lottoNumberValidator, BonusNumberValidation  bonusNumberValidator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.amountValidator = amountValidator;
         this.lottoService = lottoService;
         this.lottoNumberValidator = lottoNumberValidator;
+        this.bonusNumberValidator = bonusNumberValidator;
     }
 
     public void start() {
@@ -37,6 +41,8 @@ public class LottoController {
         outputView.printLottoTickets(lottoTicketsDTO);
 
         LottoNumbers winningNumbers = getValidWinningNumbers();
+
+        int bonusNumber = getValidBonusNumber(winningNumbers.getNumbers());
 
     }
 
@@ -56,6 +62,16 @@ public class LottoController {
                 String winningNumbersInput = inputView.inputWinningNumbers();
                 List<Integer> winningNumbers = lottoNumberValidator.validate(winningNumbersInput);
                 return new LottoNumbers(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+    private int getValidBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String bonusNumberInput = inputView.inputBonusNumber();
+                return bonusNumberValidator.validateBonusNumber(bonusNumberInput, winningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }

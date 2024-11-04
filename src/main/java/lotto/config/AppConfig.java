@@ -1,9 +1,7 @@
 package lotto.config;
 
 import lotto.application.service.LottoService;
-import lotto.application.validation.AmountValidator;
-import lotto.application.validation.BaseValidation;
-import lotto.application.validation.LottoNumberValidator;
+import lotto.application.validation.*;
 import lotto.domain.generator.LottoNumberGeneratorImpl;
 import lotto.infrastructure.repository.LottoRepositoryImpl;
 import lotto.presentation.controller.LottoController;
@@ -16,7 +14,7 @@ import java.util.List;
 public class AppConfig {
 
     public LottoController lottoController() {
-        return new LottoController(inputView(), outputView(), amountValidator(),lottoService(),lottoNumberValidator());
+        return new LottoController(inputView(), outputView(), amountValidator(),lottoService(),lottoNumberValidator(),bonusNumberValidator());
     }
 
     public LottoService lottoService() {
@@ -39,5 +37,8 @@ public class AppConfig {
     }
     public BaseValidation<List<Integer>> lottoNumberValidator() {
         return new LottoNumberValidator();
+    }
+    public BonusNumberValidation bonusNumberValidator() {
+        return new BonusNumberValidator();
     }
 }
