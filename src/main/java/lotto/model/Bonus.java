@@ -14,7 +14,7 @@ public class Bonus {
     }
 
     private void validateLottoNumberRange(int number) {
-        if(number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.getMessage());
         }
     }

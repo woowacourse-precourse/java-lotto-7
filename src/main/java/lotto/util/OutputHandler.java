@@ -3,6 +3,7 @@ package lotto.util;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.constant.LottoConfig.Rank;
+
 import java.util.Map;
 
 import static lotto.constant.IOMessage.BLANK_LINE;
@@ -21,7 +22,7 @@ public class OutputHandler {
     }
 
     public static void printTicket(Lottos lottos) {
-        for(Lotto lotto : lottos.getTickets()){
+        for (Lotto lotto : lottos.getTickets()) {
             output(lotto.getNumbers().toString());
         }
     }
@@ -29,8 +30,8 @@ public class OutputHandler {
     public static void printLottoResult(Map<Rank, Integer> results) {
         output(BLANK_LINE.getMessage());
         output(OUTPUT_HEAD.getMessage());
-        for(Rank rank : Rank.values()){
-            if(rank == Rank.NOTHING) {
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.NOTHING) {
                 continue;
             }
             Integer count = results.getOrDefault(rank, DEFAULT_VALUE);
@@ -40,7 +41,7 @@ public class OutputHandler {
 
     private static String getLottoResultForm(Rank rank, Integer count) {
         String bonusMessageForm = "";
-        if(rank == Rank.SECOND) {
+        if (rank == Rank.SECOND) {
             bonusMessageForm = OUTPUT_BONUS_RESULT.getMessage();
         }
         return String.format(OUTPUT_RESULT.getMessage(), rank.getMatchedCount(), bonusMessageForm, rank.getPrizeMoney(), count);

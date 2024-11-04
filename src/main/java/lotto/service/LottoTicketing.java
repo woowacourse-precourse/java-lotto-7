@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Purchase;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

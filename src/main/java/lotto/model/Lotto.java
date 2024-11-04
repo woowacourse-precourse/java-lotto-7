@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constant.ErrorMessage;
+
 import java.util.List;
 
 import static lotto.constant.LottoConfig.LOTTO_COUNT;
@@ -21,7 +22,7 @@ public class Lotto {
         validateDuplicate(numbers);
         validateLottoRange(numbers);
     }
-    
+
     private void validateLottoCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_COUNT.getMessage());
@@ -39,7 +40,7 @@ public class Lotto {
     }
 
     private void validateLottoNumberRange(int number) {
-        if(number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.getMessage());
         }
     }

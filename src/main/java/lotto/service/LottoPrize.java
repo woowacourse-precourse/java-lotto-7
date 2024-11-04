@@ -6,6 +6,7 @@ import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Purchase;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +48,7 @@ public class LottoPrize {
     public Map<Rank, Integer> determineLottoPrizes(Lottos lottos) {
         Map<Rank, Integer> prizeCountForRanks = new HashMap<>();
 
-        for(Lotto ticket : lottos.getTickets()) {
+        for (Lotto ticket : lottos.getTickets()) {
             Rank rank = determineRank(lotto.getNumbers(), ticket.getNumbers());
             prizeCountForRanks.put(rank, prizeCountForRanks.getOrDefault(rank, DEFAULT_VALUE) + COUNT_INCREMENT_VALUE);
         }
@@ -67,7 +68,7 @@ public class LottoPrize {
     }
 
     private BonusCheck checkBonusMatch(List<Integer> userNumbers) {
-        if(userNumbers.contains(bonus.getNumber())) {
+        if (userNumbers.contains(bonus.getNumber())) {
             return BonusCheck.TRUE;
         }
         return BonusCheck.FALSE;

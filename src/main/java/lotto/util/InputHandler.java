@@ -5,6 +5,7 @@ import lotto.constant.ErrorMessage;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Purchase;
+
 import java.util.function.Function;
 
 import static lotto.constant.IOMessage.BLANK_LINE;
@@ -26,7 +27,7 @@ public class InputHandler {
     }
 
     private static void validateDuplicatedWithLotto(Lotto lotto, Bonus bonus) {
-        if(lotto.getNumbers().contains(bonus.getNumber())){
+        if (lotto.getNumbers().contains(bonus.getNumber())) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_DUPLICATION.getMessage());
         }
     }
@@ -40,7 +41,7 @@ public class InputHandler {
     }
 
     private static <T> T repeatInput(Function<String, T> parser, String message) {
-        while(true) {
+        while (true) {
             try {
                 String input = getInput(message);
                 return parser.apply(input);

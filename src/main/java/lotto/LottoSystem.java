@@ -9,6 +9,7 @@ import lotto.service.LottoPrize;
 import lotto.service.LottoTicketing;
 import lotto.util.InputHandler;
 import lotto.util.OutputHandler;
+
 import java.util.Map;
 
 import static lotto.constant.PurchaseConfig.PURCHASE_UNIT;
