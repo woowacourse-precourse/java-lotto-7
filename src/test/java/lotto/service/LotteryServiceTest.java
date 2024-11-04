@@ -2,8 +2,6 @@ package lotto.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.LottoBonus;
 import lotto.domain.LottoBuyer;
 import lotto.view.InputView;
@@ -13,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LotteryServiceTest {
+
     private OutputView outputView;
     private InputView inputView;
     private LottoBuyer lottoBuyer;
@@ -34,7 +33,9 @@ public class LotteryServiceTest {
         int purchaseAmount = 10000;
         int totalWinningAmount = 5000;
         double expectedYield = 50.0;
+
         double actualYield = lottoBuyer.calculateLotteryYield(purchaseAmount, totalWinningAmount);
+
         assertEquals(expectedYield, actualYield);
     }
 }
