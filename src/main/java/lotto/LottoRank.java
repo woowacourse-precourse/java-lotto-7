@@ -15,4 +15,8 @@ public enum LottoRank {
         this.countOfMatch = countOfMatch;
         this.winningMoney = winningMoney;
     }
+
+    public int getWinningMoney() {
+        return winningMoney;
+    }
 }
