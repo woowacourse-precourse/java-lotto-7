@@ -4,7 +4,6 @@ import java.util.Map;
 
 public class Profit {
     public double calculate(Map<Integer, Integer> ranks, int money) {
-        int cnt = money / 1000;
 
         int totalEarnMoney = 0;
         for (int i = 1; i < 6; i++) {
