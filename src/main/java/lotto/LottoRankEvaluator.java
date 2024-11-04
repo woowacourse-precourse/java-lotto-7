@@ -1,7 +1,5 @@
 package lotto;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +44,7 @@ public class LottoRankEvaluator {
             totalWinningPrize += rank.getWinningPrice() * entry.getValue();
         }
 
-        BigDecimal result = BigDecimal.valueOf(totalWinningPrize / totalPurchase);
-        BigDecimal roundResult = result.setScale(2, RoundingMode.HALF_UP);
-        return roundResult.doubleValue();
+        return (double) totalWinningPrize / totalPurchase * 100;
     }
 
     private Rank evaluateRank(List<Integer> winnerNumbers, Lotto lotto, int bonusNumber) {
