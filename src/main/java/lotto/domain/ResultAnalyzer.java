@@ -1,51 +1,70 @@
 package lotto.domain;
 
+import java.util.EnumMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class ResultAnalyzer {
 
-    public Map<LottoRank, Integer> getRankCounts(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
-        Map<LottoRank, Integer> rankCount = new LinkedHashMap<>();
-
-        for (LottoRank rank : LottoRank.values()) {
-            rankCount.put(rank, 0);
-        }
+    public Map<LottoRank, Integer> getRankCounts(List<Lotto> tickets, WinningNumbers winningNumbers) {
+        Map<LottoRank, Integer> rankCount = new EnumMap<>(LottoRank.class);
 
         for (Lotto ticket : tickets) {
-            LottoRank rank = determineRank(ticket, winningNumbers, bonusNumber);
-            rankCount.put(rank, rankCount.get(rank) + 1);
+            LottoRank rank = determineRank(ticket, winningNumbers);
+            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
         }
 
         return rankCount;
     }
 
-    private LottoRank determineRank( Lotto ticket, List<Integer> winningNumbers, int bonusNumber) {
-        Set<Integer> ticketNumbers = new HashSet<>(ticket.getNumbers());
-        Set<Integer> winningSet = new HashSet<>(winningNumbers);
+    private LottoRank determineRank(Lotto ticket, WinningNumbers winningNumbers) {
+        int matchCount = getMatchCount(ticket, winningNumbers.getNumbers());
+        boolean bonusMatch = ticket.getNumbers().contains(winningNumbers.getBonusNumber());
 
-        boolean bonusMatch = ticketNumbers.contains(bonusNumber);
-        ticketNumbers.retainAll(winningSet);
-        int matchCount = ticketNumbers.size();
-
-        if (matchCount == 6) {
+        if (isFirstRank(matchCount)) {
             return LottoRank.FIRST;
         }
-        if (matchCount == 5 && bonusMatch) {
+        if (isSecondRank(matchCount, bonusMatch)) {
             return LottoRank.SECOND;
         }
-        if (matchCount == 5) {
+        if (isThirdRank(matchCount)) {
             return LottoRank.THIRD;
         }
-        if (matchCount == 4) {
+        if (isFourthRank(matchCount)) {
             return LottoRank.FOURTH;
         }
-        if (matchCount == 3) {
+        if (isFifthRank(matchCount)) {
             return LottoRank.FIFTH;
         }
+
         return LottoRank.NONE;
+    }
+
+    private int getMatchCount(Lotto ticket, Set<Integer> winningNumbers) {
+        Set<Integer> ticketNumbers = new HashSet<>(ticket.getNumbers());
+        ticketNumbers.retainAll(winningNumbers);
+        return ticketNumbers.size();
+    }
+
+    private boolean isFirstRank(int matchCount) {
+        return matchCount == 6;
+    }
+
+    private boolean isSecondRank(int matchCount, boolean bonusMatch) {
+        return matchCount == 5 && bonusMatch;
+    }
+
+    private boolean isThirdRank(int matchCount) {
+        return matchCount == 5;
+    }
+
+    private boolean isFourthRank(int matchCount) {
+        return matchCount == 4;
+    }
+
+    private boolean isFifthRank(int matchCount) {
+        return matchCount == 3;
     }
 }
