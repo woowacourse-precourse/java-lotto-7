@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.ConstraintConstants;
+import lotto.constants.ErrorViewConstants;
 import lotto.constants.InputViewConstants;
 
 public class InputService {
@@ -13,9 +14,9 @@ public class InputService {
                 return purchaseAmount / ConstraintConstants.PURCHASE_UNIT;
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorViewConstants.INVALID_INPUT_TYPE);
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(ErrorViewConstants.INVALID_INPUT_CONSTRAINT);
     }
 
     private boolean validatePurchaseAmount(int purchaseAmount) {
