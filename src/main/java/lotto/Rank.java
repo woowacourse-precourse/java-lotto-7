@@ -14,7 +14,7 @@ public enum Rank {
     FOURTH(4,50_000,false),
     THIRD(5,1_500_000,false),
     SECOND(5,30_000_000,true),
-    FIRST(6,2_000_000_000,true),
+    FIRST(6,2_000_000_000,false),
     NORANK(0,0,false);
 
     private final int matchNumbers;
@@ -40,8 +40,11 @@ public enum Rank {
     }
 
     public static Rank findByAttributes(int count, boolean isMatch) {
+        if (count == 5 && isMatch) {
+            return SECOND;
+        }
         for (Rank rank : Rank.values()) {
-            if (rank.getMatchNumbers() == count && rank.getIsBonusMatch() == isMatch) {
+            if (rank.getMatchNumbers() == count) {
                 return rank;
             }
         }
