@@ -16,10 +16,6 @@ public class Lotto {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public static Lotto from(LottoNumbers lottoNumbers) {
-        return new Lotto(lottoNumbers);
-    }
-
     public static Lotto generateBy(RandomNumberGenerator randomNumberGenerator) {
         return new Lotto(LottoNumbers.generateBy(LOTTO_NUMBER_SIZE, randomNumberGenerator));
     }
