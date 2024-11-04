@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 public class Tickets {
     private static final int UNIT = 1000;
 
-    private int investAmount;
+    private final int investAmount;
     private int ticketAmount;
-    private List<Lotto> tickets;
+    private final List<Lotto> tickets;
 
     public Tickets(int investAmount) {
         this.investAmount = investAmount;
