@@ -17,6 +17,16 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public static int parseInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 입력값은 숫자여야 합니다.");
+        }
+    }
+
+
+
 
     public static void validateUnit(int remainPurchaseQuantity) {
         if (remainPurchaseQuantity != 0){

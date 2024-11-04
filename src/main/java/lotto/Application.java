@@ -1,34 +1,37 @@
 package lotto;
 
+import lotto.controller.InputController;
 import lotto.controller.OutputController;
 import lotto.model.Lotto;
 import lotto.view.*;
 
 import java.util.List;
 
-//import Lotto;
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        int price = InputView.purchaseAmount();
-        int purchaseQuantity = price/1000;
-        InputView.printPurchaseQuantity(price);
+        while (true) {
+            try {
+                int price = InputController.getPurchaseAmount();
+                int purchaseQuantity = price / 1000;
+                InputView.printPurchaseQuantity(price);
 
-        List<List<Integer>> lottoNumbersList= OutputController.getLottoNumbers(purchaseQuantity);
-        OutputView.printLottoNumbers(lottoNumbersList);
-        List<Integer> winningNumbers = InputView.winningNumber();
-        int bonusNubmer = InputView.bonusNumber();
+                List<List<Integer>> lottoNumbersList = OutputController.getLottoNumbers(purchaseQuantity);
+                OutputView.printLottoNumbers(lottoNumbersList);
+                List<Integer> winningNumbers = InputView.winningNumber();
+                int bonusNumber = InputView.bonusNumber();
+                Lotto.validateDuplicationBetweenWinningAndBonus(winningNumbers, bonusNumber);
 
-        Lotto.validateDuplicationBetweenWinningAndBonus(winningNumbers, bonusNubmer);
+                int[] matchPoints = OutputController.calculateStatistics(winningNumbers, lottoNumbersList);
+                int totalPrize = OutputController.calculateTotalPrize(matchPoints);
+                double profitRate = OutputController.calculateProfit(price, totalPrize);
+                OutputView.printWinningStatistics(matchPoints, profitRate);
 
-       // List<List<Integer>> lottoNumbersList= OutputController.getLottoNumbers(purchaseQuantity);
-        //OutputView.printLottoNumbers(lottoNumbersList);
-        int[] matchPoints = OutputController.calculateStatistics(winningNumbers, lottoNumbersList);
-        int totalPrize = OutputController.calculateTotalPrize(matchPoints);
-        double profitRate = OutputController.calculateProfit(price, totalPrize);
+                break; // 모든 입력이 정상일 경우 루프 종료
 
-        OutputView.printWinningStatistics(matchPoints, profitRate);
-
-
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // 오류 메시지 출력
+                // 오류가 발생했으므로 루프를 계속하여 다시 입력 받기
+            }
+        }
     }
 }

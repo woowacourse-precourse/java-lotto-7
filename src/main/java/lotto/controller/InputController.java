@@ -3,12 +3,16 @@ package lotto.controller;
 import lotto.model.Lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.InputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputController {
     public static int getPurchaseAmount(){
-        return Integer.parseInt(Console.readLine());
+        String input = InputView.purchaseAmount(); // String으로 입력받음
+        int price = Lotto.parseInt(input); // Lotto에서 변환 및 유효성 검사
+        return price;
     }
 
     public static List<Integer> getWinningNumber(){

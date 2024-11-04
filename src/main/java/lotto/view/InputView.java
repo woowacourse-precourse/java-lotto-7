@@ -1,5 +1,6 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.InputController;
 import lotto.model.Lotto;
 
@@ -8,11 +9,13 @@ import java.util.List;
 
 public class InputView {
     //Lotto lotto = new Lotto(); // Lotto 객체 생성
-    public static int purchaseAmount(){
+    public static String purchaseAmount(){
         System.out.println("구매금액을 입력해 주세요.");
-        int price = InputController.getPurchaseAmount();
-        System.out.println();
-        return price;
+        String input = Console.readLine();
+        return input;
+        //return Lotto.parseInt(input); // String으로 받은 후 Lotto에서 변환
+        //System.out.println();
+       // return  Integer.parseInt(Console.readLine());
     }
 
     public static void printPurchaseQuantity(int price){
