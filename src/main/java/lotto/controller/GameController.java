@@ -78,7 +78,7 @@ public class GameController {
     private void getBonusNumber() {
         while (true) {
             try {
-                String bonusNumberItem = InputView.BONUMS_NUMBER.getInput();
+                String bonusNumberItem = InputView.BONUS_NUMBER.getInput();
                 bonusNumber = Integer.parseInt(bonusNumberItem);
                 Validator.validateBonusNumber(winnerLottoNumbers, bonusNumber);
                 break;
