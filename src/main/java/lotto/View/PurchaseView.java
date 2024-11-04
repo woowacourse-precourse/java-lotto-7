@@ -15,6 +15,7 @@ public class PurchaseView {
     }
 
     public void output(int count, List<Lotto> lottos) {
+        System.out.println();
         System.out.println(count + "개를 구매했습니다.");
         for(int i = 0; i < count; i++) {
             Lotto lotto = lottos.get(i);
