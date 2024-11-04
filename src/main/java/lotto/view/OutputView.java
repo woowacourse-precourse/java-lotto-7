@@ -24,6 +24,6 @@ public class OutputView {
         for (Rank rank : Rank.values()) {
             System.out.println(rank.getMatchDescription() + " - " + rankResult.get(rank) + "개");
         }
-        System.out.println("총 수익률은" + profitRate + "입니다.");
+        System.out.println("총 수익률은 " + profitRate + "입니다.");
     }
 }
