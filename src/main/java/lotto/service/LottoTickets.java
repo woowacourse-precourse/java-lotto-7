@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.response.TicketResponse;
+import lotto.validation.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,8 @@ public class LottoTickets {
     private static final int LOTTO_NUMBER_SIZE = 6;
 
     public TicketResponse buyTicket(int number) {
+        Validation.validateMoneyAmount(number);
+
         int count = calculateNumberOfTickets(number);
         List<List<Integer>> numbers = generateAllLottoNumbers(count);
 
