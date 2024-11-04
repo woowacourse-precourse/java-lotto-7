@@ -23,9 +23,9 @@ public class WinningStatistics {
 
     public static double calculateEarningRate(Budget budget) {
         int amount = budget.getAmount();
-        int earnings = 0;
+        long earnings = 0;
         for (WinningInfo info : WinningInfo.values()) {
-            earnings += info.getPrizeMoney() * info.getWinningTicketCount();
+            earnings += (long) info.getPrizeMoney() * info.getWinningTicketCount();
         }
         return (double) earnings / amount * 100;
     }
