@@ -30,6 +30,7 @@ public class LottoController {
         List<Integer> winningNumbers = requestWinningLotto();
         BonusNumber bonusNumber = requestBonusNumber(winningNumbers);
         WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+        calculateResults(winningLotto, lottos);
     }
 
     private PurchaseAmount requestPurchaseAmount() {
@@ -75,5 +76,4 @@ public class LottoController {
             }
         }
     }
-
 }
