@@ -28,12 +28,28 @@ public class Application {
     }
 
     private static WinningLotto promptForWinningLotto() {
-        try {
-            Lotto winningNumbers = Input.readWinningNumbers();
-            int bonusNumber = Input.readBonusNumber();
-            return new WinningLotto(winningNumbers, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            return promptForWinningLotto();
+        Lotto winningNumbers = promptForWinningNumbers();
+        int bonusNumber = promptForBonusNumber(winningNumbers);
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private static Lotto promptForWinningNumbers() {
+        while (true) {
+            try {
+                return Input.readWinningNumbers();
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+    }
+
+    private static int promptForBonusNumber(Lotto winningNumbers) {
+        while (true) {
+            try {
+                int bonusNumber = Input.readBonusNumber();
+                new WinningLotto(winningNumbers, bonusNumber).validateBonusNumber(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException ignored) {
+            }
         }
     }
 }
