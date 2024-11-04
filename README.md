@@ -126,8 +126,8 @@ java
     │   ├── LottoValidator - 로또 공통 검증 로직
     │   └── NumberGenerate - 번호 생성기 인터페이스
     └── view
-       ├── InputView - 입력 화면 담당
-       └── OutputView - 출력 담당
+        ├── InputView - 입력 화면 담당
+        └── OutputView - 출력 담당
 ```
 
 ## 기능 구현 목록
