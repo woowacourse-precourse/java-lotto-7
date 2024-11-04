@@ -49,3 +49,4 @@
    - 4,5에서 계산한 수익률과 당첨 개수 출력
 
 
+<img width="573" alt="image" src="https://github.com/user-attachments/assets/af536661-fbcc-4d21-814c-9a42636d1bff">
