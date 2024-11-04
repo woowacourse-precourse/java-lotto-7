@@ -63,6 +63,12 @@ class ApplicationTest extends NsTest {
                 .hasMessageContaining(ERROR_MESSAGE); // 이 부분에 정확한 메시지를 넣어야 합니다.
     }
 
+    @Test
+    void 나눌수없는값_입력_에러() {
+        assertThatThrownBy(() -> runException("1050"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE); // 이 부분에 정확한 메시지를 넣어야 합니다.
+    }
 
     @Override
     public void runMain() {
