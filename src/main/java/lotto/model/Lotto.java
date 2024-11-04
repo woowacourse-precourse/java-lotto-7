@@ -20,8 +20,21 @@ public class Lotto {
         }
 
         Set<Integer> notDuplication = new HashSet<>(numbers);
-        if(notDuplication.size() != numbers.size()) {
+        if (notDuplication.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATION.getMessage());
+        }
+
+        for (Integer number : numbers) {
+            validateLottoRange(number);
+        }
+    }
+
+    private void validateLottoRange(Integer number) {
+        if (number > 45) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
+        }
+        if (number < 1) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
