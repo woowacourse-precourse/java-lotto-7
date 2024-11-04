@@ -10,27 +10,48 @@ public class LottoController {
     private final InputService inputService = new InputService();
     private final OutputService outputService = new OutputService();
     private final GenerateLotto generateLotto = new GenerateLotto();
+    private Money money;
     public void run() {
-        outputService.requestPay();
-        Money money = new Money(inputService.inputPaidMoney());
-        int amountLotto = money.getAmount();
+        int amountLotto = purchaseLottoProcess();
         List<Lotto> purchasedLotto = generateLotto.generateLottoNumbers(amountLotto);
+        WinningNumbers winningNumbers = drawWinningNumbersProcess();
+        BonusNumber bonusNumber = drawBonusNumberProcess(winningNumbers);
+        Map<Prize, Integer> resultPrizeSettle = prizeSettleProcess(
+                purchasedLotto, winningNumbers, bonusNumber
+        );
+        double rate = calculateRateOfReturnProcess(resultPrizeSettle);
+        outputService.showRateOfReturn(rate);
+    }
 
+    private int purchaseLottoProcess() {
+        outputService.requestPay();
+        money = new Money(inputService.inputPaidMoney());
+        return money.getAmount();
+    }
+
+    private WinningNumbers drawWinningNumbersProcess() {
         outputService.requestWinningNumbers();
-        WinningNumbers winningNumbers = inputService.inputWinningNumbers();
+        return inputService.inputWinningNumbers();
+    }
 
+    private BonusNumber drawBonusNumberProcess(WinningNumbers winningNumbers) {
         outputService.requestBonusNumber();
-        BonusNumber bonusNumber = inputService.inputBonusNumber(winningNumbers);
+        return inputService.inputBonusNumber(winningNumbers);
+    }
 
+    private Map<Prize, Integer> prizeSettleProcess(List<Lotto> purchasedLotto,
+                                                   WinningNumbers winningNumbers,
+                                                   BonusNumber bonusNumber) {
         outputService.moveToShowPrize();
         PrizeSettle prizeSettle = new PrizeSettle(
             purchasedLotto, winningNumbers.getNumbers(), bonusNumber.getNumber()
         );
-        Map<Prize, Integer> resultPrizeSettle = prizeSettle.getResultCounts();
-        outputService.showResultLotto(resultPrizeSettle);
+        return prizeSettle.getResultCounts();
+    }
 
+    private double calculateRateOfReturnProcess(Map<Prize, Integer> resultPrizeSettle) {
+        outputService.showResultLotto(resultPrizeSettle);
         RateOfReturn rateOfReturn = new RateOfReturn(resultPrizeSettle);
-        double rate = rateOfReturn.calculateRateOfReturn(money.getMoney());
-        outputService.showRateOfReturn(rate);
+        return rateOfReturn.calculateRateOfReturn(money.getMoney());
     }
 }
