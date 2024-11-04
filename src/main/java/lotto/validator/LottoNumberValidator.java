@@ -11,9 +11,9 @@ import lotto.exception.InputNumberException;
 
 public class LottoNumberValidator {
     public static void validate(List<Integer> numbers) {
-        validateLength(numbers);
-        validateRange(numbers);
         validateDuplicates(numbers);
+        validateRange(numbers);
+        validateLength(numbers);
     }
 
     private static void validateDuplicates(List<Integer> numbers) {
