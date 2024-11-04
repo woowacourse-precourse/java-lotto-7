@@ -3,7 +3,9 @@ package lotto;
 import lotto.numberGenerator.LottoRandomNumberGenerator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoMachine {
     private static final int LOTTO_PER_PRICE = 1000;
@@ -41,4 +43,14 @@ public class LottoMachine {
         }
     }
 
+    public Lotto readWinningNumber(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String userInput = inputReader.readUserInput();
+        List<Integer> winningLottoNumbers = Arrays.stream(userInput.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        Lotto winningLotto = new Lotto(winningLottoNumbers);
+        return winningLotto;
+    }
 }
