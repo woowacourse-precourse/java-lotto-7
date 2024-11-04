@@ -40,12 +40,10 @@ public class Lotto {
         return new ArrayList<>(numbers);
     }
 
-    public long getMatchCount(WinningLotto winningLotto) {
-        long matchCount = numbers.stream()
+    public int getMatchCount(WinningLotto winningLotto) {
+        return (int) numbers.stream()
                 .filter(winningLotto::isWinningNumber)
                 .count();
-
-        return matchCount;
     }
 
     public boolean isBonusNumberMatched(WinningLotto winningLotto) {

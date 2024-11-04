@@ -32,9 +32,9 @@ class LottoTest {
 
         WinningLotto testWinningLotto = WinningLotto.of(testWinningNumber, testBonusNumber);
 
-        long expectedMatchCount = 6;
+        int expectedMatchCount = 6;
         //when
-        long actualMatchCount = testLotto.getMatchCount(testWinningLotto);
+        int actualMatchCount = testLotto.getMatchCount(testWinningLotto);
 
         //then
         assertEquals(expectedMatchCount, actualMatchCount);
@@ -50,9 +50,9 @@ class LottoTest {
 
         WinningLotto testWinningLotto = WinningLotto.of(testWinningNumber, testBonusNumber);
 
-        long expectedMatchCount = 6;
+        int expectedMatchCount = 6;
     	//when
-        long actualMatchCount = testLotto.getMatchCount(testWinningLotto);
+        int actualMatchCount = testLotto.getMatchCount(testWinningLotto);
 
         //then
         assertEquals(expectedMatchCount, actualMatchCount);

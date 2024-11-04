@@ -23,7 +23,7 @@ public class Lottos {
     public WinningStatisticsDto calculateWinningResults(WinningLotto winningLotto) {
         Map<Rank, Integer> winningStatistics = new EnumMap<>(Rank.class);
         for (Lotto lotto : lottos) {
-            int matchCount = (int) lotto.getMatchCount(winningLotto);
+            int matchCount = lotto.getMatchCount(winningLotto);
             boolean isBonusMatched = lotto.isBonusNumberMatched(winningLotto);
 
             Rank rank = Rank.getRank(matchCount, isBonusMatched);
