@@ -27,10 +27,7 @@ public class DrawGames {
         Lotto winningNumbers = getWinningNumbers();
         LottoBonusNumber bonusNumber = getBonusNumber();
 
-        LottoStatisticsDto lottoStatisticsDto = controller.getStatistics(
-                lottoResultDto, winningNumbers, bonusNumber
-        );
-        outputView.printWinningResult(lottoStatisticsDto);
+        getLottoStatistics(lottoResultDto, winningNumbers, bonusNumber);
     }
 
     private LottoResultDto getLottoResult() {
@@ -76,5 +73,12 @@ public class DrawGames {
             System.out.println(e.getMessage());
             return getBonusNumber();
         }
+    }
+
+    private void getLottoStatistics(LottoResultDto lottoResultDto, Lotto winningNumbers, LottoBonusNumber bonusNumber) {
+        LottoStatisticsDto lottoStatisticsDto = controller.getStatistics(
+                lottoResultDto, winningNumbers, bonusNumber
+        );
+        outputView.printWinningResult(lottoStatisticsDto);
     }
 }
