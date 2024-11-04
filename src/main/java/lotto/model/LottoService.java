@@ -11,11 +11,16 @@ public class LottoService {
 
     public List<Lotto> pickLottoNumbers(int lottoCount) {
         List<Lotto> lottos = IntStream.range(0, lottoCount)
-            .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
+            .mapToObj(i -> {
+                List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+                numbers.sort(Comparator.naturalOrder());
+                return new Lotto(numbers);
+            })
             .toList();
-        lottos.forEach(lotto -> lotto.getNumbers().sort(null));
+
         return lottos;
     }
+
 
     public Map<Integer, Integer> checkWinningNumber(List<Lotto> lottos, List<Integer> myNumbers, Integer bonusNumber) {
         Map<Integer, Integer> winningCount = initNumberCount();
@@ -35,6 +40,27 @@ public class LottoService {
         return winningCount;
     }
 
+
+    public double calculateRateOfReturn(Integer lottoCount, Map<Integer, Integer> winningCount) {
+        double cost = lottoCount * 1000;
+        double totalPrize = 0;
+        for (Integer matchCount : winningCount.keySet()) {
+            Integer count = winningCount.get(matchCount);
+            totalPrize += getPrizeAmount(matchCount) * count;
+        }
+        return (double) (totalPrize * 100 / cost);
+    }
+
+    public long getPrizeAmount(int matchCount) {
+        return switch (matchCount) {
+            case 3 -> 5000;
+            case 4 -> 50000;
+            case 5 -> 1500000;
+            case BONUS_KEY -> 30000000; // 5개 + 보너스
+            case 6 -> 2000000000;
+            default -> 0;
+        };
+    }
 
     private Integer checkBonusPrize(List<Lotto> lottos, List<Integer> myNumbers, Integer bonusNumber) {
         return (int) lottos.stream()
