@@ -9,4 +9,6 @@ public class UserErrorMessage {
 
     public static final String ERROR_NON_INTEGER_VALUE = "[ERROR] 로또 번호는 정수만 가능합니다.";
     public static final String ERROR_VALUE_NOT_IN_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자만 가능합니다.";
+
+    public static final String ERROR_NOT_ALLOWED_DUPLICATE = "[ERROR] 당첨 번호는 중복 불가능합니다.";
 }

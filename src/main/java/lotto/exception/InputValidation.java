@@ -1,5 +1,9 @@
 package lotto.exception;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
+
 public enum InputValidation {
 
     NOT_BLANK {
@@ -73,6 +77,20 @@ public enum InputValidation {
                 } catch (IllegalArgumentException notInRange) {
                     System.out.println(notInRange.getMessage());
                 }
+            }
+            return true;
+        }
+    },
+    NOT_DUPLICATE_NUMBER {
+        @Override
+        public boolean validate(String value) {
+            Set<Integer> lottoNumbers = new HashSet<>();
+            StringTokenizer tokenizer = new StringTokenizer(value, ",");
+            while(tokenizer.hasMoreTokens()) {
+                lottoNumbers.add(Integer.parseInt(tokenizer.nextToken()));
+            }
+            if(lottoNumbers.size() < 6) {
+                throw new IllegalArgumentException(UserErrorMessage.ERROR_NOT_ALLOWED_DUPLICATE);
             }
             return true;
         }
