@@ -23,4 +23,9 @@ public record Number(
     private static boolean isOutOfRange(int lottoNumber) {
         return lottoNumber < MIN_NUMBER || lottoNumber > MAX_NUMBER;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(lottoNumber);
+    }
 }
