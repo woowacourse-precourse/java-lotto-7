@@ -12,17 +12,13 @@ public class Draw {
     private final int bonusNumber;
 
     public Draw(String winningNumbers, String bonusNumber) {
-        String[] numbers = winningNumbers.split(DELIMITER);
-        List<Integer> numberGroup = Arrays.stream(numbers)
-                .map(number -> Integer.parseInt(number))
-                .collect(Collectors.toList());
-        DrawValidation.validateWinningNumbersCount(numberGroup);
-        DrawValidation.validateDuplicatedNumber(numberGroup, Integer.parseInt(bonusNumber));
-        DrawValidation.validateWinningNumberRange(numberGroup);
-        DrawValidation.validateBonusNumberRange(Integer.parseInt(bonusNumber));
+        List<Integer> numberGroup = separateNumbers(winningNumbers);
+        int number = Integer.parseInt(bonusNumber);
+
+        validateDrawNumbers(numberGroup, number);
 
         this.winningNumbers = numberGroup;
-        this.bonusNumber = Integer.parseInt(bonusNumber);
+        this.bonusNumber = number;
     }
 
     public List<Integer> getWinningNumbers() {
@@ -31,5 +27,19 @@ public class Draw {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    private void validateDrawNumbers(List<Integer> numberGroup, int bonusNumber) {
+        DrawValidation.validateWinningNumbersCount(numberGroup);
+        DrawValidation.validateDuplicatedNumber(numberGroup, bonusNumber);
+        DrawValidation.validateWinningNumberRange(numberGroup);
+        DrawValidation.validateBonusNumberRange(bonusNumber);
+    }
+
+    private List<Integer> separateNumbers(String winningNumbers) {
+        String[] numbers = winningNumbers.split(DELIMITER);
+        return Arrays.stream(numbers)
+                .map(number -> Integer.parseInt(number))
+                .collect(Collectors.toList());
     }
 }
