@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -28,6 +29,7 @@ public class LottoGame {
         int money = purchaseMoney();
         generateLottos(money);
         WinningNumbers winningNumbers = inputWinningNumbers();
+        showResult(winningNumbers);
     }
 
     private int purchaseMoney() {
@@ -63,5 +65,22 @@ public class LottoGame {
                 outputView.printError(e.getMessage());
             }
         }
+    }
+
+    private void showResult(WinningNumbers winningNumbers) {
+        LottoResult result = new LottoResult();
+        for (Lotto lotto : purchasedLottos) {
+            result.addRank(winningNumbers.match(lotto));
+        }
+
+        outputView.printWinningStatistics(result);
+        double returnRate = calculateReturnRate(result);
+        outputView.printReturnRate(returnRate);
+    }
+
+    private double calculateReturnRate(LottoResult result) {
+        long totalPrize = result.calculateTotalPrize();
+        long totalCost = purchasedLottos.size() * 1000L;
+        return (totalPrize * 100.0) / totalCost;
     }
 }

@@ -28,4 +28,16 @@ public class WinningNumbers {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
+
+    public Rank match(Lotto userLotto) {
+        int matchCount = countMatches(userLotto);
+        boolean matchBonus = userLotto.getNumbers().contains(bonusNumber);
+        return Rank.valueOf(matchCount, matchBonus);
+    }
+
+    private int countMatches(Lotto userLotto) {
+        return (int) userLotto.getNumbers().stream()
+                .filter(number -> lotto.getNumbers().contains(number))
+                .count();
+    }
 }
