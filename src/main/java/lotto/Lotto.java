@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -28,5 +28,11 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public int cntMatchingNumbers(Lotto other){
+        Set<Integer> commonNumbers = new HashSet<>(this.numbers);
+        commonNumbers.retainAll(other.numbers);
+        return commonNumbers.size();
     }
 }
