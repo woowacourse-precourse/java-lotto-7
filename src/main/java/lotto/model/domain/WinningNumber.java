@@ -42,4 +42,8 @@ public class WinningNumber {
 			throw new IllegalArgumentException("[ERROR] 구분자는 콤마(,)이어야 합니다.");
 		}
 	}
+
+	public List<Integer> getWinningNumber() {
+		return winningNumber;
+	}
 }

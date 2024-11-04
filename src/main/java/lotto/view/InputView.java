@@ -24,4 +24,13 @@ public class InputView {
 			throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
 		}
 	}
+
+	public static int bonusNumber() {
+		try {
+			String bonusNumber = Console.readLine();
+			return Integer.parseInt(bonusNumber);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+		}
+	}
 }
