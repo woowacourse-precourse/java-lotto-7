@@ -4,9 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.global.enums.LottoConstant;
 import lotto.global.exception.InvalidLottoPriceUnitException;
-
-import static lotto.global.enums.LottoConstant.*;
 
 public class LottoIssuer {
 
@@ -24,17 +23,17 @@ public class LottoIssuer {
     }
 
     private void validate(Integer lottoPrice) {
-        if (lottoPrice < 0 || lottoPrice % LOTTO_PRICE.getNumber() != 0) {
+        if (lottoPrice < 0 || lottoPrice % LottoConstant.LOTTO_PRICE.getNumber() != 0) {
             throw new InvalidLottoPriceUnitException();
         }
     }
 
     private List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getNumber(), MAX_LOTTO_NUMBER.getNumber(),
-                LOTTO_NUMBER_COUNT.getNumber());
+        return Randoms.pickUniqueNumbersInRange(LottoConstant.MIN_LOTTO_NUMBER.getNumber(),
+                LottoConstant.MAX_LOTTO_NUMBER.getNumber(), LottoConstant.LOTTO_NUMBER_COUNT.getNumber());
     }
 
     private Integer calculateLottoCount(Integer lottoPrice) {
-        return lottoPrice / LOTTO_PRICE.getNumber();
+        return lottoPrice / LottoConstant.LOTTO_PRICE.getNumber();
     }
 }
