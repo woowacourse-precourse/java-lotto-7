@@ -12,20 +12,19 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(Lotto lotto, int bonusNumber) {
+        validateBonusNumberRange(bonusNumber);
+        validateDuplicatedBonusNumber(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
-
-        validateBonusNumberRange();
-        validateDuplicatedBonusNumber();
     }
 
-    private void validateBonusNumberRange() {
+    private void validateBonusNumberRange(int bonusNumber) {
         if (LOTTO_START_RANGE > bonusNumber || bonusNumber > LOTTO_END_RANGE) {
             throw new IllegalArgumentException(NUMBER_RANGE_ERROR.getMessage());
         }
     }
 
-    private void validateDuplicatedBonusNumber() {
+    private void validateDuplicatedBonusNumber(Lotto lotto, int bonusNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         if (lottoNumbers.contains(bonusNumber)) {
