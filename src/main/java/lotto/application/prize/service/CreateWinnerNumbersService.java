@@ -1,4 +1,4 @@
-package lotto.usecase.nneew.winner;
+package lotto.application.prize.service;
 
 import java.util.List;
 import lotto.application.prize.domain.WinnerNumbers;

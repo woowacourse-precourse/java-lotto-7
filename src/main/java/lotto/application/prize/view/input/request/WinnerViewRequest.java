@@ -1,4 +1,4 @@
-package lotto.usecase.nneew.winner;
+package lotto.application.prize.view.input.request;
 
 import java.util.List;
 

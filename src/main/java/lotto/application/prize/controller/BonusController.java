@@ -1,7 +1,8 @@
-package lotto.usecase.nneew.bonus;
+package lotto.application.prize.controller;
 
 import lotto.application.prize.domain.BonusNumber;
 import lotto.application.prize.domain.WinnerNumbers;
+import lotto.application.prize.service.CreateBonusNumberService;
 
 public class BonusController {
 

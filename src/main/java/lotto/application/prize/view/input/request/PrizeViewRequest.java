@@ -1,4 +1,4 @@
-package lotto.application.prize.view.input;
+package lotto.application.prize.view.input.request;
 
 import java.util.List;
 

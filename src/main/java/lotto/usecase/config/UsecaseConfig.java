@@ -1,22 +1,22 @@
 package lotto.usecase.config;
 
 import lotto.application.prize.config.PrizeAppConfig;
+import lotto.application.prize.controller.BonusController;
+import lotto.application.prize.controller.WinnerController;
+import lotto.application.prize.service.CreateBonusNumberService;
+import lotto.application.prize.service.CreateWinnerNumbersService;
+import lotto.application.prize.view.input.BonusInputView;
+import lotto.application.prize.view.input.WinnerInputView;
 import lotto.application.statistics.config.StatisticsAppConfig;
 import lotto.application.statistics.view.StatisticsOutputView;
 import lotto.application.ticket.config.TicketAppConfig;
 import lotto.application.ticket.view.input.TicketInputView;
 import lotto.application.ticket.view.output.TicketOutputView;
 import lotto.usecase.CompileStatisticsUsecase;
+import lotto.usecase.CreateBonusNumberUsecase;
 import lotto.usecase.CreatePrizeUsecase;
 import lotto.usecase.CreateTicketUsecase;
-import lotto.usecase.nneew.bonus.BonusController;
-import lotto.usecase.nneew.bonus.BonusInputView;
-import lotto.usecase.nneew.bonus.CreateBonusNumberService;
-import lotto.usecase.nneew.bonus.CreateBonusNumberUsecase;
-import lotto.usecase.nneew.winner.CreateWinnerNumbersService;
-import lotto.usecase.nneew.winner.CreateWinnerNumbersUsecase;
-import lotto.usecase.nneew.winner.WinnerController;
-import lotto.usecase.nneew.winner.WinnerInputView;
+import lotto.usecase.CreateWinnerNumbersUsecase;
 
 public class UsecaseConfig {
 

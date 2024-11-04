@@ -1,7 +1,10 @@
-package lotto.usecase.nneew.winner;
+package lotto.usecase;
 
 import lotto.application.common.OutputPrinter;
+import lotto.application.prize.controller.WinnerController;
 import lotto.application.prize.domain.WinnerNumbers;
+import lotto.application.prize.view.input.WinnerInputView;
+import lotto.application.prize.view.input.request.WinnerViewRequest;
 
 public class CreateWinnerNumbersUsecase {
     private final WinnerInputView inputView;

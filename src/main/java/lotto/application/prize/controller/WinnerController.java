@@ -1,7 +1,8 @@
-package lotto.usecase.nneew.winner;
+package lotto.application.prize.controller;
 
 import java.util.List;
 import lotto.application.prize.domain.WinnerNumbers;
+import lotto.application.prize.service.CreateWinnerNumbersService;
 
 public class WinnerController {
     private final CreateWinnerNumbersService service;
@@ -15,4 +16,3 @@ public class WinnerController {
     }
 
 }
-존

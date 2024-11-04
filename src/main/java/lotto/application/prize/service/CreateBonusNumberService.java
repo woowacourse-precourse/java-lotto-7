@@ -1,4 +1,4 @@
-package lotto.usecase.nneew.bonus;
+package lotto.application.prize.service;
 
 import lotto.application.prize.domain.BonusNumber;
 import lotto.application.prize.domain.WinnerNumbers;

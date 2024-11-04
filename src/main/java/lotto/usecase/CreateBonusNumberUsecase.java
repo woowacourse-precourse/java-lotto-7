@@ -1,8 +1,11 @@
-package lotto.usecase.nneew.bonus;
+package lotto.usecase;
 
 import lotto.application.common.OutputPrinter;
+import lotto.application.prize.controller.BonusController;
 import lotto.application.prize.domain.BonusNumber;
 import lotto.application.prize.domain.WinnerNumbers;
+import lotto.application.prize.view.input.BonusInputView;
+import lotto.application.prize.view.input.request.BonusViewRequest;
 
 public class CreateBonusNumberUsecase {
     private final BonusInputView inputView;
