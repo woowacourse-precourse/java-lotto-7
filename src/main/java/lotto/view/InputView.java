@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class InputView extends InputReader {
     public static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]+$");
-    public static final Pattern WINNING_NUMBER_PATTERN = Pattern.compile("^(\\d{1,2},){5}\\d{1,2}$");
+    public static final Pattern WINNING_NUMBER_PATTERN = Pattern.compile("^(\\d{1,2},)+\\d{1,2}$");
 
     public int inputPurchaseMoney() {
         String inputPurchaseMoney = inputMessage();
