@@ -1,14 +1,15 @@
 package lotto.io.request;
 
+import lotto.domain.Lottos;
 import lotto.util.ExceptionMessages;
 
-public record NumberRequest(String number) {
-
+public record BudgetRequest(String budget) {
     private static final String NUMBER_PATTERN = "\\d+";
 
-    public NumberRequest {
-        validateEmpty(number);
-        validateNumber(number);
+    public BudgetRequest {
+        validateEmpty(budget);
+        validateNumber(budget);
+        Lottos lottos = Lottos.from(Integer.parseInt(budget));
     }
 
     private void validateEmpty(String number) {

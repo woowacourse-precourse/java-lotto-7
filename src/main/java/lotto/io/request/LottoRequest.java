@@ -1,15 +1,19 @@
 package lotto.io.request;
 
+import lotto.domain.Lotto;
+import lotto.domain.extractor.LottoExtractor;
 import lotto.util.ExceptionMessages;
 
 public record LottoRequest(String winningNumbers) {
 
     private static final String DELIMITER = ",";
     private static final String LOTTO_PATTERN = "\\d+";
+    private static final LottoExtractor lottoExtractor = new LottoExtractor();
 
     public LottoRequest {
         validateEmpty(winningNumbers);
         validateDelimiter(winningNumbers);
+        Lotto lotto = new Lotto(lottoExtractor.extractLotto(winningNumbers));
     }
 
     private void validateEmpty(String winningNumbers) {

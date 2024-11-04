@@ -12,8 +12,9 @@ import lotto.domain.extractor.LottoExtractor;
 import lotto.io.input.InputHandler;
 import lotto.io.output.PurchasePrintHandler;
 import lotto.io.output.ResultPrintHandler;
+import lotto.io.request.BudgetRequest;
 import lotto.io.request.LottoRequest;
-import lotto.io.request.NumberRequest;
+import lotto.io.request.bonusNumberRequest;
 
 public class LottoService {
 
@@ -34,12 +35,12 @@ public class LottoService {
     }
 
     private Lottos getLottos() {
-        NumberRequest request = inputHandler.getBudgets();
+        BudgetRequest request = inputHandler.getBudgets();
         return createLottos(request);
     }
 
-    private Lottos createLottos(NumberRequest request) {
-        int budgets = Integer.parseInt(request.number());
+    private Lottos createLottos(BudgetRequest request) {
+        int budgets = Integer.parseInt(request.budget());
         Lottos lottos = Lottos.from(budgets);
         purchasePrintHandler.printPurchaseAmounts(lottos.getAmounts());
         purchasePrintHandler.printPurchaseResult(lottos.getPurchaseLotto());
@@ -48,7 +49,7 @@ public class LottoService {
 
     private WinningLotto getWinningLotto() {
         Lotto lotto = getWinningNumber();
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = getBonusNumber(lotto);
         return createWinningLotto(lotto, bonusNumber);
     }
 
@@ -59,9 +60,9 @@ public class LottoService {
         return new Lotto(numbers);
     }
 
-    private int getBonusNumber() {
-        NumberRequest numberRequest = inputHandler.getBonusNumber();
-        return Integer.parseInt(numberRequest.number());
+    private int getBonusNumber(Lotto lotto) {
+        bonusNumberRequest bonusNumberRequest = inputHandler.getBonusNumber(lotto);
+        return Integer.parseInt(bonusNumberRequest.number());
     }
 
     private WinningLotto createWinningLotto(Lotto lotto, int bonusNumber) {
