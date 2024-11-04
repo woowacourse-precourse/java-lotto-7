@@ -12,17 +12,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-        numbers.forEach(number -> {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-        });
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
-        }
+       LottoValidator.validateLottoNumber(numbers);
     }
 
     public LottoRank checkRank(List<Integer> winningNumber, int bonusNumber) {
@@ -31,5 +21,10 @@ public class Lotto {
                 .count();
         boolean matchBonus = numbers.contains(bonusNumber);
         return LottoRank.valueOf(matchCount, matchBonus);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
