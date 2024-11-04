@@ -14,22 +14,28 @@ public class GameController {
     private final Validator validator = new Validator();
 
     public void lottoGameStart() {
-
         Money money = gameService.createMoney(getPurchaseMoney());
+        LotteryMachine lotteryMachine = purchaseLotto(money);
+        LottoResultChecker lottoResultChecker = CheckResult(lotteryMachine);
+        displayResult(lottoResultChecker, money);
+    }
 
+    private LotteryMachine purchaseLotto(Money money) {
         LotteryMachine lotteryMachine = gameService.purchaseLotto(money);
-        OutputView.printPurchaseLotto(lotteryMachine,money);
+        OutputView.printPurchaseLotto(lotteryMachine, money);
+        return lotteryMachine;
+    }
 
-        InputView.requestWinningNumber();
+    private LottoResultChecker CheckResult(LotteryMachine lotteryMachine) {
         List<Integer> winningNumbers = getWinningNumbers();
-        InputView.requestBonusNumber();
         int bonusBall = getBonusBall();
+        return gameService.lottoResult(winningNumbers, bonusBall, lotteryMachine);
+    }
 
-        LottoResultChecker lottoResultChecker = gameService.lottoResult(winningNumbers, bonusBall, lotteryMachine);
+    private void displayResult(LottoResultChecker lottoResultChecker, Money money) {
         OutputView.printLottoResult(lottoResultChecker);
         OutputView.printLottoProfit(gameService.calculateProfitRate(lottoResultChecker, money));
     }
-
 
     public int getPurchaseMoney() {
         boolean valid = false;
@@ -48,11 +54,13 @@ public class GameController {
     }
 
     public List<Integer> getWinningNumbers() {
+        InputView.requestWinningNumber();
         String winningNumber = Console.readLine();
         return validator.validateIsNumeric(winningNumber);
     }
 
     public int getBonusBall() {
+        InputView.requestBonusNumber();
         String bonusBall = Console.readLine();
         return validator.validateConvertToNumber(bonusBall);
     }

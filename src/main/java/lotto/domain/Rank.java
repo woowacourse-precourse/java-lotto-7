@@ -31,11 +31,9 @@ public enum Rank {
     }
 
     public static Rank findRank(int matchCount, boolean bonusBall) {
-        for (Rank rank : Rank.values()) {
-            if (rank.matchCount == matchCount && rank.bonusBall.match() == bonusBall) {
-                return rank;
-            }
-        }
-        return NONE;
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.matchCount == matchCount && rank.bonusBall.match() == bonusBall)
+                .findFirst()
+                .orElse(NONE);
     }
 }
