@@ -11,6 +11,11 @@ public class InputValidator {
 
     private static final String LOTTO_NUMBER_RANGE_REGEX = "^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$";
 
+    public static void validateNullAndEmpty(String input) {
+        if (input == null || input.isEmpty()) {
+            throwIllegalArgException(ErrorMessage.EMPTY_INPUT_VALUE);
+        }
+    }
     public static void validateInteger(String input) {
         try {
             Integer.parseInt(input.trim());
@@ -21,14 +26,14 @@ public class InputValidator {
 
     public static void validatePurchaseAmount(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException(,);
+            throwIllegalArgException(ErrorMessage.INVALID_PURCHASE_AMOUNT);
         }
     }
 
     public static void validateRange(int bonusNumber) {
         Integer parsedNumber = bonusNumber;
         if (!parsedNumber.toString().matches(LOTTO_NUMBER_RANGE_REGEX)) {
-            throwIllegalArgException(ErrorMessage.INVALID_PURCHASE_AMOUNT);
+            throwIllegalArgException(ErrorMessage.LOTTO_NUM_NOT_IN_RANGE);
         }
     }
 

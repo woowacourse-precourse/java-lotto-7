@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.util.InputValidator.validateNullAndEmpty;
 import static lotto.view.InputView.getBonusNumber;
 import static lotto.view.InputView.getPurchaseStr;
 import static lotto.view.InputView.getWinningNumStr;
@@ -37,7 +38,9 @@ public class GameController {
     private int getValidPurchaseAmount() {
         while (true) {
             try {
-                int amount = InputParser.parseInteger(getPurchaseStr());
+                String purchaseStr = getPurchaseStr();
+                validateNullAndEmpty(purchaseStr);
+                int amount = InputParser.parseInteger(purchaseStr);
                 InputValidator.validatePurchaseAmount(amount);
                 return amount;
             } catch (IllegalArgumentException e) {
@@ -49,7 +52,9 @@ public class GameController {
     private List<Integer> getValidWinningNumbers() {
         while (true) {
             try {
-                return InputParser.parseWinningNumbers(getWinningNumStr());
+                String winningNumStr = getWinningNumStr();
+                validateNullAndEmpty(winningNumStr);
+                return InputParser.parseWinningNumbers(winningNumStr);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + " 다시 입력해 주세요.");
             }
@@ -59,7 +64,9 @@ public class GameController {
     private int getValidBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
-                int bonus = InputParser.parseInteger(getBonusNumber());
+                String bonusNumber = getBonusNumber();
+                validateNullAndEmpty(bonusNumber);
+                int bonus = InputParser.parseInteger(bonusNumber);
                 InputValidator.validateRange(bonus);
                 InputValidator.validateDuplicate(winningLotto, bonus);
                 return bonus;
