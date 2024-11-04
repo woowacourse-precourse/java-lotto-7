@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.IssueLottos;
 import lotto.domain.Lotto;
 import lotto.domain.LottoConstants;
 import lotto.domain.LottoRank;
@@ -20,7 +21,6 @@ public class LottoController {
     private PurchasedLottos purchasedLottos;
     private Set<Integer> winningNumbers;
     private int bonusNumber;
-    private int purchaseAmount;
 
     public void run() {
         purchaseLotto();
@@ -29,8 +29,7 @@ public class LottoController {
     }
 
     private void purchaseLotto() {
-        purchaseAmount = getLottoPurchaseAmount();
-        issueLotto();
+        purchasedLottos =  IssueLottos.issueLottos(getLottoPurchaseAmount());
         OutputView.showPurchasedLottos(purchasedLottos.getPurchasedLottos().stream()
                 .map(Lotto::toString)
                 .collect(Collectors.joining("\n")));
@@ -45,25 +44,6 @@ public class LottoController {
             }
         }
     }
-
-    private void issueLotto() {
-        List<Lotto> lottos = new ArrayList<>();
-        int count = purchaseAmount / LottoConstants.LOTTO_PRICE;
-
-        OutputView.showPurchasedLottosQuantity(count);
-
-        for (int i = 0; i < count; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(
-                    LottoConstants.MIN_LOTTO_NUMBER,
-                    LottoConstants.MAX_LOTTO_NUMBER,
-                    LottoConstants.LOTTO_PICK_SIZE
-            ));
-            lottos.add(lotto);
-        }
-
-        purchasedLottos = new PurchasedLottos(lottos);
-    }
-
 
     private void progressLottoGame() {
         winningNumbers = getWinningNumbers();
@@ -120,7 +100,7 @@ public class LottoController {
             totalPrize += ranks[i].getPrize() * rankCounts[i];
             winningStatistics.append(rank.getMessage() + rankCounts[i] + "개" + "\n");
         }
-        double returnRate = (double) totalPrize / purchaseAmount * 100;
+        double returnRate = (double) totalPrize / purchasedLottos.getPurchaseAmount() * 100;
         OutputView.announceWinningStatistics(winningStatistics.toString(), returnRate);
     }
 
