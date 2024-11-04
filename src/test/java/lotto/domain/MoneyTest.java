@@ -10,4 +10,10 @@ public class MoneyTest {
         assertThatThrownBy(() -> Money.from("우테코"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 구입_금액이_음수이면_예외가_발생한다() {
+        assertThatThrownBy(() -> Money.from("-35000"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
