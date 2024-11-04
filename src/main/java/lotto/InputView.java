@@ -112,4 +112,24 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력해 주세요.");
         }
     }
+
+    public void testValidateAmount(String input) {
+        validateAmount(input);
+    }
+
+    public List<Integer> testParseWinningNumbers(String input) {
+        return parseWinningNumbers(input);
+    }
+
+    public void testValidateWinningNumbers(List<Integer> winningNumbers) {
+        validateWinningNumbers(winningNumbers);
+    }
+
+    public int testValidateBonusNumber(String input, List<Integer> winningNumbers) {
+        return validateBonusNumber(input, winningNumbers);
+    }
+
+
+
+
 }
