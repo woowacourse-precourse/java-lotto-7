@@ -30,7 +30,7 @@ public class LottoGame {
         try {
             String input = LottoInput.inputCost();
             return LottoCost.valueOf(input);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return creatLottoCost();
         }
