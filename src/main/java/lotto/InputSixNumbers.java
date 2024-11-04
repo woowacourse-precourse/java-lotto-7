@@ -20,6 +20,7 @@ public class InputSixNumbers {
 
             try {
                 numbers = parseInput(input);
+                System.out.println();
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
