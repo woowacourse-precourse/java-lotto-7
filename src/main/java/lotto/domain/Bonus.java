@@ -1,7 +1,8 @@
 package lotto.domain;
 
-import static lotto.constant.ErrorMessage.*;
-import static lotto.util.LottoValidator.*;
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_ALREADY_IN_WINNING_NUMBERS;
+import static lotto.util.LottoValidator.parseNumber;
+import static lotto.util.LottoValidator.validateSingleNumberRange;
 
 public class Bonus {
 

@@ -1,7 +1,9 @@
 package lotto.domain;
 
-import static lotto.constant.ErrorMessage.*;
-import static lotto.constant.LottoConstant.*;
+import static lotto.constant.ErrorMessage.INVALID_AMOUNT_UNIT;
+import static lotto.constant.ErrorMessage.INVALID_ZERO_AMOUNT;
+import static lotto.constant.LottoConstant.INT_ZERO;
+import static lotto.constant.LottoConstant.LOTTO_PRICE;
 
 public record PurchaseAmount(Integer amount) {
 

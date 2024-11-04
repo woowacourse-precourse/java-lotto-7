@@ -1,7 +1,12 @@
 package lotto.util;
 
-import static lotto.constant.ErrorMessage.*;
-import static lotto.constant.LottoConstant.*;
+import static lotto.constant.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.constant.ErrorMessage.INVALID_LOTTO_LENGTH;
+import static lotto.constant.ErrorMessage.INVALID_NUMBER_PARSE;
+import static lotto.constant.ErrorMessage.INVALID_NUMBER_RANGE;
+import static lotto.constant.LottoConstant.NUMBER_LENGTH;
+import static lotto.constant.LottoConstant.NUMBER_RANGE_MAX;
+import static lotto.constant.LottoConstant.NUMBER_RANGE_MIN;
 
 import java.util.HashSet;
 import java.util.List;

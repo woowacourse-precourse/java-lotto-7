@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import static lotto.constant.LottoConstant.*;
+import static lotto.constant.LottoConstant.INT_ONE;
+import static lotto.constant.LottoConstant.INT_ZERO;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;

@@ -1,6 +1,8 @@
 package lotto.domain;
 
-import static lotto.util.LottoValidator.*;
+import static lotto.util.LottoValidator.validateNoDuplicates;
+import static lotto.util.LottoValidator.validateNumberCount;
+import static lotto.util.LottoValidator.validateNumberRange;
 
 import java.util.List;
 import java.util.stream.Collectors;
