@@ -1,5 +1,6 @@
 package lotto.domain.machine.generator;
 
+import java.util.List;
 import lotto.domain.lotto.Lotto;
 
 public class LottoGenerator {
@@ -11,7 +12,7 @@ public class LottoGenerator {
     }
 
     public Lotto issueLotto() {
-        return Lotto.from(numberGenerator.generate());
+        return Lotto.from(numberGenerator.generate().stream().sorted().toList());
     }
 
 }
