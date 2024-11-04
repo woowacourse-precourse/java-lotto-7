@@ -13,6 +13,7 @@ public class Exception {
     private final int MAX_LOTTO_NUMBER = 45;
     private final int DIVIDED_TOTAL_LOTTO_PURCHASE = 1000;
     private final int INPUT_MAX_LOTTO_NUMBER_SIZE = 6;
+    private final int ONE_DAY_BUY_LOTTO_LIMIT = 100;
 
     public boolean isInteger(String input) {
         try {
@@ -24,10 +25,18 @@ public class Exception {
     }
 
     public int validateLottoPurchase(String input) {
+        int returnLottoPurchase = 0;
+        if(input.isEmpty()){
+            throw new IllegalArgumentException(ExceptionEnum.NO_INPUT_DATA.getMessage());
+        }
         if (!isInteger(input)) {
             throw new IllegalArgumentException(ExceptionEnum.INPUT_NUMBER_IS_INTEGER.getMessage());
         }
-        return isDivide1000(Integer.parseInt(input));
+        returnLottoPurchase = isDivide1000(Integer.parseInt(input));
+        if(returnLottoPurchase/DIVIDED_TOTAL_LOTTO_PURCHASE > ONE_DAY_BUY_LOTTO_LIMIT) {
+            throw new IllegalArgumentException(ExceptionEnum.ONE_DAY_LOTTO_LIMIT.getMessage());
+        }
+        return returnLottoPurchase;
 
     }
 

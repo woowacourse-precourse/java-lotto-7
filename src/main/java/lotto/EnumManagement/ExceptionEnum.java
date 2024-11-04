@@ -8,7 +8,9 @@ public enum ExceptionEnum {
     LOTTO_PURCHASE_UNIT_1000("[ERROR] 1000원 단위로 입력해야 합니다."),
     BONUS_NUMBER_RANGE_1TO45("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다."),
     LOTTO_NUMBER_RANGE_1TO45("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
-    ALL_LOTTO_NUMBER_IS_INTEGER("[ERROR] 모든 로또 번호는 정수여야 합니다.");
+    ALL_LOTTO_NUMBER_IS_INTEGER("[ERROR] 모든 로또 번호는 정수여야 합니다."),
+    ONE_DAY_LOTTO_LIMIT("[ERROR] 하루 구매 할 수 있는 로또의 개수는 100개 입니다."),
+    NO_INPUT_DATA("[ERROR] 아무 입력이 없습니다.");
 
     private final String massage;
 
