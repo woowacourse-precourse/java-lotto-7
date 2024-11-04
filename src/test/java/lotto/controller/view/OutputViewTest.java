@@ -1,6 +1,7 @@
 package lotto.controller.view;
 
 import lotto.controller.LottoPolicy;
+import lotto.controller.LottoTierPolicy;
 import lotto.domain.lottery.Lotteries;
 import lotto.domain.gameManager.LottoGameManager;
 import org.junit.jupiter.api.DisplayName;
@@ -12,8 +13,8 @@ class OutputViewTest {
     @Test
     void printLotteries() {
         //given
-        LottoGameManager lottoGameManager = new LottoGameManager();
-        Lotteries lotteries = lottoGameManager.initLottery(new LottoPolicy(), 5000);
+        LottoGameManager lottoGameManager = LottoGameManager.ofInstance(new LottoTierPolicy());
+        Lotteries lotteries = lottoGameManager.generateLottery(new LottoPolicy(), 5000);
         OutputView outputView = new OutputView();
         //when
         outputView.printLotteries(lotteries);

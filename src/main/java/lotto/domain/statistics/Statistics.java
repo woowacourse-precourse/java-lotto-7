@@ -1,10 +1,12 @@
 package lotto.domain.statistics;
 
 import java.math.BigInteger;
+import lotto.domain.tier.Tier;
 
 public interface Statistics {
-    Statistics updateWinningLottoCount(Long winningLottoCount);
+    void updateWinningLottoCount();
     BigInteger calculateWinningAmount();
     Long getWinningLottoCount();
+    Tier getTier();
 
 }

@@ -1,7 +1,7 @@
 package lotto.domain.tier;
 
 public interface Tier {
-    Integer getWinningMatchCount();
+    Integer getRequiredMatchCount();
     Boolean getNeedsBonusNumberMatch();
     Long getWinningAmount();
 }

@@ -1,14 +1,10 @@
 package lotto.controller.view;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Scanner;
-import lotto.controller.view.InputView;
 import lotto.controller.LottoPolicy;
-import lotto.controller.view.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -52,6 +48,7 @@ class InputViewTest {
         while (scanner.hasNextLine()) {
             List<Integer> integers = inputView.inputWinningNumber();
         }
+
         //then
     }
 
