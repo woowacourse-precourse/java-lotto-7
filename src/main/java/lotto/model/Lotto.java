@@ -61,10 +61,6 @@ public class Lotto {
         matchCount += matchNumbers(winningNumbers);
         matchBonus = matchBonus(bonusNumber);
 
-        if(matchBonus){
-            matchCount ++;
-        }
-
         return WinningType.getWinningType(matchCount, matchBonus);
     }
 
