@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class LottoController {
     public void run() {
-        int lottoAmount = InputView.buyLotto();
+        int lottoAmount = InputView.inputLottoAmount();
 
         LottoNumberGenerator generator = new LottoNumberGenerator();
         List<Lotto> lottos = generator.generate(lottoAmount);
@@ -27,7 +27,7 @@ public class LottoController {
         List<LottoNumberCounter> counters = calculator.calculateMatching();
         int[] lottoResult = calculator.getLottoResult(counters);
 
-        LottoRound lottoRound = new LottoRound(lottoAmount);
+        LottoAmount lottoRound = new LottoAmount(lottoAmount);
         double profitRate = calculator.calculateProfitRate(lottoResult, lottoRound);
         OutputView.printLottoStatistics(lottoResult, profitRate);
     }

@@ -12,7 +12,7 @@ public class LottoCalculator {
         this.bonusNumber = bonusNumber;
     }
 
-    public double calculateProfitRate(int[] lottoResult, LottoRound lottoRound) {
+    public double calculateProfitRate(int[] lottoResult, LottoAmount lottoAmount) {
         double[] prizeAmounts = {5000, 50000, 1500000, 30000000, 2000000000};
         double totalPrize = 0;
 
@@ -20,7 +20,7 @@ public class LottoCalculator {
             totalPrize += lottoResult[i] * prizeAmounts[i];
         }
 
-        double totalCost = lottoRound.getLottoRound() * 1000;
+        double totalCost = lottoAmount.getLottoAmount() * 1000;
         double profitRate = (totalPrize / totalCost) * 100;
 
         return Math.round(profitRate * 100.0) / 100.0;
