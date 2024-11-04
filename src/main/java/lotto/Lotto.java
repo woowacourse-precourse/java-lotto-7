@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        // Lotto 객체 불변성 유지
         this.numbers = List.copyOf(numbers);
     }
 

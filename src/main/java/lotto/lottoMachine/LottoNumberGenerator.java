@@ -9,7 +9,6 @@ import lotto.lottoMachine.utils.StaticFinalMessages;
 public class LottoNumberGenerator {
     public List<Integer> generateLottoNumbers() {
         // 새로운 ArrayList를 생성하여 수정 가능한 리스트로 만듦
-        // 왜 기존코드는 불변인지는 모르겠엄;;;
         List<Integer> numbers = new ArrayList<>(
                 Randoms.pickUniqueNumbersInRange(
                         StaticFinalMessages.MINIMUM_LOTTO_NUMBER,

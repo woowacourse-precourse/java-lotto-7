@@ -7,7 +7,7 @@ public class StaticFinalMessages {
 
     public static final String RECOMMAND_MESSAGE_FOR_ENTERING_CORRECT_LOTTO_PURCHASE_AMOUNT = "1000단위의 1000이상 50000이하 로또 구입 금액을 입력해주세요 ex) 5000";
 
-    public static final String RECOMMAND_MESSAGE_FOR_ENTERING_CORRECT_LOTTO_WINNING_NUMBER = "로또 우승 번호로 1부터 45까지 중복되지 않는 숫자 6개를 콤마(,)를 이용해서 구별해서 입력해주세요. ex) 1,2,3,4,5,6";
+    public static final String RECOMMAND_MESSAGE_FOR_ENTERING_CORRECT_LOTTO_WINNING_NUMBER = "로또 당첨 번호로 1부터 45까지 중복되지 않는 숫자 6개를 콤마(,)를 이용해서 구별해서 입력해주세요. ex) 1,2,3,4,5,6";
 
     public static final int MAXIMUM_NUM_OF_LOTTO_PURCHASE_AMOUNT = 50000;
     public static final int MINIMUM_NUM_OF_LOTTO_PURCHASE_AMOUNT = 1000;
