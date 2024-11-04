@@ -1,9 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class LottoServiceTest {
@@ -11,24 +9,24 @@ class LottoServiceTest {
 
     @Test
     void 구입_금액이_숫자가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> lottoService.convertInputToCash("test"))
+        assertThatThrownBy(() -> lottoService.convertInputToLottoAmount("test"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 구입_금액이_1000원_단위가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> lottoService.convertInputToCash("1100"))
+        assertThatThrownBy(() -> lottoService.convertInputToLottoAmount("1100"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 구입_금액이_0_이하면_예외가_발생한다() {
-        assertThatThrownBy(() -> lottoService.convertInputToCash("0"))
+        assertThatThrownBy(() -> lottoService.convertInputToLottoAmount("0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void convertInputToCash() {
+    void convertInputToLottoAmount() {
     }
 
     @Test
