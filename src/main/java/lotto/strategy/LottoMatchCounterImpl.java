@@ -1,6 +1,8 @@
 package lotto.strategy;
 
 import lotto.Lotto;
+import lotto.domain.LottoCondition;
+import lotto.domain.rank.MatchCount;
 
 public class LottoMatchCounterImpl implements LottoMatchCounter {
     @Override
@@ -19,7 +21,8 @@ public class LottoMatchCounterImpl implements LottoMatchCounter {
         int purchasedLottLeftPointer = 0;
         int winningLottoLeftPointer = 0;
 
-        while (purchasedLottLeftPointer < 6 && winningLottoLeftPointer < 6) {
+        while (purchasedLottLeftPointer < LottoCondition.MAX_COUNT.getConditionNumber()
+                && winningLottoLeftPointer < LottoCondition.MAX_COUNT.getConditionNumber()) {
             if (isMatch(purchasedLotto, selectWinnerLotto, purchasedLottLeftPointer, winningLottoLeftPointer)) {
                 matchCount++;
                 purchasedLottLeftPointer++;
@@ -54,7 +57,7 @@ public class LottoMatchCounterImpl implements LottoMatchCounter {
     }
 
     private boolean hasFiveMatchesWithBonus(Lotto purchasedLottLeftPointer, int bonusNumber, int matchCount) {
-        return matchCount == 5 &&
+        return matchCount == MatchCount.FIVE_MATCH.getMatchCount() &&
                 purchasedLottLeftPointer.getNumbers().contains(bonusNumber);
     }
 }

@@ -28,21 +28,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoCondition.MAX_COUNT.getConditionNumber()) {
             throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_COUNT.getErrorMessage());
         }
         validateDuplicateNumbers(numbers);
     }
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
-        int left = 0;
-        while (left < 6) {
-            for (int right = left + 1; right < 6; right++) {
-                if (numbers.get(left) == numbers.get(right)) {
+        int leftPointer = 0;
+        while (leftPointer < LottoCondition.MAX_COUNT.getConditionNumber()) {
+            for (int rightPointer = leftPointer + 1; rightPointer < LottoCondition.MAX_COUNT.getConditionNumber(); rightPointer++) {
+                if (numbers.get(leftPointer) == numbers.get(rightPointer)) {
                     throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_LOTTO_NUMBER.getErrorMessage());
                 }
             }
-            left++;
+            leftPointer++;
         }
     }
 

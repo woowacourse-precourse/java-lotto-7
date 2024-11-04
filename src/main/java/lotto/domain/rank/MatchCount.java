@@ -19,7 +19,7 @@ public enum MatchCount {
         this.priceMoney = priceMoney;
     }
 
-    private int getMatchCount() {
+    public int getMatchCount() {
         return matchCount;
     }
 

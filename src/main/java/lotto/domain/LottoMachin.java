@@ -32,7 +32,7 @@ public class LottoMachin {
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(
                     LottoCondition.START_INCLUSIVE.getConditionNumber(),
                     LottoCondition.END_INCLUSIVE.getConditionNumber(),
-                    LottoCondition.COUNT.getConditionNumber()))
+                    LottoCondition.MAX_COUNT.getConditionNumber()))
             );
         }
         return lottos;
@@ -40,10 +40,10 @@ public class LottoMachin {
 
     public void printLottoInfo(Consumer consumer) {
         StringBuilder LottoInfo = new StringBuilder();
-        LottoInfo
-                .append(InputMessage.NEW_LINE.getInputMessage())
+        LottoInfo.append(InputMessage.NEW_LINE.getInputMessage())
                 .append(consumer.getPurchasedLottoCount())
                 .append(InputMessage.PURCHASE_LOTTO_COUNT.getInputMessage());
+
         Output.println(LottoInfo.toString());
         consumer.printPurchasedLottos();
     }
@@ -78,11 +78,11 @@ public class LottoMachin {
     private StringBuilder generateLottoResultStringFrom(Map<MatchCount, Integer> checkedLottoResult) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Map.Entry<MatchCount, Integer> entrySet : checkedLottoResult.entrySet()) {
-            stringBuilder.append(entrySet.getKey().getOutputMessage());
-            stringBuilder.append(OutputMessage.DASH_SEPERATOR.getOutputMessage());
-            stringBuilder.append(entrySet.getValue());
-            stringBuilder.append(OutputMessage.COUNT_UNIT.getOutputMessage());
-            stringBuilder.append(OutputMessage.NEW_LINE.getOutputMessage());
+            stringBuilder.append(entrySet.getKey().getOutputMessage())
+                    .append(OutputMessage.DASH_SEPERATOR.getOutputMessage())
+                    .append(entrySet.getValue())
+                    .append(OutputMessage.COUNT_UNIT.getOutputMessage())
+                    .append(OutputMessage.NEW_LINE.getOutputMessage());
         }
         return stringBuilder;
     }
@@ -90,9 +90,9 @@ public class LottoMachin {
     private StringBuilder printCalculateRateAs(Map<MatchCount, Integer> matchCountResult, int purchasedLottoCount) {
         StringBuilder stringBuilder = new StringBuilder();
         Long priceTotal = calculatePriceTotalAs(matchCountResult);
-        stringBuilder.append(OutputMessage.TOTAL_RATE_MESSAGE.getOutputMessage());
-        stringBuilder.append(calculateRounded(priceTotal, purchasedLottoCount));
-        stringBuilder.append(OutputMessage.PERCENTAGE_SYMBOL.getOutputMessage());
+        stringBuilder.append(OutputMessage.TOTAL_RATE_MESSAGE.getOutputMessage())
+                .append(calculateRounded(priceTotal, purchasedLottoCount))
+                .append(OutputMessage.PERCENTAGE_SYMBOL.getOutputMessage());
         return stringBuilder;
     }
 
@@ -109,7 +109,8 @@ public class LottoMachin {
 
     // ((총 수익률) / (로또 구매 금액)) * 100
     public static Double calculateRounded(Long priceTotal, int purchasedLottoCount) {
-        double result = ((double) priceTotal / (purchasedLottoCount * LottoPrice.LOTTO_PRICE.getPrice())) * PERCENTAGE_MULTIPLIER;
-        return Math.round(result * ROUNDING_SCALE) / (double)ROUNDING_SCALE;
+        double result = ((double) priceTotal / (purchasedLottoCount * LottoPrice.LOTTO_PRICE.getPrice()))
+                * PERCENTAGE_MULTIPLIER;
+        return Math.round(result * ROUNDING_SCALE) / (double) ROUNDING_SCALE;
     }
 }

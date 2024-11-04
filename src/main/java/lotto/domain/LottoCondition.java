@@ -3,7 +3,7 @@ package lotto.domain;
 public enum LottoCondition {
     START_INCLUSIVE(1),
     END_INCLUSIVE(45),
-    COUNT(6);
+    MAX_COUNT(6);
 
     private int conditionNumber;
 
