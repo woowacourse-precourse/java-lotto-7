@@ -1,7 +1,6 @@
 package lotto.model;
 
 public class Wallet {
-    private static final String NOT_INTEGER_EXCEPTION_MESSAGE = "[ERROR] 정수 이외 값을 입력할 수 없습니다.";
     private static final String CHANGE_EXSIT_EXCEPTION_MESSAGE = "[ERROR] 1000원 단위로 입력해주세요.";
     private static final String OUT_OF_RANGE_EXCEPTION_MESSAGE = "[ERROR] 로또 구입 가능 금액은 1000원 이상, 1000000원 이하입니다.";
 
