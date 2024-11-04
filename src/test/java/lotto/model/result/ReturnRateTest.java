@@ -1,7 +1,8 @@
-package lotto;
+package lotto.model.result;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.model.payment.Payment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

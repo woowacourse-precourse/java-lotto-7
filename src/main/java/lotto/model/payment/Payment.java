@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model.payment;
 
-import static lotto.Constants.*;
+import static lotto.common.Constants.*;
 
 public class Payment {
     private static final int MAX_PURCHASE_LIMIT = 100000;

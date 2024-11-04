@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model.lottery;
 
-import static lotto.Constants.ERROR_HEADER;
+import static lotto.common.Constants.ERROR_HEADER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 

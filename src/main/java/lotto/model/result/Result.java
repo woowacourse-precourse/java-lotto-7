@@ -1,11 +1,15 @@
-package lotto;
+package lotto.model.result;
 
-import static lotto.Constants.*;
+import static lotto.common.Constants.*;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.model.lottery.Bonus;
+import lotto.model.lottery.Winning;
+import lotto.model.lottery.Lotto;
+import lotto.model.lottery.PurchasedLotto;
 
 public class Result {
     private static final String WINNING_DETAIL_FORMAT = "%s%d개\n";

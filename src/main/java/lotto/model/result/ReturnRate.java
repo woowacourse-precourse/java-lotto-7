@@ -1,6 +1,7 @@
-package lotto;
+package lotto.model.result;
 
 import java.text.DecimalFormat;
+import lotto.model.payment.Payment;
 
 public class ReturnRate {
     private static final int PERCENTAGE_MULTIPLIER = 100;

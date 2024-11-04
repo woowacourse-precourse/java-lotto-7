@@ -1,9 +1,14 @@
-package lotto;
+package lotto.model.result;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Map;
+import lotto.model.lottery.Bonus;
+import lotto.model.lottery.Lotto;
+import lotto.model.lottery.MockPurchasedLotto;
+import lotto.model.lottery.Winning;
+import lotto.model.payment.Payment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

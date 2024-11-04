@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model.result;
 
 import java.util.LinkedHashMap;
 

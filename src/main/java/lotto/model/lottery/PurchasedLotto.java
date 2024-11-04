@@ -1,11 +1,12 @@
-package lotto;
+package lotto.model.lottery;
 
 import static camp.nextstep.edu.missionutils.Randoms.*;
-import static lotto.Constants.*;
+import static lotto.common.Constants.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.model.payment.Payment;
 
 public class PurchasedLotto {
     private static final String LOTTO_DELIMITER = "\n";

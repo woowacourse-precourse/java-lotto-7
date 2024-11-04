@@ -1,9 +1,10 @@
-package lotto;
+package lotto.model.lottery;
 
-import static lotto.Constants.LOTTO_PRICE;
+import static lotto.common.Constants.LOTTO_PRICE;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.payment.Payment;
 
 public class MockPurchasedLotto extends PurchasedLotto {
 

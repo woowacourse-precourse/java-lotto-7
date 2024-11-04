@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.controller.Controller;
+
 public class Application {
     public static void main(String[] args) {
         Application app = new Application();
@@ -7,7 +9,7 @@ public class Application {
     }
 
     private void run() {
-        Service service = new Service();
-        service.run();
+        Controller controller = new Controller();
+        controller.run();
     }
 }

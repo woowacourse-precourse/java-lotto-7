@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model.lottery;
 
-import static lotto.Constants.*;
+import static lotto.common.Constants.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
