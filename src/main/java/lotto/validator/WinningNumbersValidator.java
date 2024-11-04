@@ -70,13 +70,15 @@ public class WinningNumbersValidator {
     private static List<Integer> parseWinningNumbers(String input) {
         return Arrays.stream(input.split(","))
                 .map(String::trim)
-                .map(numberString -> {
-                    try {
-                        return Integer.parseInt(numberString);
-                    } catch (NumberFormatException e) {
-                        throw LottoException.from(ErrorMessage.INVALID_NUMBER_RANGE_ERROR);
-                    }
-                })
+                .map(numberString -> parseToInt(numberString))
                 .toList();
+    }
+
+    private static int parseToInt(String numberString) {
+        try {
+            return Integer.parseInt(numberString);
+        } catch (NumberFormatException e) {
+            throw LottoException.from(ErrorMessage.INVALID_NUMBER_RANGE_ERROR);
+        }
     }
 }
