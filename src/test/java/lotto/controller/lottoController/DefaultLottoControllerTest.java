@@ -12,7 +12,7 @@ import lotto.testUtil.testDouble.NumberPickerFake;
 import lotto.testUtil.testDouble.WriterFake;
 import org.junit.jupiter.api.Test;
 
-class LottoControllerTest {
+class DefaultLottoControllerTest {
 
     @Test
     void 로또를_구매한다() {
@@ -20,7 +20,7 @@ class LottoControllerTest {
         WriterFake writerFake = new WriterFake();
         OutputHandler outputHandler = new OutputHandler(writerFake, new OutputParser());
         NumberPickerFake numberPickerFake = new NumberPickerFake();
-        LottoController sut = new LottoController(outputHandler, numberPickerFake);
+        LottoController sut = new DefaultLottoController(outputHandler, numberPickerFake);
         numberPickerFake.setNumbers(
                 1, 2, 3, 4, 5, 6,
                 7, 8, 9, 10, 11, 12

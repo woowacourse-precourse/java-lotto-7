@@ -3,7 +3,9 @@ package lotto.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.controller.lottoController.DefaultLottoController;
 import lotto.controller.lottoController.LottoController;
+import lotto.controller.lottoStaticsController.DefaultLottoStaticsController;
 import lotto.controller.lottoStaticsController.LottoStaticsController;
 import lotto.controller.moneyController.DefaultMoneyController;
 import lotto.controller.moneyController.MoneyController;
@@ -32,9 +34,9 @@ class LottoApplicationFacadeTest {
         this.numberPickerFake = new NumberPickerFake();
 
         MoneyController moneyController = new DefaultMoneyController(inputHandlerStub);
-        LottoController lottoController = new LottoController(outputHandler, numberPickerFake);
+        LottoController lottoController = new DefaultLottoController(outputHandler, numberPickerFake);
         WinningLottoController winningLottoController = new DefaultWinningLottoController(inputHandlerStub);
-        LottoStaticsController lottoStaticsController = new LottoStaticsController(outputHandler);
+        LottoStaticsController lottoStaticsController = new DefaultLottoStaticsController(outputHandler);
 
         this.sut = new LottoApplicationFacade(
                 moneyController,

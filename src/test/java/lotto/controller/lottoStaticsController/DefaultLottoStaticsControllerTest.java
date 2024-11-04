@@ -11,14 +11,14 @@ import lotto.io.OutputParser;
 import lotto.testUtil.testDouble.WriterFake;
 import org.junit.jupiter.api.Test;
 
-class LottoStaticsControllerTest {
+class DefaultLottoStaticsControllerTest {
 
     @Test
     void 로또결과를_처리한다() {
         //given
         WriterFake writerFake = new WriterFake();
         OutputHandler outputHandler = new OutputHandler(writerFake, new OutputParser());
-        LottoStaticsController sut = new LottoStaticsController(outputHandler);
+        LottoStaticsController sut = new DefaultLottoStaticsController(outputHandler);
         List<Lotto> purchasedLottos = List.of(Lotto.from(List.of(1, 2, 3, 4, 5, 6)),
                 Lotto.from(List.of(3, 4, 5, 6, 7, 8)));
         WinningLotto winningLotto = WinningLotto.of(Lotto.from(List.of(2, 3, 4, 5, 6, 7)), 1);

@@ -1,6 +1,10 @@
 package lotto.config;
 
 import lotto.config.aop.RetryHandlerConfig;
+import lotto.config.controller.lottoController.DefaultLottoControllerConfig;
+import lotto.config.controller.lottoController.LottoControllerConfig;
+import lotto.config.controller.lottoStaticsController.DefaultLottoStaticsControllerConfig;
+import lotto.config.controller.lottoStaticsController.LottoStaticsControllerConfig;
 import lotto.config.controller.moneyController.DefaultMoneyControllerConfig;
 import lotto.config.controller.moneyController.MoneyControllerConfig;
 import lotto.config.controller.winningLottoController.DefaultWinningLottoControllerConfig;
@@ -14,8 +18,6 @@ import lotto.config.io.writer.WriterConfig;
 import lotto.config.numberPicker.DefaultNumberPickerConfig;
 import lotto.config.numberPicker.NumberPickerConfig;
 import lotto.controller.LottoApplicationFacade;
-import lotto.controller.lottoController.LottoController;
-import lotto.controller.lottoStaticsController.LottoStaticsController;
 
 public class LottoApplicationConfig {
 
@@ -34,16 +36,23 @@ public class LottoApplicationConfig {
                 inputHandlerConfig,
                 retryHandlerConfig
         );
+        LottoControllerConfig lottoControllerConfig = new DefaultLottoControllerConfig(
+                outputHandlerConfig,
+                numberPickerConfig
+        );
         WinningLottoControllerConfig winningLottoControllerConfig = new DefaultWinningLottoControllerConfig(
                 inputHandlerConfig,
                 retryHandlerConfig
         );
+        LottoStaticsControllerConfig lottoStaticsControllerConfig = new DefaultLottoStaticsControllerConfig(
+                outputHandlerConfig
+        );
 
         this.lottoApplicationFacade = new LottoApplicationFacade(
                 moneyControllerConfig.getMoneyController(),
-                new LottoController(outputHandlerConfig.getOutputHandler(), numberPickerConfig.getNumberPicker()),
+                lottoControllerConfig.getLottoController(),
                 winningLottoControllerConfig.getWinningLottoController(),
-                new LottoStaticsController(outputHandlerConfig.getOutputHandler())
+                lottoStaticsControllerConfig.getLottoStaticsController()
         );
     }
 
