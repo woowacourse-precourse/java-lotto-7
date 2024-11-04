@@ -29,9 +29,9 @@ public class LottoController {
         ProfitReport profitReport = lottoService.generateProfitReport(lottoMachine);
 
         // output
-        ProfitStatisticsDto profitStatisticsDto = new ProfitStatisticsDto(profitReport.calculateWinningCountsByPrize(),
-                profitReport.calculateProfitRate());
-
+        ProfitStatisticsDto profitStatisticsDto = new ProfitStatisticsDto.Builder()
+                .prizeCountMap(profitReport.calculateWinningCountsByPrize())
+                .profitRate(profitReport.calculateProfitRate()).build();
         consoleOutput.printPurchasedLottos(lottoMachine.getPurchasedLottos());
         consoleOutput.printProfitStatistics(profitStatisticsDto);
     }
