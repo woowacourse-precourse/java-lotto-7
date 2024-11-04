@@ -23,10 +23,6 @@ public enum Ranking {
         return prize;
     }
 
-    public int getMatchNumber() {
-        return matchNumber;
-    }
-
     public int getCount() {
         return count;
     }
