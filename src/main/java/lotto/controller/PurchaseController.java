@@ -21,6 +21,18 @@ public class PurchaseController {
         inputService = new InputServiceImpl<>(new MoneyInputValidator(), new MoneyInputConverterService());
     }
 
+    public void run(){
+        getMoneyInput();
+        PurchaseService purchase = PurchaseServiceImpl.getTrade(inputService);
+
+        issueALottoTicket(purchase);
+    }
+
+    private void issueALottoTicket(PurchaseService purchase) {
+        LottoMachineService lottoMachineService = LottoMachineServiceImpl.getInstance(purchase);
+        lottoMachineService.updateLottoTicket();
+    }
+
     private void getMoneyInput() {
         String input = UserInput.get(InputInfo.PURCHASE_AMOUNT.guide());
         try {
