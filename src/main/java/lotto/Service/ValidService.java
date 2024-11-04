@@ -30,6 +30,9 @@ public class ValidService {
     }
     public void checkLottoNumbers(String stringNumbers){
         String[] parts = stringNumbers.split(",");
+        if (parts.length!=6){
+            throw  new IllegalArgumentException("6개의 숫자를 입력해주세요");
+        }
         for (String part : parts) {
             tryValid(part);
         }
