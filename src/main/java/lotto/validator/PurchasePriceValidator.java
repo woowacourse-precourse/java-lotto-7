@@ -17,23 +17,11 @@ public class PurchasePriceValidator {
 
     public static boolean validate(String rawPurchasePrice) {
         PurchasePriceValidator.rawPurchasePrice = rawPurchasePrice;
-        if (!isExist()) {
-            return false;
-        }
-        if (!isNumber()) {
-            return false;
-        }
-        if (!isNotOverFlow()) {
-            return false;
-        }
-        intPurchasePrice = Integer.parseInt(rawPurchasePrice);
-        if (!isReachAtLeastPrice()) {
-            return false;
-        }
-        if (!isDividedClearly()) {
-            return false;
-        }
-        return true;
+        return isExist()
+                && isNumber()
+                && isNotOverFlow()
+                && isReachAtLeastPrice()
+                && isDividedClearly();
     }
 
     private static boolean isExist() {

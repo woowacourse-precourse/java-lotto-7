@@ -19,19 +19,10 @@ public class BonusNumberValidator {
 
     public static boolean validate(String rawBonusNumber, List<Integer> validWinNumbers) {
         BonusNumberValidator.rawBonusNumber = rawBonusNumber;
-        if (!isExist()) {
-            return false;
-        }
-        if (!isDigit()) {
-            return false;
-        }
-        if (!isOnlyOne(validWinNumbers)) {
-            return false;
-        }
-        if (!isValidRange()) {
-            return false;
-        }
-        return true;
+        return isExist()
+                && isDigit()
+                && isOnlyOne(validWinNumbers)
+                && isValidRange();
     }
 
     private static boolean isExist() {

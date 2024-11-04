@@ -20,25 +20,12 @@ public class WinNumberValidator {
 
     public static boolean validate(String rawWinNumber) {
         WinNumberValidator.rawWinNumber = rawWinNumber;
-        if (!isExist()) {
-            return false;
-        }
-        if (!hasDelimiterCountExactly()) {
-            return false;
-        }
-        if (!hasNumberCountExactly()) {
-            return false;
-        }
-        if (!isDigit()) {
-            return false;
-        }
-        if (!isValidRangeNumbers()) {
-            return false;
-        }
-        if (!hasNoDuplication()) {
-            return false;
-        }
-        return true;
+        return isExist()
+                && hasDelimiterCountExactly()
+                && hasNumberCountExactly()
+                && isDigit()
+                && isValidRangeNumbers()
+                && hasNoDuplication();
     }
 
     private static boolean isExist() {
