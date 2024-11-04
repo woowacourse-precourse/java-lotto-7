@@ -22,12 +22,11 @@ public enum Rank {
         return prize;
     }
 
-    public static Rank getRank(int matchCount, boolean hasBonus) {
-        for (Rank rank : values()) {
-            if (rank.matchCount == matchCount && (!rank.requiresBonus || hasBonus == rank.requiresBonus)) {
-                return rank;
-            }
-        }
-        return NONE;
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean requiresBonus() {
+        return requiresBonus;
     }
 }

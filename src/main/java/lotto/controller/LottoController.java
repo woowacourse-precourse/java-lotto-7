@@ -12,11 +12,11 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoGenerator lottoGenerator;
-    private final LottoResultCalculator calculator;
+    private final LottoResultCalculator resultCalculator;
 
-    public LottoController(LottoGenerator lottoGenerator, LottoResultCalculator calculator) {
+    public LottoController(LottoGenerator lottoGenerator, LottoResultCalculator resultCalculator) {
         this.lottoGenerator = lottoGenerator;
-        this.calculator = calculator;
+        this.resultCalculator = resultCalculator;
     }
 
     public void run() {
@@ -58,8 +58,8 @@ public class LottoController {
         }
 
         // Step 5: 로또 결과 계산
-        Map<Rank, Integer> statistics = calculator.calculateStatistics(lottos, winningNumbers, bonusNumber);
-        double roi = calculator.calculateROI(statistics, purchaseAmount);
+        Map<Rank, Integer> statistics = resultCalculator.calculateStatistics(lottos, winningNumbers, bonusNumber);
+        double roi = resultCalculator.calculateROI(statistics, purchaseAmount);
 
         // Step 6: 로또 결과 출력
         OutputView.printLottoResults(statistics, roi);

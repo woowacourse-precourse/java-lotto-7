@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 
 class LottoResultCalculatorTest {
 
-    private final LottoResultCalculator calculator = new LottoResultCalculator();
+    private final LottoResultCalculator calculator = new LottoResultCalculator(
+            new RankCalculator(new DefaultRankCalculationStrategy()));
 
     @DisplayName("로또 티켓 결과를 계산하고 올바른 등수를 집계한다")
     @Test

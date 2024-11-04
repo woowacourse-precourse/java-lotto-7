@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResultCalculator {
+    private final RankCalculator rankCalculator;
+
+    public LottoResultCalculator(RankCalculator rankCalculator) {
+        this.rankCalculator = rankCalculator;
+    }
 
     public Map<Rank, Integer> calculateStatistics(List<Lotto> userLottos, List<Integer> winningNumbers,
                                                   int bonusNumber) {
@@ -15,7 +20,7 @@ public class LottoResultCalculator {
         for (Lotto lotto : userLottos) {
             int matchCount = calculateMatchCount(lotto, winningNumbers);
             boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
-            Rank rank = Rank.getRank(matchCount, hasBonus);
+            Rank rank = rankCalculator.calculateRank(matchCount, hasBonus);
             statistics.put(rank, statistics.get(rank) + 1);
         }
         return statistics;
