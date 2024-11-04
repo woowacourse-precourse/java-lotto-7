@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.Reward;
 import lotto.model.WinningResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -48,9 +49,9 @@ class OutputViewTest {
     void 당첨_내역_출력_테스트(){
         WinningResult winningResult = new WinningResult();
 
-        winningResult.put(1);
-        winningResult.put(4);
-        winningResult.put(2);
+        winningResult.put(Reward.FIRST);
+        winningResult.put(Reward.FOURTH);
+        winningResult.put(Reward.SECOND);
         view.displayRank(winningResult);
 
         Assertions.assertThat(outputStream.toString().trim()).contains(
