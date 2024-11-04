@@ -58,27 +58,24 @@ public class LottoController {
         }
     }
 
-    public BonusNumber issueBonusNumber() {
-        BonusNumber bonusNumber;
+    public void issueBonusNumber() {
         while (true) {
             try {
-                String bonusNumbers = inputView.inputBonusNumber();
-                bonusNumber = new BonusNumber(bonusNumbers);
+                String userInput = inputView.inputBonusNumber();
+                BonusNumber.initialInstance(userInput);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        return bonusNumber;
     }
 
-    public void calculateWinning(List<Lotto> lottos, BonusNumber bonusNumber) {
+    public void calculateWinning(List<Lotto> lottos) {
         Calculator calculator = new Calculator();
 
         for (Lotto lotto : lottos) {
             int count = calculator.matchCount(lotto);
-            WinningPrize rank = calculator.rank(count, lotto, bonusNumber);
+            WinningPrize rank = calculator.rank(count, lotto, BonusNumber.getInstance());
             WinningInformation.getInstance().addWinningCount(rank);
         }
     }

@@ -8,8 +8,20 @@ public class BonusNumber {
 
     private final int number;
 
-    public BonusNumber(String number) {
+    private static BonusNumber instance;
+
+    private BonusNumber(String number) {
         this.number = validate(number);
+    }
+
+    public static BonusNumber getInstance() {
+        return instance;
+    }
+
+    public static void initialInstance(String number) {
+        if (instance == null) {
+            instance = new BonusNumber(number);
+        }
     }
 
     public int getNumber() {

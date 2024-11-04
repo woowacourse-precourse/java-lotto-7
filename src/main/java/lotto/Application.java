@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.List;
 import lotto.controller.LottoController;
-import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.view.OutputView;
@@ -22,10 +21,10 @@ public class Application {
 
         // 당첨 번호 발행
         controller.issueWinningNumber();
-        BonusNumber bonusNumber = controller.issueBonusNumber();
+        controller.issueBonusNumber();
 
         // 당첨 결과 계산
-        controller.calculateWinning(lottos, bonusNumber);
+        controller.calculateWinning(lottos);
 
         outputView.printWinningInformation();
         outputView.printReturnOfRate(controller.calculateRateOfReturn(purchaseAmount));
