@@ -1,6 +1,9 @@
 package lotto;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import lotto.input.InputHandler;
 
 public class LottoGame {
@@ -14,7 +17,29 @@ public class LottoGame {
         LottoManager lottoManager = getLottoManager(lottos, winningLotto);
         LottoReferee referee = new LottoReferee(lottoManager);
 
-        referee.judgeWinning();
+        final List<WinningStatus> winningStatuses = referee.judgeWinning();
+        PrizeProvider prizeProvider = new PrizeProvider(winningStatuses);
+        Map<WinningRank, Long> prizes = prizeProvider.getPrizes();
+        showWinningResult(prizes);
+    }
+
+    private void showWinningResult(Map<WinningRank, Long> prizes) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.US);
+        prizes.entrySet().stream()
+                .filter(prize -> prize.getKey() != WinningRank.NO_WINNING)
+                .forEach(prize -> {
+                    String formattedMoney = numberFormat.format(prize.getKey().getMoney());
+                    if (prize.getKey() == WinningRank.SECOND) {
+                        System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개\n", formattedMoney, prize.getValue());
+                    } else {
+                        System.out.printf("%d개 일치 (%s원) - %d개\n",
+                                prize.getKey().getMatchedNumberCount(),
+                                formattedMoney,
+                                prize.getValue());
+                    }
+                });
     }
 
     private LottoManager getLottoManager(final List<Lotto> lottos, final WinningLotto winningLotto) {
