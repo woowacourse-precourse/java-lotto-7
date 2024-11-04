@@ -11,6 +11,7 @@ import java.util.Map;
 public class Application {
     private static final int LOTTO_PRICE = 1000;
     private static final int PERCENT = 100;
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static void main(String[] args) {
         int lottoPieces;
@@ -44,7 +45,7 @@ public class Application {
         viewWinningLotto(lottoResult);
 
         double porfitRate = calProfitRate(lottoResult, lottoPieces);
-        System.out.printf("총 수익률은 %.1f%%입니다.", porfitRate);
+        System.out.printf(PROFIT_RATE_MESSAGE, porfitRate);
     }
 
     public static int buyLotto(final String input) {
