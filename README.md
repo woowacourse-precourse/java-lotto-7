@@ -4,9 +4,9 @@
 - [ ] 입력 화면(InputView)
     - [x] 구매 금액 입력
     - [x] 구매 로또 개수 계산
-    - [ ] 당첨번호 입력
-    - [ ] 보너스 번호 입력
-- [ ] 로또 생성(LottoUniqueGenerator)
+    - [x] 당첨번호 입력
+    - [x] 보너스 번호 입력
+- [x] 로또 생성(LottoUniqueGenerator)
     - [x] pickUniqueNumbersInRange()를 통해 생성
     - [x] 오름차순 정렬
 - [ ] 전체 당첨 여부(MyLotto)

@@ -37,4 +37,8 @@ public class Lotto {
     public List<Integer> getLotto() {
         return new ArrayList<>(numbers);
     }
+
+    public boolean checkContainsBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

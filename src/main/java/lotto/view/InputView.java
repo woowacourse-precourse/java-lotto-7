@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 
 public class InputView {
     private static final int LOTTO_PRICE = 1000;
@@ -41,14 +42,27 @@ public class InputView {
         return amount / LOTTO_PRICE;
     }
 
+    public WinningLotto inputWinningLotto() {
+        WinningLotto winningLotto;
+        try {
+            Lotto lotto = inputWinnerNumber();
+            int bonusNumber = inputBonusNumber();
+            winningLotto = new WinningLotto(lotto, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + "당첨 번호 중 보너스번호와 중복되는 숫자가 있습니다");
+            return inputWinningLotto();
+        }
+        return winningLotto;
+    }
+
     public Lotto inputWinnerNumber() {
         System.out.println(LINE_BREAK + "당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         Lotto lotto;
-        try{
+        try {
             checkInputEndsWithDelimiter(input);
             lotto = new Lotto(convertStringToIntList(input));
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + "서식에 맞지 않는 입력이 있습니다.");
             return inputWinnerNumber();
         }
@@ -56,18 +70,18 @@ public class InputView {
     }
 
     private void checkInputEndsWithDelimiter(String input) {
-        if(input.endsWith(DELIMITER)) {
+        if (input.endsWith(DELIMITER)) {
             throw new IllegalArgumentException("쉼표로 끝나면 안됩니다");
         }
     }
 
     public int inputBonusNumber() {
-        System.out.println("보너스 볼을 입력해 주세요.");
+        System.out.println(LINE_BREAK + "보너스 볼을 입력해 주세요.");
         int number;
         try {
             number = Integer.parseInt(Console.readLine());
             checkNumberIsInvalid(number);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + "서식에 맞지 않는 입력이 있습니다.");
             return inputBonusNumber();
         }
@@ -81,6 +95,7 @@ public class InputView {
                 .map(this::checkNumberIsInvalid)
                 .collect(Collectors.toList());
     }
+
     private List<String> splitString(String stringWinningNumber) {
         return Arrays.stream(stringWinningNumber.split(DELIMITER)).collect(Collectors.toList());
     }
@@ -89,14 +104,14 @@ public class InputView {
         int number;
         try {
             number = Integer.parseInt(input);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("서식에 맞지 않는 입력이 있습니다.");
         }
         return number;
     }
 
     private int checkNumberIsInvalid(int number) {
-        if (number < MIN_LOTTO_NUMBER|| number > MAX_LOTTO_NUMBER) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("1~45 범위를 벗어나는 로또번호가 입력되었습니다");
         }
         return number;
