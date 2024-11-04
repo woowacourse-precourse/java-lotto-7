@@ -22,11 +22,11 @@ public class LottoMachine {
 
     public List<Lotto> purchaseLottos(Money money) {
         int totalAmount = money.getAmount();
-        int numberOfLottos = totalAmount / LottoConstants.LOTTO_PRICE; // 구매 가능한 로또 수 계산
+        int numberOfLottos = totalAmount / LottoConstants.LOTTO_PRICE;
         List<Lotto> purchasedLottos = new ArrayList<>();
 
         for (int i = 0; i < numberOfLottos; i++) {
-            purchasedLottos.add(lottoGenerator.generateLotto()); // 로또 생성
+            purchasedLottos.add(lottoGenerator.generateLotto());
         }
 
         return purchasedLottos;

@@ -9,7 +9,7 @@ public class BonusLotto {
     private final int bonusNumber;
 
     public BonusLotto(int bonusNumber, List<Integer> winningNumbers) {
-        Validator.validateBonusNumber(bonusNumber, winningNumbers); // 유효성 검사
+        Validator.validateBonusNumber(bonusNumber, winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 

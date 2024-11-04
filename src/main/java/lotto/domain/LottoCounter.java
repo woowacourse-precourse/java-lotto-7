@@ -15,7 +15,6 @@ public class LottoCounter {
         return rankCountMap.getOrDefault(rank, 0);
     }
 
-    // rankCountMap에 접근하기 위한 메서드 추가
     public Map<LottoRank, Integer> getRankCounts() {
         return rankCountMap;
     }

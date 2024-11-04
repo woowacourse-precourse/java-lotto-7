@@ -52,7 +52,7 @@ public class InputView {
 
                 return new BonusLotto(bonusNumber, winningNumbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage()); // 유효성 검사 예외 메시지 출력
+                System.out.println(e.getMessage());
             }
         }
     }
