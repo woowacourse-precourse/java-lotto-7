@@ -17,12 +17,13 @@ public class InputView {
     }
 
     public int inputPrice() {
-        try {
-            System.out.println(INPUT_PRICE_MESSAGE);
-            return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            errorPrint(INVALID_PRICE);
-            return inputPrice();
+        while (true) {
+            try {
+                System.out.println(INPUT_PRICE_MESSAGE);
+                return Integer.parseInt(Console.readLine());
+            } catch (NumberFormatException e) {
+                errorPrint(INVALID_PRICE);
+            }
         }
     }
 
@@ -32,12 +33,13 @@ public class InputView {
     }
 
     public int inputBonus() {
-        try {
-            System.out.println(INPUT_BONUS_MESSAGE);
-            return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            errorPrint(INVALID_BOUNS_NUMBER);
-            return inputBonus();
+        while (true) {
+            try {
+                System.out.println(INPUT_BONUS_MESSAGE);
+                return Integer.parseInt(Console.readLine());
+            } catch (NumberFormatException e) {
+                errorPrint(INVALID_BOUNS_NUMBER);
+            }
         }
     }
 }
