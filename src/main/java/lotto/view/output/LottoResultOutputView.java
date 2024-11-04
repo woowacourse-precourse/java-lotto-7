@@ -36,11 +36,19 @@ public class LottoResultOutputView implements OutputView {
             int prizeMoney = lottoPrize.getPrizeMoney();
             int winningCount = winningHistory.getOrDefault(lottoPrize, 0);
 
-            System.out.printf(OutputMessage.WINNING_HISTORY.getMessage(), correctCount, prizeMoney, winningCount);
+            System.out.printf(getHistoryMessage(lottoPrize), correctCount, prizeMoney, winningCount);
         }
     }
 
     private void printRateOfReturn(){
         System.out.printf(OutputMessage.TOTAL_RATE_OF_RETURN.getMessage(), rateOfReturn);
+    }
+
+    private String getHistoryMessage(LottoPrize lottoPrize){
+        if(lottoPrize == LottoPrize.SECOND_PRIZE){
+            return OutputMessage.SECOND_PRIZE_WINNING_HISTORY.getMessage();
+        }
+
+        return OutputMessage.WINNING_HISTORY.getMessage();
     }
 }
