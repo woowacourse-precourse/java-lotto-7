@@ -22,15 +22,6 @@ public class PurchasedLotto {
         return new PurchasedLotto(initialize(count));
     }
 
-    private static List<Lotto> initialize(int count) {
-        List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i< count; i++) {
-            List<Integer> numbers = pickUniqueNumbersInRange(LOTTO_MIN_VALUE, LOTTO_MAX_VALUE, LOTTO_COUNT);
-            lottos.add(new Lotto(numbers));
-        }
-        return lottos;
-    }
-
     public List<Lotto> get() {
         return Collections.unmodifiableList(this.lottos);
     }
@@ -46,5 +37,14 @@ public class PurchasedLotto {
 
     public int getCount() {
         return this.lottos.size();
+    }
+
+    private static List<Lotto> initialize(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for(int i = 0; i< count; i++) {
+            List<Integer> numbers = pickUniqueNumbersInRange(LOTTO_MIN_VALUE, LOTTO_MAX_VALUE, LOTTO_COUNT);
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
     }
 }
