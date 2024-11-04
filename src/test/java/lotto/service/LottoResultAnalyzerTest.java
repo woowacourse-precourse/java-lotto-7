@@ -1,7 +1,6 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +22,9 @@ class LottoResultAnalyzerTest {
         userLotto[2] = new Lotto(List.of(1, 2, 3, 4, 5, 10));
 
         // 당첨 번호 생성
-        LottoWinningNumbers winningLotto = new LottoWinningNumbers("1,2,3,4,5,6", "7");
+        LottoWinningNumbers winningLotto = new LottoWinningNumbers();
+        winningLotto.setMainNumbers("1,2,3,4,5,6");
+        winningLotto.setBonusNumber("7");
         winningLotto.generate();
 
         Map<LottoPrize, Integer> analyzedResult = lottoResultAnalyzer.analyze(userLotto, winningLotto);

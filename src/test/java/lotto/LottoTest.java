@@ -28,7 +28,10 @@ class LottoTest {
     @Test
     void 사용자가_구매한_번호를_당첨_번호와_비교하는_테스트(){
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        LottoWinningNumbers winningLotto = new LottoWinningNumbers("1,2,3,4,5,11", "6");
+        LottoWinningNumbers winningLotto = new LottoWinningNumbers();
+        winningLotto.setMainNumbers("1,2,3,4,5,11");
+        winningLotto.setBonusNumber("6");
+        
         winningLotto.generate();
 
         long countSameNumbers = lotto.compareResult(winningLotto);
