@@ -29,8 +29,7 @@ public class LottoController {
         outputView.askBonusNumber();
         String bonusNumber = inputView.inputBonusNumberView();
         WinningLotto winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
-        LottoResult lottoResult = new LottoResult(WinningCalculateService.calculateLottoResults(lottos, winningLotto));
-
+        List<LottoResult> lottoResults = WinningCalculateService.calculateLottoResults(lottos, winningLotto);
     }
 
 }
