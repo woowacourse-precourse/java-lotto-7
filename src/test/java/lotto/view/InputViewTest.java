@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.Test;
 
 
@@ -40,17 +41,11 @@ class InputViewTest {
     void 잘못된_당첨_번호를_입력하면_예외가_발생한다() {
         String input = "1,2,3,4,5,a\n1,2,3,4,5,6";
         setInput(input);
-        List<Integer> expect = new ArrayList<>();
-        expect.add(1);
-        expect.add(2);
-        expect.add(3);
-        expect.add(4);
-        expect.add(5);
-        expect.add(6);
+        Lotto expect = new Lotto(List.of(1,2,3,4,5,6));
 
-        List<Integer> winningNumbers = InputView.readNumbers();
+        Lotto winningNumbers = InputView.readWinningNumbers();
 
-        assertEquals(winningNumbers, expect);
+        assertEquals(winningNumbers.getNumbers(), expect.getNumbers());
     }
 
     @DisplayName("숫자가 아니면 예외가 발생한다")
@@ -58,8 +53,8 @@ class InputViewTest {
     void 숫자가_아니라면_예외가_발생한다() {
         String input = "a\naaa\n10\n";
         setInput(input);
-
-        int number = InputView.readNumber();
+        Lotto winningNumbers = new Lotto(List.of(1,2,3,4,5,6));
+        int number = InputView.readBonusNumber(winningNumbers);
         assertEquals(number, 10);
     }
 
