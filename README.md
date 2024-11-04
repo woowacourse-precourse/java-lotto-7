@@ -108,5 +108,5 @@
     - [ ] 나눈 문자열을 정수 배열로 변환하는 메서드
 - [ ] 도메인에 대한 테스트
     - [x] LottoTest
-    - [ ] UserTest
-    - [ ] WinningLottoTest
+    - [x] UserTest
+    - [x] WinningLottoTest
