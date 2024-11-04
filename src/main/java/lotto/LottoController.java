@@ -19,7 +19,6 @@ public class LottoController {
         this.model = model;
         this.view = view;
         lottoNumbers = new LinkedList<>();
-        winningNumbers = new LinkedList<>();
     }
     public void startLotto(){
         // 로또 정보 생성 및 저장
@@ -44,7 +43,7 @@ public class LottoController {
         view.printLottoNumbers(lottoNumbers);
 
         // 당첨 번호 입력 및 저장
-        while(!validWinningNumber());
+        while(!setWinninNumber());
 
         // 보너스 번호 입력
         bonusNumber = view.getBonusNumber();
@@ -73,27 +72,26 @@ public class LottoController {
             }
         }
     }
-    public void setWinninNumber(String numberString){
-        // 당첨 번호 리스트에 저장
-        for(String n:numberString.split(",")){
-            winningNumbers.add(Integer.parseInt(n));
-        }
-        // 객체 생성 하여 validate Number인지 확인
-        Lotto winningLotto = new Lotto(winningNumbers);
-    }
-    public boolean validWinningNumber(){
-        // 당첨 번호 입력 받기
-        // 적절하지 않은 입력일 때 예외 발생
-        // ex)숫자와 콤마 이외의 문자가 포함 등
+    public boolean setWinninNumber(){
         try{
+            winningNumbers = new LinkedList<>();
             String numberString = view.getWinningNumbers();
-            if(!numberString.matches("[0-9,]+")){
-                throw new IllegalArgumentException("\n[ERROR] 당첨번호는 숫자와 콤마(,)로만 이루어져야합니다.");
+
+            // 당첨 번호 리스트에 저장
+            for(String n:numberString.split(",")){
+                winningNumbers.add(Integer.parseInt(n));
             }
-            setWinninNumber(numberString);
+            // 객체 생성 하여 validate Number인지 확인
+            Lotto winningLotto = new Lotto(winningNumbers);
+
             return true;
-        } catch (IllegalArgumentException e) {
-            System.out.print(e.getMessage());
+        }catch (NumberFormatException e){
+            // 숫자와 콤마 이외의 문자를 입력했을 때 발생
+            System.out.println("\n[ERROR] 당첨번호는 숫자와 콤마(,)로만 이루어져야합니다.");
+            return false;
+        }catch (IllegalArgumentException e){
+            // 로또 번호 개수 및 중복 체크
+            System.out.println(e.getMessage());
             return false;
         }
     }

@@ -12,11 +12,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) throws IllegalArgumentException{
         Set<Integer> checkDuplication = new HashSet<>(numbers);
-        if(checkDuplication.size() != numbers.size()){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
-        }
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("\n[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+        if(checkDuplication.size() != numbers.size()){
+            throw new IllegalArgumentException("\n[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
     // TODO: 추가 기능 구현
