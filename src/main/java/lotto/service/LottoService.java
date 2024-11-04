@@ -3,6 +3,8 @@ package lotto.service;
 import static lotto.enums.Symbol.COMMA;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
@@ -36,7 +38,20 @@ public class LottoService {
         return matchCounts;
     }
 
+    public BigDecimal calculateRate(Map<Prize, Integer> matchCounts, String purchaseAmount) {
+        int purchaseValue = Integer.parseInt(purchaseAmount);
 
+        BigDecimal totalPrize = matchCounts.entrySet().stream()
+                .map(entry -> new BigDecimal(entry.getKey().getPrizeAmount().replace(",", ""))
+                        .multiply(new BigDecimal(entry.getValue())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal finalResult = totalPrize
+                .divide(BigDecimal.valueOf(purchaseValue), 4, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(100));
+
+        return finalResult.setScale(1, RoundingMode.HALF_UP);
+    }
 
     private List<Integer> parseNumbers(String numbers) {
         return Arrays.stream(numbers.split(COMMA.getValue()))
