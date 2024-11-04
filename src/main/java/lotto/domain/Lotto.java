@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +20,12 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        for(Integer number : numbers){
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이어야 합니다.");
+            }
+        }
+
     }
 
     private void sortLottoNumbers() {
