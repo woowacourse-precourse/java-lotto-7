@@ -49,13 +49,13 @@ public class WinningResult {
     @Override
     public String toString() {
         return lottoScore.keySet().stream()
-                .filter(lottoRank -> !lottoRank.equals(LottoRank.NONE))
-                .map(lottoRank -> String.format(
-                        "%s (%,d원) - %d개",
-                        lottoRank.getDescription(),
-                        lottoRank.getReward(),
-                        lottoScore.getOrDefault(lottoRank, 0)
-                ))
-                .collect(Collectors.joining("\n"));
+            .filter(lottoRank -> !lottoRank.equals(LottoRank.NONE))
+            .map(lottoRank -> String.format(
+                "%s (%,d원) - %d개",
+                lottoRank.getDescription(),
+                lottoRank.getReward(),
+                lottoScore.getOrDefault(lottoRank, 0)
+            ))
+            .collect(Collectors.joining("\n"));
     }
 }

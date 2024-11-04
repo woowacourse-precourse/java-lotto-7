@@ -25,9 +25,10 @@ public class InputView {
 
     public static Lotto inputLottoWinningNumbers() {
         try {
-            List<Integer> winningNumbers = Stream.of(Console.readLine().split(WINNING_NUMBER_DELIMETER))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+            List<Integer> winningNumbers = Stream.of(
+                    Console.readLine().split(WINNING_NUMBER_DELIMETER))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
 
             return new Lotto(winningNumbers);
         } catch (NumberFormatException e) {
