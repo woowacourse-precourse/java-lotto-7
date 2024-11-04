@@ -10,12 +10,15 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class WinningNumbers {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int NUMBER_COUNT = 6;
     private static final String DELIMITER = ",";
+    private static final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");
+
 
     private List<Integer> numbers;
     private int bonusNumber;
@@ -47,9 +50,7 @@ public class WinningNumbers {
     }
 
     private void checkIsNumber(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+        if (!NUMERIC_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(NON_NUMERIC_LOTTO_NUMBER.getMessage());
         }
     }
