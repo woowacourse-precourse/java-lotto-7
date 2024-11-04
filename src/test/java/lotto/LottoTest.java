@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +22,9 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 오름차순으로 정렬된다.")
+    @Test
+    void sortLottoNumbers() {
+        assertThat(new Lotto(List.of(6,5,4,3,2,1)).sortNumbers()).containsExactly(1,2,3,4,5,6);
+    }
 }
