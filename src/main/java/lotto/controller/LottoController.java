@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -7,6 +8,8 @@ public class LottoController {
     public void run() {
         int purchaseAmount = getPurchaseAmount();
         int ticketCount = purchaseAmount / 1000;
+
+        WinningNumbers winningNumbers = getWinningNumbers();
     }
 
     private int getPurchaseAmount() {
@@ -25,6 +28,17 @@ public class LottoController {
     private void validatePurchaseAmount(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        }
+    }
+
+    private WinningNumbers getWinningNumbers() {
+        while (true) {
+            try {
+                String input = InputView.readWinningNumbers();
+                return new WinningNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
