@@ -1,7 +1,6 @@
-package lotto.util;
+package lotto.model;
 
 import java.util.EnumSet;
-import lotto.model.Rank;
 
 public enum WinningDetails {
 
@@ -37,12 +36,12 @@ public enum WinningDetails {
         return EnumSet.complementOf(noWin);
     }
 
-    public static void addMatchLottoCount(int sameNumberCount, boolean matchBonusNumber) {
-        WinningDetails winningDetails = getLottoRankByLottoNumbers(sameNumberCount, matchBonusNumber);
+    public static void implementMatchLottoCount(int sameNumberCount, boolean matchBonusNumber) {
+        WinningDetails winningDetails = getWinningRank(sameNumberCount, matchBonusNumber);
         winningDetails.matchedLottoCount++;
     }
 
-    private static WinningDetails getLottoRankByLottoNumbers(int sameNumberCount, boolean matchBonusNumber) {
+    private static WinningDetails getWinningRank(int sameNumberCount, boolean matchBonusNumber) {
         for (WinningDetails winningDetail : WinningDetails.values()) {
             if (winningDetail.rank.matches(sameNumberCount, matchBonusNumber)) {
                 return winningDetail;
