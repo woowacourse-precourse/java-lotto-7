@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGenerator {
@@ -29,7 +30,10 @@ public class LottoGenerator {
         System.out.printf("%d개를 구매했습니다.%n", attempt);
 
         for (int i = 0; i < attempt; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(
+                    Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            );
+            Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
     }
