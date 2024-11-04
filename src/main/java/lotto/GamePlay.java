@@ -31,25 +31,100 @@ public class GamePlay {
     }
 
     private void pickBonusNumber() {
-        System.out.println("보너스 번호를 입력해주세요.");
-        bonusNumber = Integer.parseInt(Console.readLine());
+        while (true){
+            try {
+                System.out.println("보너스 번호를 입력해주세요.");
+                String input = Console.readLine();
+
+                validateBonusNumber(input);
+                bonusNumber = Integer.parseInt(input);
+                return;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBonusNumber(String input) {
+        try{
+            int number = Integer.parseInt(input);
+            if(number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 1 ~ 45 번호 사이의 숫자만 입력 가능합니다.");
+            }
+
+            validateDuplicateBonusNumber(number);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private void validateDuplicateBonusNumber(int number) {
+        if(winningLotto.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되지 않는 숫자만 입력 가능합니다.");
+        }
     }
 
     private void pickWinningLotto() {
-        System.out.println("당첨 번호 6자리를 입력해주세요. (,) 쉼표를 기준으로 구분됩니다.");
+        while(true) {
+            try {
+                System.out.println("당첨 번호 6자리를 입력해주세요. (,) 쉼표를 기준으로 구분됩니다.");
+                String input = Console.readLine();
 
-        winningLotto = new Lotto(stream(Console.readLine().split(DELIMITER))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList()));
+                validatePickWinnigLotto(input);
+                winningLotto = new Lotto(stream(input.split(DELIMITER))
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList()));
+                return;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validatePickWinnigLotto(String input) {
+        try {
+            List<Integer> winningNumbers = stream(input.split(DELIMITER))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .toList();
+
+            validateDuplicateWinningNumber(winningNumbers);
+            validateRangeWinningNumber(winningNumbers);
+        }catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private void validateRangeWinningNumber(List<Integer> winningNumbers) {
+
+        for(var number : winningNumbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 1 ~ 45 번호 사이의 숫자만 입력 가능합니다.");
+            }
+        }
+    }
+
+    private void validateDuplicateWinningNumber(List<Integer> numbers) {
+        Set<Integer> number = new HashSet<>(numbers);
+        if (number.size() < 6) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+        }
     }
 
     private void inputMoney() {
-        System.out.println("로또 구입 금액을 입력해주세요. 단, 1000원 단위로 입력해주세요.");
+        while(true) {
+            try {
+                System.out.println("로또 구입 금액을 입력해주세요. 단, 1000원 단위로 입력해주세요.");
+                String input = Console.readLine();
 
-        String input = Console.readLine();
-        validateMoney(input);
-        useMoneys = Integer.parseInt(input);
+                validateMoney(input);
+                useMoneys = Integer.parseInt(input);
+                return;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void validateMoney(String money) {
