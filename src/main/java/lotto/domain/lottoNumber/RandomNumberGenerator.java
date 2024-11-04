@@ -6,12 +6,14 @@ import java.util.List;
 
 public class RandomNumberGenerator {
 
-    private final int startInclusive = LottoRange.LOTTO.getStart();
-    private final int endInclusive = LottoRange.LOTTO.getEnd();
-    private final int count = LottoRange.LOTTO.getCount();
+    private static final int startInclusive = LottoRange.LOTTO.getStart();
+    private static final int endInclusive = LottoRange.LOTTO.getEnd();
+    private static final int count = LottoRange.LOTTO.getCount();
 
-    private List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
+    public static List<Integer> generateRandomNumbers() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
+        Collections.sort(randomNumbers);
+        return randomNumbers;
     }
 
     public String getPurchasedLotto(int lottoCount) {
