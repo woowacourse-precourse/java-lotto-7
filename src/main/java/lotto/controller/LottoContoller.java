@@ -16,8 +16,7 @@ public class LottoContoller {
     }
 
     public void run() {
-        String purchaseAmount = inputView.inputPurchaseAmount();
-        lottoService.purchaseLotto(purchaseAmount);
+        String purchaseAmount = promptPurchaseAmount();
 
         outputView.printLottoLogs(lottoService.generateLottoLogs());
 
@@ -34,5 +33,19 @@ public class LottoContoller {
                 bonusNumberInput
         );
         outputView.printProfitRate(profitRate);
+    }
+
+    private String promptPurchaseAmount() {
+        String purchaseAmount;
+        while (true) {
+            try {
+                purchaseAmount = inputView.inputPurchaseAmount();
+                lottoService.purchaseLotto(purchaseAmount);
+                break;
+            } catch (Exception e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return purchaseAmount;
     }
 }

@@ -18,4 +18,8 @@ public class OutputView {
         DecimalFormat profitRateFormat = new DecimalFormat("#,##0.0#%");
         System.out.println("총 수익률은 " + profitRateFormat.format(profitRate) + "입니다.");
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
