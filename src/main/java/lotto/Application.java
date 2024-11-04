@@ -9,5 +9,6 @@ public class Application {
     public static void main(String[] args) {
         int purchaseAmount = inputService.inputPurchaseAmount(TICKET_PRICE);
         int purchaseCount = purchaseAmount / TICKET_PRICE;
+        String winningNumbers = inputService.inputWinningNumbers();
     }
 }
