@@ -21,6 +21,9 @@ public class LottoService {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6));
     }
 
+    public List<Lotto> getPurchasedLottos(){
+        return purchasedLottos;
+    }
 
 
 }
