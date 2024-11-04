@@ -18,6 +18,11 @@ public class Lotto {
         if (new HashSet<>(numbers).size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 전부 달라야 합니다.");
         }
+        for (int i = 1; i < 6; i++){
+            if (numbers.get(i) <= numbers.get(i - 1)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 오름차순으로 정렬되어야 합니다.");
+            }
+        }
     }
 
     public List<Integer> getNumbers() {
