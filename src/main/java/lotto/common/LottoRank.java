@@ -17,4 +17,13 @@ public enum LottoRank {
         this.matchBonus = matchBonus;
         this.prize = prize;
     }
+
+    public static LottoRank valueOf(int matchCount, boolean matchBonus) {
+        for (LottoRank rank : values()) {
+            if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {
+                return rank;
+            }
+        }
+        return NONE;
+    }
 }
