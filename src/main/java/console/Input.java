@@ -10,6 +10,7 @@ import camp.nextstep.edu.missionutils.Console;
 import exception.Exception;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import lotto.Lotto;
 
@@ -32,6 +33,16 @@ public class Input {
         System.out.println(message);
     }
 
+    private <T> T handleRetryOnError(Supplier<T> method) {
+        try {
+            return method.get();
+        } catch (IllegalArgumentException e) {
+            makeEmptyLine(e.getMessage());
+            makeEmptyLine(null);
+            return handleRetryOnError(method);
+        }
+    }
+
     private String promptInput(String message) {
         makeEmptyLine(message);
         String input = Console.readLine().trim();
@@ -40,50 +51,34 @@ public class Input {
     }
 
     public long returnLottoCount() {
-        try {
-            makeEmptyLine(INPUT_UNITS);
-            String buyPriceInput = Console.readLine().trim();
-            makeEmptyLine(null);
+        return handleRetryOnError(() -> {
+            String buyPriceInput = promptInput(INPUT_UNITS);
             long buyPrice = exception.verifyBuyPrice(buyPriceInput);
             long lottoCount = buyPrice / LOTTO_PRICE;
             makeEmptyLine(lottoCount + BUY_MSG);
             return lottoCount;
-        } catch (IllegalArgumentException e) {
-            makeEmptyLine(e.getMessage());
-            makeEmptyLine(null);
-            return returnLottoCount();
-        }
+        });
     }
 
     public Lotto receiveWiningNumber() {
-        try {
-            makeEmptyLine(INPUT_WINNING_NUMBER);
-            String winingNumberInput = Console.readLine().trim();
+        return handleRetryOnError(() -> {
+            String winingNumberInput = promptInput(INPUT_WINNING_NUMBER);
             List<Integer> winningNumber = changeStrToIntList(winingNumberInput);
             Lotto winningLotto = new Lotto(winningNumber);
             this.winningNumber = winningNumber;
             return winningLotto;
-        } catch (IllegalArgumentException e) {
-            makeEmptyLine(e.getMessage());
-            makeEmptyLine(null);
-            return receiveWiningNumber();
-        }
+        });
     }
 
     public int receiveBonusNumber() {
-        try {
-            makeEmptyLine(BONUS_INPUT);
-            String bonusNumberInput = Console.readLine().trim();
+        return handleRetryOnError(() -> {
+            String bonusNumberInput = promptInput(BONUS_INPUT);
             int bonusNumber = exception.verifyBonusNumber(bonusNumberInput);
             if (winningNumber.contains(bonusNumber)) {
                 exception.throwException(BONUS_NOT_EXIST_WINNING_NUMBER);
             }
             return bonusNumber;
-        } catch (IllegalArgumentException e) {
-            makeEmptyLine(e.getMessage());
-            makeEmptyLine(null);
-            return receiveBonusNumber();
-        }
+        });
     }
 
     public List<Integer> changeStrToIntList(String string) {
