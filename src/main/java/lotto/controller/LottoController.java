@@ -30,7 +30,7 @@ public class LottoController {
 
         Winning winning = winningLotto();
 
-        OutputView.winningStatistics();
+//        OutputView.winningStatistics();
 
         List<PrizeMoneyPolicy> ranks = findRanks(lottos, winning);
         result(ranks);
@@ -63,11 +63,11 @@ public class LottoController {
 
     public void result(List<PrizeMoneyPolicy> resultRanks){
         List<PrizeMoneyPolicy> ranks =
-                List.of(PrizeMoneyPolicy.FIRST,
-                        PrizeMoneyPolicy.SECOND,
-                        PrizeMoneyPolicy.THIRD,
+                List.of(PrizeMoneyPolicy.FIFTH,
                         PrizeMoneyPolicy.FOURTH,
-                        PrizeMoneyPolicy.FIFTH
+                        PrizeMoneyPolicy.THIRD,
+                        PrizeMoneyPolicy.SECOND,
+                        PrizeMoneyPolicy.FIRST
                 );
 
         ranks.forEach(rank -> OutputView.result(rank, Collections.frequency(resultRanks, rank)));

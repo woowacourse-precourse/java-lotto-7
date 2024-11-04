@@ -16,7 +16,7 @@ public class LottoMachine {
 
     private List<Integer> randomNumbers() {
         List<Integer> numbers =  Randoms.pickUniqueNumbersInRange(MIN, MAX, SCALE);
-        numbers.sort(Comparator.naturalOrder());
+//        numbers.sort(Comparator.naturalOrder());
         return numbers;
     }
 }

@@ -66,7 +66,18 @@ public class InputView {
                 .toList();
     }
 
-    public static int bonusNumber(){
-        return Integer.parseInt(Console.readLine());
+    public static int bonusNumber() {
+        int bonusNumber;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                validateNumber(input);
+                bonusNumber = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
     }
 }

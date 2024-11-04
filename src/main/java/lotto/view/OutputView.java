@@ -12,10 +12,10 @@ public class OutputView {
     private static final String BONUS_NUMBER = "\n보너스 번호를 입력해 주세요";
     private static final String WINNING_STATISTICS = "\n당첨 통계";
     private static final String MATCH_COUNT = "%s개 일치";
-    private static final String MONEY = "(%s원)";
-    private static final String COUNT = "- %s개";
+    private static final String MONEY = " (%s원)";
+    private static final String COUNT = " - %s개";
     private static final String BONUS = ", 보너스 볼 일치";
-    private static final String RATE_OF_RETURN = "\n총 수익률은 %s%% 입니다.";
+    private static final String RATE_OF_RETURN = "총 수익률은 %s%%입니다.";
 
     public static void purchasedBudget() {
         System.out.println(PURCHASED_BUDGET);
@@ -43,21 +43,23 @@ public class OutputView {
     }
 
     public static void result(PrizeMoneyPolicy rank, int count) {
-        StringJoiner joiner = new StringJoiner(" ");
+        StringBuilder output = new StringBuilder();
         DecimalFormat formatter = new DecimalFormat("#,###");
+
         String formattedMoney = formatter.format(rank.getPriceMoney());
-        joiner.add(String.format(MATCH_COUNT, rank.getMatchedCount()));
+        output.append(String.format(MATCH_COUNT, rank.getMatchedCount()));
 
         if(rank.equals(PrizeMoneyPolicy.SECOND)){
-            joiner.add(String.format(BONUS));
+            output.append(String.format(BONUS));
         }
-        joiner.add(String.format(MONEY, formattedMoney));
-        joiner.add(String.format(COUNT, count));
+        output.append(String.format(MONEY, formattedMoney));
+        output.append(String.format(COUNT, count));
 
-        System.out.println(joiner.toString());
+        System.out.println(output.toString());
     }
 
     public static void totalRateOfReturn(double rateOfReturn) {
-        System.out.println(String.format(RATE_OF_RETURN, rateOfReturn));
+        String rate = String.format("%.1f", rateOfReturn);
+        System.out.println(String.format(RATE_OF_RETURN, rate));
     }
 }

@@ -19,6 +19,6 @@ public class Revenue {
                 .map(PrizeMoneyPolicy::getPriceMoney)
                 .reduce(0L, Long::sum);
 
-        return Math.round(((double)totalPrizeMoney / budget) * 100);
+        return ((double)totalPrizeMoney / budget) * 100;
     }
 }
