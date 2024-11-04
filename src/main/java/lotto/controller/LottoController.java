@@ -12,22 +12,26 @@ import lotto.model.LottoBudget;
 import lotto.model.LottoPrize;
 import lotto.model.LottoPrizes;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public LottoController(InputView inputView) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
         String lottoBudgetInput = inputView.readLottoBudget();
         LottoBudget lottoBudget = new LottoBudget(lottoBudgetInput);
 
-        int lottoCount = lottoBudget.getLottoCount();
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        String lottoCount = lottoBudget.getLottoCount();
+        outputView.printLottoCount(lottoCount);
 
+        int lottoCountNumber = Integer.parseInt(lottoCount);
         List<Lotto> lottos = Stream.generate(() ->
                         {
                             List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
@@ -35,7 +39,7 @@ public class LottoController {
                             return new Lotto(randomNumbers);
                         }
                 )
-                .limit(lottoCount)
+                .limit(lottoCountNumber)
                 .toList();
 
         lottos.stream()

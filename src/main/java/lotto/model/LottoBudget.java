@@ -27,11 +27,11 @@ public class LottoBudget {
         }
 
         if (value < 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 양수여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 음수가 될 수 없습니다.");
         }
     }
 
-    public int getLottoCount() {
-        return value / 1000;
+    public String getLottoCount() {
+        return String.valueOf(value / 1000);
     }
 }
