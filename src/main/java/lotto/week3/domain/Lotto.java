@@ -6,18 +6,15 @@ import java.util.List;
 
 public class Lotto {
 
-    private final int LOTTO_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
 
     /*
       NOTE 불변객체로 생성 : 객체 무결성을 보장함으로 사용함
      */
-  public Lotto() {
-        List<Integer> integers = Randoms.pickUniqueNumbersInRange(1, 10, LOTTO_NUMBER_COUNT);
-        Collections.sort(integers);
-        this.numbers = List.copyOf(integers);
-        validate(integers);
+  public Lotto(List<Integer> numbers) {
+        this.numbers = List.copyOf(numbers);
+        validate(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -26,10 +23,14 @@ public class Lotto {
         }
     }
 
+
+
+
     // TODO: 추가 기능 구현
     public int matchCount(List<Integer> winningNumber){
         return (int) numbers.stream().filter(winningNumber::contains).count();
     }
+
     public boolean contains(int number){
         return numbers.contains(number);
     }
