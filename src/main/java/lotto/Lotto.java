@@ -27,6 +27,7 @@ public class Lotto {
             throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
+
     private boolean hasDuplicates(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         return set.size() < numbers.size();

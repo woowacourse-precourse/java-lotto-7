@@ -2,8 +2,6 @@ package lotto;
 
 import static lotto.ExceptionMessages.INVALID_INPUT;
 
-import java.util.List;
-
 public class InputValidator {
 
     public void validateAmount(Integer amount) {
