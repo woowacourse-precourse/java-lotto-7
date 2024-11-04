@@ -15,12 +15,12 @@ public record Number(
     }
 
     private static void validateLottoNumberWithinRange(int lottoNumber) {
-        if (isOutOfRange(lottoNumber)) {
+        if (isNumberOutOfRange(lottoNumber)) {
             throw LottoException.from(ErrorMessage.INVALID_NUMBER_RANGE_ERROR);
         }
     }
 
-    private static boolean isOutOfRange(int lottoNumber) {
+    private static boolean isNumberOutOfRange(int lottoNumber) {
         return lottoNumber < MIN_NUMBER || lottoNumber > MAX_NUMBER;
     }
 
