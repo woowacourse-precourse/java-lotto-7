@@ -29,6 +29,8 @@
       - 숫자가 아닌 값
       - 1~45 범위를 벗어나는 값
       - 중복된 값
+      - 당첨 번호가 6개가 아닌 경우
+      - 보너스 번호가 1개가 아닌 경우
   - 에러 메세지 출력 후 종료하지 않고 그 부분부터 입력을 다시 받는다.
   - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
