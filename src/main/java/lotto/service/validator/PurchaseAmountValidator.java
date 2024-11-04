@@ -11,7 +11,7 @@ public class PurchaseAmountValidator {
             }
             return true;
         } catch (IllegalArgumentException err) {
-            System.out.println(ErrorMessage.EMPTY_PURCHASE_AMOUNT_STRING_ERROR);
+            System.out.println(ErrorMessage.ERROR_EMPTY_PURCHASE_AMOUNT);
             return false;
         }
     }
@@ -23,11 +23,11 @@ public class PurchaseAmountValidator {
             }
             return true;
         } catch (NumberFormatException err) {
-            System.out.println(ErrorMessage.NOT_INTEGER_STRING_ERROR);
+            System.out.println(ErrorMessage.ERROR_NON_INTEGER_PURCHASE_AMOUNT);
             PurchaseAmountController.restart();
             return false;
         } catch (IllegalArgumentException err) {
-            System.out.println(ErrorMessage.NOT_DIVISIBLE_BY_1000_ERROR);
+            System.out.println(ErrorMessage.ERROR_PURCHASE_AMOUNT_NOT_DIVISIBLE_BY_1000);
             PurchaseAmountController.restart();
             return false;
         }

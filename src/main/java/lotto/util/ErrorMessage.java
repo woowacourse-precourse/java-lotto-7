@@ -1,17 +1,21 @@
 package lotto.util;
 
 public class ErrorMessage {
-    public static final String EMPTY_PURCHASE_AMOUNT_STRING_ERROR = "[ERROR] Purchase Amount Input is empty";
-    public static final String NOT_INTEGER_STRING_ERROR = "[ERROR] Purchase Amount is not Integer Format";
-    public static final String NOT_DIVISIBLE_BY_1000_ERROR = "[ERROR] Purchase Amount is not divisible by 1000";
+    public static final String ERROR_EMPTY_PURCHASE_AMOUNT = "[ERROR] Purchase amount must not be empty.";
+    public static final String ERROR_NON_INTEGER_PURCHASE_AMOUNT = "[ERROR] Purchase amount must be an integer.";
+    public static final String ERROR_PURCHASE_AMOUNT_NOT_DIVISIBLE_BY_1000 = "[ERROR] Purchase amount must be divisible by 1000.";
 
-    public static final String EMPTY_WINNING_NUMBERS_STRING_ERROR = "[ERROR] Winning Numbers Input is empty";
-    public static final String INVALID_WINNING_NUMBERS_LENGTH_ERROR = "[ERROR] Winning Numbers has invalid length";
-    public static final String INVALID_WINNING_NUMBERS_FORMAT_ERROR = "[ERROR] Winning Number is not Integer";
-    public static final String INVALID_RANGE_WINNING_NUMBERS_ERROR = "[ERROR] Winning Numbers is not between 1-45";
-    public static final String DUPLICATED_WINNING_NUMBERS_ERROR = "[ERROR] Winning Numbers is duplicated";
+    public static final String ERROR_INVALID_LOTTO_LENGTH = "[ERROR] Lotto must contain exactly 6 numbers.";
+    public static final String ERROR_LOTTO_NUMBER_OUT_OF_RANGE = "[ERROR] Lotto numbers must be between 1 and 45.";
+    public static final String ERROR_DUPLICATE_LOTTO_NUMBER = "[ERROR] Lotto numbers must be unique.";
 
-    public static final String EMPTY_BONUS_NUMBER_STRING_ERROR = "[ERROR] Bonus Number Input is empty";
-    public static final String INVALID_BONUS_NUMBER_FORMAT_ERROR = "[ERROR] Bonus Number is not Integer";
-    public static final String INVALID_BONUS_NUMBER_RANGE_ERROR = "[ERROR] Bonus Number is not between 1-45";
+    public static final String ERROR_EMPTY_WINNING_NUMBERS = "[ERROR] Winning numbers must not be empty.";
+    public static final String ERROR_INVALID_WINNING_NUMBERS_LENGTH = "[ERROR] Winning numbers must contain exactly 6 numbers.";
+    public static final String ERROR_INVALID_WINNING_NUMBERS_FORMAT = "[ERROR] Winning numbers must be integers.";
+    public static final String ERROR_WINNING_NUMBERS_OUT_OF_RANGE = "[ERROR] Winning numbers must be between 1 and 45.";
+    public static final String ERROR_DUPLICATE_WINNING_NUMBER = "[ERROR] Winning numbers must be unique.";
+
+    public static final String ERROR_EMPTY_BONUS_NUMBER = "[ERROR] Bonus number must not be empty.";
+    public static final String ERROR_INVALID_BONUS_NUMBER_FORMAT = "[ERROR] Bonus number must be an integer.";
+    public static final String ERROR_BONUS_NUMBER_OUT_OF_RANGE = "[ERROR] Bonus number must be between 1 and 45.";
 }

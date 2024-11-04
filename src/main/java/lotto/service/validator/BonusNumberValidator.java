@@ -11,7 +11,7 @@ public class BonusNumberValidator {
             }
             return true;
         } catch (IllegalArgumentException err) {
-            System.out.println(ErrorMessage.EMPTY_BONUS_NUMBER_STRING_ERROR);
+            System.out.println(ErrorMessage.ERROR_EMPTY_BONUS_NUMBER);
             return false;
         }
     }
@@ -20,7 +20,7 @@ public class BonusNumberValidator {
             Integer.parseInt(bonusNUmber);
             return true;
         } catch (NumberFormatException err) {
-            System.out.println(ErrorMessage.INVALID_BONUS_NUMBER_FORMAT_ERROR);
+            System.out.println(ErrorMessage.ERROR_INVALID_BONUS_NUMBER_FORMAT);
             return false;
         }
     }
@@ -32,7 +32,7 @@ public class BonusNumberValidator {
             }
             return true;
         } catch (IllegalArgumentException err) {
-            System.out.println(ErrorMessage.INVALID_BONUS_NUMBER_RANGE_ERROR);
+            System.out.println(ErrorMessage.ERROR_BONUS_NUMBER_OUT_OF_RANGE);
             return false;
         }
     }

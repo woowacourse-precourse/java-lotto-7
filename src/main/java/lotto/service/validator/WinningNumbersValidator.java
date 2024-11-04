@@ -13,7 +13,7 @@ public class WinningNumbersValidator {
             }
             return true;
         } catch (IllegalArgumentException err) {
-            System.out.println(ErrorMessage.EMPTY_WINNING_NUMBERS_STRING_ERROR);
+            System.out.println(ErrorMessage.ERROR_EMPTY_WINNING_NUMBERS);
             return false;
         }
     }
@@ -24,7 +24,7 @@ public class WinningNumbersValidator {
             }
             return true;
         } catch (IllegalArgumentException err) {
-            System.out.println(ErrorMessage.INVALID_WINNING_NUMBERS_LENGTH_ERROR);
+            System.out.println(ErrorMessage.ERROR_INVALID_WINNING_NUMBERS_LENGTH);
             return false;
         }
     }
@@ -34,7 +34,7 @@ public class WinningNumbersValidator {
             return true;
 
         } catch (NumberFormatException err) {
-            System.out.println(ErrorMessage.INVALID_WINNING_NUMBERS_FORMAT_ERROR);
+            System.out.println(ErrorMessage.ERROR_INVALID_WINNING_NUMBERS_FORMAT);
             return false;
         }
     }
@@ -46,7 +46,7 @@ public class WinningNumbersValidator {
             }
             return true;
         } catch (IllegalArgumentException err) {
-            System.out.println(ErrorMessage.INVALID_RANGE_WINNING_NUMBERS_ERROR);
+            System.out.println(ErrorMessage.ERROR_WINNING_NUMBERS_OUT_OF_RANGE);
             return false;
         }
     }
@@ -58,7 +58,7 @@ public class WinningNumbersValidator {
             }
         }
         if (count > 1) {
-            System.out.println(ErrorMessage.DUPLICATED_WINNING_NUMBERS_ERROR);
+            System.out.println(ErrorMessage.ERROR_DUPLICATE_WINNING_NUMBER);
             return false;
         }
         return true;
