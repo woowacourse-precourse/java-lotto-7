@@ -12,7 +12,7 @@ public class NumberValidatorTest {
     @DisplayName("잘못된 범위 내의 숫자가 들어왔을시, 오류를 발생합니다.,")
     @ValueSource(ints = {0, 46, -1, 50})
     void 숫자_범위를_확인합니다(int target) {
-        assertThatThrownBy(() -> NumberValidator.validateNumberRange(target, 45, 1))
+        assertThatThrownBy(() -> NumberValidator.validateNumberRange(target, 1, 45))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE.getMessage());
     }
