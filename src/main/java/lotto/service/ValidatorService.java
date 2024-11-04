@@ -7,7 +7,8 @@ import static lotto.constants.ConstraintConstants.*;
 public class ValidatorService {
     public static boolean validatePurchaseAmount(int purchaseAmount) {
         return purchaseAmount % PURCHASE_UNIT == 0
-                && purchaseAmount <= MAX_PURCHASE_AMOUNT;
+                && purchaseAmount >= MIN_PURCHASE_PRICE
+                && purchaseAmount <= MAX_PURCHASE_PRICE;
     }
 
     public static boolean validateWinningNumbersFormat(String[] winningNumbers) {

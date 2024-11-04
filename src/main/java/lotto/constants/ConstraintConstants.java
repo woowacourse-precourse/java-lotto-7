@@ -1,7 +1,8 @@
 package lotto.constants;
 
 public class ConstraintConstants {
-    public static final int MAX_PURCHASE_AMOUNT = 100000;
+    public static final int MIN_PURCHASE_PRICE= 1000;
+    public static final int MAX_PURCHASE_PRICE = 100000;
     public static final int PURCHASE_UNIT = 1000;
     public static final int WINNING_NUMBER_COUNT = 6;
     public static final int BONUS_NUMBER_COUNT = 1;
