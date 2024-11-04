@@ -63,8 +63,8 @@ public class LottoManager {
         return lottoes;
     }
 
-    private WinningRecord getWinningRecord(List<Lotto> lottoes, WinningNumbers winningNumbers,
-                                           BonusNumber bonusNumber) {
+    private WinningRecord getWinningRecord(final List<Lotto> lottoes, final WinningNumbers winningNumbers,
+                                           final BonusNumber bonusNumber) {
         WinningRecord winningRecord = new WinningRecord();
         lottoes.stream()
                 .map(lotto -> lotto.getRank(winningNumbers, bonusNumber))
@@ -72,7 +72,7 @@ public class LottoManager {
         return winningRecord;
     }
 
-    private static void printResult(PurchaseAmount purchaseAmount, WinningRecord winningRecord) {
+    private static void printResult(final PurchaseAmount purchaseAmount, final WinningRecord winningRecord) {
         printWinningStatistics(winningRecord);
         int totalWinningAmount = winningRecord.calculateTotalWinningAmount();
         printReturnRate(purchaseAmount.calculateReturnRate(totalWinningAmount));

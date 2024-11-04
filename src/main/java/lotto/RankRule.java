@@ -29,7 +29,7 @@ public class RankRule {
         return rankRule.getOrDefault(winningNumberMatchCount, NONE);
     }
 
-    private static Rank checkSecondOrThird(boolean isBonusNumberMatched) {
+    private static Rank checkSecondOrThird(final boolean isBonusNumberMatched) {
         if (isBonusNumberMatched) {
             return SECOND;
         }
