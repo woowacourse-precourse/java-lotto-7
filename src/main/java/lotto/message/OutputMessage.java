@@ -1,5 +1,7 @@
 package lotto.message;
 
+import java.util.List;
+
 public enum OutputMessage {
     PURCHASE_COUNT("개를 구매했습니다."),
     WINNING_STATISTICS_HEADER("당첨 통계"),
@@ -19,5 +21,9 @@ public enum OutputMessage {
 
     public String getMessage() {
         return message;
+    }
+
+    public static List<OutputMessage> getWinningRankMessages() {
+        return List.of(MATCH_3, MATCH_4, MATCH_5, MATCH_5_BONUS, MATCH_6);
     }
 }
