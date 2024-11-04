@@ -71,10 +71,10 @@ public class LottoManager {
 
         for (Map.Entry<WinningStandard, Integer> entry : winningResult.entrySet()) {
             WinningStandard place = entry.getKey();
-            int count = entry.getValue();
+            long count = entry.getValue();
             totalPrize += place.getPrize() * count;
         }
-        double earningsRate = (totalPrize / payment) * 100;
+        double earningsRate = ((double) totalPrize / payment) * 100;
 
         return Math.round(earningsRate * 100.0) / 100.0;
     }
