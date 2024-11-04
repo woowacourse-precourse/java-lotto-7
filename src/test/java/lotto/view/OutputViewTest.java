@@ -55,9 +55,9 @@ class OutputViewTest {
         view.displayRank(winningResult);
 
         Assertions.assertThat(outputStream.toString().trim()).contains(
-                "6개 일치 (2,000,000,000원) = 1개",
-                "5개 일치, 보너스 볼 일치 (30,000,000원) = 1개",
-                "4개 일치 (50,000원) = 1개"
+                "6개 일치 (2,000,000,000원) - 1개",
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                "4개 일치 (50,000원) - 1개"
         );
     }
 
