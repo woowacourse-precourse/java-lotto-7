@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class Won {
 
+    public static final String PATTERN_OF_THOUSANDS_UNIT = "#,###";
+
     private final BigInteger amount;
 
     private Won(BigInteger amount) {
@@ -73,7 +75,7 @@ public class Won {
 
     @Override
     public String toString() {
-        return new DecimalFormat("#,###")
+        return new DecimalFormat(PATTERN_OF_THOUSANDS_UNIT)
                 .format(amount);
     }
 

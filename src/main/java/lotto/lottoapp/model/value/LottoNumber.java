@@ -11,7 +11,7 @@ public sealed class LottoNumber implements Comparable<LottoNumber> permits Bonus
 
     public LottoNumber(final Integer number) {
         if (number < MIN_VALUE || MAX_VALUE < number) {
-            throw new IllegalArgumentException("로또 번호의 범위는 1~45입니다.");
+            throw new IllegalArgumentException(String.format("로또 번호의 범위는 %d~%d입니다.", MIN_VALUE, MAX_VALUE));
         }
         this.number = number;
     }

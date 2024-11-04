@@ -45,7 +45,7 @@ public enum WinningResult {
                 .skip(numberForAlreadyGuessedSecondPrize)
                 .filter(result -> result.minCountOfWinningNumber <= countOfWinningNumber)
                 .findFirst()
-                .get(); // 당첨 판정 결과는 반드시 존재한다.
+                .orElseThrow(() -> new IllegalArgumentException("당첨 판정 결과는 반드시 존재합니다."));
     }
 
     public static Stream<WinningResult> orderedStream() {

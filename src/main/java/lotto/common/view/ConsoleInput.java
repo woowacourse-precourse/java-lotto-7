@@ -13,6 +13,10 @@ public final class ConsoleInput {
 
     }
 
+    public static void closeConsole() {
+        Console.close();
+    }
+
     public static String readString() {
         return Console.readLine();
     }

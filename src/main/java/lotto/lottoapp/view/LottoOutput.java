@@ -34,10 +34,13 @@ public class LottoOutput {
     }
 
     private static String getNumbersOf(List<LottoNumbers> issuedLottoNumbers) {
+        String delimiterOfNumbers = ", ";
+        String prefixOfLineOfLotto = "[";
+        String suffixOfLineOfLotto = "]";
         return issuedLottoNumbers.stream()
                 .map(lineOfLotto -> lineOfLotto.stream()
                         .map(lottoNumber -> String.valueOf(lottoNumber.getNumber()))
-                        .collect(Collectors.joining(", ", "[", "]")))
+                        .collect(Collectors.joining(delimiterOfNumbers, prefixOfLineOfLotto, suffixOfLineOfLotto)))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
