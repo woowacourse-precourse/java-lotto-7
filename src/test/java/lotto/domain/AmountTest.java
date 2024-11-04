@@ -38,7 +38,7 @@ class AmountTest {
     void tooBigPurchaseAmount() {
         assertThatThrownBy(() -> Amount.of("1000000000000000"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.TOO_BIG_PURCHASE_AMOUNT.getMessage());
+                .hasMessageContaining(ErrorMessage.TOO_BIG_INPUT.getMessage());
     }
 
     @Test

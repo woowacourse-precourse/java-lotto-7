@@ -31,7 +31,7 @@ class LottoTest {
     void tooBigLottoNumber() {
         assertThatThrownBy(() -> Lotto.of("1,2,3,1000000000000,4,5"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.TOO_BIG_LOTTO_NUMBER.getMessage());
+                .hasMessageContaining(ErrorMessage.TOO_BIG_INPUT.getMessage());
     }
 
     @Test

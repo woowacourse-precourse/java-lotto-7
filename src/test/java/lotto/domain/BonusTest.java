@@ -32,7 +32,7 @@ class BonusTest {
     void tooBigBonusNumber() {
         assertThatThrownBy(() -> Bonus.of("100000000000000", new Lotto(List.of(1, 2, 3, 4, 5, 6))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.TOO_BIG_BONUS_NUMBER.getMessage());
+                .hasMessageContaining(ErrorMessage.TOO_BIG_INPUT.getMessage());
     }
 
     @Test

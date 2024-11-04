@@ -1,16 +1,14 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.constant.Constant;
 import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
+import lotto.util.Parser;
+import lotto.validator.Validator;
 
 public class Lotto {
-    private static final String DELIMITER = ",";
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -19,43 +17,22 @@ public class Lotto {
     }
 
     public static Lotto of(String input) {
-        validateBlank(input);
-        List<String> numbers = splitNumbers(input);
-        numbers.forEach(Lotto::validateNumeric);
-        return new Lotto(numbers.stream()
-                .map(Lotto::parseInt)
-                .collect(Collectors.toList()));
+        validate(input);
+        List<String> numbers = Parser.parseStringList(input);
+        return new Lotto(Parser.parseIntegerList(numbers));
     }
 
-    private static void validateBlank(String input) {
-        if (input == null || input.isBlank()) {
-            throw new LottoException(ErrorMessage.BLANK_WINNING_NUMBER.getMessage());
-        }
-    }
-
-    private static List<String> splitNumbers(String input) {
-        return Arrays.stream(input.split(DELIMITER))
-                .map(String::strip)
-                .collect(Collectors.toList());
-    }
-
-    private static void validateNumeric(String input) {
-        if (!input.matches(Constant.NUMERIC_PATTERN)) {
-            throw new LottoException(ErrorMessage.NOT_NUMERIC_LOTTO_NUMBER.getMessage());
-        }
-    }
-
-    private static int parseInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new LottoException(ErrorMessage.TOO_BIG_LOTTO_NUMBER.getMessage());
-        }
+    private static void validate(String input) {
+        Validator.validateBlank(input, ErrorMessage.BLANK_WINNING_NUMBER);
+        List<String> numbers = Parser.parseStringList(input);
+        numbers.forEach(number ->
+                Validator.validateNumeric(number, ErrorMessage.NOT_NUMERIC_LOTTO_NUMBER)
+        );
     }
 
     private void validateNumbers(List<Integer> numbers) {
         validateNumbersSize(numbers);
-        numbers.forEach(this::validateNumberRange);
+        validateRange(numbers);
         validateDuplicate(numbers);
     }
 
@@ -65,10 +42,10 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(Integer number) {
-        if (number < Constant.MIN_LOTTO_NUMBER || number > Constant.MAX_LOTTO_NUMBER) {
-            throw new LottoException(ErrorMessage.OUT_RANGE_LOTTO_NUMBER.getMessage());
-        }
+    private void validateRange(List<Integer> numbers) {
+        numbers.forEach(number ->
+                Validator.validateNumberRange(number, ErrorMessage.OUT_RANGE_LOTTO_NUMBER)
+        );
     }
 
     private void validateDuplicate(List<Integer> numbers) {
