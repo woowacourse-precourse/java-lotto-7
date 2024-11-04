@@ -1,4 +1,4 @@
-package lotto.service.genaration;
+package lotto.service.generation;
 
 import camp.nextstep.edu.missionutils.Randoms;
 

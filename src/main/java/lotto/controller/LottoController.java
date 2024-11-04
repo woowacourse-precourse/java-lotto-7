@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.dto.PurchaseAmountRequestDto;
 import lotto.model.Lottos;
-import lotto.service.genaration.GenerateService;
+import lotto.service.generation.GenerateService;
 import lotto.view.OutputView;
 
 public class LottoController {
