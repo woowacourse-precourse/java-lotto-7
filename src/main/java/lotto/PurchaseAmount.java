@@ -33,8 +33,4 @@ public class PurchaseAmount {
     public int getAmount() {
         return amount;
     }
-
-    public int getPurchaseCount() {
-        return amount / lotto.LottoRules.LOTTO_TICKET_PRICE;
-    }
 }

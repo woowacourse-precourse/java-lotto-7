@@ -9,15 +9,14 @@ public class LottoGame {
     public LottoGame() {
         lottoMachine = new LottoMachine();
         result = new Result();
+
     }
 
     public void play() {
         PurchaseAmount purchaseAmount = InputHandler.getPurchaseAmount();
 
-        int purchaseCount = purchaseAmount.getPurchaseCount();
+        List<Lotto> lottos = lottoMachine.generateLotto(purchaseAmount);
 
-        List<Lotto> lottos = lottoMachine.generateLotto(purchaseCount);
-        
         OutputHandler.printLottos(lottos);
 
         WinningLotto winningLotto = InputHandler.getWinningLotto();
