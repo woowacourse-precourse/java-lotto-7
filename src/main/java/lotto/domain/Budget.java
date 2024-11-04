@@ -15,11 +15,15 @@ public class Budget {
     private void validate(String inputBudget) {
         try {
             int amount = Integer.parseInt(inputBudget);
-            if (amount < 1) {
-                throw new IllegalArgumentException(BUDGET_NOT_NATURAL_NUMBER);
-            }
+            checkNaturalNumber(amount);
             checkDividedByOneThousand(amount);
         } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(BUDGET_NOT_NATURAL_NUMBER);
+        }
+    }
+
+    private void checkNaturalNumber(int amount) {
+        if (amount < 1) {
             throw new IllegalArgumentException(BUDGET_NOT_NATURAL_NUMBER);
         }
     }
