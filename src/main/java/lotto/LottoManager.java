@@ -54,7 +54,6 @@ public class LottoManager {
         winningLotto.forEach(num->{
             if(num<1 || num>45) throw new IllegalArgumentException("[ERROR] 1~45사이의 값만 입력 가능합니다.");
         });
-        System.out.println(winningLotto);
         this.winningLotto=winningLotto;
     }
 
