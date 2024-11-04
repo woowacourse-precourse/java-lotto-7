@@ -7,9 +7,9 @@ public class LottoResultChecker {
         this.drawnNumbers = drawnNumbers;
     }
 
-    public WinningResult check(Lottos lottos){
+    public WinningResult check(Lottos lottos) {
         WinningResult winningResult = new WinningResult();
-        for(Lotto lotto : lottos){
+        for (Lotto lotto : lottos) {
             int matchCount = calculateMatchCount(lotto);
             boolean bonusMatch = hasBonusMatch(lotto);
 
@@ -17,7 +17,6 @@ public class LottoResultChecker {
 
             winningResult.addResult(winningType);
         }
-
         return winningResult;
     }
 

@@ -27,7 +27,7 @@ public enum WinningType {
     public static WinningType valueOf(int matchCount, boolean bonusMatch) {
         return Arrays.stream(values())
                 .filter(type -> type.matchCount == matchCount)
-                .filter(type -> !type.bonusMatchRequired || bonusMatch) // 보너스 번호가 필요한 경우만 체크
+                .filter(type -> !type.bonusMatchRequired || bonusMatch)
                 .findFirst()
                 .orElse(NONE);
     }
