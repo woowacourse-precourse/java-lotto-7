@@ -65,6 +65,13 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 보너스_번호_범위(){
+        assertSimpleTest(() -> {
+            runException("4000", "21,25,41,42,43,45", "0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Override
     public void runMain() {
