@@ -15,14 +15,10 @@ public class Application {
         int money = input.askPurchaseAmount();
 
         //로뚜 구매   => LottoMachine
-        int purchaseCount = money / 1000;
-        System.out.printf("\n%d개를 구매했습니다.\n", purchaseCount);
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < purchaseCount; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-        }
+        LottoMachine lottoMachine = new LottoMachine();
+        List<Lotto> lottos = lottoMachine.purchaseLotto(money);
 
-        //구입한 로또 출력
+        System.out.printf("\n%d개를 구매했습니다.\n", lottos.size());
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
