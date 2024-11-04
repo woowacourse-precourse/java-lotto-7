@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static constant.Message.ERROR_LOTTO_NUMBER_COUNT;
-
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -15,9 +13,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_COUNT.getMessage());
-        }
+        Validator.validateLottoNumbersCount(numbers);
+        Validator.validateUniqueNumbers(new ArrayList<>(numbers));
     }
 
     public int getMatchCount(ArrayList<Integer> winningNumbers) {

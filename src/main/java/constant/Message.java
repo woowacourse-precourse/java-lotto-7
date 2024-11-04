@@ -24,7 +24,7 @@ public enum Message {
     ERROR_INCLUDING_OUT_OF_LOTTO_NUMBER_RANGE("[ERROR] 로또 숫자의 범위를 벗어나는 값이 포함되어 있습니다."),
     ERROR_DUPLICATE_NUMBERS("[ERROR] 중복되는 숫자가 있습니다."),
     ERROR_NON_NEW_NUMBER("[ERROR] 기존에 중복되는 값이 있습니다."),
-    ERROR_LOTTO_NUMBER_COUNT("[ERROR] 로또 번호는 6개여야 합니다.");
+    ERROR_LOTTO_NUMBERS_COUNT("[ERROR] 로또 번호는 6개여야 합니다.");
 
     private final String message;
 

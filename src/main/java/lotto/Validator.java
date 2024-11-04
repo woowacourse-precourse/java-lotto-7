@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import static constant.Message.*;
 
@@ -69,6 +70,12 @@ public class Validator {
     public static void validateWinningNumbersCount(String[] winningNumbersInputSplits) {
         if (winningNumbersInputSplits.length != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ERROR_WINNING_NUMBERS_COUNT.getMessage());
+        }
+    }
+
+    public static void validateLottoNumbersCount(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBERS_COUNT.getMessage());
         }
     }
 
