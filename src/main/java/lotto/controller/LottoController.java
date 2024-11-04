@@ -1,48 +1,110 @@
 package lotto.controller;
 
-import lotto.model.LottoGame;
-import lotto.view.LottoView;
-
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+
+import lotto.model.*;
+import lotto.model.enums.Prize;
+import lotto.service.LottoService;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
-    private final LottoGame lottoGame;
-    private final LottoView view;
+    private Balance balance;
+    private Profit profit;
+    private Bonus bonus;
+    private Lotto lotto;
+    private final User user;
 
     public LottoController() {
-        this.lottoGame = new LottoGame();
-        this.view = new LottoView();
+        this.profit = new Profit();
+        this.user = new User();
     }
 
     public void run() {
-        try {
-            // 구입 금액 입력 및 처리
-            int purchaseAmount = view.inputPurchaseAmount();
-            int count = lottoGame.calculateLottoCount(purchaseAmount);
+        insertMoney();
+        calculateLotto();
+        setLottoNumbers();
+        setBonusNumber();
+        calculateLottoResults();
+        calculateProfit();
+        calculateProfitRate();
+        displayResult();
+    }
 
-            // 로또 구입 및 출력
-            lottoGame.purchaseLottos(count);
-            view.printPurchasedLottos(lottoGame.getPurchasedLottos());
-
-            // 당첨 번호 입력 및 처리
-            List<Integer> winningNumbers = view.inputWinningNumbers();
-            int bonusNumber = view.inputBonusNumber();
-            lottoGame.setWinningNumbers(winningNumbers, bonusNumber);
-
-            // 당첨 결과 계산 및 출력
-            Map<String, Integer> results = lottoGame.calculateResults();
-            view.printResults(results);
-
-            // 수익률 계산
-            double profitRate = lottoGame.calculateProfitRate(purchaseAmount, results);
-
-            // 출력
-            //view.printPurchasedLottos(lottoGame.getPurchasedLottos());
-            System.out.printf("수익률은 %.1f%%입니다.%n", profitRate);
-
-        } catch (IllegalArgumentException e) {
-            view.printError(e.getMessage());
+    public void insertMoney() {
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                OutputView.printInsertMoney();
+                balance = new Balance(InputView.inputMoney());
+                isValid = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
+    }
+
+    public void calculateLotto() {
+        OutputView.printLottoTicketMessage(balance.getTicket());
+        for (int i = 0; i < balance.getTicket(); i++) {
+            user.addLotto(LottoService.createLottoNumbers());
+            List<Integer> sortedNumbers = new ArrayList<>(user.getLottos().get(i));
+            Collections.sort(sortedNumbers);
+            OutputView.printLottoNumbers(sortedNumbers);
+        }
+    }
+
+    public void setLottoNumbers() {
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                OutputView.printLottoNumbersGuide();
+                lotto = new Lotto(LottoService.splitLottoNumbers(InputView.inputLottoNumbers()));
+                isValid = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    public void setBonusNumber() {
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                OutputView.printBonusNumber();
+                bonus = new Bonus(InputView.inputBonusNumber(), lotto.getNumbers());
+                isValid = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    public void calculateLottoResults() {
+        for (List<Integer> userLotto : user.getLottos()) {
+            int matchCount = LottoService.calculateMatchCount(lotto.getNumbers(), userLotto);
+            boolean hasBonusMatch = LottoService.calculateBonusMatch(matchCount, bonus.getNumber(), userLotto);
+            user.addResult(Prize.valueOf(matchCount, hasBonusMatch));
+        }
+    }
+
+    public void calculateProfit() {
+        for (Prize prize : user.getResults().keySet()) {
+            profit.addProfit(LottoService.calculateProfit(prize.getPrize(), user.getResults().get(prize)));
+        }
+    }
+
+    public void calculateProfitRate() {
+        profit.setProfitRate(LottoService.calculateProfitRate(profit.getProfit(), balance.getMoney()));
+    }
+
+    public void displayResult() {
+        OutputView.printResultMessage();
+        for (Prize prize : Prize.values()) {
+            OutputView.printResult(prize.getDescription(), prize.getPrize(), user.getResults().get(prize));
+        }
+        OutputView.printProfitRate(profit.getProfitRate());
     }
 }
