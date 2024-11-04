@@ -33,12 +33,18 @@ public class Output {
         System.out.println(" ");
         System.out.println("당첨통계");
         System.out.println("---");
-        System.out.println("3개 일치 ("+Rank.FIFTH.winningPrize()+"원) - "+winningResult.get(3)+"개");
-        System.out.println("4개 일치 ("+Rank.FIRTH.winningPrize()+"원) - "+winningResult.get(4)+"개");
-        System.out.println("5개 일치 ("+Rank.Third.winningPrize()+"원) - "+winningResult.get(5)+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 ("+Rank.SECOND.winningPrize()+"원) - "+five_bonus+"개");
-        System.out.println("6개 일치 ("+Rank.FIRST.winningPrize()+"원) - "+winningResult.get(6)+"개");
+        System.out.println("3개 일치 ("+Rank.FIFTH.winningPrizeString()+"원) - "+winningResult.get(3)+"개");
+        System.out.println("4개 일치 ("+Rank.FIRTH.winningPrizeString()+"원) - "+winningResult.get(4)+"개");
+        System.out.println("5개 일치 ("+Rank.THIRD.winningPrizeString()+"원) - "+winningResult.get(5)+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 ("+Rank.SECOND.winningPrizeString()+"원) - "+five_bonus+"개");
+        System.out.println("6개 일치 ("+Rank.FIRST.winningPrizeString()+"원) - "+winningResult.get(6)+"개");
     }
+
+    public static void requestProfitAbility(double profitAbility){
+        System.out.println("총 수익률은 "+String.format("%.2f",profitAbility)+"%입니다.");
+
+    }
+
 
 
 }

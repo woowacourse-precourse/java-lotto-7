@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import lotto.constant.Rank;
-import lotto.service.ParsingService;
-import lotto.service.PublishLottoService;
-import lotto.service.ValidService;
-import lotto.service.WinningPrizeService;
+import lotto.service.*;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.model.WinningLotto;
@@ -17,6 +14,7 @@ public class Controller {
     private final User user1 = new User();
     private WinningLotto winningLotto;
     private final WinningPrizeService winningPrizeService = new WinningPrizeService();
+    private final CalculatingWinningMoneyService calculatingWinningMoneyService=new CalculatingWinningMoneyService();
 
 
     public void start() {
@@ -26,6 +24,8 @@ public class Controller {
         setWinningLotto();
         winningPrizeService.matchAllLotos(user1.getLottos(),winningLotto.getWinningLotto(),winningLotto.getBonusNumber());
         Output.requestWinningResult(winningPrizeService.getWinningPrizes(),winningPrizeService.getFive_bonus());
+        calculatingWinningMoneyService.calculateTotalMoney(winningPrizeService.getWinningPrizes(),winningPrizeService.getFive_bonus(),parsingService.getMoney());
+        Output.requestProfitAbility(calculatingWinningMoneyService.getProfitAbility());
     }
 
     private void setMoney() {
