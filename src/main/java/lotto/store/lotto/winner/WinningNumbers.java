@@ -20,20 +20,18 @@ public class WinningNumbers {
 
 
     public LottoRank rank(Lotto lotto) {
-        Objects.requireNonNull(lotto);
-
-        int matchingNumberCount = winningLotto.countMatchingNumber(lotto);
-        if(matchingNumberCount == 6)
-            return LottoRank.FIRST;
-        if(matchingNumberCount == 5 && lotto.contains(bonus))
-            return LottoRank.SECOND;
-        if(matchingNumberCount == 5 && !lotto.contains(bonus))
-            return LottoRank.THIRD;
-        if(matchingNumberCount == 4)
-            return LottoRank.FOURTH;
-        if(matchingNumberCount == 3)
-            return LottoRank.FIFTH;
-
+        for (LottoRank value : LottoRank.values()) {
+            if(value.matches(this, lotto))
+                return value;
+        }
         return LottoRank.FAIL;
+    }
+
+    protected int countMatch(Lotto lotto) {
+        return winningLotto.countMatchingNumber(lotto);
+    }
+
+    protected boolean isBonusMatch(Lotto lotto) {
+        return lotto.contains(bonus);
     }
 }
