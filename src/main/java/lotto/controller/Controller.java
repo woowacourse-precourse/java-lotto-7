@@ -24,6 +24,8 @@ public class Controller {
     public void run() {
         Player player = buyLottoTickets();
         LottoGroup lottoGroup = generateLotto(player);
+        WinningLotto winningLotto = setUpWinningNumber();
+        findWinningTicketsAndPrintResult(lottoGroup, winningLotto, player);
     }
 
     private Player buyLottoTickets() {
@@ -40,5 +42,19 @@ public class Controller {
         outputView.printLottoGroup(lottoGroup);
 
         return lottoGroup;
+    }
+
+    private WinningLotto setUpWinningNumber() {
+        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
+
+        return new WinningLotto(winningNumbers, bonusNumber, new WinnerResult());
+    }
+
+    private void findWinningTicketsAndPrintResult(LottoGroup lottoGroup, WinningLotto winningLotto, Player player) {
+        outputView.printWinningStatics();
+        winningLotto.findWinningLottery(lottoGroup, winningLotto);
+        outputView.printTotal(winningLotto.getWinnerResult());
+        outputView.printFinalRate(LottoCalculator.calculateFinalRate(winningLotto.getWinnerResult(), player.getMoney()));
     }
 }
