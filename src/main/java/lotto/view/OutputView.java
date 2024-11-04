@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.Lotto;
-import lotto.Rank;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 import java.util.List;
 import java.util.Map;

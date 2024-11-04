@@ -1,5 +1,11 @@
 package lotto;
 
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.Purchase;
+import lotto.domain.Rank;
+import lotto.domain.Statistics;
+import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

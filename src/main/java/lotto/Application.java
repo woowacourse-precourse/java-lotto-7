@@ -1,5 +1,10 @@
 package lotto;
 
+import lotto.domain.BonusNumber;
+import lotto.domain.LottoGame;
+import lotto.domain.Purchase;
+import lotto.domain.Statistics;
+import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
