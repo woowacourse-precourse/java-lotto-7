@@ -46,7 +46,7 @@ public class WinningLottoIssueService extends CustomLottoIssueService {
 
     private void validateDuplicate(Lotto winningLotto, int bonusNum) {
         if (winningLotto.contains(bonusNum)) {
-            throw new BusinessException(ErrorMessage.DUPLICATED_BONUS_NUM);
+            throw new BusinessException(ErrorMessage.DUPLICATE_BONUS_NUMBER);
         }
     }
 }
