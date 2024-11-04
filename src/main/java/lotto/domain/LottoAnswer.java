@@ -22,4 +22,8 @@ public class LottoAnswer {
             throw new IllegalArgumentException("[ERROR] 유효한 범위의 숫자가 아닙니다.");
         }
     }
+
+    private boolean contain(Integer number) {
+        return numbers.contains(number);
+    }
 }
