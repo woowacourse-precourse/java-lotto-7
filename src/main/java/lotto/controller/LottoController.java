@@ -8,7 +8,6 @@ import lotto.model.LottoPrize;
 import lotto.util.BonusNumberValidator;
 import lotto.model.GenerateLotto;
 import lotto.util.PurchaseValidator;
-import lotto.util.WinningLottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -27,7 +26,6 @@ public class LottoController {
 
             OutputView.printWinnerLotto();
             List<Integer> winningLotto = InputView.getWinningLotto();
-            WinningLottoValidator.validateLotto(winningLotto);
 
             OutputView.printBonusNumber();
             int bonusNumber = InputView.getBonusNumber();
