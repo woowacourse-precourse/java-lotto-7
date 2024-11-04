@@ -1,12 +1,18 @@
 package lotto.service;
 
+import static lotto.common.ErrorMessage.*;
+
+import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.common.ErrorMessage;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRepository;
+import lotto.utils.StringUtils;
 
 public class LottoService {
 
@@ -16,8 +22,12 @@ public class LottoService {
 	private static final int LOTTO_START_NUMBER = 1;
 	private static final int LOTTO_END_NUMBER = 45;
 	private static final int LOTTO_NUMBER_COUNT = 6;
+	private static final String WINNER_NUMBERS_DELIMITER = ",";
 
 	private final LottoRepository lottoRepository;
+
+	private Set<Integer> winningNumbers;
+	private int bonusNumber;
 
 	private LottoService() {
 		this.lottoRepository = LottoRepository.getInstance();
@@ -41,7 +51,7 @@ public class LottoService {
 
 	private void validateAmount(int amount) {
 		if (amount % 1_000 != 0) {
-			throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.getMessage());
+			throw new IllegalArgumentException(INVALID_AMOUNT.getMessage());
 		}
 	}
 
@@ -50,5 +60,46 @@ public class LottoService {
 			= Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_COUNT);
 		Collections.sort(numbers);
 		return numbers;
+	}
+
+	public void saveWinningNumbers(String input) {
+		Set<Integer> numbers = Arrays.stream(input.split(WINNER_NUMBERS_DELIMITER))
+			.map(numberAsString -> {
+				int number = StringUtils.toNumber(numberAsString);
+				validateNumberRange(number);
+				return number;
+			}).collect(Collectors.toSet());
+		validateDuplicateNumbers(numbers);
+
+		winningNumbers = numbers;
+	}
+
+	public void saveBonusNumber(String input) {
+		int number = StringUtils.toNumber(input);
+
+		validateNumberRange(number);
+		validateDuplicateNumbers(number);
+
+		bonusNumber = number;
+	}
+
+	private void validateNumberRange(int number) {
+		if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
+			throw new IllegalArgumentException(
+				MessageFormat.format(NUMBER_OUT_OF_RANGE.getMessage(), LOTTO_START_NUMBER, LOTTO_END_NUMBER));
+		}
+	}
+
+	private void validateDuplicateNumbers(Set<Integer> numbers) {
+		if (numbers.size() != LOTTO_NUMBER_COUNT) {
+			throw new IllegalArgumentException(
+				MessageFormat.format(DUPLICATE_NUMBERS.getMessage(), LOTTO_NUMBER_COUNT));
+		}
+	}
+
+	private void validateDuplicateNumbers(int number) {
+		if (winningNumbers.contains(number)) {
+			throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
+		}
 	}
 }
