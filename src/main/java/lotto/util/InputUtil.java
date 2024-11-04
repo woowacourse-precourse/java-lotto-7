@@ -26,4 +26,9 @@ public class InputUtil {
         }
         return lottoList;
     }
+
+    public static int convertStringToInt(String input) {
+        Validator.validateRightNumber(input);
+        return Validator.validateLottoNumber(input);
+    }
 }
