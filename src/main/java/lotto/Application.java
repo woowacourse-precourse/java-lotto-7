@@ -6,7 +6,7 @@ import model.LottoChecker;
 import model.LottoMaker;
 import model.MoneyCalculator;
 import view.InputView;
-import view.Outputview;
+import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class Application {
         List<Lotto> lottos = lottoMaker.getLottos();
 
         // 4. 발행한 로또 출력
-        Outputview outputview = new Outputview();
+        OutputView outputview = new OutputView();
         outputview.showLottos(lottos);
 
         // 5. 당첨 번호 입력
@@ -49,5 +49,7 @@ public class Application {
 
         // 11. 수익률 출력
         outputview.showProfitMargin(profitMargin);
+
+        // TODO: 매직넘버 사용 줄이기
     }
 }

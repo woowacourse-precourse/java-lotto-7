@@ -2,18 +2,18 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import constant.LottoPrize;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class MoneyCalculatorTest {
 
-    private final List<Integer> winningAmount = List.of(
-            5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000
-    );
+    LottoPrize[] prizes = LottoPrize.values();
 
-    long totalAmount = winningAmount.stream()
-            .mapToLong(Integer::longValue)
+    private int totalPrize = Arrays.stream(prizes)
+            .mapToInt(LottoPrize::getPrize)
             .sum();
 
     @Test
@@ -22,7 +22,7 @@ class MoneyCalculatorTest {
         MoneyCalculator moneyCalculator = new MoneyCalculator(matchNumberCount);
 
         long winningAmount = moneyCalculator.getWinningAmount();
-        assertEquals(totalAmount, winningAmount);
+        assertEquals(totalPrize, winningAmount);
     }
 
     @DisplayName("8,000원으로 3등이 당첨되었을 때의 수익률")

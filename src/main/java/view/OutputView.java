@@ -4,10 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import model.Lotto;
 
-public class Outputview {
+public class OutputView {
 
-    // TODO: 계산할 때도 가격이 쓰일 것이라 출력 좀 더 신경쓰기
-    //  가격을 따로 저장 한다던가... enum?
     private final List<String> statisticsMessages = List.of(
             "3개 일치 (5,000원) - ",
             "4개 일치 (50,000원) - ",
