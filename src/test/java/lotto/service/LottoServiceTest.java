@@ -31,7 +31,7 @@ class LottoServiceTest {
         BigInteger purchaseAmount = new BigInteger(input);
 
         //when
-        lottoService.generateByPurchaseAmount(input);
+        lottoService.tryGenerateByPurchaseAmount(input);
 
         //then
         BigInteger count = BigInteger.valueOf(lottoService.count());
@@ -46,7 +46,7 @@ class LottoServiceTest {
         List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 5));
 
         //when, then
-        assertThatThrownBy(() -> lottoService.create(numbers))
+        assertThatThrownBy(() -> lottoService.generate(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -77,7 +77,7 @@ class LottoServiceTest {
     void t005() {
         List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
 
-        assertThatThrownBy(() -> lottoService.create(numbers))
+        assertThatThrownBy(() -> lottoService.generate(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

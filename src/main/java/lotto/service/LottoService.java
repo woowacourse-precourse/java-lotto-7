@@ -4,8 +4,8 @@ import static global.constant.GlobalStatic.LOTTO_END_NUMBER;
 import static global.constant.GlobalStatic.LOTTO_NUMBER_COUNTS;
 import static global.constant.GlobalStatic.LOTTO_START_NUMBER;
 import static global.constant.GlobalStatic.PURCHASE_AMOUNT_UNIT;
-import static global.utils.GlobalUtil.Lotto.sortingNumbers;
-import static global.utils.GlobalUtil.PurchaseAmount.parsingPurchaseAmount;
+import static global.utils.GlobalUtil.LottoUtil.sortingNumbers;
+import static global.utils.GlobalUtil.PurchaseAmountUtil.parsingPurchaseAmount;
 import static global.utils.Validator.validatePurchaseAmount;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -39,7 +39,7 @@ public class LottoService {
         }
     }
 
-    private void generate(List<Integer> numbers) {
+    public void generate(List<Integer> numbers) {
         lottoRepository.save(new Lotto(numbers));
     }
 

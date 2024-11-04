@@ -1,17 +1,17 @@
 package global.utils;
 
-import static global.utils.GlobalUtil.BonusNumber.parsingBonusNumber;
-import static global.utils.GlobalUtil.PurchaseAmount.parsingPurchaseAmount;
-import static global.utils.GlobalUtil.WeeklyNumber.parsingWeeklyNumbers;
-import static global.utils.GlobalUtil.WeeklyNumber.splitWeeklyNumberWithSeparator;
+import static global.utils.GlobalUtil.BonusNumberUtil.parsingBonusNumber;
+import static global.utils.GlobalUtil.PurchaseAmountUtil.parsingPurchaseAmount;
+import static global.utils.GlobalUtil.WeeklyNumberUtil.parsingWeeklyNumbers;
+import static global.utils.GlobalUtil.WeeklyNumberUtil.splitWeeklyNumberWithSeparator;
 
+import global.constant.GlobalStatic;
 import global.exception.ErrorCode;
 import global.view.OutputView;
 import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import global.constant.GlobalStatic;
 
 public class Validator {
 

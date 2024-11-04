@@ -12,7 +12,7 @@ import java.util.List;
 
 public class GlobalUtil {
 
-    public static class PurchaseAmount {
+    public static class PurchaseAmountUtil {
         public static BigInteger parsingPurchaseAmount(String input) {
             try {
                 return new BigInteger(input);
@@ -23,14 +23,14 @@ public class GlobalUtil {
         }
     }
 
-    public static class Lotto {
+    public static class LottoUtil {
         public static List<Integer> sortingNumbers(List<Integer> numbers) {
             numbers.sort(Comparator.naturalOrder());
             return numbers;
         }
     }
 
-    public static class WeeklyNumber {
+    public static class WeeklyNumberUtil {
         public static List<String> splitWeeklyNumberWithSeparator(String inputWeeklyNumbers) {
             String[] weeklyNumbers = inputWeeklyNumbers.split(WEEKLY_NUMBER_SEPARATOR);
             return new ArrayList<>(List.of(weeklyNumbers));
@@ -50,7 +50,7 @@ public class GlobalUtil {
         }
     }
 
-    public static class BonusNumber {
+    public static class BonusNumberUtil {
         public static int parsingBonusNumber(String input) {
             try {
                 return Integer.parseInt(input);
@@ -61,7 +61,7 @@ public class GlobalUtil {
         }
     }
 
-    public static class Prize {
+    public static class PrizeUtil {
         public static String applyPrizeFormat(int prize) {
             DecimalFormat decimalFormat = new DecimalFormat("#,###");
             return decimalFormat.format(prize);

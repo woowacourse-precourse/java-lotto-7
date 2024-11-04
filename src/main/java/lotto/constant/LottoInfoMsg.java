@@ -1,6 +1,6 @@
 package lotto.constant;
 
-import static global.utils.GlobalUtil.Prize.applyPrizeFormat;
+import static global.utils.GlobalUtil.PrizeUtil.applyPrizeFormat;
 
 public enum LottoInfoMsg {
     INPUT_PURCHASE_AMOUNT("구입 금액을 입력해 주세요."),
