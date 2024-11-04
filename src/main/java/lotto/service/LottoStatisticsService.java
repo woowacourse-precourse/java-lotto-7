@@ -14,7 +14,7 @@ public class LottoStatisticsService {
 
     public double calculateProfitRate(List<LottoRank> ranks, int purchaseAmount) {
         int totalPrize = sumPrize(ranks);
-        double profitRate = totalPrize / purchaseAmount * 100;
+        double profitRate = totalPrize / (double)purchaseAmount * 100;
 
         return roundToTwoDecimalPlaces(profitRate);
     }
