@@ -30,7 +30,7 @@ class WinningLottoTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         // Then
-        assertThat(winningLotto.match(new Lotto(winningNumbers))).isEqualTo(WinningRank.FIFTH_PLACE);
+        assertThat(winningLotto.match(new Lotto(winningNumbers))).isEqualTo(WinningRank.FIRST_PLACE);
     }
 
     @Test
