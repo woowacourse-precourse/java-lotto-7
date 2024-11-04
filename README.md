@@ -89,7 +89,7 @@ C:.
 ```
 
 ## 객체의 역할, 책임, 협력
-
+<img alt="다이어그램" src="./docs/images/diagram.png" style="width:800px" />
 
 ## 요구사항 목록
 ### 기본
