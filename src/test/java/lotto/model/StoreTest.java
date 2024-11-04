@@ -16,6 +16,7 @@ class StoreTest {
         List<Integer> numbers = store.createNumbers();
         assertEquals(numbers.size(), 6);
     }
+
     @Test
     @DisplayName("로또 번호의 범위가 1부터 45 사이인지 확인한다.")
     void 로또_번호의_범위가_1부터_45_사이인지_확인한다() {
@@ -23,6 +24,7 @@ class StoreTest {
         List<Integer> numbers = store.createNumbers();
         assertTrue(numbers.stream().allMatch(value -> value >= 1 && value <= 45));
     }
+
     @Test
     @DisplayName("로또 번호에 중복이 있는지 확인한다.")
     void 로또_번호에_중복이_있는지_확인한다() {

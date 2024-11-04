@@ -8,12 +8,13 @@ import java.util.Map;
 public class Comparator {
     public List<Result> compareLottos(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
         List<Result> results = new ArrayList<>();
-        for(Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             Result result = compareLotto(lotto, winningNumbers, bonusNumber);
             results.add(result);
         }
         return results;
     }
+
     public Result compareLotto(Lotto lotto, Lotto winningNumbers, int bonusNumber) {
         int correctCount = getCorrectCount(lotto, winningNumbers);
         int bonusCount = getBonusCount(lotto, bonusNumber);

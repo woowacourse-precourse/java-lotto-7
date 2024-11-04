@@ -28,7 +28,7 @@ public class InputView {
         String input = readLine();
         try {
             return convertInputToNumbers(input);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorOfRequestNumbers();
             return readNumbers();
         }
@@ -47,7 +47,7 @@ public class InputView {
         String input = readLine();
         try {
             return convertInputToNumber(input);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorOfRequestNumber();
             return readNumber();
         }

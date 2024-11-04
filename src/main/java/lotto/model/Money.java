@@ -4,24 +4,30 @@ public class Money {
     private int leftMoney;
     private int usedMoney;
     private int winningAmount;
+
     public Money(int money) {
         this.leftMoney = money;
         this.usedMoney = 0;
     }
+
     public void take(int price) {
         leftMoney -= price;
         usedMoney += price;
     }
+
     public int getLeftMoney() {
         return leftMoney;
     }
+
     public int getUsedMoney() {
         return usedMoney;
     }
+
     public void receiveWinningAmount(int totalWinningAmount) {
         this.winningAmount = totalWinningAmount;
     }
+
     public double getRateOfReturn() {
-        return Math.round(1000.0 * winningAmount / usedMoney )/10.0;
+        return Math.round(1000.0 * winningAmount / usedMoney) / 10.0;
     }
 }

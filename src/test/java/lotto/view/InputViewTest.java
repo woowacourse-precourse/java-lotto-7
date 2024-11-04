@@ -50,7 +50,7 @@ class InputViewTest {
 
         List<Integer> winningNumbers = InputView.readNumbers();
 
-        assertEquals(winningNumbers,expect);
+        assertEquals(winningNumbers, expect);
     }
 
     @DisplayName("숫자가 아니면 예외가 발생한다")
@@ -62,6 +62,7 @@ class InputViewTest {
         int number = InputView.readNumber();
         assertEquals(number, 10);
     }
+
     private void setInput(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);

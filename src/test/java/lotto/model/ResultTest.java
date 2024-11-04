@@ -28,7 +28,7 @@ class ResultTest {
         results.add(Result.FIRST);
         results.add(Result.FIFTH);
         Map<String, Integer> expect = new HashMap<>();
-        expect.put("6개 일치" , 1);
+        expect.put("6개 일치", 1);
         expect.put("3개 일치", 1);
 
         assertEquals(Result.getStatistics(results), expect);

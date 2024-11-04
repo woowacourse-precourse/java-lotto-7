@@ -32,6 +32,7 @@ public class Lotto {
             throw new IllegalArgumentException(UNIQUENESS);
         }
     }
+
     private void validateOutOfRange(List<Integer> numbers) {
         if (!numbers.stream().allMatch(value -> value >= MIN_VALUE && value <= MAX_VALUE)) {
             throw new IllegalArgumentException(OUT_OF_RANGE);
