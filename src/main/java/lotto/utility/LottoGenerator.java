@@ -12,5 +12,4 @@ public class LottoGenerator {
         Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }
-
 }

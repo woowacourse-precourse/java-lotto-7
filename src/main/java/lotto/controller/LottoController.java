@@ -30,9 +30,10 @@ public class LottoController {
                 .toList());
 
         Lotto winningLotto = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumber();
+        int bonusNumber = InputView.getBonusNumber(winningLotto.getNumbers());
 
-        LottoValidator.validateWinningNumbers(winningLotto.getNumbers(), bonusNumber);
+        LottoValidator.validateWinningNumbers(winningLotto.getNumbers());
+        LottoValidator.validateBonusNumber(bonusNumber, winningLotto.getNumbers());
 
         Map<LottoRank, Integer> rankCounts = new HashMap<>();
         for (Lotto userLotto : lottos) {
