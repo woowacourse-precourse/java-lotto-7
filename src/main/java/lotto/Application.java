@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Application {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static Lotto winningNumbers;
+    private static int bonusNumber;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -17,9 +19,10 @@ public class Application {
         Lotto.printLottos(lottos);
         System.out.println();
 
-        Lotto winningNumbers = inputWinningNumbers();
+        winningNumbers = inputWinningNumbers();
+        bonusNumber = inputBonusNumber();
 
-        int bonusNumber = inputBonusNumber();
+        compareLottos(lottos);
     }
 
 
@@ -126,12 +129,22 @@ public class Application {
 
     private static void validateBonusNumber(int input) {
         if (input < 1 || input > 45) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+
+        if (winningNumbers.getNumbers().contains(input)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 
 
-    private void countMatches(List<Integer> lotto, List<Integer> winningNumbers, int bonusNumber) {
+    private static void compareLottos(Lotto[] lottos){
+        for(Lotto lotto : lottos){
+            countMatches(lotto.getNumbers());
+        }
+    }
+
+    private static void countMatches(List<Integer> lotto) {
         int matchCount = 0;
 
         for (int number : lotto) {
@@ -140,10 +153,10 @@ public class Application {
             }
         }
 
-        increaseMatchTypeCount(lotto, bonusNumber, matchCount);
+        increaseMatchTypeCount(lotto, matchCount);
     }
 
-    private int increaseMatchTypeCount(List<Integer> lotto, int bonusNumber, int matchCount) {
+    private static int increaseMatchTypeCount(List<Integer> lotto, int matchCount) {
 
         if (matchCount == 6) {
             Lotto.MatchType.SIX.increaseCount();
