@@ -84,7 +84,9 @@ public class LotteryMachine {
         Set<Integer> winningNumbers = new HashSet<>();
         while (!validInput) {
             try {
-                winningNumbers = parseWinningNumberInput(inputView.getWinningNumberFromUser());
+                String winningNumberInput = inputView.getWinningNumberFromUser();
+                validateEmptyString(winningNumberInput);
+                winningNumbers = parseWinningNumberInput(winningNumberInput);
                 validateWinningNumbers(winningNumbers);
                 validInput = true;
             } catch (IllegalArgumentException e) {
@@ -95,10 +97,16 @@ public class LotteryMachine {
     }
 
     private Set<Integer> parseWinningNumberInput(String winningNumberInput) {
-        Set<Integer> winningNumbers = Arrays.stream(winningNumberInput.split(","))
-                .map(String::trim) // 각 요소의 공백 제거
-                .map(Integer::parseInt) // 문자열을 Integer로 변환
-                .collect(Collectors.toSet()); // Set으로 수집
+        Set<Integer> winningNumbers;
+        List<String> winningNumberTokens = Arrays.stream(winningNumberInput.split(",")).map(String::trim).toList();
+        try {
+            winningNumbers = winningNumberTokens.stream().map(Integer::parseInt).collect(Collectors.toSet());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("유효하지 않은 숫자 형태입니다.");
+        }
+        if (winningNumbers.size() != winningNumberTokens.size()) {
+            throw new IllegalArgumentException("당첨 번호로 중복된 숫자는 허용하지 않습니다.");
+        }
         return winningNumbers;
     }
 
@@ -107,9 +115,13 @@ public class LotteryMachine {
         int bonusNumber = 0;
         while (!validInput) {
             try {
-                bonusNumber = Integer.parseInt(inputView.getBonusNumberFromUser());
+                String bonusNumberInput = inputView.getBonusNumberFromUser();
+                validateEmptyString(bonusNumberInput);
+                bonusNumber = Integer.parseInt(bonusNumberInput);
                 validateBonusNumber(bonusNumber);
                 validInput = true;
+            } catch (NumberFormatException e) {
+                outputView.printInvalidInputErrorMessage("유효하지 않은 숫자 형태입니다.");
             } catch (IllegalArgumentException e) {
                 outputView.printInvalidInputErrorMessage(e.getMessage());
             }
