@@ -2,6 +2,9 @@ package lotto.domain;
 
 import static lotto.utils.Constant.COMMA;
 
+import global.errorMessage.BonusNumberErrorMessage;
+import global.errorMessage.NumberErrorMessage;
+
 public class BonusNumber {
     private final int bonusNumber;
 
@@ -10,24 +13,22 @@ public class BonusNumber {
         this.bonusNumber = Integer.parseInt(input);
     }
 
-
-    // 일단 getter 사용하자..
     public int getBonusNumber() {
         return bonusNumber;
     }
 
     private void validateBonusNumber(String input) {
         if (input.contains(COMMA)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 하나의 숫자여야 합니다.");
+            throw new IllegalArgumentException(BonusNumberErrorMessage.INVALID_FORMAT.getMessage());
         }
         int number;
         try {
             number = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(NumberErrorMessage.NOT_A_NUMBER.getMessage());
         }
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 이상 45 이하의 숫자여야 합니다.");
+            throw new IllegalArgumentException(BonusNumberErrorMessage.OUT_OF_RANGE.getMessage());
         }
     }
 }

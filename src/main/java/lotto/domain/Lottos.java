@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import global.errorMessage.CommonErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -18,7 +19,7 @@ public class Lottos {
 
     public Lotto getElement(int index) {
         if(index < 0 || index >= lottos.size()) {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException(CommonErrorMessage.INVALID_INDEX.getMessage());
         }
         return lottos.get(index);
     }

@@ -5,6 +5,8 @@ import static lotto.utils.Constant.LOTTO_NUMBER_MIN;
 import static lotto.utils.Constant.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import global.errorMessage.LottoErrorMessage;
+import global.errorMessage.NumberErrorMessage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -60,13 +62,13 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_SIZE.getMessage());
         }
     }
 
     private void validateNumbersInRange(List<Integer> numbers) {
         if(numbers.stream().anyMatch(number -> number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX)) {
-            throw new IllegalArgumentException("로또 번호는 1 이상 45 이하 입니다");
+            throw new IllegalArgumentException(NumberErrorMessage.OUT_OF_RANGE.getMessage());
         }
     }
 
@@ -74,7 +76,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for(Integer number : numbers) {
             if(!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException("중복 되지 않은 로또 번호를 입력하세요");
+                throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
             }
         }
     }
