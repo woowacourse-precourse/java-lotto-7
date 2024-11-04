@@ -21,6 +21,10 @@ public class WinningNumbers {
         int matchCount = lottoNumbers.size();
         boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
 
+        return getRank(matchCount, bonusMatch);
+    }
+
+    private int getRank(int matchCount, boolean bonusMatch) {
         if (matchCount == FIRST_PLACE.getValue()) {
             return 1;
         } else if (matchCount == SECOND_PLACE.getValue() && bonusMatch) {
