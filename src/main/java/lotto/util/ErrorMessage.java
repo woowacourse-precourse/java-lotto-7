@@ -1,7 +1,7 @@
 package lotto.util;
 
 public enum ErrorMessage {
-    INPUT_ERROR("소수점이 없는 양수만 입력해주세요.(여려개의 숫자는 쉼표(,)로 구분)"),
+    INPUT_ERROR("숫자만 입력해주세요."),
 
     NUMBER_SIZE_ERROR("당첨번호의 개수가 6개가 아닙니다."),
     NUMBER_RANGE_ERROR("1 ~ 45 사이의 숫자만 입력해주세요."),
