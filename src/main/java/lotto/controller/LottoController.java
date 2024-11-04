@@ -4,6 +4,7 @@ import lotto.io.LottoInputHandler;
 import lotto.io.LottoOutputHandler;
 import lotto.model.Lotto;
 import lotto.service.LottoService;
+import lotto.util.LottoNumberParser;
 import lotto.util.LottoValidator;
 
 import java.util.List;
@@ -28,6 +29,11 @@ public class LottoController {
 
         List<Lotto> lottoTickets = lottoService.generateLottoTickets(lottoTicketCount);
         outputHandler.showPurchasedLottos(lottoTickets);
+
+        Lotto winningLotto = getWinningLotto();
+        int bonusNumber = getBonusNumber(winningLotto.getNumbers());
+
+
     }
 
     private int getPurchaseAmount() {
@@ -56,5 +62,44 @@ public class LottoController {
 
     private void showLottoTicketCount(int count) {
         outputHandler.showPurchasedLottoCount(count);
+    }
+
+    private Lotto getWinningLotto() {
+        outputHandler.showWinningNumbersPrompt();
+        return handleWinningLottoInput();
+    }
+
+    private Lotto handleWinningLottoInput() {
+        while (true) {
+            try {
+                List<Integer> winningNumbers = LottoNumberParser.parseWinningNumbers(inputHandler.getWinningNumbers());
+                LottoValidator.validateWinningNumbers(winningNumbers);
+                System.out.println();
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                outputHandler.showErrorMessage(e.getMessage());
+                outputHandler.showWinningNumbersPrompt();
+            }
+        }
+    }
+
+    private int getBonusNumber(List<Integer> winningNumbers) {
+        outputHandler.showBonusNumberPrompt();
+        return handleBonusNumberInput(winningNumbers);
+    }
+
+    private int handleBonusNumberInput(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String bonusNumber = inputHandler.getBonusNumber();
+                int validBonusNumber = LottoValidator.parseNumber(bonusNumber);
+                LottoValidator.validateBonusNumber(validBonusNumber, winningNumbers);
+                System.out.println();
+                return validBonusNumber;
+            } catch (IllegalArgumentException e) {
+                outputHandler.showErrorMessage(e.getMessage());
+                outputHandler.showBonusNumberPrompt();
+            }
+        }
     }
 }
