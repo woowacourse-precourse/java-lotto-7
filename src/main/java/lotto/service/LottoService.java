@@ -15,7 +15,7 @@ public class LottoService {
         return lottoMarket.buyLotto(money);
     }
 
-    public int[] compareNumbers(List<Lotto> myLottos, String inputNumbers, String inputBonusNumber) {
+    public int[] compareNumbers(List<Lotto> myLottos, List<Integer> inputNumbers, String inputBonusNumber) {
         BonusNumber bonusNumber = new BonusNumber(inputBonusNumber);
         WinningNumbers winningNumbers = new WinningNumbers(inputNumbers, bonusNumber);
         NumbersComparator numbersComparator = new NumbersComparator(myLottos, winningNumbers);

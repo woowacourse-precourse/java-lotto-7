@@ -3,55 +3,37 @@ package lotto.domain;
 import static lotto.constant.Constant.NUMBERS_RANGE_END;
 import static lotto.constant.Constant.NUMBERS_RANGE_START;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.ExceptionCode;
+import lotto.exception.LottoException;
 
 public class WinningNumbers {
-
-    private static final String DELIMITER = ",";
 
     private final List<Integer> numbers;
 
     private final BonusNumber bonusNumber;
 
-    public WinningNumbers(String inputNumbers, BonusNumber bonusNumber) {
-        List<String> numbersInString = parse(inputNumbers);
-        this.numbers = validateInteger(numbersInString);
-        validateSixNumbers();
-        validateRange();
-        validateDuplicated();
-        sortNumbers();
+    public WinningNumbers(List<Integer> inputNumbers, BonusNumber bonusNumber) {
+        this.numbers = inputNumbers;
+        validateNumbers();
 
         this.bonusNumber = bonusNumber;
         validateBonusDuplicated();
     }
 
-    private List<String> parse(String inputNumbers) {
-        return Arrays.stream(inputNumbers.split(DELIMITER))
-                .map(String::trim)
-                .filter(s -> !s.isEmpty())
-                .toList();
-    }
-
-    private List<Integer> validateInteger(List<String> numbersInString) {
-        List<Integer> parsedNumbers = new ArrayList<>();
-        for (String number : numbersInString) {
-            try {
-                parsedNumbers.add(Integer.parseInt(number));
-            } catch (NumberFormatException e) {
-                throw new NumberFormatException();
-            }
-        }
-        return parsedNumbers;
+    private void validateNumbers() {
+        validateSixNumbers();
+        validateRange();
+        validateDuplicated();
+        sortNumbers();
     }
 
     private void validateSixNumbers() {
         if (numbers.size() != 6) {
-            throw new NumberFormatException();
+            throw new LottoException(ExceptionCode.NON_SIX_NUMBERS);
         }
     }
 
@@ -60,7 +42,7 @@ public class WinningNumbers {
                 .allMatch(number -> number >= NUMBERS_RANGE_START && number <= NUMBERS_RANGE_END);
 
         if (!isRange) {
-            throw new IllegalArgumentException();
+            throw new LottoException(ExceptionCode.OUT_OF_RANGE);
         }
     }
 
@@ -69,7 +51,7 @@ public class WinningNumbers {
 
         for (Integer number : numbers) {
             if (!validatedNumbers.add(number)) {
-                throw new IllegalArgumentException();
+                throw new LottoException(ExceptionCode.DUPICATED_ERROR);
             }
         }
     }
@@ -80,7 +62,7 @@ public class WinningNumbers {
 
     private void validateBonusDuplicated() {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new LottoException(ExceptionCode.DUPICATED_ERROR);
         }
     }
 
