@@ -30,12 +30,18 @@ public class Application {
 
     private static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine().trim());
+        String input = Console.readLine().trim();
 
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1,000원 단위여야 합니다.");
+        try {
+            int amount = Integer.parseInt(input);
+
+            if (amount % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1,000원 단위여야 합니다.");
+            }
+            return amount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 금액을 입력해 주세요.");
         }
-        return amount;
     }
 
     private static List<Lotto> purchaseLottos(int purchaseAmount) {
@@ -60,8 +66,15 @@ public class Application {
     private static List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine().trim();
-        List<Integer> winningNumbers = Arrays.stream(input.split(","))
-                .map(Integer::parseInt).collect(Collectors.toList());
+
+        String sanitizedInput = input.replace(" ", "");
+        if (!sanitizedInput.matches("^(\\d+,){5}\\d+$")) {
+            throw new IllegalArgumentException("[ERROR] 쉼표(,)로 구분된 숫자 형식으로 입력해 주세요.");
+        }
+
+        List<Integer> winningNumbers = Arrays.stream(sanitizedInput.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
 
         if (winningNumbers.size() != 6 || !isValidLottoNumbers(winningNumbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
@@ -71,7 +84,14 @@ public class Application {
 
     private static int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine().trim());
+        String input = Console.readLine().trim();
+
+        // 쉼표가 포함되거나 숫자 외의 값이 포함된 경우 에러 발생
+        if (input.contains(",") || !input.matches("\\d+")) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 하나의 숫자로 입력해 주세요.");
+        }
+
+        int bonusNumber = Integer.parseInt(input);
 
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -108,7 +128,7 @@ public class Application {
             if (rank == Rank.NONE) {
                 continue; // Rank.NONE은 출력하지 않음
             }
-            
+
             int count = result.getOrDefault(rank, 0);
             System.out.println(rank.getMatchMessage() + " - " + count + "개");
             totalEarnings += rank.getPrize() * count;
