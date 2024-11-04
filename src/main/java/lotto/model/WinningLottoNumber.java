@@ -24,6 +24,7 @@ public class WinningLottoNumber {
         List<Integer> parsedWinningNumbers;
         try{
             parsedWinningNumbers = Arrays.stream(userInputWinningLottoNumber.split(","))
+                    .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();
         }catch(Exception e){
