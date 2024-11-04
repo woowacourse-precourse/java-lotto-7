@@ -5,15 +5,20 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Lotto;
 
 public class Application {
     private static final String error_message = "[ERROR]";
 
     public static void main(String[] args) {
         try {
+
             int purchaseAmount = getPurchaseAmount();
             List<List<Integer>> numbers = makeRandomNumbers(purchaseAmount);
             List<Integer> lottoNumbers = getLottoNumbers();
+
+            Lotto lotto = new Lotto(lottoNumbers);
+            lotto.checkLottoWin(numbers);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

@@ -1,8 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,24 +18,33 @@ public class Lotto {
         }
     }
 
-    public static void checkLottoWin(List<List<Integer>> lottoNumbersList, List<Integer> lotto) {
-        int bonusNumber = lotto.getLast();
+    public void checkLottoWin(List<List<Integer>> randomNumberList) {
+
+        int bonusNumber = numbers.getLast();
         Map<Object, Integer> checkLotto = new HashMap<>();
 
-        for (List<Integer> lottoNumbers : lottoNumbersList) {
-            int matchCount = 0;
+        for (List<Integer> randomNumbers : randomNumberList) {
+            Object matchResult = countLottoMatchesWithBonus(numbers, bonusNumber, randomNumbers);
+            checkLotto.put(matchResult, checkLotto.getOrDefault(matchResult, 0) + 1);
+        }
+    }
 
-            for (Integer number : lottoNumbers) {
-                if (lotto.contains(number)) {
-                    matchCount++;
-                }
-            }
+    private static Object countLottoMatchesWithBonus(
+            List<Integer> lottoNumbers,
+            int bonusNumber,
+            List<Integer> randomNumbers
+    ) {
+        int matchCount = 0;
 
-            if (matchCount == 5 && lottoNumbers.contains(bonusNumber)) {
-                checkLotto.put("bonus", checkLotto.getOrDefault("bonus", 0) + 1);
-            } else {
-                checkLotto.put(matchCount, checkLotto.getOrDefault(matchCount, 0) + 1);
+        for (Integer number : randomNumbers) {
+            if (lottoNumbers.contains(number)) {
+                matchCount++;
             }
         }
+
+        if (matchCount == 5 && lottoNumbers.contains(bonusNumber)) {
+            return "bonus";
+        }
+        return matchCount;
     }
 }
