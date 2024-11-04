@@ -3,12 +3,14 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 
+import static lotto.ErrorMessages.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         if (numbers == null) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 null일 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_NULL);
         }
         validate(numbers);
         numbers = sortNumber(numbers);
@@ -17,16 +19,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 입력되지 않았습니다.");
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_EMPTY);
         }
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_SIZE);
         }
         if (!validateRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45범위 내에 있어야 합니다.");
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE);
         }
         if (!validateDuplicate(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_DUPLICATE);
         }
 
     }

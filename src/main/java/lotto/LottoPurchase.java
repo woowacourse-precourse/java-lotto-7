@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.ErrorMessages.*;
+
 public class LottoPurchase {
     private int purchaseAmount;
     private int purchaseCount;
@@ -18,7 +20,7 @@ public class LottoPurchase {
 
     public void inputAmount(String userInputAmount) {
         if (!userInputAmount.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+            throw new IllegalArgumentException(ERROR_NOT_NUMBER);
         }
         int inputAmount = Integer.parseInt(userInputAmount);
 
@@ -29,10 +31,10 @@ public class LottoPurchase {
 
     private void validateInputAmount(int inputAmount) {
         if (inputAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException(ERROR_NOT_1000_MULTIPLE);
         }
         if (inputAmount < 1000) {
-            throw new IllegalArgumentException("[ERROR] 최소 구입 금액은 1000원입니다.");
+            throw new IllegalArgumentException(ERROR_MIN_PURCHASE_AMOUNT);
         }
 
     }
@@ -48,10 +50,10 @@ public class LottoPurchase {
 
     public void inputLottoNumber(String userInputLottoNumber, String userInputBonusNumber) {
         if (!userInputLottoNumber.matches("^\\d+(?:,\\d+)*$")) {
-            throw new IllegalArgumentException("[ERROR] 숫자와 쉼표만 입력해야 합니다.");
+            throw new IllegalArgumentException(ERROR_INVALID_LOTTO_FORMAT);
         }
         if (!userInputBonusNumber.matches("\\d+")) {
-            throw new IllegalArgumentException("보너스 번호는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ERROR_INVALID_BONUS_NUMBER);
         }
         winningLotto = new WinningLotto(splitLottoNumber(userInputLottoNumber), Integer.parseInt(userInputBonusNumber));
     }

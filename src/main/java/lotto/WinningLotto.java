@@ -2,6 +2,9 @@ package lotto;
 
 import java.util.List;
 
+import static lotto.ErrorMessages.ERROR_BONUS_NUMBER_DUPLICATE;
+import static lotto.ErrorMessages.ERROR_LOTTO_NUMBER_RANGE;
+
 public class WinningLotto extends Lotto {
     private final int bonusNumber;
 
@@ -13,10 +16,10 @@ public class WinningLotto extends Lotto {
 
     private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_DUPLICATE);
         }
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException(("[ERROR] 로또 번호는 1~45범위 내에 있어야 합니다."));
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE);
         }
     }
 
