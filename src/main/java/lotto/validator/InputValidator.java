@@ -13,11 +13,11 @@ public class InputValidator implements InputValidatorInterface{
     try {
       purchaseAmount = Integer.parseInt(amount);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException(LottoErrorMessages.INVALID_PURCHASE_AMOUNT);
+      throw new IllegalArgumentException(LottoErrorMessages.INVALID_PURCHASE_AMOUNT.getMessage());
     }
 
-    if (purchaseAmount <= 0 || purchaseAmount % LottoConstants.LOTTO_PRICE != 0) {
-      throw new IllegalArgumentException(LottoErrorMessages.INVALID_PURCHASE_AMOUNT);
+    if (purchaseAmount <= 0 || purchaseAmount % LottoConstants.LOTTO_PRICE.getValue() != 0) {
+      throw new IllegalArgumentException(LottoErrorMessages.INVALID_PURCHASE_AMOUNT.getMessage());
     }
     return purchaseAmount;
   }
@@ -27,8 +27,8 @@ public class InputValidator implements InputValidatorInterface{
         .map(Integer::parseInt)
         .collect(Collectors.toList());
 
-    if (numbers.size() != LottoConstants.NUMBER_COUNT || hasInvalidRange(numbers)) {
-      throw new IllegalArgumentException(LottoErrorMessages.INVALID_WINNING_NUMBER);
+    if (numbers.size() != LottoConstants.NUMBER_COUNT.getValue() || hasInvalidRange(numbers)) {
+      throw new IllegalArgumentException(LottoErrorMessages.INVALID_WINNING_NUMBER.getMessage());
     }
     return numbers;
   }
@@ -38,15 +38,15 @@ public class InputValidator implements InputValidatorInterface{
     try {
       parsedBonusNumber = Integer.parseInt(bonusNumber);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException(LottoErrorMessages.INVALID_BONUS_NUMBER);
+      throw new IllegalArgumentException(LottoErrorMessages.INVALID_BONUS_NUMBER.getMessage());
     }
-    if (parsedBonusNumber < LottoConstants.MIN_NUMBER || parsedBonusNumber > LottoConstants.MAX_NUMBER || winningNumbers.contains(parsedBonusNumber)) {
-      throw new IllegalArgumentException(LottoErrorMessages.INVALID_WINNING_NUMBER);
+    if (parsedBonusNumber < LottoConstants.MIN_NUMBER.getValue() || parsedBonusNumber > LottoConstants.MAX_NUMBER.getValue() || winningNumbers.contains(parsedBonusNumber)) {
+      throw new IllegalArgumentException(LottoErrorMessages.INVALID_WINNING_NUMBER.getMessage());
     }
     return parsedBonusNumber;
   }
 
   private static boolean hasInvalidRange(List<Integer> numbers) {
-    return numbers.stream().anyMatch(num -> num < LottoConstants.MIN_NUMBER || num > LottoConstants.MAX_NUMBER);
+    return numbers.stream().anyMatch(num -> num < LottoConstants.MIN_NUMBER.getValue() || num > LottoConstants.MAX_NUMBER.getValue());
   }
 }

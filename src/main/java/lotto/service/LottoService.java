@@ -12,7 +12,7 @@ public class LottoService implements LottosServiceInterface {
 
   @Override
   public int getNumOfLottos(int purchaseAmount) {
-    return purchaseAmount / LottoConstants.LOTTO_PRICE;
+    return purchaseAmount / LottoConstants.LOTTO_PRICE.getValue();
   }
 
   @Override
@@ -21,8 +21,8 @@ public class LottoService implements LottosServiceInterface {
 
     for (int i = 0; i < numOfLottos; i++) {
       lottos.add(new Lotto(
-          Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER, LottoConstants.MAX_NUMBER,
-              LottoConstants.NUMBER_COUNT)));
+          Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER.getValue(), LottoConstants.MAX_NUMBER.getValue(),
+              LottoConstants.NUMBER_COUNT.getValue())));
     }
     return lottos;
   }

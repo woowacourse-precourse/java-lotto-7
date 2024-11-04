@@ -57,7 +57,7 @@ public class LottoController {
         String purchaseAmountInput = inputView.readPurchaseAmount();
         return inputValidator.validatePurchaseAmount(purchaseAmountInput);
       } catch (IllegalArgumentException e) {
-        System.out.println(LottoErrorMessages.INVALID_PURCHASE_AMOUNT);
+        System.out.println(LottoErrorMessages.INVALID_PURCHASE_AMOUNT.getMessage());
       }
     }
   }
@@ -68,7 +68,7 @@ public class LottoController {
         String winningNumbersInput = inputView.readWinningNumbers();
         return inputValidator.validateWinningNumbers(winningNumbersInput);
       } catch (IllegalArgumentException e) {
-        System.out.println(LottoErrorMessages.INVALID_WINNING_NUMBER);
+        System.out.println(LottoErrorMessages.INVALID_WINNING_NUMBER.getMessage());
       }
     }
   }
@@ -79,7 +79,7 @@ public class LottoController {
         String bonusNumberInput = inputView.readBonusNumber();
         return inputValidator.validateBonusNumber(bonusNumberInput, validatedWinningNumbers);
       } catch (IllegalArgumentException e) {
-        System.out.println(LottoErrorMessages.INVALID_BONUS_NUMBER);
+        System.out.println(LottoErrorMessages.INVALID_BONUS_NUMBER.getMessage());
       }
     }
   }

@@ -19,12 +19,12 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoConstants.NUMBER_COUNT) {
-            throw new IllegalArgumentException(LottoErrorMessages.INVALID_LOTTO_NUMBER);
+        if (numbers.size() != LottoConstants.NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(LottoErrorMessages.INVALID_LOTTO_NUMBER.getMessage());
         }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(LottoErrorMessages.INVALID_LOTTO_NUMBER);
+            throw new IllegalArgumentException(LottoErrorMessages.INVALID_LOTTO_NUMBER.getMessage());
         }
     }
 
