@@ -23,17 +23,13 @@ public class WinningLotto {
         return bonusNumber;
     }
 
-    public void validateBonusNumber(int bonusNumber, int max, int min){
+    public void saveBonusNumber(int bonusNumber, int max, int min){
         if (this.winningLotto.contains(bonusNumber)){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
         if (bonusNumber<min || bonusNumber>max){
             throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1~45 입니다.");
         }
-        addBonusNumber(bonusNumber);
-    }
-
-    private void addBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 }

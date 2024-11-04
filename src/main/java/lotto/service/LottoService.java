@@ -36,8 +36,8 @@ public class LottoService {
         winningLotto.addWinningLotto(winningNumber);
     }
 
-    public void validateBonusNumber(int bonusNumber) {
-        winningLotto.validateBonusNumber(bonusNumber, MAX_NUM, MIN_NUM);
+    public void saveBonusNumber(int bonusNumber) {
+        winningLotto.saveBonusNumber(bonusNumber, MAX_NUM, MIN_NUM);
     }
 
     public void calculateWinningResult() {
