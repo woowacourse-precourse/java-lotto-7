@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -52,6 +53,40 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("로또 구매 금액이 1000원 단위가 아닐 경우 예외가 발생한다")
+    @Test
+    void 잘못된_구매_금액_테스트() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 쉼표로 구분되지 않으면 예외가 발생한다")
+    @Test
+    void 잘못된_당첨_번호_형식_테스트() {
+        assertSimpleTest(() -> {
+            runException("1 2 3 4 5 6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("수익률이 올바르게 계산되어야 한다")
+    @Test
+    void 수익률_계산_테스트() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("3000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "총 수익률은 67666666.7%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(7, 8, 9, 10, 11, 12)
+        );
     }
 
     @Override
