@@ -11,7 +11,6 @@ import lotto.service.strategy.DrawStrategy;
 import lotto.service.strategy.RandomStrategy;
 
 public class LottoFactory {
-
     private static InputHandler inputHandler() {
         return new InputHandler(input());
     }
