@@ -24,6 +24,7 @@ public class InputView {
     }
 
     private static void printReInput(IllegalArgumentException ex) {
+        System.out.flush();
         System.out.println(ex.getMessage());
         System.out.println("다시 입력하세요.");
     }

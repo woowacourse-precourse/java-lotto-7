@@ -11,6 +11,7 @@ public class OutputView {
         printLottoCount(lottos.size());
         printLottos(lottos);
     }
+
     public static void printLottoCount(int lottoCount) {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
@@ -23,24 +24,30 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printTotalResult(Map<Prize, Integer> prizeResult, int purchaseAmount) {
+    public static void printTotalResult(Map<Prize, Integer> prizeResult, double profitRate) {
         StringBuilder sb = new StringBuilder();
         sb.append("당첨 통계\n");
         sb.append("---\n");
-        calculatePrizeResult(prizeResult, sb);
+        printPrizeResult(prizeResult, sb);
+        printProfitRate(profitRate, sb);
         System.out.println(sb.toString());
     }
 
-    private static void calculatePrizeResult(Map<Prize, Integer> prizeResult, StringBuilder sb) {
+    private static void printPrizeResult(Map<Prize, Integer> prizeResult, StringBuilder sb) {
         for (Prize prize : Prize.values()) {
             if (prize == Prize.MISS) {
                 continue;
             }
-            if(!prizeResult.containsKey(prize)) {
-                sb.append(prize.toDefaultString()).append(" - ").append(0).append("개\n");
+            final int ZERO_MATCH_COUNT = 0;
+            if (!prizeResult.containsKey(prize)) {
+                sb.append(prize.toDefaultString()).append(" - ").append(ZERO_MATCH_COUNT).append("개\n");
                 continue;
             }
             sb.append(prize.toDefaultString()).append(" - ").append(prizeResult.get(prize)).append("개\n");
         }
+    }
+
+    private static void printProfitRate(double profitRate, StringBuilder sb) {
+        sb.append("총 수익률은 ").append(String.format("%.1f", profitRate)).append("%입니다.\n");
     }
 }

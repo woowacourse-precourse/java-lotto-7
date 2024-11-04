@@ -21,8 +21,8 @@ public class LottoFactory {
     }
 
     private static Lotto createLotto() {
-        List<Integer> numbersInRange = Randoms
-                .pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
+        List<Integer> numbersInRange = new ArrayList<>(Randoms
+                .pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE));
         Collections.sort(numbersInRange);
         return new Lotto(numbersInRange);
     }

@@ -17,6 +17,6 @@ public class Application {
         WinnerLotto winnerLotto = inputView.inputWinningNumbers();
         winnerLotto = inputView.inputBonusNumbers(winnerLotto);
         lottoManager = lottoManager.withWinningLotto(winnerLotto);
-        OutputView.printTotalResult(lottoManager.getPrizeResult(), purchaseAmount.getAmount());
+        OutputView.printTotalResult(lottoManager.getPrizeResult(), lottoManager.getProfitRate());
     }
 }

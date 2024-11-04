@@ -8,16 +8,19 @@ import lotto.error.ErrorCode;
 
 public class LottoManager {
 
+    private final int purchaseAmount;
     private final List<Lotto> publishedLottos;
     private final WinnerLotto winningLotto;
 
     public LottoManager(List<Lotto> publishedLottos) {
+        this.purchaseAmount = publishedLottos.size() * 1000;
         this.publishedLottos = publishedLottos;
         this.winningLotto = null;
     }
 
-    public LottoManager(List<Lotto> publishedLottos, WinnerLotto winningLotto) {
-        this.publishedLottos = publishedLottos;
+    public LottoManager(LottoManager lottoManager, WinnerLotto winningLotto) {
+        this.purchaseAmount = lottoManager.purchaseAmount;
+        this.publishedLottos = lottoManager.publishedLottos;
         this.winningLotto = winningLotto;
     }
 
@@ -28,7 +31,7 @@ public class LottoManager {
     }
 
     public LottoManager withWinningLotto(WinnerLotto winningLotto){
-        return new LottoManager(this.publishedLottos, winningLotto);
+        return new LottoManager(this, winningLotto);
     }
 
     public List<Lotto> getPublishedLottos() {
@@ -50,6 +53,16 @@ public class LottoManager {
             prizeResult.put(prize, prizeResult.getOrDefault(prize, 0) + 1);
         }
         return prizeResult;
+    }
+
+    public double getProfitRate() {
+        Map<Prize, Integer> prizeResult = getPrizeResult();
+        int totalWinningMoney = prizeResult.entrySet().stream()
+                .filter(entry -> entry.getKey() != Prize.MISS)
+                .map(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
+                .reduce(Integer::sum)
+                .orElse(0);
+        return (double) totalWinningMoney / purchaseAmount * 100;
     }
 
 }
