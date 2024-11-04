@@ -11,24 +11,24 @@ import lotto.validation.AmountValidator;
 import lotto.validation.Validator;
 
 public class ValidatorFactory {
-    public static Validator<Integer> createNumberRangeValidator(int min, int max, String errorMessage) {
-        return new NumberRangeValidator(min, max, errorMessage);
+    public static Validator<Integer> createNumberRangeValidator(int min, int max) {
+        return new NumberRangeValidator(min, max, ErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
     }
 
-    public static Validator<List<Integer>> createUniqueNumberValidator(String errorMessage) {
-        return new UniqueNumberValidator(errorMessage);
+    public static Validator<List<Integer>> createUniqueNumberValidator() {
+        return new UniqueNumberValidator(ErrorMessages.LOTTO_NUMBER_DUPLICATE);
     }
 
-    public static Validator<List<Integer>> createNumberCountValidator(int count, String errorMessage) {
-        return new NumberCountValidator(count, errorMessage);
+    public static Validator<List<Integer>> createNumberCountValidator(int count) {
+        return new NumberCountValidator(count, ErrorMessages.LOTTO_NUMBER_COUNT);
     }
 
-    public static Validator<String> createStringValidator(String errorMessage) {
-        return new StringValidator(errorMessage);
+    public static Validator<String> createStringValidator() {
+        return new StringValidator(ErrorMessages.WINNING_NUMBER_FORMAT);
     }
 
-    public static Validator<WinningNumbers> createBonusNumberValidator(int bonusNumber, String errorMessage) {
-        return new BonusNumberValidator(bonusNumber, errorMessage);
+    public static Validator<WinningNumbers> createBonusNumberValidator(int bonusNumber) {
+        return new BonusNumberValidator(bonusNumber, ErrorMessages.BONUS_NUMBER_DUPLICATE);
     }
 
     private static final Validator<Integer> amountValidator = AmountValidator.getInstance();
@@ -36,5 +36,4 @@ public class ValidatorFactory {
     public static Validator<Integer> getAmountValidator() {
         return amountValidator;
     }
-
 }
