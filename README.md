@@ -67,32 +67,23 @@
 
 **Rank**
 
-- **`FIRST`**  
-  6개 숫자 일치, 보너스 번호 필요 없음. 상금: 2,000,000,000원.
+- **`FIRST`**  :6개 숫자 일치, 보너스 번호 필요 없음. 상금: 2,000,000,000원.
 
-- **`SECOND`**  
-  5개 숫자 일치, 보너스 번호 일치. 상금: 30,000,000원.
+- **`SECOND`**  :5개 숫자 일치, 보너스 번호 일치. 상금: 30,000,000원.
 
-- **`THIRD`**  
-  5개 숫자 일치, 보너스 번호 불일치. 상금: 1,500,000원.
+- **`THIRD`**  :5개 숫자 일치, 보너스 번호 불일치. 상금: 1,500,000원.
 
-- **`FOURTH`**  
-  4개 숫자 일치. 상금: 50,000원.
+- **`FOURTH`**  :4개 숫자 일치. 상금: 50,000원.
 
-- **`FIFTH`**  
-  3개 숫자 일치. 상금: 5,000원.
+- **`FIFTH`**  : 3개 숫자 일치. 상금: 5,000원.
 
-- **`NONE`**  
-  당첨되지 않은 경우, 상금 없음.
+- **`NONE`**  : 당첨되지 않은 경우, 상금 없음.
 
-- **`determineRank(int matchCount, boolean matchBonus)`**  
-  매칭된 숫자 개수와 보너스 일치 여부로 `Rank`를 결정하여 반환. 특히 5개 일치 시 보너스 번호 여부에 따라 `SECOND`와 `THIRD`로 구분.
+- **`determineRank(int matchCount, boolean matchBonus)`** : 매칭된 숫자 개수와 보너스 일치 여부로 `Rank`를 결정하여 반환. 특히 5개 일치 시 보너스 번호 여부에 따라 `SECOND`와 `THIRD`로 구분.
 
-- **`getPrize()`**  
-  각 `Rank`의 상금 금액 반환.
+- **`getPrize()`**  : 각 `Rank`의 상금 금액 반환.
 
-- **`generateResultMessage(int count)`**  
-  해당 `Rank`의 결과 메시지를 형식화하여 반환.
+- **`generateResultMessage(int count)`** : 해당 `Rank`의 결과 메시지를 형식화하여 반환.
 
 ---
 
@@ -218,8 +209,7 @@
 
 **ApplicationFactory**
 
-- **`createLottoController()`**: `LottoController` 인스턴스를 생성하고 필요한 모든 종속성을 주입하여 반환. 프로그램의 메인 진입점에서 컨트롤러 생성과 관련된 복잡성을 간소화.
-- `ApplicationFactory`는 프로그램 실행의 핵심 구성 요소를 생성하고 설정하는 역할을 담당하여 전체 코드의 의존성 관리와 생성의 단순화를 돕습니다.
+- **`createLottoController()`**: `LottoController` 인스턴스를 생성하고 필요한 모든 종속성을 주입하여 반환. 프로그램의 메인 진입점에서 컨트롤러 생성과 관련된 복잡성 간소화.
 
 ---
 
