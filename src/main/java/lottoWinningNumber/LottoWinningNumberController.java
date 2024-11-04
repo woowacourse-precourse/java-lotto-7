@@ -1,6 +1,7 @@
 package lottoWinningNumber;
 
 import java.util.List;
+import utils.StaticFinalMessages;
 
 public class LottoWinningNumberController {
     private final LottoWinningNumberInputter lottoWinningNumberInputter;
@@ -14,11 +15,16 @@ public class LottoWinningNumberController {
     }
 
     public List<Integer> getWinningNumbers() {
-        String lottoWinningNumber = lottoWinningNumberInputter.runAndBringInput();
-        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.runAndBringSeperatedLottoWinningNumbers(
-                lottoWinningNumber);
-        lottoWinningNumberValidator.validateAllThing(seperatedLottoWinningNumbers);
-
-        return lottoWinningNumberValidator.convertToCompareNumbers(seperatedLottoWinningNumbers);
+        while (true) {
+            String lottoWinningNumber = lottoWinningNumberInputter.runAndBringInput();
+            List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.runAndBringSeperatedLottoWinningNumbers(
+                    lottoWinningNumber);
+            if (lottoWinningNumberValidator.validateAllThing(seperatedLottoWinningNumbers)) {
+                return lottoWinningNumberValidator.convertToCompareNumbers(seperatedLottoWinningNumbers);
+            } else {
+                System.out.println(StaticFinalMessages.ERROR_TEXT_INFRONT_OF_DETAILS
+                        + StaticFinalMessages.RECOMMAND_MESSAGE_FOR_ENTERING_CORRECT_LOTTO_WINNING_NUMBER);
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 package lottoBonusNumber;
 
 import java.util.List;
+import utils.StaticFinalMessages;
 
 public class LottoBonusNumberController {
     private final LottoBonusNumberInputter lottoBonusNumberInputter;
@@ -14,9 +15,14 @@ public class LottoBonusNumberController {
     }
 
     public int getBonusNumber() {
-        String bonusNumber = lottoBonusNumberInputter.runAndBringInput();
-        lottoBonusNumberValidator.validateAllThing(bonusNumber, lottoWinningNumber);
-
-        return Integer.parseInt(bonusNumber);
+        while (true) {
+            String bonusNumber = lottoBonusNumberInputter.runAndBringInput();
+            if (lottoBonusNumberValidator.validateAllThing(bonusNumber, lottoWinningNumber)) {
+                return Integer.parseInt(bonusNumber);
+            } else {
+                System.out.println(StaticFinalMessages.ERROR_TEXT_INFRONT_OF_DETAILS
+                        + StaticFinalMessages.RECOMMAND_MESSAGE_FOR_ENTERING_CORRECT_LOTTO_BONUS_NUMBER);
+            }
+        }
     }
 }
