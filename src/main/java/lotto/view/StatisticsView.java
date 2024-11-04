@@ -1,10 +1,13 @@
-package lotto;
+package lotto.view;
 
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constant.Rank;
+import lotto.model.Money;
+import lotto.model.Statistics;
 
 public class StatisticsView {
 

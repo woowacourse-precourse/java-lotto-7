@@ -1,8 +1,11 @@
-package lotto;
+package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.constant.Rank;
+import lotto.model.Money;
+import lotto.model.Statistics;
 import org.junit.jupiter.api.Test;
 
 public class StatisticsTest {

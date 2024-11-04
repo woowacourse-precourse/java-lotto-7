@@ -1,9 +1,13 @@
-package lotto;
+package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
+import lotto.constant.Rank;
+import lotto.model.Lotto;
+import lotto.model.LottoNumber;
+import lotto.model.LottoReferee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

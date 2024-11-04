@@ -1,7 +1,8 @@
-package lotto;
+package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.Rank;
 
 public class LottoReferee {
 

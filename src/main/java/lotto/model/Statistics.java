@@ -1,9 +1,10 @@
-package lotto;
+package lotto.model;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import lotto.constant.Rank;
 
 public class Statistics {
 

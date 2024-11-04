@@ -1,7 +1,17 @@
-package lotto;
+package lotto.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
+import lotto.model.Lotto;
+import lotto.model.LottoMachine;
+import lotto.model.LottoNumber;
+import lotto.model.LottoReferee;
+import lotto.model.Money;
+import lotto.model.Statistics;
+import lotto.view.InputView;
+import lotto.view.OutputView;
+import lotto.constant.Rank;
+import lotto.view.StatisticsView;
 
 public class LottoController {
     private final InputView inputView;
