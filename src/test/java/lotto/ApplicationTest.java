@@ -70,6 +70,13 @@ class ApplicationTest extends NsTest {
                 .hasMessageContaining(ERROR_MESSAGE); // 이 부분에 정확한 메시지를 넣어야 합니다.
     }
 
+    @Test
+    void 당첨_번호_6개가_아닌_경우() {
+        assertThatThrownBy(() -> runException("1000","1,2,3,4,5,6,7"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE); // 이 부분에 정확한 메시지를 넣어야 합니다.
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
