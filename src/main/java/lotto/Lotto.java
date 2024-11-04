@@ -14,11 +14,11 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        numbers.stream()
+        int count = (int) numbers.stream()
                 .distinct()
-                .findFirst()
-                .ifPresent(number -> {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 중복값이 허용되지 않습니다.");
-                });
+                .count();
+        if (count != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복값이 허용되지 않습니다.");
+        }
     }
 }

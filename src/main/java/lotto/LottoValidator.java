@@ -16,11 +16,11 @@ public class LottoValidator {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ERROR_LOG + INVALID_LOTTO_LENGTH);
         }
-        numbers.stream()
+        int count = (int) numbers.stream()
                 .distinct()
-                .findFirst()
-                .ifPresent(number -> {
-                    throw new IllegalArgumentException(ERROR_LOG + DUPLICATE_LOTTO_NUMBER);
-                });
+                .count();
+        if (count != numbers.size()) {
+            throw new IllegalArgumentException(ERROR_LOG + DUPLICATE_LOTTO_NUMBER);
+        }
     }
 }
