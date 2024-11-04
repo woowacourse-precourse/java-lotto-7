@@ -16,7 +16,7 @@ public class Application {
         System.out.println("\n%d개를 구매했습니다.".formatted(lottos.size()));
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
 
-        List<Integer> winningNumbers = repeatUntilSuccess(Application::drawWinningNumbers ());
+        List<Integer> winningNumbers = repeatUntilSuccess(Application::drawWinningNumbers);
         int bonusNumber = repeatUntilSuccess(() -> drawBonus(winningNumbers));
 
         LottoMachine machine = new LottoMachine();
