@@ -1,12 +1,15 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.constant.DrawType;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.Lottos;
+import lotto.model.dto.LottoGameResult;
 import lotto.validator.PurchasePriceValidator;
 import lotto.validator.WinningNumValidator;
 import lotto.view.InputView;
@@ -39,11 +42,13 @@ public class LottoGameController {
         List<Integer> winningNum = getWinningNum();
         Lotto winningLotto = new Lotto(winningNum);
 
-        String bonusNum = getBonusNum();
-        lottoGame = new LottoGame(purchasedLottos, winningLotto, Integer.parseInt(bonusNum));
+        int bonusNum = Integer.parseInt(getBonusNum());
+        lottoGame = new LottoGame(purchasedLottos, winningLotto, bonusNum);
         lottoGame.draw();
-        Map<DrawType, Integer> drawTypeIntegerMap = lottoGame.generateDrawResult();
-        long earns = lottoGame.calculateEarns(drawTypeIntegerMap, purchasePrice);
+
+        Map<DrawType, Integer> drawResult = lottoGame.generateDrawResult();
+        double earns = lottoGame.calculateEarns(drawResult, purchasePrice);
+        showDrawResults(drawResult, earns);
     }
 
     private String getPurchasePrice() {
@@ -86,5 +91,47 @@ public class LottoGameController {
             }
         }
         return bonusNum;
+    }
+
+    private void showDrawResults(Map<DrawType, Integer> drawResult, double earns) {
+        List<LottoGameResult> result = new ArrayList<>();
+
+        Map<DrawType, Integer> formattedFinalResult = formatFinalResult(drawResult);
+
+        for (Map.Entry<DrawType, Integer> entry : formattedFinalResult.entrySet()) {
+            DrawType drawType = entry.getKey();
+            int matchNum = getMatchNum(drawType);
+            int matchPrize = drawType.getPrize();
+            int matchCount = entry.getValue();
+            result.add(new LottoGameResult(matchNum, matchPrize, matchCount));
+        }
+
+        outputView.showDrawResults(result, earns);
+    }
+
+    private static Map<DrawType, Integer> formatFinalResult(Map<DrawType, Integer> drawResult) {
+        List<Map.Entry<DrawType, Integer>> entryList = new ArrayList<>(drawResult.entrySet());
+
+        entryList.sort(Comparator.comparingInt(entry -> getMatchNum(entry.getKey())));
+        if (!entryList.isEmpty()) {
+            entryList.remove(entryList.getFirst());
+        }
+
+        Map<DrawType, Integer> formattedResult = new LinkedHashMap<>();
+        for (Map.Entry<DrawType, Integer> entry : entryList) {
+            formattedResult.put(entry.getKey(), entry.getValue());
+        }
+
+        return formattedResult;
+    }
+
+    private static int getMatchNum(DrawType drawType) {
+        int matchNum;
+        try {
+            matchNum = Integer.parseInt(drawType.getValue());
+        } catch (NumberFormatException e) {
+            matchNum = 5;
+        }
+        return matchNum;
     }
 }

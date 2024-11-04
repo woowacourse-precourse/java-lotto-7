@@ -37,7 +37,7 @@ public class LottoGame {
         return result;
     }
 
-    public long calculateEarns(Map<DrawType, Integer> drawTypeIntegerMap, int purchasePrice) {
+    public double calculateEarns(Map<DrawType, Integer> drawTypeIntegerMap, int purchasePrice) {
         int totalEarnings = 0;
 
         for (Map.Entry<DrawType, Integer> entry : drawTypeIntegerMap.entrySet()) {
@@ -47,6 +47,6 @@ public class LottoGame {
             totalEarnings += drawType.getPrize() * count;
         }
 
-        return Math.round(((float) totalEarnings / purchasePrice) * 100);
+        return Math.round(((double) totalEarnings / purchasePrice) * 100);
     }
 }
