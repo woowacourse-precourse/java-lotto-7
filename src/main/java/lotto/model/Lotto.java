@@ -5,20 +5,20 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constants.LottoConstants;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-
-        List<Integer> sortedNumbers = new ArrayList<>(numbers); // 새로운 ArrayList로 복사
-        Collections.sort(sortedNumbers); // 정렬
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
         this.numbers = Collections.unmodifiableList(sortedNumbers);
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConstants.NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
