@@ -29,7 +29,6 @@ public class Application {
             int bonusNumber = Integer.parseInt(Console.readLine());
             validateBonusNumber(bonusNumber, winningNumbers);
 
-            // 당첨 결과 계산 및 출력
             LottoResult lottoResult = new LottoResult();
             for (Lotto lotto : purchasedLottos) {
                 int matchingCount = countMatchingNumbers(lotto.getNumbers(), winningNumbers);
@@ -43,14 +42,12 @@ public class Application {
         }
     }
 
-    // 구입 금액 검증: 1,000원 단위 확인
     private static void validatePurchaseAmount(int amount) {
         if (amount < 1000 || amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
 
-    // 로또 티켓 발행 메서드
     private static List<Lotto> generateLottoTickets(int count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -60,7 +57,6 @@ public class Application {
         return lottos;
     }
 
-    // 당첨 번호 입력을 처리하고 검증
     private static List<Integer> parseAndValidateWinningNumbers(String input) {
         String[] numberStrings = input.split(",");
         if (numberStrings.length != 6) {
@@ -84,7 +80,6 @@ public class Application {
         return numbers;
     }
 
-    // 보너스 번호 검증
     private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
@@ -94,7 +89,6 @@ public class Application {
         }
     }
 
-    // 일치하는 숫자 개수 계산
     private static int countMatchingNumbers(List<Integer> ticketNumbers, List<Integer> winningNumbers) {
         int matchCount = 0;
         for (int number : ticketNumbers) {
