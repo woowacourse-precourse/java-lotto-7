@@ -3,10 +3,10 @@ package lotto.model;
 import java.util.Iterator;
 import java.util.List;
 
-public class Lottos implements Iterable<Lotto>{
+public class Lottos implements Iterable<Lotto> {
     private final List<Lotto> lottos;
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return List.copyOf(lottos);
     }
 
@@ -14,7 +14,7 @@ public class Lottos implements Iterable<Lotto>{
         this.lottos = lottos;
     }
 
-    public int getLottoCount(){
+    public int getLottoCount() {
         return lottos.size();
     }
 

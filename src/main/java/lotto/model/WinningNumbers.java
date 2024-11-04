@@ -9,12 +9,12 @@ public class WinningNumbers {
         this.winningNumbers = winningNumbers;
     }
 
-    public static WinningNumbers from(List<Integer> numbers){
+    public static WinningNumbers from(List<Integer> numbers) {
         Lotto lotto = new Lotto(numbers);
         return new WinningNumbers(lotto);
     }
 
-    public boolean contains(int number){
+    public boolean contains(int number) {
         return winningNumbers.contains(number);
     }
 

@@ -20,7 +20,7 @@ public enum WinningType {
         this.prize = prize;
     }
 
-    public int getPrize(){
+    public int getPrize() {
         return prize;
     }
 

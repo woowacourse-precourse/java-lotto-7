@@ -33,7 +33,7 @@ class LottoProfitRateCalculatorTest {
         WinningResult winningResult = lottoResultChecker.check(lottos);
 
         // when
-        double profitRate = calculateProfitRate(cost,winningResult);
+        double profitRate = calculateProfitRate(cost, winningResult);
 
         // then
         assertThat(profitRate).isEqualTo(250.0);

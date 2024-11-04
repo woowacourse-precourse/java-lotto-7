@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Objects;
+
 public class DrawnNumbers {
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
@@ -9,11 +11,11 @@ public class DrawnNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public WinningNumbers getWinningNumbers(){
+    public WinningNumbers getWinningNumbers() {
         return winningNumbers;
     }
 
-    public BonusNumber getBonusNumber(){
+    public BonusNumber getBonusNumber() {
         return bonusNumber;
     }
 

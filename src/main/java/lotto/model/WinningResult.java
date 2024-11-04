@@ -14,7 +14,7 @@ public class WinningResult {
         return winningResult.getOrDefault(type, 0);
     }
 
-    public Map<WinningType, Integer> getWinningResult(){
+    public Map<WinningType, Integer> getWinningResult() {
         return Map.copyOf(winningResult);
     }
 

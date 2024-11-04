@@ -11,11 +11,11 @@ public class LottoFactory {
     private static final int LOTTO_MAX_NUMBER = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    public static Lottos generateLottos(Cost cost){
+    public static Lottos generateLottos(Cost cost) {
         int lottoCount = calculateLottoCount(cost);
         List<Lotto> lottos = new ArrayList<>();
 
-        for(int i = 0; i < lottoCount; i++){
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
             Lotto lotto = new Lotto(lottoNumbers);
             lottos.add(lotto);
@@ -24,7 +24,7 @@ public class LottoFactory {
         return new Lottos(lottos);
     }
 
-    private static int calculateLottoCount(Cost cost){
+    private static int calculateLottoCount(Cost cost) {
         return cost.getValue() / LOTTO_PRICE;
     }
 }

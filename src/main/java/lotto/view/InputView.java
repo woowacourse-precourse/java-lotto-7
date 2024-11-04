@@ -7,11 +7,11 @@ public class InputView {
         return readConsoleInput();
     }
 
-    public static String inputWinningNumbers(){
-        return  readConsoleInput();
+    public static String inputWinningNumbers() {
+        return readConsoleInput();
     }
 
-    public static String inputBonusNumber(){
+    public static String inputBonusNumber() {
         return readConsoleInput();
     }
 

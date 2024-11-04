@@ -43,7 +43,7 @@ public class LottoController {
         }
     }
 
-    private Lottos createAndDisplayLottos(Cost cost){
+    private Lottos createAndDisplayLottos(Cost cost) {
         Lottos lottos = LottoFactory.generateLottos(cost);
         displayLottos(LottosDto.from(lottos));
         displayNewLine();
@@ -75,14 +75,14 @@ public class LottoController {
         }
     }
 
-    private WinningResult checkAndDisplayWinningResult(Lottos lottos, DrawnNumbers drawnNumbers){
+    private WinningResult checkAndDisplayWinningResult(Lottos lottos, DrawnNumbers drawnNumbers) {
         LottoResultChecker lottoResultChecker = new LottoResultChecker(drawnNumbers);
         WinningResult winningResult = lottoResultChecker.check(lottos);
         displayWinningResult(new WinningResultDto(winningResult));
         return winningResult;
     }
 
-    private void calculateAndDisplayProfitRate(Cost cost, WinningResult winningResult){
+    private void calculateAndDisplayProfitRate(Cost cost, WinningResult winningResult) {
         double profitRate = calculateProfitRate(cost, winningResult);
         displayLottoProfitRate(profitRate);
     }

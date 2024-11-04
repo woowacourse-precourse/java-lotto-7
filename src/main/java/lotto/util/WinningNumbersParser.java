@@ -10,13 +10,13 @@ import static lotto.util.Validator.isEmpty;
 public class WinningNumbersParser {
     public static final String WINNING_NUMBERS_DEFAULT_DELIMITER = ",";
 
-    public static List<Integer> parse(String input){
+    public static List<Integer> parse(String input) {
         validateNotEmpty(input);
 
         return Arrays.stream(input.split(WINNING_NUMBERS_DEFAULT_DELIMITER))
                 .map(String::trim)
                 .map(part -> {
-                    try{
+                    try {
                         return Integer.parseInt(part);
                     } catch (NumberFormatException e) {
                         throw new IllegalArgumentException(LOTTO_NUMBER_NOT_INTEGER_ERROR);
@@ -25,7 +25,7 @@ public class WinningNumbersParser {
                 .toList();
     }
 
-    private static void validateNotEmpty(String input){
+    private static void validateNotEmpty(String input) {
         if (isEmpty(input)) {
             throw new IllegalArgumentException(INPUT_EMPTY_ERROR);
         }

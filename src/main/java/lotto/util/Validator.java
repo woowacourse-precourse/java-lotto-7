@@ -7,16 +7,16 @@ public class Validator {
         return items.stream().distinct().count() != items.size();
     }
 
-    public static boolean isInteger(String value){
-        try{
+    public static boolean isInteger(String value) {
+        try {
             Integer.parseInt(value);
             return true;
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    public static boolean isPositive(String value){
+    public static boolean isPositive(String value) {
         int castedValue = Integer.parseInt(value);
         return castedValue > 0;
     }
@@ -30,7 +30,7 @@ public class Validator {
         return true;
     }
 
-    public static boolean isEmpty(String input){
+    public static boolean isEmpty(String input) {
         return input == null || input.trim().isEmpty();
     }
 }

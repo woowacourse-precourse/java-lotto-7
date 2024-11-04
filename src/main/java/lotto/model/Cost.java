@@ -14,21 +14,21 @@ public class Cost {
         this.value = Integer.parseInt(value);
     }
 
-    public int getValue(){
+    public int getValue() {
         return value;
     }
 
-    private void validate(String value){
-        if(!isInteger(value) || !isPositive(value)){
+    private void validate(String value) {
+        if (!isInteger(value) || !isPositive(value)) {
             throw new IllegalArgumentException(COST_POSITIVE_INTEGER_ERROR);
         }
 
-        if(!isDividedThousand(value)){
+        if (!isDividedThousand(value)) {
             throw new IllegalArgumentException(DIVISIBLE_BY_THOUSAND_COST_ERROR);
         }
     }
 
-    public boolean isDividedThousand(String value){
+    public boolean isDividedThousand(String value) {
         int castedValue = Integer.parseInt(value);
         return castedValue % 1000 == 0;
     }
