@@ -21,12 +21,9 @@ public class LottoMachine {
     }
 
     public void run() {
-
         try {
-
             Input input = new Input();
             PurchaseAmount purchaseAmount = new PurchaseAmount(input.getPurchaseAmount());
-
 
             LottoTicket lottoTicket = generateLottoTicket(purchaseAmount);
             lottoTicket.showLottoTicket();
@@ -37,16 +34,9 @@ public class LottoMachine {
             lottoResult.evaluateLottoResults(lottoTicket, lottoNumbers);
             lottoResult.displayWinningStatistics();
 
-            double rateOfReturn = lottoResult.calculateRateOfReturn(purchaseAmount);
-            lottoResult.displayRateOfReturn(rateOfReturn);
-
+            lottoResult.displayRateOfReturn(lottoResult.calculateRateOfReturn(purchaseAmount));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
-
-
-
     }
-
 }
