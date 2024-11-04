@@ -13,7 +13,8 @@ public class LottoController {
     private final OutputView outputView;
     private final LottoService lottoService;
 
-    public LottoController(IteratorInputHandler iteratorInputHandler, OutputView outputView,
+    public LottoController(IteratorInputHandler iteratorInputHandler,
+                           OutputView outputView,
                            LottoService lottoService) {
         this.iteratorInputHandler = iteratorInputHandler;
         this.outputView = outputView;

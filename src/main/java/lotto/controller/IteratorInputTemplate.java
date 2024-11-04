@@ -1,22 +1,22 @@
 package lotto.controller;
 
-import java.util.function.Function;
 import java.util.function.Supplier;
+import lotto.converter.Converter;
 import lotto.view.OutputView;
 
-public class InputTemplate {
+public class IteratorInputTemplate {
 
     private final OutputView outputView;
 
-    public InputTemplate(OutputView outputView) {
+    public IteratorInputTemplate(OutputView outputView) {
         this.outputView = outputView;
     }
 
-    public <T> T execute(Supplier<String> inputSupplier, Function<String, T> converter) {
+    public <T> T execute(Supplier<String> inputSupplier, Converter<String, T> converter) {
         while (true) {
             try {
                 String input = inputSupplier.get();
-                return converter.apply(input);
+                return converter.convert(input);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }

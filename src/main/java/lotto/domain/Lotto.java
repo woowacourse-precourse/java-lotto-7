@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -10,7 +9,7 @@ public class Lotto {
     public static final Money LOTTO_PRICE = Money.from(1000L);
     private static final String NUMBER_SIZE_ERROR_MESSAGE = String.format("로또 번호는 %d개여야 합니다.", LOTTO_SIZE);
     private static final String NUMBER_RANGE_ERROR_MESSAGE =
-            String.format("보너스 번호는 %d이상 %d이하여야 합니다.", MIN_NUMBER, MAX_NUMBER);
+            String.format("로또 번호는 %d이상 %d이하여야 합니다.", MIN_NUMBER, MAX_NUMBER);
     private static final String DUPLICATED_NUMBER_ERROR_MESSAGE = "중복된 로또 번호가 존재합니다.";
 
     private final List<Integer> numbers;
@@ -50,7 +49,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return List.copyOf(numbers);
     }
 
     public boolean contains(Integer number) {

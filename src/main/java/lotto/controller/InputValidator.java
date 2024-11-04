@@ -25,7 +25,7 @@ public class InputValidator {
     }
 
     private void validateMaxAmount(long amount) {
-        if (amount > Integer.MAX_VALUE) {
+        if (amount > MAX_INPUT_AMOUNT) {
             throw new IllegalArgumentException(String.format("최대 %d까지 입력가능합니다.", MAX_INPUT_AMOUNT));
         }
     }
