@@ -1,5 +1,6 @@
 package lotto.committee;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -16,7 +17,8 @@ public class Lotto {
         }
     }
 
-    List<Integer> getNumbers() {
-        return numbers;
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
+
 }
