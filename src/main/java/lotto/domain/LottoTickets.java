@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.util.LottoConstants;
 import lotto.util.Ranking;
 
 public class LottoTickets {
@@ -48,7 +49,9 @@ public class LottoTickets {
         return (double) (profit - purchaseAmount) / purchaseAmount * 100;
     }
 
-    private void generateLottoTickets(int ticketCount) {
+    private void generateLottoTickets(int purchasAmount) {
+        int ticketCount = purchasAmount / LottoConstants.LOTTO_PRICE;
+
         for (int i = 0; i < ticketCount; i++) {
             List<Integer> lottoNumbers = generateLottoNumbers();
             lottos.add(new Lotto(lottoNumbers));
