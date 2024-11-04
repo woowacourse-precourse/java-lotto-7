@@ -31,46 +31,55 @@ public class InputView {
     public static List<Integer> readAndSplitNumber() {
         System.out.println(INPUT_WINNING_NUMBERS.getMessage());
         List<Integer> numbers = new ArrayList<>();
-
-        for (String splitString : Console.readLine().split(LOTTO_NUMBER_SEPARATOR)) {
-            try {
+        try {
+            for (String splitString : Console.readLine().split(LOTTO_NUMBER_SEPARATOR)) {
                 int number = Integer.parseInt(splitString.trim());
-
-                if (number < 1 && number > 45) {
-                    throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
-                }
-
-                if (numbers.contains(number)) {
-                    throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
-                }
+                validateOutOfLottoNumberRange(number);
+                checkAlreadyExistNumber(numbers, number);
                 numbers.add(number);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(NOT_NUMBER_FORMAT.getMessage());
             }
+            validateExactlySixNumber(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readAndSplitNumber();
         }
-
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
-        }
-
         return Collections.unmodifiableList(numbers);
     }
 
-    public static int readBonusNumber(Lotto LottoNumbers) {
+    public static int readBonusNumber(Lotto lotto) {
         System.out.println(INPUT_BONUS_NUMBER.getMessage());
         int bonusNumber;
         try {
             bonusNumber = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_FORMAT.getMessage());
-        }
-
-        if (LottoNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(DUPLICATED_WITH_WINNING_NUMBERS.getMessage());
-        }
-        if (bonusNumber < 1 && bonusNumber > 45) {
-            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
+            checKDuplicatedWithWinningNumber(lotto, bonusNumber);
+            validateOutOfLottoNumberRange(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBonusNumber(lotto);
         }
         return bonusNumber;
+    }
+
+    private static void validateExactlySixNumber(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
+        }
+    }
+
+    private static void checkAlreadyExistNumber(List<Integer> numbers, int number) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
+        }
+    }
+
+    private static void validateOutOfLottoNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
+        }
+    }
+    private static void checKDuplicatedWithWinningNumber(Lotto lotto, int bonusNumber) {
+        if (lotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATED_WITH_WINNING_NUMBERS.getMessage());
+        }
     }
 }
