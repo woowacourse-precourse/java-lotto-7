@@ -23,7 +23,6 @@ class LottoServiceTest {
         Lotto winnerLotto = new Lotto(winningNumbers);
         int bonusNumber = 7;
 
-        // 테스트할 로또 그룹 설정
         List<Lotto> lottoList = new ArrayList<>();
         lottoList.add(new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10))); // 3개 일치
         lottoList.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 10))); // 5개 일치
@@ -31,8 +30,6 @@ class LottoServiceTest {
         lottoList.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)));  // 5개 + 보너스 일치
 
         LottoGroup lottoGroup = LottoGroup.createLottoGroup(lottoList);
-
-        // 메서드 실행
         LottoService lottoService = LottoService.createLottoService();
         List<int[]> matchedList = lottoService.calculateMatched(lottoGroup, winnerLotto, bonusNumber);
 
@@ -53,7 +50,6 @@ class LottoServiceTest {
     @Test
     @DisplayName("payInput 비정상 입력 후 정상 입력 테스트")
     void payInputTest() {
-        // 정상적인 금액 입력 모킹
         String input = "asdf\n25\n8000\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -66,15 +62,42 @@ class LottoServiceTest {
     }
 
     @Test
-    void generateLottoGroup() {
-
-    }
-
-    @Test
+    @DisplayName("당첨 번호 생성 테스트")
     void generateWinnerLotto() {
+        String input = "asdf\n1,2,3,4,5,6\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        LottoService lottoService = LottoService.createLottoService();
+        Lotto lotto = lottoService.generateWinnerLotto();
+        assertNotNull(lotto, "lotto 객체가 null이 아닙니다.");
+        assertEquals("[1, 2, 3, 4, 5, 6]", lotto.getNumbers().toString(), "입력값이 예상과 다릅니다.");
     }
 
     @Test
+    @DisplayName("당첨 번호 랜덤 생성 테스트")
+    void generateRandomWinnerLotto() {
+        String input = "\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        LottoService lottoService = LottoService.createLottoService();
+        Lotto lotto = lottoService.generateWinnerLotto();
+        assertNotNull(lotto, "lotto 객체가 null이 아닙니다.");
+        assertEquals(lotto.getNumbers().size(), 6, "입력값이 예상과 다릅니다.");
+    }
+
+    @Test
+    @DisplayName("보너스 번호 입력 테스트")
     void validateBonusNumber() {
+        String input = "1,2,3,4,5,6\nasdf\n1\n7\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        LottoService lottoService = LottoService.createLottoService();
+        Lotto winnerLotto = lottoService.generateWinnerLotto();
+        int bonusNumber = lottoService.validateBonusNumber(winnerLotto);
+        assertNotNull(bonusNumber, "bonusNumber가 null이 아닙니다.");
+        assertEquals(7, bonusNumber, "입력값이 예상과 다릅니다.");
     }
 }
