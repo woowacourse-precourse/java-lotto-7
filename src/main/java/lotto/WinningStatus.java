@@ -7,26 +7,25 @@ import java.util.*;
 
 public class WinningStatus {
 
-    private WinningNumber winningNumber;
-    private BonusNumber bonusNumber;
-    private List<Lotto> lottoList;
-    private Set<Integer> winningSet;
-    private Map<Integer, Match> map;
+    private final BonusNumber bonusNumber;
+    private final Set<Integer> winningSet;
+    private final Map<Integer, Match> map;
 
 
-    public WinningStatus(WinningNumber winningNumber, BonusNumber bonusNumber, List<Lotto> lottoList) {
-        this.winningNumber = winningNumber;
+    public WinningStatus(WinningNumber winningNumber, BonusNumber bonusNumber) {
         this.bonusNumber = bonusNumber;
-        this.lottoList = lottoList;
         this.winningSet = new HashSet<>();
         this.map = new HashMap<>();
-
         winningSet.addAll(winningNumber.getLotto().getNumbers());
         map.put(3, Match.MATCH_3);
         map.put(4, Match.MATCH_4);
         map.put(5, Match.MATCH_5);
         map.put(6, Match.MATCH_6);
         map.put(7, Match.MATCH_5_BONUS);
+
+        for (Match match : Match.values()) {
+            match.init();
+        }
     }
 
     public void matchLotto(List<Lotto> lottoList) {

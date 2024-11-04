@@ -1,17 +1,15 @@
 package lotto;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        numbers.sort(Comparator.comparingInt(a -> a));
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>();
+        this.numbers.addAll(numbers);
+        this.numbers.sort(Comparator.comparingInt(a -> a));
     }
 
     private void validate(List<Integer> numbers) {

@@ -13,11 +13,10 @@ import java.util.List;
 
 public class LottoExecutor {
 
-    private Cost cost;
-    private WinningNumber winningNumber;
+    private final Cost cost;
+    private final WinningNumber winningNumber;
     private BonusNumber bonusNumber;
-    private List<Lotto> lottoList;
-    private WinningStatus winningStatus;
+    private final List<Lotto> lottoList;
 
     public LottoExecutor() {
         this.cost = new Cost();
@@ -45,11 +44,11 @@ public class LottoExecutor {
     }
 
     private void printStatus() {
+        int sum = 0;
         StringBuilder sb = new StringBuilder();
         DecimalFormat formatter = new DecimalFormat("#,###");
-        int sum = 0;
+        WinningStatus winningStatus = new WinningStatus(winningNumber, bonusNumber);
 
-        winningStatus = new WinningStatus(winningNumber, bonusNumber, lottoList);
         winningStatus.matchLotto(lottoList);
         sb.append("\n당첨 통계\n---\n");
 
@@ -57,11 +56,11 @@ public class LottoExecutor {
             sb.append(match.matchToString(formatter)).append("\n");
             sum += (match.getValue() * match.getCount());
         }
-        sb.append("총 수익률은 ").append(String.format("%.1f%%입니다.", calculateRate(sum)));
+        sb.append("총 수익률은 ").append(String.format("%.1f%%입니다.", calculateRate(sum, cost)));
         System.out.println(sb);
     }
 
-    private double calculateRate(int sum) {
+    private double calculateRate(int sum, Cost cost) {
         return (double) sum / cost.getCost() * 100;
     }
 

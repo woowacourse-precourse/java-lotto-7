@@ -15,6 +15,7 @@ public class BonusNumber implements Input {
 
     @Override
     public void validate(String input) {
+        validateInput(input);
         bonusNumber = Integer.parseInt(input);
 
         if (bonusNumber < 1 || bonusNumber > 45) {
@@ -25,6 +26,12 @@ public class BonusNumber implements Input {
             if (bonusNumber == number) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야합니다.");
             }
+        }
+    }
+
+    private void validateInput(String input) {
+        if (!input.matches("^[\\d]]*$")) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
         }
     }
 

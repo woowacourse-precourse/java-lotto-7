@@ -46,4 +46,8 @@ public enum Match {
         return match + "개 일치 (" + formatter.format(value)
                 + "원) - " + count + "개";
     }
+
+    public void init() {
+        count = 0;
+    }
 }
