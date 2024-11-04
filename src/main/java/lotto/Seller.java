@@ -26,7 +26,7 @@ public class Seller {
 
     public static List<Lotto> giveLotto(int numberOfLotto) {
         List<Lotto> lottoResult = new ArrayList<>();
-        for (int i = 0; i <numberOfLotto; i++) {
+        for (int i = 0; i < numberOfLotto; i++) {
             Lotto lotto = createLotto();
             System.out.println(lotto.getNumbers());
             lottoResult.add(lotto);

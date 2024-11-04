@@ -30,7 +30,8 @@ public class LottoCalculator {
         return Rank.of(matchCount, matchBonus);
     }
 
-    public static Map<Rank, Integer> calculateTotalRank(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public static Map<Rank, Integer> calculateTotalRank(List<Lotto> lottos, List<Integer> winningNumbers,
+                                                        int bonusNumber) {
         Map<Rank, Integer> rankCountMap = new HashMap<>();
         for (Lotto lotto : lottos) {
             Rank rank = calculateRank(lotto, winningNumbers, bonusNumber);
@@ -61,8 +62,7 @@ public class LottoCalculator {
 
     public static double calculateProfitRate(long totalReward, int purchaseAmount) {
         double profitRate = (double) totalReward / purchaseAmount * 100;
-        profitRate = Math.round(profitRate * 10) / 10.0; // 소수점 둘째 자리에서 반올림
+        profitRate = Math.round(profitRate * 10) / 10.0;
         return profitRate;
     }
-
 }

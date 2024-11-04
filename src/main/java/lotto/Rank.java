@@ -1,7 +1,5 @@
 package lotto;
 
-import java.util.List;
-
 public enum Rank {
     FIRST(6, false, "6개 일치 (2,000,000,000원)", 2_000_000_000),
     SECOND(5, true, "5개 일치, 보너스 볼 일치 (30,000,000원)", 30_000_000),
@@ -22,6 +20,15 @@ public enum Rank {
         this.reward = reward;
     }
 
+    public static Rank of(int matchCount, boolean matchBonus) {
+        for (Rank rank : Rank.values()) {
+            if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {
+                return rank;
+            }
+        }
+        return NONE;
+    }
+
     public String getResult() {
         return result;
     }
@@ -36,14 +43,5 @@ public enum Rank {
 
     public boolean isMatchBonus() {
         return matchBonus;
-    }
-
-    public static Rank of(int matchCount, boolean matchBonus) {
-        for (Rank rank : Rank.values()) {
-            if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {
-                return rank;
-            }
-        }
-        return NONE;
     }
 }

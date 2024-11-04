@@ -100,7 +100,7 @@ public class LottoCalculatorTest {
         int bonusNumber = 7;
 
         //when
-        Map<Rank, Integer> rankCount = LottoCalculator.calculateTotalRank(lottos,winningNumbers,bonusNumber);
+        Map<Rank, Integer> rankCount = LottoCalculator.calculateTotalRank(lottos, winningNumbers, bonusNumber);
 
         //then
         assertAll(
@@ -127,10 +127,10 @@ public class LottoCalculatorTest {
     void calculateProfitRateTest() {
         //given
         long totalReward = 10_000L;
-        int purchaseAmount =8000;
+        int purchaseAmount = 8000;
 
         //when
-        double profitRate = calculateProfitRate(totalReward,purchaseAmount);
+        double profitRate = calculateProfitRate(totalReward, purchaseAmount);
 
         //then
         assertThat(profitRate).isEqualTo(125);

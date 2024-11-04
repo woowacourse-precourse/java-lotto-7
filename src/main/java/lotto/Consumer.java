@@ -73,7 +73,7 @@ public class Consumer {
         String[] splitNumbers = input.split(",");
 
         List<Integer> winningNumbers = new ArrayList<>();
-        for (String number: splitNumbers) {
+        for (String number : splitNumbers) {
             winningNumbers.add(Integer.parseInt(number.trim()));
         }
         return winningNumbers;
