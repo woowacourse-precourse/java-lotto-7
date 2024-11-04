@@ -31,7 +31,7 @@ public class LottoService {
 
     public Lotto createWinningLottoNumbers(String numbersInput) {
         List<LottoNumber> numbers = Arrays.stream(Parser.splitWithDelimiter(numbersInput))
-                .map(Parser::parseToInt)
+                .map(input -> Parser.parseToInt(input.strip()))
                 .map(LottoNumber::new)
                 .toList();
 
