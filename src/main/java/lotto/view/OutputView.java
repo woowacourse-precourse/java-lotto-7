@@ -41,4 +41,8 @@ public class OutputView {
             System.out.println();
         }
     }
+
+    public static void printProfitRate(double profitRate) {
+        System.out.printf(StatisticsOutputMessage.PROFIT_RATE.getMessage(), profitRate);
+    }
 }

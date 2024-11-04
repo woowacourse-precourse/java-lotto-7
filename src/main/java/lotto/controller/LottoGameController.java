@@ -23,6 +23,9 @@ public class LottoGameController {
         int bonusNumber = lottoGameService.inputBonusNumber(winningNumbers);
 
         Map<Rank, Integer> results = hitNumberCalculator.calculateResults(purchasedLottos, winningNumbers, bonusNumber);
+        double profitRate = hitNumberCalculator.calculateProfitRate(results, lottoPurchase.getAmount());
+
         OutputView.printLottoResults(results);
+        OutputView.printProfitRate(profitRate);
     }
 }
