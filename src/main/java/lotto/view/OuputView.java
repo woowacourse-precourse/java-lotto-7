@@ -23,11 +23,11 @@ public class OuputView {
             """;
     private static final String LOTTO_PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    public void displayLottoCostPrompt(){
+    public static void displayLottoCostPrompt(){
         System.out.println(LOTTO_COST_PROMPT);
     }
 
-    public void displayLottos(LottosDto lottosDto){
+    public static void displayLottos(LottosDto lottosDto){
         System.out.printf(LOTTO_COUNT_MESSAGE,lottosDto.lottoCount());
 
         for(LottoDto lottoDto : lottosDto.lottos()){
@@ -37,20 +37,24 @@ public class OuputView {
         }
     }
 
-    public void displayWinningNumbersPrompt(){
+    public static void displayWinningNumbersPrompt(){
         System.out.println(WINNING_NUMBERS_PROMPT);
     }
 
-    public void displayBonusNumberPrompt(){
+    public static void displayBonusNumberPrompt(){
         System.out.println(BONUS_NUMBER_PROMPT);
     }
 
-    public void displayWinningResult(WinningResultDto winningResultDto){
+    public static void displayWinningResult(WinningResultDto winningResultDto){
         System.out.println(LOTTO_RESULT_HEADER);
         System.out.printf(LOTTO_RESULT_FORMAT, winningResultDto.getWinningTypeCounts().toArray());
     }
 
-    public void displayLottoProfitRate(double profitRate){
+    public static void displayLottoProfitRate(double profitRate){
         System.out.printf(LOTTO_PROFIT_RATE_MESSAGE, profitRate);
+    }
+
+    public static void displayExceptionMessage(String exceptionMessage) {
+        System.out.println(exceptionMessage);
     }
 }
