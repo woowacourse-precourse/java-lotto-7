@@ -9,7 +9,7 @@ public class OutputView {
 
     public void printLottoNumbers(List<LottoDTO> lottoDTOs, int budget) {
         int LottoCount = budget / 1000;
-        System.out.printf("Message.PURCHASED_NUMBERS.getMessage()", LottoCount);
+        System.out.printf(Message.PURCHASED_NUMBERS.getMessage() + "\n", LottoCount);
         for (LottoDTO lottoDTO : lottoDTOs) {
             System.out.println(lottoDTO.getNumbers());
         }

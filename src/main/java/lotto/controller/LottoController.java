@@ -42,15 +42,15 @@ public class LottoController {
 
         outputView.printLottoNumbers(userLottos.toDtoList(), budget);
 
-        // 당첨 번호와 보너스 번호 입력을 예외 처리와 함께 재시도
-        WinningLotto winningLotto = Retry.retryOnException(this::inputWinningLotto);
+        // 당첨 번호와 보너스 번호 입력을 별도의 메서드로 처리
+        WinningLotto winningLotto = inputWinningLotto();
+
         LottoResultDTO resultDTO = lottoService.checkWinnings(userLottos, winningLotto);
         outputView.printWinningResults(resultDTO);
 
         LottoStatisticsDTO statisticsDTO = lottoService.calculateProfitRate(budget, resultDTO.getTotalPrize());
         outputView.printProfitRate(statisticsDTO);
     }
-
 
     private Lottos purchaseLottos(int purchaseAmount) {
         int lottoCount = purchaseAmount / 1000;
@@ -62,16 +62,35 @@ public class LottoController {
     }
 
     private WinningLotto inputWinningLotto() {
-        InputLottoNumbersValidator validator = new InputLottoNumbersValidator();
-        String winningLotto = inputView.getLottoNumbers();
-        validator.validateSplitDelimiter(winningLotto);
-        String[] winningNumbers = winningLotto.split(DELIMITER);
-        List<Integer> winningNumbersList = new ArrayList<>();
-        for (String number : winningNumbers) {
-            winningNumbersList.add(Integer.parseInt(number.trim()));
-        }
-
-        int bonusNumber = Integer.parseInt(inputView.getBonusNumber());
+        List<Integer> winningNumbersList = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber(winningNumbersList);
         return new WinningLotto(winningNumbersList, bonusNumber);
+    }
+
+    private List<Integer> inputWinningNumbers() {
+        InputLottoNumbersValidator validator = new InputLottoNumbersValidator();
+        return Retry.retryOnException(() -> {
+            String winningLotto = inputView.getLottoNumbers();
+            validator.validateSplitDelimiter(winningLotto);
+            String[] winningNumbers = winningLotto.split(DELIMITER);
+            List<Integer> numbersList = new ArrayList<>();
+            for (String number : winningNumbers) {
+                numbersList.add(Integer.parseInt(number.trim()));
+            }
+            return numbersList;
+        });
+    }
+
+    private int inputBonusNumber(List<Integer> winningNumbersList) {
+        return Retry.retryOnException(() -> {
+            String bonusInput = inputView.getBonusNumber();
+            int bonus = InputConverter.convertInputNumber(bonusInput);
+
+            // 보너스 번호가 당첨 번호와 중복되지 않는지 검증
+            if (winningNumbersList.contains(bonus)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+            return bonus;
+        });
     }
 }
