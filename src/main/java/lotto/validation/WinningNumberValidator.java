@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constatnt.ExceptionMessage;
+import lotto.model.Lotto;
 
 public class WinningNumberValidator {
 
@@ -20,6 +21,7 @@ public class WinningNumberValidator {
         checkSize(lottoNumbers);
         checkRange(lottoNumbers);
         checkDuplicates(lottoNumbers);
+        this.winningNumbers = lottoNumbers;
     }
 
     public void validateBonusNumber(String bonusNumber) {
@@ -55,7 +57,7 @@ public class WinningNumberValidator {
     }
 
     private void checkIfBlank(String bonusNumber) {
-        if (bonusNumber == null || bonusNumber.isBlank()) {
+        if (bonusNumber == null || bonusNumber.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 빈 값이 될 수 없습니다.");
         }
     }
