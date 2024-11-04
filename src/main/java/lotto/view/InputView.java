@@ -9,7 +9,7 @@ import lotto.message.ErrorMessage;
 import lotto.validator.LottoAmountValidator;
 
 public class InputView {
-    public static int buyLotto() {
+    public static int inputLottoAmount() {
         OutputView.printLottoAmountInput();
         while (true) {
             try {
