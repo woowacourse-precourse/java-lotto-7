@@ -39,12 +39,6 @@ public class Lotto {
         }
     }
 
-
-
-    private List<Integer> pickNewLotto() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
     private int countCalculator(String input) {
         int money = integerParser(input);
 
@@ -66,7 +60,7 @@ public class Lotto {
     public void moneyInput() {
         printL("구입금액을 입력해 주세요.");
         int cnt = countCalculator(Console.readLine());
-
+        newLottos(cnt);
     }
 
     public void numbersInput() {
@@ -80,7 +74,7 @@ public class Lotto {
 
     }
 
-    private void saveNumbers(String input) {
+    public void saveNumbers(String input) {
         String[] numbersString = input.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
 
@@ -93,7 +87,26 @@ public class Lotto {
         numbers.addAll(winningNumbers);
     }
 
-    public void printNewLotto(int cnt) {
+    public void newLottos(int cnt) {
+        List<List<Integer>> lottos = new ArrayList<>();
+
+        for (int i = 0; i < cnt; i++) {
+            List<Integer> lotto = pickNewLotto();
+            lottos.add(lotto);
+        }
+
+        printNewLotto(cnt, lottos);
+        numbersInput();
+        bonusInput();
+    }
+
+
+
+    private List<Integer> pickNewLotto() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public void printNewLotto(int cnt, List<List<Integer>> lottos) {
         printL(cnt + "개를 구매했습니다.");
 
     }
