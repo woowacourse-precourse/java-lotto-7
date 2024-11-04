@@ -3,7 +3,6 @@ package lotto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LottoResult {
     private final Map<Rank, Integer> rankCounts = new HashMap<>();
@@ -18,7 +17,7 @@ public class LottoResult {
     }
 
     public Rank calculateResult(Lotto userLotto, WinningLotto winningLotto) {
-    	List<Integer> winningNumbers = winningLotto.getWinningNumbers();
+    	List<Integer> winningNumbers = winningLotto.getNumbers();
     	int bonusNumber = winningLotto.getBonusNumber();
     	
         int matchCount = (int) userLotto.getNumbers().stream().filter(winningNumbers::contains).count();
