@@ -31,4 +31,13 @@ public class BonusNumberTest {
         });
         assertEquals(INVALID_BONUS_NUMBER.message(), e.getMessage());
     }
+
+    @Test
+    void 보너스_번호가_한글이라면_예외발생() {
+        String bonusNumber = "일";
+        LottoException e = assertThrows(LottoException.class, () -> {
+            BonusNumberValidator.validate(winningNumbersDto, bonusNumber);
+        });
+        assertEquals(INVALID_BONUS_NUMBER.message(), e.getMessage());
+    }
 }
