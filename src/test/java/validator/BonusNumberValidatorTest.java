@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BonusNumberValidatorTest {
-    
+
     private List<Integer> lottoNumbers;
 
     @BeforeEach
@@ -47,6 +47,28 @@ public class BonusNumberValidatorTest {
 
         // when, then
         assertThatThrownBy(() -> BonusNumberValidator.validateBonusNumber(invalidBonusNumber, lottoNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복되지 않으면 예외가 발생하지 않는다.")
+    void 보너스_번호가_중복되지_않아서_예외가_발생하지_않는다() {
+        // given
+        int bonusNumber = 7;
+
+        // when, then
+        assertThatCode(() -> BonusNumberValidator.validateBonusNumber(bonusNumber, lottoNumbers))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
+    void 보너스_번호가_중복되어서_예외가_발생한다() {
+        // given
+        int bonusNumber = 3;
+
+        // when, then
+        assertThatThrownBy(() -> BonusNumberValidator.validateBonusNumber(bonusNumber, lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
