@@ -42,7 +42,6 @@ public final class OutputView {
             System.out.print(result);
             System.out.println(SUFFIX);
         }
-        System.out.println();
     }
 
     // 전체 로또 결과 관련 private 메서드

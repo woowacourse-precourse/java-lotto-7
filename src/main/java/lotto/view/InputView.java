@@ -19,11 +19,13 @@ public final class InputView {
     }
 
     public static String getWinningNumbers() {
+        System.out.println();
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
         return Console.readLine().trim();
     }
 
     public static int getBonusNumber() {
+        System.out.println();
         System.out.println(INPUT_BONUS_NUMBER);
         String bonusNumber = Console.readLine().trim();
         InputValidator.validateBonusNumberType(bonusNumber);
