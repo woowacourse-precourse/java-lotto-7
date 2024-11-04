@@ -13,6 +13,6 @@ public enum LottoConfigurationExceptionMessage implements ExceptionMessage {
 
     @Override
     public String getMessage() {
-        return "";
+        return message;
     }
 }

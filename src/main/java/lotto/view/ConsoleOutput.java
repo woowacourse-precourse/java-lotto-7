@@ -62,4 +62,5 @@ public class ConsoleOutput {
     private void printProfitRate(double profitRate) {
         ConsoleUtils.printFormattedMessage(PROFIT_RATE_FORMAT, profitRate);
     }
+
 }

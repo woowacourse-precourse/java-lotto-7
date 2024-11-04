@@ -14,10 +14,14 @@ public class InputRetryUtil {
     final private ConsoleInput consoleInput;
     final private ConsoleOutput consoleOutput;
 
+    // constructor for dependency injection
+
     public InputRetryUtil(ConsoleInput consoleInput, ConsoleOutput consoleOutput) {
         this.consoleInput = consoleInput;
         this.consoleOutput = consoleOutput;
     }
+
+    // public methods
 
     public int getValidatedPurchaseAmount() {
         return readValidatedInput(consoleInput::getPurchasedAmount, InputParser::parseInteger,
@@ -33,6 +37,8 @@ public class InputRetryUtil {
         return readValidatedInput(consoleInput::getBonusNumber, InputParser::parseInteger,
                 bonusNumber -> WinningNumbersValidator.bonusNumber(winningNumbers, bonusNumber));
     }
+
+    // private methods
 
     private <T> T readValidatedInput(Supplier<String> inputSupplier, Function<String, T> parser,
                                      Consumer<T> validator) {

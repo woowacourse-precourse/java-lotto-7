@@ -20,7 +20,6 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-
     public void run() {
         // input
         LottoControllerInputDto inputDto = getUserInputs();

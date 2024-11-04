@@ -10,6 +10,7 @@ import lotto.configuration.LottoConfiguration;
 import lotto.exception.ExceptionUtils;
 
 public class WinningNumbersValidator {
+
     public static void validate(List<Integer> mainNumbers, int bonusNumber) {
         mainNumbers(mainNumbers);
         bonusNumber(mainNumbers, bonusNumber);
@@ -30,4 +31,5 @@ public class WinningNumbersValidator {
             throw ExceptionUtils.IllegalArgument(NULL_OR_EMPTY_NUMBERS);
         }
     }
+
 }

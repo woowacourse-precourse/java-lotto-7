@@ -13,6 +13,7 @@ import java.util.Objects;
 import lotto.exception.ExceptionUtils;
 
 public class LottoValidator {
+
     public static void validate(List<Integer> numbers) {
         if (numbers == null || numbers.isEmpty() || numbers.stream().anyMatch(Objects::isNull)) {
             throw ExceptionUtils.IllegalArgument(NULL_OR_EMPTY_NUMBERS);
@@ -28,4 +29,5 @@ public class LottoValidator {
             throw ExceptionUtils.IllegalArgument(NUMBER_OUT_OF_RANGE);
         }
     }
+
 }

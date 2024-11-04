@@ -15,7 +15,6 @@ public class PaymentAmount {
         return amount / LottoConfiguration.LOTTO_PRICE.getValue();
     }
 
-
     public int getAmount() {
         return amount;
     }

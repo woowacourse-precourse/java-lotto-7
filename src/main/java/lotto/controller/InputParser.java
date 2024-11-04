@@ -9,6 +9,8 @@ import lotto.exception.ExceptionUtils;
 
 public class InputParser {
 
+    // public methods
+
     public static List<Integer> parseIntegers(String input) {
         validate(input);
         List<Integer> numbers = Arrays.stream(input.split(","))
@@ -25,6 +27,8 @@ public class InputParser {
         validate(input);
         return parseSingleInteger(input);
     }
+
+    // private methods
 
     private static void validate(String input) {
         if (input == null || input.isBlank()) {

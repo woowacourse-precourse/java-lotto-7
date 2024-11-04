@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.NoSuchElementException;
 
 public class ConsoleInputProvider implements InputProvider {
+
     @Override
     public String readLine() {
         try {
@@ -19,4 +20,5 @@ public class ConsoleInputProvider implements InputProvider {
     public void close() {
         Console.close();
     }
+
 }
