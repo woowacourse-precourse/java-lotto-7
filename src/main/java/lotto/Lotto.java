@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -7,6 +8,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateRange(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -20,5 +23,15 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateRange(List<Integer> numbers) {
+        if (!(numbers.stream().allMatch(num -> num >= 1 && num <= 45))) {
+            throw new IllegalArgumentException("[ERROR] 1~45 사이의 값이어야 합니다.");
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        if (!(numbers.size() == new HashSet<>(numbers).size())) {
+            throw new IllegalArgumentException("[ERROR] 중복된 값은 불가능합니다");
+        }
+    }
 }
