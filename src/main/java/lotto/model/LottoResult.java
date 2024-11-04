@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class LottoResult {
 
     public Map<WinningStatus, Integer> getResult() {
         result.remove(WinningStatus.NO_WIN);
-        return result;
+        return Collections.unmodifiableMap(result);
     }
 
     public static LottoResult createResult(WinningLotto winningLotto, List<Lotto> lottos) {
