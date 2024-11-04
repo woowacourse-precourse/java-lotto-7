@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,6 +20,12 @@ public class Application {
             lottoCount = money / 1000;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해야 합니다.");
+        }
+
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(numbers));
         }
 
         System.out.println("당첨 번호를 입력해 주세요.");
