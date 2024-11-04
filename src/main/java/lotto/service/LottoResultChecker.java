@@ -1,12 +1,14 @@
 package lotto.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 
 public class LottoResultChecker {
-    private List<Integer> result = List.of(0, 0, 0, 0, 0);
+    private List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
     private long prize = 0L;
 
     public void lottoChecker(List<Lotto> lottos, Lotto winningNumber, Bonus bonus) {
@@ -23,7 +25,7 @@ public class LottoResultChecker {
 
     private void recordLottoResult(Rank rank) {
         if (rank.getRank() > 0) {
-            result.set(rank.getRank() - 1, 1);
+            result.set(rank.getRank() - 1, result.get(rank.getRank() - 1) + 1);
         }
         prize += rank.getPrize();
     }
