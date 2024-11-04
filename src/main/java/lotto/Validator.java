@@ -35,6 +35,12 @@ public class Validator {
         }
     }
 
+    private static void validateNumber(String input) {
+        validateWinningNumeric(input);
+        int number = Integer.parseInt(input);
+        validateNumberRange(number);
+    }
+
     private static void validateWinningNumeric(String input) {
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 함");
