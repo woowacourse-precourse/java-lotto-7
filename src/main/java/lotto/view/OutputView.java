@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -14,8 +15,9 @@ public class OutputView {
     private static final String BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String STATISTICS_HEADER = "\n당첨 통계\n---";
     private static final String MATCH_RESULT_MESSAGE = "%s (%s원) - %d개%n";
-    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.%n";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %s%%입니다.%n";
     private static final long DEFAULT_COUNT = 0L;
+    private static final DecimalFormat profitRateFormat = new DecimalFormat("#,##0.0##");
 
     private OutputView() {
     }
@@ -44,7 +46,9 @@ public class OutputView {
                 System.out.printf(MATCH_RESULT_MESSAGE, rank.getDescription(), formattedPrize, count);
             }
         }
-        System.out.printf(PROFIT_RATE_MESSAGE, profitRate);
+
+        String formattedProfitRate = profitRateFormat.format(profitRate);  // 소수점 포함 쉼표 포맷 적용
+        System.out.printf(PROFIT_RATE_MESSAGE, formattedProfitRate);
     }
 
     public static void printWinningNumberInputMessage() {
