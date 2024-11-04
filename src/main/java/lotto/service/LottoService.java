@@ -106,8 +106,8 @@ public class LottoService {
     }
 
     public int validateBonusNumber(String bonusNumber, WinningNumber winningNumberObject) {
-        Validator.isBlank(bonusNumber);
-        Validator.isPositiveNumber(bonusNumber);
+        Validator.isBlankBonusNumber(bonusNumber);
+        Validator.isPositiveBonusNumber(bonusNumber);
 
         int parsedBonusNumber = parseBonusNumberToInt(bonusNumber);
         Validator.isBetweenOneAndFortyFive(parsedBonusNumber);

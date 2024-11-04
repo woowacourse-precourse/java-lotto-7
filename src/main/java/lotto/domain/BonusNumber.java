@@ -10,4 +10,8 @@ public class BonusNumber {
     public int getNumber() {
         return bonusNumber;
     }
+
+    public boolean isValid() {
+        return bonusNumber >= 1 && bonusNumber <= 45;
+    }
 }

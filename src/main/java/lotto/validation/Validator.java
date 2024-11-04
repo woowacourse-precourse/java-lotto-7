@@ -17,7 +17,21 @@ public class Validator {
         return false;
     }
 
+    public static boolean isBlankBonusNumber(String bonusNumber) {
+        if (bonusNumber.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_BLANK_ERROR.getMessage());
+        }
+        return false;
+    }
+
     public static boolean isPositiveNumber(String inputCost) {
+        if (inputCost.matches(NUMBER_REGEX)) {
+            return true;
+        }
+        throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_NUMBER_ERROR.getMessage());
+    }
+
+    public static boolean isPositiveBonusNumber(String inputCost) {
         if (inputCost.matches(NUMBER_REGEX)) {
             return true;
         }
