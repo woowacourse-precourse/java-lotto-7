@@ -21,7 +21,12 @@ public class OutputView {
 
         for (LottoRank rank : LottoRank.values()) {
             if (rank == LottoRank.NONE) continue;
-            String bonusText = (rank == LottoRank.SECOND) ? ", 보너스 볼 일치" : "";
+
+            String bonusText = "";
+            if (rank == LottoRank.SECOND) {
+                bonusText = ", 보너스 볼 일치";
+            }
+
             System.out.printf("%d개 일치%s (%d원) - %d개%n",
                     rank.getMatchCount(),
                     bonusText,
