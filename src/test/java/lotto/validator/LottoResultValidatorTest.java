@@ -2,6 +2,7 @@ package lotto.validator;
 
 import lotto.entity.BonusNumber;
 import lotto.entity.WinningNumber;
+import lotto.enums.ExceptionMessage;
 import lotto.validator.model.LottoResultValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +20,8 @@ public class LottoResultValidatorTest {
     @MethodSource
     void 당청_번호와_보너스_번호가_중복되면_예외가_발생한다(WinningNumber winningNumber, BonusNumber bonusNumber){
         assertThatThrownBy(() -> new LottoResultValidator(winningNumber, bonusNumber).validate())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.WINNING_BONUS_NUMBER_DUPLICATED.getMessage());
     }
 
     static Stream<Arguments> 당청_번호와_보너스_번호가_중복되면_예외가_발생한다(){
