@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.validator.logicValidator.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,9 +12,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        LottoValidator.validateSize(numbers);
+        LottoValidator.validateNotEmpty(numbers);
+        LottoValidator.validateUnique(numbers);
     }
 
     // 매칭 개수를 계산하는 메서드
@@ -31,11 +32,6 @@ public class Lotto {
     public boolean isBonusMatch(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
-
-    //public List<Integer> getNumbers() {
-    //    return List.copyOf(numbers);  // 방어적 복사로 numbers 리스트를 반환
-    //}
-
 
     @Override
     public String toString() {

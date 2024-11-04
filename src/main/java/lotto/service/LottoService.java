@@ -65,6 +65,7 @@ public class LottoService {
 
         return Collections.unmodifiableMap(results);
     }
+    
 
     private int calculateMatchCount(Lotto ticket) {
         return ticket.checkMatch(winningNumbers.getWinningNumbers());

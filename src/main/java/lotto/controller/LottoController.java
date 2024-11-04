@@ -25,9 +25,9 @@ public class LottoController {
             printResults(user);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
+
             // 프로그램 종료 또는 다른 오류 처리 로직
         }
     }
