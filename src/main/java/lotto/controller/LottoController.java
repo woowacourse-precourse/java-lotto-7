@@ -8,6 +8,7 @@ import lotto.domain.LottoTicket;
 import lotto.domain.Money;
 import lotto.domain.PrizeResult;
 import lotto.domain.WinningLotto;
+import lotto.util.StringToLottoConverter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.util.StringToIntegerConverter;
@@ -50,9 +51,7 @@ public class LottoController {
     }
 
     private List<Integer> convertToLottoFormat(String inputValue) {
-        return Arrays.stream(inputValue.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        return StringToLottoConverter.convert(inputValue);
     }
 
     private int covertToInteger(String inputValue) {
