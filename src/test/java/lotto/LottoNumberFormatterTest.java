@@ -113,4 +113,12 @@ public class LottoNumberFormatterTest {
                 Arguments.of(List.of(1, 1, 2, 3, 4, 5), 7)
         );
     }
+
+    @DisplayName("로또 번호가 1~45 사이의 범위 외의 숫자일 경우")
+    @ParameterizedTest
+    @ValueSource(ints = {48, 0, -1})
+    void outOfBoundsExceptionTest(int bonus) {
+        assertThatThrownBy(() -> lottoNumberFormatter.outOfBounds(bonus)).isInstanceOf(
+                IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+    }
 }
