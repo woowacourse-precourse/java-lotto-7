@@ -24,7 +24,7 @@ public class LottoValidator implements  Validator{
 
     private void validateNumbersRange(String input) {
         int min = LottoValue.MIN_RANGE_NUMBER.getValue();
-        int max = LottoValue.MIN_RANGE_NUMBER.getValue();
+        int max = LottoValue.MAX_RANGE_NUMBER.getValue();
         boolean hasInvalidNumber = Converter.toNumberList(input).stream()
                 .anyMatch(number -> number < min || number > max);
         if (hasInvalidNumber) {
