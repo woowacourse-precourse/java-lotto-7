@@ -18,6 +18,10 @@ public class OutputView {
         }
     }
 
+    public static void promptWinningNumbersInput() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+    }
+
     public static void printErrorMessage(final String errorMessage) {
         System.out.println(errorMessage);
     }
