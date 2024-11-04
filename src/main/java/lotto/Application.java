@@ -2,6 +2,8 @@ package lotto;
 
 import enums.Prize;
 import functions.UserInput;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,7 +35,9 @@ public class Application {
         for (Prize rank : Prize.values()) {
             System.out.println(rank.getDescription() + lottoResult.get(rank.name()) + "개");
         }
+
         double rateOfReturn = lottoService.getRateOfReturn(lottoResult, numberOfTickets);
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        DecimalFormat df = new DecimalFormat("#,##0.0");
+        System.out.println("총 수익률은 " + df.format(rateOfReturn) + "%입니다.");
     }
 }
