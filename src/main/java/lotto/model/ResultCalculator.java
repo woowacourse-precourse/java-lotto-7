@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.HashMap;
 import java.util.Map;
+
 public class ResultCalculator {
     private final LottoList lottoList;
     private final WinningNumbers winningNumbers;
@@ -32,6 +33,7 @@ public class ResultCalculator {
         }
         return count;
     }
+
     public double calculateProfitRate(int purchaseCost) {
         double totalRevenue = 0;
 

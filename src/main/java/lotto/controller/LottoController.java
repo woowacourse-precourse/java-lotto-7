@@ -15,13 +15,13 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    public void startLotto(){
+    public void startLotto() {
         purchaseLotto();
         makeResult();
     }
 
     // 구매 단계
-    private void purchaseLotto(){
+    private void purchaseLotto() {
         // 개수
         String input = inputView.inputPurchaseAmount();
         amount = new Amount(input);
@@ -33,7 +33,7 @@ public class LottoController {
     }
 
     // 당첨 추첨 단계
-    private void makeResult(){
+    private void makeResult() {
         // 당첨 번호 입력
         String numbers = inputView.inputLottoNumbers();
         String bonus = inputView.inputBonusNumbers();

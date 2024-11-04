@@ -21,7 +21,7 @@ public class WinningNumbers {
         // 중복으로 들어가는 숫자 예외 처리
     }
 
-    private int parseStringToInt(String bonusNumberInput){
+    private int parseStringToInt(String bonusNumberInput) {
         return Integer.parseInt(bonusNumberInput);
     }
 

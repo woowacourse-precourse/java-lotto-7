@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.Arrays;
 
 public enum Rank {
-    DEFAULT(6, 0,false,"3개 미만", 0),
+    DEFAULT(6, 0, false, "3개 미만", 0),
     FIFTH(5, 3, false, "3개 일치 (5,000원) - ", 5000),
     FOURTH(4, 4, false, "4개 일치 (50,000원) - ", 50000),
     THIRD(3, 5, false, "5개 일치 (1,500,000원) - ", 1500000),
@@ -32,7 +32,6 @@ public enum Rank {
                 .orElse(DEFAULT);
     }
 
-    // Getters (필요시 추가)
     public int getRank() {
         return rank;
     }

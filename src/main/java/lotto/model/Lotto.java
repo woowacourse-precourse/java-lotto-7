@@ -17,7 +17,7 @@ public class Lotto {
         }
     }
 
-    private List<Integer> sortNumbers(List<Integer> numbers){
+    private List<Integer> sortNumbers(List<Integer> numbers) {
         numbers.sort(Integer::compareTo);
         return numbers;
     }
