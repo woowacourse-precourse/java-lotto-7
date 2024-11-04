@@ -74,6 +74,7 @@ public class LottoController {
         List<Integer> numbers = new ArrayList<>();
 
         for (String numberString : numbersString.split(",", -1)) {
+            validateLottoNumbersString(numberString);
             numbers.add(Integer.parseInt(numberString));
         }
 
@@ -81,12 +82,25 @@ public class LottoController {
     }
 
     private Integer changeStringToNumber(String numberString) throws IllegalArgumentException {
+        validateBonusNumberString(numberString);
         return Integer.parseInt(numberString);
     }
 
     private void validateLottoNumbersString(String numberString) throws IllegalArgumentException {
+
+        // 숫자만으로 구성되었는지 확인
+        numberString = numberString.trim();
+        if (!Pattern.matches("[\\d]+", numberString)) {
+            throw new IllegalArgumentException(ErrorStatus.INVALID_LOTTO_INPUT.getMessage());
+        }
     }
 
     private void validateBonusNumberString(String numberString) throws IllegalArgumentException {
+
+        // 숫자만으로 구성되었는지 확인
+        numberString = numberString.trim();
+        if (!Pattern.matches("[\\d]+", numberString)) {
+            throw new IllegalArgumentException(ErrorStatus.INVALID_BONUS_INPUT.getMessage());
+        }
     }
 }
