@@ -66,7 +66,17 @@ public class Lotto {
         }
     }
 
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber.getValue());
+    }
+
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
+    }
+
+    public int countMatchingNumbers(Lotto other) {
+        return (int) numbers.stream()
+                .filter(number -> other.contains(LottoNumber.from(number)))
+                .count();
     }
 }
