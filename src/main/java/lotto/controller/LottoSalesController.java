@@ -49,7 +49,7 @@ public class LottoSalesController {
     private PurchasedLottos purchaseLotto(Amount amount) {
         TicketCount ticketCount = new TicketCount(amount);
         PickLottoService pickLottoService = new PickLottoService();
-        PurchasedLottos purchasedLottos = pickLottoService.auto(ticketCount);
+        PurchasedLottos purchasedLottos = pickLottoService.autoIssue(ticketCount);
 
         outputView.printPurchasedLottos(ticketCount, purchasedLottos);
         return purchasedLottos;

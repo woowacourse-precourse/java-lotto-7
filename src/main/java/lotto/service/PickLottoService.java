@@ -19,7 +19,7 @@ public class PickLottoService {
     public PickLottoService() {
     }
 
-    public PurchasedLottos auto(TicketCount ticketCount) {
+    public PurchasedLottos autoIssue(TicketCount ticketCount) {
         List<Lotto> purchasedLottos = new ArrayList<>();
         for (int nowIdx = INIT_IDX; nowIdx < ticketCount.get(); nowIdx++) {
             purchasedLottos.add(nowIdx, new Lotto(getRandomNumbers()));
