@@ -1,9 +1,10 @@
 package lotto;
 
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class WinningNumbers {
-    //당첨번호와 보너스 번호 관리, 사용자 번호와 일치하는 개수 계산
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
@@ -14,7 +15,25 @@ public class WinningNumbers {
     }
     private void validate(List<Integer> winningNumbers, int bonusNumber){
         if(winningNumbers.size() !=6 || winningNumbers.contains(bonusNumber)){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException("[ERROR]");
+        }
+        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
+        if (uniqueNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
+        }
+
+        for (Integer number : winningNumbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45 사이여야 합니다.");
+            }
+        }
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이여야 합니다.");
         }
     }
     public int getBonusNumber(){
