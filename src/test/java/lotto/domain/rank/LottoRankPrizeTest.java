@@ -27,7 +27,7 @@ class LottoRankPrizeTest {
         final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
 
         final Lottos lottos = new Lottos(List.of(allMatched, fiveMatchedWithBonusNumber, fiveMatched, fourMatched, threeMatched));
-        final List<Lotto> lottoRanks = resultChecker.checkLottosRank(lottos);
+        final Lottos lottoRanks = resultChecker.checkLottosRank(lottos);
 
         // when
         final LottoRankPrize lottoRankPrize = new LottoRankPrize();
@@ -49,7 +49,7 @@ class LottoRankPrizeTest {
         final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
 
         final Lottos lottos = new Lottos(List.of(allMatched, fiveMatchedWithBonusNumber));
-        final List<Lotto> lottoRanks = resultChecker.checkLottosRank(lottos);
+        final Lottos lottoRanks = resultChecker.checkLottosRank(lottos);
 
         // when
         final LottoRankPrize lottoRankPrize = new LottoRankPrize();
@@ -71,7 +71,7 @@ class LottoRankPrizeTest {
         final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
 
         final Lottos lottos = new Lottos(List.of(allMatched, fiveMatchedWithBonusNumber));
-        final List<Lotto> lottoRanks = resultChecker.checkLottosRank(lottos);
+        final Lottos lottoRanks = resultChecker.checkLottosRank(lottos);
 
         // when
         final LottoRankPrize lottoRankPrize = new LottoRankPrize();
@@ -90,7 +90,7 @@ class LottoRankPrizeTest {
         final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
 
         final Lottos lottos = new Lottos(List.of());
-        final List<Lotto> lottoRanks = resultChecker.checkLottosRank(lottos);
+        final Lottos lottoRanks = resultChecker.checkLottosRank(lottos);
 
         // when
         final LottoRankPrize lottoRankPrize = new LottoRankPrize();

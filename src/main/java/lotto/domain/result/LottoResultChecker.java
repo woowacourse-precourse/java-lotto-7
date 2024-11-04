@@ -27,8 +27,8 @@ public class LottoResultChecker {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Lotto> checkLottosRank(final Lottos lottos) {
-        return lottos.lottos().stream().map(this::checkRank).toList();
+    public Lottos checkLottosRank(final Lottos lottos) {
+        return new Lottos(lottos.lottos().stream().map(this::checkRank).toList());
     }
 
     public Lotto checkRank(final Lotto lotto) {

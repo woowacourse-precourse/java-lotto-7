@@ -54,10 +54,10 @@ class LottoResultCheckerTest {
         final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
         // when
         final Lottos lottos = new Lottos(List.of(allMatched, fiveMatchedWithBonusNumber, fiveMatched, fourMatched, threeMatched));
-        final List<Lotto> lottosRank = resultChecker.checkLottosRank(lottos);
+        final Lottos lottosRank = resultChecker.checkLottosRank(lottos);
 
         // then
-        assertTrue(lottosRank.stream().map(Lotto::getRank).anyMatch(ranksToCheck::contains));
+        assertTrue(lottosRank.lottos().stream().map(Lotto::getRank).anyMatch(ranksToCheck::contains));
     }
 
     @Test

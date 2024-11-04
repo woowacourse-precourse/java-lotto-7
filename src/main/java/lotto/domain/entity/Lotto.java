@@ -5,10 +5,8 @@ import lotto.domain.exception.LottoException;
 import lotto.domain.exception.LottoNumberExceptionMessage;
 import lotto.util.ValidLottoNumber;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public class Lotto implements Iterable<Integer> {
 
@@ -65,13 +63,12 @@ public class Lotto implements Iterable<Integer> {
         return this.numbers.size();
     }
 
-    @Override
-    public Iterator<Integer> iterator() {
-        return this.numbers.iterator();
+    public String numbers() {
+        return numbers.toString();
     }
 
     @Override
-    public String toString() {
-        return numbers.toString();
+    public Iterator<Integer> iterator() {
+        return this.numbers.iterator();
     }
 }

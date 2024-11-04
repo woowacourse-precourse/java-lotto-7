@@ -33,7 +33,7 @@ public class LottoController {
 
         final LottoResultChecker resultChecker = createResultChecker();
 
-        final List<Lotto> checkedLottosRank = resultChecker.checkLottosRank(lottos);
+        final Lottos checkedLottosRank = resultChecker.checkLottosRank(lottos);
 
         final int profit = getProfit(checkedLottosRank);
 
@@ -54,7 +54,7 @@ public class LottoController {
         return new LottoResultChecker(winningNumbers, bonusNumber);
     }
 
-    private int getProfit(final List<Lotto> checkedLottosRank) {
+    private int getProfit(final Lottos checkedLottosRank) {
         return lottoRankPrize.calculateTotalPrize(checkedLottosRank);
     }
 }

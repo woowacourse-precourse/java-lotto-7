@@ -1,31 +1,28 @@
 package lotto.ui.output;
 
-import lotto.domain.entity.Lotto;
+import lotto.domain.entity.Lottos;
 import lotto.domain.rank.LottoRank;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ConsoleOutputView implements OutputView {
 
     @Override
-    public void printLottos(final List<Lotto> lottos) {
+    public void printLottos(final Lottos lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         lottos.forEach(lotto -> {
-            System.out.println(lotto.toString());
+            System.out.println(lotto.numbers());
         });
     }
 
     @Override
-    public void winningStats(final List<Lotto> ranks, final int profit) {
+    public void winningStats(final Lottos lottos, final int profit) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        Map<LottoRank, Long> rankCounts = ranks.stream()
-                .collect(Collectors.groupingBy(Lotto::getRank, Collectors.counting()));
+        final Map<LottoRank, Long> rankCounts = lottos.calculateRankCounts();
 
-        long totalCost = ranks.size() * 1000L;
+        long totalCost = lottos.lottos().size() * 1000L;
         double totalYield = ((double) profit / totalCost) * 100;
 
         // 각 랭크에 대한 통계를 출력
