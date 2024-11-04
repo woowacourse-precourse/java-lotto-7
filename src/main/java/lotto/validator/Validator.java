@@ -1,11 +1,11 @@
 package lotto.validator;
 
 public class Validator {
-  public static final String ERROR_MESSAGE = "[ERROR]";
+    public static final String ERROR_MESSAGE = "[ERROR]";
 
 
-  public static void throwInvalidInputException(String message) {
+    public static void throwInvalidInputException(String message) {
 
-    throw new IllegalArgumentException(ERROR_MESSAGE + message);
-  }
+        throw new IllegalArgumentException(ERROR_MESSAGE + message);
+    }
 }

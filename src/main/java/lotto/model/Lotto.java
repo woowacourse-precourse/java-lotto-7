@@ -4,25 +4,25 @@ import java.util.List;
 import lotto.validator.LottoValidator;
 
 public class Lotto {
-  private final List<Integer> numbers;
+    private final List<Integer> numbers;
 
-  public Lotto(List<Integer> numbers) {
-    validate(numbers);
-    this.numbers = numbers;
-  }
+    public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
+    }
 
-  public List<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
 
-    return this.numbers;
-  }
+        return this.numbers;
+    }
 
-  static public int getLottoPrice() {
-    int price = 1000;
+    static public int getLottoPrice() {
+        int price = 1000;
 
-    return price;
-  }
+        return price;
+    }
 
-  private void validate(List<Integer> numbers) {
-    LottoValidator.validate(numbers);
-  }
+    private void validate(List<Integer> numbers) {
+        LottoValidator.validate(numbers);
+    }
 }

@@ -5,25 +5,25 @@ import java.util.List;
 import lotto.view.InputView;
 
 public class MainController {
-  final private LottoTransactionController lottoTransactionController;
-  final private InputView inputView;
+    final private LottoTransactionController lottoTransactionController;
+    final private InputView inputView;
 
-  public MainController() {
+    public MainController() {
 
-    this.lottoTransactionController = new LottoTransactionController();
-    this.inputView = new InputView();
-  }
+        this.lottoTransactionController = new LottoTransactionController();
+        this.inputView = new InputView();
+    }
 
-  public void startLottoBusiness() {
-    int amount = inputView.requestPurchaseAmount();
-    lottoTransactionController.sellAutoLotto(amount);
+    public void startLottoBusiness() {
+        int amount = inputView.requestPurchaseAmount();
+        lottoTransactionController.sellAutoLotto(amount);
 
-    List<Integer> numbers = inputView.requestWinningNumbers();
-    int bonus = inputView.requestBonusNumber(numbers);
+        List<Integer> numbers = inputView.requestWinningNumbers();
+        int bonus = inputView.requestBonusNumber(numbers);
 
-    lottoTransactionController.compareWinningNumbers(numbers, bonus);
+        lottoTransactionController.compareWinningNumbers(numbers, bonus);
 
-    lottoTransactionController.showLottoStatistics();
-  }
+        lottoTransactionController.showLottoStatistics();
+    }
 
 }
