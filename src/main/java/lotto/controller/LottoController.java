@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
 import lotto.domain.WinningNumber;
@@ -108,7 +109,8 @@ public class LottoController {
     }
 
     public void validateBonusNumber() {
-        lottoService.validateBonusNumber(bonusNumber);
+        int parsedBonusNumber = lottoService.validateBonusNumber(bonusNumber);
+        BonusNumber bonusNumber = lottoService.addBonusNumber(parsedBonusNumber);
     }
 
 

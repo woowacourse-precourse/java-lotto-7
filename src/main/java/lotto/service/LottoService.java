@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
 import lotto.domain.WinningNumber;
@@ -104,16 +105,21 @@ public class LottoService {
         return new WinningNumber(validWinNumbers);
     }
 
-    public void validateBonusNumber(String bonusNumber) {
+    public int validateBonusNumber(String bonusNumber) {
         Validator.isBlank(bonusNumber);
         Validator.isPositiveNumber(bonusNumber);
 
         int parsedBonusNumber = parseBonusNumberToInt(bonusNumber);
         Validator.isBetweenOneAndFortyFive(parsedBonusNumber);
 
+        return parsedBonusNumber;
     }
 
     public int parseBonusNumberToInt(String bonusNumber) {
         return Parser.parseStringToInt(bonusNumber);
+    }
+
+    public BonusNumber addBonusNumber(int parsedBonusNumber) {
+        return new BonusNumber(parsedBonusNumber);
     }
 }
