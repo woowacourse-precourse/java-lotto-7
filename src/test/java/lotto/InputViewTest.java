@@ -18,11 +18,36 @@ public class InputViewTest extends NsTest {
     }
 
     @Test
-    void 구매금액_입력_비정상입력_예외발생() {
+    @DisplayName("숫자가 아닌 값 입력 시 예외 발생")
+    void inputPurchaseAmount_숫자가_아닌_값() {
         run("abc");
+
         assertThatThrownBy(() -> {
             InputView.inputPurchaseAmount();
-        }).isInstanceOf(NumberFormatException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 숫자만 입력 가능합니다.");
+    }
+
+    @Test
+    @DisplayName("1000원 단위로 나눠 떨어지지 않는 금액 입력 시 예외 발생")
+    void inputPurchaseAmount_1000원으로_나눠_떨어지지_않는_값() {
+        run("1500");
+
+        assertThatThrownBy(() -> {
+            InputView.inputPurchaseAmount();
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구매 금액은 1000원 단위여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("1000원 미만 금액 입력 시 예외 발생")
+    void inputPurchaseAmount_1000원_미만_값() {
+        run("0");
+
+        assertThatThrownBy(() -> {
+            InputView.inputPurchaseAmount();
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구매 금액은 1000원 이상이어야 합니다.");
     }
 
     @Test
