@@ -1,7 +1,9 @@
 package lotto.lottoMachine.lottoTotalResult;
 
+import java.util.Map;
 import lotto.LottoResultStore;
 import lotto.lottoMachine.calculateManager.LottoPrizeManager;
+import lotto.lottoMachine.utils.LottoResultStructure;
 
 public class LottoTotalResultManager {
     private final LottoResultStore resultStore = new LottoResultStore();
@@ -19,5 +21,9 @@ public class LottoTotalResultManager {
         LottoPrizeManager lottoPrizeManager = new LottoPrizeManager(resultStore.getResults());
 
         return lottoPrizeManager.getTotalPrize();
+    }
+
+    public Map<LottoResultStructure, Integer> getResults() {
+        return resultStore.getResults();
     }
 }
