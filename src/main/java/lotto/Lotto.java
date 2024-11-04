@@ -18,6 +18,10 @@ public class Lotto {
                 .toList();
     }
 
+    public Lotto(Integer... numbers) {
+        this(List.of(numbers));
+    }
+
     public static Lotto createRandomized() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(LottoNumber.RANGE_MINIMUM, LottoNumber.RANGE_MAXIMUM,
                 NUMBERS_LENGTH));
