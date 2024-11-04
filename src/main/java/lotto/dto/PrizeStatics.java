@@ -1,7 +1,7 @@
 package lotto.dto;
 
 import java.util.EnumMap;
-import lotto.domain.LottoPrize;
+import lotto.domain.lottoPrize.LottoPrize;
 import lotto.domain.LottoStatics;
 
 public record PrizeStatics(

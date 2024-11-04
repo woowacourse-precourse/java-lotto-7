@@ -1,10 +1,10 @@
 package lotto.domain;
 
-import static lotto.domain.LottoPrize.FIFTH_PRIZE;
-import static lotto.domain.LottoPrize.FOURTH_PRIZE;
-import static lotto.domain.LottoPrize.FRIST_PRIZE;
-import static lotto.domain.LottoPrize.SECOND_PRIZE;
-import static lotto.domain.LottoPrize.THIRD_PRIZE;
+import static lotto.domain.lottoPrize.LottoPrize.FIFTH_PRIZE;
+import static lotto.domain.lottoPrize.LottoPrize.FOURTH_PRIZE;
+import static lotto.domain.lottoPrize.LottoPrize.FRIST_PRIZE;
+import static lotto.domain.lottoPrize.LottoPrize.SECOND_PRIZE;
+import static lotto.domain.lottoPrize.LottoPrize.THIRD_PRIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.domain.lottoPrize.LottoPrize;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

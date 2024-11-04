@@ -6,7 +6,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.LottoPrize;
+import lotto.domain.lottoPrize.LottoPrize;
 import lotto.dto.IncomeStatics;
 import lotto.dto.PrizeStatics;
 import lotto.dto.PurchasedLottos;

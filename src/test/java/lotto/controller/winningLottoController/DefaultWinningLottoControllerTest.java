@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPrize;
+import lotto.domain.lottoPrize.LottoPrize;
 import lotto.domain.Number;
 import lotto.domain.WinningLotto;
 import lotto.testUtil.testDouble.InputHandlerStub;

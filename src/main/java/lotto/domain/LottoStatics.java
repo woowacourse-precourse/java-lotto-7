@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import lotto.domain.lottoPrize.LottoPrize;
 import lotto.domain.validator.ParamsValidator;
 
 final public class LottoStatics {
