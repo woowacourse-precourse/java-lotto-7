@@ -22,9 +22,10 @@ public class LottoShopTest {
     private static final int LOTTO_PRICE = 1_000;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    private final LottoShop lottoShop = new LottoShop();
-    private final SequentialRandomNumberGenerator sequentialRandomNumberGenerator = new SequentialRandomNumberGenerator();
-    private final RealRandomNumberGenerator realRandomNumberGenerator = new RealRandomNumberGenerator();
+    private static final LottoShop lottoShop = new LottoShop();
+    private static final SequentialRandomNumberGenerator sequentialRandomNumberGenerator =
+            new SequentialRandomNumberGenerator();
+    private static final RealRandomNumberGenerator realRandomNumberGenerator = new RealRandomNumberGenerator();
 
     static Stream<Arguments> 로또_구매_금액이_로또_가격의_배수가_아닐_경우_예외를_던진다_테스트_케이스() {
         return Stream.of(

@@ -16,10 +16,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("Lotto 테스트")
 class LottoTest {
 
-    private final int LOTTO_NUMBER_SIZE = 6;
-    private final DuplicateRandomNumberGenerator duplicateRandomNumberGenerator =
+    private static final int LOTTO_NUMBER_SIZE = 6;
+    private static final DuplicateRandomNumberGenerator duplicateRandomNumberGenerator =
             new DuplicateRandomNumberGenerator();
-    private final SequentialRandomNumberGenerator sequentialRandomNumberGenerator =
+    private static final SequentialRandomNumberGenerator sequentialRandomNumberGenerator =
             new SequentialRandomNumberGenerator();
 
     @Test

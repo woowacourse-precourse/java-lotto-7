@@ -22,9 +22,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("WinningLotto 테스트")
 public class WinningLottoTest {
 
-    private final int WINNING_LOTTO_NUMBER_SIZE = 6;
-    private final SequentialRandomNumberGenerator sequentialRandomNumberGenerator = new SequentialRandomNumberGenerator();
-    private final DuplicateRandomNumberGenerator duplicateRandomNumberGenerator = new DuplicateRandomNumberGenerator();
+    private static final int WINNING_LOTTO_NUMBER_SIZE = 6;
+    private static final SequentialRandomNumberGenerator sequentialRandomNumberGenerator =
+            new SequentialRandomNumberGenerator();
+    private static final DuplicateRandomNumberGenerator duplicateRandomNumberGenerator =
+            new DuplicateRandomNumberGenerator();
 
     private static WinningLotto createWinningLotto(List<Integer> numbers, int bonusNumber) {
         List<LottoNumber> lottoNumbers = numbers.stream()

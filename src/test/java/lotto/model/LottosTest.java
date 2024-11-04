@@ -18,9 +18,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LottosTest {
 
     private static final int LOTTO_NUMBER_SIZE = 6;
-    private final int WINNING_LOTTO_NUMBER_SIZE = 6;
-    private final RealRandomNumberGenerator realRandomNumberGenerator = new RealRandomNumberGenerator();
-    private final SequentialRandomNumberGenerator sequentialRandomNumberGenerator =
+    private static final int WINNING_LOTTO_NUMBER_SIZE = 6;
+    private static final RealRandomNumberGenerator realRandomNumberGenerator = new RealRandomNumberGenerator();
+    private static final SequentialRandomNumberGenerator sequentialRandomNumberGenerator =
             new SequentialRandomNumberGenerator();
 
     public static List<Lotto> getLottos(Lottos lottos) {

@@ -24,9 +24,9 @@ public class ConsoleInputViewTest {
     private static final String WINNING_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
-    private final ConsoleInputView consoleInputView = new ConsoleInputView();
+    private static final ConsoleInputView consoleInputView = new ConsoleInputView();
 
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private static final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @BeforeEach
     void setUp() {
