@@ -54,8 +54,14 @@ public class LottoGame {
     }
 
     private WinningNumbers inputWinningNumbers() {
-        Lotto winningNumbers = inputView.readWinningNumbers();
-        int bonusNumber = inputView.readBonusNumber();
-        return new WinningNumbers(winningNumbers, bonusNumber);
+        while (true) {
+            try {
+                Lotto winningNumbers = inputView.readWinningNumbers();
+                int bonusNumber = inputView.readBonusNumber();
+                return new WinningNumbers(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
     }
 }
