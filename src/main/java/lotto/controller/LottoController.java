@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.BonusNumber;
 import lotto.model.LottoCollection;
 import lotto.model.LottoGenerator;
 import lotto.model.Money;
@@ -21,6 +22,7 @@ public class LottoController {
         LottoCollection lottoCollection = generateLottoCollection(money.getLottoCount());
         outputLottoCollection(lottoCollection);
         WinningNumbers winningNumbers = inputWinningNumbers();
+        BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
     }
 
     private void inputLottoPurchaseMoney() {
@@ -48,6 +50,17 @@ public class LottoController {
             try {
                 String rawInput = InputView.inputWinningNumbers();
                 return new WinningNumbers(rawInput);
+            } catch (IllegalArgumentException e) {
+                OutputView.outputErrorMessage(e);
+            }
+        }
+    }
+
+    private BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
+        while (true) {
+            try {
+                String rawInput = InputView.inputBonusNumber();
+                return new BonusNumber(winningNumbers, rawInput);
             } catch (IllegalArgumentException e) {
                 OutputView.outputErrorMessage(e);
             }
