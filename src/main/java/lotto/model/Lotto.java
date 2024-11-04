@@ -6,6 +6,7 @@ import static lotto.constants.LottoCondition.MAX_LOTTO_NUMBER;
 import static lotto.constants.LottoCondition.MIN_LOTTO_NUMBER;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -39,6 +40,23 @@ public class Lotto {
         if (lottoNumber < MIN_LOTTO_NUMBER.get() || lottoNumber > MAX_LOTTO_NUMBER.get()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_MUST_BE_ONE_TO_FORTY_FIVE.get());
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Lotto comparingLotto = (Lotto) obj;
+        return Objects.equals(numbers, comparingLotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
     }
 
     public List<Integer> get() {
