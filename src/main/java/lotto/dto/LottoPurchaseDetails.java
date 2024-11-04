@@ -1,11 +1,12 @@
 package lotto.dto;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoGroup;
 
 public class LottoPurchaseDetails {
-    private static final String PURCHASED_NUM_LOTTO_MESSAGE = "%d개를 구매했습니다.";
+    private static final String PURCHASED_NUM_LOTTO_MESSAGE = "%s개를 구매했습니다.";
     private static final String NEW_LINE = "\n";
 
     private final List<Lotto> lottos;
@@ -28,6 +29,10 @@ public class LottoPurchaseDetails {
     }
 
     private String formatPurchasedNumLottoMessage() {
-        return String.format(PURCHASED_NUM_LOTTO_MESSAGE, numLotto);
+        return String.format(PURCHASED_NUM_LOTTO_MESSAGE, formatNumLotto(numLotto));
+    }
+
+    private static String formatNumLotto(int numLotto) {
+        return new DecimalFormat("###,###").format(numLotto);
     }
 }
