@@ -11,7 +11,10 @@ public class View {
 
     private String getInput(String message) {
         System.out.println(message);
-        return Console.readLine();
+        String input = Console.readLine();
+        System.out.println();
+
+        return input;
     }
 
     public String getPurchaseCost() {
@@ -28,9 +31,10 @@ public class View {
 
     public void println(List<String> messages) {
         messages.forEach(System.out::println);
+        System.out.println();
     }
     public void println(String message) {
-        System.out.println(message);
+        System.out.println(message + "\n");
     }
 
 }

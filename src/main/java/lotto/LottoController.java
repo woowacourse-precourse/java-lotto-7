@@ -3,13 +3,10 @@ package lotto;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.Integer.parseInt;
-
 public class LottoController {
     private Lotto winningLotto;
     private Integer bonusNumber;
     private LottoGroup lottoGroup;
-    private LottoRankGroup lottoRankGroup;
     private final View view = new View();
 
     public LottoController() {
@@ -21,12 +18,10 @@ public class LottoController {
         view.println(lottoGroup.getLottoNumbers());
 
         getWinningNumbers(view.getWinningNumbers());
-
         getBonusNumber(view.getBonusNumber());
-        lottoRankGroup = LottoRankGroup.of(lottoGroup, winningLotto, bonusNumber);
+        LottoRankGroup lottoRankGroup = LottoRankGroup.of(lottoGroup, winningLotto, bonusNumber);
 
         view.println(lottoRankGroup.getRankInstructions());
-        view.println(lottoRankGroup.getRateOfRevenue());
     }
 
     void purchaseLotto(String input) {

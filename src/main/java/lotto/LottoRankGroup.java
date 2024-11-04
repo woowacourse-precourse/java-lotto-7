@@ -5,6 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoRankGroup {
+    public static List<String> RANK_STATUS_INSTRUCION = List.of(
+            "당첨 통계",
+            "---"
+    );
     private final List<LottoRank> ranks;
 
     public LottoRankGroup(List<LottoRank> ranks) {
@@ -19,15 +23,16 @@ public class LottoRankGroup {
     }
 
     public List<String> getRankInstructions() {
-        List<String> instructions = new ArrayList<>();
+        List<String> instructions = new ArrayList<>(RANK_STATUS_INSTRUCION);
         for (LottoRank rank : Arrays.stream(LottoRank.values()).toList().reversed()) {
             if (rank == LottoRank.NONE) continue;
             instructions.add(rank.getConditionInstruction() + countInstruction(rank));
         }
+        instructions.add(getRateOfRevenue());
         return instructions;
     }
 
-    public String getRateOfRevenue(){
+    private String getRateOfRevenue(){
         return String.format("총 수익률은 %s입니다.",Math.round(turnToPercentage((double)revenue()/cost()) * 10) / 10.0 + "%");
     }
 
