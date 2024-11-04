@@ -5,6 +5,7 @@ import static lotto.common.ExceptionMessage.INVALID_NUMBER_FORMAT;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.common.ExceptionMessage;
 
 public class InputView {
     private static final String IS_DIGIT_PATTERN = "^[0-9]+$";
@@ -31,6 +32,7 @@ public class InputView {
     private String inputValue(String placeholder) {
         System.out.println(placeholder);
         String input = Console.readLine().replace(" ", "");
+        isEmpty(input);
         return input;
     }
 
@@ -40,8 +42,14 @@ public class InputView {
         }
     }
 
-    private void isDigit(String inputPurchaseAmount) {
-        if (!inputPurchaseAmount.matches(IS_DIGIT_PATTERN)) {
+    private void isEmpty(String inputValue) {
+        if (inputValue == null || inputValue.isEmpty()) {
+            throw new IllegalArgumentException(ExceptionMessage.ERROR_EMPTY_INPUT.getMessage());
+        }
+    }
+
+    private void isDigit(String inputValue) {
+        if (!inputValue.matches(IS_DIGIT_PATTERN)) {
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
         }
     }

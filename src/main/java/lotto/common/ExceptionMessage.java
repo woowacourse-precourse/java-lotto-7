@@ -2,6 +2,7 @@ package lotto.common;
 
 public enum ExceptionMessage {
     INVALID_NUMBER_FORMAT("숫자 형식이 잘못되었습니다. 다시 입력해주세요."),
+    ERROR_EMPTY_INPUT("값을 입력해주세요."),
     INVALID_LOTTO_NUMBER_RANGE("1~45 사이의 정수여야 합니다."),
     INVALID_LOTTO_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
     INVALID_DUPLICATE_LOTTO_NUMBER("번호가 중복되어선 안됩니다."),
