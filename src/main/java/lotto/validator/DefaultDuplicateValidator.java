@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.ErrorCode.DUPLICATE_WINNIG_NUMBER;
+import static lotto.constant.ErrorCode.DUPLICATE_WINNIG_NUMBER;
 
 import java.util.List;
 

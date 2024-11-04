@@ -6,8 +6,6 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import lotto.domain.Prize;
-import lotto.domain.PublishCount;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

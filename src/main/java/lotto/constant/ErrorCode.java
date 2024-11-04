@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum ErrorCode {
     INVALID_PURCHASE_AMOUNT("구입 금액은 1,000원 단위로만 가능합니다."),
@@ -9,6 +9,7 @@ public enum ErrorCode {
     DUPLICATE_BONNUS_NUMBER("보너스 번호가 당첨 번호와 중복됩니다."),
     INVALID_INPUT_FORMAT("입력 형식이 올바르지 않습니다.");
 
+    private static final String ERROR_PREFIX = "[ERROR] ";
     private final String message;
 
     ErrorCode(String message) {
@@ -16,6 +17,6 @@ public enum ErrorCode {
     }
 
     public String getMessage() {
-        return message;
+        return ERROR_PREFIX + message;
     }
 }

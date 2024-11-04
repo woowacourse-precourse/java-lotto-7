@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import static lotto.ErrorCode.CONTIGIOUS_COMMA;
-import static lotto.ErrorCode.INVALID_INPUT_FORMAT;
-import static lotto.ErrorCode.INVALID_PURCHASE_AMOUNT;
+import static lotto.constant.ErrorCode.CONTIGIOUS_COMMA;
+import static lotto.constant.ErrorCode.INVALID_INPUT_FORMAT;
+import static lotto.constant.ErrorCode.INVALID_PURCHASE_AMOUNT;
 
 import java.util.Arrays;
 import java.util.List;

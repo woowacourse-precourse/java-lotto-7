@@ -29,8 +29,7 @@ public class PublishLottoServiceTest {
         publishLottoRepository = PublishLottoRepository.getInstance();
         publishLottoService = new PublishLottoService(publishCount, lottoValidator);
 
-        // 테스트 전에 레포지토리 초기화
-        publishLottoRepository.clear(); // 레포지토리의 상태를 초기화하는 메소드 필요
+        publishLottoRepository.clear();
     }
 
     @Test

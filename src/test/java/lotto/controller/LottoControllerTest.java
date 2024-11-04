@@ -45,7 +45,7 @@ public class LottoControllerTest {
         int purchasePrice = 10500;
         assertThatThrownBy(() -> lottoController.validatePurchaseAmount(purchasePrice))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("구입 금액은 1,000원 단위로만 가능합니다.");
+            .hasMessage("[ERROR] 구입 금액은 1,000원 단위로만 가능합니다.");
     }
 
     @Test
@@ -65,7 +65,7 @@ public class LottoControllerTest {
         String inputWinningNumber = "1,,2,3,4,5,6";
         assertThatThrownBy(() -> lottoController.validateInputWinnigNumber(inputWinningNumber))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("입력에 쉼표가 연속적으로 입력되었습니다.");
+            .hasMessage("[ERROR] 입력에 쉼표가 연속적으로 입력되었습니다.");
     }
 
     @Test
@@ -94,7 +94,7 @@ public class LottoControllerTest {
         //when & then
         assertThatThrownBy(() -> lottoController.setUp())
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("입력 형식이 올바르지 않습니다.");
+            .hasMessage("[ERROR] 입력 형식이 올바르지 않습니다.");
 
     }
 
@@ -108,7 +108,7 @@ public class LottoControllerTest {
         //when & then
         assertThatThrownBy(() -> lottoController.setUp())
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("입력 형식이 올바르지 않습니다.");
+            .hasMessage("[ERROR] 입력 형식이 올바르지 않습니다.");
     }
 
     @Test
@@ -121,7 +121,7 @@ public class LottoControllerTest {
         //when & then
         assertThatThrownBy(() -> lottoController.setUp())
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("입력 형식이 올바르지 않습니다.");
+            .hasMessage("[ERROR] 입력 형식이 올바르지 않습니다.");
     }
 
     //PublishLottoservice

@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.ErrorCode.INVALID_NUMBER_RANGE;
+import static lotto.constant.ErrorCode.INVALID_NUMBER_RANGE;
 import static lotto.constant.LottoConstant.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
 

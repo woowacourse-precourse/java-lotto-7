@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.ErrorCode.DUPLICATE_BONNUS_NUMBER;
+import static lotto.constant.ErrorCode.DUPLICATE_BONNUS_NUMBER;
 
 import lotto.domain.Lotto;
 

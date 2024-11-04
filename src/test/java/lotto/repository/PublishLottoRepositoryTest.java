@@ -20,7 +20,8 @@ public class PublishLottoRepositoryTest {
     @BeforeEach
     void setUp() {
         publishLottoRepository = PublishLottoRepository.getInstance();
-        validator = new LottoValidator(new DefaultRangeValidator(), new DefaultDuplicateValidator());
+        validator = new LottoValidator(new DefaultRangeValidator(),
+            new DefaultDuplicateValidator());
     }
 
     @Test
