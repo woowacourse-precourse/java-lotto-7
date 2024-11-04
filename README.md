@@ -2,18 +2,22 @@
 
 : 간단한 로또 발매기를 구현한다.
 
+## 구현할 기능 목록
+
 - 전역 예외 처리 규칙
     - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형의 예외를 처리해야 한다.
+
 1. **로또 구입 금액을 입력받는다.**
     - 사용자에게 구입 금액 입력을 요청한다.
     - 구입 금액은 1,000원 단위로 입력 받아야 하며, 양수여야 한다.
     - 예외 상황:
-        - 구입 금액이 공백일 경우: `IllegalArgumentException`을 발생시키고, "[ERROR] 구입 금액은 필수 입력 항목입니다." 메시지를 출력한다.
-        - 구입 금액이 숫자가 아닐 경우: `NumberFormatException`을 발생시키고, "[ERROR] 구입 금액은 숫자여야 합니다." 메시지를 출력한다.
-        - 구입 금액이 int 범위를 벗어나는 경우: `IllegalArgumentException`을 발생시키고, "[ERROR] 구입 금액이 너무 큽니다." 메시지를 출력한다.
+        - 구입 금액이 공백일 경우: `IllegalArgumentException`을 발생시키고, "[ERROR] 입력값은 필수 입력 항목입니다." 메시지를 출력한다.
+        - 구입 금액이 숫자가 아닐 경우: `NumberFormatException`을 발생시키고, "[ERROR] 입력값은 숫자여야 합니다." 메시지를 출력한다.
+        - 구입 금액이 int 범위를 벗어나는 경우: `IllegalArgumentException`을 발생시키고, "[ERROR] 입력값이 너무 큽니다." 메시지를 출력한다.
         - 구입 금액이 1,000원 미만인 경우: `IllegalArgumentException` 을 발생시키고, "[ERROR] 구입 금액은 1,000원 이상이어야 합니다." 메시지를 출력한다.
-        - 구입 금액이 1,000원 단위로 나누어 떨어지지 않는 경우: `IllegalArgumentException` 을 발생시키고, "[ERROR] 구입 금액은 1,000원 단위여야 합니다." 메시지를 출력한다.
+        - 구입 금액이 1,000원 단위로 나누어 떨어지지 않는 경우: `IllegalArgumentException` 을 발생시키고, "[ERROR] 구입 금액은 1,000원 단위여야 합니다." 메시지를
+          출력한다.
 2. **발행할 로또의 개수를 구한다.**
     - 입력된 구입 금액을 1,000으로 나누어 발행할 로또의 개수를 구한다.
     - 발행할 로또의 개수를 로또 발행 기능으로 전달한다.
@@ -43,8 +47,8 @@
     - 당첨 번호 6개를 쉼표(,)로 구분하여 입력받는다.
     - 입력된 번호는 1~45 사이의 숫자로 중복되지 않아야 하며, 6개 번호는 오름차순으로 저장된다.
     - 예외 상황:
-        - 당첨 번호가 공백일 경우: `IllegalArgumentException` 발생, "[ERROR] 당첨 번호는 공백일 수 없습니다." 메시지를 출력한다.
-        - 당첨 번호가 숫자가 아닌 경우: `NumberFormatException` 발생, "[ERROR] 당첨 번호는 숫자여야 합니다." 메시지를 출력한다.
+        - 당첨 번호가 공백일 경우: `IllegalArgumentException` 발생, "[ERROR] 입력값은 공백일 수 없습니다." 메시지를 출력한다.
+        - 당첨 번호가 숫자가 아닌 경우: `NumberFormatException` 발생, "[ERROR] 입력값은 숫자여야 합니다." 메시지를 출력한다.
         - 당첨 번호가 1~45 범위를 벗어나는 경우: `IllegalArgumentException` 발생, "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다." 메시지를 출력한다.
         - 당첨 번호의 개수가 6개가 아닌 경우: `IllegalArgumentException` 발생, "[ERROR] 당첨 번호는 정확히 6개여야 합니다." 메시지를 출력한다.
         - 당첨 번호에 중복된 숫자가 있는 경우: `IllegalArgumentException` 발생, "[ERROR] 당첨 번호는 중복될 수 없습니다." 메시지를 출력한다.
@@ -52,8 +56,8 @@
     - 보너스 번호를 1개 입력받는다.
     - 보너스 번호는 1~45 사이의 숫자여야 하며, 당첨 번호와 중복되지 않아야 한다.
     - 예외 상황:
-        - 보너스 번호가 공백일 경우: `IllegalArgumentException` 발생, "[ERROR] 보너스 번호는 공백일 수 없습니다." 메시지를 출력한다.
-        - 보너스 번호가 숫자가 아닌 경우: `NumberFormatException` 발생, "[ERROR] 보너스 번호는 숫자여야 합니다." 메시지를 출력한다.
+        - 보너스 번호가 공백일 경우: `IllegalArgumentException` 발생, "[ERROR] 입력값은 공백일 수 없습니다." 메시지를 출력한다.
+        - 보너스 번호가 숫자가 아닌 경우: `NumberFormatException` 발생, "[ERROR] 입력값은 숫자여야 합니다." 메시지를 출력한다.
         - 보너스 번호가 1~45 범위를 벗어나는 경우: `IllegalArgumentException` 발생, "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다." 메시지를 출력한다.
         - 보너스 번호가 당첨 번호와 중복된 경우: `IllegalArgumentException` 발생, "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다." 메시지를 출력한다.
 7. **구매한 로또 번호와 당첨 번호를 비교하여 당첨 여부를 판별한다.**
@@ -92,3 +96,51 @@
         6개 일치 (2,000,000,000원) - 0개
         총 수익률은 62.5%입니다.
         ```
+
+## 프로젝트 구조
+
+```powershell
+src/main/java/
+  └── lotto/
+        ├── Application.java                       // 애플리케이션 진입점
+        ├── domain/
+        │      ├── Lotto.java                      // 로또 티켓
+        │      ├── LottoTickets.java               // 여러 로또 티켓을 관리하는 일급 컬렉션
+        │      ├── WinningLotto.java             // 당첨 번호 및 보너스 번호
+        │      └── LottoPurchaseMoney.java         // 구입 금액을 관리하는 클래스
+        ├── service/
+        │      ├── LottoGame.java                  // 로또 게임 전체 흐름을 관리하는 클래스
+        │      └── PrizeCalculator.java            // 당첨 결과를 계산하는 클래스
+        ├── ui/
+        │      ├── InputHandler.java               // 사용자 입력을 처리하는 클래스
+        │      └── OutputHandler.java              // 결과 출력 처리 클래스
+        ├── validator/
+        │      ├── LottoValidator.java             // 로또 번호 검증
+        │      ├── WinningLottoValidator.java    // 당첨 번호 검증
+        │      └── MoneyValidator.java             // 구입 금액 검증
+        ├── enums/
+        │      └── Rank.java                       // 당첨 등수와 상금 정의하는 Enum
+        └── util/
+               └── LottoNumberGenerator.java       // 로또 번호를 생성하는 클래스 
+```
+
+- Application.java: 애플리케이션의 시작점으로, 게임의 실행을 담당합니다.
+- domain 패키지:
+    - Lotto.java: 6개의 번호로 이루어진 하나의 로또 티켓을 표현합니다.
+    - LottoTickets.java: 사용자가 구입한 금액에 따라 발행된 여러 로또 티켓을 관리하는 일급 컬렉션입니다.
+    - WinningLotto.java: 사용자가 입력한 당첨 번호와 보너스 번호를 관리하는 클래스입니다.
+    - LottoPurchaseMoney.java: 구입 금액을 관리하고, 유효성을 검증하는 클래스입니다.
+- service 패키지:
+    - LottoGame.java: 로또 게임의 전체 흐름을 관리하며, 입력받은 구입 금액으로 티켓을 발행하고 당첨 번호와 비교하여 결과를 도출하는 클래스입니다.
+    - PrizeCalculator.java: 로또 티켓과 당첨 번호를 비교해 당첨 결과를 계산하는 클래스입니다.
+- ui 패키지:
+    - InputHandler.java: 사용자로부터 입력을 받고, 해당 데이터를 처리하는 클래스입니다.
+    - OutputHandler.java: 발행된 로또 번호, 당첨 결과 등을 출력하는 역할을 담당합니다.
+- validator 패키지:
+    - LottoValidator.java: 로또 티켓 번호의 유효성을 검증합니다.
+    - WinningLottoValidator.java: 당첨 번호 및 보너스 번호의 유효성을 검증합니다.
+    - MoneyValidator.java: 구입 금액이 1,000원 단위인지 검증합니다.
+- enums 패키지:
+    - Rank.java: 로또 당첨 등수를 정의하며, 각 등수에 따른 상금 정보를 포함하는 Enum 입니다.
+- util 패키지:
+    - LottoNumberGenerator.java: 랜덤한 로또 번호를 생성하는 클래스입니다.
