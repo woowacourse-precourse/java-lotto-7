@@ -48,4 +48,17 @@ class LottoRankTest {
         LottoRank rank = LottoRank.valueOf(0, false);
         assertEquals(LottoRank.NONE, rank);
     }
+
+    @DisplayName("보너스 번호가 일치하는 경우")
+    @Test
+    void 보너스번호일치경우_테스트() {
+        LottoRank rank = LottoRank.valueOf(0, true);
+        assertEquals(LottoRank.NONE, rank);
+    }
+
+    @DisplayName("첫 번째 순위의 상금 확인")
+    @Test
+    void 첫번째순위상금확인_테스트() {
+        assertEquals(2_000_000_000, LottoRank.FIRST.getPrize());
+    }
 }
