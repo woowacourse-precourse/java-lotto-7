@@ -10,6 +10,7 @@ public class Application {
     public static void main(String[] args) {
             int purchaseAmount = getPurchaseAmount();
             List<Lotto> purchasedLottos = generateLottos(purchaseAmount / 1000);
+            printPurchasedLottos(purchasedLottos);
     }
 
     // 구입 금액 입력 처리
@@ -29,5 +30,13 @@ public class Application {
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
         return lottos;
+    }
+
+    // 발행된 로또 출력
+    private static void printPurchasedLottos(List<Lotto> lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 }
