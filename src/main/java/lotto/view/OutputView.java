@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoMoney;
 import lotto.service.LottoResult;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.Rank;
@@ -44,8 +45,8 @@ public class OutputView {
         System.out.println(DIVIDING_LINE);
     }
 
-    public void showProfit(LottoResult lottoResult, int money) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", lottoResult.calculateProfit(money));
+    public void showProfit(LottoResult lottoResult, LottoMoney lottoMoney) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", lottoResult.calculateProfit(lottoMoney));
     }
 
     private void showLottoNums(Lotto lotto) {

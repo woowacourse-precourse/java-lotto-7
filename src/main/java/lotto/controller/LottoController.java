@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.converter.StringToIntConverter;
+import lotto.domain.LottoMoney;
 import lotto.service.LottoResult;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLottos;
@@ -30,7 +31,8 @@ public class LottoController {
     }
 
     public void run() {
-        PurchasedLottos purchasedLotto = inputMoney();
+        LottoMoney lottoMoney = inputMoney();
+        PurchasedLottos purchasedLotto = lottoMachine.issueLotto(lottoMoney);
 
         outputView.showHowManyLotto(purchasedLotto);
         outputView.showAllLottoNums(purchasedLotto);
@@ -40,7 +42,7 @@ public class LottoController {
         LottoResult lottoResult = lottoWinMather.calculateLottoWins(purchasedLotto, winningLotto);
 
         outputView.showWinStatus(lottoResult);
-        outputView.showProfit(lottoResult, lottoMachine.inMoney());
+        outputView.showProfit(lottoResult, lottoMoney);
     }
 
     private WinningLotto createWinningLotto() {
@@ -80,12 +82,11 @@ public class LottoController {
         }
     }
 
-    private PurchasedLottos inputMoney() {
+    private LottoMoney inputMoney() {
         while (true) {
             try {
                 String rawMoney = inputView.lottoMoneyInput();
-                int money = converter.convertStringNumberToInteger(rawMoney);
-                return lottoMachine.issueLotto(money);
+                return new LottoMoney(converter.convertStringNumberToInteger(rawMoney));
             } catch (IllegalArgumentException e) {
                 ErrorMessage.showErrorMsg(e.getMessage());
             }

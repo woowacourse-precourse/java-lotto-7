@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.LottoMoney;
 import lotto.domain.Rank;
 
 public class LottoResult {
@@ -25,12 +26,12 @@ public class LottoResult {
         return lottoResult;
     }
 
-    public double calculateProfit(int money) {
+    public double calculateProfit(LottoMoney lottoMoney) {
         long sum = result.keySet().stream()
                 .mapToLong(rank -> rank.getPrize() * result.get(rank))
                 .sum();
 
-        return ((double) sum / money) * 100.0;
+        return ((double) sum / lottoMoney.money()) * 100.0;
     }
 
     public int countOf(Rank rank) {
