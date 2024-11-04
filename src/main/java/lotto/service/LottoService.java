@@ -1,9 +1,8 @@
 package lotto.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.wrapper.Amount;
 import lotto.wrapper.BonusNumber;
 import lotto.domain.Lotto;
@@ -14,20 +13,19 @@ import lotto.util.Parse;
 public class LottoService {
 
     public Lottos createLottos(Amount amount) {
-        List<Lotto> lottos = new ArrayList<>();
         int lottoCount = getLottoCount(amount);
 
-        while (lottoCount-- > 0) {
-            lottos.add(createLotto());
-        }
-
-        return new Lottos(lottos);
+        return new Lottos(IntStream.range(0, lottoCount)
+                .mapToObj(i -> createLotto())
+                .collect(Collectors.toList()));
     }
 
     private Lotto createLotto() {
-        List<Integer> lottoNumbers = LottoNumberGenerator.generate();
-
-        return new Lotto(lottoNumbers);
+        return new Lotto(LottoNumberGenerator.generate()
+                .stream()
+                .sorted()
+                .collect(Collectors.toList())
+        );
     }
 
     private int getLottoCount(Amount amount) {
@@ -37,13 +35,11 @@ public class LottoService {
     public Lotto parseWinningNumberForLotto(String winningNumber) {
         String[] numbers = winningNumber.split(",");
 
-        List<Integer> parsedNumbers = Arrays.stream(numbers)
+        return new Lotto(Arrays.stream(numbers)
                 .map(String::trim)
                 .map(Parse::stringToInt)
                 .peek(this::validateRange)
-                .collect(Collectors.toList());
-
-        return new Lotto(parsedNumbers);
+                .collect(Collectors.toList()));
     }
 
     private void validateRange(int number) {
