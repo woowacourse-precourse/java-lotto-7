@@ -4,7 +4,7 @@ import static lotto.constant.LottoValueConstant.LOTTO_PRICE;
 
 import java.util.List;
 import lotto.domain.LottoNumberGenerater;
-import lotto.reposi.LottoRepository;
+import lotto.repository.LottoRepository;
 import lotto.valuate.PriceValidate;
 
 public class LottoTicketService {

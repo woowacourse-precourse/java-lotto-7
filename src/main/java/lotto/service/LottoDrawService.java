@@ -5,7 +5,7 @@ import java.util.Map;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.WinningChecker;
-import lotto.reposi.LottoRepository;
+import lotto.repository.LottoRepository;
 
 public class LottoDrawService {
 

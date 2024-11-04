@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import java.util.Map;
-import lotto.reposi.InMemoryLottoRepository;
-import lotto.reposi.LottoRepository;
+import lotto.repository.InMemoryLottoRepository;
+import lotto.repository.LottoRepository;
 import lotto.service.LottoDrawService;
 import lotto.service.LottoTicketService;
 import lotto.service.WininngNumberManager;

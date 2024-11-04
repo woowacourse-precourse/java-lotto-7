@@ -1,4 +1,4 @@
-package lotto.reposi;
+package lotto.repository;
 
 import java.util.List;
 import lotto.domain.Bonus;
