@@ -1,6 +1,7 @@
 package print;
 
 import java.util.List;
+import java.util.Map;
 import lotto.Lotto;
 
 public class InfoPrinter {
@@ -11,11 +12,8 @@ public class InfoPrinter {
         }
     }
 
-    /**
-     * 차후에 변경할 메서드입니다. 존재의 의미를 잊지 않기 위해 임시로 구현해두었습니다.
-     */
-    public void winningResultPrint(List<Integer> results) {
-        for (int i = 6; i > 0; i--) {
+    public void winningResultPrint(Map<Integer, Integer> results) {
+        for (int i = 5; i > 0; i--) {
             revenue(i, results.get(i));
         }
     }
