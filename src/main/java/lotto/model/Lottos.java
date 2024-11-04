@@ -5,9 +5,10 @@ import java.util.List;
 
 public class Lottos {
 
+    private static Lottos instance;
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public Lottos(List<List<Integer>> numbers, int numberOfLottos) {
+    private Lottos(List<List<Integer>> numbers, int numberOfLottos) {
         saveLottos(numbers);
         validateLottoNumber(numberOfLottos);
     }
@@ -27,4 +28,13 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return lottos;
     }
+
+    public static Lottos getInstance(List<List<Integer>> numbers, int numberOfLottos) {
+        if(instance == null) {
+            instance = new Lottos(numbers, numberOfLottos);
+        }
+        return instance;
+    }
+
+
 }
