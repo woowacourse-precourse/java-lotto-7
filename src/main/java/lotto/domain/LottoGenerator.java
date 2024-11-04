@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 public class LottoGenerator {
     private static final int LOTTO_NUMBER_MIN = 1;
     private static final int LOTTO_NUMBER_MAX = 45;
+    private static final int LOTTO_COUNT = 6;
 
     public List<Lotto> generateLottos(int count) {
         return Stream.generate(this::generateLotto)
@@ -18,15 +19,10 @@ public class LottoGenerator {
     }
 
     private Lotto generateLotto() {
-        List<String> numbers = generateLottoNumbers()
-                .stream()
-                .map(Objects::toString)
-                .toList();
-
-        return new Lotto(numbers);
+        return new Lotto(generateLottoNumbers(LOTTO_COUNT));
     }
 
-    private List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, 6);
+    private List<Integer> generateLottoNumbers(int count) {
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, count);
     }
 }
