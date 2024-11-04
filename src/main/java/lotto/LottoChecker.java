@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoChecker {
-    int prize = 0;
     List<Integer> winTickets=new ArrayList<>();
     // 5등/4등/3등/2등/1등 순으로 당첨된 티켓 수를 저장하는 리스트
     List<Integer> tmp = new ArrayList<>();
@@ -65,10 +64,6 @@ public class LottoChecker {
         }
     }
 
-    public int getPrize(){
-        return prize;
-    }
-    
     public List<Integer> getWinTickets(){
         return winTickets;
     }

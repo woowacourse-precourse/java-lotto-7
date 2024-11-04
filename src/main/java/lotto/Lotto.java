@@ -100,10 +100,13 @@ public class Lotto {
             if (rank != LottoRank.NONE) {
                 int count = winTickets.get(rank.ordinal());
                 System.out.println(rank.getMessage() + count + "개");
+
+                int tmp = rank.getPrize() *count;
+                prize+=tmp;
             }
         }
         ProfitCalc profit = new ProfitCalc();
-        float profit_ = profit.profitCalc(price);
+        float profit_ = profit.profitCalc(price, prize);
         System.out.println("총 수익률은 " + String.format(".1f", profit_) + "% 입니다.");
     }
 
