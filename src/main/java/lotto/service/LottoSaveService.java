@@ -71,9 +71,7 @@ public class LottoSaveService {
         lottoBonusNumber = LottoBonusNumber.getInstance(bonusNumberInteger);
     }
 
-
     public void makeDataForReturn() {
-
         lottoMatchCount.put(THREE_MATCH, ZERO);
         lottoMatchCount.put(FOUR_MATCH, ZERO);
         lottoMatchCount.put(FIVE_MATCH, ZERO);
@@ -84,7 +82,6 @@ public class LottoSaveService {
     public Map<String, Integer> matchLotto() {
         List<Integer> winningNumbers = lottoWinningNumber.getLottoWinningNumbers();
         int bonusNumber = lottoBonusNumber.getBonusNumber();
-
 
         for (Lotto lotto : lottos.getLottos()) {
             int matchedCount = 0;
