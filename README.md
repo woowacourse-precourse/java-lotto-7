@@ -48,8 +48,6 @@
 ## RandomNumberGenerator
 
 - [ ] 1 ~ 45 사이의 중복되지 않는 숫자 6개를 뽑는다.
-- [ ] 1 ~ 45 사이의 중복되지 않는 숫자 7개를 뽑는다.
-    - 7번째 수는 보너스 번호가 된다.
 
 ## PurchaseAmountValidator
 
