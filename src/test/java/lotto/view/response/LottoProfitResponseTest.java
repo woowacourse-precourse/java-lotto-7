@@ -36,8 +36,7 @@ public class LottoProfitResponseTest {
     void 로또_점수_리스트와_구매_금액을_받아_생성된다(List<Score> scores, int purchaseMoney, double expected) {
 
         // when
-        LottoProfitResponse lottoProfitResponse = LottoProfitResponse.of(scores, purchaseMoney);
-        double actual = lottoProfitResponse.getProfitRate();
+        double actual = LottoProfitResponse.of(scores, purchaseMoney).getProfitRate();
 
         // then
         assertThat(actual).isEqualTo(expected);

@@ -33,11 +33,9 @@ public class LottoScoreResponsesTest {
     @ParameterizedTest(name = "scores: {0}, expected: {1}")
     @MethodSource("로또_점수_정수_맵을_통해_생성된다_테스트_케이스")
     void 로또_점수_정수_맵을_통해_생성된다(Map<Score, Integer> scores, Map<LottoScoreResponse, Integer> expected) {
-        // given
-        LottoScoreResponses lottoScoreResponses = LottoScoreResponses.from(scores);
-
+        
         // when
-        Map<LottoScoreResponse, Integer> actual = lottoScoreResponses.getLottoScoreResponses();
+        Map<LottoScoreResponse, Integer> actual = LottoScoreResponses.from(scores).getLottoScoreResponses();
 
         // then
         assertThat(actual).containsExactlyEntriesOf(expected);

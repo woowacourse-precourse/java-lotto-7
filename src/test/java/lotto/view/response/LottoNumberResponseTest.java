@@ -41,8 +41,7 @@ public class LottoNumberResponseTest {
     void 로또_번호_일급_컬렉션_객체로부터_생성된다(LottoNumbers lottoNumbers, List<Integer> expected) {
 
         // when
-        LottoNumberResponse lottoNumberResponse = LottoNumberResponse.from(lottoNumbers);
-        List<Integer> actual = lottoNumberResponse.getLottoNumbers();
+        List<Integer> actual = LottoNumberResponse.from(lottoNumbers).getLottoNumbers();
 
         // then
         assertThat(actual).containsExactlyElementsOf(expected);
