@@ -20,7 +20,7 @@ public class Controller {
         List<Lotto> lottos = pickLottos();
         outputView.printResult(" ");
         outputView.printLottos(lottos);
-
+        outputView.printResult(" ");
         Winning winning = createWinning();
         outputView.printResult(" ");
 
