@@ -11,9 +11,9 @@ public enum LottoRank {
     SECOND(5, true, BigDecimal.valueOf(30000000)),
     FIRST(6, false, BigDecimal.valueOf(2000000000));
 
-    private int matchedCount;
-    private boolean requireBonusNumber;
-    private BigDecimal prize;
+    private final int matchedCount;
+    private final boolean requireBonusNumber;
+    private final BigDecimal prize;
 
     LottoRank(int matchedCount, boolean requireBonusNumber, BigDecimal prize) {
         this.matchedCount = matchedCount;
