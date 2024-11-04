@@ -37,5 +37,10 @@ public class Application {
             return;
         }
 
+        // Step 5: 로또 결과 계산
+        LottoResultCalculator calculator = new LottoResultCalculator(lottos, winningNumbers, bonusNumber);
+        List<LottoResult> results = calculator.calculateResults();
+
+
     }
 }
