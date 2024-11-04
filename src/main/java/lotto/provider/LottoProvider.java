@@ -69,9 +69,4 @@ public class LottoProvider {
 			}
 		}
 	}
-
-	public List<Lotto> getPickedLottos() {
-		return pickedLottos;
-	}
-
 }
