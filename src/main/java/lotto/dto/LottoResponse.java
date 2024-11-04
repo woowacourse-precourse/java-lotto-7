@@ -1,6 +1,6 @@
 package lotto.dto;
 
-import lotto.domain.Lotto;
+import lotto.domain.lotto.Lotto;
 import java.util.List;
 
 public record LottoResponse(List<Integer> numbers) {

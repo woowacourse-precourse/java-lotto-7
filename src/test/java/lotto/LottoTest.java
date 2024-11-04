@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.domain.Lotto;
+import lotto.domain.lotto.Lotto;
 
 class LottoTest {
     @Test

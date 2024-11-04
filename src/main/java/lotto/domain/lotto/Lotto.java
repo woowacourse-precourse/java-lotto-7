@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,12 +14,12 @@ public class Lotto {
                 .toList();
     }
 
-    protected boolean contains(LottoNumber number) {
+    public boolean contains(LottoNumber number) {
         return numbers.stream()
                 .anyMatch(lottoNumber -> lottoNumber == number);
     }
 
-    protected boolean contains(int number) {
+    public boolean contains(int number) {
         return numbers.stream()
                 .anyMatch(lottoNumber -> lottoNumber.getNumber() == number);
     }
