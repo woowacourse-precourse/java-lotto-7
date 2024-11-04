@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,7 +53,7 @@ public class Numbers {
     }
 
     public List<Number> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 
     public boolean contains(Number targetNumber) {
