@@ -1,13 +1,17 @@
 package service;
 
 import static java.util.stream.Stream.generate;
+import static util.LottoResultCalculator.countMatchingResults;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.LottoList;
+import lotto.LottoResult;
 import lotto.PurchaseCount;
+import lotto.WinningNumbers;
 
 public class LottoService {
     private static final int LOTTO_NUMBER_COUNT = 6;
@@ -17,6 +21,29 @@ public class LottoService {
     public PurchaseCount getCount(String purchaseAmountFromView) {
         int purchaseAmount = purchaseAmountValidate(purchaseAmountFromView);
         return new PurchaseCount(purchaseAmount);
+    }
+
+    public LottoList generateLottos(int purchaseCount) {
+        List<Lotto> lottoList = generate(() -> new Lotto(generateRandomLottoNumbers()))
+                .limit(purchaseCount)
+                .collect(Collectors.toList());
+        return new LottoList(lottoList);
+    }
+
+    public LottoResult getMatchingResult(WinningNumbers winningNumbers, LottoList lottoList) {
+        List<Integer> matchResultList = lottoList.getMatchCounts(winningNumbers.getWinningNumbers(),
+                winningNumbers.getBonusNumber());
+
+        Map<Integer, Long> matchCounts = countMatchingResults(matchResultList);
+
+        int threeMatchesCount = matchCounts.getOrDefault(3, 0L).intValue();
+        int fourMatchesCount = matchCounts.getOrDefault(4, 0L).intValue();
+        int fiveMatchesCount = matchCounts.getOrDefault(5, 0L).intValue();
+        int sixMatchesCount = matchCounts.getOrDefault(6, 0L).intValue();
+        int fiveMatchesWithBonusCount = matchCounts.getOrDefault(-1, 0L).intValue();
+
+        return new LottoResult(threeMatchesCount, fourMatchesCount, fiveMatchesCount,
+                fiveMatchesWithBonusCount, sixMatchesCount);
     }
 
     private int purchaseAmountValidate(String purchaseAmountFromView) {
@@ -33,13 +60,6 @@ public class LottoService {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해야 합니다.");
         }
         return purchaseAmount;
-    }
-
-    public LottoList generateLottos(int purchaseCount) {
-        List<Lotto> lottoList = generate(() -> new Lotto(generateRandomLottoNumbers()))
-                .limit(purchaseCount)
-                .collect(Collectors.toList());
-        return new LottoList(lottoList);
     }
 
     private List<Integer> generateRandomLottoNumbers() {
