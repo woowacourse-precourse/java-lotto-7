@@ -6,6 +6,7 @@ public class BonusNumber {
     private final int bonusNumber;
 
     private BonusNumber(int bonusNumber) {
+        validateNumbersInRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -31,5 +32,11 @@ public class BonusNumber {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    private void validateNumbersInRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 정수여야 합니다.");
+        }
     }
 }
