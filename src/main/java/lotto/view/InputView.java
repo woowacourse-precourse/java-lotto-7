@@ -2,7 +2,9 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.utils.ConstantMessage.ErrorMessage;
 import lotto.utils.ConstantValue;
@@ -23,9 +25,16 @@ public class InputView {
     public List<Integer> inputWinningNumbers() {
         try {
             List<Integer> winning = inputLottoNumbers();
-            if (winning.size() != ConstantValue.LOTTO_NUMBER_COUNT) {
+            Set<Integer> uniqueNumbers = new HashSet<>(winning);
+            if (winning.size() != ConstantValue.LOTTO_NUMBER_COUNT
+                    || uniqueNumbers.size() != ConstantValue.LOTTO_NUMBER_COUNT) {
                 throw new IllegalArgumentException();
             }
+            winning.forEach(value -> {
+                if (value < ConstantValue.LOTTO_MIN_VALUE || value > ConstantValue.LOTTO_MAX_VALUE) {
+                    throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
+                }
+            });
             return winning;
         } catch (Exception exception) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
