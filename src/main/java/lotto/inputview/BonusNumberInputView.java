@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.inputview;
 
 import lotto.validator.BonusNumberValidator;
 import camp.nextstep.edu.missionutils.Console;

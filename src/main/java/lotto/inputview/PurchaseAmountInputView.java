@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.inputview;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.validator.PurchaseAmountValidator;
 
@@ -18,6 +18,6 @@ public class PurchaseAmountInputView {
         String purchaseAmountInput=Console.readLine();
         int purchaseAmount= PurchaseAmountValidator.parseAmount(purchaseAmountInput);
         PurchaseAmountValidator.validateAmount(purchaseAmount);
-        return purchaseAmount;
+        return purchaseAmount/1000;
     }
 }
