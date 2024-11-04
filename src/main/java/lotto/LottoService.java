@@ -1,49 +1,53 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoService {
+    private static final Integer MINIMUM_CASH_UNIT = 1000;
+
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+
     public LottoService() {
     }
 
-    public Integer convertInputToCash(String input) {
-        return Integer.parseInt(input);
-    }
-
-    public Integer convertInputToLottoAmount(String input) {
-        Integer lottoAmount  = 0;
+    public Integer parseInputToCash(String input) {
+        Integer cash = 0;
 
         while (true) {
             try {
-            /*if (!LottoUtils.isNumber(input)) {
-                System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
-                throw new IllegalArgumentException();
-            }*/
+                if (!LottoUtils.isNumber(input)) {
+                    System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
+                    throw new IllegalArgumentException();
+                }
 
-                Integer cash = Integer.parseInt(input);
+                cash = Integer.parseInt(input);
 
-                if (cash % 1000 != 0) {
+                if (cash < MINIMUM_CASH_UNIT) {
+                    System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
+                    throw new IllegalArgumentException();
+                }
+
+                if (cash % MINIMUM_CASH_UNIT != 0) {
                     System.out.println(ErrorMessage.INVALID_CASH_MESSAGE.getMessage());
                     throw new IllegalArgumentException();
                 }
 
-                if (cash <= 0) {
-                    System.out.println(ErrorMessage.NO_CASH_MESSAGE.getMessage());
-                    throw new IllegalArgumentException();
-                }
-
-                lottoAmount = cash / 1000;
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
-                input = Console.readLine();
+                inputView.inputCash();
             }
         }
 
-        return lottoAmount;
+        return cash;
+    }
+
+    public Integer parseCashToLottoAmount(Integer cash) {
+        return cash / MINIMUM_CASH_UNIT;
     }
 
     public Lotto parseWinningNumber(String input) {

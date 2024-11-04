@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.ErrorMessage;
 import lotto.Lotto;
 
 public class OutputView {
@@ -55,5 +56,9 @@ public class OutputView {
         System.out.printf(WINNING_DETAIL_2TH_MESSAGE, count2nd);
         System.out.printf(WINNING_DETAIL_1TH_MESSAGE, count1st);
         System.out.printf(EARNING_RATE_MESSAGE, earningRate);
+    }
+
+    public void printError(ErrorMessage errorMessage) {
+        System.out.println(errorMessage);
     }
 }
