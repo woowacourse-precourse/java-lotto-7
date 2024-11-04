@@ -25,14 +25,18 @@ class LottoTest {
     @Test
     void numbers_초기화_테스트() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
         Lotto lotto = new Lotto(numbers);
+
         assertEquals(numbers, lotto.getNumbers());
     }
 
     @Test
     void toString_정상_출력_테스트() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
         Lotto lotto = new Lotto(numbers);
+
         assertEquals("[1, 2, 3, 4, 5, 6]", lotto.toString());
     }
 }

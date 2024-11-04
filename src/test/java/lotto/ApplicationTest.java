@@ -54,6 +54,87 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 구매_금액_단위_테스트() {
+        assertSimpleTest(() -> {
+            runException("100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또_번호_아래_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "0,1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또_번호_위_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "100,1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또_번호_개수_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또_번호_문자_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또_번호_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_아래_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_위_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_문자_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    @Test
+    void 보너스_번호_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
