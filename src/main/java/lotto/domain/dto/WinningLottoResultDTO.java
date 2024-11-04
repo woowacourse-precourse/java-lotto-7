@@ -1,4 +1,4 @@
-package lotto.dto;
+package lotto.domain.dto;
 
 public class WinningLottoResultDTO {
     private final int matchedCount;

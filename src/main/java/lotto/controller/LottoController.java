@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.dto.WinningLottoResultDTO;
+import lotto.domain.dto.WinningLottoResultDTO;
 import lotto.exception.ExceptionMessages;
 import lotto.service.LottoService;
 import lotto.view.InputView;

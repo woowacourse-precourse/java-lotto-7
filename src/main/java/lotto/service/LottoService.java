@@ -6,7 +6,7 @@ import lotto.formatter.LottoFormatter;
 import lotto.domain.WinningLotto.WinningLotto;
 import lotto.domain.WinningLotto.WinningLottoCalculate;
 import lotto.domain.WinningLotto.WinningLottoCounter;
-import lotto.dto.WinningLottoResultDTO;
+import lotto.domain.dto.WinningLottoResultDTO;
 import lotto.parser.business.LottoParser;
 import lotto.parser.util.ParseUtils;
 import lotto.validator.LottoValidator;
@@ -42,6 +42,7 @@ public class LottoService {
 
     public void recordWinningLotto(String winningNumbers, String bonusNumber) {
         List<Integer> parsedWinningNumbers = LottoParser.parseWinningNumbers(winningNumbers);
+        lottoValidator.validateLottoNumbersSize(parsedWinningNumbers);
         lottoValidator.validateLottoRange(parsedWinningNumbers);
         lottoValidator.validateLottoNumbersDuplication(parsedWinningNumbers);
         int parsedBonusNumber = ParseUtils.convertToNumber(bonusNumber);

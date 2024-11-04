@@ -7,6 +7,7 @@ import java.util.List;
 public class LottoValidator {
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 45;
+    public static final int LOTTO_NUMBERS_SIZE = 6;
 
     public void validateLottoRange(List<Integer> lottoNumbers) {
         for (Integer number : lottoNumbers) {
@@ -32,6 +33,12 @@ public class LottoValidator {
         long uniqueCount = lottoNumbers.stream().distinct().count();
         if (uniqueCount != lottoNumbers.size()) {
             throw new IllegalArgumentException(ExceptionMessages.LOTTO_NUMBER_DUPLICATION_ERROR);
+        }
+    }
+
+    public void validateLottoNumbersSize(List<Integer> lottoNumbers) {
+        if (lottoNumbers.size() != LOTTO_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(ExceptionMessages.LOTTO_NUMBER_COUNT_ERROR);
         }
     }
 }

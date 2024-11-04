@@ -3,7 +3,7 @@ package lotto.formatter;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.WinningLotto.WinningLotto;
 import lotto.domain.WinningLotto.WinningLottoCounter;
-import lotto.dto.WinningLottoResultDTO;
+import lotto.domain.dto.WinningLottoResultDTO;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
