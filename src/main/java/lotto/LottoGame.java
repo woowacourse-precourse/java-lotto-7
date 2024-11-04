@@ -135,7 +135,7 @@ public class LottoGame {
         System.out.println("\n" + numberOfLottoPurchases + "개를 구매했습니다.");
 
         for (int i = 0; i < numberOfLottoPurchases; i++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(randomNumbers);
             lottoNumbers.add(randomNumbers);
         }
