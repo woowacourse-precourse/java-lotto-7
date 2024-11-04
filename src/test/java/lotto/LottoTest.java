@@ -1,6 +1,7 @@
 package lotto;
 
-import org.junit.jupiter.api.BeforeEach;
+import static validation.Validate.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +11,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    private LottoGame lottoGame;
-
-    @BeforeEach
-    void setUp() {
-        lottoGame = new LottoGame();
-    }
 
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
@@ -32,7 +27,7 @@ class LottoTest {
 
     @Test
     void 보너스_번호가_1보다_작거나_45보다_크면_예외가_발생한다() {
-        assertThatThrownBy(() -> lottoGame.checkBonusNumberRange(46))
+        assertThatThrownBy(() -> checkBonusNumberRange(46))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 1~45 사이여야 합니다.");
     }
@@ -46,26 +41,27 @@ class LottoTest {
 
     @Test
     void 로또_발급_테스트() {
+        LottoGame lottoGame = new LottoGame();
         assertSimpleTest(() -> lottoGame.LottoIssuance(5000));
     }
 
     @Test
     void 입력한_값이_양수가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> lottoGame.checkPositiveNumber("-1"))
+        assertThatThrownBy(() -> checkPositiveNumber("-1"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 입력한 값은 숫자(양수)여야 합니다.");
     }
 
     @Test
     void 구매_금액이_1_000원_단위가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> lottoGame.checkUnitOfPurchaseAmount(500))
+        assertThatThrownBy(() -> checkUnitOfPurchaseAmount(500))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");
     }
 
     @Test
     void 구매_금액이_100_000원을_초과하면_예외가_발생한다() {
-        assertThatThrownBy(() -> lottoGame.checkPurchasedAmountExceeded(100001))
+        assertThatThrownBy(() -> checkPurchasedAmountExceeded(100001))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 구입 금액은 1인당 100,000원을 넘길 수 없습니다.");
     }
