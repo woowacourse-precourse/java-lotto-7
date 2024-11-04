@@ -3,8 +3,7 @@ package lotto.exception;
 public enum LottoException {
 
     COUNT_OF_WINNING_NUMBER_IS_NOT_SIX("당첨 번호는 총 6개입니다. 6개의 자연수를 입력해주세요."),
-    WINNING_NUMBER_IS_INVALID("당첨 번호는 1 이상 45 이하의 자연수입니다."),
-    BONUS_NUMBER_IS_INVALID("보너스 번호는 1 이상 45 이하의 자연수입니다."),
+    INVALID_RANGE_OF_LOTTERY_NUMBER("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
 
     PURCHASE_AMOUNT_IS_ZERO("입력한 로또 구입 금액이 0입니다."),
     PURCHASE_AMOUNT_IS_NEGATIVE("입력한 로또 구입 금액이 음수입니다."),
