@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class WinningInformation {
 
-    private static final LinkedHashMap<WinningPrize, Integer> priceAndCount = new LinkedHashMap<>();
+    private static final LinkedHashMap<WinningPrize, Integer> prizeAndCount = new LinkedHashMap<>();
 
     private static final WinningInformation instance = new WinningInformation();
 
@@ -14,16 +14,16 @@ public class WinningInformation {
     }
 
     static {
-        priceAndCount.put(WinningPrize.FAILURE, 0);
-        priceAndCount.put(WinningPrize.FIFTH, 0);
-        priceAndCount.put(WinningPrize.FOURTH, 0);
-        priceAndCount.put(WinningPrize.THIRD, 0);
-        priceAndCount.put(WinningPrize.SECOND, 0);
-        priceAndCount.put(WinningPrize.FIRST, 0);
+        prizeAndCount.put(WinningPrize.FAILURE, 0);
+        prizeAndCount.put(WinningPrize.FIFTH, 0);
+        prizeAndCount.put(WinningPrize.FOURTH, 0);
+        prizeAndCount.put(WinningPrize.THIRD, 0);
+        prizeAndCount.put(WinningPrize.SECOND, 0);
+        prizeAndCount.put(WinningPrize.FIRST, 0);
     }
 
-    public Map<WinningPrize, Integer> getPriceAndCount() {
-        return Collections.unmodifiableMap(priceAndCount);
+    public Map<WinningPrize, Integer> getPrizeAndCount() {
+        return Collections.unmodifiableMap(prizeAndCount);
     }
 
     public static WinningInformation getInstance() {
@@ -31,7 +31,7 @@ public class WinningInformation {
     }
 
     public void addWinningCount(WinningPrize prize) {
-        priceAndCount.put(prize, priceAndCount.get(prize) + 1);
+        prizeAndCount.put(prize, prizeAndCount.get(prize) + 1);
     }
 
 }
