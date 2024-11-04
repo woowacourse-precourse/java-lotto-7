@@ -2,16 +2,14 @@ package lotto.model;
 
 import lotto.io.ConsoleOutputHandler;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Game {
-    private final Map<LottoRank, Integer> rankCount;
+    private final int[] rankCount;
     private int totalPrize;
 
     public Game(List<Lotto> lottoList, WinningNumber winningNumber, BonusNumber bonusNumber) {
-        rankCount = new HashMap<>();
+        rankCount = new int[LottoRank.values().length];
         totalPrize = 0;
 
         for (Lotto lotto : lottoList) {
@@ -19,7 +17,7 @@ public class Game {
             boolean bonus = lotto.matchingBounsNumber(bonusNumber);
 
             LottoRank rank = getRankByMatchingCount(count, bonus);
-            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+            rankCount[rank.getRank()]++;
             totalPrize += rank.getPrize();
         }
     }
@@ -45,12 +43,22 @@ public class Game {
 
     public void outReturnRate() {
         int buyLottoCount = 0;
-        for (int count : rankCount.values()) {
+        for (int count : rankCount) {
             buyLottoCount += count;
         }
 
         double rate = (double) totalPrize / (buyLottoCount * 1000);
         double roundedRate = Math.round(rate * 10) / 10.0;
         ConsoleOutputHandler.returnRateMessage(roundedRate);
+    }
+
+    public void outLottoRankCountInfo() {
+        for (int i = LottoRank.values().length - 1; i >= 0; i--) {
+            LottoRank rank = LottoRank.values()[i];
+            if (rank != LottoRank.NONE) {
+                int count = rankCount[rank.getRank()];
+                ConsoleOutputHandler.LottoRankCountInfoMessage(rank.getDescription(), rank.getPrize(), count);
+            }
+        }
     }
 }

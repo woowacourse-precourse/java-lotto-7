@@ -27,6 +27,6 @@ public enum LottoRank {
     }
 
     public int getPrize() {
-        return prize; // 당첨 금액 반환
+        return prize;
     }
 }
