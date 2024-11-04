@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.constant.ErrorMessage.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBERS;
-import static lotto.constant.ErrorMessage.BONUS_NUMBER_NOT_NATURAL_NUMBER;
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_NOT_NUMERIC;
 
 public class BonusNumber {
 
@@ -18,7 +18,7 @@ public class BonusNumber {
             Lotto.checkNumberRange(bonusNumber);
             checkDuplicatedWithWinningNumbers(bonusNumber, numbers);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(BONUS_NUMBER_NOT_NATURAL_NUMBER);
+            throw new IllegalArgumentException(BONUS_NUMBER_NOT_NUMERIC);
         }
     }
 
