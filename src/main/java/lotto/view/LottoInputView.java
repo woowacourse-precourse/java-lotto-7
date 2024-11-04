@@ -18,7 +18,8 @@ public class LottoInputView {
 
     public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        return parseSingleNumber(input);
     }
 
     private List<Integer> parseNumbers(String input) {
@@ -30,5 +31,12 @@ public class LottoInputView {
                 .filter(num -> !num.isEmpty())
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private int parseSingleNumber(String input) {
+        if (input.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력 값은 비어 있을 수 없습니다.");
+        }
+        return Integer.parseInt(input.trim());
     }
 }
