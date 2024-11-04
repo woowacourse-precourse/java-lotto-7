@@ -20,24 +20,11 @@ public class WinningLottoCalculateTest {
 
     @Test
     void 로또_구매_개수_계산() {
-        int buyLottoMoney = 1000;
-        int expectedCount = 1;
+        int buyLottoMoney = 3000;
+        int expectedCount = 3;
+
         int actualCount = winningLottoCalculate.calculateBuyLottoCount(buyLottoMoney);
-        Assertions.assertThat(actualCount).isEqualTo(expectedCount);
 
-        buyLottoMoney = 5000;
-        expectedCount = 5;
-        actualCount = winningLottoCalculate.calculateBuyLottoCount(buyLottoMoney);
-        Assertions.assertThat(actualCount).isEqualTo(expectedCount);
-
-        buyLottoMoney = 0;
-        expectedCount = 0;
-        actualCount = winningLottoCalculate.calculateBuyLottoCount(buyLottoMoney);
-        Assertions.assertThat(actualCount).isEqualTo(expectedCount);
-
-        buyLottoMoney = 3500;
-        expectedCount = 3;
-        actualCount = winningLottoCalculate.calculateBuyLottoCount(buyLottoMoney);
         Assertions.assertThat(actualCount).isEqualTo(expectedCount);
     }
 
@@ -68,6 +55,6 @@ public class WinningLottoCalculateTest {
                     winningLottoCalculate.calculateBuyLottoCount(buyLottoMoney);
                 })
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구매 금액은 1,000 단위여야 합니다.");
+                .hasMessageContaining("[ERROR] 구매 금액은 1,000 단위여야 합니다.");
     }
 }

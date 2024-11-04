@@ -11,13 +11,18 @@ public class OutputView {
         System.out.println("[" + lottoNumber + "]");
     }
 
-    public void printBeforeWinningLottoInfo() {
+    public void printBeforeWinningLottoStatistics() {
         System.out.println("당첨 통계");
         System.out.println("----");
     }
 
-    public void printWinningLottoInfo(int matchedCount, String prize, int count) {
+    public void printWinningLottoStatistics(int matchedCount, String prize, int count) {
         System.out.println(matchedCount + "개 일치 (" + prize + "원) - " + count + "개");
+    }
+
+    public void printWinningLottoStatisticsHasBonus(int matchedCount, String prize, int count) {
+        System.out.println(matchedCount + "개 일치, 보너스 볼 일치 (" + prize + "원) - " + count + "개");
+
     }
 
     public void printRateOfReturn(double rateOfReturn) {

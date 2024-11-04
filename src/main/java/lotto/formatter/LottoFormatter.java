@@ -32,15 +32,18 @@ public class LottoFormatter {
 
         for (WinningLotto winningLotto : WinningLotto.values()) {
             if (winningLotto != WinningLotto.NO_MATCH) {
+                boolean hasBonus = winningLotto == WinningLotto.FIVE_MATCH_BONUS;
                 formatResults.add(new WinningLottoResultDTO(
                         winningLotto.getMatchedCount(),
                         formatPrize(winningLotto.getPrize()),
-                        counts.get(winningLotto)
+                        counts.get(winningLotto),
+                        hasBonus
                 ));
             }
         }
         return formatResults;
     }
+
 
     public String formatPrize(long prize) {
         NumberFormat formatter = NumberFormat.getInstance();
@@ -56,6 +59,6 @@ public class LottoFormatter {
         for (Integer number : numbers) {
             formattedLottoNumbers.add(String.valueOf(number));
         }
-        return String.join(",", formattedLottoNumbers);
+        return String.join(", ", formattedLottoNumbers);
     }
 }

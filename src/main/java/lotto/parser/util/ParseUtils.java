@@ -32,7 +32,7 @@ public class ParseUtils {
         try {
             return Integer.parseInt(input);
         } catch (Exception e) {
-            throw new IllegalArgumentException(ExceptionMessages.INVALID_NUMBER_FORMAT_ERROR);
+            throw new IllegalArgumentException(ExceptionMessages.INVALID_NUMBER_FORMAT_ERROR + input);
         }
     }
 }

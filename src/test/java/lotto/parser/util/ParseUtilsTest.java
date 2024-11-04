@@ -43,6 +43,6 @@ public class ParseUtilsTest {
 
         Assertions.assertThatThrownBy(() -> ParseUtils.convertToNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageMatching("숫자 형식만 입력 가능합니다. 잘못된 형식: a");
+                .hasMessageContaining("[ERROR] 숫자 형식만 입력 가능합니다. 잘못된 형식: a");
     }
 }

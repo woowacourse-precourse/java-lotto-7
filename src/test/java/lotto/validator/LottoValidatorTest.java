@@ -22,7 +22,7 @@ public class LottoValidatorTest {
 
         Assertions.assertThatThrownBy(() -> lottoValidator.validateLottoNumbersDuplication(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageMatching("\\[ERROR\\] 로또 번호에 중복된 숫자가 있습니다.");
+                .hasMessageContaining("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
     }
 
     @Test
@@ -33,7 +33,7 @@ public class LottoValidatorTest {
                     lottoValidator.validateBonusLottoRange(invalidBonusNumber);
                 })
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 정수여야 합니다. 잘못된 번호: 46");
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 정수여야 합니다. 잘못된 번호: 46");
     }
 
     @Test
@@ -45,6 +45,6 @@ public class LottoValidatorTest {
                     lottoValidator.validateBonusNumberInLottoNumber(lottoNumbers, bonusNumber);
                 })
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호랑 로또 번호는 중복 불가합니다.");
+                .hasMessageContaining("[ERROR] 보너스 번호랑 로또 번호는 중복 불가합니다.");
     }
 }

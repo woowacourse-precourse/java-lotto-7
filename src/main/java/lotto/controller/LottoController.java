@@ -103,9 +103,18 @@ public class LottoController {
         List<WinningLottoResultDTO> formatWinningLottoResults = lottoService.formatWinningLottoResults();
 
         outputView.printWhiteSpace();
-        outputView.printBeforeWinningLottoInfo();
+        outputView.printBeforeWinningLottoStatistics();
         for (WinningLottoResultDTO winningLottoResultDTO : formatWinningLottoResults) {
-            outputView.printWinningLottoInfo(
+            if (winningLottoResultDTO.hasBonus()) {
+                outputView.printWinningLottoStatisticsHasBonus(
+                        winningLottoResultDTO.getMatchedCount(),
+                        winningLottoResultDTO.getPrize(),
+                        winningLottoResultDTO.getCount()
+                );
+                continue;
+            }
+
+            outputView.printWinningLottoStatistics(
                     winningLottoResultDTO.getMatchedCount(),
                     winningLottoResultDTO.getPrize(),
                     winningLottoResultDTO.getCount()

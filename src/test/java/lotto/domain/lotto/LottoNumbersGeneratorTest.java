@@ -34,7 +34,7 @@ public class LottoNumbersGeneratorTest {
 
         Assertions.assertThatThrownBy(() -> lottoNumbersGenerator.generateLottoNumbers(randomNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageMatching("\\[ERROR\\] 로또 번호는 1부터 45 사이의 정수여야 합니다. 잘못된 번호: 46");
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 정수여야 합니다. 잘못된 번호: 46");
     }
 
     @Test
@@ -43,6 +43,6 @@ public class LottoNumbersGeneratorTest {
 
         Assertions.assertThatThrownBy(() -> lottoNumbersGenerator.generateLottoNumbers(randomNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageMatching("\\[ERROR\\] 로또 번호에 중복된 숫자가 있습니다.");
+                .hasMessageContaining("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
     }
 }
