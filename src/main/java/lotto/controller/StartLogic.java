@@ -8,10 +8,12 @@ public class StartLogic {
 
     public void start(){
 
-        lottoService.userInput();
-        lottoService.lotResult();
+        lottoService.moneyInput();
+        lottoService.setPapers();
+        lottoService.winNumberInput();
+        lottoService.bonusNumberInput();
+        lottoService.resultOutput();
 
     }
-
 
 }
