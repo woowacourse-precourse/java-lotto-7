@@ -18,13 +18,15 @@ public class Lotto {
         }
     }
 
-    public void checkLottoWin(List<List<Integer>> randomNumberList, Integer bonusNumber) {
+    public Map<Object, Integer> checkLottoWin(List<List<Integer>> randomNumberList, Integer bonusNumber) {
         Map<Object, Integer> checkLotto = new HashMap<>();
 
         for (List<Integer> randomNumbers : randomNumberList) {
             Object matchResult = countLottoMatchesWithBonus(numbers, bonusNumber, randomNumbers);
             checkLotto.put(matchResult, checkLotto.getOrDefault(matchResult, 0) + 1);
         }
+
+        return checkLotto;
     }
 
     private Object countLottoMatchesWithBonus(

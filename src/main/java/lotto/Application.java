@@ -4,10 +4,21 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     private static final String error_message = "[ERROR]";
+    private static final Map<Object, Integer> prizeMoney = new HashMap<>();
+
+    static {
+        prizeMoney.put(3, 5000);           // 3개 일치 (5,000원)
+        prizeMoney.put(4, 50000);          // 4개 일치 (50,000원)
+        prizeMoney.put(5, 1500000);        // 5개 일치 (1,500,000원)
+        prizeMoney.put(6, 2000000000);     // 6개 일치 (2,000,000,000원)
+        prizeMoney.put("bonus", 30000000);       // 5개 일치, 보너스 볼 일치 (30,000,000원)
+    }
 
     public static void main(String[] args) {
         try {
@@ -18,11 +29,30 @@ public class Application {
             Integer bonusNumber = getBonusNumber();
 
             Lotto lotto = new Lotto(lottoNumbers);
-            lotto.checkLottoWin(numbers, bonusNumber);
+            Map<Object, Integer> result = lotto.checkLottoWin(numbers, bonusNumber);
+
+            statistics(result);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static void statistics(Map<Object, Integer> result) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (Object key : result.keySet()) {
+            int count = result.get(key);
+            int prize = prizeMoney.getOrDefault(count, 0);
+            System.out.println(key + ":dfdfdf " + prize);
+
+            System.out.printf("%s개 일치 (%s) - %d개%n", key, formatPrize(prize), count);
+        }
+    }
+
+    private static String formatPrize(int prize) {
+        return String.format("%,d원", prize);
     }
 
     private static List<List<Integer>> makeRandomNumbers(int purchaseAmount) {
