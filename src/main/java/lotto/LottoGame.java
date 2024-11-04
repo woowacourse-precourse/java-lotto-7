@@ -4,9 +4,11 @@ import java.util.List;
 
 public class LottoGame {
     private LottoMachine lottoMachine;
+    private Result result;
 
     public LottoGame() {
         lottoMachine = new LottoMachine();
+        result = new Result();
     }
 
     public void play() {
@@ -17,5 +19,7 @@ public class LottoGame {
         List<Lotto> lottos = lottoMachine.generateLotto(purchaseCount);
 
         WinningLotto winningLotto = InputHandler.getWinningLotto();
+
+        result.calculateResults(winningLotto, lottos);
     }
 }
