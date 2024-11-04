@@ -10,7 +10,7 @@ public class InputParser {
     public static List<Integer> parseStringToInt(String input) {
         try {
             List<Integer> numbers = Arrays.stream(input.split(","))
-                    .map(Integer :: parseInt)
+                    .map(Integer::parseInt)
                     .collect(Collectors.toList());
             Collections.sort(numbers);
 

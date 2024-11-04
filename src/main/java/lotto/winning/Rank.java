@@ -43,7 +43,7 @@ public enum Rank {
         return Arrays.stream(values())
                 .filter(winning -> winning.matchingCount == matchingCount && winning.bonus == bonus)
                 .findFirst()
-                .orElseThrow(IllegalArgumentException :: new);
+                .orElseThrow(IllegalArgumentException::new);
     }
 
 
