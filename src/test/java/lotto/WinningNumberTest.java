@@ -15,7 +15,7 @@ class WinningNumberTest {
 
     @DisplayName("문자와 공백 포함한 당첨번호 입력")
     @ParameterizedTest
-    @ValueSource(strings = {"1, 2, 3, k, 4, 6", "4, 6,,\\,7,9, 10"})
+    @ValueSource(strings = {"1, 2, 3, k, 4, 6", "4, 6, ,7,9, 10", "1, 2, 3, 4 0, 4, 6", "45, 33, 19s, 43, 32, 9"})
     void 문자_공백_당첨번호(String inputWinningNumbers) {
         assertThatThrownBy(() -> winningNumbers.getWinningNumbers(inputWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -41,6 +41,14 @@ class WinningNumberTest {
     @ParameterizedTest
     @ValueSource(strings = {"001, 5, 7, 34, 9, 10"})
     void 영_맨앞인_숫자_입력(String inputWinningNumbers) {
+        assertThatThrownBy(() -> winningNumbers.getWinningNumbers(inputWinningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("실수 혹은 소수를 입력")
+    @ParameterizedTest
+    @ValueSource(strings = {"14, 1.0, 7, 8, 9, 34", "4, 6, 7, 2.3, 9, 33"})
+    void 실수_소수_입력(String inputWinningNumbers) {
         assertThatThrownBy(() -> winningNumbers.getWinningNumbers(inputWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
