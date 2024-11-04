@@ -2,12 +2,19 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
     private static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
 
     public static void main(String[] args) {
         int money = getInputMoney();
         LottoMachine lottoMachine = new LottoMachine(money);
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getInputBonusNumber();
     }
 
     public static int getInputMoney() {
@@ -30,5 +37,41 @@ public class Application {
         }
     }
 
+    public static List<Integer> getWinningNumbers() {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                String[] splitInput = input.split(",");
+                List<Integer> winningNumbers = new ArrayList<>();
+                for (String number : splitInput) {
+                    winningNumbers.add(Integer.parseInt(number.trim()));
+                }
+                System.out.println();
+                return new Lotto(winningNumbers).getNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
 
+    public static int getInputBonusNumber() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                validateBonusNumber(bonusNumber);
+                System.out.println();
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    public static void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
 }
