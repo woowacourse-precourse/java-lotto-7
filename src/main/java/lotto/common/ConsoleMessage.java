@@ -9,7 +9,8 @@ public final class ConsoleMessage {
 
     public static final String WIN_HEADER = "당첨 통계\n---";
     public static final String DEFAULT_MATCH_RESULT = "%d개 일치 (%,d원) - %d개\n";
-    public static final String FIVE_AND_BONUS_MATCH_RESULT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    public static final String FIVE_AND_BONUS_MATCH_RESULT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
+    public static final String PROFIT_RATE_RESULT = "총 수익률은 %.1f%%입니다.";
 
 
     private ConsoleMessage() {

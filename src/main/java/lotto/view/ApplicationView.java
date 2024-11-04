@@ -15,4 +15,6 @@ public interface ApplicationView {
     int requestBonusNumber();
 
     void printWinningResult(WinningInfo winningInfo);
+
+    void printProfitRate(float profitRate);
 }

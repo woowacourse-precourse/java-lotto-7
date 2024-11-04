@@ -51,6 +51,11 @@ public class ApplicationConsoleView implements ApplicationView {
         }
     }
 
+    @Override
+    public void printProfitRate(float profitRate) {
+        System.out.printf(PROFIT_RATE_RESULT, profitRate);
+    }
+
     private void println(String message) {
         System.out.println(message);
     }

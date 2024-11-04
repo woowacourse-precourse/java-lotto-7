@@ -1,10 +1,12 @@
 package lotto.common;
 
 import lotto.LottoApplication;
+import lotto.application.CalculateProfitUseCase;
 import lotto.application.LottoResultUseCase;
 import lotto.application.FacadeLottoUseCase;
 import lotto.application.PurchaseLottoUseCase;
 import lotto.application.RetrieveLottoUseCase;
+import lotto.application.service.CalculateProfitService;
 import lotto.application.service.FacadeLottoService;
 import lotto.domain.LottoMatcher;
 import lotto.application.service.LottoResultService;
@@ -47,7 +49,7 @@ public final class LottoConfig {
     }
 
     private FacadeLottoUseCase lottoUseCase() {
-        return new FacadeLottoService(purchaseLottoUseCase(), retrieveLottoUseCase(), lottoResultUseCase());
+        return new FacadeLottoService(purchaseLottoUseCase(), retrieveLottoUseCase(), lottoResultUseCase(), calculateProfitUseCase());
     }
 
     private PurchaseLottoUseCase purchaseLottoUseCase() {
@@ -60,6 +62,10 @@ public final class LottoConfig {
 
     private LottoResultUseCase lottoResultUseCase() {
         return new LottoResultService(winLottoRepository(), WinResultHistory.getInstance(), lottoRepository(), new LottoMatcher());
+    }
+
+    private CalculateProfitUseCase calculateProfitUseCase() {
+        return new CalculateProfitService(lottoRepository(), WinResultHistory.getInstance());
     }
 
     private LottoRepository lottoRepository() {
