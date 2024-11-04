@@ -24,6 +24,19 @@ public class ConsoleReader implements InputView {
         }
     }
 
+    @Override
+    public WinningNumbersRequest readWinningNumbers() {
+        System.out.println(WINNING_NUMBERS_REQUEST_MESSAGE);
+        try {
+            String winningNumbers = readAndTrimInput();
+            WinningNumbersValidator.validate(winningNumbers);
+            return WinningNumbersRequest.from(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readWinningNumbers();
+        }
+    }
+
     private String readAndTrimInput() {
         return Console.readLine().trim();
     }
