@@ -63,10 +63,18 @@ public class Validator {
         }
     }
 
-    public void validateNumberDuplicate(int bonusNumber, int winningNumber) {
-        if(bonusNumber == winningNumber) {
+    public void validateWinningNumberDuplicate(int number, List<Integer> winningNumbers) {
+        if(winningNumbers.contains(number)) {
             throw new IllegalArgumentException(
-                "[ERROR] 이미 당첨 번호로 등록된 숫자입니다. 다시 입력해주세요."
+                "[ERROR] 중복된 숫자가 입력되었습니다. 다시 입력해주세요. 중복값 : " + number
+            );
+        }
+    }
+
+    public void validateBonusNumberDuplicate(int number, int winningNumber) {
+        if(number == winningNumber) {
+            throw new IllegalArgumentException(
+                "[ERROR] 이미 당첨 번호로 등록된 숫자입니다. 다시 입력해주세요. 중복값 : " + number
             );
         }
     }

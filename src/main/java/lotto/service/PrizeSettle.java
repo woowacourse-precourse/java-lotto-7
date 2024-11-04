@@ -12,16 +12,8 @@ public class PrizeSettle {
     private Map<Prize, Integer> resultCounts = new HashMap<>();
 
     private void formatPrizeMap() {
-        for(int i=5; i>=0; i--) {
-            formatPrize(i);
-        }
-    }
-
-    private void formatPrize(int idx) {
         for (Prize prize : Prize.values()) {
-            if(prize.getIndex() == idx) {
-                resultCounts.put(prize, 0);
-            }
+            resultCounts.put(prize, 0);
         }
     }
     public PrizeSettle(List<Lotto> purchasedLotto, List<Integer> winningNumbers, int bonusNumber) {

@@ -19,6 +19,7 @@ public class WinningNumbers {
             validator.validateEmptyInputInNumbers(separated);
             int winningNumber = validator.validateFormatInput(separated);
             validator.validateNumberInRange(winningNumber);
+            validator.validateWinningNumberDuplicate(winningNumber, numbers);
             numbers.add(winningNumber);
         }
     }

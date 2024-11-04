@@ -16,7 +16,7 @@ public class BonusNumber {
     private void validate(int number, List<Integer> numbers) {
         validator.validateNumberInRange(number);
         for(int winningNumber : numbers) {
-            validator.validateNumberDuplicate(number, winningNumber);
+            validator.validateBonusNumberDuplicate(number, winningNumber);
         }
     }
 
