@@ -35,7 +35,7 @@
 - [x] 수익률 출력
 
 ## 체크 리스트
--[ ] JDK 21 버전에서 실행 가능해야 한다.
--[ ] Java Enum을 적용한다.
--[ ] Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
--[ ] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
+- [x] JDK 21 버전에서 실행 가능해야 한다.
+- [x] Java Enum을 적용한다.
+- [x] Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
+- [x] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
