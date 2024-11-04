@@ -1,19 +1,21 @@
 package lotto.view;
 
+import static lotto.enums.ViewConstants.PRINT_3LINES;
+import static lotto.enums.ViewConstants.PRINT_LOTTO_COUNT;
+import static lotto.enums.ViewConstants.PRINT_MATCH_NUMBERS;
+import static lotto.enums.ViewConstants.PRINT_MATCH_NUMBERS_SECOND;
+import static lotto.enums.ViewConstants.PRINT_PERCENT;
+import static lotto.enums.ViewConstants.PRINT_PRIZE;
+import static lotto.enums.ViewConstants.PRINT_RESULT_STATISTICS;
+import static lotto.enums.ViewConstants.PRINT_RESULT_STATISTICS_TITLE;
+import static lotto.enums.ViewConstants.PRINT_WINNING_LOTTO_COUNT;
+
 import java.util.List;
-import lotto.model.Lotto;
 import lotto.enums.LottoPrizes;
+import lotto.model.Lotto;
 
 public class OutputView {
-    private static final String PRINT_LOTTO_COUNT = "개를 구매했습니다.";
-    private static final String PRINT_RESULT_STATISTICS_TITLE = "당첨 통계";
-    private static final String PRINT_3LINES = "---";
-    private static final String PRINT_MATCH_NUMBERS = "개 일치 (";
-    private static final String PRINT_MATCH_NUMBERS_SECOND = "개 일치, 보너스 볼 일치 (";
-    private static final String PRINT_PRIZE = "원) - ";
-    private static final String PRINT_RESULT_STATISTICS = "총 수익률은 ";
-    private static final String PRINT_WINNING_LOTTO_COUNT = "개";
-    private static final String PRINT_PERCENT = "%입니다.";
+
     public void printLottoCount(int price) {
         System.out.println();
         System.out.println(price / 1000 + PRINT_LOTTO_COUNT);
@@ -32,11 +34,14 @@ public class OutputView {
         System.out.println(PRINT_3LINES);
         for (LottoPrizes prize : LottoPrizes.values()) {
             if (prize == LottoPrizes.SECOND) {
-                System.out.println(prize.getMatchNumberCount() + PRINT_MATCH_NUMBERS_SECOND + prize.getPrizeMoney() + PRINT_PRIZE + prize.getCount() + PRINT_WINNING_LOTTO_COUNT);
+                System.out.println(
+                        prize.getMatchNumberCount() + PRINT_MATCH_NUMBERS_SECOND + prize.getPrizeMoney() + PRINT_PRIZE
+                                + prize.getCount() + PRINT_WINNING_LOTTO_COUNT);
             }
-            System.out.println(prize.getMatchNumberCount() + PRINT_MATCH_NUMBERS + prize.getPrizeMoney() + PRINT_PRIZE + prize.getCount() + PRINT_WINNING_LOTTO_COUNT);
+            System.out.println(prize.getMatchNumberCount() + PRINT_MATCH_NUMBERS + prize.getPrizeMoney() + PRINT_PRIZE
+                    + prize.getCount() + PRINT_WINNING_LOTTO_COUNT);
         }
 
-        System.out.println(PRINT_RESULT_STATISTICS+ rateOfReturn + PRINT_PERCENT);
+        System.out.println(PRINT_RESULT_STATISTICS + rateOfReturn + PRINT_PERCENT);
     }
 }

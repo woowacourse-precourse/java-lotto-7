@@ -1,5 +1,10 @@
 package lotto.view;
 
+
+import static lotto.enums.ViewConstants.PRINT_BONUS_NUMBER;
+import static lotto.enums.ViewConstants.PRINT_PURCHASE_PRICE;
+import static lotto.enums.ViewConstants.PRINT_WINNING_NUMBER;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PriceValidator;
@@ -8,9 +13,6 @@ import lotto.validator.WinningNumberValidator;
 
 public class InputView {
 
-    private static final String PRINT_PURCHASE_PRICE = "구입금액을 입력해 주세요.";
-    private static final String PRINT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
-    private static final String PRINT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     public int printGetPurchasePrice(PriceValidator validator) {
         while (true) {
@@ -23,7 +25,6 @@ public class InputView {
             }
         }
     }
-
 
 
     public String printGetWinningLottoNumber(WinningNumberValidator validator) {
