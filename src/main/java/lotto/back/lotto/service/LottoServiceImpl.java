@@ -79,8 +79,8 @@ public class LottoServiceImpl implements LottoService {
             throw new CustomIllegalArgumentException("구매 금액은 0보다 커야 합니다.");
         }
 
-        int sum = results.getLottoResults().stream()
-                .mapToInt(lottoResult -> lottoResult.getLottoStatus().getPrize())
+        long sum = results.getLottoResults().stream()
+                .mapToLong(lottoResult -> lottoResult.getLottoStatus().getPrize())
                 .sum();
 
         return (double) sum / price * 100;
