@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import camp.nextstep.edu.missionutils.test.Assertions;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
@@ -52,6 +54,14 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 랜덤_숫자_선택_테스트() {
+        Assertions.assertRandomNumberInRangeTest(() -> {
+            int randomNumber = Randoms.pickNumberInRange(1, 10);
+            assertThat(randomNumber).isBetween(1, 10);
+        }, 5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     }
 
     @Override
