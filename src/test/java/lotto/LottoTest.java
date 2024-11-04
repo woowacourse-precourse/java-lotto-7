@@ -1,11 +1,10 @@
-package lotto.domain;
+package lotto;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Collections;
-import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
