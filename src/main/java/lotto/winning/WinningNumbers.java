@@ -22,7 +22,7 @@ public class WinningNumbers {
                 .map(LottoNumber::toLottoNumber)
                 .toList();
 
-        LottoValidator.validate(lottoNumbers);
+        LottoValidator.LOTTO_VALIDATOR.validate(lottoNumbers);
 
         return lottoNumbers;
     }

@@ -14,7 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<LottoNumber> numbers) {
-        LottoValidator.validate(numbers);
+        LottoValidator.LOTTO_VALIDATOR.validate(numbers);
     }
 
     public int matchNumbers(WinningLotto winningLotto) {
