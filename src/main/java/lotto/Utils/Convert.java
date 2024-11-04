@@ -21,18 +21,13 @@ public class Convert {
     }
 
     public static List<Integer> convertStringToList(String input) {
-        if (!input.matches("^[0-9,]+$")) {
-            throw new IllegalArgumentException(ONLY_INTEGER);
-        }
-
         try {
             return Arrays.stream(input.split(","))
-                    .map(Integer::parseInt)
+                    .map(s -> Integer.parseInt(s.trim()))
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ONLY_INTEGER); // 변환 실패 시 예외 발생
+            throw new IllegalArgumentException(ONLY_INTEGER);
         }
-
     }
 
     public static int convertBonusNumberStringToInt(String input) {
