@@ -55,16 +55,13 @@ public class LottoStatistics {
     }
 
     public void discerning(List<Integer> lottoNum) {
-        List<Integer> overlapNum = new ArrayList<>();
-        overlapNum.addAll(lottoNum);
+        List<Integer> overlapNum = new ArrayList<>(lottoNum);
         overlapNum.retainAll(winningNum);
         if(overlapNum.size() == 3) {
             fifthPrizeNum++;
-            return;
         }
         if(overlapNum.size() == 4) {
             fourthPrizeNum++;
-            return;
         }
         if(overlapNum.size() == 5) {
             if(lottoNum.contains(bonusNum)) {
@@ -72,11 +69,9 @@ public class LottoStatistics {
                 return;
             }
             thirdPrizeNum++;
-            return;
         }
         if(overlapNum.size() == 6) {
             firstPrizeNum++;
-            return;
         }
     }
 
@@ -100,5 +95,4 @@ public class LottoStatistics {
         DecimalFormat df = new DecimalFormat("#,##0.0");
         System.out.println("총 수익률은 " + df.format(profitRate) + "%입니다.");
     }
-
 }

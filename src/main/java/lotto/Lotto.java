@@ -25,7 +25,6 @@ public class Lotto {
         if(numbers.size() != numSet.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 수가 존재합니다.");
         }
-
     }
 
     public void printNums() {
