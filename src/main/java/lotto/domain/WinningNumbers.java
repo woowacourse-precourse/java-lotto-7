@@ -28,7 +28,7 @@ public class WinningNumbers {
         machine.getLottos().forEach(lotto -> {
             lotto.setWinningNumberMatch(matchNumberCount(lotto));
             if(lotto.getWinningNumberMatch() == 5) {
-                isBonusNumberMatch(lotto);
+                lotto.setBonusMatch(isBonusNumberMatch(lotto));
             }
         });
     }
