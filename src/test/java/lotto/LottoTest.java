@@ -51,6 +51,6 @@ class LottoTest {
     void 로또_번호에_음수가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 2, 3, 4, 5, -1)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.NON_NUMERIC_ERROR);
+                .hasMessageContaining(ErrorMessage.RANGE_ERROR);
     }
 }

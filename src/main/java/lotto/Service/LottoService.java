@@ -23,18 +23,14 @@ public class LottoService {
                 InputValidator.validPay(amount);
                 payment = amount;
                 lottoCount = amount / 1000;
-                addLottos(lottoCount);
+                for (int i = 0; i < lottoCount; i++) {
+                    List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
+                    lottos.add(new Lotto(numbers));
+                }
                 break;
             } catch (IllegalArgumentException | ArithmeticException e) {
 
             }
-        }
-    }
-
-    private void addLottos(int count) {
-        for (int i = 0; i < count; i++) {
-            List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
-            lottos.add(new Lotto(numbers));
         }
     }
 

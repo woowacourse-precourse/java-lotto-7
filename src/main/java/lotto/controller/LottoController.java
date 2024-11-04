@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.Service.LottoService;
 import lotto.Vaildator.InputValidator;
+import lotto.Vaildator.LottoValidator;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
@@ -26,7 +27,7 @@ public class LottoController {
             try {
                 String input = InputView.inputWinningNumbers();
                 List<Integer> winningNumbers = lottoService.inputLottoNumbers(input);
-                InputValidator.valid(winningNumbers);
+                LottoValidator.valid(winningNumbers);
                 lottoService.setWinningNumbers(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
