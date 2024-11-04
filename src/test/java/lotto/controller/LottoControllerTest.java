@@ -8,7 +8,9 @@ import java.io.PrintStream;
 import java.util.List;
 import lotto.domain.LottoShop;
 import lotto.domain.LottoTicketFactory;
+import lotto.service.LottoEvaluator;
 import lotto.service.LottoService;
+import lotto.service.PrizeCalculator;
 import lotto.utils.LottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,7 +23,7 @@ class LottoControllerTest {
     private InputHandler inputHandler = new InputHandler(errorHandler);
     private LottoShop lottoShop = new LottoShop(new LottoTicketFactory(new LottoNumberGenerator()));
     private ByteArrayOutputStream outputStreamCaptor;
-    private LottoService lottoService = new LottoService(lottoShop);
+    private LottoService lottoService = new LottoService(lottoShop, new LottoEvaluator(), new PrizeCalculator());
 
     private InputView inputView = new InputView() {
         @Override

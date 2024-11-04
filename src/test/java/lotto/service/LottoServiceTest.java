@@ -4,22 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.Map;
+import lotto.config.AppConfig;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoShop;
-import lotto.domain.LottoTicketFactory;
 import lotto.domain.Player;
 import lotto.domain.WinningLotto;
-import lotto.utils.LottoNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class LottoServiceTest {
 
-    private LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-    private LottoTicketFactory lottoTicketFactory = new LottoTicketFactory(lottoNumberGenerator);
-    private LottoShop lottoShop = new LottoShop(lottoTicketFactory);
-    private LottoService lottoService = new LottoService(lottoShop);
+    private AppConfig appConfig = new AppConfig();
+    private LottoService lottoService = appConfig.getLottoService();
     private Player player;
     private WinningLotto winningLotto;
 

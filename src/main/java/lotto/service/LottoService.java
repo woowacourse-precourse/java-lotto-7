@@ -9,11 +9,13 @@ import lotto.domain.WinningLotto;
 public class LottoService {
 
     private final LottoShop lottoShop;
-    private final LottoEvaluator evaluator = new LottoEvaluator();
-    private final PrizeCalculator prizeCalculator = new PrizeCalculator();
+    private final LottoEvaluator evaluator;
+    private final PrizeCalculator prizeCalculator;
 
-    public LottoService(LottoShop lottoShop) {
+    public LottoService(LottoShop lottoShop, LottoEvaluator evaluator, PrizeCalculator prizeCalculator) {
         this.lottoShop = lottoShop;
+        this.evaluator = evaluator;
+        this.prizeCalculator = prizeCalculator;
     }
 
     public void buyLotto(Player player, int money) {
