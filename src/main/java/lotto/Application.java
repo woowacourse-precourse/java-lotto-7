@@ -28,6 +28,9 @@ public class Application {
 
         String winningNumber = Console.readLine();
         Lotto winningLotto = new Lotto(parseWinningNumber(winningNumber));
+
+        String rawBonusNumber = Console.readLine();
+        int bonusNumber = parseBonusNumber(rawBonusNumber);
     }
 
     public static int buyLotto(final String input) {
@@ -71,5 +74,10 @@ public class Application {
             winningNumber.add(Integer.parseInt(number));
         }
         return winningNumber;
+    }
+    
+    // 예외 처리 필요
+    public static int parseBonusNumber(String input) {
+        return Integer.parseInt(input);
     }
 }
