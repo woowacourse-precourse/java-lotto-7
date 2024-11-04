@@ -64,14 +64,28 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 수익률이_100퍼센트일_때() {
-        run("1000", "1,2,3,4,5,6", "7");
-        assertThat(output()).contains("총 수익률은 100.0%입니다.");
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("5000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains("총 수익률은 100.0%입니다.");
+                },
+                List.of(1, 2, 3, 6, 7, 8),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12)
+        );
     }
 
     @Test
     void 수익률이_0퍼센트일_때() {
-        run("1000", "1,2,3,4,5,6", "7");
-        assertThat(output()).contains("총 수익률은 0.0%입니다.");
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains("총 수익률은 0.0%입니다.");
+                },
+                List.of(8, 9, 10, 11, 12, 13)
+        );
     }
 
     @Override
