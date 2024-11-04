@@ -32,6 +32,9 @@ public class Application {
             Map<String, Integer> results = calculateResults(lottoTickets, winningNumbers, bonusNumber);
             printResults(results);
 
+            double profitRate = calculateProfitRate(results, purchaseAmount);
+            System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }
@@ -151,5 +154,16 @@ public class Application {
     private static void printResults(Map<String, Integer> results) {
         System.out.println("당첨 통계\n---");
         results.forEach((key, value) -> System.out.println(key + " - " + value + "개"));
+    }
+
+    // 수익률 계산
+    private static double calculateProfitRate(Map<String, Integer> results, int purchaseAmount) {
+        int totalPrize = results.get("3개 일치 (5,000원)") * 5_000
+                + results.get("4개 일치 (50,000원)") * 50_000
+                + results.get("5개 일치 (1,500,000원)") * 1_500_000
+                + results.get("5개 일치, 보너스 볼 일치 (30,000,000원)") * 30_000_000
+                + results.get("6개 일치 (2,000,000,000원)") * 2_000_000_000;
+
+        return (double) totalPrize / purchaseAmount * 100;
     }
 }
