@@ -13,6 +13,10 @@ public class PurchaseAmount {
         validate(value);
     }
 
+    public String calculatePurchaseLottoCount() {
+        return String.valueOf(value / Lotto.PRICE);
+    }
+
     private int parseInput(String input) {
         try {
             return Integer.parseInt(input);
@@ -26,19 +30,15 @@ public class PurchaseAmount {
         validateUnits(value);
     }
 
-    private void validateUnits(int value) {
-        if (value % Lotto.PRICE != 0) {
-            throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_NOT_IN_UNITS_OF_THOUSAND.getMessage());
-        }
-    }
-
     private void validatePurchaseAmountBounds(int value) {
         if (value <= MIN_PURCHASE_AMOUNT) {
             throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_OUT_OF_RANGE.getMessage());
         }
     }
 
-    public String calculatePurchaseLottoCount() {
-        return String.valueOf(value / Lotto.PRICE);
+    private void validateUnits(int value) {
+        if (value % Lotto.PRICE != 0) {
+            throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_NOT_IN_UNITS_OF_THOUSAND.getMessage());
+        }
     }
 }
