@@ -7,6 +7,20 @@ public class LottoResultChecker {
         this.drawnNumbers = drawnNumbers;
     }
 
+    public WinningResult check(Lottos lottos){
+        WinningResult winningResult = new WinningResult();
+        for(Lotto lotto : lottos){
+            int matchCount = calculateMatchCount(lotto);
+            boolean bonusMatch = hasBonusMatch(lotto);
+
+            WinningType winningType = WinningType.valueOf(matchCount, bonusMatch);
+
+            winningResult.addResult(winningType);
+        }
+
+        return winningResult;
+    }
+
     public int calculateMatchCount(Lotto lotto) {
         return (int) lotto.getNumbers()
                 .stream()

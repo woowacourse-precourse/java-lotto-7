@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.domain.WinningType.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoResultCheckerTest {
     @DisplayName("로또 번화와 당첨 번호를 비교하여 일치하는 숫자 개수를 구한다.")
@@ -71,5 +71,31 @@ class LottoResultCheckerTest {
 
         // then
         assertThat(bonusMatch).isEqualTo(false);
+    }
+
+    @DisplayName("당첨_내역을_업데이트_한다")
+    @Test
+    void 당첨_내역을_업데이트_한다(){
+        // given
+        final List<Integer> LOTTO_NUMBERS_1 = Arrays.asList(1,3,5,7,9,11);
+        final List<Integer> LOTTO_NUMBERS_2 = Arrays.asList(1,2,3,4,5,6);
+        final List<Integer> WINNING_NUMBERS = Arrays.asList(1,2,3,4,5,6);
+        final String BONUS_NUMBER = "7";
+
+        Lotto lotto1 = new Lotto(LOTTO_NUMBERS_1);
+        Lotto lotto2 = new Lotto(LOTTO_NUMBERS_2);
+        Lottos lottos = new Lottos(Arrays.asList(lotto1, lotto2));
+
+        WinningNumbers winningNumbers = WinningNumbers.from(WINNING_NUMBERS);
+        BonusNumber bonusNumber = new BonusNumber(BONUS_NUMBER, winningNumbers);
+        DrawnNumbers drawnNumbers = new DrawnNumbers(winningNumbers,bonusNumber);
+        LottoResultChecker lottoResultChecker = new LottoResultChecker(drawnNumbers);
+
+        // when
+        WinningResult winningResult = lottoResultChecker.check(lottos);
+
+        // then
+        assertThat(winningResult.getWinningResult().get(FIFTH)).isEqualTo(1);
+        assertThat(winningResult.getWinningResult().get(FIRST)).isEqualTo(1);
     }
 }
