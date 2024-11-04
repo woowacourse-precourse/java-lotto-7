@@ -25,12 +25,12 @@ class PurchaseAmountTest {
                 .hasMessage(ErrorCode.PURCHASE_AMOUNT_NOT_IN_UNITS_OF_THOUSAND.getMessage());
     }
 
-    @DisplayName("구매 금액이 음수일 경우 예외가 발생한다.")
+    @DisplayName("구매 금액이 0 이하일 경우 예외가 발생한다.")
     @Test
-    void 구매_금액이_음수일_경우_예외가_발생한다() {
+    void 구매_금액이_0_이하일_경우_예외가_발생한다() {
         assertThatThrownBy(() -> new PurchaseAmount("-1000"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorCode.PURCHASE_AMOUNT_NEGATIVE.getMessage());
+                .hasMessage(ErrorCode.PURCHASE_AMOUNT_OUT_OF_RANGE.getMessage());
     }
 
     @DisplayName("유효한 구매 금액으로 PurchaseAmount 객체를 생성한다.")

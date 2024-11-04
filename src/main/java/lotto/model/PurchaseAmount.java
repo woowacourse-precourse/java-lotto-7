@@ -22,7 +22,7 @@ public class PurchaseAmount {
     }
 
     private void validate(int value) {
-        validateNegative(value);
+        validatePurchaseAmountBounds(value);
         validateUnits(value);
     }
 
@@ -32,9 +32,9 @@ public class PurchaseAmount {
         }
     }
 
-    private void validateNegative(int value) {
-        if (value < MIN_PURCHASE_AMOUNT) {
-            throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_NEGATIVE.getMessage());
+    private void validatePurchaseAmountBounds(int value) {
+        if (value <= MIN_PURCHASE_AMOUNT) {
+            throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_OUT_OF_RANGE.getMessage());
         }
     }
 
