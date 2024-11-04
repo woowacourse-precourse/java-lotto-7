@@ -20,7 +20,7 @@ public class BonusNumber {
     private Integer parseUserInputBonusNumber(String userInputBonusNumber){
         Integer bonusNumber;
         try{
-            bonusNumber = Integer.parseInt(userInputBonusNumber);
+            bonusNumber = Integer.parseInt(userInputBonusNumber.trim());
         }catch(NumberFormatException e){
             throw new BonusNumberException(BONUS_NUMBER_FORMAT_ERROR);
         }
