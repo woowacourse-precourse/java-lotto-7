@@ -21,6 +21,7 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+        System.out.println();
 
         Lotto[] lottos = new Lotto[purchaseNum];
         System.out.println(purchaseNum + "개를 구매했습니다.");
@@ -29,6 +30,7 @@ public class Application {
             lottos[i] = new Lotto(numbers);
             lottos[i].printNums();
         }
+        System.out.println();
 
         while(true) {
             try {
@@ -40,10 +42,11 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+        System.out.println();
 
         while(true) {
             try {
-                bonusNum = getBonusNum();
+                bonusNum = getBonusNum(winningNum);
                 break;
             }catch(NumberFormatException e) {
                 System.out.println("[ERROR] 보너스 번호는 1자리 정수여야 합니다.");
@@ -51,10 +54,10 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+        System.out.println();
 
         LottoStatistics lottoStatistics = new LottoStatistics(lottos, winningNum, bonusNum);
-
-
+        lottoStatistics.run();
     }
 
     public static int getPurchaseNum() throws NumberFormatException {
@@ -93,7 +96,7 @@ public class Application {
         return winningNum;
     }
 
-    public static int getBonusNum() throws NumberFormatException {
+    public static int getBonusNum(List<Integer> winningNum) throws NumberFormatException {
         System.out.println("보너스 번호를 입력해 주세요.");
         String num = Console.readLine();
 
@@ -101,6 +104,10 @@ public class Application {
         if(bonusNum > 45 || bonusNum < 1) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+        if(winningNum.contains(bonusNum)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되지 않아야 합니다.");
+        }
+
         return bonusNum;
     }
 }
