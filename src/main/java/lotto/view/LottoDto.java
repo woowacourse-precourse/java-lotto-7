@@ -10,7 +10,7 @@ public class LottoDto {
         this.numbers = numbers;
     }
 
-    public LottoDto createLottoDto(Lotto lotto) {
+    public static LottoDto createLottoDto(Lotto lotto) {
         return new LottoDto(lotto.getNumbers());
     }
 

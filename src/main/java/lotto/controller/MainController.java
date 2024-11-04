@@ -23,7 +23,7 @@ public class MainController {
         LottoMachine lottoMachine = new LottoMachine(new CustomLottoGenerator());
         List<Lotto> purchasedLottos = lottoMachine.generateLottos(price);
         outputView.printPurchasedLottoList(purchasedLottos.stream()
-                .map(lotto -> new LottoDto(lotto.getNumbers()))
+                .map(LottoDto::createLottoDto)
                 .toList());
 
         Lotto winningLotto = new Lotto(inputView.scanWinningLotto()
