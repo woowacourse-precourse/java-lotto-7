@@ -1,60 +1,67 @@
 package lotto.controller;
 
-import static lotto.factory.ValidatorType.BONUS_NUMBER;
-import static lotto.factory.ValidatorType.PRICE;
-import static lotto.factory.ValidatorType.WINNING_NUMBER;
-
 import java.util.List;
+import java.util.Map;
 import lotto.factory.ValidatorFactory;
+import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.LottoMachine;
-import lotto.validator.Validator;
+import lotto.model.LottoRank;
+import lotto.validator.BonusNumberValidator;
+import lotto.validator.PurchaseAmountValidator;
+import lotto.validator.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    private static final String WINNING_NUMBERS_DELIMITER = ",";
+    public static final int LOTTO_PRICE = 1000;
 
     private final InputView inputView;
     private final InputConverter inputConverter;
     private final ValidatorFactory validatorFactory;
     private final OutputView outputView;
     private final LottoMachine lottoMachine;
-    private final LottoGame lottoGame;
 
     public LottoController(InputView inputView, ValidatorFactory validatorFactory, LottoMachine lottoMachine,
-                           LottoGame lottoGame, OutputView outputView) {
+                           OutputView outputView) {
         this.inputView = inputView;
         this.validatorFactory = validatorFactory;
         this.lottoMachine = lottoMachine;
-        this.lottoGame = lottoGame;
         this.outputView = outputView;
         this.inputConverter = new InputConverter();
     }
 
     public void run() {
-        int price = getInputPrice();
+        int purchaseAmount = getInputPurchaseAmount();
+        int purchaseCount = purchaseAmount / LOTTO_PRICE;
+        List<Lotto> purchasedLottoList = lottoMachine.generateLotto(purchaseCount);
+        outputView.printPurchasedLotto(purchaseCount, purchasedLottoList);
+
         List<Integer> winningNumber = getWinningNumber();
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = getBonusNumber(winningNumber);
+        LottoGame lottoGame = new LottoGame(winningNumber, bonusNumber, purchasedLottoList);
+        Map<LottoRank, Integer> lottoResult = lottoGame.checkLottoResult();
+        double lottoResultStatistics = lottoGame.calculateStatistics(purchaseAmount);
+        outputView.printLottoResult(lottoResult, lottoResultStatistics);
     }
 
-    private int getInputPrice() {
-        String inputPrice = inputView.inputPrice();
-        Validator priceValidator = validatorFactory.create(PRICE);
+    private int getInputPurchaseAmount() {
+        String inputPurchaseAmount = inputView.inputPurchaseAmount();
+        PurchaseAmountValidator purchaseAmountValidator = validatorFactory.createPurchaseAmountValidator();
         try {
-            int price = inputConverter.convertPrice(inputPrice);
-            priceValidator.validate(price);
-            return price;
+            int purchaseAmount = inputConverter.convertPurchaseAmount(inputPurchaseAmount);
+            purchaseAmountValidator.validate(purchaseAmount);
+            return purchaseAmount;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getInputPrice();
+            return getInputPurchaseAmount();
         }
     }
 
     private List<Integer> getWinningNumber() {
         String inputWinningNumber = inputView.inputWinningNumber();
-        Validator winningNumberValidator = validatorFactory.create(WINNING_NUMBER);
+        WinningNumberValidator winningNumberValidator = validatorFactory.createWinningNumberValidator();
         try {
             List<Integer> winningNumber = inputConverter.convertWinningNumber(inputWinningNumber);
             winningNumberValidator.validate(winningNumber);
@@ -65,16 +72,16 @@ public class LottoController {
         }
     }
 
-    private int getBonusNumber() {
+    private int getBonusNumber(List<Integer> winningNumber) {
         String inputBonusNumber = inputView.inputBonusNumber();
-        Validator bonusNumberValidator = validatorFactory.create(BONUS_NUMBER);
+        BonusNumberValidator bonusNumberValidator = validatorFactory.createBonusNumberValidator();
         try {
             int bonusNumber = inputConverter.convertBonusNumber(inputBonusNumber);
-            bonusNumberValidator.validate(bonusNumber);
+            bonusNumberValidator.validateDuplicate(bonusNumber, winningNumber);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(winningNumber);
         }
     }
 }
