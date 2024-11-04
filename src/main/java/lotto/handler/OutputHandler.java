@@ -1,5 +1,7 @@
 package lotto.handler;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.CorrectStatus;
@@ -27,6 +29,10 @@ public class OutputHandler {
     }
 
     public void printProfitRate(final int profit,final int money){
-        System.out.println("총 수익률은 "+(double)profit/money *100 + "%입니다");
+        double profitRate = (double) profit / money * 100;
+
+        DecimalFormat df = new DecimalFormat("#,###.0");
+
+        System.out.println("총 수익률은 " + df.format(profitRate) + "%입니다");
     }
 }
