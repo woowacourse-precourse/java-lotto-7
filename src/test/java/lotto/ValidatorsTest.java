@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.validator.Validators;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -42,6 +45,17 @@ public class ValidatorsTest {
         int number = 50;
 
         Assertions.assertThatThrownBy(() -> validators.validateNumberRange(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호와 로또 번호가 같은 경우 예외처리한다.")
+    @Test
+    void 보너스_번호_로또_번호_같으면_예외처리() {
+        List<Integer> numbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningNumber = new Lotto(numbers);
+        int bonusNumber = 6;
+
+        Assertions.assertThatThrownBy(() -> validators.validateBonusNotInWinningNumbers(winningNumber, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
