@@ -8,12 +8,16 @@ import java.util.List;
 
 public class LottoGenerator {
     private static Lotto generate() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
 
-    public static Lottos generate(int count) {
+    public static Lottos generate(Money receivedMoney) {
+        return generate((long) receivedMoney.divide(new Money(1_000L)));
+    }
+
+    public static Lottos generate(long count) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
@@ -29,7 +33,7 @@ public class LottoGenerator {
     }
 
     private static List<Integer> parseNumbers(String input) {
-        String[] splitNumbers = input.split(", ");
+        String[] splitNumbers = input.split(",");
         return convertToIntegerList(splitNumbers);
     }
 
