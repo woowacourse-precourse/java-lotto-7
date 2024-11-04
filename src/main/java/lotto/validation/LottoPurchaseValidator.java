@@ -23,20 +23,20 @@ public class LottoPurchaseValidator {
 
     private static void validateIsInteger(String input) {
         try {
-            Integer.parseInt(input);
+            Long.parseLong(input);
         } catch (NumberFormatException e) {
             throw new InvalidInputException(InputErrorMessage.INTEGER_REQUIRED);
         }
     }
 
     private static void validatePositiveNumber(String input) {
-        if (Integer.parseInt(input) < ZERO_THRESHOLD.getValue()) {
+        if (Long.parseLong(input) < ZERO_THRESHOLD.getValue()) {
             throw new InvalidInputException(InputErrorMessage.POSITIVE_NUMBER_REQUIRED);
         }
     }
 
     private static void validatePurchaseUnit(String input) {
-        if (Integer.parseInt(input) % LOTTO_PRICE.getValue() != DEFAULT.getValue()) {
+        if (Long.parseLong(input) % LOTTO_PRICE.getValue() != DEFAULT.getValue()) {
             throw new InvalidInputException(InputErrorMessage.LOTTO_PURCHASE_MUST_BE_MULTIPLE_OF_THOUSAND);
         }
     }

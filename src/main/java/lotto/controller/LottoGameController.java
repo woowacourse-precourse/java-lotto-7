@@ -28,7 +28,7 @@ public class LottoGameController {
     private void prepareMoney() {
         OutputView.printPurchasePrice();
         try {
-            int lottoPurchase = InputView.inputLottoPurchase();
+            long lottoPurchase = InputView.inputLottoPurchase();
             lottoCount = LottoCount.calculatePurchaseCount(lottoPurchase);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
