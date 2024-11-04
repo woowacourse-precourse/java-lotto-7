@@ -8,7 +8,7 @@ public class ConsoleInput {
         try {
             return Console.readLine();
         } catch (Exception e) {
-            throw new IllegalStateException(ErrorMessage.unknownError);
+            throw new IllegalArgumentException(ErrorMessage.unknownError);
         }
     }
 
