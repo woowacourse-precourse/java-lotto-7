@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.MessageContainer.SECOND_WINNING_DETAILS_TEMPLATE;
 import static lotto.MessageContainer.WINNING_DETAILS_TEMPLATE;
 import static lotto.view.ViewConstants.VIEW_DELIMITER;
 
@@ -40,7 +41,8 @@ public class LottoController {
 
     private List<Integer> extractNumbers(String input) {
         return Arrays.stream(input.split(VIEW_DELIMITER))
-                .map(this::toInt).collect(Collectors.toCollection(ArrayList::new));
+                .map(this::toInt)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     private int toInt(String input) {
