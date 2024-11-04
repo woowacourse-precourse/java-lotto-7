@@ -18,20 +18,22 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static void isValidateNumber(int num){
+        if(num<=0 || num>Lotto.MAX_NUM){
+            throw new IllegalArgumentException("로또 번호는 1부터 "+Lotto.MAX_NUM+" 사이의 숫자여야 합니다.");
+        }
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
 
+        numbers.forEach(Lotto::isValidateNumber);
+
         for(int i=1; i<numbers.size(); i++){
             if(Objects.equals(numbers.get(i - 1), numbers.get(i))){
                 throw new IllegalArgumentException("로또 번호는 중복이 있으면 안됩니다.");
-            }
-        }
-
-        for(Integer num : numbers){
-            if(num<=0 || num>Lotto.MAX_NUM){
-                throw new IllegalArgumentException("로또 번호는 1부터 "+Lotto.MAX_NUM+" 사이의 숫자여야 합니다.");
             }
         }
     }
