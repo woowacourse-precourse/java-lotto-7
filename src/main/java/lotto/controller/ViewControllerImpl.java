@@ -1,0 +1,90 @@
+package lotto.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+import lotto.Winning;
+import lotto.repository.LottoRepository;
+import lotto.util.ExceptionMessage;
+import lotto.util.Utils;
+import lotto.view.InputView;
+import lotto.view.OutputView;
+
+public class ViewControllerImpl implements ViewController {
+    private static ViewControllerImpl viewController;
+    private static OutputView outputView = OutputView.getInstance();
+    private static InputView inputView = InputView.getInstance();
+
+    public static ViewControllerImpl getInstance() {
+        if (viewController == null) {
+            viewController = new ViewControllerImpl();
+        }
+        return viewController;
+    }
+
+
+    @Override
+    public Integer validateMoney(int money) {
+        int lottoCount = money % 1000;
+        if (lottoCount != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_DIVISIBLE_NUMBER_ERROR);
+        }
+        return money / 1000;
+    }
+
+    @Override
+    public void validateNumberSize(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_SIZE_ERROR);
+        }
+    }
+
+    public List<Integer> parsingWinningNumbers(String number) {
+        String[] split = number.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String s : split) {
+            try {
+                winningNumbers.add(Integer.parseInt(s.trim()));
+            } catch (NumberFormatException e) {
+                System.out.println(ExceptionMessage.INVALID_MONEY_FORMAT_ERROR);
+            }
+        }
+        return winningNumbers;
+    }
+
+    public Integer getMoney() {
+        outputView.printGuide();
+        String money = inputView.readLine();
+        try {
+            return this.validateMoney(Integer.parseInt(money));
+        } catch (NumberFormatException e) {
+            System.out.println(ExceptionMessage.INVALID_MONEY_FORMAT_ERROR);
+        }
+        return 0;
+    }
+
+    public void showNumber(Integer lottoCount) {
+        outputView.printCount(lottoCount);
+        outputView.printLottoNumber();
+    }
+
+    public List<Integer> getWinningNumber() {
+        outputView.printWinningNumber();
+        List<Integer> winningNumbers = this.parsingWinningNumbers(inputView.readLine());
+        validateNumberSize(winningNumbers);
+        return winningNumbers;
+    }
+
+    public void getBonus() {
+        outputView.printBonus();
+        int bonus = Integer.parseInt(inputView.readLine());
+        LottoRepository.bonus = bonus;
+    }
+
+    public void printWinning(List<Winning> winnings) {
+        outputView.printWinning(winnings);
+    }
+
+    public void printRevenue(Double revenue) {
+        outputView.printRevenue(revenue);
+    }
+}
