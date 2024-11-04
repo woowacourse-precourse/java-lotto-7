@@ -8,8 +8,11 @@ public class Validator {
     private static final int ZERO = 0;
     private static final int LOTTO_GAME_START_NUMBER = 1;
     private static final int LOTTO_GAME_END_NUMBER = 45;
+    private static final int LOTTO_GAME_NUMBERS_SIZE = 6;
+    private static final String IS_SIX_NUMBERS_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String IS_BETWEEN_LOTTO_RANGE_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String IS_NOT_DUPPLICATE_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 중복되지 않는 숫자여야 합니다.";
+
 
     public static void validateAmount(String amount) {
         if (!isNumbers(amount)) {
@@ -44,5 +47,30 @@ public class Validator {
 
     private static boolean isBetweenLottoRange(int bonusNumber) {
         return bonusNumber >= LOTTO_GAME_START_NUMBER && bonusNumber <= LOTTO_GAME_END_NUMBER;
+    }
+
+    public static void validateLottoNumber(List<Integer> numbers) {
+        if (!isSixNumbers(numbers)) {
+            throw new IllegalArgumentException(IS_SIX_NUMBERS_EXCEPTION_MESSAGE);
+        }
+        if (!isBetweenLottoRange(numbers)) {
+            throw new IllegalArgumentException(IS_BETWEEN_LOTTO_RANGE_EXCEPTION_MESSAGE);
+        }
+        if (!isNotDuplicateNumber(numbers)) {
+            throw new IllegalArgumentException(IS_NOT_DUPPLICATE_NUMBER_EXCEPTION_MESSAGE);
+        }
+    }
+
+    private static boolean isSixNumbers(List<Integer> numbers) {
+        return numbers.size() == LOTTO_GAME_NUMBERS_SIZE;
+    }
+
+    private static boolean isBetweenLottoRange(List<Integer> numbers) {
+        return numbers.stream().allMatch(number ->
+                number >= LOTTO_GAME_START_NUMBER && number <= LOTTO_GAME_END_NUMBER);
+    }
+
+    private static boolean isNotDuplicateNumber(List<Integer> numbers) {
+        return numbers.size() == numbers.stream().distinct().count();
     }
 }
