@@ -8,10 +8,14 @@ public class WinningNumbersValidator {
 
     public static void validateWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         validateRange(winningNumbers);
-        validateRange(List.of(bonusNumber));
         validateSize(winningNumbers);
         validateNoDuplicates(winningNumbers);
-        validateBonusNumber(winningNumbers, bonusNumber);
+
+        // 보너스 번호가 -1이 아닐 때만 검증
+        if (bonusNumber != -1) {
+            validateRange(List.of(bonusNumber));
+            validateBonusNumber(winningNumbers, bonusNumber);
+        }
     }
 
     // 1~45 범위 검증

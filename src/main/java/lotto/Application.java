@@ -3,9 +3,12 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Application {
+    private static final LottoMachine lottoMachine = new LottoMachine();
+
     public static void main(String[] args) {
         // 로또 구입 및 검증
         int lottoPurchaseAmount = getValidatedPurchaseAmount();
@@ -14,6 +17,12 @@ public class Application {
         List<Integer> winningNumbers = getValidatedWinningNumbers();
         int bonusNumber = getValidatedBonusNumber(winningNumbers);
 
+        // 로또 티켓 발행 및 출력
+        List<Lotto> tickets = lottoMachine.createTickets(lottoPurchaseAmount);
+        lottoMachine.printTickets(tickets);
+
+        // 당첨 내역 계산 및 출력
+        printResults(tickets, winningNumbers, bonusNumber);
     }
 
     private static int getValidatedPurchaseAmount() {
@@ -74,6 +83,21 @@ public class Application {
 
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    private static void printResults(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
+        Map<PrizeRank, Integer> resultMap = lottoMachine.calculateResults(tickets, winningNumbers, bonusNumber);
+
+        System.out.println("당첨 통계\n---");
+        for (PrizeRank rank : PrizeRank.values()) {
+            if (rank != PrizeRank.NONE) {
+                System.out.printf("%d개 일치%s (%d원) - %d개%n",
+                        rank.getMatchCount(),
+                        rank.hasBonusMatch() ? ", 보너스 번호 일치" : "",
+                        rank.getPrizeAmount(),
+                        resultMap.getOrDefault(rank, 0));
             }
         }
     }
