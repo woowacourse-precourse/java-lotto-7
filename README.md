@@ -34,6 +34,7 @@
   - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ## 클래스 구조
+> 각 클래스별로 담당하고 있는 역할을 소개한다.
 
 ### model
 - LottoNumber
