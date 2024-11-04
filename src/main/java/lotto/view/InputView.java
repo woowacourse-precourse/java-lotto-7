@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.controller.InputController;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class InputView {
     public static int bonusNumber(){
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = InputController.getBonusNumber();
-        //Lotto.validateDuplicationBetweenWinningAndBonus(winningNumbers, bonusNumber);
+        System.out.println();
         return bonusNumber;
     }
 

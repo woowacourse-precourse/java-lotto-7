@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
@@ -29,4 +29,7 @@ public class InputController {
         return Integer.parseInt(Console.readLine());
     }
 
+    public static void compareDuplicationBetweenWinningAndBonus(List<Integer> numbers, int bonusNumber){
+        Lotto.validateDuplicationBetweenWinningAndBonus(numbers, bonusNumber);
+    }
 }
