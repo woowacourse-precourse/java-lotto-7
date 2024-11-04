@@ -22,7 +22,10 @@ public class LottoService {
     }
 
     private static Lotto generateSingleTicket() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers;
+        do {
+            numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        } while (numbers.size() != 6); // 6개가 아닌 경우 다시 생성
         return new Lotto(numbers);
     }
 
