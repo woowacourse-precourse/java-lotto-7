@@ -20,24 +20,28 @@ public class Result {
 
     public void put(long matchingCount, boolean hasBonusNumber) {
         if (matchingCount == 3) {
-            results.set(THREE_MATCHING_INDEX, results.get(THREE_MATCHING_INDEX) + 1);
+            increaseMatchingIndex(THREE_MATCHING_INDEX);
             return;
         }
         if (matchingCount == 4) {
-            results.set(FOUR_MATCHING_INDEX, results.get(FOUR_MATCHING_INDEX) + 1);
+            increaseMatchingIndex(FOUR_MATCHING_INDEX);
             return;
         }
         if (matchingCount == 5) {
             if (hasBonusNumber) {
-                results.set(BONUS_MATCHING_INDEX, results.get(BONUS_MATCHING_INDEX) + 1);
+                increaseMatchingIndex(BONUS_MATCHING_INDEX);
                 return;
             }
-            results.set(FIVE_MATCHING_INDEX, results.get(FIVE_MATCHING_INDEX) + 1);
+            increaseMatchingIndex(FIVE_MATCHING_INDEX);
             return;
         }
         if (matchingCount == 6) {
-            results.set(SIX_MATCHING_INDEX, results.get(SIX_MATCHING_INDEX) + 1);
+            increaseMatchingIndex(SIX_MATCHING_INDEX);
         }
+    }
+
+    private void increaseMatchingIndex(int matchingIndex) {
+        results.set(matchingIndex, results.get(matchingIndex) + 1);
     }
 
     public void calculateRate(UserLottos userLottos) {
