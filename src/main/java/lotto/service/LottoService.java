@@ -68,7 +68,6 @@ public class LottoService {
 
     private int getTotalProfit(LottoResult lottoResult) {
         int totalProfit = 0;
-        Map<LottoPolicy, Integer> results = lottoResult.getResults();
         for (LottoPolicy rank : lottoResult.getResults().keySet()) {
             if (rank == LottoPolicy.FAIL) {
                 continue;
