@@ -9,6 +9,7 @@ public class User {
 
 	private Map<LottoRank, Integer> lottoStats = new EnumMap<>(LottoRank.class);
 	private double rateOfReturn;
+	private int lottoPurchaseAmount;
 
 	public User() {
 		for (LottoRank lottoRank : LottoRank.values()) {
@@ -20,6 +21,9 @@ public class User {
 		lottoStats.put(rank, lottoStats.getOrDefault(rank, 0) + 1);
 	}
 
+	public void setLottoPurchaseAmount(int lottoPurchaseAmount) {
+		this.lottoPurchaseAmount = lottoPurchaseAmount;
+	}
 	public void calculateRateOfReturns(int lottoPurchaseAmount) {
 		int totals = 0;
 		for (Map.Entry<LottoRank, Integer> lottoRankEntry : lottoStats.entrySet()) {
