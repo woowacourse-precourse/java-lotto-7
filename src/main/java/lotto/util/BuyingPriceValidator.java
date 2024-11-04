@@ -4,7 +4,7 @@ public class BuyingPriceValidator extends Validator<String> {
     private static final int LOTTO_PRICE_UNIT = 1000;
 
     @Override
-    void validate(String input) {
+    public void validate(String input) {
         validateNull(input);
         validateEmpty(input);
         validateOnlyDigits(input);
