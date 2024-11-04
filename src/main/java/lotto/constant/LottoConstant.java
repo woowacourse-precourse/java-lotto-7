@@ -7,7 +7,8 @@ public enum LottoConstant {
     LOTTO_PRICE(1000),
 
     INT_ZERO(0),
-    INT_ONE(1);
+    INT_ONE(1),
+    INT_HUNDRED(100);
 
     private final int value;
 

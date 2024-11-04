@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constant.LottoConstant.INT_HUNDRED;
+
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Bonus;
@@ -13,6 +15,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -34,9 +37,7 @@ public class LottoController {
     private TicketCount getTicketCount() {
         try {
             String amount = inputView.readPurchaseAmount();
-
             TicketCount ticketCount = new TicketCount(amount);
-
             outputView.printPurchaseTicketCount(ticketCount.getCount());
 
             return ticketCount;
@@ -50,6 +51,7 @@ public class LottoController {
         Tickets tickets = new Tickets(ticketCount.getCount());
         List<String> ticketsInfo = tickets.getTicketsInfo();
         outputView.printTicketNumbers(ticketsInfo);
+
         return tickets;
     }
 
@@ -82,6 +84,7 @@ public class LottoController {
         for (Lotto lotto : lottos) {
             int matchCount = lotto.countMatchingNumbers(winning.getLotto());
             boolean containsBonusBall = bonus.containsBonusBall(lotto);
+
             WinningResult result = WinningResult.findByMatchCountAndBonus(matchCount, containsBonusBall);
             winningResultCounter.increment(result);
         }
@@ -95,6 +98,7 @@ public class LottoController {
         double profitRate = calculateProfitRate(totalProfit, ticketCount);
 
         List<String> formattedResults = WinningResult.getFormattedResults(winningResult);
+
         outputView.printWinningStatistics(formattedResults);
         outputView.printProfitRate(profitRate);
     }
@@ -107,6 +111,6 @@ public class LottoController {
 
     private double calculateProfitRate(int totalProfit, TicketCount ticketCount) {
         int purchaseAmount = ticketCount.getAmount();
-        return (double) totalProfit / purchaseAmount * 100;
+        return (double) totalProfit / purchaseAmount * INT_HUNDRED.getValue();
     }
 }
