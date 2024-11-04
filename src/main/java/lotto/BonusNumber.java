@@ -1,12 +1,11 @@
 package lotto;
 
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoRange;
 
 import java.util.List;
 
 public class BonusNumber {
-    private final static int LOTTO_MIN_NUMBER = 1;
-    private final static int LOTTO_MAX_NUMBER = 45;
     private final int bonusNumber;
 
     public BonusNumber(String bonusNumber, List<Integer> winningNumbers) {
@@ -24,7 +23,7 @@ public class BonusNumber {
         }
         try {
             int number = Integer.parseInt(bonusNumber);
-            if (LOTTO_MIN_NUMBER > number || number > LOTTO_MAX_NUMBER) {
+            if (LottoRange.MIN.getValue() > number || number > LottoRange.MAX.getValue()) {
                 throw new IllegalArgumentException(ErrorMessage.NUMBERS_RANGE.getText());
             } else if (isDuplicate(number, winningNumbers)) {
                 throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.getText());

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoRange;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +21,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoRange.NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.REQUIRED_LOTTO_NUMBER_COUNT.getText());
         } else if (new HashSet<>(numbers).size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.getText());

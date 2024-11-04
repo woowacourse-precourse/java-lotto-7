@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoRange;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,9 +9,6 @@ import java.util.List;
 
 public class WinningNumbers {
     private final static String DELIMITER = ",";
-    private final static int LOTTO_NUMBER_COUNT = 6;
-    private final static int LOTTO_MIN_NUMBER = 1;
-    private final static int LOTTO_MAX_NUMBER = 45;
     private final List<Integer> winningNumbers;
 
     public WinningNumbers(String winningNumbers) {
@@ -27,9 +25,9 @@ public class WinningNumbers {
             throw new IllegalArgumentException(ErrorMessage.REQUIRED_LOTTO_NUMBER_COUNT.getText());
         }
         List<Integer> parsedNumbers = splitWinningNumbers(winningNumbers);
-        if (parsedNumbers.size() != LOTTO_NUMBER_COUNT) {
+        if (parsedNumbers.size() != LottoRange.NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.REQUIRED_LOTTO_NUMBER_COUNT.getText());
-        } else if (new HashSet<>(parsedNumbers).size() != LOTTO_NUMBER_COUNT) {
+        } else if (new HashSet<>(parsedNumbers).size() != LottoRange.NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.getText());
         } else if (!isNumbersInRange(parsedNumbers)) {
             throw new IllegalArgumentException(ErrorMessage.NUMBERS_RANGE.getText());
@@ -50,7 +48,7 @@ public class WinningNumbers {
 
     private boolean isNumbersInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (LOTTO_MIN_NUMBER > number || number > LOTTO_MAX_NUMBER) {
+            if (LottoRange.MIN.getValue() > number || number > LottoRange.MAX.getValue()) {
                 return false;
             }
         }
