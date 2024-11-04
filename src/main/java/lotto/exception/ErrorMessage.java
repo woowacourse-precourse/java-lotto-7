@@ -8,6 +8,7 @@ public enum ErrorMessage {
     INVALID_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
     INVALID_NUMBER_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     INVALID_NUMBER_DUPLICATE("로또 번호는 서로 중복될 수 없습니다."),
+    INVALID_NUMBER_FORMAT("로또 번호는 정수이여야 합니다."),
     ;
 
     private final String message;

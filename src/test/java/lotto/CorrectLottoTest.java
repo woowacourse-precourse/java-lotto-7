@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.exception.InvalidNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,8 +20,8 @@ class CorrectLottoTest {
 
         // when & then
         assertThatThrownBy(() -> BonusNumber.from("6", lotto))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호와 보너스 번호는 중복될 수 없습니다.");
+                .isInstanceOf(InvalidNumberException.class)
+                .hasMessage("[ERROR] 로또 번호는 서로 중복될 수 없습니다.");
     }
 
     @Test
