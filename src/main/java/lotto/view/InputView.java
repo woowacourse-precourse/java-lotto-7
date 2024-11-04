@@ -11,6 +11,7 @@ public class InputView {
     }
 
     public String getAnswer() {
+        System.out.println();
         System.out.println(ViewMessage.ANSWER_LOTTO_NUMBER.getMessage());
         String answer = Console.readLine();
         validate(answer);
@@ -18,6 +19,7 @@ public class InputView {
     }
 
     public String getBonusNumber() {
+        System.out.println();
         System.out.println(ViewMessage.BONUS_NUMBER.getMessage());
         String bonusNumber = Console.readLine();
         validate(bonusNumber);
