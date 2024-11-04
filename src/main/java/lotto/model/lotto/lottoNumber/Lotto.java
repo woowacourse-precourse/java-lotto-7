@@ -4,9 +4,12 @@ import java.util.Collections;
 import java.util.List;
 import lotto.model.validator.LotteryNumberValidator;
 
-public record Lotto(List<Integer> numbers) {
-    public Lotto {
+public class Lotto {
+    private final List<Integer> numbers;
+
+    public Lotto(List<Integer> numbers) {
         LotteryNumberValidator.validate(numbers);
+        this.numbers = numbers;
     }
 
     public int checkMatchingAmountWith(List<Integer> numbers) {
@@ -23,8 +26,7 @@ public record Lotto(List<Integer> numbers) {
         return numbers.contains(number);
     }
 
-    @Override
-    public List<Integer> numbers() {
+    public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
 }

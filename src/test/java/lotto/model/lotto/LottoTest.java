@@ -30,7 +30,7 @@ class LottoTest {
     @DisplayName("[success] 숫자를 리스트에 순서대로 저장한다.")
     void saveNumbersList() {
         for (int number : defaultNumbers) {
-            assertThat(defaultLotto.numbers()).contains(number);
+            assertThat(defaultLotto.getNumbers()).contains(number);
         }
     }
 
@@ -104,7 +104,7 @@ class LottoTest {
     @Test
     @DisplayName("[fail] getter로 반환한 숫자 리스트를 수정할 경우 예외가 발생한다.")
     void fail_ifModifyNumbers() {
-        List<Integer> unmodifiableList = defaultLotto.numbers();
+        List<Integer> unmodifiableList = defaultLotto.getNumbers();
 
         assertThatThrownBy(() -> unmodifiableList.add(10))
                 .isInstanceOf(UnsupportedOperationException.class);
