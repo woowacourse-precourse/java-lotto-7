@@ -14,7 +14,7 @@ public class StringToLottoConverter {
 
     private static void validateDelimiter(String inputValue) {
         if (!inputValue.contains(DELIMITER)) {
-            throw new IllegalArgumentException("입력 값에 올바른 구분자가 없습니다. 구분자는 '" + DELIMITER + "'이어야 합니다.");
+            throw new IllegalArgumentException("구분자는 '" + DELIMITER + "'이어야 합니다.");
         }
     }
 
