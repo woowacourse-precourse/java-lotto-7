@@ -5,7 +5,6 @@ import static lotto.constant.Constant.LOTTO_PRICE;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lotto.Lotto;
 import lotto.exception.ExceptionCode;
 import lotto.exception.LottoException;
 

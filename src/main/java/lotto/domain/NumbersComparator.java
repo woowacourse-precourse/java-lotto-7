@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.constant.Constant.*;
 
 import java.util.List;
-import lotto.Lotto;
 
 public class NumbersComparator {
 
