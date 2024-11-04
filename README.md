@@ -1,7 +1,56 @@
 # [로또] 우아한테크코스(pre) 3주차
 
 ## 클래스 다이어그램
-![](./image/class-diagram-lotto.png)
+
+[//]: # (![]&#40;./image/class-diagram-lotto.png&#41;)
+
+<details>
+<summary> 클래스별 주요 기능 </summary>
+
+- ***Application***
+  - LottoController 객체를 생성하여 run()으로 로또 프로그램 시작.
+- ***LottoController***
+  - view와 model 간 정보를 전달하며 프로그램의 전체적인 흐름을 구동한다.
+- **Model**
+  - ***Consumer***
+    - 멤버변수 : List<Lotto> lottoTicket, int[] lottoResult, int secondPlace
+    - 생성자 : count의 크기만큼 랜덤 숫자와 Lotto 객체를 생성하여 lottoTicket에 저장한다.
+    - **setLottoResult()** : 당첨 번호와 비교하여 결과를 lottoResult에 저장한다.
+  - ***Lotto***
+    - 멤버변수 : List<Integer> numbers
+    - 생성자 : numbers의 유효성을 검사하고 오름차순으로 정렬한다.
+  - ***WinningNumber***
+    - 멤버변수 : List<Integer> numbers, Integer bonus
+- **View**
+  - ***InputView***
+    - **getLottoCount()** : 입력받은 금액의 유효성을 검사하고 금액에 적합한 로또의 개수를 정수로 반환한다.
+    - **getWinningNumber()** : 입력받은 당첨 번호의 유효성을 검사하고 정수형 리스트로 반환한다.
+    - **getBonusNumber()** : 입력받은 보너스 번호의 유효성을 검사하고 정수로 반환한다.
+  - ***OutputView***
+    - **printLottoTicket()** : 구매한 로또의 개수와 번호를 출력한다.
+    - **printResult()** : 로또의 당첨 결과를 출력한다.
+    - **printEarningRate()** : 지불한 금액/상금의 백분율을 출력한다.
+    - **printError()** : 잘못된 사용자 입력으로 인한 에러 메세지를 출력한다.
+- **validator**
+  - ***NumberValidator***
+    - **stringToInteger()** : 입력값이 숫자로만 이루어져 있는지 확인 후 정수형으로 변환하여 반환한다.
+    - **validateScope()** : 최솟값과 최댓값의 범위를 벗어나지 않았는지 확인한다.
+  - ***PriceValidator*** : 금액의 범위와 단위를 확인한다.
+  - ***WinningNumberValidator***
+    - **validateInputComma()** : 쉼표(,)가 적절히 사용되었는지 확인한다.
+    - **validateInputWinningNumber()** : 문자열 리스트를 당첨 번호 조건에 부합하는지 확인하고 변환하여 반환한다.
+    - **validateBonusDuplication()** : 보너스 번호가 당첨 번호에 중복되는지 확인한다.
+    - **validateDuplication()** : 당첨 번호에 중복되는 번호가 있는지 확인한다.
+    - **validateCount()** : 당첨 번호가 6개인지 확인한다.
+- **constant** : 상수들을 저장한 enum : CompareInteger, LottoGuide, PriceRule, WinningNumberRule
+- __Test __
+  - **ApplicationTest** : 기본 제공된 프로그램 테스트 코드.
+  - **ConsumerTest**
+  - **LottoTest**
+  - **NumberValidatorTest** 
+  - **PriceValidatorTest** 
+  - **WinningNumberValidatorTest** 
+</details>
 
 ## 🐜 학습 목표
 - 관련 함수를 묶어 클래스를 만들고, 객체들이 협력하여 하나의 큰 기능을 수행하도록 한다.
