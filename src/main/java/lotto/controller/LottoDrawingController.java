@@ -31,22 +31,21 @@ public class LottoDrawingController {
     }
 
     public void start() {
-        winningNumbersInputView.printWinningNumbersInputGuide();
-        WinningNumbers winningNumbers = getWinningNumbers();
+        WinningNumbers winningNumbers = drawWinningNumbers();
 
-        bonusNumberInputView.printBonusNumberInputGuide();
-        BonusNumber bonusNumber = getBonusNumber(winningNumbers);
+        BonusNumber bonusNumber = drawBonusNumber(winningNumbers);
 
-        LottoResult lottoResult = new LottoResult(lottos, winningNumbers, bonusNumber);
+        LottoResult lottoResult = getLottoResult(winningNumbers, bonusNumber);
+        printLottoResult(lottoResult.getLottoResult());
 
-        Map<Rank, Integer> result = lottoResult.getLottoResult();
-        long purchaseAmount = lottoPurchase.getPurchaseAmount();
-
-        printLottoResult(result);
-
-        Profit profit = new Profit(result, purchaseAmount);
-
+        Profit profit = getProfit(lottoResult);
         printProfit(profit.getProfitRate());
+    }
+
+    private WinningNumbers drawWinningNumbers() {
+        winningNumbersInputView.printWinningNumbersInputGuide();
+
+        return getWinningNumbers();
     }
 
     private WinningNumbers getWinningNumbers() {
@@ -65,10 +64,17 @@ public class LottoDrawingController {
         return winningNumbers;
     }
 
+    private BonusNumber drawBonusNumber(WinningNumbers winningNumbers) {
+        bonusNumberInputView.printBonusNumberInputGuide();
+
+        return getBonusNumber(winningNumbers);
+    }
+
+
     private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
         BonusNumber bonusNumber;
-        try {
 
+        try {
             bonusNumber = new BonusNumber(
                     bonusNumberInputView.getBonusNumber(),
                     winningNumbers.getWinningNumbers()
@@ -84,11 +90,22 @@ public class LottoDrawingController {
         return bonusNumber;
     }
 
+    private LottoResult getLottoResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        return new LottoResult(lottos, winningNumbers, bonusNumber);
+    }
+
     private void printLottoResult(Map<Rank, Integer> lottoResult) {
         LottoResultOutputView lottoResultOutputView = new LottoResultOutputView();
         lottoResultOutputView.printLottoResultOutputGuide();
 
         lottoResultOutputView.printLottoResult(lottoResult);
+    }
+
+    private Profit getProfit(LottoResult lottoResult) {
+        Map<Rank, Integer> result = lottoResult.getLottoResult();
+        long purchaseAmount = lottoPurchase.getPurchaseAmount();
+
+        return new Profit(result, purchaseAmount);
     }
 
     private void printProfit(double profitRate) {
