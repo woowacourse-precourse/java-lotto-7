@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.validator.CommonInputValidator;
+import lotto.validator.MoneyValidator;
 import lotto.validator.NumberInputValidator;
 
 public class InputView {
@@ -14,7 +15,9 @@ public class InputView {
         CommonInputValidator.validateCommonInput(input);
         NumberInputValidator.validateNumberInput(input);
 
-        return Integer.parseInt(input);
+        int money = Integer.parseInt(input);
+        MoneyValidator.validateMoney(money);
+        return money;
     }
 
     public Lotto getLottoWinningNumbersFromUser() {
