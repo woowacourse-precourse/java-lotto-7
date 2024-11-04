@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.controller.InputValidator;
 
 public class Lotto {
@@ -16,9 +15,6 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-    // TODO: 추가 기능 구현
-
 
     @Override
     public String toString() {

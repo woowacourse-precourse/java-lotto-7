@@ -18,7 +18,7 @@ public class MatchingLotto {
             Rank rank = Rank.getRank(matchCount, bonusMatch);
             resultMap.put(rank, resultMap.getOrDefault(rank, 0) + 1);
         }
-        OutputView.printResultList(resultMap);
+        printResultList(resultMap);
 
         double profit = CalculateProfit.calculateProfit(resultMap, purchaseAmount);
         OutputView.printResultProfit(profit);
@@ -33,5 +33,19 @@ public class MatchingLotto {
             }
         }
         return matchCount;
+    }
+
+    private static void printResultList(Map<Rank, Integer> resultMap) {
+        OutputView.getResultPrintMessage();
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                int count = resultMap.getOrDefault(rank, 0);
+                String bonusMessage = "";
+                if (rank.isRequiresBonus()) {
+                    bonusMessage = ", 보너스 볼 일치";
+                }
+                System.out.printf("%d개 일치%s (%,d원) - %d개\n", rank.getMatchCount(), bonusMessage, rank.getPrize(), count);
+            }
+        }
     }
 }

@@ -104,3 +104,6 @@ MatchingLotto에서 출력되는 부분을 view 패키지에 OutputView를 생�
 
 ### 📝test: ApplicationTest의 테스트 통과 성공
 기존 테스트 중 ApplicationTest에 예외_테스트 및 기능_테스트의 테스팅을 진행 완료 하였습니다.
+
+### 🛠️refactor: 출력 부분은 OutputView 클래스에서 처리 할 수 있도록 분류
+출력 메시지나 중간,결과 메시지 등을 OutputView에서 처리 하였습니다.

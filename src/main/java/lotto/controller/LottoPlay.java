@@ -6,7 +6,7 @@ import lotto.model.Lotto;
 public class LottoPlay {
     private static final InputHandler input = new InputHandler();
 
-    public static void lottoPlay_Input() {
+    public static void lottoPlay() {
         try {
             int purchaseAmount = input.getPurchaseAmount();
             List<Lotto> lottoList = GeneratorLotto.createLotto(purchaseAmount);
