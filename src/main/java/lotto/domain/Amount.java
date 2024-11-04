@@ -4,6 +4,8 @@ import lotto.constant.Constant;
 import lotto.exception.ErrorMessage;
 
 public class Amount {
+    private static final int MIN_PURCHASE_AMOUNT = 1000;
+
     private final int amount;
 
     private Amount(int amount) {
@@ -55,7 +57,7 @@ public class Amount {
     }
 
     private static void validateUnderMinAmount(int amount) {
-        if (amount < Constant.MIN_PURCHASE_AMOUNT) {
+        if (amount < MIN_PURCHASE_AMOUNT) {
             throw new IllegalArgumentException(ErrorMessage.UNDER_THOUSAND_PURCHASE_AMOUNT.getMessage());
         }
     }

@@ -16,6 +16,9 @@ import lotto.domain.PrizeCount;
 import lotto.domain.ProfitRate;
 
 public class LottoService {
+    private static final int MIN_PRIZE_COUNT = 3;
+    private static final String PRIZE_NAME_PREFIX = "MATCHES_";
+    private static final String PRIZE_BONUS_MATCH_NAME_SUFFIX = "_BONUS_MATCH";
 
     public Lottos issueLottos(Amount amount) {
         return new Lottos(IntStream.range(0, getIssuedCount(amount))
@@ -59,7 +62,7 @@ public class LottoService {
     }
 
     private void calculatePrizeCount(PrizeCount prizeCount, int matchCount, boolean isBonusMatch) {
-        if (matchCount < Constant.MIN_PRIZE_COUNT) {
+        if (matchCount < MIN_PRIZE_COUNT) {
             return;
         }
         String prizeName = getPrizeName(matchCount, isBonusMatch);
@@ -67,9 +70,9 @@ public class LottoService {
     }
 
     private String getPrizeName(int matchCount, boolean isBonusMatch) {
-        String prizeName = Constant.PRIZE_NAME_PREFIX + matchCount;
+        String prizeName = PRIZE_NAME_PREFIX + matchCount;
         if (matchCount == 5 && isBonusMatch) {
-            prizeName += Constant.PRIZE_BONUS_MATCH_NAME_SUFFIX;
+            prizeName += PRIZE_BONUS_MATCH_NAME_SUFFIX;
         }
         return prizeName;
     }

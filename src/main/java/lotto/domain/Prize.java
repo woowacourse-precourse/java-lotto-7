@@ -1,14 +1,13 @@
 package lotto.domain;
 
 import java.util.function.Function;
-import lotto.constant.Constant;
 
 public enum Prize {
-    MATCHES_3(count -> count * Constant.THREE_MATCHES_PRIZE),
-    MATCHES_4(count -> count * Constant.FOUR_MATCHES_PRIZE),
-    MATCHES_5(count -> count * Constant.FIVE_MATCHES_PRIZE),
-    MATCHES_5_BONUS_MATCH(count -> count * Constant.FIVE_MATCHES_BONUS_MATCH_PRIZE),
-    MATCHES_6(count -> count * Constant.SIX_MATCHES_PRIZE);
+    MATCHES_3(count -> count * 5000),
+    MATCHES_4(count -> count * 50000),
+    MATCHES_5(count -> count * 1500000),
+    MATCHES_5_BONUS_MATCH(count -> count * 30000000),
+    MATCHES_6(count -> count * 2000000000);
 
     private Function<Integer, Integer> expression;
 

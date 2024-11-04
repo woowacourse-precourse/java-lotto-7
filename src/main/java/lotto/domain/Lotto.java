@@ -8,6 +8,8 @@ import lotto.constant.Constant;
 import lotto.exception.ErrorMessage;
 
 public class Lotto {
+    private static final String DELIMITER = ",";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -31,7 +33,7 @@ public class Lotto {
     }
 
     private static List<String> splitNumbers(String input) {
-        return Arrays.stream(input.split(Constant.DELIMITER))
+        return Arrays.stream(input.split(DELIMITER))
                 .map(String::strip)
                 .collect(Collectors.toList());
     }
