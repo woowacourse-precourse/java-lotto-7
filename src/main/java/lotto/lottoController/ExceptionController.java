@@ -1,5 +1,6 @@
 package lotto.lottoController;
 
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +12,7 @@ public class ExceptionController {
             blankInput(cost);
             haveBlankInput(cost);
             notNumeric(cost);
+            overLong(cost);
             lowCost(cost);
             notPlus(cost);
         } catch (NumberFormatException e) {
@@ -63,6 +65,13 @@ public class ExceptionController {
     private void haveBlankInput(String input) {
         if (input.contains(" ")) {
             throw new IllegalArgumentException("입력값에 공백이 포함되어 있습니다. 입력값 사이에 공백을 넣지 마세요.");
+        }
+    }
+
+    private void overLong(String input) {
+        BigInteger bigInput = new BigInteger(input);
+        if (bigInput.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0) {
+            throw new IllegalArgumentException("너무 큰 값은 허용되지 않습니다.");
         }
     }
 
