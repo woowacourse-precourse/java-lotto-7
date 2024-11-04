@@ -27,6 +27,7 @@ public class UserInput {
         List<Integer> winNumbers = new ArrayList<>();
 
         for (String number : numbers) {
+            Validator.validateIsNumber(number);
             int num = Parser.convertStrToInt(number);
             Validator.validateNumberRange(num);
             winNumbers.add(num);
@@ -38,7 +39,10 @@ public class UserInput {
     }
 
     public static int inputBonusNumber(List<Integer> winNumbers) {
-        int bonusNumber = Parser.convertStrToInt(Console.readLine());
+        String input = Console.readLine();
+
+        Validator.validateIsNumber(input);
+        int bonusNumber = Parser.convertStrToInt(input);
 
         Validator.validateNumberRange(bonusNumber);
         Validator.validateBonusDuplicate(winNumbers, bonusNumber);
