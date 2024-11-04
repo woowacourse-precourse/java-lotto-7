@@ -1,6 +1,8 @@
 package lotto.parser;
 
 
+import lotto.domain.LottoConstants;
+
 public class PurchaseAmountParser {
     public static int parse(String input) {
         validateInput(input);
@@ -27,8 +29,8 @@ public class PurchaseAmountParser {
     }
 
     private static int validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount <= 0 || purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000단위의 양수만 입력 가능합니다.");
+        if (purchaseAmount <= 0 || purchaseAmount % LottoConstants.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] " + LottoConstants.LOTTO_PRICE +"단위의 양수만 입력 가능합니다.");
         }
         return purchaseAmount;
     }

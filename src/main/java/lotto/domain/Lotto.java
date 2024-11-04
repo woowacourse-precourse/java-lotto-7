@@ -15,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConstants.LOTTO_PICK_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
@@ -25,7 +25,8 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
-    public TreeSet<Integer> getNumbers(){
+
+    public TreeSet<Integer> getNumbers() {
         return numbers;
     }
 
@@ -35,5 +36,4 @@ public class Lotto {
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
     }
-
 }

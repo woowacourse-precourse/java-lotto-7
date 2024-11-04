@@ -6,8 +6,6 @@ import lotto.domain.LottoConstants;
 import java.util.Set;
 
 public class BonusNumberParser {
-
-
     public static int parse(String input, Set<Integer> winningNumbers) {
         validateInput(input);
         return processInput(input, winningNumbers);
@@ -42,5 +40,4 @@ public class BonusNumberParser {
             throw new IllegalArgumentException("[ERROR] 보너스번호는 당첨번호와 중복될 수 없습니다.");
         }
     }
-
 }

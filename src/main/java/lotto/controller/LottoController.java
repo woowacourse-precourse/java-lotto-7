@@ -1,9 +1,7 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.IssueLottos;
+import lotto.service.IssueLottos;
 import lotto.domain.Lotto;
-import lotto.domain.LottoConstants;
 import lotto.domain.LottoRank;
 import lotto.domain.PurchasedLottos;
 import lotto.parser.BonusNumberParser;
@@ -12,8 +10,6 @@ import lotto.parser.WinningNumbersParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,7 +25,7 @@ public class LottoController {
     }
 
     private void purchaseLotto() {
-        purchasedLottos =  IssueLottos.issueLottos(getLottoPurchaseAmount());
+        purchasedLottos = IssueLottos.issueLottos(getLottoPurchaseAmount());
         OutputView.showPurchasedLottos(purchasedLottos.getPurchasedLottos().stream()
                 .map(Lotto::toString)
                 .collect(Collectors.joining("\n")));
@@ -72,36 +68,42 @@ public class LottoController {
     }
 
     private void announceLottoResult() {
-
-        int[] rankCounts = new int[5];
-
+        int[] rankCounts = new int[6];
         for (Lotto lotto : purchasedLottos.getPurchasedLottos()) {
-            int count = 0;
-            for (int number : lotto.getNumbers()) {
-                if (winningNumbers.contains(number)) {
-                    count++;
-                }
-            }
-            if (count < 5 && !lotto.getNumbers().contains(bonusNumber)) {
-                count--;
-            }
-            if (count >= 2) {
-                rankCounts[count - 2]++;
-            }
+            rankCounts[checkWinningNumber(lotto, 0)]++;
         }
+        announceStatistics(rankCounts);
+    }
 
-
-        LottoRank[] ranks = {LottoRank.FIFTH, LottoRank.FOURTH, LottoRank.THIRD, LottoRank.SECOND, LottoRank.FIRST};
+    private void announceStatistics(int[] rankCounts) {
+        LottoRank[] ranks = {LottoRank.NONE, LottoRank.FIFTH, LottoRank.FOURTH, LottoRank.THIRD, LottoRank.SECOND, LottoRank.FIRST};
         StringBuilder winningStatistics = new StringBuilder();
         long totalPrize = 0;
 
-        for (int i = 0; i < rankCounts.length; i++) {
+        for (int i = 1; i < rankCounts.length; i++) {
             LottoRank rank = ranks[i];
             totalPrize += ranks[i].getPrize() * rankCounts[i];
             winningStatistics.append(rank.getMessage() + rankCounts[i] + "개" + "\n");
         }
-        double returnRate = (double) totalPrize / purchasedLottos.getPurchaseAmount() * 100;
-        OutputView.announceWinningStatistics(winningStatistics.toString(), returnRate);
+        OutputView.announceWinningStatistics(winningStatistics.toString(), getReturnRate(totalPrize));
     }
 
+    private int checkWinningNumber(Lotto lotto, int count) {
+        for (int number : lotto.getNumbers()) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        if (count < 5 && !lotto.getNumbers().contains(bonusNumber)) {
+            count--;
+        }
+        if (count >= 2) {
+            return count - 1;
+        }
+        return 0;
+    }
+
+    private double getReturnRate(long totalPrize) {
+        return (double) totalPrize / purchasedLottos.getPurchaseAmount() * 100;
+    }
 }
