@@ -1,15 +1,16 @@
 package lotto.view;
 
 import static lotto.util.LottoConstant.COST_UNIT;
-import static lotto.view.ViewConstant.DIVIDER;
-import static lotto.view.ViewConstant.HOW_MANY_DID_YOU_PURCHASED;
-import static lotto.view.ViewConstant.LOTTERY_RESULT;
 
 import java.util.List;
 import java.util.Set;
 import lotto.model.statistic.LottoStatisticsDto;
 
 public class OutputView {
+
+    private static final String HOW_MANY_DID_YOU_PURCHASED = "%d개를 구매했습니다.\n";
+    private static final String LOTTERY_RESULT = "당첨 통계\n";
+    private static final String DIVIDER = "---";
 
     private static final String THREE_NUMBERS_MATCH = "3개 일치 (5,000원) - ";
     private static final String FOUR_NUMBERS_MATCH = "4개 일치 (50,000원) - ";
@@ -27,7 +28,7 @@ public class OutputView {
     private static final long PERCENTAGE = 100;
 
     public void printLottoResult(List<Set<Integer>> lottoResults, final int lotteryCount) {
-        System.out.printf(HOW_MANY_DID_YOU_PURCHASED.getMessage(), lotteryCount);
+        System.out.printf(HOW_MANY_DID_YOU_PURCHASED, lotteryCount);
 
         StringBuilder stringBuilder = new StringBuilder();
         for (Set<Integer> lottoResult : lottoResults) {
@@ -46,7 +47,7 @@ public class OutputView {
     }
 
     public void printWinningResult(final LottoStatisticsDto lottoStatisticsDto) {
-        System.out.println(LOTTERY_RESULT.getMessage() + DIVIDER.getMessage());
+        System.out.println(LOTTERY_RESULT + DIVIDER);
         System.out.println(winningResult(lottoStatisticsDto));
         System.out.printf(RATE_OF_RETURN, rateOfReturn(lottoStatisticsDto));
     }
