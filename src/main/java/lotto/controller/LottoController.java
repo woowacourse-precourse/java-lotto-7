@@ -14,6 +14,13 @@ public class LottoController {
         int purchaseAmount = InputView.getPurchaseAmount();
         int numberOfLottos = purchaseAmount / 1000;
         List<Lotto> lottos = generateLottos(numberOfLottos);
+
+        OutputView.printPurchasedLottos(lottos);
+
+        List<Integer> winningNumbers = InputView.getWinningNumbers();
+        int bonusNumber = InputView.getBonusNumber();
+
+        OutputView.printStatistics(lottos, winningNumbers, bonusNumber);
     }
 
     public List<Lotto> generateLottos(int count) {
