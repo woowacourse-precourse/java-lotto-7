@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Validation {
     private static final int LEAST_PAY_AMOUNT = 1_000;
 
     public static void validateStringToInteger(String string) {
-        if (!string.chars().allMatch(Character::isDigit)) {
+        if ( string.isBlank() || !string.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(STRING_TO_INTEGER_ERROR);
         }
     }
@@ -29,9 +30,13 @@ public class Validation {
         validateMultipleNumber(amount, LEAST_PAY_AMOUNT);
     }
 
-    public static void validateListStringToInteger(List<String> list) {
-        for (String string : list) {
-            validateStringToInteger(string);
+    public static void validateStringToListInteger(String string) {
+        if (string.isBlank()) {
+            throw new IllegalArgumentException(STRING_TO_INTEGER_ERROR);
+        }
+        List<String> list = Arrays.asList(string.split(","));
+        for (String str : list) {
+            validateStringToInteger(str);
         }
     }
 
