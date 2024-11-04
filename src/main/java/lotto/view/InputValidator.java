@@ -74,11 +74,19 @@ public class InputValidator {
         try {
             int bonusNumber = Integer.parseInt(input);
             checkNumberRange(bonusNumber);
+            checkDuplicationBetween(winningNumber, bonusNumber);
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 번호는 숫자만 가능합니다.");
         }
     }
+
+    private void checkDuplicationBetween(List<Integer> winningNumber, int bonusNumber) {
+        if (winningNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
     private int checkNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
