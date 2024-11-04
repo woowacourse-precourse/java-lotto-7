@@ -29,4 +29,8 @@ public enum Prize {
                 .findAny()
                 .orElse(EMPTY);
     }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
 }
