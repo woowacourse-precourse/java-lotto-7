@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class LottoService {
     private static final int PRICE = 1000;
+    private static final String LOTTO_PRICE_MESSAGE = "[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.";
 
     public List<Lotto> purchaseLottos(int amount) {
         validateAmount(amount);
@@ -22,7 +23,7 @@ public class LottoService {
 
     private void validateAmount(int amount) {
         if (amount % PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_PRICE_MESSAGE);
         }
     }
 
