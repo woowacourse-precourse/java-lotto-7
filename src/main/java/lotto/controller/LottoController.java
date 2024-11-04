@@ -1,9 +1,19 @@
 package lotto.controller;
 
-import lotto.model.*;
-import lotto.service.*;
+import lotto.model.LottoBundle;
+import lotto.model.LottoMachine;
+import lotto.model.LottoResult;
+import lotto.model.ProfitCalculator;
+import lotto.model.WinningNumbers;
+
+import lotto.service.LottoService;
+import lotto.service.LottoResultService;
+import lotto.service.ProfitCalculatorService;
+
+
 import lotto.validation.LottoAmountValidator;
 import lotto.validation.LottoNumberValidator;
+
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -12,21 +22,21 @@ import java.util.List;
 public class LottoController {
     private final OutputView outputView;
     private final InputView inputView;
-
     private final LottoService lottoService;
     private final LottoResultService lottoResultService;
     private final ProfitCalculatorService profitCalculatorService;
 
-    public LottoController() {
-       this.outputView = new OutputView();
-       this.inputView = new InputView();
-       this.lottoService = new LottoService();
-       this.lottoResultService = new LottoResultService();
-       this.profitCalculatorService = new ProfitCalculatorService();
+    public LottoController(final OutputView outputView, final InputView inputView,
+                           final LottoService lottoService, final LottoResultService lottoResultService,
+                           final ProfitCalculatorService profitCalculatorService) {
+       this.outputView = outputView;
+       this.inputView = inputView;
+       this.lottoService = lottoService;
+       this.lottoResultService = lottoResultService;
+       this.profitCalculatorService = profitCalculatorService;
     }
 
     public void start(){
-        // 로또 금액
         int lottoAmount = inputAmount();
         List<Integer> lottoNumberList = inputLottoNumberList();
         int lottoBonusNumber = inputBonusNumber(lottoNumberList);
@@ -35,22 +45,22 @@ public class LottoController {
         LottoBundle lottoBundle = new LottoBundle(lottoService.responseLottoTicket(lottoAmount));
         LottoMachine lottoMachine = new LottoMachine(winningNumbers, lottoBundle);
 
-        printLottoStatus(lottoAmount,lottoBundle);
+        printLottoBundleDetails(lottoAmount,lottoBundle);
 
         LottoResult result = new LottoResult();
         lottoResultService.countMatchingNumbers(lottoMachine.getLottoBundle().getPurchasedLottos(),
         lottoMachine.getWinningNumbers(),result);
 
-        printLottoResults(result, lottoAmount);
+        printLottoResult(result, lottoAmount);
 
     }
 
-    private void printLottoStatus(int lottoAmount, LottoBundle lottoBundle) {
+    private void printLottoBundleDetails(int lottoAmount, LottoBundle lottoBundle) {
         outputView.printLottoCountPurchased(lottoAmount);
         outputView.printLottoBundle(lottoBundle);
     }
 
-    private void printLottoResults(LottoResult result, int lottoAmount){
+    private void printLottoResult(LottoResult result, int lottoAmount){
         ProfitCalculator profitCalculator = new ProfitCalculator(lottoAmount, result);
         double profit = profitCalculatorService.resultProfit(result, lottoAmount);
         outputView.printLottoResult(result);
@@ -71,10 +81,6 @@ public class LottoController {
     private Integer inputBonusNumber(List<Integer> list){
         int bonusNumber = inputView.inputLottoBonusNumber();
         return LottoNumberValidator.validateBonusNumber(list,bonusNumber);
-    }
-
-    private void inputLottoAmount(){
-        inputView.inputLottoAmount();
     }
 
 }
