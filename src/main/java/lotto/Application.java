@@ -10,12 +10,11 @@ public class Application {
 
     static Input input = new Input();
     static Output output = new Output();
+    static LottoMachine lottoMachine = new LottoMachine();
 
     public static void main(String[] args) {
 
-        int money = input.askPurchaseAmount();
-        LottoMachine lottoMachine = new LottoMachine();
-        List<Lotto> playerLottos = lottoMachine.purchaseLotto(money);
+        List<Lotto> playerLottos = createPlayerLottos();
         output.printPurchaseLotto(playerLottos);
 
         //당첨 번호 입력
@@ -25,5 +24,16 @@ public class Application {
         Map<String, Integer> winningResult = winningLotto.getWinningResult(playerLottos);
         LottoStatistics lottoStatistics = new LottoStatistics();
         output.printWinningResult(winningResult, lottoStatistics.calculateYield(money, winningResult));
+    }
+
+    private static List<Lotto> createPlayerLottos() {
+        while (true) {
+            try {
+                int money = input.askPurchaseAmount();
+                return lottoMachine.purchaseLotto(money);
+            } catch (IllegalArgumentException e) {
+                output.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
