@@ -1,6 +1,7 @@
 package lotto.lotto;
 
 import static lotto.lotto.constant.LottoConstant.MAXIMUM_LOTTO_VALUE;
+import static lotto.lotto.constant.LottoConstant.MINIMUM_LOTTO_VALUE;
 import static lotto.lotto.constant.LottoConstant.NUM_OF_LOTTO_NUMBERS;
 
 import java.util.Arrays;
@@ -40,7 +41,7 @@ public class WinningNumbers {
     }
 
     private void validateNumbersInRange(List<Integer> numbers) {
-        boolean isOutOfRange = numbers.stream().anyMatch(number -> number < MAXIMUM_LOTTO_VALUE ||
+        boolean isOutOfRange = numbers.stream().anyMatch(number -> number < MINIMUM_LOTTO_VALUE ||
                 number > MAXIMUM_LOTTO_VALUE);
 
         if (isOutOfRange) {
