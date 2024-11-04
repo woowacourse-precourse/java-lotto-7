@@ -19,6 +19,14 @@ public class LottoVerification {
         return rankCounts;
     }
 
+    public double calculateRateOfReturn(int purchaseAmount) {
+        int totalPrize = 0;
+        for(Map.Entry<Rank, Integer> entry : rankCounts.entrySet()) {
+            totalPrize += entry.getValue() * entry.getKey().getPrize();
+        }
+        return ((double) totalPrize / purchaseAmount) * 100;
+    }
+
     public void calculateRank(List<Lotto> lottos) {
         for(Lotto lotto : lottos) {
             Rank rank = Rank.decideRank(getMatchNumberCount(lotto), getMatchBonusNumber(lotto));
