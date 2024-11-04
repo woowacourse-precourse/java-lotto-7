@@ -12,15 +12,17 @@ public class LottoRepository {
     public void run() {
 
     }
+
     //로또 구입 메서드 구현
     private int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요");
         int amount = Integer.parseInt(Console.readLine());
-        if(amount % lotto_Price == 0) {
+        if (amount % lotto_Price == 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
         return amount;
     }
+
     //로또 구입 갯수 메서드 구현
     private void purchaseLottos(int amount) {
         int count = amount / lotto_Price;
@@ -29,11 +31,12 @@ public class LottoRepository {
             purchasedLottos.add(Lotto.generateRandomNumbers());
         }
     }
+
     //당첨 번호 메서드 구현
     private Lotto getWinningLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        String [] parts = input.split(",");
+        String[] parts = input.split(",");
         List<Integer> numbers = new ArrayList<>();
         for (String part : parts) {
             int number = Integer.parseInt(part.trim());
@@ -41,6 +44,7 @@ public class LottoRepository {
         }
         return new Lotto(numbers);
     }
+
     //보너스 번호 입력 구현
     private int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
@@ -49,6 +53,12 @@ public class LottoRepository {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
         return bonusNumber;
+    }
+    //구매한 로또 번호 출력
+    private void displayPurchasedLottos() {
+        for (Lotto lotto : purchasedLottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 }
 
