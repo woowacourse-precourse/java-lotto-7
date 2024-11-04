@@ -1,10 +1,16 @@
 package lotto.util;
 
+import lotto.exception.InputNumberFormatException;
+
 public class Parser {
     private Parser() {}
 
     public static int stringToInt(String input) {
-        return Integer.parseInt(input.trim());
+        try {
+            return Integer.parseInt(input.trim());
+        } catch (NumberFormatException e) {
+            throw new InputNumberFormatException();
+        }
     }
 
     public static String[] stringToArray(String input) {
