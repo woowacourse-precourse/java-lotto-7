@@ -10,6 +10,8 @@ import lotto.Validator;
 public class UserInput {
     public int getPurchaseAmount() {
         String input = Console.readLine();
+
+        Validator.validateIsNumber(input);
         int amount = Parser.convertStrToInt(input);
 
         Validator.validatePositiveAmount(amount);
