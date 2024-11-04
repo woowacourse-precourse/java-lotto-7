@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Issuing {
-    public List<Lotto> lottoTickets(LottoTicket ticket){
+    public List<Lotto> lottoTickets(int count){
         List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i<ticket.getCount();i++){
+        for(int i = 0; i<count;i++){
             lottos.add(randomLotto());
         }
         return lottos;

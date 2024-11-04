@@ -12,13 +12,11 @@ public class IssuingTest {
     Issuing issue = new Issuing();
     @Test
     void 로또_티켓_발급(){
-        int price = 10000;
-        LottoTicket ticket = new LottoTicket(price);
+        int count = 6;
 
+        List<Lotto> lottos = issue.lottoTickets(count);
 
-        List<Lotto> lottos = issue.lottoTickets(ticket);
-
-        assertThat(lottos).hasSize(ticket.getCount());
+        assertThat(lottos).hasSize(count);
     }
 
 

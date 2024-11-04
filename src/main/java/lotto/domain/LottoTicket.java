@@ -1,18 +1,29 @@
 package lotto.domain;
 
+import lotto.service.Issuing;
+
+import java.util.List;
+
 public class LottoTicket {
     private static final int PRICE_TICKET = 1_000;
     private static final int PRICE_MAX = 100_000;
     private final int price;
+    private final List<Lotto> lottoTickets;
     private int count;
+
+    Issuing issue = new Issuing();
 
     public LottoTicket(int price) {
         validatePrice(price);
         this.price = price;
         count = priceChangeToTicket(price);
+        lottoTickets = issue.lottoTickets(count);
     }
     public int getCount(){
         return count;
+    }
+    public List<Lotto> getLottoTickets(){
+        return lottoTickets;
     }
     private void validatePrice(int price){
         if(price < PRICE_TICKET || price > PRICE_MAX){
