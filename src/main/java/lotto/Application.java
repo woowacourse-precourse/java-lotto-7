@@ -10,18 +10,21 @@ public class Application {
     private static LottoController controller = new LottoController();
     public static void main(String[] args) {
         String inputPurchaseStr = InputView.inputLottoPurchase();
-        int lottoPurchase = controller.getLottoPurchaseInt(inputPurchaseStr);
+        int lottoCount = controller.getLottoCount(inputPurchaseStr);
 
-        int lottoCount = controller.getLottoCount();
-        ArrayList<Lotto> lottos = controller.getLottos();
+        ArrayList<Lotto> lottos = controller.createLottos(lottoCount);
 
         OutputView.printLottoNumbers(lottoCount, lottos);
 
         String inputNumbersStr = InputView.inputLottoNumber();
         String inputBonusNumberStr = InputView.inputBunusNumber();
-        LottoResult lottoResult = controller.getResultLotto(inputNumbersStr, inputBonusNumberStr, lottos);
 
-        String totalWinnings = controller.getTotalWinnings(lottoPurchase, lottoResult);
+        ArrayList<Integer> lottoWinningNumbers = controller.getWinningNumber(inputNumbersStr);
+        int lottoBonusNumber = controller.getBonnusNumber(inputBonusNumberStr);
+
+        LottoResult lottoResult = controller.getResultLotto(lottos, lottoWinningNumbers, lottoBonusNumber);
+
+        String totalWinnings = controller.getTotalWinnings(lottoCount, lottoResult);
 
         OutputView.printLottoResult(lottoResult.toString(), totalWinnings);
     }
