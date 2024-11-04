@@ -20,7 +20,7 @@ class LotteryMachineTest {
         user = new User(purchaseAmount);
         lotteryMachine = new LotteryMachine();
     }
-
+    @DisplayName("구매금액을 로또 가격으로 나눈만큼 로또가 발행된다.")
     @Test
     void purchaseLottoTickets() {
         lotteryMachine.purchaseLottoTickets(user);
