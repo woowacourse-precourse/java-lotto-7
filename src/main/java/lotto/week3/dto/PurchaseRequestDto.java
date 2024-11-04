@@ -3,10 +3,11 @@ package lotto.week3.dto;
 public class PurchaseRequestDto {
 
     private final int money;
+    private final int counts;
 
     public  PurchaseRequestDto(int money) {
-        int count = count(money);
-        this.money = count;
+        this.counts = count(money);
+        this.money = money;
     }
 
     private static int count(int cost) {
@@ -18,5 +19,9 @@ public class PurchaseRequestDto {
 
     public int getMoney() {
         return money;
+    }
+
+    public int getCounts() {
+        return counts;
     }
 }
