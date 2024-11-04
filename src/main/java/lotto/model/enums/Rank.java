@@ -6,20 +6,22 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public enum Rank {
-    FIFTH("3개 일치", 3),
-    FOURTH("4개 일치", 4),
-    THIRD("5개 일치", 5),
-    SECOND("5개 일치, 보너스 볼 일치", 5),
-    FIRST("6개 일치", 6),
-    NONE("꽝", 0)
+    FIFTH("3개 일치", 3, false),
+    FOURTH("4개 일치", 4, false),
+    THIRD("5개 일치", 5, false),
+    SECOND("5개 일치, 보너스 볼 일치", 5, true),
+    FIRST("6개 일치", 6, false),
+    NONE("꽝", 0, false)
     ;
 
     private final String message;
     private final Integer match;
+    private final boolean requiresBonus;
 
-    Rank(String message, int match) {
+    Rank(String message, int match, boolean requiresBonus) {
         this.message = message;
         this.match = match;
+        this.requiresBonus = requiresBonus;
     }
 
     public String getMessage() {
