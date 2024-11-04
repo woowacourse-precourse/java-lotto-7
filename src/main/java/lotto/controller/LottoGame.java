@@ -26,6 +26,7 @@ public class LottoGame {
 		Money money = new Money(InputView.readLottoPurchaseMoney());
 
 		List<Lotto> lottos = lottoMachine.purchaseLottos(money, random);
+		OutputView.printPurchaseLotto(lottos);
 
 		WinningLotto winningLotto = new WinningLotto(InputView.readWinningNumbers());
 		BonusNumber bonusNumber = new BonusNumber(InputView.readBonusNumber());
@@ -33,6 +34,6 @@ public class LottoGame {
 		GameResults gameResults = new GameResults();
 		gameResults.calculateGameResult(lottos, winningLotto, bonusNumber);
 
-		OutputView.printGameResult(gameResults);
+		OutputView.printGameResult(gameResults, lottos);
 	}
 }
