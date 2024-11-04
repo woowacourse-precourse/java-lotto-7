@@ -15,12 +15,16 @@ public class ProfitRate {
     }
 
     public static ProfitRate of(double purchaseAmount, double totalPrize) {
+        return new ProfitRate(calculateProfitRate(purchaseAmount, totalPrize));
+    }
+
+    private static double calculateProfitRate(double purchaseAmount, double totalPrize) {
         BigDecimal amount = BigDecimal.valueOf(purchaseAmount);
         BigDecimal prize = BigDecimal.valueOf(totalPrize);
         BigDecimal profitRate = prize.divide(amount, SCALE_DIVIDE, RoundingMode.HALF_UP)
                 .multiply(HUNDRED)
                 .setScale(SCALE_RESULT, RoundingMode.HALF_UP);
-        return new ProfitRate(profitRate.doubleValue());
+        return profitRate.doubleValue();
     }
 
     public double getProfitRate() {
