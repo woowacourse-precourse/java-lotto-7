@@ -20,17 +20,17 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoController {
-    private final OutputView outputView;
     private final InputView inputView;
+    private final OutputView outputView;
     private final LottoService lottoService;
     private final LottoResultService lottoResultService;
     private final ProfitCalculatorService profitCalculatorService;
 
-    public LottoController(final OutputView outputView, final InputView inputView,
+    public LottoController(final InputView inputView, final OutputView outputView,
                            final LottoService lottoService, final LottoResultService lottoResultService,
                            final ProfitCalculatorService profitCalculatorService) {
-       this.outputView = outputView;
        this.inputView = inputView;
+        this.outputView = outputView;
        this.lottoService = lottoService;
        this.lottoResultService = lottoResultService;
        this.profitCalculatorService = profitCalculatorService;
