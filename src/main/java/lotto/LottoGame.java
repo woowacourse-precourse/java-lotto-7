@@ -33,19 +33,19 @@ public class LottoGame {
     }
 
     private LottoTicketIssuer issueTickets() {
-        return printFormatter.formatPurchaseInfo();
+        return printFormatter.handlePurchaseInfo();
     }
 
     private void displayTickets(List<LottoTicket> tickets, int quantity) {
-        printFormatter.formatLottoTickets(tickets, quantity);
+        printFormatter.displayLottoTicketsWithQuantity(tickets, quantity);
     }
 
     private Lotto getWinningNumbers() {
-        return printFormatter.formatWinningNumbers();
+        return printFormatter.handleWinningNumbers();
     }
 
     private Bonus getBonusNumber(List<Integer> winningNumbers) {
-        return printFormatter.formatBonusNumber(winningNumbers);
+        return printFormatter.handleBonusNumber(winningNumbers);
     }
 
     private Map<PrizeType, Integer> analyzeResults(List<LottoTicket> issuedTickets, Lotto lotto, Bonus bonus) {
@@ -55,6 +55,6 @@ public class LottoGame {
 
     private void displayResults(Map<PrizeType, Integer> prizeStatistics, int purchaseAmount) {
         String formattedStatistics = WinningStatisticsFormatter.formatStatistics(prizeStatistics, purchaseAmount);
-        printFormatter.formatResult(formattedStatistics);
+        printFormatter.displayResultWithNewLine(formattedStatistics);
     }
 }
