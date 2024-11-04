@@ -9,6 +9,9 @@ public class OutputView {
     private static final String messageOfRateOfReturnPrefix = "총 수익률은 ";
     private static final String messageOfRateOfReturnSuffix = "%입니다.";
 
+    private OutputView(){
+    }
+
     public static void printPromptMessageForPriceToBuyLotto() {
         System.out.println(PROMPT_MESSAGE_FOR_PRICE_TO_BUY_LOTTO.getPromptMessage());
     }

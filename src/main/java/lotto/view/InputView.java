@@ -10,6 +10,9 @@ import lotto.model.WinningLottoNumber;
 
 public class InputView {
 
+    private InputView(){
+    }
+
     public static PriceToBuyLotto getPriceToBuyLotto() {
         PriceToBuyLotto priceToBuyLotto;
         try {
