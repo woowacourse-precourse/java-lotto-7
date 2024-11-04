@@ -32,6 +32,10 @@ public class LottoGame {
         return price.getPrice();
     }
 
+    public Integer getBonusNumber() {
+        return bonusNumber.getBonusNumber();
+    }
+
     public List<Integer> getWinningNumbers() {
         return winningNumbers.getWinningNumbers();
     }
