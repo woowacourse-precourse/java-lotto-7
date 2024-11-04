@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.util.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -10,7 +11,42 @@ public class LottoController {
     public void run() {
         int purchaseAmount = inputPurchaseAmount();
         List<Lotto> purchasedLottos = purchaseLottos(purchaseAmount);
+        WinningLotto winningLotto = inputWinningLotto();
         // 추후 기능 추가 예정
+    }
+
+    private WinningLotto inputWinningLotto() {
+        List<Integer> winningNumbers = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber();
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> inputWinningNumbers() {
+        while (true) {
+            try {
+                String input = InputView.inputWinningNumbers();
+                List<Integer> numbers = InputValidator.parseNumbers(input);
+                InputValidator.validateWinningNumbers(numbers);
+                return numbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int inputBonusNumber() {
+        while (true) {
+            try {
+                String input = InputView.inputBonusNumber();
+                int bonusNumber = Integer.parseInt(input);
+                InputValidator.validateBonusNumber(bonusNumber);
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Lotto> purchaseLottos(int amount) {
