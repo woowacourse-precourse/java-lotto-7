@@ -8,7 +8,7 @@ import lotto.model.constant.LottoRank;
 
 public class LottoRankingService {
 
-    private static final Map<RankCondition, LottoRank> RANK_MAP = Map.of(
+    private static final Map<RankCondition, LottoRank> RANK_OF_CONDITION = Map.of(
             new RankCondition(6, false), LottoRank.FIRST,
             new RankCondition(5, true), LottoRank.SECOND,
             new RankCondition(5, false), LottoRank.THIRD,
@@ -25,7 +25,7 @@ public class LottoRankingService {
 
         RankCondition rankCondition = new RankCondition(matchCount, bonusNumberMatched);
 
-        return RANK_MAP.getOrDefault(rankCondition, LottoRank.OTHERS);
+        return RANK_OF_CONDITION.getOrDefault(rankCondition, LottoRank.OTHERS);
     }
 
     private int calculateMatchCount(Lotto lotto, FirstRankLotto firstRankLotto) {

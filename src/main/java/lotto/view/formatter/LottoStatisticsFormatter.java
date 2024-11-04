@@ -7,7 +7,7 @@ import lotto.model.constant.LottoRank;
 
 public class LottoStatisticsFormatter {
 
-    private static final Map<LottoRank, RankCondition> RANK_MAP = Map.of(
+    private static final Map<LottoRank, RankCondition> CONDITION_OF_RANK = Map.of(
             LottoRank.FIRST, new RankCondition(6, false),
             LottoRank.SECOND, new RankCondition(5, true),
             LottoRank.THIRD, new RankCondition(5, false),
@@ -25,7 +25,7 @@ public class LottoStatisticsFormatter {
     }
 
     private String formatPerRank(LottoStatistics statistics, LottoRank rank) {
-        RankCondition rankCondition = RANK_MAP.get(rank);
+        RankCondition rankCondition = CONDITION_OF_RANK.get(rank);
 
         String matchedFormat = "개 일치";
         if (rankCondition.bonusMatch) {
