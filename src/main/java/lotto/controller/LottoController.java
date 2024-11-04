@@ -15,27 +15,30 @@ public class LottoController {
     private int turn;
     private List<Integer> winningNumbers;
     private int bonusNumber;
+    private Map<String, Integer> results;
 
     public LottoController() {
         this.purchasePrice = InputParser.parsePurchasePrice(LottoView.inputPurchasePrice());
         this.turn = purchasePrice / 1000;
         this.winningNumbers = InputParser.parseWinningNumbers(LottoView.inputWinningNumbers());
         this.bonusNumber = InputParser.parseBonusNumber(LottoView.inputBonusNumber());
+        results = new HashMap<>();
+        for (WinningState state : WinningState.values()) {
+            results.put(state.name(), 0);
+        }
     }
 
     public void runLotto() {
+        LottoView.printTurn(turn);
         Lotto[] lottos = new Lotto[turn];
-        Map<String, Integer> results = new HashMap<>();
 
         for (int i = 0; i < turn; i++) {
             lottos[i] = new Lotto(RandomNumbersGenerator.create());
+            LottoView.printLotto(lottos[i].toString());
             String result = lottos[i].checkWinner(winningNumbers, bonusNumber);
-
-            int count = 0;
-            if (results.containsKey(result)) {
-                count = results.get(result);
-            }
-            results.put(result, count + WinningState.valueOf(result).getAmount());
+            int count = results.get(result);
+            results.put(result, ++count);
         }
+        LottoView.printResult(results);
     }
 }
