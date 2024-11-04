@@ -15,6 +15,7 @@ public class MessageContainer {
     public static final String NOTICE_ISSUED_LOTTO_QUANTITY = "%d개를 구매했습니다.";
     public static final String WINNING_STATISTICS = String.join(System.lineSeparator(), "당첨 통계", HYPHEN.repeat(3));
     public static final String WINNING_DETAILS_TEMPLATE = "%d개 일치 (%,d원) - %d개";
+    public static final String SECOND_WINNING_DETAILS_TEMPLATE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
     public static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %s%%입니다.";
 
     public static final String ERROR_LABEL = "[ERROR]";

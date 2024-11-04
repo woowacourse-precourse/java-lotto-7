@@ -51,14 +51,18 @@ public class LottoController {
 
     public String sendWinningDetails(Map<Winning, Integer> winningCounts) {
         return Winning.valuesAsOrderedStream()
-                .map(winning ->
-                        String.format(
-                                WINNING_DETAILS_TEMPLATE,
-                                winning.getCondition(),
-                                winning.getPrize(),
-                                winningCounts.get(winning)
-                        )
-                )
-                .collect(Collectors.joining(System.lineSeparator()));
+                .map(winning -> {
+                    if (winning == Winning.SECOND) {
+                        return formatWinningDetails(SECOND_WINNING_DETAILS_TEMPLATE, winning, winningCounts);
+                    }
+                    return formatWinningDetails(WINNING_DETAILS_TEMPLATE, winning, winningCounts);
+                }).collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    private String formatWinningDetails(String template, Winning winning, Map<Winning, Integer> winningCounts) {
+        return String.format(template,
+                winning.getCondition(),
+                winning.getPrize(),
+                winningCounts.get(winning));
     }
 }
