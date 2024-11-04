@@ -56,9 +56,9 @@ public class OutputView {
             int value = result.getOrDefault(key, 0);
             if (key.isBonusMatch()) {
                 System.out.printf(RESULT_BONUS_FORMAT_MESSAGE + "%n", key.getNormalCount(), key.getReward(), value);
-            } else {
-                System.out.printf(RESULT_FORMAT_MESSAGE + "%n", key.getNormalCount(), key.getReward(), value);
+                continue;
             }
+            System.out.printf(RESULT_FORMAT_MESSAGE + "%n", key.getNormalCount(), key.getReward(), value);
         }
     }
 
