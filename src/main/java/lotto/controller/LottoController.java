@@ -16,49 +16,61 @@ public class LottoController {
     }
 
     public void run() {
-        // Step 1: 구입 금액 입력 및 검증
-        OutputView.promptPurchaseAmount();
-        String purchaseAmountInput = InputView.requestPurchaseAmount();
-        int purchaseAmount;
         try {
-            purchaseAmount = lottoService.validateAndParsePurchaseAmount(purchaseAmountInput);
+            int purchaseAmount = handlePurchaseAmountInput();  // Step 1: 구입 금액 입력 및 검증
+            List<Lotto> lottos = handleLottoGeneration(purchaseAmount); // Step 2: 티켓 개수에 맞게 로또 생성
+            List<Integer> winningNumbers = handleWinningNumbersInput(); // Step 3: 당첨 번호 입력 및 검증
+            int bonusNumber = handleBonusNumberInput(winningNumbers); // Step 4: 보너스 번호 입력 및 검증
+            handleLottoResults(lottos, winningNumbers, bonusNumber, purchaseAmount); // Step 5: 로또 결과 계산 및 출력
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return;
         }
+    }
 
-        // Step 2: 티켓 개수에 맞게 로또 생성
+    private int handlePurchaseAmountInput() {
+        OutputView.promptPurchaseAmount();
+        String purchaseAmountInput = InputView.requestPurchaseAmount();
+        try {
+            return lottoService.validateAndParsePurchaseAmount(purchaseAmountInput);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return -1;
+        }
+    }
+
+    private List<Lotto> handleLottoGeneration(int purchaseAmount) {
         List<Lotto> lottos = lottoService.generateLottos(purchaseAmount);
         OutputView.printPurchaseCount(lottos.size());
         OutputView.printLottoNumbers(lottos);
+        return lottos;
+    }
 
-        // Step 3: 당첨 번호 입력 및 검증
+    private List<Integer> handleWinningNumbersInput() {
         OutputView.promptWinningNumbersInput();
         String winningNumbersInput = InputView.requestWinningNumbers();
-        List<Integer> winningNumbers;
         try {
-            winningNumbers = lottoService.validateAndParseWinningNumbers(winningNumbersInput);
+            return lottoService.validateAndParseWinningNumbers(winningNumbersInput);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return;
+            return null;
         }
+    }
 
-        // Step 4: 보너스 번호 입력 및 검증
+    private int handleBonusNumberInput(List<Integer> winningNumbers) {
         OutputView.promptBonusNumberInput();
         String bonusNumberInput = InputView.requestBonusNumber();
-        int bonusNumber;
         try {
-            bonusNumber = lottoService.validateAndParseBonusNumber(bonusNumberInput, winningNumbers);
+            return lottoService.validateAndParseBonusNumber(bonusNumberInput, winningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return;
+            return -1;
         }
+    }
 
-        // Step 5: 로또 결과 계산
+    private void handleLottoResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber,
+                                    int purchaseAmount) {
         Map<Rank, Integer> statistics = lottoService.calculateStatistics(lottos, winningNumbers, bonusNumber);
         double roi = lottoService.calculateROI(statistics, purchaseAmount);
-
-        // Step 6: 로또 결과 출력
         OutputView.printLottoResults(statistics, roi);
     }
 }

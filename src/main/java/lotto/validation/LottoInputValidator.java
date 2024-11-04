@@ -24,24 +24,36 @@ public class LottoInputValidator {
     }
 
     public static List<Integer> validateWinningNumbers(String input) {
+        List<Integer> numbers = parseAndValidateNumberCount(input);
+        validateNumberRange(numbers);
+        validateNoDuplicates(numbers);
+        return numbers;
+    }
+
+    private static List<Integer> parseAndValidateNumberCount(String input) {
         String[] numberStrings = input.split(WINNING_NUMBER_DELIMITER);
         if (numberStrings.length != 6) {
             throw new IllegalArgumentException(ErrorConstants.INVALID_WINNING_NUMBERS_COUNT);
         }
-
         List<Integer> numbers = new ArrayList<>();
         for (String numStr : numberStrings) {
-            int number = parseNumber(numStr.trim());
+            numbers.add(parseNumber(numStr.trim()));
+        }
+        return numbers;
+    }
+
+    private static void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException(ErrorConstants.INVALID_WINNING_NUMBER_RANGE);
             }
-            numbers.add(number);
         }
+    }
 
+    private static void validateNoDuplicates(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorConstants.INVALID_WINNING_NUMBER_DUPLICATE);
         }
-        return numbers;
     }
 
     public static int validateBonusNumber(String input, List<Integer> winningNumbers) {
