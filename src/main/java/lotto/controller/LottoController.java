@@ -46,5 +46,7 @@ public class LottoController {
     public void printStat(){
         lottoManagementSystem.recordRanks(lottoResult,myWallet);
         lottoView.printStat(lottoResult);
+        float yield = YieldCalculator.calculateYield(myWallet);
+        lottoView.printYield(yield);
     }
 }

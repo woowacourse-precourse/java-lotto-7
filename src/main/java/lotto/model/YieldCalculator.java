@@ -2,7 +2,10 @@ package lotto.model;
 
 public class YieldCalculator {
 
-    public static float calculateYield(int money, int winnings){
+    public static float calculateYield(MyWallet myWallet){
+        int money = myWallet.getMoney();
+        int winnings = myWallet.getWinnings();
+
         if (money <= 0) {
             throw new IllegalArgumentException("[Error] 금액은 0보다 커야 합니다.");
         }
