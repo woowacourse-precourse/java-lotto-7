@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.view.validator.InputValidator;
 
-public class Convertor {
-    private Convertor(){
+public class Converter {
+    private Converter(){
     }
 
     public static int stringToInt(final String input) {

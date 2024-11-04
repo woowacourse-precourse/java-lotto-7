@@ -1,6 +1,6 @@
 package lotto.view.validator;
 
-import lotto.util.Convertor;
+import lotto.util.Converter;
 import lotto.util.ExceptionHelper;
 
 import static lotto.util.Splitter.DELIMITER;
@@ -38,7 +38,7 @@ public class InputValidator {
     }
 
     public static void validatePositiveNumber(final String input) {
-        if(!(Convertor.stringToInt(input) > 0)) {
+        if(!(Converter.stringToInt(input) > 0)) {
             throw new IllegalArgumentException(ExceptionHelper.errorMessage(POSITIVE_NUMBER_ERROR_MESSAGE));
         }
     }

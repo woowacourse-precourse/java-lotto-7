@@ -8,7 +8,7 @@ import lotto.model.MatchNumbers;
 import lotto.model.Profit;
 import lotto.model.PurchasePrice;
 import lotto.model.RandomNumber;
-import lotto.util.Convertor;
+import lotto.util.Converter;
 import lotto.util.Sorter;
 import lotto.util.Splitter;
 import lotto.view.InputView;
@@ -25,7 +25,7 @@ public class LottoController {
 
     private PurchasePrice initPurchasePrice() {
         try {
-            return new PurchasePrice(Convertor.stringToInt(inputView.inputPurchasePrice()));
+            return new PurchasePrice(Converter.stringToInt(inputView.inputPurchasePrice()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return initPurchasePrice();
@@ -53,9 +53,9 @@ public class LottoController {
     private Lotto initUserNumbers() {
         try {
             String[] input = Splitter.split(inputView.inputUserLottoNumbers());
-            Convertor.validateNull(input);
-            Convertor.validateNumberFormat(input);
-            return new Lotto(Sorter.ascendingOrder(Convertor.arrayToList(input)));
+            Converter.validateNull(input);
+            Converter.validateNumberFormat(input);
+            return new Lotto(Sorter.ascendingOrder(Converter.arrayToList(input)));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return initUserNumbers();
@@ -64,7 +64,7 @@ public class LottoController {
 
     private BonusNumber initBonusNumber(final Lotto lotto) {
         try {
-            return new BonusNumber(lotto.get(), Convertor.stringToInt(inputView.inputBonusNumber()));
+            return new BonusNumber(lotto.get(), Converter.stringToInt(inputView.inputBonusNumber()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return initBonusNumber(lotto);
