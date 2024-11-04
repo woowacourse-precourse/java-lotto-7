@@ -1,11 +1,12 @@
 package lotto.controller;
 
-import lotto.domain.*;
-import lotto.service.*;
-import lotto.view.*;
-import lotto.util.*;
+import lotto.domain.WinningLotto;
+import lotto.service.LottoService;
+import lotto.util.LottoValidator;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
-public class LottoController {
+public class LottoGameController {
 
     private final LottoService lottoService = new LottoService();
 
@@ -23,7 +24,6 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     private int readPurchaseAmount() {
@@ -33,8 +33,7 @@ public class LottoController {
 
     private WinningLotto readWinningLotto() {
         String winningNumbersInput = InputView.inputWinningNumbers();
-        String bonusNumberInput = InputView.inputWinningNumbers();
-
+        String bonusNumberInput = InputView.inputBonusNumber();
         return new WinningLotto(
                 LottoValidator.parseLottoNumbers(winningNumbersInput),
                 Integer.parseInt(bonusNumberInput)

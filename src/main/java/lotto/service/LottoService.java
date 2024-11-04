@@ -1,11 +1,13 @@
 package lotto.service;
 
-import lotto.domain.*;
-import lotto.util.*;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.WinningLotto;
+import lotto.util.LottoNumberGenerator;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static lotto.domain.Rank.MISS;

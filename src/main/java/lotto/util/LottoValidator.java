@@ -1,6 +1,5 @@
 package lotto.util;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.LottoNumber;
 
 import java.util.Arrays;
@@ -32,24 +31,6 @@ public class LottoValidator {
         return numbers;
     }
 
-    private static int parsePositiveInteger(String input) {
-        try {
-            int number = Integer.parseInt(input);
-            if (number <= 0) {
-                throw new IllegalArgumentException("[ERROR] 양수를 입력해야 합니다.");
-            }
-            return number;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
-        }
-    }
-
-    private static void validateNumberRange(int number) {
-        if (number < LottoNumber.MIN_NUMBER || number > LottoNumber.MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-    }
-
     private static void validateNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -59,6 +40,24 @@ public class LottoValidator {
         }
         for (int number : numbers) {
             validateNumberRange(number);
+        }
+    }
+
+    private static void validateNumberRange(int number) {
+        if (number < LottoNumber.MIN_NUMBER || number > LottoNumber.MAX_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private static int parsePositiveInteger(String input) {
+        try {
+            int number = Integer.parseInt(input);
+            if (number <= 0) {
+                throw new IllegalArgumentException("[ERROR] 양수를 입력해야 합니다.");
+            }
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
         }
     }
 }

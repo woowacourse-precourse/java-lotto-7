@@ -11,7 +11,7 @@ public class OutputView {
     private static final String PURCHASED_MESSAGE = "%d개를 구매했습니다.";
     private static final String RESULT_HEADER = "당첨 통계";
     private static final String DIVIDER = "---";
-    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.lf%%입니다.";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
     private static final String MATCH_COUNT_MESSAGE = "%d개 일치 (%d원) - %d개";
     private static final String SECOND_MATCH_MESSAGE = "5개 일치, 보너스 볼 일치 (%d원) - %d개";
 
