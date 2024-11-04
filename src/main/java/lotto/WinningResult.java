@@ -10,7 +10,17 @@ public class WinningResult {
     private List<List<Integer>> lottoNumbers;
     
 
-    
+    public void setNumbers(List<Integer> winningNumber, int bonusNum, List<List<Integer>> lottoNumbers) {
+        this.winningNumber = winningNumber;
+        this.bonusNum = bonusNum;
+        this.lottoNumbers = lottoNumbers;
+    }
+
+    public void resultPrint(int total) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+    }
 
     public enum LottoRank {
         FIRST(6, false, 2000000000),    
