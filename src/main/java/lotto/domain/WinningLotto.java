@@ -10,9 +10,22 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        validateWinningNumbers(winningNumbers);
         this.winningNumbers = new Lotto(winningNumbers);
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validateWinningNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new LottoException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+        if (numbers.stream().distinct().count() != 6) {
+            throw new LottoException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+        }
+        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+            throw new LottoException("[ERROR] 당첨 번호는 1 이상 45 이하의 숫자여야 합니다.");
+        }
     }
 
     private void validateBonusNumber(int bonusNumber) {
