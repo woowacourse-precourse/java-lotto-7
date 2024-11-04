@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class LottoResultCalculator {
     public static Map<Integer, Long> countMatchingResults(List<Integer> matchResultList) {
         return matchResultList.stream()
-                .filter(count -> count >= 3 && count <= 6)
+                .filter(count -> count >= 3 && count <= 6 || count == -1)
                 .collect(Collectors.groupingBy(count -> count, Collectors.counting()));
     }
 }
