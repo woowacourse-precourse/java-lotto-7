@@ -9,6 +9,13 @@ public class LottoValidator {
   private static final int LOTTO_NUMBER_COUNT = 6;
   private static final int MIN_LOTTO_NUMBER = 1;
   private static final int MAX_LOTTO_NUMBER = 45;
+  private static final int PURCHASE_UNIT = 1000;
+
+  public static void validatePurchaseAmount(int amount) {
+    if (amount <= 0 || amount % PURCHASE_UNIT != 0) {
+      LottoException.throwInvalidPurchaseAmountException();
+    }
+  }
 
   public static void validateLottoNumbers(List<Integer> numbers) {
     if (numbers.size() != LOTTO_NUMBER_COUNT) {

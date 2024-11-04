@@ -11,12 +11,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.util.ProfitCalculator;
+import lotto.validator.LottoValidator;
 
 public class LottoService {
 
   private static final int LOTTO_PRICE = 1000;
 
   public LottoTicket generateLottoTickets(int amount) {
+    LottoValidator.validatePurchaseAmount(amount);
     int ticketCount = amount / LOTTO_PRICE;
     List<Lotto> tickets = new ArrayList<>();
 
@@ -24,10 +26,6 @@ public class LottoService {
       tickets.add(new Lotto(LottoNumberGenerator.generateRandomNumbers()));
     }
     return new LottoTicket(tickets);
-  }
-
-  public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-    return new WinningLotto(winningNumbers, bonusNumber);
   }
 
   public Map<Rank, Long> calculateRanks(LottoTicket lottoTicket, WinningLotto winningLotto) {

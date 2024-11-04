@@ -8,9 +8,9 @@ public class InputView {
   private static final String MESSAGE_WINNING_NUMBERS = "당첨 번호를 입력해 주세요 (예: 1,2,3,4,5,6):";
   private static final String MESSAGE_BONUS_NUMBER = "보너스 번호를 입력해 주세요:";
 
-  public static int getPurchaseAmount() {
+  public static String getPurchaseAmount() {
     System.out.println(MESSAGE_PURCHASE_AMOUNT);
-    return Integer.parseInt(Console.readLine().trim());
+    return Console.readLine().trim();
   }
 
   public static String getWinningNumbers() {
@@ -18,8 +18,8 @@ public class InputView {
     return Console.readLine().trim();
   }
 
-  public static int getBonusNumber() {
+  public static String getBonusNumber() {
     System.out.println(MESSAGE_BONUS_NUMBER);
-    return Integer.parseInt(Console.readLine().trim());
+    return Console.readLine().trim();
   }
 }
