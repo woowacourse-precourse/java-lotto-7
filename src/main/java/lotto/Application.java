@@ -23,7 +23,7 @@ public class Application {
 
         List<Integer> winningLotto = lottoController.splitWinningNumbers(inputView.getWinningLotto());
 
-        int bonusNumber = inputView.getBonusNumber();
+        int bonusNumber = inputView.getBonusNumber(winningLotto);
 
         lottoResult = new LottoResult(winningLotto, bonusNumber, lottoCost);
         lottoController.checkResult(lottos, lottoResult);

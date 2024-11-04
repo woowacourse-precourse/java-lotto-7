@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public class InputView {
 
@@ -30,8 +31,20 @@ public class InputView {
         return Console.readLine();
     }
 
-    public int getBonusNumber() {
-        System.out.println(BONUS_MESSAGE);
-        return Integer.parseInt(Console.readLine());
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                System.out.println(BONUS_MESSAGE);
+                int bonusNumber = Integer.parseInt(Console.readLine());
+
+                if (winningNumbers.contains(bonusNumber)) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                }
+
+                return bonusNumber; // 중복이 없으면 반환
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // 에러 메시지 출력
+            }
+        }
     }
 }
