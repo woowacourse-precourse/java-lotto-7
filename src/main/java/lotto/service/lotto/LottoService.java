@@ -17,7 +17,7 @@ public class LottoService {
         int purchaseCount = inputPurchaseAmount / LottoConstant.LOTTO_PRICE;
         List<Lotto> lottoes = new ArrayList<>();
         for (int i = 0; i < purchaseCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            ArrayList<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers);
             lottoes.add(new Lotto(numbers));
         }
