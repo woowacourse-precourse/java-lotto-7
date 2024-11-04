@@ -162,6 +162,32 @@ public class Application {
     private static double getReturnOnInvestment(int total, int cost) {
         return ((double) total / cost) * 100;
     }
+    //7. 결과 출력
+    private static void printWinningSummary(int[] cnt) {
+        String[] prizes = {"2,000,000,000원", "1,500,000원", "50,000원", "5,000원", "30,000,000원"};
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (int i = cnt.length - 2; i >= 0; i--) {
+            if (i == 0) {
+                System.out.println("5개 일치, 보너스 볼 일치 (" + prizes[4] + ") - " + cnt[4] + "개");
+            }
+            System.out.println((6 - i) + "개 일치 (" + prizes[i] + ") - " + cnt[i] + "개");
+        }
+    }
+    
+   
+    private static void getTotalWinnings(int[] cnt, int num) {
+        long[] prizes = {2000000000, 1500000, 50000, 5000, 30000000};
+        int total = 0;
+        for (int i = 0; i < prizes.length - 1; i++) {
+            total += prizes[i] * cnt[i];
+            if (i == 0) {
+                total += prizes[4] * cnt[4];
+            }
+        }
+        String formattedValue = String.format("%.1f", getReturnOnInvestment(total, num * 1000));
+        System.out.println("총 수익률은 " + formattedValue + "%입니다.");
+    }
 
  
 }
