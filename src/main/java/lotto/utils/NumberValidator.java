@@ -5,13 +5,13 @@ import lotto.constants.ErrorMessages;
 public class NumberValidator {
 
 
-    public static void validateNumberRange(Integer number, int max, int min) {
-        if (exceedRange(number, max, min)) {
+    public static void validateNumberRange(Integer number, int min, int max) {
+        if (exceedRange(number, min, max)) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
-    public static boolean exceedRange(Integer number, int max, int min) {
+    public static boolean exceedRange(Integer number, int min, int max) {
         return number > max || number < min;
     }
 
