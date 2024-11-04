@@ -14,7 +14,7 @@ public class LottoCount {
     }
 
     private void validatePurchaseAmount(final int purchaseAmount) {
-        if (purchaseAmount % LOTTO_PRICE != 0) {
+        if (purchaseAmount == 0 || purchaseAmount % LOTTO_PRICE != 0) {
             throw new InvalidLottoAmountException(INVALID_PURCHASE_PRICE);
         }
     }
