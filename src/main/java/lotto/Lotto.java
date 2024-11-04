@@ -6,6 +6,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        arrangeInAscendingOrder(numbers);
         validate(numbers);
         this.numbers = numbers;
     }
@@ -17,4 +18,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void arrangeInAscendingOrder(List<Integer> numbers) {
+        numbers.sort(Integer::compareTo);
+    }
 }
