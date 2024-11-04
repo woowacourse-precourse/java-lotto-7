@@ -1,4 +1,4 @@
-package lotto.lotto;
+package lotto.lotto.value;
 
 import java.util.HashSet;
 import java.util.List;
@@ -42,9 +42,5 @@ public class WinningNumber {
 
     public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
     }
 }

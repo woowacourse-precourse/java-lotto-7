@@ -1,4 +1,4 @@
-package lotto.lotto;
+package lotto.lotto.value;
 
 import java.text.NumberFormat;
 
@@ -12,9 +12,13 @@ public class Money {
     }
 
     public Money(String textValue) {
-        int value = Integer.parseInt(textValue);
-        validate(value);
-        this.value = value;
+        try {
+            int value = Integer.parseInt(textValue);
+            validate(value);
+            this.value = value;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야합니다.");
+        }
     }
 
     public int getValue() {
@@ -39,7 +43,8 @@ public class Money {
     }
 
     public double getRateBy(Money money) {
-        return ((double) (value - money.value) / money.value) * 100;
+        double percentage = ((double) money.getValue() / this.value) * 100;
+        return Math.round(percentage * 100.0) / 100.0;
     }
 
     @Override

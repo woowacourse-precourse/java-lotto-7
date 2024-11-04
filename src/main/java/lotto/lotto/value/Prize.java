@@ -1,4 +1,4 @@
-package lotto.lotto;
+package lotto.lotto.value;
 
 import java.util.Arrays;
 import java.util.function.BiPredicate;

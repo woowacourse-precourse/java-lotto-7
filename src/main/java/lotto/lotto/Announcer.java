@@ -1,5 +1,9 @@
 package lotto.lotto;
 
+import lotto.lotto.value.Lotto;
+import lotto.lotto.value.Prize;
+import lotto.lotto.value.WinningNumber;
+
 import java.util.List;
 
 public class Announcer {
