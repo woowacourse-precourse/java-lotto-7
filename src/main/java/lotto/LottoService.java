@@ -10,6 +10,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoService {
+    static int FIRST_PRIZE = 2000000000;
+    static int SECOND_PRIZE = 30000000;
+    static int THIRD_PRIZE = 1500000;
+    static int FOURTH_PRIZE = 50000;
+    static int FIFTH_PRIZE = 5000;
+
+
     private final Map<RANK, Integer> result;
     private float initCost = 0;
 
@@ -23,22 +30,22 @@ public class LottoService {
     }
 
     private double getRate() {
-        double sum = result.getOrDefault(RANK.FIRST, 0) * 2000000000
-                + result.getOrDefault(RANK.SECOND, 0) * 30000000
-                + result.getOrDefault(RANK.THIRD, 0) * 1500000
-                + result.getOrDefault(RANK.FOURTH, 0) * 50000
-                + result.getOrDefault(RANK.FIFTH, 0) * 5000;
+        double sum = result.getOrDefault(RANK.FIRST, 0) * FIRST_PRIZE
+                + result.getOrDefault(RANK.SECOND, 0) * SECOND_PRIZE
+                + result.getOrDefault(RANK.THIRD, 0) * THIRD_PRIZE
+                + result.getOrDefault(RANK.FOURTH, 0) * FOURTH_PRIZE
+                + result.getOrDefault(RANK.FIFTH, 0) * FIFTH_PRIZE;
         return sum / initCost * 100;
     }
 
     public void printResult() {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.printf("3개 일치 (5,000원) - %d개%n", get(FIFTH));
-        System.out.printf("4개 일치 (50,000원) - %d개%n", get(FOURTH));
-        System.out.printf("5개 일치 (1,500,000원) - %d개%n", get(THIRD));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", get(SECOND));
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", get(FIRST));
+        System.out.printf("3개 일치 (%,d원) - %d개%n",FIFTH_PRIZE, get(FIFTH));
+        System.out.printf("4개 일치 (%,d원) - %d개%n",FOURTH_PRIZE, get(FOURTH));
+        System.out.printf("5개 일치 (%,d원) - %d개%n",THIRD_PRIZE, get(THIRD));
+        System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개%n",SECOND_PRIZE, get(SECOND));
+        System.out.printf("6개 일치 (%,d원) - %d개%n",FIRST_PRIZE, get(FIRST));
         System.out.printf("총 수익률은 %.1f%%입니다.%n", getRate());
     }
 }
