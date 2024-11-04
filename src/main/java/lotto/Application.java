@@ -5,7 +5,9 @@ import static java.util.Arrays.*;
 import camp.nextstep.edu.missionutils.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -20,6 +22,12 @@ public class Application {
 
         List<Integer> winningNumbers = getValidWinningNumbers();
         int bonusNumber = getValidBonusNumber(winningNumbers);
+
+        Map<Rank, Integer> records = getWinningRecords(lottoTickets, winningNumbers, bonusNumber);
+        printStatistics(records);
+
+        double profitRate = calculateProfitRate(records, purchaseAmount);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 
     public static void validateInput(String input) {
@@ -72,7 +80,6 @@ public class Application {
         for (int i = 0; i < purchaseAmount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottoTickets.add(new Lotto(numbers));
-            Collections.sort(numbers); // 오름차순 정렬
         }
         return lottoTickets;
     }
@@ -148,5 +155,40 @@ public class Application {
         }
 
         return bonusNumber;
+    }
+
+    // 당첨 통계 계산
+    public static Map<Rank, Integer> getWinningRecords(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
+        Map<Rank, Integer> results = new EnumMap<>(Rank.class); // 각 로또 티켓 별 결과 저장
+
+        for (Lotto ticket : lottoTickets) {
+            int matchCount = (int) ticket.getNumbers().stream().filter(winningNumbers::contains).count();
+            boolean matchBonus = ticket.getNumbers().contains(bonusNumber); // 보너스 번호 일치 여부
+
+            Rank rank = Rank.getRank(matchCount, matchBonus);
+            results.put(rank, results.getOrDefault(rank, 0) + 1); // 결과 갱신
+        }
+
+        return results;
+    }
+
+    // 당첨 통계 출력
+    public static void printStatistics(Map<Rank, Integer> winningRecords) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + winningRecords.getOrDefault(Rank.FIFTH, 0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + winningRecords.getOrDefault(Rank.FOURTH, 0) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winningRecords.getOrDefault(Rank.THIRD, 0) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningRecords.getOrDefault(Rank.SECOND, 0) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winningRecords.getOrDefault(Rank.FIRST, 0) + "개");
+    }
+
+
+    // 수익률 계산
+    public static double calculateProfitRate(Map<Rank, Integer> results, int purchaseAmount) {
+        int totalPrize = results.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        return (double) totalPrize / (purchaseAmount * PURCHASE_UNIT) * 100;
     }
 }

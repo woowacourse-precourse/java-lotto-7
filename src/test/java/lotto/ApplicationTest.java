@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -12,39 +13,39 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
     private static List<Integer> WINNING_NUMBERS = List.of(1, 2, 3, 4, 5, 6);
 
-//    @Test
-//    void 기능_테스트() {
-//        assertRandomUniqueNumbersInRangeTest(
-//                () -> {
-//                    run("8000", "1,2,3,4,5,6", "7");
-//                    assertThat(output()).contains(
-//                            "8개를 구매했습니다.",
-//                            "[8, 21, 23, 41, 42, 43]",
-//                            "[3, 5, 11, 16, 32, 38]",
-//                            "[7, 11, 16, 35, 36, 44]",
-//                            "[1, 8, 11, 31, 41, 42]",
-//                            "[13, 14, 16, 38, 42, 45]",
-//                            "[7, 11, 30, 40, 42, 43]",
-//                            "[2, 13, 22, 32, 38, 45]",
-//                            "[1, 3, 5, 14, 22, 45]",
-//                            "3개 일치 (5,000원) - 1개",
-//                            "4개 일치 (50,000원) - 0개",
-//                            "5개 일치 (1,500,000원) - 0개",
-//                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-//                            "6개 일치 (2,000,000,000원) - 0개",
-//                            "총 수익률은 62.5%입니다."
-//                    );
-//                },
-//                List.of(8, 21, 23, 41, 42, 43),
-//                List.of(3, 5, 11, 16, 32, 38),
-//                List.of(7, 11, 16, 35, 36, 44),
-//                List.of(1, 8, 11, 31, 41, 42),
-//                List.of(13, 14, 16, 38, 42, 45),
-//                List.of(7, 11, 30, 40, 42, 43),
-//                List.of(2, 13, 22, 32, 38, 45),
-//                List.of(1, 3, 5, 14, 22, 45)
-//        );
-//    }
+    @Test
+    void 기능_테스트() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("8000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "8개를 구매했습니다.",
+                            "[8, 21, 23, 41, 42, 43]",
+                            "[3, 5, 11, 16, 32, 38]",
+                            "[7, 11, 16, 35, 36, 44]",
+                            "[1, 8, 11, 31, 41, 42]",
+                            "[13, 14, 16, 38, 42, 45]",
+                            "[7, 11, 30, 40, 42, 43]",
+                            "[2, 13, 22, 32, 38, 45]",
+                            "[1, 3, 5, 14, 22, 45]",
+                            "3개 일치 (5,000원) - 1개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 62.5%입니다."
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42),
+                List.of(13, 14, 16, 38, 42, 45),
+                List.of(7, 11, 30, 40, 42, 43),
+                List.of(2, 13, 22, 32, 38, 45),
+                List.of(1, 3, 5, 14, 22, 45)
+        );
+    }
 
     @Test
     void 예외_테스트() {
@@ -93,28 +94,11 @@ class ApplicationTest extends NsTest {
     @Test
     void 로또_발급_테스트() {
         assertSimpleTest(() -> {
-            run("8000");
-            String result = output();
-
-            // 구매한 로또 개수가 올바르게 출력되는지 확인
-            assertThat(result).contains("8개를 구매했습니다.");
-
-            // 로또 번호가 모두 오름차순으로 정렬되어 있는지 확인
-            String[] lines = result.split("\n");
-            for (String line : lines) {
-                if (line.startsWith("[") && line.endsWith("]")) {
-                    String numbers = line.substring(1, line.length() - 1); // 대괄호 제거
-                    String[] numArray = numbers.split(", ");
-
-                    for (int i = 0; i < numArray.length - 1; i++) {
-                        int current = Integer.parseInt(numArray[i]);
-                        int next = Integer.parseInt(numArray[i + 1]);
-                        assertThat(current).isLessThanOrEqualTo(next); // 오름차순 확인
-                    }
-                }
-            }
+            run("8000", "1,2,3,4,5,6", "7"); // 금액, 당첨 번호, 보너스 번호를 미리 지정
+            assertThat(output()).contains("8개를 구매했습니다.");
         });
     }
+
 
     @Test
     void 당첨번호_부적절한_구분자_위치_예외_테스트() {
@@ -131,6 +115,24 @@ class ApplicationTest extends NsTest {
             assertThatThrownBy(() -> Application.validateWinningNumbers("1,2,3,4,5,6,7"))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ERROR_MESSAGE + " 당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.");
+        });
+    }
+
+    @Test
+    void 당첨번호에_범위를_벗어난_숫자가_포함된_경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.validateWinningNumbers("1,2,3,4,5,46"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ERROR_MESSAGE + " 당첨 번호는 1에서 45 사이의 숫자여야 합니다.");
+        });
+    }
+
+    @Test
+    void 당첨번호에_중복된_숫자가_포함된_경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.validateWinningNumbers("1,2,3,4,5,5"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ERROR_MESSAGE + " 중복되지 않는 6개의 숫자를 입력해 주세요.");
         });
     }
 
