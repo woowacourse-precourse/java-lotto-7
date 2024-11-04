@@ -37,7 +37,7 @@ public class LottoRankCounter {
     }
 
     private void count(int rank) {
-        rankCnt.put(rank, rankCnt.get(rank) + 1);
+        rankCnt.put(rank, rankCnt.getOrDefault(rank, 0) + 1);
     }
 
     private boolean isSecondLottoRank(Lotto lotto, int bonus, int rank) {
