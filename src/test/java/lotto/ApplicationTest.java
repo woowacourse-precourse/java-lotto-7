@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -51,6 +52,15 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("구입금액을 올바르게 입력하지 않을경우 예외가 발생하고 다시 프로그램이 실행된다.")
+    @Test
+    void Given_purchaseAmount_When_invalidInput_Then_againLogic_Test() {
+        assertSimpleTest(() -> {
+            runException("invalid", "8000");
+            assertThat(output()).contains("당첨 번호를 입력해 주세요");
         });
     }
 
