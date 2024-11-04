@@ -12,13 +12,13 @@ public class ConsoleInputView implements InputView {
     @Override
     public int readNumber() {
         final String input = readInput();
-        return InputConvertor.parseToInt(input);
+        return InputConvertor.parseToInt(input.trim());
     }
 
     @Override
     public List<Integer> readNumbers() {
         final String input = readInput();
-        return InputConvertor.parseToNumbers(DELIMITER_COMMA, input);
+        return InputConvertor.parseToNumbers(DELIMITER_COMMA, input.trim());
     }
 
     private String readInput() {
