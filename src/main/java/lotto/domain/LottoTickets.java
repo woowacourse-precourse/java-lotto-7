@@ -8,6 +8,10 @@ import lotto.util.LottoNumberGenerator;
 public class LottoTickets {
     private final List<Lotto> lottoTickets;
 
+    public LottoTickets(List<Lotto> lottoTickets) {
+        this.lottoTickets = lottoTickets;
+    }
+
     public LottoTickets(LottoPurchaseMoney purchaseMoney) {
         this.lottoTickets = generateLottoTickets(purchaseMoney);
     }
