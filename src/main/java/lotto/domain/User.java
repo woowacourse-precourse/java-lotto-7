@@ -7,7 +7,7 @@ import static lotto.constant.Constant.LOTTO_PRICE;
 
 public class User {
     private final int purchaseAmount;
-    private List<PurchaseLotto> purchaseLottos = new ArrayList<>();
+    private final List<PurchaseLotto> purchaseLottos = new ArrayList<>();
 
     public User(int lottoTickets){
         this.purchaseAmount = lottoTickets * LOTTO_PRICE;
