@@ -16,5 +16,9 @@ public class Application {
 
         Lottos lottos = lottoController.generateLottos(purchaseCount);
         outputView.showMyLottos(lottos, purchaseCount);
+
+        inputView.getWinningLotto();
+        
+        inputView.getBonusNumber();
     }
 }
