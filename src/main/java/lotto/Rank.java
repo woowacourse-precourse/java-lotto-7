@@ -17,7 +17,7 @@ public enum Rank {
         this.displayName = displayName;
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 
