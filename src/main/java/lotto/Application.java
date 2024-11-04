@@ -111,7 +111,7 @@ public class Application {
     }
 
     private static void printLottoTickets(List<Lotto> lottoTickets) {
-        System.out.println(lottoTickets.size() + " tickets purchased.");
+        System.out.printf("%d개를 구매했습니다.%n", lottoTickets.size());  // 한국어 출력 형식
         for (Lotto ticket : lottoTickets) {
             System.out.println(ticket.getNumbers());
         }
@@ -150,12 +150,16 @@ public class Application {
     private static void printResults(Map<Rank, Integer> results) {
         System.out.println("Winning Results:");
         System.out.println("----------------");
-        for (Rank rank : Rank.values()) {
+
+        List<Rank> ranks = Arrays.asList(Rank.values());
+        ranks.sort(Comparator.comparingInt(Rank::getMatchCount).reversed());
+
+        for (Rank rank : ranks) {
             if (rank != Rank.MISS) {
-                System.out.printf("%d개 일치%s (%d원) - %d개%n",
-                        rank.ordinal() + 3,
+                System.out.printf("%d개 일치%s (%s원) - %d개%n",
+                        rank.getMatchCount(),
                         (rank == Rank.SECOND ? ", 보너스 볼 일치" : ""),
-                        rank.getPrize(),
+                        String.format("%,d", rank.getPrize()), // 상금 형식화
                         results.getOrDefault(rank, 0));
             }
         }
