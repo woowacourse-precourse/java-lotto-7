@@ -41,9 +41,7 @@ public class UserInput {
         int bonusNumber = Integer.parseInt(Console.readLine());
 
         Validator.validateNumberRange(bonusNumber);
-
-        winNumbers.add(bonusNumber);
-        Validator.validateDuplicate(winNumbers);
+        Validator.validateBonusDuplicate(winNumbers, bonusNumber);
 
         return bonusNumber;
     }
