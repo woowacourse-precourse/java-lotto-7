@@ -13,4 +13,8 @@ public class LottoPrintConstant {
 
     public static final String PERCENT_PRINT = "%입니다.";
 
+    public static final String NON_SECOND_MATCH_RESULT = "%d개 일치 (%,d원) - %d개";
+
+    public static final String SECOND_MATCH_RESULT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+
 }

@@ -1,8 +1,10 @@
 package lotto.view;
 
+import static lotto.constant.LottoPrintConstant.PERCENT_PRINT;
 import static lotto.constant.LottoPrintConstant.PRINT_BUY;
 import static lotto.constant.LottoPrintConstant.RESULT_LINE;
 import static lotto.constant.LottoPrintConstant.STATISTICS;
+import static lotto.constant.LottoPrintConstant.TOTAL_PRINT;
 import static lotto.constant.LottoValueConstant.SECOND_RANK;
 
 import java.util.List;
@@ -49,6 +51,6 @@ public class OutputView {
     }
 
     private String formatRate(double num) {
-        return "총 수익률은 " + String.format("%.1f", num) + "%입니다.";
+        return TOTAL_PRINT + String.format("%.1f", num) + PERCENT_PRINT;
     }
 }

@@ -23,16 +23,21 @@ public class InputView {
     private void inputWithRetry(String message, Consumer<String> consumer) {
         while (true) {
             System.out.println(message);
-            try {
-                String input = Console.readLine().trim();
-                consumer.accept(input);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(ERROR + e.getMessage());
-                System.out.println("");
-            }
+            String input = Console.readLine().trim();
+            if(processInput(input,consumer)) break;
+            System.out.println("");
         }
         System.out.println("");
+    }
+
+    private boolean processInput(String input, Consumer<String> consumer){
+        try {
+            consumer.accept(input);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR + e.getMessage());
+            return false;
+        }
     }
 
     public void inputPrice() {
