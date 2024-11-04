@@ -43,6 +43,7 @@ public class LottoGameController {
 
         Map<WinningResult, Integer> winningResults = lottoEvaluator.evaluateWinningResult(lottos, winningNumbers,
                 bonusNumber);
+        outputView.displayWinningResult(winningResults);
     }
 
     private List<Integer> parseWinningNumbers(String userInput) {
