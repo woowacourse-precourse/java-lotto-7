@@ -84,5 +84,18 @@ public class LottoService {
             results.put(Prize.FIFTH, results.getOrDefault(Prize.FIFTH, 0) + 1);
         }
     }
-
+    public void printResults(int purchaseAmount) {
+        System.out.println("당첨 통계\n---");
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
+        for (Prize prize : Prize.values()) {
+            if (prize == Prize.FOURTH) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n", prize.getMatchCount(), numberFormat.format(prize.getReward()), results.getOrDefault(prize, 0));
+            }
+            if (prize != Prize.FOURTH){
+                System.out.printf("%d개 일치 (%s원) - %d개%n", prize.getMatchCount(), numberFormat.format(prize.getReward()), results.getOrDefault(prize, 0));
+            }        }
+        double totalReward = results.entrySet().stream().mapToDouble(e -> e.getKey().getReward() * e.getValue()).sum();
+        double totalEarnings = (totalReward / purchaseAmount) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", totalEarnings);
+    }
 }

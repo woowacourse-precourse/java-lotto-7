@@ -18,6 +18,7 @@ public class LottoController {
         int bonusNumber = getBonusNumber();
 
         lottoService.calculateResults(userNumbers, bonusNumber);
+        lottoService.printResults(purchaseAmount);
     }
     private int getValidatedPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
