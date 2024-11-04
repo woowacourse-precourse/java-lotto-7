@@ -29,9 +29,9 @@ public class Application {
             int matchCount = Result.matchLotto(lotto, winningNumbers.getNumbers());
             boolean matchBonus = Result.matchBonus(lotto, bonusNumber.getNumber());
 
-            Rate info = Rate.getRank(matchCount, matchBonus);
+            Rank info = Rank.getRank(matchCount, matchBonus);
             Result.addRankCount(info);
-            Result.addEarnings(Rate.getPrize(info));
+            Result.addEarnings(Rank.getPrize(info));
         }
 
         Result.calculateEarningsRate(money.getMoney());

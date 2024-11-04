@@ -30,24 +30,24 @@ public class Result {
         return false;
     }
 
-    public static void addRankCount(Rate rate) {
-        if (rate == Rate.FIRST) {
+    public static void addRankCount(Rank rank) {
+        if (rank == Rank.FIRST) {
             first++;
             return;
         }
-        if (rate == Rate.SECOND) {
+        if (rank == Rank.SECOND) {
             second++;
             return;
         }
-        if (rate == Rate.THIRD) {
+        if (rank == Rank.THIRD) {
             third++;
             return;
         }
-        if (rate == Rate.FOURTH) {
+        if (rank == Rank.FOURTH) {
             fourth++;
             return;
         }
-        if (rate == Rate.FIFTH) {
+        if (rank == Rank.FIFTH) {
             fifth++;
         }
     }
