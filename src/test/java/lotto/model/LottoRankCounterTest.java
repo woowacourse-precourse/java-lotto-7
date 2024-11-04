@@ -23,9 +23,9 @@ class LottoRankTest {
         Lotto winningLotto =
                 new Lotto(List.of(1, 2, 3, 7, 8, 9));
         int bonus = 45;
-        LottoRank lottoRank = new LottoRank(buyerLotto, winningLotto, bonus);
+        LottoRankCounter lottoRankCounter = new LottoRankCounter(buyerLotto, winningLotto, bonus);
         // then
-        assertThat(lottoRank.getCnt(rank)).isEqualTo(rankCnt);
+        assertThat(lottoRankCounter.getCnt(rank)).isEqualTo(rankCnt);
     }
 
     @DisplayName("5개 일치할 때 bonus 이 일치하면 2등으로 판별한다.")
@@ -37,10 +37,10 @@ class LottoRankTest {
         // when
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 45;
-        LottoRank lottoRank = new LottoRank(buyerLotto, winningLotto, bonus);
+        LottoRankCounter lottoRankCounter = new LottoRankCounter(buyerLotto, winningLotto, bonus);
         // then
-        assertThat(lottoRank.getCnt(2)).isEqualTo(1);
-        assertThat(lottoRank.getCnt(3)).isEqualTo(0);
+        assertThat(lottoRankCounter.getCnt(2)).isEqualTo(1);
+        assertThat(lottoRankCounter.getCnt(3)).isEqualTo(0);
     }
 
     @DisplayName("5개 일치할 때 bonus 이 일치하지 않으면 3등으로 판별한다.")
@@ -52,10 +52,10 @@ class LottoRankTest {
         // when
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 7;
-        LottoRank lottoRank = new LottoRank(buyerLotto, winningLotto, bonus);
+        LottoRankCounter lottoRankCounter = new LottoRankCounter(buyerLotto, winningLotto, bonus);
         // then
-        assertThat(lottoRank.getCnt(2)).isEqualTo(0);
-        assertThat(lottoRank.getCnt(3)).isEqualTo(1);
+        assertThat(lottoRankCounter.getCnt(2)).isEqualTo(0);
+        assertThat(lottoRankCounter.getCnt(3)).isEqualTo(1);
     }
 
 }

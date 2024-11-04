@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.model.LottoRank;
+import lotto.model.LottoRankCounter;
 import lotto.service.LottoCalculationService;
 import lotto.view.LottoResultView;
 import lotto.view.View;
@@ -11,8 +11,8 @@ public class LottoResultController implements Controller {
 
     @Override
     public View execute() {
-        LottoRank rank = calculationService.getRankCnts();
-        double rateOfReturn = calculationService.getRateOfReturn(rank);
-        return new LottoResultView(rank, rateOfReturn);
+        LottoRankCounter rankCnts = calculationService.getRankCnts();
+        double rateOfReturn = calculationService.getRateOfReturn(rankCnts);
+        return new LottoResultView(rankCnts, rateOfReturn);
     }
 }

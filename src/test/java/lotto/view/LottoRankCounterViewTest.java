@@ -3,7 +3,7 @@ package lotto.view;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.model.LottoRank;
+import lotto.model.LottoRankCounter;
 import lotto.model.db.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ class LottoRankViewTest {
     @Test
     void viewFormat() {
         // given
-        LottoRank rank = new LottoRank(
+        LottoRankCounter rank = new LottoRankCounter(
                 List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))),
                 new Lotto(List.of(1, 2, 3, 7, 8, 9)),
                 10);

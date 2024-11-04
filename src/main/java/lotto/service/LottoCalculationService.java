@@ -6,7 +6,7 @@ import static lotto.constant.UserId.OWNER;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
-import lotto.model.LottoRank;
+import lotto.model.LottoRankCounter;
 import lotto.model.db.Buyer;
 import lotto.model.db.Owner;
 import lotto.model.db.UserRepository;
@@ -26,13 +26,13 @@ public class LottoCalculationService {
         RANK_TO_PRIZE_MONEY.put(5, 5_000L);
     }
 
-    public LottoRank getRankCnts() {
+    public LottoRankCounter getRankCnts() {
         Buyer buyer = (Buyer) userRepository.findById(BUYER);
         Owner owner = (Owner) userRepository.findById(OWNER);
-        return new LottoRank(buyer.getLotties(), owner.getWinningLotto(), owner.getBonus());
+        return new LottoRankCounter(buyer.getLotties(), owner.getWinningLotto(), owner.getBonus());
     }
 
-    public double getRateOfReturn(LottoRank rankCnts) {
+    public double getRateOfReturn(LottoRankCounter rankCnts) {
         Buyer buyer = (Buyer) userRepository.findById(BUYER);
         double sum = IntStream.range(1, rankCnts.size())
                 .mapToDouble(rank -> rankCnts.getCnt(rank) * RANK_TO_PRIZE_MONEY.get(rank))

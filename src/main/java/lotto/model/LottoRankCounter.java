@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.db.Lotto;
 
-public class LottoRank {
+public class LottoRankCounter {
 
     private static final Map<Integer, Integer> MATCH_CNT_TO_RANK = new HashMap<>();
     private static final int NONE_RANK = -1;
+    private static final int TOTAL_RANK_SIZE = 5;
 
-    private final int[] rankCnts;
+    private final Map<Integer, Integer> rankCnt;
 
     static {
         MATCH_CNT_TO_RANK.put(6, 1);
@@ -19,12 +20,12 @@ public class LottoRank {
         MATCH_CNT_TO_RANK.put(3, 5);
     }
 
-    public LottoRank(List<Lotto> buyerLotties, Lotto winningLotto, int bonus) {
-        this.rankCnts = new int[6];
+    public LottoRankCounter(List<Lotto> buyerLotties, Lotto winningLotto, int bonus) {
+        this.rankCnt = new HashMap<>();
         buyerLotties.stream()
                 .map(lotto -> parseRank(lotto, winningLotto, bonus))
                 .filter(rank -> rank != NONE_RANK)
-                .forEach(rank -> rankCnts[rank]++);
+                .forEach(this::count);
     }
 
     private int parseRank(Lotto buyerLotto, Lotto winningLotto, int bonus) {
@@ -35,15 +36,19 @@ public class LottoRank {
         return rank;
     }
 
-    private static boolean isSecondLottoRank(Lotto lotto, int bonus, int rank) {
+    private void count(int rank) {
+        rankCnt.put(rank, rankCnt.get(rank) + 1);
+    }
+
+    private boolean isSecondLottoRank(Lotto lotto, int bonus, int rank) {
         return rank == 3 && lotto.contains(bonus);
     }
 
     public int getCnt(int rank) {
-        return rankCnts[rank];
+        return rankCnt.getOrDefault(rank, 0);
     }
 
     public int size() {
-        return rankCnts.length;
+        return TOTAL_RANK_SIZE;
     }
 }
