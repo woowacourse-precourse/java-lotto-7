@@ -31,12 +31,19 @@ public class LottoStatisticServiceImpl implements LottoStatisticService {
 
     private static MatchResult match(Lotto lotto, WinningNumber winningNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
+        return new MatchResult(matchWinningNumber(lottoNumbers, winningNumber),
+                matchBonus(lottoNumbers, winningNumber));
+    }
+
+    private static int matchWinningNumber(List<Integer> lottoNumbers, WinningNumber winningNumber) {
         List<Integer> winningNumbers = winningNumber.getNumbers();
-        int bonusNumber = winningNumber.getBonusNumber();
-        int matchCount = (int) lottoNumbers.stream()
+        return (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
-        boolean matchBonus = lottoNumbers.contains(bonusNumber);
-        return new MatchResult(matchCount, matchBonus);
     }
+
+    private static boolean matchBonus(List<Integer> lottoNumbers, WinningNumber winningNumber) {
+        return lottoNumbers.contains(winningNumber.getBonusNumber());
+    }
+
 }
