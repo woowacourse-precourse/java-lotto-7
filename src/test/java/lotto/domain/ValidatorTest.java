@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -71,5 +72,17 @@ class ValidatorTest {
         // then
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Validator.INVALID_WINNING_NUMBER_COUNT_ERROR);
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아닌 경우 예외가 발생한다.")
+    @Test
+    void 보너스_번호가_문자열일_경우_예외() {
+        // given
+        String nonNumericBonusNumber = "a";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        // when & then
+        assertThatThrownBy(() -> Validator.validateAndParseBonusNumber(nonNumericBonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Validator.INVALID_BONUS_NUMBER_TYPE_ERROR);
     }
 }
