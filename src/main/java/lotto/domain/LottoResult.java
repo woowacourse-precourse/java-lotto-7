@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,7 @@ public class LottoResult {
     private final int totalPurchaseAmount;
 
     private LottoResult(Map<LottoRank, Integer> rankCounts, int totalPurchaseAmount) {
-        this.rankCounts = new EnumMap<>(rankCounts);
+        this.rankCounts = Collections.unmodifiableMap(new EnumMap<>(rankCounts));
         this.totalPurchaseAmount = totalPurchaseAmount;
     }
 
@@ -19,8 +20,10 @@ public class LottoResult {
         initializeRankCounts(rankCounts);
 
         for (Lotto lotto : lottos) {
-            LottoRank rank = LottoRank.valueOf(lotto.countMatchNumbers(winningNumbers.getWinningNumbers()),
-                    lotto.matchBonusNumber(winningNumbers.getBonusNumber()));
+            LottoRank rank = LottoRank.valueOf(
+                    lotto.countMatchNumbers(winningNumbers.getWinningNumbers()),
+                    lotto.matchBonusNumber(winningNumbers.getBonusNumber())
+            );
             rankCounts.merge(rank, 1, Integer::sum);
         }
 

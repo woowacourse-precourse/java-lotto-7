@@ -1,8 +1,8 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WinningLottoNumbers {
     private static final int WINNING_NUMBERS_SIZE = 6;
@@ -14,8 +14,8 @@ public class WinningLottoNumbers {
     private final List<Integer> numbers;
 
     public WinningLottoNumbers(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+        validate(new ArrayList<>(numbers));
+        this.numbers = List.copyOf(numbers);
     }
 
     public static WinningLottoNumbers from(String input) {
@@ -28,7 +28,7 @@ public class WinningLottoNumbers {
             return Arrays.stream(input.split(DELIMITER))
                     .map(String::trim)
                     .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
@@ -67,6 +67,6 @@ public class WinningLottoNumbers {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return List.copyOf(numbers);
     }
 }

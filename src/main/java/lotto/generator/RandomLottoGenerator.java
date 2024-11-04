@@ -21,7 +21,7 @@ public class RandomLottoGenerator implements LottoNumberGenerator {
     private List<Lotto> createLottos(int count) {
         return IntStream.range(0, count)
                 .mapToObj(i -> new Lotto(createNumbers()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private List<Integer> createNumbers() {
