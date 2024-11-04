@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.dto.LottoMachineDto;
+import lotto.dto.WinningNumberDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,7 +34,6 @@ public class LottoMachineTest {
         prizeCount.put(Prize.FIVE, 1);
         prizeCount.put(Prize.FOUR, 1);
         prizeCount.put(Prize.THREE, 1);
-        prizeCount.put(Prize.NONE, 0);
     }
 
     @DisplayName("금액이 1,000원 단위가 아니면 예외가 발생한다.")
@@ -45,8 +46,8 @@ public class LottoMachineTest {
     @DisplayName("금액만큼 로또가 발행되는지 확인한다.")
     @Test
     void 로또_발행수_확인() {
-        LottoMachine lottoMachine = new LottoMachine(8000);
-        assertThat(lottoMachine.getLottos()).hasSize(8);
+        LottoMachineDto lottoMachine = new LottoMachine(8000).toLottoMachineDto();
+        assertThat(lottoMachine.lottos()).hasSize(8);
     }
 
     @DisplayName("로또 리스트가 문자열로 표시되는지 확인한다.")
@@ -68,7 +69,7 @@ public class LottoMachineTest {
     @DisplayName("당첨된 내역을 계산한다.")
     @Test
     void 당첨_내역_계산() {
-        WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6", 7);
+        WinningNumberDto winningNumber = new WinningNumber("1,2,3,4,5,6", 7).toWinningNumberDto();
 
         Map<Prize, Integer> prizeCountResult = lottoMachine.calculateWinningCounts(winningNumber);
 
@@ -80,6 +81,6 @@ public class LottoMachineTest {
     void 수익률_계산() {
         double returnRate = lottoMachine.calculateReturnRate(prizeCount);
 
-        assertThat(returnRate).isEqualTo(40_631_100.0);
+        assertThat(returnRate).isEqualTo(40631100.0);
     }
 }

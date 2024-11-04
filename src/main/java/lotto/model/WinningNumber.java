@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.dto.WinningNumberDto;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,11 +25,7 @@ public class WinningNumber {
         return numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-    public int getBonus() {
-        return bonus;
+    public WinningNumberDto toWinningNumberDto() {
+        return new WinningNumberDto(numbers, bonus);
     }
 }

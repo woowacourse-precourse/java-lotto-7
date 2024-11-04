@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.dto.LottoDto;
+
 import java.util.List;
 
 public class Lotto {
@@ -48,5 +50,9 @@ public class Lotto {
 
     private boolean hasBonus(int bonus) {
         return this.numbers.contains(bonus);
+    }
+
+    public LottoDto toLottoDto() {
+        return new LottoDto(numbers);
     }
 }

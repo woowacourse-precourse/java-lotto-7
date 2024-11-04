@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.dto.LottoMachineDto;
 import lotto.dto.WinningNumberDto;
 
 import java.util.ArrayList;
@@ -48,10 +49,10 @@ public class LottoMachine {
                 .collect(Collectors.toList());
     }
 
-    public Map<Prize, Integer> calculateWinningCounts(WinningNumber winningNumber) {
+    public Map<Prize, Integer> calculateWinningCounts(WinningNumberDto winningNumber) {
         Map<Prize, Integer> prizeCount = new EnumMap<>(Prize.class);
         for (Lotto lotto : lottos) {
-            Prize prize = lotto.determinePrize(winningNumber.getNumbers(), winningNumber.getBonus());
+            Prize prize = lotto.determinePrize(winningNumber.numbers(), winningNumber.bonus());
             prizeCount.put(prize, prizeCount.getOrDefault(prize, 0) + 1);
         }
         return prizeCount;
@@ -68,7 +69,7 @@ public class LottoMachine {
                 .sum();
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
+    public LottoMachineDto toLottoMachineDto() {
+        return new LottoMachineDto(lottos, money);
     }
 }
