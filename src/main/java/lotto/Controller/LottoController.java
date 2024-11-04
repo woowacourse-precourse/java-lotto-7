@@ -10,8 +10,6 @@ import lotto.View.Output;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LottoController {
     public void run() {
@@ -19,10 +17,8 @@ public class LottoController {
         List<Lotto> lottos = LottoMachine.generateLottos(purchaseAmount);
         Output.printLottos(lottos);
 
-        Set<Integer> winningNumbers = Stream.of(Input.inputWinningNumbers().split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toSet());
-        int bonusNumber = Input.inputBonusNumber();
+        Set<Integer> winningNumbers = Input.inputWinningNumbers();  // 수정된 부분
+        int bonusNumber = Input.inputBonusNumber(winningNumbers);   // 수정된 부분
 
         List<Rank> ranks = calculateRanks(lottos, winningNumbers, bonusNumber);
         LottoResult lottoResult = new LottoResult(ranks);
