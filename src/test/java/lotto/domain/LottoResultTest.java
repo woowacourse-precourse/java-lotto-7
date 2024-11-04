@@ -26,7 +26,7 @@ class LottoResultTest {
         );
 
         //when
-        LottoResult lottoResult = LottoResult.calculate(result);
+        LottoResult lottoResult = LottoResult.from(result);
 
         //then
         Assertions.assertThat(round(lottoResult.getRevenue())).isEqualTo(revenue);
