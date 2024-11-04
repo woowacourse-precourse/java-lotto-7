@@ -20,11 +20,16 @@ public class Lotto {
 
     public Map<Object, Integer> checkLottoWin(List<List<Integer>> randomNumberList, Integer bonusNumber) {
         Map<Object, Integer> checkLotto = new HashMap<>();
+        checkLotto.put(3, 0);
+        checkLotto.put(4, 0);
+        checkLotto.put(5, 0);
+        checkLotto.put(6, 0);
+        checkLotto.put("bonus", 0);
 
         for (List<Integer> randomNumbers : randomNumberList) {
             Object matchResult = countLottoMatchesWithBonus(numbers, bonusNumber, randomNumbers);
             if (matchResult != null) {
-                checkLotto.put(matchResult, checkLotto.getOrDefault(matchResult, 0) + 1);
+                checkLotto.put(matchResult, checkLotto.get(matchResult) + 1);
             }
         }
         return checkLotto;
