@@ -25,6 +25,11 @@ public class LottoController {
         outputView.printInputWinningNumber();
         String winningNumbers = inputView.inputWinningNumber();
         Lotto winningLotto = parseWinningNumber(winningNumbers);
+
+        outputView.printInputBonusNumber();
+        String inputBonusNumber = inputView.inputBonusNumber();
+        Integer bonusNumber = parseBonusNumber(inputBonusNumber);
+
     }
 
     private Lotto parseWinningNumber(String input) {
@@ -40,4 +45,11 @@ public class LottoController {
         return winningLotto;
     }
 
+    private Integer parseBonusNumber(String input) {
+        if (!LottoUtils.isNumber(input)) {
+            throw new IllegalArgumentException();
+        }
+
+        return Integer.parseInt(input);
+    }
 }
