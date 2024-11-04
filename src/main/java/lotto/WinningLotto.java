@@ -28,11 +28,9 @@ public class WinningLotto {
 
     public Map<LottoPrize, Integer> getWinningResult(List<Lotto> playerLottos) {
         Map<LottoPrize, Integer> winningResult = initResult();
-        List<Integer> winningNumbers = winningLotto.getNumbers();
         for (Lotto playerLotto : playerLottos) {
-            List<Integer> numbers = playerLotto.getNumbers();
-            long matchCount = numbers.stream().filter(winningNumbers::contains).count();
-            boolean hasBonusNumber = numbers.contains(bonusNumber);
+            long matchCount = playerLotto.countMatchingNumbersBy(winningLotto);
+            boolean hasBonusNumber = playerLotto.hasNumber(bonusNumber);
             LottoPrize lottoPrize = LottoPrize.findLottoPrizeBy(matchCount, hasBonusNumber);
             winningResult.put(lottoPrize, winningResult.get(lottoPrize) + 1);
         }
