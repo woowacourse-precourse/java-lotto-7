@@ -14,7 +14,7 @@ public class ResultCalculator {
         calculateResults(lottos, winningLotto, bonusNumber);
     }
 
-    void calculateResults(Lottos lottos, Lotto winLotto, int bonusNumber) {
+    private void calculateResults(Lottos lottos, Lotto winLotto, int bonusNumber) {
         for (Lotto lotto : lottos.getLottos()) {
             int matchCount = lotto.countMatchNumber(winLotto);
             boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
@@ -25,15 +25,11 @@ public class ResultCalculator {
         }
     }
 
-    double calculateRate(int money){
+    public double calculateRate(int money) {
         return ((double) gain / money) * 100;
     }
 
     public Map<LottoRank, Integer> getResult() {
         return result;
-    }
-
-    public int getGain() {
-        return gain;
     }
 }
