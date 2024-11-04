@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.common.ViewConstant;
 
-import java.sql.SQLOutput;
 
 public class InputView {
 

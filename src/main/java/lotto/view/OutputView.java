@@ -9,23 +9,30 @@ import java.util.Map;
 
 public class OutputView {
 
-    public void printLottos(List<Lotto> lottos, int lottoCount) {
+    public void printLottos(List<String> lottos, int lottoCount) {
         System.out.printf(ViewConstant.OUTPUT_LOTTO_COUNT_MESSAGE, lottoCount);
         System.out.println();
-        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        lottos.forEach(System.out::println);
     }
 
     public void printWinningStatistics(Map<LottoPrize, Integer> prizeCounts) {
         System.out.println(ViewConstant.OUTPUT_WINNING_STATISTICS_MESSAGE);
         System.out.println(ViewConstant.THREE_DASH);
 
-        prizeCounts.keySet().stream()
-                .filter(prize -> prize.getPrizeAmount() > 0)
-                .sorted()
-                .forEach(prize -> printRankMessage(prize, prizeCounts.getOrDefault(prize, 0)));
+//        prizeCounts.keySet().stream()
+//                .filter(prize -> prize.getPrizeAmount() > 0)
+//                .sorted()
+//                .forEach(prize -> printRankMessage(prize, prizeCounts.getOrDefault(prize, 0)));
+        for (LottoPrize prize : LottoPrize.values()) {
+            int count = prizeCounts.getOrDefault(prize, 0);
+            printRankMessage(prize, count);
+        }
     }
 
     private void printRankMessage(LottoPrize prize, int count) {
+
+        if (prize.getPrizeAmount() == 0) return;
+
         StringBuilder matchMessage = new StringBuilder();
         matchMessage.append(prize.getMatchCount()).append(ViewConstant.OUTPUT_MATCHING_NUMBERS_MESSAGE);
         if (prize.hasBonus()) {

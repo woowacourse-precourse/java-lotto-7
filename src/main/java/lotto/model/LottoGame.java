@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,7 @@ public class LottoGame {
     private final LottoPrice lottoPrice;
     private List<Lotto> lottos;
     private int totalPrice;
-    private Map<LottoPrize, Integer> prizeCounts;
+    private final Map<LottoPrize, Integer> prizeCounts = new HashMap<>();
 
     public LottoGame(LottoPrice lottoPrice) {
         this.lottoPrice = lottoPrice;
