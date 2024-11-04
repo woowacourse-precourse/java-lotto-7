@@ -5,6 +5,7 @@ import lotto.validator.LottoNumberValidator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,8 +20,8 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
-    public boolean contains(LottoNumber number) {
-        return numbers.contains(number.getValue());
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     public int countMatch(Lotto other) {
@@ -31,6 +32,10 @@ public class Lotto {
             }
         }
         return matchCount;
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     @Override
