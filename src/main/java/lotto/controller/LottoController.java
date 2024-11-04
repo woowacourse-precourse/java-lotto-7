@@ -26,5 +26,7 @@ public class LottoController {
 
         lottoView.printWinningInfo(lottoModel.getWinningInfo());
 
+        lottoView.printRateOfReturn(lottoModel.calculateRateOfReturn(LottoView.LOTTO_PRICE));
+
     }
 }
