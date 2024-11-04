@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.model.LottoPrize.SECOND;
+
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.LottoPrize;
@@ -29,7 +31,7 @@ public class OutputView {
         for (LottoPrize value : LottoPrize.values()) {
             String prize = String.format("%,d", value.getPrize());
 
-            if (value.getMatch() == LottoPrize.SECOND.getMatch()) {
+            if (value.getMatch() == SECOND.getMatch()) {
                 System.out.printf(BONUS_MESSAGE, value.getCount());
                 continue;
             }
