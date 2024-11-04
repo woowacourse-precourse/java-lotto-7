@@ -35,7 +35,7 @@ public class LottoController {
         winningNumbers = requestWinningNumbers();
         bonusNumber = requestBonusNumber();
 
-        List<LottoRank> ranks = lottoService.getRanks(winningNumbers, bonusNumber);
+        List<LottoRank> ranks = lottoService.getRanks(lottos, winningNumbers, bonusNumber);
         outputView.printResult(lottoService.getPrizeResult(ranks), lottoService.getProfitRateResult(ranks, purchaseAmount));
     }
 

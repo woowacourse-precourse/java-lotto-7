@@ -9,12 +9,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
-    private List<Lotto> lottos = new ArrayList<>();
-
     public LottoService() {
     }
 
     public List<Lotto> getLottos(int numOfTickets) {
+        List<Lotto> lottos = new ArrayList<>();
+
         for (int i = 0; i < numOfTickets; i++) {
             lottos.add(new Lotto(generateLottoNumbers()));
         }
@@ -22,7 +22,7 @@ public class LottoService {
         return lottos;
     }
 
-    private List<Integer> generateLottoNumbers() {
+    public List<Integer> generateLottoNumbers() {
         List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
 
         Collections.sort(lottoNumbers);
@@ -30,7 +30,7 @@ public class LottoService {
         return lottoNumbers;
     }
 
-    public List<LottoRank> getRanks(List<Integer> winningNumbers, int bonusNumber) {
+    public List<LottoRank> getRanks(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         List<LottoRank> ranks = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
