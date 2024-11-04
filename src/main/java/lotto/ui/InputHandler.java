@@ -21,10 +21,15 @@ public class InputHandler {
     public static WinningLotto getWinningLotto() {
         try {
             System.out.println("당첨 번호를 입력해 주세요.");
-            String input = Console.readLine();
-            validateInputIsNotEmpty(input);
-            validateInputIsNumeric(input);
-            return new WinningLotto(input);
+            String winningNumbersInput = Console.readLine();
+            validateInputIsNotEmpty(winningNumbersInput);
+
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String bonusNumberInput = Console.readLine();
+            validateInputIsNotEmpty(bonusNumberInput);
+            validateInputIsNumeric(bonusNumberInput);
+
+            return new WinningLotto(winningNumbersInput, bonusNumberInput);
         } catch (IllegalArgumentException e) {
             return getWinningLotto();
         }
