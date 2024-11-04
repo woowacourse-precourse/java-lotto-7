@@ -5,6 +5,7 @@ import lotto.model.Statistics;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.service.Validator;
+import lotto.util.Parser;
 import lotto.view.Input;
 import lotto.view.Output;
 import lotto.view.Prompt;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class Controller {
 
-    private final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_PRICE = 1000;
     private final Input input;
     private final Output output;
     private final Validator validator;
@@ -27,50 +28,22 @@ public class Controller {
     }
 
     public void run() {
-        int purchaseAmount = getPurchaseAmount();
-        int numberOfLottos = purchaseAmount / LOTTO_PRICE;
-        output.printPurchaseCount(numberOfLottos);
+        Parser parser = new Parser(input, output, validator);
 
-        List<Lotto> purchasedLottos = lottoService.generateLottos(numberOfLottos);
-        output.printPurchasedLottos(purchasedLottos);
+        int purchaseAmount = parser.getPurchaseAmount();
+        int numberOfLotto = purchaseAmount / LOTTO_PRICE;
+        output.printPurchaseCount(numberOfLotto);
 
-        List<Integer> winningNumbers = getWinningNumbers();
+        List<Lotto> purchasedLotto = lottoService.generateLottos(numberOfLotto);
+        output.printPurchasedLottos(purchasedLotto);
+
+        List<Integer> winningNumbers = parser.getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
 
-        WinningLotto winningLotto = createWinningLotto(winningNumbers, bonusNumber);
-        Statistics statistics = calculateStatistics(purchasedLottos, winningLotto);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        Statistics statistics = calculateStatistics(purchasedLotto, winningLotto);
 
         printStatistics(statistics, purchaseAmount);
-    }
-
-    private int getPurchaseAmount() {
-        int purchaseAmount;
-        
-        while (true) {
-            try {
-                output.printPrompt(Prompt.ENTER_PURCHASE_AMOUNT);
-                purchaseAmount = Integer.parseInt(input.getInput());
-                validator.validatePurchaseAmount(purchaseAmount);
-                return purchaseAmount;
-            } catch (NumberFormatException e) {
-                output.printErrorMessage("구입 금액은 숫자여야 합니다.");
-            } catch (IllegalArgumentException e) {
-                output.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    private List<Integer> getWinningNumbers() {
-        while (true) {
-            try {
-                output.printPrompt(Prompt.ENTER_WINNING_NUMBERS);
-                String winningNumbersInput = input.getInput();
-                List<Integer> winningNumbers = validator.validateAndParseWinningNumbers(winningNumbersInput);
-                return winningNumbers;
-            } catch (IllegalArgumentException e) {
-                output.printErrorMessage(e.getMessage());
-            }
-        }
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {
@@ -89,12 +62,8 @@ public class Controller {
         }
     }
 
-    private WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        return new WinningLotto(winningNumbers, bonusNumber);
-    }
-
-    private Statistics calculateStatistics(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
-        return lottoService.calculateStatistics(purchasedLottos, winningLotto);
+    private Statistics calculateStatistics(List<Lotto> purchasedLotto, WinningLotto winningLotto) {
+        return lottoService.calculateStatistics(purchasedLotto, winningLotto);
     }
 
     private void printStatistics(Statistics statistics, int purchaseAmount) {
