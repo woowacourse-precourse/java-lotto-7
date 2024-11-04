@@ -10,9 +10,9 @@ public class LottoController {
     private final TicketService ticketService;
     private final LottoGenerator lottoGenerator;
 
-    public LottoController(TicketService ticketService) {
+    public LottoController(TicketService ticketService, LottoGenerator lottoGenerator) {
         this.ticketService = ticketService;
-        this.lottoGenerator = new LottoGenerator();
+        this.lottoGenerator = lottoGenerator;
     }
 
     public List<Lotto> excuteLottos() {

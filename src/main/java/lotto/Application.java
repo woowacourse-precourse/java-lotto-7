@@ -7,6 +7,7 @@ import lotto.controller.RankCalculatorController;
 import lotto.controller.WinningNumberGenerationController;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.LottoGenerator;
 import lotto.model.Rank;
 import lotto.model.WinningNumber;
 import lotto.service.TicketService;
@@ -26,7 +27,9 @@ public class Application {
         PurchaseController purchaseController = new PurchaseController(ticketService);
         purchaseController.purchaseLottos();
 
-        LottoController lottoController = new LottoController(ticketService);
+        LottoGenerator lottoGenerator = new LottoGenerator();
+
+        LottoController lottoController = new LottoController(ticketService, lottoGenerator);
         IoController ioController = new IoController(new CommonIo());
 
         List<Lotto> lottos = lottoController.excuteLottos();
