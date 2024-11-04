@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import java.util.List;
+
 public class LottoValidator {
 
     public static boolean unitValidator(int purchaseAmount){
@@ -23,6 +25,15 @@ public class LottoValidator {
     public static boolean checkRangeLotto(int purchaseAmount){
         if(purchaseAmount < 1 || purchaseAmount > 45){
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 숫자 범위입니다.");
+        }
+        return true;
+    }
+
+    public static boolean checkDuplicate(List<Integer> numberList, int checkNum){
+        for (Integer num : numberList) {
+            if(checkNum == num){
+                throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 겹칩니다.");
+            }
         }
         return true;
     }

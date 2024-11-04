@@ -64,6 +64,7 @@ public class LottoManager {
         try {
             bonusNum = LottoValidator.stringToInt(userInput);
             LottoValidator.checkRangeLotto(bonusNum);
+            LottoValidator.checkDuplicate(winningLotto.getNumbers(), bonusNum);
             return true;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
