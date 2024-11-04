@@ -20,6 +20,18 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    //로또번호 1-45사이의 숫자의 검증
+    @DisplayName("로또 번호가 1과 45 사이의 숫자가 아니면 예외가 발생한다")
+    @Test
+    void 로또_번호_범위_검증() {
+        // 숫자 중 하나가 0일 때 예외 발생
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1과 45사이의 숫자입니다");
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+        // 숫자 중 하나가 46일 때 예외 발생
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1과 45사이의 숫자입니다");
+    }
 }
