@@ -7,8 +7,8 @@ public enum ErrorMessage {
 	NOT_DIVISIBLE_BY_LOTTO_PRICE("구입 금액은 " + LOTTO_PRICE + "원 단위여야 합니다."),
 	MAX_PURCHASE_EXCEED("1회 최대 구매 가능 금액은 " + MAX_PURCHASE_AMOUNT + "입니다."),
 	INVALID_LOTTO_NUMBERS_COUNT("로또 번호는 " + LOTTO_NUMBERS_COUNT + "개여야 합니다."),
-	OUT_OF_RANGE_WINNING_NUMBER("로또 번호는 " + MIN_LOTTO_NUMBER + "부터" + MAX_LOTTO_NUMBER + "까지의 범위여야 합니다."),
-	DUPLICATE_WINNING_NUMBER("당첨 번호는 중복될 수 없습니다.");
+	OUT_OF_RANGE_NUMBER("로또 번호는 " + MIN_LOTTO_NUMBER + "부터" + MAX_LOTTO_NUMBER + "까지의 범위여야 합니다."),
+	DUPLICATE_NUMBER("번호는 중복될 수 없습니다.");
 
 	private final String message;
 
