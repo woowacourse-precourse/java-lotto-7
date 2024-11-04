@@ -7,16 +7,34 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class Application {
+    private static final String RESULT =
+            """
+			\n당첨 통계
+			---
+			3개 일치 (5,000원) - %s개
+			4개 일치 (50,000원) - %s개
+			5개 일치 (1,500,000원) - %s개
+			5개 일치, 보너스 볼 일치 (30,000,000원) - %s개
+			6개 일치 (2,000,000,000원) - %s개
+			총 수익률은 %.1f%%입니다.
+			""";
+
     private static final String DELIMITER = ",";
 
     public static void main(String[] args) {
         LottoShop shop = new LottoShop();
-        int money = repeatUntilNoException(() -> inputMoney());
+        int money = repeatUntilNoException(Application::inputMoney());
         List<Lotto> lottos = shop.sell(money);
-        printLottos(lottos);
+
+        System.out.println("\n%d개를 구매했습니다.".formatted(lottos.size()));
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
 
         List<Integer> winningNumbers = repeatUntilNoException(() -> inputWinningNumbers());
         int bonusNumber = repeatUntilNoException(() -> drawBonus(winningNumbers));
+
+        LottoMachine machine = new LottoMachine();
+        Result result = machine.informWinningResults(lottos, winningNumbers, bonusNumber, money);
+        printResult(result);
     }
 
     private static int inputMoney() {
@@ -30,10 +48,6 @@ public class Application {
         InputValidator.validateMaxPurchaseAmount(money);
 
         return Integer.parseInt(rawMoney);
-    }
-
-    private static void printLottos(List<Lotto> lottos) {
-        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
     private static List<Integer> inputWinningNumbers() {
@@ -74,6 +88,17 @@ public class Application {
         InputValidator.validateNumberInLottoRange(rawNumber);
 
         return Integer.parseInt(rawNumber);
+    }
+
+    private static void printResult(Result result) {
+        System.out.println(RESULT.formatted(
+                result.fifth(),
+                result.fifth(),
+                result.third(),
+                result.second(),
+                result.first(),
+                result.prizeRate()
+        ));
     }
 
     private static <T> T repeatUntilNoException(Supplier<T> inputFunction) {

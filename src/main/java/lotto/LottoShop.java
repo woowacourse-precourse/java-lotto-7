@@ -14,7 +14,6 @@ public class LottoShop {
 	public List<Lotto> sell(int money) {
 		int quantity = money / AMOUNT_UNIT;
 
-		System.out.println("\n%d개를 구매했습니다.".formatted(quantity));
 		return IntStream.range(0, quantity)
 				.mapToObj(it -> new Lotto(RANDOM_SIX_NUMBERS.get()))
 				.toList();
