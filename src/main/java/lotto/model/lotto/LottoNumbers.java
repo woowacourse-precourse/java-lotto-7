@@ -19,7 +19,7 @@ public class LottoNumbers {
 
     public void purchaseLotto(int purchaseCount, OutputView outputView) {
         for (int i = 0; i < purchaseCount; i++) {
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LottoRange.MAX_NUMBER.getDescription(), LottoRange.MAX_NUMBER.getDescription(), 6));
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LottoRange.MIN_NUMBER.getDescription(), LottoRange.MAX_NUMBER.getDescription(), LottoRange.LOTTO_SIZE.getDescription()));
             Collections.sort(numbers);
             lottoNumbers.add(numbers);
             outputView.showLottoNumbers(i, lottoNumbers);
