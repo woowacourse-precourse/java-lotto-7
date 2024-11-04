@@ -117,7 +117,7 @@
 | 구분            | 예외 상황         | 예외 처리                                                            | 구현 | 테스트 |
 |---------------|---------------|------------------------------------------------------------------|:--:|:---:|
 | **구입 금액 입력**  | 정수가 아님        | IllegalArgumentException("[ERROR] 구입 금액의 형식이 잘못되었습니다.")          | ✅  |  ✅  |
-|               | 천원 단위가 아닌 금액  | IllegalArgumentException("[ERROR] 구입 금액은 천원 단위여야 합니다.")          |    |     |
+|               | 천원 단위가 아닌 금액  | IllegalArgumentException("[ERROR] 구입 금액은 천원 단위여야 합니다.")          | ✅  |  ✅  |
 |               | 천원 미만인 금액     | IllegalArgumentException("[ERROR] 구입 금액이 천원 미만입니다.")             |    |     |
 |               | 구입 한도 초과      | IllegalArgumentException("[ERROR] 로또 구입은 한 번에 10만원까지만 가능합니다.")   |    |     |
 | **당첨 번호 입력**  | 정수가 아님        | IllegalArgumentException("[ERROR] 당첨 번호의 형식이 잘못되었습니다.")          |    |     |
