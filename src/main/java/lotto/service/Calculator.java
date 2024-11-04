@@ -49,14 +49,14 @@ public class Calculator {
         return roundOfTwo(rateOfReturn * 100);
     }
 
-    private long sumOfPrize() {
+    protected long sumOfPrize() {
         Map<WinningPrize, Integer> prizeAndCount = WinningInformation.getInstance().getPrizeAndCount();
         return prizeAndCount.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
     }
 
-    private double roundOfTwo(double number) {
+    protected double roundOfTwo(double number) {
         return Math.round(number * 10.0) / 10.0;
     }
 }
