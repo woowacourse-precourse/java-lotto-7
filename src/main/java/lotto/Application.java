@@ -35,9 +35,13 @@ public class Application {
 
     private static int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
-        errorMoney(amount);
-        return amount;
+        try {
+            int amount = Integer.parseInt(Console.readLine());
+            errorMoney(amount);
+            return amount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자 형식으로 입력해야 합니다.");
+        }
     }
 
     private static void errorMoney(int money) {
