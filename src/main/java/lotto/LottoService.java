@@ -34,7 +34,11 @@ public class LottoService {
 
     private int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        int amount = Integer.parseInt(Console.readLine());
+        if(amount % 1000 != 0){
+            throw new IllegalArgumentException(("[ERROR] 금액은 1,000원 단위여야 합니다."));
+        }
+        return amount;
     }
 
     private int[] getWinningNumbers() {
@@ -43,13 +47,20 @@ public class LottoService {
         int[] winningNumbers = new int[6];
         for (int i = 0; i < 6; i++) {
             winningNumbers[i] = Integer.parseInt(winningInput[i].trim());
+            if(winningNumbers[i]<1||winningNumbers[i]>45){
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자입니다.");
+            }
         }
         return winningNumbers;
     }
 
     private int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        if(bonusNumber<1||bonusNumber>45){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자입니다.");
+        }
+        return bonusNumber;
     }
 
     private void displayBenefit(int amount, int[] ranks) {
