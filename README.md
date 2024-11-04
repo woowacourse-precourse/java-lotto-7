@@ -1,5 +1,5 @@
 # java-lotto-precourse
-## Table of Contents 📑
+## 목차 📑
 
 - 애플리케이션 소개
 - 기능 목록
