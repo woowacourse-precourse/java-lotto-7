@@ -18,6 +18,8 @@ public class Validator {
     public static final String INVALID_WINNING_NUMBER_COUNT_ERROR = "[ERROR] 당첨 번호는 "
             + LottoConstant.LOTTO_NUMBER_COUNT + "개여야 합니다.";
     public static final String INVALID_BONUS_NUMBER_TYPE_ERROR = "[ERROR] 보너스 번호는 숫자로 입력해야 합니다.";
+    public static final String INVALID_BONUS_NUMBER_RANGE_ERROR = "[ERROR] 보너스 번호는 "
+            + LottoConstant.LOTTO_MIN_NUMBER + "부터 " + LottoConstant.LOTTO_MAX_NUMBER + " 사이의 숫자여야 합니다.";
 
     public static int validateAndParsePurchaseAmount(String input) {
         int purchaseAmount = parsePurchaseAmount(input);
@@ -86,6 +88,7 @@ public class Validator {
 
     public static int validateAndParseBonusNumber(String input, List<Integer> winningNumbers) {
         int bonusNumber = parseBonusNumber(input);
+        validateBonusNumberRange(bonusNumber);
         return bonusNumber;
     }
 
@@ -94,6 +97,12 @@ public class Validator {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER_TYPE_ERROR);
+        }
+    }
+
+    private static void validateBonusNumberRange(int bonusNumber) {
+        if (bonusNumber < LottoConstant.LOTTO_MIN_NUMBER || bonusNumber > LottoConstant.LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_RANGE_ERROR);
         }
     }
 }
