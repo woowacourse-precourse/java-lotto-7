@@ -49,4 +49,10 @@ public class ConvertInputTest {
         assertThatThrownBy(() -> ConvertInput.makeBonusNumberToInt("로또당첨기원"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @CsvSource({"1,1", "10,10", "46,46"})
+    @ParameterizedTest
+    void 입력한_보너스_번호가_숫자일_경우에는_예외가_발생하지_않는다(String input, int expected) {
+        assertThat(ConvertInput.makeBonusNumberToInt(input)).isEqualTo(expected);
+    }
 }
