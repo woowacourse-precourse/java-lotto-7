@@ -55,7 +55,7 @@ public class LottoController {
         outputView = new LottoPurchasesView(lottoPurchasesDto);
         outputView.display();
 
-        inputView = InputViewFactory.createInputView(InputViewFactory.WINNING_NUMBER);
+        inputView = InputViewFactory.createInputViewOf(InputViewFactory.WINNING_NUMBER);
         inputView.showRequestMessage();
         Lotto lotto;
         while (true) {
@@ -71,7 +71,7 @@ public class LottoController {
             }
         }
 
-        inputView = InputViewFactory.createInputView(InputViewFactory.BONUS_NUMBER);
+        inputView = InputViewFactory.createInputViewOf(InputViewFactory.BONUS_NUMBER);
         inputView.showRequestMessage();
         WinningLottoDto winningLottoDto;
         while (true) {

@@ -14,7 +14,7 @@ class InputViewFactoryTest {
             InputViewFactory.WINNING_NUMBER + "," + InputViewFactory.WINNING_NUMBER_INPUT_REQUEST_MESSAGE,
             InputViewFactory.BONUS_NUMBER + "," + InputViewFactory.BONUS_NUMBER_INPUT_REQUEST_MESSAGE})
     void variousTypeOfInputViewFactoryCreateTest(String input, String expectedMessage) {
-        assertThat(InputViewFactory.createInputView(input))
+        assertThat(InputViewFactory.createInputViewOf(input))
                 .extracting("requestMessage")
                 .isEqualTo(expectedMessage);
     }

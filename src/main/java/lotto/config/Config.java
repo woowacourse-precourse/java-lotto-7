@@ -22,7 +22,7 @@ public class Config {
     }
 
     private static InputView inputView() {
-        return InputViewFactory.createInputView(InputViewFactory.AMOUNT);
+        return InputViewFactory.createInputViewOf(InputViewFactory.AMOUNT);
     }
 
     private static MyLottosGenerateService lottoGenerateService() {

@@ -14,7 +14,7 @@ public class InputViewFactory {
     private InputViewFactory() {
     }
 
-    public static InputView createInputView(String type) {
+    public static InputView createInputViewOf(String type) {
         if (type.equals(AMOUNT)) {
             return new InputView(AMOUNT_INPUT_REQUEST_MESSAGE);
         }
