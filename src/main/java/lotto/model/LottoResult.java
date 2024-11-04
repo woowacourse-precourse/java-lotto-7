@@ -1,37 +1,40 @@
 package lotto.model;
 
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import lotto.Lotto;
 
 public class LottoResult {
-    private final EnumMap<Rank, Long> ranks;
+    private final Map<Rank, Integer> ranks;
 
     public LottoResult(
             List<Lotto> lottoTickets, Set<Integer> winningNumbers, int bonusNumber) {
         ranks = calculate(lottoTickets, winningNumbers, bonusNumber);
     }
 
-    private EnumMap<Rank, Long> calculate(
+    private Map<Rank, Integer> calculate(
             List<Lotto> lottoTickets, Set<Integer> winningNumbers, int bonusNumber
     ) {
-        EnumMap<Rank, Long> result = new EnumMap<>(Rank.class);
+        Map<Rank, Integer> result = new HashMap<>();
 
         return getResult(result, lottoTickets, winningNumbers, bonusNumber);
     }
 
-    private EnumMap<Rank, Long> getResult(
-            EnumMap<Rank, Long> ranks, List<Lotto> lottoTickets, Set<Integer> winningNumbers, int bonusNumber
+    private Map<Rank, Integer> getResult(
+            Map<Rank, Integer> ranks, List<Lotto> lottoTickets, Set<Integer> winningNumbers, int bonusNumber
     ) {
         for (Rank rank : Rank.values()) {
-            ranks.put(rank, 0L);
+            ranks.put(rank, 0);
         }
 
         for (Lotto ticket : lottoTickets) {
             int matchCount = checkTickets(ticket, winningNumbers);
-            boolean isBonus = isContain(winningNumbers, bonusNumber);
+            boolean isBonus = ticket.getNumbers().contains(bonusNumber);
 
+            if (isBonus) {
+                matchCount++;
+            }
             Rank rank = Rank.createLottoRank(matchCount, isBonus);
             ranks.put(rank, ranks.get(rank) + 1);
         }
@@ -54,7 +57,7 @@ public class LottoResult {
         return winningNumbers.contains(number);
     }
 
-    public EnumMap<Rank, Long> getRanks() {
+    public Map<Rank, Integer> getRanks() {
         return ranks;
     }
 }
