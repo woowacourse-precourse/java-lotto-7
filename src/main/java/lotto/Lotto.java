@@ -49,10 +49,6 @@ public class Lotto {
         return Rank.valueOf(matchCount, matchBonus);
     }
 
-    public void sortNumbers(List<Integer> numbers) {
-        numbers.sort(Comparator.naturalOrder());
-    }
-
     public String toString() {
         return "[" + String.join(", ", numbers.stream()
                 .map(String::valueOf)
