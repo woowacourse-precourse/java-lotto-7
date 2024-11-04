@@ -8,6 +8,9 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +55,28 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 정수가_아니면_예외가_발생해야_한다() {
+        assertSimpleTest(() -> {
+            assertThrows(Exception.class, () -> {
+                Application.isInteger("abcd");
+            });
+        });
+    }
+
+    @Test
+    void 정수가_아닐_때_발생하는_예외() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.isInteger("abcd"))
+                    .isInstanceOf(NumberFormatException.class);
+        });
+    }
+
+    @Test
+    void 정수가_정상적으로_입력되면_예외가_발생하지_않는다() {
+        assertDoesNotThrow(() -> Application.isInteger("1000"));
     }
 
     @Override
