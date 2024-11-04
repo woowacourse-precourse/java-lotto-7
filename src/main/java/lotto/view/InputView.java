@@ -6,6 +6,7 @@ import lotto.domain.Payment;
 import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningLotto;
 import lotto.global.contents.LottoDetail;
+import lotto.global.contents.ViewMessage;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 import lotto.view.console.Reader;
@@ -13,13 +14,12 @@ import lotto.view.console.Writer;
 
 public class InputView {
 
-    private static final String QUESTION_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
-    private static final String QUESTION_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
-    private static final String QUESTION_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static final String INTEGER_PATTERN = "\\d+";
     private static final String SEPARATOR = ",";
+    private static final int CONTINUOUS_THRESHOLD = 2;
 
     public Payment readPrice() {
-        Writer.println(QUESTION_PURCHASE_AMOUNT);
+        Writer.println(ViewMessage.QUESTION_PURCHASE_AMOUNT);
         return Payment.of(
                 Validator.validateNumber(Reader.read()),
                 LottoDetail.PRICE
@@ -27,13 +27,13 @@ public class InputView {
     }
 
     public WinningLotto readWinningNumbers() {
-        Writer.println(QUESTION_WINNING_NUMBERS);
+        Writer.println(ViewMessage.QUESTION_WINNING_NUMBERS);
         String winningNumbers = Validator.validateSeparator(Reader.read());
         return WinningLotto.of(convert(winningNumbers));
     }
 
     public BonusNumber readBonusNumber(WinningLotto winningLotto) {
-        Writer.println(QUESTION_BONUS_NUMBER);
+        Writer.println(ViewMessage.QUESTION_BONUS_NUMBER);
         int bonusNumber = Validator.validateNumber(Reader.read());
         return BonusNumber.valueOf(winningLotto, bonusNumber);
     }
@@ -60,7 +60,7 @@ public class InputView {
         }
 
         private static boolean isNotNumeric(String input) {
-            return !input.matches("\\d+");
+            return !input.matches(INTEGER_PATTERN);
         }
 
         private static boolean hasEdgeSeparator(String input) {
@@ -68,7 +68,7 @@ public class InputView {
         }
 
         private static boolean hasContinuousSeparator(String input) {
-            return input.matches(SEPARATOR.repeat(2));
+            return input.matches(SEPARATOR.repeat(CONTINUOUS_THRESHOLD));
         }
     }
 }
