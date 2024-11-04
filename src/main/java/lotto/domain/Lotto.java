@@ -1,6 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+import lotto.validation.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +15,16 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+
+        LottoValidator.hasDuplicates(numbers);
+
+        for (Integer number : numbers) {
+            LottoValidator.isLottoNumInRange(number);
+        }
     }
 
     // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
