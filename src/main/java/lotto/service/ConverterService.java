@@ -30,6 +30,9 @@ public class ConverterService {
         int[] result = new int[enteredWinningNumber.length];
         for (int i = 0; i < enteredWinningNumber.length; i++) {
             result[i] = Integer.parseInt(enteredWinningNumber[i]);
+            if (!ValidatorService.isValidNumber(result[i])) {
+                throw new IllegalArgumentException(ErrorViewConstants.INVALID_WINNING_NUMBERS);
+            }
         }
         return result;
     }
