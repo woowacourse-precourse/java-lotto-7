@@ -41,11 +41,7 @@ public class LottoController {
     }
 
     private WinningLotto setWinningLotto() {
-        return validateInput(() -> {
-            Lotto lotto = setLotto();
-            int bonusNum = setBonusNumber();
-            return new WinningLotto(lotto, bonusNum);
-        });
+        return validateInput(() -> lottoService.createWinningLotto(input.getWinningNumber(), input.getBonusNumber()));
     }
 
     private Lotto setLotto() {

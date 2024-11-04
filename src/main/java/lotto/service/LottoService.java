@@ -28,6 +28,11 @@ public class LottoService {
         return BonusNumberProcessor.validateAndParse(bonusNumber);
     }
 
+    public WinningLotto createWinningLotto(String winNumbers, String bonusNumber) {
+        Lotto lotto = getValidLotto(winNumbers);
+        int validBonusNumber = getValidBonusNumber(bonusNumber);
+        return new WinningLotto(lotto, validBonusNumber);
+    }
 
     public WinningLotto getValidWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         Lotto lotto = new Lotto(winningNumbers);
