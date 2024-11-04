@@ -17,10 +17,13 @@ public class GenerateLottoController {
     private static int lottoCount;
 
     public void generateLotto() {
-        int money = validateMoney(InputView.inputMoney());
-        lottoCount = getLottoCount(money);
-
-        buyLotto(lottoCount);
+        try {
+            int money = validateMoney(InputView.inputMoney());
+            lottoCount = getLottoCount(money);
+            buyLotto(lottoCount);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public int validateMoney(String inputMoney) {
@@ -37,7 +40,7 @@ public class GenerateLottoController {
 
             return validMoney;
 
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
     }
@@ -61,5 +64,9 @@ public class GenerateLottoController {
 
     public List<Lotto> getLottoList() {
         return lottoList;
+    }
+
+    public int getLottoPrice() {
+        return lottoCount * LOTTO_PRICE;
     }
 }

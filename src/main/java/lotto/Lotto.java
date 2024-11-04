@@ -6,7 +6,12 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        try{
+            validate(numbers);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
         this.numbers = numbers;
     }
 
@@ -15,12 +20,12 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
-        if(numbers.size() != numbers.stream().distinct().count()){
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
         }
 
-        for(int number : numbers){
-            if(number > 45 || number < 1){
+        for (int number : numbers) {
+            if (number > 45 || number < 1) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
