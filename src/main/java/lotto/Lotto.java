@@ -24,7 +24,7 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    public String getPrintFormatNumber() {
+    public String getFormatted() {
         return numbers.stream()
                 .sorted()
                 .map(String::valueOf)

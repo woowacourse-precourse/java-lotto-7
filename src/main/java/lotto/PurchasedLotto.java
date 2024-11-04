@@ -38,7 +38,7 @@ public class PurchasedLotto {
     public String getFormatted() {
         StringBuilder result = new StringBuilder();
         for (Lotto lotto : this.lottos) {
-            result.append(lotto.getPrintFormatNumber());
+            result.append(lotto.getFormatted());
             result.append(LOTTO_DELIMITER);
         }
         return result.toString();
