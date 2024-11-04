@@ -31,8 +31,7 @@ public class LottoController {
         OutputView.printPurchaseLottoNumbers(purchasedLottoNumberSets);
 
         Lotto winningLotto = getWinningNumber();
-        BonusNumber bonusNumber = getBonusNumber();
-        validateBonusNumberNotInWinningLotto(winningLotto, bonusNumber);
+        BonusNumber bonusNumber = getBonusNumber(winningLotto);
 
         Map<Rank, Long> statistics = getWinningStatistics(purchasedLotto, winningLotto, bonusNumber);
         double profitRate = calculateProfitRate(statistics, purchaseAmount.getAmount());
@@ -64,13 +63,17 @@ public class LottoController {
         }
     }
 
-    private BonusNumber getBonusNumber() {
+    private BonusNumber getBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
                 OutputView.printBonusNumberInputMessage();
                 String bonusNumberInput = InputView.inputBonusNumber();
                 int bonusNumber = StringToIntegerConverter.convert(bonusNumberInput);
-                return BonusNumber.from(bonusNumber);
+                BonusNumber bonusNumberObj = BonusNumber.from(bonusNumber);
+                
+                validateBonusNumberNotInWinningLotto(winningLotto, bonusNumberObj);
+
+                return bonusNumberObj;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
