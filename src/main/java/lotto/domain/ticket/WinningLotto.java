@@ -1,6 +1,7 @@
 package lotto.domain.ticket;
 
 import lotto.domain.number.BonusNumber;
+import lotto.domain.number.LottoNumber;
 import lotto.domain.result.LottoRank;
 
 public class WinningLotto {
@@ -9,7 +10,7 @@ public class WinningLotto {
 
     public WinningLotto(Lotto winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
-        this.bonusNumber = BonusNumber.of(bonusNumber, winningNumbers);
+        this.bonusNumber = BonusNumber.of(LottoNumber.of(bonusNumber), winningNumbers);
     }
 
     public LottoRank match(Lotto userLotto) {
