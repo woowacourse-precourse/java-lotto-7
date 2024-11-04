@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.Lottos;
+import lotto.model.LottoGenerator;
 import lotto.model.PurchaseAmount;
 import lotto.parser.NumberParser;
 import lotto.validator.BonusNumberValidator;
@@ -79,8 +79,8 @@ public class LottoVending {
         Integer bonusNumber = getBonusNumbersUntilValid(winningNumbers);
 
         // 로또 발행
-        Lottos lottos = Lottos.create(amount.get());
-        outputView.printLottos(lottos.getLottos());
+        LottoGenerator lottoGenerator = LottoGenerator.generate(amount.get());
+        outputView.printLottos(lottoGenerator.getLottos());
 
         // 당첨 통계
         int matchedThree = 0;
@@ -88,7 +88,7 @@ public class LottoVending {
         int matchedFive = 0;
         int matchedFiveAndBonus = 0;
         int matchedSix = 0;
-        for (Lotto lotto : lottos.getLottos()) {
+        for (Lotto lotto : lottoGenerator.getLottos()) {
             long matchedCount = lotto.getMatchNumbersCount(winningNumbers);
             if (matchedCount == 3) {
                 matchedThree++;
