@@ -26,7 +26,7 @@ public class BenefitRateTest {
 
     @Test
     @DisplayName("소수점 아래 2번째 자리가 5보다 작을 때")
-    void test1() {
+    void benefitRateTestHalfUpUnderFive() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     BoughtLottos boughtLottos =
@@ -52,7 +52,7 @@ public class BenefitRateTest {
 
     @Test
     @DisplayName("소수점 아래 2번째 자리가 5보다 클 때")
-    void test2() {
+    void benefitRateTestHalfUpOverFive() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     BoughtLottos boughtLottos =
