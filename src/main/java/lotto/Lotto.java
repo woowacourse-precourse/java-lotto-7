@@ -21,7 +21,7 @@ public class Lotto {
         }
     }
 
-    private List<Integer> getNumbers(){
+    public List<Integer> getNumbers(){
         return numbers;
     }
 
@@ -30,7 +30,12 @@ public class Lotto {
         return hashSet.size() != numbers.size();
     }
 
-
-
-    // TODO: 추가 기능 구현
+    public Rank rank(WinningNumber winningNumber){
+        int cnt = 0;
+        for (Integer number : numbers) {
+            if(winningNumber.contains(number))cnt++;
+        }
+        boolean bonusMatch = numbers.contains(winningNumber.getBonusNumber());
+        return Rank.valueOf(cnt, bonusMatch);
+    }
 }
