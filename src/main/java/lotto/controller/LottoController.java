@@ -6,7 +6,10 @@ import lotto.model.LottoResult;
 import lotto.model.ProfitCalculator;
 import lotto.model.WinningNumbers;
 
-import lotto.service.*;
+import lotto.service.LottoMachineService;
+import lotto.service.LottoBundleService;
+import lotto.service.LottoResultService;
+import lotto.service.ProfitCalculatorService;
 
 
 import lotto.validation.LottoAmountValidator;

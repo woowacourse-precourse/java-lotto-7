@@ -13,7 +13,6 @@ public class LottoAmountValidator extends LottoValidator {
         return Integer.parseInt(amount);
     }
 
-    //  1000으로 나눴을 때 나머지가 있는 경우
     private static void hasThousandRemainder(String amount){
         if(remainderAmountByLottoPrice(amount)!=0){
             throw new IllegalArgumentException(LottoException.INVALID_AMOUNT.getMessage());
@@ -29,14 +28,12 @@ public class LottoAmountValidator extends LottoValidator {
     }
 
 
-    // 1000원 이하여서 구입 장수가 0장인 경우
     private static void validateMinimumPurchaseAmount(String amount){
         if(divideAmountByLottoPrice(amount)==0){
             throw new IllegalArgumentException(LottoException.INVALID_AMOUNT.getMessage());
         }
     }
 
-    // 숫자를 제외한 값이 포함된 경우
     private static void checkForNonNumericValues(String input){
         try{
             Integer.parseInt(input);

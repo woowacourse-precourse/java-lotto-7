@@ -56,7 +56,7 @@ public class OutputView {
         if (resultStatistics != null) {
             System.out.printf("%s (%s원) - %d개%n",
                     resultStatistics.getDescription(),
-                    formattedPrize(prize),  // 천 단위 구분 기호 추가
+                    formattedPrize(prize),
                     count);
         }
     }

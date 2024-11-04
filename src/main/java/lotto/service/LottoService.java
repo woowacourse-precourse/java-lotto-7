@@ -4,7 +4,6 @@ import lotto.constant.LottoConstant;
 import lotto.model.Lotto;
 import lotto.utils.LottoNumberGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {

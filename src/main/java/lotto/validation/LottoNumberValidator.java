@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class LottoNumberValidator extends LottoValidator{
 
-    // 당첨 번호
     public static List<Integer> validateLottoNumbers(String input){
         isEmpty(input);
         List<Integer> list = getNumberList(input);
@@ -20,9 +19,7 @@ public class LottoNumberValidator extends LottoValidator{
         validateMaximumNumbersCount(input);
         return list;
     }
-    // 구분자가 쉼표 아닐 경우
 
-    // 입력한 숫자가 중복될 경우
     public  static void checkDuplicateNumber(List<Integer> list){
         Set<Integer> set = new HashSet<>(list);
        if(!(set.size()==list.size())){
@@ -30,7 +27,6 @@ public class LottoNumberValidator extends LottoValidator{
        }
     }
 
-    // 입력한 숫자의 개수가 6개가 아닐 경우
     private  static void validateMaximumNumbersCount(String input){
         if(getNumberList(input).size()!=LottoConstant.LOTTO_NUMBER_COUNT){
             throw new IllegalArgumentException(LottoException.INVALID_NUMBER_COUNT.getMessage());
@@ -39,12 +35,11 @@ public class LottoNumberValidator extends LottoValidator{
 
     private  static List<Integer> getNumberList(String input){
         List<Integer> numbersList = Arrays.stream(input.split(","))
-                .map(Integer::parseInt) // 문자열을 Integer로 변환
-                .collect(Collectors.toList()); // 리스트로 수집
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
         return numbersList;
     }
 
-    // 1~45 사이의 숫자가 아닌 걸 입력했을 경우
     private  static void validateNumbersRange(List<Integer> list){
         for(Integer number:list){
             validateNumberRange(number);
@@ -57,7 +52,6 @@ public class LottoNumberValidator extends LottoValidator{
         }
     }
 
-    // 보너스 번호
     public  static Integer validateBonusNumber(List<Integer> list, int bonusNumber){
         validateNumberRange(bonusNumber);
         checkDuplicateBonusNumber(list, bonusNumber);
