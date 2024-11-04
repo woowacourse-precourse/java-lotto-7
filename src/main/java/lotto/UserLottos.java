@@ -44,6 +44,14 @@ public class UserLottos {
         return lottos;
     }
 
+    public String getUserLottoNumbers() {
+        StringBuilder sb = new StringBuilder();
+        for (Lotto lotto : this.lottos) {
+            sb.append(lotto.getNumbers().toString()).append("\n");
+        }
+        return sb.toString().trim();
+    }
+
     public int getPurchaseAmount() {
         return this.purchaseAmount;
     }
