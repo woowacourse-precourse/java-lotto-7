@@ -9,7 +9,6 @@ public class LottoResult {
     public static final int THIRD_PRIZE = 1_500_000;
     public static final int FOURTH_PRIZE = 50_000;
     public static final int FIFTH_PRIZE = 5000;
-    public static final int NONE_RANK = 0;
 
     private String rankName;
     private int sameNumerCount;
@@ -32,10 +31,7 @@ public class LottoResult {
         if (sameNumberCount == 4) {
             return "FOURTH_PRIZE";
         }
-        if (sameNumberCount == 3) {
-            return "FIFTH_PRIZE";
-        }
-        return "NONE_RANK";
+        return "FIFTH_PRIZE";
     }
 
     public int getPrize() {
@@ -51,10 +47,7 @@ public class LottoResult {
         if (rankName.equals("FOURTH_PRIZE")) {
             return FOURTH_PRIZE;
         }
-        if (rankName.equals("FIFTH_PRIZE")) {
-            return FIFTH_PRIZE;
-        }
-        return NONE_RANK;
+        return FIFTH_PRIZE;
     }
 
     public String getRankName() {
