@@ -70,26 +70,20 @@ public class LottoWinning {
 
     private void addWinningAmount(int ranking) {
         if (ranking < 0) return;
-        if (ranking == 5) {
-            winning5thCount++;
-            winningAmount += WinningAmountEnum.FIVE.getValue();
-        }
-        if (ranking == 4) {
-            winningAmount += WinningAmountEnum.FOUR.getValue();
-            winning4thCount++;
-        }
-        if (ranking == 3) {
-            winningAmount += WinningAmountEnum.THREE.getValue();
-            winning3rdCount++;
-        }
-        if (ranking == 2) {
-            winningAmount += WinningAmountEnum.TWO.getValue();
-            winning2ndCount++;
-        }
-        if (ranking == 1) {
-            winningAmount += WinningAmountEnum.ONE.getValue();
-            winning1stCount++;
-        }
+        if (ranking == 5) addCountAndWinningAmount(WinningAmountEnum.FIVE);
+        if (ranking == 4) addCountAndWinningAmount(WinningAmountEnum.FOUR);
+        if (ranking == 3) addCountAndWinningAmount(WinningAmountEnum.THREE);
+        if (ranking == 2) addCountAndWinningAmount(WinningAmountEnum.TWO);
+        if (ranking == 1) addCountAndWinningAmount(WinningAmountEnum.ONE);
+    }
+
+    private void addCountAndWinningAmount(WinningAmountEnum rank) {
+        winningAmount += rank.getValue();
+        if (rank == WinningAmountEnum.FIVE) winning5thCount++;
+        if (rank == WinningAmountEnum.FOUR) winning4thCount++;
+        if (rank == WinningAmountEnum.THREE) winning3rdCount++;
+        if (rank == WinningAmountEnum.TWO) winning2ndCount++;
+        if (rank == WinningAmountEnum.ONE) winning1stCount++;
     }
 
      //5. 수익률 계산 기능
