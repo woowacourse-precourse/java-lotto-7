@@ -18,7 +18,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void renderNewLine() {
+    private void renderNewLine() {
         System.out.println();
     }
 
@@ -29,7 +29,7 @@ public class OutputView {
         lottoGame.getGeneratedLottos().forEach(this::renderLotto);
     }
 
-    public void renderLotto(final Lotto lotto) {
+    private void renderLotto(final Lotto lotto) {
         System.out.println(lotto.getNumbers());
     }
 
