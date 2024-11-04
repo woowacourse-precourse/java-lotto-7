@@ -17,7 +17,7 @@ public class PriceValidator implements Validator<Integer> {
     }
 
     private void validateThousandUnit(Integer price) {
-        if (price % 1000 != 0) {
+        if (price % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(PRICE_ERROR_MESSAGE);
         }
     }
