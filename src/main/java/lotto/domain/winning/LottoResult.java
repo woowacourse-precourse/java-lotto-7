@@ -1,7 +1,10 @@
-package lotto.domain.lotto;
+package lotto.domain.winning;
 
 import java.math.BigInteger;
 import java.util.Map;
+import lotto.domain.lotto.Investment;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoBundle;
 
 public class LottoResult {
 

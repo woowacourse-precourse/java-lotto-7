@@ -1,9 +1,11 @@
-package lotto.domain.lotto;
+package lotto.domain.winning;
 
 import static lotto.common.exception.ErrorMessage.BONUS_NUMBER_CANNOT_BE_DUPLICATED;
 
 import java.util.List;
 import lotto.common.exception.LottoException;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 
 public class BonusNumber {
 

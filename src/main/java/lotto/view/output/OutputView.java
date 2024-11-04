@@ -3,7 +3,7 @@ package lotto.view.output;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.Rank;
+import lotto.domain.winning.Rank;
 
 public interface OutputView {
 

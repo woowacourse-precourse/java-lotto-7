@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain.winning;
 
 import static lotto.common.exception.ErrorMessage.WINNING_NUMBERS_CANNOT_BE_DUPLICATED;
 import static lotto.common.exception.ErrorMessage.WINNING_NUMBERS_SIZE_MUST_BE_SIX;
@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.common.exception.LottoException;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 
 public class WinningNumbers {
 

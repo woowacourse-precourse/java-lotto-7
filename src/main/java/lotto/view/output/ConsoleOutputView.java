@@ -3,7 +3,7 @@ package lotto.view.output;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.Rank;
+import lotto.domain.winning.Rank;
 
 public class ConsoleOutputView implements OutputView {
     private static final String INPUT_PURCHASE_GUIDE = "구입금액을 입력해 주세요.";

@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain.winning;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,6 +8,10 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.lotto.Investment;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoBundle;
+import lotto.domain.lotto.LottoNumber;
 import lotto.domain.utility.generator.RandomIntegerListGenerator;
 import lotto.domain.utility.sorting.AscendingSorter;
 import org.junit.jupiter.api.Test;

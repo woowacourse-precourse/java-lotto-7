@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain.winning;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
