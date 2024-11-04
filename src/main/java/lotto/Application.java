@@ -6,6 +6,7 @@ public class Application {
     public static void main(String[] args) {
         UserLottos userLottos = createUserLottos();
         showUserLottos(userLottos);
+        inputWinningNumbers();
     }
 
     private static UserLottos createUserLottos() {
@@ -35,6 +36,11 @@ public class Application {
         for (Lotto lotto : userLottos.getLottos()) {
             sb.append(lotto.getNumbers().toString()).append("\n");
         }
-        return sb.toString().trim();
+        return sb.toString();
+    }
+
+    private static String inputWinningNumbers() {
+        System.out.println(IOMessage.WINNING_NUMBERS.getMessage());
+        return readLine();
     }
 }
