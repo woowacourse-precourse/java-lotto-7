@@ -12,7 +12,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    DrawService drawService ;
+    DrawService drawService;
     PurchaseService purchaseService;
     CalculateService calculateService;
 
@@ -51,13 +51,28 @@ public class LottoController {
     }
 
     private Bonus getBonus(List<Integer> lottoNumbers) {
-        int bonusNumberInput = InputView.getBonusNumber();
-        return drawService.getBonus(bonusNumberInput, lottoNumbers);
+        Bonus bonus = null;
+        while (bonus == null) {
+            try {
+                int bonusNumberInput = InputView.getBonusNumber();
+                bonus = drawService.getBonus(bonusNumberInput, lottoNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonus;
     }
 
     private Lotto getLotto() {
-        List<Integer> lottoNumbersInput = InputView.getLottoNumber();
-        //inputView를 서비스에서도 호출하고 컨틀롤러에서도 호출하는게 이상함 리팩토링 필요
-        return drawService.getLotto(lottoNumbersInput);
+        Lotto lotto = null;
+        while (lotto == null) {
+            try {
+                List<Integer> lottoNumbersInput = InputView.getLottoNumber();
+                lotto = drawService.getLotto(lottoNumbersInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lotto;
     }
 }
