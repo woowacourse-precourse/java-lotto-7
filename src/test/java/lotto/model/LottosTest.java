@@ -89,12 +89,11 @@ public class LottosTest {
 
         // given
         Lottos generatedLottos = Lottos.generateBy(sequentialRandomNumberGenerator, lottoCount);
-
-        // when
         List<LottoNumbers> expected = getLottos(generatedLottos).stream()
                 .map(Lotto::getLottoNumbers)
                 .toList();
 
+        // when
         List<LottoNumbers> actual = generatedLottos.getAllLottoNumbers();
 
         // then
