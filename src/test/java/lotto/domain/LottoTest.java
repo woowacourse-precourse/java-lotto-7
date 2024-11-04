@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,5 +26,18 @@ class LottoTest {
     void 로또_번호의_범위를_벗어나면_예외가_발생한다(){
         assertThatThrownBy(() -> new Lotto(List.of(46, 0, 3, 4, 5, 5)))
             .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 숫자_6개를_입력할_경우_하나의_로또가_반환된다(){
+        // given
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        // then
+        Assertions.assertThat(lotto).isNotNull();
+        Assertions.assertThat(lotto.getNumbers()).hasSize(6);
     }
 }
