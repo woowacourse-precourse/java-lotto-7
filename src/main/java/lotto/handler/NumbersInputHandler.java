@@ -41,6 +41,4 @@ public class NumbersInputHandler {
             throw new IllegalArgumentException(NON_INTEGER_LOTTO.getMessage());
         }
     }
-
-
 }

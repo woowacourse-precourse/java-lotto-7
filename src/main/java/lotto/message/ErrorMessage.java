@@ -22,12 +22,12 @@ public enum ErrorMessage {
         this.message = ERROR_PREFIX + message;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
     public String formatCost(int cost){
         String formattedNumber = NumberFormat.getInstance().format(cost);
         return message.replace("{}", formattedNumber);
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

@@ -19,15 +19,15 @@ public enum LottoValues {
         this.value = value;
     }
 
-    public int value() {
-        return value;
-    }
-
     public boolean isEqualTo(int value) {
         return this.value == value;
     }
 
     public boolean isGreaterThan(int value) {
         return value < this.value;
+    }
+
+    public int value() {
+        return value;
     }
 }

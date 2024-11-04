@@ -18,10 +18,6 @@ public enum InfoMessage {
         this.message = message;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
     public String formatProfit(double profit){
         String roundedProfit = String.format("%,.1f", profit);
         return message.replace("{}", roundedProfit);
@@ -29,5 +25,9 @@ public enum InfoMessage {
 
     public String formatNumber(long num){
         return message.replace("{}", String.valueOf(num));
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

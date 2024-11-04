@@ -18,19 +18,6 @@ public class Lotto implements LottoForm {
         return new Lotto(rawIntegers);
     }
 
-    @Override
-    public String toString() {
-        String result = numbers.stream()
-                .map(LottoNumber::number)
-                .map(String::valueOf)
-                .collect(Collectors.joining(NUMBER_DELIMITER.getMessage()));
-        return String.format("[%s]", result);
-    }
-
-    public List<LottoNumber> getNumbers() {
-        return numbers;
-    }
-
     public int getMatchingNumbers(WinningNumbers winningNumbers) {
         return Math.toIntExact(numbers.stream()
                 .filter(winningNumbers::contains)
@@ -40,5 +27,18 @@ public class Lotto implements LottoForm {
     public boolean hasBonusNumber(LottoNumber bonusNumber) {
         return numbers.stream()
                 .anyMatch(bonusNumber::isSame);
+    }
+
+    public List<LottoNumber> getNumbers() {
+        return numbers;
+    }
+
+    @Override
+    public String toString() {
+        String result = numbers.stream()
+                .map(LottoNumber::number)
+                .map(String::valueOf)
+                .collect(Collectors.joining(NUMBER_DELIMITER.getMessage()));
+        return String.format("[%s]", result);
     }
 }

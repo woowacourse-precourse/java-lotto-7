@@ -17,10 +17,6 @@ public class Lottos {
         lottos.add(lotto);
     }
 
-    public long getLottoCount(){
-        return lottos.size();
-    }
-
     public void showInfo(){
         lottos.stream()
                 .map(Lotto::toString)
@@ -33,6 +29,10 @@ public class Lottos {
             boolean bonus = lotto.hasBonusNumber(bonusNumber);
             Result.updateResult(matchingNumber, bonus);
         }
+    }
+
+    public long getLottoCount(){
+        return lottos.size();
     }
 
 }

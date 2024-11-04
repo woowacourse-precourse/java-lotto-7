@@ -44,14 +44,6 @@ public enum Result {
         this.predicate = predicate;
     }
 
-    private void increment() {
-        resultCount++;
-    }
-
-    private boolean equals(int matchingNumber, boolean bonus) {
-        return predicate.test(matchingNumber, bonus);
-    }
-
     public static Result find(int matchingNumber, boolean bonus) {
         return Arrays.stream(Result.values())
                 .filter(result -> result.equals(matchingNumber, bonus))
@@ -73,11 +65,20 @@ public enum Result {
         return resultCount * reward.value();
     }
 
-    public static int getResultCount(int matchingNumber, boolean bonus) {
-        return find(matchingNumber, bonus).resultCount;
+    private void increment() {
+        resultCount++;
+    }
+
+    private boolean equals(int matchingNumber, boolean bonus) {
+        return predicate.test(matchingNumber, bonus);
     }
 
     public String formattedMessage() {
         return infoMessage.formatNumber(resultCount);
     }
+
+    public static int getResultCount(int matchingNumber, boolean bonus) {
+        return find(matchingNumber, bonus).resultCount;
+    }
+
 }
