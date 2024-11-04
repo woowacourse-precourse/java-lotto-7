@@ -2,8 +2,8 @@ package lotto.domain.purchase;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.model.purchase.PurchaseAmountConverter;
 import lotto.utils.ErrorMessages;
+import lotto.utils.converter.PurchaseAmountConverter;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

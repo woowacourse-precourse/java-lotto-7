@@ -1,4 +1,4 @@
-package lotto.model.purchase;
+package lotto.utils.converter;
 
 import lotto.utils.ErrorMessages;
 

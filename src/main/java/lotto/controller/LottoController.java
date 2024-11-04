@@ -4,9 +4,9 @@ import java.util.List;
 import lotto.dto.IssuedLottosDto;
 import lotto.dto.LottoDto;
 import lotto.model.Game;
-import lotto.model.WinningNumberConverter;
-import lotto.model.purchase.PurchaseAmountConverter;
 import lotto.utils.converter.BonusNumberConverter;
+import lotto.utils.converter.PurchaseAmountConverter;
+import lotto.utils.converter.WinningNumberConverter;
 import lotto.view.View;
 
 public class LottoController {

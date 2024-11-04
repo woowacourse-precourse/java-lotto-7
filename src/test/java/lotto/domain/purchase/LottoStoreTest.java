@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain.purchase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
