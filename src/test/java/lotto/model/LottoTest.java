@@ -130,4 +130,16 @@ class LottoTest {
         );
     }
 
+    @DisplayName("로또 번호를 정렬하고 문자열로 반환하는 테스트 입니다.")
+    @ParameterizedTest
+    @MethodSource("generateShowLottoCase")
+    void showNumbersTest(Lotto lotto, String expected) {
+        assertThat(lotto.showLottoNumbers()).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> generateShowLottoCase() {
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(10, 2, 3, 4, 5, 6)), List.of(2, 3, 4, 5, 6, 10).toString())
+        );
+    }
 }

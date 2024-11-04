@@ -120,4 +120,9 @@ public class Lotto {
             rank.setLottoPrize(LottoPrize.FIFTH);
         }
     }
+
+    public String showLottoNumbers() {
+        List<Integer> sortedNumbers = numbers.stream().sorted().toList();
+        return sortedNumbers.toString();
+    }
 }
