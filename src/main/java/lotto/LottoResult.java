@@ -37,7 +37,7 @@ public enum LottoResult{
     }
 
     public static double returnRate(int purchaseMoney){
-        int total = 0;
+        long total = 0;
         for(LottoResult result : values()){
             total += result.prizeMoney * result.prizeCount;
         }
