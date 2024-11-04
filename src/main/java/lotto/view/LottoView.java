@@ -8,6 +8,8 @@ import lotto.dto.WinningDto;
 
 public class LottoView {
 
+    private static final int START = 0;
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -28,7 +30,7 @@ public class LottoView {
     }
 
     private List<Lotto> createRandomLottoNumbers(int count) {
-        return IntStream.range(0, count)
+        return IntStream.range(START, count)
                 .mapToObj(i -> Lotto.createNumber())
                 .toList();
     }
