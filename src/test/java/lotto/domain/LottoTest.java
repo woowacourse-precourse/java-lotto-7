@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,5 +21,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호의 숫자 범위(1~45)를 벗어나면 예외가 발생한다.")
+    @Test
+    void 로또_번호의_숫자_범위는_1부터_45까지를_벗어나면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(45,46,47,48,49,50)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
