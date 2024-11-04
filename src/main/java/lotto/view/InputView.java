@@ -1,8 +1,9 @@
 package lotto.view;
 
 import static lotto.constants.Constants.LOTTO_NUMBER_COUNT;
-import static lotto.validator.Validator.validateNumber;
-import static lotto.validator.Validator.validatePurchaseAmount;
+import static lotto.validator.LottoNumberValidator.validateRange;
+
+import lotto.validator.PurchaseAmountValidator;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class InputView {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
                 int amount = Integer.parseInt(input);
-                validatePurchaseAmount(amount);
+                PurchaseAmountValidator.validate(amount);
 
                 return amount;
             } catch (NumberFormatException e) {
@@ -38,7 +39,7 @@ public class InputView {
                 List<Integer> winningNumbers = new ArrayList<>();
                 for (String number : inputs) {
                     int num = Integer.parseInt(number.trim());
-                    validateNumber(num);
+                    validateRange(num);
                     if (winningNumbers.contains(num)) {
                         throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력할 수 없습니다.");
                     }
