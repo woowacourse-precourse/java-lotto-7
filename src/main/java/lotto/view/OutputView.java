@@ -24,11 +24,18 @@ public class OutputView {
         println();
     }
     public void displayRank(WinningResult result){
+        println("당첨 통계");
+        println("---");
         HashMap<Reward, Integer> rankCount = result.getRankCount();
         for (Reward reward : rankCount.keySet()) {
             String line = getRankLine(reward, rankCount);
             println(line);
         }
+    }
+
+    public void displayProfit(double profitRate){
+        String formattedRate = String.format("%.2f", profitRate);
+        println("총 수익률은 " + formattedRate + "% 입니다.");
     }
 
     private static String getRankLine(Reward reward, HashMap<Reward, Integer> rankCount) {
