@@ -13,7 +13,7 @@ public class StringToIntConverter {
             validate(rawNum);
             return Integer.parseInt(rawNum.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMBER.getMsg());
+            throw new NumberFormatException(ErrorMessage.IS_NOT_NUMBER.getMsg());
         }
     }
 
@@ -25,7 +25,7 @@ public class StringToIntConverter {
                 numbers.add(convertStringNumberToInteger(rawNumber));
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMBER.getMsg());
+            throw new NumberFormatException(ErrorMessage.IS_NOT_NUMBER.getMsg());
         }
         return numbers;
     }

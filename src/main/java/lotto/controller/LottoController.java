@@ -60,7 +60,7 @@ public class LottoController {
                 String rawNumber = inputView.lottoBonusNumInput();
                 int bonusNumber = converter.convertStringNumberToInteger(rawNumber);
                 return new BonusBall(bonusNumber);
-            } catch (IllegalArgumentException e) {
+            } catch (RuntimeException e) {
                 ErrorMessage.showErrorMsg(e.getMessage());
             }
         }
@@ -72,7 +72,7 @@ public class LottoController {
                 String rawNumbers = inputView.lottoNumsInput();
                 List<Integer> numbers = converter.convertStringNumbersToIntegers(rawNumbers);
                 return new Lotto(numbers);
-            } catch (IllegalArgumentException e) {
+            } catch (RuntimeException e) {
                 ErrorMessage.showErrorMsg(e.getMessage());
             }
         }
@@ -84,7 +84,7 @@ public class LottoController {
                 String rawMoney = inputView.lottoMoneyInput();
                 int money = converter.convertStringNumberToInteger(rawMoney);
                 return lottoMachine.issueLotto(money);
-            } catch (IllegalArgumentException e) {
+            } catch (RuntimeException e) {
                 ErrorMessage.showErrorMsg(e.getMessage());
             }
         }
