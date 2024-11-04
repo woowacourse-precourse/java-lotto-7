@@ -30,6 +30,20 @@ public class Lotto {
         }
     }
 
+    public int countMatchingNumbers(Set<Integer> winningNumbers) {
+        int count = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
+
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
     }
