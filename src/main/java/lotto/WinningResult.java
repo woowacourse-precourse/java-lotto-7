@@ -5,11 +5,11 @@ import java.util.Map;
 
 public class WinningResult {
     private final Map<Rank, Integer> counts;
-    private final Money money;
+    private final Money purchaseAmount;
 
     public WinningResult(Map<Rank, Integer> counts, Money money) {
         this.counts = counts;
-        this.money = money;
+        this.purchaseAmount = money;
     }
 
     public BigDecimal calculateTotalPrize() {
@@ -21,7 +21,7 @@ public class WinningResult {
 
     public BigDecimal calculateTotalPrizeRate() {
         BigDecimal totalPrize = calculateTotalPrize();
-        return money.calculateTotalPrizeRate(totalPrize);
+        return purchaseAmount.calculateTotalPrizeRate(totalPrize);
     }
 
     public Map<Rank, Integer> getCounts() {
