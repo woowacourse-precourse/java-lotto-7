@@ -1,16 +1,32 @@
 package lotto.validator;
-public class NumberValidate{
 
-    public static void validateAmount(String input) throws IllegalArgumentException{
+import java.util.List;
+
+public class NumberValidate {
+
+    public static void validateAmount(String input) throws IllegalArgumentException {
         try {
             isEmpty(input);
             isNumeric(input);
             isOverThousand(input);
             isDivisibleByThousand(input);
-        } catch (NullPointerException | IllegalArgumentException e){
+        } catch (NullPointerException | IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+
+    public static void validateDelimitedValue(String[] inputArray) throws IllegalArgumentException {
+        try {
+            for (String input : inputArray) {
+                isEmpty(input);
+                isNumeric(input);
+            }
+        } catch (NullPointerException | NumberFormatException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+    
+
     public static void isOverThousand(String input) {
         int amount = Integer.parseInt(input);
         if (amount <= 1000) {
@@ -18,9 +34,9 @@ public class NumberValidate{
         }
     }
 
-    public static void isDivisibleByThousand(String input){
+    public static void isDivisibleByThousand(String input) {
         int amount = Integer.parseInt(input);
-        if (amount % 1000 != 0){
+        if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1,000으로 나누어 떨어지는 숫자를 입력해주세요.");
         }
     }
@@ -30,6 +46,7 @@ public class NumberValidate{
             throw new NullPointerException("[ERROR] 입력값이 null이거나 공백을 포함하고 있습니다.");
         }
     }
+
     public static void isNumeric(String input) {
         try {
             Integer.parseInt(input);
@@ -38,5 +55,19 @@ public class NumberValidate{
         }
     }
 
+    public static void isSizeSix(List<Integer> input) {
+        if (input.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
 
+
+
+    public static void isOutOfRange(List<Integer> input) {
+        for (int number : input) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+    }
 }
