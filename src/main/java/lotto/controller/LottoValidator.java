@@ -1,20 +1,33 @@
 package lotto.controller;
 import lotto.exceptions.LottoNumberRangeException;
 import lotto.exceptions.LottoPriceUnder1000Exception;
+import lotto.exceptions.LottoPriceUnitException;
 
 public class LottoValidator {
-    public void isValidAmount(int purchaseAmount) {
-        if(purchaseAmount < 1000) {
+    public static void isValidAmount(int purchaseAmount) {
+        if (!isAboveMinimumPrice(purchaseAmount)) {
             throw new LottoPriceUnder1000Exception();
         }
-        if(purchaseAmount % 1000 != 0) {
-            throw new LottoPriceUnder1000Exception();
+        if (!isMultipleOfThousand(purchaseAmount)) {
+            throw new LottoPriceUnitException();
         }
     }
 
-    public void isValidBonusNumber(int bonusNumber) {
-        if(bonusNumber < 1 || bonusNumber > 45) {
+    public static void isValidBonusNumber(int bonusNumber) {
+        if (!isWithinBonusNumberRange(bonusNumber)) {
             throw new LottoNumberRangeException();
         }
+    }
+
+    private static boolean isAboveMinimumPrice(int amount) {
+        return amount >= 1000;
+    }
+
+    private static boolean isMultipleOfThousand(int amount) {
+        return amount % 1000 == 0;
+    }
+
+    private static boolean isWithinBonusNumberRange(int number) {
+        return number >= 1 && number <= 45;
     }
 }

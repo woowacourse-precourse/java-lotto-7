@@ -24,6 +24,6 @@ public class OutputView implements OutputViewer {
     }
 
     private void printRandomLotteries(List<Lotto> randomLotteries) {
-        randomLotteries.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        randomLotteries.forEach(lotto -> System.out.println(lotto.numbers()));
     }
 }

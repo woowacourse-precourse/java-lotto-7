@@ -1,5 +1,4 @@
 package lotto.exceptions;
-
 import lotto.util.LottoErrorMessages;
 
 public class LottoDuplicateNumberException extends LottoException {

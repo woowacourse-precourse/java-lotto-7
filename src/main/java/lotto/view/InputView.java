@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.util.LottoPrintMessages;
 
-import javax.swing.text.View;
-
 public class InputView implements InputViewer {
     public InputView() {}
 
@@ -32,11 +30,10 @@ public class InputView implements InputViewer {
     }
 
     private void printUserLottoInputMessage() {
-        System.out.print(LottoPrintMessages.INPUT_USERLOTTO);
+        System.out.print(LottoPrintMessages.INPUT_USER_LOTTO);
     }
 
     private void printBonusNumberInputMessage() {
         System.out.print(LottoPrintMessages.INPUT_BONUS_NUMBER);
-
     }
 }

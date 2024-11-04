@@ -27,7 +27,7 @@ public class LottoTest {
     @Test
     public void shouldCreateLottoWhenValidNumbers() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(lotto.numbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
     @Test

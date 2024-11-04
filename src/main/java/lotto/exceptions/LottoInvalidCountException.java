@@ -1,6 +1,4 @@
 package lotto.exceptions;
-
-import lotto.model.Lotto;
 import lotto.util.LottoErrorMessages;
 
 public class LottoInvalidCountException extends LottoException {

@@ -25,9 +25,13 @@ public class LottoStatistic implements LottoStatistics {
     }
 
     public void updateStatistics(List<Lotto> randomLotteries, Lotto userLotto, int bonusNumber) {
+        compareLotteries(randomLotteries, userLotto, bonusNumber);
+    }
+
+    private  void compareLotteries(List<Lotto> randomLotteries, Lotto userLotto, int bonusNumber) {
         for (Lotto lotto : randomLotteries) {
-            int matchCount = countMatchingNumbers(lotto.getNumbers(), userLotto);
-            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+            int matchCount = countMatchingNumbers(lotto.numbers(), userLotto);
+            boolean bonusMatch = lotto.numbers().contains(bonusNumber);
 
             LottoMatchEnum category = LottoMatchEnum.getCategory(matchCount, bonusMatch);
             if (category != null) {
@@ -56,7 +60,7 @@ public class LottoStatistic implements LottoStatistics {
     private int countMatchingNumbers(List<Integer> randomLotteries, Lotto userLotto) {
         int count = 0;
         for (Integer number : randomLotteries) {
-            if (userLotto.getNumbers().contains(number)) {
+            if (userLotto.numbers().contains(number)) {
                 count++;
             }
         }

@@ -7,16 +7,15 @@ import lotto.view.ErrorView;
 import lotto.view.InputViewer;
 import lotto.view.OutputViewer;
 import java.util.List;
+import java.util.function.IntSupplier;
+import java.util.function.IntConsumer;
+import lotto.model.LottoGameState;
 
 public class LottoController {
     private final LottoServices services;
-    private final InputViewer  inputViewer;
+    private final InputViewer inputViewer;
     private final OutputViewer outputViewer;
-    private LottoStatistics statistics;
-
-    private Lotto userLotto;
-    private List<Lotto> randomLotteries;
-    private int bonusNumber;
+    private LottoGameState gameState;
 
     public LottoController(LottoServices services, InputViewer inputViewer, OutputViewer outputViewer) {
         this.services = services;
@@ -32,59 +31,51 @@ public class LottoController {
     }
 
     private void initLottoGame() {
-        initStatistics();
-        initRandomLotteries();
-        initUserLotto();
+        LottoStatistics statistics = createStatistics();
+        List<Lotto> randomLotteries = createRandomLotteries(statistics);
+        Lotto userLotto = createUserLotto();
+        int bonusNumber = createBonusNumber();
+
+        gameState = new LottoGameState(userLotto, randomLotteries, bonusNumber, statistics);
     }
 
-    private void initStatistics() {
-        int amount = readValidPurchaseAmount();
+    private LottoStatistics createStatistics() {
+        int amount = readValidInput(inputViewer::readPurchaseAmount, LottoValidator::isValidAmount);
         int quantity = amount / 1000;
-        statistics = services.createLottoStatistics(amount, quantity);
+        return services.createLottoStatistics(amount, quantity);
     }
 
-    private void initRandomLotteries() {
-        randomLotteries = services.createRandomLotteries(statistics);
+    private List<Lotto> createRandomLotteries(LottoStatistics statistics) {
+        return services.createRandomLotteries(statistics);
     }
 
-    private void initUserLotto() {
-        userLotto = services.createLotto(inputViewer.readUserLotto());
-        bonusNumber = readValidBonusNumber();
+    private Lotto createUserLotto() {
+        return services.createLotto(inputViewer.readUserLotto());
+    }
+
+    private int createBonusNumber() {
+        return readValidInput(inputViewer::readBonusNumber, LottoValidator::isValidBonusNumber);
     }
 
     private void printInitState() {
-        outputViewer.printLottoInitSummary(statistics.toDTO(), randomLotteries);
+        outputViewer.printLottoInitSummary(gameState.statistics().toDTO(), gameState.randomLotteries());
     }
 
     private void startLottoCheck() {
-        services.checkLottoResults(statistics, randomLotteries, userLotto, bonusNumber);
-        services.checkLottoYield(statistics);
+        services.checkLottoResults(gameState.statistics(), gameState.randomLotteries(), gameState.userLotto(), gameState.bonusNumber());
+        services.checkLottoYield(gameState.statistics());
     }
 
     private void printLottoResult() {
-        outputViewer.printLottoResult(statistics.toDTO());
+        outputViewer.printLottoResult(gameState.statistics().toDTO());
     }
 
-    private int readValidPurchaseAmount() {
-        LottoValidator validator = new LottoValidator();
+    private int readValidInput(IntSupplier inputMethod, IntConsumer validator) {
         while (true) {
             try {
-                int amount = inputViewer.readPurchaseAmount();
-                validator.isValidAmount(amount);
-                return amount;
-            } catch(LottoException e) {
-                ErrorView.displayError(e);
-            }
-        }
-    }
-
-    private int readValidBonusNumber() {
-        LottoValidator validator = new LottoValidator();
-        while (true) {
-            try {
-                int bonusNumber = inputViewer.readBonusNumber();
-                validator.isValidBonusNumber(bonusNumber);
-                return bonusNumber;
+                int value = inputMethod.getAsInt();
+                validator.accept(value);
+                return value;
             } catch(LottoException e) {
                 ErrorView.displayError(e);
             }

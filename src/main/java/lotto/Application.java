@@ -10,6 +10,7 @@ public class Application {
         InputViewer inputViewer = new InputView();
         OutputViewer outputViewer = new OutputView();
         LottoController controller = new LottoController(lottoServices, inputViewer, outputViewer);
+
         controller.start();
     }
 }
