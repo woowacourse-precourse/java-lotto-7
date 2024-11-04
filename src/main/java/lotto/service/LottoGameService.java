@@ -5,10 +5,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGamePlayer;
 import lotto.domain.WinningLotto;
 
 public class LottoGameService {
+    private final LottoGamePlayer player;
     private WinningLotto winningLotto;
+
+    public LottoGameService(LottoGamePlayer player) {
+        this.player = player;
+    }
 
     public List<Lotto> generatePurchaserLottos(int purchaseCount) {
         List<Lotto> lottos = new ArrayList<>();
@@ -17,6 +23,7 @@ public class LottoGameService {
             Lotto lotto = new Lotto(randomLottoNumbers);
             lottos.add(lotto);
         }
+        player.purchaseLottos(lottos);
         return lottos;
     }
 
