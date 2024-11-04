@@ -91,14 +91,13 @@ public class LottoService {
         }
     }
 
-    public EnumMap<WinAmount, Integer> comPare_My_Win(Lotto[] lottos, List<Integer> winNumbers,
-                                                      int bonusNumber) {
+    public EnumMap<WinAmount, Integer> compare_My_Win(Lotto[] myLotto, List<Integer> winNumbers, int bonusNumber) {
         Set<Integer> winNumber = new HashSet<>(winNumbers);
-        for (Lotto lotto : lottos) {
-            Set<Integer> myLotto = new HashSet<>(lotto.getNumbers());
-            myLotto.retainAll(winNumber);
-            int overlappingNumber = myLotto.size();
-            checkBonus(lotto, myLotto, bonusNumber);
+        for (Lotto lotto : myLotto) {
+            Set<Integer> myLottoNumber = new HashSet<>(lotto.getNumbers());
+            myLottoNumber.retainAll(winNumber);
+            int overlappingNumber = myLottoNumber.size();
+            checkBonus(lotto, myLottoNumber, bonusNumber);
             winAmountCompare(overlappingNumber);
         }
         return winLottoAmountHistory;
@@ -130,5 +129,4 @@ public class LottoService {
         Output.result(winLottoAmountHistory);
         Output.adventure(amountPercent);
     }
-
 }

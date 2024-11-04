@@ -17,8 +17,8 @@ public class LottoController {
         Lotto winNumbers = lottoService.setWinNumber();
         int bonusNumber = lottoService.setBonusNumber(winNumbers);
 
-        EnumMap<WinAmount, Integer> WinLottoAmountHistory = lottoService.compare_My_Win(myLotto, winNumbers.getNumbers(),
-                bonusNumber);
+        EnumMap<WinAmount, Integer> WinLottoAmountHistory = lottoService.compare_My_Win(myLotto,
+                winNumbers.getNumbers(), bonusNumber);
         double amountPercent = lottoService.resultSum(WinLottoAmountHistory, count);
         lottoService.finalResult(WinLottoAmountHistory, amountPercent);
     }
