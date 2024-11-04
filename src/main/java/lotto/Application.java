@@ -18,6 +18,13 @@ public class Application {
 
         int bonusNum = Input.inputBonusNum(inputWinNum);
 
+        ResultLotto lottoResult = new ResultLotto(purchasePrice, lottos, inputWinNum, bonusNum);
+        lottoResult.calResult();
 
+        Map<Prize, Integer> lottoState = lottoResult.getLottoState();
+        double totalProfitRate = lottoResult.getTotalProfitRate();
+
+        Output.printLottoState(lottoState);
+        Output.printTotalPrizeRate(totalProfitRate);
     }
 }
