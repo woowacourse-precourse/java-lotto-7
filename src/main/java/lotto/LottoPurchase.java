@@ -12,18 +12,20 @@ public class LottoPurchase {
     private List<Lotto> userLottos;
 
     public void start() {
-        try {
-            System.out.println("구입 금액을 입력해 주세요.");
-            String input = Console.readLine().trim();
-            totalCost = inputPurchaseAmount(input);
-            int lottoCount = totalCost / PRICE_PER_LOTTO;
-            System.out.println();
-            System.out.println(lottoCount + "개를 구매했습니다.");
-            userLottos = generateLottos(lottoCount);
-            userLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            start();
+        while (true) {
+            try {
+                System.out.println("구입 금액을 입력해 주세요.");
+                String input = Console.readLine().trim();
+                totalCost = inputPurchaseAmount(input);
+                int lottoCount = totalCost / PRICE_PER_LOTTO;
+                System.out.println();
+                System.out.println(lottoCount + "개를 구매했습니다.");
+                userLottos = generateLottos(lottoCount);
+                userLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -32,7 +34,12 @@ public class LottoPurchase {
     }
 
     public int inputPurchaseAmount(String input) {
-        int amount = Integer.parseInt(input);
+        int amount;
+        try {
+            amount = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
+        }
         if (amount <= 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 0보다 커야 합니다.");
         }
