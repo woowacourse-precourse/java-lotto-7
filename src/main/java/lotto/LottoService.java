@@ -34,11 +34,11 @@ public class LottoService {
 
     private int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
-        if(amount % 1000 != 0){
-            throw new IllegalArgumentException(("[ERROR] 금액은 1,000원 단위여야 합니다."));
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        if(bonusNumber<1||bonusNumber>45){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자입니다.");
         }
-        return amount;
+        return bonusNumber;
     }
 
     private int[] getWinningNumbers() {
@@ -56,11 +56,17 @@ public class LottoService {
 
     private int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        if(bonusNumber<1||bonusNumber>45){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자입니다.");
+        String input = Console.readLine();
+        int amount;
+        try{
+            amount = Integer.parseInt(input);
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 금액은 숫자로 입력해야 합니다.");
         }
-        return bonusNumber;
+        if(amount %1000!=0){
+            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다.");
+        }
+        return amount;
     }
 
     private void displayBenefit(int amount, int[] ranks) {
@@ -71,11 +77,11 @@ public class LottoService {
     private void displayResults(int[] ranks) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        System.out.printf("3개 일치 (5,000원) - %d개%n", ranks[5]);
-        System.out.printf("4개 일치 (50,000원) - %d개%n", ranks[4]);
-        System.out.printf("5개 일치 (1,500,000원) - %d개%n", ranks[3]);
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", ranks[2]);
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", ranks[1]);
+        System.out.printf("3개 일치 (5,000원) - %d개%n", ranks[4]);
+        System.out.printf("4개 일치 (50,000원) - %d개%n", ranks[3]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개%n", ranks[2]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", ranks[1]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", ranks[0]);
     }
 
 }
