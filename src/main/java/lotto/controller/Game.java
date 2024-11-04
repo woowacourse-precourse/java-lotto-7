@@ -18,9 +18,15 @@ public class Game {
     private WinningLotto winLotto;
 
     public void run() {
-        before();
-        start();
-        end();
+        try {
+            before();
+            start();
+            end();
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("[ERROR] " + e.getMessage());
+        }
+
     }
 
     private void before() {
