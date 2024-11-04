@@ -41,4 +41,43 @@ public class RandomLotto {
 
         ioManager.printNewLotto(cnt, randomLottos);
     }
+
+    public void lottoCheck(Lotto lotto, int bonusNumber) {
+        List<Integer> numbers = lotto.getNumbers();
+
+        for (List<Integer> randomLotto : randomLottos) {
+            int cnt = matchCount(randomLotto, numbers);
+            boolean bonus = bonusCheck(randomLotto, bonusNumber);
+            Prise prise = priseCheck(cnt, bonus);
+        }
+    }
+
+    public Prise priseCheck(int match, boolean bonus) {
+        Prise prise = Prise.getRank(match);
+        if (prise == Prise.THIRD && bonus) {
+            return Prise.SECOND;
+        }
+        return prise;
+    }
+
+    public int matchCount(List<Integer> randomLotto, List<Integer> numbers) {
+        int cnt = 0;
+
+        for (int lottoNumber : randomLotto) {
+            if (numbers.contains(lottoNumber)) {
+                cnt++;
+            }
+        }
+
+        return cnt;
+    }
+
+    public boolean bonusCheck(List<Integer> randomLotto, int bonusNumber) {
+        for (int lottoNumber : randomLotto) {
+            if (lottoNumber == bonusNumber) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

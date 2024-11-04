@@ -24,7 +24,7 @@ public enum Prise {
         return money;
     }
 
-    public static Prise getRank(int match, boolean bonusMatch) {
+    public static Prise getRank(int match) {
         for (Prise p : Prise.values()) {
             if (p.getMatch() == match) {
                 return p;
