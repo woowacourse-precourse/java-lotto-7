@@ -12,7 +12,7 @@ class LottoTicketsTest {
     void 로또_티켓의_번호를_확인할_수_있다() {
         //given
         List<Lotto> lottos = IntStream.range(0, 8)
-            .mapToObj(i -> new Lotto(
+            .mapToObj(i -> Lotto.from(
                 RandomNumber.getUniqueNumbers(1, 45, 6)
             ))
             .toList();

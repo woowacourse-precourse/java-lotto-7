@@ -32,7 +32,7 @@ public class LottoMachine {
 
     private List<Lotto> createTickets(int ticketCount) {
         return IntStream.range(0, ticketCount)
-            .mapToObj(i -> new Lotto(
+            .mapToObj(i -> Lotto.from(
                 RandomNumber.getUniqueNumbers(START_LOTTO_NUMBER, LAST_LOTTO_NUMBER, LOTTO_COUNT)
             ))
             .toList();

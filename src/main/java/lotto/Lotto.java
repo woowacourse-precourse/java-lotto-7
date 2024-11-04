@@ -8,11 +8,15 @@ public class Lotto {
     private static final int NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validateNumberCount(numbers);
         validateNumberRange(numbers);
         validateNumberDuplication(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     public boolean containNumber(int number) {

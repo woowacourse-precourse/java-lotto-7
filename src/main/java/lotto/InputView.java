@@ -24,7 +24,7 @@ public class InputView {
 
         inputValidator.validateNumbersByComma(numbers);
 
-        return new Lotto(
+        return Lotto.from(
             Arrays.stream(numbers.split(","))
                 .map(Integer::parseInt)
                 .toList()
