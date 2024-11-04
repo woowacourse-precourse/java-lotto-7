@@ -16,17 +16,18 @@ public class Lottos {
 
     public List<Rank> compareWithWinLotto(WinningNumbers winningNumbers) {
         List<Integer> winNumbers = winningNumbers.getWinLottoNumbers();
-
         return lottos.stream()
                 .map(lotto -> determineRank(lotto, winNumbers, winningNumbers.getBonusNumber()))
                 .collect(Collectors.toList());
     }
 
-    public Rank determineRank(Lotto lotto, List<Integer> winNumbers, Integer bonus) {
+    private Rank determineRank(Lotto lotto, List<Integer> winNumbers, Integer bonus) {
         Integer matched = lotto.compareWithWinLotto(winNumbers);
+
         if (matched != 5) {
             return Rank.valueOf(matched, false);
         }
+
         boolean hasBonus = lotto.getNumbers().contains(bonus);
         return Rank.valueOf(matched, hasBonus);
     }
