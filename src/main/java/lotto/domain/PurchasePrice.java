@@ -9,7 +9,7 @@ public class PurchasePrice {
 
     private final int amount;
 
-    public PurchasePrice(String price){
+    public PurchasePrice(String price) {
         validate(price);
         this.amount = Integer.parseInt(price);
     }
@@ -37,7 +37,7 @@ public class PurchasePrice {
         }
     }
 
-    private static boolean canDivide(int amount){
+    private static boolean canDivide(int amount) {
         return amount % LOTTO_PER_PRICE != 0;
     }
 
@@ -45,11 +45,11 @@ public class PurchasePrice {
         return Integer.parseInt(price);
     }
 
-    public int getLottoTicketCount(){
+    public int getLottoTicketCount() {
         return amount / LOTTO_PER_PRICE;
     }
 
-    public int getAmount(){
+    public int getAmount() {
         return amount;
     }
 }

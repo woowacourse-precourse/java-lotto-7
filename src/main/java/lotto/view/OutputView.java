@@ -26,28 +26,29 @@ public class OutputView {
     }
 
     private static void printPurchaseQuantity(int lottoQuantity) {
-        String message = String.format("%s%d%s", LINE_BREAK.getMessage(), lottoQuantity, PURCHASE_QUANTITY_MESSAGE.getMessage());
+        String message = String.format("%s%d%s", LINE_BREAK.getMessage(), lottoQuantity,
+                PURCHASE_QUANTITY_MESSAGE.getMessage());
         System.out.println(message);
     }
 
-    public static void displayLottoDetails(LottoProfitRate lottoProfitRate){
+    public static void displayLottoDetails(LottoProfitRate lottoProfitRate) {
         printLottoDetailsTitle();
         printLottoDetails();
         printLottoProfit(lottoProfitRate);
     }
 
-    private static void printLottoDetailsTitle(){
+    private static void printLottoDetailsTitle() {
         System.out.println(WINNING_DETAIL_MESSAGE.getMessage());
         System.out.println(DIVIDING_LINE.getMessage());
     }
 
-    private static void printLottoDetails(){
+    private static void printLottoDetails() {
         for (Rank rank : Rank.values()) {
             System.out.printf(LOTTO_DETAIL_FORMAT.getMessage(), rank.getMessage(), rank.getPrize(), rank.getCount());
         }
     }
 
-    private static void printLottoProfit(LottoProfitRate lottoProfitRate){
-        System.out.printf(PROFIT_RATE_MESSAGE.getMessage(),lottoProfitRate.getLottoProfitRate());
+    private static void printLottoProfit(LottoProfitRate lottoProfitRate) {
+        System.out.printf(PROFIT_RATE_MESSAGE.getMessage(), lottoProfitRate.getLottoProfitRate());
     }
 }

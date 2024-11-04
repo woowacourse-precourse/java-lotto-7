@@ -14,7 +14,7 @@ public class LottoController {
 
     private final LottoSystem lottoSystem;
 
-    public LottoController(){
+    public LottoController() {
         this.lottoSystem = new LottoSystem();
     }
 
@@ -24,12 +24,12 @@ public class LottoController {
         OutputView.displayPurchasedLottoNumbers(lottos);
 
         WinningLottoNumber winningLottoNumber = inputWinningLottoNumber();
-        LottoProfitRate lottoProfitRate = lottoSystem.generateLottoResults(lottos,winningLottoNumber,purchasePrice);
+        LottoProfitRate lottoProfitRate = lottoSystem.generateLottoResults(lottos, winningLottoNumber, purchasePrice);
         OutputView.displayLottoDetails(lottoProfitRate);
     }
 
     private static PurchasePrice inputPurchasePrice() {
-        while(true){
+        while (true) {
             try {
                 String purchasePrice = InputView.readPurchasePrice();
                 return new PurchasePrice(purchasePrice);

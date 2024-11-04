@@ -33,7 +33,8 @@ class LottoSystemTest {
         String winningNumbers = "1,2,3,4,5,6";
         String bonusNumber = "7";
         Lottos lottos = lottoSystem.generateLottos(purchasePrice);
-        WinningLottoNumber winningLottoNumber = new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers), bonusNumber);
+        WinningLottoNumber winningLottoNumber = new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers),
+                bonusNumber);
 
         LottoProfitRate profitRate = lottoSystem.generateLottoResults(lottos, winningLottoNumber, purchasePrice);
 

@@ -44,7 +44,7 @@ class WinningLottoNumberTest {
 
     @DisplayName("잘못된 당첨 번호 형식이 입력되면 예외가 발생한다.(구분자)")
     @Test
-    void 잘못된_당첨_번호_형식이_입력되면_예외가_발생한다_구분자(){
+    void 잘못된_당첨_번호_형식이_입력되면_예외가_발생한다_구분자() {
         String winningNumbers = "1,2,3,4,5.6";
         String bonusNumber = "7";
 
@@ -70,7 +70,8 @@ class WinningLottoNumberTest {
         String winningNumbers = "1,2,3,4,5,6";
         String bonusNumber = "7";
 
-        WinningLottoNumber winningLottoNumber = new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers), bonusNumber);
+        WinningLottoNumber winningLottoNumber = new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers),
+                bonusNumber);
 
         assertThat(winningLottoNumber.getWinningNumber()).containsExactly(1, 2, 3, 4, 5, 6);
         assertThat(winningLottoNumber.getBonusNumber()).isEqualTo(7);

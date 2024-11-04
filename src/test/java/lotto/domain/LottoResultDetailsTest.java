@@ -17,7 +17,8 @@ class LottoResultDetailsTest {
                 new Lotto(Arrays.asList(1, 2, 3, 4, 7, 10)), //4개 일치
                 new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10)) //3개 일치
         ));
-        WinningLottoNumber winningLottoNumber = new WinningLottoNumber(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 15)), "6");
+        WinningLottoNumber winningLottoNumber = new WinningLottoNumber(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 15)),
+                "6");
 
         LottoResultDetails.count(lottos, winningLottoNumber);
 

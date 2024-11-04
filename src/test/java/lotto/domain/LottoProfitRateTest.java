@@ -35,10 +35,12 @@ class LottoProfitRateTest {
     @Test
     public void 구매가격에_대해_올바른_수익률을_반환한다() {
         Rank.resetCount();
-        WinningLottoNumber winningLottoNumber = new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers), bonusNumber);
-        LottoProfitRate lottoProfitRate = lottoSystem.generateLottoResults(lottos,winningLottoNumber,purchasePrice);
+        WinningLottoNumber winningLottoNumber = new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers),
+                bonusNumber);
+        LottoProfitRate lottoProfitRate = lottoSystem.generateLottoResults(lottos, winningLottoNumber, purchasePrice);
 
-        double expectedProfitSum = (30000000 * Rank.SECOND.getCount() + 5000 * Rank.FIFTH.getCount() + 50000 * Rank.FOURTH.getCount());
+        double expectedProfitSum = (30000000 * Rank.SECOND.getCount() + 5000 * Rank.FIFTH.getCount()
+                + 50000 * Rank.FOURTH.getCount());
         double expectedProfitRate = expectedProfitSum / purchasePrice.getAmount() * PROFIT_RATE;
         assertEquals(expectedProfitRate, lottoProfitRate.getLottoProfitRate(), 0.1);
     }

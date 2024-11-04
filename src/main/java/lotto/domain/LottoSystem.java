@@ -7,7 +7,8 @@ public class LottoSystem {
         return Lottos.of(lottoQuantity);
     }
 
-    public LottoProfitRate generateLottoResults(Lottos lottos, WinningLottoNumber winningLottoNumber, PurchasePrice purchasePrice) {
+    public LottoProfitRate generateLottoResults(Lottos lottos, WinningLottoNumber winningLottoNumber,
+                                                PurchasePrice purchasePrice) {
         LottoResultDetails.count(lottos, winningLottoNumber);
         return LottoProfitRate.of(purchasePrice);
     }

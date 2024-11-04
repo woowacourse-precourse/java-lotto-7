@@ -6,7 +6,7 @@ public class LottoProfitRate {
 
     private double lottoProfitRate;
 
-    public LottoProfitRate(double lottoProfitRate){
+    public LottoProfitRate(double lottoProfitRate) {
         this.lottoProfitRate = lottoProfitRate;
     }
 
@@ -15,16 +15,16 @@ public class LottoProfitRate {
         return new LottoProfitRate(lottoProfit);
     }
 
-    private static double getLottoProfitSum(){
+    private static double getLottoProfitSum() {
         long sum = 0;
-        for(Rank rank: Rank.values()){
+        for (Rank rank : Rank.values()) {
             sum += (long) rank.getPrize() * rank.getCount();
         }
         return (double) sum;
     }
 
-    private static double getLottoProfit(PurchasePrice purchasePrice){
-        return getLottoProfitSum()/ purchasePrice.getAmount() * PROFIT_RATE;
+    private static double getLottoProfit(PurchasePrice purchasePrice) {
+        return getLottoProfitSum() / purchasePrice.getAmount() * PROFIT_RATE;
     }
 
     public double getLottoProfitRate() {

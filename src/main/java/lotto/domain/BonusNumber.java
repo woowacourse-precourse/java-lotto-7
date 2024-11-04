@@ -9,7 +9,7 @@ public class BonusNumber {
 
     private int bonus;
 
-    public BonusNumber(int bonus, Lotto winningNumber){
+    public BonusNumber(int bonus, Lotto winningNumber) {
         validate(bonus, winningNumber);
         this.bonus = bonus;
     }
@@ -19,13 +19,13 @@ public class BonusNumber {
         checkNumberDuplicated(number, winningNumber);
     }
 
-    private void checkNumberRange(int number){
-        if(number < START_NUMBER || number > END_NUMBER){
+    private void checkNumberRange(int number) {
+        if (number < START_NUMBER || number > END_NUMBER) {
             throw new IllegalArgumentException(INPUT_LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 
-    private void checkNumberDuplicated(int number, Lotto winningNumber){
+    private void checkNumberDuplicated(int number, Lotto winningNumber) {
         if (winningNumber.getNumbers().contains(number)) {
             throw new IllegalArgumentException(CANT_DUPLICATED_BONUS_NUMBER_WITH_WINNING_NUMBER.getMessage());
         }
