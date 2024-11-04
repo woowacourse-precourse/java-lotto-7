@@ -24,9 +24,6 @@ public class Lotto {
         if (isDuplicate(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
-        if (!isInRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 정수여야 합니다.");
-        }
     }
     private boolean isDuplicate(List<Integer> numbers) {
         return numbers.size() != numbers.stream().distinct().count();

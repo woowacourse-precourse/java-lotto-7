@@ -114,6 +114,51 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("당첨 번호 중복 테스트")
+    @Test
+    void winNumberTest1() {
+        assertSimpleTest(() -> {
+            runException("8000", "1, 2, 3, 4, 5, 5", "7");
+            assertThat(output()).contains("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+        });
+    }
+
+    @DisplayName("당첨 번호 부족 테스트")
+    @Test
+    void winNumberTest2() {
+        assertSimpleTest(() -> {
+            runException("8000", "1, 2, 3, 4, 5", "7");
+            assertThat(output()).contains("[ERROR] 로또 번호는 6개여야 합니다.");
+        });
+    }
+
+    @DisplayName("당첨 번호 범위 테스트")
+    @Test
+    void winNumberTest3() {
+        assertSimpleTest(() -> {
+            runException("8000", "1, 2, 3, 4, 5, 46", "7");
+            assertThat(output()).contains("[ERROR] 로또 번호는 1에서 45 사이의 정수여야 합니다.");
+        });
+    }
+
+    @DisplayName("당첨 번호 숫자 테스트")
+    @Test
+    void winNumberTest4() {
+        assertSimpleTest(() -> {
+            runException("8000", "1, 2, 3, 4, 5, a", "7");
+            assertThat(output()).contains("[ERROR] 로또 번호는 45 이하의 숫자여야 합니다.");
+        });
+    }
+
+    @DisplayName("보너스 번호 중복 테스트")
+    @Test
+    void bonusNumberTest() {
+        assertSimpleTest(() -> {
+            runException("8000", "1, 2, 3, 4, 5, 6", "6");
+            assertThat(output()).contains("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
