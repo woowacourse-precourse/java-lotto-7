@@ -37,7 +37,7 @@ class LottoServiceTest {
     }
 
     @Test
-    void purchaseLotto() {
+    void 로또_구매() {
         // given
         int purchaseCount = 100;
         lottoService.getLottoNumbers().clear();
@@ -47,7 +47,7 @@ class LottoServiceTest {
     }
 
     @Test
-    void updateWinningStatus() {
+    void 당첨된_로또_증가() {
         // given
         LottoWinningNumbers winningNumbers = new LottoWinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
 
@@ -61,7 +61,7 @@ class LottoServiceTest {
     }
 
     @Test
-    void calculateTotalProfitRate() {
+    void 수익률_계산() {
         // when
         double result = lottoService.calculateTotalProfitRate(lottoWinningTierManager);
 
