@@ -14,9 +14,7 @@ public class LottoController {
 
     public void purchaseLotto() {
         PurchaseCost purchaseCost = inputPurchaseCost();
-
         PurchasedLottos purchasedLottos = purchase(purchaseCost);
-
         WinningNumbers winningNumbers = inputWinningNumbers();
         int bonusNumber = inputBonusNumber(winningNumbers);
 
