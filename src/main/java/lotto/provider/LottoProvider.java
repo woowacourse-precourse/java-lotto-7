@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
+import lotto.answer.Answer;
+import lotto.answer.LottoRank;
 import lotto.user.User;
 
 public class LottoProvider {
@@ -54,8 +56,19 @@ public class LottoProvider {
 		}
 	}
 
+	public void calculateRank(Answer answer) {
+		for (Lotto lotto : pickedLottos) {
+			int matchCounts = lotto.checkLottoResult(answer);
+			boolean hasBonus = lotto.hasBonusLotto(answer);
+			LottoRank rankByMatch = LottoRank.findRankByMatch(matchCounts, hasBonus);
+			if (rankByMatch != null) {
+				user.updateRank(rankByMatch);
+			}
+		}
+	}
+
 	public List<Lotto> getPickedLottos() {
 		return pickedLottos;
 	}
-	
+
 }
