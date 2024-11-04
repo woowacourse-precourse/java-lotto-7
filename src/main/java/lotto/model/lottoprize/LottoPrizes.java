@@ -13,6 +13,10 @@ public class LottoPrizes {
         this.lottoPrizes = generatePrizes(lottos, winningNumbers);
     }
 
+    public List<LottoPrize> getLottoPrizes() {
+        return lottoPrizes;
+    }
+
     private List<LottoPrize> generatePrizes(Lottos lottos, WinningNumbers winningNumbers) {
         return lottos.getLottos().stream()
                 .map(lotto -> calculatePrize(lotto, winningNumbers))
@@ -23,9 +27,5 @@ public class LottoPrizes {
         int matchCount = winningNumbers.countMatchingNumbers(lotto);
         boolean containsBonusNumber = winningNumbers.containsNumber(lotto);
         return LottoPrize.fromMatchCountAndBonus(matchCount, containsBonusNumber);
-    }
-
-    public List<LottoPrize> getLottoPrizes() {
-        return lottoPrizes;
     }
 }
