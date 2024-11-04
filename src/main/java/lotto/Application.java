@@ -26,5 +26,9 @@ public class Application {
         List<WinningType> winningTypes = lottoMachine.checkWinnings(lottos);
         output.outputWinningResult(winningTypes);
 
+        LottoSummary lottoSummary = new LottoSummary();
+        double incomePercent = lottoSummary.summary(money, winningTypes);
+        output.outputSummary(incomePercent);
+
     }
 }

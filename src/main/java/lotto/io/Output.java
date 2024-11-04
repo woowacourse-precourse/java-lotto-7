@@ -33,6 +33,10 @@ public class Output {
         System.out.printf("%d개 일치 (%s원) - %d개\n", 6, numberFormat.format(2000000000), winningCounts[6]);
     }
 
+    public void outputSummary(double incomePercent) {
+        System.out.printf("총 수익률은 %.2f\n", incomePercent);
+    }
+
     private int[] sortAndCountingWinningType(List<WinningType> winningTypes) {
         int[] winningCounts = new int[7];
 
@@ -46,5 +50,4 @@ public class Output {
     private void outputLotto(Lotto lotto) {
         System.out.printf("[%s]\n", lotto.toString());
     }
-
 }
