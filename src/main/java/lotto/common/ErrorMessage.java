@@ -6,6 +6,7 @@ public class ErrorMessage {
     // lotto
     public static final String lottoNumberSizeNot6 = prefix + "로또 번호는 6개여야 합니다.";
     public static final String lottoNumberDuplicated = prefix + "로또 번호가 중복입니다.";
+    public static final String lottoNumberOutOfRange = prefix + "로또 번호는 1~45사이의 숫자여야 합니다.";
 
     // input
     public static final String unknownError = prefix + "알 수 없는 에러가 발생했습니다.";
