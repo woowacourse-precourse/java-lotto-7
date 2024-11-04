@@ -10,7 +10,7 @@ import lotto.view.OutputView;
 
 public class LottoAppDownloader {
 
-    static LottoApp downLoadLottoApp() {
+    static LottoApp downLoad() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
