@@ -14,13 +14,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (int number : numbers) {
             if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException("당첨 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
             }
         }
     }
