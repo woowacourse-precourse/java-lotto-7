@@ -14,12 +14,14 @@ public class InputView {
     }
 
     public String PrintLottoInputMsg() {
+        System.out.println();
         System.out.println(HIT_LOTTO_MESSAGE);
         return Console.readLine();
 
     }
 
     public String PrintBonusLottoInputMsg() {
+        System.out.println();
         System.out.println(BONUS_LOTTO_MESSAGE);
         return Console.readLine();
     }

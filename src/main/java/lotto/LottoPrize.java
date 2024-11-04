@@ -1,4 +1,4 @@
-package lotto.lottoView;
+package lotto;
 
 public enum LottoPrize {
     THREE(3, 5000),

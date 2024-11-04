@@ -1,8 +1,8 @@
 package lotto.lottoView;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import lotto.LottoPrize;
 import lotto.lottoModel.LottoDTO;
 import lotto.lottoModel.StatisticsLottoDTO;
 
@@ -16,6 +16,7 @@ public class OutputView {
 
 
     public void howManyBuy(String numberOfBuy) {
+        System.out.println();
         System.out.printf(HOW_MANY_BUY, (Long.parseLong(numberOfBuy) / 1000));
         System.out.println();
     }
@@ -30,6 +31,7 @@ public class OutputView {
 
 
     public void statisticStart(StatisticsLottoDTO stats) {
+        System.out.println();
         System.out.println(STATISTIC_START);
         for (int i = 3; i <= 6; i++) {
             statisticEnd(i, stats);
@@ -37,12 +39,12 @@ public class OutputView {
     }
 
     public void statisticEnd(int i, StatisticsLottoDTO stats) {
-        if (i == 5) {
+        if (i == 5) { // 맞춘 개수가 5개일 때
             System.out.printf(VALUE_MATCH_START + VALUE_MATCH_END, i, LottoPrize.getPrize(i, false),
-                    stats.getHitNumberValue(i) - stats.getBonusNumberFrequency());
+                    stats.getHitNumberValue(i) - stats.getBonusNumberFrequency()); // 그냥 5개인 경우
             System.out.println();
             System.out.printf(VALUE_MATCH_START + BONUS_MATCH + VALUE_MATCH_END, i, LottoPrize.getPrize(i, true),
-                    stats.getBonusNumberFrequency());
+                    stats.getBonusNumberFrequency()); // 보너스 5개인 경우
             System.out.println();
             return;
         }

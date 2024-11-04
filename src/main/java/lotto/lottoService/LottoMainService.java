@@ -1,11 +1,9 @@
 package lotto.lottoService;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.stream.Collectors;
 import lotto.lottoModel.LottoDAO;
 import lotto.lottoModel.*;
-import lotto.lottoView.LottoPrize;
-import lotto.Utility.LottoNumberGenerator;
+import lotto.LottoPrize;
 
 import java.util.*;
 
