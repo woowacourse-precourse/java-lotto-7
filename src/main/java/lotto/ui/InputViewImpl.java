@@ -6,13 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InputViewImpl implements InputView {
+import static lotto.constants.InputMessage.*;
 
-    public static final String DELIMITER = ",";
+public class InputViewImpl implements InputView {
 
     @Override
     public String userInput() {
-        System.out.print("구매 금액을 입력하세요: ");
+        System.out.print(PURCHASE_AMOUNT_PROMPT);
         return Console.readLine();
     }
 
@@ -23,12 +23,12 @@ public class InputViewImpl implements InputView {
 
     @Override
     public String bonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요. ");
+        System.out.println(BONUS_NUMBER_PROMPT);
         return Console.readLine();
     }
 
     private String winningNumbersInput() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUMBERS_PROMPT);
         return Console.readLine();
     }
 

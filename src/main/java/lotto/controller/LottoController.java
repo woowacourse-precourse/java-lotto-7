@@ -33,14 +33,11 @@ public class LottoController {
                 lottoGame = new LottoGame(purchaseAmount);
                 List<Lotto> purchasedLottos = lottoService.generateLottos(purchaseAmount);
                 resultView.displayLottos(purchasedLottos);
-
                 WinningLotto winningLotto = createWinningLotto();
                 List<Rank> ranks = lottoService.checkWinningLottos(purchasedLottos, winningLotto);
-
                 for (Rank rank : ranks) {
                     lottoGame.addResult(rank);
                 }
-
                 resultView.printResult(lottoGame);
                 break;
             } catch (IllegalArgumentException e) {
@@ -54,16 +51,16 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto() {
-        return new WinningLotto(getWinningNumbers(), getBonusNumber());
+        return new WinningLotto(winningNumbers(), bonusNumber());
     }
 
-    private List<Integer> getWinningNumbers() {
+    private List<Integer> winningNumbers() {
         List<Integer> winningNumbers = inputView.lottoWinningNumbers();
         validator.winningNumbers(winningNumbers);
         return winningNumbers;
     }
 
-    private int getBonusNumber() {
+    private int bonusNumber() {
         return validator.parseInput(inputView.bonusNumber());
     }
 }

@@ -17,7 +17,6 @@ public class Application {
         Validator validator = new ValidatorImpl();
         LottoService lottoService = new LottoService(new LottoGenerator());
 
-        LottoController lottoController = new LottoController(inputView, resultView, validator, lottoService);
-        lottoController.executeLottoPurchase();
+        new LottoController(inputView, resultView, validator, lottoService).executeLottoPurchase();
     }
 }

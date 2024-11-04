@@ -39,8 +39,4 @@ public class LottoGame {
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
-
-    public void printReturnRate() {
-        System.out.println("총 수익률은 " + calculateReturnRate() + "%입니다.");
-    }
 }

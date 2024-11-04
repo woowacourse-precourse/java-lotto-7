@@ -20,8 +20,8 @@ public class LottoService {
 
     public List<Rank> checkWinningLottos(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
         return purchasedLottos.stream()
-                .map(lotto -> Rank.determineRank(lotto.getMatchingCount(winningLotto.getWinningNumbers()),
-                        lotto.hasBonusNumber(winningLotto.getWinningNumbers(), winningLotto.getBonusNumber())))
+                .map(lotto -> Rank.determineRank(lotto.getMatchingCount(winningLotto.winningNumbers()),
+                        lotto.hasBonusNumber(winningLotto.winningNumbers(), winningLotto.bonusNumber())))
                 .toList();
     }
 }
