@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.model.Payment;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoChecker;
 import lotto.model.lotto.LottoPublisher;
@@ -25,6 +26,7 @@ public class LottoController {
     }
 
     public void buyLotto() {
+        setLottoPublisher();
 
         Payment payment = getPayment();
         long lottoCount = printLottoCount(payment);
@@ -35,18 +37,26 @@ public class LottoController {
         printResult(lottos, lottoCount);
     }
 
+    private List<Lotto> publishLotto(long lottoCount) {
         List<Lotto> lottos = lottoPublisher.publishLotto(lottoCount);
         outputView.printLottos(lottos);
+        return lottos;
+    }
 
-        DrawNumbers drawNumbers = getDrawNumbers();
-        lottoChecker = new LottoChecker(drawNumbers);
-
+    private void printResult(List<Lotto> lottos, long lottoCount) {
         double revenueRate = lottoChecker.calcRevenueRate(lottos, lottoCount);
         System.out.println(outputView.resultToString(revenueRate));
     }
 
-    private static long calcLottoCount(long payment) {
-        return payment / Lotto.PRICE;
+    private long printLottoCount(Payment payment) {
+        long lottoCount = payment.calcLottoCount();
+        System.out.println("\n" + lottoCount + "개를 구매했습니다.");
+        return lottoCount;
+    }
+
+    private void setLottoPublisher() {
+        NumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
+        lottoPublisher = new LottoPublisher(lottoNumberGenerator);
     }
 
     private Payment getPayment() {
