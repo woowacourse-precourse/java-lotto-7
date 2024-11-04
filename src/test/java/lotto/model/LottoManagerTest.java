@@ -11,14 +11,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoManagerTest {
-    private FixedRandomNumbers fixedRandomNumbers;
     private Lottos lottos;
     private WinningNumbers winningNumbers;
     private BonusNumber bonusNumber;
 
     @BeforeEach
     void setUp() {
-        fixedRandomNumbers = new FixedRandomNumbers();
+        FixedRandomNumbers fixedRandomNumbers = new FixedRandomNumbers();
         lottos = Lottos.of(1, fixedRandomNumbers);
     }
 
@@ -26,9 +25,9 @@ class LottoManagerTest {
     @Test
     void createLottoManager() {
         // given
-        LottoManager lottoManager = LottoManager.of(lottos, winningNumbers, bonusNumber);
         winningNumbers = WinningNumbers.of(List.of(1, 2, 3, 4, 5, 6));
         bonusNumber = BonusNumber.of(7, winningNumbers.winningNumbers());
+        LottoManager lottoManager = LottoManager.of(lottos, winningNumbers, bonusNumber);
 
         // when
         Map<Rank, Long> expectedResult = new LinkedHashMap<>(Map.of(
