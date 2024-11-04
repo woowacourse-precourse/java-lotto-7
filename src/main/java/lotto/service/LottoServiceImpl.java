@@ -9,6 +9,7 @@ import lotto.dto.lottoDto.LottoResponse;
 import lotto.dto.lottoWinningResultDto.LottoWinningResult;
 import lotto.dto.lottoWinningResultDto.LottoWinningResultRequest;
 import lotto.dto.lottoWinningResultDto.LottoWinningResultResponse;
+import lotto.message.Constant;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.policy.BonusNumberPolicy;
@@ -104,7 +105,7 @@ public class LottoServiceImpl implements LottoService {
         List<Integer> lottoResult = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         for (Lotto lotto : issuedLotto) {
             int lottoRank = getRank(lottoWinningNumbers, lotto);
-            if (lottoRank == 0) {
+            if (lottoRank == Constant.NO_RANK.getConstant()) {
                 continue;
             }
             lottoResult.set(lottoRank - 1, lottoResult.get(lottoRank - 1) + 1);
@@ -117,17 +118,17 @@ public class LottoServiceImpl implements LottoService {
     private int getRank(LottoWinningNumbers lottoWinningNumbers, Lotto lotto) {
         int bonusNumber = lottoWinningNumbers.bonusNumber();
         int result = compareWinningLotto(lottoWinningNumbers, lotto);
-        if (result == 6) {
+        if (result == Constant.LOTTO_SIX_MATCHES.getConstant()) {
             return 1;
         }
-        if (isContainedBonusNumber(lotto, bonusNumber) && result == 5) {
+        if (isContainedBonusNumber(lotto, bonusNumber) && result == Constant.LOTTO_FIVE_MATCHES.getConstant()) {
             return 2;
         }
-        if (result < 3) {
+        if (result < Constant.LOTTO_FOUR_MATCHES.getConstant()) {
             return 0;
         }
 
-        return 8 - result;
+        return Constant.RANK_EXTRACT_NUMBER.getConstant() - result;
     }
 
     private int compareWinningLotto(LottoWinningNumbers lottoWinningNumbers, Lotto lotto) {
@@ -147,11 +148,13 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public double analyzeLottoRateOfReturn(LottoWinningResult lottoWinningResult, int lottoCount) {
-        double money = lottoCount * 1000;
+        double money = lottoCount * Constant.MONEY_CONVERSION.getConstant();
         double lottoWinningAmount
-                = lottoWinningResult.firstPlaceNumber() * 2000000000 + lottoWinningResult.secondPlaceNumber() * 30000000
-                + lottoWinningResult.thirdPlaceNumber() * 1500000 + lottoWinningResult.fourthPlaceNumber() * 50000
-                + lottoWinningResult.fifthPlaceNumber() * 5000;
+                = lottoWinningResult.firstPlaceNumber() * Constant.FIRST_PRIZE_MONEY.getConstant()
+                + lottoWinningResult.secondPlaceNumber() * Constant.SECOND_PRIZE_MONEY.getConstant()
+                + lottoWinningResult.thirdPlaceNumber() * Constant.THIRD_PRIZE_MONEY.getConstant()
+                + lottoWinningResult.fourthPlaceNumber() * Constant.FOURTH_PRIZE_MONEY.getConstant()
+                + lottoWinningResult.fifthPlaceNumber() * Constant.FIFTH_PRIZE_MONEY.getConstant();
 
         return (double) Math.round(lottoWinningAmount / money * 1000) / 10;
     }

@@ -2,6 +2,7 @@ package lotto.validator;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.message.Constant;
 import lotto.message.ErrorMessage;
 import lotto.model.Lotto;
 
@@ -36,7 +37,7 @@ public class Validator {
     }
 
     public static void lottoNumbersShouldBeSix(List<Integer> lotto) {
-        if (lotto.size() != 6) {
+        if (lotto.size() != Constant.LOTTO_COUNT.getConstant()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_SIX.getErrorMessage());
         }
     }
