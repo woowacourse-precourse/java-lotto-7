@@ -26,13 +26,10 @@ public class Validation {
         }
     }
 
-    public static void validateBonusNumberRange(int bonusNumber) {
+    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getMessage());
         }
-    }
-
-    public static void validateBonusNumberDuplicates(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         }
