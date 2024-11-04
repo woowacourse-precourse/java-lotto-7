@@ -15,9 +15,6 @@ public class OutputView {
     private static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String STATISTICS_HEADER = "당첨통계";
     private static final String STATISTICS_DIVIDER = "'---";
-    private static final String ERROR_MONEY = "[ERROR] : 구입금액이 잘못 입력 되었습니다.";
-    private static final String ERROR_WINNING_NUMBERS = "[ERROR] : 당첨 번호가 잘못 입력 되었습니다.";
-    private static final String ERROR_BONUS_NUMBER = "[ERROR] : 보너스 번호가 잘못 입력 되었습니다.";
     private static final String LOTTO_BOUGHT_MESSAGE = "개를 구매했습니다.";
     private static final String STATISTICS_MESSAGE = "%s (%s) - %d개\n";
     private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
@@ -73,17 +70,5 @@ public class OutputView {
 
     public static void printRateOfReturn(double rateOfReturn) {
         System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
-    }
-
-    public static void printErrorOfRequestMoney() {
-        System.out.println(ERROR_MONEY);
-    }
-
-    public static void printErrorOfRequestNumbers() {
-        System.out.println(ERROR_WINNING_NUMBERS);
-    }
-
-    public static void printErrorOfRequestNumber() {
-        System.out.println(ERROR_BONUS_NUMBER);
     }
 }
