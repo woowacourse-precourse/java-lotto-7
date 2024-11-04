@@ -66,4 +66,21 @@ public class LottoNumberFormatterTest {
                 Arguments.of((Object) new String[]{"1", "2", "3", "exception", "5", "6"})
         );
     }
+
+    @DisplayName("보너스 번호 String에서 int로 형변환 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"7"})
+    void converToBoolTest(String input) {
+        int result = lottoNumberFormatter.convertToBonusNum(input);
+        assertEquals(7, result);
+    }
+
+    @DisplayName("보너스 번호 String에서 int로 형변환할 때 숫자 이외의 입력일 시의 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"bonus"})
+    void converToBoolExceptionTest(String input) {
+        assertThatThrownBy(() -> lottoNumberFormatter.convertToBonusNum(input)).isInstanceOf(
+                IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+    }
+
 }
