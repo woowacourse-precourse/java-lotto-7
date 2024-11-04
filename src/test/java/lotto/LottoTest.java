@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -22,4 +23,10 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("로또 번호가 6개이고 1~45 범위의 고유 숫자로 이루어졌을 때 정상적으로 생성된다.")
+    void 로또_번호가_정상적으로_생성된다() {
+        Lotto lotto = new Lotto(List.of(8, 21, 23, 41, 42, 43));
+        assertThat(lotto.getNumbers()).containsExactlyInAnyOrder(8, 21, 23, 41, 42, 43);
+    }
 }
