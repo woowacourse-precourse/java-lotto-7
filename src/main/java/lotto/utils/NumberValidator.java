@@ -4,6 +4,9 @@ import lotto.constants.ErrorMessages;
 
 public class NumberValidator {
 
+    private NumberValidator() {
+
+    }
 
     public static void validateNumberRange(Integer number, int min, int max) {
         if (exceedRange(number, min, max)) {
@@ -11,7 +14,7 @@ public class NumberValidator {
         }
     }
 
-    public static boolean exceedRange(Integer number, int min, int max) {
+    private static boolean exceedRange(Integer number, int min, int max) {
         return number > max || number < min;
     }
 
