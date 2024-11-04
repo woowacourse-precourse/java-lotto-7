@@ -15,6 +15,12 @@ public class LottoValidator {
         }
     }
 
+    public static int parseBonusNumber(String input, List<Integer> winningNumbers) {
+        int bonusNumber = parsePositiveInteger(input);
+        validateBonusNumber(bonusNumber, winningNumbers);
+        return bonusNumber;
+    }
+
     public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
@@ -51,7 +57,7 @@ public class LottoValidator {
 
     private static int parsePositiveInteger(String input) {
         try {
-            int number = Integer.parseInt(input);
+            int number = Integer.parseInt(input.trim());
             if (number <= 0) {
                 throw new IllegalArgumentException("[ERROR] 양수를 입력해야 합니다.");
             }

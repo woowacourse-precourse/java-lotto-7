@@ -6,6 +6,8 @@ import lotto.util.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoGameController {
 
     private final LottoService lottoService = new LottoService();
@@ -33,10 +35,11 @@ public class LottoGameController {
 
     private WinningLotto readWinningLotto() {
         String winningNumbersInput = InputView.inputWinningNumbers();
+        List<Integer> winningNumbers = LottoValidator.parseLottoNumbers(winningNumbersInput);
+
         String bonusNumberInput = InputView.inputBonusNumber();
-        return new WinningLotto(
-                LottoValidator.parseLottoNumbers(winningNumbersInput),
-                Integer.parseInt(bonusNumberInput)
-        );
+        int bonusNumber = LottoValidator.parseBonusNumber(bonusNumberInput, winningNumbers);
+
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 }
