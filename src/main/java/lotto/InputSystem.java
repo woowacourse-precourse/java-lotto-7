@@ -6,8 +6,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputSystem {
+    // 금액이 0원 보다 작거나 1000으로 나눠 떨어지지 않을 경우 예외 처리
+    private static int validateAmount(){
+        String input = Console.readLine();
+        int amount = Integer.parseInt(input);
+        if (amount <= 0 || amount%1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 0보다 커야 합니다.");
+        }
+        return amount;
+    }
+
     public static int inputLottoPurchaseAmount(){
-        return Integer.parseInt(Console.readLine());
+        while (true) {
+            try {
+                return validateAmount();
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static List<Integer> convert(String[] inputLottoNumber){
