@@ -6,6 +6,7 @@ import static lotto.common.Consts.FOURTH_PRIZE_MONEY;
 import static lotto.common.Consts.SECOND_PRIZE_MONEY;
 import static lotto.common.Consts.THIRD_PRIZE_MONEY;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 
 public enum WinningRanking implements Model{
@@ -29,7 +30,7 @@ public enum WinningRanking implements Model{
 
     @Override
     public String toString(){
-        return String.format("%d개 일치 (%d원) - ",this.matchedCount, this.prizeMoney);
+        return String.format("%d개 일치 (%s원) - ",this.matchedCount, legiblePrizeMoney());
     }
 
     public boolean equals(int matchedCount, boolean isBonusMatched){
@@ -42,6 +43,12 @@ public enum WinningRanking implements Model{
 
     public int getPrizeMoney(){
         return this.prizeMoney;
+    }
+
+    private String legiblePrizeMoney(){
+        NumberFormat numberFormat = NumberFormat.getInstance();
+
+        return numberFormat.format(this.prizeMoney);
     }
 
     public static WinningRanking findByCountAndBonus(int matchedCount, boolean bonusMatched) {
