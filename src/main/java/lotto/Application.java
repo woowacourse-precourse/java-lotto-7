@@ -10,7 +10,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             System.out.println("구입 금액을 입력하세요: ");
-            int purchaseAmount = Integer.parseInt(Console.readLine());
+            int purchaseAmount = readPurchaseAmount();
             validatePurchaseAmount(purchaseAmount);
 
             int ticketCount = purchaseAmount / 1000;
@@ -39,6 +39,14 @@ public class Application {
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private static int readPurchaseAmount() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
         }
     }
 
