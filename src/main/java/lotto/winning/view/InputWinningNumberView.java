@@ -31,4 +31,8 @@ public class InputWinningNumberView {
     public void setNullInputWinningNumbers() {
         this.inputWinningNumbers = null;
     }
+
+    public void setNullInputBonusNumber() {
+        this.inputBonusNumber = null;
+    }
 }

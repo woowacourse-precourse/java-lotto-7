@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.common.constant.*;
 import lotto.common.model.Lotto;
+import lotto.dto.BonusNumberDto;
 import lotto.dto.LottoTicketsDto;
 import lotto.dto.WinningNumberDto;
 import lotto.winning.CheckingWinningService;
@@ -14,19 +15,21 @@ public class WinningController {
     private final List<Lotto> LottoTickets;
     private final InputWinningNumberView inputWinningNumberView;
     private final OutputwinningResultView outputwinningResultView;
-    private CheckingWinningService checkingWinningService;
     private final WinningNumbers winningNumbers;
-    private WinningStatistics winningStatistics;
+    private final BonusNumber bonusNumber;
 
     public WinningController() {
         this.LottoTickets = LottoTicketsDto.getLottoTicketsDto().LottoTickets();
         this.inputWinningNumberView = new InputWinningNumberView();
         this.outputwinningResultView = new OutputwinningResultView();
         this.winningNumbers = new WinningNumbers();
+        this.bonusNumber = new BonusNumber();
     }
 
     public void presentRanksAndRates() {
         receiveWinningNumbers();
+        receiveBonusNumbers();
+
         Map<RankConstant, Integer> ranks = getRanksOfLottoTickets();
         outputwinningResultView.printRanks(ranks);
         int payment = LottoTickets.size() * 1_000;
@@ -46,21 +49,21 @@ public class WinningController {
         }
     }
 
+    private void receiveBonusNumbers() {
+        try {
+            String inputBonusNumber = inputWinningNumberView.getInputBonusNumber();
+            int validBonusNumber = bonusNumber.getBonusNumber(inputBonusNumber);
+            new BonusNumberDto(validBonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + "\n");
+            inputWinningNumberView.setNullInputBonusNumber();
+            receiveBonusNumbers();
+        }
+    }
+
     private Map<RankConstant, Integer> getRanksOfLottoTickets() {
         List<Integer> winningNumbers = setWinningNumbers();
         int bonusNumber = setBonusNumber();
         return winningStatistics.getRanks(winningNumbers, bonusNumber, LottoTickets);
     }
-
-    private int setBonusNumber() {
-        try {
-            String inputBonusNumber = inputWinningNumberView.getInputBonusNumber();
-            return winningNumbers.getBonusNumber(inputBonusNumber);
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage() + "/n");
-            return setBonusNumber();
-        }
-    }
-
-
 }
