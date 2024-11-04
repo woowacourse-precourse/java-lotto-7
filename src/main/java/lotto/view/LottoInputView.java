@@ -43,7 +43,7 @@ public class LottoInputView {
             throw new IllegalArgumentException("[ERROR] 입력 값은 비어 있을 수 없습니다.");
         }
         if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 포함되어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 포함되어야 하며, 공백이 포함될 수 없습니다.");
         }
     }
 
