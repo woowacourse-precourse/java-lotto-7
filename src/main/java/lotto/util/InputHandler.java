@@ -5,8 +5,6 @@ import static lotto.constant.ErrorCode.INVALID_INPUT_FORMAT;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.constant.ErrorCode;
-import lotto.view.OutputView;
 
 public class InputHandler {
 

@@ -11,9 +11,10 @@ public class PublishLottoService {
     private final PublishCount publishCount;
     private final LottoValidator lottoValidator;
 
-    public PublishLottoService(final PublishCount publishCount,final LottoValidator lottoValidator) {
+    public PublishLottoService(final PublishCount publishCount,
+        final LottoValidator lottoValidator) {
         this.publishLottoRepository = PublishLottoRepository.getInstance();
-        this.publishCount =  publishCount;
+        this.publishCount = publishCount;
         this.lottoValidator = lottoValidator;
     }
 

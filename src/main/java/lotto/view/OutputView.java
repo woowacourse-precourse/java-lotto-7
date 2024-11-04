@@ -38,7 +38,7 @@ public class OutputView {
         System.out.println("총 수익률은 " + formattedProfit + "%입니다.");
     }
 
-    public static void printError(String errorMessage) {
+    public void printError(String errorMessage) {
         System.out.println(errorMessage);
     }
 

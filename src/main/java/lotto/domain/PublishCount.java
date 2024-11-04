@@ -2,8 +2,6 @@ package lotto.domain;
 
 import static lotto.constant.ErrorCode.OVER_PUBLIST_COUNT;
 
-import lotto.view.OutputView;
-
 public class PublishCount {
 
     private static PublishCount instance;

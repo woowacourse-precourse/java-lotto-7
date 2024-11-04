@@ -82,7 +82,8 @@ public class LottoController {
     }
 
     private void publishLottoSetup() {
-        PublishLottoService publishLottoService = new PublishLottoService(publishCount, lottoValidator);
+        PublishLottoService publishLottoService = new PublishLottoService(publishCount,
+            lottoValidator);
         publishLottoService.publishLotto();
         outputView.printPublishLottos(publishLottoRepository.findAll());
     }

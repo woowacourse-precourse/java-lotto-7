@@ -10,10 +10,13 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Application {
+    
     public static void main(String[] args) {
         LottoResultService lottoResultService = new LottoResultService();
-        LottoValidator lottoValidator = new LottoValidator(new DefaultRangeValidator(), new DefaultDuplicateValidator());
-        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator(new DefaultRangeValidator());
+        LottoValidator lottoValidator = new LottoValidator(new DefaultRangeValidator(),
+            new DefaultDuplicateValidator());
+        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator(
+            new DefaultRangeValidator());
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 

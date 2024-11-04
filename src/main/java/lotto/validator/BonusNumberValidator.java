@@ -3,7 +3,6 @@ package lotto.validator;
 import static lotto.constant.ErrorCode.DUPLICATE_BONNUS_NUMBER;
 
 import lotto.domain.Lotto;
-import lotto.view.OutputView;
 
 public class BonusNumberValidator {
 

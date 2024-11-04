@@ -2,8 +2,6 @@ package lotto.validator;
 
 import static lotto.constant.ErrorCode.INVALID_PURCHASE_AMOUNT;
 
-import lotto.view.OutputView;
-
 public class PurchaseAmountValidator {
 
     private static final int TICKET_PRICE = 1000;

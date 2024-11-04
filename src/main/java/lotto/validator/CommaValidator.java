@@ -2,8 +2,6 @@ package lotto.validator;
 
 import static lotto.constant.ErrorCode.CONTIGIOUS_COMMA;
 
-import lotto.view.OutputView;
-
 public class CommaValidator {
 
     private static final String COMMAS = ",,";
