@@ -43,7 +43,7 @@ public class OutputViewTest {
     void 발행_로또_번호_출력_테스트() {
         //given
         List<PublishLotto> publishLottoList = new ArrayList<>();
-        publishLottoList.add(new PublishLotto(List.of(1, 2, 3, 8, 9, 10), lottoValidator));
+        publishLottoList.add(new PublishLotto(List.of(8, 9, 10, 1, 2, 3), lottoValidator));
         publishLottoList.add(new PublishLotto(List.of(4, 5, 6, 11, 12, 13), lottoValidator));
         publishLottoList.add(new PublishLotto(List.of(1, 2, 3, 4, 5, 6), lottoValidator));
 
