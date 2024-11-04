@@ -5,7 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.LottoPrize;
 import lotto.validator.LottoValidator;
 
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 public class LottoManager {
@@ -27,12 +28,12 @@ public class LottoManager {
         compareLottoList();
         printResult();
         printProfit();
+        Console.close();
     }
 
     public void setPurchaseAmount(){
         while (!getPurchaseAmount()){
         }
-        //Console.close();
     }
 
     public void setLotto(){
@@ -43,7 +44,8 @@ public class LottoManager {
     }
 
     public void setWinningNumber(){
-        while (!getWinningNumbers()) {}
+        while (!getWinningNumbers()) {
+        }
     }
 
     public void setBonusNumber(){
@@ -54,7 +56,6 @@ public class LottoManager {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             userInput = Console.readLine().trim();
         }
-
     }
 
     public void compareLottoList(){
@@ -172,12 +173,13 @@ public class LottoManager {
         }
     }
 
-    double calculateProfit(){
-        if(purchaseAmount == 0){
+    double calculateProfit() {
+        if (purchasePrice == 0) {
             throw new IllegalArgumentException("[Error] 구매 금액은 0이 될 수 없습니다.");
         }
-        double profitRate = (totalEarningSum / purchaseAmount) * 100;
-        return Math.round(profitRate) / 1000.0;
+        double profitRate = ((double) totalEarningSum / purchasePrice) * 100;
+        BigDecimal roundedProfitRate = new BigDecimal(profitRate).setScale(1, RoundingMode.HALF_UP); // 소수점 첫째 자리에서 반올림
+        return roundedProfitRate.doubleValue();
     }
 
     //테스트를 위한 설정 메서드
@@ -185,8 +187,12 @@ public class LottoManager {
         this.purchaseAmount = purchaseAmountForTest;
     }
 
-    void setLottoListForTest(Lotto lotto){
-        this.lottoList.add(lotto);
+    void setPurchasePriceForTest(int purchasePriceForTest) {
+        this.purchasePrice = purchasePriceForTest;
+    }
+
+    void setTotalEarningSumForTest(int totalEarningSumForTest){
+        this.totalEarningSum = totalEarningSumForTest;
     }
 
     void setWinningLottoForTest(Lotto winningLottoForTest) {
