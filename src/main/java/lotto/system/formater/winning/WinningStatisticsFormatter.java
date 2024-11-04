@@ -33,8 +33,7 @@ public class WinningStatisticsFormatter {
     }
 
     private static void appendProfitRate(StringBuilder sb, Map<PrizeType, Integer> statistics, int totalPurchaseAmount) {
-        ProfitRateCalculator profitRateCalculator = new ProfitRateCalculator(statistics, totalPurchaseAmount);
-        ProfitRate profitRate = profitRateCalculator.calculateProfitRate();
+        ProfitRate profitRate = ProfitRateCalculator.calculateProfitRate(statistics, totalPurchaseAmount);
         sb.append(ProfitRateFormatter.formatAsMessage(profitRate.getProfitRate()));
     }
 }
