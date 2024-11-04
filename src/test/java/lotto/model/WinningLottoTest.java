@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.dto.BonusNumberDto;
+import lotto.dto.WinningLotteryDto;
 import lotto.exception.LottoExceptionStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +17,10 @@ public class WinningLottoTest {
         Lotto winningLottoNumbers = new Lotto(List.of(1,2,3,4,5,6));
         int bonusNumber = 7;
 
-        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.from(
+                new WinningLotteryDto(winningLottoNumbers.getNumbers()),
+                new BonusNumberDto(bonusNumber)
+        );
 
         Assertions.assertThat(winningLotto.getWinningLotto().getNumbers()).isEqualTo(winningLottoNumbers.getNumbers());
         Assertions.assertThat(winningLotto.getBonusNumber()).isEqualTo(bonusNumber);
@@ -29,7 +34,10 @@ public class WinningLottoTest {
         int bonusNumber = 7;
 
         Assertions.assertThatThrownBy(() -> {
-            new WinningLotto(winningLottoNumbers, bonusNumber);
+                    WinningLotto.from(
+                            new WinningLotteryDto(winningLottoNumbers.getNumbers()),
+                            new BonusNumberDto(bonusNumber)
+                    );
         })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LottoExceptionStatus.INVALID_BONUS_NUMBER_DUPLICATE_WITH_WINNING.getMessage());
