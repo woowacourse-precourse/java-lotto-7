@@ -32,7 +32,7 @@ public class LottoController {
         LottoTickets lottoTickets = lottoService.generateLottoTickets(purchasePrice);
         respondLottoTickets(lottoTickets);
 
-        WinningNumbers winningNumbers = requestWithRetry(this::requestWinningNumbers);
+        WinningNumbers winningNumbers = requestWinningNumbers();
         respondWinningResult(lottoTickets, winningNumbers, purchasePrice);
     }
 
@@ -53,8 +53,8 @@ public class LottoController {
     }
 
     private WinningNumbers requestWinningNumbers() {
-        Lotto mainNumbers = requestMainNumbers();
-        BonusNumber bonusNumber = requestBonusNumber(mainNumbers);
+        Lotto mainNumbers = requestWithRetry(this::requestMainNumbers);
+        BonusNumber bonusNumber = requestWithRetry(() -> requestBonusNumber(mainNumbers));
         return new WinningNumbers(mainNumbers, bonusNumber);
     }
 
