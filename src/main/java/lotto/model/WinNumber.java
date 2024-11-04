@@ -8,6 +8,9 @@ import static lotto.enumerate.ErrorPrint.INPUT_HAS_WRONG_PATTERN;
 import static lotto.enumerate.ErrorPrint.LOTTO_DOES_NOT_HAVE_CORRECT_SIZE;
 
 public class WinNumber {
+    private static final String WIN_NUMBER_DELIMITER = ",";
+    private static final String NUMBER_PROVE_DELIMITER = "\\d+";
+    private static final Integer SIZE_OF_LOTTO = 6;
 
     private final List<Integer> numbers;
     private final Integer bonus;
@@ -18,7 +21,7 @@ public class WinNumber {
     }
 
     private List<Integer> getWinNumbers(String numbers) {
-        String[] split = numbers.split(",");
+        String[] split = numbers.split(WIN_NUMBER_DELIMITER);
         validateFormats(split);
         validateWinNumber(split);
         return Arrays.stream(split)
@@ -35,20 +38,23 @@ public class WinNumber {
         for (String string : inputValue) {
             validateFormat(string);
         }
-
     }
 
     private static void validateFormat(String string) {
-        final Pattern PATTERN = Pattern.compile("\\d+");
+        final Pattern PATTERN = Pattern.compile(NUMBER_PROVE_DELIMITER);
         if (!PATTERN.matcher(string).matches()) {
             throw new IllegalArgumentException(INPUT_HAS_WRONG_PATTERN.getMsg());
         }
     }
 
     private void validateWinNumber(String[] split) {
-        if (split.length != 6) {
+        if (isNotMatchLottoSize(split)) {
             throw new IllegalArgumentException(LOTTO_DOES_NOT_HAVE_CORRECT_SIZE.getMsg());
         }
+    }
+
+    private static boolean isNotMatchLottoSize(String[] split) {
+        return split.length != SIZE_OF_LOTTO;
     }
 
     public int countMatchingNumbers(List<Integer> numbers) {

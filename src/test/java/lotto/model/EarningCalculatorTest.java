@@ -14,11 +14,10 @@ class EarningCalculatorTest {
         HashMap<Rank, Integer> currentLottoRank = new HashMap<>();
         currentLottoRank.put(Rank.FIFTH, 1);
         int purchase = 8000;
-        EarningCalculator earningCalculator = new EarningCalculator();
         // when
         System.out.println("=====Logic Start=====");
 
-        double calculate = earningCalculator.calculate(currentLottoRank, purchase);
+        double calculate = EarningCalculator.calculate(currentLottoRank, purchase);
 
         System.out.println("=====Logic End=====");
         // then

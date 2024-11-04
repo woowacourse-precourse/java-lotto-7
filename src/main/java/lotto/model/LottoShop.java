@@ -18,6 +18,6 @@ public class LottoShop {
     }
 
     private long calculatePurchasableQuantity(Money money) {
-        return money.getPrice() / LOTTO_PRICE;
+        return money.divideByUnit(LOTTO_PRICE);
     }
 }

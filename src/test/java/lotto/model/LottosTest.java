@@ -38,7 +38,7 @@ class LottosTest {
     }
 
     @Test
-    void 초기화테스트() {
+    void 초기화및로또개수테스트() {
         // given
         Lottos lottos = Lottos.init(List.of(List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),
