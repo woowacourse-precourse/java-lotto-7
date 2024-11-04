@@ -12,13 +12,11 @@ public class OutputView {
     }
 
     public void printWinningNumbersRequestMessage() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(System.lineSeparator() + "당첨 번호를 입력해 주세요.");
     }
 
     public void printBonusNumberRequestMessage() {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(System.lineSeparator() + "보너스 번호를 입력해 주세요.");
     }
 
     // TODO: 출력 메시지 정리 & 에러 메시지 정리
@@ -44,5 +42,9 @@ public class OutputView {
         for (String line : lines) {
             System.out.println(line);
         }
+    }
+
+    public static void printExceptionMessage(Exception exception) {
+        System.out.println("[ERROR] " + exception.getMessage());
     }
 }
