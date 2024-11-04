@@ -16,7 +16,7 @@ public class InputView {
         }
     }
 
-    private static boolean isValidPurchaseAmount(final String input) {
+    protected static boolean isValidPurchaseAmount(final String input) {
         if (!input.matches("\\d+")) {
             return false;
         }
