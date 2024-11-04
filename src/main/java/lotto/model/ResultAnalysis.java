@@ -1,13 +1,13 @@
 package lotto.model;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class ResultAnalysis {
-    private final EnumMap<Rank, Long> ranks;
+    private final Map<Rank, Integer> ranks;
 
-    public ResultAnalysis(EnumMap<Rank, Long> ranks) {
+    public ResultAnalysis(Map<Rank, Integer> ranks) {
         this.ranks = ranks;
     }
 
@@ -31,9 +31,9 @@ public class ResultAnalysis {
     private List<Long> convertToWinningPrice() {
         List<Long> winningPrices = new ArrayList<>();
 
-        for (EnumMap.Entry<Rank, Long> entry : ranks.entrySet()) {
+        for (Map.Entry<Rank, Integer> entry : ranks.entrySet()) {
             Rank rank = entry.getKey();
-            long count = entry.getValue();
+            int count = entry.getValue();
             long totalPriceForRank = rank.getPrice() * count;
             winningPrices.add(totalPriceForRank);
         }

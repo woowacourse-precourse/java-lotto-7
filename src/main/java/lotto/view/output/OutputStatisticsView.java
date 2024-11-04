@@ -1,13 +1,13 @@
 package lotto.view.output;
 
-import java.util.EnumMap;
+import java.util.Map;
 import lotto.model.Rank;
 
 public class OutputStatisticsView {
-    public static void lottoResultOutput(EnumMap<Rank, Long> ranks) {
+    public static void lottoResultOutput(Map<Rank, Integer> ranks) {
         System.out.println("당첨 통계\n---");
 
-        for (EnumMap.Entry<Rank, Long> entry : ranks.entrySet()) {
+        for (Map.Entry<Rank, Integer> entry : ranks.entrySet()) {
             Rank rank = entry.getKey();
             if (rank == Rank.NONE) {
                 continue;
