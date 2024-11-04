@@ -3,7 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.util.InputValidator;
 
 public class UserInputService {
@@ -65,7 +65,5 @@ public class UserInputService {
     private List<String> splitInput(String input) {
         return Arrays.stream(input.split(",")).toList();
     }
-
-
 
 }

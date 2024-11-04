@@ -1,7 +1,8 @@
-package lotto;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.model.Lotto;
 
 public class View {
 
@@ -19,17 +20,22 @@ public class View {
     }
 
     public static String winningNumberView() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         return Console.readLine();
     }
 
 
     public static String bonusNumberView() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }
 
     public static void showResult(List<Integer> result, String increase) {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + result.get(0) + "개");
         System.out.println("4개 일치 (50,000원) - " + result.get(1) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + result.get(2) + "개");

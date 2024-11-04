@@ -1,9 +1,10 @@
-package lotto;
+package lotto.model;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -29,15 +30,10 @@ public class Lotto {
         }
     }
 
+    @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[");
-        for(int number : numbers) {
-            stringBuilder.append(number);
-            stringBuilder.append(", ");
-        }
-        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
-        stringBuilder.append("]");
-        return stringBuilder.toString();
+        return "[" + numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ")) + "]";
     }
 }

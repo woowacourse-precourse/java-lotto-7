@@ -3,9 +3,9 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
-public class LottoService {
+public class LottoGenerator {
     public List<Lotto> getPurchasedLotto(int count) {
         List<Lotto> lotto = new ArrayList<>();
 

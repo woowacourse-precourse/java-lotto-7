@@ -2,9 +2,9 @@ package lotto.service;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
-public class WinningService {
+public class LottoResultService {
     public List<Integer> getResult(List<Lotto> purchasedLotto, Lotto winningNumber, int bonusNumber) {
         List<Integer> result = Arrays.asList(0,0,0,0,0);
 

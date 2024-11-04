@@ -1,28 +1,30 @@
 package lotto;
 
 import java.util.List;
-import lotto.service.LottoService;
+import lotto.model.Lotto;
+import lotto.service.LottoGenerator;
+import lotto.service.ProfitCalculator;
 import lotto.service.UserInputService;
-import lotto.service.WinningService;
+import lotto.service.LottoResultService;
+import lotto.view.View;
 
 public class MainProgram {
     private final UserInputService userInputService = new UserInputService();
-    private final LottoService lottoService = new LottoService();
-    private final WinningService winningService = new WinningService();
+    private final LottoGenerator lottoGenerator = new LottoGenerator();
+    private final LottoResultService lottoResultService = new LottoResultService();
+    private final ProfitCalculator profitCalculator = new ProfitCalculator();
 
     public void run() {
         int amount = getAmount();
         int count = amount / 1000;
-        List<Lotto> purchasedLotto = lottoService.getPurchasedLotto(count);
+        List<Lotto> purchasedLotto = lottoGenerator.getPurchasedLotto(count);
         View.showLottoNumbers(count, purchasedLotto);
         Lotto winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber();
-        List<Integer> result = winningService.getResult(purchasedLotto, winningNumber, bonusNumber);
-        String increase = getIncrease(result, amount);
+        List<Integer> result = lottoResultService.getResult(purchasedLotto, winningNumber, bonusNumber);
+        String increase = profitCalculator.calculateProfitRate(result, amount);
         View.showResult(result, increase);
     }
-
-
 
     public int getAmount() {
         while(true) {
@@ -58,17 +60,5 @@ public class MainProgram {
                 System.out.println(message);
             }
         }
-    }
-
-    private String getIncrease(List<Integer> result, int amount) {
-        double increase = 5000 * result.get(0) + 50000 * result.get(1) +
-                1500000 * result.get(2) + 30000000 * result.get(3) + 2000000000 * result.get(4);
-
-        if(increase == 0) {
-            return "0.0";
-        }
-
-        increase = increase / amount * 100;
-        return String.format("%.1f", increase);
     }
 }
