@@ -11,6 +11,9 @@ public class LottoConverter {
     private List<Integer> lottoNumbers = new ArrayList<>();
     private int bonusNumber;
 
+    public LottoConverter() {
+    }
+
     public LottoConverter(List<Integer> lottoNumbers) {
         validateSize(lottoNumbers);
         validateRange(lottoNumbers);
