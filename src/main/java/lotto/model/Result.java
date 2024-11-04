@@ -18,8 +18,7 @@ public class Result {
         results = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
     }
 
-    public void put(long matchingCount, UserLotto userLotto, BonusNumber bonusNumber) {
-        int bonus = bonusNumber.getNumber();
+    public void put(long matchingCount, boolean hasBonusNumber) {
         if (matchingCount == 3) {
             results.set(THREE_MATCHING_INDEX, results.get(THREE_MATCHING_INDEX) + 1);
             return;
@@ -29,7 +28,7 @@ public class Result {
             return;
         }
         if (matchingCount == 5) {
-            if (userLotto.getUserNumber().contains(bonus)) {
+            if (hasBonusNumber) {
                 results.set(BONUS_MATCHING_INDEX, results.get(BONUS_MATCHING_INDEX) + 1);
                 return;
             }
@@ -42,7 +41,7 @@ public class Result {
     }
 
     public void calculateRate(UserLottos userLottos) {
-        rate =  roundOff((getProfit() / (double) getInvestmentCost(userLottos)) * 100);
+        rate = roundOff((getProfit() / (double) getInvestmentCost(userLottos)) * 100);
     }
 
     private double roundOff(double number) {
@@ -57,11 +56,11 @@ public class Result {
         return 5000L * results.get(THREE_MATCHING_INDEX) + 50000L * results.get(FOUR_MATCHING_INDEX) + 1500000L * results.get(FIVE_MATCHING_INDEX) + 30000000L * results.get(BONUS_MATCHING_INDEX) + 2000000000L * results.get(SIX_MATCHING_INDEX);
     }
 
-    public double getRate(){
+    public double getRate() {
         return rate;
     }
 
-    public List<Integer> getResult(){
+    public List<Integer> getResult() {
         return results;
     }
 }

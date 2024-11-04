@@ -39,10 +39,12 @@ public class UserLottos {
     public Result countMatchingNumber(Lotto lotto, BonusNumber bonusNumber) {
         Result result = new Result();
         for (UserLotto userLotto : userLottos) {
-            long matchingCount = userLotto.getUserNumber().stream()
+            long matchingLottoCount = userLotto.getUserNumber().stream()
                     .filter(lotto.getNumbers()::contains)
                     .count();
-            result.put(matchingCount, userLotto, bonusNumber);
+            boolean hasBonusNumber = userLotto.getUserNumber().stream()
+                    .anyMatch(num -> num.equals(bonusNumber.getNumber()));
+            result.put(matchingLottoCount, hasBonusNumber);
         }
         return result;
     }
