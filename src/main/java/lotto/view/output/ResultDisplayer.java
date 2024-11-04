@@ -15,6 +15,7 @@ public class ResultDisplayer {
     private static final String SEPARATOR = "---";
 
     public void showPurchasedLottos(int lottoCount, Lottos lottos) {
+        System.out.println();
         System.out.println(lottoCount + LOTTO_COUNT_MESSAGE_SUFFIX);
         lottos.getLottos().forEach(lotto -> {
             System.out.println(lotto.getNumbers());
@@ -22,6 +23,7 @@ public class ResultDisplayer {
     }
 
     public void showWinningStatistics(Map<WinningRank, Integer> winningCounts) {
+        System.out.println();
         System.out.println(STATISTICS_HEADER);
         System.out.println(SEPARATOR);
 

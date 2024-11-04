@@ -11,11 +11,13 @@ public class WinningNumberInput {
     }
 
     public String getNumber() {
+        System.out.println();
         promptDisplayer.showLottoNumberPrompt();
         return Console.readLine();
     }
 
     public String getBonusNumber() {
+        System.out.println();
         promptDisplayer.showBonusNumberPrompt();
         return Console.readLine();
     }
