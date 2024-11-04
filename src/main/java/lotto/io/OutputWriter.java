@@ -1,6 +1,6 @@
 package lotto.io;
 
-import lotto.draw.Rank;
+import lotto.winning.Rank;
 import lotto.vendingmachine.Lotto;
 
 import java.util.List;

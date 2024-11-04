@@ -1,9 +1,7 @@
 package lotto.vendingmachine;
 
-import lotto.draw.Rank;
+import lotto.winning.Rank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

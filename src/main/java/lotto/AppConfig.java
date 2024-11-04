@@ -1,8 +1,8 @@
 package lotto;
 
-import lotto.draw.DrawController;
-import lotto.draw.DrawService;
-import lotto.draw.DrawServiceImpl;
+import lotto.winning.DrawController;
+import lotto.winning.DrawService;
+import lotto.winning.DrawServiceImpl;
 
 import lotto.vendingmachine.VendingMachineController;
 import lotto.vendingmachine.VendingMachineRepository;

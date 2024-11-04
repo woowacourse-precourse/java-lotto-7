@@ -1,8 +1,8 @@
 package lotto.donghang;
 
 import lotto.AppConfig;
-import lotto.draw.DrawController;
-import lotto.draw.Rank;
+import lotto.winning.DrawController;
+import lotto.winning.Rank;
 import lotto.io.InputReader;
 import lotto.io.OutputWriter;
 import lotto.util.InputParser;

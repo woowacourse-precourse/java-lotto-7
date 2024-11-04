@@ -1,4 +1,4 @@
-package lotto.draw;
+package lotto.winning;
 
 import org.junit.jupiter.api.Test;
 

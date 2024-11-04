@@ -1,4 +1,4 @@
-package lotto.draw;
+package lotto.winning;
 
 import lotto.AppConfig;
 import lotto.donghang.WinningLotto;
