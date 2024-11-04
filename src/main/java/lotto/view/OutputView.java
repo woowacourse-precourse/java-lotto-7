@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.List;
 
+import lotto.model.WinningResultDto;
 import lotto.model.WinningResultsDto;
 
 public class OutputView {
@@ -49,6 +50,11 @@ public class OutputView {
 
 	private String getPurchaseLottoResult(List<String> lottoResult) {
 		return "[" + String.join(", ", lottoResult) + "]";
+	}
+
+	private String getWinningResult(WinningResultDto winningResult) {
+		return getMatchingMessage(winningResult.matchCount(), winningResult.hasBonusNumber()) + " "
+				+ "(" + String.format("%,d", winningResult.prize()) + "원" + ")" + " - " + winningResult.winningCount() + "개" + "\n";
 	}
 
 	private String getMatchingMessage(int count, boolean hasBonusNumber) {
