@@ -40,6 +40,7 @@
   - [ ] repeat read input when input is invalid
   - [ ] print rate of return
   - [ ] validate money input
+  - [ ] validate winning numbers input
 
 - handle user request
   - [ ] deliver user request and info 

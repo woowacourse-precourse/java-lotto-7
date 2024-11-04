@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
 import lotto.constant.PrizeTier;
+import lotto.utils.NumberList;
 import lotto.utils.Validator;
 import lotto.view.constant.UserInterfaceMessage;
 
@@ -52,7 +53,7 @@ public class LottoView {
         guideInputWinningNumbers();
         String rawNumbers = Console.readLine();
         try {
-            Validator.validateBlankString(rawNumbers);
+            this.validateWinningNumbers(rawNumbers);
             String[] rawNumberList = rawNumbers.split(LottoView.DELIMITERS);
             return transformToIntegerList(rawNumberList);
         }catch (IllegalArgumentException exception){
@@ -96,6 +97,20 @@ public class LottoView {
 
     public void validateMoney(String money) throws IllegalArgumentException{
         Validator.validateDivisible(this.parseInt(money),LottoView.LOTTO_PRICE);
+    }
+
+    public void validateWinningNumbers(String rawWinningNumbers){
+        Validator.validateBlankString(rawWinningNumbers);
+        String[] rawWinningNumberList = rawWinningNumbers.split(LottoView.DELIMITERS);
+        List<Integer> winningNumberList = transformToIntegerList(rawWinningNumberList);
+
+        int startRange = NumberList.NUMBER_RANGE[NumberList.NUMBER_RANGE_START];
+        int endRange = NumberList.NUMBER_RANGE[NumberList.NUMBER_RANGE_END];
+        for(int number : winningNumberList){
+            Validator.validateSpecificRange(number, startRange,endRange);
+        }
+
+        Validator.validateListSize(winningNumberList,NumberList.MAX_SIZE);
     }
 
     /*TODO
