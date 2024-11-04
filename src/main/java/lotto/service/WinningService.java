@@ -32,8 +32,12 @@ public class WinningService {
         return BigDecimal.valueOf(rank.getPrize()).multiply(BigDecimal.valueOf(count));
     }
 
-    private BigDecimal calculateProfitRate(BigDecimal totalPrize, int amount) {
-        return totalPrize.divide(BigDecimal.valueOf(amount), 2, RoundingMode.HALF_UP)
+    /**
+     * 수익률 = (총 상금 / 구입 금액) * 100 이기 때문에
+     * (총 상금 / 구입 장수) / 1000 * 100 = (총 상금 / 구입 장수) / 10 로 계산
+     * */
+    private BigDecimal calculateProfitRate(BigDecimal totalPrize, int lottoCount) {
+        return totalPrize.divide(BigDecimal.valueOf(lottoCount), 2, RoundingMode.HALF_UP)
                 .divide(BigDecimal.valueOf(10), 2, RoundingMode.HALF_UP)
                 .stripTrailingZeros();
     }
