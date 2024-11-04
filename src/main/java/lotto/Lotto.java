@@ -43,7 +43,6 @@ public class Lotto {
     public static List<Integer> lottoNumber(String str) {
         List<Integer> numbers = new ArrayList<>();
         String[] input = str.split(",");
-
         try {
             for (String s : input) {
                 numbers.add(Integer.parseInt(s.trim()));
@@ -51,8 +50,7 @@ public class Lotto {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효한 숫자만 입력해야 합니다.");
         }
-        // 유효성 검사
-        validate(numbers);
+        validate(numbers);        // 유효성 검사
         duplication(numbers);
         valid(numbers);
         return numbers;
