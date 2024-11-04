@@ -45,11 +45,16 @@ public class LottoMainService {
         return list;
     }
 
-    // 당첨 번호 저장
-    public void saveHitLotto(String hitLottoInput, String bonusNumberInput) {
+    // 당첨 번호 리스트 변환
+    public List<Integer> covertHitLotto(String hitLottoInput) {
         List<Integer> hitNumbers = Arrays.stream(hitLottoInput.split(","))
                 .map(Integer::parseInt)
                 .toList();
+        return hitNumbers;
+    }
+
+    // 당첨 번호 저장
+    public void saveHitLotto(List<Integer> hitNumbers, String bonusNumberInput) {
         int bonusNumber = Integer.parseInt(bonusNumberInput);
         HitLotto.getInstance(hitNumbers, bonusNumber); //List, Int로 객체 저장
     }
@@ -69,7 +74,6 @@ public class LottoMainService {
             saveLottoStatistics(lottoNumber); // 통계 갱신 메서드
         }
     }
-
 
     // 통계 갱신 메서드
     private void saveLottoStatistics(Set<Integer> lottoNumber) {
