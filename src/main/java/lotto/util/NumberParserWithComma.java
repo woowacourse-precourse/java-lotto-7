@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class NumberParserWithComma {
+    private static final String DELIMITER_COMMA = ",";
 
     private final NumberConverter numberConverter;
 
@@ -16,7 +17,7 @@ public class NumberParserWithComma {
 
     public Set<Integer> parseNumbers(String input) {
         Set<Integer> parsedNumbers = new HashSet<>();
-        Arrays.stream(input.split(","))
+        Arrays.stream(input.split(DELIMITER_COMMA))
                 .map(this::parseNumber)
                 .forEach(number -> {
                     if (!parsedNumbers.add(number)) {
