@@ -47,14 +47,22 @@ public class LottoResult {
     }
 
     private void increaseCount(int count, Prizes prize) {
-        if (prize.getCount() == count) {
+        if (isSamePrizeCount(prize, count)) {
             lottoResult.merge(prize.name(), ONE, Integer::sum);
         }
     }
 
     private void increaseCount(int count, boolean isBonus, Prizes prize) {
-        if (prize.getCount() == count && prize.getBonus() == isBonus) {
+        if (isSamePrizeCount(prize, count) && hasBonus(prize, isBonus)) {
             lottoResult.merge(prize.name(), ONE, Integer::sum);
         }
+    }
+
+    private boolean isSamePrizeCount(Prizes prize, int count) {
+        return prize.getCount() == count;
+    }
+
+    private boolean hasBonus(Prizes prize, boolean isBonus) {
+        return prize.getBonus() == isBonus;
     }
 }
