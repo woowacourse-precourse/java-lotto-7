@@ -1,8 +1,13 @@
 package lotto.validator;
 
-import static lotto.constants.LottoConstants.*;
+import static lotto.constants.LottoConstants.LINE_SPACE;
+import static lotto.constants.LottoConstants.RANDOM_MIN;
+import static lotto.constants.LottoConstants.RANDOM_MAX;
+import static lotto.constants.LottoConstants.PURCHASE_AMOUNT_THRESHOLD;
+import static lotto.constants.LottoConstants.PURCHASE_AMOUNT_UNIT;
+import static lotto.constants.LottoConstants.ERROR_MESSAGE_BEGINNING;
 
-public enum ErrorMessage {
+public enum LottoErrorMessages {
     MUST_BE_TARGET_LENGTH("%s %s 번호는 %d개이어야 합니다."),
     MUST_BE_NUMBER("%s %s은(는) 숫자 형식이어야 합니다."),
     MUST_BE_UNIQUE("%s 로또 번호가 중복되었습니다."),
@@ -13,7 +18,7 @@ public enum ErrorMessage {
 
     private final String message;
 
-    ErrorMessage(String message) {
+    LottoErrorMessages(String message) {
         this.message = message;
     }
 

@@ -6,7 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.constants.LottoConstants.*;
+import static lotto.constants.LottoConstants.WINNING;
+import static lotto.constants.LottoConstants.BONUS;
+import static lotto.constants.LottoConstants.INPUT_DELIMITER;
+import static lotto.constants.LottoConstants.NUMBERS;
+import static lotto.constants.LottoConstants.LENGTH_BY_NUMBER_TYPE;
+import static lotto.constants.LottoConstants.RANDOM_MIN;
+import static lotto.constants.LottoConstants.RANDOM_MAX;
 
 public class NumbersValidator {
     private List<Integer> winningNumbers = new ArrayList<>();
@@ -41,33 +47,33 @@ public class NumbersValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.MUST_BE_NUMBER.getMessage(NUMBERS));
+            throw new IllegalArgumentException(LottoErrorMessages.MUST_BE_NUMBER.getMessage(NUMBERS));
         }
     }
 
     private void validateNoSpace(String input) {
         if (!input.equals(input.strip())) {
-            throw new IllegalArgumentException(ErrorMessage.MUST_BE_NO_SPACE.getMessage(NUMBERS));
+            throw new IllegalArgumentException(LottoErrorMessages.MUST_BE_NO_SPACE.getMessage(NUMBERS));
         }
     }
 
     private void validateLength(String type, List<Integer> numbers) {
         int targetLength = LENGTH_BY_NUMBER_TYPE.get(type);
         if (numbers.size() != targetLength) {
-            throw new IllegalArgumentException(ErrorMessage.MUST_BE_TARGET_LENGTH.getMessage(type, targetLength));
+            throw new IllegalArgumentException(LottoErrorMessages.MUST_BE_TARGET_LENGTH.getMessage(type, targetLength));
         }
     }
 
     private void validateUnique(List<Integer> numbers) {
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException(ErrorMessage.MUST_BE_UNIQUE.getMessage());
+            throw new IllegalArgumentException(LottoErrorMessages.MUST_BE_UNIQUE.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < RANDOM_MIN || number > RANDOM_MAX) {
-                throw new IllegalArgumentException(ErrorMessage.MUST_BE_RANGE.getMessage());
+                throw new IllegalArgumentException(LottoErrorMessages.MUST_BE_RANGE.getMessage());
             }
         }
     }

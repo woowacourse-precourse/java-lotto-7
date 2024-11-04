@@ -1,22 +1,22 @@
 package lotto.controller;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.TreeMap;
+import java.util.Map;
 import lotto.Lotto;
-import lotto.view.InputView;
-import lotto.domain.LottoGenerator;
-import lotto.domain.LottoService;
+import lotto.domain.model.RankInfo;
+import lotto.view.LottoInputView;
+import lotto.domain.generator.LottoTicketGenerator;
+import lotto.service.LottoService;
 
 import static lotto.constants.LottoConstants.*;
-import static lotto.view.OutputView.*;
+import static lotto.view.LottoOutputView.*;
 
 public class LottoController {
-    private final InputView inputView;
+    private final LottoInputView inputView;
     private LottoService lottoService;
 
-    public LottoController(InputView inputView) {
+    public LottoController(LottoInputView inputView) {
         this.inputView = inputView;
     }
 
@@ -28,7 +28,7 @@ public class LottoController {
         List<Lotto> lottoTickets = generateLottoTickets(lottoCount);
         printLottoTickets(lottoTickets);
 
-        initializeLottoService(lottoTickets);
+        initializeLottoService(lottoTickets, purchaseAmount);
         displayResults();
     }
 
@@ -39,15 +39,15 @@ public class LottoController {
     private List<Lotto> generateLottoTickets(int count) {
         List<Lotto> tickets = new ArrayList<>(count);
         for (int i = 0; i < count; i++) {
-            tickets.add(new Lotto(LottoGenerator.generateNumbers()));
+            tickets.add(new Lotto(LottoTicketGenerator.generateNumbers()));
         }
         return tickets;
     }
 
-    private void initializeLottoService(List<Lotto> lottoTickets) {
+    private void initializeLottoService(List<Lotto> lottoTickets, int purchaseAmount) {
         Lotto winningNumbers = getWinningNumbers();
         Lotto bonusNumber = getBonusNumber();
-        lottoService = new LottoService(lottoTickets, winningNumbers, bonusNumber);
+        lottoService = new LottoService(lottoTickets, winningNumbers, bonusNumber, purchaseAmount);
     }
 
     private Lotto getWinningNumbers() {
@@ -64,18 +64,14 @@ public class LottoController {
     }
 
     private void processWinningAmount() {
-        lottoService.calculateWinningAmount();
-        TreeMap<Integer, Integer> winningResult = new TreeMap<>(Comparator.reverseOrder());
-        winningResult.putAll(lottoService.getWinningResult());
+        Map<RankInfo, Integer> winningResults = lottoService.getWinningResults();
 
         promptWinningResult();
-        printWinningResult(winningResult);
+        printWinningResult(winningResults);
     }
 
     private void processEarningRate() {
-        lottoService.calculateEarningsRate();
         String earningRate = lottoService.getEarningsRate();
-
         printEarningsRate(earningRate);
     }
 }

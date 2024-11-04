@@ -1,7 +1,6 @@
-package lotto.domain;
+package lotto.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import lotto.Lotto;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,20 +14,19 @@ public class LottoServiceTest {
 
     @BeforeEach
     void setUp() {
-        Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Lotto bonusNumber = new Lotto(Arrays.asList(7));
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto bonusNumber = new Lotto(List.of(7));
 
-        Lotto random1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 10));    // 3등
-        Lotto random2 = new Lotto(Arrays.asList(1, 2, 3, 4, 9, 10));    // 4등
+        Lotto random1 = new Lotto(List.of(1, 2, 3, 4, 5, 10));    // 3등
+        Lotto random2 = new Lotto(List.of(1, 2, 3, 4, 9, 10));    // 4등
 
-        List<Lotto> lottoTickets = new ArrayList<>(Arrays.asList(random1, random2));
-        lottoService = new LottoService(lottoTickets, winningNumbers, bonusNumber);
+        List<Lotto> lottoTickets = new ArrayList<>(List.of(random1, random2));
+        lottoService = new LottoService(lottoTickets, winningNumbers, bonusNumber, 2000);
     }
 
     @Test
     @DisplayName("당첨 금액을 올바르게 합산하는지 확인")
     void 당첨_금액_테스트() {
-        lottoService.calculateWinningAmount();
         String result = lottoService.getWinningAmount();
         assertThat(result).isEqualTo("1550000");
     }
@@ -36,8 +34,6 @@ public class LottoServiceTest {
     @Test
     @DisplayName("수익률을 올바르게 계산하는지 확인")
     void 수익률_테스트() {
-        lottoService.calculateWinningAmount();
-        lottoService.calculateEarningsRate();
         String result = lottoService.getEarningsRate();
         assertThat(result).isEqualTo("77500.0");
     }

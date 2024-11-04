@@ -2,13 +2,16 @@ package lotto.view;
 
 import java.text.NumberFormat;
 import java.util.List;
-import java.util.TreeMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.Lotto;
+import lotto.domain.model.RankInfo;
 
 import static lotto.constants.LottoConstants.*;
+import static lotto.domain.factory.RankInfoFactory.getAllRanks;
+import static lotto.domain.factory.RankInfoFactory.getSecondRank;
 
-public class OutputView {
+public class LottoOutputView {
 
     public static void print(String string) {
         System.out.println(string);
@@ -51,26 +54,25 @@ public class OutputView {
         print(String.format(LINE_SPACE + LOTTO_COUNT_TEXT, lottoCount));
     }
 
-    public static void printWinningResult(TreeMap<Integer, Integer> winningResult) {
-        winningResult.forEach((rank, winningCount) -> {
-            int matchCount = MATCH_COUNT_BY_RANK.get(rank);
-            String formattedPrizeAmount = formatPrizeAmount(rank);
-
-            printDescription(rank, matchCount, formattedPrizeAmount, winningCount);
+    public static void printWinningResult(Map<RankInfo, Integer> winningResults) {
+        getAllRanks().forEach((rankInfo) -> {
+            int matchCount = winningResults.get(rankInfo);
+            printDescription(rankInfo, matchCount);
         });
     }
 
-    private static void printDescription(int rank, int matchCount, String prizeAmount, Integer winningCount) {
-        if (rank == SECOND_RANK) {
-            print(String.format(SECOND_RANK_DESCRIPTION, matchCount, prizeAmount, winningCount));
+    private static void printDescription(RankInfo rankInfo, int matchCount) {
+        String formattedPrizeAmount = formatPrizeAmount(rankInfo.getPrizeAmount());
+
+        if (rankInfo.getRank() == getSecondRank().getRank()) {
+            print(String.format(rankInfo.getDescription(), rankInfo.getMatchCount(), formattedPrizeAmount, matchCount));
         }
-        if (rank != SECOND_RANK) {
-            print(String.format(DESCRIPTION, matchCount, prizeAmount, winningCount));
+        if (rankInfo.getRank() != getSecondRank().getRank()) {
+            print(String.format(rankInfo.getDescription(), rankInfo.getMatchCount(), formattedPrizeAmount, matchCount));
         }
     }
 
-    private static String formatPrizeAmount(int rank) {
-        int prizeAmount = PRIZE_AMOUNT_BY_RANK.get(rank);
+    private static String formatPrizeAmount(int prizeAmount) {
         return NumberFormat.getInstance().format(prizeAmount);
     }
 

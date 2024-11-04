@@ -5,9 +5,9 @@ import java.util.List;
 import lotto.validator.NumbersValidator;
 import lotto.validator.PurchaseAmountValidator;
 
-import static lotto.view.OutputView.*;
+import static lotto.view.LottoOutputView.*;
 
-public class InputView {
+public class LottoInputView {
     private final NumbersValidator numbersValidator = new NumbersValidator();
 
     private String getInput() {
