@@ -85,7 +85,16 @@ public class DrawServiceImpl implements DrawService {
     }
 
     private double calculateEarningRate(Map<Rank, Integer> result) {
+        double totalAmount = vendingMachineRepository.getStoredLottoTickets().size() * 1000;
+        double totalEarning = 0.0;
 
+        for (Map.Entry<Rank, Integer> entry : result.entrySet()) {
+            totalEarning += entry.getKey().getProfit(entry.getValue());
+        }
+
+        double earningRate = Math.round((totalEarning / totalAmount) * 10) / 10.0;
+
+        return earningRate;
     }
 
 }
