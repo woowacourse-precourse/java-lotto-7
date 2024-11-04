@@ -19,13 +19,13 @@ public class Lotto {
 
     public static Lotto of(String input) {
         validate(input);
-        List<String> tokens = Splitter.splitWithComma(input);
+        List<String> tokens = Splitter.splitWithDelimiter(input);
         return new Lotto(Converter.convertToNumbers(tokens));
     }
 
     private static void validate(String input) {
         Validator.validateBlank(input, ErrorMessage.BLANK_WINNING_NUMBER);
-        List<String> tokens = Splitter.splitWithComma(input);
+        List<String> tokens = Splitter.splitWithDelimiter(input);
         tokens.forEach(token -> Validator.validateNumeric(token, ErrorMessage.NOT_NUMERIC_LOTTO_NUMBER));
     }
 

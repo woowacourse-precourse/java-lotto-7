@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class Splitter {
     private static final String DELIMITER = ",";
 
-    public static List<String> splitWithComma(String input) {
+    public static List<String> splitWithDelimiter(String input) {
         return Arrays.stream(input.split(DELIMITER))
                 .map(String::strip)
                 .collect(Collectors.toList());
