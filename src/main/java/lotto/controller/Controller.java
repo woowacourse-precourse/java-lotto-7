@@ -48,11 +48,12 @@ public class Controller {
         });
         jackpotNumbers.setLotto(new Lotto(intList));
 
-        int bonusNumber = retryOnError(() -> {
+        retryOnError(() -> {
             String inputBonusNumber = InputView.requestBonusNumber();
-            return StringParser.toInt(inputBonusNumber);
+            int bonusNumber = StringParser.toInt(inputBonusNumber);
+            jackpotNumbers.setBonusNumber(bonusNumber);
+            return null;
         });
-        jackpotNumbers.setBonusNumber(bonusNumber);
         return jackpotNumbers;
     }
 
