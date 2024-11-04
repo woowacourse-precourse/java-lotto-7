@@ -21,5 +21,26 @@ class OutputManagerTest {
         System.setOut(System.out);
     }
 
+    @Test
+    void 구입한_로또_번호_목록_출력_테스트() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        List<List<Integer>> lottoTickets = List.of(
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38)
+        );
+
+        OutputManager.printLottoTickets(lottoTickets);
+
+        String actualOutput = outputStream.toString();
+        assertThat(actualOutput).contains(
+                "[8, 21, 23, 41, 42, 43]",
+                "[3, 5, 11, 16, 32, 38]"
+        );
+
+        System.setOut(System.out);
+    }
+
 }
 
