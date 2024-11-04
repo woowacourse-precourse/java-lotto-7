@@ -164,6 +164,19 @@ public class Application {
         public int getPrize() {
             return prize;
         }
+
+        public boolean matches(int matchCount, boolean bonusMatch) {
+            return this.matchCount == matchCount && this.bonusMatch == bonusMatch;
+        }
+
+        public static LottoRank findRank(int matchCount, boolean bonusMatch) {
+            for (LottoRank rank : values()) {
+                if (rank.matches(matchCount, bonusMatch)) {
+                    return rank;
+                }
+            }
+            return null;
+        }
     }
 
 
