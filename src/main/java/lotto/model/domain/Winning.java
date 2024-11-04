@@ -52,4 +52,14 @@ public class Winning {
 	public Map<Rank, Integer> getRankCounts() {
 		return rankCounts;
 	}
+
+	public int getTotalPrize() {
+		return calculateTotalPrize();
+	}
+
+	private int calculateTotalPrize() {
+		return rankCounts.entrySet().stream()
+			.mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+			.sum();
+	}
 }

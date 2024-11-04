@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.model.domain.BonusNumber;
 import lotto.model.domain.LottoBundle;
 import lotto.model.domain.PurchaseMoney;
+import lotto.model.domain.ReturnRate;
 import lotto.model.domain.Winning;
 import lotto.model.domain.WinningNumber;
 import lotto.model.dto.WinningDTO;
@@ -36,6 +37,9 @@ public class LottoController {
 		Winning winning = lottoService.checkWinningNumber(lottoBundle, winningDTO);
 
 		OutputView.printWinningStatistics(winning.getRankCounts());
+
+		ReturnRate returnRate = lottoService.displayWinningStatistics(winning, purchaseMoney);
+		double resultRate = returnRate.calculate();
 	}
 
 	private PurchaseMoney getPurchaseMoney() {

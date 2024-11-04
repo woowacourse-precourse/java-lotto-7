@@ -7,6 +7,8 @@ import java.util.stream.IntStream;
 import lotto.factory.LottoFactory;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoBundle;
+import lotto.model.domain.PurchaseMoney;
+import lotto.model.domain.ReturnRate;
 import lotto.model.domain.Winning;
 import lotto.model.dto.WinningDTO;
 
@@ -23,5 +25,9 @@ public class LottoService {
 
 	public Winning checkWinningNumber(LottoBundle lottoBundle, WinningDTO winningDTO) {
 		return new Winning(lottoBundle, winningDTO);
+	}
+
+	public ReturnRate displayWinningStatistics(Winning winning, PurchaseMoney purchaseMoney) {
+		return new ReturnRate(purchaseMoney.getMoney(), winning.getTotalPrize());
 	}
 }

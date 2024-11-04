@@ -1,10 +1,13 @@
 package lotto.view;
 
+import java.text.NumberFormat;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import lotto.model.domain.LottoBundle;
 import lotto.model.domain.Rank;
-import lotto.model.domain.ReturnRate;
 
 public class OutputView {
 
@@ -33,5 +36,26 @@ public class OutputView {
 
 	public static void promptBonusNumber() {
 		System.out.println("\n보너스 번호를 입력해 주세요.");
+	}
+
+	public static void printWinningStatistics(Map<Rank, Integer> rankCounts) {
+		System.out.println("\n당첨 통계");
+		System.out.println("---");
+
+		NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
+
+		Arrays.stream(Rank.values())
+			.forEach(rank -> {
+				int count = rankCounts.getOrDefault(rank, 0);
+
+				if (rank == Rank.SECOND) {
+					System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개%n",
+						numberFormat.format(rank.getPrize()), count);
+					return;
+				}
+
+				System.out.printf("%d개 일치 (%s원) - %d개%n",
+					rank.getMatchCount(), numberFormat.format(rank.getPrize()), count);
+			});
 	}
 }

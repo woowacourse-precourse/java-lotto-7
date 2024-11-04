@@ -29,4 +29,8 @@ public class PurchaseMoney {
 	public int getLottoCount() {
 		return money / MINIMUM_MONEY_SIZE;
 	}
+
+	public int getMoney() {
+		return money;
+	}
 }
