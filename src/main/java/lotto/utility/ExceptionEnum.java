@@ -1,6 +1,7 @@
 package lotto.utility;
 
 public enum ExceptionEnum {
+    LOTTO_MUST_BE_SIX("[ERROR] 로또 번호는 6개여야 합니다."),
     CANNOT_INCLUDE_ZERO("[ERROR] 로또 번호에는 0이 포함될 수 없습니다."),
     CANNOT_DRAW_DUPLICATE_NUMBER("[ERROR] 중복된 번호는 뽑으실 수 없습니다."),
     CANNOT_UNDER_ZERO("[ERROR] 0 이하의 수는 입력하실 수 없습니다."),
