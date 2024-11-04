@@ -20,7 +20,7 @@ public class Input {
 		try {
 			return Integer.parseInt(lottoPurchaseAmount);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 구입 금액이 잘못된 형식입니다.");
+			throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_FORMAT_INPUT.getMessage());
 		}
 	}
 
@@ -52,7 +52,7 @@ public class Input {
 
 	private static void validateLottoNumber(int number) {
 		if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-			throw new IllegalArgumentException("[ERROR] 보너스 번호는 " + MIN_LOTTO_NUMBER + "에서 " + MAX_LOTTO_NUMBER + " 사이여야 합니다.");
+			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
 		}
 	}
 }
