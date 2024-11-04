@@ -47,9 +47,41 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 가격에_문자가_들어가면_예외가_발생한다() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 가격이_1000으로_나누어떨어지지않으면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("10005");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호가_당첨_번호와_동일하면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호가_1보다_작으면_예외가_발생한다(){
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호가_45보다_크면_예외가_발생한다(){
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "46");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
