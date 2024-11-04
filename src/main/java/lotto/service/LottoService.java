@@ -25,7 +25,9 @@ public class LottoService {
 
     public int getPurchaseMoney(String money) {
         PurchaseMoneyValidator.validateInteger(money);
-        return Integer.parseInt(money);
+        int purchaseMoney = Integer.parseInt(money);
+        PurchaseMoneyValidator.validatePositive(purchaseMoney);
+        return purchaseMoney;
     }
 
     public int getLottoCount(int purchaseMoney) {

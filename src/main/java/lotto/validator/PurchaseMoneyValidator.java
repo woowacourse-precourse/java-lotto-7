@@ -20,4 +20,10 @@ public class PurchaseMoneyValidator {
             throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + DIVIDE.getMessage());
         }
     }
+
+    public static void validatePositive(int purchaseMoney) {
+        if (purchaseMoney < 0) {
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + POSITIVE.getMessage());
+        }
+    }
 }
