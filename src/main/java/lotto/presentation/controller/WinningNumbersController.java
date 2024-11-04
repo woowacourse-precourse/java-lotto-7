@@ -9,6 +9,7 @@ import lotto.presentation.controller.common.LottoController;
 import lotto.presentation.model.Key;
 import lotto.presentation.model.Model;
 import lotto.presentation.view.InputForm;
+import lotto.presentation.view.OutputView;
 
 public class WinningNumbersController extends LottoController {
 
@@ -33,6 +34,6 @@ public class WinningNumbersController extends LottoController {
 
     @Override
     protected void response(Model model) {
-        //do Nothing
+        OutputView.renderBlankLine();
     }
 }

@@ -6,6 +6,7 @@ import static lotto.domain.Rank.SECOND;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.Rank;
@@ -26,6 +27,10 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void renderBlankLine() {
+        System.out.println();
+    }
+
     public static void render(LottoStatistics statistics) {
         System.out.println();
         System.out.println(STATISTICS);
@@ -38,32 +43,51 @@ public class OutputView {
             .dropWhile(rank -> rank == DRAW)
             .toList();
 
-        String text = generateRankStatistics(rankValues, ranks);
-        System.out.print(text);
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+        String rankStatisticsText = generateRankStatistics(rankValues, ranks);
+        String profitRateText = Text.PROFIT_RATE.getText(profitRate);
+
+        System.out.print(rankStatisticsText);
+        System.out.printf(profitRateText);
     }
 
     private static String generateRankStatistics(List<Rank> rankValues, List<Rank> ranks) {
         StringBuilder builder = new StringBuilder();
         for (Rank rankValue : rankValues) {
-            int rankCount = countRank(rankValue, ranks);
-            int rankPrize = rankValue.getPrize();
-            int requiredHitCount = rankValue.getRequiredHitCount();
-
-            String textOfRequiresBonus = "";
-            if (rankValue == SECOND) {
-                textOfRequiresBonus = ", 보너스 볼 일치";
-            }
-
-            builder.append(String.format(
-                "%d개 일치%s (%,d원) - %d개%n", requiredHitCount, textOfRequiresBonus, rankPrize,
-                rankCount));
+            String rankText = generateRankText(ranks, rankValue);
+            builder.append(rankText);
         }
 
         return builder.toString();
     }
 
+    private static String generateRankText(List<Rank> ranks, Rank rankValue) {
+        int rankCount = countRank(rankValue, ranks);
+        int rankPrize = rankValue.getPrize();
+        int requiredHitCount = rankValue.getRequiredHitCount();
+
+        if (rankValue == SECOND) {
+            return Text.WIN_HISTORY_SECOND.getText(requiredHitCount, rankPrize, rankCount);
+        }
+        return Text.WIN_HISTORY.getText(requiredHitCount, rankPrize, rankCount);
+    }
+
     private static int countRank(Rank rank, List<Rank> ranks) {
         return (int) ranks.stream().filter(rank::equals).count();
+    }
+
+    private enum Text {
+        PROFIT_RATE(args -> String.format("총 수익률은 %.1f", args) + "%%입니다."),
+        WIN_HISTORY(args -> String.format("%d개 일치 (%,d원) - %d개", args)),
+        WIN_HISTORY_SECOND(args -> String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", args));
+
+        private final Function<Object[], String> textSupplier;
+
+        Text(Function<Object[], String> textSupplier) {
+            this.textSupplier = textSupplier;
+        }
+
+        public String getText(Object... args) {
+            return textSupplier.apply(args) + '\n';
+        }
     }
 }
