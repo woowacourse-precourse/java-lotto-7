@@ -1,0 +1,17 @@
+package lotto.exception;
+
+public enum LottoExceptionCode {
+    NEED_MULTIPLE_OF_THOUSAND("지불할 금액은 1000의 배수여야 합니다."),
+    LACK_OF_WINNING_NUMBERS("입력한 당첨 번호의 개수가 6개 보다 적습니다"),
+    DUPLICATED_WINNING_NUMBERS("입력한 당첨 번호 내에 중복 숫자가 있습니다."),
+    LOTTO_NUMBER_FORMAT_ERROR("로또 번호는 1-45사이 양의 정수여야 합니다."),
+    DUPLICATED_BONUS_NUMBER("보너스 번호가 당첨 번호와 중복입니다.");
+    private final String message;
+    LottoExceptionCode(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
