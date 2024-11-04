@@ -81,7 +81,7 @@ public class Application {
         }
 
         List<String> winningNumbers = new ArrayList<>(List.of(inputWinningNumber.split(",")));
-        List<Integer> integerList = new ArrayList<>();
+        List<Integer> parsedWinningNumbers = new ArrayList<>();
 
         for (int i = 0; i < winningNumbers.size(); i++) {
             try {
@@ -91,14 +91,14 @@ public class Application {
                     throw new IllegalArgumentException("[ERROR] 당첨 번호는 1 ~ 45번까지만 입력이 가능합니다.");
                 }
 
-                integerList.add(parsedNumber);
+                parsedWinningNumbers.add(parsedNumber);
 
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력해주세요");
             }
         }
 
-        return integerList;
+        return parsedWinningNumbers;
     }
 
     public static int getBonusNumber() {
