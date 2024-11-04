@@ -69,12 +69,12 @@ src
  - [x] 보너스 번호 입력
 
 ## 컨트롤러 (Controller)
- - [ ] 입력 검증 (Input Validation)
- - [ ] 로또 게임 초기화 (Lotto Initialization)
- - [ ] 로또 게임 실행 (Lotto Start)
+ - [x] 입력 검증 (Input Validation)
+ - [x] 로또 게임 초기화 (Lotto Initialization)
+ - [x] 로또 게임 실행 (Lotto Start)
 
 ## 상수 (Constant)
-- [ ] 로또 게임 상수 (Lotto Constant)
+- [x] 로또 게임 상수 (Lotto Constant)
 
 ## 모델 (Model)
  - [ ] 로또 (Lotto)
