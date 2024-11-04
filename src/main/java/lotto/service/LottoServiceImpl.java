@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.common.LottoConstants;
+import lotto.common.LottoRank;
 import lotto.common.LottoValidateUtil;
 import lotto.domain.bonus.Bonus;
 import lotto.domain.bonus.BonusDto;
@@ -48,6 +49,34 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public BonusDto getBonusDto() {
         return new BonusDto(bonus.getNumber());
+    }
+
+    @Override
+    public List<LottoRank> calculateLottoRank() {
+        List<Lotto> purchaseLottos = purchase.getLottos();
+        List<LottoRank> lottoRanks = new ArrayList<>();
+
+        for (Lotto purchaseLotto : purchaseLottos) {
+            int matchCount = countMatchNumber(winningLotto, purchaseLotto);
+            if (matchCount >= LottoRank.FIFTH.getMatchCount()) {
+                lottoRanks.add(determineRank(matchCount));
+            }
+        }
+
+        return lottoRanks;
+    }
+
+    @Override
+    public double calculateProfitRate(List<LottoRank> lottoRanks) {
+        int totalWinning = calculateTotalWinnings(lottoRanks);
+
+        if (totalWinning == 0) {
+            return 0;
+        } else {
+            double profitRate = ((double) totalWinning / purchase.getAmount()) * 100; // 수익률 계산
+            return Math.round(profitRate * 100.0) / 100.0;
+        }
+
     }
 
     @Override
@@ -115,5 +144,46 @@ public class LottoServiceImpl implements LottoService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
         }
+    }
+
+    private int countMatchNumber(Lotto winningLotto, Lotto purchaseLotto) {
+        int count = 0;
+
+        for (Integer winningNumber : winningLotto.getNumbers()) {
+            List<Integer> purchaseLottoNumbers = purchaseLotto.getNumbers();
+            if (purchaseLottoNumbers.contains(winningNumber)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    private LottoRank determineRank(int matchCount) {
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+
+        if (matchCount == LottoRank.FIRST.getMatchCount()) {
+            return LottoRank.FIRST;
+        }
+        if (matchCount == LottoRank.SECOND.getMatchCount() && winningNumbers.contains(bonus.getNumber())) {
+            return LottoRank.SECOND;
+        }
+        if (matchCount == LottoRank.THIRD.getMatchCount()) {
+            return LottoRank.THIRD;
+        }
+        if (matchCount == LottoRank.FOURTH.getMatchCount()) {
+            return LottoRank.FOURTH;
+        }
+        return LottoRank.FIFTH;
+    }
+
+    private int calculateTotalWinnings(List<LottoRank> lottoRanks) {
+        int totalWinnings = 0;
+
+        for (LottoRank rank : lottoRanks) {
+            totalWinnings += rank.getPrize();
+        }
+
+        return totalWinnings;
     }
 }

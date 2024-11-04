@@ -4,7 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.common.LottoConstants;
+import lotto.common.LottoRank;
 import lotto.domain.lotto.LottoDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -154,5 +156,26 @@ class LottoServiceTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> lottoService.assignBonus(null))
                 .withMessage("[ERROR] 정수를 입력해주세요.");
+    }
+
+    @Test
+    @DisplayName("로또 당첨계산 테스트")
+    void 로또_당첨_계산_테스트() {
+        //given
+        String amount = "1000";
+        String winningNumbers = "";
+
+        //when
+        lottoService.buyLotto(amount);
+        List<LottoDto> lottoDtos = lottoService.getPurchaseDto().getLottoDtos();
+        for (LottoDto lottoDto : lottoDtos) {
+            winningNumbers = lottoDto.getNumbers().stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(","));
+        }
+        lottoService.assignWinningLotto(winningNumbers);
+
+        //then
+        assertThat(lottoService.calculateLottoRank()).containsExactly(LottoRank.FIRST);
     }
 }

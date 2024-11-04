@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+import lotto.common.LottoRank;
 import lotto.domain.purchase.PurchaseDto;
 
 public interface LottoView {
@@ -10,4 +12,6 @@ public interface LottoView {
     String readWinningNumbers();
 
     String readBonusNumber();
+
+    void displayLottoResult(List<LottoRank> lottoRanks, double profitRate);
 }

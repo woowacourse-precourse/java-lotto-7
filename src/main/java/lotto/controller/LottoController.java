@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.common.LottoRank;
 import lotto.service.LottoService;
 import lotto.view.ConsoleLottoView;
 import lotto.view.LottoView;
@@ -19,6 +21,9 @@ public class LottoController {
 
         assignWinningNumbers();
         assignBonusNumber();
+
+        List<LottoRank> lottoRanks = lottoService.calculateLottoRank();
+        lottoView.displayLottoResult(lottoRanks, lottoService.calculateProfitRate(lottoRanks));
     }
 
     private void purchaseLotto() {
