@@ -1,6 +1,9 @@
-package lotto;
+package lotto.controller;
 
-import java.util.List;
+import lotto.validator.Validator;
+import lotto.model.LottoResult;
+import lotto.model.UserLotto;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

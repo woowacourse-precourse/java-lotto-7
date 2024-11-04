@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 import lotto.enums.LottoPrizes;
@@ -10,7 +10,6 @@ public class LottoResult {
             List<Integer> userNumbers = lotto.getNumbers();
             List<Integer> winningNumbers = winningLotto.getLotto().getNumbers();
             int bonusNumber = winningLotto.getBonusNumber();
-
             // 사용자 번호와 당첨 번호 간의 일치 개수 확인
             long matchingCount = userNumbers.stream()
                     .filter(winningNumbers::contains)

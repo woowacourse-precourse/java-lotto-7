@@ -1,9 +1,7 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.LottoResult;
-import lotto.UserLotto;
+import lotto.model.Lotto;
 import lotto.enums.LottoPrizes;
 
 public class OutputView {

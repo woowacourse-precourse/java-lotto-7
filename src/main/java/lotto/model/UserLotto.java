@@ -1,10 +1,10 @@
-package lotto;
+package lotto.model;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.enums.ErrorMessages;
+import java.util.stream.Collectors;
 
 public class UserLotto {
 
@@ -25,12 +25,15 @@ public class UserLotto {
         return price;
     }
     public List<Lotto> generateLotto() {
-        for (int i = 0; i < price / 1000; i++) {
 
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottoNumbers.sort(Comparator.naturalOrder());
+        for (int i = 0; i < price / 1000; i++) {
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                    .stream()
+                    .sorted()
+                    .toList();
             lotto.add(new Lotto(lottoNumbers));
         }
+
         return lotto;
     }
 

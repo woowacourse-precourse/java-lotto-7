@@ -1,9 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Validator;
-import lotto.WinningLotto;
-import lotto.enums.ErrorMessages;
+import lotto.validator.Validator;
+
 
 public class InputView {
 
