@@ -22,13 +22,13 @@ public class Lotto {
     }
 
     private void validateLange(List<Integer> numbers) {
-        if (numbers.stream().allMatch(n -> n >= Constants.MIN_LOTTO_NUMBER && n <= Constants.MAX_LOTTO_NUMBER)) {
+        if (numbers.stream().allMatch(n -> n <= Constants.MIN_LOTTO_NUMBER || n >= Constants.MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1이상 45이하여야 합니다.");
         }
     }
 
     private void validateUnique(List<Integer> numbers) {
-        if (numbers.size() == numbers.stream().distinct().count()) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
     }

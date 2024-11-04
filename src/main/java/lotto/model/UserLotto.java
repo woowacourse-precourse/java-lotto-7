@@ -59,6 +59,10 @@ public class UserLotto {
         if (bonusNumber > Constants.MAX_LOTTO_NUMBER || bonusNumber < Constants.MIN_LOTTO_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호를 1~45사이 정수로 입력해 주세요.");
         }
+
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+        }
     }
 }
 

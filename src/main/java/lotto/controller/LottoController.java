@@ -6,6 +6,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     LottoService lottoService = new LottoService();
@@ -23,6 +24,6 @@ public class LottoController {
         String bonusNumber = InputView.readBonusNumber();
         userLotto.setBonusNumber(bonusNumber);
 
-
+        Map<String, Integer> winningRank = lottoService.matchLotto(userLotto);
     }
 }
