@@ -31,6 +31,17 @@ public class PriceTest {
         }
 
         @Test
+        @DisplayName("구입 금액이 실수일 경우 예외가 발생한다.")
+        void 실패_생성_실수() {
+            // Given
+
+            // When & Then
+            assertCustomIllegalArgumentException(() -> new Price(new BigDecimal("10.12")))
+                    .isExactlyInstanceOf(InvalidPriceException.class)
+                    .hasMessageContaining("구입 금액은 숫자로만 이루어져야 합니다.");
+        }
+
+        @Test
         @DisplayName("구입 금액이 1000원 단위가 아니면 예외가 발생한다.")
         void 실패_생성_1000원단위아님() {
             // Given
