@@ -8,6 +8,7 @@ public class ConsoleOutputHandler {
     private final static String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private final static String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private final static String RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private final static String GAME_RESULT_MESSAGE = "당첨 통계\n---";
     public static void buyAmountMessage() {
         System.out.println(BUY_AMOUNT_MESSAGE);
     }
@@ -33,5 +34,9 @@ public class ConsoleOutputHandler {
     }
     public static void returnRateMessage(double roundedRate) {
         System.out.printf(RETURN_RATE_MESSAGE,roundedRate);
+    }
+
+    public static void gameResultMessage() {
+        System.out.println(GAME_RESULT_MESSAGE);
     }
 }

@@ -17,6 +17,7 @@ public class LottoSimulator {
         WinningNumber winningNumber = getWinningNumber(); // 당첨 번호를 입력받음
         BonusNumber bonusNumber = getBonusNumber(winningNumber); // 보너스 번호를 입력받음
         Game game = new Game(lottoList,winningNumber,bonusNumber); // 당첨 정보를 가진 게임 객체 생성
+        ConsoleOutputHandler.gameResultMessage(); // 당첨 통계 안내 메세지 출력
         game.outReturnRate(); // 수익률 출력
     }
 
