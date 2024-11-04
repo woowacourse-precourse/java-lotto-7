@@ -14,7 +14,8 @@ public enum ErrorMessage {
     WINNING_LOTTO_NUMBER_FORMAT_ERROR("당첨 번호 형식이 알맞지 않습니다."),
     THERE_IS_DUPLICATE_NUMBER_IN_WINNING_LOTTO("당첨 번호에 중복된 숫자가 있습니다."),
     THERE_IS_INVALID_NUMBER_IN_WINNING_LOTTO("당첨번호는 1~45의 값만 가능합니다."),
-    WINNING_LOTTO_MUST_NOT_START_END_WITH_COMMA("당첨번호 시작과 끝은 쉼표일 수 없습니다.");
+    WINNING_LOTTO_MUST_NOT_START_END_WITH_COMMA("당첨번호 시작과 끝은 쉼표일 수 없습니다."),
+    BONUS_NUMBER_FORMAT_ERROR("보너스 번호 형식이 알맞지 않습니다.");
 
     private final String errorMessage;
     private final String errorLogo = "[ERROR] ";

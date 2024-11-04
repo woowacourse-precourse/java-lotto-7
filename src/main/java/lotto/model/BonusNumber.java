@@ -1,5 +1,9 @@
 package lotto.model;
 
+import lotto.exception.BonusNumberException;
+
+import static lotto.common.constant.ErrorMessage.BONUS_NUMBER_FORMAT_ERROR;
+
 public class BonusNumber {
 
     private final Integer bonusNumber;
@@ -13,6 +17,14 @@ public class BonusNumber {
     }
 
     private Integer parseUserInputBonusNumber(String userInputBonusNumber){
-        return 0;
+        Integer bonusNumber;
+        try{
+            bonusNumber = Integer.parseInt(userInputBonusNumber);
+        }catch(NumberFormatException e){
+            throw new BonusNumberException(BONUS_NUMBER_FORMAT_ERROR);
+        }
+
+
+        return bonusNumber;
     }
 }
