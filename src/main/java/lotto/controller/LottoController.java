@@ -64,7 +64,14 @@ public class LottoController {
     private WinningLotto inputWinningLotto() {
         List<Integer> winningNumbersList = inputWinningNumbers();
         int bonusNumber = inputBonusNumber(winningNumbersList);
-        return new WinningLotto(winningNumbersList, bonusNumber);
+
+        // WinningLotto 생성 시 발생할 수 있는 예외를 처리
+        try {
+            return new WinningLotto(winningNumbersList, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());  // 예외 메시지 출력
+            return inputWinningLotto();  // 재입력 요청
+        }
     }
 
     private List<Integer> inputWinningNumbers() {
