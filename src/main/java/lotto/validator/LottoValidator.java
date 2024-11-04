@@ -7,29 +7,29 @@ import lotto.model.LottoConstants;
 
 public class LottoValidator {
 
-    public static void validateLotto(List<Integer> numbers) {
+    public void validateLotto(List<Integer> numbers) {
         validateLottoNumbersSize(numbers);
         validateLottoNumbersDuplication(numbers);
         validateLottoNumberRange(numbers);
     }
 
-    private static void validateLottoNumberRange(List<Integer> numbers) {
+    private void validateLottoNumberRange(List<Integer> numbers) {
         if (hasOutOfRangeNumber(numbers)) {
             throw new LottoException(LottoErrorMessage.OUT_OF_LOTTO_NUMBER_RANGE);
         }
     }
 
-    private static boolean hasOutOfRangeNumber(List<Integer> numbers) {
+    private boolean hasOutOfRangeNumber(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(LottoValidator::isOutOfRange);
+                .anyMatch(this::isOutOfRange);
     }
 
-    private static boolean isOutOfRange(Integer number) {
+    private boolean isOutOfRange(Integer number) {
         return number > LottoConstants.MAX_LOTTO_NUMBER.getValue()
                 || number < LottoConstants.MIN_LOTTO_NUMBER.getValue();
     }
 
-    private static void validateLottoNumbersDuplication(List<Integer> numbers) {
+    private void validateLottoNumbersDuplication(List<Integer> numbers) {
         long distinctCount = getDistinctCount(numbers);
         int totalCount = numbers.size();
         if (distinctCount != totalCount) {
@@ -37,13 +37,13 @@ public class LottoValidator {
         }
     }
 
-    private static long getDistinctCount(List<Integer> numbers) {
+    private long getDistinctCount(List<Integer> numbers) {
         return numbers.stream()
                 .distinct()
                 .count();
     }
 
-    private static void validateLottoNumbersSize(List<Integer> numbers) {
+    private void validateLottoNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LottoConstants.LOTTO_COUNT.getValue()) {
             throw new LottoException(LottoErrorMessage.INVALID_LOTTO_NUMBER_COUNT);
         }

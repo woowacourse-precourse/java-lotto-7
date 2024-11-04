@@ -8,8 +8,13 @@ public class WinningLotto {
 
     private WinningLotto(Lotto winningLotto, int bonusNumber) {
         this.lotto = winningLotto;
-        BonusNumberValidator.validateBonusNumber(lotto, bonusNumber);
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
+        bonusNumberValidator.validateBonusNumber(lotto, bonusNumber);
     }
 
     public static WinningLotto of(Lotto winningLotto, int bonusNumber) {

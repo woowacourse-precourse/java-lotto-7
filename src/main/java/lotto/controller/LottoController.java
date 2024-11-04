@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoConstants;
@@ -9,6 +10,7 @@ import lotto.model.LottoWinningChecker;
 import lotto.model.PurchasedLottos;
 import lotto.model.WinningLotto;
 import lotto.util.NumbersGenerator;
+import lotto.validator.MoneyValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -43,13 +45,20 @@ public class LottoController {
     private int getMoney() {
         while (true) {
             try {
-                outputView.showMoneyInputComments();
-                return inputView.getMoneyFromUser();
+                int money = getMoneyFromUser();
+                MoneyValidator moneyValidator = new MoneyValidator();
+                moneyValidator.validateMoney(money);
+                return money;
 
             } catch (IllegalArgumentException e) {
                 outputView.showExceptionMessage(e);
             }
         }
+    }
+
+    private int getMoneyFromUser() {
+        outputView.showMoneyInputComments();
+        return inputView.getMoneyFromUser();
     }
 
     private static int calculatePurchaseCountBy(int money) {
@@ -59,23 +68,32 @@ public class LottoController {
     private Lotto getLottoWinningNumbers() {
         while (true) {
             try {
-                outputView.showLottoWinningNumbersInputComments();
-                return inputView.getLottoWinningNumbersFromUser();
+                List<Integer> lottoWinningNumbers = getWinningNumberFromUser();
+                return Lotto.of(lottoWinningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.showExceptionMessage(e);
             }
         }
     }
 
+    private List<Integer> getWinningNumberFromUser() {
+        outputView.showLottoWinningNumbersInputComments();
+        return inputView.getLottoWinningNumbersFromUser();
+    }
+
     private int getLottoBonusNumber() {
         while (true) {
             try {
-                outputView.showLottoBonusNumberInputComments();
-                return inputView.getLottoBonusNumberFromUser();
+                return getLottoBonusNumberFromUser();
             } catch (IllegalArgumentException e) {
                 outputView.showExceptionMessage(e);
             }
         }
+    }
+
+    private int getLottoBonusNumberFromUser() {
+        outputView.showLottoBonusNumberInputComments();
+        return inputView.getLottoBonusNumberFromUser();
     }
 
     private WinningLotto createWinningLottoNumbers(Lotto lottoWinningNumbers, int lottoBonusNumber) {

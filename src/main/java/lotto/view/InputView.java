@@ -3,42 +3,44 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.model.Lotto;
 import lotto.validator.CommonInputValidator;
-import lotto.validator.MoneyValidator;
 import lotto.validator.NumberInputValidator;
 
 public class InputView {
 
+    private final CommonInputValidator commonInputValidator;
+    private final NumberInputValidator numberInputValidator;
+
+    public InputView(CommonInputValidator commonInputValidator, NumberInputValidator numberInputValidator) {
+        this.commonInputValidator = commonInputValidator;
+        this.numberInputValidator = numberInputValidator;
+    }
+
     public int getMoneyFromUser() {
         String input = Console.readLine();
-        CommonInputValidator.validateCommonInput(input);
-        NumberInputValidator.validateNumberInput(input);
+        commonInputValidator.validateCommonInput(input);
+        numberInputValidator.validateNumberInput(input);
 
-        int money = Integer.parseInt(input);
-        MoneyValidator.validateMoney(money);
-        return money;
+        return Integer.parseInt(input);
     }
 
-    public Lotto getLottoWinningNumbersFromUser() {
+    public List<Integer> getLottoWinningNumbersFromUser() {
         String input = Console.readLine();
-        CommonInputValidator.validateCommonInput(input);
+        commonInputValidator.validateCommonInput(input);
         String[] splitInput = validateParsedInput(input);
 
-        List<Integer> lottoWinningNumbers = convertToIntegerListFrom(splitInput);
-
-        return Lotto.of(lottoWinningNumbers);
+        return convertToIntegerListFrom(splitInput);
     }
 
-    private static String[] validateParsedInput(String input) {
+    private String[] validateParsedInput(String input) {
         String[] splitInput = input.split(",");
         for (String s : splitInput) {
-            NumberInputValidator.validateNumberInput(s);
+            numberInputValidator.validateNumberInput(s);
         }
         return splitInput;
     }
 
-    private static List<Integer> convertToIntegerListFrom(String[] splitInput) {
+    private List<Integer> convertToIntegerListFrom(String[] splitInput) {
         return Arrays.stream(splitInput)
                 .map(Integer::parseInt)
                 .toList();
@@ -46,8 +48,8 @@ public class InputView {
 
     public int getLottoBonusNumberFromUser() {
         String input = Console.readLine();
-        CommonInputValidator.validateCommonInput(input);
-        NumberInputValidator.validateNumberInput(input);
+        commonInputValidator.validateCommonInput(input);
+        numberInputValidator.validateNumberInput(input);
 
         return Integer.parseInt(input);
     }

@@ -7,18 +7,18 @@ public class CommonInputValidator {
 
     private static final String WHITE_SPACE = " ";
 
-    public static void validateCommonInput(String input) {
+    public void validateCommonInput(String input) {
         validateIsNotEmptyInput(input);
         validateHasNoWhiteSpace(input);
     }
 
-    private static void validateIsNotEmptyInput(String input) {
+    private void validateIsNotEmptyInput(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new LottoException(LottoErrorMessage.INPUT_IS_EMPTY);
         }
     }
 
-    private static void validateHasNoWhiteSpace(String input) {
+    private void validateHasNoWhiteSpace(String input) {
         if (input.contains(WHITE_SPACE)) {
             throw new LottoException(LottoErrorMessage.INPUT_CONTAINS_WHITE_SPACE);
         }

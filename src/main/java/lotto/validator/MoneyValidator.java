@@ -8,28 +8,28 @@ public class MoneyValidator {
 
     private static final int ZERO = 0;
 
-    public static void validateMoney(int money) {
+    public void validateMoney(int money) {
         validateIsMoreThanThousand(money);
         validateIsDivisibleByThousand(money);
     }
 
-    private static void validateIsMoreThanThousand(int money) {
+    private void validateIsMoreThanThousand(int money) {
         if (isLessThanThousand(money)) {
             throw new LottoException(LottoErrorMessage.MONEY_LESS_THAN_THOUSAND);
         }
     }
 
-    private static boolean isLessThanThousand(int money) {
+    private boolean isLessThanThousand(int money) {
         return money < LottoConstants.LOTTO_PRICE.getValue();
     }
 
-    private static void validateIsDivisibleByThousand(int money) {
+    private void validateIsDivisibleByThousand(int money) {
         if (isNotDivisibleByThousand(money)) {
             throw new LottoException(LottoErrorMessage.MONEY_NOT_DIVISIBLE_BY_THOUSAND);
         }
     }
 
-    private static boolean isNotDivisibleByThousand(int money) {
+    private boolean isNotDivisibleByThousand(int money) {
         return money % LottoConstants.LOTTO_PRICE.getValue() != ZERO;
     }
 }
