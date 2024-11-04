@@ -15,12 +15,12 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        if (new HashSet(numbers).size() != 6){
+        if (new HashSet<>(numbers).size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 전부 달라야 합니다.");
         }
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return this.numbers;
     }
 }
