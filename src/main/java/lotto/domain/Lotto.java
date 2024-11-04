@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 import lotto.constants.ExceptionsMessageConstants;
 
+import static lotto.constants.NumberConstants.LOTTO_NUMBERS_SIZE;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -15,7 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(
                     ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.LOTTO_NUMBERS_COUNT_MUST_BE_SIX);
         }

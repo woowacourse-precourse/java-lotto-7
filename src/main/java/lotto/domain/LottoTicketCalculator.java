@@ -1,10 +1,10 @@
 package lotto.domain;
 
+import static lotto.constants.NumberConstants.LOTTO_TICKET_DIVIDER;
+
 public class LottoTicketCalculator {
 
-    private static final int Lotto_Ticket_Divider = 1000;
-
     public int getLottoTicketsCount(String money) {
-        return Integer.parseInt(money) / Lotto_Ticket_Divider;
+        return Integer.parseInt(money) / LOTTO_TICKET_DIVIDER;
     }
 }

@@ -1,5 +1,9 @@
 package lotto.exception;
 
+import static lotto.constants.NumberConstants.LOTTO_END_NUMBER;
+import static lotto.constants.NumberConstants.LOTTO_NUMBERS_SIZE;
+import static lotto.constants.NumberConstants.LOTTO_TICKET_DIVIDER;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -34,7 +38,7 @@ public class InputViewException {
     }
 
     private void validateIfMoneyMultipleOfThousand(String inputMoney) {
-        if (Integer.parseInt(inputMoney) % 1000 != 0) {
+        if (Integer.parseInt(inputMoney) % LOTTO_TICKET_DIVIDER != 0) {
             throw new IllegalArgumentException(
                     ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.MONEY_MUST_BE_A_MULTIPLE_OF_THOUSAND);
         }
@@ -79,7 +83,7 @@ public class InputViewException {
 
     private void validateNumbersCount(String inputNumbers) {
         String[] numbers = inputNumbers.split(",");
-        if (numbers.length > 6) {
+        if (numbers.length > LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(
                     ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.LOTTO_NUMBERS_COUNT_MUST_BE_SIX);
         }
@@ -89,7 +93,7 @@ public class InputViewException {
         List<String> numbers = Arrays.stream(inputNumbers.split(",")).toList();
         for (String number : numbers) {
             if (!number.equals(String.valueOf(Integer.parseInt(number))) || Integer.parseInt(number) <= 0
-                    || Integer.parseInt(number) > 45) {
+                    || Integer.parseInt(number) > LOTTO_END_NUMBER) {
                 throw new IllegalArgumentException(ExceptionsMessageConstants.ERROR
                         + ExceptionsMessageConstants.INPUT_NUMBERS_MUST_BE_IN_ALLOWED_RANGE);
             }
@@ -132,7 +136,7 @@ public class InputViewException {
     }
 
     private void validateInputBonusInRange(String inputBonusNumber) {
-        if (Integer.parseInt(inputBonusNumber) <= 0 || Integer.parseInt(inputBonusNumber) > 45) {
+        if (Integer.parseInt(inputBonusNumber) <= 0 || Integer.parseInt(inputBonusNumber) > LOTTO_END_NUMBER) {
             throw new IllegalArgumentException(ExceptionsMessageConstants.ERROR
                     + ExceptionsMessageConstants.INPUT_BONUS_NUMBER_MUST_BE_IN_ALLOWED_RANGE);
         }
