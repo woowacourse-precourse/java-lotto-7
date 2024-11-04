@@ -9,15 +9,15 @@ public enum Winning {
     FIFTH(3, 5000);
 
     private final int match;
-    private final int reward;
+    private final int prize;
 
-    Winning(int match, int reward) {
+    Winning(int match, int prize) {
         this.match = match;
-        this.reward = reward;
+        this.prize = prize;
     }
 
-    public int getReward() {
-        return reward;
+    public int getPrize() {
+        return prize;
     }
 
     public Winning valueOf(int match) {
