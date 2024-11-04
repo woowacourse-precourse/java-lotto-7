@@ -14,7 +14,4 @@ public class PurchaseAmountController {
         }
         return new PurchaseAmountRequestDto(Integer.parseInt(purchaseAmount));
     }
-    public static void restart() {
-        run();
-    }
 }
