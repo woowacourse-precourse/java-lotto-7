@@ -17,19 +17,7 @@ public class Application {
         final int numOfLotto = price / 1000;
         System.out.println(numOfLotto + "개를 구매했습니다.");
 
-
-        final List<List<Integer>> listOfLotto = new ArrayList<>();
-
-        for (int i = 0; i < numOfLotto; i++) {
-            List<Integer> pickLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(pickLotto);
-            listOfLotto.add(pickLotto);
-        }
-
-        for (List<Integer> eachOfLotto : listOfLotto) {
-            System.out.println(eachOfLotto);
-        }
-
+        displayLotto(numOfLotto);
 
         System.out.println("당첨 번호를 입력해 주세요.");
 
@@ -72,6 +60,20 @@ public class Application {
         }
 
 
+    }
+
+    private static void displayLotto(int numOfLotto) {
+        final List<List<Integer>> listOfLotto = new ArrayList<>();
+
+        for (int i = 0; i < numOfLotto; i++) {
+            List<Integer> pickLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(pickLotto);
+            listOfLotto.add(pickLotto);
+        }
+
+        for (List<Integer> eachOfLotto : listOfLotto) {
+            System.out.println(eachOfLotto);
+        }
     }
 
     private static int getPrice() {
