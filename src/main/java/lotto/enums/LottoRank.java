@@ -17,14 +17,23 @@ public enum LottoRank {
         this.prize = prize;
     }
 
-    public int getMatchCount() { return matchCount; }
-    public boolean isRequiresBonusMatch() { return requiresBonusMatch; }
-    public int getPrize() { return prize; }
-    public String getMessage(int lottoWinningCount) {
+    public int getPrize() {
+        return prize;
+    }
+
+    public String getMessage(int count) {
         if (this == FIVE_MATCHES_WITH_BONUS_NUMBER) {
-            return "5개 일치, 보너스 볼 일치 (" + prize + "원) - " + lottoWinningCount + "개";
+            return "5개 일치, 보너스 볼 일치 (" + prize + "원) - " + count + "개";
         }
-        return matchCount + "개 일치 (" + prize + "원) - " + lottoWinningCount + "개";
+        return matchCount + "개 일치 (" + prize + "원) - " + count + "개";
+    }
+
+    public static LottoRank findByMatchCountAndBonus(int matchCount, boolean requiresBonusMatch) {
+        for (LottoRank rank : values()) {
+            if (rank.matchCount == matchCount && rank.requiresBonusMatch == requiresBonusMatch) {
+                return rank;
+            }
+        }
+        return null;
     }
 }
-
