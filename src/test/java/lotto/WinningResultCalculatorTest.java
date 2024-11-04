@@ -15,11 +15,11 @@ public class WinningResultCalculatorTest {
     public void testCalculateResults() {
         WinningResultCalculator calculator = new WinningResultCalculator();
         List<Lotto> userLottos = Arrays.asList(
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)),
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)),
-                new Lotto(Arrays.asList(1, 2, 3, 4, 10, 11)),
-                new Lotto(Arrays.asList(1, 2, 3, 12, 13, 14))
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), // 1등
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)), // 2등
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)), // 3등
+                new Lotto(Arrays.asList(1, 2, 3, 4, 10, 11)), // 4등
+                new Lotto(Arrays.asList(1, 2, 3, 12, 13, 14)) // 5등
         );
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
@@ -32,5 +32,22 @@ public class WinningResultCalculatorTest {
         assertThat(results.get(Rank.FOURTH)).isEqualTo(1);
         assertThat(results.get(Rank.FIFTH)).isEqualTo(1);
         assertThat(results.get(Rank.NONE)).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("수익률 계산 테스트")
+    public void testCalculateProfitRate() {
+        WinningResultCalculator calculator = new WinningResultCalculator();
+        Map<Rank, Integer> results = Map.of(
+                Rank.FIRST, 1,
+                Rank.SECOND, 0,
+                Rank.THIRD, 0,
+                Rank.FOURTH, 0,
+                Rank.FIFTH, 0,
+                Rank.NONE, 0
+        );
+
+        double profitRate = calculator.calculateProfitRate(results, 8000);
+        assertThat(profitRate).isEqualTo(25000000.0);
     }
 }
