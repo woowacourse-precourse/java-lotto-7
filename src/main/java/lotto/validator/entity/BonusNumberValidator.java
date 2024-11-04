@@ -20,13 +20,13 @@ public class BonusNumberValidator implements Validator {
 
     private void isValidatedForm() {
         if (!bonusNumber.matches("[0-9]+")) {
-            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_NOT_VALID_FORMAT.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.BONUS_NUMBER_NOT_VALID_FORMAT.getMessage());
         }
     }
 
     private void isNull() {
         if (bonusNumber == null) {
-            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_IS_NULL.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.BONUS_NUMBER_IS_NULL.getMessage());
         }
     }
 
@@ -38,7 +38,7 @@ public class BonusNumberValidator implements Validator {
                 throw new Exception();
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 }

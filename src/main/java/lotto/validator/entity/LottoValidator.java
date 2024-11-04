@@ -23,13 +23,13 @@ public class LottoValidator implements Validator {
 
     private void isDuplicated() {
         if (numbers.size() > new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_DUPLICATED.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 
     private void isValidCount() {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_NOT_VALID_COUNT.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.LOTTO_NUMBER_NOT_VALID_COUNT.getMessage());
         }
     }
 
@@ -41,7 +41,7 @@ public class LottoValidator implements Validator {
 
     private void isInRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 }

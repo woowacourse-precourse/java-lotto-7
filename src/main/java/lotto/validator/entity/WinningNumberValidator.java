@@ -29,25 +29,25 @@ public class WinningNumberValidator implements Validator {
 
     private void isNull() {
         if (winningNumbers == null) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_IS_NULL.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.WINNING_NUMBER_IS_NULL.getMessage());
         }
     }
 
     private void isConsistOfNumberAndComma() {
         if (!winningNumbers.matches("[0-9|,]+")) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_NOT_VALID_FORMAT.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.WINNING_NUMBER_NOT_VALID_FORMAT.getMessage());
         }
     }
 
     private void isStartOrEndWithComma() {
         if (winningNumbers.startsWith(",") || winningNumbers.endsWith(",")) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_START_OR_END_WITH_COMMA.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.WINNING_NUMBER_START_OR_END_WITH_COMMA.getMessage());
         }
     }
 
     private void isContainsContinuousComma() {
         if (winningNumbers.contains(",,")) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_HAS_CONTINUOUS_COMMA.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.WINNING_NUMBER_HAS_CONTINUOUS_COMMA.getMessage());
         }
     }
 
@@ -56,7 +56,7 @@ public class WinningNumberValidator implements Validator {
             int number = Integer.parseInt(winningNumber);
 
         } catch (Exception e) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 }

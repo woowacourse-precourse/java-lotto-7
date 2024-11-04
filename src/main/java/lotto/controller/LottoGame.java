@@ -19,10 +19,10 @@ import java.util.List;
 public class LottoGame {
     public void start(){
         InputView priceInputView = new PriceInputView();
+        Price price = inputPrice(priceInputView);
+
         InputView winningNumberInputView = new WinningNumberInputView();
         InputView bonusNumberInputView = new BonusNumberInputView();
-
-        Price price = new Price(priceInputView.input());
 
         List<Lotto> lottos = new LottoGenerator(price).getLottoList();
 
@@ -36,5 +36,17 @@ public class LottoGame {
 
         LottoResultOutputView outputView = new LottoResultOutputView(lottoResult.getWinningHistory(), lottoResult.getRateOfReturn());
         outputView.print();
+    }
+
+    private Price inputPrice(InputView view){
+        Price price = null;
+
+        try{
+            price = new Price(view.input());
+        }catch (IllegalArgumentException exception){
+            inputPrice(view);
+        }
+
+        return price;
     }
 }

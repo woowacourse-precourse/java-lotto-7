@@ -20,13 +20,17 @@ public class PriceValidator implements Validator {
 
     private void isValidFormat() {
         if (!price.matches("[0-9]+")) {
-            throw new IllegalArgumentException(ExceptionMessage.PRICE_NOT_VALID_FORMAT.getMessage());
+            String message = ExceptionMessage.PRICE_NOT_VALID_FORMAT.getMessage();
+
+            System.out.println(message);
+
+            throw new IllegalArgumentException(message);
         }
     }
 
     private void isNull() {
         if (price == null) {
-            throw new IllegalArgumentException(ExceptionMessage.PRICE_IS_NULL.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.PRICE_IS_NULL.getMessage());
         }
     }
 
@@ -36,16 +40,19 @@ public class PriceValidator implements Validator {
     }
 
     private int isValueInRange() {
+        int price = 0;
         try {
-            return Integer.parseInt(price);
+            price = Integer.parseInt(this.price);
         } catch (Exception e) {
-            throw new IllegalArgumentException(ExceptionMessage.PRICE_OUT_OF_RANGE.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.PRICE_OUT_OF_RANGE.getMessage());
         }
+
+        return price;
     }
 
     private void isMultipleOfAThousand(int inputValue) {
         if (inputValue == 0 || inputValue % 1000 > 0) {
-            throw new IllegalArgumentException(ExceptionMessage.PRICE_NOT_MULTIPLE_OF_THOUSAND.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.PRICE_NOT_MULTIPLE_OF_THOUSAND.getMessage());
         }
     }
 }

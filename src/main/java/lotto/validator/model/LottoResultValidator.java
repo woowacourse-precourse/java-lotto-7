@@ -27,7 +27,7 @@ public class LottoResultValidator implements Validator {
         numbers.add(bonusNumber.getValue());
 
         if(winningNumber.getValue().getNumbers().size() == numbers.size()){
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_BONUS_NUMBER_DUPLICATED.getMessage());
+            printErrorMessageAndThrowError(ExceptionMessage.WINNING_BONUS_NUMBER_DUPLICATED.getMessage());
         }
     }
 }
