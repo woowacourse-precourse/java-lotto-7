@@ -29,8 +29,8 @@ public class LottoController {
     List<Lotto> lottos=lottoService.lottoResults(numberOfPurchases);
     outputMessageView.lottoResults(lottos);
     List<Integer> winningNumbers=inputMessageService.enterWinningNumberAndValidation();
-    List<Integer> winningNumbersAddBonusNumber=inputMessageService.winningNumbersAddBonusNumberAndValidation(winningNumbers);
-
+    int bonusNumber=inputMessageService.winningNumbersAddBonusNumberAndValidation(winningNumbers);
+    lottoService.calculatingWinningStatistics(lottos,winningNumbers,bonusNumber);
   }
 
 }

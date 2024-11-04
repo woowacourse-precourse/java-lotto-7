@@ -21,4 +21,7 @@ public class LottoService {
       return numbers;
   }
 
+  public void calculatingWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+
+  }
 }

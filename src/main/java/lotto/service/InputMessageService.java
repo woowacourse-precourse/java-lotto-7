@@ -49,13 +49,14 @@ public class InputMessageService {
     }
     return enterNumbers;
   }
-  public List<Integer> winningNumbersAddBonusNumberAndValidation(List<Integer> winningNumbers){
+  public int winningNumbersAddBonusNumberAndValidation(List<Integer> winningNumbers){
       boolean isValid = false;
+      String bonusNumber ="";
       while (!isValid) {
-        String bonusNumber = inputMessageView.enterBonusNumber();
+        bonusNumber = inputMessageView.enterBonusNumber();
         isValid = enterBonusNumberValidation.validateEnterBonusNumber(winningNumbers,bonusNumber);
       }
-    return winningNumbers;
+    return Integer.parseInt(bonusNumber);
   }
 
 }
