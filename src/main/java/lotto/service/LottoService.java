@@ -20,12 +20,12 @@ public class LottoService implements LottosServiceInterface {
   }
 
 
+
   @Override
   public List<Integer> checkWinningNumbers(List<Lotto> lottos, List<Integer> winningNumbers,
       int bonusNumber) {
-    // 결과 리스트 초기화
     List<Integer> winningCounts = Arrays.asList(0, 0, 0, 0,
-        0); // [3개 일치, 4개 일치, 5개 일치, 5개 + 보너스 일치, 6개 일치]
+        0);
 
     for (Lotto lotto : lottos) {
       long matchCount = lotto.getNumbers().stream()
@@ -48,7 +48,6 @@ public class LottoService implements LottosServiceInterface {
     }
     return winningCounts;
   }
-
 
   @Override
   public double calculateYield(List<Integer> winningCounts, int purchaseAmount) {
