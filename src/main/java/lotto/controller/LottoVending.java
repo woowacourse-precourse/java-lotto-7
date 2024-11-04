@@ -37,7 +37,7 @@ public class LottoVending {
         }
     }
 
-    private List<Integer> getWinningNumbersUntilValid() {
+    private Lotto getWinningNumbersUntilValid() {
         while (true) {
             try {
                 List<Integer> winningNumbers = new ArrayList<>();
@@ -50,14 +50,14 @@ public class LottoVending {
                 }
                 validator = new LottoNumbersValidator(winningNumbers);
                 validator.validate();
-                return winningNumbers;
+                return new Lotto(winningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
     }
 
-    private Integer getBonusNumbersUntilValid(List<Integer> winningNumbers) {
+    private Integer getBonusNumbersUntilValid(Lotto winningNumbers) {
         while (true) {
             try {
                 String bonusNumberInput = inputView.getBonusNumber();
@@ -78,7 +78,7 @@ public class LottoVending {
 
         // 당첨 번호 입력, 검증 및 파싱
         outputView.printWinningNumbersMessage();
-        List<Integer> winningNumbers = getWinningNumbersUntilValid();
+        Lotto winningNumbers = getWinningNumbersUntilValid();
 
         //보너스 번호 입력
         outputView.printBonusNumberMessage();
