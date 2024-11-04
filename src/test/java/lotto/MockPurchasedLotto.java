@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.Constants.LOTTO_PRICE;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class MockPurchasedLotto extends PurchasedLotto {
 
     public MockPurchasedLotto(Payment payment) {
         super(new ArrayList<>());
-        lottos = new ArrayList<>(payment.get() / 1000);
+        lottos = new ArrayList<>(payment.get() / LOTTO_PRICE);
     }
 
     @Override
