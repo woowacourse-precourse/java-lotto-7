@@ -78,9 +78,16 @@ public class Application {
     }
 
     private static List<Integer> parseNumbers() {
-        return Arrays.stream(Console.readLine().split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        try {
+            List<Integer> numbers = Arrays.stream(Console.readLine().split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+            return numbers;
+        } catch (NumberFormatException e) {
+            printErrorMessage("[ERROR] 당첨 번호는 숫자여야 합니다.");
+            return parseNumbers();
+        }
     }
 
     private static int getBonusNumber() {
