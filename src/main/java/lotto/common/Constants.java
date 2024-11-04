@@ -21,6 +21,10 @@ public class Constants {
     public static Long MAX_WINNING_NUMBER = 45L;
     public static Long MIN_MATCH_COUNT = 0L;
     public static Long MAX_MATCH_COUNT = 6L;
+    public static Integer DECIMAL_SCALE = 2;
+    public static Long WINNING_PRIZE = 62250L;
+    public static Integer LOTTO_TICKET_COUNT = 1;
+    public static Double PROFIT_RATE = 62.25;
 
     // string
     public static String LOTTO_NUMBER_PRINT_DELIMITER = ", ";

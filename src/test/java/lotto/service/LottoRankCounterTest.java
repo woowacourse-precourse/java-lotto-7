@@ -1,7 +1,6 @@
 package lotto.service;
 
 import lotto.domain.LottoRank;
-import lotto.domain.Lottos;
 import lotto.dto.WinningRankCountDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.TestConstants.*;
+import static lotto.common.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoRankCounterTest {
@@ -58,5 +58,19 @@ class LottoRankCounterTest {
 
         assertEquals(expectedPrize, winningPrize);
 
+    }
+
+    @Test
+    @DisplayName("당첨된 로또들의 총 수익률을 계산한다.")
+    void getProfitRate () {
+        // given
+        Long winningPrize = WINNING_PRIZE;
+        Integer lottoTicketCount = LOTTO_TICKET_COUNT;
+
+        // when
+        Double profitRate = lottoRankCounter.getProfitRate(winningPrize, lottoTicketCount);
+
+        // then
+        assertEquals(PROFIT_RATE, profitRate);
     }
 }
