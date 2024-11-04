@@ -33,8 +33,16 @@ public class Customer {
         return (float)totalWinningMoney.getValue() / budget.getValue();
     }
 
+    public Map<WinningType, Integer> getWinningHistory() {
+        return winningHistory;
+    }
+
     public long getBudget() {
         return budget.getValue();
+    }
+
+    public MyLotto getMyLotto() {
+        return myLotto;
     }
 
     private void checkMyLotto(AnswerNumbers answerNumbers, BonusNumber bonusNumber) {
