@@ -7,7 +7,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Prize;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.dto.WinningResultDto;
 import lotto.wrapper.BonusNumber;
@@ -44,13 +44,13 @@ public class WinningServiceTest {
     @Test
     void 로또_당첨_결과_반환_테스트() {
         // Expected
-        Map<Prize, Integer> expectedPrizeCounts = new EnumMap<>(Prize.class);
-        expectedPrizeCounts.put(Prize.SIX_MATCHES, 2);
-        expectedPrizeCounts.put(Prize.FIVE_MATCHES_WITH_BONUS, 3);
-        expectedPrizeCounts.put(Prize.FIVE_MATCHES, 1);
-        expectedPrizeCounts.put(Prize.FOUR_MATCHES, 1);
-        expectedPrizeCounts.put(Prize.THREE_MATCHES, 0);
-        expectedPrizeCounts.put(Prize.NO_MATCH, 2);
+        Map<Rank, Integer> expectedPrizeCounts = new EnumMap<>(Rank.class);
+        expectedPrizeCounts.put(Rank.SIX_MATCHES, 2);
+        expectedPrizeCounts.put(Rank.FIVE_MATCHES_WITH_BONUS, 3);
+        expectedPrizeCounts.put(Rank.FIVE_MATCHES, 1);
+        expectedPrizeCounts.put(Rank.FOUR_MATCHES, 1);
+        expectedPrizeCounts.put(Rank.THREE_MATCHES, 0);
+        expectedPrizeCounts.put(Rank.NO_MATCH, 2);
 
         BigDecimal expectedProfitRate = BigDecimal.valueOf(2_000_000_000L * 2 + 30_000_000 * 3 + 1_500_000 + 50_000)
                 .divide(BigDecimal.valueOf(9), 2, RoundingMode.HALF_UP)

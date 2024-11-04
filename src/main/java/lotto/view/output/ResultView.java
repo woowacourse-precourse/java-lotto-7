@@ -2,7 +2,7 @@ package lotto.view.output;
 
 import java.math.BigDecimal;
 import java.util.Map;
-import lotto.domain.Prize;
+import lotto.domain.Rank;
 import lotto.dto.WinningResultDto;
 import lotto.util.Parse;
 
@@ -18,11 +18,11 @@ public class ResultView {
         System.out.println(stringBuilder.toString());
     }
 
-    private static String prizeCounts(Map<Prize, Integer> rankCounts) {
+    private static String prizeCounts(Map<Rank, Integer> rankCounts) {
         StringBuilder stringBuilder = new StringBuilder();
 
         rankCounts.forEach((rank, count) -> {
-            if (rank == Prize.NO_MATCH) {
+            if (rank == Rank.NO_MATCH) {
                 return;
             }
 
@@ -45,11 +45,11 @@ public class ResultView {
         return stringBuilder.toString();
     }
 
-    public static String getDescription(Prize prize) {
-        if (prize == Prize.FIVE_MATCHES_WITH_BONUS) {
+    public static String getDescription(Rank rank) {
+        if (rank == Rank.FIVE_MATCHES_WITH_BONUS) {
             return "5개 일치, 보너스 볼 일치";
         }
-        return prize.getRequiredMatchCount() + "개 일치";
+        return rank.getRequiredMatchCount() + "개 일치";
     }
 
 }

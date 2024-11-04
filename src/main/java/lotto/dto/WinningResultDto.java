@@ -2,8 +2,8 @@ package lotto.dto;
 
 import java.math.BigDecimal;
 import java.util.Map;
-import lotto.domain.Prize;
+import lotto.domain.Rank;
 
-public record WinningResultDto(Map<Prize, Integer> rankCounts, BigDecimal profitRate) {
+public record WinningResultDto(Map<Rank, Integer> rankCounts, BigDecimal profitRate) {
 
 }

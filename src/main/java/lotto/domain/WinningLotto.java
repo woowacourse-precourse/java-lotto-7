@@ -16,11 +16,11 @@ public class WinningLotto {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    public Prize determineRank(Lotto lotto) {
+    public Rank determineRank(Lotto lotto) {
         int matchCount = calculateMatchCount(lotto);
         boolean bonusMatch = bonusNumberMatch(lotto);
 
-        return Prize.valueOf(matchCount, bonusMatch);
+        return Rank.valueOf(matchCount, bonusMatch);
     }
 
     private int calculateMatchCount(Lotto lotto) {

@@ -18,24 +18,24 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
-    public Map<Prize, Integer> countMatchesWith(WinningLotto winningLotto) {
-        Map<Prize, Integer> prizeCounts = initializeRankCounts();
+    public Map<Rank, Integer> countMatchesWith(WinningLotto winningLotto) {
+        Map<Rank, Integer> prizeCounts = initializeRankCounts();
 
         lottos.forEach(lotto -> {
-            Prize prize = winningLotto.determineRank(lotto);
-            prizeCounts.put(prize, prizeCounts.get(prize) + 1);
+            Rank rank = winningLotto.determineRank(lotto);
+            prizeCounts.put(rank, prizeCounts.get(rank) + 1);
         });
 
         return prizeCounts;
     }
 
-    private Map<Prize, Integer> initializeRankCounts() {
-        return Arrays.stream(Prize.values())
+    private Map<Rank, Integer> initializeRankCounts() {
+        return Arrays.stream(Rank.values())
                 .collect(Collectors.toMap(
                         rank -> rank,
                         rank -> 0,
                         (a, b) -> a,
-                        () -> new EnumMap<>(Prize.class)
+                        () -> new EnumMap<>(Rank.class)
                 ));
     }
 

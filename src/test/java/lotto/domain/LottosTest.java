@@ -36,14 +36,14 @@ class LottosTest {
         );
         Lottos lottos = Lottos.of(lottoList);
 
-        Map<Prize, Integer> result = lottos.countMatchesWith(winningLotto);
+        Map<Rank, Integer> result = lottos.countMatchesWith(winningLotto);
 
-        Assertions.assertThat(result.get(Prize.SIX_MATCHES)).isEqualTo(2);
-        Assertions.assertThat(result.get(Prize.FIVE_MATCHES_WITH_BONUS)).isEqualTo(3);
-        Assertions.assertThat(result.get(Prize.FIVE_MATCHES)).isEqualTo(1);
-        Assertions.assertThat(result.get(Prize.FOUR_MATCHES)).isEqualTo(1);
-        Assertions.assertThat(result.get(Prize.THREE_MATCHES)).isEqualTo(0);
-        Assertions.assertThat(result.get(Prize.NO_MATCH)).isEqualTo(2);
+        Assertions.assertThat(result.get(Rank.SIX_MATCHES)).isEqualTo(2);
+        Assertions.assertThat(result.get(Rank.FIVE_MATCHES_WITH_BONUS)).isEqualTo(3);
+        Assertions.assertThat(result.get(Rank.FIVE_MATCHES)).isEqualTo(1);
+        Assertions.assertThat(result.get(Rank.FOUR_MATCHES)).isEqualTo(1);
+        Assertions.assertThat(result.get(Rank.THREE_MATCHES)).isEqualTo(0);
+        Assertions.assertThat(result.get(Rank.NO_MATCH)).isEqualTo(2);
     }
 
 }

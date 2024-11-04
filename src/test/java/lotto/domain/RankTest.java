@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class PrizeTest {
+public class RankTest {
 
     @DisplayName("매치된 숫자의 개수와 보너스 매치 여부에 따라 Rank 객체를 반환한다.")
     @ParameterizedTest
@@ -19,10 +19,10 @@ public class PrizeTest {
             "1, false, NO_MATCH",
             "0, false, NO_MATCH"
     })
-    void Rank_반환_테스트(int matchCount, boolean bonusMatch, Prize expectedPrize) {
-        Prize actualPrize = Prize.valueOf(matchCount, bonusMatch);
+    void Rank_반환_테스트(int matchCount, boolean bonusMatch, Rank expectedRank) {
+        Rank actualRank = Rank.valueOf(matchCount, bonusMatch);
 
-        Assertions.assertThat(actualPrize).isEqualTo(expectedPrize);
+        Assertions.assertThat(actualRank).isEqualTo(expectedRank);
     }
 
 }

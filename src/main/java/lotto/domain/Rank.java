@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.Arrays;
 
-public enum Prize {
+public enum Rank {
 
     NO_MATCH(0, false, 0),
     THREE_MATCHES(3, false, 5_000),
@@ -15,14 +15,14 @@ public enum Prize {
     private final boolean requiresBonusMatch;
     private final int prize;
 
-    Prize(int requiredMatchCount, boolean requiresBonusMatch, int prize) {
+    Rank(int requiredMatchCount, boolean requiresBonusMatch, int prize) {
         this.requiredMatchCount = requiredMatchCount;
         this.requiresBonusMatch = requiresBonusMatch;
         this.prize = prize;
     }
 
-    public static Prize valueOf(int matchCount, boolean bonusMatch) {
-        return Arrays.stream(Prize.values())
+    public static Rank valueOf(int matchCount, boolean bonusMatch) {
+        return Arrays.stream(Rank.values())
                 .filter(rank -> rank.isMatch(matchCount, bonusMatch))
                 .min((p1, p2) -> Boolean.compare(p2.requiresBonusMatch, p1.requiresBonusMatch))
                 .orElse(NO_MATCH);
