@@ -84,7 +84,7 @@ public class InputView {
     public int readBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println("\n보너스 번호를 입력해 주세요.");
                 return validateBonusNumber(Console.readLine(), winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

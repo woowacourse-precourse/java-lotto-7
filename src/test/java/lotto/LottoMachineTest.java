@@ -97,5 +97,5 @@ class LottoMachineTest {
         assertThat(result.getCountForRank(LottoRank.SECOND)).isEqualTo(1);
         assertThat(result.getCountForRank(LottoRank.NONE)).isEqualTo(1);
     }
-    
+
 }
