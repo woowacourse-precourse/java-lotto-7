@@ -34,4 +34,9 @@ class LottoTest {
     void 로또_번호가_올바르게_들어오면_생성() {
         assertDoesNotThrow(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)));
     }
+
+    @Test
+    void 당첨로또_번호를_쉼표로_구분해_입력받는다() {
+        assertDoesNotThrow(() -> new Lotto("1,2,3,4,5,6"));
+    }
 }

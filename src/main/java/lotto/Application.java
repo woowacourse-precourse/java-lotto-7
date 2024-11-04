@@ -7,5 +7,6 @@ public class Application {
         RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
         user.buyLotto(randomNumbersGenerator);
 
+        Lotto lotto = InputHandler.inputWinningNumbers();
     }
 }
