@@ -66,22 +66,6 @@
 </div>
 
 #### 단계별 구현
-GlobalException
-- [ ] 전역 예외처리
-
-InputException
-- [ ] 사용자 입력 관련 예외처리
-
-AmountException
-- [ ] 금액 관련 예외처리
-
-LottoException
-- [ ] 로또 관련 예외처리
-
-View
-- [ ] 인터페이스 생성
-- [ ] 입력 처리
-- [ ] 출력 처리
 <table> 
 ⬜✅
 <tr> 
@@ -182,7 +166,7 @@ View
                     <td rowspan="1">dev/controller</tr><tr> 
     <td rowspan="1">의존성 주입</td>
         <td rowspan="1"><b><em>DependencyInjectionContainer</em></b></td>
-            <td>⬜컴포넌트 의존성 주입</td> 
+            <td>✅컴포넌트 의존성 주입</td> 
                 <td rowspan="1"></tr><tr> 
 </tr>
 </table>
