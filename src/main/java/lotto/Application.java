@@ -10,7 +10,7 @@ public class Application {
             lottoGame.printPurchasedLottos();
             WinNumbers winningNumbers = getWinningNumbers();
             int bonusNumber = getBonusNumber();
-
+            lottoGame.calculateResults(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }
