@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.util;
+
+import lotto.model.WinningDetails;
 
 public class YieldCalculator {
 
