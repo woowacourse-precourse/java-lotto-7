@@ -24,6 +24,10 @@ public enum Rank {
     return prizeAmount;
   }
 
+  public int getMatchCount() {
+    return matchCount;
+  }
+
   public static Rank getRank(int matchCount, boolean bonusMatch) {
     return Arrays.stream(values())
         .filter(rank -> rank.matchCount == matchCount && rank.requiresBonus == bonusMatch)
