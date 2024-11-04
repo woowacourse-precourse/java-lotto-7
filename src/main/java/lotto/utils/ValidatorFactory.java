@@ -1,6 +1,8 @@
 package lotto.utils;
 
 import java.util.List;
+import lotto.domain.WinningNumbers;
+import lotto.validation.BonusNumberValidator;
 import lotto.validation.NumberCountValidator;
 import lotto.validation.NumberRangeValidator;
 import lotto.validation.StringValidator;
@@ -22,6 +24,10 @@ public class ValidatorFactory {
 
     public static Validator<String> createStringValidator(String errorMessage) {
         return new StringValidator(errorMessage);
+    }
+
+    public static Validator<WinningNumbers> createBonusNumberValidator(int bonusNumber, String errorMessage) {
+        return new BonusNumberValidator(bonusNumber, errorMessage);
     }
 
 }
