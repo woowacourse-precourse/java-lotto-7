@@ -55,8 +55,8 @@ public class BonusNumberTest {
     @DisplayName("isMatch() 테스트, 보너스 넘버와 매개변수가 일치하는지 체크")
     @ParameterizedTest
     @CsvSource(value = {"7:7:true", "8:8:true", "7:9:false", "8:7:false"}, delimiter = ':')
-    void isMatch(int bonusNum, int number, boolean result){
-        BonusNumber bonusNumber = BonusNumber.ofNumberAndWinningLottoAndConfig(bonusNum ,winningLotto, CONFIG);
+    void isMatch(int bonusNum, int number, boolean result) {
+        BonusNumber bonusNumber = BonusNumber.ofNumberAndWinningLottoAndConfig(bonusNum, winningLotto, CONFIG);
 
         assertThat(bonusNumber.isMatch(number)).isEqualTo(result);
     }

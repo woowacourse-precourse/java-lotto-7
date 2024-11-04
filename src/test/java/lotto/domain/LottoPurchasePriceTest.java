@@ -46,7 +46,7 @@ public class LottoPurchasePriceTest {
     @DisplayName("로또 구매 갯수 테스트")
     @ParameterizedTest
     @CsvSource(value = {"1000:1", "2000:2", "3000:3", "4000:4", "5000:5"}, delimiter = ':')
-    void getLottoCount(int purchasePrice, int lottoCount){
+    void getLottoCount(int purchasePrice, int lottoCount) {
         LottoPurchasePrice lottoPurchasePrice = LottoPurchasePrice.ofPurchasePriceAndConfig(purchasePrice, CONFIG);
 
         assertThat(lottoPurchasePrice.getLottoCount()).isEqualTo(lottoCount);
@@ -55,7 +55,7 @@ public class LottoPurchasePriceTest {
     @DisplayName("로또 수익률 테스트")
     @ParameterizedTest
     @CsvSource(value = {"1000:100.0", "2000:200.0", "500:50.0", "250:25.0"}, delimiter = ':')
-    void calculateProfitRate(int totalPrizePrice, double profitRate){
+    void calculateProfitRate(int totalPrizePrice, double profitRate) {
         LottoPurchasePrice lottoPurchasePrice = LottoPurchasePrice.ofPurchasePriceAndConfig(1000, CONFIG);
 
         assertThat(lottoPurchasePrice.calculateProfit(totalPrizePrice)).isEqualTo(profitRate);

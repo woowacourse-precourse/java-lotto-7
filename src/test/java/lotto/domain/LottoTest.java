@@ -119,16 +119,14 @@ class LottoTest {
 
     @DisplayName("getNumbers() 메서드 기능 테스트")
     @Test
-    void getNumbers(){
-        List<Integer> expectedNumbers = List.of(1,2,3,4,5,6);
+    void getNumbers() {
+        List<Integer> expectedNumbers = List.of(1, 2, 3, 4, 5, 6);
         Lotto lotto = Lotto.ofNumbersAndConfig(expectedNumbers, CONFIG);
 
         List<Integer> actualNumbers = lotto.getNumbers();
 
         assertThat(actualNumbers).usingRecursiveComparison().isEqualTo(expectedNumbers);
     }
-
-
 
 
 }

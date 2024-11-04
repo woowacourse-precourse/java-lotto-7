@@ -11,7 +11,7 @@ public class LottoResultTest {
 
 
     @Test
-    void 주어진_LottoRankCount와_동일한_값을_반환해야_한다(){
+    void 주어진_LottoRankCount와_동일한_값을_반환해야_한다() {
         Map<LottoRank, Integer> expectedRankCount = new HashMap<>();
         expectedRankCount.put(LottoRank.FIRST_PLACE, 2);
         double garbage = 0.0;
@@ -22,7 +22,7 @@ public class LottoResultTest {
     }
 
     @Test
-    void 주어진_수익률과_동일한_값을_반환해야_한다(){
+    void 주어진_수익률과_동일한_값을_반환해야_한다() {
         Map<LottoRank, Integer> garbage = new HashMap<>();
         double expectedProfitRate = 200.0;
 
