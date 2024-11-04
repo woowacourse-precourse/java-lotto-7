@@ -26,6 +26,7 @@ public class LottoController {
 
     public void run() {
         String priceInput = inputView.getPriceInput();
+        int price = Parser.parseToInt(priceInput);
         int ticket = lottoService.changeToTicket(priceInput);
 
         outputView.printTicketGuide(ticket);
