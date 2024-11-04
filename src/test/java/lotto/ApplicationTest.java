@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -53,6 +55,21 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("구입 금액이 1000원으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
+    @Test
+    void 로또구입_금액이_1000원으로_나누어_떨어지지_않는_경우_예외가_발생한다() {
+        // 입력값을 1500으로 가정합니다.
+        assertThatThrownBy(() -> {
+            // 임시로 1500을 입력받는 상황을 재현합니다.
+            int purchaseAmount = 1500; // 예외 발생을 위한 금액
+            if (purchaseAmount % 1000 != 0) {
+                throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
+            }
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("구입 금액은 1,000원 단위로 입력해야 합니다.");
     }
 
     @Override

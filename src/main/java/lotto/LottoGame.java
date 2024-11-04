@@ -31,6 +31,14 @@ public class LottoGame {
         }
     }
 
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
+    }
+
+    public Map<Rank, Integer> getResults() {
+        return results;
+    }
+
     public void calculateResults(WinNumbers winningNumbers, int bonusNumber) {
         for (Lotto lotto : purchasedLottos) {
             Rank rank = calculateRank(lotto, winningNumbers, bonusNumber);
@@ -60,7 +68,7 @@ public class LottoGame {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", calculateYield());
     }
 
-    private double calculateYield() {
+    double calculateYield() {
         double totalPrize = 0;
         for (Map.Entry<Rank, Integer> entry : results.entrySet()) {
             totalPrize += entry.getKey().getPrize() * entry.getValue();
