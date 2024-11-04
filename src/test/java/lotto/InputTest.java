@@ -93,4 +93,11 @@ public class InputTest {
 		String numbers = "1,2,3,4,5,6,";
 		assertThrows(IllegalArgumentException.class, () -> input.validateSeparatorSplit(numbers));
 	}
+
+	@Test
+	@DisplayName("당첨번호가 올바른 형식으로 작성됐는지 검증 테스트")
+	void 당첨번호가_올바른_형식으로_작성되었는지_검증하는_테스트() {
+		String numbers = ",1,2,3,4,5,6";
+		assertThrows(IllegalArgumentException.class, () -> input.validateSeparator(numbers));
+	}
 }
