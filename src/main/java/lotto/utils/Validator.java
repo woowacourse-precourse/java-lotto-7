@@ -13,10 +13,17 @@ public class Validator {
     public static final String WINNING_NUM_PATTERN = "^(\\d+,)+\\d+$";
     public static final String WHITESPACE_PATTERN = "\\s+";
     public static final String EMPTY_STRING = "";
+
     public static final int MINIMAL_LOTTO_NUMBER = 1;
     public static final int MAXIMUM_LOTTO_NUMBER = 45;
+
     public static final int LOTTO_PRICE = 1000;
     public static final int MINIMAL_PRICE_INPUT = 0;
+
+    public static final int MINIMAL_WINNING_NUMBER = 3;
+    public static final int BONUS_MATCH_THRESHOLD = 5;
+    public static final int TOTAL_LOTTO_NUMBERS = 6;
+
     public static void priceValidator(String input) {
         nullAndEmptyValidator(input);
 
@@ -61,11 +68,13 @@ public class Validator {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_DUPLICATE.getMessage());
         }
     }
+
     public static void checkDuplicateForBonus(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
+
     public static void lottoNumValidator(String input) {
         nullAndEmptyValidator(input);
 

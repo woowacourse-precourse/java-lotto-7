@@ -11,8 +11,9 @@ public class UserWinningLottosInfoTest {
 
     @DisplayName("getWinningCountByLottoRank_메서드_테스트_01")
     @Test
-    void 로또_등수에_따라_당첨개수를_반환한다(){
-        UserWinningLottosInfo userWinningLottosInfo = new UserWinningLottosInfo(Arrays.asList(FIRST,FIRST,SECOND,THIRD,THIRD,THIRD),120000);
+    void 로또_등수에_따라_당첨개수를_반환한다() {
+        UserWinningLottosInfo userWinningLottosInfo = new UserWinningLottosInfo(
+                Arrays.asList(FIRST, FIRST, SECOND, THIRD, THIRD, THIRD), 120000);
 
         assertThat(userWinningLottosInfo.getWinningCountByLottoRank(THIRD))
                 .isEqualTo(3);
@@ -25,7 +26,7 @@ public class UserWinningLottosInfoTest {
     @DisplayName("getProfitRate_메서드_테스트_01")
     @Test
     void 수익률을_계산한다() {
-        UserWinningLottosInfo userWinningLottosInfo = new UserWinningLottosInfo(Arrays.asList(FIFTH,FOURTH),120000);
+        UserWinningLottosInfo userWinningLottosInfo = new UserWinningLottosInfo(Arrays.asList(FIFTH, FOURTH), 120000);
 
         assertThat(userWinningLottosInfo.getProfitRate())
                 .isEqualTo(45.8);

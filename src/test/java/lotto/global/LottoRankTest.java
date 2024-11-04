@@ -10,7 +10,7 @@ class LottoRankTest {
     @DisplayName("getMatchCount_메서드_테스트_01")
     @Test
     void 인자로_5를_전달하면_예외가_발생한다() {
-        assertThatThrownBy(()->LottoRank.findByMatchCount(5))
+        assertThatThrownBy(() -> LottoRank.findByMatchCount(5))
                 .isInstanceOf(IllegalStateException.class);
     }
 

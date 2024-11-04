@@ -1,7 +1,6 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Arrays;
-import lotto.domain.Lotto;
 import lotto.global.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

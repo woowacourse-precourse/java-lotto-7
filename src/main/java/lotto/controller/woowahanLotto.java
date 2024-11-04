@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.WinningLottos;
+import lotto.domain.UserWinningLottosInfo;
 import lotto.global.LottoRank;
 import lotto.utils.Converter;
 import lotto.utils.Generator;
@@ -18,6 +18,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class woowahanLotto implements LottoController {
+
     @Override
     public void run() {
         String input = getLottoCount();
@@ -30,9 +31,8 @@ public class woowahanLotto implements LottoController {
         List<Integer> winningNumbers = getWinningNum();
         int bonusNumber = getBonusNumber(winningNumbers);
 
-        WinningLottos winningLottos = getWinningLottos(lottos.getWinningLottos(winningNumbers, bonusNumber), price);
-        OutputView.printResult(winningLottos);
-
+        UserWinningLottosInfo userWinningLottosInfo = getWinningLottos(lottos.getWinningLottos(winningNumbers, bonusNumber), price);
+        OutputView.printResult(userWinningLottosInfo);
     }
 
     private String getLottoCount() {
@@ -49,9 +49,11 @@ public class woowahanLotto implements LottoController {
 
     private Lottos getLottos(int count) {
         List<Lotto> lottos = new ArrayList<>();
+
         for (int i = 0; i < count; i++) {
             lottos.add(new Lotto(Generator.lottoNumberGenerate()));
         }
+
         return new Lottos(lottos);
     }
 
@@ -84,8 +86,8 @@ public class woowahanLotto implements LottoController {
         }
     }
 
-    private WinningLottos getWinningLottos(List<LottoRank> winningLottos, int price) {
-        return new WinningLottos(winningLottos, price);
+    private UserWinningLottosInfo getWinningLottos(List<LottoRank> winningLottos, int price) {
+        return new UserWinningLottosInfo(winningLottos, price);
     }
 
 }

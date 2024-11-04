@@ -20,8 +20,8 @@ public class LottosTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6, 7);
         int BonusNum = 7;
 
-        Lottos lottos = new Lottos(List.of(lotto,lotto1,lotto2,winningLotto1,winningLotto2));
-        List<LottoRank> expected = lottos.getWinningLottos(winningNumbers,BonusNum);
+        Lottos lottos = new Lottos(List.of(lotto, lotto1, lotto2, winningLotto1, winningLotto2));
+        List<LottoRank> expected = lottos.getWinningLottos(winningNumbers, BonusNum);
 
         Assertions.assertThat(expected).hasSize(2);
     }

@@ -1,12 +1,13 @@
 package lotto.global;
 
 import static lotto.global.error.LottoErrorMessages.INVALID_MATCH_COUNT;
+import static lotto.utils.Validator.BONUS_MATCH_THRESHOLD;
 
 public enum LottoRank {
     FIFTH(3, 5_000),
     FOURTH(4, 50_000),
     THIRD(5, 1_500_000),
-    SECOND(5, 30_000_000,true),
+    SECOND(5, 30_000_000, true),
     FIRST(6, 2_000_000_000);
 
     private final int matchCount;
@@ -24,8 +25,8 @@ public enum LottoRank {
     }
 
     public static LottoRank findByMatchCount(int i) {
-        if (i == 5) {
-            throw new IllegalStateException(INVALID_MATCH_COUNT.getMessage());
+        if (i == BONUS_MATCH_THRESHOLD) {
+            throw new IllegalStateException(INVALID_MATCH_COUNT.getMessage() + i);
         }
 
         for (LottoRank rank : LottoRank.values()) {

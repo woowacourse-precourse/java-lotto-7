@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.WinningLottos;
+import lotto.domain.UserWinningLottosInfo;
 import lotto.global.LottoRank;
 
 public class OutputView {
@@ -30,19 +30,19 @@ public class OutputView {
                 .map(String::valueOf)
                 .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER + " "));
 
-        System.out.printf(LOTTO_DISPLAY_FORMAT,result);
+        System.out.printf(LOTTO_DISPLAY_FORMAT, result);
     }
 
-    public static void printResult(WinningLottos winningLottos) {
+    public static void printResult(UserWinningLottosInfo userWinningLottosInfo) {
 
         System.out.println(RESULT_START_MESSAGE);
 
         for (LottoRank rank : LottoRank.values()) {
             System.out.print(rank.toString());
-            System.out.printf(RESULT_DISPLAY_FORMAT,winningLottos.getWinningCountByLottoRank(rank));
+            System.out.printf(RESULT_DISPLAY_FORMAT, userWinningLottosInfo.getWinningCountByLottoRank(rank));
         }
 
-        System.out.printf(PROFIT_RATE_FORMAT,winningLottos.getProfitRate());
+        System.out.printf(PROFIT_RATE_FORMAT, userWinningLottosInfo.getProfitRate());
     }
 
     public static void printErrorMessage(RuntimeException e) {
