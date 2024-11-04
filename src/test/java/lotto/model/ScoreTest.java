@@ -18,8 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Score 테스트")
 public class ScoreTest {
 
-    private static final int LOTTO_NUMBER_SIZE = 6;
-
     static Stream<Arguments> 로또_당첨_통계를_반환한다_테스트_케이스() {
         return Stream.of(
                 Arguments.of(
