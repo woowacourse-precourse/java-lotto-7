@@ -60,7 +60,7 @@ public class Application {
     }
 
     private static void printResults(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
-        int[] results = new int[LottoRank.values().length - 1]; // NONE 제외
+        int[] results = new int[LottoRank.values().length]; // LottoRank의 모든 항목 개수로 설정
 
         for (Lotto lotto : purchasedLottos) {
             int matchCount = (int) lotto.getNumbers().stream().filter(winningNumbers::contains).count();
