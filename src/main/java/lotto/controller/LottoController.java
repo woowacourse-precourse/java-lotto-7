@@ -39,41 +39,38 @@ public class LottoController {
         outputView.printWinningStatistics(lottoGame.getPrizeCounts());
         outputView.printProfit(lottoGame.calculateProfit());
     }
+
     private LottoPrice promptForValidLottoPrice() {
-        while (true) {
-            try {
-                String input = inputView.inputPrice();
-                return LottoPrice.valueOf(input);
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
+        try {
+            return LottoPrice.valueOf(inputView.inputPrice());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return promptForValidLottoPrice();
         }
     }
 
     private List<LottoNumber> promptForValidWinningNumbers() {
-        while (true) {
-            try {
-                String input = inputView.inputWinningNumber();
-                List<LottoNumber> numbers = NumberParser.parseWinningNumbers(input);
-                return new Lotto(numbers).getNumbers();
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
+        try {
+            return new Lotto(NumberParser.parseWinningNumbers(inputView.inputWinningNumber())).getNumbers();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return promptForValidWinningNumbers();
         }
     }
 
     private LottoNumber promptForValidBonusNumber(List<LottoNumber> winningNumbers) {
-        while (true) {
-            try {
-                String input = inputView.inputBonusNumber();
-                LottoNumber bonusNumber = LottoNumber.valueOf(input);
-                if (winningNumbers.contains(bonusNumber)) {
-                    throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.BONUS_BALL_DUPLICATION_MESSAGE);
-                }
-                return bonusNumber;
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
+        try {
+            return validateBonusNumber(winningNumbers, LottoNumber.valueOf(inputView.inputBonusNumber()));
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return promptForValidBonusNumber(winningNumbers);
         }
+    }
+
+    private LottoNumber validateBonusNumber(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.BONUS_BALL_DUPLICATION_MESSAGE);
+        }
+        return bonusNumber;
     }
 }
