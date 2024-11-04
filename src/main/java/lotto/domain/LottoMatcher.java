@@ -5,7 +5,7 @@ import lotto.application.service.vo.MatchingInfo;
 
 public class LottoMatcher {
 
-    private int SECOND_OR_THIRD_MATCH_COUNT = 5;
+    private static final int SECOND_OR_THIRD_MATCH_COUNT = 5;
 
     public MatchingInfo checkMatchCount(WinLotto winLotto, Lotto lotto) {
         int matchingCount = winLotto.getLotto().calculateMatchingCount(lotto);
