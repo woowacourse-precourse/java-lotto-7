@@ -19,9 +19,9 @@ public class LottoRateService {
             int matchCount = (int) lottoNumbers.stream()
                     .filter(winningLottoNumbers::contains)
                     .count();
+
             updateRateStatus(matchCount, lottoNumbers, bounsNumber);
         }
-
         return rate;
     }
 
@@ -45,5 +45,12 @@ public class LottoRateService {
         if (matchCount == 6) {
             rate.updateMatchStatus("six_match");
         }
+    }
+
+    public double caculateRateReturn(Rate rate, Money money) {
+        int totalPirze = rate.getTotalPrize();
+        int amount = money.getAmount();
+        double rateReturn = (double) totalPirze / amount; // 수익률 계산
+        return rateReturn * 100; // 퍼센트로 변환
     }
 }
