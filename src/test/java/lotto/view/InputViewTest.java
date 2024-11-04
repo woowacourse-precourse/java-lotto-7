@@ -28,7 +28,7 @@ class InputViewTest extends NsTest {
     @DisplayName("입력한 구입 금액이 숫자인지")
     void validateInputPurchaseMoney() {
         run("3000");
-        assertThat(inputView.inputPurchaseMoney()).isEqualTo(3000);
+        assertThat(inputView.inputPurchaseMoney()).isEqualTo(3_000);
     }
 
     @ParameterizedTest
