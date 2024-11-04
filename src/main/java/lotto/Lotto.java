@@ -12,12 +12,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         new ValidatorLottoNumber(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
         Collections.sort(this.numbers);
     }
 
     public List<Integer> getLottoNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 
     protected static class ValidatorLottoNumber {
