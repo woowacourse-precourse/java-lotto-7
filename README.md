@@ -58,7 +58,7 @@ WinningNumbers
 
 #### 예외처리
 Exception
--[ ] 각종 예외 사항을 enum으로 관리한다.
+-[x] 각종 예외 사항을 enum으로 관리한다.
 
 Validator
 -[ ] 입력값을 검증한다.
