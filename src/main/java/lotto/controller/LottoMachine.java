@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
+import lotto.dto.LottoRankCountDto;
 import lotto.service.LottoService;
 import lotto.service.PurchaseService;
 import lotto.service.WinningNumbersService;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.common.Constants.*;
+import static lotto.service.LottoRankCounter.countRanks;
 
 public class LottoMachine {
     private final InputView inputView;
@@ -41,6 +43,8 @@ public class LottoMachine {
         WinningNumbers winningNumbers = getWinningNumbers();
 
         List<LottoRank> lottoRanks = getLottoRanks(lottos, winningNumbers);
+
+        LottoRankCountDto lottoRankCountDto = countRanks(lottoRanks);
     }
 
     public Lottos generateLottos (Integer lottoTicketCount) {
