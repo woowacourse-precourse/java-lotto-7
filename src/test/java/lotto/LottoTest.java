@@ -50,4 +50,35 @@ class LottoTest {
         assertThat(lotto).isNotNull();
     }
 
+    @Test
+    void 유효한_보너스_번호_입력() {
+        LottoService lottoService = new LottoService(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        int bonusNumber = lottoService.bonus("7");
+        assertThat(bonusNumber).isEqualTo(7); // 정상적인 보너스 번호 입력
+    }
+
+    @Test
+    void 중복된_보너스_번호_입력시_예외가_발생한다() {
+        LottoService lottoService = new LottoService(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        assertThatThrownBy(() -> lottoService.bonus("5"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 중복되는 로또 번호입니다.");
+    }
+
+    @Test
+    void 잘못된_보너스_번호_범위_입력시_예외가_발생한다() {
+        LottoService lottoService = new LottoService(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        assertThatThrownBy(() -> lottoService.bonus("50"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1에서 45 사이의 값이어야 합니다.");
+    }
+
+    @Test
+    void 숫자가_아닌_보너스_번호_입력시_예외가_발생한다() {
+        LottoService lottoService = new LottoService(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        assertThatThrownBy(() -> lottoService.bonus("abc"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 숫자입니다.");
+    }
+
 }
