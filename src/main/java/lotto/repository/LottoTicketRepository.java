@@ -48,4 +48,8 @@ public class LottoTicketRepository {
         }
         return instance;
     }
+
+    public void clear() {
+        lottoReceipt = new ArrayDeque<>();
+    }
 }

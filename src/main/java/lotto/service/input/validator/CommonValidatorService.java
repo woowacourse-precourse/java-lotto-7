@@ -4,8 +4,15 @@ public class CommonValidatorService implements InputValidatorService{
 
     @Override
     public void validate(String input) {
+        inputIsNull(input);
         vacantInput(input);
         whitespaceExist(input);
+    }
+
+    private void inputIsNull(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("[ERROR] null 값이 입력되었습니다.");
+        }
     }
 
     public void vacantInput(String input) {

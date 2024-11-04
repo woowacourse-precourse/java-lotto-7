@@ -21,6 +21,12 @@ public class BallEntryValidatorService extends CommonValidatorService implements
         ballInputEntry = verifiedEntry(input);
     }
 
+    private void nonNumericOrSeparatorCharExists(String input) {
+        if(input.matches("^[0-9" + separator + "]+$")) {
+            throw new IllegalArgumentException("[ERROR] 숫자 또는 구분자가 아닌 문자가 섞여있습니다.");
+        }
+    }
+
     private void wrongNumberCount(String input) {
         List<String> ballEntries = List.of(input.split(separator));
         if(ballEntries.size() != ValidateStatus.TOTAL_BALL_COUNT.get()) {

@@ -49,4 +49,8 @@ public class WinningReceiptRepository {
         }
         return instance;
     }
+
+    public void clear() {
+        prizeConditions.clear();
+    }
 }
