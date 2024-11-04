@@ -63,24 +63,28 @@
 ---
 
 ## 3. 프로젝트 아키텍처
-![lotto-project-architecture](..%2F..%2F..%2Flotto-project-architecture.png)
+<img width="634" alt="lotto-project-architecture" src="https://github.com/user-attachments/assets/3d94ea8f-6cc5-4e67-a520-54be11555fb2">
+
 ---
 
 ## 4. 입력 예시
 - 구입 금액 입력 예시
-[구입 금액 입력 예시](..%2F..%2F..%2F%EA%B5%AC%EC%9E%85%20%EA%B8%88%EC%95%A1%20%EC%9E%85%EB%A0%A5%20%EC%98%88%EC%8B%9C.mov)
+
+https://github.com/user-attachments/assets/85eb8a7d-5f63-4985-bb6c-a5426c702fcf
 
 - 당첨 번호 입력 예시
-[당첨 번호 입력 예시](..%2F..%2F..%2F%EB%8B%B9%EC%B2%A8%20%EB%B2%88%ED%98%B8%20%EC%9E%85%EB%A0%A5%20%EC%98%88%EC%8B%9C.mov)
+
+https://github.com/user-attachments/assets/38dd74a5-b3c8-443c-8f29-c7f2e0ee897d
 
 - 보너스 번호 입력 예시
-[보너스 번호 입력 예시](..%2F..%2F..%2F%EB%B3%B4%EB%84%88%EC%8A%A4%20%EB%B2%88%ED%98%B8%20%EC%9E%85%EB%A0%A5%20%EC%98%88%EC%8B%9C.mov)
+
+https://github.com/user-attachments/assets/0d52a9a8-b0ca-43d0-8293-99804867376f
 
 ---
 
 ## 5. 테스트 커버리지 리포트
 - 예외 상황을 제외한 테스트 커버리지 실행 결과
-![test-coverage-report](..%2F..%2F..%2Ftest-coverage-report.png)
+<img width="733" alt="test-coverage-report" src="https://github.com/user-attachments/assets/bf620d8d-d835-4a81-ace8-c2299d29ec8a">
 
 ---
 
