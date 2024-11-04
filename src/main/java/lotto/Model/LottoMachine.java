@@ -21,13 +21,13 @@ public class LottoMachine {
         return lottos;
     }
 
-    private static void validatePurchaseAmount(int purchaseAmount) {
+    public static void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
 
-    private static List<Integer> generateLottoNumbers() {
+    public static List<Integer> generateLottoNumbers() {
         return new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE));
     }
 }
