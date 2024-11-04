@@ -7,10 +7,15 @@ public class LottoResultChecker {
         this.drawnNumbers = drawnNumbers;
     }
 
-    public int calculateMatchCount(Lotto lotto){
+    public int calculateMatchCount(Lotto lotto) {
         return (int) lotto.getNumbers()
                 .stream()
                 .filter(drawnNumbers.getWinningNumbers()::contains)
                 .count();
+    }
+
+    public boolean hasBonusMatch(Lotto lotto) {
+        return lotto.getNumbers()
+                .contains(drawnNumbers.getBonusNumber().getValue());
     }
 }

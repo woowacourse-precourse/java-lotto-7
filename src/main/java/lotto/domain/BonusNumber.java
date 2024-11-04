@@ -14,6 +14,10 @@ public class BonusNumber {
         this.value = Integer.parseInt(value);
     }
 
+    public int getValue(){
+        return value;
+    }
+
     private void validate(String value, WinningNumbers winningNumbers){
         if(isEmpty(value)){
             throw new IllegalArgumentException(INPUT_EMPTY_ERROR);
