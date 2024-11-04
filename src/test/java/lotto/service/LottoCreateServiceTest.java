@@ -1,7 +1,6 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.domain.Lottos;
@@ -9,8 +8,6 @@ import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("LottoCreateService 테스트")
 public class LottoCreateServiceTest {
@@ -56,13 +53,14 @@ public class LottoCreateServiceTest {
     }
 
     @Test
-    void 당첨로또를_생성한다(){
+    void 당첨로또를_생성한다() {
         //given
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
 
         //when
-        WinningLotto winningLotto = lottoCreateService.createWinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = lottoCreateService.createWinningLotto(winningNumbers,
+            bonusNumber);
 
         //then
         assertThat(winningLotto.getWinningLottoNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
