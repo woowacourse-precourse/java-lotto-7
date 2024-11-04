@@ -16,7 +16,7 @@ public class LottoGameController {
 
     public void run() {
         inputView.displayLottoPurchaseAmountPrompt();
-        int lottoPurchaseAmount = inputView.readLottoPurchaseAmount();
+        int lottoPurchaseAmount = parseNumber(inputView.readLottoPurchaseAmount());
         Lottos lottos = Lottos.from(lottoGenerator.issue(lottoPurchaseAmount));
         outputView.displayLottoCount(lottos);
         outputView.displayLottoNumbers(lottos);

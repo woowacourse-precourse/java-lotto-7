@@ -7,8 +7,8 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public int readLottoPurchaseAmount() {
-        return Integer.parseInt(Console.readLine());
+    public String readLottoPurchaseAmount() {
+        return Console.readLine();
     }
 
     public void displayWinningNumbersPrompt() {
