@@ -21,9 +21,9 @@ public enum Rank {
 
     public String showRankCondition() {
         if (!this.bonusNumberMatch) {
-            return matchCount + "개 일치" + " (" + NumberFormat.getInstance().format(rankPrize) + ") - ";
+            return matchCount + "개 일치" + " (" + NumberFormat.getInstance().format(rankPrize) + "원) - ";
         }
-        return matchCount + "개 일치" + ",보너스 볼 일치 " + " (" + NumberFormat.getInstance().format(rankPrize) + ") -";
+        return matchCount + "개 일치" + ", 보너스 볼 일치 " + "(" + NumberFormat.getInstance().format(rankPrize) + "원) - ";
     }
 
     public boolean checkRank(Integer matchNumber, boolean bonusNumberMatch) {
@@ -33,7 +33,7 @@ public enum Rank {
         return matchNumber.equals(this.matchCount);
     }
 
-    public long computeRevenue(Long count){
+    public long computeRevenue(Long count) {
         return ((long) this.rankPrize * count);
     }
 
