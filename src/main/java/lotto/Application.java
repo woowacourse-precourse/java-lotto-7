@@ -124,7 +124,11 @@ public class Application {
             }
 
             Rank rank = Rank.checkRank(winningCount, lotto.checkNumber(bonusNumber));
-            rankCounter.put(rank, rankCounter.get(rank) + 1);
+
+            int rank_count = 0;
+            if (rankCounter.containsKey(rank))
+                rank_count = rankCounter.get(rank);
+            rankCounter.put(rank, rank_count + 1);
         }
     }
 
@@ -133,9 +137,18 @@ public class Application {
         makeBonusNum();
     }
 
+    public static void printLottoOutput() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        rankCounter.forEach((rank, count) -> {
+            Rank.printRankPrize(rank, count);
+        });
+    }
+
     public static void main(String[] args) {
         buyLotto();
         inputWinningLotto();
         checkWinning();
+        printLottoOutput();
     }
 }
