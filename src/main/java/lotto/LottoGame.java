@@ -37,12 +37,15 @@ public class LottoGame {
     }
 
     private CorrectLotto createCorrectLotto() {
-
         Lotto lotto = createCorrectNumbers();
         int bonusNumber = createBonusNumber();
 
-        return new CorrectLotto(lotto, bonusNumber);
-
+        try {
+            return new CorrectLotto(lotto, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createCorrectLotto();
+        }
     }
 
     private Lotto createCorrectNumbers() {
