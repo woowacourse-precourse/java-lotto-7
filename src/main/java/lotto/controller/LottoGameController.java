@@ -59,9 +59,18 @@ public class LottoGameController {
             }
         }
 
-        inputView.displayBonusNumberPrompt();
-        int parsedBonusNumber = parseLottoNumber(inputView.readBonusNumber());
-        BonusNumber bonusNumber = new BonusNumber(parsedBonusNumber);
+        BonusNumber bonusNumber;
+
+        while (true) {
+            try {
+                inputView.displayBonusNumberPrompt();
+                int parsedBonusNumber = parseLottoNumber(inputView.readBonusNumber());
+                bonusNumber = new BonusNumber(parsedBonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.displayErrorMessage(e.getMessage());
+            }
+        }
 
         Map<WinningResult, Integer> winningResults = lottoEvaluator.evaluateWinningResult(lottos, winningNumbers,
                 bonusNumber);
