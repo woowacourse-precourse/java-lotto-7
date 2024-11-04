@@ -18,6 +18,18 @@ public class Money {
         return new Money(amount);
     }
 
+    public static Money sum(Money... moneys) {
+        int sum = 0;
+        for (Money money : moneys) {
+            sum += money.amount;
+        }
+        return new Money(sum);
+    }
+
+    public static Money multiply(Money money, int multiplier) {
+        return new Money(money.amount * multiplier);
+    }
+
     private void validateAmount(int amount) {
         validatePositive(amount);
         validateUnit(amount);
