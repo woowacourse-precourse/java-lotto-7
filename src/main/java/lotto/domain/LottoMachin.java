@@ -110,12 +110,10 @@ public class LottoMachin {
 
     private Long calculatePriceTotalAs(Map<MatchCount, Integer> matchCountResult) {
         Long totalPrice = INIT_TOTAL_MONEY;
-        for (Map.Entry<MatchCount, Integer> entrySet : matchCountResult.entrySet()) {
-            if (entrySet.getValue() != 0) {
-                totalPrice += entrySet.getKey().getPriceMoney() * entrySet.getValue();
-            }
-        }
-
+        totalPrice = matchCountResult.entrySet().stream()
+                .filter(entry -> entry.getValue() != 0)
+                .mapToLong(value -> value.getKey().getPriceMoney() * value.getValue())
+                .sum();
         return totalPrice;
     }
 
