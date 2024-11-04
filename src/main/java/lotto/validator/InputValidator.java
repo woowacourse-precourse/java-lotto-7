@@ -18,12 +18,6 @@ public class InputValidator {
         }
     }
 
-    public static void validateWinningNumber(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(num -> num < LOTTO_NUMBER_MIN || num > LOTTO_NUMBER_MAX)) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이어야 합니다.");
-        }
-    }
-
     public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < LOTTO_NUMBER_MIN || bonusNumber > LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이어야 합니다.");

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 import lotto.validator.InputValidator;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class InputView {
                         .map(String::trim)
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
-                InputValidator.validateWinningNumber(numbers);
+                new Lotto(numbers);
                 System.out.println();
                 return numbers;
             } catch (IllegalArgumentException e) {

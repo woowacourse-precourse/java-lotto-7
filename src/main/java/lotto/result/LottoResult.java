@@ -5,12 +5,15 @@ import lotto.Lotto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoResult {
 
-    private final Map<LottoRank, Integer> resultStatistics = new HashMap<>();
+    private final Map<LottoRank, Integer> resultStatistics;
 
     public LottoResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        resultStatistics = new HashMap<>();
         for (Lotto lotto : lottos) {
             LottoRank rank = matchCount(lotto, winningNumbers, bonusNumber);
             resultStatistics.put(rank, resultStatistics.getOrDefault(rank, 0) + 1);
@@ -28,5 +31,11 @@ public class LottoResult {
 
     public Map<LottoRank, Integer> getStatistics() {
         return resultStatistics;
+    }
+
+    public List<Integer> extractMatchCounts() {
+        return Stream.of(LottoRank.FIFTH, LottoRank.FOURTH, LottoRank.THIRD, LottoRank.SECOND, LottoRank.FIRST)
+                .map(rank -> resultStatistics.getOrDefault(rank, 0))
+                .collect(Collectors.toList());
     }
 }
