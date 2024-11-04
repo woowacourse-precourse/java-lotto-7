@@ -1,6 +1,7 @@
 package lotto.model;
 
-import static java.math.BigDecimal.*;
+import static java.math.BigDecimal.ZERO;
+import static java.math.BigDecimal.valueOf;
 import static java.math.RoundingMode.HALF_UP;
 import static lotto.model.Lottos.WINING_RATE_DECIMAL_PLACE;
 

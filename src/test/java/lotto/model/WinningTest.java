@@ -1,7 +1,15 @@
 package lotto.model;
 
-import static lotto.model.Winning.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static lotto.model.Winning.FIVE;
+import static lotto.model.Winning.FIVE_BONUS;
+import static lotto.model.Winning.FOUR;
+import static lotto.model.Winning.SIX;
+import static lotto.model.Winning.THREE;
+import static lotto.model.Winning.getFromValue;
+import static lotto.model.Winning.getTotalWinningPrice;
+import static lotto.model.Winning.initCount;
+import static lotto.model.Winning.toStringWithoutNone;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
 import java.util.stream.IntStream;

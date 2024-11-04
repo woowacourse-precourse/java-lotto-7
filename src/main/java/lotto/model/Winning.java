@@ -67,7 +67,7 @@ public enum Winning {
                 .append(count)
                 .append("개\n");
     }
-    
+
     private BigDecimal multiplyCount() {
         return new BigDecimal(count * price);
     }

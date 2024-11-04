@@ -12,8 +12,7 @@ public class LottoRun {
         LottoController lottoController = init();
         set(lottoController);
         WinningNumbers winningNumbers = winningNumber(lottoController);
-        int bonusNumber = bonusNumber(lottoController);
-        WinningValue winningValue = new WinningValue(winningNumbers, bonusNumber);
+        WinningValue winningValue = bonusNumber(lottoController, winningNumbers);
         lottoController.confirmWinning(winningValue);
         winningRate(lottoController);
     }
@@ -27,14 +26,14 @@ public class LottoRun {
         }
     }
 
-    private static int bonusNumber(LottoController lottoController) {
-        int bonusNumber = 0;
+    private static WinningValue bonusNumber(LottoController lottoController, WinningNumbers winningNumbers) {
+        WinningValue winningValue = null;
         try {
-            bonusNumber = lottoController.getBonusNumber();
-            return bonusNumber;
+            int bonusNumber = lottoController.getBonusNumber();
+            return new WinningValue(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
-            return bonusNumber(lottoController);
+            return bonusNumber(lottoController, winningNumbers);
         }
     }
 

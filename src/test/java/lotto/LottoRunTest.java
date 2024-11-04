@@ -1,10 +1,8 @@
 package lotto;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import camp.nextstep.edu.missionutils.test.Assertions;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
@@ -58,29 +56,29 @@ class LottoRunTest extends NsTest {
     @Test
     void 보너스_번호에_잘못된_입력_에러발생() {
         assertSimpleTest(() -> {
-            runException("1001", "1,2,3,4,5,6", "");
+            runException("1000", "1,2,3,4,5,6", " ");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
         assertSimpleTest(() -> {
-            runException("1001", "1,2,3,4,5,6", " ");
+            runException("1000", "1,2,3,4,5,6", "-1");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
         assertSimpleTest(() -> {
-            runException("1001", "1,2,3,4,5,6", "-1");
+            runException("1000", "1,2,3,4,5,6", "123");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
         assertSimpleTest(() -> {
-            runException("1001", "1,2,3,4,5,6", "123");
+            runException("1000", "1,2,3,4,5,6", "xcv");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
         assertSimpleTest(() -> {
-            runException("1001", "1,2,3,4,5,6", "xcv");
+            runException("1000", "1,2,3,4,5,6", "1");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
     @Override
     protected void runMain() {
-        Application.main(new String[] {});
+        Application.main(new String[]{});
     }
 }

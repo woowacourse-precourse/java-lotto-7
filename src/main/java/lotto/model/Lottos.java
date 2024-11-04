@@ -47,7 +47,7 @@ public class Lottos {
                 setByWinningNumber(winningNumbers, bonusNumber, lotto).increaseCount());
     }
 
-    private Winning setByWinningNumber(List<Integer> winningNumbers, int bonusNumber , Lotto lotto) {
+    private Winning setByWinningNumber(List<Integer> winningNumbers, int bonusNumber, Lotto lotto) {
         int correctCount = lotto.correctCount(winningNumbers);
         Winning winning = getFromValue(correctCount, lotto.isBonus(bonusNumber));
 
