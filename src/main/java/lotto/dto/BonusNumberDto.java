@@ -8,21 +8,21 @@ public record BonusNumberDto(
         int bonusNumber
 ) {
 
-    public BonusNumberDto{
+    public BonusNumberDto {
         validate(bonusNumber);
     }
 
-    private void validate(int bonusNumber){
+    private void validate(int bonusNumber) {
         isOutOfRange(bonusNumber);
     }
 
-    private void isOutOfRange(int number){
-        if(number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END){
+    private void isOutOfRange(int number) {
+        if (number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER_RANGE.getMessage());
         }
     }
 
-    public static BonusNumberDto from(String input){
+    public static BonusNumberDto from(String input) {
         return new BonusNumberDto(Integer.parseInt(input.trim()));
     }
 }

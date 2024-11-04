@@ -24,7 +24,7 @@ public class Revenue {
         return revenueRate;
     }
 
-    public static Revenue from(List<Rank> ranks){
+    public static Revenue from(List<Rank> ranks) {
         int revenueAmount = ranks.stream()
                 .mapToInt(Rank::getWinningPrice)
                 .sum();

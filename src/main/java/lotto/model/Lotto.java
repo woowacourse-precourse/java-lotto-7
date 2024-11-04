@@ -28,31 +28,31 @@ public class Lotto {
         return numbers;
     }
 
-    private void isOutOfRange(List<Integer> winningLottery){
+    private void isOutOfRange(List<Integer> winningLottery) {
         winningLottery.forEach(this::checkRangeEachNumber);
     }
 
     private void checkRangeEachNumber(Integer number) {
-        if(number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END) {
+        if (number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END) {
             throw new IllegalArgumentException(INVALID_GENERATED_LOTTO_NUMBERS_RANGE.getMessage());
         }
     }
 
-    private void isGeneratedSixNumbers(List<Integer> numbers){
-        if(numbers.size() != 6){
+    private void isGeneratedSixNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
             throw new IllegalArgumentException(INVALID_GENERATED_LOTTO_NUMBERS_SIZE.getMessage());
         }
     }
 
     private void isDuplicate(List<Integer> numbers) {
         Set<Integer> checkDuplicate = new HashSet<>(numbers);
-        if(checkDuplicate.size() != 6){
+        if (checkDuplicate.size() != 6) {
             throw new IllegalArgumentException(INVALID_GENERATED_LOTTO_NUMBERS_DUPLICATE.getMessage());
         }
     }
 
-    public static Lotto generate(){
-        List<Integer> numbers =  Randoms.pickUniqueNumbersInRange(
+    public static Lotto generate() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                 LOTTO_NUMBER_START,
                 LOTTO_NUMBER_END,
                 LOTTO_NUMBER_QUANTITY

@@ -20,7 +20,7 @@ public record PurchaseAmountDto(
         }
     }
 
-    private boolean isAmountInvalid(int purchaseAmount){
+    private boolean isAmountInvalid(int purchaseAmount) {
         return purchaseAmount % LOTTO_PRICE != 0;
     }
 

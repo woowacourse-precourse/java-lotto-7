@@ -84,7 +84,7 @@ public class LottoController {
         OutputView.outputPurchaseLotto(myLottoInfo.getMyLotteries());
     }
 
-    private void outputLottoResult(MyLottoInfo myLottoInfo, Revenue revenue){
+    private void outputLottoResult(MyLottoInfo myLottoInfo, Revenue revenue) {
         OutputView.outputLottoResult(myLottoInfo.getMyResult());
         OutputView.outputRevenue(revenue.getRevenueRate());
     }

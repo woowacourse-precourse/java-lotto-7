@@ -25,7 +25,7 @@ public enum Rank {
         return winningPrice;
     }
 
-    public static Rank findRank(int matchingCount, boolean isBonusNumberMatches){
+    public static Rank findRank(int matchingCount, boolean isBonusNumberMatches) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matchingCount == matchingCount && rank.containsBonusNumber == isBonusNumberMatches)
                 .findFirst()

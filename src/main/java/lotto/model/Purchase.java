@@ -22,7 +22,7 @@ public class Purchase {
         return purchaseLottoCount;
     }
 
-    public static Purchase from(PurchaseAmountDto dto){
+    public static Purchase from(PurchaseAmountDto dto) {
         return new Purchase(
                 dto.purchaseAmount(),
                 dto.purchaseAmount() / LOTTO_PRICE);

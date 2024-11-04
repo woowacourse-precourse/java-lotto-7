@@ -20,17 +20,17 @@ public class OutputView {
     private static final String OUTPUT_LOTTO_RESULT_REVENUE_TAIL = "%입니다.";
     private static final String OUTPUT_LOTTO_RESULT_COUNT = "개";
 
-    public static void outputLottoPurchaseAmount(int amount){
+    public static void outputLottoPurchaseAmount(int amount) {
         System.out.println(amount + OUTPUT_LOTTO_PURCHASE_AMOUNT);
     }
 
-    public static void outputPurchaseLotto(List<Lotto> lottos){
-        for(Lotto lotto : lottos){
+    public static void outputPurchaseLotto(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
     }
 
-    public static void outputLottoResult(Map<Rank, Integer> result){
+    public static void outputLottoResult(Map<Rank, Integer> result) {
         System.out.println(OUTPUT_LOTTO_RESULT_HEAD);
         System.out.println(OUTPUT_LOTTO_RESULT_FIFTH + result.get(Rank.FIFTH_PLACE) + OUTPUT_LOTTO_RESULT_COUNT);
         System.out.println(OUTPUT_LOTTO_RESULT_FORTH + result.get(Rank.FOURTH_PLACE) + OUTPUT_LOTTO_RESULT_COUNT);
@@ -39,11 +39,11 @@ public class OutputView {
         System.out.println(OUTPUT_LOTTO_RESULT_FIRST + result.get(Rank.FIRST_PLACE) + OUTPUT_LOTTO_RESULT_COUNT);
     }
 
-    public static void outputRevenue(double revenue){
+    public static void outputRevenue(double revenue) {
         System.out.println(OUTPUT_LOTTO_RESULT_REVENUE + revenue + OUTPUT_LOTTO_RESULT_REVENUE_TAIL);
     }
 
-    public static void outputError(String message){
+    public static void outputError(String message) {
         System.out.println(ERROR_MESSAGE_FORMAT + message);
     }
 }
