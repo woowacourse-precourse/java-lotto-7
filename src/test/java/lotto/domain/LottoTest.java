@@ -1,7 +1,5 @@
-package lotto;
+package lotto.domain;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +20,4 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.from((Set.of(LottoNumber.valueOf(1), LottoNumber.valueOf(2), LottoNumber.valueOf(2), LottoNumber.valueOf(4), LottoNumber.valueOf(5), LottoNumber.valueOf(6), LottoNumber.valueOf(7)))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }
