@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.enums.Constants;
 import lotto.enums.Ranking;
 import lotto.model.Lotto;
 
@@ -13,7 +14,7 @@ public class OutputView {
     private static final String RESULT_UNIT = "개";
     public void printMoney(int money) {
         System.out.println();
-        System.out.println(money + READ_MONEY_OUTPUT);
+        System.out.println(money/ Constants.MONEY_UNIT.getValue() + READ_MONEY_OUTPUT);
     }
 
     public void printLotto(Lotto lotto) {
