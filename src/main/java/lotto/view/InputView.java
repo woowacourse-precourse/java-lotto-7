@@ -8,39 +8,37 @@ import lotto.validator.WinningNumbersValidator;
 
 public class InputView {
     public static int getMoneyToBuy() {
-        while (true) {
-            try {
-                OutputView.notifyEnterMoneyToBuy();
-                String input = Console.readLine();
-                return MoneyValidator.validateMoneyToBuy(input);
-            } catch (Exception e) {
-                //OutputView.printErrorMessage(e.getMessage());
-                System.out.println(e.getMessage());
-            }
+        OutputView.notifyEnterMoneyToBuy();
+        String input = Console.readLine();
+        try {
+            return MoneyValidator.validateMoneyToBuy(input);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getMoneyToBuy();
         }
     }
 
     public static List<Integer> getWinningNumbers() {
-        while (true) {
-            try {
-                OutputView.notifyEnterWinningNumbers();
-                String input = Console.readLine();
-                return WinningNumbersValidator.validateWinningNumbers(input);
-            } catch (Exception e) {
-                OutputView.printErrorMessage(e.getMessage());
-            }
+        OutputView.notifyEnterWinningNumbers();
+        String input = Console.readLine();
+        try {
+
+            return WinningNumbersValidator.validateWinningNumbers(input);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getWinningNumbers();
         }
     }
 
     public static int getBonusNumber(List<Integer> winningNumbers) {
-        while (true) {
-            try {
-                OutputView.notifyEnterBonusNumber();
-                String input = Console.readLine();
-                return BonusNumberValidator.validateBonusNumber(input, winningNumbers);
-            } catch (Exception e) {
-                OutputView.printErrorMessage(e.getMessage());
-            }
+        OutputView.notifyEnterBonusNumber();
+        String input = Console.readLine();
+        try {
+
+            return BonusNumberValidator.validateBonusNumber(input, winningNumbers);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getBonusNumber(winningNumbers);
         }
     }
 }

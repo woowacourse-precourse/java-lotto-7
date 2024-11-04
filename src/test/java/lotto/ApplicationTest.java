@@ -11,11 +11,6 @@ import org.junit.jupiter.api.Test;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    /*@BeforeAll
-    static void setUp() {
-        System.setProperty("TEST_MODE", "true");  // 테스트 모드 설정
-    }*/
-
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -57,11 +52,6 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-
-    /*@AfterAll
-    static void tearDown() {
-        System.clearProperty("TEST_MODE");  // 테스트 후 속성 제거
-    }*/
 
     @Override
     public void runMain() {
