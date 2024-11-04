@@ -7,10 +7,14 @@ public class Cash {
 
     private final int amount;
 
-    public Cash(int amount) {
+    private Cash(int amount) {
         validateDefaultUnit(amount);
         validateMaxAmount(amount);
         this.amount = amount;
+    }
+
+    public static Cash from(int amount) {
+        return new Cash(amount);
     }
 
     public int getTicketCount() {

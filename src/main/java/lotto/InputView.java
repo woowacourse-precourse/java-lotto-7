@@ -14,7 +14,7 @@ public class InputView {
 
         inputValidator.validateNumeric(price);
 
-        return new Cash(Integer.parseInt(price));
+        return Cash.from(Integer.parseInt(price));
     }
 
     public Lotto inputNumbers() {
