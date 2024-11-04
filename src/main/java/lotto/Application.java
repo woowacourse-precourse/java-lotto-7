@@ -34,9 +34,27 @@ public class Application {
         }
     }
 
+    private static List<Lotto> buyLottos(int amount) {
+        System.out.printf("%d개를 구매했습니다.\n", amount);
+        List<Lotto> lottos = new ArrayList<>();
+
+        while (amount-- > 0) {lottos.add(new Lotto(
+                    camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+
+        return lottos;
+    }
+
+    private static void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            lotto.print();
+        }
+    }
+
     public static void main(String[] args) {
         int amount = getAmount();
         System.out.println();
-
+        List<Lotto> lottos = buyLottos(amount);
+        printLottos(lottos);
     }
 }
