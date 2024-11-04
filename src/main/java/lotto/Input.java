@@ -16,7 +16,7 @@ public class Input {
     }
 
     public Integer getAmountWithGuide() {
-        view.guide(INPUT_AMOUNT_GUIDE);
+        view.printGuide(INPUT_AMOUNT_GUIDE);
         return getValidatedAmount();
     }
 
@@ -27,7 +27,7 @@ public class Input {
     }
 
     public Lotto getWinNumbersWithGuide() {
-        view.guide(INPUT_WINNING_NUMBERS_GUIDE);
+        view.printGuide(INPUT_WINNING_NUMBERS_GUIDE);
         return new Lotto(getWinNumbers());
     }
 
@@ -36,7 +36,7 @@ public class Input {
     }
 
     public WinningNumbers getBonusNumberWithGuide(Lotto lotto) {
-        view.guide(INPUT_BONUS_NUMBER_GUIDE);
+        view.printGuide(INPUT_BONUS_NUMBER_GUIDE);
         return new WinningNumbers(lotto, getValidatedBonusNumber());
     }
 

@@ -4,26 +4,26 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class View {
-    public void guide(String message) {
+    public void printGuide(String message) {
         System.out.println(message);
     }
 
-    public void count(Integer count) {
+    public void printPurchaseCount(Integer count) {
         System.out.println(count + "개를 구매했습니다.");
     }
 
-    public void lottos(Lottos lottos) {
+    public void printLottos(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
             String string = Arrays.toString(lotto.getNumbers().toArray());
             System.out.println(string);
         }
     }
 
-    public void revenue(double revenue) {
+    public void printRevenue(double revenue) {
         System.out.println("총 수익률은 " + revenue + "%입니다.");
     }
 
-    public void total(Map<Rank, Integer> rankCounts) {
+    public void printWinningStatistics(Map<Rank, Integer> rankCounts) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");

@@ -22,13 +22,13 @@ public class LottoController {
 
     public void displayResults(Lottos lottos, WinningNumbers winningNumbers, Integer count) {
         LottoResults lottoResults = lottoService.calculateResults(lottos, winningNumbers, count);
-        view.total(lottoResults.getRankFrequency());
-        view.revenue(lottoResults.getRevenue());
+        view.printWinningStatistics(lottoResults.getRankFrequency());
+        view.printRevenue(lottoResults.getRevenue());
     }
 
     public void displayLottos(Integer count, Lottos lottos) {
-        view.count(count);
-        view.lottos(lottos);
+        view.printPurchaseCount(count);
+        view.printLottos(lottos);
     }
 
     public Integer getCount() {
