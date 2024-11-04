@@ -8,6 +8,7 @@ import java.util.Map;
 public class OutputView {
 
     private static final String DIVIDER = "---";
+
     public static void printPurchasedLottoTickets(List<List<Integer>> lottoTickets) {
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");
         for (List<Integer> ticket : lottoTickets) {
