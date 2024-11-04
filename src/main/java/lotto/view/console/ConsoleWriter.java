@@ -1,6 +1,6 @@
-package view.console;
+package lotto.view.console;
 
-import view.OutputView;
+import lotto.view.OutputView;
 
 public class ConsoleWriter implements OutputView {
     private static final String PURCHASE_AMOUNT_REQUEST_MESSAGE = "구입금액을 입력해 주세요.";

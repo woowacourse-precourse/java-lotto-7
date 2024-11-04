@@ -1,10 +1,10 @@
-package view.console;
+package lotto.view.console;
 
 import camp.nextstep.edu.missionutils.Console;
-import dto.PurchaseAmountRequest;
-import exception.ErrorMessage;
-import exception.LottoException;
-import view.InputView;
+import lotto.dto.PurchaseAmountRequest;
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoException;
+import lotto.view.InputView;
 
 public class ConsoleReader implements InputView {
     private static final String PURCHASE_AMOUNT_REQUEST_MESSAGE = "구입금액을 입력해 주세요.";

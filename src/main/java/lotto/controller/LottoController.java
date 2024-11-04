@@ -1,7 +1,7 @@
-package controller;
+package lotto.controller;
 
-import view.InputView;
-import view.OutputView;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;

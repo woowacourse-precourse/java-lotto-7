@@ -1,4 +1,4 @@
-package view;
+package lotto.view;
 
 public interface OutputView {
     void printPurchaseAmountRequest();

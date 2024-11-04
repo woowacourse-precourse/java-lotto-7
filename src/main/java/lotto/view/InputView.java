@@ -1,6 +1,6 @@
-package view;
+package lotto.view;
 
-import dto.PurchaseAmountRequest;
+import lotto.dto.PurchaseAmountRequest;
 
 public interface InputView {
     PurchaseAmountRequest readPurchaseAmount();

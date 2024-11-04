@@ -1,6 +1,6 @@
-package dto;
+package lotto.dto;
 
-import util.NumberParser;
+import lotto.util.NumberParser;
 
 public class PurchaseAmountRequest {
     private final int amount;

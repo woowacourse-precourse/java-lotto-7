@@ -1,4 +1,4 @@
-package util;
+package lotto.util;
 
 public final class NumberParser {
     private NumberParser() {

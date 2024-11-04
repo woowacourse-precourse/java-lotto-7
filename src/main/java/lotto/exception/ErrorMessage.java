@@ -1,4 +1,4 @@
-package exception;
+package lotto.exception;
 
 public enum ErrorMessage {
     NULL_INPUT_ERROR("null은 입력할 수 없는 값입니다. 다시 입력해 주세요."),

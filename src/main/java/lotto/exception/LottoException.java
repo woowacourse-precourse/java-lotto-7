@@ -1,4 +1,4 @@
-package exception;
+package lotto.exception;
 
 public class LottoException extends IllegalArgumentException {
     private static final String ERROR_PREFIX = "[ERROR] ";

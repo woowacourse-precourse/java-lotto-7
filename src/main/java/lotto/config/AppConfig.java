@@ -1,10 +1,10 @@
-package config;
+package lotto.config;
 
-import controller.LottoController;
-import view.InputView;
-import view.OutputView;
-import view.console.ConsoleReader;
-import view.console.ConsoleWriter;
+import lotto.controller.LottoController;
+import lotto.view.InputView;
+import lotto.view.OutputView;
+import lotto.view.console.ConsoleReader;
+import lotto.view.console.ConsoleWriter;
 
 public class AppConfig {
     private AppConfig() {
