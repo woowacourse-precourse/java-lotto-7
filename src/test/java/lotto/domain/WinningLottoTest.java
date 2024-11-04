@@ -1,13 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.constants.ErrorMessage.DUPLICATE_BONUS_NUMBER;
 import static lotto.constants.ErrorMessage.INVALID_BONUS_NUMBER_RANGE;
 
 import java.util.Arrays;
-import lotto.domain.Lotto;
-import lotto.domain.WinningLotto;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class WinningLottoTest {

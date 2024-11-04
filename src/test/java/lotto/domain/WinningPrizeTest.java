@@ -1,7 +1,6 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Optional;
-import lotto.domain.WinningPrize;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

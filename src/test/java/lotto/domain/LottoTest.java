@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.constants.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.constants.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT;
@@ -7,7 +7,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
