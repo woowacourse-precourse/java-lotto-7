@@ -1,6 +1,7 @@
 package lotto.io.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.NoSuchElementException;
 
 public class BuyingAmountInputConsoleHandler {
     public void showBuyingAmountGuideMessage() {
@@ -10,6 +11,10 @@ public class BuyingAmountInputConsoleHandler {
     public int askBuyingAmount() {
         String rawBuyingAmount = Console.readLine();
 
-        return Integer.parseInt(rawBuyingAmount);
+        try {
+            return Integer.parseInt(rawBuyingAmount);
+        } catch (NumberFormatException | NoSuchElementException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액의 형식이 잘못되었습니다.");
+        }
     }
 }
