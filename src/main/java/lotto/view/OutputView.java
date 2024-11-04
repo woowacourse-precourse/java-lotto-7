@@ -13,7 +13,8 @@ public class OutputView {
     private static final String MATCH_WITH_BONUS_MESSAGE = "개 일치, 보너스 볼 일치";
     private static final String WON = "원";
     private static final String COUNT_SUFFIX = "개";
-    private static final String TOTAL_PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String TOTAL_PROFIT_MESSAGE_PREFIX = "총 수익률은 ";
+    private static final String TOTAL_PROFIT_MESSAGE_SUFFIX = "%입니다.";
     private static final String SEPARATOR = "---";
     private static final String RESULT_FORMAT_PATTERN = "%d%s (%s%s) - %d%s%n";
 
@@ -26,7 +27,7 @@ public class OutputView {
         System.out.println(RESULT_HEADER);
         System.out.println(SEPARATOR);
         printWinningStatistics(winningDto);
-        System.out.printf(TOTAL_PROFIT_MESSAGE, winningDto.getPrice());
+        System.out.println(TOTAL_PROFIT_MESSAGE_PREFIX + winningDto.getPrice() + TOTAL_PROFIT_MESSAGE_SUFFIX);
     }
 
     private void buyNumbersOutput(List<Lotto> lottoNumber) {
