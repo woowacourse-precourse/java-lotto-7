@@ -10,7 +10,7 @@ import lotto.service.MatchPrize;
 
 public class OutputView {
 
-    public static final String PURCHASE_COUNT = "\n%d개를 구입하였습니다.\n";
+    public static final String PURCHASE_COUNT = "\n%d개를 구매했습니다.\n";
     public static final String DRAW_RESULT = "%d개 일치 (%s원) - %d개\n";
     public static final String FIVE_AND_BONUS_MATCH_RESULT = "5개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     public static final String PRICE_PATTERN = "#,###";
