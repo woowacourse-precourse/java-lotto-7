@@ -31,7 +31,7 @@ public class LottoGame {
 
     }
 
-    private int getValidatePurchaseAmount() {
+    public int getValidatePurchaseAmount() {
         while (true) {
             int amount = getInputAmount();
             if (amount != -1 && isValidAmount(amount)) {
@@ -51,10 +51,9 @@ public class LottoGame {
         }
     }
 
-    private boolean isValidAmount(int amount) {
+    public boolean isValidAmount(int amount) {
         if (amount <= 0 || amount % LOTTO_PRICE != 0) {
-            System.out.println("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
-            return false;
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
         return true;
     }
@@ -67,7 +66,7 @@ public class LottoGame {
         System.out.printf("\n%d개를 구매했습니다.%n", count);
     }
 
-    private List<List<Integer>> generateLottoNumbers(int count) {
+    public List<List<Integer>> generateLottoNumbers(int count) {
         List<List<Integer>> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             // 불변 리스트를 변경 가능한 리스트로 변환
@@ -99,7 +98,7 @@ public class LottoGame {
         }
     }
 
-    private List<Integer> parseWinningNumbers(String input) {
+    public List<Integer> parseWinningNumbers(String input) {
         if (!input.contains(",")) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)를 기준으로 구분합니다.");
         }
@@ -136,14 +135,14 @@ public class LottoGame {
         return Console.readLine().trim();
     }
 
-    private int parseAndValidateBonusNumber(String input, List<Integer> winningNumbers) {
+    public int parseAndValidateBonusNumber(String input, List<Integer> winningNumbers) {
         if (input.isEmpty() || input.contains(" ")) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1개만 입력해 주세요.");
         }
 
         // 입력된 보너스 번호가 쉼표로 구분된 여러 개의 값인 경우
         if (input.split(",").length > 1) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 1개만 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1개만 입력해 주세요.");
         }
 
         int bonusNumber = Integer.parseInt(input);
@@ -151,7 +150,7 @@ public class LottoGame {
         return bonusNumber;
     }
 
-    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+    public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자 1개입니다.");
         }
