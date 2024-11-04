@@ -124,7 +124,6 @@ public class LottoService {
 
         BigDecimal sumAsDecimal = new BigDecimal(sumAllResults.multiply(BigInteger.valueOf(100)));
         BigDecimal divisor = new BigDecimal(money);
-        BigDecimal divide = sumAsDecimal.divide(divisor, 2, RoundingMode.HALF_UP);
-        return divide;
+        return sumAsDecimal.divide(divisor, 2, RoundingMode.HALF_UP);
     }
 }
