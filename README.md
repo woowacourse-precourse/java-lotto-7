@@ -70,6 +70,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 3. [To-Do]당첨 번호에 중복이 있다.
 4. [To-Do]보너스 번호가 당첨 번호와 중복이 있다.
 5. [To-Do]당첨 번호가 ','(쉼표)와 숫자로 이루어지지 않는다.
+6. [To-Do]당첨 번호가 6자리가 아니다.
 
 ### 기능 3 : 당첨 통계 내기 - 당첨통계 계산(당첨률, 수익률), 당첨 통계 출력
 * 당첨 금액을 이용해 수익률을 계산한다.
