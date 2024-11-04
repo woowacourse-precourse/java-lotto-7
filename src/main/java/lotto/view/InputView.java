@@ -17,7 +17,7 @@ public class InputView {
                 System.out.println();
                 return amount;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
+                System.out.println("[ERROR] 숫자로 입력해야 합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -49,7 +49,7 @@ public class InputView {
                 detailValidate(winningNumbers);
                 return winningNumbers;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 당첨 번호는 숫자로 입력해야 합니다.");
+                System.out.println("[ERROR] 숫자로 입력해야 합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -80,7 +80,7 @@ public class InputView {
 
                 return bonus;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
+                System.out.println("[ERROR] 숫자로 입력해야 합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -90,7 +90,7 @@ public class InputView {
     // 보너스 번호 유효성 검사
     private void bonusValidate(int bonus) {
         if (bonus < 1 || bonus > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 }

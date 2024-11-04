@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.WinningRank;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -29,7 +30,10 @@ public class OutputView {
         }
         long totalPrize = result.totalPrize();
         double rate = (double) totalPrize / amount;
-        System.out.println("총 수익률은 " + Math.round(rate * 100 * 100) / 100.0 + "%입니다.");
+
+        // 수익률을 소수점 둘째 자리까지 반올림하여 출력
+        DecimalFormat df = new DecimalFormat("###,###.##");
+        System.out.println("총 수익률은 " + df.format(rate * 100) + "%입니다.");
     }
 
     private String formatMatchMessage(WinningRank rank) {
