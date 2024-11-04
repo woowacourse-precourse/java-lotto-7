@@ -30,6 +30,7 @@ public class InputView {
 
     public static List<Integer> getWinningNumbers() {
         String input = Console.readLine();
+        validateInputIsNull(input);
         List<String> inputStrings = StringParser.splitByCommaAndTrim(input);
         return inputStrings.stream()
                 .map(Integer::parseInt)
