@@ -13,8 +13,7 @@ public class PublishingController {
 
     public PublishingController() {
         this.outputPublishedTicketsView = new OutputPublishedTicketsView();
-        NumberOfTicketsDto numberOfTicketsDto = NumberOfTicketsDto.getNumberOfTicketsDto();
-        this.numberOfTickets = numberOfTicketsDto.numberOfTickets();
+        this.numberOfTickets = NumberOfTicketsDto.getNumberOfTicketsDto().numberOfTickets();
     }
 
     public void publishLottoTickets() {

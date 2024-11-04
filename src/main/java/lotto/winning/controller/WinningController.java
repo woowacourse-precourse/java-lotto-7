@@ -1,26 +1,26 @@
-package lotto.winning;
+package lotto.winning.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.common.constant.RankConstant;
+import lotto.common.constant.*;
 import lotto.common.model.Lotto;
-import lotto.winning.model.WinningNumber;
-import lotto.winning.model.WinningStatistics;
-import lotto.winning.view.Winning_InputView;
-import lotto.winning.view.Winning_OutputView;
+import lotto.dto.LottoTicketsDto;
+import lotto.winning.CheckingWinningService;
+import lotto.winning.model.*;
+import lotto.winning.view.*;
 
 public class WinningController {
     private final List<Lotto> LottoTickets;
-    private final Winning_InputView winningInputView;
-    private final Winning_OutputView winningOutputView;
+    private final InputWinningNumberView inputWinningNumberView;
+    private final OutputwinningResultView outputwinningResultView;
     private CheckingWinningService checkingWinningService;
     private WinningNumber winningNumber;
     private WinningStatistics winningStatistics;
 
-    public WinningController(List<Lotto> LottoTickets, Winning_InputView winningInputView, Winning_OutputView winningOutputView) {
-        this.LottoTickets = LottoTickets;
-        this.winningInputView = winningInputView;
-        this.winningOutputView = winningOutputView;
+    public WinningController() {
+        this.LottoTickets = LottoTicketsDto.getLottoTicketsDto().LottoTickets();
+        this.inputWinningNumberView = new InputWinningNumberView();
+        this.outputwinningResultView = new OutputwinningResultView();
 
         checkingWinningService = new CheckingWinningService();
         winningNumber = new WinningNumber();
@@ -29,10 +29,10 @@ public class WinningController {
 
     public void presentRanksAndRates() {
         Map<RankConstant, Integer> ranks = getRanksOfLottoTickets();
-        winningOutputView.printRanks(ranks);
+        outputwinningResultView.printRanks(ranks);
         int payment = LottoTickets.size() * 1_000;
         double rateOfReturn = winningStatistics.getRateOfWinning(ranks, payment);
-        winningOutputView.printRateOfWinning(rateOfReturn);
+        outputwinningResultView.printRateOfWinning(rateOfReturn);
     }
 
     private Map<RankConstant, Integer> getRanksOfLottoTickets() {
@@ -43,7 +43,7 @@ public class WinningController {
 
     private List<Integer> setWinningNumbers() {
         try {
-            String inputWinningNumbers = winningInputView.getInputWinningNumbers();
+            String inputWinningNumbers = inputWinningNumberView.getInputWinningNumbers();
             return winningNumber.getWinningNumbers(inputWinningNumbers);
         } catch (Exception exception) {
             System.out.println(exception.getMessage() + "/n");
@@ -53,7 +53,7 @@ public class WinningController {
 
     private int setBonusNumber() {
         try {
-            String inputBonusNumber = winningInputView.getInputBonusNumber();
+            String inputBonusNumber = inputWinningNumberView.getInputBonusNumber();
             return winningNumber.getBonusNumber(inputBonusNumber);
         } catch (Exception exception) {
             System.out.println(exception.getMessage() + "/n");

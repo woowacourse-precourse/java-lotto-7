@@ -3,7 +3,7 @@ package lotto.winning.view;
 import java.util.Map;
 import lotto.common.constant.RankConstant;
 
-public class Winning_OutputView {
+public class OutputwinningResultView {
     public void printRanks(Map<RankConstant, Integer> ranks) {
 
         //Map: key를 등수 - value를 해당 개수로 설정하자. 그리고 등수에 따른 금액

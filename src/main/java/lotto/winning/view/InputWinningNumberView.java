@@ -2,7 +2,7 @@ package lotto.winning.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-public class Winning_InputView {
+public class InputWinningNumberView {
     private String inputWinningNumbers;
     private String inputBonusNumber;
 

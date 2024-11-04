@@ -1,8 +1,6 @@
 package lotto.config;
 
-import java.util.List;
-import lotto.winning.WinningController;
-import lotto.common.model.Lotto;
+import lotto.winning.controller.WinningController;
 import lotto.publishing.controller.PublishingController;
 import lotto.purchasing.controller.PurchasingController;
 
