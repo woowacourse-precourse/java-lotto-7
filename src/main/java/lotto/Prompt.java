@@ -12,7 +12,7 @@ public class Prompt {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             String bonusNumberInput = readLine();
             try {
-                return new BonusNumber (bonusNumberInput);
+                return BonusNumber.from(bonusNumberInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -32,35 +32,15 @@ public class Prompt {
         }
     }
 
-    public static String promptPurchaseAmount() {
+    public static LottoPurchaser promptPurchaseAmount() {
         while (true){
-            System.out.println("구입금액을 입력해 주세요.");
+            System.out.println("\n구입금액을 입력해 주세요.");
             String purchaseAmountInput = readLine();
             try {
-                validatePurchaseAmount(purchaseAmountInput);
-                return purchaseAmountInput;
+                return new LottoPurchaser(purchaseAmountInput);
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    private static void validatePurchaseAmount(String purchaseAmountInput) {
-        validateIntegerInput(purchaseAmountInput);
-        validateThousandUnit(purchaseAmountInput);
-    }
-
-    private static void validateIntegerInput(String purchaseAmountInput) {
-        boolean isInteger = purchaseAmountInput.chars().allMatch(Character::isDigit);
-        if (!isInteger) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값을 입력하셨습니다.");
-        }
-    }
-
-    private static void validateThousandUnit(String purchaseAmountInput) {
-        int amount = Integer.parseInt(purchaseAmountInput);
-        if (amount % Constants.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
         }
     }
 }
