@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 public class InputView {
     public static final String ASK_MONEY_INPUT = "구입금액을 입력해 주세요.";
     public static final String ASK_LOTTO_NUM_INPUT = "당첨 번호를 입력해 주세요.";
+    public static final String ASK_BONUS_NUM_INPUT = "보너스 번호를 입력해 주세요.";
     public static final String INPUT_MONEY_NOT_NUMBER = "[ERROR] 입력하신 금액이 양의 정수가 아닙니다.";
     public static final String INPUT_INVALID_LOTTO_NUMBER = "[ERROR] 올바르지 않은 번호 형식입니다.";
 
@@ -38,6 +39,13 @@ public class InputView {
             }
         }
         return numbers;
+    }
+
+    public int bonusNumberInput() {
+        System.out.println(ASK_BONUS_NUM_INPUT);
+        String rawBonusNumber = inputSupplier.get();
+        validateIsNumber(rawBonusNumber);
+        return Integer.parseInt(rawBonusNumber);
     }
 
     private void validateIsNumber(String rawValue) {
