@@ -1,11 +1,13 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class LottoTest {
     @Test
@@ -21,5 +23,33 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("유효한 로또 번호로 Lotto 객체를 생성한다.")
+    @Test
+    void createLottoWithValidNumbers() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+        Lotto lotto = new Lotto(numbers);
+
+        assertThat(lotto.getNumbers()).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
+    }
+
+    @DisplayName("로또 번호의 개수가 6개가 아니면 예외가 발생한다.")
+    @Test
+    void createLottoWithInvalidNumberCount() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    void createLottoWithDuplicateNumbers() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호에는 중복된 숫자가 없어야 합니다.");
+    }
 }
