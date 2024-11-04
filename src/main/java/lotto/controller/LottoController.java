@@ -31,6 +31,8 @@ public class LottoController {
         Lotto winningLotto = readWinningLottoNumbers();
 
         LottoNumber bonusNumber = readBonusNumber();
+
+        List<PrizeResponse> winningResult = lottoService.findWinningResult(winningLotto, bonusNumber);
     }
 
 
