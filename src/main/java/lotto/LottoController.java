@@ -34,12 +34,14 @@ public class LottoController {
     public void buyLotto() {
         setLottoPublisher();
 
-        Payment payment = getPayment();
+        Payment payment = inputView.getPayment();
         long lottoCount = printLottoCount(payment);
+
         List<Lotto> lottos = publishLotto(lottoCount);
 
-        DrawNumbers drawNumbers = getDrawNumbers();
+        DrawNumbers drawNumbers = inputView.getDrawNumbers();
         lottoChecker = new LottoChecker(drawNumbers);
+
         printResult(lottos, lottoCount);
     }
 
@@ -63,60 +65,5 @@ public class LottoController {
     private void setLottoPublisher() {
         NumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
         lottoPublisher = new LottoPublisher(lottoNumberGenerator);
-    }
-
-    private DrawNumbers getDrawNumbers() {
-        DrawNumbersBuilder builder = new DrawNumbersBuilder();
-
-        builder = buildWinningNumber(builder);
-        builder = buildBonusNumber(builder);
-
-        return builder.build();
-    }
-
-    private Payment getPayment() {
-        int repeatCount = 0;
-        while (repeatCondition(repeatCount)) {
-            repeatCount += 1;
-            try {
-                return inputView.getPayment();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        System.out.println(String.format(SystemError.MAX_RETRY_EXCEEDED.getMessage(), DEFAULT_PAYMENT));
-        return new Payment(DEFAULT_PAYMENT);
-    }
-
-    private DrawNumbersBuilder buildWinningNumber(DrawNumbersBuilder builder) {
-        int repeatCount = 0;
-        while (repeatCondition(repeatCount)) {
-            repeatCount += 1;
-            try {
-                return inputView.getWinningNumbers(builder);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        System.out.println(String.format(SystemError.MAX_RETRY_EXCEEDED.getMessage(), DEFAULT_WINNING_NUMBERS));
-        return builder.winningNumbers(DEFAULT_WINNING_NUMBERS);
-    }
-
-    private DrawNumbersBuilder buildBonusNumber(DrawNumbersBuilder builder) {
-        int repeatCount = 0;
-        while (repeatCondition(repeatCount)) {
-            repeatCount += 1;
-            try {
-                return inputView.getBonusNumber(builder);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        System.out.println(String.format(SystemError.MAX_RETRY_EXCEEDED.getMessage(), DEFAULT_BONUS_NUMBER));
-        return builder.bonusNumber(DEFAULT_BONUS_NUMBER);
-    }
-
-    private boolean repeatCondition(int repeatCount) {
-        return repeatCount < LIMIT_REPEAT_COUNT;
     }
 }
