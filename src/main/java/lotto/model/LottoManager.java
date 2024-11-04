@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.utils.Constants.SEPARATOR;
+import static lotto.utils.Constants.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +27,7 @@ public class LottoManager {
     }
 
     private List<Integer> drawLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
     }
 
     public Lotto generateCustomLotto(String number) {
