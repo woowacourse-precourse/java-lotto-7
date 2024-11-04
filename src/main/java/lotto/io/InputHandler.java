@@ -35,11 +35,8 @@ public class InputHandler {
     public Lotto winningNumbersInput() {
         while (true) {
             try {
-                List<Integer> winningNumbers = new ArrayList<>();
                 List<String> rawNumbers = Arrays.asList(Console.readLine().split(","));
-                for (String number : rawNumbers) {
-                    winningNumbers.add(Integer.parseInt(number.trim()));
-                }
+                List<Integer> winningNumbers = convertRawNumbers();
                 Lotto lotto = new Lotto(winningNumbers);
                 return lotto;
             } catch (NumberFormatException e) {
@@ -48,6 +45,14 @@ public class InputHandler {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public List<Integer> convertRawNumbers(List<String> rawNumbers){
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String number : rawNumbers) {
+            winningNumbers.add(Integer.parseInt(number.trim()));
+        }
+        return winningNumbers;
     }
 
     public int bonusNumberInput(List<Integer> winningNumbers) {
