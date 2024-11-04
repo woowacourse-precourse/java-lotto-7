@@ -7,9 +7,8 @@ import lotto.domain.LottoTicket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoMachine {
-
-    public List<Lotto> issueLottoTickets(LottoTicket ticket){
+public class Issuing {
+    public List<Lotto> lottoTickets(LottoTicket ticket){
         List<Lotto> lottos = new ArrayList<>();
         for(int i = 0; i<ticket.getCount();i++){
             lottos.add(randomLotto());
@@ -21,5 +20,4 @@ public class LottoMachine {
             Randoms.pickUniqueNumbersInRange(1, 45, 6));
         return new Lotto(numbers);
     }
-
 }
