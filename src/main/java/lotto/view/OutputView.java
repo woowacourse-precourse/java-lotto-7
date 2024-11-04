@@ -5,11 +5,11 @@ import lotto.domain.Lotto;
 import lotto.message.OutputMessage;
 
 public class OutputView {
-    public static void printErrorMessage(String errorMessage){
+    public static void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 
-    public static void printLottoAmountInput(){
+    public static void printLottoAmountInput() {
         System.out.println(OutputMessage.REQUEST_INPUT_AMOUNT);
     }
 
@@ -18,5 +18,9 @@ public class OutputView {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
+    }
+
+    public static void printWinningNumberInput(){
+        System.out.println(OutputMessage.REQUEST_INPUT_WINNING_NUMBER);
     }
 }
