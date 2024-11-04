@@ -23,6 +23,10 @@ public class HostServiceImpl implements HostService {
 
     @Override
     public void getReport() {
+        PrizeCheckService prizeCheckLogic = new PrizeCheckServiceImpl(winningCriteriaRegister());
+        PrizeReportService reportService = new PrizeReportServiceImpl(prizeCheckLogic);
+
+        reportService.updateReport();
     }
 
     @Override
