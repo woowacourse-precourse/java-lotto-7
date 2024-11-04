@@ -10,13 +10,18 @@ public class OutputView {
     private static final String LOTTO_PURCHASE_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String PROFIT_MESSAGE_PREFIX= "총 수익률은 ";
-    private static final String PROFIT_MESSAGE_SUFFIX = "입니다.";
+    private static final String PROFIT_MESSAGE_SUFFIX = "%입니다.";
     private static final String SEPARATOR_LINE = "---";
     private static final String COUNT_UNIT = "개";
     private static final String HYPHEN = " - ";
+    private static final String NEW_LINE = "";
 
     public static void println(String message) {
         System.out.println(message);
+    }
+
+    public static void println() {
+        System.out.println(NEW_LINE);
     }
 
     public static void printLottos(List<Lotto> lottos) {
@@ -24,7 +29,7 @@ public class OutputView {
         lottos.forEach(OutputView::printLotto);
     }
 
-    public static void printWinningStatistics(Map<LottoRanking, Integer> rankingCount, int profitRate) {
+    public static void printWinningStatistics(Map<LottoRanking, Integer> rankingCount, double profitRate) {
         println(WINNING_STATISTICS_MESSAGE);
         println(SEPARATOR_LINE);
 
@@ -42,7 +47,7 @@ public class OutputView {
         }
     }
 
-    private static void printProfitRate(int profitRate) {
+    private static void printProfitRate(double profitRate) {
         println(PROFIT_MESSAGE_PREFIX + profitRate + PROFIT_MESSAGE_SUFFIX);
     }
 }
