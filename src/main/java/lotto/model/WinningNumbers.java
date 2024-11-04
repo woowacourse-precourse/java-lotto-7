@@ -1,11 +1,10 @@
 package lotto.model;
 
-import static lotto.model.constant.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import lotto.model.constant.ErrorMessage;
 
 public class WinningNumbers {
     private final List<Integer> numbers;
@@ -17,7 +16,7 @@ public class WinningNumbers {
 
     private void validate(List<Integer> numbers) {
         if (hasDuplicateNumbers(numbers)) {
-            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER);
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER);
         }
     }
 
