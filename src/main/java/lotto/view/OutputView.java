@@ -59,4 +59,8 @@ public class OutputView {
     public void displayYieldRate(Double yieldRate) {
         System.out.printf(DISPLAY_YIELD_RATE_FORMAT + "%n", yieldRate);
     }
+
+    public void displayErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

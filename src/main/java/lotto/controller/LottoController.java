@@ -62,9 +62,10 @@ public class LottoController {
             double yieldRate = lottoService.calculateYieldRate(purchasePrice, winningStatistics);
             outputView.displayYieldRate(yieldRate);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.displayErrorMessage(e.getMessage());
         }
     }
+
 
     private int readInputPurchasePrice() throws MoneyException {
         inputView.requestPurchasePriceMessage();
