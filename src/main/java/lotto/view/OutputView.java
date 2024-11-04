@@ -35,6 +35,11 @@ public class OutputView {
         System.out.println("\n" + lottoCount + "개를 구매했습니다.");
     }
 
+    public void printException(Exception exception) {
+        System.out.println(exception.getMessage());
+
+    }
+
     public void printFormattedLottoNumbers(List<LottoResponse> lottoResponses) {
 
         lottoResponses.forEach(lottoResponse -> System.out.println(formatLottoNumbers(lottoResponse)));
