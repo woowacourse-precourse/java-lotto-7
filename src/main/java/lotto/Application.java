@@ -29,13 +29,17 @@ public class Application {
 
         final double returnOnInvestment = (double) (totalWinningReward / price) * 100;
 
+        printResult(resultOfLotto, returnOnInvestment);
+
+    }
+
+    private static void printResult(Map<rank, Integer> resultOfLotto, double returnOnInvestment) {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (rank rank : rank.values()) {
             System.out.println(rank + " - " + resultOfLotto.get(rank) + "개");
         }
         System.out.printf("총 수익률은 %.2f%%입니다.", returnOnInvestment);
-
     }
 
     private static int calculatorForTotalWinningReward(Map<rank, Integer> resultOfLotto) {
