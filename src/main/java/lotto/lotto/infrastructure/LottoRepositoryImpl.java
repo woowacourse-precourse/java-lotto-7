@@ -47,7 +47,7 @@ public class LottoRepositoryImpl implements LottoRepository {
             return Optional.ofNullable(lottoResultsMap.get(id))
                     .orElseThrow(() -> new IllegalArgumentException(REPOSITORY_NOT_FOUND));
         } catch (NullPointerException e) {
-            throw new IllegalStateException(REPOSITORY_ID_NULL);
+            throw new IllegalArgumentException(REPOSITORY_ID_NULL);
         }
     }
 
