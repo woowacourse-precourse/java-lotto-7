@@ -102,7 +102,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - Money
 - [x] 남은 금액을 반환하는 기능 추가
 - [x] 사용한 금액을 반환하는 기능 추가
-- [ ] 당첨금을 저장하는 기능 추가
+- [x] 당첨금을 저장하는 기능 추가
 - [ ] 수익률을 반환하는 기능 추가
 - [ ] 가져가는 돈에 대한 예외처리 기능 추가
 - Store

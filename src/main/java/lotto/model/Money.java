@@ -3,6 +3,7 @@ package lotto.model;
 public class Money {
     private int leftMoney;
     private int usedMoney;
+    private int winningAmount;
     public Money(int money) {
         this.leftMoney = money;
         this.usedMoney = 0;
@@ -16,5 +17,8 @@ public class Money {
     }
     public int getUsedMoney() {
         return usedMoney;
+    }
+    public void receiveWinningAmount(int totalWinningAmount) {
+        this.winningAmount = totalWinningAmount;
     }
 }
