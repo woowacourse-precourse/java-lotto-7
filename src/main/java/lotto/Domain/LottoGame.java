@@ -4,36 +4,35 @@ import java.util.List;
 import lotto.Enum.LottoPrizeRank;
 
 public class LottoGame {
-    private final List<Lotto> purchasedLottos;
-    private final WinningLotto winningLotto;
-    private final LottoResult lottoResult;
+    private final List<Lotto> lottos;
+    private LottoResult lottoResult;
+    private final LottoProfitCalculator profitCalculator;
+    private final int purchaseAmount;
 
-    private LottoGame(int purchaseAmount, List<Integer> winningNumbers, int bonusNumber) {
-        this.purchasedLottos = LottoMachine.issue(purchaseAmount);
-        this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-        this.lottoResult = new LottoResult(purchaseAmount);
+    public LottoGame(int money) {
+        this.purchaseAmount = money;
+        this.lottos = LottoMachine.issue(money);
+        this.lottoResult = new LottoResult();
+        this.profitCalculator = new LottoProfitCalculator();
     }
 
-    public static LottoGame start(int purchaseAmount, List<Integer> winningNumbers, int bonusNumber) {
-        return new LottoGame(purchaseAmount, winningNumbers, bonusNumber);
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
-    public void drawLottery() {
-        for (Lotto lotto : purchasedLottos) {
+    public void checkResult(WinningLotto winningLotto) {
+        lottoResult = new LottoResult();
+        for (Lotto lotto : lottos) {
             LottoPrizeRank rank = winningLotto.match(lotto);
             lottoResult.addResult(rank);
         }
     }
 
-    public List<Lotto> getPurchasedLottos() {
-        return purchasedLottos;
-    }
-
     public int getWinningCount(LottoPrizeRank rank) {
-        return lottoResult.getWinningCount(rank);
+        return lottoResult.getCount(rank);
     }
 
-    public double getProfitRate() {
-        return lottoResult.calculateProfitRate();
+    public double calculateProfitRate() {
+        return profitCalculator.calculateProfitRate(lottoResult, purchaseAmount);
     }
 }

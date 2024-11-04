@@ -1,9 +1,11 @@
 package lotto.Controller;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoGame;
-import lotto.Domain.LottoMachine;
+import lotto.Domain.WinningLotto;
 import lotto.Enum.LottoPrizeRank;
 import lotto.View.InputView;
 import lotto.View.OutputView;
@@ -18,38 +20,35 @@ public class LottoGameController {
     }
 
     public void play() {
-        int purchaseAmount = inputView.readPurchaseAmount();
-        LottoGame game = createGame(purchaseAmount);
+        final int money = Integer.parseInt(inputView.readPurchaseAmount());
+        final LottoGame game = new LottoGame(money);
 
-        printPurchasedLottos(game);
+        printPurchasedLottos(game.getLottos());
 
-        List<Integer> winningNumbers = inputView.readWinningNumbers();
-        int bonusNumber = inputView.readBonusNumber();
+        final String[] winningInput = inputView.readWinningNumbers().split(",");
+        final List<Integer> winningNumbers = Arrays.stream(winningInput)
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
 
-        game.start(winningNumbers, bonusNumber);
-        game.drawLottery();
+        final int bonusNumber = Integer.parseInt(inputView.readBonusNumber());
 
+        game.checkResult(new WinningLotto(winningNumbers, bonusNumber));
         printGameResults(game);
     }
 
-    private LottoGame createGame(int amount) {
-        List<Lotto> lottos = LottoMachine.issue(amount);
+    private void printPurchasedLottos(List<Lotto> lottos) {
         outputView.printPurchaseResult(lottos.size());
-        return new LottoGame(amount, lottos);
-    }
-
-    private void printPurchasedLottos(LottoGame game) {
-        for (Lotto lotto : game.getPurchasedLottos()) {
-            outputView.printLottoNumbers(lotto.getNumbers());
-        }
+        lottos.forEach(lotto -> outputView.printLottoNumbers(lotto.getNumbers()));
     }
 
     private void printGameResults(LottoGame game) {
         outputView.printStatisticsTitle();
-        for (LottoPrizeRank rank : LottoPrizeRank.values()) {
-            outputView.printMatchResult(rank.resultMessage, game.getWinningCount(rank));
-        }
-        outputView.printProfitRate(game.getProfitRate());
+        Arrays.stream(LottoPrizeRank.values())
+                .forEach(rank -> outputView.printMatchResult(
+                        rank.resultMessage,
+                        game.getWinningCount(rank)
+                ));
+        outputView.printProfitRate(game.calculateProfitRate());
     }
-}
 }

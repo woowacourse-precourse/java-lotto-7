@@ -8,12 +8,12 @@ public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
 
     public static List<Lotto> issue(int amount) {
-        validatePurchaseAmount(amount);
+        validateAmount(amount);
         int count = amount / LOTTO_PRICE;
         return generateLottos(count);
     }
 
-    private static void validatePurchaseAmount(int amount) {
+    private static void validateAmount(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException(ErrorMessages.MONEY_NEGATIVE.message);
         }
