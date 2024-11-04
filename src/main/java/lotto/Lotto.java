@@ -1,12 +1,11 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 import validator.BonusValidator;
-import validator.PaymentValidator;
 import validator.PrizeNumberValidator;
 
 public class Lotto {
+
     private final PrizeNumber prizeNumber;
     private final List<LottoTicket> lottoTicketBundle;
     private final Integer bonusNumber;
@@ -25,7 +24,6 @@ public class Lotto {
     }
 
     public void play() {
-
         TicketPrizeMatcher ticketPrizeMatcher = new TicketPrizeMatcher(
                 prizeNumber,
                 lottoTicketBundle,
