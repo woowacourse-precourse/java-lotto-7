@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.MoneyException;
+import lotto.exception.MoneyExceptionType;
+
 public class Money {
     private static final int ZERO = 0;
     private static final int THOUSAND = 1000;
@@ -17,13 +20,13 @@ public class Money {
 
     private void validateZero(int inputValue) {
         if (inputValue == ZERO) {
-            throw new IllegalArgumentException();
+            throw new MoneyException(MoneyExceptionType.ZERO_MONEY);
         }
     }
 
     private void validateDivideMoney(int inputValue) {
         if (inputValue % THOUSAND != ZERO) {
-            throw new IllegalArgumentException();
+            throw new MoneyException(MoneyExceptionType.NOT_UNIT_MONEY);
         }
     }
 
