@@ -42,7 +42,11 @@ public class ViewControllerImpl implements ViewController {
         String[] split = number.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
         for (String s : split) {
-            winningNumbers.add(Integer.parseInt(s.trim()));
+            try {
+                winningNumbers.add(Integer.parseInt(s.trim()));
+            } catch (NumberFormatException e) {
+                System.out.println(ExceptionMessage.INVALID_MONEY_FORMAT_ERROR);
+            }
         }
         return winningNumbers;
     }
