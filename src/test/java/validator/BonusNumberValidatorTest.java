@@ -16,7 +16,7 @@ public class BonusNumberValidatorTest {
         int validBonusNumber = 15;
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
 
-        // when & then
+        // when, then
         assertThatCode(() -> BonusNumberValidator.validateBonusNumber(validBonusNumber, lottoNumbers))
                 .doesNotThrowAnyException();
     }
@@ -26,6 +26,18 @@ public class BonusNumberValidatorTest {
     void 보너스_번호가_허용된_범위_미만이어서_예외가_발생한다() {
         // given
         int invalidBonusNumber = 0;
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        // when, then
+        assertThatThrownBy(() -> BonusNumberValidator.validateBonusNumber(invalidBonusNumber, lottoNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 45 초과일 때 예외가 발생한다.")
+    void 보너스_번호가_허용된_범위를_초과해서_예외가_발생한다() {
+        // given
+        int invalidBonusNumber = 46;
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
 
         // when, then
