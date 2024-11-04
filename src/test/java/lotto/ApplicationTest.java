@@ -54,6 +54,39 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 금액에_음수가_입력된_경우() {
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 금액에_0원_입력된_경우() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 문자가_입력된_경우() {
+        assertSimpleTest(() -> {
+            runException("lotto");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호가_당첨번호에_포함된_경우(){
+        assertSimpleTest(() ->{
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
