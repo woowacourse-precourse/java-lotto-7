@@ -20,6 +20,15 @@ public class LottoNumbersGenerator {
         return new LottoNumbersGenerator();
     }
 
+    public static LottoNumbersGenerator of(List<Integer> numbers) {
+        LottoNumbersGenerator generator = new LottoNumbersGenerator();
+        generator.lottoNumbers.clear();
+        generator.lottoNumbers.addAll(numbers);
+        Collections.sort(generator.lottoNumbers);
+        return generator;
+    }
+
+
     private List<Integer> generateLottoNumbers() {
         List<Integer> randomNumbers = new ArrayList<>(
                 Randoms.pickUniqueNumbersInRange(LOTTO_MIN_RANGE, LOTTO_MAX_RANGE, NUMBER_COUNT));
