@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.NoSuchElementException;
 import java.util.function.Function;
+import lotto.dto.LottosDto;
 import lotto.model.LottoMachine;
 import lotto.model.PurchaseAmount;
 import lotto.utils.RandomLottoNumberGenerationStrategy;
@@ -17,6 +18,7 @@ public class LottoController {
         }
         LottoMachine lottoMachine = LottoMachine.initializeWith(purchaseAmount.getAmount(),
                 new RandomLottoNumberGenerationStrategy());
+        OutputView.printPurchasedLottos(LottosDto.from(lottoMachine.getLottos()));
     }
 
     private <T> T getInput(Runnable outputMessage, Function<String, T> parser) {
