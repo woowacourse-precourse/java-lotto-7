@@ -17,12 +17,14 @@ public class LottoWinningNumbers {
     int[] winningNumber = Arrays.stream(Console.readLine().split(","))
         .mapToInt(Integer::parseInt)
         .toArray();
+    System.out.println();
     return winningNumber;
   }
 
   public int inputBonusNumber() {
     System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
     int bonusNumber = Integer.parseInt(Console.readLine());
+    System.out.println();
     return bonusNumber;
   }
 

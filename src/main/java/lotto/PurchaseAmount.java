@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class PurchaseAmount {
 
   private static final String INPUT_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
-  private static final String PURCHASE_MESSAGE = "개 만큼 구매합니다";
+  private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
   private int purchaseQuantity;
 
   public PurchaseAmount() {
@@ -16,6 +16,7 @@ public class PurchaseAmount {
   public int inputPurchaseAmount() {
     System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
     int purchaseAmount = Integer.parseInt(Console.readLine());
+    System.out.println();
     return purchaseAmount;
   }
 
