@@ -5,8 +5,10 @@ import static lotto.exception.ErrorMessage.*;
 import static lotto.view.ConsoleMessage.*;
 
 import java.util.List;
+import java.util.Map;
 
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 
 public class OutputView {
 
@@ -54,5 +56,28 @@ public class OutputView {
 		for (Lotto lotto : totalLottos) {
 			System.out.println(lotto.toString());
 		}
+	}
+
+	public void printPrizeStatistics(Map<Prize, Integer> prizeCounts) {
+		StringBuilder statisticBuilder = new StringBuilder();
+		statisticBuilder.append(WINNING_STATISTICS.getMessage())
+			.append('\n')
+			.append(DIVIDER.getMessage())
+			.append('\n')
+			.append(String.format(ConsoleMessage.MATCH_3.getMessage(), prizeCounts.get(Prize.FIFTH)))
+			.append('\n')
+			.append(String.format(ConsoleMessage.MATCH_4.getMessage(), prizeCounts.get(Prize.FOURTH)))
+			.append('\n')
+			.append(String.format(ConsoleMessage.MATCH_5.getMessage(), prizeCounts.get(Prize.THIRD)))
+			.append('\n')
+			.append(String.format(ConsoleMessage.MATCH_5_BONUS.getMessage(), prizeCounts.get(Prize.SECOND)))
+			.append('\n')
+			.append(String.format(ConsoleMessage.MATCH_6.getMessage(), prizeCounts.get(Prize.FIRST)))
+			.append('\n');
+		System.out.println(statisticBuilder);
+	}
+
+	public void printTotalYield(double yield) {
+		System.out.println(String.format(TOTAL_YIELD.getMessage(), yield));
 	}
 }
