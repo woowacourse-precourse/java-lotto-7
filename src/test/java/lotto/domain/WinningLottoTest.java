@@ -34,4 +34,15 @@ public class WinningLottoTest {
         assertThatThrownBy(() -> new WinningLotto(lotto, bonusNumber))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스번호는_1과_45사이의_숫자여야_한다(){
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 46;
+
+        //when & then
+        assertThatThrownBy(() -> new WinningLotto(lotto, bonusNumber))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }

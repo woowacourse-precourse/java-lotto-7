@@ -9,6 +9,7 @@ public class WinningLotto {
 
     public WinningLotto(Lotto lotto, int bonusNumber) {
         validateDuplicate(lotto, bonusNumber);
+        validateBonusNumber(bonusNumber);
         this.winningLotto = lotto;
         this.bonusNumber = bonusNumber;
     }
@@ -16,6 +17,12 @@ public class WinningLotto {
     private void validateDuplicate(Lotto lotto, int bonusNumber) {
         if (lottoContainsBonusNumber(lotto, bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1과 45 사이의 숫자여야 합니다.");
         }
     }
 
