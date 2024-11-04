@@ -14,6 +14,7 @@ public class LottoWinningNumber {
         this.lottoWinningNumbers = lottoWinningNumbers;
         validator.validateLengthWinningNumber(lottoWinningNumbers);
         validator.validateDuplicationWinningNumber(lottoWinningNumbers);
+        validator.validateWinningNumber(lottoWinningNumbers);
     }
 
     public static LottoWinningNumber getInstance(List<Integer> lottoWinningNumbers) {
