@@ -64,7 +64,17 @@ public class DongHangLottery {
     }
 
     private static int drawBonusNumber(List<Integer> winningNumber) {
+        while (true) {
+            try {
+                int bonus = inputReader.readBonusNumber();
+                InputValidator.validateBonusNumberRange(bonus);
+                InputValidator.checkBonusNumberDuplicates(winningNumber, bonus);
 
+                return bonus;
+            } catch (IllegalArgumentException iae) {
+                System.out.println(iae.getMessage());
+            }
+        }
     }
 
     public static void announceResult() {
