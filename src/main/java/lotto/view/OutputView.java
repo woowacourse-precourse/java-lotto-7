@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-import lotto.service.LottoDraw;
+import lotto.domain.LottoDraw;
 import lotto.domain.LottoPrizeMap;
 import lotto.service.LottoWinning;
 import lotto.service.CalculateProfitRate;
