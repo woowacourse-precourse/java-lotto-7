@@ -13,6 +13,7 @@ public class Application {
     private static List<Lotto> lottos = new ArrayList<>();
     private static final int lottoNumbersCount = 6;
     private static HashSet<Integer> winNumbers = new HashSet<>();
+    private static int bonusNumber;
     private static final int minimumLottoNumber = 1;
     private static final int maximumLottoNumber = 45;
     public static void main(String[] args) {
@@ -22,6 +23,20 @@ public class Application {
 
     public static void playgame() {
         getWinNumbers();
+        getBonusNumbers();
+    }
+
+    public static void getBonusNumbers() {
+        while (true) {
+            try{
+                System.out.println("보너스 번호를 입력해 주세요");
+                askBonusNumber();
+                System.out.println();
+                break;
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void getWinNumbers() {
@@ -34,6 +49,14 @@ public class Application {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void askBonusNumber() throws Exception {
+        String input = Console.readLine();
+        isInteger(input);
+        int number = Integer.parseInt(input);
+        validateInputRange(number);
+        bonusNumber = number;
     }
 
     public static void askWinNumbers() throws Exception{
