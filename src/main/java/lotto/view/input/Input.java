@@ -8,13 +8,14 @@ import java.util.List;
 
 public class Input {
 
+    public static final String purchaseAmountConsole = "구입금액을 입력해 주세요.";
+    public static final String getWinNumbers = "당첨 번호를 입력해 주세요.";
+
     public String purchaseAmount(){
-        System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine();
     }
 
-    public List<Integer> numbers(){
-        System.out.println("당첨 번호를 입력해 주세요.");
+    public List<Integer> getWinNumbers(){
         String inputNumber = Console.readLine();
 
         return getNumbersSplit(inputNumber);

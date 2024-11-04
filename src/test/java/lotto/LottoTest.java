@@ -41,7 +41,7 @@ class LottoTest {
         System.setIn(in);
 
         //when && then
-        assertThatThrownBy(() -> input.numbers())
+        assertThatThrownBy(() -> input.getWinNumbers())
                 .isInstanceOf(NumberFormatException.class)
                 .hasMessageContaining("[ERROR] 숫자와 ,만 입력해주세요");
 
