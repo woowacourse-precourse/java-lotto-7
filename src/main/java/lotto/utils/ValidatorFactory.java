@@ -1,6 +1,8 @@
 package lotto.utils;
 
 import java.util.List;
+import java.util.Map;
+import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
 import lotto.validation.BonusNumberValidator;
 import lotto.validation.NumberCountValidator;
@@ -36,4 +38,23 @@ public class ValidatorFactory {
     public static Validator<Integer> getAmountValidator() {
         return amountValidator;
     }
+
+    public static void validatePurchaseState(boolean isPurchased) {
+        if (isPurchased) {
+            throw new IllegalStateException(ErrorMessages.ALREADY_PURCHASED);
+        }
+    }
+
+    public static void validateWinningNumbersState(WinningNumbers winningNumbers) {
+        if (winningNumbers == null || winningNumbers.getNumbers().isEmpty()) {
+            throw new IllegalStateException(ErrorMessages.INVALID_WINNING_NUMBER_STATE);
+        }
+    }
+
+    public static void validateStatisticsState(Map<Rank, Integer> results, int purchaseAmount) {
+        if (results == null || results.isEmpty() || purchaseAmount == 0) {
+            throw new IllegalStateException(ErrorMessages.INVALID_STATISTICS_STATE);
+        }
+    }
+
 }

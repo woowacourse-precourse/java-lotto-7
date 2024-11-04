@@ -9,4 +9,7 @@ public class ErrorMessages {
     public static final String LOTTO_NUMBER_COUNT = "[ERROR] 로또 번호는 6개여야 합니다.";
     public static final String WINNING_NUMBER_FORMAT = "[ERROR] 당첨 번호는 올바른 형식이어야 합니다.";
     public static final String PURCHASE_AMOUNT_UNIT = "[ERROR] 구입 금액은 1,000원 단위여야 합니다.";
+    public static final String ALREADY_PURCHASED = "[ERROR] 이미 로또 티켓을 구매한 상태입니다.";
+    public static final String INVALID_WINNING_NUMBER_STATE = "[ERROR] 유효한 당첨 번호가 설정되지 않았습니다.";
+    public static final String INVALID_STATISTICS_STATE = "[ERROR] 당첨 결과가 없거나 유효한 구매 금액이 설정되지 않았습니다.";
 }
