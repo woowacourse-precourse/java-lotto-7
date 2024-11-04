@@ -12,13 +12,20 @@ public class BonusNumberValidator implements Validator {
 
     @Override
     public void validate() {
+        isNull();
         isValidatedForm();
         isInRange();
     }
 
     private void isValidatedForm(){
-        if(bonusNumber == null || !bonusNumber.matches("[0-9]+")){
+        if(!bonusNumber.matches("[0-9]+")){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 할 수 있습니다.");
+        }
+    }
+
+    private void isNull(){
+        if(bonusNumber == null){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호 NULL 오류 입니다.");
         }
     }
 

@@ -12,6 +12,7 @@ public class WinningNumberValidator implements Validator {
 
     @Override
     public void validate() {
+        isNull();
         isValidatedForm();
 
         for(String winningNumber: winningNumbers.split(",")){
@@ -23,6 +24,12 @@ public class WinningNumberValidator implements Validator {
         isConsistOfNumberAndComma();
         isStartOrEndWithComma();
         isContainsContinuousComma();
+    }
+
+    private void isNull(){
+        if(winningNumbers == null){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 NULL 오류 입니다.");
+        }
     }
 
     private void isConsistOfNumberAndComma(){
