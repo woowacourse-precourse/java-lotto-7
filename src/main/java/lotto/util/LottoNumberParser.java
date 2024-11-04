@@ -1,5 +1,6 @@
 package lotto.util;
 
+import static lotto.exception.LottoErrorStatus.EMPTY_USER_INPUT;
 import static lotto.exception.LottoErrorStatus.INVALID_BONUS_NUMBER;
 import static lotto.exception.LottoErrorStatus.INVALID_LOTTO_FORMAT;
 
@@ -13,6 +14,7 @@ public class LottoNumberParser {
 
 
     public static List<Integer> parseLottoNumbers(String inputLottoNumbers) {
+        validateNotEmpty(inputLottoNumbers);
         try {
             return Arrays.stream(inputLottoNumbers.split(","))
                     .map(String::trim)
@@ -24,10 +26,17 @@ public class LottoNumberParser {
     }
 
     public static int parseBonusNumber(String inputBonusNumbers) {
+        validateNotEmpty(inputBonusNumbers);
         try {
             return Integer.parseInt(inputBonusNumbers);
         } catch (NumberFormatException e) {
             throw new LottoException(INVALID_BONUS_NUMBER);
+        }
+    }
+
+    private static void validateNotEmpty(String userInput) {
+        if (userInput == null || userInput.isEmpty()) {
+            throw new LottoException(EMPTY_USER_INPUT);
         }
     }
 }
