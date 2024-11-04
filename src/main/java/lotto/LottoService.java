@@ -9,7 +9,14 @@ public class LottoService {
 
     public Map<LottoRank, Integer> calculateStatistic(List<Integer> winningNumbers, int bonusNumber, List<List<Integer>> lottos) {
 
-        Map<LottoRank, Integer> result = new HashMap<>();
+        Map<LottoRank, Integer> result = Map.of(
+                LottoRank.First, 0,
+                LottoRank.Second, 0,
+                LottoRank.Third, 0,
+                LottoRank.Fourth, 0,
+                LottoRank.Fifth, 0,
+                LottoRank.None, 0
+        );
 
         for (List<Integer> lotto : lottos) {
             LottoRank lottoRank = prizeWinningDiscriminationPerLotto(winningNumbers, bonusNumber, lotto);
