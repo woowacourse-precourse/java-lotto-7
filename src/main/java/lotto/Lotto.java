@@ -68,4 +68,46 @@ public class Lotto {
         return new ArrayList<>(uniqueNumbers);
     }
 
+    // 당첨 번호 비교
+    private static int countMatchingNumbers(List<Integer> uniqueNumbers, List<Integer> winningNumbers) {
+        Set<Integer> unique = new HashSet<>(uniqueNumbers);
+        Set<Integer> winning = new HashSet<>(winningNumbers);
+
+        unique.retainAll(winning);
+        return unique.size();
+    }
+
+    // 보너스 번호와 일치 비교
+    private static boolean isBonusMatched(List<Integer> uniqueNumbers, int bonusNumber) {
+        return uniqueNumbers.contains(bonusNumber);
+    }
+
+    // 일치 개수와 보너스 일치 여부에 따른 결과 반환
+    public static int getPrizeForMatchCount(int matchCount, boolean bonusMatch) {
+        if (matchCount == 6) {
+            return 4;
+        }
+        if (matchCount == 5 && bonusMatch) {
+            return 3;
+        }
+        if (matchCount == 5) {
+            return 2;
+        }
+        if (matchCount == 4) {
+            return 1;
+        }
+        if (matchCount == 3) {
+            return 0;
+        }
+        return -1;
+    }
+
+    // 최종 결과 계산 함수
+    public static int checkLotto(List<Integer> uniqueNumbers, List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = countMatchingNumbers(uniqueNumbers, winningNumbers);
+        boolean bonusMatch = isBonusMatched(uniqueNumbers, bonusNumber);
+        return getPrizeForMatchCount(matchCount, bonusMatch);
+    }
+
+
 }
