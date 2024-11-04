@@ -13,7 +13,7 @@ public class LottoBuyer {
     // 구매 개수
     private int lottoPurchaseAmount;
     // 구매자의 총 수익률
-    private int lotteryYield;
+    private double lotteryYield;
     // 구매자가 구입한 로또
     private List<Lotto> lottos;
     // 구매자의 당첨 금액
@@ -30,8 +30,8 @@ public class LottoBuyer {
         this.lottoPurchaseAmount = lottoPurchaseAmount;
     }
 
-    public int calculateLotteryYield(final int purchaseAmount, final int totalWinningAmount) {
-        this.lotteryYield = totalWinningAmount / purchaseAmount * 100;
+    public double calculateLotteryYield(final int purchaseAmount, final int totalWinningAmount) {
+        this.lotteryYield = ((double) totalWinningAmount / purchaseAmount) * 100;
         return lotteryYield;
     }
 

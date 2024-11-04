@@ -11,4 +11,9 @@ public class LotteryValidator {
         }
     }
 
+//    public boolean validatePurchaseAmount(final int purchaseAmount) {
+//        try {
+//            Integer.parseInt(purchaseAmount)
+//        }
+//    }
 }
