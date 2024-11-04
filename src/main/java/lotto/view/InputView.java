@@ -6,6 +6,7 @@ import lotto.domain.PaymentInput;
 import lotto.domain.DrawNumbers;
 import lotto.domain.WinningNumbers;
 import lotto.validator.BonusNumberValidator;
+import lotto.validator.PaymentValidator;
 import lotto.validator.WinningNumbersValidator;
 
 import java.util.List;
@@ -15,19 +16,19 @@ public class InputView {
     private static final String WINNING_NUMBER_COMMAND ="\n당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_COMMAND="\n보너스 번호를 입력해 주세요.";
 
-    public static PaymentInput enterPaymentInput(){
+    public static PaymentInput enterPayment(){
         try{
             System.out.println(PAYMENT_INPUT_COMMAND);
-            PaymentInput paymentInput=new PaymentInput(Console.readLine());
+            Long parsedPayment= PaymentValidator.validateRawPayment(Console.readLine());
+            PaymentInput paymentInput=new PaymentInput(parsedPayment);
             return paymentInput;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return enterPaymentInput();
+            return enterPayment();
         }
     }
 
     public static DrawNumbers enterWinningNumbers() {
-
         try{
             System.out.println(WINNING_NUMBER_COMMAND);
             List<Integer> parsedWinningNumbers= WinningNumbersValidator.validateWinningNumbers(Console.readLine());
