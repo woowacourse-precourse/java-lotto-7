@@ -1,12 +1,14 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.Arrays;
+import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.exception.DomainExceptionMessage;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @Test
@@ -22,5 +24,25 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("로또 번호를 가지고 Lotto 객체를 생성할 수 있다.")
+    void should_CreateLotto_When_GiverNumbers() {
+        // given
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        // when
+        Lotto lotto = new Lotto(numbers);
+        // then
+        Assertions.assertThat(lotto).isNotNull();
+    }
+
+    @Test
+    @DisplayName("로또 번호가 6개가 아닌 경우 예외가 발생한다.")
+    void should_ThrowException_When_NotSixNumbers() {
+        // given
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        // when, then
+        Assertions.assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DomainExceptionMessage.INVALID_LOTTO_SIZE.getMessage());
+    }
 }
