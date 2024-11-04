@@ -3,7 +3,6 @@ package lotto.vo;
 import lotto.util.Parser;
 import lotto.util.Validator;
 
-import static lotto.common.ErrorMessage.INTEGER_RANGE_EXCESS;
 import static lotto.common.ErrorMessage.NOT_NUMBER_OR_RANGE_EXCESS;
 
 public class Payment {
