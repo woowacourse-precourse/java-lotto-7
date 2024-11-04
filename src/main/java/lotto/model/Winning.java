@@ -28,6 +28,10 @@ public enum Winning {
 		return count;
 	}
 
+	public long getPrize() {
+		return prize;
+	}
+
 	public static Map<Winning, Integer> initializeWinningResults() {
 		return Arrays.stream(Winning.values())
 				.collect(Collectors.toMap(winning -> winning, winning -> INITIAL_VALUE));
