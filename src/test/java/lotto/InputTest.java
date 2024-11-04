@@ -2,6 +2,8 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -60,5 +62,13 @@ public class InputTest {
 	void 당첨번호에_중복이_존재하는지_검증하는_테스트() {
 		String numbers = "1,2,3,4,5,5";
 		assertThrows(IllegalArgumentException.class, () -> input.validateDuplicate(numbers));
+	}
+
+	@Test
+	@DisplayName("보너스번호가 당첨번호 중에 존재하는지 검증 테스트")
+	void 보너스번호가_당첨번호에_중복되는지_검증하는_테스트() {
+		List<Integer> numbers = List.of(1,2,3,4,5,6);
+		String number = "6";
+		assertThrows(IllegalArgumentException.class, () -> input.validateDuplicateBonusNumber(numbers, number));
 	}
 }
