@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class Validator {
     private static final int LOTTO_PRICE = 1000;
 
@@ -26,4 +28,11 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 천원 이상이어야 함");
         }
     }
+
+    public static void validateWinningNumbers(List<String> inputs) {
+        if (inputs.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 함.");
+        }
+    }
+
 }
