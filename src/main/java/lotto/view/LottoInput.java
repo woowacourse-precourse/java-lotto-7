@@ -101,7 +101,7 @@ public class LottoInput {
     }
 
     private static boolean validateWinNumbers(List<Integer> winNumbers) throws IllegalArgumentException {
-        if (winNumbers.size() != 6) {
+        if (winNumbers.size() != LottoConstant.LOTTO_DIGITS) {
             throw new InvalidWinNumberFormatException();
         }
 
