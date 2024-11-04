@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.message.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.message.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.message.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBER;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -35,19 +39,19 @@ public class Lotto {
                 .filter(number -> number < Constants.MIN_LOTTO_NUMBER || number > Constants.MAX_LOTTO_NUMBER)
                 .findAny()
                 .ifPresent(number -> {
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
                 });
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != Constants.LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
     private void validateDuplicates(List<Integer> numbers) {
         if (Set.copyOf(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 

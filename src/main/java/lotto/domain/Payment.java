@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.message.ErrorMessage.AMOUNT_NOT_DIVISIBLE;
+import static lotto.message.ErrorMessage.NON_POSITIVE_AMOUNT;
+
 import lotto.util.Constants;
 
 public class Payment {
@@ -26,13 +29,13 @@ public class Payment {
 
     private void validatePositiveNumber(int payment) {
         if (payment < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(AMOUNT_NOT_DIVISIBLE.getMessage());
         }
     }
 
     private void validateDivisible(int payment) {
         if (payment % Constants.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NON_POSITIVE_AMOUNT.getMessage());
         }
     }
 
