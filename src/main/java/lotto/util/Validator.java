@@ -37,4 +37,16 @@ public class Validator {
         if (numbers.size() != Constants.LOTTO_NUMBER_SIZE)
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+
+    public static void validateIsDivisible(int input) {
+        if (input % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1,000 원 단위의 값이어야 합니다.");
+        }
+    }
+
+    public static void validateBelowMinimum(int input) {
+        if (input < 1000) {
+            throw new IllegalArgumentException("[ERROR] 1,000 원 이상의 값이어야 합니다.");
+        }
+    }
 }

@@ -54,6 +54,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 로또_구매_시_금액이_부족하면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("500", "1,2,3,4,5,6", "7"); // 금액이 부족한 경우
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

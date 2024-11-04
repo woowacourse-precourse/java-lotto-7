@@ -12,11 +12,23 @@ public class MoneyInputView extends InputView {
                 System.out.println(REQUEST_INPUT_MONEY);
                 String input = inputValue();
 
-                Validator.validateIsNumeric(input);
-                return Integer.parseInt(input);
+                validateBefore(input);
+                int money = Integer.parseInt(input);
+                validateAfter(money);
+
+                return money;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static void validateBefore(String input) {
+        Validator.validateIsNumeric(input);
+    }
+
+    private static void validateAfter(int input) {
+        Validator.validateIsDivisible(input);
+        Validator.validateBelowMinimum(input);
     }
 }
