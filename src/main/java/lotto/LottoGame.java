@@ -11,7 +11,14 @@ public class LottoGame {
     public void start() {
         int purchaseAmount = inputPurchaseAmount();
         List<Lotto> tickets = generateTickets(purchaseAmount / LOTTO_PRICE);
+        System.out.println(tickets.size() + "개를 구매했습니다.");
+        tickets.forEach(ticket -> System.out.println(ticket.getNumbers()));
+
         Lotto winningLotto = inputWinningLotto();
+        int bonusNumber = inputBonusNumber();
+
+        LottoResult result = calculateResult(tickets, winningLotto, bonusNumber);
+        displayResult(result, purchaseAmount);
     }
 
     private int inputPurchaseAmount() {
@@ -23,6 +30,21 @@ public class LottoGame {
                     throw new IllegalArgumentException("[ERROR] 유효하지 않은 구입 금액입니다. 1000원 단위로 입력해 주세요.");
                 }
                 return amount;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 유효하지 않은 구입 금액입니다. 1000원 단위로 입력해 주세요.");
+            }
+        }
+    }
+
+    private int inputBonusNumber() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -67,5 +89,20 @@ public class LottoGame {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.", e);
         }
+    }
+
+    private LottoResult calculateResult(List<Lotto> tickets, Lotto winningLotto, int bonusNumber) {
+        LottoResult result = new LottoResult();
+        for (Lotto ticket : tickets) {
+            result.addResult(winningLotto.match(ticket, bonusNumber));
+        }
+        return result;
+    }
+
+    private void displayResult(LottoResult result, int purchaseAmount) {
+        System.out.println("당첨 통계\n---");
+        result.printResult();
+        double profitRate = result.calculateProfitRate(purchaseAmount);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 }
