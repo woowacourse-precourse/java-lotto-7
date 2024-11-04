@@ -16,11 +16,21 @@ public class LottoResult {
     }
 
     public StringBuilder result(StringBuilder sb) {
-        sb.append("3개 일치 (5,000원) - ").append(prizeIntegerMap.getOrDefault(LottoPrize.FIFTH, 0)).append("개").append("\n");
-        sb.append("4개 일치 (50,000원) - ").append(prizeIntegerMap.getOrDefault(LottoPrize.FOURTH, 0)).append("개").append("\n");
-        sb.append("5개 일치 (1,500,000원) - ").append(prizeIntegerMap.getOrDefault(LottoPrize.THIRD, 0)).append("개").append("\n");
-        sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(prizeIntegerMap.getOrDefault(LottoPrize.SECOND, 0)).append("개").append("\n");
-        sb.append("6개 일치 (2,000,000,000원) - ").append(prizeIntegerMap.getOrDefault(LottoPrize.FIRST, 0)).append("개").append("\n");
+        LottoPrize[] prizes = LottoPrize.values();
+        for (int i = prizes.length - 1; i >= 0; i--) {
+            LottoPrize prize = prizes[i];
+            sb.append(prize.getMatchCount())
+                    .append("개 일치");
+            if (prize.requiresBonus()) {
+                sb.append(", 보너스 볼 일치");
+            }
+            sb.append(" (")
+                    .append(String.format("%,d", prize.getPrize()))
+                    .append("원) - ")
+                    .append(prizeIntegerMap.getOrDefault(prize, 0))
+                    .append("개")
+                    .append("\n");
+        }
         sb.append("총 수익률은 ").append(computeProfitRate()).append("%입니다.");
         return sb;
     }

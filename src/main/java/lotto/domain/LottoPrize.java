@@ -18,8 +18,16 @@ public enum LottoPrize {
         this.prize = prize;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public int getPrize() {
         return prize;
+    }
+
+    public boolean requiresBonus() {
+        return requiresBonus;
     }
 
     public static LottoPrize valueOf(int matchCount, boolean bonusMatch) {
