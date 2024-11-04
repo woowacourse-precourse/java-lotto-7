@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static lotto.constant.ErrorMessage.INCLUDE_INVALID_DELIMITER;
 import static lotto.constant.ErrorMessage.IS_NOT_NUMBER;
 import static lotto.constant.ErrorMessage.IS_NOT_SINGLE_DIGIT;
 
 class InputValidatorTest {
 
-    private static InputValidator inputValidator = new InputValidator();
+    private static final InputValidator inputValidator = new InputValidator();
 
     @Nested
     @DisplayName("보너스 번호에 대한 입력값을 검증하는 테스트")
@@ -48,6 +49,21 @@ class InputValidatorTest {
         }
 
     }
+
+    @Nested
+    @DisplayName("입력한 당첨 번호에 대한 예외 테스트")
+    class 당첨_번호_예외_테스트 {
+        @ParameterizedTest
+        @ValueSource(strings = {"1:2:3:4:5:6", "2.3.4.5.6.7", "1$3$5$7$9$11"})
+        @DisplayName("허용되지 않는 구분자 사용시 예외 발생")
+        void 허용되지_않는_구분자_사용시_예외_발생(String winningNumbers) {
+            Assertions.assertThatThrownBy(() -> inputValidator.validateWinningNumbers(winningNumbers))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(INCLUDE_INVALID_DELIMITER.getValue());
+        }
+    }
+
+
 }
 
 
