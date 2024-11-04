@@ -10,6 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateNumberRange(numbers);
+        validateUniqueNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -26,7 +27,25 @@ public class Lotto {
         }
     }
 
+    private void validateUniqueNumber(List<Integer> numbers) {
+        long uniqueCount = numbers.stream().distinct().count();
+        if (uniqueCount != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+    }
+
     public List<Integer> getLottoNumbers() {
         return new ArrayList<>(numbers);
     }
+
+    public int countMatchingNumbers(LottoAnswer lottoAnswer) {
+        return (int) numbers.stream()
+                .filter(lottoAnswer::containsNumber)
+                .count();
+    }
+
+    public boolean matchesBonusNumber(BonusNumber bonusNumber) {
+        return bonusNumber.isSameAsAny(numbers);
+    }
+
 }
