@@ -4,9 +4,13 @@ public class BonusNumber {
 
     private final int number;
 
-    public BonusNumber(int number) {
+    private BonusNumber(int number) {
         validateNumberRange(number);
         this.number = number;
+    }
+
+    public static BonusNumber from(int number) {
+        return new BonusNumber(number);
     }
 
     public boolean equalNumber(int number) {
@@ -14,7 +18,7 @@ public class BonusNumber {
     }
 
     private void validateNumberRange(int number) {
-        if (number < 1 || number > 45) {
+        if (LottoNumber.isNotRange(number)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }

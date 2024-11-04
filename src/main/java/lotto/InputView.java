@@ -36,6 +36,6 @@ public class InputView {
         int bonusNumber = Converter.parseInt(number);
         lotto.validateDuplicateByBonusNumber(bonusNumber);
 
-        return new BonusNumber(bonusNumber);
+        return BonusNumber.from(bonusNumber);
     }
 }
