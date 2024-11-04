@@ -66,7 +66,7 @@ public class WinningLotto {
         return totalWinMoney;
     }
     public double calculateRate(long totalWinMoney, long payment){
-        return Math.round(((double) totalWinMoney / payment) * 10) / 10.0;
+        return Math.round(((double) totalWinMoney / payment) * 1000) / 10.0;
     }
 
     private void validateDuplicateNumber(List<Integer> winningNumbers, int bonusNumber){
