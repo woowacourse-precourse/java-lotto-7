@@ -22,7 +22,7 @@ public class Lotto {
     }
 
     private void validateLange(List<Integer> numbers) {
-        if (numbers.stream().allMatch(n -> n <= Constants.MIN_LOTTO_NUMBER || n >= Constants.MAX_LOTTO_NUMBER)) {
+        if (numbers.stream().anyMatch(n -> n < Constants.MIN_LOTTO_NUMBER || n > Constants.MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1이상 45이하여야 합니다.");
         }
     }
