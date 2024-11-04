@@ -15,11 +15,7 @@ public class Application {
         List<Integer> winNumbers;
         Integer bonusNumber;
         int[] winStatus;
-
-
-        lottoLen = lottoLen / 1000;
         System.out.println();
-        System.out.println(lottoLen+"개를 구매했습니다.");
 
         List<Lotto> LottoList = generateLottoList(lottoLen);
 
@@ -36,9 +32,6 @@ public class Application {
         bonusNumber = getBonusNumber();
 
         System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
-
 
         winStatus = calculateWinStatus(LottoList, winNumbers, bonusNumber);
         printStatisticsAndProfit(winStatus, lottoLen * 1000);
@@ -82,27 +75,31 @@ public class Application {
     }
 
     private static List<Integer> getWinningNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        List<Integer> winNumbers = new ArrayList<>();
+        while (true) {
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            List<Integer> winNumbers = new ArrayList<>();
 
-        try {
-            Arrays.stream(input.split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .forEach(winNumbers::add);
-            if (winNumbers.size() != 6) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            try {
+                Arrays.stream(input.split(","))
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .forEach(winNumbers::add);
+
+                if (winNumbers.size() != 6) {
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+                }
+
+                return winNumbers; // 올바른 입력일 경우 리스트 반환
+
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 당첨 번호는 숫자 형식이어야 합니다. 다시 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " 다시 입력해 주세요.");
             }
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 당첨 번호는 숫자 형식이어야 합니다.");
-            System.exit(0);  // 프로그램 종료
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.exit(0);
         }
-        return winNumbers;
     }
+
 
     private static int getBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
@@ -156,15 +153,23 @@ public class Application {
 
     private static void printStatisticsAndProfit(int[] winStatus, int totalCost) {
         int[] prizes = {5000, 50000, 1500000, 30000000, 2000000000};
+        String[] labels = {
+                "3개 일치 (5,000원) - %d개",
+                "4개 일치 (50,000원) - %d개",
+                "5개 일치 (1,500,000원) - %d개",
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개",
+                "6개 일치 (2,000,000,000원) - %d개"
+        };
         int totalPrize = 0;
 
         System.out.println("\n당첨 통계\n---");
         for (int i = 0; i < winStatus.length; i++) {
-            System.out.printf("%d개 일치 (%s원) - %d개\n", i + 3, String.format("%,d", prizes[i]), winStatus[i]);
+            System.out.printf(labels[i] + "\n", winStatus[i]);
             totalPrize += winStatus[i] * prizes[i];
         }
 
         double profitRate = ((double) totalPrize / totalCost) * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
+
 }
