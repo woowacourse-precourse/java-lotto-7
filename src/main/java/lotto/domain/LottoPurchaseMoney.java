@@ -2,10 +2,12 @@ package lotto.domain;
 
 import lotto.validator.MoneyValidator;
 
-public class Money {
+public class LottoPurchaseMoney {
+    private static final int LOTTO_PRICE = 1000;
+
     private final int amount;
 
-    public Money(String input) {
+    public LottoPurchaseMoney(String input) {
         long parsedAmount  = parseInput(input);  // 입력값의 int 범위 초과 검증을 위해 우선 long 으로 변환
         MoneyValidator.validate(parsedAmount);
         this.amount = (int) parsedAmount ;
@@ -20,5 +22,9 @@ public class Money {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
         }
+    }
+
+    public int calculateLottoCount() {
+        return this.amount / LOTTO_PRICE;
     }
 }
