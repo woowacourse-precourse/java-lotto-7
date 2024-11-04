@@ -43,10 +43,9 @@
 - [x]  검증
     - 입력 검증
         - [x]  공통 입력 검증 기능
-        - [x]  로또 구입 금액 입력값 검증 기능
-        - [x]  당첨 번호 입력값 검증 기능
-        - [x]  보너스 번호 입력값 검증 기능
+        - [x]  숫자 입력 검증 기능
     - 로또 검증
+        - [x]  로또 구매 금액 검증 기능
         - [x]  로또 검증 기능
         - [x]  보너스 번호 검증 기능
 - [x]  테스트 코드 작성
@@ -59,9 +58,8 @@
     - validator
         - input
             - [x]  CommonInputValidator
-            - [x]  MoneyInputValidator
-            - [x]  WinningNumberInputValidator
-            - [x]  BonusNumberInputValidator
+            - [x]  NumberInputValidator
         - lotto
+            - [x]  MoneyValidator
             - [x]  LottoValidator
             - [x]  BonusNumberValidator
