@@ -5,7 +5,7 @@ import lotto.Lotto;
 
 public class InfoPrinter {
     public void purchasedLottoInfoPrint(int sum, List<Lotto> lottos) {
-        System.out.println(sum + "개를 구매했습니다");
+        System.out.println(sum + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
