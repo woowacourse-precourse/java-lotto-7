@@ -59,7 +59,7 @@ public class LottoService {
                 cnt+=1;
             }
         }
-        if (cnt==5 && numbers.contains(winningNumber)){
+        if (cnt==5 && numbers.contains(winningNumber.getBonusNumber())){
             cnt+=2;
         }
         return Ranking.valueOf(cnt);
@@ -77,5 +77,12 @@ public class LottoService {
         return result;
     }
 
- 
+    public double calculateReturnRate(Map<Ranking, Integer> result, Money money) {
+        double sum = 0;
+
+        for (Ranking ranking : result.keySet()) {
+            sum += ranking.getWinningAmount() * result.get(ranking);
+        }
+        return sum/money.getMoney()*100;
+    }
 }
