@@ -115,38 +115,21 @@ public class Application {
     private static void printStatistics(int[] rankCount) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + rankCount[5] + "개");
-        System.out.println("4개 일치 (50,000원) - " + rankCount[4] + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + rankCount[3] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount[2] + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + rankCount[1] + "개");
+        System.out.printf("3개 일치 (5,000원) - %d개%n", rankCount[Rank.FIFTH.ordinal()]);
+        System.out.printf("4개 일치 (50,000원) - %d개%n", rankCount[Rank.FOURTH.ordinal()]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개%n", rankCount[Rank.THIRD.ordinal()]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", rankCount[Rank.SECOND.ordinal()]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", rankCount[Rank.FIRST.ordinal()]);
     }
 
     private static int[] calculateRank(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
-        int[] rankCount = new int[6];
+        int[] rankCount = new int[Rank.values().length];
         for (Lotto lotto : purchasedLottos) {
             int matchCount = getMatchCount(lotto.getNumbers(), winningLotto.getNumbers());
             boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
 
-            if (matchCount == 6) {
-                rankCount[1]++;
-                continue;
-            }
-            if (matchCount == 5 && bonusMatch) {
-                rankCount[2]++;
-                continue;
-            }
-            if (matchCount == 5) {
-                rankCount[3]++;
-                continue;
-            }
-            if (matchCount == 4) {
-                rankCount[4]++;
-                continue;
-            }
-            if (matchCount == 3) {
-                rankCount[5]++;
-            }
+            Rank rank = Rank.valueOf(matchCount, bonusMatch);
+            rankCount[rank.ordinal()]++;
         }
         return rankCount;
     }
@@ -162,11 +145,12 @@ public class Application {
     }
 
     private static void calculateYield(int[] rankCount, int amount) {
-        int[] prizeMoney = {0, 2000000000, 30000000, 1500000, 50000, 5000};
         int totalPrize = 0;
 
-        for (int i = 0; i <= 5; i++) {
-            totalPrize += rankCount[i] * prizeMoney[i];
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                totalPrize += rankCount[rank.ordinal()] * rank.getPrize();
+            }
         }
         double profit = ((double) totalPrize / amount) * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profit);
