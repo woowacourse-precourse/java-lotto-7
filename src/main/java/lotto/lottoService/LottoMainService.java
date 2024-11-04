@@ -93,7 +93,6 @@ public class LottoMainService {
         return stats;
     }
 
-
     // 상금 합계 계산 후 반환
     public double sumPrize(StatisticsLottoDTO stats, String cost) {
         long sumPrize = 0;

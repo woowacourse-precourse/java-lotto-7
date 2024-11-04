@@ -19,8 +19,6 @@ public class ExceptionController {
         }
     }
 
-
-    // 기타 유효성 검증 메서드 추가 가능
     public void isValidHitNumbers(String hitNumbers) {
         try {
             emptyInput(hitNumbers);
@@ -49,12 +47,6 @@ public class ExceptionController {
             throw e;
         }
     }
-
-
-    public static void handleException(Exception e) {
-        System.out.println("오류가 발생했습니다: " + e.getMessage());
-    }
-
 
     private void notNumeric(String input) {
         try {
