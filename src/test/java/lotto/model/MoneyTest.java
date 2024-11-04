@@ -1,7 +1,5 @@
 package lotto.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import lotto.model.exception.DomainExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -50,7 +48,7 @@ class MoneyTest {
         // given
         String value = "1000wooteco";
         // when, then
-       Assertions.assertThatThrownBy(() -> new Money(value))
+        Assertions.assertThatThrownBy(() -> new Money(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainExceptionMessage.INVALID_MONEY_FORMAT.getMessage());
     }
@@ -65,6 +63,7 @@ class MoneyTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainExceptionMessage.INVALID_MONEY_VALUE.getMessage());
     }
+
     @Test
     @DisplayName("1000원 단위가 아닌 값으로 Money를 생성하면 예외가 발생한다.")
     void should_ThrowException_When_GivenInvalidValue() {

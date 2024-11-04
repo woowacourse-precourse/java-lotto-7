@@ -1,8 +1,5 @@
 package lotto.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.regex.Pattern;
 import lotto.model.exception.DomainExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

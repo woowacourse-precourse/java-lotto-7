@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.model.BonusNumber;
 import lotto.model.exception.DomainExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

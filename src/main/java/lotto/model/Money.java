@@ -83,7 +83,6 @@ public class Money {
         }
     }
 
-
     private long getParsedLong(String money) {
         return Long.parseLong(money);
     }

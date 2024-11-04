@@ -15,6 +15,12 @@ public class Lotto {
         return List.copyOf(numbers);
     }
 
+    public WinningType match(AnswerNumbers answer, BonusNumber bonusNumber) {
+        int matchCount = match(answer);
+        boolean matchBonus = matchBonus(bonusNumber);
+        return WinningType.of(matchCount, matchBonus);
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplication(numbers);
@@ -37,14 +43,8 @@ public class Lotto {
         }
     }
 
-    public WinningType match(AnswerNumbers answer, BonusNumber bonusNumber) {
-        int matchCount = match(answer);
-        boolean matchBonus = matchBonus(bonusNumber);
-        return WinningType.of(matchCount, matchBonus);
-    }
-
     private int match(AnswerNumbers answer) {
-        return (int)answer.getAnswerNumbers().stream()
+        return (int) answer.getAnswerNumbers().stream()
                 .map(LottoNumber::getNumber)
                 .filter(numbers::contains)
                 .count();
@@ -53,5 +53,4 @@ public class Lotto {
     private boolean matchBonus(BonusNumber bonusNumber) {
         return numbers.contains(bonusNumber.getNumber());
     }
-
 }

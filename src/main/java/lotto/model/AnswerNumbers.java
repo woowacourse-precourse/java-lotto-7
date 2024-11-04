@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.model.exception.DomainExceptionMessage;
 
 public class AnswerNumbers {
-    private static final String seperator = ",";
+    private static final String SEPERATOR = ",";
     private static final int ANSWER_SIZE = 6;
 
     private final List<LottoNumber> answerNumbers;
@@ -19,7 +19,7 @@ public class AnswerNumbers {
     }
 
     public static AnswerNumbers from(String input) {
-        List<LottoNumber> answers = Arrays.stream(input.split(seperator))
+        List<LottoNumber> answers = Arrays.stream(input.split(SEPERATOR))
                 .map(LottoNumber::new)
                 .toList();
         validate(answers);

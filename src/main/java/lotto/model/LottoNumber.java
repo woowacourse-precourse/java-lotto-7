@@ -7,7 +7,6 @@ public class LottoNumber {
     private static final Pattern numberPattern = Pattern.compile("^[0-9]+$");
     private static final int LOWER_LIMIT = 1;
     private static final int UPPER_LIMIT = 45;
-
     private final int number;
 
     public LottoNumber(final String number) {

@@ -1,8 +1,6 @@
 package lotto.model;
 
-import java.util.Arrays;
 import java.util.List;
-import lotto.model.AnswerNumbers;
 import lotto.model.exception.DomainExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
