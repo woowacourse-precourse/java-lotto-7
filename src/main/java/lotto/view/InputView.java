@@ -1,12 +1,19 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     private static final String DELIMITER = ",";
+
+    public int readPurchaseAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+        String input = Console.readLine();
+        validateInput(input);
+        return parseNumber(input);
+    }
 
     public List<Integer> readWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
