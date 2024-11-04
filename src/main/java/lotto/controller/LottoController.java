@@ -31,17 +31,17 @@ public class LottoController {
 
     private int calculateTicketCount() {
         String purchaseAmount = requestPurchaseAmount();
-        return parseValidatedTicketCount(purchaseAmount);
+        try{
+            return parseValidatedTicketCount(purchaseAmount);
+        }catch (IllegalArgumentException e){
+            printErrorMessage(e.getMessage());
+            return calculateTicketCount();
+        }
     }
 
     private String requestPurchaseAmount() {
         printPurchaseAmountInputMessage();
-        try {
-            return userInput();
-        } catch (IllegalArgumentException e) {
-            printErrorMessage(e.getMessage());
-            return requestPurchaseAmount();
-        }
+        return userInput();
     }
 
     private WinningLotto generateWinningLotto() {
