@@ -9,6 +9,9 @@ import lotto.view.Error;
 
 public class Seller {
     private static final String PAY_PATTERN = "^[1-9][0-9]{3,}";
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int LOTTO_COUNT = 6;
 
     public void validate(String input) {
         Pattern patternPay = Pattern.compile(PAY_PATTERN);
@@ -17,7 +20,7 @@ public class Seller {
         if (!matcherPay.matches()) {
             Error.reject(Error.INVALID_MSG);
         }
-        
+
         if (Utils.strToInteger(input) % 1000 != 0) {
             Error.reject(Error.MONEY_MSG);
         }
@@ -36,5 +39,9 @@ public class Seller {
 
     public void setLottoTicket(List<Lotto> lottos, Lotto lotto) {
         lottos.add(lotto);
+    }
+
+    public List<Integer> getLottoNumber() {
+        return Utils.getRandomNumber(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT);
     }
 }
