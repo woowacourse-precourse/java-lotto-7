@@ -50,3 +50,9 @@
    - [x] validate string whether numeric string is out of Int type range or not
    - [x] validate string whether numeric string is positive or not
    - [x] validate string whether string is blank or not
+
+### Throwing Exception logic
+
+- throw Exception with printing exception message
+   - [ ] print Exception Message
+   - [ ] throw IllegalArgumentException exception

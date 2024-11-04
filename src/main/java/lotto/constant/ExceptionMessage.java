@@ -10,6 +10,7 @@ public enum ExceptionMessage {
     EMPTY_STRING("string is empty");
 
 
+    static final String OUTPUT_MESSAGE_HEAD = "[ERROR] ";
     private String message;
 
     private ExceptionMessage(String message){
@@ -18,5 +19,15 @@ public enum ExceptionMessage {
 
     public String getMessage(){
         return this.message;
+    }
+
+    private void printExceptionMessage(){
+        String outputMessage = ExceptionMessage.OUTPUT_MESSAGE_HEAD + this.getMessage();
+        System.out.println(outputMessage);
+    }
+
+    public void throwIllegalArgumentException() throws IllegalArgumentException{
+        this.printExceptionMessage();
+        throw new IllegalArgumentException( this.getMessage());
     }
 }

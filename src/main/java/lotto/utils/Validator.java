@@ -12,7 +12,7 @@ public class Validator {
         try{
             Integer.parseInt(numericString);
         }catch (Exception e){
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMERIC_STRING.getMessage());
+            ExceptionMessage.INVALID_NUMERIC_STRING.throwIllegalArgumentException();
         }
     }
 
@@ -23,20 +23,20 @@ public class Validator {
         BigInteger minInt = BigInteger.valueOf(Integer.MIN_VALUE);
         if(bigIntStage.compareTo(maxInt)>0
                 || bigIntStage.compareTo(minInt) < 0){
-            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_INT.getMessage());
+            ExceptionMessage.OUT_OF_RANGE_INT.throwIllegalArgumentException();
         }
     }
 
     public static void validatePositiveNumber(int number){
         if(number <= 0){
-            throw new IllegalArgumentException(ExceptionMessage.NON_POSITIVE_NUMBER.getMessage());
+            ExceptionMessage.NON_POSITIVE_NUMBER.throwIllegalArgumentException();
         }
     }
 
     // related to string
     public static void validateBlankString(String string){
         if(string.isBlank()){
-            throw new IllegalArgumentException(ExceptionMessage.EMPTY_STRING.getMessage());
+            ExceptionMessage.EMPTY_STRING.throwIllegalArgumentException();
         }
 
     }
