@@ -21,4 +21,8 @@ public class InputView {
         System.out.println(ASK_BONUS_NUMBER);
         return Console.readLine();
     }
+
+    public static void closeConsole() {
+        Console.close();
+    }
 }

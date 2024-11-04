@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.view.InputView.closeConsole;
 import static lotto.view.OutputView.printLottoExceptionMessage;
 import static lotto.view.OutputView.printLottoGroup;
 import static lotto.view.OutputView.printNewLine;
@@ -8,7 +9,6 @@ import static lotto.view.OutputView.printReturnRate;
 import static lotto.view.OutputView.printWinningStatsTitle;
 import static lotto.view.OutputView.printWinningSummary;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -47,7 +47,7 @@ public class LottoGameController {
         final Lotto winningLotto = getWinningLotto();
         final BonusNumber bonusNumber = getBonusNumber(winningLotto);
 
-        Console.close();
+        closeConsole();
 
         return lottoService.createLottoGame(lottos, winningLotto, bonusNumber);
     }
