@@ -27,7 +27,7 @@ public class InputValidator {
     private static void validSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             ErrorMessage.printError(ErrorMessage.SIZE_ERROR);
-            throw new IllegalArgumentException(ErrorMessage.SIZE_ERROR);
+            throw new IndexOutOfBoundsException(ErrorMessage.SIZE_ERROR);
         }
     }
 
@@ -77,7 +77,7 @@ public class InputValidator {
             String trimmedNumber = number.trim();
             if (!trimmedNumber.matches("\\d+")) {
                 ErrorMessage.printError(ErrorMessage.NON_NUMERIC_ERROR);
-                throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_ERROR);
+                throw new NumberFormatException(ErrorMessage.NON_NUMERIC_ERROR);
             }
         }
     }
@@ -110,7 +110,7 @@ public class InputValidator {
     public static void isNumeric(String input) {
         if (!input.matches("\\d+")) {
             ErrorMessage.printError(ErrorMessage.NON_NUMERIC_ERROR);
-            throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_ERROR);
+            throw new NumberFormatException(ErrorMessage.NON_NUMERIC_ERROR);
         }
     }
 
@@ -133,6 +133,10 @@ public class InputValidator {
     }
 
     public static void validPay(int amount) {
+        if (amount == 0) {
+            ErrorMessage.printError(ErrorMessage.PAY_ZERO); // 메시지 출력
+            throw new ArithmeticException(ErrorMessage.PAY_ZERO); // 예외 발생
+        }
         if (amount % 1000 != 0) {
             ErrorMessage.printError(ErrorMessage.PAY_ERROR); // 메시지 출력
             throw new IllegalArgumentException(ErrorMessage.PAY_ERROR); // 예외 발생
