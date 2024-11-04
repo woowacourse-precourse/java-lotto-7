@@ -14,6 +14,12 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public WinningLotto(final Lotto lotto, final LottoNum bonusNumber) {
+        super(lotto.getNumbers());
+        validateAlreadyExistsNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
     public LottoResult getResult(final Lotto lotto) {
         final int matchedCount = getMatchedNumberCount(lotto);
         final boolean bonusNumberMatched = bonusNumberMatched(lotto);

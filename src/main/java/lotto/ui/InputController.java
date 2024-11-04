@@ -33,6 +33,12 @@ public class InputController {
                 .map(LottoNum::new).collect(Collectors.toList()));
     }
 
+    public LottoNum getBonusNumber() {
+        final String input = this.readTrimmedInput();
+        this.validateNumber(input);
+        return new LottoNum(input);
+    }
+
     private String readTrimmedInput() {
         return inputUi.readLine().trim();
     }
