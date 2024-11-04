@@ -1,14 +1,16 @@
 package lotto.domain.lotto;
 
+import static lotto.exception.message.LottoNumberExceptionMessage.INVALID_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.exception.message.LottoNumberExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class LottoNumberTest {
+public class LottoNumberExceptionTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, -1, 46})
@@ -18,7 +20,8 @@ public class LottoNumberTest {
 
         // when & then
         assertThatThrownBy(() -> LottoNumber.from(bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_NUMBER_RANGE.getMessage());
     }
 
     @Test

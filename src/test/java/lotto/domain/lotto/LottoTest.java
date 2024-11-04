@@ -1,7 +1,6 @@
 package lotto.domain.lotto;
 
 import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_COUNT;
-import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -23,30 +22,6 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_NUMBER_COUNT.getMessage());
-    }
-
-    @Test
-    @DisplayName("로또 최댓 값을 벗어나는 입력이 들어오면 예외가 발생한다.")
-    void givenInputOverNumberInLottoNumbersRange_whenCreated_thenThrowException() {
-        // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 46);
-
-        // when & then
-        assertThatThrownBy(() -> Lotto.from(numbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(INVALID_NUMBER_RANGE.getMessage());
-    }
-
-    @Test
-    @DisplayName("로또 최댓 값을 벗어나는 입력이 들어오면 예외가 발생한다.")
-    void givenInputUnderNumberInLottoNumbersRange_whenCreated_thenThrowException() {
-        // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 0);
-
-        // when & then
-        assertThatThrownBy(() -> Lotto.from(numbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(INVALID_NUMBER_RANGE.getMessage());
     }
 
     @Test

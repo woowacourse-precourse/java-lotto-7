@@ -4,6 +4,7 @@ import lotto.exception.common.BaseException;
 import lotto.exception.message.InputExceptionMessage;
 import lotto.exception.message.LottoExceptionMessage;
 import lotto.exception.message.LottoMoneyExceptionMessage;
+import lotto.exception.message.LottoNumberExceptionMessage;
 import lotto.exception.message.WinningNumberExceptionMessage;
 
 public class GlobalException {
@@ -16,6 +17,12 @@ public class GlobalException {
 
     public static class LottoException extends BaseException {
         public LottoException(LottoExceptionMessage message) {
+            super(message);
+        }
+    }
+
+    public static class LottoNumberException extends BaseException {
+        public LottoNumberException(LottoNumberExceptionMessage message) {
             super(message);
         }
     }

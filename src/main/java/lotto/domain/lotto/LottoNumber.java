@@ -1,12 +1,13 @@
 package lotto.domain.lotto;
 
-import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_RANGE;
+import static lotto.exception.message.LottoNumberExceptionMessage.INVALID_NUMBER_RANGE;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.exception.GlobalException.LottoException;
+import lotto.exception.GlobalException.LottoNumberException;
 
 public class LottoNumber {
+
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final List<LottoNumber> CACHE = new ArrayList<>();
@@ -30,7 +31,7 @@ public class LottoNumber {
 
     private static void validateNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new LottoException(INVALID_NUMBER_RANGE);
+            throw new LottoNumberException(INVALID_NUMBER_RANGE);
         }
     }
 
