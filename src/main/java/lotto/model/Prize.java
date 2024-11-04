@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Map;
+
 public enum Prize {
     FIRST(6, 2000000000, "6개 일치 (2,000,000,000원)"),
     SECOND(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
@@ -9,9 +11,9 @@ public enum Prize {
     NO_PRIZE(0, 0, "0개 일치 (0원)")
     ;
 
-    Integer matchCount;
-    Integer money;
-    String message;
+    private final Integer matchCount;
+    private final Integer money;
+    private final String message;
 
     Prize(Integer matchCount, Integer money, String message) {
         this.matchCount = matchCount;
@@ -33,5 +35,15 @@ public enum Prize {
         }
 
         return NO_PRIZE;
+    }
+
+    public static Integer calculatePrize(Map<Prize, Integer> result) {
+        Integer total = 0;
+
+        for(Prize prize : result.keySet()) {
+            total += prize.money * result.get(prize);
+        }
+
+        return total;
     }
 }

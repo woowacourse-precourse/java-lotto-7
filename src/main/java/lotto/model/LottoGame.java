@@ -24,4 +24,11 @@ public class LottoGame {
 
         return results;
     }
+
+    public double getProfitRate() {
+        Integer totalPrize = Prize.calculatePrize(results);
+        Integer usedMoney = 1000 * lottos.size();
+
+        return (double) totalPrize / usedMoney;
+    }
 }
