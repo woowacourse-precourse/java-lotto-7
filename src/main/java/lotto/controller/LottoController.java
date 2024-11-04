@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.enums.Ranking;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.WinningNumber;
@@ -30,7 +31,10 @@ public class LottoController {
         for (Lotto lotto : lottos) {
             outputView.printLotto(lotto);
         }
-        WinningNumber winningNumber = winningNumberGenerate();
+        Lotto winningNumberLotto = winningNumberGenerate();
+        BonusNumber bonusNumber = bonusNumberGenerate(winningNumberLotto);
+
+        WinningNumber winningNumber = new WinningNumber(winningNumberLotto, bonusNumber);
 
         Map<Ranking, Integer> result = lottoService.compareLottosWithWinning(lottos,winningNumber);
         outputView.printResult(result);
@@ -40,15 +44,20 @@ public class LottoController {
 
     }
 
-    private WinningNumber winningNumberGenerate() {
+    private Lotto winningNumberGenerate() {
         while (true){
             try {
-                List<Integer> winningNumberInput = inputView.readWinningNumber();
-                Lotto winningLotto = lottoService.lottoGenerate(winningNumberInput);
-                int bonusNum = inputView.readBonusNum();
-                WinningNumber winningNumber = new WinningNumber(winningLotto, bonusNum);
+                return lottoService.lottoGenerate(inputView.readWinningNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
-                return winningNumber;
+    private BonusNumber bonusNumberGenerate(Lotto lotto) {
+        while (true){
+            try {
+                return new BonusNumber(inputView.readBonusNum(),lotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

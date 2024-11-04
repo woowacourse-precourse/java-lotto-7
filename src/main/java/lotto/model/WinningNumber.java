@@ -11,24 +11,16 @@ import static lotto.enums.ExceptionMessage.*;
 public class WinningNumber {
 
     private final List<Integer> winningNumber;
-    private final int bonusNumber;
+    private final BonusNumber bonusNumber;
 
-    public WinningNumber(Lotto lotto, int bonusNumber) {
-        validateRange(bonusNumber);
-
+    public WinningNumber(Lotto lotto, BonusNumber bonusNumber) {
         this.winningNumber = lotto.getNumbers();
         this.bonusNumber = bonusNumber;
     }
 
-    public void validateRange(int bonusNumber) {
-
-        if (bonusNumber < MIN_LOTTO_NUM.getValue() || bonusNumber > MAX_LOTTO_NUM.getValue()) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUM_RANGE.getMessage());
-        }
-    }
 
     public int getBonusNumber() {
-        return bonusNumber;
+        return bonusNumber.getBonusNumber();
     }
 
     public List<Integer> getWinningNumber() {

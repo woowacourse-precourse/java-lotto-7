@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.enums.Ranking;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.WinningNumber;
@@ -23,7 +24,7 @@ public class LottoService {
         return new Lotto(numbers);
     }
 
-    public WinningNumber winningNumberGenerate(Lotto lotto, int bonusNumber) {
+    public WinningNumber winningNumberGenerate(Lotto lotto, BonusNumber bonusNumber) {
         return new WinningNumber(lotto, bonusNumber);
     }
 

@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.enums.Ranking;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.WinningNumber;
@@ -21,7 +22,8 @@ class LottoServiceTest {
     @DisplayName("로또 번호 비교후 맵에 결과값 저장")
     @Test
     void compareLottoWithWinningTest() {
-        WinningNumber winningNumber = new WinningNumber(new Lotto(List.of(1, 2, 3, 4, 5, 6)),7);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumber winningNumber = new WinningNumber(winningLotto,new BonusNumber(7,winningLotto));
         List<Lotto> lottos = new ArrayList<>();
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
