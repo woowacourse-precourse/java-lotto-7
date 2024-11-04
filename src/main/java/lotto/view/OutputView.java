@@ -28,11 +28,11 @@ public class OutputView {
         System.out.println();
         System.out.println(WINNING_STATISTICS.getMessage());
         System.out.println(SEPARATOR.getMessage());
-        formatAndPrint(THREE_MATCH, winningCount.get(0));
-        formatAndPrint(FOUR_MATCH, winningCount.get(1));
+        formatAndPrint(THREE_MATCH, winningCount.get(4));
+        formatAndPrint(FOUR_MATCH, winningCount.get(3));
         formatAndPrint(FIVE_MATCH, winningCount.get(2));
-        formatAndPrint(FIVE_BONUS_MATCH, winningCount.get(3));
-        formatAndPrint(SIX_MATCH, winningCount.get(4));
+        formatAndPrint(FIVE_BONUS_MATCH, winningCount.get(1));
+        formatAndPrint(SIX_MATCH, winningCount.get(0));
         formatAndPrint(TOTAL_RETURN, profitRate);
     }
 
