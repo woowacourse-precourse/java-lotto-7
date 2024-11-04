@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.utils.Constant.ERROR_MESSAGE_PREFIX;
+
 import java.util.function.Supplier;
 import lotto.domain.InputMoney;
 import lotto.domain.LottoResult;
@@ -55,7 +57,7 @@ public class LottoController {
             try {
                 return inputSupplier.get();  // 입력 받기 시도
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());  // 에러 메시지 출력
+                System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());  // 에러 메시지 출력
             }
         }
     }
