@@ -29,11 +29,8 @@ public class LottoService {
     }
 
     private Lotto generateLotto() {
-        List<LottoNumber> numbers = Randoms.pickUniqueNumbersInRange(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER,
-                        NUMBER_CNT)
-                .stream()
-                .map(LottoNumber::new)
-                .toList();
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER,
+                NUMBER_CNT);
         return new Lotto(numbers);
     }
 
