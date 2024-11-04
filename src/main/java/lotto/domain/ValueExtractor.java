@@ -23,4 +23,10 @@ public class ValueExtractor {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+
+    public static int countDuplicate(List<Integer> list1, List<Integer> list2) {
+        return (int) list1.stream()
+                .filter(list2::contains)
+                .count(); // 공통 요소의 개수 반환
+    }
 }
