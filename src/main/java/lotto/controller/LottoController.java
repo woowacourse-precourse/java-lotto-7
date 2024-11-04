@@ -45,21 +45,22 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        List<Integer> winningNumbers = getWinningNumbers();
+        Lotto lotto = getWinningNumbers();
         int bonusNumber = getBonusNumber();
 
         try {
-            return new WinningLotto(winningNumbers, bonusNumber);
+            return new WinningLotto(lotto, bonusNumber);
         } catch (IllegalArgumentException e) { // 실패할 경우 에러메세지 출력 후 다시 입력받음
             outputView.printErrorMessage(e.getMessage());
             return getWinningLotto();
         }
     }
 
-    private List<Integer> getWinningNumbers() {
+    private Lotto getWinningNumbers() {
         outputView.printWinningNumbersMessage();
         try {
-            return inputView.readWinningNumbers();
+            List<Integer> numbers = inputView.readWinningNumbers();
+            return new Lotto(numbers);
         } catch (IllegalArgumentException e) { // 실패할 경우 에러메세지 출력 후 다시 입력받음
             outputView.printErrorMessage(e.getMessage());
             return getWinningNumbers();

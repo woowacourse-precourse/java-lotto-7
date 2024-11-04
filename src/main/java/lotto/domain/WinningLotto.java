@@ -9,15 +9,15 @@ public class WinningLotto {
     private final Lotto lotto;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        this.lotto = new Lotto(numbers);
-        validateBonusNumber(numbers, bonusNumber);
+    public WinningLotto(Lotto lotto, int bonusNumber) {
+        this.lotto = lotto;
+        validateBonusNumber(lotto, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+    private void validateBonusNumber(Lotto lotto, int bonusNumber) {
         LottoNumberValidator.validateNumberInRange(bonusNumber);
-        LottoNumberValidator.validateBonusNumberDuplicates(numbers, bonusNumber);
+        LottoNumberValidator.validateBonusNumberDuplicates(lotto.getNumbers(), bonusNumber);
     }
 
     public int countMatchNumbers(Lotto userLotto) {

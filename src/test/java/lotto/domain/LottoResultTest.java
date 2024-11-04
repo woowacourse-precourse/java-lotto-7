@@ -13,7 +13,7 @@ public class LottoResultTest {
     @Test
     void 일등에_당첨된다() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), 7);
 
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));  // 1등
 
@@ -26,7 +26,7 @@ public class LottoResultTest {
     @Test
     void 이등에_당첨된다() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), 7);
 
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));  // 2등
 
@@ -39,7 +39,7 @@ public class LottoResultTest {
     @Test
     void 삼등에_당첨된다() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), 7);
 
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8));  // 3등
 
@@ -52,7 +52,7 @@ public class LottoResultTest {
     @Test
     void 사등에_당첨된다() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), 7);
 
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 9, 8));  // 4등
 
@@ -65,7 +65,7 @@ public class LottoResultTest {
     @Test
     void 오등에_당첨된다() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), 7);
 
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 10, 9, 8));  // 5등
 
@@ -78,7 +78,7 @@ public class LottoResultTest {
     @Test
     void 당첨되지_않는다() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), 7);
 
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 11, 10, 9, 8));
 
@@ -91,7 +91,7 @@ public class LottoResultTest {
     @DisplayName("수익률을 계산한다.")
     void 수익률을_계산한다() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), 7);
 
         // 3장 구매, 1등 1장 (20억)
         List<Integer> userNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
