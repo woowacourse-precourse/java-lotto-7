@@ -8,8 +8,9 @@ public class WinningNumbers {
     private static final String DELIMITER = ",";
     private List<Integer> winningNumbers;
 
-    public WinningNumbers(String inputWinningNumbers) {
+    public List<Integer> getWinningNumbers(String inputWinningNumbers) {
         splitIntoNumbers(inputWinningNumbers);
+        return winningNumbers;
     }
 
     private void splitIntoNumbers(String inputWinningNumbers) {

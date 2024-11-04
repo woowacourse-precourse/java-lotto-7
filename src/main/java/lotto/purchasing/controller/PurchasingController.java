@@ -26,7 +26,7 @@ public class PurchasingController {
             String inputPayment = purchasingInputView.getPayment();
             payment = new Payment(inputPayment);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() + "\n");
             purchasingInputView.setPaymentNull();
             receivePayment();
         }
