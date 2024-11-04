@@ -9,7 +9,7 @@ public enum UserInterfaceMessage {
     REQUEST_INPUT_BONUS_NUMBER_INFO("보너스 번호는 1개를 입력받습니다."),
     PRIZE_STATS("당첨 통계"),
     MATCH_COUNT("%d개 일치"),
-    TOTAL_EARNINGS_RATE("총 수익률은 '%,.1%%'입니다."),
+    TOTAL_EARNINGS_RATE("총 수익률은 %,.1f%%입니다."),
     ERROR_PREFIX("[ERROR] "),
     ERROR_INPUT_BUY_INFO(ERROR_PREFIX.getValue() + "로또 구입 금액을 1,000원 단위로 입력해주세요."),
     ERROR_NUMBER_INCLUSIVE(ERROR_PREFIX.getValue() + "로또 번호는 %d부터 %d 사이의 숫자여야 합니다."),
