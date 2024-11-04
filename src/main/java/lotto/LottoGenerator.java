@@ -17,8 +17,9 @@ public class LottoGenerator {
 
         while (quantity-- > 0) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            result.add(new Lotto(numbers));
+            List<Integer> mutableNumbers = new ArrayList<>(numbers);
+            Collections.sort(mutableNumbers);
+            result.add(new Lotto(mutableNumbers));
         }
 
         return result;
