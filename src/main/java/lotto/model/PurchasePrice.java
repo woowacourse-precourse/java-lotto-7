@@ -1,10 +1,9 @@
 package lotto.model;
 
 import lotto.constant.ExceptionMessage;
+import lotto.constant.Rule;
 
 public record PurchasePrice(int value) {
-    private static final int LOTTO_PRICE = 1000;
-
     public PurchasePrice {
         validate(value);
     }
@@ -21,12 +20,12 @@ public record PurchasePrice(int value) {
     }
 
     private void validateIsPurchaseUnit(final int value) {
-        if (value % LOTTO_PRICE != 0) {
+        if (value % Rule.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ExceptionMessage.PURCHASE_PRICE_INVALID_AMOUNT_UNIT.getMessage());
         }
     }
 
     public int calculateQuantity() {
-        return value / LOTTO_PRICE;
+        return value / Rule.LOTTO_PRICE;
     }
 }
