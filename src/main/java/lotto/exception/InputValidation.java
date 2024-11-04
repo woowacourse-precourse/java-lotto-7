@@ -63,6 +63,7 @@ public enum InputValidation {
                     throw new IllegalArgumentException(UserErrorMessage.ERROR_NON_INTEGER_VALUE);
                 } catch (IllegalArgumentException notInteger) {
                     System.out.println(notInteger.getMessage());
+                    return false;
                 }
             }
             return true;
@@ -76,6 +77,7 @@ public enum InputValidation {
                     throw new IllegalArgumentException(UserErrorMessage.ERROR_VALUE_NOT_IN_RANGE);
                 } catch (IllegalArgumentException notInRange) {
                     System.out.println(notInRange.getMessage());
+                    return false;
                 }
             }
             return true;
