@@ -1,2 +1,4 @@
-package lotto.domain;public class LottoResult {
+package lotto.domain;
+
+public class LottoResult {
 }
