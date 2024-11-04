@@ -17,7 +17,6 @@ public class LottoTicketFactory {
         try {
             return Integer.parseInt(money);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자 이외의 입력이 감지되었습니다.");
             throw new IllegalArgumentException("[ERROR] 숫자 이외의 입력이 감지되었습니다.");
         }
     }
