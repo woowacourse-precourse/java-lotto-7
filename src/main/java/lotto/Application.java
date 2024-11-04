@@ -14,6 +14,14 @@ public class Application {
     private static final String LOTTO_BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String LOTTO_QUANTITY_MESSAGE = "개를 구매했습니다.";
 
+    private static final String THREE_MATCH_MESSAGE = "3개 일치 (5,000원) - ";
+    private static final String FOUR_MATCH_MESSAGE = "4개 일치 (50,000원) - ";
+    private static final String FIVE_MATCH_MESSAGE = "5개 일치 (1,500,000원) - ";
+    private static final String FIVE_MATCH_BONUS_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+    private static final String SIX_MATCH_MESSAGE = "6개 일치 (2,000,000,000원) - ";
+
+    private static final String UNIT = "개";
+
     public static void main(String[] args) {
         try {
             System.out.println(LOTTO_PURCHASE_PRICE_INPUT_MESSAGE);
@@ -29,8 +37,14 @@ public class Application {
             List<Lotto> lottoNumbers = getLottoNumbers(lottoCount);
             printLottoNumbers(lottoNumbers);
 
+            System.out.println();
 
-            calculateAllLineMatches(winningNumbers, lottoNumbers, bonusNumber);
+            int purchaseAmount = lottoCount * 1000;
+
+            Map<Integer, Integer> matchCounts = calculateAllLineMatches(winningNumbers, lottoNumbers, bonusNumber);
+            double profitRate = calculateProfitRate(matchCounts, purchaseAmount);
+
+            printMatchStatistics(matchCounts, profitRate);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -138,5 +152,34 @@ public class Application {
         }
 
         return matchCount;
+    }
+
+    public static void printMatchStatistics(Map<Integer, Integer> matchCounts, double profitRate) {
+        System.out.println(THREE_MATCH_MESSAGE + matchCounts.getOrDefault(3, 0) + UNIT);
+        System.out.println(FOUR_MATCH_MESSAGE + matchCounts.getOrDefault(4, 0) + UNIT);
+        System.out.println(FIVE_MATCH_MESSAGE + matchCounts.getOrDefault(5, 0) + UNIT);
+        System.out.println(FIVE_MATCH_BONUS_MESSAGE + matchCounts.getOrDefault(-5, 0) + UNIT);
+        System.out.println(SIX_MATCH_MESSAGE + matchCounts.getOrDefault(6, 0) + UNIT);
+
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", profitRate);
+    }
+
+    public static double calculateProfitRate(Map<Integer, Integer> matchCounts, int purchaseAmount) {
+        int totalPrize = 0;
+
+        int threeMatchPrize = 5000;
+        int fourMatchPrize = 50000;
+        int fiveMatchPrize = 1500000;
+        int fiveMatchBonusPrize = 30000000;
+        int sixMatchPrize = 2000000000;
+
+        totalPrize += matchCounts.getOrDefault(3, 0) * threeMatchPrize;
+        totalPrize += matchCounts.getOrDefault(4, 0) * fourMatchPrize;
+        totalPrize += matchCounts.getOrDefault(5, 0) * fiveMatchPrize;
+        totalPrize += matchCounts.getOrDefault(-5, 0) * fiveMatchBonusPrize;
+        totalPrize += matchCounts.getOrDefault(6, 0) * sixMatchPrize;
+
+        // 수익률 계산
+        return ((double) totalPrize / purchaseAmount) * 100;
     }
 }
