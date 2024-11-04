@@ -19,6 +19,18 @@ public class LottoConstants {
     public static final String ERROR_DUPLICATE_LOTTO_NUMBER = "[ERROR] 로또 번호는 당첨 번호와 중복되지 않아야 합니다.";
     public static final String ERROR_INVALID_LOTTO_NUMBER_COUNT = "[ERROR] 당첨 번호는 6개의 숫자여야 합니다.";
 
+    public static final String REQUEST_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    public static final String REQUEST_WINNING_NUMBERS = "\n당첨 번호를 입력해 주세요.";
+    public static final String REQUEST_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
+
+    public static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
+    public static final String WINNING_STATISTICS_HEADER = "\n당첨 통계";
+    public static final String WINNING_STATISTICS_DIVIDER = "---";
+    public static final String BONUS_STATISTICS_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
+    public static final String REGULAR_STATISTICS_FORMAT = "%d개 일치 (%,d원) - %d개%n";
+    public static final String RATE_EARNING_MESSAGE = "총 수익률은 %.1f%%입니다.";
+
+
     private LottoConstants() {
         // 인스턴스 생성 방지
     }
