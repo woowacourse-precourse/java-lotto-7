@@ -2,12 +2,21 @@ package lotto.entity;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningNumberTest {
     // 당첨 번호 엔티티 ( WinningNumber.java ) 테스트
+
+    @DisplayName("[WinningNumberTest] 당첨 번호에 빈 값이 입력되면 예외가 발생한다")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void 당첨_번호에_빈_값이_입력되면_예외가_발생한다(String input){
+        assertThatThrownBy(() -> new WinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("[WinningNumberTest] 당첨 번호에 숫자 외의 값이 입력되면 예외가 발생한다")
     @ParameterizedTest

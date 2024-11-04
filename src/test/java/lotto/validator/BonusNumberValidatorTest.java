@@ -1,14 +1,24 @@
 package lotto.validator;
 
+import lotto.entity.BonusNumber;
 import lotto.validator.entity.BonusNumberValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BonusNumberValidatorTest {
-    // 보너스 번호 검증 클래스 ( BonusNumberValidator ) 테스트
+    // 보너스 번호 검증 클래스 ( BonusNumberValidator.java ) 테스트
+
+    @DisplayName("[BonusNumberValidatorTest] 보너스 번호에 빈 값이 입력되면 예외가 발생한다")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void 보너스_번호에_빈_값이_입력되면_예외가_발생한다(String input){
+        assertThatThrownBy(() -> new BonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("[BonusNumberValidatorTest] 보너스 번호에 숫자 외의 값이 입력되면 예외가 발생한다")
     @ParameterizedTest

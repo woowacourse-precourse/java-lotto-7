@@ -1,14 +1,25 @@
 package lotto.validator;
 
+import lotto.entity.WinningNumber;
 import lotto.validator.entity.WinningNumberValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningNumberValidatorTest {
-    // 당첨 번호 검증 클래스 ( WinningNumberValidator ) 테스트
+    // 당첨 번호 검증 클래스 ( WinningNumberValidator.java ) 테스트
+
+    @DisplayName("[WinningNumberValidatorTest] 당첨 번호에 빈 값이 입력되면 예외가 발생한다")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void 당첨_번호에_빈_값이_입력되면_예외가_발생한다(String input){
+        assertThatThrownBy(() -> new WinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("[WinningNumberValidatorTest] 당첨 번호에 숫자 외의 값이 입력되면 예외가 발생한다")
     @ParameterizedTest
     @ValueSource(strings = {"asd", ",123", "12 12432", "@$%#!", "123@$12,./"})

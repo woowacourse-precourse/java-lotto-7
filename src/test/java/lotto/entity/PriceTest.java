@@ -2,12 +2,21 @@ package lotto.entity;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PriceTest {
     // 구입 금액 엔티티 ( Price.java ) 테스트
+
+    @DisplayName("[PriceTest] 구입 금액에 빈 값이 입력되면 예외가 발생한다")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void 구입_금액에_빈_값이_입력되면_예외가_발생한다(String input){
+        assertThatThrownBy(() -> new Price(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("[PriceTest] 구입 금액에 숫자 외의 문자가 있으면 예외가 발생한다")
     @ParameterizedTest
