@@ -39,11 +39,18 @@
 3. 보너스 번호 입력 시
    1. 양수가 아닌 입력 (input)
    2. 기존 당첨 번호와 중복이 있는 입력 (service)
-   3. 1 ~ 45 사이의 범위에 포함되지 않는 입력 (service) 
+   3. 1 ~ 45 사이의 범위에 포함되지 않는 입력 (service)
 ---
 ## 실행과정
-### TODO
-
+1. 사용자로부터 구입 금액을 입력받는다 (InputView)
+2. 구입금액으로 구입할 수 있는 로또를 구매한다. (LottoPurchaseController)
+    1. 구매한 로또의 번호 6자리를 리스트 형식으로 출력한다. (OutputView)
+3. 당첨 번호, 보너스 번호를 입력받는다. (InputView)
+    1. 당첨 번호와 보너스 번호를 통합하여 저장한다.(LottoWinningNumbersController)
+4. 구입한 로또에서 당첨 등수를 계산한다. (Lotto) 
+    1. 계산한 등수를 토대로 당첨 통계를 출력한다. (OutputView)
+5. 수익률을 계산하고, 출력한다. (LottoStatisticsController)
+    1. 수익률 계산식은 (당첨금총액 / 구입금액) 이다. (LottoResult)
 
 ---
 ## 실행결과 예시
