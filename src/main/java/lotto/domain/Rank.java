@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum Rank {
     NONE(0, 0),
@@ -29,8 +30,10 @@ public enum Rank {
                 .orElse(NONE);
     }
 
-    private boolean isMatch(int match) {
-        return this.match == match;
+    public static List<Rank> getWithoutNone() {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> !rank.equals(NONE))
+                .toList();
     }
 
     public int getPrize() {
@@ -41,8 +44,7 @@ public enum Rank {
         return match;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s: %d원 (%d개 일치)", name(), prize, match);
+    private boolean isMatch(int match) {
+        return this.match == match;
     }
 }
