@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -103,6 +105,13 @@ public class RandomLotto {
             totalPrize += cnt * money;
         }
 
-        return totalPrize / lottoCount;
+        return roundUp(totalPrize , lottoCount);
+    }
+
+    public double roundUp(int totalPrize, int lottoCount) {
+        double rate = (double) totalPrize / lottoCount;
+        BigDecimal roundedValue = new BigDecimal(rate).setScale(2, RoundingMode.HALF_UP);
+
+        return roundedValue.doubleValue();
     }
 }
