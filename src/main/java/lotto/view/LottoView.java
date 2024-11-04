@@ -12,6 +12,9 @@ import lotto.view.constant.UserInterfaceMessage;
 
 public class LottoView {
 
+    /*TODO
+     *  - 보너스 번호 범위 1~45 검사 필요
+     *  - */
     public static final String DELIMITERS = ",";
     public static final int LOTTO_PRICE = 1000;
 
@@ -31,8 +34,7 @@ public class LottoView {
         this.guideInputMoney();
         String money = Console.readLine();
         /*TODO
-            - 숫자로 변환후 반환하기
-            - 1000원으로 나눈 몫을 반환하는 로직을 추가
+            - 1000원 단위로 나누어 떨어지는지 유효성 검사 추가하기
         */
         validateIntString(money);
 
