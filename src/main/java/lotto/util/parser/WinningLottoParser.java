@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class WinningLottoParser {
     private static final String DELIMITER = ",";
-    private static final String ERROR_MESSAGE = "[ERROR] 로또 번호가 올바르지 않습니다.";
+    private static final String INVALID_FORMAT_ERROR = "[ERROR] 로또 번호는 쉼표(,)로 구분된 숫자만 입력 가능합니다.";
 
     public static List<Integer> parseWinningNumbers(String input) {
         try {
@@ -17,7 +17,7 @@ public class WinningLottoParser {
 
             return numbers;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_MESSAGE);
+            throw new IllegalArgumentException(INVALID_FORMAT_ERROR);
         }
     }
 }
