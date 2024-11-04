@@ -42,3 +42,11 @@
 
 - handle user request
   - [ ] deliver user request and info 
+
+### Validation relation
+
+- provide validation logic
+   - [ ] validate string whether string is numeric or not
+   - [ ] validate string whether numeric string is out of Int type range or not
+   - [ ] validate string whether numeric string is positive or not
+   - [ ] validate string whether string is blank or not

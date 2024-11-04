@@ -8,6 +8,7 @@ import java.util.Map;
 import lotto.Lotto;
 import lotto.constant.ExceptionMessage;
 import lotto.constant.PrizeTier;
+import lotto.utils.Validator;
 import lotto.view.constant.UserInterfaceMessage;
 
 public class LottoView {
@@ -51,7 +52,7 @@ public class LottoView {
         guideInputWinningNumbers();
 
         String rawNumbers = Console.readLine();
-        validateString(rawNumbers);
+        Validator.validateString(rawNumbers);
         String[] rawNumberList = rawNumbers.split(LottoView.DELIMITERS);
 
         return transformToIntegerList(rawNumberList);
@@ -62,7 +63,7 @@ public class LottoView {
 
         String rawBonusNumber = Console.readLine();
 
-        validateString(rawBonusNumber);
+        Validator.validateString(rawBonusNumber);
 
         return this.parseInt(rawBonusNumber);
     }
@@ -124,10 +125,10 @@ public class LottoView {
     }
 
     public void validateIntString(String rawNumber){
-        validateNumericString(rawNumber);
-        validateIntRange(rawNumber);
+        Validator.validateNumericString(rawNumber);
+        Validator.validateIntRange(rawNumber);
         int number = Integer.parseInt(rawNumber);
-        validatePositiveNumber(number);
+        Validator.validatePositiveNumber(number);
     }
 
     public void printLottoNumbers(Lotto lotto){
@@ -149,40 +150,5 @@ public class LottoView {
        return String.join(delimiter,stringNumbers);
     }
 
-    /*TODO
-       - 검증 로직을 따로 책임지는 클래스를 구현하기
-     */
-    public static void validateNumericString(String numericString){
-
-        try{
-            Integer.parseInt(numericString);
-        }catch (Exception e){
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMERIC_STRING.getMessage());
-        }
-    }
-
-    public static void validateIntRange(String numericString){
-
-        BigInteger bigIntStage = new BigInteger(numericString);
-        BigInteger maxInt = BigInteger.valueOf(Integer.MAX_VALUE);
-        BigInteger minInt = BigInteger.valueOf(Integer.MIN_VALUE);
-        if(bigIntStage.compareTo(maxInt)>0
-                || bigIntStage.compareTo(minInt) < 0){
-            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_INT.getMessage());
-        }
-    }
-
-    public static void validatePositiveNumber(int number){
-        if(number <= 0){
-            throw new IllegalArgumentException(ExceptionMessage.NON_POSITIVE_NUMBER.getMessage());
-        }
-    }
-
-    public static void validateString(String string){
-        if(string.isBlank()){
-            throw new IllegalArgumentException(ExceptionMessage.EMPTY_STRING.getMessage());
-        }
-
-    }
 
 }
