@@ -1,4 +1,4 @@
-package lotto.Model;
+package lotto.Domain;
 
 public enum LottoPrizeMoney {
     FIRST(1, 6, 2000000000),
