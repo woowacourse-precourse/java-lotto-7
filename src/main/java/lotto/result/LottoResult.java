@@ -30,6 +30,16 @@ public class LottoResult {
         }
     }
 
+    public int getTotalPrize(){
+        int totalPrize = 0;
+        totalPrize += matchCounts[4] * 2_000_000_000;
+        totalPrize += matchCounts[3] * 30_000_000;
+        totalPrize += matchCounts[2] * 1_500_000;
+        totalPrize += matchCounts[1] * 50_000;
+        totalPrize += matchCounts[0] * 5_000;
+        return totalPrize;
+    }
+
     public void printResults() {
         System.out.println("당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + matchCounts[0] + "개");
