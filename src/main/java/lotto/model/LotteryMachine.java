@@ -30,7 +30,7 @@ public class LotteryMachine {
     }
 
     private List<Integer> pickRandomNumbers() {
-        List<Integer> drawLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> drawLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(drawLotto);
         return drawLotto;
     }

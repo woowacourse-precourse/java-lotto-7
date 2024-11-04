@@ -50,7 +50,7 @@ public enum WinningRank {
     }
 
     private void printWinnings() {
-        System.out.print(matchCounts + "개 일치 ");
+        System.out.print(matchCounts + "개 일치");
         if (matchBonus) {
             System.out.print(", 보너스 볼 일치");
         }
