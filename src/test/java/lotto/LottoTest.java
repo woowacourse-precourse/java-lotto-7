@@ -26,7 +26,7 @@ class LottoTest {
     }
 
     @Test
-    public void 랜덤값_생성() throws Exception {
+    public void 랜덤값_생성() {
         //when
         Lotto testLotto = Lotto.generateLottoTicket();
         List<Integer> lottoNumbers = testLotto.getNumbers();
@@ -43,7 +43,7 @@ class LottoTest {
     }
 
     @Test
-    public void 당첨_번호_일치_개수_확인() throws Exception {
+    public void 당첨_번호_일치_개수_확인() {
     	//given
         Lotto testLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
@@ -61,7 +61,7 @@ class LottoTest {
     }
 
     @Test
-    public void 보너스_번호_일치_여부_확인() throws Exception {
+    public void 보너스_번호_일치_여부_확인() {
     	//given
         Lotto testLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 

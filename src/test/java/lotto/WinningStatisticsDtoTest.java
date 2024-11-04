@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class WinningStatisticsDtoTest {
 
     @Test
-    public void 당첨_통계_구하기() throws Exception {
+    public void 당첨_통계_구하기() {
     	//given
         Map<Rank, Integer> expectedWinningStatistics = new HashMap<>();
         expectedWinningStatistics.put(Rank.THREE, 1);
@@ -30,7 +30,7 @@ class WinningStatisticsDtoTest {
     }
 
     @Test
-    public void 수익률_구하기() throws Exception {
+    public void 수익률_구하기() {
     	//given
         Map<Rank, Integer> testWinningStatistics = new HashMap<>();
         testWinningStatistics.put(Rank.THREE, 1);

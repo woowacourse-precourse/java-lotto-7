@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class WinningLottoTest {
 
     @Test
-    public void 당첨_번호_일치_여부_확인() throws Exception {
+    public void 당첨_번호_일치_여부_확인() {
     	//given
         List<Integer> testWinningNumber = List.of(1, 2, 3, 4, 5, 6);
         int testBonusNumber = 7;
@@ -25,7 +25,7 @@ class WinningLottoTest {
     }
 
     @Test
-    public void 보너스_번호_일치_여부_확인() throws Exception {
+    public void 보너스_번호_일치_여부_확인() {
         //given
         List<Integer> testWinningNumber = List.of(1, 2, 3, 4, 5, 6);
         int testBonusNumber = 7;
