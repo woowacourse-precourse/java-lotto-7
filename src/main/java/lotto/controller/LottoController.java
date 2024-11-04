@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.dto.LottoResult;
 import lotto.dto.PurchaseAmount;
@@ -28,5 +29,14 @@ public class LottoController {
                 purchaseAmount.getPurchaseAmount(),
                 lottos.displayLottos());
         OutputView.printLottoResult(lottoResult);
+    }
+
+    public Lotto getWinningNumbers() {
+        try {
+            new Lotto(InputView.getWinningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningNumbers();
+        }
     }
 }
