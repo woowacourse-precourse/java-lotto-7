@@ -1,7 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validator.Validator;
+import lotto.validator.BonusNumberValidator;
+import lotto.validator.PriceValidator;
+import lotto.validator.WinningNumberValidator;
 
 
 public class InputView {
@@ -10,7 +12,7 @@ public class InputView {
     private static final String PRINT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String PRINT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
-    public int printGetPurchasePrice(Validator validator) {
+    public int printGetPurchasePrice(PriceValidator validator) {
         while (true) {
             try {
                 System.out.println(PRINT_PURCHASE_PRICE);
@@ -24,7 +26,7 @@ public class InputView {
 
 
 
-    public String printGetWinningLottoNumber(Validator validator) {
+    public String printGetWinningLottoNumber(WinningNumberValidator validator) {
         while (true) {
             try {
                 System.out.println(PRINT_WINNING_NUMBER);
@@ -36,7 +38,7 @@ public class InputView {
         }
     }
 
-    public int printGetBonusNumber(Validator validator, String winningNumber) {
+    public int printGetBonusNumber(BonusNumberValidator validator, String winningNumber) {
         while (true) {
             try {
                 System.out.println();
