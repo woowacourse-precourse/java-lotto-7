@@ -5,6 +5,7 @@ import java.util.function.Function;
 import lotto.dto.LottosDto;
 import lotto.model.LottoMachine;
 import lotto.model.PurchaseAmount;
+import lotto.model.WinningNumbers;
 import lotto.utils.RandomLottoNumberGenerationStrategy;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -19,6 +20,7 @@ public class LottoController {
         LottoMachine lottoMachine = LottoMachine.initializeWith(purchaseAmount.getAmount(),
                 new RandomLottoNumberGenerationStrategy());
         OutputView.printPurchasedLottos(LottosDto.from(lottoMachine.getLottos()));
+        WinningNumbers winningNumber = getInput(OutputView::printWinningNumberInputMessage, WinningNumbers::from);
     }
 
     private <T> T getInput(Runnable outputMessage, Function<String, T> parser) {
