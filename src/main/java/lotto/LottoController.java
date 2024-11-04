@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 
-public class LottoGame {
+public class LottoController {
     private static final int LOTTO_PRICE = 1000;
 
     private final LottoInput lottoInput;
@@ -10,7 +10,7 @@ public class LottoGame {
     private final LottoGenerator generator;
     private final LottoResultCalculator calculator;
 
-    public LottoGame() {
+    public LottoController() {
         this.lottoInput = new LottoInput();
         this.lottoOutput = new LottoOutput();
         this.generator = new LottoGenerator();
