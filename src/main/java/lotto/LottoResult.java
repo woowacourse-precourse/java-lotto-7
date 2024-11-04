@@ -1,11 +1,11 @@
 package lotto;
 
 public class LottoResult {
-    private static final int FIRST_PRIZE = 2_000_000_000;
-    private static final int SECOND_PRIZE = 30_000_000;
-    private static final int THIRD_PRIZE = 1_500_000;
-    private static final int FOURTH_PRIZE = 50_000;
-    private static final int FIFTH_PRIZE = 5_000;
+    private static final int FIRST_PRIZE_AMOUNT = 2_000_000_000;
+    private static final int SECOND_PRIZE_AMOUNT = 30_000_000;
+    private static final int THIRD_PRIZE_AMOUNT = 1_500_000;
+    private static final int FOURTH_PRIZE_AMOUNT = 50_000;
+    private static final int FIFTH_PRIZE_AMOUNT = 5_000;
 
     private final int threeMatchesCount;
     private final int fourMatchesCount;
@@ -42,13 +42,15 @@ public class LottoResult {
         return sixMatchesCount;
     }
 
-    public double getYield(int totalInvestment) {
-        int totalPrize = (sixMatchesCount * FIRST_PRIZE) +
-                (fiveMatchesWithBonusCount * SECOND_PRIZE) +
-                (fiveMatchesCount * THIRD_PRIZE) +
-                (fourMatchesCount * FOURTH_PRIZE) +
-                (threeMatchesCount * FIFTH_PRIZE);
+    public String getYield(int totalInvestment) {
+        int totalPrize = (sixMatchesCount * FIRST_PRIZE_AMOUNT) +
+                (fiveMatchesWithBonusCount * SECOND_PRIZE_AMOUNT) +
+                (fiveMatchesCount * THIRD_PRIZE_AMOUNT) +
+                (fourMatchesCount * FOURTH_PRIZE_AMOUNT) +
+                (threeMatchesCount * FIFTH_PRIZE_AMOUNT);
 
-        return (double) totalPrize / totalInvestment;
+        double yield = (double) totalPrize / totalInvestment * 100;
+
+        return String.format("%.1f", yield);
     }
 }
