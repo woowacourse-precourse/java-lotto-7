@@ -21,7 +21,7 @@ public class MoneyTest {
 
         assertThatThrownBy(() -> new Money(invalidMoney)
         ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1000원 이상의 금액을 입력해야합니다.");
+                .hasMessage("1000원 이상의 금액을 입력해야합니다.");
     }
 
     @Test
@@ -30,7 +30,7 @@ public class MoneyTest {
 
         assertThatThrownBy(() -> new Money(invalidMoney)
         ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 금액은 1000원으로 나누어 떨어져야합니다.");
+                .hasMessage("금액은 1000원으로 나누어 떨어져야합니다.");
     }
 
     @Test

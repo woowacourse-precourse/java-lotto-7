@@ -16,13 +16,13 @@ public class Money {
 
     private void validateAboveMinimum(int value) {
         if (value < ONE_THOUSAND) {
-            throw new IllegalArgumentException("[ERROR] 1000원 이상의 금액을 입력해야합니다.");
+            throw new IllegalArgumentException("1000원 이상의 금액을 입력해야합니다.");
         }
     }
 
     private void validateAmountInThousands(int value) {
         if (value % ONE_THOUSAND != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원으로 나누어 떨어져야합니다.");
+            throw new IllegalArgumentException("금액은 1000원으로 나누어 떨어져야합니다.");
         }
     }
 
