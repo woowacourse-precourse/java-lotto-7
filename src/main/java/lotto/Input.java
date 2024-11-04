@@ -110,6 +110,7 @@ public class Input {
 
 	public void validatePayment(String input) {
 		validateEmpty(input);
+		validateBlank(input);
 		validateInteger(input);
 		validateRemainder(input);
 	}
