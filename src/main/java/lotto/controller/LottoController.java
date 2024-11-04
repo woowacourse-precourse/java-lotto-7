@@ -11,11 +11,17 @@ import java.util.List;
 
 public class LottoController {
     public static List<Lotto> myLottos = new ArrayList<>();
+    public static Lotto winningLotto;
+    public static int bonusNumber;
 
     public void play() {
         OutputView.printAskMoneyMessage();
         Money money = new Money(InputView.inputMoney());
         buyLottos(money.trial);
+        OutputView.printAskWinningNumbersMessage();
+        winningLotto = new Lotto(InputView.inputWinningNumbers());
+        OutputView.printAskBonusNumberMessage();
+        bonusNumber = InputView.inputBonusNumber();
     }
 
     public void buyLottos(int trial) {
