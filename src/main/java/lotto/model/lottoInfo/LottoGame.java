@@ -1,5 +1,6 @@
 package lotto.model.lottoInfo;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -59,13 +60,12 @@ public class LottoGame {
     }
 
     private List<PrizeResultInfo> generatePrizeInfo(Map<Rank, Long> rankCounting) {
-        return rankCounting.entrySet().stream()
-                .map(entry -> PrizeResultInfo.from(
-                                entry.getKey(),
-                                priceByRank.getByRank(entry.getKey()),
-                                entry.getValue().intValue()
-                        )
-                )
+        return Arrays.stream(Rank.values())
+                .filter(rank -> !rank.isNone())
+                .map(rank -> {
+                    int count = rankCounting.getOrDefault(rank, 0L).intValue();
+                    return PrizeResultInfo.from(rank, priceByRank.getByRank(rank), count);
+                })
                 .toList();
     }
 
