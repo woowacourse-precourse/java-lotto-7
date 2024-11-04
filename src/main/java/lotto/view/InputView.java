@@ -16,6 +16,9 @@ public class InputView {
     private static final String ERROR_INVALID_UNIT = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
     private static final String ERROR_WINNING_COUNT = "[ERROR] 당첨 번호는 6개여야 합니다.";
     private static final String COMMA = ",";
+    private static final int START_INCLUSIVE = 1;
+    private static final int END_INCLUSIVE = 45;
+    private static final String ERROR_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호의 범위는 1 이상 45 이하여야 합니다.";
     public static int requestPurchaseAmount() {
         while (true) {
             try {
@@ -73,4 +76,23 @@ public class InputView {
         }
     }
 
+    public static int requestBonusNumber() {
+        while (true) {
+            try {
+                System.out.println(BONUS_NUMBER_PROMPT);
+                String bonusNumber = Console.readLine();
+                validateBonusNumber(bonusNumber);
+                return Integer.parseInt(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void validateBonusNumber(String bonusNumber) {
+        int number = Integer.parseInt(bonusNumber);
+        if (number < START_INCLUSIVE || number > END_INCLUSIVE) {
+            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_RANGE);
+        }
+    }
 }
