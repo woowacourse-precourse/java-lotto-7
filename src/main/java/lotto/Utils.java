@@ -22,7 +22,9 @@ public class Utils {
             throw new IllegalArgumentException();
         }
 
-        return cash;
+        Integer lottoAmount = cash / 1000;
+
+        return lottoAmount;
     }
 
     public Boolean isNumber(String input) {
