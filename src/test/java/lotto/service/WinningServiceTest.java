@@ -25,7 +25,7 @@ public class WinningServiceTest {
     @BeforeEach
     void setUp() {
         winningService = new WinningService();
-        lottos = new Lottos(Arrays.asList(
+        lottos = Lottos.of(Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)),

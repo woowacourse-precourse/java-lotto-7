@@ -16,7 +16,7 @@ public class LottoService {
     public Lottos createLottos(Amount amount) {
         int lottoCount = amount.toLottoCount();
 
-        return new Lottos(IntStream.range(0, lottoCount)
+        return Lottos.of(IntStream.range(0, lottoCount)
                 .mapToObj(i -> createLotto())
                 .collect(Collectors.toList()));
     }

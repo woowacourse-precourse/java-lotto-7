@@ -35,7 +35,7 @@ class LottosTest {
                 new Lotto(Arrays.asList(1, 2, 40, 41, 42, 43)), // 2
                 new Lotto(Arrays.asList(1, 2, 40, 41, 43, 44)) // 2
         );
-        Lottos lottos = new Lottos(lottoList);
+        Lottos lottos = Lottos.of(lottoList);
 
         Map<Prize, Integer> result = lottos.countMatchesWith(winningLotto);
 
