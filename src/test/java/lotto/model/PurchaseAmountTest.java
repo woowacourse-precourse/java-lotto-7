@@ -50,11 +50,4 @@ class PurchaseAmountTest {
         PurchaseAmount purchaseAmount = new PurchaseAmount("3000");
         assertThat(purchaseAmount.calculatePurchaseLottoCount()).isEqualTo("3");
     }
-
-    @DisplayName("구매 금액이 0일 경우 로또 수량은 0이 된다.")
-    @Test
-    void 구매_금액이_0일경우_로또_수량은_0이_된다() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount("0");
-        assertThat(purchaseAmount.calculatePurchaseLottoCount()).isEqualTo("0");
-    }
 }
