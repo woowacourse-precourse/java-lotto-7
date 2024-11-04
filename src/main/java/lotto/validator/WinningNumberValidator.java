@@ -16,7 +16,7 @@ public class WinningNumberValidator {
     private final int LOTTO_NUMBER_QUANTITY = 6;
     private final String LOTTO_NUM_DELIMITER = ",";
 
-    public List<Integer> validateWinningNumbers(String input) throws IllegalLottoNumberException{
+    public List<Integer> validateWinningNumbers(String input) throws IllegalLottoNumberException {
         String[] splitedWinningNums = validateQuantity(input);
         List<Integer> parsedWinningNums = new ArrayList<>();
         for (String winningNum : splitedWinningNums) {
@@ -27,7 +27,7 @@ public class WinningNumberValidator {
         return parsedWinningNums;
     }
 
-    public int validateBonusNumber(List<Integer> winningNums, String input) throws IllegalLottoNumberException{
+    public int validateBonusNumber(List<Integer> winningNums, String input) throws IllegalLottoNumberException {
         int parsedBonusNum = validateFormat(input);
         validateUniqueness(winningNums, parsedBonusNum);
         return parsedBonusNum;
