@@ -56,14 +56,14 @@ public class LottoController {
             }
         }
         LottoNumber bonusNumber;
+        WinningLotto winning;
         while (true) {
             try {
                 bonusNumber = inputHandler.readBonusNumber();
-                break;
+                return new WinningLotto(winningLotto, bonusNumber);
             } catch (LottoException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return new WinningLotto(winningLotto, bonusNumber);
     }
 }
