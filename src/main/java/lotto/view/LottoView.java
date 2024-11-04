@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.domain.dto.LottoDetail;
 import lotto.io.Input;
@@ -67,9 +66,10 @@ public class LottoView {
         );
     }
 
-    public void printLottoResults(List<String> lottoResults) {
+    public void printLottoResults(List<String> lottoResults, double returnRate) {
         System.out.println("당첨통계");
         System.out.println("---");
         lottoResults.forEach(System.out::println);
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", returnRate));
     }
 }

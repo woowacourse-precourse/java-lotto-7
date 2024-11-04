@@ -28,11 +28,21 @@ public class History {
         winnings.put(key, winnings.getOrDefault(key, 0) + 1);
     }
 
-    public List<String> extractHistory(){
+    public List<String> extractHistory() {
         List<String> result = new ArrayList<>();
 
         winnings.forEach((key, value) -> result.add(key.getResult(value)));
         result.removeIf(String::isEmpty);
         return result;
+    }
+
+    public Long getTotalPrizeMoney() {
+        List<Long> totalPrizeMoney = new ArrayList<>();
+
+        winnings.forEach((key, value) -> {
+            totalPrizeMoney.add(key.getTotalPrizeMoney(value));
+        });
+
+        return totalPrizeMoney.stream().reduce(0L, Long::sum);
     }
 }

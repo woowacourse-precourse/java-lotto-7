@@ -48,17 +48,21 @@ public enum LottoResult {
         return resultFormat(hitCount);
     }
 
+    public long getTotalPrizeMoney(int hitCount) {
+        return prizeMoney * hitCount;
+    }
+
     private String resultFormat(int hitCount) {
         String prizeMoneyFormat = decimalFormat.format(prizeMoney);
 
         if (this.equals(FIVE_AND_BONUS_MATCHES)) {
-            return String.format("%d개 일치 보너스 볼 일치 (%s) - %d개", matchingCount, prizeMoneyFormat, hitCount);
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", matchingCount, prizeMoneyFormat, hitCount);
         }
 
         if (this.equals(NOT_MATCHES)) {
             return "";
         }
 
-        return String.format("%d개 일치 (%s) - %d개", matchingCount, prizeMoneyFormat, hitCount);
+        return String.format("%d개 일치 (%s원) - %d개", matchingCount, prizeMoneyFormat, hitCount);
     }
 }

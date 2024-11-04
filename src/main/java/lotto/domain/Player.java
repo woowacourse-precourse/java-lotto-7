@@ -4,14 +4,16 @@ import java.util.List;
 
 public class Player {
 
+    private final int money;
     private final List<Lotto> lottos;
 
-    public static Player create(List<Lotto> lottos) {
-        return new Player(lottos);
+    public static Player create(List<Lotto> lottos, int money) {
+        return new Player(lottos, money);
     }
 
-    private Player(List<Lotto> lottos) {
+    private Player(List<Lotto> lottos, int money) {
         this.lottos = lottos;
+        this.money = money;
     }
 
     public History compareToWinning(Winning winning, Bonus bonus) {
@@ -23,5 +25,9 @@ public class Player {
         }
 
         return history;
+    }
+
+    public double calculateReturnRate(Long totalPrizeMoney) {
+        return (double)totalPrizeMoney / money * 100;
     }
 }

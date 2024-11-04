@@ -8,6 +8,7 @@ import lotto.domain.LottoOffice;
 import lotto.domain.Player;
 import lotto.domain.Winning;
 import lotto.domain.dto.LottoDetail;
+import lotto.domain.dto.LottoResult;
 import lotto.service.dto.SellLotto;
 
 public class LottoServiceImpl implements LottoService {
@@ -21,7 +22,7 @@ public class LottoServiceImpl implements LottoService {
     public SellLotto sellLotto(int money) {
         List<Lotto> lottos = lottoOffice.sellTo(money);
 
-        player = Player.create(lottos);
+        player = Player.create(lottos, money);
 
         List<LottoDetail> dtos = lottos.stream().map(Lotto::toDTO).toList();
         return new SellLotto(dtos);
@@ -39,9 +40,10 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public List<String> compareWinningNumbers() {
+    public LottoResult compareWinningNumbers() {
         History history = player.compareToWinning(winning, bonus);
+        double returnRate = player.calculateReturnRate(history.getTotalPrizeMoney());
 
-        return history.extractHistory();
+        return new LottoResult(returnRate, history.extractHistory());
     }
 }
