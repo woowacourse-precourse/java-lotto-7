@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
-import lotto.constant.LottoRank;
+import lotto.domain.LottoRank;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoProfit;
