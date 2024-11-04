@@ -3,7 +3,6 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
-import lotto.domain.Validator;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,6 +15,10 @@ public class LottoController {
         OutputView.printPurchasedLottos(lottos);
 
         String winningNumbersInput = InputView.inputWinningNumbers();
-        WinningLotto winningLotto = new WinningLotto(winningNumbersInput);
+        String bonusNumberInput = InputView.inputBonusNumber();
+
+        WinningLotto winningLotto = new WinningLotto(winningNumbersInput, bonusNumberInput);
+
+
     }
 }
