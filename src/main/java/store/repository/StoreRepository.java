@@ -2,7 +2,8 @@ package store.repository;
 
 import store.model.Store;
 
-public interface StoreSingleRepository {
+public interface StoreRepository {
     void save(Store store);
-    Store find();
+
+    Store findOne();
 }

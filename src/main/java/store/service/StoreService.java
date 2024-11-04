@@ -2,50 +2,62 @@ package store.service;
 
 import static global.utils.StringUtil.WeeklyNumber.parsingWeeklyNumbers;
 import static global.utils.StringUtil.WeeklyNumber.splitWeeklyNumberWithSeparator;
+import static global.utils.Validator.validateBonusNumber;
+import static global.utils.Validator.validateWeeklyNumbers;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.constant.LottoRanking;
 import lotto.model.Lotto;
 import store.model.Store;
-import store.repository.StoreSingleRepository;
+import store.repository.StoreRepositoryImpl;
 
 public class StoreService {
 
-    private final StoreSingleRepository storeRepository;
+    private final StoreRepositoryImpl storeRepository;
 
-    public StoreService(StoreSingleRepository storeRepository) {
+    public StoreService(StoreRepositoryImpl storeRepository) {
         this.storeRepository = storeRepository;
     }
 
-    public void modifyWeeklyNumbers(String inputWeeklyNumbers) {
-        List<Integer> weeklyNumbers = parsingWeeklyNumbers(splitWeeklyNumberWithSeparator(inputWeeklyNumbers));
-
-        Store store = get();
-        store.setWeeklyNumbers(weeklyNumbers);
-        storeRepository.save(store);
-    }
-
-    public void modifyBonusNumber(String inputBonusNumber) {
-        Store store = get();
-        store.setBonusNumber(Integer.parseInt(inputBonusNumber));
-        storeRepository.save(store);
-    }
-
     public Store get() {
-        return storeRepository.find();
+        return storeRepository.findOne();
+    }
+
+    public void tryUpdateWeeklyNumbers(String inputWeeklyNumbers) {
+        validateWeeklyNumbers(inputWeeklyNumbers);
+        List<String> splitResult = splitWeeklyNumberWithSeparator(inputWeeklyNumbers);
+        List<Integer> weeklyNumbers = parsingWeeklyNumbers(splitResult);
+        updateWeeklyNumbers(weeklyNumbers);
+    }
+
+    private void updateWeeklyNumbers(List<Integer> weeklyNumbers) {
+        Store store = get();
+        store.updateWeeklyNumbers(weeklyNumbers);
+        storeRepository.save(store);
+    }
+
+    public void tryUpdateBonusNumber(String inputBonusNumber) {
+        List<Integer> storedWeeklyNumbers = getStoredWeeklyNumbers();
+        validateBonusNumber(inputBonusNumber, storedWeeklyNumbers);
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
+        updateBonusNumber(bonusNumber);
+    }
+
+    private void updateBonusNumber(int bonusNumber) {
+        Store store = get();
+        store.updateBonusNumber(bonusNumber);
+        storeRepository.save(store);
     }
 
     public List<Integer> getStoredWeeklyNumbers() {
-        return storeRepository.find().getWeeklyNumbers();
+        return storeRepository.findOne().getWeeklyNumbers();
     }
 
     public Map<LottoRanking, Integer> getMatchedResult(List<Lotto> lottos) {
         Store store = get();
         List<Integer> weeklyNumbers = store.getWeeklyNumbers();
         Integer bonusNumber = store.getBonusNumber();
-
         Map<LottoRanking, Integer> results = LottoRanking.getDefaultRankingStates();
 
         for (Lotto lotto : lottos) {
@@ -61,7 +73,7 @@ public class StoreService {
         int count = countWeeklyNumbers(numbers, weeklyNumbers);
         boolean hasBonusNumber = false;
 
-        if(isContainsWeeklyBonusNumber(numbers, weeklyBonusNumber)) {
+        if (isContainsWeeklyBonusNumber(numbers, weeklyBonusNumber)) {
             count++;
             hasBonusNumber = true;
         }
@@ -72,8 +84,8 @@ public class StoreService {
     private int countWeeklyNumbers(List<Integer> numbers, List<Integer> weeklyNumbers) {
         int count = 0;
 
-        for(int number : numbers) {
-            if(weeklyNumbers.contains(number)) {
+        for (int number : numbers) {
+            if (weeklyNumbers.contains(number)) {
                 count++;
             }
         }

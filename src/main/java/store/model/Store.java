@@ -16,11 +16,11 @@ public class Store {
         return bonusNumber;
     }
 
-    public void setWeeklyNumbers(List<Integer> weeklyNumbers) {
+    public void updateWeeklyNumbers(List<Integer> weeklyNumbers) {
         this.weeklyNumbers = weeklyNumbers;
     }
 
-    public void setBonusNumber(Integer bonusNumber) {
+    public void updateBonusNumber(Integer bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 }
