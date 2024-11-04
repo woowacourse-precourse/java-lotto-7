@@ -6,9 +6,7 @@ import lotto.domain.User;
 import lotto.domain.UserLotto;
 import lotto.view.OutputView;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static lotto.domain.LottoRanking.*;
 
@@ -25,41 +23,30 @@ public class LottoCalculatorService {
         }
     }
 
-    public void calculateWinningResult(User user, Lotto lotto) {
-        List<UserLotto> userLotto = user.getUserLotto();
-        List<Integer> winningLotto = lotto.getNumbers();
+    public void calculateWinningResult(User user, Lotto WinningLotto) {
+        for (UserLotto userLotto : user.getUserLotto()) {
+            int duplicateNumber = getDuplicateNumber(userLotto, WinningLotto);
 
-        for (UserLotto userLottoNumber : userLotto) {
-            int duplicateNumber = 0;
-            duplicateNumber = getDuplicateNumber(userLottoNumber, duplicateNumber, winningLotto);
-
-            duplicateLottoNumberCalculate(userLottoNumber, duplicateNumber, winningLotto);
+            duplicateLottoNumberCalculate(userLotto, duplicateNumber, WinningLotto);
         }
 
         OutputView.printWinningHistory(winningCount);
     }
 
-    private int getDuplicateNumber(UserLotto userLottoNumber, int duplicateNumber, List<Integer> winningLotto) {
-        for (int i = 0; i < LOTTO_NUMBER_COUNT; i++) {
-            duplicateNumber = addDuplicateNumber(userLottoNumber, winningLotto, i, duplicateNumber);
-        }
-        return duplicateNumber;
+    private int getDuplicateNumber(UserLotto userLotto, Lotto winningLotto) {
+        return  (int) winningLotto.getNumbers().stream()
+            .limit(LOTTO_NUMBER_COUNT)
+            .filter(userLotto.getLottoNumber()::contains)
+            .count();
     }
 
-    private int addDuplicateNumber(UserLotto userLottoNumber, List<Integer> winningLotto, int i, int duplicateNumber) {
-        if (userLottoNumber.getLottoNumber().contains(winningLotto.get(i))) {
-            duplicateNumber++;
-        }
-        return duplicateNumber;
-    }
-
-    private void duplicateLottoNumberCalculate(UserLotto userLottoNumber, int duplicateNumber, List<Integer> winningLotto) {
+    private void duplicateLottoNumberCalculate(UserLotto userLottoNumber, int duplicateNumber, Lotto winningLotto) {
         LottoRanking lottoRanking = getLottoRanking(duplicateNumber, matchesBonusNumberCondition(userLottoNumber, winningLotto));
         addWinningCount(lottoRanking);
     }
 
-    private boolean matchesBonusNumberCondition(UserLotto userLottoNumber, List<Integer> winningLotto) {
-        return userLottoNumber.getLottoNumber().contains(winningLotto.get(BONUS_NUMBER_INDEX));
+    private boolean matchesBonusNumberCondition(UserLotto userLottoNumber, Lotto winningLotto) {
+        return userLottoNumber.getLottoNumber().contains(winningLotto.getNumbers().get(BONUS_NUMBER_INDEX));
     }
 
     private void addWinningCount(LottoRanking ranking) {
