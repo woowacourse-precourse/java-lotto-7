@@ -28,6 +28,10 @@ public class LottoService {
         return new LottoResult(rankCounts);
     }
 
+    public double calculateProfit(LottoResult result, Money money) {
+        return profitCalculator.calculateProfit(result.getRankCounts(), money);
+    }
+
     private void validateLottos(List<Lotto> lottos) {
         if (lottos == null || lottos.isEmpty()) {
             throw new IllegalStateException("로또 생성에 실패했습니다.");
