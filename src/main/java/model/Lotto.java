@@ -29,6 +29,10 @@ public class Lotto {
         return uniqueNumbers.size() != numbers.size();
     }
 
+    private boolean isWithinRange(List<Integer> numbers) {
+        return numbers.stream().allMatch(num -> num >= 1 && num <= 45);
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
