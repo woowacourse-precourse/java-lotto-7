@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.service.exception.LottoExceptionMessage.BONUS_NUMBER_DUPLICATED;
 import static lotto.service.exception.LottoExceptionMessage.INVALID_BONUS_NUMBER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -39,5 +40,14 @@ public class BonusNumberTest {
             BonusNumberValidator.validate(winningNumbersDto, bonusNumber);
         });
         assertEquals(INVALID_BONUS_NUMBER.message(), e.getMessage());
+    }
+
+    @Test
+    void 보너스_번호가_이미_당첨_번호에_포함되어_있다면_예외발생() {
+        String bonusNumber = "1";
+        LottoException e = assertThrows(LottoException.class, () -> {
+            BonusNumberValidator.validate(winningNumbersDto, bonusNumber);
+        });
+        assertEquals(BONUS_NUMBER_DUPLICATED.message(), e.getMessage());
     }
 }
