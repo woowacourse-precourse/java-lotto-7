@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -109,23 +108,12 @@ public class LottoSeller {
     }
 
     private void printLottoResult(Map<Place, Integer> lottoResult) {
-        DecimalFormat wonFormat = new DecimalFormat("###,###원");
+        List<Place> places = new ArrayList<>(
+                List.of(Place.FIFTH, Place.FOURTH, Place.THIRD, Place.SECOND, Place.FIRST));
         System.out.println("당첨 통계" + "\n" + "---");
-        System.out.println(Place.FIFTH.needHitCount
-                + "개 일치 (" + wonFormat.format(Place.FIFTH.prize) + ") - "
-                + lottoResult.get(Place.FIFTH) + "개");
-        System.out.println(Place.FOURTH.needHitCount
-                + "개 일치 (" + wonFormat.format(Place.FOURTH.prize) + ") - "
-                + lottoResult.get(Place.FOURTH) + "개");
-        System.out.println(Place.THIRD.needHitCount
-                + "개 일치 (" + wonFormat.format(Place.THIRD.prize) + ") - "
-                + lottoResult.get(Place.THIRD) + "개");
-        System.out.println(Place.SECOND.needHitCount
-                + "개 일치, 보너스 볼 일치 (" + wonFormat.format(Place.SECOND.prize) + ") - "
-                + lottoResult.get(Place.SECOND) + "개");
-        System.out.println(Place.FIRST.needHitCount
-                + "개 일치 (" + wonFormat.format(Place.FIRST.prize) + ") - "
-                + lottoResult.get(Place.FIRST) + "개");
+        for (Place place : places) {
+            System.out.println(place + " - " + lottoResult.get(place) + "개");
+        }
     }
 
     private void printSurplusRate(Map<Place, Integer> lottoResult, int pay) {
