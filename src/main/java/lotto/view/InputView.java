@@ -15,7 +15,7 @@ public class InputView {
     public static long inputPurchaseAmount() {
         String inputAmount;
         do {
-            System.out.println(PURCHASE_AMOUNT_PROMPT);
+            System.out.println(PURCHASE_AMOUNT_PROMPT.getMessage());
             inputAmount = Console.readLine().trim();
         } while (!PurchaseAmountValidator.checkValidPurchaseAmount(inputAmount));
         return Long.parseLong(inputAmount);
@@ -24,7 +24,7 @@ public class InputView {
     public static List<Integer> inputWinningNumbers() {
         String inputWinningNumbers;
         do {
-            System.out.println(WINNING_NUMBERS_PROMPT);
+            System.out.println(WINNING_NUMBERS_PROMPT.getMessage());
             inputWinningNumbers = Console.readLine().trim();
         } while (!NumberValidator.checkValidWinningNumbers(inputWinningNumbers));
         return Arrays.stream(inputWinningNumbers.split(",")).map(Integer::valueOf).collect(Collectors.toList());
@@ -33,7 +33,7 @@ public class InputView {
     public static int inputBonusNumber(List<Integer> winningNumbers) {
         String inputBonusNumber;
         do {
-            System.out.println(BONUS_NUMBER_PROMPT);
+            System.out.println(BONUS_NUMBER_PROMPT.getMessage());
             inputBonusNumber = Console.readLine().trim();
         } while (!NumberValidator.checkValidBonusNumber(inputBonusNumber, winningNumbers));
         return Integer.parseInt(inputBonusNumber);

@@ -11,7 +11,7 @@ import static lotto.model.constants.OutputViewConstants.*;
 public class OutputView {
 
     public static void printErrorMessage(String errorMessage) {
-        System.out.println(ERROR_HEADER + " " + errorMessage +"\n");
+        System.out.println(ERROR_HEADER.getMessage() + " " + errorMessage +"\n");
     }
 
     public static void printLotteryCount(int lotteryCount) {
@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     public static void printLottoStatistics(Map<Rank, Integer> lottoStats) {
-        System.out.println(LOTTO_STATICS_HEADER);
+        System.out.println(LOTTO_STATICS_HEADER.getMessage());
         lottoStats.forEach((rank, count) -> {
             if (rank != Rank.NO_PRIZE) {
                 System.out.printf(PRINT_LOTTO_STAT.getMessage(), rank.getDisplayName(), rank.getPrizeAmount(), count);

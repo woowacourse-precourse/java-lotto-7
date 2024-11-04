@@ -4,14 +4,26 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static lotto.model.constants.PurchaseAmountValidatorConstants.PURCHASE_AMOUNT_NOT_IN_RANGE_MESSAGE;
+import static lotto.model.constants.PurchaseAmountValidatorConstants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    private static Stream<String> overAmountProvider() {
+        return Stream.of(
+                " ",
+                "\n",
+                "\t",
+                "",
+                "abc",
+                "100a"
+        );
+    }
 
     @Test
     void 기능_테스트() {
@@ -58,8 +70,24 @@ class ApplicationTest extends NsTest {
     @Test
     void 구입_금액_제한_예외_테스트() {
         assertSimpleTest(() -> {
-            runException("10_000_000");
+            runException("10000000");
             assertThat(output()).contains(PURCHASE_AMOUNT_NOT_IN_RANGE_MESSAGE.getMessage());
+        });
+    }
+
+    @Test
+    void 구입_금액이_0일_경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(PURCHASE_AMOUNT_NOT_POSITIVE_MESSAGE.getMessage());
+        });
+    }
+
+    @Test
+    void 구입_금액이_1000의_배수가_아닐_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("2222");
+            assertThat(output()).contains(PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND_MESSAGE.getMessage());
         });
     }
 
