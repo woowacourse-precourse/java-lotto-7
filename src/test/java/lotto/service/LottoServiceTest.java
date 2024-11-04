@@ -1,8 +1,7 @@
-package lotto;
+package lotto.service;
 
 import lotto.constant.LottoConstants;
 import lotto.model.LottoResult;
-import lotto.service.LottoService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

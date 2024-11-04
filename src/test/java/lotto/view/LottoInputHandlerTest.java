@@ -1,6 +1,5 @@
-package lotto;
+package lotto.view;
 
-import lotto.view.LottoInputHandler;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
