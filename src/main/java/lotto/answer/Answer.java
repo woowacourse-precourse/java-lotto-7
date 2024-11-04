@@ -1,9 +1,6 @@
 package lotto.answer;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import lotto.Lotto;
 
 public class Answer {
@@ -13,13 +10,6 @@ public class Answer {
 	public Answer(Lotto answerLottos, int bonusLotto) {
 		this.answerLotto = answerLottos;
 		this.bonusLotto = bonusLotto;
-	}
-
-	private static List<Integer> from(String answerLotto) {
-		return Arrays.asList(answerLotto.split(","))
-			.stream()
-			.map(Integer::parseInt)
-			.collect(Collectors.toList()); 
 	}
 
 	public int checkLottoResult(Lotto pickedLotto) {
