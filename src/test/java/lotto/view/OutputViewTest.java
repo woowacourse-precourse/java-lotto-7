@@ -45,15 +45,4 @@ public class OutputViewTest {
                 "1개를 구매했습니다.",
                 "[1, 2, 3, 4, 5, 6]");
     }
-
-    static Stream<Arguments> printStatisticsTestCases() {
-        return Stream.of(
-                Arguments.of(3,"3개를 구매했습니다."),
-                Arguments.of(2,"2개를 구매했습니다.")
-        );
-    }
-    @ParameterizedTest
-    @MethodSource("printStatisticsTestCases")
-    void printStatisticsTest(int purchase, String expected) {
-    }
 }
