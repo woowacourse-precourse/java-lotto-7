@@ -24,8 +24,9 @@ public class Publishing {
 
     private Lotto makeRandomlyLotto() {
         List<Integer> publishedTicket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(publishedTicket);
-        return new Lotto(publishedTicket);
+        List<Integer> sortedPublishedTicket = new ArrayList<>(publishedTicket);
+        Collections.sort(sortedPublishedTicket);
+        return new Lotto(sortedPublishedTicket);
     }
 
     public List<Lotto> getLottoTickets() {
