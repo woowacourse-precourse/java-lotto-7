@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 @DisplayName("Lotto 테스트")
 class LottoTest {
@@ -29,9 +29,9 @@ class LottoTest {
         sequentialRandomNumberGenerator.setSizeWillBeGenerated(LOTTO_NUMBER_SIZE + 1);
 
         // when & then
-        assertThatThrownBy(() -> Lotto.generate(sequentialRandomNumberGenerator))
-                .isInstanceOf(LottoNumberInvalidException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Lotto.generate(sequentialRandomNumberGenerator))
+                .isInstanceOf(LottoNumberInvalidException.class);
     }
 
     @Test
@@ -41,18 +41,18 @@ class LottoTest {
         sequentialRandomNumberGenerator.setSizeWillBeGenerated(LOTTO_NUMBER_SIZE - 1);
 
         // when & then
-        assertThatThrownBy(() -> Lotto.generate(sequentialRandomNumberGenerator))
-                .isInstanceOf(LottoNumberInvalidException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Lotto.generate(sequentialRandomNumberGenerator))
+                .isInstanceOf(LottoNumberInvalidException.class);
     }
 
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
 
         // when & then
-        assertThatThrownBy(() -> Lotto.generate(duplicateRandomNumberGenerator))
-                .isInstanceOf(LottoNumberInvalidException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Lotto.generate(duplicateRandomNumberGenerator))
+                .isInstanceOf(LottoNumberInvalidException.class);
     }
 
     @Test

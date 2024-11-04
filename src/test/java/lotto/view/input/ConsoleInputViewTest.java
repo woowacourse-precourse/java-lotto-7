@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 @DisplayName("ConsoleInputView 테스트")
 public class ConsoleInputViewTest {
@@ -63,9 +63,9 @@ public class ConsoleInputViewTest {
         System.setIn(new ByteArrayInputStream(intput.getBytes()));
 
         // when & then
-        assertThatThrownBy(consoleInputView::inputPurchaseMoney)
-                .isInstanceOf(InvalidInputException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(consoleInputView::inputPurchaseMoney)
+                .isInstanceOf(InvalidInputException.class);
     }
 
     @ParameterizedTest(name = "input : {0}")
@@ -94,9 +94,9 @@ public class ConsoleInputViewTest {
         System.setIn(new ByteArrayInputStream(intput.getBytes()));
 
         // when & then
-        assertThatThrownBy(consoleInputView::inputWinningNumbers)
-                .isInstanceOf(InvalidInputException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(consoleInputView::inputWinningNumbers)
+                .isInstanceOf(InvalidInputException.class);
     }
 
     @ParameterizedTest(name = "input : {0}")
@@ -122,8 +122,8 @@ public class ConsoleInputViewTest {
         System.setIn(new ByteArrayInputStream(intput.getBytes()));
 
         // when & then
-        assertThatThrownBy(consoleInputView::inputBonusNumber)
-                .isInstanceOf(InvalidInputException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(consoleInputView::inputBonusNumber)
+                .isInstanceOf(InvalidInputException.class);
     }
 }

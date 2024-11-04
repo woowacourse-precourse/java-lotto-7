@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 @DisplayName("WinningLotto 테스트")
 public class WinningLottoTest {
@@ -68,9 +68,9 @@ public class WinningLottoTest {
         LottoNumber bonusNumber = LottoNumber.from(WINNING_LOTTO_NUMBER_SIZE + 2);
 
         // when & then
-        assertThatThrownBy(() -> new WinningLotto(winningLottoNumbers, bonusNumber))
-                .isInstanceOf(LottoNumberInvalidException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new WinningLotto(winningLottoNumbers, bonusNumber))
+                .isInstanceOf(LottoNumberInvalidException.class);
     }
 
     @Test
@@ -85,9 +85,9 @@ public class WinningLottoTest {
         LottoNumber bonusNumber = LottoNumber.from(WINNING_LOTTO_NUMBER_SIZE);
 
         // when & then
-        assertThatThrownBy(() -> new WinningLotto(winningLottoNumbers, bonusNumber))
-                .isInstanceOf(LottoNumberInvalidException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new WinningLotto(winningLottoNumbers, bonusNumber))
+                .isInstanceOf(LottoNumberInvalidException.class);
     }
 
     @Test
@@ -101,9 +101,9 @@ public class WinningLottoTest {
         LottoNumber bonusNumber = LottoNumber.from(WINNING_LOTTO_NUMBER_SIZE + 1);
 
         // when & then
-        assertThatThrownBy(() -> new WinningLotto(winningLottoNumbers, bonusNumber))
-                .isInstanceOf(LottoNumberInvalidException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new WinningLotto(winningLottoNumbers, bonusNumber))
+                .isInstanceOf(LottoNumberInvalidException.class);
     }
 
     @Test
@@ -117,9 +117,9 @@ public class WinningLottoTest {
         LottoNumber bonusNumber = LottoNumber.from(sequentialRandomNumberGenerator.getLastGeneratedNumbers().getFirst());
 
         // when & then
-        assertThatThrownBy(() -> new WinningLotto(winningLottoNumbers, bonusNumber))
-                .isInstanceOf(LottoNumberInvalidException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new WinningLotto(winningLottoNumbers, bonusNumber))
+                .isInstanceOf(LottoNumberInvalidException.class);
     }
 
     @ParameterizedTest(name = "winningLottoNumbers: {0}, bonusNumber: {1}, lottoNumbers: {2}, expected: {3}")

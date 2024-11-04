@@ -1,6 +1,7 @@
 package lotto.model.number;
 
 import lotto.mock.number_generator.RealRandomNumberGenerator;
+import lotto.model.exception.LottoNumberInvalidException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 @DisplayName("LottoNumbers 테스트")
 public class LottoNumbersTest {
@@ -82,8 +83,9 @@ public class LottoNumbersTest {
         int size = MAX_NUMBER - MIN_NUMBER + 2;
 
         // when & then
-        assertThatThrownBy(() -> LottoNumbers.generate(size, realRandomNumberGenerator))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LottoNumbers.generate(size, realRandomNumberGenerator))
+                .isInstanceOf(LottoNumberInvalidException.class);
     }
 
     @ParameterizedTest(name = "numberCount: {0}")

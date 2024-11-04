@@ -31,9 +31,9 @@ public class LottoNumberTest {
         int exceededNumber = MIN_NUMBER - 1;
 
         // when & then
-        assertThatThrownBy(() -> LottoNumber.from(exceededNumber))
-                .isInstanceOf(LottoNumberInvalidException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LottoNumber.from(exceededNumber))
+                .isInstanceOf(LottoNumberInvalidException.class);
     }
 
     @Test

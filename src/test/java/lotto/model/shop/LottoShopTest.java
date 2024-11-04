@@ -43,9 +43,9 @@ public class LottoShopTest {
         int money = LOTTO_PRICE - 1;
 
         // when, then
-        assertThatThrownBy(() -> lottoShop.purchaseRandomLottos(money, realRandomNumberGenerator))
-                .isInstanceOf(PurchaseMoneyInvalidException.class)
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> lottoShop.purchaseRandomLottos(money, realRandomNumberGenerator))
+                .isInstanceOf(PurchaseMoneyInvalidException.class);
     }
 
     @ParameterizedTest(name = "money: {0}, isExceptionThrown: {1}")
