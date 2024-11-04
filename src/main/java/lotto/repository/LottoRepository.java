@@ -9,6 +9,7 @@ public class LottoRepository {
 
     private static final Set<List<Integer>> lottoTickets = new HashSet<>();
     private static Lotto winningLotto = null;
+    private static int bonusNumber = 0;
 
     public void insertNumbers(List<Integer> randomNumbers) {
         lottoTickets.add(randomNumbers);
@@ -22,4 +23,11 @@ public class LottoRepository {
         winningLotto = lotto;
     }
 
+    public List<Integer> getWinningLotto() {
+        return winningLotto.getNumbers();
+    }
+
+    public void insertBonusNumber(int number) {
+        bonusNumber = number;
+    }
 }

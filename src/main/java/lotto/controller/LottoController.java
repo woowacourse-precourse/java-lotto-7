@@ -51,6 +51,22 @@ public class LottoController {
             }
         }
 
+        String bonusNumberInput;
+        int bonusNumber;
+
+        while (true) {
+            try {
+                bonusNumberInput = inputView.inputBonusNumber();
+                System.out.println();
+                bonusNumber = lottoService.validateBonusNumber(bonusNumberInput);
+                lottoService.saveBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+
+
     }
 
 }

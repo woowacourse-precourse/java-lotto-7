@@ -76,4 +76,19 @@ public class LottoService {
         lottoRepository.insertWinningLotto(lotto);
     }
 
+    public int validateBonusNumber(String bonusNumberInput) throws IllegalArgumentException {
+        inputValidation.checkNotNullAndNotBlank(bonusNumberInput);
+        inputValidation.checkIsInteger(bonusNumberInput);
+
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
+
+        winningNumbersValidation.checkRange(bonusNumber);
+        winningNumbersValidation.checkDuplicateNumber(lottoRepository.getWinningLotto(),
+                bonusNumber);
+        return bonusNumber;
+    }
+
+    public void saveBonusNumber(int bonusNumber) {
+        lottoRepository.insertBonusNumber(bonusNumber);
+    }
 }
