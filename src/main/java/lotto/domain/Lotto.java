@@ -16,10 +16,29 @@ public class Lotto {
         }
     }
 
+    public int calculateRank(List<Integer> winningNumbers, int bonusNumber) {
+        long match = numbers.stream().filter(winningNumbers::contains).count();
+        boolean bonusNumberFlag = numbers.contains(bonusNumber);
+        if (match == 3) {
+            return 5;
+        }
+        if (match == 4) {
+            return 4;
+        }
+        if (match == 5) {
+            if(!bonusNumberFlag) {
+                return 3;
+            }
+            return 2;
+        }
+        if (match == 6) {
+            return 1;
+        }
+        return 0;
+    }
+
     @Override
     public String toString() {
         return numbers.stream().sorted().toList().toString();
     }
-
-    // TODO: 추가 기능 구현
 }
