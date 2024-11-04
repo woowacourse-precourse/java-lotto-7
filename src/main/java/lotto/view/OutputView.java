@@ -8,6 +8,7 @@ public class OutputView {
     public static void printErrorMessage(String errorMessage) {
         System.out.println();
         System.out.println(errorMessage);
+        System.out.println();
     }
 
     public static void printLottoAmountInput() {

@@ -21,6 +21,7 @@ public class InputView {
                 return LottoAmountValidator.validatePurchaseAmout(purchaseAmount);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
+                OutputView.printLottoAmountInput();
             }
         }
     }
@@ -39,6 +40,7 @@ public class InputView {
                 return WinningNumberValidator.validateWinningNumber(winningNumbers);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
+                OutputView.printWinningNumberInput();
             }
         }
     }
@@ -61,6 +63,7 @@ public class InputView {
                 return BonusNumberValidator.validateBonusNumber(bonusNumber, WinningNumber.getWinningNumbers());
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
+                OutputView.printBonusNumberInput();
             }
         }
     }
