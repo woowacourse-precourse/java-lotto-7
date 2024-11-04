@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,4 +18,32 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    public void addNumberForStringBuilder(StringBuilder stringBuilder) {
+        for (Integer number : numbers) {
+            stringBuilder.append(number);
+            stringBuilder.append(", ");
+        }
+    }
+
+    public int calculateMatchCount(List<Integer> winNumber) {
+        int matchCount = 0;
+        for (Integer number : winNumber) {
+            for (Integer lotto : numbers) {
+                if (Objects.equals(lotto, number)) {
+                    matchCount++;
+                    break;
+                }
+            }
+        }
+
+        return matchCount;
+    }
+    public boolean findMatchBonusNumber(int bonusNumber) {
+        for(Integer number : numbers) {
+            if (bonusNumber == number) return true;
+        }
+        return false;
+    }
+
 }
