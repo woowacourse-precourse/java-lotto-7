@@ -8,6 +8,8 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
         LottoService lottoService = new LottoService();
@@ -35,8 +37,9 @@ public class Application {
     }
 
     private static WinningLotto createWinningLotto(InputView inputView) {
-        Lotto winningNumbers = (Lotto) inputView.readWinningNumbers();
+        List<Integer> winningNumbers = inputView.readWinningNumbers();
+        Lotto winningLotto = new Lotto(winningNumbers);
         int bonusNumber = inputView.readBonusNumber();
-        return new WinningLotto(winningNumbers, bonusNumber);
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 }
