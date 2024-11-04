@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class LottosTest {
 
     @Test
-    @DisplayName("정확한 개수 만큼 로또를 만든다.")
+    @DisplayName("from - 정확한 개수 만큼 로또를 만든다.")
     void makeLottosWithExactCount() {
         // given
         int count = 10;
@@ -22,7 +22,7 @@ class LottosTest {
     }
 
     @Test
-    @DisplayName("정확한 개수 만큼 산 금액을 정확히 저장한다.")
+    @DisplayName("from - 정확한 개수 만큼 산 금액을 정확히 저장한다.")
     void makeLottosWithExactMoney() {
         // given
         int count = 10;
