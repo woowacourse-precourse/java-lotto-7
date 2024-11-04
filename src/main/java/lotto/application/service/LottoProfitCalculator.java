@@ -1,5 +1,7 @@
 package lotto.application.service;
 
+import static lotto.common.Consts.LOTTO_PRICE;
+
 import java.util.EnumMap;
 import lotto.application.model.WinningRanking;
 
@@ -14,7 +16,7 @@ public class LottoProfitCalculator {
                 .reduce(0.0, Double::sum);
 
 
-        return rate / count;
+        return (rate / (count * LOTTO_PRICE)) * 100 ;
     }
 
     private double calculateProfit(WinningRanking winningRanking, int count) {
