@@ -142,12 +142,23 @@ public class Application {
         makeBonusNum();
     }
 
+    public static int calculateBenfit() {
+        int benefit = 0;
+        for (Rank rank : rankCounter.keySet()) {
+            if (rank != Rank.MISS)
+                benefit += Rank.calculatePrize(rank, rankCounter.get(rank));
+        }
+        return benefit;
+    }
+
     public static void printLottoOutput() {
         System.out.println("당첨 통계");
         System.out.println("---");
         rankCounter.forEach((rank, count) -> {
-            Rank.printRankPrize(rank, count);
+            if (rank != Rank.MISS)
+                Rank.printRankPrize(rank, count);
         });
+        System.out.printf("총 수익률은 %lf%입니다.", calculateBenfit() / (10000 * lottos.size()) * 100);
     }
 
     public static void main(String[] args) {

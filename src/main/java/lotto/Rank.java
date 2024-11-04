@@ -1,21 +1,23 @@
 package lotto;
 
 public enum Rank {
-    MISS(-1, 0, ""),
-    FIFTH(3, 0, "5,000"),
-    FOURTH(4, 0, "50,000"),
-    THIRD(5, 0, "1,500,000"),
-    SECOND(5, 1, "30,000,000"),
-    FIRST(6, 0, "2,000,000,000");
+    MISS(-1, 0, 0, ""),
+    FIFTH(3, 0, 5000, "5,000"),
+    FOURTH(4, 0, 50000, "50,000"),
+    THIRD(5, 0, 1500000, "1,500,000"),
+    SECOND(5, 1, 30000000, "30,000,000"),
+    FIRST(6, 0, 2000000000, "2,000,000,000");
 
     private final int numberCount;
     private final int bounsExist;
-    private final String prize;
+    private final int prize;
+    private final String prizeString;
 
-    Rank(int numberCount, int bounsExist, String prize) {
+    Rank(int numberCount, int bounsExist, int prize, String prizeString) {
         this.numberCount = numberCount;
         this.bounsExist = bounsExist;
         this.prize = prize;
+        this.prizeString = prizeString;
     }
 
     public static Rank checkRank(int numberCount, int bounsExist) {
@@ -35,5 +37,9 @@ public enum Rank {
             matchCount--;
         }
         System.out.printf("%d개 일치%s (%s)원 - %d개\n", matchCount, bounsExistString, rank.prize, counter);
+    }
+
+    public static int calculatePrize(Rank rank, int counter) {
+        return rank.prize * counter;
     }
 }
