@@ -1,6 +1,9 @@
 package model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class LottoGenerator {
 
@@ -12,11 +15,14 @@ public class LottoGenerator {
     }
 
     public Lotto lottoGenrate() {
-        var lottoNumbers = Randoms.pickUniqueNumbersInRange(
+        var lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
                 LOTTO_NUMBER_START,
                 LOTTO_NUMBER_END,
                 LOTTO_NUMBER_COUNT
-        );
+        ));
+
+
+        Collections.sort(lottoNumbers);
 
         return new Lotto(lottoNumbers);
     }

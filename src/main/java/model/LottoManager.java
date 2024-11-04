@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import service.InputService;
 import service.OutputService;
+import validate.Validator;
 
 public class LottoManager {
 
@@ -25,11 +26,12 @@ public class LottoManager {
     private List<Lotto> purchasedLotto;
 
     public LottoManager(){
-        inputService = new InputService();
+        inputService = new InputService(new Validator());
         outputService = new OutputService();
         lottoGenerator = new LottoGenerator();
         purchasedLotto = new ArrayList<>();
         winningCounter = new HashMap<>();
+        totalPrizes = 0L;
     }
 
     private void initializeAnalysisFunction(){

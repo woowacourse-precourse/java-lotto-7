@@ -10,9 +10,21 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    // TODO: 추가 기능 구현
+    private void validate(List<Integer> numbers){
+        validateSize(numbers);
+        validateDuplicate(numbers);
+    }
+
+    private void validateDuplicate(List<Integer> numbers){
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException("[ERROR] 중복인 값이 존재할 수 없습니다.");
         }
     }
 
@@ -22,7 +34,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     public Integer getNumber(int index) {
         getNumberValidate(index);
         return numbers.get(index - 1);
