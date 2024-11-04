@@ -12,6 +12,9 @@ import lotto.model.Lotto;
 import lotto.model.Rank;
 
 public class OutputView {
+    private static final NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
+
+
     public static void printPurchasedLotto(List<Lotto> purchasedLotto) {
         System.out.printf(PurchaseOutputMessage.NUMBER_OF_PURCHASED_LOTTO.getMessage(), purchasedLotto.size());
         for (Lotto lotto : purchasedLotto) {
@@ -22,8 +25,6 @@ public class OutputView {
     public static void printLottoResults(Map<Rank, Integer> results) {
         System.out.println(StatisticsOutputMessage.START_COMMENT.getMessage());
         System.out.println(StatisticsOutputMessage.START_LINE.getMessage());
-
-        NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
 
         for (Rank rank : Rank.values()) {
             if (rank == Rank.NONE) {
