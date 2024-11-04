@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     public static void promptBonusNumberInput() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     public static void printLottoNumbers(List<Lotto> lottos) {
@@ -34,7 +34,7 @@ public class OutputView {
     }
 
     public static void printLottoResults(Map<Rank, Integer> statistics, double roi) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         System.out.printf("3개 일치 (%,d원) - %d개%n", Rank.FIFTH.getPrize(), statistics.get(Rank.FIFTH));
         System.out.printf("4개 일치 (%,d원) - %d개%n", Rank.FOURTH.getPrize(), statistics.get(Rank.FOURTH));
