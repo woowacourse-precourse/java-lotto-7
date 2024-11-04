@@ -13,33 +13,28 @@ import lotto.view.output.OutputView;
 import java.util.List;
 
 public class Application {
-
-    private static final LottoApplicationService lottoService = new LottoApplicationServiceImpl();
-    private static final InputHandler inputHandler = new InputHandler();
+    private final LottoApplicationService lottoService = new LottoApplicationServiceImpl();
+    private final InputHandler inputHandler = new InputHandler(lottoService);
 
     public static void main(String[] args) {
+        new Application().run();
+    }
+    private void run() {
         int amount = getValidatedAmount();
-
-        List<Lotto> lottos = generateAndPrintLottos(amount);
-
         WinningContext context = getWinningContext();
-
-        WinningResult result = lottoService.result(lottos, context);
+        WinningResult result = lottoService.result(generateAndPrintLottos(amount), context);
         OutputView.printWinningStatistics(result);
         OutputView.printEarningsRate(lottoService.calculateEarningsRate(result.getTotalPrize(), amount));
     }
-
-    private static int getValidatedAmount() {
+    private int getValidatedAmount() {
         return inputHandler.getValidatedAmount();
     }
-
-    private static List<Lotto> generateAndPrintLottos(int amount) {
+    private List<Lotto> generateAndPrintLottos(int amount) {
         List<Lotto> lottos = lottoService.generateLottos(amount);
         OutputView.printPurchasedLottos(lottos);
         return lottos;
     }
-
-    private static WinningContext getWinningContext() {
+    private WinningContext getWinningContext() {
         WinningNumbers winningNumbers = inputHandler.getValidatedWinningNumbers();
         BonusNumber bonusNumber = inputHandler.getValidatedBonusNumber(winningNumbers);
         return new WinningContext(winningNumbers, bonusNumber);

@@ -5,15 +5,19 @@ import lotto.domain.model.winning.WinningNumbers;
 import lotto.exception.bonus.BonusErrorMessages;
 import lotto.exception.lotto.LottoErrorMessages;
 import lotto.exception.winning.WinningNumbersErrorMessages;
-import lotto.service.LottoApplicationServiceImpl;
-
+import lotto.service.LottoApplicationService;
 import java.util.function.Supplier;
 
 public class InputHandler {
-    public static int getValidatedAmount() {
+    private final LottoApplicationService lottoApplicationService;
+    public InputHandler(LottoApplicationService lottoApplicationService) {
+        this.lottoApplicationService = lottoApplicationService;
+    }
+
+    public int getValidatedAmount() {
         return handleInput(() -> {
             String input = InputView.getAmount();
-            new LottoApplicationServiceImpl().validateAmount(input);
+            lottoApplicationService.validateAmount(input); // 의존성 주입된 객체 사용
             return Integer.parseInt(input);
         }, LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
     }
