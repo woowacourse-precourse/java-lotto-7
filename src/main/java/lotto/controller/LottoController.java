@@ -43,14 +43,6 @@ public class LottoController {
         view.printResult(result);
     }
 
-    public WinningLotto getWinningLotto() {
-        return retryOnException(() -> {
-            List<Integer> winningNumbers = view.getWinningNumbers();
-            int bonusNumber = view.getBonusNumber();
-            return lottoCreateService.createWinningLotto(winningNumbers, bonusNumber);
-        });
-    }
-
     public int getMoney() {
         return retryOnException(view::getMoney);
     }
@@ -60,6 +52,14 @@ public class LottoController {
             Lottos lottos = lottoCreateService.createLottosWithMoney(money);
             view.printLottos(lottos);
             return lottos;
+        });
+    }
+
+    public WinningLotto getWinningLotto() {
+        return retryOnException(() -> {
+            List<Integer> winningNumbers = view.getWinningNumbers();
+            int bonusNumber = view.getBonusNumber();
+            return lottoCreateService.createWinningLotto(winningNumbers, bonusNumber);
         });
     }
 
