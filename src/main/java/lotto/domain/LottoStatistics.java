@@ -20,6 +20,7 @@ public class LottoStatistics {
 
     public static LottoStatistics calcStatistics(List<Lotto> purchasedLottos, Lotto WinningLotto, Integer bonusNumber) {
         Map<LottoPrize, Integer> prizeCount = new HashMap<>();
+        initPrizeCount(prizeCount);
         long sumOfPrizeMoney = 0;
         for (Lotto purchasedLotto : purchasedLottos) {
             int matchCount = calcMatchCount(purchasedLotto, WinningLotto);
@@ -31,6 +32,12 @@ public class LottoStatistics {
         double rateOfReturn =
                 (double) sumOfPrizeMoney / (purchasedLottos.size() * LottoMachine.LOTTO_UNIT_PRICE) * 100.0;
         return new LottoStatistics(prizeCount, rateOfReturn);
+    }
+
+    private static void initPrizeCount(Map<LottoPrize, Integer> prizeCount) {
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
+            prizeCount.put(lottoPrize, 0);
+        }
     }
 
     private static void addPrize(Map<LottoPrize, Integer> prizeCount, LottoPrize prize) {
