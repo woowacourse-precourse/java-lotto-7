@@ -18,6 +18,11 @@ public class RankResult {
                 .reduce(new Money(0L), Money::add);
     }
 
+    public double calculateRateOfResult(Money purchaseAmount) {
+        return calculateWinningAmount().divide(purchaseAmount);
+    }
+
+
     public Map<Rank, Long> getRankResult() {
         return Collections.unmodifiableMap(rankResult);
     }
