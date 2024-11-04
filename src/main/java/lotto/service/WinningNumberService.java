@@ -3,21 +3,20 @@ package lotto.service;
 import lotto.util.NumberUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class WinningNumberService {
 
     public List<Integer> generateWinningNumbers(String inputWinningNumbers) {
         String[] splitInputs = splitWinningNumbers(inputWinningNumbers);
-        return parseWinningNumbers(splitInputs);
+        return setWinningNumbers(splitInputs);
     }
 
     private String[] splitWinningNumbers(String inputWinningNumbers) {
         return inputWinningNumbers.split(",");
     }
 
-    private List<Integer> parseWinningNumbers(String[] splitInputs) {
+    private List<Integer> setWinningNumbers(String[] splitInputs) {
         List<Integer> winningNumbers = new ArrayList<>();
         for (String splitInput : splitInputs) {
             int winningNumber = parseWinningNumber(splitInput);
@@ -31,14 +30,7 @@ public class WinningNumberService {
 
     private int parseWinningNumber(String input) {
         input = input.trim();
-        int number = NumberUtil.parsePositiveNumber(input);
-        validateWinningNumber(number);
+        int number = NumberUtil.parseLottoNumber(input);
         return number;
-    }
-
-    private void validateWinningNumber(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
     }
 }

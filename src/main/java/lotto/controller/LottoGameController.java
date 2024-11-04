@@ -9,6 +9,8 @@ import lotto.view.InputView;
 
 import java.util.List;
 
+import static lotto.util.NumberUtil.parseLottoNumber;
+
 public class LottoGameController {
     private final LottoPurchaseService lottoPurchaseService;
     private final OutputView outputView;
@@ -32,11 +34,14 @@ public class LottoGameController {
 
     public void run() {
         List<Integer> winningNumbers;
+        Lotto winningLotto;
         int bonusNumber;
 
         purchaseLotto();
-        winningNumbers = setWinningNumbers();
-
+        winningLotto = new Lotto(setWinningNumbers());
+        bonusNumber = setBonusNumber(winningLotto.getNumbers());
+        System.out.println(winningLotto.getNumbers());
+        System.out.println(bonusNumber);
     }
 
     public void purchaseLotto() {
@@ -63,7 +68,27 @@ public class LottoGameController {
         }
     }
 
+    public int setBonusNumber(List<Integer> winningNumbers) {
+        String inputBonusNumber;
 
+        while (true) {
+            try {
+                inputBonusNumber = inputView.promptBonusNumber();
+                Integer bonusNumber = parseLottoNumber(inputBonusNumber);
+                validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
+    public boolean validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if(winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스번호가 당첨번호와 중복됩니다.");
+        }
+        return true;
+    }
 
 
 }
