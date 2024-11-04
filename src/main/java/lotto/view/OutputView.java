@@ -2,11 +2,14 @@ package lotto.view;
 
 import java.util.List;
 import lotto.message.RunMessage;
+import lotto.model.Lotto;
 
 public class OutputView {
 
-    public static void printLottoNumbers(List<Integer> numbers){
-        System.out.println(numbers.toString());
+    public static void printLottoNumbers(List<Lotto> lottos){
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers().toString());
+        }
     }
 
     public static void printLottoCount(int amount){
