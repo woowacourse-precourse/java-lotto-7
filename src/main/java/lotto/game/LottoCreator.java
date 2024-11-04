@@ -6,6 +6,9 @@ import lotto.io.OutputHandler;
 import java.util.List;
 
 public class LottoCreator {
+    public static final int LOTTO_NUMBER_SIZE = 6;
+    public static final int LOTTO_MAX_RANGE = 45;
+    public static final int LOTTO_MIN_RANGE = 1;
     public Lottos createLottos(int lottoCount) {
         OutputHandler.printLottoCount(lottoCount);
         return getLottos(lottoCount);
@@ -21,7 +24,7 @@ public class LottoCreator {
     }
 
     private void createLottoNumbers(Lottos lottos) {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_RANGE, LOTTO_MAX_RANGE, LOTTO_NUMBER_SIZE);
         Lotto lotto = new Lotto(lottoNumbers);
         lottos.add(lotto);
     }

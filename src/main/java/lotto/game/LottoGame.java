@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class LottoGame {
+    private static final int PERCENT = 100;
     private final BuyingPrice buyingPrice;
     private final Lottos lottos;
 
@@ -25,7 +26,7 @@ public class LottoGame {
     }
 
     private void computeYield(int totalWinningPrice) {
-        double yield = (double) totalWinningPrice / buyingPrice.getPrice() * 100;
+        double yield = (double) totalWinningPrice / buyingPrice.getPrice() * PERCENT;
         OutputHandler.printYield(yield);
     }
 }

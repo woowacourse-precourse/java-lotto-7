@@ -10,6 +10,10 @@ import lotto.validation.Validator;
 import java.util.List;
 
 public class Lotto {
+    private static final int LOTTO_NUMBER_SIZE = 6;
+    private static final int MATCH_COUNT_BONUS = 5;
+    private static final int MATCH_COUNT_MINIMUM = 3;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -19,7 +23,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
@@ -34,15 +38,15 @@ public class Lotto {
         int matchCount = winningNumbers.checkMatchingCount(numbers);
         boolean hasBonusNumber = hasBonusNumber(buyer.getBonusNumber());
 
-        if (matchCount == 5 && hasBonusNumber) {
+        if (matchCount == MATCH_COUNT_BONUS && hasBonusNumber) {
             return LottoPrize.BONUS;
         }
         return decidePrize(matchCount);
     }
 
     private LottoPrize decidePrize(int matchCount) {
-        if (matchCount > 2) {
-            return LottoPrize.values()[matchCount - 3];
+        if (matchCount >= MATCH_COUNT_MINIMUM) {
+            return LottoPrize.values()[matchCount - MATCH_COUNT_MINIMUM];
         }
         return null;
     }
