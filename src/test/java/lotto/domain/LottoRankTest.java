@@ -91,4 +91,10 @@ class LottoRankTest {
     void 일치하지않는경우상금확인_테스트() {
         assertEquals(0, LottoRank.NONE.getPrize());
     }
+
+    @DisplayName("첫 번째 순위의 일치 수 확인")
+    @Test
+    void 첫번째순위일치수확인_테스트() {
+        assertEquals(6, LottoRank.FIRST.getMatchCount());
+    }
 }
