@@ -2,8 +2,14 @@ package lotto.controller;
 
 import static lotto.utils.Constants.*;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import lotto.model.Cashier;
+import lotto.model.Lotto;
 import lotto.model.LottoManager;
+import lotto.model.LottoResult;
+import lotto.model.Prize;
+import lotto.model.WinningLotto;
 import lotto.utils.ErrorMessage;
 import lotto.view.*;
 
@@ -37,9 +43,34 @@ public class LottoController {
         }
     }
 
+    public WinningLotto generateWinningLotto() {
+        return new WinningLotto(generateWinningNumbers(), generateBonusNumber());
+    }
+
     private void buy(int count) {
         for (int i = 0; i < count; i++) {
             outputView.printLottoTicket(lottoManager.addLotto());
+        }
+    }
+
+    private Lotto generateWinningNumbers() {
+        try {
+            String winningNumbers = inputView.input(INPUT_WINNING_NUMBERS_MESSAGE);
+            return lottoManager.generateCustomLotto(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e);
+            return generateWinningNumbers();
+        }
+    }
+
+    private int generateBonusNumber() {
+        try {
+            int bonusNumber = validateIsNumberAndParse(inputView.input(INPUT_BONUS_NUMBER_MESSAGE));
+            lottoManager.validateNumberInRange(bonusNumber);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e);
+            return generateBonusNumber();
         }
     }
 
