@@ -21,7 +21,7 @@ public class WinningNumbers {
 
         Set<Integer> numberSet = new HashSet<>();
         for (Integer number : numbers) {
-            validateNumber(number); // 이 메서드가 정수에 대한 유효성을 검사한다고 가정
+            validateNumber(number);
             if (!numberSet.add(number)) {
                 throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage());
             }

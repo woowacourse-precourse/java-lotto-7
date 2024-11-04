@@ -5,36 +5,36 @@ import java.util.List;
 public class BonusNumber {
     private final int number;
 
-    public BonusNumber(List<Integer> bonusNumbers, WinningNumbers winningNumbers) {
-        validateBonusNumber(bonusNumbers, winningNumbers);
-        this.number = bonusNumbers.get(0);
+    public BonusNumber(List<Integer> numbers, WinningNumbers winningNumbers) {
+        validateBonusNumber(numbers, winningNumbers);
+        this.number = numbers.getFirst();
     }
 
-    private static void validateBonusNumber(List<Integer> bonusNumbers, WinningNumbers winningNumbers) {
+    private static void validateBonusNumber(List<Integer> numbers, WinningNumbers winningNumbers) {
 
-        if (bonusNumbers.size() != 1) {
+        if (numbers.size() != 1) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_COUNT.getMessage());
         }
 
-        List<Integer> winning = winningNumbers.getNumbers();
-        int bonus = validateNumber(bonusNumbers.get(0));
+        List<Integer> winningNumberList = winningNumbers.getNumbers();
+        int number = validateNumber(numbers.getFirst());
 
-        if (isDuplicateBonus(bonus, winning)) {
+        if (isDuplicateBonus(number, winningNumberList)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 
-    private static boolean isDuplicateBonus(int bonus, List<Integer> winning) {
-        return winning.contains(bonus);
+    private static boolean isDuplicateBonus(int number, List<Integer> winning) {
+        return winning.contains(number);
     }
 
-    public static int validateNumber(int bonus) {
-        if (bonus < LottoRules.MIN_NUMBER || bonus > LottoRules.MAX_NUMBER) {
+    public static int validateNumber(int number) {
+        if (number < LottoRules.MIN_NUMBER || number > LottoRules.MAX_NUMBER) {
             throw new IllegalArgumentException(
                     String.format(ErrorMessage.OUT_OF_BOUNDS.getMessage(), LottoRules.MIN_NUMBER,
                             LottoRules.MAX_NUMBER));
         }
-        return bonus;
+        return number;
     }
 
     public int getNumber() {

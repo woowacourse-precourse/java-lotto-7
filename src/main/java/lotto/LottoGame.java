@@ -9,20 +9,18 @@ public class LottoGame {
     public LottoGame() {
         lottoMachine = new LottoMachine();
         result = new Result();
-
     }
 
     public void play() {
         PurchaseAmount purchaseAmount = InputHandler.getPurchaseAmount();
 
-        List<Lotto> lottos = lottoMachine.generateLotto(purchaseAmount);
+        List<Lotto> lottos = lottoMachine.generateLottos(purchaseAmount);
 
         OutputHandler.printLottos(lottos);
 
         WinningLotto winningLotto = InputHandler.getWinningLotto();
 
         result.calculateResults(winningLotto, lottos);
-
         OutputHandler.printResults(result, purchaseAmount);
     }
 }

@@ -7,8 +7,8 @@ import java.util.List;
 public class LottoMachine {
     private final List<Lotto> generatedLottos = new ArrayList<>();
 
-    public List<Lotto> generateLotto(PurchaseAmount purchaseAmount) {
-        int quantity = calculateLottoQuantity(purchaseAmount);
+    public List<Lotto> generateLottos(PurchaseAmount purchaseAmount) {
+        int quantity = calculateTicketQuantity(purchaseAmount);
 
         for (int count = 0; count < quantity; count++) {
             generatedLottos.add(new Lotto(getRandomLottoNumbers()));
@@ -16,7 +16,7 @@ public class LottoMachine {
         return generatedLottos;
     }
 
-    public int calculateLottoQuantity(PurchaseAmount purchaseAmount) {
+    private int calculateTicketQuantity(PurchaseAmount purchaseAmount) {
         return purchaseAmount.getAmount() / LottoRules.LOTTO_TICKET_PRICE;
     }
 

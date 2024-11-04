@@ -44,10 +44,7 @@ public class InputHandler {
             String input = Console.readLine();
             try {
                 validateNotEmptyInput(input);
-                List<Integer> numbers = Arrays.stream(input.split(","))
-                        .map(String::trim)
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList());
+                List<Integer> numbers = parseInput(input);
                 return new WinningNumbers(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + WINNING_NUMBERS_PROMPT);
@@ -63,14 +60,19 @@ public class InputHandler {
 
             try {
                 validateNotEmptyInput(input);
-                List<Integer> bonusNumber = Arrays.stream(input.split(","))
-                        .map(String::trim)
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList());
+                List<Integer> bonusNumber = parseInput(input);
                 return new BonusNumber(bonusNumber, winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + BONUS_NUMBER_PROMPT);
             }
         }
     }
+
+    private static List<Integer> parseInput(String input) {
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
 }
