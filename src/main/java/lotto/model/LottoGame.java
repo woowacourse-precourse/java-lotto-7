@@ -37,4 +37,16 @@ public class LottoGame {
         return result;
     }
 
+    public long calculateEarns(Map<DrawType, Integer> drawTypeIntegerMap, int purchasePrice) {
+        int totalEarnings = 0;
+
+        for (Map.Entry<DrawType, Integer> entry : drawTypeIntegerMap.entrySet()) {
+            DrawType drawType = entry.getKey();
+            int count = entry.getValue();
+
+            totalEarnings += drawType.getPrize() * count;
+        }
+
+        return Math.round(((float) totalEarnings / purchasePrice) * 100);
+    }
 }

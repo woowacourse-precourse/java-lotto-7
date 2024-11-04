@@ -32,8 +32,8 @@ public class LottoGameController {
     }
 
     public void run() {
-        String purchasePrice = getPurchasePrice();
-        Lottos purchasedLottos = Lottos.randomFrom(Integer.parseInt(purchasePrice) / LOTTO_PRICE);
+        int purchasePrice = Integer.parseInt(getPurchasePrice());
+        Lottos purchasedLottos = Lottos.randomFrom(purchasePrice / LOTTO_PRICE);
         outputView.showCreatedLottos(purchasedLottos.getLottos());
 
         List<Integer> winningNum = getWinningNum();
@@ -43,6 +43,7 @@ public class LottoGameController {
         lottoGame = new LottoGame(purchasedLottos, winningLotto, Integer.parseInt(bonusNum));
         lottoGame.draw();
         Map<DrawType, Integer> drawTypeIntegerMap = lottoGame.generateDrawResult();
+        long earns = lottoGame.calculateEarns(drawTypeIntegerMap, purchasePrice);
     }
 
     private String getPurchasePrice() {

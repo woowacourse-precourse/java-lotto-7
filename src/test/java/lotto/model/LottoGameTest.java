@@ -1,9 +1,10 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.List;
 import java.util.Map;
 import lotto.constant.DrawType;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,10 +33,23 @@ public class LottoGameTest {
         Map<DrawType, Integer> result = lottoGame.generateDrawResult();
 
         // then
-        Assertions.assertThat(result.get(DrawType.SIX_MATCH)).isEqualTo(1);
-        Assertions.assertThat(result.get(DrawType.FIVE_MATCH_WITH_BONUS)).isEqualTo(1);
-        Assertions.assertThat(result.get(DrawType.FIVE_MATCH_WITHOUT_BONUS)).isEqualTo(1);
-        Assertions.assertThat(result.get(DrawType.FOUR_MATCH)).isEqualTo(1);
-        Assertions.assertThat(result.get(DrawType.THREE_MATCH)).isEqualTo(1);
+        assertThat(result.get(DrawType.SIX_MATCH)).isEqualTo(1);
+        assertThat(result.get(DrawType.FIVE_MATCH_WITH_BONUS)).isEqualTo(1);
+        assertThat(result.get(DrawType.FIVE_MATCH_WITHOUT_BONUS)).isEqualTo(1);
+        assertThat(result.get(DrawType.FOUR_MATCH)).isEqualTo(1);
+        assertThat(result.get(DrawType.THREE_MATCH)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액 대비 로또 추첨 결과 얻은 금액인 수익률을 계산한다.")
+    void 로또_수익률_계산_테스트() {
+        // given
+        Map<DrawType, Integer> drawResult = lottoGame.generateDrawResult();
+
+        // when
+        long result = lottoGame.calculateEarns(drawResult, 5000);
+
+        // then
+        assertThat(result).isEqualTo(40631100);
     }
 }
