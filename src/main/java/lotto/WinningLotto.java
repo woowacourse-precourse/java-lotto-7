@@ -13,9 +13,9 @@ public class WinningLotto {
 
     public WinningResult checkResult(Lotto playerLotto) {
         int matchCount = checkMatchCount(playerLotto);
-        boolean isMatchedBonus = checkBonus(playerLotto);
+        int bonusMatchCount = checkBonusMatchCount(playerLotto);
 
-        return new WinningResult(matchCount, isMatchedBonus);
+        return new WinningResult(matchCount, bonusMatchCount);
     }
 
     private int checkMatchCount(Lotto playerLotto) {
@@ -28,13 +28,13 @@ public class WinningLotto {
         return matchCount;
     }
 
-    private boolean checkBonus(Lotto playerLotto) {
+    private int checkBonusMatchCount(Lotto playerLotto) {
         for (int number : playerLotto.getNumbers()) {
             if (number == this.bonusNumber) {
-                return true;
+                return 1;
             }
         }
 
-        return false;
+        return 0;
     }
 }

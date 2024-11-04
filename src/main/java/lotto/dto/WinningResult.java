@@ -2,18 +2,18 @@ package lotto.dto;
 
 public class WinningResult {
     private final int matchCount;
-    private final boolean isMatchedBonusNumber;
+    private final int bonusMatchCount;
 
-    public WinningResult(int matchCount, boolean isMatchedBonusNumber) {
+    public WinningResult(int matchCount, int bonusMatchCount) {
         this.matchCount = matchCount;
-        this.isMatchedBonusNumber = isMatchedBonusNumber;
+        this.bonusMatchCount = bonusMatchCount;
     }
 
     public int getMatchCount() {
         return matchCount;
     }
 
-    public boolean isMatchedBonusNumber() {
-        return isMatchedBonusNumber;
+    public int getBonusMatchCount() {
+        return bonusMatchCount;
     }
 }
