@@ -7,12 +7,16 @@ import lotto.domain.Rank;
 
 public class OutputView {
 
-    private static final String LOTTO_CNT_MSG = "%d개를 구매했습니다.\n";
-    private static final String LOTTO_NUMBERS = "[%s]\n";
+    private static final String LOTTO_CNT_MSG = "%d개를 구매했습니다.";
+    private static final String LOTTO_NUMBERS = "[%s]";
+    public static final String WIN_INSTRUCTIONS = "당첨 통계";
+    public static final String DIVIDING_LINE = "---";
+    public static final String NEW_LINE = System.lineSeparator();
 
     public void showHowManyLotto(PurchasedLottos purchasedLottos) {
-        System.out.println();
+        newLine();
         System.out.printf(LOTTO_CNT_MSG, purchasedLottos.size());
+        newLine();
     }
 
     public void showAllLottoNums(PurchasedLottos purchasedLottos) {
@@ -37,10 +41,10 @@ public class OutputView {
         System.out.printf(output.toString());
     }
 
-    private static void showWinInstructions() {
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+    private void showWinInstructions() {
+        newLine();
+        System.out.println(WIN_INSTRUCTIONS);
+        System.out.println(DIVIDING_LINE);
     }
 
     public void showProfit(LottoResult lottoResult, int money) {
@@ -54,5 +58,10 @@ public class OutputView {
                 .map(String::valueOf)
                 .toList());
         System.out.printf(LOTTO_NUMBERS, numbers);
+        newLine();
+    }
+
+    private void newLine() {
+        System.out.print(NEW_LINE);
     }
 }
