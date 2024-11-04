@@ -3,7 +3,9 @@ package lotto.io;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.message.ErrorMessage;
 
 public class Input {
@@ -76,10 +78,10 @@ public class Input {
 
     private void validateWinningNumber(String winningNumber) {
         validateInputExist(winningNumber);
-
-        winningNumber = winningNumber.replace(TARGET, REPLACEMENT);
-        validateNumber(winningNumber);
+        validateNumber(winningNumber.replace(TARGET, REPLACEMENT));
         validateRange(winningNumber);
+        validateCount(winningNumber);
+        validateDuplicate(winningNumber);
     }
 
     private void validateBonusNumber(String bonusNumber) {
@@ -116,12 +118,29 @@ public class Input {
     }
 
     private void validateRange(String input) {
-        List<String> numbers = Arrays.asList(input.split(","));
+        List<String> numbers = Arrays.asList(input.split(TARGET));
 
         for (String number : numbers) {
-            if (Integer.parseInt(number) < 1 && Integer.parseInt(number) > 45) {
+            if (!(Integer.parseInt(number) >= 1 && Integer.parseInt(number) <= 45)) {
                 throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE);
             }
+        }
+    }
+
+    private void validateCount(String input) {
+        List<String> numbers = Arrays.asList(input.split(TARGET));
+
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_EXCEED);
+        }
+    }
+
+    private void validateDuplicate(String input) {
+        List<String> numbers = Arrays.asList(input.split(TARGET));
+
+        Set<String> distinctNumbers = new HashSet<>(numbers);
+        if (numbers.size() != distinctNumbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS);
         }
     }
 
