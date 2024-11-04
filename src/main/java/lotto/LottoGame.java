@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoGame {
 
@@ -14,7 +15,11 @@ public class LottoGame {
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            List<Integer> sortedNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                    .stream()
+                    .sorted() // 오름차순 정렬
+                    .collect(Collectors.toList());
+            lottos.add(new Lotto(sortedNumbers));
         }
         return lottos;
     }
