@@ -4,8 +4,6 @@ import lotto.util.NumberSorter;
 
 import java.util.*;
 
-import static lotto.domain.WinningState.FIRST_PRIZE;
-
 public class Lotto {
     private final List<Integer> numbers;
     private WinningState winningState;

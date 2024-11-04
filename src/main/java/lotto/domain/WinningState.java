@@ -6,7 +6,7 @@ public enum WinningState {
     THIRD_PRIZE(1_500_000),
     FOURTH_PRIZE(50000),
     FIFTH_PRIZE(5000),
-    NOLUCK(0);
+    NO_LUCK(0);
 
     private int amount;
     WinningState(int amount) {

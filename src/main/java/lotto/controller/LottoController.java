@@ -25,11 +25,17 @@ public class LottoController {
 
     public void runLotto() {
         Lotto[] lottos = new Lotto[turn];
+        Map<String, Integer> results = new HashMap<>();
 
         for (int i = 0; i < turn; i++) {
             lottos[i] = new Lotto(RandomNumbersGenerator.create());
             String result = lottos[i].checkWinner(winningNumbers, bonusNumber);
-        }
 
+            int count = 0;
+            if (results.containsKey(result)) {
+                count = results.get(result);
+            }
+            results.put(result, count + WinningState.valueOf(result).getAmount());
+        }
     }
 }
