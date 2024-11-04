@@ -33,6 +33,12 @@ public class Lotto {
         return numbers.contains(lottoNumber);
     }
 
+    public int getMatchCount(Lotto otherLotto) {
+        return (int) numbers.stream()
+                .filter(otherLotto.numbers::contains)
+                .count();
+    }
+
     public List<LottoNumber> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }

@@ -22,4 +22,18 @@ public class WinningLotto {
             throw new IllegalArgumentException("[ERROR] 입력 받은 6개의 로또 번호와 보너스 번호가 중복됩니다.");
         }
     }
+
+    public LottoRank makeLottoRank(Lotto lotto) {
+        int matchCount = getMatchCount(lotto);
+        boolean matchBonus = checkLottoContainsBonusNumber(lotto);
+        return LottoRank.of(matchCount, matchBonus);
+    }
+
+    private int getMatchCount(Lotto lotto) {
+        return this.lotto.getMatchCount(lotto);
+    }
+
+    private boolean checkLottoContainsBonusNumber(Lotto lotto) {
+        return lotto.contains(bonusNumber);
+    }
 }
