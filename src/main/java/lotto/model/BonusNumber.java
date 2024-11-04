@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public class BonusNumber {
     private final int number;
