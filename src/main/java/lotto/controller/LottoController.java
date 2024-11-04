@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
@@ -40,7 +39,8 @@ public class LottoController {
         String bonusNumber = inputAndValidateBonusNumber(winningLottoNumber);
         System.out.println();
 
-        Map<Integer, Integer> lottoStatistics = calculateLottoStatistics(winningLottoNumber, bonusNumber, generatedLottoNumbers);
+        Map<Integer, Integer> lottoStatistics = calculateLottoStatistics(winningLottoNumber, bonusNumber,
+                generatedLottoNumbers);
         printStatistics(lottoStatistics);
 
         int lottoSum = calculateProfits(lottoStatistics);
@@ -128,7 +128,7 @@ public class LottoController {
     }
 
     private Map<Integer, Integer> calculateLottoStatistics(Lotto winningNumbers, String bonusNumber,
-                                         List<Lotto> generatedLottoNumbers) {
+                                                           List<Lotto> generatedLottoNumbers) {
         return lottoService.calculateLottoStatistics(winningNumbers, bonusNumber, generatedLottoNumbers);
     }
 
