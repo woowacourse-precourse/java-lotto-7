@@ -5,11 +5,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-//TODO 숫자 다 상수로 수정
-
 public class InputHandler {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private final static int LOTTO_NUM_SIZE = 6;
+    private final static int LOTTO_PRICE = 1000;
+    private static final int LOTTO_MAX_NUMBER = 45;
+    private static final int LOTTO_MIN_NUMBER = 1;
+
     public int getLottoAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         while (true) {
@@ -17,7 +19,7 @@ public class InputHandler {
                 int amount = Integer.parseInt(Console.readLine());
                 validateInputMoneyAmount(amount);
 
-                return amount / 1000;
+                return amount / LOTTO_PRICE;
             }
 
             catch (IllegalArgumentException e) {
@@ -39,6 +41,7 @@ public class InputHandler {
                 validateNumberInput(winnerNumbers);
                 return winnerNumbers;
             }
+
             catch (IllegalArgumentException e) {
                 System.out.println(ERROR_PREFIX + e.getMessage());
             }
@@ -70,18 +73,19 @@ public class InputHandler {
     }
 
     private void checkNumber(int number) {
-        if (!(number >= 1 && number <= 45)) {
+        if (!(number >= LOTTO_MIN_NUMBER && number <= LOTTO_MAX_NUMBER)) {
             throw new IllegalArgumentException("1부터 45까지만 가능합니다.");
         }
     }
 
     private void validateInputMoneyAmount(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("금액은 1000원부터 가능합니다.");
+        }
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("금액은 1000원 단위로 입력해주세요.");
         }
     }
-
-
 
     private void validateNumberInput(List<Integer> winnerNumbers) {
         checkInputNumberCount(winnerNumbers);
