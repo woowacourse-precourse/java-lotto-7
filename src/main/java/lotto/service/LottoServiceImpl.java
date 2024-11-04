@@ -35,8 +35,10 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public double computeProfitRate(String purchaseAmount, String winningNumbers, String bonusNumber) {
+        List<Integer> numericWinningNumbers = parseIntegerList(winningNumbers);
+        validateLottoNumbers(numericWinningNumbers);
         return (double) lottoRepository.generatePrizeStreamBy(
-                parseIntegerList(winningNumbers),
+                numericWinningNumbers,
                         Integer.parseInt(bonusNumber)
                 )
                 .map(LottoRule::getPrize)
@@ -47,8 +49,10 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public List<String> generateWinningReport(String winningNumbers, String bonusNumber) {
+        List<Integer> numericWinningNumbers = parseIntegerList(winningNumbers);
+        validateLottoNumbers(numericWinningNumbers);
         Map<Object, Long> prizeCountMap = lottoRepository.generatePrizeStreamBy(
-                parseIntegerList(winningNumbers),
+                numericWinningNumbers,
                 Integer.parseInt(bonusNumber))
                 .collect(Collectors.groupingBy(i -> i, Collectors.counting()));
 
@@ -96,6 +100,16 @@ public class LottoServiceImpl implements LottoService {
     private void validateDivisibleByLottoPrice(int amount) {
         if (amount % LOTTO_PRICE != 0) {
                 throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
+        }
+    }
+
+    private void validateLottoNumbers(List<Integer> numbers) {
+        validateSize(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
     }
 }
