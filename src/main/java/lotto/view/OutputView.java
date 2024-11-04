@@ -23,4 +23,8 @@ public class OutputView {
     public static void printWinningNumberInput(){
         System.out.println(OutputMessage.REQUEST_INPUT_WINNING_NUMBER);
     }
+
+    public static void printBonusNumberInput(){
+        System.out.println(OutputMessage.REQUEST_INPUT_BONUS_NUMBER);
+    }
 }
