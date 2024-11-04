@@ -1,16 +1,25 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.model.service.LottServiceImpl;
+import lotto.model.service.LottoService;
+import lotto.view.inputview.InputView;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.IllformedLocaleException;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private final InputView inputView = new InputView();
+    private final LottoService lottoService = new LottServiceImpl();
 
     @Test
     void 기능_테스트() {
@@ -52,6 +61,36 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액이 1,000원 단위가 아니라면 예외처리 하는 테스트")
+    public void purchaseAmountExceptionTest() {
+        //given
+        int amount = 1313;
+        //when, then
+        assertThrows(IllegalArgumentException.class,
+                () -> inputView.validatePurchaseAmount(amount));
+    }
+
+    @Test
+    @DisplayName("1,000원 단위로 잘 입력했는지 확인하는 테스트")
+    public void purchaseAmountRightInputTest() {
+        //given
+        int amount = 2000;
+        //when, then
+        assertDoesNotThrow(() -> inputView.validatePurchaseAmount(amount));
+    }
+
+    @Test
+    @DisplayName("구입 금액에 따른 로또 구매개수 계산하는 테스트")
+    public void calculateLottoCnt() {
+        //given
+        int amount = 5000;
+        int resultCnt = 5;
+        //when, then
+        assertEquals(resultCnt, lottoService.calculateLottoCount(amount));
+
     }
 
     @Override
