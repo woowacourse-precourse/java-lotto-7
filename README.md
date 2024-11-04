@@ -22,3 +22,6 @@
 ## 로또 번호 매칭
 &ensp; - (1, 2등 제외) 보너스 번호 포함 matched 된 number 개수 구하기  
 &ensp; - 1, 2등의 경우 6개 matched 된 경우에서 bonus_flag로 판별  
+
+### 주의 사항
+&ensp; - enum 사용, else 사용 금지, method의 길이가 15 line 넘지 않도록, 구현 기능에 대한 단위 테스트 작성
