@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.common.Constants;
 import lotto.common.Prompts;
@@ -21,7 +22,7 @@ public class InputParser {
     public List<Integer> parseLottoNumbers() {
         String rawLottoNumbers = inputView.requireLottoNumbers();
         List<String> lottoNumbers = List.of(rawLottoNumbers.split(Prompts.INPUT_DELIMITER));
-        List<Integer> convertedLottoNumbers = List.of();
+        List<Integer> convertedLottoNumbers = new ArrayList<>();
 
         for (String lottoNumber : lottoNumbers) {
             convertedLottoNumbers.add(Integer.parseInt(lottoNumber));

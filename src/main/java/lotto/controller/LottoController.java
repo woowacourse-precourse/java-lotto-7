@@ -11,7 +11,6 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private int lottoCount;
     private final InputParser inputParser;
     private final OutputView outputView;
     private final LottoService lottoService;
@@ -26,6 +25,8 @@ public class LottoController {
         int parsedPrice = inputParser.parsePrice();
         List<Integer> parsedLottoNumbers = inputParser.parseLottoNumbers();
         int parsedBonusNumbers = inputParser.parseBonusNumber();
+
+        lottoService.lottoInnerLogic();
 
         outputView.showStatistics();
     }

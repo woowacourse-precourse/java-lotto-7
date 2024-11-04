@@ -9,4 +9,14 @@ public class LottoService {
         this.lottoFactory = lottoFactory;
     }
 
+    public void lottoInnerLogic() {
+        startLotto();
+    }
+
+    private void startLotto() {
+
+    }
+
+
+
 }
