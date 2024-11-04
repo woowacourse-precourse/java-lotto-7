@@ -35,10 +35,6 @@ public class ListValidator<T> {
         return this;
     }
 
-    @FunctionalInterface
-    public interface ValidateFunction<T> {
-        void validate(final T value);
-    }
 
     private boolean isInvalidNumbersSize(final List<T> values, final int size) {
         return values.size() != size;
