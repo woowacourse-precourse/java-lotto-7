@@ -7,6 +7,7 @@ public class Errors {
     private static final String PREFIX = ERROR_PREFIX;
 
     public static void IllegalArgumentException(String message){
+        System.out.println(PREFIX + message);
         throw new IllegalArgumentException(ERROR_PREFIX + message);
     }
 
