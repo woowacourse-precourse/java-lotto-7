@@ -26,7 +26,7 @@ public class LottoSeller {
                 validatePay(input);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Logger.error(e.getMessage());
             }
         }
         return Integer.parseInt(input);
@@ -37,13 +37,13 @@ public class LottoSeller {
         try {
             pay = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("로또 금액은 숫자여야 합니다.");
         }
         if (pay < 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 금액은 양수여야 합니다.");
+            throw new IllegalArgumentException("로또 금액은 양수여야 합니다.");
         }
         if (pay % lottoPrice != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 금액은 1000원을 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException("로또 금액은 1000원을 단위로 입력해야 합니다.");
         }
     }
 
@@ -66,7 +66,7 @@ public class LottoSeller {
                 winner = new Lotto(numbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Logger.error(e.getMessage());
             }
         }
         return winner;
@@ -79,7 +79,7 @@ public class LottoSeller {
                 numbers.add(Integer.parseInt(token));
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자와 콤마(,)를 제외한 문자는 입력할 수 없습니다.");
+            throw new IllegalArgumentException("숫자와 콤마(,)를 제외한 문자는 입력할 수 없습니다.");
         }
         return numbers;
     }
@@ -93,7 +93,7 @@ public class LottoSeller {
                 lottoBonus = new LottoBonus(lotto, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Logger.error(e.getMessage());
             }
         }
         return lottoBonus;
@@ -103,7 +103,7 @@ public class LottoSeller {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 숫자여야 합니다.");
         }
     }
 
