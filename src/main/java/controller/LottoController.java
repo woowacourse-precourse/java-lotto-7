@@ -24,8 +24,9 @@ public class LottoController {
             int purchaseAmount = inputPurchaseAmount();
             List<Lotto> lottos = issueLottos(purchaseAmount);
             List<Integer> winningNumbers = inputWinningNumbers();
+            lottoService.validateWinningNumbers(winningNumbers);
             int bonusNumber = inputBonusNumber();
-
+            lottoService.validateBonusNumber(bonusNumber, winningNumbers);
             List<LottoResult> results = checkWinningResults(lottos, winningNumbers, bonusNumber);
             printResultsAndProfitRate(results, purchaseAmount);
 
@@ -57,7 +58,6 @@ public class LottoController {
     }
 
     private List<LottoResult> checkWinningResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        lottoService.validateWinningNumbers(winningNumbers, bonusNumber);
         return lottos.stream().map(lotto -> lottoService.checkWin(lotto, winningNumbers, bonusNumber)).toList();
     }
 

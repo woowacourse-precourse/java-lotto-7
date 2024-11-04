@@ -29,10 +29,13 @@ public class LottoService {
         return ((double) totalPrize / totalCost) * 100;
     }
 
-    public void validateWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    public void validateWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6 || !isWithinRange(winningNumbers) || hasDuplicates(winningNumbers)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.");
         }
+    }
+
+    public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
