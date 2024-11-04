@@ -44,4 +44,16 @@ public enum Rank {
         return FIFTH;
     }
 
+    public boolean isWinning() {
+        return this != NONE;
+    }
+
+    public long calculatePrize(int count) {
+        return (long) prize * count;
+    }
+
+    public String getWinningResult(int count) {
+        return String.format("%s (%,d원) - %d개", description, prize, count);
+    }
+
 }
