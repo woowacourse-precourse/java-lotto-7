@@ -9,7 +9,7 @@ public record BudgetRequest(String budget) {
     public BudgetRequest {
         validateEmpty(budget);
         validateNumber(budget);
-        validateLottos(budget);
+        //validateLottos(budget);
     }
 
     private void validateEmpty(String budget) {
