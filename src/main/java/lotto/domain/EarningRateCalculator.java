@@ -14,16 +14,28 @@ public class EarningRateCalculator {
     private static final int DECIMAL_PRECISION = 1;
 
     public double calculateEarningRate(int quantity, EnumMap<Ranking, Integer> statistics) {
-        Money totalPrize = statistics.entrySet().stream()
+        Money totalPrize = calculateTotalPrize(statistics);
+        Money purchasedAmount = calculatePurchasedAmount(quantity);
+        return calculateEarningRate(totalPrize, purchasedAmount);
+    }
+
+    private Money calculateTotalPrize(EnumMap<Ranking, Integer> statistics) {
+        return statistics.entrySet().stream()
                 .map(entry -> Money.from(entry.getKey().getPrize() * entry.getValue()))
                 .reduce(Money.ZERO, Money::plus);
+    }
 
-        Money purchasedAmount = Money.from(quantity * TICKET_PRICE.getNumber());
-        Money earningRate = totalPrize.divideWithRoundHalfUp(purchasedAmount);
+    private Money calculatePurchasedAmount(int quantity) {
+        return Money.from(quantity * TICKET_PRICE.getNumber());
+    }
 
-        BigDecimal profitPercentage = BigDecimal.valueOf(earningRate.doubleValue()).multiply(BigDecimal.valueOf(PERCENTAGE_MULTIPLIER));
-        BigDecimal roundToDecimalPrecision = profitPercentage.setScale(DECIMAL_PRECISION, RoundingMode.HALF_UP);
+    private double calculateEarningRate(Money totalPrize, Money purchasedAmount) {
+        BigDecimal earningRate = totalPrize.divideWithRoundHalfUp(purchasedAmount);
 
-        return roundToDecimalPrecision.doubleValue();
+        BigDecimal profitPercentage = earningRate
+                .multiply(BigDecimal.valueOf(PERCENTAGE_MULTIPLIER))
+                .setScale(DECIMAL_PRECISION, RoundingMode.HALF_UP);
+
+        return profitPercentage.doubleValue();
     }
 }

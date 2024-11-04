@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
-import static lotto.domain.constant.LottoRule.TICKET_PRICE;
-
 public class Money {
 
     public static final Money ZERO = Money.from(0);
@@ -31,13 +29,12 @@ public class Money {
         return new Money(this.amount.add(money.amount));
     }
 
-    public Money divideWithRoundHalfUp(Money money) {
-        BigDecimal result = this.amount.divide(money.amount, DECIMAL_PRECISION, RoundingMode.HALF_UP);
-        return new Money(result);
+    public BigDecimal divideWithRoundHalfUp(Money money) {
+        return this.amount.divide(money.amount, DECIMAL_PRECISION, RoundingMode.HALF_UP);
     }
 
     public Money divideBy(Money ticketPrice) {
-        return new Money(this.amount.divide(ticketPrice.amount));
+        return new Money(this.amount.divideToIntegralValue(ticketPrice.amount));
     }
 
     public boolean isLessThan(Money other) {
@@ -50,10 +47,6 @@ public class Money {
 
     public int toIntValue() {
         return amount.intValue();
-    }
-
-    public double doubleValue() {
-        return amount.doubleValue();
     }
 
     public boolean equals(Object object) {
