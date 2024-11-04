@@ -12,6 +12,16 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public Rank match(Lotto userLotto) {
+        int matchCount = (int) userLotto.getNumbers().stream()
+                .filter(winningLotto::isContainingNumber)
+                .count();
+
+        boolean matchBonus = userLotto.isContainingNumber(bonusNumber);
+
+        return Rank.valueOf(matchCount, matchBonus);
+    }
+
     private void validate(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
