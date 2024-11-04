@@ -10,7 +10,7 @@ public class PurchaseAmountRequest {
     }
 
     public static PurchaseAmountRequest from(String purchaseAmount) {
-        int parsedAmount = NumberParser.parsePurchaseAmountToInt(purchaseAmount);
+        int parsedAmount = NumberParser.parseIntegerFromString(purchaseAmount);
         return new PurchaseAmountRequest(parsedAmount);
     }
 

@@ -8,8 +8,8 @@ public final class NumberParser {
     private NumberParser() {
     }
 
-    public static int parsePurchaseAmountToInt(final String purchaseAmount) {
-        return Integer.parseInt(purchaseAmount);
+    public static int parseIntegerFromString(final String input) {
+        return Integer.parseInt(input);
     }
 
     public static List<Integer> parseWinningNumbers(String input) {
