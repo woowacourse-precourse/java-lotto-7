@@ -7,7 +7,7 @@ public enum Prize {
     SECOND("5개 일치, 보너스 볼 일치 (30,000,000원)"),
     FIRST("6개 일치 (2,000,000,000원)");
 
-    private String prizeCondition;
+    private final String prizeCondition;
 
     Prize(String prizeCondition) {
         this.prizeCondition = prizeCondition;

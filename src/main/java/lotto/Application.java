@@ -11,6 +11,7 @@ public class Application {
 
         LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers();
         lottoWinningNumbers.inputWinningNumbers();
+        lottoWinningNumbers.inputBonusNumber();
 
         ArrayList<Lotto> purchaseList = lottoPurchase.purchaseLottoList;
 

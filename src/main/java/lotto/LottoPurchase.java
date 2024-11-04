@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -14,14 +13,15 @@ public class LottoPurchase {
 
     public void purchase() {
         System.out.println("구입금액을 입력해 주세요.");
-        String purchaseAmountg = Console.readLine();
-        validateInput(purchaseAmountg);
+        String purchaseAmountInput = Console.readLine();
         try {
-            int purchaseAmount = Integer.parseInt(purchaseAmountg);
+            validateInput(purchaseAmountInput);
+            int purchaseAmount = Integer.parseInt(purchaseAmountInput);
+            validateInput(purchaseAmount);
             purchaseQuantity = purchaseAmount/1000;
             makeNumbers(purchaseQuantity);
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 로또 구입금액은 숫자만 입력 가능합니다.");
+        } catch (IllegalArgumentException e) {
+            purchase();
         }
     }
 
@@ -49,6 +49,13 @@ public class LottoPurchase {
         if (!str.matches("\\d+")) {
             System.out.println("[ERROR] 로또 구입금액은 숫자만 입력 가능합니다.");
             throw new IllegalArgumentException("[ERROR] 로또 구입금액은 숫자만 입력 가능합니다.");
+        }
+    }
+
+    public void validateInput(int purchaseAmount) {
+        if (purchaseAmount % 1000 != 0 || purchaseAmount == 0) {
+            System.out.println("[ERROR] 로또 구입금액은 1000단위로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1000단위로 입력해야 합니다.");
         }
     }
 }
