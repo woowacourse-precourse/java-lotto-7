@@ -13,6 +13,12 @@ import lotto.service.winningStatistic.WinningStatisticService;
 import lotto.service.winningStatistic.WinningStatisticServiceImpl;
 import lotto.strategy.number.LottoNumberGeneratorStrategy;
 import lotto.strategy.number.RandomLottoNumberGenerator;
+import lotto.validator.BonusNumberInputValidator;
+import lotto.validator.CostInputValidator;
+import lotto.validator.CostValidator;
+import lotto.validator.NumbersInputValidator;
+import lotto.validator.Validator;
+import lotto.validator.ValidatorFacade;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.ViewFacade;
@@ -37,7 +43,15 @@ public class Application {
 
         LottoFacade lottoFacade = new LottoFacadeImpl(lottoIssuingService, winningStatisticService);
 
-        LottoController lottoController = new LottoController(viewFacade, lottoFacade);
+        Validator<String> bonusNumberInputValidator = new BonusNumberInputValidator();
+        Validator<String> costInputValidator = new CostInputValidator();
+        Validator<Integer> costValidator = new CostValidator();
+        Validator<String> numberInputValidator = new NumbersInputValidator();
+
+        ValidatorFacade validatorFacade = new ValidatorFacade(bonusNumberInputValidator, costInputValidator,
+                costValidator, numberInputValidator);
+
+        LottoController lottoController = new LottoController(viewFacade, lottoFacade, validatorFacade);
         lottoController.run();
     }
 }
