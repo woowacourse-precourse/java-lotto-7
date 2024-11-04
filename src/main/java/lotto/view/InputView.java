@@ -7,6 +7,8 @@ import java.util.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
+    private static final String UNIQUENESS = "[ERROR] 로또 번호는 중복되지 않아야 합니다.";
+    private static final String OUT_OF_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     public static int readMoney() {
         String input = readLine();
         try {
@@ -30,6 +32,7 @@ public class InputView {
         try {
             return convertInputToWinningNumbers(input);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             OutputView.printErrorOfRequestNumbers();
             return readWinningNumbers();
         }
@@ -44,17 +47,34 @@ public class InputView {
         return new Lotto(Numbers);
     }
 
-    public static int readBonusNumber() {
+    public static int readBonusNumber(Lotto winningNumbers) {
         String input = readLine();
         try {
-            return convertInputToNumber(input);
+            return convertInputToNumber(input, winningNumbers);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             OutputView.printErrorOfRequestNumber();
-            return readBonusNumber();
+            return readBonusNumber(winningNumbers);
         }
     }
 
-    private static int convertInputToNumber(String input) throws IllegalArgumentException {
-        return Integer.parseInt(input);
+    private static int convertInputToNumber(String input, Lotto winningNumbers) throws IllegalArgumentException {
+        int bonusNumber = Integer.parseInt(input);
+        validate(bonusNumber, winningNumbers);
+        return bonusNumber;
+    }
+    private static void validate(int bonusNumber, Lotto winningNumbers) {
+        validateUniqueness(bonusNumber, winningNumbers);
+        validateOutOfRange(bonusNumber,winningNumbers);
+    }
+    private static void validateUniqueness(int bonusNumber, Lotto winningNumbers) {
+        if(winningNumbers.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(UNIQUENESS);
+        }
+    }
+    private static void validateOutOfRange(int bonusNumber, Lotto winningNumbers) {
+        if(bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(OUT_OF_RANGE);
+        }
     }
 }

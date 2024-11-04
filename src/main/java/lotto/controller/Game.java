@@ -42,7 +42,7 @@ public class Game {
         OutputView.requestWinningNumbers();
         winningNumbers = InputView.readWinningNumbers();
         OutputView.requestBonusNumber();
-        bonusNumber = InputView.readBonusNumber();
+        bonusNumber = InputView.readBonusNumber(winningNumbers);
     }
 
     private void drawLottos() {
