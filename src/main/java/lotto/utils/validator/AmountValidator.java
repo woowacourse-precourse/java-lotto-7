@@ -4,21 +4,21 @@ import static lotto.constants.ErrorMessage.*;
 
 public class AmountValidator {
 
-    public static void validateLottoAmount(String amounts) {
-        checkEmptyAmounts(amounts);
-        checkNonNumericAmounts(amounts);
+    public static void validateLottoAmount(String amount) {
+        checkEmptyAmount(amount);
+        checkNonNumericAmount(amount);
     }
 
-    private static void checkEmptyAmounts(String amounts) {
-        if (amounts.isBlank()) {
+    private static void checkEmptyAmount(String amount) {
+        if (amount.isBlank()) {
             throw new IllegalArgumentException(EMPTY_AMOUNT.getMessage());
         }
     }
 
-    private static void checkNonNumericAmounts(String amounts) {
-        for (int i = 0; i < amounts.length(); i++) {
-            if (!Character.isDigit(amounts.charAt(i))) {
-                throw new IllegalArgumentException(ONLY_DIGITS_ALLOWED_AMOUNTS.getMessage());
+    private static void checkNonNumericAmount(String amount) {
+        for (int i = 0; i < amount.length(); i++) {
+            if (!Character.isDigit(amount.charAt(i))) {
+                throw new IllegalArgumentException(ONLY_DIGITS_ALLOWED_AMOUNT.getMessage());
             }
         }
     }

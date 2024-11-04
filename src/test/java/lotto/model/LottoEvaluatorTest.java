@@ -50,8 +50,8 @@ class LottoEvaluatorTest {
         LottoEvaluator evaluator = new LottoEvaluator(lottoTicket, winningNumbers, bonusNumber);
         LottoEvaluatedStatus evaluatedStatus = evaluator.getEvaluatedStatus();
 
-        double expectedROI = (double) (LottoPrize.FIRST_PRIZE.getPrizeAmounts()
-                + LottoPrize.SECOND_PRIZE.getPrizeAmounts()) / (3 * 1000) * 100;
+        double expectedROI = (double) (LottoPrize.FIRST_PRIZE.getPrizeAmount()
+                + LottoPrize.SECOND_PRIZE.getPrizeAmount()) / (3 * 1000) * 100;
         expectedROI = Math.round(expectedROI * 10) / 10.0;
 
         assertThat(evaluatedStatus.getReturnOnInvestment()).isEqualTo(expectedROI);

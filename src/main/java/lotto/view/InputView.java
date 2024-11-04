@@ -6,8 +6,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public String receiveLottoAmounts() {
-        printAmountsMessage();
+    public String receiveLottoAmount() {
+        printAmountMessage();
         return Console.readLine();
     }
 
@@ -23,9 +23,8 @@ public class InputView {
         return Console.readLine();
     }
 
-
-    private void printAmountsMessage() {
-        System.out.println(GET_LOTTO_AMOUNTS_MESSAGE.getMessage());
+    private void printAmountMessage() {
+        System.out.println(GET_LOTTO_AMOUNT_MESSAGE.getMessage());
     }
 
     private void printNextLine() {

@@ -1,6 +1,6 @@
 package lotto.utils.parser;
 
-import static lotto.constants.ErrorMessage.WINNING_NUMBER_IS_ONLY_INTEGER_ALLOWED;
+import static lotto.constants.ErrorMessage.ONLY_INTEGER_RANGE_WINNING_NUMBERS_ALLOWED;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -33,6 +33,6 @@ class WinningNumbersParserTest {
 
         assertThatThrownBy(() -> WinningNumbersParser.getWinningNumbers(userWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(WINNING_NUMBER_IS_ONLY_INTEGER_ALLOWED.getMessage());
+                .hasMessage(ONLY_INTEGER_RANGE_WINNING_NUMBERS_ALLOWED.getMessage());
     }
 }

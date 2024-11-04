@@ -35,7 +35,7 @@ public enum LottoPrize {
         return prizeDetails;
     }
 
-    public long getPrizeAmounts() {
+    public long getPrizeAmount() {
         return prizeAmounts;
     }
 

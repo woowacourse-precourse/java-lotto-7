@@ -36,7 +36,7 @@ class BonusNumberParserTest {
 
         assertThatThrownBy(() -> BonusNumberParser.getBonusNumber(temporaryLottoNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ONLY_INTEGER_BONUS_NUMBER_ALLOWED.getMessage());
+                .hasMessage(ErrorMessage.ONLY_INTEGER_RANGE_BONUS_NUMBER_ALLOWED.getMessage());
     }
 
     @DisplayName("1부터 45사이가 아닌 보너스 숫자가 입력된다면, 예외가 발생한다.")
@@ -56,6 +56,6 @@ class BonusNumberParserTest {
 
         assertThatThrownBy(() -> BonusNumberParser.getBonusNumber(temporaryLottoNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.CANT_DUPLICATED_BONUS_NUMBER_WITH_WINNING_NUMBER.getMessage());
+                .hasMessage(ErrorMessage.CANT_DUPLICATED_BONUS_NUMBER_WITH_WINNING_NUMBERS.getMessage());
     }
 }

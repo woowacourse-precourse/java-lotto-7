@@ -1,6 +1,6 @@
 package lotto.utils.parser;
 
-import static lotto.constants.ErrorMessage.WINNING_NUMBER_IS_ONLY_INTEGER_ALLOWED;
+import static lotto.constants.ErrorMessage.ONLY_INTEGER_RANGE_WINNING_NUMBERS_ALLOWED;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +18,7 @@ public class WinningNumbersParser {
                     .collect(Collectors.toList());
             return new Lotto(winningNumbers);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(WINNING_NUMBER_IS_ONLY_INTEGER_ALLOWED.getMessage());
+            throw new IllegalArgumentException(ONLY_INTEGER_RANGE_WINNING_NUMBERS_ALLOWED.getMessage());
         }
     }
 }

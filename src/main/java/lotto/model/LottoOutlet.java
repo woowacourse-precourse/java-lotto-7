@@ -10,20 +10,20 @@ public class LottoOutlet {
 
     public static LottoTicket purchaseLottoTickets(int lottoAmount) {
         int ticketCount = buyTicketsByAmount(lottoAmount);
-        return generateLottoNumbersTicket(ticketCount);
+        return generateLottoNumbersTickets(ticketCount);
     }
 
     private static int buyTicketsByAmount(int lottoAmounts) {
         return lottoAmounts / WON_1000;
     }
 
-    private static LottoTicket generateLottoNumbersTicket(int totalTickets) {
-        List<Lotto> lottoNumbersTicket = new ArrayList<>();
+    private static LottoTicket generateLottoNumbersTickets(int totalTickets) {
+        List<Lotto> lottoNumbersTickets = new ArrayList<>();
 
         for (int i = 0; i < totalTickets; i++) {
-            lottoNumbersTicket.add(LottoNumberMaker.makeRandomNumbers());
+            lottoNumbersTickets.add(LottoNumberMaker.makeRandomNumbers());
         }
 
-        return new LottoTicket(lottoNumbersTicket);
+        return new LottoTicket(lottoNumbersTickets);
     }
 }

@@ -5,10 +5,10 @@ import lotto.model.Lotto;
 import lotto.model.LottoOutlet;
 import lotto.model.LottoEvaluator;
 import lotto.model.LottoTicket;
-import lotto.utils.parser.AmountsParser;
+import lotto.utils.parser.AmountParser;
 import lotto.utils.parser.BonusNumberParser;
 import lotto.utils.parser.WinningNumbersParser;
-import lotto.utils.validator.AmountsValidator;
+import lotto.utils.validator.AmountValidator;
 import lotto.utils.validator.BonusNumberValidator;
 import lotto.utils.validator.WinningNumbersValidator;
 import lotto.view.InputView;
@@ -30,9 +30,9 @@ public class Controller {
         printLottoStatus(lottoTickets);
 
         Lotto winningNumbers = readWinningNumbers();
-        int bonusNumbers = readBonusNumber(winningNumbers);
+        int bonusNumber = readBonusNumber(winningNumbers);
 
-        LottoEvaluator lottoEvaluator = new LottoEvaluator(lottoTickets, winningNumbers, bonusNumbers);
+        LottoEvaluator lottoEvaluator = new LottoEvaluator(lottoTickets, winningNumbers, bonusNumber);
         LottoEvaluatedStatus lottoPrizeStatus = lottoEvaluator.getEvaluatedStatus();
 
         printLottoResult(lottoPrizeStatus);
@@ -41,9 +41,9 @@ public class Controller {
     private int readLottoAmount() {
         while (true) {
             try {
-                String amounts = inputView.receiveLottoAmounts();
-                AmountsValidator.validateLottoAmount(amounts);
-                return AmountsParser.getAmounts(amounts);
+                String amount = inputView.receiveLottoAmount();
+                AmountValidator.validateLottoAmount(amount);
+                return AmountParser.getAmount(amount);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
