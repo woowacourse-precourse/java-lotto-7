@@ -11,7 +11,9 @@ public class Application {
         int lottoCount = purchaseAmount / 1000;
         List<Lotto> purchasedLottos = Lotto.generateLottos(lottoCount);
         printPurchasedLottos(purchasedLottos);
+
         List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
     }
 
     private static int getPurchaseAmount() {
@@ -41,5 +43,14 @@ public class Application {
             winningNumbers.add(Integer.parseInt(number.trim()));
         }
         return winningNumbers;
+    }
+
+    private static int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        return bonusNumber;
     }
 }
