@@ -6,6 +6,8 @@ import java.util.List;
 
 public class LottoNumberPicker {
     public List<Integer> generate() {
-        return List.of(1,2,3,4,5,6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers.sort(Integer::compareTo); // 오름차순 정렬
+        return numbers;
     }
 }
