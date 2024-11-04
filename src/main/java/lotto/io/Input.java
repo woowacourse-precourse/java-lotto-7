@@ -25,15 +25,10 @@ public class Input {
 	}
 
 	public static int readPurchaseAmount() {
-		while (true) {
-			try {
-				System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
-				return validateLottoPurchaseAmountFormat(Console.readLine());
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			}
-		}
+		System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
+		return validateLottoPurchaseAmountFormat(Console.readLine());
 	}
+
 
 	public static List<Integer> readAnswerLotto() {
 		while (true) {

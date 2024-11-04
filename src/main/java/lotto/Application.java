@@ -12,10 +12,9 @@ import lotto.validator.Validator;
 
 public class Application {
     public static void main(String[] args) {
-        int purchaseAmount = Input.readPurchaseAmount();
 
         User user = new User();
-        LottoProvider lottoProvider = new LottoProvider(purchaseAmount, user);
+        LottoProvider lottoProvider = attempt(() -> createLottoProvider(user));
         lottoProvider.pickLottoNumbers();
         lottoProvider.printPickedLottoResults();
 
@@ -32,11 +31,17 @@ public class Application {
 
     }
 
-    private <T> T attempt(Supplier <T> inputSupplier) {
+    private static <T> T attempt(Supplier <T> inputSupplier) {
         try {
             return inputSupplier.get();
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return attempt(inputSupplier);
         }
+    }
+
+    private static LottoProvider createLottoProvider(User user) {
+        int purchaseAmount = Input.readPurchaseAmount();
+        return new LottoProvider(purchaseAmount, user);
     }
 }
