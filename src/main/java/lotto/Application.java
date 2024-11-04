@@ -28,10 +28,15 @@ public class Application {
             lottos.add(new Lotto(numbers));
         }
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(lottoCount + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
+
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String lottoNumber = Console.readLine();
 
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = 0;
         try {
             bonusNumber = Integer.parseInt(Console.readLine());
