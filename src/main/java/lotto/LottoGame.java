@@ -7,7 +7,7 @@ public class LottoGame {
     private final LottoGeneration lottoGeneration;
     private final LottoCheck lottoCheck;
     private final OutputLottoResult outputLottoResult;
-    private int[] lottoResult;
+    private int[] lottoResults;
     private int totalPrize;
 
     public LottoGame() {
@@ -15,12 +15,14 @@ public class LottoGame {
         this.lottoGeneration = new LottoGeneration();
         this.lottoCheck = new LottoCheck();
         this.outputLottoResult = new OutputLottoResult();
-        this.lottoResult = new int[5];
+        this.lottoResults = new int[5];
         this.totalPrize = 0;
     }
 
-    public void strat() {
-        List<Lotto> purchaseAmount = initGame();
+    public void start() {
+        int purchaseAmount = userInputLotto.purchaseAmount();
+        List<Lotto> purchasedLottos = initGame(purchaseAmount);
+
         List<Integer> winningNumbers = userInputLotto.inputPrizeNumbers();
     }
 
@@ -36,7 +38,7 @@ public class LottoGame {
         for (Lotto lotto : purchasedLottos) {
             int rank = lottoCheck.checkRank(lotto, winningNumbers, bonusNumber);
             if (rank >= 1 && rank <= 5) {
-                lottoResult[rank - 1]++;
+                lottoResults[rank - 1]++;
                 totalPrize += lottoCheck.prizeInfo(rank);
             }
         }
