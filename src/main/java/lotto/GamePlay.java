@@ -28,7 +28,7 @@ public class GamePlay {
         winningLotto = getWinningLotto();
         bonusNumber = getBonusNumber();
 
-        calculateLotto();
+        displayResult();
     }
 
     private int getBonusNumber() {
@@ -82,7 +82,7 @@ public class GamePlay {
         System.out.println(sb.toString());
     }
 
-    private void calculateLotto() {
+    private Map<Rank, Integer> calculateLotto() {
         Map<Rank, Integer> results = new EnumMap<>(Rank.class);
         for(Rank rank : Rank.values()){
             results.put(rank, 0);
@@ -94,6 +94,8 @@ public class GamePlay {
                 results.put(rank, results.get(rank) + 1);
             }
         }
+
+        return results;
     }
 
     private Rank calculateRank(Lotto lotto) {
@@ -108,5 +110,21 @@ public class GamePlay {
         if(lotto.contains(bonusNumber)) matchBonus = true;
 
         return Rank.valueOf(matchCount, matchBonus);
+    }
+
+    private void displayResult() {
+        StringBuilder sb = new StringBuilder();
+        Map<Rank, Integer> results = calculateLotto();
+
+        sb.append(LINE_BREAK).append("당첨 통계").append(LINE_BREAK)
+                .append("---").append(LINE_BREAK);
+
+        Arrays.stream(Rank.values())
+                .sorted(Comparator.comparing(Rank::getPrize).reversed())
+                .forEach(rank -> sb.append(rank.getDescription())
+                        .append(" - ").append(results.get(rank))
+                        .append("개").append(LINE_BREAK));
+
+        System.out.println(sb.toString());
     }
 }
