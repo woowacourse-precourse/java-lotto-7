@@ -64,4 +64,26 @@ public class InputView {
         }
         return winningNumbers;
     }
+
+    private static String getInputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Console.readLine().trim();
+    }
+
+    public static int getBonusNumber() {
+        String input = getInputBonusNumber();
+        return validateBonusNumber(input);
+    }
+
+    private static int validateBonusNumber(String input) {
+        try {
+            int bonusNumber = Integer.parseInt(input);
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 합니다.");
+            }
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+        }
+    }
 }
