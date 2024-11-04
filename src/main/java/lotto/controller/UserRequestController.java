@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.Lotto;
 import lotto.model.RandomLotto;
 import lotto.sevice.InputValidService;
 import lotto.sevice.LottoService;
@@ -13,14 +14,24 @@ public class UserRequestController {
     LottoService lottoService = new LottoService();
     int lottoCnt;
     RandomLotto randomLotto;
+    Lotto lotto;
 
     public void inputMoney(String money){
         if(inputValidService.isMoney(money)){
             lottoCnt = lottoService.countLotto(money);
             pickLotto();
+            showRandomLotto();
             return;
         }
         error("로또 구입 금액이 잘 못 입력되었습니다.");
+    }
+
+    public void inputWinNumbers(String numbers){
+        if(inputValidService.isWinNumbers(numbers)){
+            lotto = new Lotto(lottoService.getWinLottoList(numbers));
+            return;
+        }
+        error("로또 번호 입력이 잘 못 되었습니다.");
     }
 
     public void error(String detail){
@@ -37,5 +48,6 @@ public class UserRequestController {
         for(List<Integer> ls : lotto){
             randomLottoMessage(ls);
         }
+        System.out.println();
     }
 }

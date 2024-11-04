@@ -13,6 +13,12 @@ public class Application {
         startMessage();
         String money = Console.readLine();
         userRequestController.inputMoney(money);
+        winLottoMessage();
+        String winNumbers = Console.readLine();
+        userRequestController.inputWinNumbers(winNumbers);
+        bonusLottoMessage();
+        String bonusNum = Console.readLine();
+        //userRequestController.inputBonusNum(bonusNum);
 
     }
 }
