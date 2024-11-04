@@ -18,7 +18,7 @@ public class AppConfig {
     }
 
     public InputView inputView() {
-        return new InputView(exceptionHandler());
+        return new InputView(exceptionHandler(), lottoService());
     }
 
     public ResultView resultView() {
