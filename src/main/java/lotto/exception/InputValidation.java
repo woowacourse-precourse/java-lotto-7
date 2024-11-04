@@ -6,7 +6,12 @@ public enum InputValidation {
         @Override
         public boolean validate(String value) {
             if(value == null || value.isEmpty() || value.isBlank()) {
-                throw new IllegalArgumentException(UserErrorMessage.ERROR_NOT_ALLOWED_BLANK);
+                try {
+                    throw new IllegalArgumentException(UserErrorMessage.ERROR_NOT_ALLOWED_BLANK);
+                } catch (IllegalArgumentException notBlank) {
+                    System.out.println(notBlank.getMessage());
+                    return false;
+                }
             }
             return true;
         }
@@ -15,12 +20,17 @@ public enum InputValidation {
         @Override
         public boolean validate(String value) {
             try {
-                int purchaseAmount = Integer.parseInt(value);
-                if(purchaseAmount % 1000 != 0) {
-                    throw new IllegalArgumentException(UserErrorMessage.ERROR_NOT_ALLOWED_VALUE);
+                if(Integer.parseInt(value) % 1000 != 0) {
+                    try {
+                        throw new IllegalArgumentException(UserErrorMessage.ERROR_NOT_ALLOWED_VALUE);
+                    } catch (IllegalArgumentException errorNotAllowedValue) {
+                        System.out.println(errorNotAllowedValue.getMessage());
+                        return false;
+                    }
                 }
+                return true;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(UserErrorMessage.ERROR_NON_INTEGER_VALUE);
+                if(!NOT_NUMBER.validate(value)) return false;
             }
             return true;
         }
@@ -29,7 +39,12 @@ public enum InputValidation {
         @Override
         public boolean validate(String winningNumber) {
             if(!winningNumber.matches("\\d+")) {
-                throw new IllegalArgumentException(UserErrorMessage.ERROR_NON_NUMERIC_VALUE);
+                try {
+                    throw new IllegalArgumentException(UserErrorMessage.ERROR_NON_NUMERIC_VALUE);
+                } catch (IllegalArgumentException notNumeric) {
+                    System.out.println(notNumeric.getMessage());
+                    return false;
+                }
             }
             return true;
         }
@@ -40,7 +55,11 @@ public enum InputValidation {
             try {
                 Integer.parseInt(value);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(UserErrorMessage.ERROR_NON_INTEGER_VALUE);
+                try {
+                    throw new IllegalArgumentException(UserErrorMessage.ERROR_NON_INTEGER_VALUE);
+                } catch (IllegalArgumentException notInteger) {
+                    System.out.println(notInteger.getMessage());
+                }
             }
             return true;
         }
@@ -49,7 +68,11 @@ public enum InputValidation {
         @Override
         public boolean validate(String value) {
             if(Integer.parseInt(value) < 1 || Integer.parseInt(value) > 45) {
-                throw new IllegalArgumentException(UserErrorMessage.ERROR_VALUE_NOT_IN_RANGE);
+                try {
+                    throw new IllegalArgumentException(UserErrorMessage.ERROR_VALUE_NOT_IN_RANGE);
+                } catch (IllegalArgumentException notInRange) {
+                    System.out.println(notInRange.getMessage());
+                }
             }
             return true;
         }

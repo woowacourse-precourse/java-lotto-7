@@ -9,7 +9,7 @@ import java.util.*;
 public class LottoGenerator {
 
     public List<Lotto> generateLotto(String inputPurchaseAmount) {
-        int purchaseAmount = ValidateValues.purchaseAmount(inputPurchaseAmount);
+        int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
         int count = purchaseAmount / 1000;
 
         List<Lotto> lottos = new ArrayList<>();

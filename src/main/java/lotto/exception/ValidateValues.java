@@ -1,14 +1,18 @@
 package lotto.exception;
 
+import lotto.view.InputView;
+
 public class ValidateValues {
 
     public static int purchaseAmount(String inputPurchaseAmount) {
-        if(InputValidation.NOT_BLANK.validate(inputPurchaseAmount)
-            && InputValidation.NOT_NUMBER.validate(inputPurchaseAmount)
-            && InputValidation.NOT_DIVISIBLE_BY_1000.validate(inputPurchaseAmount)) {
+        boolean notBlankResult = InputValidation.NOT_BLANK.validate(inputPurchaseAmount);
+        boolean notDivisibleBy1000 = InputValidation.NOT_DIVISIBLE_BY_1000.validate(inputPurchaseAmount);
+        if(notBlankResult && notDivisibleBy1000) {
             return Integer.parseInt(inputPurchaseAmount);
         }
-        return 0;
+        String inputPurchaseAmountAgain = InputView.getLottoPurchaseAmount();
+        purchaseAmount(inputPurchaseAmountAgain);
+        return Integer.parseInt(inputPurchaseAmountAgain);
     }
 
     public static boolean winningNumberOrBonusNumber(String winningNumber) {

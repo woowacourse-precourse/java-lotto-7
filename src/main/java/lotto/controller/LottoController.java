@@ -22,7 +22,7 @@ public class LottoController {
         String inputPurchaseAmount = InputView.getLottoPurchaseAmount();
         int purchaseAmount = ValidateValues.purchaseAmount(inputPurchaseAmount);
 
-        List<Lotto> lottos = lottoGenerator.generateLotto(inputPurchaseAmount);
+        List<Lotto> lottos = lottoGenerator.generateLotto(String.valueOf(purchaseAmount));
         lottoGenerator.printLottoCount(lottos);
         lottoGenerator.printLottos(lottos);
 
