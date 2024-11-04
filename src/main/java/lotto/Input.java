@@ -38,7 +38,7 @@ public class Input {
     private static Lotto parseToLotto(String input) {
         String[] tokens = input.replaceAll("\\s", "").split(DELIMITER);
         List<Integer> numbers = Arrays.stream(tokens)
-                .map(Integer::parseInt)
+                .map(Input::parseInt)
                 .toList();
         return new Lotto(numbers);
     }

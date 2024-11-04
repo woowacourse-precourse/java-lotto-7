@@ -12,7 +12,8 @@ public class PurchaseAmount {
 
     private void validateAmount(int amount) {
         if (amount % PURCHASE_AMOUNT_UNIT != 0) {
-            throw new IllegalArgumentException(ERROR_INVALID_AMOUNT);
+            System.out.println(ERROR_INVALID_AMOUNT);
+            throw new IllegalArgumentException();
         }
     }
 
