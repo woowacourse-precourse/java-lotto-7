@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
 
 public class Application {
     private static final String error_message = "[ERROR]";
@@ -16,9 +15,10 @@ public class Application {
             int purchaseAmount = getPurchaseAmount();
             List<List<Integer>> numbers = makeRandomNumbers(purchaseAmount);
             List<Integer> lottoNumbers = getLottoNumbers();
+            Integer bonusNumber = getBonusNumber();
 
             Lotto lotto = new Lotto(lottoNumbers);
-            lotto.checkLottoWin(numbers);
+            lotto.checkLottoWin(numbers, bonusNumber);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -46,13 +46,15 @@ public class Application {
             lottoNumbers.add(Integer.parseInt(number.trim()));
         }
         lottoNumbers.sort(Integer::compareTo);
+
+        return lottoNumbers;
+    }
+
+    private static Integer getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusInput = Console.readLine();
 
-        Integer bonusNumber = Integer.parseInt(bonusInput.trim());
-        lottoNumbers.add(bonusNumber);
-
-        return lottoNumbers;
+        return Integer.parseInt(bonusInput.trim());
     }
 
     private static int getPurchaseAmount() {

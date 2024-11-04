@@ -18,9 +18,7 @@ public class Lotto {
         }
     }
 
-    public void checkLottoWin(List<List<Integer>> randomNumberList) {
-
-        int bonusNumber = numbers.getLast();
+    public void checkLottoWin(List<List<Integer>> randomNumberList, Integer bonusNumber) {
         Map<Object, Integer> checkLotto = new HashMap<>();
 
         for (List<Integer> randomNumbers : randomNumberList) {
@@ -29,7 +27,7 @@ public class Lotto {
         }
     }
 
-    private static Object countLottoMatchesWithBonus(
+    private Object countLottoMatchesWithBonus(
             List<Integer> lottoNumbers,
             int bonusNumber,
             List<Integer> randomNumbers
