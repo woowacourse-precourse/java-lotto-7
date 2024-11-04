@@ -39,4 +39,8 @@ public class WinningNumbers {
             throw new LottoException(WINNING_NUMBERS_CANNOT_BE_DUPLICATED);
         }
     }
+
+    public List<LottoNumber> getWinningNumbers() {
+        return winningNumbers;
+    }
 }

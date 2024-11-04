@@ -41,7 +41,7 @@ public class LottoController {
         Investment investment = purchaseLotto();
         LottoBundle lottoBundle = generateLottoBundle(investment.getQuantity());
         WinningNumbers winningNumbers = getWinningNumbers();
-        BonusNumber bonusNumber = inputBonusNumber();
+        BonusNumber bonusNumber = inputBonusNumber(winningNumbers.getWinningNumbers());
         LottoResult lottoResult = calculateResults(lottoBundle, winningNumbers, bonusNumber);
         printResults(lottoResult, investment);
     }
@@ -114,16 +114,17 @@ public class LottoController {
         return numbers;
     }
 
-    private BonusNumber inputBonusNumber() {
+    private BonusNumber inputBonusNumber(List<LottoNumber> winningNumbers) {
         try {
             outputView.printBonusNumberGuide();
             BonusNumber bonusNumber = new BonusNumber(
                     new LottoNumber(converter.convertToInteger(inputView.readLine())));
+            bonusNumber.validateDuplicate(winningNumbers);
             outputView.printNewLine();
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return inputBonusNumber();
+            return inputBonusNumber(winningNumbers);
         }
     }
 
