@@ -25,7 +25,6 @@ public class Lotto {
         checkNumberDuplicated(numbers);
     }
 
-    // TODO: 추가 기능 구현
     private void checkNumbersSize(List<Integer> numbers){
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LOTTO_SIZE_MUST_BE_SIX.getMessage());
