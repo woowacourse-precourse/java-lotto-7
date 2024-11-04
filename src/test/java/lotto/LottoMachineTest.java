@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.enums.LottoResult;
+import lotto.enums.LottoResultType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -44,10 +44,12 @@ class LottoMachineTest {
         List<Lotto> lottos2 = lottoMachine.purchaseLotto(5000);
         List<Lotto> lottos3 = lottoMachine.purchaseLotto(10000);
 
+        // 로또 개수 확인
         assertThat(lottos1.size()).isEqualTo(1);
         assertThat(lottos2.size()).isEqualTo(5);
         assertThat(lottos3.size()).isEqualTo(10);
 
+        // 로또 번호 중복 확인
         for (Lotto lotto : lottos1) {
             assertThat(lotto.getNumbers().size()).isEqualTo(6);
             HashSet<Integer> uniqueLottoNumbers = new HashSet<>(lotto.getNumbers());
@@ -65,6 +67,31 @@ class LottoMachineTest {
             HashSet<Integer> uniqueLottoNumbers = new HashSet<>(lotto.getNumbers());
             assertThat(lotto.getNumbers().size()).isEqualTo(uniqueLottoNumbers.size());
         }
+
+        // 로또 번호 오름차순 확인
+        for (Lotto lotto : lottos1) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            List<Integer> sortedLottoNumbers = lottoNumbers.stream()
+                    .sorted()
+                    .toList();
+            assertThat(lottoNumbers).isEqualTo(sortedLottoNumbers);
+        }
+
+        for (Lotto lotto : lottos2) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            List<Integer> sortedLottoNumbers = lottoNumbers.stream()
+                    .sorted()
+                    .toList();
+            assertThat(lottoNumbers).isEqualTo(sortedLottoNumbers);
+        }
+
+        for (Lotto lotto : lottos3) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            List<Integer> sortedLottoNumbers = lottoNumbers.stream()
+                    .sorted()
+                    .toList();
+            assertThat(lottoNumbers).isEqualTo(sortedLottoNumbers);
+        }
     }
 
     @DisplayName("로또 결과 확인 케이스")
@@ -73,26 +100,31 @@ class LottoMachineTest {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
 
-        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 10, 20, 30));
-        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 10, 20));
-        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 20));
-        Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
-        Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Lotto lotto6 = new Lotto(Arrays.asList(1, 2, 9, 10, 20, 30));
-        Lotto lotto7 = new Lotto(Arrays.asList(1, 9, 10, 20, 30, 40));
-        Lotto lotto8 = new Lotto(Arrays.asList(9, 10, 20, 30, 40, 41));
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 10, 20, 30)); // 5등
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 10, 20)); // 4등
+        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 20)); // 3등
+        Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등
+        Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등
+        Lotto lotto6 = new Lotto(Arrays.asList(1, 2, 9, 10, 20, 30)); // 꽝
+        Lotto lotto7 = new Lotto(Arrays.asList(1, 9, 10, 20, 30, 40)); // 꽝
+        Lotto lotto8 = new Lotto(Arrays.asList(9, 10, 20, 30, 40, 7)); // 꽝 + 보너스번호
+        Lotto lotto9 = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9)); // 5등 + 보너스번호
+        Lotto lotto10 = new Lotto(Arrays.asList(1, 2, 3, 4, 7, 8)); // 4등 + 보너스번호
 
-        List<Lotto> lottos = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6, lotto7, lotto8);
+        List<Lotto> lottos = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6, lotto7, lotto8, lotto9, lotto10);
 
-        List<LottoResult> results = lottoMachine.checkLottoResult(lottos, winningNumbers, bonusNumber);
+        List<LottoResultType> results = lottoMachine.checkLottoResult(lottos, winningNumbers, bonusNumber);
 
-        assertThat(results.get(0)).isEqualTo(LottoResult.FIFTH_PLACE);
-        assertThat(results.get(1)).isEqualTo(LottoResult.FOURTH_PLACE);
-        assertThat(results.get(2)).isEqualTo(LottoResult.THIRD_PLACE);
-        assertThat(results.get(3)).isEqualTo(LottoResult.SECOND_PLACE);
-        assertThat(results.get(4)).isEqualTo(LottoResult.FIRST_PLACE);
-        assertThat(results.get(5)).isEqualTo(LottoResult.NO_PRIZE);
-        assertThat(results.get(6)).isEqualTo(LottoResult.NO_PRIZE);
-        assertThat(results.get(7)).isEqualTo(LottoResult.NO_PRIZE);
+        assertThat(results.get(0)).isEqualTo(LottoResultType.FIFTH_PLACE);
+        assertThat(results.get(1)).isEqualTo(LottoResultType.FOURTH_PLACE);
+        assertThat(results.get(2)).isEqualTo(LottoResultType.THIRD_PLACE);
+        assertThat(results.get(3)).isEqualTo(LottoResultType.SECOND_PLACE);
+        assertThat(results.get(4)).isEqualTo(LottoResultType.FIRST_PLACE);
+        assertThat(results.get(5)).isEqualTo(LottoResultType.NO_PRIZE);
+        assertThat(results.get(6)).isEqualTo(LottoResultType.NO_PRIZE);
+        assertThat(results.get(7)).isEqualTo(LottoResultType.NO_PRIZE);
+        assertThat(results.get(8)).isEqualTo(LottoResultType.FIFTH_PLACE);
+        assertThat(results.get(9)).isEqualTo(LottoResultType.FOURTH_PLACE);
+
     }
 }

@@ -2,7 +2,7 @@ package lotto.enums;
 
 import java.util.List;
 
-public enum LottoResult {
+public enum LottoResultType {
     FIRST_PLACE(2000000000, 6, 0),
     SECOND_PLACE(30000000, 5, 1),
     THIRD_PLACE(1500000, 5, 0),
@@ -14,7 +14,7 @@ public enum LottoResult {
     private final Integer matchCnt;
     private final Integer bonusMatchCnt;
 
-    LottoResult(Integer prizeMoney, Integer matchCnt, Integer bonusMatchCnt) {
+    LottoResultType(Integer prizeMoney, Integer matchCnt, Integer bonusMatchCnt) {
         this.prizeMoney = prizeMoney;
         this.matchCnt = matchCnt;
         this.bonusMatchCnt = bonusMatchCnt;
@@ -32,7 +32,7 @@ public enum LottoResult {
         return prizeMoney;
     }
 
-    public static List<LottoResult> hasPrizeMoneyResult() {
-        return List.of(FIRST_PLACE, SECOND_PLACE, THIRD_PLACE, FOURTH_PLACE, FIFTH_PLACE);
+    public static List<LottoResultType> hasPrizeMoneyLottoResultType() {
+        return List.of(FIFTH_PLACE, FOURTH_PLACE, THIRD_PLACE, SECOND_PLACE, FIRST_PLACE);
     }
 }
