@@ -11,7 +11,9 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoTest {
-    @DisplayName("[LottoTest] 로또 번호의 개수가 6개가 아니면 예외가 발생한다")
+    private static final String TEST_TITLE_HEADER = "[LottoTest] ";
+
+    @DisplayName(TEST_TITLE_HEADER + "로또 번호의 개수가 6개가 아니면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 로또_번호의_개수가_6개가_아니면_예외가_발생한다(List<Integer> lottoNumber) {

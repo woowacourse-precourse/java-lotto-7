@@ -18,7 +18,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoResultTest {
-    @DisplayName("[LottoResultTest] 구입 금액에 빈 값이 입력되면 예외가 발생한다")
+    private static final String TEST_TITLE_HEADER = "[LottoResultTest] ";
+    @DisplayName(TEST_TITLE_HEADER + "구입 금액에 빈 값이 입력되면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 구입_금액에_빈_값이_입력되면_예외가_발생한다(
@@ -31,7 +32,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 구입 금액에 숫자 외의 문자가 있으면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "구입 금액에 숫자 외의 문자가 있으면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 구입_금액에_숫자_외의_문자가_있으면_예외가_발생한다(
@@ -44,7 +45,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 구입 금액에 음수를 입력하면 예외가 발생한다.")
+    @DisplayName(TEST_TITLE_HEADER + "구입 금액에 음수를 입력하면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource
     void 구입_금액에_음수를_입력하면_예외가_발생한다(
@@ -57,7 +58,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 구입 금액이 정수 범위를 벗어나면 예외가 발생한다.")
+    @DisplayName(TEST_TITLE_HEADER + "구입 금액이 정수 범위를 벗어나면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource
     void 구입_금액이_정수_범위를_벗어나면_예외가_발생한다(
@@ -70,7 +71,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 구입 금액이 천 단위 숫자가 아니면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "구입 금액이 천 단위 숫자가 아니면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 구입_금액이_천_단위_숫자가_아니면_예외가_발생한다(
@@ -83,7 +84,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 로또 번호의 개수가 6개가 아니면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "로또 번호의 개수가 6개가 아니면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 로또_번호의_개수가_6개가_아니면_예외가_발생한다(
@@ -102,7 +103,7 @@ public class LottoResultTest {
                 .hasMessage(ExceptionMessage.LOTTO_NUMBER_NOT_VALID_COUNT.getMessage());
     }
 
-    @DisplayName("[LottoResultTest] 로또 번호에 중복된 숫자가 있으면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "로또 번호에 중복된 숫자가 있으면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다(
@@ -121,7 +122,7 @@ public class LottoResultTest {
                 .hasMessage(ExceptionMessage.LOTTO_NUMBER_DUPLICATED.getMessage());
     }
 
-    @DisplayName("[LottoResultTest] 로또 번호가 1 과 45 사이의 숫자가 아닐 경우 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "로또 번호가 1 과 45 사이의 숫자가 아닐 경우 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 로또_번호가_1_과_45_사이의_숫자가_아니면_예외가_발생한다(
@@ -140,7 +141,7 @@ public class LottoResultTest {
                 .hasMessage(ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
     }
 
-    @DisplayName("[LottoResultTest] 당첨 번호에 빈 값이 입력되면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "당첨 번호에 빈 값이 입력되면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 당첨_번호에_숫자_빈_값이_입력되면_예외가_발생한다(
@@ -153,7 +154,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 당첨 번호에 숫자 외의 값이 입력되면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "당첨 번호에 숫자 외의 값이 입력되면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 당첨_번호에_숫자_외의_값이_입력되면_예외가_발생한다(
@@ -166,7 +167,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 당첨 번호가 쉼표로 시작하거나 끝나면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "당첨 번호가 쉼표로 시작하거나 끝나면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 당첨_번호가_쉼표로_시작하거나_끝나면_예외가_발생한다(
@@ -179,7 +180,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 당첨 번호에 연속된 쉼표가 있다면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "당첨 번호에 연속된 쉼표가 있다면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 당첨_번호에_연속된_쉼표가_있다면_예외가_발생한다(
@@ -192,7 +193,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 당첨 번호에 정수 범위를 벗어난 값을 입력하면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "당첨 번호에 정수 범위를 벗어난 값을 입력하면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 당첨_번호에_정수_범위를_벗어난_값을_입력하면_예외가_발생한다(
@@ -205,7 +206,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 당첨 번호의 개수가 여섯개가 아니면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "당첨 번호의 개수가 여섯개가 아니면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 당첨_번호의_개수가_여섯개가_아니면_예외가_발생한다(
@@ -218,7 +219,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 당첨 번호에 중복된 숫자가 있으면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "당첨 번호에 중복된 숫자가 있으면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 당첨_번호에_중복된_숫자가_있으면_예외가_발생한다(
@@ -231,7 +232,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 당첨 번호가 1과 45 사이의 숫자가 아니면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "당첨 번호가 1과 45 사이의 숫자가 아니면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 당첨_번호가_1과_45_사이의_숫자가_아니면_예외가_발생한다(
@@ -244,7 +245,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 보너스 번호에 빈 값이 입력되면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "보너스 번호에 빈 값이 입력되면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 보너스_번호에_빈_값이_입력되면_예외가_발생한다(
@@ -257,7 +258,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 보너스 번호에 숫자 외의 값이 입력되면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "보너스 번호에 숫자 외의 값이 입력되면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 보너스_번호에_숫자_외의_값이_입력되면_예외가_발생한다(
@@ -270,7 +271,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 보너스 번호가 1 과 45 사이의 숫자가 아니면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "보너스 번호가 1 과 45 사이의 숫자가 아니면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 보너스_번호가_1_과_45_사이의_숫자가_아니면_예외가_발생한다(
@@ -283,7 +284,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 당첨 번호와 보너스 번호가 중복되면 예외가 발생한다")
+    @DisplayName(TEST_TITLE_HEADER + "당첨 번호와 보너스 번호가 중복되면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 당청_번호와_보너스_번호가_중복되면_예외가_발생한다(
@@ -296,7 +297,7 @@ public class LottoResultTest {
         compareResult(price, lottos, winningNumber, bonusNumber, errorMessage);
     }
 
-    @DisplayName("[LottoResultTest] 정상 동작 테스트")
+    @DisplayName(TEST_TITLE_HEADER + "정상 동작 테스트")
     @ParameterizedTest
     @MethodSource
     void 정상_동작_테스트(

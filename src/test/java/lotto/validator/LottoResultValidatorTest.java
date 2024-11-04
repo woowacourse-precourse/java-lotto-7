@@ -14,7 +14,9 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoResultValidatorTest {
-    @DisplayName("당첨 번호와 보너스 번호가 중복되면 예외가 발생한다")
+    private static final String TEST_TITLE_HEADER = "[LottoResultValidatorTest] ";
+
+    @DisplayName(TEST_TITLE_HEADER + "당첨 번호와 보너스 번호가 중복되면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 당청_번호와_보너스_번호가_중복되면_예외가_발생한다(WinningNumber winningNumber, BonusNumber bonusNumber) {
