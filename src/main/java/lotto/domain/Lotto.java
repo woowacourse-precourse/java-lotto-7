@@ -7,6 +7,8 @@ import static lotto.constants.LottoConstants.LOTTO_NUMBER_COUNT;
 import static lotto.constants.LottoConstants.MAXIMUM_LOTTO_NUMBER;
 import static lotto.constants.LottoConstants.MINIMUM_LOTTO_NUMBER;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -57,6 +59,8 @@ public class Lotto {
 
     @Override
     public String toString() {
+        List<Integer> numbers = new ArrayList<>(getNumbers());
+        Collections.sort(numbers);
         return numbers.toString();
     }
 }
