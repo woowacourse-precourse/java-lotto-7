@@ -2,10 +2,9 @@ package lotto.model;
 
 import java.util.List;
 
-import static lotto.constant.ErrorMessage.NUMBER_COUNT_ERROR;
-
 public class Lotto {
     private final List<Integer> numbers;
+    Validation validation = new Validation();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -17,8 +16,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(NUMBER_COUNT_ERROR.getMessage());
-        }
+        numbers = numbers.stream()
+            .filter(validation::isPositive)
+            .filter(validation::validateRange)
+            .toList();
+        validation.isUnique(numbers);
+        validation.validateSize(numbers);
     }
+
+
 }
