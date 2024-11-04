@@ -17,6 +17,10 @@ class ApplicationTest extends NsTest {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
+
+                    // 디버깅을 위해 실제 출력 확인
+                    System.out.println(output());
+
                     assertThat(output()).contains(
                             "8개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
