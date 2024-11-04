@@ -35,15 +35,17 @@ public class Application {
             }
         }
 
+        String bonusNumber;
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
-                String bonusNumber = Console.readLine();
+                bonusNumber = Console.readLine();
                 Validation.validateBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
             }
         }
 
+        lottoGame.matchNumbers(winningNumberString, bonusNumber);
     }
 }

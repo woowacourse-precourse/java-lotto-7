@@ -17,12 +17,14 @@ public class LottoGame {
         this.myLotto = new MyLotto(lottoCount);
     }
 
-    public void matchNumbers(String[] winningNumberString) {
+    public void matchNumbers(String[] winningNumberString, String bonusNumberString) {
         List<Integer> winningNumbers = Arrays.stream(winningNumberString)
                 .map(Integer::parseInt)
                 .toList();
 
-        myLotto.matchNumbers(winningNumbers);
+        int bonusNumber = Integer.parseInt(bonusNumberString);
+
+        myLotto.matchNumbers(winningNumbers, bonusNumber);
     }
 
     public void printMyLotto() {

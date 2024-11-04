@@ -23,11 +23,11 @@ public class Lotto {
         }
     }
 
-    public void matchNumbers(Lotto winningNumber) {
-        winningNumber.matchNumbers(this.numbers);
+    public void matchNumbers(Lotto winningNumber, int bonusNumber) {
+        winningNumber.matchNumbers(this.numbers, bonusNumber);
     }
 
-    public void matchNumbers(List<Integer> numbers) {
+    public void matchNumbers(List<Integer> numbers, int bonusNumber) {
         int matchCount = 0;
         for (int number : numbers) {
             if (this.numbers.contains(number)) {
@@ -35,6 +35,12 @@ public class Lotto {
             }
         }
 
+        if (matchCount == 5) {
+            if (numbers.contains(bonusNumber)) {
+                Winning.SECOND.count();
+                return;
+            }
+        }
         Winning.findByMatch(matchCount).count();
     }
 

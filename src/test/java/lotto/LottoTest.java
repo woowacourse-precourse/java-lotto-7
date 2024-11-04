@@ -27,7 +27,23 @@ class LottoTest {
     void 로또_번호와_당첨_번호를_비교하여_당첨_내역에_반영한다() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto winningNumber = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        lotto.matchNumbers(winningNumber);
+        lotto.matchNumbers(winningNumber, 7);
         assertThat(Winning.FIRST.getCount()).isEqualTo(1);
+    }
+
+    @Test
+    void 로또_번호와_당첨_번호가_5개_매치되고_보너스도_매치() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winningNumber = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+        lotto.matchNumbers(winningNumber, 6);
+        assertThat(Winning.SECOND.getCount()).isEqualTo(1);
+    }
+
+    @Test
+    void 로또_번호와_당첨_번호가_5개_매치되고_보너스는_매치_안됨() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winningNumber = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+        lotto.matchNumbers(winningNumber, 8);
+        assertThat(Winning.THIRD.getCount()).isEqualTo(1);
     }
 }
