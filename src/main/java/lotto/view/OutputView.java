@@ -28,25 +28,45 @@ public class OutputView {
     }
 
     public static void printStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        Map<LottoRank, Long> statistics = lottos.stream()
+        Map<LottoRank, Long> statistics = calculateStatistics(lottos, winningNumbers, bonusNumber);
+        printStatisticsHeader();
+        printRankStatistics(statistics);
+        printTotalYield(statistics, lottos.size());
+    }
+
+    private static Map<LottoRank, Long> calculateStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        return lottos.stream()
                 .map(lotto -> getLottoRank(lotto, winningNumbers, bonusNumber))
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
+    }
 
+    private static void printStatisticsHeader() {
         System.out.println(MESSAGE_STATISTICS_HEADER);
+    }
+
+    private static void printRankStatistics(Map<LottoRank, Long> statistics) {
         NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
         for (LottoRank rank : LottoRank.values()) {
-            if (rank != LottoRank.NONE) {
-                System.out.printf(MESSAGE_MATCH_COUNT,
-                        rank.getMatchCount(),
-                        rank.isMatchBonus() ? BONUS_MATCH_TEXT : "",
-                        numberFormat.format(rank.getPrize()),
-                        statistics.getOrDefault(rank, 0L));
-            }
+            printRankIfApplicable(rank, statistics, numberFormat);
         }
+    }
+
+    private static void printRankIfApplicable(LottoRank rank, Map<LottoRank, Long> statistics, NumberFormat numberFormat) {
+        if (rank == LottoRank.NONE) {
+            return;
+        }
+        System.out.printf(MESSAGE_MATCH_COUNT,
+                rank.getMatchCount(),
+                rank.isMatchBonus() ? BONUS_MATCH_TEXT : "",
+                numberFormat.format(rank.getPrize()),
+                statistics.getOrDefault(rank, 0L));
+    }
+
+    private static void printTotalYield(Map<LottoRank, Long> statistics, int lottoCount) {
         double totalPrize = statistics.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
-        double purchaseAmount = lottos.size() * LOTTO_PRICE;
+        double purchaseAmount = lottoCount * LOTTO_PRICE;
         double yield = (totalPrize / purchaseAmount) * 100;
         System.out.printf(MESSAGE_TOTAL_YIELD, yield);
     }
