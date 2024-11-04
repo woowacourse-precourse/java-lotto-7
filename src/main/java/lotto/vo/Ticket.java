@@ -3,6 +3,7 @@ package lotto.vo;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ticket {
     private static final int RANGE_START = 1;
@@ -12,11 +13,14 @@ public class Ticket {
     private final List<Integer> ticket;
 
     public Ticket() {
+
         this.ticket = pickRandom();
     }
 
-    // [8, 21, 23, 41, 42, 43]
     private List<Integer> pickRandom() {
-        return Randoms.pickUniqueNumbersInRange(RANGE_START, RANGE_END, WINNING_NUMBER_COUNT);
+        return Randoms.pickUniqueNumbersInRange(RANGE_START, RANGE_END, WINNING_NUMBER_COUNT)
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }
