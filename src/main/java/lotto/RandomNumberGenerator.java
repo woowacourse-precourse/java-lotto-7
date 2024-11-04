@@ -9,7 +9,6 @@ public class RandomNumberGenerator implements NumberGenerator {
     @Override
     public List<Integer> generate() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
         return numbers;
     }
 }
