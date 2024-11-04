@@ -20,8 +20,7 @@ public class LottoController {
     }
 
     public void run() {
-        int price = Integer.parseInt(inputView.inputPrice());
-        LottoPrice lottoPrice = new LottoPrice(price);
+        LottoPrice lottoPrice = LottoPrice.valueOf(inputView.inputPrice());
 
         LottoGame lottoGame = new LottoGame(lottoPrice);
         lottoGame.buyLotto();
@@ -31,7 +30,7 @@ public class LottoController {
         outputView.printLottos(lottos, lottos.size());
 
         List<LottoNumber> winningNumbers = NumberParser.parseWinningNumbers(inputView.inputWinningNumber());
-        LottoNumber bonusNumber = new LottoNumber(Integer.parseInt(inputView.inputBonusNumber()));
+        LottoNumber bonusNumber = LottoNumber.valueOf(inputView.inputBonusNumber());
 
         WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
         lottoGame.checkWinningLotto(winningLotto);

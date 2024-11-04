@@ -9,11 +9,11 @@ public record LottoPrice(int price) {
         validateUnit(price);
     }
 
-    public static LottoPrice ValueOf(String price) {
+    public static LottoPrice valueOf(String price) {
         try {
             return new LottoPrice(Integer.parseInt(price));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.LOTTO_PRICE_MESSAGE + "숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.LOTTO_PRICE_MESSAGE + " 숫자여야 합니다.");
         }
     }
 
