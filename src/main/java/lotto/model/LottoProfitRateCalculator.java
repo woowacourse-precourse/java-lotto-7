@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 public class LottoProfitRateCalculator {
     public static double calculateProfitRate(Cost cost, WinningResult winningResult) {

@@ -1,6 +1,5 @@
 package lotto.util;
 
-import lotto.domain.Cost;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +11,6 @@ import static lotto.exception.ErrorMessages.*;
 import static lotto.util.WinningNumbersParser.parse;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WinningNumbersParserTest {
     @Test
