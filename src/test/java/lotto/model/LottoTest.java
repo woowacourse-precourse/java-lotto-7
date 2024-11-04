@@ -53,13 +53,13 @@ class LottoTest {
 
     @ParameterizedTest
     @CsvSource({
-            "1, 1",
-            "2, 1",
-            "7, 0",
-            "8, 0",
+            "1, true",
+            "2, true",
+            "7, false",
+            "8, false",
     })
     @DisplayName("구매한 로또와 보너스 번호에 대해 추첨 결과를 계산한다.")
-    void 보너스_번호_추첨_테스트(int number, int expectedResult) {
+    void 보너스_번호_추첨_테스트(int number, boolean expectedResult) {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 

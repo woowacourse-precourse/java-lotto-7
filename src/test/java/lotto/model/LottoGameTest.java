@@ -47,7 +47,7 @@ public class LottoGameTest {
         Map<DrawType, Integer> drawResult = lottoGame.generateDrawResult();
 
         // when
-        long result = lottoGame.calculateEarns(drawResult, 5000);
+        double result = lottoGame.calculateEarns(drawResult, 5000);
 
         // then
         assertThat(result).isEqualTo(40631100);
