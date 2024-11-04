@@ -8,7 +8,7 @@ import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 
-public class HitNumberCalculator {
+public class LottoResultService {
 
     public Map<Rank, Integer> calculateResults(List<Lotto> purchasedLotto, List<Integer> winningNumbers,
                                                int bonusNumber) {
