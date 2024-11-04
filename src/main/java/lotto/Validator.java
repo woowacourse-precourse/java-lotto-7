@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
     private static final int LOTTO_PRICE = 1000;
@@ -36,6 +38,7 @@ public class Validator {
         for (String input : inputs) {
             validateNumber(input);
         }
+        validateNoDuplicateNumbers(inputs);
     }
 
     public static void validateBonusNumber(String input, List<Integer> winningNumbers) {
@@ -44,6 +47,13 @@ public class Validator {
         validateNumberRange(bonusNumber);
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없음");
+        }
+    }
+
+    private static void validateNoDuplicateNumbers(List<String> inputs) {
+        Set<String> uniqueNumbers = new HashSet<>(inputs);
+        if (uniqueNumbers.size() != inputs.size()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없음.");
         }
     }
 
