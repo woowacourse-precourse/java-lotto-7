@@ -24,7 +24,7 @@ class TotalGainTest {
         expected.put(Rank.FIVE_HIT_WITH_BONUS, 0);
         expected.put(Rank.SIX_HIT, 0);
 
-        PaymentInput paymentInput=new PaymentInput("8000");
+        PaymentInput paymentInput=new PaymentInput(8000);
 
         totalGain =new TotalGain(expected,paymentInput);
     }
