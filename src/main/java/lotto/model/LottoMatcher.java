@@ -10,6 +10,9 @@ import java.util.stream.Stream;
 public class LottoMatcher {
     private final Map<WinningInfo, Integer> winningCount;
     private final WinningLotto winningLotto;
+    private final Integer rateCalculateConstant = 100;
+    private final Integer plusOne = 1;
+    private final Integer defaultCount =0;
 
     public LottoMatcher(WinningLotto winningLotto) {
         winningCount = new LinkedHashMap<WinningInfo, Integer>(WinningInfo.values().length);
@@ -19,7 +22,7 @@ public class LottoMatcher {
 
     private void initializeWinningCount(){
         Stream.of(WinningInfo.values()).forEach( winningInfo ->
-                winningCount.put(winningInfo, 0)
+                winningCount.put(winningInfo, defaultCount)
         );
     }
 
@@ -32,7 +35,7 @@ public class LottoMatcher {
 
     private void setWinningCount(WinningInfo prize){
         if(prize != null) {
-            winningCount.put(prize, winningCount.getOrDefault(prize, 0) + 1);
+            winningCount.put(prize, winningCount.getOrDefault(prize, defaultCount) + plusOne);
         }
     }
 
@@ -47,7 +50,7 @@ public class LottoMatcher {
                 .mapToLong(entry -> (long) entry.getKey().getPriceMoney() * entry.getValue())
                 .sum();
 
-        Double lottoEarningRate = (double)earnings/priceToBuyLotto.price() * 100;
+        Double lottoEarningRate = (double)earnings/priceToBuyLotto.price() * rateCalculateConstant;
         String formattedLottoEarningRate = String.format("%.1f", lottoEarningRate);
         OutputView.printRateOfReturn(formattedLottoEarningRate);
     }
