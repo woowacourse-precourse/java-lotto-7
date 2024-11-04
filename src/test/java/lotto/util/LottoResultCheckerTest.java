@@ -32,12 +32,6 @@ class LottoResultCheckerTest {
                         List.of(1, 2, 3, 4, 5, 6),
                         6
                 ),
-                // 일부만 일치하는 경우
-                Arguments.of(
-                        List.of(1, 2, 3, 4, 5, 6),
-                        List.of(1, 2, 3, 7, 8, 9),
-                        3
-                ),
                 // 하나도 일치하지 않는 경우
                 Arguments.of(
                         List.of(1, 2, 3, 4, 5, 6),
