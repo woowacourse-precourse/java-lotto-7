@@ -169,4 +169,19 @@ public class LottoService {
     }
 
 
+    public double computeEarningRate(String inputCost, Map<WinningRanking, Integer> rankingResult) {
+        double totalEarning = 0;
+        int parsedInputCostToInt = Parser.parseStringToInt(inputCost);
+
+        for (Map.Entry<WinningRanking, Integer> entry : rankingResult.entrySet()) {
+            WinningRanking ranking = entry.getKey();
+            int prize = ranking.getPrize();
+            int count = entry.getValue();
+
+            totalEarning += prize * count;
+        }
+
+        double earningRate = (totalEarning / parsedInputCostToInt) * 100;
+        return earningRate;
+    }
 }

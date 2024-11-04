@@ -18,6 +18,7 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
 
+    String inputCost;
     private int parsedCostToInt;
     private int purchasedLottoCount;
     private String winningNumber;
@@ -26,6 +27,7 @@ public class LottoController {
     private WinningNumber winningNumberObject;
     private BonusNumber bonusNumberObject;
     Map<WinningRanking, Integer> rankingResult;
+    double earningRateResult;
 
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
@@ -50,11 +52,12 @@ public class LottoController {
         decideRanking();
         printRanking();
 
+        computeEarningRate();
+        printEarningRate();
     }
 
     public void inputPurchaseAmount() {
         boolean isValidNumber = false;
-        String inputCost;
 
         do {
             inputView.printMessage(InputMessage.INPUT_PURCHASE_AMOUNT);
@@ -93,7 +96,6 @@ public class LottoController {
             winningNumber = inputView.inputWinningNumber();
             try {
                 validateWinningNumber();
-
                 isValidInput = true;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -149,5 +151,12 @@ public class LottoController {
         outputView.printRankingResult(rankingResult);
     }
 
+    public void computeEarningRate() {
+        earningRateResult = lottoService.computeEarningRate(inputCost, rankingResult);
+    }
+
+    public void printEarningRate() {
+        outputView.printEarningRate(earningRateResult);
+    }
 
 }

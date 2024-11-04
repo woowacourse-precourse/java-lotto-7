@@ -41,4 +41,8 @@ public class OutputView {
                     ranking.getMatchCount() + "개 일치 (" + ranking.getKoreaFormatPrize() + "원) - " + count + "개");
         }
     }
+
+    public void printEarningRate(double earningRateResult) {
+        System.out.println(OutputMessage.EARNING_RATE_RESULT_MESSAGE.getEarningRateResultMessage(earningRateResult));
+    }
 }
