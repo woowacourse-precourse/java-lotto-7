@@ -1,6 +1,5 @@
 package lotto.util;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.RetryInputException;
 import lotto.view.Input;
 
@@ -16,11 +15,8 @@ public class InputUtils {
                 return request;
 
             } catch (RetryInputException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
                 request = Input.request(e.getViewMessage());
-
-            } finally {
-                Console.close();
             }
         }
     }
