@@ -5,6 +5,7 @@ import static lotto.constant.ErrorMessages.INVALID_MONEY;
 public class LottoTickets {
 
     private static final int PRICE_PER_TICKET = 1_000;
+    private final int purchasePrice;
     private int ticketCount;
 
     public LottoTickets(String stringMoney) {
@@ -13,7 +14,12 @@ public class LottoTickets {
             throw new IllegalArgumentException(INVALID_MONEY);
         }
 
+        purchasePrice = money;
         ticketCount = money / PRICE_PER_TICKET;
+    }
+
+    public int getPurchasePrice() {
+        return purchasePrice;
     }
 
     public boolean hasTicketCount() {

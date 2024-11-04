@@ -13,7 +13,7 @@ public enum LottoRank {
 
     private final int matchCount;
     private final boolean bonus;
-    private final int price;
+    private final int prize;
 
     public int getMatchCount() {
         return matchCount;
@@ -30,9 +30,13 @@ public enum LottoRank {
                 .orElse(FAIL);
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
     LottoRank(int matchCount, boolean bonus, int prize) {
         this.matchCount = matchCount;
         this.bonus = bonus;
-        this.price = prize;
+        this.prize = prize;
     }
 }
