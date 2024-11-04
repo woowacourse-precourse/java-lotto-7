@@ -3,7 +3,6 @@ package lotto.validator;
 import static lotto.exception.ExceptionErrorMessage.INPUT_BLANK_MESSAGE;
 import static lotto.exception.ExceptionErrorMessage.INPUT_MINUS_NUMBER_MESSAGE;
 import static lotto.exception.ExceptionErrorMessage.INPUT_NOT_DIGIT_MESSAGE;
-import static lotto.exception.ExceptionErrorMessage.INPUT_NOT_DIGIT_OR_NOT_DELIMITER_MESSAGE;
 import static lotto.exception.ExceptionErrorMessage.INPUT_ZERO_NUMBER_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

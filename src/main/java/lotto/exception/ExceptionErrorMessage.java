@@ -21,6 +21,6 @@ public enum ExceptionErrorMessage {
 
     @Override
     public String toString() {
-        return "[ERROR] "+ message;
+        return "[ERROR] " + message;
     }
 }

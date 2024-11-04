@@ -1,15 +1,15 @@
 package lotto.validator;
 
-import static lotto.exception.ExceptionErrorMessage.INPUT_BLANK_MESSAGE;
-import static lotto.exception.ExceptionErrorMessage.INPUT_MINUS_NUMBER_MESSAGE;
-import static lotto.exception.ExceptionErrorMessage.INPUT_NOT_DIGIT_MESSAGE;
-import static lotto.exception.ExceptionErrorMessage.INPUT_ZERO_NUMBER_MESSAGE;
-import static lotto.exception.ExceptionErrorMessage.OUT_OF_RANGE_LOTTO_NUMBER_MESSAGE;
 import static lotto.constant.LottoValue.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoValue.MIN_LOTTO_NUMBER;
 import static lotto.constant.ValidationFormat.DIGIT_NUMBER_REGEX;
 import static lotto.constant.ValidationFormat.MINUS_NUMBER_REGEX;
 import static lotto.constant.ValidationFormat.ZERO;
+import static lotto.exception.ExceptionErrorMessage.INPUT_BLANK_MESSAGE;
+import static lotto.exception.ExceptionErrorMessage.INPUT_MINUS_NUMBER_MESSAGE;
+import static lotto.exception.ExceptionErrorMessage.INPUT_NOT_DIGIT_MESSAGE;
+import static lotto.exception.ExceptionErrorMessage.INPUT_ZERO_NUMBER_MESSAGE;
+import static lotto.exception.ExceptionErrorMessage.OUT_OF_RANGE_LOTTO_NUMBER_MESSAGE;
 
 import java.util.regex.Pattern;
 

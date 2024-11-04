@@ -1,6 +1,12 @@
 package lotto.controller;
 
-import lotto.model.*;
+import lotto.model.Analyst;
+import lotto.model.Calculator;
+import lotto.model.Issuer;
+import lotto.model.Lotto;
+import lotto.model.LottoResults;
+import lotto.model.Lottos;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

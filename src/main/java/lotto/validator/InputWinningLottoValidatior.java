@@ -1,12 +1,12 @@
 package lotto.validator;
 
+import static lotto.constant.ValidationFormat.DIGIT_NUMBER_REGEX;
+import static lotto.constant.ValidationFormat.MINUS_NUMBER_REGEX;
+import static lotto.constant.ValidationFormat.ZERO;
 import static lotto.exception.ExceptionErrorMessage.INPUT_BLANK_MESSAGE;
 import static lotto.exception.ExceptionErrorMessage.INPUT_MINUS_NUMBER_MESSAGE;
 import static lotto.exception.ExceptionErrorMessage.INPUT_NOT_DIGIT_OR_NOT_DELIMITER_MESSAGE;
 import static lotto.exception.ExceptionErrorMessage.INPUT_ZERO_NUMBER_MESSAGE;
-import static lotto.constant.ValidationFormat.DIGIT_NUMBER_REGEX;
-import static lotto.constant.ValidationFormat.MINUS_NUMBER_REGEX;
-import static lotto.constant.ValidationFormat.ZERO;
 
 import java.util.regex.Pattern;
 
