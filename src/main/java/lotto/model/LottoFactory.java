@@ -7,6 +7,7 @@ import lotto.dto.LottoPurchaseDTO;
 
 public class LottoFactory {
     private final Lottos lottos;
+    private WinningLotto winningLotto;
 
     public LottoFactory(Lottos lottos) {
         this.lottos = lottos;
@@ -19,17 +20,17 @@ public class LottoFactory {
         return randomNumbers;
     }
 
-    private int calculateLottoCount(int price) {
-        return price / Constants.LOTTO_PRICE;
-    }
-
     public void createLottos(LottoPurchaseDTO lottoPurchaseDTO) {
-        int lottoCount = calculateLottoCount(lottoPurchaseDTO.getPrice());
+        int lottoCount = lottoPurchaseDTO.getLottoCount();
 
         for(int i=0; i<lottoCount; i++) {
             Lotto lotto = new Lotto(createRandomNumbers());
             lottos.addLotto(lotto);
         }
+    }
+
+    public void createWinningLotto(LottoPurchaseDTO lottoPurchaseDTO) {
+        winningLotto = new WinningLotto(lottoPurchaseDTO.getLottoNumbers(), lottoPurchaseDTO.getBonusNumber());
     }
 
     public String checkLottos() {

@@ -27,7 +27,8 @@ public class LottoController {
     public void start() {
         LottoPurchaseDTO lottoPurchaseDTO = inputParser.lottoPurchaseDTO();
         lottoFactory.createLottos(lottoPurchaseDTO);
-        outputView.showLottoNumbers(lottoFactory.checkLottos());
+        outputView.showLottoNumbers(lottoFactory.checkLottos(), lottoPurchaseDTO.getLottoCount());
+        lottoFactory.createWinningLotto(lottoPurchaseDTO);
         outputView.showStatistics();
     }
 

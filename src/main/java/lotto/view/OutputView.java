@@ -9,7 +9,8 @@ public class OutputView {
         System.out.println(count + Prompts.OUTPUT_PURCHASE_COUNT_PROMPT);
     }
 
-    public void showLottoNumbers(String lottoNumbers) {
+    public void showLottoNumbers(String lottoNumbers, int lottoCount) {
+        System.out.println(lottoCount + Prompts.OUTPUT_PURCHASE_COUNT_PROMPT);
         System.out.println(lottoNumbers);
     }
 
