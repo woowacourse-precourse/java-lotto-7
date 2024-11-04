@@ -3,6 +3,8 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -13,10 +15,13 @@ public class OutputView {
     private static final String SEPARATOR = "---";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
+
     public static void displayPurchasedLottos(List<Lotto> lottos) {
-        System.out.printf(PURCHASED_MESSAGE + "%n", lottos.size()); // %n은 줄바꿈
+        System.out.printf(PURCHASED_MESSAGE + "%n", lottos.size());
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
+            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedNumbers);
+            System.out.println(sortedNumbers);
         }
         System.out.println();
     }

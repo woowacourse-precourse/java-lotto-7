@@ -2,8 +2,6 @@ package lotto.model;
 
 import lotto.validator.LottoValidator;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -17,9 +15,6 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        return sortedNumbers;
+        return numbers;
     }
-
 }
