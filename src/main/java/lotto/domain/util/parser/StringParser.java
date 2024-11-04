@@ -8,9 +8,4 @@ public interface StringParser<R> {
         return s.chars().allMatch(Character::isDigit);
     }
 
-    default void validateNumeric(String s) {
-        if (!isNumeric(s)) {
-            throw new IllegalArgumentException();
-        }
-    }
 }
