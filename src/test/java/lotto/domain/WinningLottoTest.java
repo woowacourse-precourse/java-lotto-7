@@ -8,8 +8,8 @@ import java.util.List;
 import lotto.validator.WinningLottoValidator;
 import org.junit.jupiter.api.Test;
 
-class WinningLottoValidatorTest {
-    
+class WinningLottoTest {
+
     @Test
     void 당첨번호와_보너스번호가_정상적이면_예외가_발생하지_않는다() {
         assertThatNoException().isThrownBy(() ->

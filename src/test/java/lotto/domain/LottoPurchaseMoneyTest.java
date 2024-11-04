@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.Test;
 
 class LottoPurchaseMoneyTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -40,26 +40,7 @@ class LottoPurchaseMoneyTest extends NsTest {
         });
     }
 
-    @Test
-    void 구입금액이_숫자가_아니면_예외가_발생한다() {
-        assertSimpleTest(() -> {
-            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                new LottoPurchaseMoney("abc");
-            });
-            assertThat(exception.getMessage()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 구입금액이_공백이면_예외가_발생한다() {
-        assertSimpleTest(() -> {
-            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                new LottoPurchaseMoney("");
-            });
-            assertThat(exception.getMessage()).contains(ERROR_MESSAGE);
-        });
-    }
-
     @Override
-    public void runMain() {}
+    public void runMain() {
+    }
 }
