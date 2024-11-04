@@ -34,7 +34,7 @@ public class Application {
     }
 
     public static int checkAmount(int buyLottoAmount) { //금액 체크
-        if (buyLottoAmount % 1000 != 0) throw new IllegalArgumentException("");
+        if (buyLottoAmount % 1000 != 0) throw new IllegalArgumentException("[ERROR] 1000원 단위 금액이 아닙니다.");
         return buyLottoAmount / 1000;
     }
 

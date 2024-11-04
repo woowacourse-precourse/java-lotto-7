@@ -66,6 +66,5 @@ public class Lotto {
         rate = Math.round(rate * 100) / 100.0;
         System.out.println("총 수익률은 " + rate + "%입니다.");
     }
-
-
+    
 }
