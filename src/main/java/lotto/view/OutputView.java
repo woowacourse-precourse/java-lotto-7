@@ -40,7 +40,7 @@ public class OutputView {
     }
 
     public static void printWinningStatistics(Map<LottoRank, Integer> lottoRankCount) {
-        System.out.println(LottoMessage.WINNING_STATISTICS_HEADLINE);
+        System.out.println(LottoMessage.WINNING_STATISTICS_HEADLINE.getMessage());
 
         Map<LottoRank, String> rankInfo = LottoRank.getRankInfo();
 
