@@ -14,9 +14,6 @@ public enum ViewMessage {
     OUTPUT_LOTTOS_COUNT("%d개를 구매했습니다.")
     ;
 
-
-    ;
-
     private final String message;
 
     ViewMessage(String message) {
@@ -26,6 +23,7 @@ public enum ViewMessage {
     public String getMessage() {
         return this.message;
     }
+
     public String format(int count) {
         return String.format(this.message, count);
     }

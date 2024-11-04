@@ -22,9 +22,7 @@ public class Lotto {
 
     public static Lottos buyAsMoney(int money) {
         List<Lotto> boughtLottos = new ArrayList<>();
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.AMOUNT_NOT_IN_THOUSANDS.getMessage());
-        }
+        validateThousandUnitAmount(money);
         for (int i = 0; i < money / 1000; i++) {
             boughtLottos.add(createLotto());
         }
@@ -54,6 +52,12 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
+        }
+    }
+
+    private static void validateThousandUnitAmount(int money) {
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.AMOUNT_NOT_IN_THOUSANDS.getMessage());
         }
     }
 

@@ -24,7 +24,10 @@ public final class Lottos {
 
     public Map<String, Integer> getResult(Lotto winningLotto, int bonusNumber) {
         Map<String, Integer> lottosResult = new HashMap<>(Map.of(
-                "1등",0,"2등",0,"3등",0,"4등",0,"5등",0 ,"꽝",0, "총 상금",0));
+                "1등",0,"2등",0,"3등",0,"4등",0,"5등",0 ,"꽝",0, "총상금",0,"구매금액",0));
+
+        lottosResult.put("총상금", getTotalPrizeMoney(lottosResult));
+        lottosResult.put("구매금액", lottos.size()*1000);
 
         for (Lotto lotto : lottos) {
             int matchCount = lotto.countMatchingNumbers(winningLotto);
@@ -33,8 +36,6 @@ public final class Lottos {
 
             lottosResult.computeIfPresent(rank, (key,value)-> value+1);
         }
-
-        lottosResult.put("총 상금", getTotalPrizeMoney(lottosResult));
 
         return lottosResult;
     }
@@ -58,7 +59,8 @@ public final class Lottos {
         return "꽝";
     }
 
-    public double calculateReturns(Map<String, Integer> lottoResult, int usingMoney) {
+    public double calculateReturns(Map<String, Integer> lottoResult) {
+        int usingMoney = lottoResult.get("구매금액");
         double value = getTotalPrizeMoney(lottoResult) / (double) usingMoney * 100;
 
         return Math.round(value*10)/10.0;

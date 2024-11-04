@@ -71,7 +71,7 @@ class LottosTest {
         Map<String, Integer> lottoResult = mylottos.getResult(winningLotto, bonunsNumber);
 
         //then
-        double returns = mylottos.calculateReturns(lottoResult, usingMoney);
+        double returns = mylottos.calculateReturns(lottoResult);
         Assertions.assertThat(returns).isEqualTo(10.0);
     }
 }

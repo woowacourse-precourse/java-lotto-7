@@ -19,9 +19,7 @@ import lotto.domain.Lotto;
 public class InputView {
     public static final String LOTTO_NUMBER_SEPARATOR = ",";
     public static int readInputMoney() {
-
         System.out.println(INPUT_PURCHASE_AMOUNT.getMessage());
-
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {

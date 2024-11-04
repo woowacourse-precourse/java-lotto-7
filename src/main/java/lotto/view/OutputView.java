@@ -32,7 +32,7 @@ public class OutputView {
             System.out.println(
                     PRINT_LOTTO_NUMBER_FORMAT_PREFIX+
                     lotto.getNumbers().stream()
-                    .sorted(Comparator.naturalOrder())
+                    .sorted()
                     .map(String::valueOf)
                     .collect(Collectors.joining(LOTTO_NUMBER_JOINNING_MARK))
                     +PRINT_LOTTO_NUMBER_FORMAT_SUFFIX);
