@@ -22,7 +22,7 @@ public class BonusNumberInput {
 
     private void checkNumber(int bonusNumber, List<Integer> numbers) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[Error] 로또 번호는 1에서 45사이여야 합니다.");
+            throw new IllegalArgumentException("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
         for (Integer number : numbers) {
             if (number == bonusNumber) {
