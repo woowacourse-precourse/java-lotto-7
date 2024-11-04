@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.Winning.NONE;
+
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +17,7 @@ public record WinningResultsDto(
 	private static List<WinningResultDto> getWinningResults(Map<Winning, Integer> winningResult) {
 		return winningResult.entrySet().stream()
 				.sorted(Map.Entry.comparingByKey())
+				.filter(winning -> winning.getKey() != NONE)
 				.map(winning -> WinningResultDto.from(winning.getKey(), winning.getValue()))
 				.toList();
 	}
