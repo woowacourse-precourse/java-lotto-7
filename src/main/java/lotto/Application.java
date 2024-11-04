@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -18,7 +16,7 @@ public class Application {
                 lottoGame =new LottoGame(purchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
 
@@ -31,7 +29,7 @@ public class Application {
                 lottoGame.setWinningLotto(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
 
@@ -43,7 +41,7 @@ public class Application {
                 lottoGame.setBonusNumber(bonus.getBonus());
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
 
