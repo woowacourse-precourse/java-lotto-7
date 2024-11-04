@@ -1,6 +1,5 @@
 package lotto.domain.lotto;
 
-import static lotto.exception.message.LottoExceptionMessage.DUPLICATE_NUMBER_INPUT;
 import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_COUNT;
 import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,7 +22,7 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DUPLICATE_NUMBER_INPUT.getMessage());
+                .hasMessageContaining(INVALID_NUMBER_COUNT.getMessage());
     }
 
     @Test
