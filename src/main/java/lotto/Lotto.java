@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -16,6 +17,18 @@ public class Lotto {
 
     public boolean hasSameNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    public int findMatchCount(Lotto userLotto) {
+        int count = 0;
+        for (Integer number : userLotto.numbers) {
+            if (this.numbers.contains(number)) {
+                count++;
+            }
+
+        }
+
+        return count;
     }
 
     @Override

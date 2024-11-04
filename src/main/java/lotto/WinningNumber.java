@@ -11,4 +11,8 @@ public class WinningNumber {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
+
+    public int findMatchCount(Lotto userLotto) {
+        return this.lotto.findMatchCount(userLotto);
+    }
 }
