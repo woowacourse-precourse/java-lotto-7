@@ -22,7 +22,7 @@ public enum Rank {
         return prize;
     }
 
-    public boolean checkBonus() {
+    public boolean getMatchBonus() {
         return matchBonus;
     }
 
@@ -35,7 +35,10 @@ public enum Rank {
             return FIRST;
         }
         if (matchCount == 5) {
-            return matchBonus ? SECOND : THIRD;
+            if (matchBonus) {
+                return SECOND;
+            }
+            return THIRD;
         }
         if (matchCount == 4) {
             return FOURTH;
