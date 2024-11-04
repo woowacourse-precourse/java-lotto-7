@@ -35,10 +35,6 @@ public class WinningLotto {
         private List<Integer> winningNumbers = new ArrayList<>();
         private Integer bonusNumber;
 
-        public static WinningLottoBuilder builder() {
-            return new WinningLottoBuilder();
-        }
-
         public WinningLottoBuilder winningNumbers(List<Integer> winningNumbers) {
             validateSize(winningNumbers,WINNING_NUMBER_SIZE);
             validateRange(MIN, MAX,winningNumbers);
@@ -54,6 +50,7 @@ public class WinningLotto {
         }
 
         public WinningLotto build() {
+            validateDuplicate(winningNumbers,bonusNumber);
             return new WinningLotto(this.winningNumbers, this.bonusNumber);
         }
     }
