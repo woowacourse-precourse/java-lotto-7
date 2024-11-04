@@ -35,7 +35,7 @@ public class LottoController {
         //당첨번호와 보너스번호를 입력받고 당첨로또를 만듭니다.
         WinningLotto winningLotto = getWinningLotto();
 
-        //로또들과 당첨로또를 비교하여 등수를 반환합니다.
+        //로또들과 당첨로또를 비교하여 당첨내역을 반환합니다.
         List<LottoRank> lottoRanks = lottoCheckService.checkRanks(winningLotto, lottos);
 
         //등수를 통계로 만들어 출력합니다.
