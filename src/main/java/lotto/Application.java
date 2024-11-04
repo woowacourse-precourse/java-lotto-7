@@ -11,14 +11,14 @@ public class Application {
 
     public static void main(String[] args) {
         LottoShop shop = new LottoShop();
-        int money = repeatUntilNoException(Application::inputMoney());
+        int money = repeatUntilSuccess(Application::inputMoney());
         List<Lotto> lottos = shop.sell(money);
 
         System.out.println("\n%d개를 구매했습니다.".formatted(lottos.size()));
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
 
-        List<Integer> winningNumbers = repeatUntilNoException(Application::drawWinningNumbers ());
-        int bonusNumber = repeatUntilNoException(() -> drawBonus(winningNumbers));
+        List<Integer> winningNumbers = repeatUntilSuccess(Application::drawWinningNumbers ());
+        int bonusNumber = repeatUntilSuccess(() -> drawBonus(winningNumbers));
 
         LottoMachine machine = new LottoMachine();
         Result result = machine.informWinningResults(lottos, winningNumbers, bonusNumber, money);
@@ -78,7 +78,7 @@ public class Application {
         return Integer.parseInt(rawNumber);
     }
 
-    private static <T> T repeatUntilNoException(Supplier<T> inputFunction) {
+    private static <T> T repeatUntilSuccess(Supplier<T> inputFunction) {
         while (true) {
             try {
                 return inputFunction.get();
