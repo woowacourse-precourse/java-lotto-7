@@ -13,7 +13,7 @@ public class Validator {
         }
     }
 
-    public int validateLottoNumber(String number) {
+    public static int validateLottoNumber(String number) {
         try {
             validateRightNumber(number);
             return Integer.parseInt(number);
@@ -22,13 +22,13 @@ public class Validator {
         }
     }
 
-    public void validateRightNumber(String number) {
+    public static void validateRightNumber(String number) {
         if (number.charAt(0) == '0') {
             throw new IllegalArgumentException("[ERROR] 올바른 형식의 숫자를 입력해주세요.");
         }
     }
 
-    public void validateRightDelimiter(String input) {
+    public static void validateRightDelimiter(String input) {
         if (input.startsWith(InputUtil.DELIMITER) || input.endsWith(InputUtil.DELIMITER)) {
             throw new IllegalArgumentException("[ERROR] 구분자는 반드시 숫자 사이에 있어야합니다.");
         }
