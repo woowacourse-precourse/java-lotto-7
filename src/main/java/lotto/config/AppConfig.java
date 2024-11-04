@@ -4,7 +4,7 @@ import lotto.controller.LottoController;
 import lotto.view.ConsoleInputProvider;
 import lotto.view.InputProvider;
 import lotto.view.LottoInputViewFactory;
-import lotto.view.winningLottoView.WinningLottoOutputViewFactory;
+import lotto.view.LottoOutputViewFactory;
 
 public class AppConfig {
 
@@ -12,8 +12,8 @@ public class AppConfig {
         return new ConsoleInputProvider();
     }
 
-    private WinningLottoOutputViewFactory outputViewFactory() {
-        return new WinningLottoOutputViewFactory();
+    private LottoOutputViewFactory outputViewFactory() {
+        return new LottoOutputViewFactory();
     }
 
     private LottoInputViewFactory inputViewFactory() {

@@ -7,6 +7,7 @@ import lotto.model.lottoPurchaser.LottoPurchaser;
 import lotto.util.*;
 import lotto.view.InputProvider;
 import lotto.view.LottoInputViewFactory;
+import lotto.view.LottoOutputViewFactory;
 import lotto.view.lottoPurchaseView.LottoPurchaseInputView;
 import lotto.view.lottoPurchaseView.LottoPurchaseOutputView;
 import lotto.view.winningLottoView.*;
@@ -16,25 +17,26 @@ import java.util.Set;
 
 public class LottoController {
 
-    private final LottoPurchaseOutputView lottoPurchaseOutputView = new LottoPurchaseOutputView();
-    private final WinningLottoOutputView winningLottoOutputView;
-    private final LottoProfitOutputView lottoProfitOutputView;
     private final LottoPurchaseInputView lottoPurchaseInputView;
     private final WinningLottoInputView winningLottoInputView;
+    private final LottoPurchaseOutputView lottoPurchaseOutputView;
+    private final WinningLottoOutputView winningLottoOutputView;
+    private final LottoProfitOutputView lottoProfitOutputView;
 
 
     public LottoController(InputProvider inputProvider, LottoInputViewFactory lottoInputViewFactory,
-                           WinningLottoOutputViewFactory outputViewFactory)
-    {
+                           LottoOutputViewFactory outputViewFactory
+    ) {
         NumberConverter numberConverter = new NumberConverter();
         this.lottoPurchaseInputView = lottoInputViewFactory.createLottoPurchaseInputView(inputProvider, numberConverter);
         this.winningLottoInputView = lottoInputViewFactory.createWinningLottoInputView(inputProvider, numberConverter);
+        this.lottoPurchaseOutputView = outputViewFactory.createLottoPurchaseOutputView();
         this.winningLottoOutputView = outputViewFactory.createWinningLottoOutputView();
         this.lottoProfitOutputView = outputViewFactory.createLottoProfitOutputView();
     }
 
     public void startLotto(){
-        int lottoPurchasePrice = getLottoPurchasePrice(lottoPurchaseInputView);
+        int lottoPurchasePrice = getLottoPurchasePrice();
         int lottoPurchaseCount = calculateLottoCount(lottoPurchasePrice);
 
         LottoPurchaser lottoPurchaser = new LottoPurchaser(lottoPurchasePrice);
@@ -44,8 +46,8 @@ public class LottoController {
         showLottoResult(lottoPurchaser, getWinningLottoNumbers());
     }
 
-    private int getLottoPurchasePrice(LottoPurchaseInputView inputView){
-        return inputView.getPurchasePrice();
+    private int getLottoPurchasePrice(){
+        return lottoPurchaseInputView.getPurchasePrice();
     }
 
     private int calculateLottoCount(int lottoPurchasePrice){
