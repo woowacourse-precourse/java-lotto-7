@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.domain.LottoUniqueGenerator;
+import lotto.domain.MyLotto;
 import lotto.view.InputView;
 import lotto.view.ResultView;
 
@@ -13,5 +15,8 @@ public class LottoController {
     }
     public void run() {
         int numberOfLotto = inputView.inputPurchaseAmountGuide();
+        MyLotto myLotto = MyLotto.createLottos(numberOfLotto, LottoUniqueGenerator.getLottoUniqueGenerator());
+
+
     }
 }
