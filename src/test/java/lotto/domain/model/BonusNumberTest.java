@@ -15,13 +15,13 @@ public class BonusNumberTest {
     @DisplayName("보너스 번호가 공백일 경우 예외가 발생한다.")
     void 보너스_번호가_공백일_경우_예외가_발생한다() {
         // given
-        String invalidInput = " ";
+        String invalidInput = "";
         List<Integer> winningNumbers = List.of(8, 21, 15, 33, 40, 42);
 
         // when, then
         assertThatThrownBy(() -> new BonusNumber(invalidInput, winningNumbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(BonusErrorMessages.INVALID_NUMBER_FORMAT.getMessage());
+                .isInstanceOf(NullPointerException.class)
+                .hasMessage(BonusErrorMessages.INVALID_EMPTY.getMessage());
     }
 
     @Test

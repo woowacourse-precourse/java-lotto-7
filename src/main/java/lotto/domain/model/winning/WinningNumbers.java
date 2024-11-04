@@ -44,8 +44,8 @@ public class WinningNumbers {
     }
 
     private void checkNotEmpty(String input) {
-        if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException(WinningNumbersErrorMessages.INVALID_EMPTY.getMessage());
+        if (input.isEmpty()) {
+            throw new NullPointerException(WinningNumbersErrorMessages.INVALID_EMPTY.getMessage());
         }
     }
 

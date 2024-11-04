@@ -15,6 +15,7 @@ public class BonusNumber {
     }
 
     private int parseAndValidate(String input, List<Integer> winningNumbers) {
+        checkNotEmpty(input);
         checkIsPositiveInteger(input);
 
         int number = Integer.parseInt(input);
@@ -22,6 +23,12 @@ public class BonusNumber {
         checkNotDuplicate(number, winningNumbers);
 
         return number;
+    }
+
+    private void checkNotEmpty(String input) {
+        if (input.isBlank()) {
+            throw new NullPointerException(BonusErrorMessages.INVALID_EMPTY.getMessage());
+        }
     }
 
     private void checkIsPositiveInteger(String input) {

@@ -17,7 +17,7 @@ public class WinningNumbersTest {
 
         // when, then
         assertThatThrownBy(() -> new WinningNumbers(emptyNumbers))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(NullPointerException.class)
                 .hasMessage(WinningNumbersErrorMessages.INVALID_EMPTY.getMessage());
     }
 

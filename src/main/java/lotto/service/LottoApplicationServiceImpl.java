@@ -33,8 +33,8 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
     }
 
     private void checkNotBlank(String input) {
-        if (input.isBlank()) {
-            throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_EMPTY.getMessage());
+        if (input.isEmpty()) {
+            throw new NullPointerException(LottoErrorMessages.INVALID_AMOUNT_EMPTY.getMessage());
         }
     }
 

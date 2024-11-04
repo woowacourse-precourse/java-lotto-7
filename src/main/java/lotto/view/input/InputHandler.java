@@ -17,7 +17,7 @@ public class InputHandler {
     public int getValidatedAmount() {
         return handleInput(() -> {
             String input = InputView.getAmount();
-            lottoApplicationService.validateAmount(input); // 의존성 주입된 객체 사용
+            lottoApplicationService.validateAmount(input);
             return Integer.parseInt(input);
         }, LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
     }
