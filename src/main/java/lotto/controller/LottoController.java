@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.io.LottoInputHandler;
 import lotto.io.LottoOutputHandler;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.service.LottoService;
 import lotto.util.LottoNumberParser;
 import lotto.util.LottoValidator;
@@ -33,7 +34,7 @@ public class LottoController {
         Lotto winningLotto = getWinningLotto();
         int bonusNumber = getBonusNumber(winningLotto.getNumbers());
 
-
+        LottoResult result = lottoService.evaluateResults(lottoTickets, winningLotto, bonusNumber);
     }
 
     private int getPurchaseAmount() {
