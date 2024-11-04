@@ -2,6 +2,8 @@ package lotto.service;
 
 import static lotto.constant.Constants.DEFAULT_STATISTIC_COUNT;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +47,9 @@ public class LottoResultService {
                 .mapToInt(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
 
-        return (double) totalPrize / purchaseAmount * 100;
+        double rawProfitRate = (double) totalPrize / purchaseAmount * 100;
+        return BigDecimal.valueOf(rawProfitRate)
+                .setScale(1, RoundingMode.HALF_UP)
+                .doubleValue();
     }
 }
