@@ -22,8 +22,7 @@ public class LottoSimulator {
     private Map<Integer, Integer> prizeResult;
 
     public LottoSimulator(String cost) {
-        LottoSimulatorValidation.validateLottoCost(cost);
-
+        validateCost(cost);
         this.cost = Integer.parseInt(cost);
         purchasedLotto = new ArrayList<>();
         prizeResult = new HashMap<>();
@@ -84,5 +83,10 @@ public class LottoSimulator {
 
     public Map<Integer, Integer> getPrizeResult() {
         return prizeResult;
+    }
+
+    private void validateCost(String cost){
+        LottoSimulatorValidation.validateLottoCost(cost);
+        LottoSimulatorValidation.validateCostFormat(cost);
     }
 }

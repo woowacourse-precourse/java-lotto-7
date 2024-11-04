@@ -12,4 +12,11 @@ public class LottoSimulatorValidationTest {
         assertThatThrownBy(() -> LottoSimulatorValidation.validateLottoCost("1500"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("로또 구입 금액이 숫자가 아닌 경우 예외발생")
+    void validateCostFormat_InvalidNumberFormat_ExceptionThrown() {
+        assertThatThrownBy(() -> LottoSimulatorValidation.validateCostFormat("1500j"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
