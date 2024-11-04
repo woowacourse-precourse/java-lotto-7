@@ -2,16 +2,14 @@ package lotto.domain;
 
 import lotto.service.Issuing;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class LottoTicket {
     private static final int PRICE_TICKET = 1_000;
     private static final int PRICE_MAX = 100_000;
     private final int price;
     private final List<Lotto> lottoTickets = new ArrayList<>();
-    private final HashMap<Rank, Integer> result = new HashMap<>();
+    private HashMap<Rank, Integer> result = new HashMap<>();
     private int count;
 
     Issuing issue = new Issuing();
@@ -20,6 +18,7 @@ public class LottoTicket {
         validatePrice(price);
         this.price = price;
         count = priceChangeToTicket(price);
+        initResult();
     }
     public void addLottoTicket(Lotto lotto){
         lottoTickets.add(lotto);
@@ -42,6 +41,12 @@ public class LottoTicket {
             sum += (long) rank.getPrize() * getResult().get(rank);
         }
         return sum;
+    }
+    private void initResult(){
+        result = new LinkedHashMap<>();
+        for(Rank rank: Rank.values()){
+            result.put(rank,0);
+        }
     }
     private void validatePrice(int price){
         if(price < PRICE_TICKET || price > PRICE_MAX){
