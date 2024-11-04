@@ -1,5 +1,6 @@
 package lotto;
 
+import java.io.PrintStream;
 import java.util.List;
 import lotto.domain.controller.LottoController;
 import lotto.domain.service.LottoService;
@@ -16,7 +17,6 @@ public class Application {
         StringParser<List<Integer>> numberParser = DelimitedNumberParser.getInstance();
         StringParser<Integer> bonusParser = BonusNumberParser.getInstance();
         StringParser<Integer> moneyParser = MoneyParser.getInstance();
-        OutputConsole.init(System.out);
         OutputConsole output = OutputConsole.getInstance();
 
         LottoService.init(numberParser, bonusParser, moneyParser);
