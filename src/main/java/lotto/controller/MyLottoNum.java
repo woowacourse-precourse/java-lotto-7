@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoList;
+import lotto.model.LottoRank;
 
 public class MyLottoNum {
     private final List<Lotto> lottoList = new ArrayList<Lotto>();

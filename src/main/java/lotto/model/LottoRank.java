@@ -1,5 +1,7 @@
 package lotto.model;
 
+import net.bytebuddy.dynamic.scaffold.TypeInitializer.None;
+
 public enum LottoRank {
     FIRST(6, false),
     SECOND(5, true),

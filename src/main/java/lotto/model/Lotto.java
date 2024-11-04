@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private boolean bonus = false;
     private static final Integer LOTTO_SIZE = 6;
 
     public Lotto(List<Integer> numbers) {
@@ -15,6 +16,14 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return this.numbers;
+    }
+
+    public boolean getBonus() {
+        return this.bonus;
+    }
+
+    public void isBonus() {
+        this.bonus = true;
     }
 
     private void validate(List<Integer> numbers) {
