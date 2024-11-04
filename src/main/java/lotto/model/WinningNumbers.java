@@ -38,7 +38,7 @@ public class WinningNumbers {
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber > 45 || bonusNumber < 0) {
+        if (bonusNumber > 45 || bonusNumber < 1) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
