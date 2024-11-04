@@ -1,8 +1,8 @@
 package lotto.controller;
 
+import lotto.domain.PrizeResult;
 import lotto.domain.RandomLottos;
 import lotto.domain.WinningLotto;
-import lotto.domain.WinningResult;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.LottoNumber;
 import lotto.service.LottoService;
@@ -39,6 +39,6 @@ public class LottoController {
         LottoNumber bonus = new LottoNumber(Parser.parseToInt(bonusInput));
         WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonus);
 
-        WinningResult winningResult = lottoService.calculateResult(randomLottos, winningLotto);
+        PrizeResult prizeResult = lottoService.calculateResult(randomLottos, winningLotto);
     }
 }

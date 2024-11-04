@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 import lotto.domain.Prize;
+import lotto.domain.PrizeResult;
 import lotto.domain.RandomLottos;
 import lotto.domain.WinningLotto;
-import lotto.domain.WinningResult;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.LottoNumber;
 import lotto.util.LottoMaker;
@@ -43,8 +43,8 @@ public class LottoService {
         return new Lotto(numbers);
     }
 
-    public WinningResult calculateResult(RandomLottos randomLottos, WinningLotto winningLotto) {
-        WinningResult winningResult = WinningResult.create();
+    public PrizeResult calculateResult(RandomLottos randomLottos, WinningLotto winningLotto) {
+        PrizeResult prizeResult = PrizeResult.create();
 
         for (Lotto radnomLotto : randomLottos.lottos()) {
             List<LottoNumber> mergedLotto = merge(winningLotto, radnomLotto);
@@ -53,10 +53,10 @@ public class LottoService {
             boolean hasNumber = radnomLotto.hasNumber(winningLotto.getBonus());
 
             Prize foundPrize = Prize.findPrize(matchingCount, hasNumber);
-            winningResult.increaseCountOf(foundPrize);
+            prizeResult.increaseCountOf(foundPrize);
         }
 
-        return winningResult;
+        return prizeResult;
     }
 
     private List<LottoNumber> merge(WinningLotto winningLotto, Lotto randomLotto) {
