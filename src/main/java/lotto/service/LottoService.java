@@ -68,7 +68,7 @@ public class LottoService {
         BigDecimal rateOfReturn = totalPrize.divide(investment, 10, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100));
 
-        rateOfReturn = rateOfReturn.setScale(2, RoundingMode.HALF_UP);
+        rateOfReturn = rateOfReturn.setScale(1, RoundingMode.HALF_UP);
 
         return new RateOfReturnDTO(rateOfReturn);
     }
