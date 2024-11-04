@@ -28,6 +28,8 @@
 
 ####  &nbsp;&nbsp;&nbsp;&nbsp;5-a. ENUM 사용을 통해 일치 갯수, 상금액 관리
 
+####  &nbsp;&nbsp;&nbsp;&nbsp;5-a. ENUM에 대한 테스트 코드 추가 통해 로직 검증
+
 ### 6. 총 얻은 당첨 금액과 구매 금액과의 비교를 통해 수익률 출력
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;6-a. 수익률 올바르게 계산되는지 테스트
