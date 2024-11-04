@@ -11,7 +11,8 @@ public enum ErrorStatus {
     INVALID_BONUS_INPUT("[ERROR] 보너스 번호는 숫자만 입력 가능합니다."),
     MONEY_OUT_OF_RANGE("[ERROR] 로또 구입 금액은 2,147,483,000원까지 허용됩니다."),
     INVALID_MONEY_INPUT("[ERROR] 로또 구입 입력에는 숫자만 입력 가능합니다."),
-    WINNING_NUMBER_TOO_BIG("[ERROR] 입력한 숫자가 너무 큽니다.");
+    WINNING_NUMBER_TOO_BIG("[ERROR] 입력한 숫자가 너무 큽니다."),
+    NO_VALUE("[ERROR] 값이 없습니다.");
 
     private final String message;
 
