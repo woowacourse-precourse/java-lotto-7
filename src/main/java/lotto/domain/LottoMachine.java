@@ -20,8 +20,10 @@ public class LottoMachine {
         return new LottoMachine(amount, lottoGenerator);
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
+    public String getLottos() {
+        return lottos.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
     }
 
 }
