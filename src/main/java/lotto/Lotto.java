@@ -3,7 +3,6 @@ package lotto;
 import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
-import lotto.LottoRegulation;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,6 +11,10 @@ public class Lotto {
         validate(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -47,7 +50,7 @@ public class Lotto {
         }
     }
 
-    private boolean inRange(int number) {
+    public static boolean inRange(int number) {
         return (number >= LottoRegulation.LOTTO_NUMBER_MIN &&
                 number <= LottoRegulation.LOTTO_NUMBER_MAX);
     }
