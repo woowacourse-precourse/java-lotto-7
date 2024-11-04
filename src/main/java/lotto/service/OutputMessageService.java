@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.util.LottoStatistics;
 import lotto.view.OutputMessageView;
 
 public class OutputMessageService {
@@ -7,5 +8,4 @@ public class OutputMessageService {
   public Long numberOfPurchases(long purchaseAmount){
     return purchaseAmount/LOTTO_PRICE;
   }
-
 }

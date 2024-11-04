@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import lotto.service.InputMessageService;
 import lotto.service.LottoService;
 import lotto.service.OutputMessageService;
+import lotto.util.LottoStatistics;
 import lotto.view.OutputMessageView;
 
 public class LottoController {
@@ -31,6 +32,7 @@ public class LottoController {
     List<Integer> winningNumbers=inputMessageService.enterWinningNumberAndValidation();
     int bonusNumber=inputMessageService.winningNumbersAddBonusNumberAndValidation(winningNumbers);
     lottoService.calculatingWinningStatistics(lottos,winningNumbers,bonusNumber);
+
   }
 
 }
