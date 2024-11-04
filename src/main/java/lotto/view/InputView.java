@@ -24,4 +24,12 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자이고, 쉼표로 구분해야 합니다.");
         }
     }
+
+    public static int getBonusNumber() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.")
+        }
+    }
 }

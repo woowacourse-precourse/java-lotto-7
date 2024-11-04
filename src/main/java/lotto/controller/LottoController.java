@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.Lotto;
+import lotto.util.BonusNumberValidator;
 import lotto.util.GenerateLotto;
 import lotto.util.PurchaseValidator;
 import lotto.util.WinningLottoValidator;
@@ -24,6 +25,10 @@ public class LottoController {
             OutputView.printWinnerLotto();
             List<Integer> winningLotto = InputView.getWinningLotto();
             WinningLottoValidator.validateLotto(winningLotto);
+
+            OutputView.printBonusNumber();
+            int bonusNumber = InputView.getBonusNumber();
+            BonusNumberValidator.validate(bonusNumber, winningLotto);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
