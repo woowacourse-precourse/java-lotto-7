@@ -1,8 +1,10 @@
-package lotto;
+package lotto.service;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.LottoPrize;
 import lotto.enums.LottoRank;
 
 public class LottoResult {

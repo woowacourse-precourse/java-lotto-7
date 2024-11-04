@@ -1,12 +1,13 @@
-package lotto;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.LottoGameInformation;
+import lotto.config.LottoGameConfig;
+import lotto.domain.Lotto;
 
 public class LottoPurchase {
     public List<Lotto> purchase(int purchaseAmount) {
-        int count = purchaseAmount / LottoGameInformation.PURCHASE_PRICE;
+        int count = purchaseAmount / LottoGameConfig.PURCHASE_PRICE;
         LottoGenerator LottoGenerator = new LottoGenerator();
         List<Lotto> lottos = new ArrayList<>();
 

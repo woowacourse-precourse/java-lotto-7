@@ -4,8 +4,8 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import lotto.Lotto;
-import lotto.LottoResult;
+import lotto.domain.Lotto;
+import lotto.service.LottoResult;
 import lotto.enums.LottoRank;
 
 public class OutputView {
