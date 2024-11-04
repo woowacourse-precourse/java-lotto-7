@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.InvalidLottoNumberRangeException;
 import lotto.exception.InvalidWinningNumbersDuplicateException;
 import lotto.exception.InvalidWinningNumbersSizeException;
 
@@ -16,6 +17,7 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         validateSize(winningNumbers);
+        validateRange(winningNumbers, bonusNumber);
         validateDuplicate(winningNumbers, bonusNumber);
         this.winningNumbers = List.copyOf(winningNumbers); // 불변 리스트로 복사
         this.bonusNumber = bonusNumber;
@@ -24,6 +26,17 @@ public class WinningNumbers {
     private void validateSize(List<Integer> winningNumbers) {
         if (winningNumbers.size() != WINNING_NUMBERS_SIZE) {
             throw new InvalidWinningNumbersSizeException();
+        }
+    }
+
+    private void validateRange(List<Integer> numbers, Integer bonusNumber) {
+        numbers.forEach(this::validateRange);
+        validateRange(bonusNumber);
+    }
+
+    private void validateRange(Integer number) {
+        if (!(MIN_WINNING_NUMBER <= number && number <= MAX_WINNING_NUMBER)) {
+            throw new InvalidLottoNumberRangeException();
         }
     }
 

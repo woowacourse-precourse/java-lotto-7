@@ -5,10 +5,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
+import lotto.exception.InvalidLottoNumberRangeException;
 import lotto.exception.InvalidLottoNumbersDuplicateException;
 import lotto.exception.InvalidLottoNumbersSizeException;
 
 public class Lotto {
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
     private static final Integer LOTTO_NUMBERS_SIZE = 6;
 
     private final List<Integer> numbers;
@@ -32,6 +35,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -45,6 +49,16 @@ public class Lotto {
 
         if (uniqueNumbers.size() != numbers.size()) {
             throw new InvalidLottoNumbersDuplicateException();
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        numbers.forEach(this::validateRange);
+    }
+
+    private void validateRange(Integer number) {
+        if (!(MIN_LOTTO_NUMBER <= number && number <= MAX_LOTTO_NUMBER)) {
+            throw new InvalidLottoNumberRangeException();
         }
     }
 
