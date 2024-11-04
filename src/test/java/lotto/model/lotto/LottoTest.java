@@ -1,5 +1,6 @@
 package lotto.model.lotto;
 
+import lotto.exception.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,16 +11,28 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LottoTest {
 
     @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
+    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다")
+    void shouldThrowExceptionWhenLottoNumbersExceedSix() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoException.INVALID_COUNT.getMessage());
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("로또 번호의 개수가 6개 이하이면 예외가 발생한다")
+    void throwsExceptionWhenLottoNumbersAreLessThanSix() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoException.INVALID_COUNT.getMessage());
     }
+
+    @Test
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    void shouldThrowExceptionWhenLottoNumbersAreDuplicate() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoException.DUPLICATE_LOTTO_NUMBER.getMessage());
+    }
+
 
 }
