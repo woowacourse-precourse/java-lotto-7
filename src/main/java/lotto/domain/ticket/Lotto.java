@@ -39,7 +39,7 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
-    public boolean contains(int number) {
+    public boolean contains(LottoNumber number) {
         return numbers.contains(number);
     }
 

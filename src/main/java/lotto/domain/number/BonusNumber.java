@@ -22,7 +22,7 @@ public class BonusNumber {
         }
     }
 
-    public int getNumber() {
+    public LottoNumber getNumber() {
         return number;
     }
 }
