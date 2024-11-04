@@ -3,11 +3,11 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputMoney {
-    public static String inputMoney;
-    public static int paidPrice;
-    public static int purchaseNumber;
+    public String inputMoney;
+    public int paidPrice;
+    public int purchaseNumber;
 
-    public static int inputMoneyToBuyLotto() {
+    public int inputMoneyToBuyLotto() {
         boolean continueLoop = true;
 
         while (continueLoop) {      // 예외 발생 시 재입력 반복
@@ -23,7 +23,7 @@ public class InputMoney {
     }
 
     // 입력 금액 검증
-    public static int validateInputMoney(String inputMoney) {
+    public int validateInputMoney(String inputMoney) {
         paidPrice = checkForNonNumericCharacters(inputMoney);       // 문자나 기호 체크 후 정수 변환
         checkNegative(paidPrice);           // 음수 체크
         checkIfThousandUnit(paidPrice);     // 1000의 배수 체크
