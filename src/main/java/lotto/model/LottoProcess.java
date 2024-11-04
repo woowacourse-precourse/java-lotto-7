@@ -3,7 +3,6 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.WinnerPrice;
-
 import java.util.*;
 
 public class LottoProcess {
@@ -43,7 +42,6 @@ public class LottoProcess {
         }
 
     }
-
     //로또 번호랑 당첨 번호랑 겹치는 개수 반환
     public int calculateWinningCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         Set<Integer> lottoNumberSet = new HashSet<>(lottoNumbers);
