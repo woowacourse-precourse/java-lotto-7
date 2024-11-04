@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -85,4 +86,18 @@ public class OutputViewTest {
 
     }
 
+    @Test
+    void 수익률_출력_테스트() {
+        // given
+        BigDecimal profit = new BigDecimal(10.5);
+
+        // when
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        outputView.printProfit(profit);
+
+        //then
+        String expected = "총 수익률은 10.5%입니다.";
+        assertThat(outputStream.toString()).isEqualTo(expected);
+    }
 }
