@@ -34,16 +34,17 @@ public enum Rank {
 
     // 매칭된 숫자와 보너스 매칭 여부에 따라 랭크를 결정하는 정적 메서드
     public static Rank valueOf(int count, boolean matchBonus) {
-        for (Rank rank : values()) {  // 모든 랭크를 순회
-            // 매칭된 숫자와 보너스 매칭 여부를 확인
+        if (count < 3) { // 2개 이하일 경우 NONE으로 처리
+            return NONE;
+        }
+
+        for (Rank rank : values()) {
             if (rank.matchingCount == count && (!rank.requiresBonus || matchBonus)) {
-                return rank;  // 조건에 맞는 랭크 반환
+                return rank;
             }
         }
 
-        // 조건에 맞는 랭크가 없을 경우 예외를 던짐
         throw new IllegalArgumentException("로또 번호에 매칭결과와 다른 예외적인 상황이 발생했습니다.");
     }
-
 
 }
