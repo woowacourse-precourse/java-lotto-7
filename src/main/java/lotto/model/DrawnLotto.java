@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DrawnLotto {
+
     private final Lotto drawnLotto;
     private final int bonusNumber;
 
@@ -56,6 +57,4 @@ public class DrawnLotto {
     public boolean isBonusNumberHit(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
     }
-
-
 }

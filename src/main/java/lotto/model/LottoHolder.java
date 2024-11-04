@@ -5,18 +5,19 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoHolder {
+
     private LottoCollection lottoCollection;
     private Map<Ranking, Integer> rankCounts;
 
-    
+
     public LottoHolder(LottoCollection lottoCollection) {
         this.lottoCollection = lottoCollection;
     }
-    
+
     public List<Lotto> getLottos() {
         return lottoCollection.getLottos();
     }
-    
+
     public void calculateRankCounts(DrawnLotto drawnLotto) {
         rankCounts = new EnumMap<>(Ranking.class);
 
@@ -27,10 +28,11 @@ public class LottoHolder {
             }
         }
     }
+
     public Map<Ranking, Integer> getRankCounts() {
         return rankCounts;
     }
-    
+
     public double calculateProfitRate() {
         int totalPrize = 0;
         int purchaseAmount = lottoCollection.getLottos().size() * 1000;

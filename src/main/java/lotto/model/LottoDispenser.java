@@ -5,11 +5,10 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoDispenser {
-    
+
     private static final int LOTTO_PRICE = 1000;
 
-    public LottoDispenser() {
-    }
+    public LottoDispenser() {}
 
     public LottoCollection executeTransactionAndDispense(String inputMoney) {
         int NumberOfTickets = executeTransaction(inputMoney);
@@ -21,7 +20,7 @@ public class LottoDispenser {
         int money = parseMoney(inputMoney);
         validateMoney(money);
         int NumberOfTickets = money / LOTTO_PRICE;
-        return NumberOfTickets; 
+        return NumberOfTickets;
     }
 
 
