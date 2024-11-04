@@ -1,13 +1,13 @@
 package lotto.view;
 
-import lotto.PrizeRank;
+import lotto.global.PrizeRank;
 import lotto.dto.LottoDto;
 import lotto.dto.LottosDto;
 import lotto.dto.RankResultDto;
 
 import java.util.*;
 
-import static lotto.Constants.*;
+import static lotto.global.Constants.*;
 
 public class OutputHandler {
 

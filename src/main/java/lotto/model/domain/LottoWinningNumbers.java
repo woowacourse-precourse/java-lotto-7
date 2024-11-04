@@ -2,9 +2,9 @@ package lotto.model.domain;
 
 import lotto.dto.LottoWinningNumbersDto;
 
-import static lotto.Constants.MAXIMUM_LOTTO_NUMBER;
-import static lotto.Constants.MINIMUM_LOTTO_NUMBER;
-import static lotto.LottoInputErrorMessage.*;
+import static lotto.global.Constants.MAXIMUM_LOTTO_NUMBER;
+import static lotto.global.Constants.MINIMUM_LOTTO_NUMBER;
+import static lotto.global.LottoInputErrorMessage.*;
 
 public class LottoWinningNumbers {
     private final Lotto winningNumbers;

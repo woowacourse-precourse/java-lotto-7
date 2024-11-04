@@ -1,8 +1,8 @@
 package lotto.model.domain;
 
-import lotto.MoneyInputErrorMessage;
+import lotto.global.MoneyInputErrorMessage;
 
-import static lotto.Constants.LOTTO_PRICE;
+import static lotto.global.Constants.LOTTO_PRICE;
 
 public class Money {
     private final long amount;

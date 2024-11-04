@@ -1,13 +1,13 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.MoneyInputErrorMessage;
+import lotto.global.MoneyInputErrorMessage;
 import lotto.dto.LottoDto;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-import static lotto.Constants.*;
+import static lotto.global.Constants.*;
 
 public class InputHandler {
 

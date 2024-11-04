@@ -1,4 +1,4 @@
-package lotto;
+package lotto.global;
 
 public enum LottoInputErrorMessage {
     LOTTO_NUMBER_COUNT_ERROR("로또 번호는 6개여야 합니다."),

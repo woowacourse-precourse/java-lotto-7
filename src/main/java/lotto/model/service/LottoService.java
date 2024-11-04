@@ -14,8 +14,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.Constants.*;
-import static lotto.PrizeRank.fromRank;
+import static lotto.global.Constants.*;
+import static lotto.global.PrizeRank.fromRank;
 
 public class LottoService {
 

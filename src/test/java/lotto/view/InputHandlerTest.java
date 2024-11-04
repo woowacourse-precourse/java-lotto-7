@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.MoneyInputErrorMessage;
+import lotto.global.MoneyInputErrorMessage;
 import lotto.dto.LottoDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

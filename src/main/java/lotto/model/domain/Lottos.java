@@ -5,7 +5,7 @@ import lotto.dto.LottosDto;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.LottoInputErrorMessage.LOTTO_LIST_EMPTY_ERROR;
+import static lotto.global.LottoInputErrorMessage.LOTTO_LIST_EMPTY_ERROR;
 
 public class Lottos {
     private final List<Lotto> lottos;

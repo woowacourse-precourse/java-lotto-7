@@ -1,4 +1,4 @@
-package lotto;
+package lotto.global;
 
 public enum MoneyInputErrorMessage {
     INVALID_NUMBER_FORMAT("양의 정수만 입력 가능합니다."),

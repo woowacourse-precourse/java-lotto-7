@@ -3,7 +3,7 @@ package lotto.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.Constants.*;
+import static lotto.global.Constants.*;
 
 public record LottoDto(List<Integer> numbers) {
     @Override

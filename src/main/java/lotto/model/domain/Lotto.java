@@ -1,15 +1,15 @@
 package lotto.model.domain;
 
-import lotto.PrizeRank;
+import lotto.global.PrizeRank;
 import lotto.dto.LottoDto;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.Constants.MAXIMUM_LOTTO_NUMBER;
-import static lotto.Constants.MINIMUM_LOTTO_NUMBER;
-import static lotto.LottoInputErrorMessage.*;
+import static lotto.global.Constants.MAXIMUM_LOTTO_NUMBER;
+import static lotto.global.Constants.MINIMUM_LOTTO_NUMBER;
+import static lotto.global.LottoInputErrorMessage.*;
 
 public class Lotto {
     private final List<Integer> numbers;

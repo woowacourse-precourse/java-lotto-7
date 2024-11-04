@@ -1,6 +1,6 @@
 package lotto.model.domain;
 
-import lotto.MoneyInputErrorMessage;
+import lotto.global.MoneyInputErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
