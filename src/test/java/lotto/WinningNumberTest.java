@@ -49,4 +49,12 @@ class WinningNumberTest {
         assertThatThrownBy(() -> winningNumbers.getWinningNumbers(inputWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("범위 내 중복인 숫자 입력")
+    @ParameterizedTest
+    @ValueSource(strings = {"14, 14, 7, 8, 9, 34", "1, 34, 5, 6, 8, 34"})
+    void 중복_숫자_입력(String inputWinningNumbers) {
+        assertThatThrownBy(() -> winningNumbers.getWinningNumbers(inputWinningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

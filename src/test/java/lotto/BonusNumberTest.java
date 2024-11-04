@@ -16,7 +16,7 @@ class BonusNumberTest {
 
     @DisplayName("문자와 공백 포함한 보너스 번호 입력")
     @ParameterizedTest
-    @ValueSource(strings = {"", "\n"})
+    @ValueSource(strings = {"", "\n", "1d", "44%"})
     void 문자_공백_보너스번호(String inputBonusNumber) {
         BonusNumber bonusNumber = new BonusNumber();
         assertThatThrownBy(() -> bonusNumber.getBonusNumber(inputBonusNumber))
