@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.util.InputValidator;
+import lotto.validate.LottoValidator;
 import lotto.enums.InputMessage;
 
 import java.util.Arrays;
@@ -15,9 +15,9 @@ public class InputView {
         System.out.println(InputMessage.PURCHASE_AMOUNT_INPUT.getMessage());
         String purchaseAmount = Console.readLine();
 
-        InputValidator.validateInteger(purchaseAmount);
-        InputValidator.validatePurchaseAmountPositive(Integer.parseInt(purchaseAmount));
-        InputValidator.validatePurchaseAmountUnit(Integer.parseInt(purchaseAmount));
+        LottoValidator.validateInteger(purchaseAmount);
+        LottoValidator.validatePurchaseAmountPositive(Integer.parseInt(purchaseAmount));
+        LottoValidator.validatePurchaseAmountUnit(Integer.parseInt(purchaseAmount));
 
         return Integer.parseInt(purchaseAmount);
     }
@@ -26,8 +26,8 @@ public class InputView {
         System.out.println(InputMessage.PRIZE_NUMBERS_INPUT.getMessage());
         List<String> lottoNumbers = Arrays.stream(Console.readLine().split(LOTTO_NUMBERS_SPLIT_STRING)).toList();
 
-        InputValidator.validateNumbersInteger(lottoNumbers);
-        InputValidator.validateLottoNumbersRange(lottoNumbers);
+        LottoValidator.validateNumbersInteger(lottoNumbers);
+        LottoValidator.validateLottoNumbersRange(lottoNumbers);
 
         return lottoNumbers.stream()
                 .map(Integer::parseInt)
@@ -38,9 +38,9 @@ public class InputView {
         System.out.println(InputMessage.BONUS_NUMBER_INPUT.getMessage());
         String bonusNumber = Console.readLine();
 
-        InputValidator.validateInteger(bonusNumber);
-        InputValidator.validateLottoNumberRange(Integer.parseInt(bonusNumber));
-        InputValidator.validateLottoBonusNumberDuplication(winningNumbers, Integer.parseInt(bonusNumber));
+        LottoValidator.validateInteger(bonusNumber);
+        LottoValidator.validateLottoNumberRange(Integer.parseInt(bonusNumber));
+        LottoValidator.validateLottoBonusNumberDuplication(winningNumbers, Integer.parseInt(bonusNumber));
 
         return Integer.parseInt(bonusNumber);
     }

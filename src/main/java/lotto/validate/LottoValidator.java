@@ -1,11 +1,11 @@
-package lotto.util;
+package lotto.validate;
 
 import lotto.domain.Lotto;
 import lotto.enums.ErrorMessage;
 
 import java.util.List;
 
-public class InputValidator {
+public class LottoValidator {
     private final static int LOTTO_PRIZE = 1000;
     private final static String IS_STRING_INTEGER = "\\d+";
 
@@ -22,13 +22,13 @@ public class InputValidator {
     }
 
     public static void validateNumbersInteger(List<String> lottoNumbers) {
-        lottoNumbers.forEach(InputValidator::validateInteger);
+        lottoNumbers.forEach(LottoValidator::validateInteger);
     }
 
     public static void validateLottoNumbersRange(List<String> lottoNumbers) {
         lottoNumbers.stream()
                 .map(Integer::parseInt)
-                .forEach(InputValidator::validateLottoNumberRange);
+                .forEach(LottoValidator::validateLottoNumberRange);
     }
 
     public static void validateNumbersSize(List<Integer> numbers) {

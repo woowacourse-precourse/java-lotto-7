@@ -19,7 +19,7 @@ public class MainController {
         inputWinningNumbers();
         inputBonusNumber();
 
-        LottoWinning lottoWinning = new LottoWinning(winningNumbers, bonusNumber, lottoDraw);
+        LottoWinning lottoWinning = new LottoWinning(winningNumbers, bonusNumber, lottoDraw.getLottoDrawNumbers());
         LottoPrizeMap lottoPrizeMap = new LottoPrizeMap();
         OutputView.outputWinningResult(lottoWinning, lottoPrizeMap);
 
