@@ -20,6 +20,12 @@ public class OutputView {
 	private static final String DELIMITER = ", ";
 	private static final String PURCHASE_LOTTO_RESULT_PREFIX = "[";
 	private static final String PURCHASE_LOTTO_RESULT_SUFFIX = "]";
+	private static final String WINNING_RESULT_PREFIX = " (";
+	private static final String WINNING_RESULT_SUFFIX = ") ";
+	private static final String WINNING_RESULT_DELIMITER = "- ";
+	private static final String COUNT = "개\n";
+	private static final String WON = "원";
+	private static final String PRIZE_FORMAT = "%,d";
 	private static final String DECIMAL_FORMAT = "#,###.#";
 
 	public void printPurchasePriceInputMessage() {
@@ -68,8 +74,8 @@ public class OutputView {
 	}
 
 	private String getWinningResult(WinningResultDto winningResult) {
-		return getMatchingMessage(winningResult.matchCount(), winningResult.hasBonusNumber()) + " "
-				+ "(" + String.format("%,d", winningResult.prize()) + "원" + ")" + " - " + winningResult.winningCount() + "개" + NEW_LINE;
+		return getMatchingMessage(winningResult.matchCount(), winningResult.hasBonusNumber()) + WINNING_RESULT_PREFIX
+			+ String.format(PRIZE_FORMAT, winningResult.prize()) + WON + WINNING_RESULT_SUFFIX + WINNING_RESULT_DELIMITER + winningResult.winningCount() + COUNT;
 	}
 
 	private String getMatchingMessage(int count, boolean hasBonusNumber) {
