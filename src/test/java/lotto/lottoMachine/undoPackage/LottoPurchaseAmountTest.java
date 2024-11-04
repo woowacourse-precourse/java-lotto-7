@@ -1,9 +1,9 @@
-package lotto;
+package lotto.lottoMachine;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import lottoPurchaseAmount.LottoPurchaseAmountValidator;
+import lotto.lottoMachine.lottoPurchaseAmount.LottoPurchaseAmountValidator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -32,6 +32,17 @@ public class LottoPurchaseAmountTest {
     void 로또_구입_금액이_오만원을_초과한다면_예외가_발생한다() {
         // Given&When
         lottoPurchaseAmount = "100000";
+
+        // Then
+        assertThatThrownBy(() -> lottoPurchaseAmountValidator.validateAllThing(lottoPurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 구입 금액이 천원 미만이라면 예외가 발생한다.")
+    @Test
+    void 로또_구입_금액이_천원_미만이라면_예외가_발생한다() {
+        // Given&When
+        lottoPurchaseAmount = "0";
 
         // Then
         assertThatThrownBy(() -> lottoPurchaseAmountValidator.validateAllThing(lottoPurchaseAmount))

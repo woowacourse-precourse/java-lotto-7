@@ -3,21 +3,22 @@ package lotto.lottoMachine.calculateManager;
 import java.util.List;
 import lotto.Lotties;
 import lotto.Lotto;
-import lotto.lottoMachine.lottoRank.LottoRankResultManager;
+import lotto.LottoResult;
+import lotto.lottoMachine.lottoTotalResult.LottoTotalResultManager;
 
 public class LotteryResultManager {
     private static final int NUMBER_MATCH_TO_BE_SECOND_IN_THE_LOTTERY = 5;
 
     private final List<Integer> lottoWinningNumber;
     private final int lottoBonusNumber;
-    private LottoRankResultManager lottoRankResultProcessor;
+    private LottoTotalResultManager lottoRankResultManager;
     private Lotties lotties;
 
     public LotteryResultManager(List<Integer> lottoWinningNumber, int lottoBonusNumber,
-                                LottoRankResultManager lottoRankResultProcessor, Lotties lotties) {
+                                LottoTotalResultManager lottoRankResultProcessor, Lotties lotties) {
         this.lottoWinningNumber = lottoWinningNumber;
         this.lottoBonusNumber = lottoBonusNumber;
-        this.lottoRankResultProcessor = lottoRankResultProcessor;
+        this.lottoRankResultManager = lottoRankResultProcessor;
         this.lotties = lotties;
     }
 
@@ -27,14 +28,23 @@ public class LotteryResultManager {
     }
 
     private void processLottoTicket(Lotto lottoTicket) {
-        int amountOfLottoNumberMatch = lottoTicket.calculateAmountNumbersThatMatchWinningNumbers(lottoWinningNumber);
-        boolean isMatchBonusNumber = (amountOfLottoNumberMatch == NUMBER_MATCH_TO_BE_SECOND_IN_THE_LOTTERY)
-                && lottoTicket.isMatchBonusNumber(lottoBonusNumber);
-
-        storeLotteryResult(amountOfLottoNumberMatch, isMatchBonusNumber);
+        LottoResult lottoResult = compareLottoNumbersWithLottoWinningNumbers(lottoTicket);
+        storeLotteryResult(lottoResult);
     }
 
-    private void storeLotteryResult(int amountOfLottoNumberMatch, boolean isMatchBonusNumber) {
-        lottoRankResultProcessor.store(amountOfLottoNumberMatch, isMatchBonusNumber);
+    private LottoResult compareLottoNumbersWithLottoWinningNumbers(Lotto lottoTicket) {
+        int amountOfLottoNumberMatch = lottoTicket.countMatchingNumbers(lottoWinningNumber);
+        boolean isMatchBonusNumber = (amountOfLottoNumberMatch == NUMBER_MATCH_TO_BE_SECOND_IN_THE_LOTTERY)
+                && lottoTicket.matchesBonusNumber(lottoBonusNumber);
+
+        return new LottoResult(amountOfLottoNumberMatch, isMatchBonusNumber);
+    }
+
+
+    private void storeLotteryResult(LottoResult lottoResult) {
+        int amountOfLottoNumberMatch = lottoResult.getMatchingCount();
+        boolean isMatchBonusNumber = lottoResult.isMatchBonus();
+
+        lottoRankResultManager.store(amountOfLottoNumberMatch, isMatchBonusNumber);
     }
 }

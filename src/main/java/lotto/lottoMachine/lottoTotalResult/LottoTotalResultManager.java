@@ -1,5 +1,6 @@
 package lotto.lottoMachine.lottoRank;
 
+import lotto.LottoRankStore;
 import lotto.lottoMachine.calculateManager.LottoPrizeManager;
 
 public class LottoRankResultManager {

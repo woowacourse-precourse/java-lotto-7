@@ -1,13 +1,13 @@
-package lotto;
+package lotto.lottoMachine;
 
-import lottoWinningNumber.LottoWinningNumberDelimiter;
+import lotto.lottoMachine.lottoWinningNumber.LottoWinningNumberDelimiter;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import lottoWinningNumber.LottoWinningNumberValidator;
+import lotto.lottoMachine.lottoWinningNumber.LottoWinningNumberValidator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -27,7 +27,7 @@ public class LottoWinningNumberTest {
     void 로또_당첨_번호들의_개수가_6개가_아니라면_예외가_발생한다() {
         // Given&When
         lottoWinningNumber = "1,2,3";
-        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.runAndBringSeperatedLottoWinningNumbers(
+        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.getSeperatedLottoWinningNumbers(
                 lottoWinningNumber);
 
         // Then
@@ -40,7 +40,7 @@ public class LottoWinningNumberTest {
     void 로또_당첨_번호들_중_겹치는_것이_있다면_예외가_발생한다() {
         // Given&When
         lottoWinningNumber = "1,1,2,3,4,5";
-        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.runAndBringSeperatedLottoWinningNumbers(
+        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.getSeperatedLottoWinningNumbers(
                 lottoWinningNumber);
 
         // Then
@@ -53,7 +53,7 @@ public class LottoWinningNumberTest {
     void 로또_당첨_번호들이_숫자_형식이_아니라면_예외가_발생한다() {
         // Given&When
         lottoWinningNumber = "1,2,3,a,5,6";
-        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.runAndBringSeperatedLottoWinningNumbers(
+        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.getSeperatedLottoWinningNumbers(
                 lottoWinningNumber);
 
         // Then
@@ -66,7 +66,7 @@ public class LottoWinningNumberTest {
     void 로또_당첨_번호들의_범위가_1이상_45이하가_아니라면_예외가_발생한다() {
         // Given&When
         lottoWinningNumber = "1,24,25,66,74,21";
-        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.runAndBringSeperatedLottoWinningNumbers(
+        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.getSeperatedLottoWinningNumbers(
                 lottoWinningNumber);
 
         // Then
@@ -79,7 +79,7 @@ public class LottoWinningNumberTest {
     void 로또_당첨_번호를_쉼표_기준으로_구분한다() {
         // Given
         lottoWinningNumber = "1,2,3,4,5";
-        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.runAndBringSeperatedLottoWinningNumbers(
+        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.getSeperatedLottoWinningNumbers(
                 lottoWinningNumber);
         List<Integer> seperatedLottoWinningNumbersToInt = lottoWinningNumberValidator.convertToCompareNumbers(
                 seperatedLottoWinningNumbers);

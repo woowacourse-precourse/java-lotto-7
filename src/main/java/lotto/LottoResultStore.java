@@ -1,9 +1,10 @@
-package lotto.lottoMachine.lottoRank;
+package lotto;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
+import lotto.lottoMachine.lottoRank.LottoRankStructure;
 
 public class LottoRankStore {
     private final Map<LottoRankStructure, Integer> winningResults = new EnumMap<>(LottoRankStructure.class);
