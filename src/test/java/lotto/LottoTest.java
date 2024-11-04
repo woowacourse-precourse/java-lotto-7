@@ -24,15 +24,15 @@ class LottoTest {
     // 로또 구입 금액 입력 테스트
     @Test
     void 구입_금액이_1000원_단위가_아니면_예외가_발생한다() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThatThrownBy(() -> lotto.validateAmount(3500))
+        LottoService lottoService = new LottoService();
+        assertThatThrownBy(() -> lottoService.validateAmountForTest(3500))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구입금액은 1,000원 단위여야 합니다.");
     }
 
     @Test
     void 구입_금액이_1000원_단위면_정상_동작한다() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        lotto.validateAmount(3000); // 예외 발생하지 않음
+        LottoService lottoService = new LottoService();
+        lottoService.validateAmountForTest(3000); // 예외 발생하지 않음
     }
 }
