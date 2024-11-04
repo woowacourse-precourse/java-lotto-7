@@ -59,7 +59,7 @@ public class LottoWinningNumbers {
           .toList();
       this.winningNumber = new Lotto(winningNum);
     } catch (Exception e) {
-      System.out.print("[ERROR]");
+      System.out.print("[ERROR] ");
       System.out.println(e.getMessage());
       assignWinningNumber();
     }
@@ -72,7 +72,7 @@ public class LottoWinningNumbers {
       validateBonusNumber(bonusNumber);
       this.bonusNumber = bonusNumber;
     } catch (Exception e) {
-      System.out.print("[ERROR]");
+      System.out.print("[ERROR] ");
       System.out.println(e.getMessage());
       assignBonusNumber();
     }
