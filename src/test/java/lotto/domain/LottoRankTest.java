@@ -41,4 +41,11 @@ class LottoRankTest {
         LottoRank rank = LottoRank.valueOf(3, false);
         assertEquals(LottoRank.FIFTH, rank);
     }
+
+    @DisplayName("일치하는 번호가 없는 경우")
+    @Test
+    void 일치번호없는경우_테스트() {
+        LottoRank rank = LottoRank.valueOf(0, false);
+        assertEquals(LottoRank.NONE, rank);
+    }
 }
