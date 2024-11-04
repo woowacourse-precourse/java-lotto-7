@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
+import lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -19,7 +20,7 @@ class BuyingLottoTest {
     @Order(1)
     @DisplayName("로또 구매 성공")
     void buyLottoSucceess() {
-        List<List<Integer>> lottos = buyingLotto.buyLotto(10000);
+        List<Lotto> lottos = buyingLotto.buyLotto(10000);
         assertEquals(10, lottos.size());
         buyingLotto = null;
     }

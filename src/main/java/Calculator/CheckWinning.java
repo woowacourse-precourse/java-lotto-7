@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.Lotto;
 import print.InputRequest;
 
 public class CheckWinning {
@@ -11,7 +12,7 @@ public class CheckWinning {
     Set<Integer> winningNumbers = new HashSet<>();
 
     //로또 당첨을 확인하는 메서드
-    public List<Integer> checkWinLottoTotal(List<List<Integer>> myLottos) {
+    public List<Integer> checkWinLottoTotal(List<Lotto> myLottos) {
         String userInputWinningNumbers = inputRequest.winningNumbersRequest();
         String userInputBonusNumber = inputRequest.bonusNumberRequest();
 
@@ -25,10 +26,10 @@ public class CheckWinning {
 
     //보너스 번호 없이 확인하는 경우 1 ~ 5등까지 확인
     //단 2등의 경우 보너스 확인까지 필요.
-    public List<Integer> check(List<List<Integer>> myLottos, HashSet<Integer> winningNumbers, int bonusNumber) {
+    public List<Integer> check(List<Lotto> myLottos, HashSet<Integer> winningNumbers, int bonusNumber) {
         List<Integer> localResult = new ArrayList<>(7);
-        for (List<Integer> myLotto : myLottos) {
-            int rank = checkDetail(myLotto, winningNumbers, bonusNumber);
+        for (Lotto myLotto : myLottos) {
+            int rank = checkDetail(myLotto.getNumbers(), winningNumbers, bonusNumber);
             localResult.add(rank, localResult.get(rank) + 1);
         }
         return localResult;
