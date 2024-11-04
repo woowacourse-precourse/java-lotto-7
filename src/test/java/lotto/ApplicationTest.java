@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,7 +12,11 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_MESSAGE = "[ERROR] ";
+    private static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_NUMBER_SIZE = 6;
+    public static final int LOTTO_MAX_RANGE = 45;
+    public static final int LOTTO_MIN_RANGE = 1;
 
     @Test
     void 기능_테스트() {
@@ -55,188 +60,195 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @DisplayName("로또 구매 가격이 음수이면 예외 발생")
-    @Test
-    void exception1() {
-        assertSimpleTest(() -> {
-            runException("-1000");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+    @DisplayName("로또 구매 가격 관련 예외")
+    @Nested
+    class testPurchasePrice {
+        @DisplayName("로또 구매 가격이 빈 값이면 예외 발생")
+        @Test
+        void emptyException() {
+            assertSimpleTest(() -> {
+                runException("\n");
+                assertThat(output()).contains(ERROR_MESSAGE + "입력 값이 공백 혹은 빈 문자열입니다.");
+            });
+        }
+
+        @DisplayName("로또 구매 가격이 공백이면 예외 발생")
+        @Test
+        void blankException() {
+            assertSimpleTest(() -> {
+                runException(" ");
+                assertThat(output()).contains(ERROR_MESSAGE + "입력 값이 공백 혹은 빈 문자열입니다.");
+            });
+        }
+
+        @DisplayName("로또 구매 가격이 음수이면 예외 발생")
+        @Test
+        void negativeNumberException() {
+            assertSimpleTest(() -> {
+                runException("-1000");
+                assertThat(output()).contains(ERROR_MESSAGE + "입력 값이 음수이면 안됩니다.");
+            });
+        }
+
+        @DisplayName("로또 구매 가격이 1000단위가 아니면 예외 발생")
+        @Test
+        void multiplierExeption() {
+            assertSimpleTest(() -> {
+                runException("300");
+                assertThat(output()).contains(ERROR_MESSAGE + "입력 값은 " + LOTTO_PRICE + " 단위여야 합니다.");
+            });
+        }
+
+        @DisplayName("로또 구매 가격이 숫자가 아니면 예외 발생")
+        @Test
+        void nonNumberExeption() {
+            assertSimpleTest(() -> {
+                runException("somin");
+                assertThat(output()).contains(ERROR_MESSAGE + "입력 값이 숫자여야 합니다.");
+            });
+        }
     }
 
-    @DisplayName("로또 구매 가격이 빈 값이면 예외 발생")
-    @Test
-    void exception2() {
-        assertSimpleTest(() -> {
-            runException("\n");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+    @DisplayName("당첨 번호 관련 예외")
+    @Nested
+    class testWinningNumbers {
+        @DisplayName("당첨 번호가 빈 값이면 예외 발생")
+        @Test
+        void emptyException() {
+            assertSimpleTest(() -> {
+                runException("8000", "\n");
+                assertThat(output()).contains(ERROR_MESSAGE + "입력 값이 공백 혹은 빈 문자열입니다.");
+            });
+        }
+
+        @DisplayName("당첨 번호가 공백이면 예외 발생")
+        @Test
+        void blankException() {
+            assertSimpleTest(() -> {
+                runException("8000", " ");
+                assertThat(output()).contains(ERROR_MESSAGE + "입력 값이 공백 혹은 빈 문자열입니다.");
+            });
+        }
+        @DisplayName("당첨 번호가 중복되면 예외 발생")
+        @Test
+        void duplicateException() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,3,4,5,5");
+                assertThat(output()).contains(ERROR_MESSAGE + "중복되는 번호가 있습니다.");
+            });
+        }
+
+        @DisplayName("당첨 번호가 6개가 아니면 예외 발생")
+        @Test
+        void countException() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,3,4,5");
+                assertThat(output()).contains(ERROR_MESSAGE + "당첨 번호의 개수는 " + LOTTO_NUMBER_SIZE + "개여야 합니다.");
+            });
+        }
+
+        @DisplayName("당첨 번호가 숫자가 아니면 예외 발생")
+        @Test
+        void nonNumberExeption() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,d,3,4,5");
+                assertThat(output()).contains(ERROR_MESSAGE + "당첨 번호는 숫자여야 합니다.");
+            });
+        }
+
+        @DisplayName("당첨 번호가 음수이면 예외 발생")
+        @Test
+        void negativeNumberException() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,-2,3,4,5");
+                assertThat(output()).contains(ERROR_MESSAGE + "입력 값이 음수이면 안됩니다.");
+            });
+        }
+
+        @DisplayName("당첨 번호가 1~45 사이의 숫자가 아니면 예외 발생")
+        @Test
+        void notInRangeException_max_range() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,3,4,5,46");
+                assertThat(output()).contains(ERROR_MESSAGE + "당첨 번호는 " + LOTTO_MIN_RANGE + "~" + LOTTO_MAX_RANGE + " 사이의 숫자여야 합니다.");
+            });
+        }
+
+        @DisplayName("당첨 번호가 1~45 사이의 숫자가 아니면 예외 발생")
+        @Test
+        void notInRangeException_min_range() {
+            assertSimpleTest(() -> {
+                runException("8000", "0,2,3,4,5,6");
+                assertThat(output()).contains(ERROR_MESSAGE + "당첨 번호는 " + LOTTO_MIN_RANGE + "~" + LOTTO_MAX_RANGE + " 사이의 숫자여야 합니다.");
+            });
+        }
     }
 
-    @DisplayName("로또 구매 가격이 공백이면 예외 발생")
-    @Test
-    void exception3() {
-        assertSimpleTest(() -> {
-            runException(" ");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
+    @DisplayName("보너스 번호 관련 예외")
+    @Nested
+    class testBonusNumber {
+        @DisplayName("보너스 번호가 빈 값이면 예외 발생")
+        @Test
+        void emptyException() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,3,4,5,6", "\n");
+                assertThat(output()).contains(ERROR_MESSAGE + "입력 값이 공백 혹은 빈 문자열입니다.");
+            });
+        }
 
-    @DisplayName("로또 구매 가격이 1000단위가 아니면 예외 발생")
-    @Test
-    void exception4() {
-        assertSimpleTest(() -> {
-            runException("300");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
+        @DisplayName("보너스 번호가 공백이면 예외 발생")
+        @Test
+        void blankException() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,3,4,5,6", " ");
+                assertThat(output()).contains(ERROR_MESSAGE + "입력 값이 공백 혹은 빈 문자열입니다.");
+            });
+        }
 
-    @DisplayName("로또 구매 가격이 숫자가 아니면 예외 발생")
-    @Test
-    void exception5() {
-        assertSimpleTest(() -> {
-            runException("somin");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
+        @DisplayName("보너스 번호가 당첨 번호와 중복이면 예외 발생")
+        @Test
+        void duplicateException() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,3,4,5,6", "1");
+                assertThat(output()).contains(ERROR_MESSAGE + "보너스 번호와 중복되는 당첨 번호가 있습니다.");
+            });
+        }
 
-    // ===========================================================
+        @DisplayName("보너스 번호가 음수면 예외 발생")
+        @Test
+        void negativeNumberException() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,3,4,5,6", "-1");
+                assertThat(output()).contains(ERROR_MESSAGE, "입력 값이 음수이면 안됩니다.");
+            });
+        }
 
-    @DisplayName("당첨 번호가 중복되면 예외 발생")
-    @Test
-    void exception6() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,5");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
+        @DisplayName("보너스 번호가 숫자가 아니면 예외 발생")
+        @Test
+        void nonNumberExeption() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,3,4,5,6", "d");
+                assertThat(output()).contains(ERROR_MESSAGE, "입력 값이 숫자여야 합니다.");
+            });
+        }
 
-    @DisplayName("당첨 번호가 6개가 아니면 예외 발생")
-    @Test
-    void exception7() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
+        @DisplayName("보너스 번호가 1~45 사이의 숫자가 아니면 예외 발생")
+        @Test
+        void notInRangeException_max_range() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,3,4,5,6", "46");
+                assertThat(output()).contains(ERROR_MESSAGE + "당첨 번호는 " + LOTTO_MIN_RANGE + "~" + LOTTO_MAX_RANGE + " 사이의 숫자여야 합니다.");
+            });
+        }
 
-    @DisplayName("당첨 번호가 빈 값이면 예외 발생")
-    @Test
-    void exception8() {
-        assertSimpleTest(() -> {
-            runException("8000", "\n");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("당첨 번호가 공백이면 예외 발생")
-    @Test
-    void exception10() {
-        assertSimpleTest(() -> {
-            runException("8000", " ");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("당첨 번호가 숫자가 아니면 예외 발생")
-    @Test
-    void exception9() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,d,3,4,5");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("당첨 번호가 음수이면 예외 발생")
-    @Test
-    void exception11() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,-2,3,4,5");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("당첨 번호가 1~45 사이의 숫자가 아니면 예외 발생")
-    @Test
-    void exception12() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,46");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("당첨 번호가 1~45 사이의 숫자가 아니면 예외 발생")
-    @Test
-    void exception13() {
-        assertSimpleTest(() -> {
-            runException("8000", "0,2,3,4,5,6");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    // =====================================================
-
-    @DisplayName("보너스 번호가 1~45 사이의 숫자가 아니면 예외 발생")
-    @Test
-    void exception14() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,6", "46");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("보너스 번호가 1~45 사이의 숫자가 아니면 예외 발생")
-    @Test
-    void exception20() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,6", "0");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("보너스 번호가 당첨 번호와 중복이면 예외 발생")
-    @Test
-    void exception15() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,6", "1");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("보너스 번호가 음수면 예외 발생")
-    @Test
-    void exception16() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,6", "-1");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("보너스 번호가 빈 값이면 예외 발생")
-    @Test
-    void exception17() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,6", "\n");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("보너스 번호가 공백이면 예외 발생")
-    @Test
-    void exception18() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,6", " ");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("보너스 번호가 숫자가 아니면 예외 발생")
-    @Test
-    void exception19() {
-        assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,6", "d");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+        @DisplayName("보너스 번호가 1~45 사이의 숫자가 아니면 예외 발생")
+        @Test
+        void notInRangeException_min_range() {
+            assertSimpleTest(() -> {
+                runException("8000", "1,2,3,4,5,6", "0");
+                assertThat(output()).contains(ERROR_MESSAGE + "당첨 번호는 " + LOTTO_MIN_RANGE + "~" + LOTTO_MAX_RANGE + " 사이의 숫자여야 합니다.");
+            });
+        }
     }
 
     @Override

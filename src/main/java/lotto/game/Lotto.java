@@ -5,6 +5,7 @@ import lotto.dto.LottoPrize;
 import lotto.dto.Buyer;
 import lotto.dto.WinningNumbers;
 import lotto.io.OutputHandler;
+import lotto.validation.Validator;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Validator.validateDuplicatedNumbers(numbers);
         this.numbers = Convertor.sortNumbers(numbers);
     }
 
@@ -32,18 +34,10 @@ public class Lotto {
         int matchCount = winningNumbers.checkMatchingCount(numbers);
         boolean hasBonusNumber = hasBonusNumber(buyer.getBonusNumber());
 
-        if (decideBonusPrize(matchCount, hasBonusNumber) == null) {
-            return decidePrize(matchCount);
-        }
-
-        return null;
-    }
-
-    private LottoPrize decideBonusPrize(int matchCount, boolean hasBonusNumber) {
         if (matchCount == 5 && hasBonusNumber) {
             return LottoPrize.BONUS;
         }
-        return null;
+        return decidePrize(matchCount);
     }
 
     private LottoPrize decidePrize(int matchCount) {
