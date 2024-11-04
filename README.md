@@ -27,7 +27,7 @@
         3-2. 1이하 45 이상 숫자일 때
 
 ##### 기능 구현
-1. static 메소드 6가지
+1. static 메소드 7가지
 2. Lotto 클래스 & 메소드
 3. WinningNums 열거형
 
@@ -38,9 +38,11 @@
 * randomLottoNumberPick : 구매한 로또 갯수만큼 랜덤 로또 번호를 생성
 * printBuyLottoNumbers : 랜덤 로또 번호 출력
 * checkRange : 사용자로부터 받은 보너스 번호의 범위 체크
+* inputLottoAmount : 로또 구매 금액 사용자로부터 입력 받기
 
 #### Lotto 클래스 메소드 구현
 * calculateStatistics : 로또 번호 비교를 통해 당첨 확인
+* numberCompare : 로또 번호 비교 후 번호가 몇개 맞았는지 반환
 * printStaticsis : 당첨 통계 출력
 * printRate : 수익률 출력
 
