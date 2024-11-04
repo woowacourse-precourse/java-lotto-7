@@ -1,8 +1,12 @@
 package lotto.io;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
 
@@ -11,7 +15,7 @@ public class Output {
     private final String PRINT_WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private final String PRINT_SEPARATING_LINE_MESSAGE = "---";
     private final String PRINT_EARNINGS_RATE_MESSAGE = "총 수익률은 ";
-    private final String PRINT_PERCENT_MESSAGE = "% 입니다.";
+    private final String PRINT_PERCENT_MESSAGE = "%입니다.";
     private final String PRINT_UNIT = "개";
 
 
@@ -22,8 +26,14 @@ public class Output {
 
     public void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.println(lotto);
+            System.out.println(sortingNumbers(lotto.getNumbers()));
         }
+    }
+
+    private List<Integer> sortingNumbers(List<Integer> numbers) {
+        List<Integer> sortNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortNumbers);
+        return sortNumbers;
     }
 
     public void printWinningStatistics() {
@@ -33,7 +43,10 @@ public class Output {
     }
 
     public void printRanking(Map<Ranking, Integer> rankingResult) {
-        for (Entry<Ranking, Integer> ranking : rankingResult.entrySet()) {
+        Map<Ranking, Integer> sortRankingResult = new TreeMap<>(Comparator.comparingInt(Ranking::getPrice));
+        sortRankingResult.putAll(rankingResult);
+
+        for (Entry<Ranking, Integer> ranking : sortRankingResult.entrySet()) {
             System.out.println(ranking.getKey().getMessage() + ranking.getValue() + PRINT_UNIT);
         }
     }

@@ -11,8 +11,8 @@ import lotto.domain.Ranking;
 import lotto.domain.WinningNumber;
 
 public class WinningNumberService {
-    private final List<Lotto> lottos;
-    private final WinningNumber winningNumber;
+    private List<Lotto> lottos;
+    private WinningNumber winningNumber;
 
 
     public WinningNumberService(List<Lotto> lottos, String winningNumber, int bonusNumber) {
@@ -39,9 +39,10 @@ public class WinningNumberService {
 
             Ranking rank = getRanking(matchCount, matchBonus);
 
-            rankingResult.replace(rank, rankingResult.get(rank) + 1);
+            if (rank != null) {
+                rankingResult.replace(rank, rankingResult.get(rank) + 1);
+            }
         }
-
         return rankingResult;
     }
 
@@ -52,9 +53,10 @@ public class WinningNumberService {
         for (Entry<Ranking, Integer> ranking : rankingResult.entrySet()) {
             earnings += ranking.getKey().getPrice() * ranking.getValue();
         }
+
         earningsRate = (double) earnings / amount * 100;
 
-        return Math.round(earningsRate);
+        return Double.parseDouble(String.format("%.1f", earningsRate));
     }
 
     private Map<Ranking, Integer> initRankingResult() {

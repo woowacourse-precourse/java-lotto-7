@@ -11,7 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = sortingNumbers(numbers);
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -24,18 +24,12 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private boolean isDuplication(List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (numbers.size() != distinctNumbers.size()) {
             return true;
         }
         return false;
-    }
-
-    private List<Integer> sortingNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
     }
 
     public List<Integer> getNumbers() {

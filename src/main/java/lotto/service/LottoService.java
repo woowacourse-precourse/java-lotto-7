@@ -12,10 +12,10 @@ public class LottoService {
     private final int END_INCLUSIVE = 45;
     private final int NUMBER_OF_LOTTO_NUMBERS = 6;
 
-    public List<Lotto> createLottos(int amount) {
+    public List<Lotto> createLottos(int lottoQuantity) {
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < getLottoQuantity(amount); i++) {
+        for (int i = 0; i < lottoQuantity; i++) {
             lottos.add(new Lotto(createLottoNumbers()));
         }
 
@@ -26,7 +26,7 @@ public class LottoService {
         return Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, NUMBER_OF_LOTTO_NUMBERS);
     }
 
-    private int getLottoQuantity(int amount) {
+    public int getLottoQuantity(int amount) {
         return amount / LOTTO_PRICE;
     }
 }

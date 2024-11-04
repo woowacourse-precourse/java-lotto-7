@@ -13,31 +13,54 @@ public class Input {
 
 
     public int getAmount() {
-        System.out.println(INPUT_AMOUNT_MESSAGE);
+        String amount;
 
-        String amount = Console.readLine();
-        validateAmount(amount);
-
+        while (true) {
+            System.out.println(INPUT_AMOUNT_MESSAGE);
+            try {
+                amount = Console.readLine();
+                validateAmount(amount);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return Integer.parseInt(amount);
     }
 
     public String getWinningNumber() {
-        printNewLine();
-        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
+        String winningNumber;
 
-        String winningNumber = Console.readLine();
-        validateWinningNumber(winningNumber);
+        while (true) {
+            printNewLine();
+            System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
 
+            try {
+                winningNumber = Console.readLine();
+                validateWinningNumber(winningNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return winningNumber;
     }
 
     public int getBonusNumber() {
-        printNewLine();
-        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        String bonusNumber;
 
-        String bonusNumber = Console.readLine();
-        validateBonusNumber(bonusNumber);
+        while (true) {
+            printNewLine();
+            System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
 
+            try {
+                bonusNumber = Console.readLine();
+                validateBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return Integer.parseInt(bonusNumber);
     }
 
@@ -74,8 +97,8 @@ public class Input {
     }
 
     private void validateNumber(String input) {
-        for (char c : input.toCharArray()){
-            if (!Character.isDigit(c)){
+        for (char c : input.toCharArray()) {
+            if (!Character.isDigit(c)) {
                 throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER);
             }
         }
