@@ -28,14 +28,14 @@ public class InputValidator {
     private static void inputNegative(String purchaseAmount) {
         int result = Integer.parseInt(purchaseAmount);
         if (result < 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALUD_VALUE_NEGATIVE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE_NEGATIVE.getMessage());
         }
     }
 
     private static void inputZero(String purchaseAmount) {
         int result = Integer.parseInt(purchaseAmount);
         if (result == 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALUD_VALUE_ZERO.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE_ZERO.getMessage());
         }
     }
 

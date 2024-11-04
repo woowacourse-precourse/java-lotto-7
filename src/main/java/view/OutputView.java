@@ -1,5 +1,8 @@
 package view;
 
+import java.util.List;
+import model.Lotto;
+
 public class OutputView {
 
     public void showPrompt(String message) {
@@ -7,6 +10,12 @@ public class OutputView {
     }
 
     public void printErrorMessage(String message) {
-        System.out.println("에러: " + message);  // 에러 메시지 앞에 "에러:" 추가로 더 명확히
+        System.out.println(message);
+    }
+
+    public void printLottoNumbers(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 }

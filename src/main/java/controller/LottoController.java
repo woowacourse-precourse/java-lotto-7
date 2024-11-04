@@ -1,22 +1,30 @@
 package controller;
 
 import common.InputMessage;
+import java.util.List;
 import java.util.function.Consumer;
+import model.Lotto;
+import services.LottoService;
 import validator.InputValidator;
 import view.InputView;
 import view.OutputView;
 
 public class LottoController {
+    private final LottoService lottoService;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LottoController() {
+    public LottoController(LottoService lottoService) {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.lottoService = lottoService;
     }
 
     public void run() {
         String purchaseAmount = getUserPayment();
+        List<Lotto> lottos = lottoService.generateLotto(purchaseAmount);
+
+        outputView.printLottoNumbers(lottos);
     }
 
     private String getUserPayment() {

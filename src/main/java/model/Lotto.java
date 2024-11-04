@@ -1,4 +1,4 @@
-package services;
+package model;
 
 import static common.ErrorMessage.INVALID_LOTTO_COUNT_ERR;
 import static common.ErrorMessage.INVALID_LOTTO_CONTAINS;
@@ -26,15 +26,5 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    public int countMatchingNumbers(List<Integer> winningNumbers) {
-        return (int) numbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
-    }
-
-    public boolean containsBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
     }
 }
