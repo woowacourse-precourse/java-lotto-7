@@ -58,10 +58,8 @@ public class LottoController {
                 .filter(prize -> prize != Prize.FAILURE)
                 .sorted(Comparator.comparingInt(Prize::getCountOfMatchingNumbers)
                         .thenComparingInt(Prize::getPrizeMoney))
-                .forEach(prize -> {
-                    outputView.printWinningResult(prize.getCountOfMatchingNumbers(), prize.isBonusNumberMatch()
-                            , prize.getPrizeMoney(), lottoResult.getPrizeCount(prize));
-                });
+                .forEach(prize -> outputView.printWinningResult(prize.getCountOfMatchingNumbers(), prize.isBonusNumberMatch()
+                        , prize.getPrizeMoney(), lottoResult.getPrizeCount(prize)));
     }
 
     public void checkRateOfReturn() {

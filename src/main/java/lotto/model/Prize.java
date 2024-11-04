@@ -1,8 +1,5 @@
 package lotto.model;
 
-import java.util.Arrays;
-import java.util.List;
-
 public enum Prize {
     FIRST_PRIZE(6, false, 2000000000),
     SECOND_PRIZE(5, true, 30000000),

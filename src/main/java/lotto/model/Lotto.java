@@ -31,8 +31,8 @@ public class Lotto {
     public int matchNumber(List<Integer> numbers) {
         int count = 0;
 
-        for (int i = 0; i < numbers.size(); i++) {
-            if (this.numbers.contains(numbers.get(i))) {
+        for (Integer number : numbers) {
+            if (this.numbers.contains(number)) {
                 count++;
             }
         }

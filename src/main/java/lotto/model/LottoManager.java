@@ -26,10 +26,6 @@ public class LottoManager {
         return new ArrayList<>(lottos);
     }
 
-    public int size() {
-        return lottos.size();
-    }
-
     private List<Integer> drawLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
@@ -42,7 +38,7 @@ public class LottoManager {
     private List<Integer> splitNumber(String number) {
         return Arrays.stream(number.split(SEPARATOR))
                 .map(Integer::parseInt)
-                .peek(num -> validateNumberInRange(num))
+                .peek(this::validateNumberInRange)
                 .collect(Collectors.toList());
     }
 
