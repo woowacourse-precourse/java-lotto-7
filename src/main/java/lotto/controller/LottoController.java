@@ -1,11 +1,15 @@
 package lotto.controller;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import lotto.Lotto;
 import lotto.model.LottoDrawMachine;
 import lotto.model.LottoPurchaseMachine;
 import lotto.model.LottoWinningStatistics;
 import lotto.util.parser.InputParser;
+import lotto.util.validator.BonusNumberValidator;
+import lotto.util.validator.PurchaseAmountValidator;
+import lotto.util.validator.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,31 +25,69 @@ public class LottoController {
     }
 
     public void run() {
-        //구매 금액 요청
-        inputView.requestPurchaseAmount();
-        String purchaseAmountInput = inputView.inputPurchaseAmount();
-        int purchaseAmount = inputParser.convertPurchaseAmountToInt(purchaseAmountInput);
-
-        //lotto 생성
-        LottoPurchaseMachine lottoPurchaseMachine = new LottoPurchaseMachine(purchaseAmount);
-        List<Lotto> lottos = lottoPurchaseMachine.generateLottoTickets();
-
+        int purchaseAmount = getValidPurchaseAmount();
+        List<Lotto> lottos = generateLottoTickets(purchaseAmount);
         outputView.printLottoTickets(lottos);
 
-        //승리 번호 입력 받기
-        inputView.requestWinningNumber();
-        String winNum = inputView.inputWinningNumber();
-        List<Integer> winNumList = inputParser.getWinNumList(winNum);
+        List<Integer> winningNumbers = getValidWinningNumbers();
+        int bonusNumber = getValidBonusNumber(winningNumbers);
 
-        inputView.requestWinningBounusNumber();
-        String bonusNum1 = inputView.inputWinningBonusNumber();
-        int bonusNum = inputParser.convertWinningBonusNumber(bonusNum1);
-        LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(winNumList, bonusNum);
+        printStatistics(lottos, winningNumbers, bonusNumber, purchaseAmount);
+    }
 
-        // 당첨 결과 확인 및 출력
+    private int getValidPurchaseAmount() {
+        while (true) {
+            try {
+                inputView.requestPurchaseAmount();
+                String purchaseAmountInput = inputView.inputPurchaseAmount();
+                PurchaseAmountValidator.validatePurchaseAmount(purchaseAmountInput); // Validator 사용
+                return Integer.parseInt(purchaseAmountInput.trim());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+
+    private List<Lotto> generateLottoTickets(int purchaseAmount) {
+        LottoPurchaseMachine lottoPurchaseMachine = new LottoPurchaseMachine(purchaseAmount);
+        return lottoPurchaseMachine.generateLottoTickets();
+    }
+
+    private List<Integer> getValidWinningNumbers() {
+        while (true) {
+            try {
+                inputView.requestWinningNumber();
+                String winNum = inputView.inputWinningNumber();
+                List<Integer> winningNumbers = inputParser.getWinNumList(winNum);
+
+                WinningNumberValidator.validateWinningNumbers(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException | InputMismatchException | IllegalStateException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getValidBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                inputView.requestWinningBounusNumber();
+                String bonusNumInput = inputView.inputWinningBonusNumber();
+                BonusNumberValidator.validateBonusNumber(bonusNumInput, winningNumbers);
+                return inputParser.convertWinningBonusNumber(bonusNumInput);
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+
+    private void printStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber,
+                                 int purchaseAmount) {
+        LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(winningNumbers, bonusNumber);
         LottoWinningStatistics lottoWinningStatistics = new LottoWinningStatistics(lottos, lottoDrawMachine,
                 purchaseAmount);
         outputView.printStatistics(lottoWinningStatistics);
-
     }
 }
