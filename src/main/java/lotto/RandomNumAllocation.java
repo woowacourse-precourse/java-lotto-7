@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RandomNumAllocation {
@@ -16,6 +17,7 @@ public class RandomNumAllocation {
 
         for (int i=0;i<numOfLotto;i++) {
             List<Integer> randomNum=Randoms.pickUniqueNumbersInRange(1,45,6);
+            Collections.sort(randomNum);
             Lotto lotto=new Lotto(randomNum);
 
             purchasedLottos.add(lotto);

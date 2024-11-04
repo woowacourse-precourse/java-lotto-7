@@ -2,15 +2,13 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 public class Input {
 
     private int PurchaseAmount;
-    private Set<Integer> LottoWinningNumbers;
+    private List<Integer> LottoWinningNumbers;
     private int bonusNumber;
 
     public Input() {
@@ -48,8 +46,9 @@ public class Input {
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputData=getUserInput();
         System.out.println();
-
-        this.LottoWinningNumbers=convertLottoWinningNumbers(inputData);
+        List<Integer> list=new ArrayList<>(convertLottoWinningNumbers(inputData));
+        Collections.sort(list);
+        this.LottoWinningNumbers= list;
 
     }
 
@@ -119,7 +118,7 @@ public class Input {
         return this.PurchaseAmount;
     }
 
-    public Set<Integer> getLottoWinningNumbers() {
+    public List<Integer> getLottoWinningNumbers() {
         return this.LottoWinningNumbers;
     }
 

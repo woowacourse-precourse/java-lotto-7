@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,8 +57,8 @@ public class InputTest extends Input{
     void ValidPurchaseAmountTest3() {
 
         testInput="0";
-        assertThrows(NumberFormatException.class,() ->{instance.setPurchaseAmount();}
-                ,"[ERROR] 당첨번호 입력은 숫자만 입력할수있습니다.");
+        assertThrows(IllegalArgumentException.class,() ->{instance.setPurchaseAmount();}
+                ,"[ERROR] 입력 금액이 최소한 1000원 이상이여야 합니다.");
 
     }
 
@@ -180,6 +181,16 @@ public class InputTest extends Input{
         assertThrows(IllegalArgumentException.class,
                 () -> instance.validateBonusNumDuplication(invalidInput),
                 "[ERROR] 당첨 번호는 1~45 사이 숫자여야 합니다.");
+    }
+
+    @Test
+    void LottoWinningNumTest() {
+
+        testInput="6,5,4,3,2,1";
+        List<Integer> validOutput=List.of(1,2,3,4,5,6);
+        instance.setLottoWinningNumbers();
+        assertEquals(validOutput,instance.getLottoWinningNumbers());
+
     }
 
     @Test
