@@ -28,8 +28,11 @@ public class InputView {
     static int validatePurchase(String input) {
         try {
             int lottoAmount = Integer.parseInt(input);
-            if (lottoAmount <= 0) {
+            if (lottoAmount < 0) {
                 throw new IllegalArgumentException("[ERROR] 음수는 입력 받을 수 없습니다.");
+            }
+            if (lottoAmount == 0) {
+                throw new IllegalArgumentException("[ERROR] 0원으로는 구입하지 못하므로 종료합니다.");
             }
             if (lottoAmount % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 살 수 있습니다");
