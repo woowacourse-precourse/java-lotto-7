@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constants;
 
 public enum LottoRank {
     FIFTH(3, false, 5_000, "3개 일치"),

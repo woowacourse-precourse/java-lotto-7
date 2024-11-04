@@ -1,4 +1,4 @@
-package lotto.messages;
+package lotto.constants;
 
 public enum ErrorMessage {
     DUPLICATE_WINNING_NUMBERS("[ERROR] 당첨 번호는 중복될 수 없습니다."),
