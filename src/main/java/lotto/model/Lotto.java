@@ -31,4 +31,8 @@ public class Lotto {
 
         return Prize.getResult(count, bonus);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
