@@ -4,6 +4,7 @@ import lotto.util.NumberUtil;
 import lotto.view.InputView;
 
 public class LottoGeneratorService {
+    public static final int LOTTO_PRICE = 1000;
     private final InputView inputView;
 
     public LottoGeneratorService(InputView inputView) {
@@ -28,6 +29,10 @@ public class LottoGeneratorService {
             return true;
         }
         throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 합니다.");
+    }
+
+    public int calculateLottoCount(int amount) {
+        return amount / LOTTO_PRICE;
     }
 
 }

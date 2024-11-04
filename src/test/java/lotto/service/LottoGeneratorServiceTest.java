@@ -28,16 +28,22 @@ class LottoGeneratorServiceTest {
     }
 
     @Test
-    void 천원단위일시_참_반환(){
+    void 천원단위일시_참_반환() {
         boolean result = lottoGeneratorService.checkThousandUnit(10000);
         assertTrue(result);
     }
 
     @Test
-    void 잘못된_값_입력시_다시_입력요청후_1000반환(){
-        TestInputView testInputView = new TestInputView("-10","0","abc","1500","1000");
+    void 잘못된_값_입력시_다시_입력요청후_1000반환() {
+        TestInputView testInputView = new TestInputView("-10", "0", "abc", "1500", "1000");
         LottoGeneratorService lottoGeneratorService = new LottoGeneratorService(testInputView);
         int result = lottoGeneratorService.lottoPurchase();
         assertEquals(1000, result);
+    }
+
+    @Test
+    void 금액_입력시_구매한_로또갯수_반환() {
+        int result = lottoGeneratorService.calculateLottoCount(15000);
+        assertEquals(15, result);
     }
 }
