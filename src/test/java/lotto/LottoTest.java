@@ -52,6 +52,7 @@ class LottoTest {
                 .hasMessageContaining("[ERROR] 로또 번호는 1~45 사이의 숫자를 입력해주세요.");
     }
 
+    @DisplayName("올바른 로또 번호를 입력하면 로또 번호를 저장한다.")
     @Test
     void createLottoTest() {
         // given
