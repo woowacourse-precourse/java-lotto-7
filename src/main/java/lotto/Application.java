@@ -27,8 +27,9 @@ public class Application {
         int bonusNumber = inputView.getBonusNumber();
 
         lottoResult = new LottoResult(winningLotto, bonusNumber, lottoCost);
-
         lottoController.checkResult(lottos, lottoResult);
 
+        double profitRate = lottoController.checkProfitRate(lottoResult);
+        
     }
 }

@@ -54,4 +54,9 @@ public class LottoController {
         lottoResult.setTotalPrize(resultPrize);
     }
 
+    public double checkProfitRate(LottoResult lottoResult) {
+        int totalSpent = lottoResult.getLottoCost();
+        int totalPrize = lottoResult.getTotalPrize();
+        return (totalPrize - totalSpent) / (double) totalSpent * 100;
+    }
 }

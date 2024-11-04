@@ -27,4 +27,11 @@ public class LottoResult {
         return bonusNumber;
     }
 
+    public int getLottoCost() {
+        return lottoCost;
+    }
+
+    public int getTotalPrize() {
+        return totalPrize;
+    }
 }
