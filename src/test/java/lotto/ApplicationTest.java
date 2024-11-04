@@ -13,6 +13,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     @BeforeAll
     static void setUp() {
         System.setProperty("TEST_MODE", "true");  // 테스트 모드 설정

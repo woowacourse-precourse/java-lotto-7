@@ -7,8 +7,6 @@ import lotto.message.NotifyMessage;
 import lotto.message.ResultMessage;
 
 public class OutputView {
-    private static final String DEFAULT_ERROR_MESSAGE = "[ERROR] ";
-
     public static void printBlankLine() {
         System.out.println();
     }
@@ -49,6 +47,6 @@ public class OutputView {
     }
 
     public static void printErrorMessage(String errorMassage) {
-        System.out.println(DEFAULT_ERROR_MESSAGE + errorMassage);
+        System.out.println(errorMassage);
     }
 }
