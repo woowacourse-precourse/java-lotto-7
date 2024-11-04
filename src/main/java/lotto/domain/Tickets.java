@@ -27,9 +27,17 @@ public class Tickets {
         Arrays.stream(Reward.values()).forEach(reward -> totalResult.put(reward, GlobalConstant.INIT_VAL.getValue()));
         tickets.forEach(ticket -> {
             Result result = ticket.compareToWinningInfo(winningInfo);
-            totalResult.keySet().forEach(reward -> result.compareResultToCriterion(totalResult, reward));
+            totalResult.keySet()
+                    .forEach(reward -> updateTotalResult(totalResult, reward, result.isCountSameAsReward(reward)));
         });
 
         return new TotalResult(totalResult);
+    }
+
+    private void updateTotalResult(EnumMap<Reward, Integer> totalResult, Reward reward, boolean isCountSameAsReward) {
+        if (isCountSameAsReward) {
+            int preVal = totalResult.get(reward);
+            totalResult.put(reward, ++preVal);
+        }
     }
 }

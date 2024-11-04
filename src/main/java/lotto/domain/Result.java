@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.util.EnumMap;
-
 public class Result {
 
     private final int hitCount;
@@ -12,10 +10,7 @@ public class Result {
         this.bonusCount = bonusCount;
     }
 
-    public void compareResultToCriterion(EnumMap<Reward, Integer> totalResult, Reward reward) {
-        if (reward.compareHitCount(hitCount) && reward.compareBonusCount(hitCount, bonusCount)) {
-            int preVal = totalResult.get(reward);
-            totalResult.put(reward, ++preVal);
-        }
+    public boolean isCountSameAsReward(Reward reward) {
+        return reward.compareHitCount(hitCount) && reward.compareBonusCount(hitCount, bonusCount);
     }
 }

@@ -2,9 +2,8 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,19 +12,15 @@ public class ResultTest {
 
     @ParameterizedTest
     @MethodSource("countsAndReward")
-    void Result에_있는_필드들의_개수가_Reward의_기준과_일치하면_해당_항목이_증가한다(int hitCount, int bonusCount, Reward reward) {
-        EnumMap<Reward, Integer> totalResult = generateMockEnumMap();
+    void Result에_있는_필드들의_개수가_Reward의_기준과_일치하면_참을_반환한다(int hitCount, int bonusCount, Reward reward) {
         Result result = new Result(hitCount, bonusCount);
-        result.compareResultToCriterion(totalResult, reward);
-
-        assertThat(totalResult.get(reward)).isEqualTo(1);
+        assertThat(result.isCountSameAsReward(reward)).isEqualTo(true);
     }
 
-    private EnumMap<Reward, Integer> generateMockEnumMap() {
-        EnumMap<Reward, Integer> totalResult = new EnumMap<>(Reward.class);
-        Arrays.stream(Reward.values()).forEach(reward -> totalResult.put(reward, 0));
-
-        return totalResult;
+    @Test
+    void Result에_있는_필드들의_개수가_Reward의_기준과_다르면_거짓을_반환한다() {
+        Result result = new Result(4, 0);
+        assertThat(result.isCountSameAsReward(Reward.HIT_6)).isEqualTo(false);
     }
 
     static Stream<Arguments> countsAndReward() {
