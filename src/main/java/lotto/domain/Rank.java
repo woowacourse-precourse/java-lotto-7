@@ -30,4 +30,14 @@ public enum Rank {
                 })
                 .orElse(NONE);
     }
+
+    public String formatWinningStatistics(int count) {
+        if (this == SECOND) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개",
+                    matchCount, String.format("%,d", winningMoney), count);
+        } else {
+            return String.format("%d개 일치 (%s원) - %d개",
+                    matchCount, String.format("%,d", winningMoney), count);
+        }
+    }
 }
