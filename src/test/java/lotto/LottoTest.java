@@ -36,4 +36,13 @@ class LottoTest {
         int bonusNumber = 1;
         assertEquals(lotto.isBonusMatch(lottos, bonusNumber), true);
     }
+
+    @Test
+    @DisplayName("로또 번호와 당첨번호, 보너스번호가 일치하는지 검증 테스트")
+    void 로또_번호가_당첨번호나_보너스번호와_일치하는지_확인하는_테스트() {
+        List<Integer> lottos = List.of(1, 2, 3, 4, 5, 9);
+        List<Integer> luckyNumber = List.of(1, 2, 3, 4, 5, 7);
+        int bonusNumber = 9;
+        assertEquals(lotto.getMatchCount(lottos, luckyNumber, bonusNumber), 6);
+    }
 }
