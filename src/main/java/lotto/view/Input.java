@@ -25,6 +25,11 @@ public class Input {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000 이상의, 1000단위 정수로 입력해야 합니다");
         }
     }
+
+    public static int calculateLottoAmount(int purchaseAmount){
+        return purchaseAmount/1000;
+    }
+
     public static List<Integer> inputWinnerNumbers(){
         System.out.println("당첨 번호를 입력해 주세요.");
         try {
