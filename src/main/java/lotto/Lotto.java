@@ -22,7 +22,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
 
         try {
-            Validator.validateListSize(numbers, NumberList.MAX_SIZE);
+            NumberList.validateLottoNumbersSize(numbers);
             Validator.validateDuplicate(numbers);
             for(int number : numbers) {
                 NumberList.validateLottoNumberRange(number);
