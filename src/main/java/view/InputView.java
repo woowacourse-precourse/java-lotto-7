@@ -42,12 +42,11 @@ public class InputView {
     }
 
     private <T> T repeatLoop(Supplier<T> inputFunction) {
-        while (true) {
-            try {
-                return inputFunction.get();
-            } catch (IllegalArgumentException e) {
-                printErrorMessage(e.getMessage());
-            }
+        try {
+            return inputFunction.get();
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+            return repeatLoop(inputFunction);
         }
     }
 
