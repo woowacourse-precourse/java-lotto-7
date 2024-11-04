@@ -106,6 +106,7 @@ public class LottoView {
             NumberList.validateLottoNumberRange(number);
         }
 
+        Validator.validateDuplicate(winningNumberList);
         NumberList.validateLottoNumbersSize(winningNumberList);
     }
 
