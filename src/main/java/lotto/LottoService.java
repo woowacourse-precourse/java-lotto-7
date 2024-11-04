@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,24 +14,34 @@ public class LottoService {
     }
 
     public Integer convertInputToLottoAmount(String input) {
-        if (!LottoUtils.isNumber(input)) {
-            System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
-            throw new IllegalArgumentException();
+        Integer lottoAmount  = 0;
+
+        while (true) {
+            try {
+            /*if (!LottoUtils.isNumber(input)) {
+                System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
+                throw new IllegalArgumentException();
+            }*/
+
+                Integer cash = Integer.parseInt(input);
+
+                if (cash % 1000 != 0) {
+                    System.out.println(ErrorMessage.INVALID_CASH_MESSAGE.getMessage());
+                    throw new IllegalArgumentException();
+                }
+
+                if (cash <= 0) {
+                    System.out.println(ErrorMessage.NO_CASH_MESSAGE.getMessage());
+                    throw new IllegalArgumentException();
+                }
+
+                lottoAmount = cash / 1000;
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
+                input = Console.readLine();
+            }
         }
-
-        Integer cash = Integer.parseInt(input);
-
-        if (cash % 1000 != 0) {
-            System.out.println(ErrorMessage.INVALID_CASH_MESSAGE.getMessage());
-            throw new IllegalArgumentException();
-        }
-
-        if (cash <= 0) {
-            System.out.println(ErrorMessage.NO_CASH_MESSAGE.getMessage());
-            throw new IllegalArgumentException();
-        }
-
-        Integer lottoAmount = cash / 1000;
 
         return lottoAmount;
     }
