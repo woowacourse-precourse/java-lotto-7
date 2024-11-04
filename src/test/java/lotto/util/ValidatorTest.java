@@ -1,6 +1,5 @@
 package lotto.util;
 
-import lotto.constants.LottoErrorMessage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

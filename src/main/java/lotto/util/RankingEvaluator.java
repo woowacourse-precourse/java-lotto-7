@@ -9,13 +9,13 @@ import java.util.*;
 public abstract class RankingEvaluator {
 
     public static Map<Ranking, Integer> evaluateAll(List<Lotto> purchasedLottos, JackpotNumbers jackpotNumbers) {
-        Map<Ranking, Integer> rankingCounts = initRankingMap();
+        Map<Ranking, Integer> rankingMap = initRankingMap();
 
         purchasedLottos.stream()
                 .map(lotto -> evaluateRank(lotto, jackpotNumbers))
-                .forEach(ranking -> rankingCounts.merge(ranking, 1, Integer::sum));
+                .forEach(ranking -> rankingMap.merge(ranking, 1, Integer::sum));
 
-        return rankingCounts;
+        return rankingMap;
     }
 
     private static Map<Ranking, Integer> initRankingMap() {
