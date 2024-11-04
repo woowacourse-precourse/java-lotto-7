@@ -27,6 +27,7 @@ public class Application {
         app.printWinningResult();
     }
 
+    //입력 검증 메소드
     private void validatePurchaseAmount(String input){
         try {
             int amount = Integer.parseInt(input);
@@ -56,37 +57,71 @@ public class Application {
     }
 
     private int validateBonusNum(String input){
-/*        if(input.split("").length>1){
-            throw new IllegalArgumentException("보너스 넘버는 1개여야 합니다.");
-        }*/
         try{
             int bonusNum = Integer.parseInt(input);
             return bonusNum;
         }
         catch(NumberFormatException e){
-            throw new IllegalArgumentException("보너스 넘버는 정수여야 합니다.");
+            throw new IllegalArgumentException("보너스 넘버는 정수 1개여야 합니다.");
         }
     }
+
+    //사용자 입력받는 메소드
     public void getPurchaseAmount(){
-       String input = Console.readLine();
-        validatePurchaseAmount(input);
-       this.purchaseAmount = Integer.parseInt(input);
+        while(true){
+            System.out.println("구입금액을 입력해 주세요."); // 사용자에게 안내 메시지 출력
+            String input = Console.readLine();
+            try{
+                validatePurchaseAmount(input);
+                this.purchaseAmount = Integer.parseInt(input);
+                break;
+            }
+            catch(IllegalArgumentException e){
+                System.out.println("[ERROR] "+ e.getMessage());
+            }
+        }
+
 
     }
 
     public void getWinningLottoNum(){
-        String input = Console.readLine();
-        List<Integer> winningLottoNum = validateWinningLotto(input);
-        this.winningLotto = new Lotto(winningLottoNum);
+        while(true){
+            System.out.println();
+            System.out.println("당첨 번호를 입력해주세요.");
+            String input = Console.readLine();
+            try{
+                List<Integer> winningLottoNum = validateWinningLotto(input);
+                this.winningLotto = new Lotto(winningLottoNum);
+                break;
+            }
+            catch(IllegalArgumentException e){
+                System.out.println("[ERROR] "+ e.getMessage());
+            }
+        }
 
     }
 
     public void getWinningBonusNum(){
-        String input = Console.readLine();
-        this.bonusNumber = validateBonusNum(input);
+        while(true){
+            System.out.println();
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            try {
+                int bonusNum = validateBonusNum(input);
+                if (this.winningLotto.getNumbers().contains(bonusNum)) {
+                    throw new IllegalArgumentException("보너스 번호는 로또 번호와 동일할 수 없습니다.");
+                }
+                this.bonusNumber = validateBonusNum(input);
+                break;
+            }
+            catch(IllegalArgumentException e){
+                System.out.println("[ERROR] "+e.getMessage());
+            }
+        }
     }
 
 
+    //로또 생성 메소드
     public void generateLottos(){
         int lottoCount = this.calculateLottoCount(this.purchaseAmount);
         for(int i=0;i<lottoCount;i++){
@@ -94,25 +129,30 @@ public class Application {
             Lotto lotto = new Lotto(lottoNumbers);
             lottos.add(lotto);
         }
+        System.out.printf("%d개를 구매했습니다.%n",lottoCount);
     }
 
+    //로또 매수 계산 메소드
     public int calculateLottoCount(int purchaseAmount){
         return purchaseAmount / this.lottoPrice;
     }
 
+
+    //로또 무작위 번호 생성 메소드
     private List<Integer> generateLottoNumbers() {
         List<Integer> numbers = new ArrayList<>();
         numbers.addAll(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         return numbers;
     }
 
+    //로또 번호 출력 메소드
     public void printLotto(){
         for (Lotto lotto:lottos){
             System.out.println(lotto.getNumbers());
         }
     }
 
-    //당첨 통계 계산하는 함수
+    //당첨 통계 계산하는 메소드
     public void checkWinningStatus(){
         for (Lotto lotto:lottos){
            List<Integer> copyLottoNumbers = lotto.getNumbers();
@@ -121,7 +161,7 @@ public class Application {
            int matchingCount = copyLottoNumbers.size();
            boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
 
-           WinningStatistics matchEnum = getWinningStatistics(matchingCount,hasBonus);
+           WinningStatistics matchEnum = findWinningStatistics(matchingCount,hasBonus);
 
            if(matchEnum!=null) {
                winningCountMap.put(matchEnum, winningCountMap.getOrDefault(matchEnum, 0) + 1);
@@ -130,7 +170,8 @@ public class Application {
 
     }
 
-    private WinningStatistics getWinningStatistics(int matchingCount, boolean hasBonus){
+    //당첨 상수 찾는 메소드
+    private WinningStatistics findWinningStatistics(int matchingCount, boolean hasBonus){
 
         if(matchingCount==WinningStatistics.SIX_MATCH.getMatchCount()){
             return WinningStatistics.SIX_MATCH;
@@ -151,18 +192,26 @@ public class Application {
         return null; //해당없음
     }
 
-    public void calculateEarnRate () {
-        this.earnRate=  (this.winningCountMap.entrySet().stream().mapToDouble(entry->entry.getKey().getPrize()).sum())/this.purchaseAmount *100;
+    //수익률 계산 메소드
+    public void calculateEarnRate() {
 
+        double totalPrize = this.winningCountMap.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue()) // 상금 * 개수
+                .sum();
+
+
+        this.earnRate = totalPrize/ this.purchaseAmount * 100;
     }
 
+    //당첨 내역 출력 메소드
    public void printWinningResult() {
+       System.out.println();
        System.out.println("당첨 통계");
        System.out.println("---");
        for (WinningStatistics winningStatistics : WinningStatistics.values()) {
            int count = winningCountMap.getOrDefault(winningStatistics, 0);
-           System.out.printf("%d개 일치 (%,d원) - %d개%n",
-                   winningStatistics.getMatchCount(),
+           System.out.printf("%s (%,d원) - %d개%n",
+                   winningStatistics.getDescribe(),
                    winningStatistics.getPrize(),
                    count);
        }
