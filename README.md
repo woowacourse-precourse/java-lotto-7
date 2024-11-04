@@ -102,3 +102,29 @@
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 62.5%입니다.
 ```
+
+## 시퀀스 다이어그램
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant View
+    participant Controller
+    participant Domain
+    
+    %% 로또 구매 프로세스
+    User->>View: 구매 금액 입력
+    View->>Controller: 입력값 전달
+    Controller->>Domain: 로또 발행 요청
+    Domain-->>Controller: 발행된 로또들
+    Controller->>View: 결과 전달
+    View-->>User: 발행 결과 출력
+    
+    %% 당첨 확인 프로세스
+    User->>View: 당첨 번호, 보너스 번호 입력
+    View->>Controller: 입력값 전달
+    Controller->>Domain: 당첨 통계 요청
+    Domain-->>Controller: 당첨 통계
+    Controller->>View: 결과 전달
+    View-->>User: 당첨 통계 출력
+```
