@@ -9,6 +9,7 @@ public class WinningNumbers {
     private WinningNumbers(List<Integer> numbers) {
         validateNumOfNumbers(numbers);
         validateNumbersInRange(numbers);
+        validateDuplicated(numbers);
         this.numbers = numbers;
     }
 
@@ -36,6 +37,16 @@ public class WinningNumbers {
 
         if (isOutOfRange) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 정수여야 합니다.");
+        }
+    }
+
+    private void validateDuplicated(List<Integer> numbers) {
+        int size = (int) numbers.stream()
+                .distinct()
+                .count();
+
+        if (size != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 서로 중복되면 안 됩니다.");
         }
     }
 
