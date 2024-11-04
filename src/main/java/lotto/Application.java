@@ -13,14 +13,12 @@ public class Application {
         try {
             int purchaseAmount = inputPurchaseAmount();
             List<Lotto> lottos = purchaseLottos(purchaseAmount);
-
             printLottos(lottos);
 
             List<Integer> winningNumbers = inputWinningNumbers();
             int bonusNumber = inputBonusNumber(winningNumbers);
 
             Map<Rank, Integer> result = calculateResults(lottos, winningNumbers, bonusNumber);
-
             printResult(result, purchaseAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -96,7 +94,6 @@ public class Application {
             System.out.println(rank.getMatchMessage() + " - " + count + "개");
             totalEarnings += rank.getPrize() * count;
         }
-
         double yield = (totalEarnings / purcahseAmount) * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.\n", yield);
     }
