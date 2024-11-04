@@ -43,7 +43,7 @@ public class PriceValidator implements Validator {
         int price = 0;
         try {
             price = Integer.parseInt(this.price);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             printErrorMessageAndThrowError(ExceptionMessage.PRICE_OUT_OF_RANGE.getMessage());
         }
 

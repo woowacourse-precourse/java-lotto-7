@@ -55,7 +55,7 @@ public class WinningNumberValidator implements Validator {
         try {
             int number = Integer.parseInt(winningNumber);
 
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             printErrorMessageAndThrowError(ExceptionMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }

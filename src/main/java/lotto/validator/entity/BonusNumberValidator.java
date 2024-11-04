@@ -35,9 +35,9 @@ public class BonusNumberValidator implements Validator {
             int number = Integer.parseInt(bonusNumber);
 
             if (number < 1 || number > 45) {
-                throw new Exception();
+                throw new NumberFormatException();
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             printErrorMessageAndThrowError(ExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
