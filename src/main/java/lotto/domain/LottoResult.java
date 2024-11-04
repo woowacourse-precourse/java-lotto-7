@@ -10,7 +10,7 @@ public class LottoResult {
     public LottoResult(List<PurchaseLotto> purchaseLottos, Lotto winningLotto) {
         for (PurchaseLotto lotto : purchaseLottos) {
             int matchCount = calculateMatchCount(lotto.getLottoNumbers(), winningLotto.getNumbers());
-            boolean bonusMatched = lotto.getLottoNumbers().contains(winningLotto.getBonusNumber());
+            boolean bonusMatched = lotto.getLottoNumbers().contains(winningLotto.getNumbers().get(Lotto.BONUS_NUMBER_INDEX));
             WinningType winningType = WinningType.valueOf(matchCount, bonusMatched);
 
             if (winningType != null) {

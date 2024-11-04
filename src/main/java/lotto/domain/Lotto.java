@@ -7,8 +7,9 @@ import java.util.List;
 
 public class Lotto {
 
+    public static final int BONUS_NUMBER_INDEX = 6;
+
     private final List<Integer> numbers;
-    private int bonusNumber;
 
     public Lotto(List<Integer> numbers) {
         LottoNumberValidator.validateLottoNumbers(numbers);
@@ -19,14 +20,10 @@ public class Lotto {
         return numbers;
     }
 
-    public int getBonusNumber(){
-        return bonusNumber;
-    }
-
     public void addBonusNumber(String bonus) {
         int bonusNumber = ParserToInt.parserToInt(bonus);
         LottoNumberValidator.validateBonusNumber(bonusNumber, numbers);
-        this.bonusNumber = bonusNumber;
+        numbers.add(bonusNumber);
     }
 
 }
