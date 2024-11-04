@@ -1,8 +1,12 @@
 package lotto.domain.lotto;
 
+import static lotto.common.exception.ErrorMessage.WINNING_NUMBERS_CANNOT_BE_DUPLICATED;
+import static lotto.common.exception.ErrorMessage.WINNING_NUMBERS_SIZE_MUST_BE_SIX;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.common.exception.LottoException;
 
 public class WinningNumbers {
     private final List<LottoNumber> winningNumbers;
@@ -25,14 +29,14 @@ public class WinningNumbers {
 
     private void validateSize() {
         if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            throw new LottoException(WINNING_NUMBERS_SIZE_MUST_BE_SIX);
         }
     }
 
     private void validateDuplicate() {
         Set<LottoNumber> uniqueNumbers = new HashSet<>(winningNumbers);
         if (uniqueNumbers.size() != winningNumbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+            throw new LottoException(WINNING_NUMBERS_CANNOT_BE_DUPLICATED);
         }
     }
 }

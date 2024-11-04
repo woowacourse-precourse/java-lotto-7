@@ -1,6 +1,9 @@
 package lotto.domain.lotto;
 
+import static lotto.common.exception.ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
+
 import java.util.Objects;
+import lotto.common.exception.LottoException;
 
 public class LottoNumber {
 
@@ -13,7 +16,7 @@ public class LottoNumber {
 
     private void validate(Integer number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new LottoException(LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
 

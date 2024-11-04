@@ -1,10 +1,13 @@
 package lotto.controller;
 
+import static lotto.common.exception.ErrorMessage.INVALID_INPUT;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.common.exception.LottoException;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Investment;
 import lotto.domain.lotto.LottoBundle;
@@ -45,7 +48,7 @@ public class LottoController {
 
     private void validateInput(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력이 잘못 되었습니다.");
+            throw new LottoException(INVALID_INPUT);
         }
     }
 
