@@ -20,6 +20,31 @@ public class WinningResult {
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        int[] rankCount = calculateRankCount(); // 등수 카운트 계산
+    }
+
+    int[] calculateRankCount() {
+        int[] rankCount = new int[LottoRank.values().length];
+
+        for (List<Integer> ticket : lottoNumbers) {
+            int matchCount = countMatches(ticket);
+            boolean matchBonus = ticket.contains(bonusNum);
+            LottoRank rank = LottoRank.valueOf(matchCount, matchBonus);
+            rankCount[rank.ordinal()]++;
+        }
+        return rankCount;
+    }
+
+
+
+    int countMatches(List<Integer> ticket) {
+        int count = 0;
+        for (Integer number : winningNumber) {
+            if (ticket.contains(number)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public enum LottoRank {
@@ -52,8 +77,10 @@ public class WinningResult {
             return prize;
         }
 
-  
     }
 
+	public void setWinningNumber(List<Integer> winningNumber2) {
+		this.winningNumber = winningNumber2;
+	}
 
 }
