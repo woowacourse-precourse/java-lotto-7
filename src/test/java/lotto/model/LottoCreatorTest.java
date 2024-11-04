@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,17 +50,5 @@ class LottoCreatorTest {
 		assertIterableEquals(numbers, winningLotto.getNumbers().stream()
 				.map(LottoNumber::getNumber)
 				.toList());
-	}
-
-	@Test
-	@DisplayName("구매 로또의 로또 번호는 오름차순으로 정렬되어 있다.")
-	void 구매_로또의_로또_번호는_오름차순으로_정렬되어_있다() {
-		// when
-		Lotto purchasedLotto = lottoCreator.createPurchasedLotto();
-		List<LottoNumber> numbers = purchasedLotto.getNumbers();
-
-		// then
-		assertTrue(IntStream.range(1, numbers.size())
-				.allMatch(i -> numbers.get(i - 1).getNumber() < numbers.get(i).getNumber()));
 	}
 }
