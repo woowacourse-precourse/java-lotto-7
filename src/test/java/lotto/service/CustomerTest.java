@@ -6,7 +6,6 @@ import lotto.constants.Ranking;
 import lotto.constants.lottoType.CalculateType;
 import lotto.constants.lottoType.LottoType;
 import lotto.model.Customer;
-import lotto.model.Lotto;
 import lotto.model.LottoHandler;
 import lotto.model.Lottos;
 import org.junit.jupiter.api.BeforeEach;

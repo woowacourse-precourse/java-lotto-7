@@ -1,12 +1,10 @@
 package lotto.constants;
 
-import java.util.Arrays;
-
 public enum Ranking {
 
     ZERO(0, 0, "0", false),
-    ONE(1, 0, "0", false),
-    TWO(2, 0, "0", false),
+    ONE(0, 0, "0", false),
+    TWO(0, 0, "0", false),
     THREE(3, 5000, "5,000", true),
     FOUR(4, 50000, "50,000", true),
     FIVE(5, 1500000, "1,500,000", true),

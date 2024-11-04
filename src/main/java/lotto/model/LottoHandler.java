@@ -51,6 +51,9 @@ public class LottoHandler {
 
     public Ranking checkedResult(Lotto winningLotto, Lottos boughtLottos) {
         int rankedNumber = checkedSameNumber(winningLotto.getNumbers(), boughtLottos.getLottoNumbers());
+        if (rankedNumber == 6) {
+            rankedNumber++;
+        }
         boolean checkedBonus = checkedBonusNumber(getBonusNumber(), boughtLottos);
         Ranking ranking = Ranking.values()[rankedNumber];
         if (ranking == Ranking.FIVE && checkedBonus) {
