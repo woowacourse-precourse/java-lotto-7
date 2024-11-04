@@ -35,4 +35,4 @@ out/
 .DS_Store
 
 
-.class
+*.class
