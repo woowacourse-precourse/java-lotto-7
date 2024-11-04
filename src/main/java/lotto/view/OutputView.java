@@ -40,4 +40,24 @@ public class OutputView {
         System.out.println(result);
     }
 
+    public void printWinningStatics() {
+        System.out.println(OUTPUT_WINNING_STATICS);
+        System.out.println(OUTPUT_LINE);
+    }
+
+    public void printTotal(WinnerResult winnerResult) {
+        for (Winners winner : Winners.values()) {
+            int amount = winnerResult.getAmount(winner);
+            if (winner == Winners.FIVE_BONUS_MATCHED) {
+                System.out.printf(BONUS_MATCHED_NUMBER, winner.getMatchedNumber(), winner.getPrizeMoney(), amount);
+                continue;
+            }
+            System.out.printf(MATCHED_NUMBER, winner.getMatchedNumber(), winner.getPrizeMoney(), amount);
+        }
+    }
+
+    public void printFinalRate(double finalRate) {
+        System.out.printf(FINAL_RATE, finalRate);
+    }
+
 }
