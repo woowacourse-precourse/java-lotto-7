@@ -1,5 +1,8 @@
 package lotto.model;
 
+import lotto.exception.InvalidBonusDuplicateException;
+import lotto.exception.InvalidBonusRangeException;
+
 import java.util.List;
 
 import static lotto.constant.Constants.LOTTO_END;
@@ -20,13 +23,13 @@ public class Bonus {
 
     private void validateRange(int number) {
         if (number < LOTTO_START || number > LOTTO_END) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new InvalidBonusRangeException();
         }
     }
 
     private void validateDuplicateNumber(int number, List<Integer> numbers) {
         if (numbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new InvalidBonusDuplicateException();
         }
     }
 

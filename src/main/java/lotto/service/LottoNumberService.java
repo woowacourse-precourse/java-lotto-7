@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.InvalidLottoNumberException;
 
 import static lotto.constant.Constants.*;
 
@@ -18,7 +19,7 @@ public class LottoNumberService {
                 if (!number.trim().isEmpty())
                     lottoNumbers.add(Integer.parseInt(number.trim()));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호를 다시 확인해 주세요.");
+                throw new InvalidLottoNumberException();
             }
         }
         return lottoNumbers;
