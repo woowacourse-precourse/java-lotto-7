@@ -3,18 +3,18 @@ package lotto.domain.result;
 import lotto.domain.money.Money;
 
 public enum LottoRank {
-    FIRST(6, Money.from(2_000_000_000), "6개 일치"),
-    SECOND(5, Money.from(30_000_000), "5개 일치, 보너스 볼 일치"),
-    THIRD(5, Money.from(1_500_000), "5개 일치"),
-    FOURTH(4, Money.from(50_000), "4개 일치"),
-    FIFTH(3, Money.from(5_000), "3개 일치"),
-    NONE(0, Money.from(0), "미당첨");
+    FIRST(6, 2_000_000_000, "6개 일치"),
+    SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치"),
+    THIRD(5, 1_500_000, "5개 일치"),
+    FOURTH(4, 50_000, "4개 일치"),
+    FIFTH(3, 5_000, "3개 일치"),
+    NONE(0, 0, "미당첨");
 
     private final int matchCount;
-    private final Money prizeMoney;
+    private final int prizeMoney;
     private final String description;
 
-    LottoRank(int matchCount, Money prizeMoney, String description) {
+    LottoRank(int matchCount, int prizeMoney, String description) {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
         this.description = description;
@@ -41,7 +41,10 @@ public enum LottoRank {
     }
 
     public Money getPrizeMoney() {
-        return prizeMoney;
+        if (this == NONE) {
+            return Money.zero();
+        }
+        return Money.from(prizeMoney);
     }
 
     @Override
@@ -49,6 +52,6 @@ public enum LottoRank {
         if (this == NONE) {
             return description;
         }
-        return String.format("%s (%s)", description, prizeMoney);
+        return String.format("%s (%,d원)", description, prizeMoney);
     }
 }

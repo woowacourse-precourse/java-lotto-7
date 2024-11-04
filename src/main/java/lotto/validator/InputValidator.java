@@ -14,12 +14,14 @@ public class InputValidator {
 
     public static int parsePositiveNumber(String input) {
         validateEmpty(input);
-        return parseNumber(input.trim());
+        String trimmedInput = input.trim();
+        validateNumeric(trimmedInput);
+        return Integer.parseInt(trimmedInput);
     }
 
     public static List<Integer> parseNumbers(String input) {
         validateEmpty(input);
-        String[] values = input.split(DELIMITER);
+        String[] values = input.trim().split(DELIMITER);
         validateNumberCount(values);
         return parseNumberList(values);
     }
@@ -36,9 +38,9 @@ public class InputValidator {
         }
     }
 
-    private static int parseNumber(String value) {
+    private static void validateNumeric(String value) {
         try {
-            return Integer.parseInt(value);
+            Integer.parseInt(value);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_NOT_NUMBER);
         }
@@ -47,7 +49,9 @@ public class InputValidator {
     private static List<Integer> parseNumberList(String[] values) {
         List<Integer> numbers = new ArrayList<>();
         for (String value : values) {
-            numbers.add(parseNumber(value.trim()));
+            String trimmedValue = value.trim();
+            validateNumeric(trimmedValue);
+            numbers.add(Integer.parseInt(trimmedValue));
         }
         return numbers;
     }

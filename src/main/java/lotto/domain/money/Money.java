@@ -1,17 +1,17 @@
 package lotto.domain.money;
 
-import java.util.Objects;
 import lotto.validator.PurchaseAmountValidator;
+import java.util.Objects;
 
 public class Money {
     private static final int LOTTO_PRICE = 1_000;
-    private static final String ERROR_NEGATIVE = "[ERROR] 구입 금액은 0보다 커야 합니다.";
-    private static final String ERROR_UNIT = "[ERROR] 구입 금액은 1,000원 단위여야 합니다.";
-
+    private static final Money ZERO = new Money(0);
     private final int amount;
 
     private Money(int amount) {
-        PurchaseAmountValidator.validate(amount);
+        if (amount != 0) {
+            PurchaseAmountValidator.validate(amount);
+        }
         this.amount = amount;
     }
 
@@ -19,16 +19,8 @@ public class Money {
         return new Money(amount);
     }
 
-    public static Money sum(Money... moneys) {
-        int sum = 0;
-        for (Money money : moneys) {
-            sum += money.amount;
-        }
-        return new Money(sum);
-    }
-
-    public static Money multiply(Money money, int multiplier) {
-        return new Money(money.amount * multiplier);
+    public static Money zero() {
+        return ZERO;
     }
 
     public int getLottoQuantity() {
@@ -58,10 +50,5 @@ public class Money {
     @Override
     public int hashCode() {
         return Objects.hash(amount);
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%,d원", amount);
     }
 }
