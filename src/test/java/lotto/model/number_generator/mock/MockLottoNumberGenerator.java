@@ -1,14 +1,16 @@
-package lotto.model.number_generator;
+package lotto.model.number_generator.mock;
+
+import lotto.model.number_generator.NumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class TestNumberGenerator implements NumberGenerator{
+public class MockLottoNumberGenerator implements NumberGenerator {
 
     private final List<Integer> numbers;
 
-    public TestNumberGenerator(int start, int end) {
+    public MockLottoNumberGenerator(int start, int end) {
         this.numbers = IntStream.rangeClosed(start, end)
                 .boxed()
                 .collect(Collectors.toList());

@@ -5,7 +5,7 @@ import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoPublisher;
 import lotto.model.draw_numbers.DrawNumbers;
 import lotto.model.number_generator.NumberGenerator;
-import lotto.model.number_generator.TestNumberGenerator;
+import lotto.model.number_generator.mock.MockLottoNumberGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,7 +23,7 @@ public class WinningTest {
     void beforeEach() {
         int hackedMinWinningNumber = DrawNumberHacker.MIN_WINNING_NUMBER;
         int hackedMaxWinningNumber = DrawNumberHacker.MAX_WINNING_NUMBER;
-        NumberGenerator testNumberGenerator = new TestNumberGenerator(hackedMinWinningNumber, hackedMaxWinningNumber);
+        NumberGenerator testNumberGenerator = new MockLottoNumberGenerator(hackedMinWinningNumber, hackedMaxWinningNumber);
         this.lottoPublisher = new LottoPublisher(testNumberGenerator);
     }
 

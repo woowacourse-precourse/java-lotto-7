@@ -7,11 +7,8 @@ import lotto.constants.LottoNumberPrintFormat;
 import lotto.model.lotto.LottoChecker;
 import lotto.model.lotto.LottoPublisher;
 import lotto.model.number_generator.NumberGenerator;
-import lotto.model.number_generator.TestNumberGenerator;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import lotto.model.number_generator.mock.MockLottoNumberGenerator;
+import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +23,7 @@ public class OutputViewTest {
 
     @BeforeEach
     void initTestNumberGenerator() {
-        testNumberGenerator = new TestNumberGenerator(
+        testNumberGenerator = new MockLottoNumberGenerator(
                 DrawNumberHacker.MIN_WINNING_NUMBER,
                 DrawNumberHacker.MAX_WINNING_NUMBER
         );
