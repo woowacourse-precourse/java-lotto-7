@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.domain.LottoNumber;
+import lotto.domain.LottoNumber;
 
 import java.util.ArrayList;
 import java.util.Collections;
