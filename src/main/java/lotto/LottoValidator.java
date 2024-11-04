@@ -6,6 +6,10 @@ import java.util.Set;
 
 public class LottoValidator {
 
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int LOTTO_NUMBER_SIZE = 6;
+
     public static void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
@@ -16,13 +20,13 @@ public class LottoValidator {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
     private static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
@@ -36,7 +40,7 @@ public class LottoValidator {
 
     private static void validateLottoNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
             }
         }

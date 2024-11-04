@@ -9,6 +9,8 @@ import java.util.Map;
 
 public class LottoGame {
 
+    public static final int LOTTO_TICKET_PRICE = 1000;
+
     public void startGame() {
         int amount = promptPurchaseAmount();
         int ticketCount = calculateTicketCount(amount);
@@ -47,13 +49,13 @@ public class LottoGame {
     }
 
     private void validatePurchaseAmount(int amount) {
-        if (amount <= 0 || amount % 1000 != 0) {
+        if (amount <= 0 || amount % LOTTO_TICKET_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
         }
     }
 
     private int calculateTicketCount(int amount) {
-        return amount / 1000;
+        return amount / LOTTO_TICKET_PRICE;
     }
 
     private List<Lotto> generateTickets(int ticketCount) {
