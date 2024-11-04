@@ -1,15 +1,11 @@
 package lotto;
 
-import lotto.staticenum.LottoStatic;
 import lotto.staticenum.WinningAmountEnum;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.staticenum.LottoStatic.*;
 import static org.assertj.core.api.Assertions.*;
 
 class LottoWinningTest {
