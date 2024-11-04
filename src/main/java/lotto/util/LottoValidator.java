@@ -1,7 +1,6 @@
 package lotto.util;
 
 import lotto.domain.Lotto;
-import lotto.service.LottoMachine;
 
 public class LottoValidator {
 

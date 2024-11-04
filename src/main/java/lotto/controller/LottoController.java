@@ -6,6 +6,7 @@ import lotto.service.LottoResult;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.WinningLotto;
+import lotto.service.LottoWinMather;
 import lotto.util.ErrorMessage;
 import lotto.util.NumberGenerate;
 import lotto.domain.BonusBall;
@@ -18,6 +19,7 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoMachine lottoMachine;
+    private final LottoWinMather lottoWinMather;
     private final StringToIntConverter converter;
 
     public LottoController(InputView inputView, OutputView outputView, NumberGenerate lottoGenerator) {
@@ -25,6 +27,7 @@ public class LottoController {
         this.outputView = outputView;
         this.lottoMachine = new LottoMachine(lottoGenerator);
         this.converter = new StringToIntConverter();
+        this.lottoWinMather = new LottoWinMather();
     }
 
     public void run() {
@@ -35,7 +38,7 @@ public class LottoController {
 
         WinningLotto winningLotto = createWinningLotto();
 
-        LottoResult lottoResult = lottoMachine.calculateLottoWins(purchasedLotto, winningLotto);
+        LottoResult lottoResult = lottoWinMather.calculateLottoWins(purchasedLotto, winningLotto);
 
         outputView.showWinStatus(lottoResult);
         outputView.showProfit(lottoResult, lottoMachine.inMoney());
@@ -60,7 +63,7 @@ public class LottoController {
                 String rawNumber = inputView.lottoBonusNumInput();
                 int bonusNumber = converter.convertStringNumberToInteger(rawNumber);
                 return new BonusBall(bonusNumber);
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 ErrorMessage.showErrorMsg(e.getMessage());
             }
         }
@@ -72,7 +75,7 @@ public class LottoController {
                 String rawNumbers = inputView.lottoNumsInput();
                 List<Integer> numbers = converter.convertStringNumbersToIntegers(rawNumbers);
                 return new Lotto(numbers);
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 ErrorMessage.showErrorMsg(e.getMessage());
             }
         }
@@ -84,7 +87,7 @@ public class LottoController {
                 String rawMoney = inputView.lottoMoneyInput();
                 int money = converter.convertStringNumberToInteger(rawMoney);
                 return lottoMachine.issueLotto(money);
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 ErrorMessage.showErrorMsg(e.getMessage());
             }
         }
