@@ -10,6 +10,74 @@
     - [x] 정상적인 상황 뿐만 아니라 예외 사항도 함께 정리하기
     - [x] 기능 목록 업데이트 하기
 
+# 🌲트리
+
+---
+```
+├── Application.java
+├── controller
+│   ├── HostController.java
+│   ├── PurchaseController.java
+│   ├── ScreenController.java
+│   └── TotalController.java
+├── domain
+│   ├── CriteriaTool.java
+│   ├── DrawTool.java
+│   ├── GameStatus.java
+│   ├── Lotto.java
+│   ├── LottoMachine.java
+│   └── PrizeCheckMachine.java
+├── repository
+│   ├── LottoTicketRepository.java
+│   └── WinningReceiptRepository.java
+├── service
+│   ├── constant
+│   │   ├── Cost.java
+│   │   └── prize
+│   │       ├── PrizeCondition.java
+│   │       └── PrizeConditionImpl.java
+│   ├── input
+│   │   ├── InputService.java
+│   │   ├── InputServiceImpl.java
+│   │   ├── converter
+│   │   │   ├── BallEntryConverterService.java
+│   │   │   ├── BallInputConverterService.java
+│   │   │   ├── InputConverterService.java
+│   │   │   └── MoneyInputConverterService.java
+│   │   └── validator
+│   │       ├── BallEntryValidatorService.java
+│   │       ├── CommonValidatorService.java
+│   │       ├── InputValidatorService.java
+│   │       ├── LuckyBallInputValidatorService.java
+│   │       ├── MoneyInputValidatorService.java
+│   │       └── ValidateStatus.java
+│   ├── lotteryhost
+│   │   ├── HostService.java
+│   │   ├── HostServiceImpl.java
+│   │   ├── PrizeCheckService.java
+│   │   ├── PrizeCheckServiceImpl.java
+│   │   ├── PrizeReportService.java
+│   │   ├── PrizeReportServiceImpl.java
+│   │   ├── ProfitRateService.java
+│   │   ├── ProfitRateServiceImpl.java
+│   │   ├── WinningCriteriaService.java
+│   │   └── WinningCriteriaServiceImpl.java
+│   └── purchase
+│       ├── LottoGameService.java
+│       ├── LottoGameServiceImpl.java
+│       ├── LottoMachineService.java
+│       ├── LottoMachineServiceImpl.java
+│       ├── PurchaseService.java
+│       └── PurchaseServiceImpl.java
+└── view
+    ├── Output.java
+    ├── UserInput.java
+    └── constant
+        ├── InputInfo.java
+        └── OutputFormat.java
+
+```
+
 #  🛠️ 기능 목록
 
 ## 🕹️ 진행
