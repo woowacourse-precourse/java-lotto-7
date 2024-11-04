@@ -26,7 +26,6 @@ public class Purchase {
         return lottoResultId;
     }
 
-
     public Money getMoney() {
         return money;
     }
