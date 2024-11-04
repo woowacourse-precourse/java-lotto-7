@@ -18,7 +18,7 @@ public class PriceValidator implements Validator {
     }
 
     private void isValidFormat() {
-        if (price == null || !price.matches("[0-9]+")) {
+        if (!price.matches("[0-9]+")) {
             throw new IllegalArgumentException("[ERROR] 금액은 0 이상의 숫자 하나만 입력 할 수 있습니다.");
         }
     }
