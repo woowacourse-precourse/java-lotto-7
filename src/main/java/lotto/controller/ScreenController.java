@@ -12,6 +12,7 @@ import lotto.view.Output;
 public class ScreenController {
 
     private final LottoTicketRepository lottoTicket = LottoTicketRepository.getTicket();
+    private WinningReceiptRepository winningReceipt;
 
     public void printMyLottery() {
         Output.purchaseAmount(lottoTicket.unrevealedGameCount());
@@ -30,4 +31,32 @@ public class ScreenController {
         System.out.println(games);
     }
 
+    public void printMyResult() {
+        winningReceipt = WinningReceiptRepository.getInstance();
+        Output.prizeStatistic();
+        for (PrizeCondition condition : PrizeConditionImpl.values()) {
+            if(condition.equals(PrizeConditionImpl.SECOND_OR_THREE_PRIZE)) continue;
+            if(condition.equals(PrizeConditionImpl.SECOND_PRIZE)){
+                secondWinner(condition);
+                continue;
+            }
+            orderMatch(condition);
+        }
+    }
+
+    private void orderMatch(PrizeCondition condition) {
+        Output.winner(condition.getCorrectNumber(),
+                condition.getPrizeMoney(),
+                winningReceipt.getCount(condition));
+    }
+
+    private void secondWinner(PrizeCondition condition) {
+        Output.secondWinner(condition.getCorrectNumber(),
+                condition.getPrizeMoney(),
+                winningReceipt.getCount(condition));
+    }
+
+    public void profitRate() {
+        Output.profitRate(new ProfitRateServiceImpl().getRate());
+    }
 }
