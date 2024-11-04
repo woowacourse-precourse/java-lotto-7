@@ -22,4 +22,8 @@ public class LottoRepository {
 	public List<Lotto> findAll() {
 		return repository;
 	}
+
+	public void clear() {
+		repository.clear();
+	}
 }
