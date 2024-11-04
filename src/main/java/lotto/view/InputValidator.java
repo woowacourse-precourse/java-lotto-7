@@ -7,6 +7,7 @@ public class InputValidator {
     private Input input = new Input();
 
     public int readBuyLotto() {
+        System.out.println("구입금액을 입력해 주세요.");
         while (true) {
             try {
                 return input.readLottoAmount();
@@ -17,6 +18,8 @@ public class InputValidator {
     }
 
     public Lotto readWinningLotto() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
         while (true) {
             try {
                 return new Lotto(input.readWinningNumber());
@@ -27,6 +30,9 @@ public class InputValidator {
     }
 
     public void makeBonusNumber(Lotto winningLotto) {
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+
         while (true) {
             try {
                 new BonusNumber(input.readBonusNumber(), winningLotto);

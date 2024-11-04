@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 
 public class Input {
     public int readLottoAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-
         try {
             int lottoAmount = Integer.parseInt(readLine());
 
@@ -24,9 +22,6 @@ public class Input {
     }
 
     public List<Integer> readWinningNumber() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
-
         try {
             String input = readLine();
 
@@ -39,9 +34,6 @@ public class Input {
     }
 
     public int readBonusNumber() {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
-
         try {
             return Integer.parseInt(readLine());
         } catch (NumberFormatException e) {
