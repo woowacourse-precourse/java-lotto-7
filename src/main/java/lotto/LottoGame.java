@@ -47,6 +47,7 @@ public class LottoGame {
             }
         }
         setBonusNumber(winningNumbers);
+        checkWinningNumbers(winningNumbers);
     }
 
     public void setBonusNumber(List<Integer> winningNumbers) {
@@ -63,6 +64,71 @@ public class LottoGame {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    public void checkWinningNumbers(List<Integer> winningNumbers) {
+        // 당첨 번호 비교
+        List<Integer> prizeCount = new ArrayList<>(Collections.nCopies(Prize.values().length, 0));
+
+        showMyLotto();
+
+        for (Lotto lotto : lottos) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            int matchCount = countMatches(lottoNumbers, winningNumbers);
+            createLottoStatistics(matchCount, lottoNumbers, prizeCount);
+        }
+        finalResult(prizeCount);
+    }
+
+    public void showMyLotto() {
+        // 로또 번호 출력
+        System.out.println(lottoQuantity + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
+    private int countMatches(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int winningNumber : winningNumbers) {
+            if (lottoNumbers.contains(winningNumber)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    public void createLottoStatistics(int matchCount, List<Integer> lottoNumbers, List<Integer> prizeCount) {
+        //당첨 갯수 별 정리
+        for (int i = 3; i <= 6; i++) {
+            if (matchCount == i) {
+                if (i == 6) {
+                    updatePrizeCount(prizeCount, Prize.SIX_MATCH);
+                }
+                if (i == 5) {
+                    updatePrizeCount(prizeCount, lottoNumbers.contains(bonusNumber) ? Prize.FIVE_MATCH_BONUS : Prize.FIVE_MATCH);
+                }
+                if (i == 4) {
+                    updatePrizeCount(prizeCount, Prize.FOUR_MATCH);
+                }
+                if (i == 3) {
+                    updatePrizeCount(prizeCount, Prize.THREE_MATCH);
+                }
+            }
+        }
+    }
+
+    private void updatePrizeCount(List<Integer> prizeCount, Prize prize) {
+        prizeCount.set(prize.ordinal(), prizeCount.get(prize.ordinal()) + 1);
+    }
+
+    public void finalResult(List<Integer> prizeCount) {
+        // 결과 출력
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (Prize prize : Prize.values()) {
+            System.out.println(prize.getDescription() + " - " + prizeCount.get(prize.ordinal()) + "개");
         }
     }
 
