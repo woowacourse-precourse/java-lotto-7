@@ -1,7 +1,8 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.Set;
 import lotto.validator.LottoNumbersValidator;
 import lotto.validator.Validator;
 
@@ -22,8 +23,9 @@ public class Lotto {
         return numbers.contains(otherNumber);
     }
 
-    public List<Integer> getMatchedNumbers(List<Integer> compareNumbers) {
-        return numbers.stream().filter(number -> compareNumbers.stream().anyMatch(Predicate.isEqual(number))).toList();
+    public long getMatchNumbersCount(Lotto compare) {
+        Set<Integer> matchingChecker = new HashSet<>(numbers);
+        return compare.getNumbers().stream().filter(number -> !matchingChecker.add(number)).count();
     }
 
     public List<Integer> getNumbers() {
