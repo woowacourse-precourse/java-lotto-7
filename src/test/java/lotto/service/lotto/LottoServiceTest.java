@@ -1,8 +1,12 @@
 package lotto.service.lotto;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoConstant;
+import lotto.domain.lotto.LottoDto;
+import lotto.domain.lotto.WinningStatisticsResponseDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,5 +58,26 @@ class LottoServiceTest {
         //then
         Assertions.assertThat(lottoes.get(0).getNumbers().size())
                 .isEqualTo(LottoConstant.LOTTO_NUMBER_COUNT);
+    }
+
+    @DisplayName("getWinningStatistics")
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,3,4,5,6:7:2.0E8"}, delimiter = ':')
+    void 통계함수_구하기(String winningNumbers, String bonusNumber, double rateOfReturn) {
+        //given
+        LottoService lottoService = new LottoService();
+        Lotto purchasedLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        List<Lotto> lottoes = new ArrayList<>();
+        lottoes.add(purchasedLotto);
+
+        LottoDto lottoDto = new LottoDto();
+        lottoDto.updateWinningNumbers(winningNumbers);
+        lottoDto.updateBonusNumber(bonusNumber);
+
+        //when
+        WinningStatisticsResponseDto winningStatistics = lottoService.getWinningStatistics(lottoes, lottoDto);
+
+        //then
+        Assertions.assertThat(winningStatistics.getRateOfReturn()).isEqualTo(rateOfReturn);
     }
 }

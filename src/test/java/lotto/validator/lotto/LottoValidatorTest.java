@@ -64,7 +64,7 @@ class LottoValidatorTest {
 
     @DisplayName("당첨번호는 중복을 고려해 정책에 맞지않는 개수는 안된다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4", "1,2,3,4,5,6", "1,2,3,4,5,1"})
+    @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7", "1,2,3,4,5,1"})
     void 당첨번호_중복되지않은_개수_외_테스트(String winningNumbers) {
         //given
         LottoValidator lottoValidator = new LottoValidator();
@@ -90,12 +90,12 @@ class LottoValidatorTest {
                 .hasMessage(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
     }
 
-    @DisplayName("담청번호는 5개의 번호가 중복되지 않으며 1~45 사이의 값이다.")
+    @DisplayName("담청번호는 6개의 번호가 중복되지 않으며 1~45 사이의 값이다.")
     @Test
     void 당첨번호_검증_통합_테스트() {
         //given
         LottoValidator lottoValidator = new LottoValidator();
-        String winningNumbers = "1,2,3,4,45";
+        String winningNumbers = "1,2,3,4,5,45";
 
         //when //then
         lottoValidator.validateWinningNumbers(winningNumbers);

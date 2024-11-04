@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoConstant;
+import lotto.domain.lotto.LottoDto;
+import lotto.domain.lotto.WinningStatisticsResponseDto;
 
 public class LottoService {
 
@@ -21,5 +23,11 @@ public class LottoService {
         }
 
         return lottoes;
+    }
+
+    public WinningStatisticsResponseDto getWinningStatistics(List<Lotto> lottoes, LottoDto lottoDto) {
+        WinningStatisticsResponseDto resultDto = new WinningStatisticsResponseDto();
+        resultDto.calculateWinningStatistics(lottoes, lottoDto);
+        return resultDto;
     }
 }
