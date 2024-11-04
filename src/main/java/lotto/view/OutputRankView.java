@@ -26,7 +26,8 @@ public class OutputRankView {
       System.out.println(String.format(MESSAGE_BONUS_MATCH_RESULT, formattedPrize, count));
     }
     if (rank != Rank.SECOND) {
-      System.out.println(String.format(MESSAGE_MATCH_RESULT, rank.getMatchCount(), formattedPrize, count));
+      System.out.println(
+          String.format(MESSAGE_MATCH_RESULT, rank.getMatchCount(), formattedPrize, count));
     }
   }
 }
