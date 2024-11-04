@@ -27,6 +27,7 @@ class LottoTest {
     }
 
 
+    @DisplayName("입력받은 로또 번호와 일치할 시 매칭된 번호의 갯수를 반환한다.")
     @Test
     void 로또_번호와_당첨번호_검수() {
         //Given
@@ -41,6 +42,7 @@ class LottoTest {
         assertEquals(3, matchCount);
     }
 
+    @DisplayName("보너스 번호 여부를 판단한다.")
     @Test
     void 보너스_번호가_포함이_되었는지_검수() {
         //Given
