@@ -3,13 +3,12 @@ package lotto.model;
 import lotto.model.enums.ErrorMessage;
 import lotto.model.enums.LottoConstants;
 
-import java.util.List;
-
-public class WinningLotto extends Lotto {
+public class WinningLotto {
+    private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        super(numbers);
+    public WinningLotto(Lotto winningLotto, int bonusNumber) {
+        this.winningLotto = winningLotto;
         validate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
@@ -19,7 +18,7 @@ public class WinningLotto extends Lotto {
                 bonusNumber < LottoConstants.LOTTO_BEGIN_NUMBER.getValue() ) {
             throw new IllegalArgumentException(ErrorMessage.WITHIN_NUMBERS_RANGE.getMessage());
         }
-        for ( int number : this.getNumbers() ) {
+        for ( int number : winningLotto.getNumbers() ) {
             if ( bonusNumber == number ) {
                 throw new IllegalArgumentException(ErrorMessage.CANNOT_DUPLICATE.getMessage());
             }
@@ -30,4 +29,7 @@ public class WinningLotto extends Lotto {
         return bonusNumber;
     }
 
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
 }

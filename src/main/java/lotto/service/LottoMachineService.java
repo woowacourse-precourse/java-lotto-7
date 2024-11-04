@@ -63,25 +63,39 @@ public class LottoMachineService {
     }
 
     public void enterWinningNumbers() {
+        Lotto winningLotto;
+        int bonusNumber;
+        WinningLotto temp;
         while ( true ) {
             try {
-                winningLotto = readEnterWinningNumbers();
+                winningLotto = new Lotto(readEnterWinningLottoNumbers());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+        while ( true ) {
+            try {
+                bonusNumber = readEnterWinningBonusNumber();
+                temp = new WinningLotto(winningLotto, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        this.winningLotto = temp;
     }
 
-    private WinningLotto readEnterWinningNumbers() {
+    private List<Integer> readEnterWinningLottoNumbers() {
         LottoMachineView.printEnterWinningNumbersView();
         String winningNumber = Console.readLine();
-        List<Integer> winningNumbers = InputHandler.enterWinningNumbersHandle(winningNumber);
+        return InputHandler.enterWinningNumbersHandle(winningNumber);
+    }
 
+    private int readEnterWinningBonusNumber() {
         LottoMachineView.printEnterBonusWinningNumberView();
         String bonusNumber = Console.readLine();
-        int handledBonusNumber = InputHandler.enterBonusNumberHandle(bonusNumber);
-        return new WinningLotto(winningNumbers, handledBonusNumber);
+        return InputHandler.enterBonusNumberHandle(bonusNumber);
     }
 
     public void calculateWinnings() {

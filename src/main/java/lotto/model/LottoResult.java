@@ -12,7 +12,7 @@ public class LottoResult {
     public LottoResult(Lotto myLotto, WinningLotto winningLotto) {
         this.winningNumberMatchFlag = new ArrayList<>();
         for ( int myLottoNumber : myLotto.getNumbers() ) {
-            boolean matched = winningLotto.getNumbers().contains(myLottoNumber);
+            boolean matched = winningLotto.getWinningLotto().getNumbers().contains(myLottoNumber);
             winningNumberMatchFlag.add(matched);
         }
         this.bonusNumberMatchFlag = myLotto.getNumbers().contains(winningLotto.getBonusNumber());
