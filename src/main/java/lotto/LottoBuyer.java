@@ -5,6 +5,7 @@ import static lotto.LottoRank.LOTTO_RANKS;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LottoBuyer {
     private final ArrayList<Lotto> lottos = new ArrayList<>();
@@ -25,6 +26,11 @@ public class LottoBuyer {
         }
     }
 
+    public void addManualLotto(List<Integer> numbers) {
+        Lotto lotto = new Lotto(numbers);
+        lottos.add(lotto);
+    }
+
     public void setWinningLottoAndBonusNumber(Lotto winningLotto, int bonusLottoNumber) {
         this.winningLotto = winningLotto;
         this.bonusLottoNumber = bonusLottoNumber;
@@ -42,7 +48,7 @@ public class LottoBuyer {
         return ranks;
     }
 
-    private LottoRank specifyLottoRank(int duplNumber, Lotto lotto) {
+    public LottoRank specifyLottoRank(int duplNumber, Lotto lotto) {
         if (duplNumber == 6) {
             return LottoRank.FIRST;
         }
@@ -82,12 +88,12 @@ public class LottoBuyer {
     public void printTotalPrize() {
         System.out.printf("%n" + WINNING_STATISTICS + "%n---%n");
         long totalPrize = calculateTotalPrize();
-        // 퍼센트(%) 계산을 위해 상금에 100을 곱한값을 전달한다
-        System.out.printf(RATE_OF_RETURN, prizeFormat(totalPrize * 100));
+        System.out.printf(RATE_OF_RETURN, prizeFormat(totalPrize));
     }
 
-    private String prizeFormat(long totalPrizeForPercent) {
+    public String prizeFormat(long totalPrize) {
         long buyPrice = lottos.size();
+        long totalPrizeForPercent = totalPrize * 100;  // 퍼센트(%) 계산을 위해 상금에 100을 곱한다.
         String format = String.format("%.1f", totalPrizeForPercent / (lottos.size() * (double) LOTTO_PRICE));
         return format;
     }
