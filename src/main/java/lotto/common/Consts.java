@@ -8,7 +8,8 @@ public class Consts {
     //TODO: ERROR 메세지는 변수 이름 앞에 ERROR 붙이기
     public static final String INPUT_MUST_BE_NUMBER_ERROR = "금액은 숫자로 입력해야 합니다.";
     public static final String PURCHASE_AMOUNT_1000_UNIT_ERROR = String.format("금액은 %d원 단위로 입력해 주세요.", LOTTO_PRICE);
-    public static final String INPUT_MUST_BE_POSITIVE_NUMBER_ERROR = "금액은 음수일 수 없습니다.";
+    public static final String AMOUNT_MUST_BE_POSITIVE_NUMBER_ERROR = "금액은 양의 정수여야 합니다.";
+    public static final String NUMBER_MUST_BE_POSITIVE_NUMBER_ERROR = "당첨,보너스 숫자는 1~45 사이의 숫자여야 합니다.";
     public static final String WINNING_NUMBER_NOT_DUPLICATED_ERROR = "당첨 번호는 중복되면 안됩니다.";
     public static final String LOTTO_NUMBER_MUST_BE_BETWEEN_ONE_FORTY_FIVE_ERROR = "로또 번호는 1이상 45이하의 숫자여야 합니다.";
     public static final String WINNING_NUMBER_SIZE_MUST_BE_6_ERROR = "당첨 번호는 6개를 입력해야 합니다.";
