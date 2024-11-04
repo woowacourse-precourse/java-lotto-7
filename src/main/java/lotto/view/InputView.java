@@ -8,6 +8,8 @@ import lotto.validator.LottoValidator;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.model.enums.ErrorMessage.ERROR_INVALID_INPUT_FORMAT;
+
 public class InputView {
 
     static final String INPUT_ORDER_PRICE = "구입금액을 입력해 주세요.";
@@ -31,24 +33,41 @@ public class InputView {
     }
 
     public static int parseOrder(String inputOrderPrice){
-        int orderPrice = Integer.parseInt(inputOrderPrice) ;
-        InputValidator.validateOrderPriceUnit(orderPrice);
-        InputValidator.validateOrderPricePositive(orderPrice);
-        return orderPrice / LOTTO_PRICE;
+        try {
+            InputValidator.validateOrderPrice(inputOrderPrice);
+            int orderPrice = Integer.parseInt(inputOrderPrice);
+            return orderPrice / LOTTO_PRICE;
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(ERROR_INVALID_INPUT_FORMAT.getMessage());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     public static List<Integer> parseWinningNumber(String inputWinningNumber){
-        List<Integer> numbers = Arrays.stream(inputWinningNumber.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
-        LottoValidator.validateLottoNumbers(numbers);
-        return numbers;
+        try {
+            List<Integer> numbers = Arrays.stream(inputWinningNumber.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .toList();
+            LottoValidator.validateLottoNumbers(numbers);
+            return numbers;
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(ERROR_INVALID_INPUT_FORMAT.getMessage());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     public static int parseBonusNumber(String inputBonusNumber, LottoRound lottoRound) {
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
-        LottoValidator.validateBonusNumber(bonusNumber, lottoRound.getWinningLotto());
-        return bonusNumber;
+        try {
+            int bonusNumber = Integer.parseInt(inputBonusNumber);
+            LottoValidator.validateBonusNumber(bonusNumber, lottoRound.getWinningLotto());
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(ERROR_INVALID_INPUT_FORMAT.getMessage());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 }

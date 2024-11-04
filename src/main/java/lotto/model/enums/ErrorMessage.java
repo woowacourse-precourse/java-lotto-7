@@ -2,6 +2,7 @@ package lotto.model.enums;
 
 public enum ErrorMessage {
     ERROR_INVALID_PRICE ("구입금액은 1,000원 단위여야 합니다."),
+    ERROR_INVALID_INPUT_FORMAT("입력 형식이 잘못되었습니다."),
     ERROR_INVALID_LOTTO_NUMBERS_RANGE ("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     ERROR_INVALID_LOTTO_NUMBERS_DUPLICATE ("로또 번호는 중복되지 않는 숫자여야 합니다."),
     ERROR_INVALID_LOTTO_NUMBERS_COUNT ("로또 번호는 6개의 숫자여야 합니다."),
