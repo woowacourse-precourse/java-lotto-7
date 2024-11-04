@@ -55,7 +55,7 @@ public class LottoTransactionControllerTest {
         int money = 5000;
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
-        List<Lotto> lottos = controller.sellAutoLotto(money);
+        controller.sellAutoLotto(money);
 
         controller.compareWinningNumbers(winningNumbers, 45);
     }
