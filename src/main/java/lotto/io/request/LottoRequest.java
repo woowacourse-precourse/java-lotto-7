@@ -13,7 +13,7 @@ public record LottoRequest(String winningNumbers) {
     public LottoRequest {
         validateEmpty(winningNumbers);
         validateDelimiter(winningNumbers);
-        Lotto lotto = new Lotto(lottoExtractor.extractLotto(winningNumbers));
+        validateLotto(winningNumbers);
     }
 
     private void validateEmpty(String winningNumbers) {
@@ -29,5 +29,9 @@ public record LottoRequest(String winningNumbers) {
                 throw new IllegalArgumentException(ExceptionMessages.INVALID_DELIMITER.getMessage());
             }
         }
+    }
+
+    private void validateLotto(String winningNumbers) {
+        Lotto lotto = new Lotto(lottoExtractor.extractLotto(winningNumbers));
     }
 }

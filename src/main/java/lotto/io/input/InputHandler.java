@@ -3,9 +3,9 @@ package lotto.io.input;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.io.output.PurchasePrintHandler;
+import lotto.io.request.BonusNumberRequest;
 import lotto.io.request.BudgetRequest;
 import lotto.io.request.LottoRequest;
-import lotto.io.request.bonusNumberRequest;
 
 public class InputHandler {
 
@@ -35,12 +35,12 @@ public class InputHandler {
         }
     }
 
-    public bonusNumberRequest getBonusNumber(Lotto lotto) {
+    public BonusNumberRequest getBonusNumber(Lotto lotto) {
         while (true) {
             try {
                 purchasePrintHandler.printBonusNumbers();
                 String bonusNumber = Console.readLine();
-                return new bonusNumberRequest(lotto, bonusNumber);
+                return new BonusNumberRequest(lotto, bonusNumber);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }

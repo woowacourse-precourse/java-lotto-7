@@ -9,18 +9,22 @@ public record BudgetRequest(String budget) {
     public BudgetRequest {
         validateEmpty(budget);
         validateNumber(budget);
-        Lottos lottos = Lottos.from(Integer.parseInt(budget));
+        validateLottos(budget);
     }
 
-    private void validateEmpty(String number) {
-        if (number == null || number.isBlank()) {
+    private void validateEmpty(String budget) {
+        if (budget == null || budget.isBlank()) {
             throw new IllegalArgumentException(ExceptionMessages.EMPTY_INPUT.getMessage());
         }
     }
 
-    private void validateNumber(String number) {
-        if (!number.matches(NUMBER_PATTERN)) {
+    private void validateNumber(String budget) {
+        if (!budget.matches(NUMBER_PATTERN)) {
             throw new IllegalArgumentException(ExceptionMessages.INVALID_CHARACTER.getMessage());
         }
+    }
+
+    private void validateLottos(String budget) {
+        Lottos lottos = Lottos.from(Integer.parseInt(budget));
     }
 }
