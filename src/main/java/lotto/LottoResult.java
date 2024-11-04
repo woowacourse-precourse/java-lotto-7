@@ -1,6 +1,5 @@
 package lotto;
 
-import java.text.NumberFormat;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -18,19 +17,18 @@ public class LottoResult {
             if (rank == LottoRank.NONE) continue;
 
             String resultLine = "";
-            NumberFormat formatter = NumberFormat.getInstance();
 
             if (rank.hasBonus()) {
-                resultLine = String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개",
-                        rank.getMatchCount(), formatter.format(rank.getPrize()), this.results.getOrDefault(rank, 0));
+                resultLine = String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개",
+                        rank.getMatchCount(), rank.getPrize(), this.results.getOrDefault(rank, 0));
             } else {
-                resultLine = String.format("%d개 일치 (%s원) - %d개",
-                        rank.getMatchCount(), formatter.format(rank.getPrize()), this.results.getOrDefault(rank, 0));
+                resultLine = String.format("%d개 일치 (%,d원) - %d개",
+                        rank.getMatchCount(), rank.getPrize(), this.results.getOrDefault(rank, 0));
             }
             System.out.println(resultLine);
         }
 
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", this.totalProfit);
+        System.out.println(String.format("총 수익률은 %,.1f%%입니다.%n", this.totalProfit));
     }
 
     public void calculateResults(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
@@ -47,7 +45,7 @@ public class LottoResult {
     }
 
     private void calculateTotalProfit() {
-        int totalPrize = 0;
+        long totalPrize = 0;
         for (Map.Entry<LottoRank, Integer> entry : results.entrySet()) {
             totalPrize += entry.getKey().getPrize() * entry.getValue();
         }
@@ -65,8 +63,16 @@ public class LottoResult {
         boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
 
         for (LottoRank rank : LottoRank.values()) {
-            if (rank.getMatchCount() == matchCount && rank.hasBonus() == hasBonus) {
-                return rank;
+            if (rank.getMatchCount() == matchCount) {
+                if (rank == LottoRank.SECOND || rank == LottoRank.THIRD ) {
+                    if (hasBonus) {
+                        return LottoRank.SECOND;
+                    } else {
+                        return LottoRank.THIRD;
+                    }
+                } else {
+                    return rank; // 다른 등수는 hasBonus 확인 없이 반환
+                }
             }
         }
 
