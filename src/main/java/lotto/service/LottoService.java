@@ -20,4 +20,8 @@ public class LottoService {
     public void initCustomer() {
         customer = Customer.from(price.getValue());
     }
+
+    public void purchaseLottos() {
+        customer.purchaseLottos();
+    }
 }
