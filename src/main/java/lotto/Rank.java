@@ -1,32 +1,37 @@
 package lotto;
 
 public enum Rank {
-    THREE_MATCH(3, 5000),
-    FOUR_MATCH(4, 50000),
-    FIVE_MATCH(5, 1500000),
-    FIVE_MATCH_BONUS(5, 30000000),
-    SIX_MATCH(6, 2000000000);
+    THREE_MATCH(3, 5000, "3개 일치 (5,000원)"),
+    FOUR_MATCH(4, 50000, "4개 일치 (50,000원)"),
+    FIVE_MATCH(5, 1500000, "5개 일치 (1,500,000원)"),
+    FIVE_MATCH_BONUS(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    SIX_MATCH(6, 2000000000, "6개 일치 (2,000,000,000원)");
 
     private final int matchCount;  // 일치하는 숫자 개수
     private final int prize;       // 당첨 상금
+    private final String displayName;
 
-    Rank(int matchCount, int prize) {
+    Rank(int matchCount, int prize, String displayName) {
         this.matchCount = matchCount;
         this.prize = prize;
+        this.displayName = displayName;
     }
 
-    // 상금을 가져오는 메서드
-    public int getMoney() {
+    public int getPrize() {
         return prize;
     }
 
-    // 일치 개수와 보너스 여부에 따른 Rank 반환 메서드
     public static Rank getRank(int matchCount, boolean bonusMatch) {
         if (matchCount == 6) return SIX_MATCH;
         if (matchCount == 5 && bonusMatch) return FIVE_MATCH_BONUS;
         if (matchCount == 5) return FIVE_MATCH;
         if (matchCount == 4) return FOUR_MATCH;
         if (matchCount == 3) return THREE_MATCH;
-        return null;  // 해당하는 등수가 없는 경우
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return displayName;
     }
 }
