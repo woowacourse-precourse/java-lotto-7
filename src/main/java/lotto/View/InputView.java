@@ -2,6 +2,7 @@ package lotto.View;
 import Common.Validator;
 import camp.nextstep.edu.missionutils.Console;
 import com.sun.tools.jconsole.JConsoleContext;
+import lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,11 +18,11 @@ public class InputView {
         return price/1000;
     }
 
-    public List<Integer> requestNumbers() {
+    public Lotto requestNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] input = Console.readLine().split(",");
         System.out.println();
-        return Validator.validateNumbers(input);
+        return new Lotto(Validator.validateNumbers(input));
     }
 
     public int requestBonusNumber() {

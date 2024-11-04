@@ -6,7 +6,6 @@ import lotto.View.InputView;
 import lotto.View.OutputView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -29,9 +28,9 @@ public class LottoController {
     public void start() {
         int amount = input.requestPurchasePrice();
         issueLotto(amount);
-        List<Integer> getNumbers = input.requestNumbers();
+        Lotto lotto = input.requestNumbers();
         int bonusNumber = input.requestBonusNumber();
-        setInputNumbers(getNumbers, bonusNumber);
+        setInputNumbers(lotto, bonusNumber);
 
         output.printPurchasedLotto(lotteryTickets);
     }
@@ -44,8 +43,8 @@ public class LottoController {
         }
     }
 
-    public void setInputNumbers(List<Integer> numbers, int bonus) {
-        this.inputLotto = new Lotto(numbers);
+    public void setInputNumbers(Lotto lotto, int bonus) {
+        this.inputLotto = lotto;
         this.bonusNumber = bonus;
     }
 
@@ -53,21 +52,12 @@ public class LottoController {
         int matchedCount = 0;
         boolean bonusMatch = false;
         for (Lotto lotto : lotteryTickets) {
-            matchedCount = countMatchedNumber(lotto.getNumbers());
+            matchedCount = inputLotto.countMatchedNumber(lotto.getNumbers());
             bonusMatch = lotto.getNumbers().contains(bonusNumber);
         }
         Rank rank = getRank(matchedCount, bonusMatch);
         rank.setPrizeCount();
         output.printWinningStat(rank, lotteryTickets.size());
-
-    }
-
-    private int countMatchedNumber(List<Integer> numbers) {
-        int count = 0;
-        for (int i : numbers) {
-            if (inputLotto.getNumbers().contains(i)) count++;
-        }
-        return count;
     }
 
     private Rank getRank(int matchCount, boolean bonusMatch) {

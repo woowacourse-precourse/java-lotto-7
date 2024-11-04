@@ -8,7 +8,7 @@ public class Validator {
     private Validator() {}
 
     public static List<Integer> validateNumbers(String[] input) {
-        if (input.length != 6) throw new IllegalArgumentException("6개의 숫자를 입력해야 합니다.");
+        if (input.length != 6) throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         List<Integer> numbers = new ArrayList<>();
         for (String s : input) {
             int number = Integer.parseInt(s);
