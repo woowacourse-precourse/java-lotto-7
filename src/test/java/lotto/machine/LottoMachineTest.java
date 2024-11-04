@@ -17,6 +17,12 @@ public class LottoMachineTest {
         List<Lotto> lottos = LottoMachine.generateLottos(purchaseAmount);
 
         assertThat(lottos).hasSize(5);
+        assertThat(lottos).hasSize(5);
+        assertThat(lottos).allSatisfy(lotto -> {
+            assertThat(lotto.getNumbers()).hasSize(6);
+            assertThat(lotto.getNumbers()).doesNotHaveDuplicates();
+            assertThat(lotto.getNumbers()).allMatch(num -> num >= 1 && num <= 45);
+        });
     }
 
     @DisplayName("생성된 각 로또는 중복 없는 6개의 번호로 구성된다.")
