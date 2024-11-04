@@ -5,16 +5,11 @@ import lotto.purchase.MyLotto;
 
 public class LottoStatisticsManager {
 
-    private final List<MyLotto> myLotteries;
     private final DrawInput drawInput = new DrawInput();
     private final WinningNumbersExtractor winningNumbersExtractor = new WinningNumbersExtractor();
     private final MatchCounter matchCounter = new MatchCounter();
 
-    public LottoStatisticsManager(List<MyLotto> myLotteries) {
-        this.myLotteries = myLotteries;
-    }
-
-    public DrawResultSheet process() {
+    public DrawResultSheet process(List<MyLotto> myLotteries) {
         Lotto lotto = receiveWinningLotto();
         BonusBall bonusBall = receiveBonusBall(lotto.getNumbers());
 

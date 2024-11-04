@@ -9,21 +9,33 @@ import lotto.statistics.LottoStatisticsManager;
 
 public class EntireSystem {
 
+    private final LottoCreationManager lottoCreationManager;
+    private final LottoStatisticsManager lottoStatisticsManager;
+    private final AnalyticsManager analyzer;
+
+    public EntireSystem(LottoCreationManager lottoCreationManager,
+                        LottoStatisticsManager lottoStatisticsManager,
+                        AnalyticsManager analyzer) {
+        this.lottoCreationManager = lottoCreationManager;
+        this.lottoStatisticsManager = lottoStatisticsManager;
+        this.analyzer = analyzer;
+    }
+
     public void run() {
-        LottoReceipt lottoReceipt = new LottoCreationManager().process();
+        LottoReceipt lottoReceipt = lottoCreationManager.process();
 
         lottoReceipt.printTotalLottoNumber();
         lottoReceipt.printAllLotteries();
 
-        DrawResultSheet drawResultSheet = new LottoStatisticsManager(lottoReceipt.myLotteries()).process();
+        DrawResultSheet drawResultSheet = lottoStatisticsManager.process(lottoReceipt.myLotteries());
 
         drawResultSheet.printDrawResult();
 
         long payment = lottoReceipt.payment();
         long totalPrizeAmount = drawResultSheet.calculateTotalPrizeAmount();
 
-        AnalyticsManager analyzer = new AnalyticsManager();
         RateSheet rateSheet = analyzer.process(payment, totalPrizeAmount);
         rateSheet.printGrowthRate();
     }
 }
+
