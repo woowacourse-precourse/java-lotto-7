@@ -59,6 +59,7 @@ public class Application {
                 winningNumbers.add(number);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                return getWinningNumbers();
             }
         }
 
@@ -66,6 +67,7 @@ public class Application {
             Lotto countOfWinningNumbers = new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return getWinningNumbers();
         }
         return winningNumbers;
     }
