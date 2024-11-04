@@ -14,9 +14,6 @@ public class LottoPrizes {
     }
 
     public ProfitRatio getProfitRatio(int purchaseAmount) {
-        if (prizes == null || prizes.isEmpty()) {
-            return new ProfitRatio(0, purchaseAmount);
-        }
         int totalAmount = prizes.stream()
                 .mapToInt(LottoPrize::getPrize)
                 .sum();
