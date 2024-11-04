@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.dto.LottoDTO;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 
@@ -9,9 +10,10 @@ import java.util.Map;
 
 public class LottoResultService {
 
-    public Map<Rank, Integer> calculateResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public Map<Rank, Integer> calculateResults(List<LottoDTO> lottoDTOs, List<Integer> winningNumbers, int bonusNumber) {
         Map<Rank, Integer> results = new EnumMap<>(Rank.class);
-        for (Lotto lotto : lottos) {
+        for (LottoDTO lottoDTO : lottoDTOs) {
+            Lotto lotto = new Lotto(lottoDTO.getNumbers());
             Rank rank = getRank(lotto, winningNumbers, bonusNumber);
             results.put(rank, results.getOrDefault(rank, 0) + 1);
         }

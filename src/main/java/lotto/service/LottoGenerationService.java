@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.dto.LottoDTO;
 import lotto.model.Lotto;
 import lotto.constants.LottoConstants;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -9,17 +10,19 @@ import java.util.List;
 
 public class LottoGenerationService {
 
-    public List<Lotto> generateLottos(int purchaseAmount) {
+    public List<LottoDTO> generateLottos(int purchaseAmount) {
         int numberOfLottos = purchaseAmount / LottoConstants.LOTTO_PRICE;
-        List<Lotto> lottos = new ArrayList<>();
+        List<LottoDTO> lottoDTOs = new ArrayList<>();
         for (int i = 0; i < numberOfLottos; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                     LottoConstants.MIN_LOTTO_NUMBER,
                     LottoConstants.MAX_LOTTO_NUMBER,
                     LottoConstants.LOTTO_NUMBER_COUNT
             );
-            lottos.add(new Lotto(numbers));
+            Lotto lotto = new Lotto(numbers);
+            LottoDTO lottoDTO = new LottoDTO(lotto.getNumbers());
+            lottoDTOs.add(lottoDTO);
         }
-        return lottos;
+        return lottoDTOs;
     }
 }

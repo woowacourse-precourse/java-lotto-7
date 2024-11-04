@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.constants.ResultMessages.*;
 
+import lotto.dto.LottoDTO;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import java.util.ArrayList;
@@ -11,10 +12,10 @@ import java.util.Map;
 
 public class ResultView {
 
-    public static void printLottos(List<Lotto> lottos) {
+    public static void printLottos(List<LottoDTO> lottos) {
         System.out.printf(PURCHASED_COUNT + "%n", lottos.size());
-        for (Lotto lotto : lottos) {
-            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
+        for (LottoDTO lottoDTO : lottos) {
+            List<Integer> numbers = new ArrayList<>(lottoDTO.getNumbers());
             Collections.sort(numbers);
             System.out.println(numbers);
         }
