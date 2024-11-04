@@ -1,22 +1,40 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.service.LottoInputConverter;
+import lotto.service.LottoMoneyValidator;
 
 public class CliInputView {
 
-    public String getMoney() {
+    private LottoInputConverter lottoInputConverter;
+    private LottoMoneyValidator lottoMoneyValidator;
+
+    public CliInputView() {
+        this.lottoInputConverter = new LottoInputConverter();
+        this.lottoMoneyValidator = new LottoMoneyValidator();
+    }
+
+    public int getMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Console.readLine();
+        String money = Console.readLine();
+
+        lottoMoneyValidator.validate(money);
+        return Integer.parseInt(money);
     }
 
-    public String getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        return Console.readLine();
+        String winningNumbers = Console.readLine();
+
+        return lottoInputConverter.convertNumbers(winningNumbers);
     }
 
-    public String getBonusNumber() {
+    public int getBonusNumber() {
         System.out.println("보너스 볼을 입력해 주세요.");
-        return Console.readLine();
+        String bonusNumber = Console.readLine();
+
+        return lottoInputConverter.convertBonusNumber(bonusNumber);
     }
 
 }

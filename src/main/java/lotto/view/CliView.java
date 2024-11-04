@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.List;
 import lotto.domain.Lottos;
 import lotto.dto.LottoStatisticsDto;
 
@@ -14,23 +15,23 @@ public class CliView implements View {
     }
 
     @Override
-    public String getMoney() {
+    public int getMoney() {
         return input.getMoney();
+    }
+
+    @Override
+    public List<Integer> getWinningNumbers() {
+        return input.getWinningNumbers();
+    }
+
+    @Override
+    public int getBonusNumber() {
+        return input.getBonusNumber();
     }
 
     @Override
     public void printLottos(Lottos lottos) {
         output.printLottos(lottos);
-    }
-
-    @Override
-    public String getWinningNumbers() {
-        return input.getWinningNumbers();
-    }
-
-    @Override
-    public String getBonusNumber() {
-        return input.getBonusNumber();
     }
 
     @Override
