@@ -28,4 +28,16 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 175, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class); // 예외 메시지 확인
     }
+    @DisplayName("로또_번호에_0이하의_숫자가_포함되면_예외가_발생한다.")
+    @Test
+    void 로또_번호에_0이하의_숫자가_포함되면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 0, 12, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class); // 예외 메시지 확인
+    }
+    @DisplayName("로또_번호에_0이하의_숫자가_포함되면_예외가_발생한다2.")
+    @Test
+    void 로또_번호에_0이하의_숫자가_포함되면_예외가_발생한다2() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 0, -12, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class); // 예외 메시지 확인
+    }
 }
