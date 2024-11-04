@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class LottoTest {
     @Test
@@ -33,5 +34,13 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 1과 45사이의 숫자입니다");
+    }
+    //정상적인 객체생성하는지 확인  && 정렬 확인
+    @DisplayName("정상적인 로또 번호 리스트로 객체를 생성할 수 있다")
+    @Test
+    void 로또_객체_생성_성공() {
+        Lotto lotto = new Lotto(List.of(8, 21, 35, 11, 42, 7));
+
+        assertThat(lotto.getNumbers()).containsExactly(7, 8, 11, 21, 35, 42);
     }
 }
