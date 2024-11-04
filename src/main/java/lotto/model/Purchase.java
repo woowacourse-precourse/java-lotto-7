@@ -9,7 +9,7 @@ public class Purchase {
     private final int purchaseAmount;
     private final int purchaseLottoCount;
 
-    private Purchase(int purchaseAmount, int purchaseLottoCount) {
+    public Purchase(int purchaseAmount, int purchaseLottoCount) {
         this.purchaseAmount = purchaseAmount;
         this.purchaseLottoCount = purchaseLottoCount;
     }

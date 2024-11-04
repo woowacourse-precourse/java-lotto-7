@@ -10,7 +10,7 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    private WinningLotto(Lotto winningLotto, int bonusNumber) {
+    public WinningLotto(Lotto winningLotto, int bonusNumber) {
         isDuplicateWithWinningNumbers(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;

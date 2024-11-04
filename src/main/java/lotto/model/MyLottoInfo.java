@@ -14,7 +14,7 @@ public class MyLottoInfo {
     private final List<Lotto> myLotteries;
     private final Map<Rank, Integer> myResult;
 
-    private MyLottoInfo(List<Lotto> myLotteries) {
+    public MyLottoInfo(List<Lotto> myLotteries) {
         this.myLotteries = myLotteries;
         this.myResult = initResult();
     }
@@ -34,8 +34,10 @@ public class MyLottoInfo {
         List<Rank> lottoRanks = new ArrayList<>(myLotteries.size());
         myLotteries.forEach(lotto -> {
                     Rank rank = Rank.findRank(
-                            LottoUtils.countEqualLottoNumbers(lotto, winningLotto.getWinningLotto().getNumbers()),
-                            LottoUtils.checkContainsBonusNumber(lotto, winningLotto.getBonusNumber())
+                            LottoUtils.countEqualLottoNumbers(lotto,
+                                    winningLotto.getWinningLotto().getNumbers()),
+                            LottoUtils.checkContainsBonusNumber(lotto,
+                                    winningLotto.getBonusNumber())
                     );
                     lottoRanks.add(rank);
                 }

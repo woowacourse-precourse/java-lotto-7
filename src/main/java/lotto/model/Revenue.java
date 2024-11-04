@@ -10,7 +10,7 @@ public class Revenue {
     private int revenueAmount;
     private double revenueRate;
 
-    private Revenue(int revenueAmount) {
+    public Revenue(int revenueAmount) {
         this.revenueAmount = revenueAmount;
         this.revenueRate = 0;
     }
