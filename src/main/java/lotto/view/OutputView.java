@@ -1,29 +1,28 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.UserLotto;
+import lotto.dto.LotteriesResponse;
+import lotto.dto.WinningResultResponse;
 import lotto.enums.PrintMessage;
-import lotto.enums.RankConstants;
 
 public class OutputView {
-    public void printLottoList(List<Lotto> lotteries) {
+    public void printLottoList(LotteriesResponse response) {
         System.out.println();
-        System.out.println(PrintMessage.OUTPUT_LOTTO_LIST.format(lotteries.size()));
-        for (Lotto lotto : lotteries) {
-            System.out.println(lotto.getNumbers());
+        System.out.println(PrintMessage.OUTPUT_LOTTO_LIST.format(response.lotteriesCount()));
+        for (List<Integer> lotto : response.lotteries()) {
+            System.out.println(lotto);
         }
     }
 
-    public void printLottoWinningResult(UserLotto userLotto, float profitRate) {
+    public void printLottoWinningResult(WinningResultResponse response) {
         System.out.println();
         System.out.println(PrintMessage.OUTPUT_TOTAL_RESULT.getMessage());
-        System.out.println(PrintMessage.OUTPUT_FIFTH_PLACE_RESULT.format(userLotto.getWinningCount(RankConstants.FIFTH_PRIZE)));
-        System.out.println(PrintMessage.OUTPUT_FOURTH_PLACE_RESULT.format(userLotto.getWinningCount(RankConstants.FOURTH_PRIZE)));
-        System.out.println(PrintMessage.OUTPUT_THIRD_PLACE_RESULT.format(userLotto.getWinningCount(RankConstants.THIRD_PRIZE)));
-        System.out.println(PrintMessage.OUTPUT_SECOND_PLACE_RESULT.format(userLotto.getWinningCount(RankConstants.SECOND_PRIZE)));
-        System.out.println(PrintMessage.OUTPUT_FIRST_PLACE_RESULT.format(userLotto.getWinningCount(RankConstants.FIRST_PRIZE)));
+        System.out.println(PrintMessage.OUTPUT_FIFTH_PLACE_RESULT.format(response.fifthWinningCount()));
+        System.out.println(PrintMessage.OUTPUT_FOURTH_PLACE_RESULT.format(response.fourthWinningCount()));
+        System.out.println(PrintMessage.OUTPUT_THIRD_PLACE_RESULT.format(response.thirdWinningCount()));
+        System.out.println(PrintMessage.OUTPUT_SECOND_PLACE_RESULT.format(response.secondWinningCount()));
+        System.out.println(PrintMessage.OUTPUT_FIRST_PLACE_RESULT.format(response.firstWinningCount()));
 
-        System.out.println(PrintMessage.OUTPUT_TOTAL_PROFIT_RATE.format(profitRate));
+        System.out.println(PrintMessage.OUTPUT_TOTAL_PROFIT_RATE.format(response.profitRate()));
     }
 }

@@ -2,6 +2,9 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.dto.DtoConverter;
+import lotto.dto.LotteriesResponse;
+import lotto.dto.WinningResultResponse;
 import lotto.enums.DelimiterConstants;
 import lotto.manager.LottoManager;
 import lotto.domain.UserLotto;
@@ -13,6 +16,7 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final DtoConverter converter = new DtoConverter();
     private final LottoManager lottoManager = new LottoManager();
 
     public void run() {
@@ -20,7 +24,8 @@ public class LottoController {
 
         UserLotto userLotto = new UserLotto(lottoManager.generateLotteries(purchaseAmount));
 
-        outputView.printLottoList(userLotto.getLotteries());
+        LotteriesResponse lotteriesDto = converter.toLotteriesResponse(userLotto.getLotteries());
+        outputView.printLottoList(lotteriesDto);
 
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = Integer.parseInt(getBonusNumberAsString(winningNumbers));
@@ -28,7 +33,8 @@ public class LottoController {
         lottoManager.executeWinningProcess(userLotto, winningNumbers, bonusNumber);
         float totalPrizeRate = lottoManager.calculateTotalPrizeRate(userLotto, purchaseAmount);
 
-        outputView.printLottoWinningResult(userLotto, totalPrizeRate);
+        WinningResultResponse winningResultResponse = converter.toWinningResultResponse(userLotto, totalPrizeRate);
+        outputView.printLottoWinningResult(winningResultResponse);
     }
 
     private List<Integer> getWinningNumbers() {
