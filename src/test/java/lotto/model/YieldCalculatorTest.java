@@ -24,20 +24,20 @@ class YieldCalculatorTest {
     @Test
     void 수익이_없는_경우_수익률은_0퍼센트() {
         MyWallet myWallet = new MyWallet();
-        myWallet.saveMoney(10000); // 10,000원을 저장
-        myWallet.saveWinnings(0); // 수익이 없음
+        myWallet.saveMoney(10000);
+        myWallet.saveWinnings(0);
 
         float yield = YieldCalculator.calculateYield(myWallet);
 
-        assertThat(yield).isEqualTo(0.0f); // 수익률은 0%여야 함
+        assertThat(yield).isEqualTo(0.0f);
     }
 
     @DisplayName("투자금이 0일 때 수익률 계산 시 예외가 발생한다.")
     @Test
     void 투자금이_0일_때_예외가_발생한다() {
         MyWallet myWallet = new MyWallet();
-        myWallet.saveMoney(0); // 0원을 저장
-        myWallet.saveWinnings(5000); // 수익이 있음
+        myWallet.saveMoney(0);
+        myWallet.saveWinnings(5000);
 
         assertThatThrownBy(() -> YieldCalculator.calculateYield(myWallet))
                 .isInstanceOf(IllegalStateException.class);
