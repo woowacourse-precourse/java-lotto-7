@@ -7,12 +7,12 @@ public class WinningLotto {
     private static final int LOTTO_NUMBER_RANGE_MIN = 1;
     private static final int LOTTO_NUMBER_RANGE_MAX = 45;
 
-    private final Lotto winningLotto;
+    private final Lotto winningNumbers;
     private int bonusNumber;
 
     public WinningLotto(Lotto winningLotto) {
         validateWinningNumberInput(winningLotto);
-        this.winningLotto = winningLotto;
+        this.winningNumbers = winningLotto;
     }
 
     private void validateWinningNumberInput(Lotto winningLotto) {
@@ -35,8 +35,8 @@ public class WinningLotto {
         }
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
+    public Lotto getWinningNumbers() {
+        return winningNumbers;
     }
 
     public int getBonusNumber() {
@@ -44,7 +44,7 @@ public class WinningLotto {
     }
 
     public void setBonusNumber(int bonusNumber) {
-        validateBonusNumber(winningLotto, bonusNumber);
+        validateBonusNumber(winningNumbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 }

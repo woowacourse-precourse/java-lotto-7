@@ -28,7 +28,7 @@ public class PurchaseLottoTest {
     @DisplayName("로또 구매 가능 수량 발매 테스트")
     void 로또_구매_가능_수량만큼_발매_확인_테스트() {
         purchaseLotto.issueLotto(purchaseLotto.setPurchaseCount(5000));
-        assertThat(purchaseLotto.getPurchaseLotto().size())
+        assertThat(purchaseLotto.getPurchasedLottos().size())
                 .isEqualTo(5);
     }
 }

@@ -12,10 +12,10 @@ public class PurchaseLotto {
     private static final int LOTTO_NUMBER_RANGE_MAX = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    private final List<Lotto> purchaseLotto;
+    private final List<Lotto> purchasedLottos;
 
     public PurchaseLotto() {
-        this.purchaseLotto = new ArrayList<>();
+        this.purchasedLottos = new ArrayList<>();
     }
 
     public int setPurchaseCount(int input) {
@@ -29,7 +29,7 @@ public class PurchaseLotto {
     public void issueLotto(int purchaseCount) {
         for (int i = 0; i < purchaseCount; i++) {
             Lotto lotto = new Lotto(generateRandomNumbers());
-            purchaseLotto.add(lotto);
+            purchasedLottos.add(lotto);
         }
     }
 
@@ -38,16 +38,16 @@ public class PurchaseLotto {
     }
 
     public String getLottoNumber() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder output = new StringBuilder();
 
-        for (Lotto lotto : purchaseLotto) {
-            sb.append(lotto.getNumbers()).append('\n');
+        for (Lotto lotto : purchasedLottos) {
+            output.append(lotto.getNumbers()).append('\n');
         }
 
-        return sb.toString();
+        return output.toString();
     }
 
-    public List<Lotto> getPurchaseLotto() {
-        return purchaseLotto;
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
     }
 }

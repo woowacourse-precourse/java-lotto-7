@@ -3,9 +3,7 @@ package lotto.domain;
 import static lotto.constant.LottoMessage.COUNT_MESSAGE;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class WinningResult {
     private static final String ZERO_PERCENT = "0.0";
@@ -28,7 +26,7 @@ public class WinningResult {
         List<Integer> winningNumbers = winningLotto.getWinningNumbers().getNumbers();
         int bonusNumber = winningLotto.getBonusNumber();
 
-        for (Lotto lotto : purchaseLotto.getPurchaseLotto()) {
+        for (Lotto lotto : purchaseLotto.getPurchasedLottos()) {
             WinningRank winningRank = compareLottoNumbers(lotto, winningNumbers, bonusNumber);
             updateWinningCount(winningRank);
         }
