@@ -11,6 +11,9 @@ public class InputView {
         return  readConsoleInput();
     }
 
+    public String inputBonusNumbers(){
+        return readConsoleInput();
+    }
 
     private String readConsoleInput() {
         return Console.readLine();
