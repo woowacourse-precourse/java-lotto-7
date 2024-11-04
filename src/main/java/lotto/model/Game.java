@@ -6,7 +6,8 @@ import java.util.List;
 
 public class Game {
     private final int[] rankCount;
-    private int totalPrize;
+    private long totalPrize;
+    private int buyAmount;
 
     public Game(List<Lotto> lottoList, WinningNumber winningNumber, BonusNumber bonusNumber) {
         rankCount = new int[LottoRank.values().length];
@@ -19,6 +20,7 @@ public class Game {
             LottoRank rank = getRankByMatchingCount(count, bonus);
             rankCount[rank.getRank()]++;
             totalPrize += rank.getPrize();
+            buyAmount++;
         }
     }
 
@@ -42,13 +44,8 @@ public class Game {
     }
 
     public void outReturnRate() {
-        int buyLottoCount = 0;
-        for (int count : rankCount) {
-            buyLottoCount += count;
-        }
-
-        double rate = (double) totalPrize / (buyLottoCount * 1000);
-        double roundedRate = Math.round(rate * 10) / 10.0;
+        double rate = totalPrize / (double)(buyAmount*1000);
+        double roundedRate = Math.round(rate * 1000) / 10.0;
         ConsoleOutputHandler.returnRateMessage(roundedRate);
     }
 
