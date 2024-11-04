@@ -11,7 +11,7 @@ public class OutputView {
     private static final String STRING_FOR_PRINT_RESULT = "당첨 통계\n---\n";
 
     public static void printUserLottos(List<Lotto> lottos, int userAmount) {
-        System.out.println(userAmount + "개를 구매헀습니다.");
+        System.out.println(userAmount + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             String formattedLotto = lotto.getNumbers()
                     .stream()
@@ -31,6 +31,6 @@ public class OutputView {
     }
 
     public static void printUserRateOfReturn(double rateOfReturn) {
-        System.out.println("총 수익률 " + String.format("%.1f", rateOfReturn) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
     }
 }
