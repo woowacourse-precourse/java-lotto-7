@@ -53,11 +53,14 @@ public class LottoRepository {
     private Lotto getWinningLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
+        return parseLottoNumbers(input);
+    }
+    //입력값 처리 메서드
+    private Lotto parseLottoNumbers(String input) {
         String[] parts = input.split(",");
         List<Integer> numbers = new ArrayList<>();
         for (String part : parts) {
-            int number = Integer.parseInt(part.trim());
-            numbers.add(number);
+            numbers.add(Integer.parseInt(part.trim()));
         }
         return new Lotto(numbers);
     }
