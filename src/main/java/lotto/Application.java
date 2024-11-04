@@ -14,10 +14,10 @@ public class Application {
 
         //배열의 각 문자열을 정수로 변환하여 리스트에 추가
         for (String number : winningNumbers) {
-            lottoWinningNumbers.add(Integer.parseInt(number.trim())); // 공백 제거 후 정수로 변환
+            lottoWinningNumbers.add(Integer.parseInt(number.strip())); // 공백 제거 후 정수로 변환
         }
 
-        return lottoWinningNumbers; // 리스트 반환
+        return lottoWinningNumbers;
     }
 
     public static List<Integer> checkValidLottoNumbers(List<Integer> lottoWinningNumbers) { //로또 번호 체크
@@ -59,8 +59,7 @@ public class Application {
         return bonusNumber;
     }
 
-    public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요.");
+    public static int inputLottoAmount(){
         int buyLottoAmount = 0;
         boolean validInput = false;
 
@@ -76,7 +75,13 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+        return buyLottoAmount;
+    }
 
+    public static void main(String[] args) {
+        System.out.println("구입금액을 입력해 주세요.");
+
+        int buyLottoAmount = inputLottoAmount();
         System.out.println("\n" + buyLottoAmount + "개를 구매했습니다.");
         List<List<Integer>> buyLottoNumbers = randomLottoNumberPick(buyLottoAmount); //랜덤로또 생성
         printBuyLottoNumbers(buyLottoNumbers);
