@@ -47,7 +47,20 @@ public class GamePlay {
     private void inputMoney() {
         System.out.println("로또 구입 금액을 입력해주세요. 단, 1000원 단위로 입력해주세요.");
 
-        useMoneys = Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        validateMoney(input);
+        useMoneys = Integer.parseInt(input);
+    }
+
+    private void validateMoney(String money) {
+        try{
+            int ret = Integer.parseInt(money);
+            if(ret <= 0 || ret % LOTTO_PRICE != 0) {
+                throw new IllegalArgumentException("[ERROR] 1,000원 단위로만 입력할 수 있습니다.");
+            }
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
     }
 
     private void buyLotto() {
