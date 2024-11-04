@@ -10,9 +10,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lotto.config.ErrorMessage;
 import lotto.config.LottoRule;
 import lotto.model.Lotto;
+import lotto.model.LottoReport;
 import lotto.repository.LottoRepository;
 
 public class LottoServiceImpl implements LottoService {
@@ -38,36 +40,22 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public double computeProfitRate(String purchaseAmount, String winningNumbers, String bonusNumber) {
+    public LottoReport generateLottoReport(String purchaseAmount, String winningNumbers, String bonusNumber) {
         List<Integer> numericWinningNumbers = parseIntegerList(winningNumbers);
         int numericBonusNumber = Integer.parseInt(bonusNumber);
 
         validateLottoNumbers(numericWinningNumbers);
         validateLottoNumber(numericBonusNumber);
 
-        return (double) lottoRepository.generatePrizeStreamBy(
-                numericWinningNumbers, numericBonusNumber)
-                .map(LottoRule::getPrize)
-                .mapToInt(Integer::intValue)
-                .sum()
-                /
-                safeParsePurchaseAmount(purchaseAmount);
-    }
+        List<LottoRule> lottoRuleList = lottoRepository.generatePrizeListBy(
+                numericWinningNumbers, numericBonusNumber
+        );
 
-    @Override
-    public List<String> generateWinningReport(String winningNumbers, String bonusNumber) {
-        List<Integer> numericWinningNumbers = parseIntegerList(winningNumbers);
-        int numericBonusNumber = Integer.parseInt(bonusNumber);
-
-        validateLottoNumbers(numericWinningNumbers);
-        validateLottoNumber(numericBonusNumber);
-
-        Map<Object, Long> prizeCountMap = lottoRepository.generatePrizeStreamBy(
-                numericWinningNumbers,
-                numericBonusNumber)
+        Map<Object, Long> prizeCountMap = lottoRuleList
+                .stream()
                 .collect(Collectors.groupingBy(i -> i, Collectors.counting()));
 
-        return Arrays.stream(LottoRule.values())
+        List<String> winningReport = Arrays.stream(LottoRule.values())
                 .filter(i -> i != LottoRule.NONE)
                 .sorted(Comparator.reverseOrder())
                 .map(i -> String.format("%d개 일치%s (%s원) - %d개",
@@ -76,6 +64,16 @@ public class LottoServiceImpl implements LottoService {
                         String.format("%,d", i.getPrize()),
                         prizeCountMap.getOrDefault(i, 0L)))
                 .toList();
+
+        double profitRate = (double) lottoRuleList
+                .stream()
+                .map(LottoRule::getPrize)
+                .mapToInt(Integer::intValue)
+                .sum()
+                /
+                safeParsePurchaseAmount(purchaseAmount);
+
+        return new LottoReport(winningReport, profitRate);
     }
 
     private int safeParsePurchaseAmount(String stringInput) {

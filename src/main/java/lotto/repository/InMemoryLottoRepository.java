@@ -18,14 +18,15 @@ public class InMemoryLottoRepository implements LottoRepository {
         lottoStore.addAll(Lotto.buyLottos(purchaseAmount));
     }
 
-    public Stream<LottoRule> generatePrizeStreamBy(List<Integer> winningNumbers, int bonusNumber) {
+    public List<LottoRule> generatePrizeListBy(List<Integer> winningNumbers, int bonusNumber) {
         return lottoStore.stream()
                 .map(i -> LottoRule
                         .findByMatch(
                                 i.countMatchNumber(winningNumbers),
                                 i.hasBonus(bonusNumber)
                         )
-                );
+                )
+                .toList();
     }
 
     @Override

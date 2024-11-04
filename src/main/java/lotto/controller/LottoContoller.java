@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoReport;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -23,16 +24,14 @@ public class LottoContoller {
         String winningNumbersInput = inputView.inputWinningNumbers();
         String bonusNumberInput = inputView.inputBonusNumber();
 
-        outputView.printWinningReport(lottoService.generateWinningReport(
-                winningNumbersInput, bonusNumberInput
-        ));
-
-        double profitRate = lottoService.computeProfitRate(
+        LottoReport lottoReport = lottoService.generateLottoReport(
                 purchaseAmount,
                 winningNumbersInput,
                 bonusNumberInput
         );
-        outputView.printProfitRate(profitRate);
+
+        outputView.printWinningReport(lottoReport.winningReport());
+        outputView.printProfitRate(lottoReport.profitRate());
     }
 
     private String promptPurchaseAmount() {

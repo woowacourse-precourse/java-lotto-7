@@ -7,6 +7,6 @@ import lotto.model.Lotto;
 
 public interface LottoRepository {
     void generateRandomLottos(int purchaseAmount);
-    Stream<LottoRule> generatePrizeStreamBy(List<Integer> winningNumbers, int bonusNumber);
+    List<LottoRule> generatePrizeListBy(List<Integer> winningNumbers, int bonusNumber);
     List<Lotto> findAll();
 }
