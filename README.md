@@ -1,4 +1,4 @@
-# java-calculator-precourse
+# java-lotto-precourse
 
 # 로또
 
