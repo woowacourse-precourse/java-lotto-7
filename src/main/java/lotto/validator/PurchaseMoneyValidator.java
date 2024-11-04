@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import static lotto.validator.ErrorMessage.*;
+
 public class PurchaseMoneyValidator {
     private PurchaseMoneyValidator() {
     }
@@ -9,13 +11,13 @@ public class PurchaseMoneyValidator {
             Integer.parseInt(token);
         }
         catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 정수 형태의 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + TYPE.getMessage());
         }
     }
 
     public static void validateDivisibleByThousand(int purchaseMoney) {
         if (purchaseMoney % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1,000으로 나누어 떨어지지 않습니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + DIVIDE.getMessage());
         }
     }
 }
