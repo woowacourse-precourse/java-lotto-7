@@ -23,4 +23,30 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("로또 번호가 6개보다 적으면 예외가 발생한다.")
+    void 로또_번호가_6개_미만이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("로또 번호에 1~45를 벗어난 숫자가 있으면 예외가 발생한다.")
+    void 로또_번호에_범위를_벗어난_숫자가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
+
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("로또 번호가 1부터 45 사이의 중복되지 않은 6개의 숫자일 때 객체가 정상적으로 생성된다.")
+    void 유효한_로또_번호로_객체_생성() {
+        // 예외가 발생하지 않는지 확인
+        new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    }
 }
