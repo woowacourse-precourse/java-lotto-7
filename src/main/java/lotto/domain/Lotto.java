@@ -27,6 +27,9 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이어야 합니다.");
             }
         }
+        if(numbers.stream().distinct().count() < numbers.size()){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복된 값을 가질 수 없습니다.");
+        }
     }
 
     private void sortLottoNumbers() {
