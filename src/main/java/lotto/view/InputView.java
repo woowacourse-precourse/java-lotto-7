@@ -8,61 +8,49 @@ import lotto.util.Validation;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.util.Validation.inputDelimiter;
+
 
 public class InputView {
-
-    private static final String winningNumberDelimiter = ",";
-
     public static int getPrice() {
-        InputMessage.PRICE_PROMPT.printMessage();
+        InputMessage.INPUT_PRICE.printMessage();
         String input = Console.readLine();
         if (!Validation.isNumberValue(input)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getErrorMessage());
         }
-        int price = Integer.parseInt(input);
-        if (!Validation.isPositive(price)) {
+        if (!Validation.isPositive(Integer.parseInt(input))) {
             throw new IllegalArgumentException(ErrorMessage.NEGATIVE_PRICE_VALUE.getErrorMessage());
         }
-        return price;
+        if(!Validation.isDivided(Integer.parseInt(input))) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PRICE_MULTIPLE.getErrorMessage());
+        }
+        return Integer.parseInt(input);
     }
 
     public static List<Integer> getWinningNumbers() {
-        InputMessage.WINNING_NUMBER_PROMPT.printMessage();
-
+        InputMessage.INPUT_NUMBER.printMessage();
         String input = Console.readLine();
-        if (!hasCorrectFormat(input)) {
+        if (!Validation.isCorrectFormat(input)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_FORMAT.getErrorMessage());
         }
         return parseString(input);
     }
 
     public static int getBonusNumber() {
-        InputMessage.BONUS_NUMBER_PROMPT.printMessage();
+        InputMessage.INPUT_BONUS.printMessage();
 
         String input = Console.readLine();
         if (!Validation.isNumberValue(input)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getErrorMessage());
         }
-        int number = Integer.parseInt(input);
-        if (!Validation.isCorrectRange(number)) {
+        if (!Validation.isCorrectRange(Integer.parseInt(input))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getErrorMessage());
         }
-        return number;
+        return Integer.parseInt(input);
     }
-
-    private static boolean hasCorrectFormat(String input) {
-        String[] tokens = input.split(winningNumberDelimiter);
-
-        return Arrays.stream(tokens).allMatch(Validation::isNumberValue);
-    }
-
+    
     private static List<Integer> parseString(String input) {
-        String[] tokens = input.split(winningNumberDelimiter);
-
-        try {
-            return Arrays.stream(tokens).map(Integer::parseInt).toList();
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getErrorMessage());
-        }
+        String[] tokens = input.split(inputDelimiter);
+        return Arrays.stream(tokens).map(Integer::parseInt).toList();
     }
 }
