@@ -7,7 +7,7 @@ import lotto.view.input.InputErrorMessage;
 import lotto.view.input.InvalidInputException;
 
 public class CommonLottoNumberValidator {
-    public static void validateLottoInput(String input) {
+    public static void validateCommonLottoInput(String input) {
         validateNotNullOrEmpty(input);
         validateIsNumber(input);
         validateLottoRange(input);

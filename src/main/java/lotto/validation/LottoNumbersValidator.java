@@ -2,7 +2,7 @@ package lotto.validation;
 
 import static lotto.util.LottoConstants.LOTTO_LENGTH;
 import static lotto.util.LottoConstants.ZERO_THRESHOLD;
-import static lotto.validation.CommonLottoNumberValidator.validateLottoInput;
+import static lotto.validation.CommonLottoNumberValidator.validateCommonLottoInput;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,12 +18,12 @@ public class LottoNumbersValidator {
 
     }
 
-    public static void validateWinningNumbers(List<Integer> input) {
+    public static void validateLottoNumbers(List<Integer> input) {
         validateLottoLength(input);
         validateDuplicate(input);
 
         for (Integer number : input) {
-            validateLottoInput(String.valueOf(number));
+            validateCommonLottoInput(String.valueOf(number));
         }
     }
 
@@ -41,7 +41,9 @@ public class LottoNumbersValidator {
 
     private static void validateCommaSeparator(String input) {
         String[] inputs = input.split(COMMA);
-        long count = Arrays.stream(inputs).filter(String::isEmpty).count();
+        long count = Arrays.stream(inputs)
+                .map(String::trim)
+                .filter(String::isEmpty).count();
         if (count > ZERO_THRESHOLD.getValue()) {
             throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
         }

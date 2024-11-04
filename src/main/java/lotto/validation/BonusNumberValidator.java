@@ -1,6 +1,6 @@
 package lotto.validation;
 
-import static lotto.validation.CommonLottoNumberValidator.validateLottoInput;
+import static lotto.validation.CommonLottoNumberValidator.validateCommonLottoInput;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -9,8 +9,8 @@ import lotto.view.input.InvalidInputException;
 
 public class BonusNumberValidator {
 
-    public static void validate(String input) {
-        validateLottoInput(input);
+    public static void validateBonusNumber(String input) {
+        validateCommonLottoInput(input);
     }
 
     public static void validateDuplicate(Integer input, Lotto winningLotto) {

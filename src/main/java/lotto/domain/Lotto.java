@@ -7,7 +7,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoNumbersValidator.validateWinningNumbers(numbers);
+        LottoNumbersValidator.validateLottoNumbers(numbers);
         this.numbers = numbers.stream().sorted().toList();
     }
 
