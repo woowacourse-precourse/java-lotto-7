@@ -1,11 +1,10 @@
 package lotto.view;
-import static lotto.domain.Constants.LOTTO_NUM_COUNT;
 import static lotto.domain.Constants.SPLIT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.validation.Validation;
 
 public class Input {
@@ -20,6 +19,7 @@ public class Input {
     public List<Lotto> winningNumber() {
         String input = Console.readLine();
         validation.number(input);
+        validation.duplicatedNumber(input);
         String[] numberStrings = input.split(SPLIT);
 
         for (String numberString : numberStrings) {
@@ -31,9 +31,10 @@ public class Input {
         return Numbers;
     }
 
-    public int bonousNumber() {
+    public int bonousNumber(List<Lotto> numbers) {
         String input = Console.readLine();
         validation.number(input);
+        validation.duplicatedBonous(input, numbers);
         return Integer.parseInt(input.trim());
     }
 }

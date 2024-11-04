@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 public class LottoController {
     private final LottoPurchase lottoPurchase;
@@ -52,7 +52,7 @@ public class LottoController {
         int bonusNumber;
         while (true) {
             try {
-        bonusNumber = lottoBonusNumber.input();
+        bonusNumber = lottoBonusNumber.input(winningNumbers);
                 break; // 올바른 값이 입력되면 루프 종료
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 1~45까지의 정수를 입력해주세요.");
@@ -60,7 +60,6 @@ public class LottoController {
         }
 
         // Step 5: 수익률 출력
-        double profit = lottoProfitCalculator.calculateProfit(issuedLotto, winningNumbers, bonusNumber);
-        System.out.println("수익률: " + profit + "%");
+        lottoProfitCalculator.checkLotto(issuedLotto, winningNumbers, bonusNumber);
     }
 }

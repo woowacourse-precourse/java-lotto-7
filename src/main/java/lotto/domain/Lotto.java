@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -21,4 +21,7 @@ public class Lotto {
         return numbers.toString();
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
