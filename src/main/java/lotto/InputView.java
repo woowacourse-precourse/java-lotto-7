@@ -24,7 +24,6 @@ public class InputView {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = readInput();
         List<Integer> numbers = parseInputNumbers(input);
-        validateWinningNumbers(numbers);
         return numbers;
     }
 
@@ -33,7 +32,6 @@ public class InputView {
         String input = readInput();
         try {
             int bonusNumber = Integer.parseInt(input);
-            validateBonusNumber(bonusNumber);
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
@@ -46,18 +44,6 @@ public class InputView {
                      .map(String::trim)
                      .map(Integer::parseInt)
                      .collect(Collectors.toList());
-    }
-
-    private static void validateWinningNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자여야 합니다.");
-        }
-    }
-
-    private static void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
     }
     
     private static String readInput() {
