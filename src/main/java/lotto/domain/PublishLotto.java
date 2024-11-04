@@ -16,12 +16,12 @@ public class PublishLotto {
     private final List<Integer> numbers;
 
     private PublishLotto(final LottoValidator validator) {
-        numbers = getRandomNumbers();
+        numbers = new ArrayList<>(getRandomNumbers());
         sortNumbers();
         validate(numbers, validator);
     }
 
-    public PublishLotto(final List<Integer> numbers,final LottoValidator validator) {
+    public PublishLotto(final List<Integer> numbers, final LottoValidator validator) {
         this.numbers = new ArrayList<>(numbers);
         sortNumbers();
         validator.validate(this.numbers);
@@ -31,7 +31,7 @@ public class PublishLotto {
         return new PublishLotto(validator);
     }
 
-    private void validate(final List<Integer> numbers,final LottoValidator validator) {
+    private void validate(final List<Integer> numbers, final LottoValidator validator) {
         validator.validate(numbers);
     }
 

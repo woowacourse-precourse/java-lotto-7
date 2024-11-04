@@ -23,8 +23,9 @@ public class ProfitCalculate {
     public static BigDecimal calculateProfit(final int purchasePrice,
         final Map<Prize, Integer> prizeCounts) {
         BigDecimal winningAmount = calculateWinningAmount(prizeCounts);
-        BigDecimal profit = winningAmount.divide(BigDecimal.valueOf(purchasePrice), 2,
-            RoundingMode.HALF_UP);
-        return profit.setScale(1, RoundingMode.HALF_UP);
+        BigDecimal profitRate = winningAmount.divide(BigDecimal.valueOf(purchasePrice), 4,
+                RoundingMode.HALF_UP)
+            .multiply(BigDecimal.valueOf(100));
+        return profitRate.setScale(2, RoundingMode.HALF_UP);
     }
 }
