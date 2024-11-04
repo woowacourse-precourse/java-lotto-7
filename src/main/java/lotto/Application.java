@@ -6,7 +6,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        int buyingPrice= InputHandler.getBuyingPrice();
+        int buyingPrice = InputHandler.getBuyingPrice();
         MyLottos myLottos = new MyLottos(buyingPrice);
 
         Lotto winningNumber = InputHandler.getWinningNumber();
@@ -14,7 +14,7 @@ public class Application {
         int bonusNumber = InputHandler.getBonusNumber(winningNumber);
 
         LottoChecker lottoChecker = new LottoChecker(winningNumber.getNumbers(), bonusNumber);
-        for(Lotto lotto : myLottos.getMyLottos()) {
+        for (Lotto lotto : myLottos.getMyLottos()) {
             lottoChecker.recordLottoRank(lotto);
         }
         lottoChecker.printRankResult();

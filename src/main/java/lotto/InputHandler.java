@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class InputHandler {
 
     public static int getBuyingPrice() {
-        while(true) {
+        while (true) {
             try {
                 String buyingPrice = Console.readLine();
                 InputValidator.buyingPriceValidator(buyingPrice);
@@ -19,9 +19,10 @@ public class InputHandler {
             }
         }
     }
+
     public static Lotto getWinningNumber() {
         System.out.println("당첨 번호를 입력해주세요.");
-        while(true) {
+        while (true) {
             try {
                 String winningNumbers = Console.readLine();
                 List<Integer> numbers = Arrays.stream(winningNumbers.split(","))
@@ -41,7 +42,7 @@ public class InputHandler {
 
     public static int getBonusNumber(Lotto winningNumber) {
         System.out.println("보너스 번호를 입력해주세요.");
-        while(true) {
+        while (true) {
             try {
                 String bonusNumber = Console.readLine();
                 InputValidator.bonusNumberValidator(bonusNumber, winningNumber);

@@ -10,8 +10,8 @@ import java.util.stream.IntStream;
 public class LottoGenerator {
     public static List<Lotto> getLotto(int amount) {
         return IntStream.range(0, amount)
-               .mapToObj(i -> new Lotto(getRandomLottoNumber()))
-               .collect(Collectors.toList());
+                .mapToObj(i -> new Lotto(getRandomLottoNumber()))
+                .collect(Collectors.toList());
     }
 
     public static List<Integer> getRandomLottoNumber() {

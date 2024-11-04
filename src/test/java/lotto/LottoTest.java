@@ -37,6 +37,7 @@ class LottoTest {
         Integer rank = lotto.getLottoRank(Arrays.asList(7, 8, 9, 10, 11, 12), null);
         assertEquals(LottoRank.NONE.getRank(), rank);
     }
+
     @Test
     void 당첨_번호_3개일때_RANK는_FIFTH이다() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));

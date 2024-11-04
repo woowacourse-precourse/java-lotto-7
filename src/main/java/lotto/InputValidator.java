@@ -9,7 +9,7 @@ public class InputValidator {
         }
 
         int buyingPriceInt = Integer.parseInt(buyingPrice);
-        if(buyingPriceInt % MyLottos.LOTTO_PRICE != 0) {
+        if (buyingPriceInt % MyLottos.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 합니다.");
         }
     }
@@ -23,10 +23,10 @@ public class InputValidator {
 
         int parsedBonusNumber = Integer.parseInt(bonusNumber);
 
-        if(winningNumber.getNumbers().contains(parsedBonusNumber)) {
+        if (winningNumber.getNumbers().contains(parsedBonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되지 않은 수를 입력해야 합니다.");
         }
-        if(parsedBonusNumber < 1 || parsedBonusNumber > 45) {
+        if (parsedBonusNumber < 1 || parsedBonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
     }

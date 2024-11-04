@@ -9,6 +9,7 @@ public enum LottoRank {
     FIFTH(5);
 
     private final int rank;
+
     LottoRank(int rank) {
         this.rank = rank;
     }

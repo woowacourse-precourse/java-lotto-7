@@ -33,11 +33,11 @@ public class LottoChecker {
     public void printRankResult() {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " +  rankCounts.get(LottoRank.FIFTH.getRank()) +"개");
+        System.out.println("3개 일치 (5,000원) - " + rankCounts.get(LottoRank.FIFTH.getRank()) + "개");
         System.out.println("4개 일치 (50,000원) - " + rankCounts.get(LottoRank.FOURTH.getRank()) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + rankCounts.get(LottoRank.THIRD.getRank()) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCounts.get(LottoRank.SECOND.getRank()) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + rankCounts.get(LottoRank.FIRST.getRank()) +"개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + rankCounts.get(LottoRank.FIRST.getRank()) + "개");
     }
 
     public Integer getTotalPrize() {
