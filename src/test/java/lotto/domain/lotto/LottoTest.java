@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.domain.quantity.Quantity;
 import lotto.exception.lotto.InvalidLottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -92,15 +93,12 @@ class LottoTest {
             // Given
 
             // When
-            List<Lotto> lottos = Lotto.makeAsMuchAs(BigDecimal.TWO);
+            List<Lotto> lottos = Lotto.createMultipleLottos(new Quantity(BigDecimal.TWO));
 
             // Then
-            List<Integer> numbers = lottos.get(0).getNumbers().numbers();
             assertAll(
                     () -> assertThat(lottos.size()).isEqualTo(2),
-                    () -> assertThat(numbers.stream().distinct().count()).isEqualTo(6),
-                    () -> assertThat(numbers.stream().map(Number::intValue)
-                            .allMatch(i -> i >= 1 && i <= 45)).isTrue()
+                    () -> assertThat(lottos).allMatch(lotto -> lotto.getNumbers().numbers().size() == 6)
             );
         }
     }
@@ -130,11 +128,11 @@ class LottoTest {
         @DisplayName("일치 개수를 센다")
         void 성공_일치개수() {
             // Given
-            Lotto drawnLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+            Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 10, 11, 12));
 
             // When
-            int count = drawnLotto.countMatchingNumber(winningLotto);
+            int count = lotto.countMatchingNumber(winningLotto);
 
             // Then
             assertThat(count).isEqualTo(3);

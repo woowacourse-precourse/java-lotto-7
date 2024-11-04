@@ -19,7 +19,7 @@ public class Lotto {
     private final List<LottoNumber> numbers;
 
     public Lotto(final List<Integer> numbers) {
-        validateNumbers(numbers);
+        validateUnique(numbers);
         this.numbers = new ArrayList<>(toSortedLottoNumbers(numbers));
     }
 
@@ -50,7 +50,7 @@ public class Lotto {
         return numbers.contains(lottoNumber);
     }
 
-    private void validateNumbers(final List<Integer> numbers) {
+    private void validateUnique(final List<Integer> numbers) {
         if (countUniqueFrom(numbers) != LOTTO_SIZE) {
             throw new InvalidLottoException("로또 번호는 중복되지 않은 6개의 숫자여야 합니다");
         }
