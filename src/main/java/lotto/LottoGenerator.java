@@ -33,8 +33,4 @@ public class LottoGenerator {
             lottos.add(new Lotto(numbers));
         }
     }
-
-    public float getCost() {
-        return this.cost;
-    }
 }
