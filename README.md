@@ -58,3 +58,10 @@
    - 수익률을 계산하고 출력하는 `ProfitCalculator` 객체를 구현합니다.
    - 총 구입 금액과 당첨금 총액을 바탕으로 수익률을 소수점 둘째 자리까지 계산하여 출력합니다.
    - **디렉토리**: `lotto.service`
+
+10. **Application 클래스 구현**
+- `Application` 클래스는 프로그램의 진입점으로, 로또 시뮬레이션의 전체 흐름을 관리합니다.
+- `LottoInput`을 통해 구입 금액, 당첨 번호, 보너스 번호를 입력받고, `PurchaseValidator`로 금액 유효성을 검증합니다.
+- 구입 금액에 따른 로또 번호를 `LottoPurchase` 객체에서 생성하여 출력하며, `LottoResult`로 당첨 내역을 확인하고 결과를 출력합니다.
+- 최종적으로 `ProfitCalculator`를 이용해 수익률을 계산하고 출력합니다.
+
