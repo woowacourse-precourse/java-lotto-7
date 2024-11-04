@@ -4,10 +4,10 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lotto.model.PurchasedLottoResultDto;
-import lotto.model.PurchasedLottoResultsDto;
-import lotto.model.WinningResultDto;
-import lotto.model.WinningResultsDto;
+import lotto.dto.PurchasedLottoResultDto;
+import lotto.dto.PurchasedLottoResultsDto;
+import lotto.dto.WinningResultDto;
+import lotto.dto.WinningResultsDto;
 
 public class OutputView {
 

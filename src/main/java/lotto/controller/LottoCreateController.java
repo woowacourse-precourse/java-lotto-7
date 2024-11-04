@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.model.LottoBundle;
 import lotto.model.LottoCreator;
 import lotto.model.Price;
-import lotto.model.PurchasedLottoResultsDto;
+import lotto.dto.PurchasedLottoResultsDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

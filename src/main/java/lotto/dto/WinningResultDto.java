@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.dto;
+
+import lotto.model.Winning;
 
 public record WinningResultDto(
 	int matchCount,

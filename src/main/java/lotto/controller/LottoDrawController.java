@@ -7,7 +7,7 @@ import lotto.model.LottoBundle;
 import lotto.model.LottoCreator;
 import lotto.model.Winning;
 import lotto.model.WinningLotto;
-import lotto.model.WinningResultsDto;
+import lotto.dto.WinningResultsDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

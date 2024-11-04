@@ -1,6 +1,8 @@
-package lotto.model;
+package lotto.dto;
 
 import java.util.List;
+
+import lotto.model.LottoBundle;
 
 public record PurchasedLottoResultsDto(
 	List<PurchasedLottoResultDto> purchasedLottoResults

@@ -1,9 +1,11 @@
-package lotto.model;
+package lotto.dto;
 
 import static lotto.model.Winning.NONE;
 
 import java.util.List;
 import java.util.Map;
+
+import lotto.model.Winning;
 
 public record WinningResultsDto(
 	List<WinningResultDto> winningResults,
