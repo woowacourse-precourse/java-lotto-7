@@ -1,6 +1,6 @@
 package lotto;
 
-public enum Rank {
+public enum LottoRank {
 
     FIRST("1등", 5),
     SECOND("2등", 4),
@@ -12,7 +12,7 @@ public enum Rank {
     private final String name;
     private final Integer printOrder;
 
-    Rank(String name, Integer printOrder) {
+    LottoRank(String name, Integer printOrder) {
         this.name = name;
         this.printOrder = printOrder;
     }

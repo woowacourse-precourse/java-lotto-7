@@ -8,7 +8,7 @@ public class LottoStore {
 
     public static final int LOTTO_PRICE = 1000;
     private LottoGenerator lottoGenerator;
-    private Map<Rank, PrizeInfo> rankInfo;
+    private Map<LottoRank, PrizeInfo> rankInfo;
 
     public LottoStore() {
         this.lottoGenerator = new LottoGenerator();
@@ -39,16 +39,16 @@ public class LottoStore {
 
     private void createRankInfo() {
         rankInfo = Map.of(
-            Rank.FIRST, new PrizeInfo(6, false, 2000000000),
-            Rank.SECOND, new PrizeInfo(5, true, 30000000),
-            Rank.THIRD, new PrizeInfo(5, false, 1500000),
-            Rank.FOURTH, new PrizeInfo(4, false, 50000),
-            Rank.FIFTH, new PrizeInfo(3, false, 5000),
-            Rank.NONE, new PrizeInfo(0, false, 0)
+            LottoRank.FIRST, new PrizeInfo(6, false, 2000000000),
+            LottoRank.SECOND, new PrizeInfo(5, true, 30000000),
+            LottoRank.THIRD, new PrizeInfo(5, false, 1500000),
+            LottoRank.FOURTH, new PrizeInfo(4, false, 50000),
+            LottoRank.FIFTH, new PrizeInfo(3, false, 5000),
+            LottoRank.NONE, new PrizeInfo(0, false, 0)
         );
     }
 
-    public Map<Rank, PrizeInfo> getRankInfo() {
+    public Map<LottoRank, PrizeInfo> getRankInfo() {
         return rankInfo;
     }
 

@@ -24,7 +24,7 @@ public class Application {
 
         WinningCalculator winningCalculator = new WinningCalculator();
 
-        Map<Rank, Integer> winningCountsByRank = winningCalculator.calculateWinningCountsByRank(lottoStore, winningLotto, customer);
+        Map<LottoRank, Integer> winningCountsByRank = winningCalculator.calculateWinningCountsByRank(lottoStore, winningLotto, customer);
         consoleHandler.printWinningResult(winningCountsByRank, lottoStore.getRankInfo());
 
         double profitRate = winningCalculator.calculateProfitRate(lottoStore, winningCountsByRank, money);

@@ -44,16 +44,16 @@ public class ConsoleHandler {
         return readValidNumber();
     }
 
-    public void printWinningResult(Map<Rank, Integer> winningCountsByRank, Map<Rank, PrizeInfo> rankInfo) {
+    public void printWinningResult(Map<LottoRank, Integer> winningCountsByRank, Map<LottoRank, PrizeInfo> rankInfo) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
         rankInfo.keySet().stream()
-                .filter(rank -> rank.getPrintOrder() != null)
-                .sorted(Comparator.comparingInt(Rank::getPrintOrder))
-                .forEach(rank -> {
-                    PrizeInfo prizeInfo = rankInfo.get(rank);
-                    int winningCount = winningCountsByRank.getOrDefault(rank, 0);
+                .filter(lottoRank -> lottoRank.getPrintOrder() != null)
+                .sorted(Comparator.comparingInt(LottoRank::getPrintOrder))
+                .forEach(lottoRank -> {
+                    PrizeInfo prizeInfo = rankInfo.get(lottoRank);
+                    int winningCount = winningCountsByRank.getOrDefault(lottoRank, 0);
                     printRankResult(prizeInfo, winningCount);
                 });
     }
