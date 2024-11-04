@@ -10,43 +10,57 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public void run(){
-        //금액 입력 받기
-        Output.printPurchaseAmountRequestMessage();
-        PurchaseAmount purchaseAmount = Input.getPurchaseAmount();
-
-        //로또 발행 하기
-        LottoBuyer lottoBuyer = lottoService.getLottoBuyer(purchaseAmount);
-
-        //발행된 로또 개수 출력
-        Output.printNumberRequestMessage(lottoBuyer.getLottoCount());
-
-        //발행된 로또 출력
-        Output.printLottos(lottoBuyer.getLottos());
-
-        //당첨 번호 입력 받기
-        Output.printWinningNumberRequestMessage();
-        WinningNumber winningNumber = Input.getWinningNumber();
-
-        //보너스 번호 입력 받기
-        Output.printBonusNumberRequestMessage();
-        BonusNumber bonusNumber = Input.getBonusNumber(winningNumber);
+    public void run() {
+        PurchaseAmount purchaseAmount = getPurchaseAmount();
+        LottoBuyer lottoBuyer = createLottoBuyerWithLottos(purchaseAmount);
+        WinningNumber winningNumber = getWinningNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningNumber);
 
         Output.printWinningResultsHeader();
         Output.printLine();
 
-        //결산
-        List<LottoWinningRanks> lottoWinningRanks = lottoService.summarizeLottoRanks(
-                lottoBuyer.getLottos(),winningNumber, bonusNumber);
+        List<LottoWinningRanks> lottoWinningRanks = getLottoWinningRanks(lottoBuyer, winningNumber, bonusNumber);
+        Map<LottoWinningRanks, Integer> rankCounts = aggregateLottoRanks(lottoWinningRanks);
 
-        //결산 맵핑
-        Map<LottoWinningRanks, Integer> rankCounts = lottoService.summarizeRanksToCounts(lottoWinningRanks);
+        printLottoRankResults(rankCounts);
+        printRateOfReturn(lottoWinningRanks, lottoBuyer);
+    }
 
-        //결산 내용 출력
+    private PurchaseAmount getPurchaseAmount() {
+        Output.printPurchaseAmountRequestMessage();
+        return Input.getPurchaseAmount();
+    }
+
+    private LottoBuyer createLottoBuyerWithLottos(PurchaseAmount purchaseAmount) {
+        LottoBuyer lottoBuyer = lottoService.getLottoBuyer(purchaseAmount);
+        Output.printNumberRequestMessage(lottoBuyer.getLottoCount());
+        Output.printLottos(lottoBuyer.getLottos());
+        return lottoBuyer;
+    }
+
+    private WinningNumber getWinningNumber() {
+        Output.printWinningNumberRequestMessage();
+        return Input.getWinningNumber();
+    }
+
+    private BonusNumber getBonusNumber(WinningNumber winningNumber) {
+        Output.printBonusNumberRequestMessage();
+        return Input.getBonusNumber(winningNumber);
+    }
+
+    private List<LottoWinningRanks> getLottoWinningRanks(LottoBuyer lottoBuyer, WinningNumber winningNumber, BonusNumber bonusNumber) {
+        return lottoService.summarizeLottoRanks(lottoBuyer.getLottos(), winningNumber, bonusNumber);
+    }
+
+    private Map<LottoWinningRanks, Integer> aggregateLottoRanks(List<LottoWinningRanks> lottoWinningRanks) {
+        return lottoService.summarizeRanksToCounts(lottoWinningRanks);
+    }
+
+    private void printLottoRankResults(Map<LottoWinningRanks, Integer> rankCounts) {
         Output.printLottoRankResult(rankCounts);
+    }
 
-        //수익률 계산
-        double rateOfReturn = lottoService.calculateRateOfReturn(lottoWinningRanks, lottoBuyer);
-        Output.printRateOfReturn(rateOfReturn);
+    private void printRateOfReturn(List<LottoWinningRanks> lottoWinningRanks, LottoBuyer lottoBuyer) {
+        Output.printRateOfReturn(lottoService.calculateRateOfReturn(lottoWinningRanks, lottoBuyer));
     }
 }
