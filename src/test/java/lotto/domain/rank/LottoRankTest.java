@@ -27,7 +27,7 @@ class LottoRankTest {
     @ParameterizedTest
     @CsvSource({
             "1, true, 0",
-            "3, false, 3000",
+            "3, false, 5000",
             "4, false, 50000",
             "5, false, 1500000",
             "5, true, 30000000",
