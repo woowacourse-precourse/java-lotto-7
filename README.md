@@ -81,3 +81,10 @@
 - [X] **IllegalArgumentException** : 사용자가 잘못된 값을 입력한 경우
 - [X] **NumberFormatException** : 숫자외 다른 입력이 들어온 경우
 
+# 리팩토링 전
+
+![img.png](img.png)
+
+# 리팩토링 후
+
+![img_1.png](img_1.png)
