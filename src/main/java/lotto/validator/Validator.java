@@ -19,7 +19,7 @@ public class Validator {
         List<String> numbers = Arrays.asList(lottoNumbers.replaceAll(" ", "").split(","));
 
         if (numbers.size() != Constants.LOTTO_COUNT.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBERS.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LENGTH.getMessage());
         }
 
         for (String number : numbers) {
@@ -35,17 +35,26 @@ public class Validator {
         }
     }
 
-    public static void checkDuplicateLottoNumbers(String winningNumbers, String bonusNumber) {
-        List<String> numbers = Arrays.asList(winningNumbers.split(","));
+    public static void checkDuplicateLottoNumbers(List<Integer> winningNumbers) {
         List<Integer> allNumbers = new ArrayList<>();
-        allNumbers.add(Util.checkValidInteger(bonusNumber));
 
-        for (String number : numbers) {
-            int convertedNumber = Util.checkValidInteger(number);
-            if (allNumbers.contains(convertedNumber)) {
+        for (int number : winningNumbers) {
+            if (allNumbers.contains(number)) {
                 throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.getMessage());
             }
-            allNumbers.add(convertedNumber);
+            allNumbers.add(number);
+        }
+    }
+
+    public static void checkDuplicateBonusNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        List<Integer> allNumbers = new ArrayList<>();
+        allNumbers.add(bonusNumber);
+
+        for (int number : winningNumbers) {
+            if (allNumbers.contains(number)) {
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.getMessage());
+            }
+            allNumbers.add(number);
         }
     }
 
