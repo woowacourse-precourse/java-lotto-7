@@ -37,6 +37,10 @@ public class OutputView {
         }
     }
 
+    public static void printProfitPercentage(Long profit) {
+        System.out.println("총 수익률은 " + Math.round(profit * 100)/10.0 + "%입니다.");
+    }
+
     public static void printRequirePurchasePrice() {
         System.out.println("구입 금액을 입력해 주세요.");
     }
