@@ -25,4 +25,11 @@ public class CommonValidation {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_RANGE_ERROR.getMessage());
         }
     }
+
+    public static void validateBonusNumberDuplication(Lotto winningLotto, int bonusNumber) {
+        boolean condition = winningLotto.getNumbers().stream().allMatch(number -> number != bonusNumber);
+        if (!condition) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_DUPLICATION_ERROR.getMessage());
+        }
+    }
 }
