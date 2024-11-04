@@ -30,7 +30,10 @@ public class ConsoleOutputTest {
                 Map.of(
                         Prize.FIRST, 1,
                         Prize.SECOND, 2,
-                        Prize.THIRD, 3
+                        Prize.THIRD, 3,
+                        Prize.FOURTH, 0,
+                        Prize.FIFTH, 0,
+                        Prize.NONE, 0
                 ),
                 200.5
         );
@@ -61,7 +64,10 @@ public class ConsoleOutputTest {
                 Map.of(
                         Prize.FIRST, 1,
                         Prize.SECOND, 2,
-                        Prize.THIRD, 3
+                        Prize.THIRD, 3,
+                        Prize.FOURTH, 0,
+                        Prize.FIFTH, 0,
+                        Prize.NONE, 0
                 ),
                 200.54
         );
@@ -92,7 +98,10 @@ public class ConsoleOutputTest {
                 Map.of(
                         Prize.FIRST, 1,
                         Prize.SECOND, 2,
-                        Prize.THIRD, 3
+                        Prize.THIRD, 3,
+                        Prize.FOURTH, 0,
+                        Prize.FIFTH, 0,
+                        Prize.NONE, 0
                 ),
                 200.55
         );
