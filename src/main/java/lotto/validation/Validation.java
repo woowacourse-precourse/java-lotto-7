@@ -1,7 +1,7 @@
 package lotto.validation;
 
 import java.util.List;
-import lotto.error.ErrorMessage;
+import lotto.exception.ErrorMessage;
 
 public class Validation {
 

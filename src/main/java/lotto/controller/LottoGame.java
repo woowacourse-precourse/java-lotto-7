@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
-import lotto.error.ErrorMessage;
+import lotto.exception.ErrorMessage;
 import lotto.service.LottoGameService;
 import lotto.validation.Validation;
 import lotto.view.InputView;
