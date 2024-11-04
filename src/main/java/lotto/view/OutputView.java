@@ -43,13 +43,15 @@ public class OutputView {
         String lottoResult = lottoCountMap.entrySet()
                 .stream()
                 .filter(entry -> !entry.getKey().equals(LottoGrade.FAIL))
-                .sorted((entry1, entry2) -> Long.compare(entry1.getKey().getPrice(), entry2.getKey().getPrice()))
-                //Enum변경
+                .sorted(lottoPriceNaturalOrder())
                 .map(entry -> formatEachResult(entry))
                 .collect(Collectors.joining("\n"));
 
         System.out.println("당첨 통계\n---\n" + lottoResult);
+    }
 
+    private Comparator<Map.Entry<LottoGrade, Integer>> lottoPriceNaturalOrder() {
+        return (entry1, entry2) -> Long.compare(entry1.getKey().getPrice(), entry2.getKey().getPrice());
     }
 
     private String formatEachResult(Map.Entry<LottoGrade, Integer> entry) {
@@ -60,14 +62,21 @@ public class OutputView {
         String priceFormat = String.format("%,d", lottoGrade.getPrice());
         int count = entry.getValue();
 
-        stringBuilder.append(target).append("개 일치 ")
-                     .append("(").append(priceFormat).append(") ")
-                     .append("- ").append(count).append("개");
+        stringBuilder.append(target).append("개 일치");
+        appendIfSecond(entry, stringBuilder);
+        stringBuilder.append(" (").append(priceFormat).append("원)");
+        stringBuilder.append(" - ").append(count).append("개");
 
         return stringBuilder.toString();
     }
 
+    private void appendIfSecond(Map.Entry<LottoGrade, Integer> entry, StringBuilder stringBuilder) {
+        if (entry.getKey().equals(LottoGrade.SECOND)) {
+            stringBuilder.append(", 보너스 볼 일치");
+        }
+    }
+
     public void printProfit(double profitRate) {
-        System.out.println("총 수익률은 " + profitRate + " %입니다.");
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 }
