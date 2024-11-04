@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.Rank;
 import lotto.service.LottoService;
+import lotto.util.Config;
 import lotto.view.Inputview;
 import lotto.view.Outputview;
 
@@ -55,8 +56,11 @@ public class LottoController {
         while (true) {
             try {
                 int bonusNumber = Inputview.inputBonusNumber();
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException(Config.ERROR_OUT_OF_RANGE_NUMBER);
+                }
                 if (winningNumbers.contains(bonusNumber)) {
-                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                    throw new IllegalArgumentException(Config.ERROR_BONUS_NUMBER_DUPLICATE);
                 }
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
