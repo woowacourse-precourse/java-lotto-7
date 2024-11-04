@@ -20,7 +20,7 @@ public class Application {
 
     public static void main(String[] args) {
         // 로또 구매
-        buyLottoMoney = buyLotto();
+        buyLottoMoney = input.buyLotto();
         System.out.println();
 
         // 금액에 따른 개수 도출
@@ -36,7 +36,7 @@ public class Application {
         System.out.println();
 
         // 보너스 번호 입력
-        bonusNum = input.enterBonusNum();
+        bonusNum = input.enterBonusNum(winLotto);
 
         // 당첨 확인 과정
         for (Lotto lotto : lottos) {
@@ -48,15 +48,6 @@ public class Application {
 
         // 총 수익률
         output.printRevenue(totalSum, buyLottoMoney);
-    }
-
-    private static int buyLotto() {
-        try {
-            return input.buyLotto();
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자만 입력해 주세요.");
-        }
-        return 0;
     }
 
     private static void randomizePublish() {
