@@ -35,8 +35,8 @@ public class AppRunner {
         outputView.printIssuedLottoDetails(lottoReceipt.toString());
 
         LottoTicket lottoTicket = readWinningNumbers();
-        String inputBonusNumber = inputView.requestBonusNumber();
-        WinningLotto winningLotto = controller.getWinningLotto(lottoTicket, inputBonusNumber);
+        int bonusNumber = readbonusNumber();
+        WinningLotto winningLotto = controller.getWinningLotto(lottoTicket, bonusNumber);
 
         WinningReport winningReport = controller.getReport(lottoReceipt, winningLotto);
         String winningDetails = controller.sendWinningDetails(winningReport.getWinningCounts());
@@ -77,5 +77,20 @@ public class AppRunner {
             break;
         }
         return lottoTicket;
+    }
+
+    private int readbonusNumber() {
+        int bonusNumber;
+        while (true) {
+            String inputNumber = inputView.requestBonusNumber();
+            try {
+                bonusNumber = controller.toInt(inputNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
+        return bonusNumber;
     }
 }

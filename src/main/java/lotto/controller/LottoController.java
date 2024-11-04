@@ -32,8 +32,8 @@ public class LottoController {
         return lottoService.createWinningTicket(extractNumbers(inputNumbers));
     }
 
-    public WinningLotto getWinningLotto(LottoTicket winningTicket, String bonusNumber) {
-        return lottoService.createWinningLotto(winningTicket, toInt(bonusNumber));
+    public WinningLotto getWinningLotto(LottoTicket winningTicket, int bonusNumber) {
+        return lottoService.createWinningLotto(winningTicket, bonusNumber);
     }
 
     public WinningReport getReport(LottoReceipt lottoReceipt, WinningLotto winningLotto) {
@@ -50,7 +50,7 @@ public class LottoController {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    private int toInt(String input) {
+    public int toInt(String input) {
         return Integer.parseInt(input);
     }
 
