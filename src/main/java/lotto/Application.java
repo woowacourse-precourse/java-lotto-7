@@ -1,8 +1,13 @@
 package lotto;
 
+import lotto.InputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-		int purchaseAmount = InputView.readPurchaseAmount();
+        try {
+            int purchaseAmount = InputView.readPurchaseAmount();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
