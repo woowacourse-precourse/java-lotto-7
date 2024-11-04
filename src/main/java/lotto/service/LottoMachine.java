@@ -1,11 +1,14 @@
 package lotto.service;
 
+import static lotto.input.Input.getBonusNumber;
+import static lotto.input.Input.getPurchaseAmount;
+import static lotto.input.Input.getWinningNumbers;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumbers;
 import lotto.domain.LottoTicket;
 import lotto.domain.PurchaseAmount;
-import lotto.input.Input;
 
 public class LottoMachine {
     public static final int PRICE_OF_ONE_LOTTERY_TICKET = 1000;
@@ -22,13 +25,12 @@ public class LottoMachine {
 
     public void run() {
         try {
-            Input input = new Input();
-            PurchaseAmount purchaseAmount = new PurchaseAmount(input.getPurchaseAmount());
+            PurchaseAmount purchaseAmount = new PurchaseAmount(getPurchaseAmount());
 
             LottoTicket lottoTicket = generateLottoTicket(purchaseAmount);
             lottoTicket.showLottoTicket();
 
-            LottoNumbers lottoNumbers = new LottoNumbers(input.getWinningNumbers(), input.getBonusNumber());
+            LottoNumbers lottoNumbers = new LottoNumbers(getWinningNumbers(), getBonusNumber());
 
             LottoResult lottoResult = new LottoResult();
             lottoResult.evaluateLottoResults(lottoTicket, lottoNumbers);
