@@ -7,6 +7,7 @@ import lotto.domain.Lottos;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.dto.WinningResultDto;
+import lotto.util.constants.LottoConstants;
 
 public class WinningService {
 
@@ -32,14 +33,16 @@ public class WinningService {
         return BigDecimal.valueOf(rank.getPrize()).multiply(BigDecimal.valueOf(count));
     }
 
-    /**
-     * 수익률 = (총 상금 / 구입 금액) * 100 이기 때문에
-     * (총 상금 / 구입 장수) / 1000 * 100 = (총 상금 / 구입 장수) / 10 로 계산
-     * */
     private BigDecimal calculateProfitRate(BigDecimal totalPrize, int lottoCount) {
-        return totalPrize.divide(BigDecimal.valueOf(lottoCount), 2, RoundingMode.HALF_UP)
-                .divide(BigDecimal.valueOf(10), 2, RoundingMode.HALF_UP)
+        BigDecimal amount = calcuateAmount(lottoCount);
+
+        return totalPrize.multiply(BigDecimal.valueOf(100))
+                .divide(amount, 2, RoundingMode.HALF_UP)
                 .stripTrailingZeros();
+    }
+
+    private BigDecimal calcuateAmount(int lottoCount) {
+        return BigDecimal.valueOf(lottoCount).multiply(BigDecimal.valueOf(LottoConstants.PER_AMOUNT.getValue()));
     }
 
 }
