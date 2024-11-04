@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static lotto.validator.LottoValidator.validateBonusNumber;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +20,7 @@ public class WinningNumbers {
     }
 
     public Set<Integer> getNumbers() {
-        return Collections.unmodifiableSet(numbers);
+        return numbers;
     }
 
     public int getBonusNumber() {
