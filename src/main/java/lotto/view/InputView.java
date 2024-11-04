@@ -9,19 +9,24 @@ import java.util.stream.Collectors;
 
 public class InputView {
     public static final int AmountUnit = 1000;
-    public static final char LINE_BREAK = '\n';
+    public static final String LINE_BREAK = "\n";
 
     //로또 구입 금액 입력 메소드
     public static int getPurchaseAmount() {
         System.out.println("로또 구입 금액을 입력하십시오(1000원 단위).:");
         String input = Console.readLine();
 
-        int PurchaseAmount =  Integer.parseInt(input);
-
-        if (PurchaseAmount <= 0 || PurchaseAmount % AmountUnit != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위입니다.");
+        try {
+            int purchaseAmount = Integer.parseInt(input);
+            if (purchaseAmount <= 0 || purchaseAmount % AmountUnit != 0) {
+                System.out.println("[ERROR] 금액은 1000원 단위입니다.");
+                return -1;
+            }
+            return purchaseAmount;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 유효한 숫자를 입력해주세요.");
+            return -1;
         }
-        return PurchaseAmount;
     }
 
     // 당첨 로또 번호 입력
