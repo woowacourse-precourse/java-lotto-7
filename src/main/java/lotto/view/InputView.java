@@ -35,8 +35,13 @@ public class InputView {
 
     }
 
-    public static void printRetryMessage() {
-        System.out.println("다시 입력해 주세요.");
+    public static void errorPrint(String message) {
+        System.out.println(message);
+        printRetryMessage();
+    }
+
+    private static void printRetryMessage() {
+        System.out.println("다시 입력해 주세요.\n");
     }
 
     private static long parseAmount(String input) {
@@ -53,5 +58,6 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로만 입력해 주세요.");
         }
+
     }
 }
