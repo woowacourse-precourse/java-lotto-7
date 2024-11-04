@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -22,7 +24,9 @@ public enum LottoRank {
     }
 
     public static List<LottoRank> valuesList() {
-        return List.copyOf(EnumSet.allOf(LottoRank.class));
+        List<LottoRank> ranks = new ArrayList<>(EnumSet.allOf(LottoRank.class));
+        Collections.reverse(ranks);
+        return ranks;
     }
 
     public static void setLottoRank(int matchCount, boolean bonusMatched) {
@@ -50,7 +54,7 @@ public enum LottoRank {
         return count;
     }
 
-    public static void initLottoRanks() {
+    public static void init() {
         for (LottoRank rank : LottoRank.values()) {
             rank.count = 0;
         }

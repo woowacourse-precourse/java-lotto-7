@@ -1,55 +1,40 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoView {
-    LottoController lottoController;
-    private List<Lotto> purchasedLottos = new ArrayList<>();
-    public LottoController purchaseAmountInput() {
-        while (true) {
-            try{
-                System.out.println("구입금액을 입력해 주세요.");
-                this.lottoController = new LottoController(Console.readLine());
-                System.out.println();
-                return lottoController;
-            } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-    public void lottoWinningNumbersInput() {
-        while(true) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                String[] inputLottoWinningNumbers = Console.readLine().split(",");
-                lottoController.parseLottoWinningNumbers(inputLottoWinningNumbers);
-                System.out.println();
-                break;
-            } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-    public void lottoBonusInput() {
-        while (true) {
-            try {
-                System.out.println("보너스 번호를 입력해 주세요.");
-                lottoController.setLottoBonusNumber(Console.readLine());
-                System.out.println();
-                break;
-            } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-        }
+
+    public int purchaseAmountInput() {
+        System.out.println("구입금액을 입력해 주세요.");
+        String input = Console.readLine();
+        int purchaseAmount = Integer.parseInt(input);
+        System.out.println();
+        return purchaseAmount;
     }
 
-    public void printPurchasedLottosInfo() {
-        purchasedLottos = lottoController.getPurchasedLottos();
+    public List<Integer> lottoWinningNumbersInput() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] inputLottoWinningNumbers = Console.readLine().split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String number : inputLottoWinningNumbers) {
+            winningNumbers.add(Integer.parseInt(number.trim()));
+        }
+        System.out.println();
+        return winningNumbers;
+    }
+
+    public int lottoBonusInput() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        System.out.println();
+        return bonusNumber;
+    }
+
+    public void printPurchasedLottos(List<Lotto> purchasedLottos) {
         System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
-        for(Lotto lotto : purchasedLottos) {
+        for (Lotto lotto : purchasedLottos) {
             System.out.println(lotto.getNumbers());
         }
         System.out.println();
@@ -58,8 +43,8 @@ public class LottoView {
     public void printLottoRanksInfo() {
         System.out.println("당첨 통계");
         System.out.println("---");
-        for(LottoRank lottoRank : LottoRank.valuesList()) {
-            if(!lottoRank.getBonusMatched()) {
+        for (LottoRank lottoRank : LottoRank.valuesList()) {
+            if (!lottoRank.getBonusMatched()) {
                 System.out.println(lottoRank.getMatchCount() + "개 일치 (" + String.format("%,d", lottoRank.getPrizeAmount()) + "원) - " + lottoRank.getCount() + "개");
                 continue;
             }
@@ -67,10 +52,7 @@ public class LottoView {
         }
     }
 
-    public void printLottoPrizeInfo() {
-        int totalPrize = lottoController.calculateTotalPrize();
-        double profitRate = lottoController.calculateProfitRate(totalPrize);
-
+    public void printLottoPrizeInfo(int totalPrize, double profitRate) {
         System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
         System.out.println();
     }
