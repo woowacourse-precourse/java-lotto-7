@@ -68,3 +68,5 @@ public class OutputView {
         System.out.println(String.format(IOMessage.PRINT_TOTAL_RETURN_RATE.getMessage(), returnRate));
     }
 }
+
+
