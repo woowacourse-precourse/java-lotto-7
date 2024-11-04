@@ -8,7 +8,7 @@ import java.util.List;
 public class WinningNumbersRepository {
 
     private static final WinningNumbersRepository repository = new WinningNumbersRepository();
-    private final List<Integer> winningNumbers = new ArrayList<>();
+    private List<Integer> winningNumbers = new ArrayList<>();
 
     private WinningNumbersRepository() {
 
@@ -24,5 +24,9 @@ public class WinningNumbersRepository {
 
     public WinningNumbers find() {
         return new WinningNumbers(winningNumbers);
+    }
+
+    public void deleteAll() {
+        this.winningNumbers = new ArrayList<>();
     }
 }

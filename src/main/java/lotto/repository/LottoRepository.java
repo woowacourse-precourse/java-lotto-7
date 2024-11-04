@@ -8,7 +8,7 @@ import java.util.List;
 public class LottoRepository {
 
     private static final LottoRepository lottoRepository = new LottoRepository();
-    private final List<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> lottos = new ArrayList<>();
 
     private LottoRepository() {
 
@@ -24,5 +24,9 @@ public class LottoRepository {
 
     public List<Lotto> findAll() {
         return lottos;
+    }
+
+    public void deleteAll() {
+        this.lottos = new ArrayList<>();
     }
 }

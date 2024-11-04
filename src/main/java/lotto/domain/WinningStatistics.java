@@ -45,4 +45,10 @@ public enum WinningStatistics {
             }
         }
     }
+
+    public static void resetCount() {
+        for(WinningStatistics statistics: WinningStatistics.values()) {
+            statistics.count = 0;
+        }
+    }
 }

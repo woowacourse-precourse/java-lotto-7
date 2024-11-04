@@ -1,6 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.domain.WinningStatistics;
+import lotto.repository.LottoRepository;
+import lotto.repository.WinningNumbersRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,6 +16,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    private final LottoRepository lottoRepository = LottoRepository.getInstance();
+    private final WinningNumbersRepository winningNumbersRepository = WinningNumbersRepository.getInstance();
+
+    @BeforeEach
+    public void reset() {
+        WinningStatistics.resetCount();
+        lottoRepository.deleteAll();
+        winningNumbersRepository.deleteAll();
+    }
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
