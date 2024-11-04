@@ -46,7 +46,7 @@ public class LottoService {
 
     public static double calculateYield(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
         Map<Rank, Integer> resultCount = initializeResultCount();
-        int totalPrize = 0;
+        long totalPrize = 0;
 
         for (Lotto lotto : lottos) {
             Rank rank = determineRank(lotto, winningNumbers, bonusNumber);
