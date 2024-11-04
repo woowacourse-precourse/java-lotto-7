@@ -48,8 +48,4 @@ public enum Ranking {
     }
     throw new IllegalArgumentException("[ERROR] 일치하는 등수가 없습니다.");
   }
-
-  public static String printRaningMsg(Ranking ranking) {
-    return ranking.getMessage();
-  }
 }
