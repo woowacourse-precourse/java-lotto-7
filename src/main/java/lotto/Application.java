@@ -14,7 +14,7 @@ public class Application {
             try {
                 money = new Money(moneyInput);
                 game.purchaseLotto(money);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
         }

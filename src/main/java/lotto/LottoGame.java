@@ -21,6 +21,9 @@ public class LottoGame {
     }
 
     public void purchaseLotto(Money money) {
+        if (money == null) {
+            throw new IllegalStateException("[ERROR] 구입금액이 유효하지 않습니다.");
+        }
         if (money.getAmount() % LottoRegulation.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(
                     MessageFormat.format("[ERROR] 구입금액은 {0}원 단위로 입력해야 합니다.", LottoRegulation.LOTTO_PRICE));
