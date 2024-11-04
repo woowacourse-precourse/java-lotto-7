@@ -7,6 +7,7 @@ public class Application {
         UserLottos userLottos = createUserLottos();
         showUserLottos(userLottos);
         Lotto winningLotto = getWinningLotto();
+        int bonusNumber = getBonusNumber(winningLotto);
     }
 
     private static UserLottos createUserLottos() {
@@ -53,6 +54,19 @@ public class Application {
     private static String inputWinningNumbers() {
         System.out.println(IOMessage.WINNING_NUMBERS.getMessage());
         return readLine();
+    }
+
+    private static int getBonusNumber(Lotto winningNumbers) {
+        while (true) {
+            try {
+                int bonusNumber = CommonValidation.convertStringToInt(inputBonusNumber());
+                CommonValidation.validateNumbersRange(bonusNumber);
+                CommonValidation.validateBonusNumberDuplication(winningNumbers, bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static String inputBonusNumber() {
