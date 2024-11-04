@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -21,4 +22,32 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+    @DisplayName("로또 번호를 오름차순으로 정렬하여 가져온다.")
+    @Test
+    void getAscNumber() {
+        // given
+        Lotto lotto = new Lotto(List.of(4, 2, 13, 45, 32, 5));
+        List<Integer> expected = List.of(2, 4, 5, 13, 32, 45);
+
+        // when
+        List<Integer> ascNumber = lotto.getAscNumber();
+
+        // then
+        assertEquals(expected, ascNumber);
+    }
+
+    @DisplayName("로또 번호를 가져온다.")
+    @Test
+    void getNumbers() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+
+        // when
+        List<Integer> getNumbers = lotto.getNumbers();
+
+        // then
+        assertEquals(numbers, getNumbers);
+    }
 }
