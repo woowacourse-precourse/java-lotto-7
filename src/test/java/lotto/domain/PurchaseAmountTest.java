@@ -1,9 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import lotto.domain.PurchaseAmount;
 import org.junit.jupiter.api.Test;
 
 public class PurchaseAmountTest {
