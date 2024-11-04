@@ -42,7 +42,7 @@ public class Lotto {
     }
 
     public static void printRequestingBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     private static Lotto getNumbersFromInput(String userInput) {
