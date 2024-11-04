@@ -25,6 +25,29 @@ public class LottoController {
         saveLotto();
         printLottoList();
         saveWinningLotto();
+        saveWinningBonusNumber();
+    }
+
+    private void saveWinningBonusNumber() {
+        int bonusNumber = getBonusNumber();
+        try {
+            winningService.saveBonusNumber(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            view.printError(e.getMessage());
+            saveWinningBonusNumber();
+        }
+    }
+
+    private int getBonusNumber() {
+        int bonusNumber;
+        String bonus = view.inputBonusNumber();
+        try {
+            bonusNumber = Integer.parseInt(bonus);
+        } catch (NumberFormatException e) {
+            view.printError(NUMBER_FORMAT.getMessage());
+            bonusNumber = getBonusNumber();
+        }
+        return bonusNumber;
     }
 
     private void printLottoList() {

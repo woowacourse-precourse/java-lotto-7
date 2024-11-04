@@ -21,6 +21,11 @@ public class View {
         return input();
     }
 
+    public String inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return input();
+    }
+
     public void printPaperStatus(List<PaperDto> paperDto) {
         int size = paperDto.size();
         System.out.printf("%d개를 구매했습니다.%n", size);

@@ -6,4 +6,6 @@ public interface WinningRepository {
     void saveWinning(Lotto lotto);
 
     Lotto getWinning();
+
+    void saveBonusNumber(int bonusNumber);
 }
