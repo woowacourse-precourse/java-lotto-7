@@ -12,7 +12,7 @@ public class OutputView {
     private static final String PURCHASED_TICKETS_MESSAGE = "\n%d개를 구매했습니다.";
     private static final String WINNING_STATISTICS_TITLE = "\n당첨 통계";
     private static final String SEPARATOR_LINE = "---";
-    private static final String RANK_RESULT_FORMAT = "%d개 일치 (%s원) - %d개";
+    private static final String RANK_RESULT_FORMAT = "%s (%s원) - %d개";
     private static final String TOTAL_PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void printError(String message) {
@@ -33,15 +33,11 @@ public class OutputView {
 
         Arrays.stream(LottoRank.values())
                 .filter(rank -> rank != LottoRank.NONE)
-                .forEach(rank -> {
-                    String formatMoney = NumberFormat.getInstance().format(rank.getPrize());
-
-                    if (rank == LottoRank.SECOND) {
-                        System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개%n", formatMoney, result.getRankCount(rank));
-                    } else {
-                        System.out.printf(RANK_RESULT_FORMAT + "%n", rank.getMatchCount(), formatMoney, result.getRankCount(rank));
-                    }
-                });
+                .forEach(rank -> printRankResult(rank, result.getRankCount(rank)));
         System.out.printf(TOTAL_PROFIT_MESSAGE + "%n", profitRate);
+    }
+    private void printRankResult(LottoRank rank, int count) {
+        String formatMoney = NumberFormat.getInstance().format(rank.getPrize());
+        System.out.printf(RANK_RESULT_FORMAT + "%n", rank.getDescription(), formatMoney, count);
     }
 }
