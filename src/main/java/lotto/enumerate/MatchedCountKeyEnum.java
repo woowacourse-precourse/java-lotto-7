@@ -7,13 +7,13 @@ public enum MatchedCountKeyEnum {
     FIVE_WITH_BONUS_MATCHED("fiveWithBonusMatched"),
     SIX_MATCHED("sixMatched");
 
-    private final String message;
+    private final String key;
 
-    MatchedCountKeyEnum(String message) {
-        this.message = message;
+    MatchedCountKeyEnum(String key) {
+        this.key = key;
     }
 
-    public String getMessage() {
-        return message;
+    public String getKey() {
+        return key;
     }
 }

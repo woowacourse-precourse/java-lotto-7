@@ -20,7 +20,7 @@ public class LottoResultTest {
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(3, false);
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(3, true);
 
-        assertThat(lottoResult.getMatchedCount().get(MatchedCountKeyEnum.THREE_MATCHED.getMessage())).isEqualTo(2);
+        assertThat(lottoResult.getMatchedCount().get(MatchedCountKeyEnum.THREE_MATCHED.getKey())).isEqualTo(2);
     }
 
     @Test
@@ -28,7 +28,7 @@ public class LottoResultTest {
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(4, false);
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(4, true);
 
-        assertThat(lottoResult.getMatchedCount().get(MatchedCountKeyEnum.FOUR_MATCHED.getMessage())).isEqualTo(2);
+        assertThat(lottoResult.getMatchedCount().get(MatchedCountKeyEnum.FOUR_MATCHED.getKey())).isEqualTo(2);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class LottoResultTest {
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(5, false);
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(5, false);
 
-        assertThat(lottoResult.getMatchedCount().get(MatchedCountKeyEnum.FIVE_MATCHED.getMessage())).isEqualTo(2);
+        assertThat(lottoResult.getMatchedCount().get(MatchedCountKeyEnum.FIVE_MATCHED.getKey())).isEqualTo(2);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class LottoResultTest {
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(5, true);
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(5, true);
 
-        assertThat(lottoResult.getMatchedCount().get(MatchedCountKeyEnum.FIVE_WITH_BONUS_MATCHED.getMessage())).isEqualTo(2);
+        assertThat(lottoResult.getMatchedCount().get(MatchedCountKeyEnum.FIVE_WITH_BONUS_MATCHED.getKey())).isEqualTo(2);
     }
 
     @Test
@@ -52,6 +52,6 @@ public class LottoResultTest {
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(6, false);
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(6, true);
 
-        assertThat(lottoResult.getMatchedCount().get(MatchedCountKeyEnum.SIX_MATCHED.getMessage())).isEqualTo(2);
+        assertThat(lottoResult.getMatchedCount().get(MatchedCountKeyEnum.SIX_MATCHED.getKey())).isEqualTo(2);
     }
 }
