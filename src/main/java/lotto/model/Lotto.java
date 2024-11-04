@@ -7,6 +7,10 @@ import lotto.utils.ErrorMessages;
 import lotto.utils.LottoException;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,7 +21,7 @@ public class Lotto {
     }
 
     public static Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
 
         return new Lotto(numbers);
     }
@@ -46,19 +50,19 @@ public class Lotto {
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+        if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
             throw new LottoException(ErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != LOTTO_SIZE) {
             throw new LottoException(ErrorMessages.LOTTO_NUMBER_DUPLICATED);
         }
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new LottoException(ErrorMessages.LOTTO_NUMBER_SIZE);
         }
     }
