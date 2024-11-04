@@ -79,4 +79,16 @@ class LottoResultTest {
                 LottoRank.FIFTH.getPrize()) / (double) purchaseAmount * 100;
         assertThat(yield).isEqualTo(expectedYield);
     }
+
+    @DisplayName("로또 번호 0개 일치 시 수익률 0반환")
+    @Test
+    void 수익률_계산_결과없음_검증() {
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.addResult(LottoRank.NONE);
+
+        int purchaseAmount = 10000;
+        double yield = lottoResult.calculateYield(purchaseAmount);
+
+        assertEquals(0, yield);
+    }
 }
