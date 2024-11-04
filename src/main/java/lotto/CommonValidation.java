@@ -18,4 +18,11 @@ public class CommonValidation {
            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_RANGE_ERROR.getMessage());
         }
     }
+
+    public static void validateNumbersRange(int number) {
+        boolean condition = number >= LottoInfo.FIRST_NUMBER.getInfo() && number <= LottoInfo.LAST_NUMBER.getInfo();
+        if (!condition) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_RANGE_ERROR.getMessage());
+        }
+    }
 }
