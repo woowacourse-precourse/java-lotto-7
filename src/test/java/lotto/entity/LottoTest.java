@@ -40,7 +40,7 @@ public class LottoTest {
                 .hasMessage(ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
     }
 
-    static Stream<List<Integer>> 로또_번호의_개수가_6개가_아니면_예외가_발생한다() {
+    private static Stream<List<Integer>> 로또_번호의_개수가_6개가_아니면_예외가_발생한다() {
         return Stream.of(
                 List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
                 List.of(1, 2, 3, 4, 5, 6, 7),
@@ -53,7 +53,7 @@ public class LottoTest {
         );
     }
 
-    static Stream<List<Integer>> 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+    private static Stream<List<Integer>> 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         return Stream.of(
                 List.of(1, 1, 1, 1, 1, 1),
                 List.of(1, 1, 1, 1, 1, 6),
@@ -63,7 +63,7 @@ public class LottoTest {
         );
     }
 
-    static Stream<List<Integer>> 로또_번호가_1_과_45_사이의_숫자가_아니면_예외가_발생한다() {
+    private static Stream<List<Integer>> 로또_번호가_1_과_45_사이의_숫자가_아니면_예외가_발생한다() {
         return Stream.of(
                 List.of(58, 1, 2, 3, 4, 5),
                 List.of(999999, 99999, 11111, 333333, 5555555, 123214),

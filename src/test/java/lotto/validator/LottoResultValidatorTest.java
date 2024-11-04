@@ -24,7 +24,7 @@ public class LottoResultValidatorTest {
                 .hasMessage(ExceptionMessage.WINNING_BONUS_NUMBER_DUPLICATED.getMessage());
     }
 
-    static Stream<Arguments> 당청_번호와_보너스_번호가_중복되면_예외가_발생한다() {
+    private static Stream<Arguments> 당청_번호와_보너스_번호가_중복되면_예외가_발생한다() {
         return Stream.of(Arguments.arguments(new WinningNumber("1,2,3,4,5,6"), new BonusNumber("1")));
     }
 }
