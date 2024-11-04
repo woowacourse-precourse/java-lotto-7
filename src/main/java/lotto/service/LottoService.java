@@ -36,6 +36,12 @@ public class LottoService {
         return results;
     }
 
+    public Double getRateOfReturn(Map<Prize, Integer> winningResult, Long purchasePrice) {
+        Long totalPrizeAmount = getTotalPrizeAmount(winningResult);
+
+        return Double.valueOf(totalPrizeAmount) / purchasePrice * 100;
+    }
+
     private Map<Prize, Integer> initWinningResults() {
         Map<Prize, Integer> results = new EnumMap<>(Prize.class);
 
@@ -44,5 +50,11 @@ public class LottoService {
         }
 
         return results;
+    }
+
+    private Long getTotalPrizeAmount(Map<Prize, Integer> winningResult) {
+        return winningResult.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
+                .sum();
     }
 }
