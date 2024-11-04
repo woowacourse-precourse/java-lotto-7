@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import lotto.model.Lotto;
 import lotto.model.WinningLotto;
@@ -46,15 +46,17 @@ class LottoTest {
     }
     @Test
     void 로또_당첨번호_비교(){
-        Lotto lotto  = new Lotto(List.of(1,2,3,4,5,6));
-        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1,2,3,4,5,6)),7);
-        WinningLotto losingLotto = new WinningLotto(new Lotto(List.of(8,9,10,11,12,13)),7);
-        WinningLotto fifthLotto = new WinningLotto(new Lotto(List.of(1,2,3,10,11,12)),7);
-        WinningLotto secondLotto = new WinningLotto(new Lotto(List.of(1,2,3,4,5,7)),6);
 
-        assertThat(lotto.compareTo(winningLotto.getWinningLotto())).isEqualTo(6);
-        assertThat(lotto.compareTo(losingLotto.getWinningLotto())).isEqualTo(0);
-        assertThat(lotto.compareTo(fifthLotto.getWinningLotto())).isEqualTo(3);
-        assertThat(lotto.compareTo(secondLotto.getWinningLotto())).isEqualTo(5);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1,2,3,4,5,6)),7); //당첨 로또가 1,2,3,4,5,6 보너스 7
+
+        Lotto losingLotto = new Lotto(List.of(8,9,10,11,12,13)); //미당첨 로또
+        Lotto FirstLotto = new Lotto(List.of(1,2,3,4,5,6)); //1등 당첨 로또
+        Lotto fifthLotto = new Lotto(List.of(1,2,3,10,11,12)); //5등 당첨 로또
+        Lotto secondLotto = new Lotto(List.of(1,2,3,4,5,7)); //2등 당첨로또
+
+        assertThat(FirstLotto.compareTo(winningLotto.getWinningLotto())).isEqualTo(6); //매칭되는 개수가 6개
+        assertThat(losingLotto.compareTo(winningLotto.getWinningLotto())).isEqualTo(0);
+        assertThat(fifthLotto.compareTo(winningLotto.getWinningLotto())).isEqualTo(3);
+        assertThat(secondLotto.compareTo(winningLotto.getWinningLotto())).isEqualTo(5);
     }
 }
