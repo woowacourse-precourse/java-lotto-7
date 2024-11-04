@@ -15,7 +15,11 @@ public class OutputView {
 		System.out.println(message);
 	}
 
-	public static void printGameResult(GameResults gameResults) {
+	public static void printNewLine(){
+		System.out.println();
+	}
+
+	public static void printGameResult(GameResults gameResults, List<Lotto> lottos) {
 		printMessage("당첨 통계");
 		printMessage("---");
 
@@ -26,7 +30,7 @@ public class OutputView {
 			printMessage(resultMessage);
 		}
 
-		printMessage("총 수익률은 " + gameResults.getRoundedProfitRate() + "%입니다.");
+		printMessage("총 수익률은 " + gameResults.getRoundedProfitRate(lottos) + "%입니다.");
 	}
 
 	public static void printPurchaseLotto(List<Lotto> lottos) {
@@ -36,10 +40,11 @@ public class OutputView {
 		for (Lotto lotto : lottos) {
 			String lottoNumbers = lotto.getNumbers().stream()
 				.map(String::valueOf)
-				.collect(Collectors.joining(LOTTO_NUMBER_SEPARATOR));
+				.collect(Collectors.joining(LOTTO_NUMBER_SEPARATOR + BLANK));
 
-			printMessage(lottoNumbers);
+			printMessage("[" + lottoNumbers+ "]");
 		}
 
+		printMessage("");
 	}
 }
