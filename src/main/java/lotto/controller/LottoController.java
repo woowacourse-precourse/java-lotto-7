@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.dto.WinningLottoResultDTO;
+import lotto.exception.ExceptionMessages;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -37,8 +38,14 @@ public class LottoController {
 
     private int getBuyLottoMoney() {
         while (true) {
+            String input = inputView.inputBuyLottoMoney();
             try {
-                return Integer.parseInt(inputView.inputBuyLottoMoney());
+                int money = Integer.parseInt(input);
+                lottoService.getCalculateBuyLottoCount(money);
+                return money;
+            } catch (NumberFormatException e) {
+                outputView.printErrorMessage(ExceptionMessages.INVALID_NUMBER_FORMAT_ERROR + input);
+                outputView.printWhiteSpace();
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
                 outputView.printWhiteSpace();
@@ -49,7 +56,8 @@ public class LottoController {
     private String getWinningNumbers() {
         while (true) {
             try {
-                return inputView.inputWinningNumbers();
+                String input = inputView.inputWinningNumbers();
+                return input;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
                 outputView.printWhiteSpace();
@@ -60,7 +68,8 @@ public class LottoController {
     private String getBonusNumber() {
         while (true) {
             try {
-                return inputView.inputBonusNumber();
+                String input = inputView.inputBonusNumber();
+                return input;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
                 outputView.printWhiteSpace();
@@ -77,7 +86,17 @@ public class LottoController {
     }
 
     private void processWinningNumbers(String winningNumbers, String bonusNumber) {
-        lottoService.recordWinningLotto(winningNumbers, bonusNumber);
+        while (true) {
+            try {
+                lottoService.recordWinningLotto(winningNumbers, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                outputView.printWhiteSpace();
+
+                bonusNumber = getBonusNumber();
+            }
+        }
     }
 
     private void printWinningStatistics(int buyLottoMoney) {
@@ -97,4 +116,3 @@ public class LottoController {
         outputView.printRateOfReturn(lottoRateOfReturn);
     }
 }
-
