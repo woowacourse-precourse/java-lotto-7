@@ -27,7 +27,7 @@ public class MakeLottoNumbers {
         for (int i = 0; i < count; i++) {
             lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6); // 로또 번호 입력받기
             allLottoNumbers.add(lotto);
-            Collections.sort(lotto);
+            sortLottoNumbers(lotto);
             printLottoNumbers(lotto);
         }
         System.out.println("당첨 번호를 입력해 주세요.");
@@ -41,11 +41,19 @@ public class MakeLottoNumbers {
         for(int i = 0; i<allLottoNumbers.size(); i++){
             matchLottoNumbers(allLottoNumbers.get(i), prize, bonus);
         }
-        calculate(countPrize);
+        calculate(countPrize, count);
     }
+    private List<Integer> sortLottoNumbers(List<Integer> lotto) {
+        List<Integer> numbers = new ArrayList<>(lotto);
+        Collections.sort(numbers);
+
+        return numbers;
+    }
+
     public void validate(List<Integer> prize, int bonus){
-        for(Integer i : prize){
-            if(prize.get(i)==bonus){
+        for(int i=0;i<6;i++){
+            if(prize.get(i).equals(bonus)){
+                System.out.print(prize.get(i)+" ");
                 throw new IllegalArgumentException("[ERROR] 보너스 숫자가 될 수 없는 수 입니다.");
             }
         }
@@ -104,28 +112,24 @@ public class MakeLottoNumbers {
         countPrizes(countPrize, count, bonus);
         return countPrize;
     }
-    public void calculate(int[] countPrize){
+    public void calculate(int[] countPrize, int count){
         System.out.println("당첨 통계");
         System.out.println("---");
         int sum = 0;
-        int count = 0;
         for (int i=0; i<6; i++) {
             Money rank = Money.values()[i];
             if (rank.isBonus() && rank.getMatchedCount() == 5) {
                 System.out.println(rank.getMatchedCount() + "개 일치, 보너스 볼 일치 (" + formatNumber(rank.getPrize()) + "원) - " + countPrize[i] + "개");
                 sum += countPrize[i] * rank.getPrize();
-                count+=countPrize[i];
             }
             if (!rank.isBonus()) {
                 System.out.println(rank.getMatchedCount() + "개 일치 (" + formatNumber(rank.getPrize()) + "원) - " + countPrize[i] + "개");
                 sum += countPrize[i] * rank.getPrize();
-                count+=countPrize[i];
             }
         }
-        BigDecimal prizeRate = new BigDecimal(sum)
-                .divide(new BigDecimal(count * 1000), RoundingMode.HALF_UP) // 나누기
-                .multiply(new BigDecimal(100)); // 100을 곱하여 비율로 변환
-        System.out.println(prizeRate.setScale(2, RoundingMode.HALF_UP).doubleValue());
+        double prize = ((double) sum / (count*10));
+        prize = Math.round(prize * 10.0) / 10.0;
+        System.out.println("총 수익률은 "+prize+"%입니다.");
         //비율 이상한거면 에러처리
     }
 
@@ -133,22 +137,22 @@ public class MakeLottoNumbers {
         first(countPrize, count, bonus);
         bonus(countPrize, count, bonus);
         if(count<3) {
-            countPrize[5]++;
+            countPrize[0]++;
         }
         return countPrize;
     }
 
     public int[] first(int[] countPrize, int count, boolean bonus) {
         if(count == 6){
-            countPrize[0]++;
+            countPrize[5]++;
             return countPrize;
         }
         if(count == 4){
-            countPrize[3]++;
+            countPrize[2]++;
             return countPrize;
         }
         if(count == 3){
-            countPrize[4]++;
+            countPrize[1]++;
             return countPrize;
         }
         return countPrize;
@@ -156,11 +160,11 @@ public class MakeLottoNumbers {
 
     public int[] bonus(int[] countPrize, int count, boolean bonus) {
         if(count == 5&&bonus){
-            countPrize[1]++;
+            countPrize[4]++;
             return countPrize;
         }
         if(count == 5&&!bonus) {
-            countPrize[2]++;
+            countPrize[3]++;
         }
         return countPrize;
     }
