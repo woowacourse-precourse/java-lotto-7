@@ -7,9 +7,9 @@ import lotto.view.Input;
 public class LottoWinningNumber {
     Input input = new Input();
 
-    public List<Lotto> input() {
+    public List<Integer> input() {
         System.out.println();
-        System.out.print("당첨 번호를 입력해 주세요.");
+        System.out.println("당첨 번호를 입력해 주세요.");
         return input.winningNumber();
     }
 }

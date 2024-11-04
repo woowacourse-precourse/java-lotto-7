@@ -23,18 +23,16 @@ public class LottoPurchase {
         int amount = input.price();
         validation.purchase(amount);
 
-        return amount/LOTTO_PRICE;
+        return amount / LOTTO_PRICE;
     }
-
 
     public List<Lotto> issueLotto(int numberOfLottos) {
         List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0; i < numberOfLottos; i++) {
-            List<Integer> numbers = generateLottoNumbers(); // 로또 번호 생성
-            Lotto lotto = new Lotto(numbers); // 생성된 번호로 Lotto 객체 생성
-            lottoList.add(lotto); // 리스트에 Lotto 객체 추가
+            List<Integer> numbers = generateLottoNumbers();
+            Lotto lotto = new Lotto(numbers);
+            lottoList.add(lotto);
         }
-
         output.purchaseAmount(lottoList);
         return lottoList;
     }
