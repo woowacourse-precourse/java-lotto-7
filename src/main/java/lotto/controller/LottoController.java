@@ -9,26 +9,48 @@ import java.util.Set;
 
 public class LottoController {
     public void run() {
-        int lottoAmount = InputView.inputLottoAmount();
+        int lottoAmount = getLottoAmount();
+        Lottos purchasedLottos = purchaseLottos(lottoAmount);
+        OutputView.printLottoNumberOutput(lottoAmount, purchasedLottos.getLottoNumbers());
 
-        LottoNumberGenerator generator = new LottoNumberGenerator();
-        List<Lotto> lottos = generator.generate(lottoAmount);
-        Lottos purchasedLottos = new Lottos(lottos);
-
-        OutputView.printLottoNumberOutput(lottoAmount, lottos);
-
-        Set<Integer> winningNumbers = InputView.inputWinningNumber();
-        WinningNumber winningNumber = new WinningNumber(winningNumbers);
-
-        int bonusNumberValue = InputView.inputBonusNumber();
-        BonusNumber bonusNumber = new BonusNumber(bonusNumberValue);
+        WinningNumber winningNumber = getWinningNumber();
+        BonusNumber bonusNumber = getBonusNumber();
 
         LottoCalculator calculator = new LottoCalculator(purchasedLottos, bonusNumber, winningNumber);
-        List<LottoNumberCounter> counters = calculator.calculateMatching();
-        int[] lottoResult = calculator.getLottoResult(counters);
+        int[] lottoResult = calculateResults(calculator);
 
         LottoAmount lottoRound = new LottoAmount(lottoAmount);
-        double profitRate = calculator.calculateProfitRate(lottoResult, lottoRound);
+        double profitRate = calculateProfitRate(calculator, lottoResult, lottoRound);
+
         OutputView.printLottoStatistics(lottoResult, profitRate);
+    }
+
+    private int getLottoAmount() {
+        return InputView.inputLottoAmount();
+    }
+
+    private Lottos purchaseLottos(int lottoAmount) {
+        LottoNumberGenerator generator = new LottoNumberGenerator();
+        List<Lotto> lottos = generator.generate(lottoAmount);
+        return new Lottos(lottos);
+    }
+
+    private WinningNumber getWinningNumber() {
+        Set<Integer> winningNumbers = InputView.inputWinningNumber();
+        return new WinningNumber(winningNumbers);
+    }
+
+    private BonusNumber getBonusNumber() {
+        int bonusNumberValue = InputView.inputBonusNumber();
+        return new BonusNumber(bonusNumberValue);
+    }
+
+    private int[] calculateResults(LottoCalculator calculator) {
+        List<LottoNumberCounter> counters = calculator.calculateMatching();
+        return calculator.getLottoResult(counters);
+    }
+
+    private double calculateProfitRate(LottoCalculator calculator, int[] lottoResult, LottoAmount lottoRound) {
+        return calculator.calculateProfitRate(lottoResult, lottoRound);
     }
 }
