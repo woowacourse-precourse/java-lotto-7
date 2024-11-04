@@ -13,7 +13,6 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         LottoController lottoController = new LottoController();
-
         LottoResult lottoResult;
 
         int lottoCost = inputView.getLottoCost();
@@ -30,6 +29,8 @@ public class Application {
         lottoController.checkResult(lottos, lottoResult);
 
         double profitRate = lottoController.checkProfitRate(lottoResult);
-        
+
+        outputView.printStatistics(lottoResult);
+        outputView.printProfitRate(profitRate);
     }
 }
