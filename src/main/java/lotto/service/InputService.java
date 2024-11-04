@@ -11,15 +11,13 @@ import static lotto.service.ValidatorService.*;
 public class InputService {
     public int getPurchaseAmount() {
         System.out.println(InputViewConstants.PURCHASE_AMOUNT_INSTRUCTION);
+        String enteredPurchasePrice = Console.readLine();
         try {
-            int purchaseAmount = Integer.parseInt(Console.readLine());
-            if (validatePurchaseAmount(purchaseAmount)) {
-                return purchaseAmount / ConstraintConstants.PURCHASE_UNIT;
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorViewConstants.INVALID_INPUT_TYPE);
+            return ConverterService.convertPurchasePrice(enteredPurchasePrice);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-        throw new IllegalArgumentException(ErrorViewConstants.INVALID_INPUT_CONSTRAINT);
+        return getPurchaseAmount();
     }
 
     public int[] getWinningNumbers() {
