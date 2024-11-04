@@ -30,7 +30,7 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public LottoTicketsDto generateLottoList() {
+    public LottoTicketsDto generateLottoTickets() {
         Money money = moneyRepository.get()
                 .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_MONEY.getMessage()));
 

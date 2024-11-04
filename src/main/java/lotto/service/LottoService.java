@@ -7,5 +7,5 @@ public interface LottoService {
 
     MoneyDto createMoney(String money);
 
-    LottoTicketsDto generateLottoList();
+    LottoTicketsDto generateLottoTickets();
 }

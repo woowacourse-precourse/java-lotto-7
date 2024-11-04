@@ -21,7 +21,7 @@ class LottoControllerTest {
             }
 
             @Override
-            public LottoTicketsDto generateLottoList() {
+            public LottoTicketsDto generateLottoTickets() {
                 return null;
             }
         }, new MockViewer());

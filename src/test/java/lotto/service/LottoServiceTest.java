@@ -43,7 +43,7 @@ class LottoServiceTest {
 
         LottoService service = new LottoServiceImpl(mockNullRepository, lottoTicketsRepository);
 
-        assertThatThrownBy(service::generateLottoList).isInstanceOf(EntityNotFoundException.class);
+        assertThatThrownBy(service::generateLottoTickets).isInstanceOf(EntityNotFoundException.class);
     }
 
     @Test
@@ -56,7 +56,7 @@ class LottoServiceTest {
         LottoService service = new LottoServiceImpl(moneyRepository, lottoTicketsRepository);
 
         // when
-        LottoTicketsDto result = service.generateLottoList();
+        LottoTicketsDto result = service.generateLottoTickets();
 
         // then
         assertThat(result).isNotNull();

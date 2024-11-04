@@ -34,12 +34,20 @@ class RewardTest {
     }
 
     @Test
-    @DisplayName("상금 미반환 테스트 + 보너스 미당첨")
+    @DisplayName("상금 미반환 테스트")
     void test2() {
         //given
         for (int correct = 0; correct < 3; correct++) {
             // when
             Reward result = Reward.forMatch(correct, false);
+
+            // then
+            assertThat(result).isEqualTo(NO_REWARD);
+        }
+
+        for (int correct = 0; correct < 3; correct++) {
+            // when
+            Reward result = Reward.forMatch(correct, true);
 
             // then
             assertThat(result).isEqualTo(NO_REWARD);

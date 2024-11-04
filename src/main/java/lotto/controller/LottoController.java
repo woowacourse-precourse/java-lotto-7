@@ -29,7 +29,7 @@ public class LottoController {
 
     protected void getLotto(MoneyDto moneyDto) {
         viewer.printMessage(moneyDto.lottoCount());
-        LottoTicketsDto lottoTicketsDto = lottoService.generateLottoList();
+        LottoTicketsDto lottoTicketsDto = lottoService.generateLottoTickets();
         viewer.printMessage(lottoTicketsDto.ticketsMessage());
     }
 }
