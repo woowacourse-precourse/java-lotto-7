@@ -26,7 +26,7 @@ public class OutputView {
         printRevenueResult(lottoResultDto);
     }
 
-    public void printWinningDetail(LottoResultDto dto) {
+    public void printWinningDetail(LottoResultDto lottoResultDto) {
         System.out.println(WINNING_STATISTICS);
 
         WINNERS.forEach(winner -> {
@@ -34,13 +34,13 @@ public class OutputView {
                     PRIZE_DETAIL,
                     winner.getMessage(),
                     winner.getPrizeMoney(),
-                    dto.prizeMatchResults().getOrDefault(winner.getRank(), 0)
+                    lottoResultDto.prizeMatchResults().getOrDefault(winner.getRank(), 0)
             );
         });
     }
 
-    public void printRevenueResult(LottoResultDto dto) {
-        System.out.printf(REVENUE_RESULT, dto.rateOfReturn());
+    public void printRevenueResult(LottoResultDto lottoResultDto) {
+        System.out.printf(REVENUE_RESULT, lottoResultDto.rateOfReturn());
     }
 
     public void printErrorMessage(String errorMessage) {
