@@ -1,16 +1,17 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.BeforeEach;
+
 import java.util.EnumMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class TotalGainTest {
-
-    TotalGain totalGain;
+class LottoResultTest {
+    LottoResult lottoResult;
+    PaymentInput paymentInput;
 
     @BeforeEach
     void setUp() {
@@ -23,13 +24,12 @@ class TotalGainTest {
         expected.put(Rank.FIVE_HIT_WITH_BONUS, 0);
         expected.put(Rank.SIX_HIT, 0);
 
-        PaymentInput paymentInput = new PaymentInput(8000);
-
-        totalGain = new TotalGain(expected, paymentInput);
+        paymentInput = new PaymentInput(8000);
+        lottoResult=new LottoResult(expected);
     }
 
     @Test
     void 수익률을_구한다() {
-        assertThat(totalGain.calculateInvestment()).isEqualTo(62.5);
+        assertThat(lottoResult.calculateInvestment(paymentInput)).isEqualTo(62.5);
+        }
     }
-}
