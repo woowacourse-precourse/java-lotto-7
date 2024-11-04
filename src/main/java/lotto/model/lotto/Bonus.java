@@ -16,4 +16,8 @@ public class Bonus {
   public static Bonus from(BonusUserInput userInput) {
     return new Bonus(userInput.getNumber());
   }
+
+  public int getNumber () {
+    return this.number;
+  }
 }

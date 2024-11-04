@@ -7,6 +7,8 @@ import lotto.command.validate.BonusCommand;
 import lotto.command.validate.LottoCommand;
 import lotto.command.validate.ValidateCommand;
 import lotto.dto.BonusUserInput;
+import lotto.dto.MatchResult;
+import lotto.dto.MatchResults;
 import lotto.dto.WinningLottoUserInput;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.PurchasedLottos;
@@ -66,5 +68,14 @@ public class LottoService {
 
   public BonusCommand getBonusCommand() {
     return this.bonusCommand;
+  }
+
+  public MatchResults matchWinningLotto(WinningLotto winningLotto, PurchasedLottos purchasedLottos) {
+    MatchResults matchResults = MatchResults.createMatchResults();
+    for (Lotto purchasedLotto : purchasedLottos.getLottos()) {
+      MatchResult matchResult = winningLotto.match(purchasedLotto);
+      matchResults.add(matchResult);
+    }
+    return matchResults;
   }
 }
