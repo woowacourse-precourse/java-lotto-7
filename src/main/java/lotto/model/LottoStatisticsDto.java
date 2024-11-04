@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoStatisticsDto {
@@ -9,28 +10,23 @@ public class LottoStatisticsDto {
 
     public LottoStatisticsDto(List<LottoRank> lottoResults, int purchaseAmount) {
         this.sortedRankCounts = calculateSortedRankCounts(lottoResults);
-        this.profitRate = calculateProfitRate(sortedRankCounts, purchaseAmount);
+        this.profitRate = calculateProfitRate(purchaseAmount);
     }
 
     private List<LottoRankCount> calculateSortedRankCounts(List<LottoRank> lottoResults) {
-        List<LottoRankCount> rankCounts = new ArrayList<>();
+        List<LottoRank> ranks = new ArrayList<>(List.of(LottoRank.values()));
+        Collections.reverse(ranks);  // 역순으로 변환
 
-        for (LottoRank lottoRank : LottoRank.values()) {
-            if (lottoRank == LottoRank.FAIL) {
-                continue; // FAIL 제외
-            }
-
-            int count = (int) lottoResults.stream()
-                    .filter(rank -> rank == lottoRank)
-                    .count();
-
-            rankCounts.add(new LottoRankCount(lottoRank, count));
-        }
-
-        return rankCounts;
+        return ranks.stream()
+                .filter(rank -> rank != LottoRank.FAIL) // FAIL 제외
+                .map(rank -> new LottoRankCount(rank, (int) lottoResults.stream()
+                        .filter(result -> result == rank)
+                        .count()))
+                .toList();
     }
 
-    private double calculateProfitRate(List<LottoRankCount> sortedRankCounts, int purchaseAmount) {
+
+    private double calculateProfitRate(int purchaseAmount) {
         int totalPrize = sortedRankCounts.stream()
                 .mapToInt(entry -> entry.rank().getPrize() * entry.count())
                 .sum();
