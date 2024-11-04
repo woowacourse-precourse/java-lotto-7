@@ -10,13 +10,13 @@ public class WinningLottoCounterTest {
     private WinningLottoCounter winningLottoCounter;
 
     @BeforeEach
-    void 초기화() { // 메서드 이름을 한글로
+    void 초기화() {
         winningLottoCounter = new WinningLottoCounter();
     }
 
     @Test
     void 초기화_테스트() {
-        Map<WinningLotto, Integer> counts = winningLottoCounter.getAllCounts();
+        Map<WinningLotto, Integer> counts = winningLottoCounter.getCounts();
         for (WinningLotto lotto : WinningLotto.values()) {
             Assertions.assertThat(counts.get(lotto))
                     .as(lotto + "의 초기 카운트는 0이어야 합니다.")
@@ -33,7 +33,7 @@ public class WinningLottoCounterTest {
         winningLottoCounter.incrementCount(WinningLotto.NO_MATCH);
         winningLottoCounter.incrementCount(WinningLotto.NO_MATCH);
 
-        Map<WinningLotto, Integer> counts = winningLottoCounter.getAllCounts();
+        Map<WinningLotto, Integer> counts = winningLottoCounter.getCounts();
 
         Assertions.assertThat(counts.get(WinningLotto.NO_MATCH))
                 .as("NO_MATCH의 카운트는 2이어야 합니다.")

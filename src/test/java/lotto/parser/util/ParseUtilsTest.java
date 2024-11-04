@@ -1,6 +1,5 @@
-package lotto.parser;
+package lotto.parser.util;
 
-import lotto.parser.util.ParseUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
