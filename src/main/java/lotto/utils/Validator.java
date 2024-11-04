@@ -19,10 +19,10 @@ public class Validator {
      */
     public static void validatePurchaseAmount(int amount) {
         if (amount <= 0 || amount % LOTTO_PRICE != 0) {
-            LoggerUtils.logError(ErrorMessages.INVALID_PURCHASE_AMOUNT.getMessage());
             throw new IllegalArgumentException(ErrorMessages.INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
+
 
     /**
      * 당첨 번호 리스트의 유효성을 검증합니다.
@@ -32,16 +32,13 @@ public class Validator {
      */
     public static void validateWinningNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            LoggerUtils.logError(ErrorMessages.INVALID_WINNING_NUMBER.getMessage());
             throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER.getMessage());
         }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            LoggerUtils.logError(ErrorMessages.DUPLICATE_WINNING_NUMBER.getMessage());
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER.getMessage());
         }
         if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
-            LoggerUtils.logError(ErrorMessages.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
             throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
@@ -54,7 +51,6 @@ public class Validator {
      */
     public static void validateBonusNumber(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            LoggerUtils.logError(ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
             throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
