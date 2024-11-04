@@ -40,6 +40,10 @@ public enum WinningRanking implements Model{
         return this.matchedCount;
     }
 
+    public int getPrizeMoney(){
+        return this.prizeMoney;
+    }
+
     public static WinningRanking findByCountAndBonus(int matchedCount, boolean bonusMatched) {
         return Arrays.stream(WinningRanking.values())
                 .filter(winningRanking -> {
