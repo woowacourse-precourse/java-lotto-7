@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.ExceptionCode;
 import lotto.exception.LottoException;
@@ -23,11 +22,8 @@ public class WinningNumbers {
         }
     }
 
-    public List<Integer> getWinningNumbers() {
-        List<Integer> winningNumbers = new ArrayList<>(sixNumbers.getSixNumbers());
-        winningNumbers.add(bonusNumber.getBonusNumber());
-
-        return winningNumbers;
+    public List<Integer> getSixNumbers() {
+        return sixNumbers.getSixNumbers();
     }
 
     public int getBonusNumber() {

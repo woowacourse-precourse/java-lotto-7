@@ -33,7 +33,7 @@ public class NumbersComparator {
 
     private int countMatchedNumbers(List<Integer> myNumbers) {
         return (int) myNumbers.stream()
-                .filter(winningNumbers.getWinningNumbers()::contains)
+                .filter(winningNumbers.getSixNumbers()::contains)
                 .count();
     }
 
