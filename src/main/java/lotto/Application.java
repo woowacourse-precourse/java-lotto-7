@@ -10,6 +10,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
     public static void main(String[] args) {
+        try {
             int purchaseAmount = getPurchaseAmount();
             List<Lotto> purchasedLottos = generateLottos(purchaseAmount / 1000);
             printPurchasedLottos(purchasedLottos);
@@ -18,6 +19,9 @@ public class Application {
             int bonusNumber = getBonusNumber();
 
             printStatistics(purchasedLottos, winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 입력이 올바른 숫자가 아닙니다.");
+        }
     }
 
     // 구입 금액 입력 처리
