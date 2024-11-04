@@ -6,6 +6,7 @@ public enum LottoExceptionMessage implements ExceptionMessage {
 
     // 가격
     PRICE_NOT_THOUSANDS_UNIT("[ERROR] 가격은 1,000원 단위로 입력해야 합니다."),
+    PRICE_NOT_POSITIVE_INTEGER("[ERROR] 가격은 양의 정수이어야 합니다."),
     // 당첨 번호
     INVALID_WINNING_NUMBERS("[ERROR] 당첨 번호는 1 이상 45 이하의 숫자 6개를 콤마로 구분하여 입력해야 합니다."),
     // 보너스 번호
