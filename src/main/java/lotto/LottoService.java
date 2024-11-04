@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class LottoService {
 
     private Lotto lotto_nums;
+    private List<Lotto> make_lottos;
 
     public LottoService(Lotto lotto_nums) {
         this.lotto_nums = lotto_nums;
@@ -47,6 +48,7 @@ public class LottoService {
     public Lotto win_number(String numbers) {
         while (true) {
             try {
+                System.out.println("당첨 번호를 입력해 주세요.");
                 String[] numberStrings = numbers.split(",");
                 List<Integer> numberList = new ArrayList<>();
 
@@ -68,11 +70,12 @@ public class LottoService {
     }
 
     public int bonus(String number) {
+        System.out.println("보너스 번호를 입력해 주세요.");
         if (!(number != null && number.matches("\\d+"))) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자입니다.");
         }
         int bonus_num = Integer.parseInt(number.trim());
-        if (bonus_num < 1 || bonus_num >45){
+        if (bonus_num < 1 || bonus_num > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 값이어야 합니다.");
         }
         LottoService lottoService = new LottoService(lotto_nums);
@@ -81,5 +84,17 @@ public class LottoService {
         }
         return bonus_num;
     }
+
+    // 로또 발행
+    public void make_lotto(int amount) {
+        int ea = amount / 1000;
+        make_lottos = new ArrayList<>();
+        for (int i = 0; i < ea; i++) {
+            List<Integer> numberList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            make_lottos.add(new Lotto(numberList));
+        }
+        System.out.println(ea + "개를 구매했습니다.");
+    }
+
 
 }
