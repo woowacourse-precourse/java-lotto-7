@@ -28,8 +28,9 @@ public class PickLottoService {
     }
 
     private List<Integer> getRandomNumbers() {
-        List<Integer> nowTicket = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.get(), MAX_LOTTO_NUMBER.get(),
-                LOTTO_NUMBERS.get());
+        List<Integer> nowTicket = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                MIN_LOTTO_NUMBER.get(), MAX_LOTTO_NUMBER.get(), LOTTO_NUMBERS.get()));
+
         Collections.sort(nowTicket);
         return nowTicket;
     }
