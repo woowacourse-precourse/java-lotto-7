@@ -6,6 +6,12 @@ package lotto.service.lotto.constant;
  */
 public class LottoConstant {
   public final static int PRICE = 1000;
+  public static final int AMOUNT_UNIT = PRICE;
+
+  public static final int LOTTO_MINIMUM_NUMBER = 1;
+  public static final int LOTTO_MAXIMUM_NUMBER = 45;
+  public static final int LOTTO_NUMBER_COUNT = 6;
+
   public final static int SECOND_AND_THIRD_PRIZE_MATCH_COUNT = 5;
   public final static int MINIMUM_MATCH_REQUIRED_FOR_PRIZE = 3;
 

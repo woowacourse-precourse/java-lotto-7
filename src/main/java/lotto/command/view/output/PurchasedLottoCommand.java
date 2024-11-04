@@ -1,13 +1,9 @@
-package lotto.command.output;
+package lotto.command.view.output;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.dto.MatchResult;
-import lotto.dto.MatchResults;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.PurchasedLottos;
-import lotto.service.lotto.constant.MatchBonusEnum;
 
 /**
  * @author : jiffyin7@gmail.com
@@ -31,9 +27,8 @@ public class PurchasedLottoCommand implements OutputCommand {
 
   @Override
   public String toString() {
-    StringBuilder builder = new StringBuilder();
     List<Lotto> lottos = purchasedLottos.getLottos();
-    return String.format("%d개를 구매헀습니다.%s%s",
+    return String.format("\n%,d개를 구매했습니다.%s%s",
         lottos.size(),
         System.lineSeparator(),
         printLottosNumbers(lottos));
@@ -48,6 +43,6 @@ public class PurchasedLottoCommand implements OutputCommand {
   private String printLottoNumbers(Lotto lotto) {
     return "[" + lotto.getNumbers().stream()
         .map(Object::toString)
-        .collect(Collectors.joining(",")) + "]";
+        .collect(Collectors.joining(", ")) + "]";
   }
 }

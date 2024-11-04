@@ -5,7 +5,7 @@ package lotto.common.exception;
  * @since : 24. 10. 30.
  */
 public class GlobalException extends RuntimeException {
-  private static final String ERROR_MESSAGE_PREFIX = "[ERROR]";
+  private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
   public GlobalException (ExceptionEnum exceptionEnum) {
     this(exceptionEnum, "런타임 메시지가 없습니다.");
   }

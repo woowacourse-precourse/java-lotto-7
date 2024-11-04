@@ -1,7 +1,8 @@
-package lotto.command.validate;
+package lotto.command.view.validate;
 
-import static lotto.common.constant.Lotto.LOTTO_MAXIMUM_NUMBER;
-import static lotto.common.constant.Lotto.LOTTO_MINIMUM_NUMBER;
+import static lotto.service.lotto.constant.LottoConstant.LOTTO_MAXIMUM_NUMBER;
+import static lotto.service.lotto.constant.LottoConstant.LOTTO_MINIMUM_NUMBER;
+import static lotto.service.lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import lotto.view.exception.InputException;
  */
 public class LottoCommand implements ValidateCommand {
   private static final String DELIMITER = ",";
-  private static final String ASK = "당첨 번호를 입력해 주세요.";
+  private static final String ASK = "\n당첨 번호를 입력해 주세요.";
 
   @Override
   public UserInput execute(String input) {
@@ -38,6 +39,7 @@ public class LottoCommand implements ValidateCommand {
   private List<Integer> validateNumbers(String[] rawNumbers) {
     List<Integer> lottoNumbers = validateLottoNumbers(rawNumbers);
     validateDistinct(lottoNumbers);
+    validateCount(lottoNumbers);
     return lottoNumbers;
   }
 
@@ -55,7 +57,14 @@ public class LottoCommand implements ValidateCommand {
         .distinct()
         .count();
     if (distinctCount != lottoNumbers.size()) {
-      throw new InputException(ExceptionEnum.IVALID_INPUT);
+      throw new InputException(ExceptionEnum.LOTTO_NUMBER_NOT_DISTINCT);
+    }
+  }
+
+  private void validateCount(List<Integer> lottoNumbers) {
+    if (lottoNumbers.size() != LOTTO_NUMBER_COUNT) {
+      throw new InputException(ExceptionEnum.LOTTO_NUMBER_COUNT_NOT_AVAILABLE,
+          String.valueOf(lottoNumbers.size()));
     }
   }
 

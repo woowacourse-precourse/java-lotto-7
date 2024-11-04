@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.command.output.LottoProfitCommand;
-import lotto.command.output.PurchasedLottoCommand;
-import lotto.command.validate.ValidateCommand;
+import lotto.command.view.output.LottoProfitCommand;
+import lotto.command.view.output.PurchasedLottoCommand;
+import lotto.command.view.validate.ValidateCommand;
 import lotto.dto.BonusUserInput;
 import lotto.dto.MatchResults;
 import lotto.dto.PurchaseAmountUserInput;
@@ -67,7 +67,7 @@ public class LottoController {
   
   private PurchasedLottos getPurchasedLottos (PurchaseAmount purchaseAmount) {
     int price = lottoService.getPrice();
-    int count = amountService.getPurchasableCount(purchaseAmount, price);
+    long count = amountService.getPurchasableCount(purchaseAmount, price);
     return lottoService.publishPurchaseLottos(count);
   }
 

@@ -2,9 +2,9 @@ package lotto.container;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.command.validate.PurchaseAmountCommand;
-import lotto.command.validate.LottoCommand;
-import lotto.command.validate.BonusCommand;
+import lotto.command.view.validate.PurchaseAmountCommand;
+import lotto.command.view.validate.LottoCommand;
+import lotto.command.view.validate.BonusCommand;
 import lotto.view.ConsoleView;
 import lotto.controller.LottoController;
 import lotto.service.amount.AmountService;

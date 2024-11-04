@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.command.validate.ValidateCommand;
+import lotto.command.view.validate.ValidateCommand;
 
 /**
  * @author : jiffyin7@gmail.com
