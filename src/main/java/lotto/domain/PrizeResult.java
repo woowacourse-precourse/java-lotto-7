@@ -28,6 +28,10 @@ public class PrizeResult {
                 .sum();
     }
 
+    public int getPrizeCount(Prize prize) {
+        return prizes.get(prize);
+    }
+
     private void updatePrizeResult(Prize prize) {
         prizes.put(prize, prizes.get(prize) + 1);
     }
