@@ -2,9 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoDrawMachine;
+import lotto.model.LottoResult;
 
 public class LottoService {
 
@@ -21,7 +21,7 @@ public class LottoService {
         machine.compareLottoToWinning();
     }
 
-    public Map<Rank, Integer> getWinningResult(LottoDrawMachine machine) {
+    public LottoResult getWinningResult(LottoDrawMachine machine) {
         return machine.prizeWinningResult();
     }
 

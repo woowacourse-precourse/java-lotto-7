@@ -1,14 +1,12 @@
 package lotto;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.common.Validator;
 import lotto.model.Lotto;
 import lotto.model.LottoDrawMachine;
+import lotto.model.LottoResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -94,14 +92,11 @@ public class LottoController {
 
     private void announceLottoPrize(LottoDrawMachine lottoDrawMachine) {
         outputView.printResultMessage();
-        Map<Rank, Integer> winningResult = lottoService.getWinningResult(lottoDrawMachine);
-        Arrays.stream(Rank.values())
-                .sorted(Collections.reverseOrder())
-                .forEach(rank -> {
-                    if (rank.equals(Rank.NONE)) return;
-                    String formattedPrice = rank.getFormattedPrice();
-                    outputView.printLottoPrize(rank.count(), rank.hasBonus(), formattedPrice, winningResult.getOrDefault(rank, 0));
-                });
+        LottoResult lottoResult = lottoService.getWinningResult(lottoDrawMachine);
+        lottoResult.getRankCounts().forEach((rank, count) -> {
+            String formattedPrice = rank.getFormattedPrice();
+            outputView.printLottoPrize(rank.count(), rank.hasBonus(), formattedPrice, count);
+        });
     }
 
     private void announceEarningsRate(LottoDrawMachine lottoDrawMachine) {
