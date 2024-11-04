@@ -46,18 +46,18 @@ public class LottoGameController {
         outputView.displayLottoNumbers(lottos);
 
         List<Integer> parsedWinningNumbers;
+        WinningNumbers winningNumbers;
 
         while (true) {
             try {
                 inputView.displayWinningNumbersPrompt();
                 parsedWinningNumbers = parseWinningNumbers(inputView.readWinningNumbers());
+                winningNumbers = WinningNumbers.from(parsedWinningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.displayErrorMessage(e.getMessage());
             }
         }
-
-        WinningNumbers winningNumbers = WinningNumbers.from(parsedWinningNumbers);
 
         inputView.displayBonusNumberPrompt();
         int parsedBonusNumber = parseLottoNumber(inputView.readBonusNumber());

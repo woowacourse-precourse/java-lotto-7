@@ -15,6 +15,9 @@ public class WinningNumbers {
     }
 
     private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT);
+        }
         if (hasDuplicateNumbers(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER);
         }
