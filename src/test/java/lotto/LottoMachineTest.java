@@ -66,4 +66,20 @@ class LottoMachineTest {
 
         assertThat(result).isEqualTo(answer);
     }
+
+    @Test
+    public void 수익률_계산_테스트(){
+        Map<LottoRank, Integer> rankCounts = Map.of(
+                LottoRank.FIFTH, 1,
+                LottoRank.FOURTH, 0,
+                LottoRank.THIRD, 0,
+                LottoRank.SECOND, 0,
+                LottoRank.FIRST, 0
+        );
+        int price = 8000;
+
+        double returnRate = lottoMachine.calculateReturnRate(rankCounts, price);
+
+        assertThat(returnRate).isEqualTo(62.5);
+    }
 }

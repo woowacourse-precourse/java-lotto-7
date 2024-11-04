@@ -62,5 +62,8 @@ public class Application {
         System.out.println("---");
         for (String statistic : winningStatistics)
             System.out.println(statistic);
+
+        double returnRate = lottoMachine.calculateReturnRate(rankCounts, Integer.parseInt(inputPrice));
+        System.out.printf("총 수익률은 %,.1f%%입니다.", returnRate);
     }
 }

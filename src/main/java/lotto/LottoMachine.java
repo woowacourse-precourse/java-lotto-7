@@ -45,6 +45,13 @@ public class LottoMachine {
         return rankCounts;
     }
 
+    public double calculateReturnRate(Map<LottoRank, Integer> rankCounts, int price){
+        double totalWinnings = 0;
+        for (LottoRank rank : rankCounts.keySet())
+            totalWinnings += rank.getWinnings() * rankCounts.get(rank);
+        return (totalWinnings / price) * 100;
+    }
+
     private List<LottoRank> sortLottoRanks(Set<LottoRank> lottoRanks){
         List<LottoRank> lottoRanksList = new ArrayList<>(List.copyOf(lottoRanks));
         lottoRanksList.sort(Comparator.comparingInt(LottoRank::getWinnings));
