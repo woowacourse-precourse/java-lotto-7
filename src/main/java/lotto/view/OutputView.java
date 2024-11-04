@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.enums.ViewMessage.PURCHASED_LOTTO_COUNT;
+import static lotto.enums.ViewMessage.OUTPUT_LOTTO_COUNT;
 
 import java.util.List;
 import lotto.model.Lotto;
@@ -14,7 +14,7 @@ public class OutputView {
     }
 
     private void printLottoCount(Lottos lottos) {
-        System.out.println(lottos.getLottos().size() + PURCHASED_LOTTO_COUNT.getMessage());
+        System.out.println(lottos.getLottos().size() + OUTPUT_LOTTO_COUNT.getMessage());
     }
 
     private void printLottoNumbers(Lottos lottos) {
