@@ -9,12 +9,14 @@ import java.util.Map;
 
 public class LottoOutputView {
     public void printTickets(List<Lotto> tickets) {
+        System.out.println();
         System.out.println(tickets.size() + "개를 구매했습니다.");
         tickets.forEach(ticket -> System.out.println(ticket.getNumbers()));
+        System.out.println();
     }
 
     public void printResult(LottoResult result, int purchaseAmount) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
 
         Map<LottoRank, Integer> results = result.getResults();

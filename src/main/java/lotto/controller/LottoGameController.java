@@ -33,7 +33,7 @@ public class LottoGameController {
                 lottoMachine.validatePurchaseAmount(amount);
                 return amount;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage() + "\n");
             }
         }
     }
@@ -45,7 +45,7 @@ public class LottoGameController {
                 new Lotto(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage() + "\n");
             }
         }
     }
