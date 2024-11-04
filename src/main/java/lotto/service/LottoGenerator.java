@@ -9,6 +9,9 @@ import java.util.List;
 
 public class LottoGenerator {
 
+    private LottoGenerator() {
+    }
+
     public static List<Lotto> getRandomLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {

@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,29 +12,19 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoComparatorTest {
 
-    private Lotto winningLotto;
-    private int bonusNumber;
-    private List<Lotto> userLottos;
-    private LottoComparator lottoComparator;
-
-    @BeforeEach
-    void setUp() {
-        // given
-        winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        bonusNumber = 7;
-        userLottos = List.of(
-                new Lotto(List.of(1, 2, 3, 7, 8, 9)), // 3개 일치, 보너스 번호 일치
-                new Lotto(List.of(10, 11, 12, 13, 14, 15)), // 일치하는 번호 없음
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)) // 6개 일치, 보너스 번호 미일치
-        );
-        lottoComparator = new LottoComparator(userLottos, winningLotto, bonusNumber);
-    }
+    private final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    private final int bonusNumber = 7;
+    private final List<Lotto> userLottos = List.of(
+            new Lotto(List.of(1, 2, 3, 7, 8, 9)), // 3개 일치, 보너스 번호 일치
+            new Lotto(List.of(10, 11, 12, 13, 14, 15)), // 일치하는 번호 없음
+            new Lotto(List.of(1, 2, 3, 4, 5, 6)) // 6개 일치, 보너스 번호 미일치
+    );
 
     @Test
     @DisplayName("보너스 번호가 당첨 번호와 중복되는 경우 예외 발생")
     void 보너스_번호가_당첨_번호와_중복되는_경우_예외_발생() {
         // when & then
-        assertThatThrownBy(() -> new LottoComparator(userLottos, winningLotto, 3))
+        assertThatThrownBy(() -> LottoComparator.validateBonusNumber(winningLotto, 3))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
@@ -44,7 +33,7 @@ class LottoComparatorTest {
     @DisplayName("각 로또 결과를 올바르게 반환하는지 확인")
     void 각_로또_결과를_올바르게_변환하는지_확인() {
         // when
-        List<LottoResult> results = lottoComparator.getLottoResults();
+        List<LottoResult> results = LottoComparator.getLottoResults(userLottos, winningLotto, bonusNumber);
 
         // then
         // 1. 결과 개수 확인

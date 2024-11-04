@@ -17,7 +17,6 @@ public class LottoController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-
         // 1. 구입 금액 입력받기
         outputView.printPurchaseMessage();
         int purchaseAmount = inputView.readPurchasePrice();
@@ -38,8 +37,7 @@ public class LottoController {
         int bonusNumber = inputView.readBonusNumber();
 
         // 6. 당첨여부 확인하기
-        LottoComparator lottoComparator = new LottoComparator(lottos, pickNumbers, bonusNumber);
-        List<LottoResult> results = lottoComparator.getLottoResults();
+        List<LottoResult> results = LottoComparator.getLottoResults(lottos, pickNumbers, bonusNumber);
 
         // 7. 통계 계산 및 출력
         Map<LottoRank, Long> ranks = LottoStatisticsCalculator.calculateRankCounts(results);
