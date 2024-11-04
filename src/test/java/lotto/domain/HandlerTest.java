@@ -45,7 +45,9 @@ class HandlerTest {
     int givenRequest = input.getLottoCounts(request);
     this.handler = new Handler(request);
     // when : 요청 수만큼 로또 생성을 반복해서 이중리스트에 추가
-    Lotto lotto = new Lotto(handler.generateLotto()); // java.lang.IllegalArgumentException at HandlerTest.java:48
+    // 로또 자동 생성시 중복되는 문제
+    Lotto lotto = new Lotto(handler.generateLotto());  //  java.lang.NumberFormatException at HandlerTest.java:89
+
 
     List<List<Integer>> lottoRequest = lotto.responseLottoCounts(request);
 
