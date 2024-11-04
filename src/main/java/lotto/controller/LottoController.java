@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.handler.RetryHandler;
 import lotto.model.LottoStatistics;
 import lotto.model.LottoTickets;
 import lotto.model.WinningNumbers;
@@ -15,11 +16,16 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
+    private final RetryHandler retryHandler;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
+    public LottoController(InputView inputView,
+                           OutputView outputView,
+                           LottoService lottoService,
+                           RetryHandler retryHandler) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoService = lottoService;
+        this.retryHandler = retryHandler;
     }
 
     public void run() {
