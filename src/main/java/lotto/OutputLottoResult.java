@@ -22,4 +22,8 @@ public class OutputLottoResult {    // 로또 결과 출력
     private void printLottoResult(String message, int count) {
         System.out.println(message + " - " + count + "개");
     }
+
+    private double calculateRate(int totalPrize, int purchaseAmount) {
+        return (double) totalPrize / purchaseAmount * 100;
+    }
 }
