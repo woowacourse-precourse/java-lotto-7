@@ -5,24 +5,25 @@ import java.util.List;
 
 public class Seller {
 
-    private static final int LOTTO_PRICE = 1000;
+    private final static String CHANGE_EXCEPTION_MESSAGE = "금액이 나눠 떨어지지 않습니다";
+    private final static int LOTTO_PRICE = 1000;
 
-    public List<Lotto> issueLottoesWith(Money money) {
-        validateNoChanges(money);
-        return issueRandomLottoes(money.countAvailableFrom(LOTTO_PRICE));
+    public List<Lotto> issueLottosWith(Money money) {
+        validateNoChange(money);
+        return issueRandomLottos(money.countAvailableFrom(LOTTO_PRICE));
     }
 
-    private void validateNoChanges(Money money) {
+    private void validateNoChange(Money money) {
         if (money.hasChangeWith(LOTTO_PRICE)) {
-            throw new IllegalArgumentException("금액이 나눠 떨어지지 않습니다");
+            throw new IllegalArgumentException(CHANGE_EXCEPTION_MESSAGE);
         }
     }
 
-    private List<Lotto> issueRandomLottoes(long count) {
-        List<Lotto> lottoes = new ArrayList<>();
+    private List<Lotto> issueRandomLottos(long count) {
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            lottoes.add(Lotto.createRandomized());
+            lottos.add(Lotto.createRandomized());
         }
-        return lottoes;
+        return lottos;
     }
 }

@@ -25,7 +25,7 @@ public class LottoController {
     }
 
     private List<Lotto> issueLottosWith(Money money) {
-        List<Lotto> lottos = new Seller().issueLottoesWith(money);
+        List<Lotto> lottos = new Seller().issueLottosWith(money);
         outputView.printHowMany(lottos);
         outputView.printIssuedLottos(lottos);
         return lottos;
