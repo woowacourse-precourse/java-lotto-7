@@ -15,7 +15,7 @@ public class LottoResult {
     private final Map<Integer, Integer> prizeMatchResults;
     private final int count;
 
-    public LottoResult(int count) {
+    public LottoResult(final int count) {
         this.prizeMatchResults = new HashMap<>();
         this.count = count;
     }
@@ -51,12 +51,12 @@ public class LottoResult {
     }
 
     public double calculateRateOfReturn() {
-        double totalRevenue = WINNERS.stream()
+        final double totalRevenue = WINNERS.stream()
                 .mapToDouble(winner -> prizeMatchResults.getOrDefault(winner.getRank(), 0) * winner.getPrizeMoney())
                 .sum();
 
-        int totalInvest = count * LOTTO_PRICE;
-        double rateOfReturn = (totalRevenue / totalInvest) * 100;
+        final int totalInvest = count * LOTTO_PRICE;
+        final double rateOfReturn = (totalRevenue / totalInvest) * 100;
         return Math.round(rateOfReturn * 100.0) / 100.0;
     }
 

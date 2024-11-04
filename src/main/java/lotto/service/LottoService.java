@@ -22,21 +22,21 @@ public class LottoService {
         this.lottoGenerator = lottoGenerator;
     }
 
-    public LottoCount getLottoCountByAmount(String purchaseAmount) {
+    public LottoCount getLottoCountByAmount(final String purchaseAmount) {
         return new LottoCount(parseInt(purchaseAmount));
     }
 
-    public List<Lotto> getLottosByCount(LottoCount lottoCount) {
+    public List<Lotto> getLottosByCount(final LottoCount lottoCount) {
         return IntStream.range(0, lottoCount.getCount())
                 .mapToObj(i -> Lotto.createRandomNumberLotto(lottoGenerator))
                 .toList();
     }
 
-    public List<LottoDto> convertToDto(List<Lotto> lottos) {
+    public List<LottoDto> convertToDto(final List<Lotto> lottos) {
         return lottos.stream().map(lotto -> new LottoDto(lotto.getNumbers())).toList();
     }
 
-    public Lotto getWinningLotto(String winningNumberInput) {
+    public Lotto getWinningLotto(final String winningNumberInput) {
         List<Integer> numbers = Arrays.stream(winningNumberInput.split(WINNING_NUMBER_SEPARATOR))
                 .map(String::trim)
                 .map(this::parseInt)
@@ -44,7 +44,7 @@ public class LottoService {
         return Lotto.createFixedNumberLotto(numbers);
     }
 
-    public LottoResultDto getResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+    public LottoResultDto getResult(final List<Lotto> lottos, final Lotto winningLotto, final int bonusNumber) {
         LottoResult lottoResult = new LottoResult(lottos.size());
         for (Lotto lotto : lottos) {
             int matchCount = lotto.calculateMatchCount(winningLotto);
@@ -55,7 +55,7 @@ public class LottoService {
         return LottoResultDto.of(lottoResult);
     }
 
-    private int parseInt(String input) {
+    private int parseInt(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

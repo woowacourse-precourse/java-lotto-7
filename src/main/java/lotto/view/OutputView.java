@@ -13,20 +13,20 @@ public class OutputView {
     private static final String REVENUE_RESULT = "총 수익률은 %,.1f%%입니다.";
 
 
-    public void printPurchaseCount(int purchaseCount) {
+    public void printPurchaseCount(final int purchaseCount) {
         System.out.println(purchaseCount + PURCHASE_COUNT);
     }
 
-    public void printLottos(List<LottoDto> lottoDtos) {
+    public void printLottos(final List<LottoDto> lottoDtos) {
         lottoDtos.forEach(lottoDto -> System.out.println(lottoDto.lotto()));
     }
 
-    public void printWinningResult(LottoResultDto lottoResultDto) {
+    public void printWinningResult(final LottoResultDto lottoResultDto) {
         printWinningDetail(lottoResultDto);
         printRevenueResult(lottoResultDto);
     }
 
-    public void printWinningDetail(LottoResultDto lottoResultDto) {
+    public void printWinningDetail(final LottoResultDto lottoResultDto) {
         System.out.println(WINNING_STATISTICS);
 
         WINNERS.forEach(winner -> {
@@ -39,7 +39,7 @@ public class OutputView {
         });
     }
 
-    public void printRevenueResult(LottoResultDto lottoResultDto) {
+    public void printRevenueResult(final LottoResultDto lottoResultDto) {
         System.out.printf(REVENUE_RESULT, lottoResultDto.rateOfReturn());
     }
 
