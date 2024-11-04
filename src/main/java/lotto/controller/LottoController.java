@@ -5,6 +5,8 @@ import lotto.model.Customer;
 import lotto.model.Lotto;
 import lotto.model.LottoHandler;
 import lotto.model.RankingHandler;
+import lotto.utils.LottoPurchaseValidation;
+import lotto.view.InputMessage;
 
 public class LottoController {
 
@@ -27,9 +29,10 @@ public class LottoController {
     }
 
     private void purchaseLotto() {
-        int rawInputMoney = Integer.parseInt(Console.readLine());
-//        customer = new Customer();
-        customer.buyLottoTickets(rawInputMoney);
+        String rawClientMoney = InputMessage.inputClientMoney();
+        int clientMoney = LottoPurchaseValidation.checkedClientMoney(rawClientMoney);
+
+        customer.buyLottoTickets(clientMoney);
         lottoHandler.buyLottos(customer.getLottoTickets());
         System.out.println(lottoHandler.getLottoList());
     }
@@ -56,8 +59,6 @@ public class LottoController {
         double value = customer.getWinningsYield(customer.getLottoTickets() * 1000);
         System.out.printf("총 수익률은 %.1f%% 입니다.", value);
     }
-
-
 
 
 }
