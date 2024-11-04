@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.utility.Utils;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class UserInput {
@@ -19,19 +21,22 @@ public class UserInput {
         }
     }
 
-    public String promptPrtchaseAmountInput(){
+    public String promptPurchaseAmountInput(){
         System.out.println(InputMessage.INPUT_PURCHASE_AMOUNT_PROMPT.getMessage());
         String inputMessage = readLine();
+        Utils.checkEmptyInput(inputMessage);
         return inputMessage;
     }
     public String promptWinningNumberInput(){
         System.out.println(InputMessage.INPUT_WINNING_NUMBER_PROMPT.getMessage());
         String inputMessage = readLine();
+        Utils.checkEmptyInput(inputMessage);
         return inputMessage;
     }
     public String promptBonusNumberInput(){
         System.out.println(InputMessage.INPUT_BOUNS_NUMBER_PROMPT.getMessage());
         String inputMessage = readLine();
+        Utils.checkEmptyInput(inputMessage);
         return inputMessage;
     }
 }
