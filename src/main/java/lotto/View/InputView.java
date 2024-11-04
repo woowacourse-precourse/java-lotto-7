@@ -19,7 +19,7 @@ public class InputView {
                 InputNumberValidator.validatePaymentPriceType(paymentPriceInput);
                 InputNumberValidator.validatePaymentPriceValue(paymentPriceInput);
                 return new PaymentPriceDTO(paymentPriceInput);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | ArithmeticException e) {
                 System.out.println(e.getMessage());
             }
         }
