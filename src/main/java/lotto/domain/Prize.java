@@ -20,8 +20,12 @@ public enum Prize {
     }
 
     public static Prize getMatchPrize(int matchCount, boolean bonusFlag) {
+        if (matchCount == Prize.SECOND.getMatchCount() && bonusFlag) {
+            return Prize.SECOND;
+        }
+
         for (Prize value : Prize.values()) {
-            if (value.matchCount == matchCount && value.isBonus == bonusFlag) {
+            if (value.matchCount == matchCount) {
                 return value;
             }
         }
