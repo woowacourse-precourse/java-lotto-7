@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.util.LottoConstants.LOTTO_PRICE;
+
 public class LottoCount {
     private final long count;
 
@@ -12,6 +14,6 @@ public class LottoCount {
     }
 
     public static LottoCount calculatePurchaseCount(long price) {
-        return new LottoCount(price / 1000);
+        return new LottoCount(price / LOTTO_PRICE.getValue());
     }
 }
