@@ -104,7 +104,10 @@ class LottoServiceTest {
   @Test
   @DisplayName("[success]getBonusCommand : 객체 반환 확인")
   void getBonusCommand_shouldReturnCorrectCommand() {
-    assertThat(lottoService.getBonusCommand())
+    List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+    WinningLottoUserInput userInput = WinningLottoUserInput.from(numbers);
+    WinningLotto winningLotto = lottoService.createWinningLotto(userInput);
+    assertThat(lottoService.getBonusCommand(winningLotto))
         .isNotNull()
         .isInstanceOf(BonusCommand.class);
   }

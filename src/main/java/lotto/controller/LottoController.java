@@ -78,7 +78,7 @@ public class LottoController {
   }
 
   private WinningLotto addBonusNumber(WinningLotto winningLotto) {
-    BonusUserInput bonusUserInput = (BonusUserInput) getUserInput(lottoService.getBonusCommand());
+    BonusUserInput bonusUserInput = (BonusUserInput) getUserInput(lottoService.getBonusCommand(winningLotto));
     return lottoService.addBonusNumber(winningLotto, bonusUserInput);
   }
 
