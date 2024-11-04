@@ -20,6 +20,10 @@ public enum WinningType {
         this.prize = prize;
     }
 
+    public int getPrize(){
+        return prize;
+    }
+
     public static WinningType valueOf(int matchCount, boolean bonusMatch) {
         return Arrays.stream(values())
                 .filter(type -> type.matchCount == matchCount)

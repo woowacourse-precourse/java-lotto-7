@@ -13,4 +13,10 @@ public class WinningResult {
     public Map<WinningType, Integer> getWinningResult(){
         return Map.copyOf(winningResult);
     }
+
+    public int calculateTotalPrize() {
+        return winningResult.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
 }
