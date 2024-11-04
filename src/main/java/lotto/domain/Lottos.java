@@ -38,18 +38,18 @@ public class Lottos {
         return Collections.unmodifiableList(lottos);
     }
 
-    public String printLottos() {
+    public String displayLottos() {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Lotto lotto : lottos) {
-            stringBuilder.append(printLottoNumber(lotto));
+            stringBuilder.append(displayLottoNumbers(lotto));
             stringBuilder.append(System.lineSeparator());
         }
 
         return stringBuilder.toString();
     }
 
-    private String printLottoNumber(final Lotto lotto) {
+    private String displayLottoNumbers(final Lotto lotto) {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(PREFIX);
