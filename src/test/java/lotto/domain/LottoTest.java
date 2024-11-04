@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -24,5 +25,19 @@ class LottoTest {
     void 로또_숫자_범위가_아닌_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_숫자에_입력한_숫자가_포함되어_있으면_true를_반환한다() {
+        int inputNumber = 6;
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.contains(inputNumber)).isTrue();
+    }
+
+    @Test
+    void 로또_숫자에_입력한_숫자가_포함되어_있지_않으면_false를_반환한다() {
+        int inputNumber = 7;
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.contains(inputNumber)).isFalse();
     }
 }
