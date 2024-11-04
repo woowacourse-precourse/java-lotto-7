@@ -15,7 +15,10 @@ public enum ErrorMessage {
     // 보너스 번호 에러
     BONUS_NUMBER_BLANK_ERROR("보너스 번호는 빈칸일 수 없습니다."),
     BONUS_NUMBER_NON_INTEGER_ERROR("보너스 번호는 정수여야 합니다."),
-    BONUS_NUMBER_DUPLICATE_ERROR("보너스 번호는 당첨 번호와 같을 수 없습니다.");
+    BONUS_NUMBER_DUPLICATE_ERROR("보너스 번호는 당첨 번호와 같을 수 없습니다."),
+    //로또
+    LOTTO_SIZE_LIMIT_ERROR("로또 번호는 6개여야 합니다."),
+    LOTTO_EACH_DUPLICATE_ERROR("로또는 중복될 수 없습니다.");
 
 
     private final String message;
