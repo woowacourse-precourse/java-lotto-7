@@ -93,4 +93,16 @@ public class RandomLotto {
         }
         return false;
     }
+
+    public double winningRateCalculator(int lottoCount) {
+        int totalPrize = 0;
+
+        for (Prise prize : Prise.values()) {
+            int cnt = prize.getMatch();
+            int money = prize.getMoney();
+            totalPrize += cnt * money;
+        }
+
+        return totalPrize / lottoCount;
+    }
 }
