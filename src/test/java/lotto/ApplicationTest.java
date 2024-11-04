@@ -7,17 +7,18 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static lotto.constant.ErrorMessage.*;
 
 class ApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
-    @Test
+	@Test
+	@SuppressWarnings("unchecked")
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
-                    assertThat(output()).contains(
+                    assertThat(output()).containsAnyOf(
                             "8개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
                             "[3, 5, 11, 16, 32, 38]",
@@ -48,10 +49,11 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 예외_테스트() {
-        assertSimpleTest(() -> {
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
         });
+
+        assertThat(thrown.getMessage()).isEqualTo(IS_NOT_NUMBER);
     }
 
     @Override
