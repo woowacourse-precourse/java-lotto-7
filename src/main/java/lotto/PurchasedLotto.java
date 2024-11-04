@@ -17,6 +17,10 @@ public class PurchasedLotto {
         size = lottos.size();
     }
 
+    public int getSize() {
+        return size;
+    }
+
     public static PurchasedLotto generateLottos(int generateCount, Supplier<List<Integer>> supplier) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < generateCount; i++) {
@@ -25,15 +29,17 @@ public class PurchasedLotto {
         return new PurchasedLotto(lottos);
     }
 
-    public int getSize() {
-        return size;
-    }
-
     public Map<Prize, Integer> checkWin(List<Integer> winNumber, int bonusNumber) {
         Map<Prize, Integer> result = new HashMap<>();
         for (Lotto lotto : lottos) {
             result.merge(lotto.checkWin(winNumber, bonusNumber), 1, Integer::sum);
         }
         return result;
+    }
+
+    public void printPurchasedLotto() {
+        for (Lotto lotto : lottos) {
+            lotto.printNumber();
+        }
     }
 }
