@@ -82,6 +82,7 @@ public class LottoService {
     }
 
     private int moneyNumericValidator(String inputMoney) {
+        inputMoney = inputMoney.trim();
         try {
             return Integer.parseInt(inputMoney);
         } catch (NumberFormatException e) {
