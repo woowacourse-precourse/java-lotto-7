@@ -32,11 +32,13 @@ public class LottoController {
         WinningDetailComputer winningDetailComputer
                 = new WinningDetailComputer(userLottoList.getLottoList(), prizeLotto, new WinningDetailList());
         winningDetailComputer.computeLottoList();
+        long returnPercent = winningDetailComputer.getReturnPercent(userLottoList.getMoney());
 
         winningDetailView.addMessage();
-        for (WinningPriceStore list : winningDetailComputer.getWinningDetailList()) {
-            winningDetailView.addMatchDetail(list);
+        for (WinningPriceStore store : winningDetailComputer.getWinningDetailList()) {
+            winningDetailView.addMatchDetail(store);
         }
+        winningDetailView.addReturnPercent(returnPercent);
         winningDetailView.print();
 
     }

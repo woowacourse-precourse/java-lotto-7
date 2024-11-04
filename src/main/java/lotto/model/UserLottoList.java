@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static java.util.stream.IntStream.range;
+import static lotto.constants.NumberConstants.MONEY_UNIT;
 import static lotto.constants.NumberConstants.ZERO;
 
 import java.util.List;
@@ -35,5 +36,9 @@ public class UserLottoList {
         return this.lottoList.stream()
                 .map(Lotto::getNumbers)
                 .toList();
+    }
+
+    public int getMoney() {
+        return count * MONEY_UNIT;
     }
 }

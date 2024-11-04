@@ -8,6 +8,8 @@ import static lotto.constants.OutputMessageConstants.LOTTO_UNIT;
 import static lotto.constants.OutputMessageConstants.MIDDLE_BAR;
 import static lotto.constants.OutputMessageConstants.MONEY_UNIT;
 import static lotto.constants.OutputMessageConstants.OPEN_BRACKET;
+import static lotto.constants.OutputMessageConstants.PERCENT_END;
+import static lotto.constants.OutputMessageConstants.RETURN_PERCENT;
 import static lotto.constants.OutputMessageConstants.WINNING_DETAIL_MESSAGE;
 import static lotto.constants.RegExpConstants.ESCAPE_ENTER;
 
@@ -32,6 +34,10 @@ public class WinningDetailView {
                 .append(MONEY_UNIT).append(CLOSE_BRACKET).append(MIDDLE_BAR).append(winningPriceStore.getLottoCount())
                 .append(LOTTO_UNIT)
                 .append(ESCAPE_ENTER);
+    }
+
+    public void addReturnPercent(long returnPercent) {
+        sb.append(RETURN_PERCENT).append(returnPercent).append(PERCENT_END).append(ESCAPE_ENTER);
     }
 
     public void print() {

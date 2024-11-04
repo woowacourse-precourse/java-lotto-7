@@ -54,4 +54,12 @@ public class WinningDetailComputer {
             this.winningDetailList.addSuccessLotto(numberMatchCount, isBonus);
         }
     }
+
+    public long getReturnPercent(int money) {
+        long totalPrice = 0;
+        for (WinningPriceStore store : getWinningDetailList()) {
+            totalPrice += store.getTotalPrice();
+        }
+        return Math.round((float) totalPrice / money);
+    }
 }
