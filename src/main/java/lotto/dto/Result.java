@@ -33,6 +33,8 @@ public class Result {
     }
 
     public void setBonusNumber(int bonusNumber) {
+        if(lotto.getNumbers().contains(bonusNumber))
+            throw new IllegalArgumentException("[ERROR] 보너스번호는 당첨번호이외의 숫자여야 합니다.");
         this.bonusNumber = bonusNumber;
     }
 
