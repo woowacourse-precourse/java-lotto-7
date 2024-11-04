@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.service.exception.LottoExceptionMessage.PRICE_NOT_POSITIVE_INTEGER;
+import static lotto.service.exception.LottoExceptionMessage.PRICE_NOT_THOUSANDS_UNIT;
 import static lotto.service.exception.LottoExceptionMessage.PRICE_OVERFLOW;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -27,5 +28,14 @@ class PriceTest {
             PriceValidator.validate(price);
         });
         assertEquals(PRICE_OVERFLOW.message(), e.getMessage());
+    }
+
+    @Test
+    void 가격이_1000_단위가_아니라면_예외발생() {
+        String price = "1001";
+        LottoException e = assertThrows(LottoException.class, () -> {
+            PriceValidator.validate(price);
+        });
+        assertEquals(PRICE_NOT_THOUSANDS_UNIT.message(), e.getMessage());
     }
 }
