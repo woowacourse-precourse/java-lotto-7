@@ -1,13 +1,18 @@
 package lotto.controller;
 
+import lotto.model.LottoTickets;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
         int ticketCount = purchaseAmount / 1000;
+
+        LottoTickets lottoTickets = new LottoTickets(ticketCount);
+        OutputView.printPurchaseResult(lottoTickets);
 
         WinningNumbers winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
