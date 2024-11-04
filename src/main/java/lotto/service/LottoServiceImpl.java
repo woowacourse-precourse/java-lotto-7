@@ -124,8 +124,8 @@ public class LottoServiceImpl implements LottoService {
         if (isContainedBonusNumber(lotto, bonusNumber) && result == Constant.LOTTO_FIVE_MATCHES.getConstant()) {
             return 2;
         }
-        if (result < Constant.LOTTO_FOUR_MATCHES.getConstant()) {
-            return 0;
+        if (result < Constant.LOTTO_THREE_MATCHES.getConstant()) {
+            return Constant.NO_RANK.getConstant();
         }
 
         return Constant.RANK_EXTRACT_NUMBER.getConstant() - result;
