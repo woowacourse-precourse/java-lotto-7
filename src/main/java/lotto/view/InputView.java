@@ -24,17 +24,17 @@ public class InputView extends InputReader {
         }
     }
 
-    public List<Integer> inputWinningNumber() {
-        String inputWinningNumber = inputMessage();
-        validateInputWinningNumber(inputWinningNumber);
+    public List<Integer> inputWinningLotto() {
+        String inputWinningLotto = inputMessage();
+        validateInputWinningLotto(inputWinningLotto);
 
-        return Arrays.stream(Parser.stringToArray(inputWinningNumber))
+        return Arrays.stream(Parser.stringToArray(inputWinningLotto))
                 .map(Parser::stringToInt)
                 .toList();
     }
 
-    private void validateInputWinningNumber(String inputWinningNumber) {
-        if (!WINNING_NUMBER_PATTERN.matcher(inputWinningNumber).matches()) {
+    private void validateInputWinningLotto(String inputWinningLotto) {
+        if (!WINNING_NUMBER_PATTERN.matcher(inputWinningLotto).matches()) {
             throw new LottoInputFormatException();
         }
     }

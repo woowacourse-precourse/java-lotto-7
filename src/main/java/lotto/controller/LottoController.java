@@ -44,9 +44,9 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        outputView.requestWinningNumber();
-        List<Integer> inputWinningNumber = inputView.inputWinningNumber();
-        return WinningLotto.from(inputWinningNumber);
+        outputView.requestWinningLotto();
+        List<Integer> inputWinningLotto = inputView.inputWinningLotto();
+        return WinningLotto.from(inputWinningLotto);
     }
 
     private BonusNumber getBonusNumber(WinningLotto winningLotto) {
