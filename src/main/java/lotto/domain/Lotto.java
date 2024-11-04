@@ -19,32 +19,32 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private static void validateSize(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicate(numbers);
+        validateRange(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_EXCEPTION.getMessage());
         }
     }
 
-    private static void validateDuplicate(List<Integer> numbers) {
+    private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 
-    private static void validateRange(List<Integer> numbers) {
+    private void validateRange(List<Integer> numbers) {
         boolean isOutOfRange = numbers.stream()
                 .anyMatch(number -> number < LOTTO_NUMBER_MINIMUM.getValue() ||
                         number > LOTTO_NUMBER_MAXIMUM.getValue());
         if (isOutOfRange) {
             throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_EXCEPTION.getMessage());
         }
-    }
-
-    private void validate(List<Integer> numbers) {
-        validateSize(numbers);
-        validateDuplicate(numbers);
-        validateRange(numbers);
     }
 
     public int countMatchingNumbers(List<Integer> winningNumbers) {
