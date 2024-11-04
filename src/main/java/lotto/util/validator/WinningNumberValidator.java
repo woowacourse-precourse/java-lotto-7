@@ -6,9 +6,9 @@ import static lotto.util.Constants.LOTTO_MIN_RANGE;
 import lotto.util.ExceptionMessage;
 import java.util.List;
 import java.util.stream.Collectors;
+import static lotto.util.Constants.NUMBER_COUNT;
 
 public class WinningNumberValidator implements Validator {
-    private static final int NUMBER_COUNT = 6;
 
     @Override
     public List<Integer> validate(String input) throws IllegalArgumentException {
