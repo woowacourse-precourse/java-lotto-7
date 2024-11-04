@@ -38,7 +38,7 @@ class LottoControllerTest {
     void 올바르지_않은_당첨번호_입력() {
         assertThatThrownBy(() -> new CorrectDTO(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 46))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 45이하의 숫자여야 합니다.");
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
     @Test
