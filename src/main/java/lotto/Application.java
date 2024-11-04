@@ -28,5 +28,8 @@ public class Application {
         WinningLotto winningLotto = new WinningLotto(separatedNumbers, bonusNumber);
         Map<Lotto, LottoRank> rankForEach = lottoService.checkWinning(lottos, winningLotto);
         Map<LottoRank, Integer> winningCountForEach = lottoService.countWinningRank(rankForEach);
+
+        long totalPrize = lottoService.getTotalPrize(winningCountForEach);
+        String profitRate = lottoService.getProfitRate(purchaseAmount, totalPrize);
     }
 }

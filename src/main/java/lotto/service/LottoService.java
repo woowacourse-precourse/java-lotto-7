@@ -8,6 +8,8 @@ import lotto.WinningLotto;
 import java.util.*;
 
 public class LottoService {
+    private static final int PERCENTAGE_FACTOR = 100;
+
     public List<Lotto> createLotto(int purchaseCount) {
         List<Lotto> lottos = new ArrayList<>();
 
@@ -100,11 +102,28 @@ public class LottoService {
         return winningCount;
     }
 
-    public Map<LottoRank, Integer> initWinningCount(Map<LottoRank, Integer> input) {
+    public Map<LottoRank, Integer> initWinningCount(Map<LottoRank, Integer> winningCount) {
         for (LottoRank rank : LottoRank.values()) {
-            input.put(rank, 0);
+            winningCount.put(rank, 0);
         }
 
-        return input;
+        return winningCount;
+    }
+
+    public long getTotalPrize(Map<LottoRank, Integer> winningCount) {
+        long totalPrize = 0;
+
+        for (LottoRank rank : winningCount.keySet()) {
+            long prize = rank.getPrize();
+            int count = winningCount.get(rank);
+            totalPrize += prize * count;
+        }
+
+        return totalPrize;
+    }
+
+    public String getProfitRate(int beforeMoney, long afterMoney) {
+        double profitRate = ((double) (afterMoney - beforeMoney) / beforeMoney) * PERCENTAGE_FACTOR;
+        return String.format("%.1f", profitRate);
     }
 }
