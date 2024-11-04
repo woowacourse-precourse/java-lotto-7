@@ -230,6 +230,33 @@ class UserView {
 
 public class Application {
 	public static void main(String[] args) {
-		
+		UserView.printInputGuide();
+		int purchaseCount = MainController.changeMoneyToCount(MainController.insertMoney());
+
+		System.out.println();
+		UserView.printLottoNumber(purchaseCount);
+		ArrayList<PurchaseLotto> purchasedLottoPackage = MainController.makeUserLottoNumber(purchaseCount);
+		UserView.printAllPurchasedLottoNumber(purchasedLottoPackage);
+		System.out.println();
+
+		UserView.printWinningNumberInputMessage();
+		Lotto winningCheckLotto = MainController.inputWinnerNumber();
+		System.out.println();
+
+		UserView.printBonusNumberInputMessage();
+		int bonusNumber = MainController.inputBonusNumber();
+		MainController.checkLottoNumberRange(bonusNumber);
+
+		WinningLottory winningLotto = new WinningLottory(winningCheckLotto, bonusNumber);
+		MainController.checkAllLottoNumber(purchasedLottoPackage, winningLotto);
+
+		int[] gradingCount = MainController.calculatingGrade(purchasedLottoPackage);
+		System.out.println();
+		UserView.printWinningStatisticsMessage();
+		UserView.printWinningStatistics(gradingCount);
+
+		String profitRate = MainController.rateOfReturn(gradingCount, purchaseCount * 1000);
+		UserView.printProfitRate(profitRate);
+
 	}
 }
