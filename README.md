@@ -135,20 +135,20 @@
     - 문자 입력
 
         ```java
-        input : 
+        input : 이십
         output : IllegalArgumentException - [ERROR] 로또 번호는 숫자로 입력되어야 합니다.
         ```
 
     - 1 미만 번호 또는 45 초과 번호 입력
 
         ```java
-        input : 
+        input : 0
         output : IllegalArgumentException - [ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.
         ```
 
     - 당첨 번호와 중복됨
 
         ```java
-        input : 
+        input : 1 // 당첩 번호와 중복
         output : IllegalArgumentException - [ERROR] 보너스 번호는 당첨 번호와 중복 없이 입력되어야 합니다.
         ```
