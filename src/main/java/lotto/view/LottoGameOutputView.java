@@ -22,19 +22,17 @@ public class LottoGameOutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        // sortedRankCounts 출력
         lottoStatisticsDto.getSortedRankCounts().forEach(LottoGameOutputView::printRankCount);
-
-        // 수익률 출력
+        
         System.out.printf("총 수익률은 %.1f%%입니다.%n", lottoStatisticsDto.getProfitRate());
     }
 
-    // 각 랭크와 개수를 출력하는 메서드 추출
+    // 각 랭크와 개수를 출력
     private static void printRankCount(LottoRankCount rankCount) {
         LottoRank rank = rankCount.rank();
         int count = rankCount.count();
 
-        if (rank.isBonus()) {
+        if (rank.isBonusMatched()) {
             System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n",
                     rank.getMatchCount(), formatPrize(rank.getPrize()), count);
         } else {

@@ -12,31 +12,31 @@ public enum LottoRank {
     ;
 
     private final int matchCount;
-    private final boolean bonus;
+    private final boolean isBonusMatched;
     private final int prize;
+
+    LottoRank(int matchCount, boolean isBonusMatched, int prize) {
+        this.matchCount = matchCount;
+        this.isBonusMatched = isBonusMatched;
+        this.prize = prize;
+    }
+
+    public static LottoRank of(int matchCount, boolean bonus) {
+        return Arrays.stream(LottoRank.values())
+                .filter(lottoRank -> lottoRank.getMatchCount() == matchCount && lottoRank.isBonusMatched() == bonus)
+                .findFirst()
+                .orElse(FAIL);
+    }
 
     public int getMatchCount() {
         return matchCount;
     }
 
-    public boolean isBonus() {
-        return bonus;
-    }
-
-    public static LottoRank of(int matchCount, boolean bonus) {
-        return Arrays.stream(LottoRank.values())
-                .filter(lottoRank -> lottoRank.getMatchCount() == matchCount && lottoRank.isBonus() == bonus)
-                .findFirst()
-                .orElse(FAIL);
+    public boolean isBonusMatched() {
+        return isBonusMatched;
     }
 
     public int getPrize() {
         return prize;
-    }
-
-    LottoRank(int matchCount, boolean bonus, int prize) {
-        this.matchCount = matchCount;
-        this.bonus = bonus;
-        this.prize = prize;
     }
 }

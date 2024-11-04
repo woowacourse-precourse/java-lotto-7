@@ -19,22 +19,22 @@ public class LottoStatisticsDto {
 
     private List<LottoRankCount> calculateSortedRankCounts(List<LottoRank> lottoResults) {
         List<LottoRank> ranks = new ArrayList<>(List.of(LottoRank.values()));
-        Collections.reverse(ranks);  // 역순으로 변환
+        Collections.reverse(ranks);  // LottoRank를 역순으로 출력
 
         return ranks.stream()
-                .filter(rank -> rank != LottoRank.FAIL) // FAIL 제외
-                .map(rank -> new LottoRankCount(rank, (int) lottoResults.stream()
+                .filter(rank -> rank != LottoRank.FAIL)
+                .map(rank -> new LottoRankCount(rank, (int) lottoResults.stream() // count 추출
                         .filter(result -> result == rank)
                         .count()))
                 .toList();
     }
-
 
     private double calculateProfitRate(LottoTickets lottoTickets) {
         int purchaseAmount = lottoTickets.getTicketCount() * TICKET_PRICE;
         int totalPrize = sortedRankCounts.stream()
                 .mapToInt(entry -> entry.rank().getPrize() * entry.count())
                 .sum();
+
         return (double) totalPrize / purchaseAmount * 100;
     }
 

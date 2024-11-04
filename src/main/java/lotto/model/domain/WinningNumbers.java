@@ -1,47 +1,42 @@
 package lotto.model.domain;
 
+import static lotto.constant.ErrorMessages.DUPLICATE_LOTTO_NUMBER_ERROR;
+import static lotto.constant.ErrorMessages.LOTTO_NUMBER_COUNT_ERROR;
+import static lotto.constant.LottoGameConfig.LOTTO_NUMBERS_COUNT;
 import static lotto.constant.LottoGameConfig.SPLIT_DELIMITER;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import lotto.util.InputValidator;
 
 public class WinningNumbers {
 
     private final List<LottoNumber> numbers;
 
-    public WinningNumbers(String stringNumbers) {
-        validateInput(stringNumbers);
-        validateLottoSize(stringNumbers);
-        validateUniqueNumbers(stringNumbers);
-        numbers = Arrays.stream(stringNumbers.split(SPLIT_DELIMITER))
+    public WinningNumbers(String numbers) {
+        InputValidator.validateInput(numbers);
+        validateLottoSize(numbers);
+        validateUniqueNumbers(numbers);
+        this.numbers = Arrays.stream(numbers.split(SPLIT_DELIMITER))
                 .map(LottoNumber::new)
                 .toList();
     }
 
+    private void validateLottoSize(String numbers) {
+        if (numbers.split(SPLIT_DELIMITER).length != LOTTO_NUMBERS_COUNT) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_ERROR);
+        }
+    }
+
+    private void validateUniqueNumbers(String numbers) {
+        String[] split = numbers.split(SPLIT_DELIMITER);
+        if (new HashSet<>(List.of(split)).size() != split.length) {
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER_ERROR);
+        }
+    }
+
     public List<LottoNumber> getNumbers() {
         return numbers;
-    }
-
-    private void validateLottoSize(String stringNumbers) {
-        String[] numbers = stringNumbers.split(SPLIT_DELIMITER);
-        if (numbers.length != 6) {
-            throw new IllegalArgumentException("숫자를 6개 입력해주세요.");
-        }
-    }
-
-    private void validateUniqueNumbers(String stringNumbers) {
-        String[] numbers = stringNumbers.split(SPLIT_DELIMITER);
-        Set<String> set = new HashSet<>(List.of(numbers));
-        if (set.size() != numbers.length) {
-            throw new IllegalArgumentException("당첨 번호는 중복되면 안 됩니다.");
-        }
-    }
-
-    private void validateInput(String stringNumbers) {
-        if (stringNumbers == null || stringNumbers.isBlank()) {
-            throw new IllegalArgumentException("당첨 번호를 입력해 주세요.");
-        }
     }
 }

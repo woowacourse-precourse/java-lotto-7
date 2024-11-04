@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.constant.ErrorMessages.DUPLICATE_LOTTO_NUMBER_ERROR;
+import static lotto.constant.ErrorMessages.LOTTO_NUMBER_COUNT_ERROR;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -21,7 +23,7 @@ class WinningNumbersTest {
     void testUniqueWinningNumbers() {
         assertThatThrownBy(() -> new WinningNumbers("1,2,3,4,5,5"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("당첨 번호는 중복되면 안 됩니다.");
+                .hasMessage(DUPLICATE_LOTTO_NUMBER_ERROR);
     }
 
     @Test
@@ -29,7 +31,7 @@ class WinningNumbersTest {
     void testLagerSizeThrowsException() {
         assertThatThrownBy(() -> new WinningNumbers("1,2,3,4,5,6,7"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자를 6개 입력해주세요.");
+                .hasMessage(LOTTO_NUMBER_COUNT_ERROR);
     }
 
     @Test
@@ -37,6 +39,6 @@ class WinningNumbersTest {
     void testSmallerSizeThrowsException() {
         assertThatThrownBy(() -> new WinningNumbers("1,5"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자를 6개 입력해주세요.");
+                .hasMessage(LOTTO_NUMBER_COUNT_ERROR);
     }
 }

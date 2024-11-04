@@ -22,8 +22,8 @@ public class WinningLotto {
                 .filter(winningNumber -> lotto.getNumbers().contains(winningNumber.getNumber()))
                 .count();
 
-        boolean bonus = lotto.getNumbers().contains(bonusNumber.getBonusNumber().getNumber());
+        boolean isBonusMatched = lotto.getNumbers().contains(bonusNumber.getBonusNumber().getNumber());
 
-        return LottoRank.of(matchCount, bonus);
+        return LottoRank.of(matchCount, isBonusMatched);
     }
 }

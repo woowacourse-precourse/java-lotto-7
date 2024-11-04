@@ -1,9 +1,10 @@
 package lotto.model;
 
+import static lotto.constant.ErrorMessages.EMPTY_INPUT_ERROR;
+import static lotto.constant.ErrorMessages.INVALID_MONEY_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.constant.ErrorMessages;
 import lotto.model.domain.LottoTickets;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class LottoTicketsTest {
     void testInValidMoneyThrowsException() {
         assertThatThrownBy(() -> new LottoTickets("1500"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_MONEY);
+                .hasMessage(INVALID_MONEY_ERROR);
     }
 
     @Test
@@ -30,7 +31,7 @@ class LottoTicketsTest {
     void testBlankInputThrowsException() {
         assertThatThrownBy(() -> new LottoTickets("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_MONEY);
+                .hasMessage(EMPTY_INPUT_ERROR);
     }
 
     @Test
@@ -38,7 +39,7 @@ class LottoTicketsTest {
     void testSpecialCharacterInputThrowsException() {
         assertThatThrownBy(() -> new LottoTickets("#@"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_MONEY);
+                .hasMessage(INVALID_MONEY_ERROR);
     }
 
     @Test
@@ -46,7 +47,7 @@ class LottoTicketsTest {
     void testNegativeNumberThrowsException() {
         assertThatThrownBy(() -> new LottoTickets("-12"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_MONEY);
+                .hasMessage(INVALID_MONEY_ERROR);
     }
 
     @Test
@@ -54,6 +55,6 @@ class LottoTicketsTest {
     void testZeroNumberThrowsException() {
         assertThatThrownBy(() -> new LottoTickets("0"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_MONEY);
+                .hasMessage(INVALID_MONEY_ERROR);
     }
 }

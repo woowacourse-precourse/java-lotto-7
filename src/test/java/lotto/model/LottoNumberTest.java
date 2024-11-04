@@ -1,9 +1,10 @@
 package lotto.model;
 
+import static lotto.constant.ErrorMessages.EMPTY_INPUT_ERROR;
+import static lotto.constant.ErrorMessages.INVALID_LOTTO_NUMBER_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.constant.ErrorMessages;
 import lotto.model.domain.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class LottoNumberTest {
     void testBlankInputThrowsException() {
         assertThatThrownBy(() -> new LottoNumber("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_LOTTO_NUMBER);
+                .hasMessage(EMPTY_INPUT_ERROR);
     }
 
     @Test
@@ -30,7 +31,7 @@ class LottoNumberTest {
     void testSpecialCharacterInputThrowsException() {
         assertThatThrownBy(() -> new LottoNumber("#@"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_LOTTO_NUMBER);
+                .hasMessage(INVALID_LOTTO_NUMBER_ERROR);
     }
 
     @Test
@@ -38,7 +39,7 @@ class LottoNumberTest {
     void testNegativeNumberThrowsException() {
         assertThatThrownBy(() -> new LottoNumber("-12"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_LOTTO_NUMBER);
+                .hasMessage(INVALID_LOTTO_NUMBER_ERROR);
     }
 
     @Test
@@ -46,7 +47,7 @@ class LottoNumberTest {
     void testZeroNumberThrowsException() {
         assertThatThrownBy(() -> new LottoNumber("0"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_LOTTO_NUMBER);
+                .hasMessage(INVALID_LOTTO_NUMBER_ERROR);
     }
 
     @Test
@@ -54,6 +55,6 @@ class LottoNumberTest {
     void testOutOfRangeNumberThrowsException() {
         assertThatThrownBy(() -> new LottoNumber("100"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_LOTTO_NUMBER);
+                .hasMessage(INVALID_LOTTO_NUMBER_ERROR);
     }
 }
