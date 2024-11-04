@@ -12,9 +12,9 @@ public class PriceInput {
                 validatePrice(price);
                 return price;
             } catch (NumberFormatException e) {
-                System.out.println("[Error] 숫자를 입력해주세요.");
+                System.out.println("[ERROR] 숫자를 입력해주세요.");
             } catch (IllegalArgumentException e) {
-                System.out.println("[Error] 투입할 금액은 1,000원 이상이면서, 1,000 단위로만 입력할 수 있습니다.");
+                System.out.println("[ERROR] 투입할 금액은 1,000원 이상이면서, 1,000 단위로만 입력할 수 있습니다.");
             }
         }
     }

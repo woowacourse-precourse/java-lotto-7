@@ -12,7 +12,7 @@ public class LottoNumbersPrint {
         System.out.println("\n" + price/1000 + "개를 구매했습니다.");
 
         for (int i = 0; i < price/1000; i++) {
-            List<Integer> tempNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> tempNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(tempNumbers);
             lottoNumbers.add(tempNumbers);
         }
