@@ -12,7 +12,11 @@ public class LottoOutput {
     public void printResults(Map<String, Integer> results) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        results.forEach((rank, count) -> System.out.printf("%s - %d개\n", rank, count));
+        System.out.printf("3개 일치 (5,000원) - %d개\n", results.getOrDefault("5등", 0));
+        System.out.printf("4개 일치 (50,000원) - %d개\n", results.getOrDefault("4등", 0));
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", results.getOrDefault("3등", 0));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", results.getOrDefault("2등", 0));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", results.getOrDefault("1등", 0));
     }
 
     public void printProfit(double profitRate) {
