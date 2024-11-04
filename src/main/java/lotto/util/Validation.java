@@ -18,7 +18,7 @@ public class Validation {
     }
 
     public static boolean isCorrectRange(int number) {
-        return number >= minimumLottoNumber && number <= maximumLottoNumber;
+        return minimumLottoNumber <= number && number <= maximumLottoNumber;
     }
 
     public static boolean isCorrectRange(List<Integer> numbers) {
@@ -29,8 +29,8 @@ public class Validation {
         return numbers.size() == lottoNumberCount;
     }
 
-    public static boolean isPositive(int value) {
-        return value > 0;
+    public static boolean isPositive(int number) {
+        return number > 0;
     }
 
     public static boolean isDuplicate(List<Integer> numbers) {
