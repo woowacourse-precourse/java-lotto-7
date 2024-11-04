@@ -13,7 +13,6 @@ public class Ticket {
     private final List<Integer> ticket;
 
     public Ticket() {
-
         this.ticket = pickRandom();
     }
 
@@ -22,5 +21,9 @@ public class Ticket {
                 .stream()
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    public List<Integer> getTicket() {
+        return ticket;
     }
 }
