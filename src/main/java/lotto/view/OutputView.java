@@ -1,4 +1,4 @@
-package lotto.view.view;
+package lotto.view;
 
 import lotto.Lotto;
 
