@@ -14,6 +14,9 @@ public class Validation {
             if (amount % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
             }
+            if (amount > 100000) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 최대 100,000원까지 입력 가능합니다.");
+            }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
         }
