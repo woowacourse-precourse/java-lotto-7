@@ -58,7 +58,7 @@ public class InputView {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 int bonusNumber = Integer.parseInt(input);
-                validateNumber(bonusNumber);
+                validateRange(bonusNumber);
                 return bonusNumber;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
