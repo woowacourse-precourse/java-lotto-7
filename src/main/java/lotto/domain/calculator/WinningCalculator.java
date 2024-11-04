@@ -7,12 +7,19 @@ import lotto.domain.ticket.Lottos;
 import lotto.domain.ticket.WinningLotto;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class WinningCalculator {
     public WinningStatistics calculate(Lottos lottos, WinningLotto winningLotto) {
         Map<LottoRank, Integer> rankCounts = initializeRankCounts();
-        countWinningResults(lottos, winningLotto, rankCounts);
+        List<Lotto> lottoList = lottos.getLottos();
+
+        for (Lotto lotto : lottoList) {
+            LottoRank rank = winningLotto.match(lotto);
+            addCount(rankCounts, rank);
+        }
+
         return WinningStatistics.from(rankCounts);
     }
 
@@ -24,17 +31,8 @@ public class WinningCalculator {
         return rankCounts;
     }
 
-    private void countWinningResults(
-            Lottos lottos,
-            WinningLotto winningLotto,
-            Map<LottoRank, Integer> rankCounts) {
-        lottos.forEach(lotto -> {
-            LottoRank rank = winningLotto.match(lotto);
-            addCount(rankCounts, rank);
-        });
-    }
-
     private void addCount(Map<LottoRank, Integer> rankCounts, LottoRank rank) {
-        rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
+        int currentCount = rankCounts.getOrDefault(rank, 0);
+        rankCounts.put(rank, currentCount + 1);
     }
 }
