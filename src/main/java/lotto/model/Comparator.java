@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 public class Comparator {
-    public List<Map<String, Integer>> compareLottos(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
-        List<Map<String,Integer>> results = new ArrayList<>();
+    public List<Result> compareLottos(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
+        List<Result> results = new ArrayList<>();
         for(Lotto lotto : lottos) {
-            results.add(compareLotto(lotto, winningNumbers, bonusNumber));
+            Result result = compareLotto(lotto, winningNumbers, bonusNumber);
+            results.add(result);
         }
         return results;
     }
-    public Map<String, Integer> compareLotto(Lotto lotto, Lotto winningNumbers, int bonusNumber) {
-        Map<String, Integer> result = new HashMap<>();
-        result.put("correct", getCorrectCount(lotto, winningNumbers));
-        result.put("bonus", getBonusCount(lotto, bonusNumber));
-        return result;
+    public Result compareLotto(Lotto lotto, Lotto winningNumbers, int bonusNumber) {
+        int correctCount = getCorrectCount(lotto, winningNumbers);
+        int bonusCount = getBonusCount(lotto, bonusNumber);
+        return Result.valueOf(correctCount, bonusCount);
     }
 
     public int getCorrectCount(Lotto lotto, Lotto winningLotto) {

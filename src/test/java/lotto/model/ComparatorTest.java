@@ -19,9 +19,7 @@ class ComparatorTest {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         Lotto winningNumbers = new Lotto(List.of(1,2,3,7,8,9));
         int bonusNumber = 4;
-        Map<String, Integer> expect = new HashMap<>();
-        expect.put("correct", 3);
-        expect.put("bonus", 1);
+        Result expect = Result.valueOf(3,1);
 
         assertEquals(comparator.compareLotto(lotto, winningNumbers, bonusNumber), expect);
     }
@@ -35,13 +33,9 @@ class ComparatorTest {
         lottos.add(lotto1);
         lottos.add(lotto2);
 
-        List<Map<String, Integer>> expect = new ArrayList<>();
-        Map<String, Integer> result1 = new HashMap<>();
-        result1.put("correct", 3);
-        result1.put("bonus", 1);
-        Map<String, Integer> result2 = new HashMap<>();
-        result2.put("correct", 4);
-        result2.put("bonus", 0);
+        List<Result> expect = new ArrayList<>();
+        Result result1 = Result.valueOf(3,1);
+        Result result2 = Result.valueOf(4,0);
         expect.add(result1);
         expect.add(result2);
 
