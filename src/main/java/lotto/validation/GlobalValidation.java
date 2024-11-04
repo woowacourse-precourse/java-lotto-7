@@ -16,7 +16,7 @@ public class GlobalValidation {
     }
 
     public static boolean isLottoNumberOutOfRange(int number){
-        return number < LOTTO_MIN_NUM || number >= LOTTO_MAX_NUM;
+        return number < LOTTO_MIN_NUM || number > LOTTO_MAX_NUM;
     }
 
     public static <T> boolean hasDuplicate(List<T> items){
