@@ -1,11 +1,9 @@
 package lotto;
 
-import lotto.service.InputService;
-import lotto.service.LottoService;
-import lotto.service.OutputService;
-import lotto.service.Separator;
+import lotto.service.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     private static final int TICKET_PRICE = 1000;
@@ -25,7 +23,10 @@ public class Application {
 
         String winningNumbers = inputService.inputWinningNumbers();
         List<Integer> separatedNumbers = separator.separate(winningNumbers);
-
         int bonusNumber = inputService.inputBonusNumber();
+
+        WinningLotto winningLotto = new WinningLotto(separatedNumbers, bonusNumber);
+        Map<Lotto, LottoRank> rankForEach = lottoService.checkWinning(lottos, winningLotto);
+        Map<LottoRank, Integer> winningCountForEach = lottoService.countWinningRank(rankForEach);
     }
 }
