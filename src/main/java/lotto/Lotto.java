@@ -4,10 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
-
-import org.assertj.core.util.Arrays;
-
 import java.util.HashSet;
+import static lotto.Application.checkRange;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,7 +13,14 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         numbers = eraseDuplicated(numbers);
         validate(numbers);
+        checkLottoRange(numbers);
         this.numbers = numbers;
+    }
+
+    private void checkLottoRange(List<Integer> numbers) {
+        for (Integer num : numbers) {
+            checkRange(num);
+        }
     }
 
     private List<Integer> eraseDuplicated(List<Integer> numbers) {

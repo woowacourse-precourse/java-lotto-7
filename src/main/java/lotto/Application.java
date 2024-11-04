@@ -67,7 +67,6 @@ public class Application {
         List<Integer> numbers = new ArrayList<Integer>();
         for (String e : numbers_string) {
             int element = stringToNum(e);
-            // checkRange(element);
             numbers.add(element);
         }
         return numbers;
