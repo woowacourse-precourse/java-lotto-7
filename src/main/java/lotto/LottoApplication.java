@@ -13,22 +13,25 @@ public class LottoApplication {
         Lottos lottos = new Lottos();
         LottoPurchase lottoPurchase = new LottoPurchase();
 
+        getLottoPurchaseController(lottos, lottoPurchase).start();
+        getLottoDrawingController(lottos, lottoPurchase).start();
+    }
+
+    private static LottoPurchaseController getLottoPurchaseController(Lottos lottos, LottoPurchase lottoPurchase) {
         PurchaseAmountInputView purchaseAmountInputView = new PurchaseAmountInputView();
 
-        LottoPurchaseController lottoPurchaseController = new LottoPurchaseController(lottos, lottoPurchase,
-                purchaseAmountInputView);
-        lottoPurchaseController.start();
+        return new LottoPurchaseController(lottos, lottoPurchase, purchaseAmountInputView);
+    }
 
+    private static LottoDrawingController getLottoDrawingController(Lottos lottos, LottoPurchase lottoPurchase) {
         WinningNumbersInputView winningNumbersInputView = new WinningNumbersInputView();
         BonusNumberInputView bonusNumberInputView = new BonusNumberInputView();
 
-        LottoDrawingController lottoDrawingController = new LottoDrawingController(
+        return new LottoDrawingController(
                 lottos,
                 lottoPurchase,
                 winningNumbersInputView,
                 bonusNumberInputView
         );
-
-        lottoDrawingController.start();
     }
 }
