@@ -30,13 +30,14 @@ public class LottoValidator {
     }
 
     public static boolean checkDuplicate(List<Integer> numberList, int checkNum){
-        for (Integer num : numberList) {
-            if(checkNum == num){
-                throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 겹칩니다.");
-            }
+        if(numberList.contains(checkNum)){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 겹칩니다.");
         }
         return true;
     }
 
+    public static boolean findBonus(List<Integer> numberList, int bonusNum){
+        return numberList.contains(bonusNum);
+    }
 
 }

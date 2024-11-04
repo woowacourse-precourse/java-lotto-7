@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.LottoPrize;
 import lotto.validator.LottoValidator;
 
 import java.util.*;
@@ -13,10 +14,18 @@ public class LottoManager {
     //추후 수익률 계산을 위한 변수
     private int purchasePrice;
     private int bonusNum;
+    private int totalEarningSum = 0;
     private Lotto winningLotto;
     private List<Lotto> lottoList = new ArrayList<>();
 
-
+    public void play(){
+        setPurchaseAmount();
+        setLotto();
+        setWinningNumber();
+        setBonusNumber();
+        compareLottoList();
+        printResult();
+    }
 
     public void setPurchaseAmount(){
         while (!getPurchaseAmount()){
@@ -49,6 +58,7 @@ public class LottoManager {
     public void compareLottoList(){
         for (Lotto lotto : lottoList) {
             int compareLottoNumber = compareLotto(lotto);
+            increaseEachMatchCount(compareLottoNumber, LottoValidator.findBonus(lotto.getNumbers(), bonusNum));
         }
     }
 
@@ -59,6 +69,14 @@ public class LottoManager {
         return winLotto.size();
     }
 
+    public void printResult(){
+        System.out.println("\n당첨 통계\n---");
+        for (LottoPrize prize : LottoPrize.values()) {
+            totalEarningSum += prize.getPrizeMoney() * prize.getEachMatchCount();
+            String formatPrice = String.format("%,d", prize.getPrizeMoney());
+            System.out.println(prize.getDescription() +" (" + formatPrice + "원) - " + prize.getEachMatchCount() + "개");
+        }
+    }
 
     private boolean convertBonusNumToInteger(String userInput) {
         try {
@@ -141,6 +159,13 @@ public class LottoManager {
         lottoList.add(lotto);
     }
 
+    private void increaseEachMatchCount(int matchCount, boolean matchBonus){
+        LottoPrize prize = LottoPrize.checkValue(matchCount, matchBonus);
+        if(prize != null){
+            prize.increaseEachMatchCount();
+        }
+    }
+
     //테스트를 위한 설정 메서드
     void setPurchaseAmountForTest(int purchaseAmountForTest) {
         this.purchaseAmount = purchaseAmountForTest;
@@ -153,8 +178,6 @@ public class LottoManager {
     void setWinningLottoForTest(Lotto winningLottoForTest) {
         this.winningLotto = winningLottoForTest;
     }
-
-
 
     //테스트를 위한 조회 메서드
     public List<Lotto> getLottoList() {
