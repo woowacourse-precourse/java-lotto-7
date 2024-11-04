@@ -19,6 +19,7 @@ public class Result {
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+        
         initializeResultMap();
     }
 
@@ -32,6 +33,7 @@ public class Result {
         for (Lotto lotto : lottos) {
             int matchCount = lotto.getMatchCount(winningNumbers);
             boolean bonusMatch = lotto.hasBonusNumber(bonusNumber);
+
             determinePrizeLevel(matchCount, bonusMatch);
         }
     }

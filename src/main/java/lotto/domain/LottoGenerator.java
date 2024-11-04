@@ -16,6 +16,7 @@ public class LottoGenerator {
 
     public void purchaseLottos(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
+
         int count = purchaseAmount / LOTTO_PRICE;
         for (int i = 0; i < count; i++) {
             lottos.add(generateLotto());
@@ -44,6 +45,7 @@ public class LottoGenerator {
     public void printLottos() {
         System.out.println();
         System.out.println(lottos.size() + "개를 구매했습니다.");
+
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
