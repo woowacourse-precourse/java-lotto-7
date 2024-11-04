@@ -1,6 +1,7 @@
 package lotto.ui;
 
 import java.util.List;
+import lotto.ui.dto.LottoNumbersResponse;
 import lotto.ui.dto.LottoStatisticsResponse;
 import lotto.ui.dto.PurchasedLottoResponse;
 import lotto.ui.dto.WinningCountByPrize;
@@ -17,9 +18,9 @@ public class OutputView {
     private static final int SECOND = 2;
 
     public void displayPurchasedLotto(PurchasedLottoResponse response) {
-        System.out.printf(PURCHASE_COUNT_MESSAGE_FORMAT, response.getLottoCount());
-        response.getLottos()
-                .forEach(lotto -> System.out.println(lotto.getNumbers()));
+        List<LottoNumbersResponse> lottoNumbers = response.getLottos();
+        System.out.printf(PURCHASE_COUNT_MESSAGE_FORMAT, lottoNumbers.size());
+        lottoNumbers.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
     public void displayWinningStatistics(LottoStatisticsResponse response) {

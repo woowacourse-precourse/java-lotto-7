@@ -31,8 +31,8 @@ public class LottoController {
         LottoMoney lottoMoney = exceptionHandler.retry(this::createLottoMoney);
         LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator(), lottoMoney);
         List<Lotto> lottos = lottoMachine.issueLottos();
+        outputView.displayPurchasedLotto(PurchasedLottoResponse.of(lottos));
 
-        outputView.displayPurchasedLotto(PurchasedLottoResponse.of(lottoMoney.getDrawCount(), lottos));
         winningStatisticsProcess(lottos, lottoMoney);
     }
 

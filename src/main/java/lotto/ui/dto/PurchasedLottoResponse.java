@@ -5,16 +5,14 @@ import lotto.domain.lotto.Lotto;
 
 public class PurchasedLottoResponse {
 
-    private final int lottoCount;
     private final List<LottoNumbersResponse> lottos;
 
-    private PurchasedLottoResponse(int lottoCount, List<LottoNumbersResponse> lottos) {
-        this.lottoCount = lottoCount;
+    private PurchasedLottoResponse(List<LottoNumbersResponse> lottos) {
         this.lottos = lottos;
     }
 
-    public static PurchasedLottoResponse of(int lottoCount, List<Lotto> lottos) {
-        return new PurchasedLottoResponse(lottoCount, convertLottoNumbersResponse(lottos));
+    public static PurchasedLottoResponse of(List<Lotto> lottos) {
+        return new PurchasedLottoResponse(convertLottoNumbersResponse(lottos));
     }
 
     private static List<LottoNumbersResponse> convertLottoNumbersResponse(List<Lotto> lottos) {
@@ -25,10 +23,6 @@ public class PurchasedLottoResponse {
 
     public List<LottoNumbersResponse> getLottos() {
         return lottos;
-    }
-
-    public int getLottoCount() {
-        return lottoCount;
     }
 
 }
