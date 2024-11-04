@@ -47,10 +47,31 @@ public class DrawServiceImpl implements DrawService {
         return result;
     }
 
+    private int countMatchingNumber(Lotto lotto) {
+        int i = 0;
+        int j = 0;
+        int count = 0;
+
+        while (i < 6 && j < 6) {
+            if (lotto.getNumbers().get(i) < winningLottoNumbers.get(j)) {
+                i++;
+                continue;
+            }
+            if (lotto.getNumbers().get(i) > winningLottoNumbers.get(j)) {
+                j++;
+                continue;
+            }
+
+            i++;
+            j++;
+            count++;
+        }
+        return count;
+    }
+
     @Override
     public void saveStatistics(Map<Rank, Integer> result) {
 
     }
-
 
 }
