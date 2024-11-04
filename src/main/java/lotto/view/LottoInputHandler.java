@@ -3,6 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.LottoConstants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LottoInputHandler {
     public int getTotalPurchase() {
         int totalPurchase = retryReadInteger();
@@ -27,5 +30,24 @@ public class LottoInputHandler {
 
     public int parseInput(String input) {
         return Integer.parseInt(input);
+    }
+
+    public List<Integer> getWinningNumbers() {
+        while (true) {
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            try {
+                return parseNumberList(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.printf("[ERROR] 유효한 정수 리스트를 입력하세요. 다시 입력해 주세요. (%s)\n", e.getMessage());
+            }
+        }
+    }
+
+    public List<Integer> parseNumberList(String inputNumbers) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String inputNumber : inputNumbers.split(",")) {
+            numbers.add(Integer.parseInt(inputNumber.trim()));
+        }
+        return numbers;
     }
 }

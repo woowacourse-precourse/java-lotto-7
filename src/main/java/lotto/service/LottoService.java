@@ -32,4 +32,8 @@ public class LottoService {
         }
         return totalRandomNumbers;
     }
+
+    public Lotto getValidatedLotto(List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
 }
