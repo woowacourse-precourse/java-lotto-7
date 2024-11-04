@@ -1,22 +1,30 @@
 package lotto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoRankEvaluator {
-    //TODO 수익금 계산
     private final Map<Rank, Integer> rankCount;
-    private final long rateOfReturn;
+    private final double rateOfReturn;
+    private final static int LOTTO_PRICE = 1000;
 
-    private final static int CHECK_BONUS_CRITERIA = 5;
-
-    public LottoRankEvaluator(Map<Rank, Integer> rankCount, long rateOfReturn) {
-        this.rankCount = rankCount;
-        this.rateOfReturn = rateOfReturn;
+    public LottoRankEvaluator(List<Lotto> lottos, List<Integer> winnerNumbers, int bonusNumber) {
+        this.rankCount = evaluator(lottos, winnerNumbers, bonusNumber);
+        this.rateOfReturn = calculateRateOfReturn(lottos.size() * LOTTO_PRICE);
     }
 
-    public Map<Rank,Integer> evaluator(List<Lotto> lottos, List<Integer> winnerNumbers, int bonusNumber) {
+    public Map<Rank, Integer> getRankCount() {
+        return rankCount;
+    }
+
+    public double getRateOfReturn() {
+        return rateOfReturn;
+    }
+
+    private Map<Rank,Integer> evaluator(List<Lotto> lottos, List<Integer> winnerNumbers, int bonusNumber) {
         Map<Rank,Integer> rankCount = new EnumMap<>(Rank.class);
 
         for (Rank rank : Rank.values()) {
@@ -29,6 +37,18 @@ public class LottoRankEvaluator {
         }
 
         return rankCount;
+    }
+
+    private double calculateRateOfReturn(int totalPurchase) {
+        int totalWinningPrize = 0;
+        for (Map.Entry<Rank, Integer> entry : rankCount.entrySet()) {
+            Rank rank = entry.getKey();
+            totalWinningPrize += rank.getWinningPrice() * entry.getValue();
+        }
+
+        BigDecimal result = BigDecimal.valueOf(totalWinningPrize / totalPurchase);
+        BigDecimal roundResult = result.setScale(2, RoundingMode.HALF_UP);
+        return roundResult.doubleValue();
     }
 
     private Rank evaluateRank(List<Integer> winnerNumbers, Lotto lotto, int bonusNumber) {
