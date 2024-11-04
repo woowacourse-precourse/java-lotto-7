@@ -10,12 +10,12 @@ public class InputHandler {
         return handleError(inputView::inputPurchasePrice);
     }
 
-    public WinningNumbers inputWinningNumbers() {
+    public Lotto inputWinningNumbers() {
         return handleError(inputView::inputNumbers);
     }
 
-    public BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
-        return handleError(() -> inputView.inputNumber(winningNumbers));
+    public BonusNumber inputBonusNumber(Lotto lotto) {
+        return handleError(() -> inputView.inputNumber(lotto));
     }
 
     private <T> T handleError(Supplier<T> supplier) {

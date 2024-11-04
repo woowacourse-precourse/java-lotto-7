@@ -17,21 +17,21 @@ public class InputView {
         return new Cash(Integer.parseInt(price));
     }
 
-    public WinningNumbers inputNumbers() {
+    public Lotto inputNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
 
         String numbers = Console.readLine();
 
         inputValidator.validateNumbersByComma(numbers);
 
-        return new WinningNumbers(
+        return new Lotto(
             Arrays.stream(numbers.split(","))
                 .map(Integer::parseInt)
                 .toList()
         );
     }
 
-    public BonusNumber inputNumber(WinningNumbers winningNumbers) {
+    public BonusNumber inputNumber(Lotto lotto) {
         System.out.println("보너스 번호를 입력해 주세요.");
 
         String number = Console.readLine();
@@ -39,7 +39,7 @@ public class InputView {
         inputValidator.validateNumeric(number);
 
         int bonusNumber = Integer.parseInt(number);
-        winningNumbers.validateDuplicateByBonusNumber(bonusNumber);
+        lotto.validateDuplicateByBonusNumber(bonusNumber);
 
         return new BonusNumber(bonusNumber);
     }

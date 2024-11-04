@@ -2,11 +2,12 @@ package lotto;
 
 public class WinningLotto {
 
-    private final WinningNumbers winningNumbers;
+    private final Lotto lotto;
     private final BonusNumber bonusNumber;
 
-    public WinningLotto(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        this.winningNumbers = winningNumbers;
+    public WinningLotto(Lotto lotto, BonusNumber bonusNumber) {
+        this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
+
 }

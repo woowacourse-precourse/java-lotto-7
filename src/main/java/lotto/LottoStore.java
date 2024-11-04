@@ -11,11 +11,11 @@ public class LottoStore {
         lottoMachine.purchase(cash);
         outputView.printLottoTickets(lottoMachine);
 
-        WinningNumbers winningNumbers = inputHandler.inputWinningNumbers();
-        BonusNumber bonusNumber = inputHandler.inputBonusNumber(winningNumbers);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        Lotto lotto = inputHandler.inputWinningNumbers();
+        BonusNumber bonusNumber = inputHandler.inputBonusNumber(lotto);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
 
-
+        //TODO 당첨 통계 출력
     }
 
 }
