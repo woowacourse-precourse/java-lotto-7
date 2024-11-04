@@ -18,15 +18,12 @@ public class LottoController {
         while (isRunning) {
             try {
                 int purchaseAmount = inputPurchaseAmount();
-                System.out.println();
 
                 LottoService lottoService = new LottoService();
                 lottoService.purchaseLottos(purchaseAmount);
                 OutputView.printPurchasedLottos(lottoService.getPurchasedLottos());
-                System.out.println();
 
                 WinningNumbers winningNumbers = inputWinningNumbers();
-                System.out.println();
 
                 Map<LottoRank, Integer> results = lottoService.calculateResults(winningNumbers);
                 int totalPrize = lottoService.calculateTotalPrize(results);

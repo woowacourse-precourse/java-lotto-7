@@ -17,6 +17,7 @@ public class InputView {
     public static int inputPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
         String input = Console.readLine();
+        System.out.println();
         return parseInteger(input, "[ERROR] 구입 금액은 숫자여야 합니다.");
     }
 

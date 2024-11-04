@@ -13,9 +13,11 @@ public class OutputView {
         for (Lotto lotto : lottos) {
             System.out.println(formatLottoNumbers(lotto.getNumbers()));
         }
+        System.out.println();
     }
 
     public static void printResults(Map<LottoRank, Integer> results, double yield) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         List<LottoRank> rankOrder = Arrays.asList(
