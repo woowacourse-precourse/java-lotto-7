@@ -9,21 +9,13 @@ import lotto.model.LottoResult;
 
 
 public class ConsoleView {
-    public Integer getPurchaseLottoAmount(){
+    public String getPurchaseLottoAmount(){
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmountUserInput = Console.readLine();
-
-        if (isNumeric(purchaseAmountUserInput)){
-            Integer purchaseAmount = Integer.parseInt(purchaseAmountUserInput);
-            System.out.println();
-            return purchaseAmount;
-        }
-        throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로만 이루어져야 합니다.");
+        System.out.println();
+        return purchaseAmountUserInput;
     }
 
-    private static boolean isNumeric(String purchaseAmountUserInput) {
-        return purchaseAmountUserInput.matches("\\d+");
-    }
 
     public List<Integer> getWinningNumbers() { // 숫자가 아닌 값이면 예외
         System.out.println("당첨 번호를 입력해 주세요.");

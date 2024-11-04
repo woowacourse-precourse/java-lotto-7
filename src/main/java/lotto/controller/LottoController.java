@@ -2,17 +2,23 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import lotto.model.Lotto;
 import lotto.model.Issuer;
 import lotto.model.LottoResult;
 import lotto.model.Statistics;
+import lotto.parser.InputParser;
+import lotto.validator.LottoPurchaseValidator;
 import lotto.view.ConsoleView;
 
 public class LottoController {
+    private final LottoPurchaseValidator lottoPurchaseValidator;
+    private final InputParser inputParser;
     private final ConsoleView consoleView;
     private final Issuer issuer;
-    public LottoController(ConsoleView consoleView, Issuer issuer) {
+
+    public LottoController(LottoPurchaseValidator lottoPurchaseValidator, InputParser inputParser, ConsoleView consoleView, Issuer issuer) {
+        this.lottoPurchaseValidator = lottoPurchaseValidator;
+        this.inputParser = inputParser;
         this.consoleView = consoleView;
         this.issuer = issuer;
     }
@@ -26,12 +32,21 @@ public class LottoController {
         Integer bonusNumbers = consoleView.getBonusNumber();
 
         Statistics statistics = new Statistics(winningNumbers, bonusNumbers);
+
+        Map<LottoResult, Integer> lottoResults = getLottoResults(statistics, issuedLotteries);
+
+        Float rateOfReturn = getRateOfReturn(statistics, lottoResults);
+        consoleView.printRateOfReturn(rateOfReturn);
+    }
+
+    private Float getRateOfReturn(Statistics statistics, Map<LottoResult, Integer> lottoResults) {
+        return statistics.getRateOfReturn(lottoResults);
+    }
+
+    private Map<LottoResult, Integer> getLottoResults(Statistics statistics, List<Lotto> issuedLotteries) {
         Map<LottoResult, Integer> lottoResults = statistics.getResult(issuedLotteries);
         consoleView.printStatistics(lottoResults);
-
-        Float rateOfReturn = statistics.getRateOfReturn(lottoResults);
-        consoleView.printRateOfReturn(rateOfReturn);
-
+        return lottoResults;
     }
 
     private List<Lotto> getLotteries(Integer purchaseAmount) {
@@ -43,7 +58,9 @@ public class LottoController {
     private Integer getPurchaseLottoAmount() {
         while (true) {
             try {
-                return consoleView.getPurchaseLottoAmount();
+                String userInputPurchase = consoleView.getPurchaseLottoAmount();
+                lottoPurchaseValidator.validate(userInputPurchase);
+                return inputParser.parseInput(userInputPurchase);
             } catch (IllegalArgumentException e) {
                 consoleView.printErrorMessage(e.getMessage());
             }
