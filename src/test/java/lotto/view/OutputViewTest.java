@@ -8,10 +8,8 @@ import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import lotto.domain.Prize;
 import lotto.domain.PublishLotto;
 import lotto.validator.DefaultDuplicateValidator;
@@ -89,7 +87,7 @@ public class OutputViewTest {
     @Test
     void 수익률_출력_테스트() {
         // given
-        BigDecimal profit = new BigDecimal(10.5);
+        BigDecimal profit = new BigDecimal(1000000.0);
 
         // when
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -97,7 +95,7 @@ public class OutputViewTest {
         outputView.printProfit(profit);
 
         //then
-        String expected = "총 수익률은 10.5%입니다.";
-        assertThat(outputStream.toString()).isEqualTo(expected);
+        String output = outputStream.toString();
+        assertTrue(output.contains("총 수익률은 1,000,000.0%입니다."));
     }
 }
