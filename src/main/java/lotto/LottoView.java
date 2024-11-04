@@ -71,8 +71,7 @@ public class LottoView {
         int totalPrize = lottoController.calculateTotalPrize();
         double profitRate = lottoController.calculateProfitRate(totalPrize);
 
-        System.out.println("총 상금: " + String.format("%,d", totalPrize) + "원");
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
         System.out.println();
     }
 }
