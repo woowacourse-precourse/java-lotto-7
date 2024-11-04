@@ -48,12 +48,7 @@ public class Lotto {
     }
 
     public boolean isBonusMatch(int bonusNumber) {
-        for (int number : numbers) {
-            if (number == bonusNumber) {
-                return true;
-            }
-        }
-        return false;
+        return numbers.stream()
+                .anyMatch(number -> number == bonusNumber);
     }
-
 }
