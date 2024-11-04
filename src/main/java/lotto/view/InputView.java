@@ -2,6 +2,7 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.system.utils.constants.LottoErrorMessages.INVALID_NUMBER_INPUT;
+import static lotto.view.OutputView.printMessage;
 
 public class InputView {
 
@@ -14,7 +15,7 @@ public class InputView {
             try {
                 return Integer.parseInt(readUserInput());
             } catch (NumberFormatException e) {
-                OutputView.printMessage(INVALID_NUMBER_INPUT.getMessage());
+                printMessage(INVALID_NUMBER_INPUT.getMessage());
             }
         }
     }
@@ -28,7 +29,7 @@ public class InputView {
             try {
                 return Integer.parseInt(readUserInput());
             } catch (NumberFormatException e) {
-                OutputView.printMessage(INVALID_NUMBER_INPUT.getMessage());
+                printMessage(INVALID_NUMBER_INPUT.getMessage());
             }
         }
     }
