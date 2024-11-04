@@ -30,31 +30,42 @@ public class LottoGameController {
 
     public void run() {
         UserMoneyDTO userMoneyDTO = readUserMoney();
-
-        Ticket ticket = Ticket.from(userMoneyDTO.getUserMoney());
-        LottoBowl lottoBowl = LottoBowl.from(ticket);
-
-        PublishedLottiesDTO publishedLottiesDTO = PublishedLottiesDTO.from(lottoBowl.publishLotties(), ticket);
+        PublishedLottiesDTO publishedLottiesDTO = generateLottoTicket(userMoneyDTO);
 
         showRandomLotties(publishedLottiesDTO);
 
-        UserSixNumberDTO userSixNumberDTO = readUserSixNumber();
-        UserLottoDTO userLottoDTO = readUserLotto(userSixNumberDTO.getUserSixNumber());
+        UserLottoDTO userLottoDTO = getUserLottoSelection();
 
-        LottoComparator lottoComparator = LottoComparator.from(publishedLottiesDTO.getRandomLotties(),
-                userLottoDTO.getUserLotto());
-
-        LottoResult lottoResult = LottoResult.initialize();
-
-        lottoComparator.compare(lottoResult);
-        MarginCalculator marginCalculator = new MarginCalculator(lottoResult, userMoneyDTO.getUserMoney());
-
-        BigDecimal margin = marginCalculator.calculateMargin();
-
-        ResultMarginDTO resultMarginDTO = ResultMarginDTO.from(lottoResult, margin);
+        ResultMarginDTO resultMarginDTO = calculateResult(publishedLottiesDTO, userLottoDTO, userMoneyDTO);
 
         showLottoResult(resultMarginDTO);
         Console.close();
+    }
+
+    private ResultMarginDTO calculateResult(PublishedLottiesDTO publishedLottiesDTO,
+                                            UserLottoDTO userLottoDTO,
+                                            UserMoneyDTO userMoneyDTO) {
+        LottoComparator lottoComparator = LottoComparator.from(publishedLottiesDTO.getRandomLotties(),
+                userLottoDTO.getUserLotto());
+        LottoResult lottoResult = LottoResult.initialize();
+        lottoComparator.compare(lottoResult);
+
+        MarginCalculator marginCalculator = new MarginCalculator(lottoResult, userMoneyDTO.getUserMoney());
+        BigDecimal margin = marginCalculator.calculateMargin();
+
+        return ResultMarginDTO.from(lottoResult, margin);
+    }
+
+    private UserLottoDTO getUserLottoSelection() {
+        UserSixNumberDTO userSixNumberDTO = readUserSixNumber();
+        return readUserLotto(userSixNumberDTO.getUserSixNumber());
+    }
+
+    private PublishedLottiesDTO generateLottoTicket(UserMoneyDTO userMoneyDTO) {
+        Ticket ticket = Ticket.from(userMoneyDTO.getUserMoney());
+        LottoBowl lottoBowl = LottoBowl.from(ticket);
+
+        return PublishedLottiesDTO.from(lottoBowl.publishLotties(), ticket);
     }
 
     private void showRandomLotties(PublishedLottiesDTO publishedLottiesDTO) {
@@ -105,7 +116,6 @@ public class LottoGameController {
                 String rawUserLotto = InputView.getUserLotto();
                 OutputView.printEnter();
                 List<String> splittedRawInput = StringSplitter.splitByDelimiter(rawUserLotto, DELIMITER);
-
                 splittedRawInput.forEach(NumberValidator::validateInt);
 
                 Lotto userSixNumber = new Lotto(splittedRawInput
