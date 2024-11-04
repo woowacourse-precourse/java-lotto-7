@@ -1,4 +1,4 @@
-package lotto.lottoMachine;
+package lotto;
 
 import java.util.Map;
 

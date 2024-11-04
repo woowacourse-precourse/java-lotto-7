@@ -1,14 +1,16 @@
-package lotto.lottoMachine;
+package lotto.service;
 
 import java.util.List;
+import lotto.Lotto;
+import lotto.LottoResult;
 import lotto.controller.InputController;
 import lotto.controller.OutputController;
 
 public class LottoMachineService {
     private final InputController inputController = new InputController();
     private final OutputController outputController = new OutputController();
-    private final LottoGenerator lottoGenerator = new LottoGenerator();
-    private final LottoCalculator lottoCalculator = new LottoCalculator();
+    private final LottoGeneratorService lottoGeneratorService = new LottoGeneratorService();
+    private final LottoCalculatorService lottoCalculatorService = new LottoCalculatorService();
 
     public LottoMachineService() { }
 
@@ -17,7 +19,7 @@ public class LottoMachineService {
         Integer purchaseNumber = inputController.getPurchaseNumber();
 
         //2. 구매 로또 생성 및 출력
-        List<Lotto> userLottos = lottoGenerator.generateLottos(purchaseNumber);
+        List<Lotto> userLottos = lottoGeneratorService.generateLottos(purchaseNumber);
         outputController.printUserLottos(purchaseNumber, userLottos);
 
         //3. 당첨 로또 입력
@@ -25,7 +27,7 @@ public class LottoMachineService {
         Integer bonusNumber = inputController.getBonusNumber(winningLotto);
 
         //4. 당첨 결과 계산 및 출력
-        LottoResult lottoResult = lottoCalculator.getResult(userLottos, winningLotto, bonusNumber, purchaseNumber);
+        LottoResult lottoResult = lottoCalculatorService.getResult(userLottos, winningLotto, bonusNumber, purchaseNumber);
         outputController.printResult(lottoResult);
     }
 }

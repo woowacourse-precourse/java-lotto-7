@@ -1,4 +1,4 @@
-package lotto.lottoMachine;
+package lotto;
 
 public enum LottoRank {
     FIFTH(5_000, "3개 일치 (5,000원) - "),

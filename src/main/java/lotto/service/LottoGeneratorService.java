@@ -1,10 +1,11 @@
-package lotto.lottoMachine;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Lotto;
 
-public class LottoGenerator {
+public class LottoGeneratorService {
     public List<Lotto> generateLottos(Integer purchaseNumber) {
         List<Lotto> userLottos = new ArrayList<>();
         for(int i = 0; i < purchaseNumber; i++) {

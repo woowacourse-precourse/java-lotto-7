@@ -1,10 +1,13 @@
-package lotto.lottoMachine;
+package lotto.service;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.Lotto;
+import lotto.LottoRank;
+import lotto.LottoResult;
 
-public class LottoCalculator {
+public class LottoCalculatorService {
     public LottoResult getResult(List<Lotto> userLottos,
                                  Lotto winningLotto,
                                  Integer bonusNumber,
