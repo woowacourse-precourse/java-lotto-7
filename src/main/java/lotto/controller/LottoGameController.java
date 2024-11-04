@@ -29,7 +29,9 @@ public class LottoGameController {
     private int inputPurchaseAmount() {
         while (true) {
             try {
-                return inputView.inputPurchaseAmount();
+                int amount = inputView.inputPurchaseAmount();
+                lottoMachine.validatePurchaseAmount(amount);
+                return amount;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
