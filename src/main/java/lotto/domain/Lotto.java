@@ -22,6 +22,16 @@ public class Lotto {
         return numbers;
     }
 
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .sorted()
+                .map(String::valueOf)
+                .reduce((num1, num2) -> num1 + ", " + num2)
+                .map(result -> "[" + result + "]")
+                .orElse("[]");
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new LottoException(INVALID_WINNING_NUMBERS);
