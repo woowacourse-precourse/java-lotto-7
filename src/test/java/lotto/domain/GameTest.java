@@ -109,8 +109,20 @@ public class GameTest {
     @Test
     void 수익률_계산_테스트_100_미만() {
         // 수익률 100% 미만
-        List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 7, 8, 9, 11)));
-        int purchaseAmount = 1000;
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 3, 8, 9, 11))
+                );
+
+        int purchaseAmount = 10000;
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
         Game game = new Game(lottos, winningLotto, bonusNumber);
@@ -120,6 +132,6 @@ public class GameTest {
         double rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
 
         // then
-        assertEquals(rateOfReturn, 0);
+        assertEquals(rateOfReturn, 50.0);
     }
 }
