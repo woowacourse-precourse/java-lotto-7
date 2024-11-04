@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.LottoTickets;
+import lotto.util.LottoConstants;
 import lotto.util.Ranking;
 
 public class OutputView {
@@ -19,7 +20,9 @@ public class OutputView {
         this.lottoTickets = lottoTickets;
     }
 
-    public void showLottoTickets(int ticketCount) {
+    public void showLottoTickets(int purchaseAmount) {
+        int ticketCount = purchaseAmount / LottoConstants.LOTTO_PRICE;
+
         System.out.println();
         System.out.println(ticketCount + purchaseMessage);
         System.out.println(lottoTickets.getLottoTicket());
