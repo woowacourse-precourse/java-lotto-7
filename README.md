@@ -28,6 +28,15 @@
 
 ---
 
+## Handler
+
+**RetryHandler**
+
+- **`getInputUntilValid(Supplier<T> inputFunction)`**
+    - 제공된 입력 함수 `inputFunction`을 실행하여 올바른 입력이 반환될 때까지 반복.
+    - `IllegalArgumentException`이 발생하면 오류 메시지를 출력하고 재시도.
+  
+--- 
 ### Enum
 
 **ErrorMessage**
