@@ -61,4 +61,10 @@ class LottoRankTest {
     void 첫번째순위상금확인_테스트() {
         assertEquals(2_000_000_000, LottoRank.FIRST.getPrize());
     }
+
+    @DisplayName("두 번째 순위의 상금 확인")
+    @Test
+    void 두번째순위상금확인_테스트() {
+        assertEquals(30_000_000, LottoRank.SECOND.getPrize());
+    }
 }
