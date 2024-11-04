@@ -4,9 +4,9 @@ import static lotto.ErrorMessage.NOT_ENOUGH_PURCHASE_AMOUNT;
 import static lotto.ErrorMessage.PURCHASE_AMOUNT_EXCEED_LIMIT;
 import static lotto.ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_LOTTO_PRICE;
 import static lotto.LottoMachine.LOTTO_PRICE;
+import static lotto.LottoMachine.MAX_PURCHASE_AMOUNT;
 
 public class PurchaseAmount {
-    public static final int MAX_PURCHASE_AMOUNT = 100000;
     private static final int PERCENTAGE_FACTOR = 100;
     private final int purchaseAmount;
 

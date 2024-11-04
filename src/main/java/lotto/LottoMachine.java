@@ -7,6 +7,7 @@ import java.util.List;
 
 public class LottoMachine {
     public static final int LOTTO_PRICE = 1000;
+    public static final int MAX_PURCHASE_AMOUNT = 100000;
     public static final int MIN_LOTTO_NUMBER_RANGE = 1;
     public static final int MAX_LOTTO_NUMBER_RANGE = 45;
     public static final int LOTTO_NUMBER_COUNT = 6;

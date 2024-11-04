@@ -4,7 +4,7 @@ import static lotto.ErrorMessage.NOT_ENOUGH_PURCHASE_AMOUNT;
 import static lotto.ErrorMessage.PURCHASE_AMOUNT_EXCEED_LIMIT;
 import static lotto.ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_LOTTO_PRICE;
 import static lotto.LottoMachine.LOTTO_PRICE;
-import static lotto.PurchaseAmount.MAX_PURCHASE_AMOUNT;
+import static lotto.LottoMachine.MAX_PURCHASE_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
