@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class Application {
 
     public static List<Lotto> lottos = new ArrayList<>();
-    public static List<Integer> winningLotto;
+    public static Lotto winningLotto;
     public static int bonusNumber;
     public static Map<Rank, Integer> rankCounter = new TreeMap<>();
 
@@ -65,17 +65,17 @@ public class Application {
         }
     }
 
-    public static void checkLottoVaild(Set<String> uniqueNumbers) {
-        if (uniqueNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복없이 6개여야 합니다.");
-        }
+    public static List<Integer> stringToNumbers(List<String> numbers_string) {
+        // if (uniqueNumbers.size() != 6) {
+        // throw new IllegalArgumentException("[ERROR] 로또 번호는 중복없이 6개여야 합니다.");
+        // }
         List<Integer> numbers = new ArrayList<Integer>();
-        for (String e : uniqueNumbers) {
+        for (String e : numbers_string) {
             int element = stringToNum(e);
-            checkRange(element);
+            // checkRange(element);
             numbers.add(element);
         }
-        winningLotto = numbers;
+        return numbers;
     }
 
     public static void makeWinningLotto() {
@@ -83,8 +83,11 @@ public class Application {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String input = readLine();
-                Set<String> uniqueNumbers = new HashSet<>(Arrays.asList(input.split(",")));
-                checkLottoVaild(uniqueNumbers);
+                List<Integer> numbers = stringToNumbers(Arrays.asList(input.split(",")));
+                winningLotto = new Lotto(numbers);
+
+                // Set<String> uniqueNumbers = new HashSet<>();
+                // checkLottoVaild(uniqueNumbers);
                 break;
             } catch (Exception e) {
                 System.out.println(e);
