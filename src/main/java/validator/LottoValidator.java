@@ -52,4 +52,10 @@ public class LottoValidator {
         }
     }
 
+    public static void isNotDuplicateWithWinningNumbers(Integer bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
+        }
+    }
+
 }

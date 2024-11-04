@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import validator.LottoValidator;
 import view.InputView;
 import view.OutputView;
 
@@ -34,6 +35,7 @@ public class LottoController {
         this.cost = InputView.inputCost();
         this.winningNumbers = InputView.inputWinningNumbers();
         this.bonusNumber = InputView.inputBonusNumber();
+        LottoValidator.isNotDuplicateWithWinningNumbers(this.bonusNumber, this.winningNumbers);
     }
 
     private void runLotto() {
