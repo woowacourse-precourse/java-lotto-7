@@ -15,7 +15,6 @@ public class Input {
 	private static final String BONUS_LOTTO_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 	private static final int MIN_LOTTO_NUMBER = 1;
 	private static final int MAX_LOTTO_NUMBER = 45;
-	private static final int LOTTO_NUMBER_COUNT = 6;
 
 	private static int validateLottoPurchaseAmountFormat(String lottoPurchaseAmount) {
 		try {
@@ -53,18 +52,6 @@ public class Input {
 				.collect(Collectors.toList());
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException("[ERROR] 당첨 번호는 올바른 숫자 형식이어야 합니다.");
-		}
-	}
-
-	private static void validateLottoNumbers(List<Integer> numbers) {
-		if (numbers.size() != LOTTO_NUMBER_COUNT) {
-			throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + LOTTO_NUMBER_COUNT + "개의 숫자여야 합니다.");
-		}
-		if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
-			throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + MIN_LOTTO_NUMBER + "에서 " + MAX_LOTTO_NUMBER + " 사이여야 합니다.");
-		}
-		if (numbers.size() != numbers.stream().distinct().count()) {
-			throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
 		}
 	}
 
