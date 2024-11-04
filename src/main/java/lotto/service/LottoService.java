@@ -13,11 +13,11 @@ import lotto.domain.Price;
 
 public class LottoService {
 
-    private final List<Lotto> purchasedLottos;
+    private final List<Lotto> purchasedLotteries;
     private final LottoResult lottoResult;
 
-    public LottoService(List<Lotto> purchasedLottos, LottoResult lottoResult) {
-        this.purchasedLottos = purchasedLottos;
+    public LottoService(List<Lotto> purchasedLotteries, LottoResult lottoResult) {
+        this.purchasedLotteries = purchasedLotteries;
         this.lottoResult = lottoResult;
     }
 
@@ -27,12 +27,12 @@ public class LottoService {
 
     public void buyLotto(Price purchasePrice) {
         for (int i = 0; i < purchasePrice.getLottoAmount(); i++) {
-            purchasedLottos.add(generateLottoByNumbers(generateRandomNumbers()));
+            purchasedLotteries.add(generateLottoByNumbers(generateRandomNumbers()));
         }
     }
 
-    public List<Lotto> getPurchasedLottos() {
-        return Collections.unmodifiableList(purchasedLottos);
+    public List<Lotto> getPurchasedLotteries() {
+        return Collections.unmodifiableList(purchasedLotteries);
     }
 
     public Numbers getWinNumbers(String input) {
@@ -47,14 +47,14 @@ public class LottoService {
 
     public void calculateLottoResult(Numbers winNumbers, Number bonusNumber) {
         Map<LottoRank, Integer> result = lottoResult.getResult();
-        for (Lotto lotto : purchasedLottos) {
+        for (Lotto lotto : purchasedLotteries) {
             int lottoScore = lotto.countMatchNumbers(winNumbers);
             boolean hasBonusNumber = lotto.checkHasBonusNumber(bonusNumber);
             LottoRank rank = LottoRank.evaluate(lottoScore, hasBonusNumber);
 
             if (rank != LottoRank.MISS) {
-                Integer i = result.get(rank);
-                result.put(rank, ++i);
+                Integer rankResult = result.get(rank);
+                result.put(rank, ++rankResult);
             }
         }
     }
@@ -66,8 +66,8 @@ public class LottoService {
     public float getProfitRate(Price price) {
         int profit = lottoResult.getResult().entrySet()
             .stream()
-            .filter(e -> e.getValue() != 0)
-            .mapToInt(e -> e.getKey().getPrize() * e.getValue())
+            .filter(result -> result.getValue() != 0)
+            .mapToInt(result -> result.getKey().getPrize() * result.getValue())
             .sum();
 
         return ((float) profit / price.value()) * 100;

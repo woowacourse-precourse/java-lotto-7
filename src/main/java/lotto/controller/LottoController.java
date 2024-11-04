@@ -43,7 +43,7 @@ public class LottoController {
 
         lottoService.buyLotto(purchasePrice);
 
-        OutputView.printPurchasedLottoNumbers(lottoService.getPurchasedLottos());
+        OutputView.printPurchasedLottoNumbers(lottoService.getPurchasedLotteries());
     }
 
     private void winNumbersInfo() {

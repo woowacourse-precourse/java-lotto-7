@@ -20,22 +20,22 @@ import org.junit.jupiter.api.Test;
 class LottoServiceTest {
 
     private LottoService lottoService;
-    private List<Lotto> purchasedLotto;
     private Numbers winNumbers;
-    private lotto.domain.Number bonusNumber;
+    private Number bonusNumber;
     private Price price;
 
     @BeforeEach
     void init() {
-        purchasedLotto = new ArrayList<>();
-        purchasedLotto.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6))));
-        purchasedLotto.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 7))));
-        purchasedLotto.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 45))));
-        purchasedLotto.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 44, 45))));
-        purchasedLotto.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 43, 44, 45))));
-        purchasedLotto.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 42, 43, 44, 45))));
+        List<Lotto> purchasedLotteries = new ArrayList<>();
 
-        lottoService = new LottoService(purchasedLotto, new LottoResult());
+        purchasedLotteries.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6))));
+        purchasedLotteries.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 7))));
+        purchasedLotteries.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 45))));
+        purchasedLotteries.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 44, 45))));
+        purchasedLotteries.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 43, 44, 45))));
+        purchasedLotteries.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 42, 43, 44, 45))));
+
+        lottoService = new LottoService(purchasedLotteries, new LottoResult());
 
         winNumbers = new Numbers(Arrays.asList(1, 2, 3, 4, 5, 6));
 
