@@ -16,11 +16,11 @@ public class WininngNumberManager {
     }
 
     private List<Integer> parsingWinningInput(String[] inputWinningNumbers) {
-        List<Integer> list_num = Arrays.asList(inputWinningNumbers).stream()
+        List<Integer> winningNumber = Arrays.asList(inputWinningNumbers).stream()
                 .map(String::trim)
                 .map(this::evaluateWinningNumber)
                 .collect(Collectors.toList());
-        return list_num;
+        return winningNumber;
     }
 
     private int evaluateWinningNumber(String inputWinningNumber) {
@@ -32,5 +32,4 @@ public class WininngNumberManager {
         Bonus bonus = new Bonus(bonusNumber, lottoRepository.getWinningNumbers());
         lottoRepository.saveBonusNumbers(bonus);
     }
-
 }
