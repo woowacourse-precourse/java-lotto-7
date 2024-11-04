@@ -9,4 +9,8 @@ public class Lotto {
         Validator.validateLottoNumbers(numbers);
         this.numbers = numbers;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
