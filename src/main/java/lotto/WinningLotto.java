@@ -5,9 +5,13 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
+    private WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
+    }
+
+    public static WinningLotto of(Lotto winningLotto, BonusNumber bonusNumber) {
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 
     public int matchCount(Lotto lotto) {

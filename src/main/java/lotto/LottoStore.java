@@ -27,7 +27,7 @@ public class LottoStore {
         Lotto lotto = inputHandler.inputWinningNumbers();
         BonusNumber bonusNumber = inputHandler.inputBonusNumber(lotto);
         
-        return new WinningLotto(lotto, bonusNumber);
+        return WinningLotto.of(lotto, bonusNumber);
     }
 
     private void showStatistics(WinningLotto winningLotto, Cash cash) {
