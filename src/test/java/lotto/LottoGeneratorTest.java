@@ -15,8 +15,8 @@ class LottoGeneratorTest {
 
     @Test
     void 로또를_생성한다() {
-        Lotto lotto = lottoGenerator.createLotto();
-        Assertions.assertThat(lotto).isInstanceOf(Lotto.class);
+        Lottos lotto = lottoGenerator.generate(5);
+        Assertions.assertThat(lotto).isInstanceOf(Lottos.class);
     }
 
     @Test

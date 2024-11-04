@@ -25,10 +25,7 @@ public class LottoService {
     }
 
     public Lottos createLottos(Integer count) {
-        return new Lottos(
-                IntStream.range(0, count)
-                        .mapToObj(i -> lottoGenerator.createLotto())
-                        .collect(Collectors.toList()));
+        return lottoGenerator.generate(count);
     }
 
     public List<Rank> calculateWinnings(Lottos lottos, WinningNumbers winningNumbers) {

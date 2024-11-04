@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,13 +12,16 @@ public class LottoGenerator {
         this.drawStrategy = drawStrategy;
     }
 
-    public Lotto createLotto() {
-        return new Lotto(createLottoNumber());
+    public Lottos generate(Integer count) {
+        List<Lotto> list = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            Lotto lotto = new Lotto(createLottoNumber());
+            list.add(lotto);
+        }
+        return new Lottos(list);
     }
 
     public List<Integer> createLottoNumber() {
-        return drawStrategy.draw().stream()
-                .sorted(Comparator.naturalOrder())
-                .collect(Collectors.toList());
+        return drawStrategy.draw().stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
     }
 }
