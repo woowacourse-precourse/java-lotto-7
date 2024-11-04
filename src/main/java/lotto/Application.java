@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -39,8 +40,11 @@ public class Application {
 
         // Step 5: 로또 결과 계산
         LottoResultCalculator calculator = new LottoResultCalculator(lottos, winningNumbers, bonusNumber);
-        List<LottoResult> results = calculator.calculateResults();
+        Map<Rank, Integer> statistics = calculator.calculateStatistics();
+        int totalPrize = calculator.calculateTotalPrize(statistics);
+        double roi = calculator.calculateROI(totalPrize, purchaseAmount);
 
-
+        // Step 6: 로또 결과 출력
+        OutputView.printLottoResults(statistics, totalPrize, roi);
     }
 }
