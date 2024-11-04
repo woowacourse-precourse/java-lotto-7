@@ -20,9 +20,7 @@ class PurchasedLottoTest {
     @ParameterizedTest
     @ValueSource(ints = {2024, 10, -1, 0})
     public void 금액_예외_테스트(int money) {
-
-        assertThatThrownBy(() -> new PurchasedLotto(money))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
+        assertThatIllegalArgumentException().isThrownBy(() -> new PurchasedLotto(money))
+                .withMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
     }
 }

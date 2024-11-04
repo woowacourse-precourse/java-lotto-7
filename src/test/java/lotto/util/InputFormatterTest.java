@@ -25,9 +25,8 @@ class InputFormatterTest {
     @ParameterizedTest
     @ValueSource(strings = {"1000원", "\n", "", " "})
     public void 금액_입력값_타입_예외_테스트(String moneyInput) {
-        assertThatThrownBy(() -> inputFormatter.formatMoneyInput(moneyInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
+        assertThatIllegalArgumentException().isThrownBy(() -> inputFormatter.formatMoneyInput(moneyInput))
+                .withMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
     }
 
     @Test
@@ -42,9 +41,8 @@ class InputFormatterTest {
     @ParameterizedTest
     @ValueSource(strings = {"1번,2번,3번,4번,5번,6번", "\n", "", " "})
     public void 로또_입력값_타입_예외_테스트(String winningNumbersInput) {
-        assertThatThrownBy(() -> inputFormatter.formatWinningNumbersInput(winningNumbersInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
+        assertThatIllegalArgumentException().isThrownBy(() -> inputFormatter.formatWinningNumbersInput(winningNumbersInput))
+                .withMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
     }
 
     @Test
@@ -59,8 +57,7 @@ class InputFormatterTest {
     @ParameterizedTest
     @ValueSource(strings = {"7번", "\n", "", " "})
     public void 보너스_번호_입력값_타입_예외_테스트(String bonusNumberInput) {
-        assertThatThrownBy(() -> inputFormatter.formatBonusNumberInput(bonusNumberInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
+        assertThatIllegalArgumentException().isThrownBy(() -> inputFormatter.formatBonusNumberInput(bonusNumberInput))
+                .withMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
     }
 }

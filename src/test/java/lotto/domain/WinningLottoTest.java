@@ -30,22 +30,19 @@ class WinningLottoTest {
 
     @Test
     public void 보너스_숫자_중복_예외_테스트() {
-        assertThatThrownBy(() -> new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
+        assertThatIllegalArgumentException().isThrownBy(() -> new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6))
+                .withMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
     }
 
     @Test
     public void 보너스_숫자_범위_예외_테스트_1() {
-        assertThatThrownBy(() -> new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 46))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
+        assertThatIllegalArgumentException().isThrownBy(() -> new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 46))
+                .withMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
     }
 
     @Test
     public void 보너스_숫자_범위_예외_테스트_2() {
-        assertThatThrownBy(() -> new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 0))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
+        assertThatIllegalArgumentException().isThrownBy(() -> new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 0))
+                .withMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
     }
 }

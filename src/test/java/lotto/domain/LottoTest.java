@@ -26,23 +26,20 @@ class LottoTest {
 
     @Test
     void 로또_번호_범위_예외_테스트_1() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
+        assertThatIllegalArgumentException().isThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .withMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
     }
 
     @Test
     void 로또_번호_범위_예외_테스트_2() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
+        assertThatIllegalArgumentException().isThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
+                .withMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
     }
 
     @Test
     void 로또_번호_수_예외_테스트() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
+        assertThatIllegalArgumentException().isThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .withMessageContaining(LottoTestConstant.ERROR_MESSAGE_HEADER.getMessage());
     }
 
     @Test
