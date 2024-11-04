@@ -19,7 +19,7 @@ public class MainController {
     lottoTransactionController.sellAutoLotto(amount);
 
     List<Integer> numbers = inputView.requestWinningNumbers();
-    int bonus = inputView.requestBonusNumber();
+    int bonus = inputView.requestBonusNumber(numbers);
 
     lottoTransactionController.compareWinningNumbers(numbers, bonus);
 
