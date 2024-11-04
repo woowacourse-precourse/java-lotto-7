@@ -5,6 +5,7 @@ import lotto.collection.LottoTickets;
 import lotto.domain.LottoResult;
 import lotto.domain.user.User;
 import lotto.enums.LottoConstant;
+import lotto.util.LottoWinningPriceList;
 import lotto.view.OutputView;
 
 import static lotto.view.OutputView.WINNING_STATISTICS;
@@ -27,20 +28,19 @@ public class UserWinningResultService {
 
         OutputView.newLine();
         OutputView.printMessage(WINNING_STATISTICS);
-        generateStatistics(lottoResult,user);
+        double rateOfRevenue = generateStatistics(lottoResult,user);
 
-        OutputView.printTotalReturn(user);
+        OutputView.printTotalReturn(rateOfRevenue);
     }
 
-    private void generateStatistics(LottoResult lottoResult, User user) {
+    private double generateStatistics(LottoResult lottoResult, User user) {
         int[][] lottoMatchCount = countMatchWinningNumber(lottoResult,user);
         for (int match = 3; match <= LottoConstant.COUNT.getValue(); match++) {
             OutputView.printWinningResult(match, lottoMatchCount);
         }
-        user.addRevenue(lottoMatchCount);
+        return user.getRateOfReturn();
     }
 
-    //TODO: 하드 코딩 같아서 리팩토링 해야함
     private int[][] countMatchWinningNumber(LottoResult lottoResult, User user) {
         int[][] resultTable = new int[LottoConstant.COUNT.getValue()+1][2];
         LottoTickets lottoTickets = user.getLottoTickets();
@@ -49,10 +49,12 @@ public class UserWinningResultService {
             int matchCount = lotto.countMatchNumberWithWinningNumber(lottoResult.getWinningNumbers());
             if (matchCount == 5 && lotto.isBonusNumberIncludeInWinningNumbers(lottoResult.getBonusNumber())) {
                 resultTable[matchCount][1]++;
+                user.addRevenue(LottoWinningPriceList.getIncludeBonus);
+                continue;
             }
             resultTable[matchCount][0]++;
+            user.addRevenue(LottoWinningPriceList.get[matchCount]);
         }
-
         return resultTable;
     }
 
