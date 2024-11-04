@@ -25,7 +25,7 @@ public class LottoCheckService {
     }
 
     private void checkLotto(final LottoWinningNumbers lottoWinningNumbers, final Lotto lotto,
-                            final LottoResult lottoResult) {
+                            LottoResult lottoResult) {
         Set<Integer> winningNumberChecker = new HashSet<>(lottoWinningNumbers.getWinningNumber());
         Ranking ranking = Ranking.getRanking(checkWinningNumber(winningNumberChecker, lotto),
                 checkBonusNumber(lottoWinningNumbers.getBonusNumber(), lotto));

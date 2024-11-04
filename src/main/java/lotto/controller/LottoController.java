@@ -42,7 +42,7 @@ public class LottoController {
         outputView.showResult(lottoOutputDto);
     }
 
-    public String enterPurchaseAmount() {
+    private String enterPurchaseAmount() {
         while (true) {
             try {
                 String purchaseAmount = inputView.enterPurchaseAmount();
@@ -54,7 +54,7 @@ public class LottoController {
         }
     }
 
-    public String enterWinningNumber() {
+    private String enterWinningNumber() {
         while (true) {
             try {
                 String winningNumber = inputView.enterWinningNumber();
@@ -66,7 +66,7 @@ public class LottoController {
         }
     }
 
-    public String enterBonusNumber(String winningNumbers) {
+    private String enterBonusNumber(final String winningNumbers) {
         while (true) {
             try {
                 String bonusNumber = inputView.enterBonusNumber();
