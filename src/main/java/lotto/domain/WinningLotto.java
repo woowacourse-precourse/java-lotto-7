@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class WinningLotto {
     private final List<Integer> numbers;
@@ -26,5 +28,14 @@ public class WinningLotto {
         boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
 
         return Rank.findRank((int) matchCount, bonusMatch);
+    }
+
+    public Map<Rank, Integer> calculateResults(List<Lotto> lottos) {
+        Map<Rank, Integer> results = new EnumMap<>(Rank.class);
+        for (Lotto lotto : lottos) {
+            Rank rank = this.match(lotto);
+            results.put(rank, results.getOrDefault(rank, 0) + 1);
+        }
+        return results;
     }
 }
