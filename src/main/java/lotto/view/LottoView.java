@@ -48,11 +48,11 @@ public class LottoView {
 
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.printf("3개 일치 (%,d원) - %d개\n", prizeAmounts[4], rankCounts[2]); // 3개 일치
+        System.out.printf("3개 일치 (%,d원) - %d개\n", prizeAmounts[4], rankCounts[4]); // 3개 일치 => 5등
         System.out.printf("4개 일치 (%,d원) - %d개\n", prizeAmounts[3], rankCounts[3]); // 4개 일치
-        System.out.printf("5개 일치 (%,d원) - %d개\n", prizeAmounts[2], rankCounts[4]); // 5개 일치
+        System.out.printf("5개 일치 (%,d원) - %d개\n", prizeAmounts[2], rankCounts[2]); // 5개 일치
         System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개\n", prizeAmounts[1], rankCounts[1]); // 5개 일치, 보너스
-        System.out.printf("6개 일치 (%,d원) - %d개\n", prizeAmounts[0], rankCounts[0]); // 6개 일치
+        System.out.printf("6개 일치 (%,d원) - %d개\n", prizeAmounts[0], rankCounts[0]); // 6개 일치 => 1등
     }
 
     public void printYield(float yield){

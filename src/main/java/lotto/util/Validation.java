@@ -30,4 +30,6 @@ public class Validation {
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호에 중복이 있습니다.");
         }
     }
+
+
 }
