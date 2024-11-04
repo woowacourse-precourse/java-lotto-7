@@ -69,6 +69,14 @@ public class DrawServiceImpl implements DrawService {
         return count;
     }
 
+    private boolean checkBonusMatch(Lotto lotto) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     public void saveStatistics(Map<Rank, Integer> result) {
 
