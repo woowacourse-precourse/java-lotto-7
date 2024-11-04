@@ -5,14 +5,23 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class Input {
+
     private final Scanner scanner;
 
-    public Input() {this.scanner = new Scanner(System.in);}
+    public Input() {
+        this.scanner = new Scanner(System.in);
+    }
 
     public Integer getMoney() {
         System.out.println("로또 구매에 얼마를 지불 하실 건가요?");
-        Integer money = scanner.nextInt();
-        scanner.nextLine();
+        int money;
+        String moneyString = scanner.nextLine();
+        try {
+            money = Integer.parseInt(moneyString);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.MONEY_IS_NOT_INTEGER);
+        }
+
         return money;
     }
 
