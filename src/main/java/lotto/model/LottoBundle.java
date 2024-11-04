@@ -24,7 +24,7 @@ public class LottoBundle {
 		return price.getPrice() / SINGLE_LOTTO_PRICE;
 	}
 
-	public double getProfitRate(Map<Winning, Integer> winningResult) {
+	public String getProfitRate(Map<Winning, Integer> winningResult) {
 		return price.getProfitRate(winningResult);
 	}
 

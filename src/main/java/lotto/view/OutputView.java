@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +25,6 @@ public class OutputView {
 	private static final String COUNT = "개\n";
 	private static final String WON = "원";
 	private static final String PRIZE_FORMAT = "%,d";
-	private static final String DECIMAL_FORMAT = "#,###.#";
 	private static final String MATCHING_MESSAGE = "개 일치";
 	private static final String BONUS_BALL_MATCHING_MESSAGE = ", 보너스 볼 일치";
 	private static final String PROFIT_RATE_MESSAGE = "총 수익률은 ";
@@ -93,8 +91,7 @@ public class OutputView {
 		return matchingMessage;
 	}
 
-	private String getProfitRateMessage(double profitRate) {
-		DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
-		return PROFIT_RATE_MESSAGE + decimalFormat.format(profitRate) + PERCENT_MESSAGE;
+	private String getProfitRateMessage(String profitRate) {
+		return PROFIT_RATE_MESSAGE + profitRate + PERCENT_MESSAGE;
 	}
 }

@@ -9,10 +9,10 @@ import lotto.model.Winning;
 
 public record WinningResultsDto(
 	List<WinningResultDto> winningResults,
-	double profitRate
+	String profitRate
 ) {
 
-	public static WinningResultsDto from(Map<Winning, Integer> winningResult, double profitRate) {
+	public static WinningResultsDto from(Map<Winning, Integer> winningResult, String profitRate) {
 		return new WinningResultsDto(getWinningResults(winningResult), profitRate);
 	}
 
