@@ -13,10 +13,10 @@ public class LottoController {
     private final MyWallet myWallet;
     private final LottoManagementSystem lottoManagementSystem;
 
-    public LottoController(LottoView lottoView, LottoManagementSystem lottoManagementSystem) {
+    public LottoController(LottoView lottoView) {
         this.lottoView = lottoView;
-        this.lottoManagementSystem = lottoManagementSystem;
         this.myWallet = new MyWallet();
+        this.lottoManagementSystem = new LottoManagementSystem();
     }
 
     public void purchase(){
@@ -31,5 +31,14 @@ public class LottoController {
     public void setWinningNumbers(){
         String input = lottoView.winningInput();
         List<Integer> numbers = InputParser.winningNumParse(input);
+        String bonusInput = lottoView.bonusInput();
+        int bonus = Integer.parseInt(bonusInput);
+
+        lottoManagementSystem.setWinningNumbers(numbers);
+        lottoManagementSystem.setBonusNumber(bonus);
+    }
+
+    public void printStat(){
+
     }
 }

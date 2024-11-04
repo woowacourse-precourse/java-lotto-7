@@ -4,12 +4,11 @@ import java.util.List;
 
 public class LottoManagementSystem {
 
-    private final List<Integer> winningNumbers;
-    private final int bonusNumber;
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
 
-    public LottoManagementSystem(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+    public LottoManagementSystem() {
+
     }
 
     public List<Integer> getWinningNumbers() {
@@ -20,8 +19,12 @@ public class LottoManagementSystem {
         return bonusNumber;
     }
 
-    public void recordRank(List<Integer> numbers){
+    public void setWinningNumbers(List<Integer> winningNumbers){
+        this.winningNumbers = winningNumbers;
+    }
 
+    public void setBonusNumber(int bonusNumber){
+        this.bonusNumber = bonusNumber;
     }
 
     private int returnRank(List<Integer> numbers) {
