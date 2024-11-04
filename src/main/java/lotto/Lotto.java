@@ -13,6 +13,7 @@ public class Lotto {
         validate(numbers);
         duplicatesCheck(numbers);
         rangeCheck(numbers);
+        typeCheck(numbers);
         this.numbers = numbers;
 
     }

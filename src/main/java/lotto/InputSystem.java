@@ -19,6 +19,7 @@ public class InputSystem {
     public static int inputLottoPurchaseAmount(){
         while (true) {
             try {
+                OutputSystem.printMessageForPurchaseAmount();
                 return validateAmount();
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해야 합니다.");
@@ -28,21 +29,47 @@ public class InputSystem {
         }
     }
 
-    private static List<Integer> convert(String[] inputLottoNumber){
-        List<Integer> lottoNumber = new ArrayList<>();
-        for (String number: inputLottoNumber){
-            lottoNumber.add(Integer.parseInt(number));
+    // 로또 번호가 숫자인지 체크
+    private static void typeCheck(List<Integer> lottoNumbers, String number){
+        try {
+            int lottoNumber = Integer.parseInt(number.trim());
+            lottoNumbers.add(lottoNumber);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[ERROR] 로또 번호는 숫자여야 합니다.");
         }
-        return  lottoNumber;
+    }
+
+    private static List<Integer> convert(String[] inputLottoNumber){
+        List<Integer> lottoNumbers = new ArrayList<>();
+        for (String number: inputLottoNumber){
+            typeCheck(lottoNumbers, number);
+        }
+        return  lottoNumbers;
+    }
+
+    // 로또 번호가 6개가 이닌 경우
+    private static List<Integer> validate(List<Integer> lottoNumbers){
+        if (lottoNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 반드시 6개여야 합니다.");
+        }
+        return lottoNumbers;
     }
 
     public static List<Integer> inputLottoNumber(){
-         String[] inputLottoNumber = Console.readLine().split(",");
-         return convert(inputLottoNumber);
+        while (true) {
+            try {
+                OutputSystem.printMessageForLottoNumber();
+                String[] inputLottoNumber = Console.readLine().split(",");
+                List<Integer> lottoNumbers = convert(inputLottoNumber);
+                return validate(lottoNumbers);
+            }
+            catch (Exception e) {
+                System.out.println("[ERROR] 알 수 없는 오류가 발생했습니다: " + e.getMessage());
+            }
+        }
     }
 
     public static int validBonusNumber(List<Integer> winningNumber){
-        System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
         if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.");
@@ -56,6 +83,7 @@ public class InputSystem {
 
         while (!isValid) {
             try {
+                OutputSystem.printMessageForBonusNumber();
                 bonusNumber = validBonusNumber(winningNumber);
                 isValid = true;
             } catch (NumberFormatException e) {

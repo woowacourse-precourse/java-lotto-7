@@ -19,9 +19,9 @@ public class OutputSystem {
         System.out.println("\n당첨 번호를 입력해주세요.");
     }
 
-//    public static void printMessageForBonusNumber(){
-//        System.out.println("\n보너스 번호를 입력해 주세요.");
-//    }
+    public static void printMessageForBonusNumber(){
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
 
     // 로또 수익률 계산
     private static double lottoLate(int[] checkNumber,int lottoAmount){
