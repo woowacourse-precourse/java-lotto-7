@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -13,7 +14,9 @@ public class Application {
         String lottoValue;
         Integer lottoLen;
         ArrayList<Lotto> LottoList = new ArrayList<>();
-        String winNumber;
+        String tmpWinNumber;
+        List<Integer> winNumbers = new ArrayList<>();
+        Integer bonusNumber;
 
         while (true) {
             try {
@@ -34,7 +37,7 @@ public class Application {
         }
 
         lottoLen = lottoLen / 1000;
-
+        System.out.println();
         System.out.println(lottoLen+"개를 구매했습니다.");
 
         for(int i = 0; i < lottoLen; i++){
@@ -48,7 +51,19 @@ public class Application {
             System.out.println(list.getNumbers());
         }
 
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
+        tmpWinNumber = Console.readLine();
+
+        Arrays.stream(tmpWinNumber.split(","))
+                .map(String::trim) // 공백 제거
+                .map(Integer::parseInt) // Integer로 변환
+                .forEach(winNumbers::add); // List에 추가
+
+        
+
+
+
 
 
 
