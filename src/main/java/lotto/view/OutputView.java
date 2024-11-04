@@ -14,6 +14,7 @@ public class OutputView {
 	private static final String PURCHASE_PRICE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
 	private static final String WINNING_LOTTO_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
 	private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
+	private static final String NEW_LINE = "\n";
 	private static final String DECIMAL_FORMAT = "#,###.#";
 
 	public void printPurchasePriceInputMessage() {
@@ -26,11 +27,11 @@ public class OutputView {
 
 	public void printPurchasedLottoResultMessage(int count, PurchasedLottoResultsDto purchasedLottoResults) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("\n");
+		stringBuilder.append(NEW_LINE);
 		stringBuilder.append(getLottoCountMessage(count));
 		for (PurchasedLottoResultDto purchasedLottoResult : purchasedLottoResults.purchasedLottoResults()) {
 			stringBuilder.append(getPurchaseLottoResult(purchasedLottoResult.purchasedLottoResult()));
-			stringBuilder.append("\n");
+			stringBuilder.append(NEW_LINE);
 		}
 		System.out.println(stringBuilder);
 	}
@@ -40,16 +41,16 @@ public class OutputView {
 	}
 
 	public void printBonusNumberInputMessage() {
-		System.out.println("\n" + BONUS_NUMBER_INPUT_MESSAGE);
+		System.out.println(NEW_LINE + BONUS_NUMBER_INPUT_MESSAGE);
 	}
 
 	public void printWinningResultMessage(WinningResultsDto winningResults) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("\n");
+		stringBuilder.append(NEW_LINE);
 		stringBuilder.append("당첨 통계");
-		stringBuilder.append("\n");
+		stringBuilder.append(NEW_LINE);
 		stringBuilder.append("---");
-		stringBuilder.append("\n");
+		stringBuilder.append(NEW_LINE);
 		stringBuilder.append(winningResults.winningResults().stream()
 				.map(this::getWinningResult)
 				.collect(Collectors.joining()));
@@ -58,7 +59,7 @@ public class OutputView {
 	}
 
 	private String getLottoCountMessage(int count) {
-		return count + "개를 구매했습니다.\n";
+		return count + "개를 구매했습니다." + NEW_LINE;
 	}
 
 	private String getPurchaseLottoResult(List<String> lottoResult) {
@@ -67,7 +68,7 @@ public class OutputView {
 
 	private String getWinningResult(WinningResultDto winningResult) {
 		return getMatchingMessage(winningResult.matchCount(), winningResult.hasBonusNumber()) + " "
-				+ "(" + String.format("%,d", winningResult.prize()) + "원" + ")" + " - " + winningResult.winningCount() + "개" + "\n";
+				+ "(" + String.format("%,d", winningResult.prize()) + "원" + ")" + " - " + winningResult.winningCount() + "개" + NEW_LINE;
 	}
 
 	private String getMatchingMessage(int count, boolean hasBonusNumber) {
