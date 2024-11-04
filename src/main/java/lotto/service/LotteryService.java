@@ -2,20 +2,17 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBonus;
 import lotto.domain.LottoBuyer;
 import lotto.domain.LottoResult;
-import lotto.validation.LotteryValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LotteryService {
     private final OutputView outputView;
     private final InputView inputView;
-    private final LotteryValidator lotteryValidator;
     private final LottoBuyer lottoBuyer;
     private final Lotto winningLottery;
     private final LottoBonus lottoBonus;
@@ -24,7 +21,6 @@ public class LotteryService {
     public LotteryService() {
         this.outputView = new OutputView();
         this.inputView = new InputView();
-        this.lotteryValidator = new LotteryValidator();
         this.lottoBuyer = new LottoBuyer();
         this.winningLottery = new Lotto();
         this.lottoBonus = new LottoBonus();
@@ -34,7 +30,6 @@ public class LotteryService {
     public void purchaseLotto() {
         outputView.printRequirePurchaseAmount();
         final int purchaseAmount = inputView.readPurchaseAmount();
-
         int lottoPurchaseAmount = purchaseAmount / 1000;
         outputView.printPurchaseAmount(lottoPurchaseAmount);
         lottoBuyer.setLottoPurchaseAmount(lottoPurchaseAmount);
@@ -43,15 +38,7 @@ public class LotteryService {
 
     public void setWinningLotto() {
         outputView.printRequireWinningNumber();
-
-        String inputLottoWinningNumbers = Console.readLine();
-
-        List<Integer> lottoWinningNumbers = new ArrayList<>();
-
-        for (final String winningNumber : inputLottoWinningNumbers.split(",")) {
-            lottoWinningNumbers.add(Integer.parseInt(winningNumber));
-        }
-
+        List<Integer> lottoWinningNumbers = inputView.readLottoNumbers();
         winningLottery.addWinningNumbers(lottoWinningNumbers);
         System.out.println();
     }
