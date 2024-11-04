@@ -23,7 +23,7 @@ public class WinningInfo {
         }
     }
 
-    public int isWinningNumberContainThisNumber(int number) {
+    public int isWinningNumbersContainThisNumber(int number) {
         if (winningNumbers.isLottoContainThisNumber(number)) {
             return TRUE_VAL;
         }

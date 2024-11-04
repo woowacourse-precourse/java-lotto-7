@@ -52,7 +52,7 @@ public class Lotto {
     }
 
     public Result compareToWinningInfo(WinningInfo winningInfo) {
-        int hitCount = numbers.stream().mapToInt(winningInfo::isWinningNumberContainThisNumber).sum();
+        int hitCount = numbers.stream().mapToInt(winningInfo::isWinningNumbersContainThisNumber).sum();
         int bonusCount = numbers.stream().mapToInt(winningInfo::isBonusNumberSameAsThis).sum();
 
         return new Result(hitCount, bonusCount);
