@@ -25,6 +25,7 @@ public class InputView {
     public List<Integer> inputWinningNumbers () {
         while (true) {
             try {
+                System.out.println();
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String[] rawWinningNumbers = splitRawNumbers(Console.readLine());
                 List<Integer> winningNumbers = convertToWinningNumbers(rawWinningNumbers);
@@ -43,6 +44,7 @@ public class InputView {
     public int inputBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
+                System.out.println();
                 System.out.println("보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(Console.readLine());
                 LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
