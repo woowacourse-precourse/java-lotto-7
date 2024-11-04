@@ -10,6 +10,7 @@ public enum ErrorMessages {
     ERROR_NUMBER_ONLY_SIX("로또 번호는 6개여야 합니다."),
     ERROR_PRICE_IS_NOT_STRING("구매 가격은 정수만 입력해야합니다."),
     ERROR_LOTTO_NUMBER_IS_SIX("로또 번호는 6개입니다."),
+    ERROR_LOTTO_NUMBER_IS_UNIQUE("중복되는 값이 있으면 안됩니다.")
     ;
 
 
