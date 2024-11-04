@@ -7,9 +7,7 @@ import lotto.domain.LottoGenerator;
 import lotto.domain.WinningLotto;
 import lotto.domain.prize.WinningStrategy;
 import lotto.domain.statistic.Statistic;
-import lotto.io.InputHandler;
 import lotto.io.LottoIOHandler;
-import lotto.io.OutputHandler;
 import lotto.domain.prize.KoreaPrizeChecker;
 import lotto.domain.user.User;
 import lotto.domain.user.User.UserLottoInfo;
@@ -20,10 +18,10 @@ public class LottoMachine {
     private final WinningStrategy koreaPrizeChecker = new KoreaPrizeChecker();
     private final Statistic statistic = new Statistic();
     public void run() {
-        Integer purchaseCost = lottoIOHandler.askPurchaseCost();
-        Integer lottoCount = purchaseCost / 1000;
+        long purchaseCost = lottoIOHandler.askPurchaseCost();
+        Integer lottoCount = Math.toIntExact(purchaseCost / 1000);
         lottoIOHandler.showPurchaseLottoCount(lottoCount);
-        List<Lotto> lottoList = getLottoList(lottoCount);
+        List<Lotto> lottoList = askLottoList(lottoCount);
 
         WinningLotto winningLotto = lottoIOHandler.askWinningLotto();
 
@@ -46,7 +44,7 @@ public class LottoMachine {
         return userLottoInfos;
     }
 
-    private List<Lotto> getLottoList(Integer lottoCount) {
+    private List<Lotto> askLottoList(Integer lottoCount) {
         List<Lotto> lottoList = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {

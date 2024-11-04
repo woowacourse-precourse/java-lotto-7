@@ -10,12 +10,12 @@ public class LottoIOHandler {
     private final InputHandler inputHandler = new InputHandler();
     private final OutputHandler outputHandler = new OutputHandler();
 
-    public Integer askPurchaseCost (){
+    public long askPurchaseCost (){
         outputHandler.showPurchaseCostInputComments();
 
-        Integer purchaseCost = null;
+        long purchaseCost = 0;
 
-        while (purchaseCost == null) {
+        while (purchaseCost == 0) {
             try {
                 purchaseCost = inputHandler.getPurchaseCost();
 
@@ -52,7 +52,7 @@ public class LottoIOHandler {
         return winningLotto;
     }
 
-    public void showPurchaseLottoCount(Integer lottoCount) {
+    public void showPurchaseLottoCount(long lottoCount) {
         outputHandler.showPurchaseLottoCount(lottoCount);
     }
 

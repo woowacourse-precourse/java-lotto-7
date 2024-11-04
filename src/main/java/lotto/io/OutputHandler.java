@@ -21,7 +21,7 @@ public class OutputHandler {
         System.out.println(message);
     }
 
-    public void showPurchaseLottoCount(Integer purchaseCost) {
+    public void showPurchaseLottoCount(long purchaseCost) {
         System.out.println(purchaseCost + "개를 구매했습니다.");
     }
 

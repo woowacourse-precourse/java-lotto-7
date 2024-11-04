@@ -5,10 +5,10 @@ import lotto.domain.Lotto;
 import lotto.domain.prize.WinningStatus;
 
 public class User {
-    private final Integer purchaseCost;
+    private final long purchaseCost;
     private final List<UserLottoInfo> lottoInfos;
 
-    public User(List<UserLottoInfo> lottoInfos, Integer purchaseCost) {
+    public User(List<UserLottoInfo> lottoInfos, long purchaseCost) {
         this.lottoInfos = lottoInfos;
         this.purchaseCost = purchaseCost;
     }
@@ -17,7 +17,7 @@ public class User {
         return lottoInfos;
     }
 
-    public Integer getPurchaseCost() {
+    public long getPurchaseCost() {
         return purchaseCost;
     }
 
