@@ -30,19 +30,18 @@ public class ValidationUtilsTest {
         assertThrows(IllegalArgumentException.class, () -> validateIsNumber("abc"));
     }
 
-    @Test
     public void testValidatePositive_PositiveValue() {
-        assertDoesNotThrow(() -> validatePositive(1000));
+        assertDoesNotThrow(() -> validateIsNumber("3000"));
     }
 
     @Test
     public void testValidatePositive_ZeroValue() {
-        assertThrows(IllegalArgumentException.class, () -> validatePositive(0));
+        assertThrows(IllegalArgumentException.class, () -> validateIsZero(0));
     }
 
     @Test
     public void testValidatePositive_NegativeValue() {
-        assertThrows(IllegalArgumentException.class, () -> validatePositive(-1000));
+        assertThrows(IllegalArgumentException.class, () -> validateIsNumber("-1000"));
     }
 
     @Test

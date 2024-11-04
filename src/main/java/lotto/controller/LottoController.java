@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
+import lotto.model.Rank;
 import lotto.service.LottoResultService;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -38,7 +39,7 @@ public class LottoController {
         int bonusNumber = inputView.getBonusNumber(winningNumbers);
 
         // 4. 당첨 결과 계산
-        Map<Integer, Integer> resultCount = lottoResultService.calculateWinningResults(lottos, winningNumbers, bonusNumber);
+        Map<Rank, Integer> resultCount = lottoResultService.calculateWinningResults(lottos, winningNumbers, bonusNumber);
         int totalPrize = lottoResultService.calculateTotalPrize(resultCount);
 
         // 5. 결과 출력
