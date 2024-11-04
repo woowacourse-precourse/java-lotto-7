@@ -17,6 +17,7 @@ public class Draw {
                 .map(number -> Integer.parseInt(number))
                 .collect(Collectors.toList());
         DrawValidation.validateWinningNumbersCount(numberGroup);
+        DrawValidation.validateDuplicatedNumber(numberGroup, Integer.parseInt(bonusNumber));
 
         this.winningNumbers = numberGroup;
         this.bonusNumber = Integer.parseInt(bonusNumber);

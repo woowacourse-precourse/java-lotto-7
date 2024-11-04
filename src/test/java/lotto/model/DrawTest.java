@@ -21,4 +21,14 @@ public class DrawTest {
         assertThatThrownBy(() -> DrawValidation.validateWinningNumbersCount(numberGroup))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("당첨 번호가 중복되면 예외 발생")
+    void validateDuplicatedNumber_DuplicatedNumber_ExceptionThrown() {
+        List<Integer> numberGroup = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 6;
+
+        assertThatThrownBy(() -> DrawValidation.validateDuplicatedNumber(numberGroup, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
