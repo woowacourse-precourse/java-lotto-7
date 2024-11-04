@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoNumbersCreator {
@@ -20,5 +21,13 @@ public class LottoNumbersCreator {
         if (input.startsWith(splitDivider) || input.endsWith(splitDivider)) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_INPUT_COMMA_ERROR.getMessage());
         }
+    }
+
+    public static List<Integer> createNumberListByInput(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : input.split(splitDivider)) {
+            numbers.add(CommonValidation.convertStringToInt(number));
+        }
+        return numbers;
     }
 }
