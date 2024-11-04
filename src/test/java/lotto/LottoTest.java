@@ -30,8 +30,8 @@ class LottoTest {
     }
      */
     @Test
-    void 로또_등수_체크() {
-        String input = "6000\n1,2,3,4,5,6\n7\n";
+    void 로또_수익율_체크() {
+        String input = "2000\n1,2,3,4,5,6\n7\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -42,7 +42,7 @@ class LottoTest {
         inputView.inputStart(outputView);
 
         Lotto lotto = new Lotto(inputView.getLottoNumbers());
-        List<Integer> expectedResult = Arrays.asList(1,1,1,1,2);
-        assertEquals(expectedResult,lotto.start(outputView, inputView.getBonusNumber()));
+        String expectedResult = "2650.0";
+        assertEquals(expectedResult,lotto.start(outputView, inputView));
     }
 }

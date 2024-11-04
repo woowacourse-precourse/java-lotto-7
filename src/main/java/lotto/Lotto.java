@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.text.DecimalFormat;
 
 
 public class Lotto {
@@ -20,10 +21,12 @@ public class Lotto {
         }
     }
 
-    public void start(OutputView outputView,InputView inputView){
+    public String start(OutputView outputView,InputView inputView){
+        DecimalFormat df = new DecimalFormat("0.0");
         List<Integer> lottoMatchTable = lottoNumberCheck(outputView.getBoughtLottoNumbers(), inputView.getBonusNumber());
         outputView.lottoWinOutput(lottoMatchTable);
         double lottoReturnRate = calLottoReturnRate(lottoMatchTable,inputView.getLottoPurchase());
+        return df.format(lottoReturnRate);
     }
 
     public double calLottoReturnRate(List<Integer> lottoMatchTable, int lottoPurchase) {

@@ -22,10 +22,6 @@ public class OutputView {
 
     public void generateLottoTest(){
         List<List<Integer>> lottoNumbers = new ArrayList<>();
-        lottoNumbers.add(Arrays.asList(1,2,3,4,5,6)); // 1등
-        lottoNumbers.add(Arrays.asList(5,3,4,6,1,2)); // 1등
-        lottoNumbers.add(Arrays.asList(1,2,3,4,5,7)); // 2등
-        lottoNumbers.add(Arrays.asList(1,2,3,4,5,8)); // 3등
         lottoNumbers.add(Arrays.asList(1,2,3,4,8,9)); // 4등
         lottoNumbers.add(Arrays.asList(1,2,3,8,9,10)); // 5등
 
