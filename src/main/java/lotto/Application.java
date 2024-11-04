@@ -6,12 +6,14 @@ import java.util.Map;
 
 public class Application {
     private InputHandler inputHandler;
+    private OutputHandler outputHandler;
     private LottoGenerator lottoGenerator;
     private List<Lotto> lottoTickets;
     private LottoResult lottoResult;
 
     public Application() {
         inputHandler = new InputHandler();
+        outputHandler = new OutputHandler();
         lottoGenerator = new LottoGenerator();
         lottoResult = new LottoResult();
     }
@@ -22,38 +24,21 @@ public class Application {
     }
 
     public void run() {
-        System.out.println("구입금액을 입력해 주세요.");
+        outputHandler.printBudgetMessage();
         int budget = inputHandler.budgetInput();
         int purchasedLottoCount = budget / 1000;
-        System.out.println(purchasedLottoCount + "개를 구매했습니다.");
+        outputHandler.printPurchasedLottoCount(purchasedLottoCount);
 
         lottoTickets = lottoGenerator.generate(purchasedLottoCount);
-        for (Lotto lotto : lottoTickets) {
-            System.out.println(lotto.getNumbers());
-        }
-
-        System.out.println("당첨 번호를 입력해 주세요.");
+        outputHandler.printLottoTickets(lottoTickets);
+        outputHandler.printWinningLottoMessage();
         Lotto winningLotto = inputHandler.winningNumbersInput();
-
-        System.out.println("보너스 번호를 입력해 주세요.");
+        outputHandler.printBonusNumberMessage();
         int bonusNumber = inputHandler.bonusNumberInput(winningLotto.getNumbers());
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
-
-        Map<Rank,Integer> result = lottoResult.getFinalResult(lottoTickets,winningLotto.getNumbers(),bonusNumber);
-        for(Rank rank : Rank.values()){
-            if (rank==Rank.NONE){
-                continue;
-            }
-            if (rank==Rank.SECOND){
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개",rank.getNumberMatch(),rank.getPrize(),result.get(rank));
-                System.out.println();
-                continue;
-            }
-            System.out.printf("%d개 일치 (%,d원) - %d개",rank.getNumberMatch(),rank.getPrize(),result.get(rank));
-            System.out.println();
-        }
-        System.out.printf("총 수익률은 %.1f%%입니다.",lottoResult.getRateOfReturn(result, budget));
+        Map<Rank, Integer> result = lottoResult.getFinalResult(lottoTickets, winningLotto.getNumbers(), bonusNumber);
+        outputHandler.printStatistics(result);
+        float totalProfit = lottoResult.getTotalProfit(result);
+        outputHandler.printRateOfReturn(totalProfit, budget);
     }
 }
