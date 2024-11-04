@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoIssuer;
 import lotto.model.LottoPurchase;
+import lotto.validator.LottoBonusNumberValidator;
 import lotto.validator.LottoNumberValidator;
 import lotto.validator.LottoPurchaseValidator;
 import lotto.view.InputView;
@@ -44,6 +45,17 @@ public class LottoGameService {
             try {
                 String input = InputView.inputWinningNumbers();
                 return LottoNumberValidator.validateAndParse(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public int inputBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String input = InputView.inputBonusNumber();
+                return LottoBonusNumberValidator.validateAndParse(input, winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
