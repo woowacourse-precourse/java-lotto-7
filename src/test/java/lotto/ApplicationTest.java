@@ -35,6 +35,7 @@ class ApplicationTest extends NsTest {
                             "6개 일치 (2,000,000,000원) - 0개",
                             "총 수익률은 62.5%입니다."
                     );
+
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),
