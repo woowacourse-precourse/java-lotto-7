@@ -32,7 +32,10 @@ class LottosTest {
     @Test
     @DisplayName("숫자 맞춰보기")
     void matchNumbers() {
-        WinningLotto winningLotto = WinningLotto.of(List.of(1, 2, 3, 4, 5, 6), 7);
+        WinningLotto winningLotto = WinningLotto.builder()
+                .winningNumbers(List.of(1, 2, 3, 4, 5, 6))
+                .bonusNumber(7)
+                .build();
         Result result = lottos.matchNumbers(winningLotto);
         assertThat(result).isNotNull();
         String prettyString = result.toPrettyString();
