@@ -4,7 +4,7 @@
 
 ![Generic badge](https://img.shields.io/badge/precourse-week3-green.svg)
 ![Generic badge](https://img.shields.io/badge/version-1.0.1-brightgreen.svg)
-![Generic badge](https://img.shields.io/badge/test-45_passed-blue.svg)
+![Generic badge](https://img.shields.io/badge/test-43_passed-blue.svg)
 
 ## 목차
 

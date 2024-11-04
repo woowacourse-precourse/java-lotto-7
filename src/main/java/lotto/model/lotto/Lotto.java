@@ -1,14 +1,20 @@
 package lotto.model.lotto;
 
+import static lotto.util.CommonValidator.validateNoDuplicates;
+import static lotto.util.CommonValidator.validateNumberRange;
+import static lotto.util.CommonValidator.validateSize;
+import static lotto.util.LottoConstants.LOTTO_NUMBERS_COUNT;
+import static lotto.util.LottoConstants.LOTTO_NUMBER_MAX;
+import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
+
 import java.util.List;
 import java.util.Objects;
-import lotto.model.lotto.validator.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoValidator.validate(numbers);
+        validateLottoNumbers(numbers);
         this.numbers = List.copyOf(numbers.stream().sorted().toList());
     }
 
@@ -37,5 +43,11 @@ public class Lotto {
     @Override
     public int hashCode() {
         return Objects.hash(numbers);
+    }
+
+    private void validateLottoNumbers(List<Integer> numbers) {
+        validateSize(numbers, LOTTO_NUMBERS_COUNT);
+        validateNoDuplicates(numbers);
+        validateNumberRange(numbers, LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
     }
 }

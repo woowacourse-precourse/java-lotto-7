@@ -7,7 +7,7 @@ import static lotto.util.LottoConstants.LOTTO_PURCHASE_AMOUNT;
 public enum ErrorBase {
     PURCHASE_AMOUNT_BLANK("[ERROR] 구입 금액을 입력해주세요."),
     PURCHASE_AMOUNT_NON_NUMERIC("[ERROR] 구입 금액은 숫자여야 합니다."),
-    PURCHASE_AMOUNT_INVALID("[ERROR] 구입 금액은 0보다 커야 합니다."),
+    PURCHASE_AMOUNT_INVALID("[ERROR] 구입 금액은 양수여야 합니다."),
     PURCHASE_AMOUNT_NOT_MULTIPLE("[ERROR] 구입 금액은 " + LOTTO_PURCHASE_AMOUNT + "원 단위여야 합니다."),
 
     BLANK_WINNING_NUMBERS("[ERROR] 당첨 번호를 입력해주세요."),
