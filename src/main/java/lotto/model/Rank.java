@@ -41,6 +41,9 @@ public enum Rank {
     }
 
     public static int getPrize(Rank rank) {
-        return rank.prize;
+        if (rank != null) {
+            return rank.prize;
+        }
+        return 0;
     }
 }
