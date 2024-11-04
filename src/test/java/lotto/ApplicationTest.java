@@ -9,11 +9,12 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void 기능_테스트() {
+    void 로또_구매_및_결과_출력_기능__테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
@@ -46,12 +47,30 @@ class ApplicationTest extends NsTest {
         );
     }
 
+
     @Test
-    void 예외_테스트() {
+    void 구입_금액에_문자가_들어올_경우_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
         });
+        assertThat(output()).contains(ERROR_MESSAGE).contains("구입 금액은 정수여야 합니다.");
+    }
+
+    @Test
+    void 구입_금액에_따른_로또_구매_매수_기능_테스트() {
+        Application app = new Application();
+        int purchaseAmount = 5000;
+        int expectedLottoCount = purchaseAmount / 1000;
+        int lottoCount = app.calculateLottoCount(purchaseAmount);
+
+        assertThat(lottoCount).isEqualTo(expectedLottoCount);
+    }
+    @Test
+    void 구입_금액이_로또_가격보다_낮은_경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("500");
+        });
+        assertThat(output()).contains(ERROR_MESSAGE).contains("구입 금액은 1000원 이상이어야 합니다.");
     }
 
     @Override
