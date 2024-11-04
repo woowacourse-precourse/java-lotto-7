@@ -1,21 +1,16 @@
 package lotto.validator.InputValidator;
 
 
+import java.math.BigInteger;
+import lotto.validator.ValidatorUtils;
+
 public class MoneyValidator implements InputValidator<Integer> {
     @Override
     public Integer validate(String input) {
-        int money = isNumber(input);
+        BigInteger bigIntValue = ValidatorUtils.validateBigInteger(input);  // 숫자 형식 검증 및 BigInteger 변환
+        int money = ValidatorUtils.validateIntRange(bigIntValue);           // int 범위 검증
         checkMoney(money);
         return money;
-    }
-
-
-    private int isNumber(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + " 유효한 숫자를 입력해야 합니다.");
-        }
     }
 
     // 금액 검증

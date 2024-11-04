@@ -15,6 +15,7 @@ public class Lotto {
         LottoValidator.validateSize(numbers);
         LottoValidator.validateNotEmpty(numbers);
         LottoValidator.validateUnique(numbers);
+        LottoValidator.validateRange(numbers);
     }
 
     // 매칭 개수를 계산하는 메서드
