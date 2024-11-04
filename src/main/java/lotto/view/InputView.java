@@ -9,14 +9,25 @@ import lotto.model.draw_numbers.builder.DrawNumbersBuilder;
 
 public class InputView {
 
+    public Payment getPayment() {
+        System.out.println(InputViewMessage.ENTER_PAYMENT);
+        int repeatCount = 0;
+        while (repeatCondition(repeatCount)) {
+            repeatCount += 1;
+            try {
+                return new Payment(readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println(String.format(SystemError.MAX_RETRY_EXCEEDED.getMessage(), DEFAULT_PAYMENT));
+        return new Payment(DEFAULT_PAYMENT);
+    }
+
+    public static final String DEFAULT_PAYMENT = "1000";
     public static final String DEFAULT_WINNING_NUMBERS = "1,2,3,4,5,6";
     public static final String DEFAULT_BONUS_NUMBER = "7";
     public static final int LIMIT_REPEAT_COUNT = 100;
-
-    public Payment getPayment() {
-        System.out.println(InputViewMessage.ENTER_PAYMENT);
-        return new Payment(readLine());
-    }
 
     public DrawNumbers getDrawNumbers() {
         DrawNumbersBuilder builder = new DrawNumbersBuilder();

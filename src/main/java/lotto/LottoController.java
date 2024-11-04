@@ -16,11 +16,6 @@ import java.util.List;
 
 public class LottoController {
 
-    public static final String DEFAULT_PAYMENT = "1000";
-    public static final String DEFAULT_WINNING_NUMBERS = "1,2,3,4,5,6";
-    public static final String DEFAULT_BONUS_NUMBER = "7";
-    public static final int LIMIT_REPEAT_COUNT = 1;
-
     private final InputView inputView;
     private final OutputView outputView;
     private LottoChecker lottoChecker;
