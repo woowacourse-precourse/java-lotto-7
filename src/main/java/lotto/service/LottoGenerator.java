@@ -17,7 +17,7 @@ public class LottoGenerator {
         return lotto;
     }
     private Lotto validateLotto() {
-        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1,45,6);
+        List<Integer> lottoNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(lottoNumber);
         return new Lotto(lottoNumber);
     }

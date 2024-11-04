@@ -16,8 +16,8 @@ public class InputHandler {
     public Lotto getLottoNumber() {
         return getValidateInput(INPUT_LOTTO_NUMBER_MESSAGE, Validation::validateLotto);
     }
-    public Integer getBonus() {
-        return getValidateInput(INPUT_BONUS_MESSAGE, Validation::validateBonus);
+    public Integer getBonus(Lotto lotto) {
+        return getValidateInput(INPUT_BONUS_MESSAGE, input -> Validation.validateBonus(input, lotto));
     }
 
     private <T> T getValidateInput(String message, InputValidator<T> validate) {

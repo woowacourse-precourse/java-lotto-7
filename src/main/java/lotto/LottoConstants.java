@@ -11,4 +11,5 @@ public class LottoConstants {
     public static final int FIVE_LOTTO_PRICE = 1_500_000;
     public static final int FIVE_AND_BONUS_LOTTO_PRICE = 30_000_000;
     public static final int SIX_LOTTO_PRICE = 2_000_000_000;
+    public static final int[] RANK_PRICE = {THREE_LOTTO_PRICE, FOUR_LOTTO_PRICE, FIVE_LOTTO_PRICE, SIX_LOTTO_PRICE, FIVE_AND_BONUS_LOTTO_PRICE};
 }

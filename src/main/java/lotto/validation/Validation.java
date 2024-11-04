@@ -31,11 +31,14 @@ public class Validation {
         return new Lotto(numbers);
     }
 
-    public static Integer validateBonus(String input) {
+    public static Integer validateBonus(String input, Lotto lotto) {
         try {
             Integer bonus = Integer.parseInt(input);
             if (bonus <= LottoConstants.INPUT_MIN_LOTTO || bonus > LottoConstants.INPUT_MAX_LOTTO) {
                 throw new IllegalArgumentException(ErrorMessages.INVALID_BONUS_NUMBER.getMessage());
+            }
+            if(lotto.contains(bonus)) {
+                throw new IllegalArgumentException(ErrorMessages.NON_EQUALS_BONUS.getMessage());
             }
             return bonus;
         } catch (NumberFormatException e) {

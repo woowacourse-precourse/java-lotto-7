@@ -28,5 +28,6 @@ public class EarningCalculator {
         if(winners == 7) {
             return LottoConstants.FIVE_AND_BONUS_LOTTO_PRICE;
         }
+        return 0;
     }
 }

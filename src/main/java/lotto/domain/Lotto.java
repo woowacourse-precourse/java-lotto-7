@@ -34,19 +34,14 @@ public class Lotto {
     }
     private boolean validateSizeNumber(List<Integer> numbers) {
         for(Integer number : numbers) {
-            if(number <= LottoConstants.INPUT_MIN_LOTTO || number >= LottoConstants.INPUT_MAX_LOTTO) {
+            if(number <= LottoConstants.INPUT_MIN_LOTTO || number > LottoConstants.INPUT_MAX_LOTTO) {
                 return true;
             }
         }
         return false;
     }
     private boolean validateNumber(List<Integer> numbers) {
-        Set<Integer> uniqueNumber = new HashSet<>(numbers);
-        for(Integer number : numbers) {
-            if(!uniqueNumber.contains(number)) {
-                return true;
-            }
-        }
-        return false;
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        return uniqueNumbers.size() != numbers.size();
     }
 }
