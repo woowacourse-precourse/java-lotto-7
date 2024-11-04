@@ -13,6 +13,6 @@ public class Player {
     }
 
     public double calculatePrizeRatio(long prizeAmount) {
-        return Math.round((double) prizeAmount / purchaseAmount * 1000) / 10.0;
+        return (double) prizeAmount / purchaseAmount * 100;
     }
 }

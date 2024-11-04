@@ -22,7 +22,7 @@ class PlayerTest {
     private static Stream<Arguments> providePrizeAmount() {
         return Stream.of(
                 Arguments.of(0, 0.0),
-                Arguments.of(2666, 33.3),
+                Arguments.of(2666, 33.324999999999996),
                 Arguments.of(5000, 62.5),
                 Arguments.of(8000, 100.0),
                 Arguments.of(16000, 200.0)
