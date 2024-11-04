@@ -10,9 +10,9 @@ import org.junit.platform.commons.util.StringUtils;
 
 public class PurchaseAmountValidator {
 
-    private static final String input = "구입 금액";
-    private static final String type = "정수";
-    private static final int unit = 1000;
+    private static final String INPUT = "구입 금액";
+    private static final String TYPE = "정수";
+    private static final int UNIT = 1000;
 
     public static int validatePurchaseAmount(String input) {
         validateBlank(input);
@@ -32,15 +32,15 @@ public class PurchaseAmountValidator {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalTypeException(
-                    String.format(INVALID_TYPE_INPUT.getMessage(), input, type)
+                    String.format(INVALID_TYPE_INPUT.getMessage(), INPUT, TYPE)
             );
         }
     }
 
     private static void validateDivisibleByUnit(int input) {
-        if (input % unit != 0) {
+        if (input % UNIT != 0) {
             throw new IllegalArgumentException(
-                    String.format(INVALID_NUMBER_INPUT.getMessage(), input, unit)
+                    String.format(INVALID_NUMBER_INPUT.getMessage(), INPUT, UNIT)
             );
         }
     }
