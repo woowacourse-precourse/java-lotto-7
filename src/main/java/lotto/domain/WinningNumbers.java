@@ -14,12 +14,17 @@ public class WinningNumbers {
     private final List<Integer> numbers;
 
     public WinningNumbers(String input) {
+        List<Integer> parsedNumbers = parseAndValidateInput(input);
+        this.numbers = List.copyOf(parsedNumbers);
+    }
+
+    private List<Integer> parseAndValidateInput(String input) {
         Validator<String> stringValidator = ValidatorFactory.createStringValidator("[ERROR] 당첨 번호는 올바른 형식이어야 합니다.");
         stringValidator.validate(input);
 
         List<Integer> parsedNumbers = parseNumbers(input);
-        validateWinningNumbers(parsedNumbers);
-        this.numbers = List.copyOf(parsedNumbers);
+        performDetailedValidation(parsedNumbers);
+        return parsedNumbers;
     }
 
     private List<Integer> parseNumbers(String input) {
@@ -29,16 +34,27 @@ public class WinningNumbers {
                 .collect(Collectors.toList());
     }
 
-    private void validateWinningNumbers(List<Integer> numbers) {
+    private void performDetailedValidation(List<Integer> numbers) {
+        validateUniqueNumbers(numbers);
+        validateNumberCount(numbers);
+        validateRange(numbers);
+    }
+
+    private void validateUniqueNumbers(List<Integer> numbers) {
         Validator<List<Integer>> uniqueNumberValidator =
                 ValidatorFactory.createUniqueNumberValidator("[ERROR] 당첨 번호는 중복되지 않는 숫자여야 합니다.");
-        Validator<Integer> rangeValidator =
-                ValidatorFactory.createNumberRangeValidator(MIN_NUMBER, MAX_NUMBER, "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+        uniqueNumberValidator.validate(numbers);
+    }
+
+    private void validateNumberCount(List<Integer> numbers) {
         Validator<List<Integer>> countValidator =
                 ValidatorFactory.createNumberCountValidator(NUMBER_COUNT, "[ERROR] 당첨 번호는 6개의 숫자여야 합니다.");
-
-        uniqueNumberValidator.validate(numbers);
         countValidator.validate(numbers);
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        Validator<Integer> rangeValidator =
+                ValidatorFactory.createNumberRangeValidator(MIN_NUMBER, MAX_NUMBER, "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
         numbers.forEach(rangeValidator::validate);
     }
 
