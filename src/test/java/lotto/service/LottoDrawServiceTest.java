@@ -65,7 +65,7 @@ public class LottoDrawServiceTest {
 
         int numberOfTickets = 2;
 
-        double expectedRate = WinningChecker.calculateReturn(matchingResult, numberOfTickets);
+        double expectedRate = new WinningChecker().calculateReturn(matchingResult, numberOfTickets);
 
         double actualRate = lottoDrawService.calculateRate(matchingResult, numberOfTickets);
 

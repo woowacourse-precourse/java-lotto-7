@@ -68,7 +68,7 @@ public class WinningCheckerTest {
                 LottoRank.FOURTH.getPrize() * 1 +
                 LottoRank.FIFTH.getPrize() * 1) / (numberOfTickets * LOTTO_PRICE) * 100;
 
-        double actualReturnRate = WinningChecker.calculateReturn(rankCount, numberOfTickets);
+        double actualReturnRate = new WinningChecker().calculateReturn(rankCount, numberOfTickets);
 
         System.out.println(expectedReturnRate);
 
