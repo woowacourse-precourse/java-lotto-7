@@ -14,11 +14,11 @@ public class LottoNumber {
     }
 
     public static LottoNumber from(int number) {
-        validate(number);
+        validateNumber(number);
         return new LottoNumber(number);
     }
 
-    private static void validate(int number) {
+    private static void validateNumber(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             String detail = String.format("로또 번호의 범위는 %d부터 %d까지 입니다.", MIN_NUMBER, MAX_NUMBER);
             throw LottoNumberInvalidException.lottoNumberRange(detail);

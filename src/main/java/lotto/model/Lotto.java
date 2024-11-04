@@ -12,7 +12,7 @@ public class Lotto {
     private final LottoNumbers lottoNumbers;
 
     private Lotto(LottoNumbers lottoNumbers) {
-        validate(lottoNumbers);
+        validateLottoNumbers(lottoNumbers);
         this.lottoNumbers = lottoNumbers;
     }
 
@@ -20,7 +20,7 @@ public class Lotto {
         return new Lotto(LottoNumbers.generate(LOTTO_NUMBER_SIZE, randomNumberGenerator));
     }
 
-    private void validate(LottoNumbers lottoNumbers) {
+    private void validateLottoNumbers(LottoNumbers lottoNumbers) {
         if (!lottoNumbers.hasSize(LOTTO_NUMBER_SIZE)) {
             String detail = String.format("로또 번호의 개수는 %d 개여야 합니다.", LOTTO_NUMBER_SIZE);
             throw LottoNumberInvalidException.lottoNumberSize(detail);

@@ -26,11 +26,11 @@ public class WinningLotto {
     }
 
     private void validate(LottoNumbers lottoNumbers, LottoNumber bonusLottoNumber) {
-        validateNumbers(lottoNumbers);
-        validateBonusNumber(lottoNumbers, bonusLottoNumber);
+        validateLottoNumbers(lottoNumbers);
+        validateBonusLottoNumber(lottoNumbers, bonusLottoNumber);
     }
 
-    private void validateNumbers(LottoNumbers lottoNumbers) {
+    private void validateLottoNumbers(LottoNumbers lottoNumbers) {
         if (!lottoNumbers.hasSize(WINNING_LOTTO_NUMBER_SIZE)) {
             String detail = String.format("당첨 로또 번호의 개수는 %d 개여야 합니다.", WINNING_LOTTO_NUMBER_SIZE);
             throw LottoNumberInvalidException.lottoNumberSize(detail);
@@ -40,7 +40,7 @@ public class WinningLotto {
         }
     }
 
-    private void validateBonusNumber(LottoNumbers lottoNumbers, LottoNumber bonusLottoNumber) {
+    private void validateBonusLottoNumber(LottoNumbers lottoNumbers, LottoNumber bonusLottoNumber) {
         if (lottoNumbers.contains(bonusLottoNumber)) {
             throw LottoNumberInvalidException.bonusNumberDuplicate();
         }

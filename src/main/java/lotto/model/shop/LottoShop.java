@@ -8,21 +8,21 @@ public class LottoShop {
 
     private static final int LOTTO_PRICE = 1_000;
 
-    public Lottos purchaseRandomLottos(int money, RandomNumberGenerator randomNumberGenerator) {
+    public Lottos purchaseRandomLottos(int purchaseMoney, RandomNumberGenerator randomNumberGenerator) {
 
-        validateMoney(money);
-        int lottoCount = money / LOTTO_PRICE;
+        validatePurchaseMoney(purchaseMoney);
+        int lottoCount = purchaseMoney / LOTTO_PRICE;
 
         return Lottos.generate(lottoCount, randomNumberGenerator);
     }
 
-    private void validateMoney(int money) {
-        if (money < LOTTO_PRICE) {
+    private void validatePurchaseMoney(int purchaseMoney) {
+        if (purchaseMoney < LOTTO_PRICE) {
             String detail = String.format("로또 구매 금액은 %d원 이상이어야 합니다.", LOTTO_PRICE);
             throw PurchaseMoneyInvalidException.lottoMoneyTooSmall(detail);
         }
 
-        if (money % LOTTO_PRICE != 0) {
+        if (purchaseMoney % LOTTO_PRICE != 0) {
             String detail = String.format("로또 구매는 %d원 단위로만 가능합니다.", LOTTO_PRICE);
             throw PurchaseMoneyInvalidException.lottoMoneyNotDivisible(detail);
         }
