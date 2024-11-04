@@ -27,9 +27,7 @@ public class OutputView {
     }
 
     public void printWinningStatistic(Map<Prize, Integer> matchCounts, String earningRatio) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(PRINT_WINNING_STATISTIC).append(printMatchCounts(matchCounts)).append(printEarningRatio(earningRatio));
-        System.out.print(sb);
+        System.out.print(PRINT_WINNING_STATISTIC + printMatchCounts(matchCounts) + printEarningRatio(earningRatio));
     }
 
     private StringBuilder printMatchCounts(Map<Prize, Integer> matchCounts) {
