@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.exception.InputValidator;
 import lotto.model.BonusNumber;
 import lotto.model.LottoGenerator;
 import lotto.model.Lottos;
@@ -69,6 +70,7 @@ public class LottoController {
             outputView.printWinningNumbersMessage();
             try {
                 List<Integer> winningNumbers = inputView.inputWinningNumbers();
+                winningNumbers.forEach(InputValidator::validateWinningNumber);
                 outputView.nextLine();
                 return WinningNumbers.from(winningNumbers);
             } catch (IllegalArgumentException e) {
