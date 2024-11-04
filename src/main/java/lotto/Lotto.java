@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,6 +15,16 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+
+        if (new HashSet<>(numbers).size() < 6) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+        }
+
+        for(var num : numbers){
+            if(num < 1 || num > 45){
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자만 가능합니다.");
+            }
         }
     }
 

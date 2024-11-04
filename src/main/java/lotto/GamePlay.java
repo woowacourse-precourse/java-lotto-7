@@ -70,11 +70,7 @@ public class GamePlay {
                 System.out.println("당첨 번호 6자리를 입력해주세요. (,) 쉼표를 기준으로 구분됩니다.");
                 String input = Console.readLine();
 
-                validatePickWinnigLotto(input);
-                winningLotto = new Lotto(stream(input.split(DELIMITER))
-                        .map(String::trim)
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList()));
+                winningLotto = new Lotto(validatePickWinnigLotto(input));
                 return;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
@@ -82,33 +78,16 @@ public class GamePlay {
         }
     }
 
-    private void validatePickWinnigLotto(String input) {
+    private List<Integer> validatePickWinnigLotto(String input) {
         try {
             List<Integer> winningNumbers = stream(input.split(DELIMITER))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();
 
-            validateDuplicateWinningNumber(winningNumbers);
-            validateRangeWinningNumber(winningNumbers);
+            return winningNumbers;
         }catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
-        }
-    }
-
-    private void validateRangeWinningNumber(List<Integer> winningNumbers) {
-
-        for(var number : winningNumbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 1 ~ 45 번호 사이의 숫자만 입력 가능합니다.");
-            }
-        }
-    }
-
-    private void validateDuplicateWinningNumber(List<Integer> numbers) {
-        Set<Integer> number = new HashSet<>(numbers);
-        if (number.size() < 6) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
     }
 
