@@ -1,12 +1,12 @@
 package lotto.domain;
 
-import lotto.domain.lotto.WinningLottoWithBonus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.exception.ErrorMessage.*;
+import static lotto.exception.ErrorMessage.PURCHASE_AMOUNT_NOT_DIVISIBLE;
+import static lotto.exception.ErrorMessage.PURCHASE_AMOUNT_NOT_ENOUGH;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("구매 금액 테스트")
 class PurchaseAmountTest {
