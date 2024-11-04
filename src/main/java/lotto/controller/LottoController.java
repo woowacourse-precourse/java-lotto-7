@@ -44,7 +44,7 @@ public class LottoController {
                 int price = parseNumber(inputPrice);
                 return lottoService.createLottoMachine(price);
             } catch (IllegalArgumentException e) {
-                inputView.errorPrint(e.getMessage());
+                outputView.errorMessagePrint(e.getMessage());
             }
         }
     }
@@ -60,7 +60,7 @@ public class LottoController {
             try {
                 return new Lotto(parseNumbers());
             } catch (IllegalArgumentException e) {
-                inputView.errorPrint(e.getMessage());
+                outputView.errorMessagePrint(e.getMessage());
             }
         }
     }
@@ -76,7 +76,7 @@ public class LottoController {
                 }
                 return winnerNumbers;
             } catch (NumberFormatException e) {
-                inputView.errorPrint(INVALID_LOTTO);
+                outputView.errorMessagePrint(INVALID_LOTTO);
             }
         }
     }
@@ -88,7 +88,7 @@ public class LottoController {
                 int bonus = parseNumber(inputBonus);
                 return validateBonus(winnerLotto, bonus);
             } catch (IllegalArgumentException e) {
-                inputView.errorPrint(e.getMessage());
+                outputView.errorMessagePrint(e.getMessage());
             }
         }
     }
