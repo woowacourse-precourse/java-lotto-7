@@ -1,10 +1,11 @@
 package lotto;
 
 public class PurchaseCount {
-    int purchaseCount;
+    private static final int LOTTO_PRICE = 1000;
+    private final int purchaseCount;
 
     public PurchaseCount(int purchaseAmount) {
-        this.purchaseCount = purchaseAmount / 1000;
+        this.purchaseCount = purchaseAmount / LOTTO_PRICE;
     }
 
     public int getPurchaseCount() {
