@@ -184,3 +184,28 @@ classDiagram
     style InputView fill:white,stroke-width:2px,stroke:#CCF
     style OutputView fill:white,stroke-width:2px,stroke:#CCF
 ```
+
+*Controller & Util*
+
+```mermaid
+classDiagram
+    class LottoController {
+	    -InputView inputView
+	    -OutputView outputView
+	    -LottoGenerator lottoGenerator
+	    -LottoEvaluator lottoEvaluator
+	    -Validator validator
+	    run()
+	    validatePurchaseAmount() int
+	    validateWinningNumbers() Lotto
+	    validateBonusNumber(Lotto winningLotto) int
+    }
+    style LottoController fill:white,stroke-width:2px,stroke:#CCF
+    class Validator {
+	    +validatePositiveAmount(int purchaseAmount)
+	    +validateAmountUnit(int purchaseAmount)
+	    +validateBonusRange(int bonusNum)
+	    +validateBonusDuplicate(List~Integer~ winningNumbers, int bonusNum)
+    }
+    style Validator fill:white,stroke-width:2px,stroke:#CCF
+```
