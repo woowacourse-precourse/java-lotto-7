@@ -19,15 +19,23 @@ public class LottoNumberValidator {
     private static final String ERROR_MSG_INFIX = "로또 번호";
     private static final String ERROR_IS_DUPLICATED_LOTTO_NUMBER_MSG = "로또 번호는 중복되지 않는 번호를 입력하셔야 합니다.";
     public static final String ERROR_NOT_CONTAIN_SAME_NUMBER_MSG = "는 중복되지 않아야 합니다.";
-    public static final String ERROR_HAVA_COUNT_OF_LOTTO_NUMBER_MSG = "는 %d개여야 합니다."
+    public static final String ERROR_HAVE_COUNT_OF_LOTTO_NUMBER_MSG = "는 %d개여야 합니다."
             .formatted(COUNT_OF_LOTTO_NUMBER);
 
     public static void isValid(List<Integer> numbers) {
-        if (numbers.size() != COUNT_OF_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(ERROR_INIT + ERROR_MSG_INFIX + ERROR_HAVA_COUNT_OF_LOTTO_NUMBER_MSG);
-        }
+        haveCountOfLottoNumber(numbers);
 
-        Set<Integer> numbersSet = new HashSet<>(numbers);
+        containSameNumber(numbers);
+    }
+
+    private static void haveCountOfLottoNumber(List<Integer> lottoNumbers) {
+        if (lottoNumbers.size() != COUNT_OF_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(ERROR_INIT + ERROR_MSG_INFIX + ERROR_HAVE_COUNT_OF_LOTTO_NUMBER_MSG);
+        }
+    }
+
+    private static void containSameNumber(List<Integer> lottoNumbers) {
+        Set<Integer> numbersSet = new HashSet<>(lottoNumbers);
         if (numbersSet.size() != COUNT_OF_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ERROR_INIT + ERROR_MSG_INFIX + ERROR_NOT_CONTAIN_SAME_NUMBER_MSG);
         }
@@ -65,6 +73,8 @@ public class LottoNumberValidator {
                 throw new IllegalArgumentException(ERROR_INIT + ERROR_MSG_INFIX + ERROR_CONTAIN_LETTER_MSG);
             }
         }
+
+        haveCountOfLottoNumber(lottoNumbers);
     }
 
     private static void UnderLottoStartNumber(int lottoNumber) {

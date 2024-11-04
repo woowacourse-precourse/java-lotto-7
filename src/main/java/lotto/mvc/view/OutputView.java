@@ -11,7 +11,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS_MSG = "당첨 통계";
     private static final String WINNING_STATISTICS_DIVIDER = "---";
     private static final String WINNING_STATISTICS_FORMAT = "%s (%,d원) - %d개%n";
-    private static final String Total_Return_FORMAT = "총 수익률은 %.1f%%입니다.";
+    private static final String Total_Return_FORMAT = "총 수익률은 %,.1f%%입니다.";
 
     public void showPurchaseDetails(LottoList lottoes, int count) {
         showNumberOfLottoPurchases(count);

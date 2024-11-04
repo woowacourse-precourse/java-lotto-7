@@ -15,16 +15,6 @@ public class InputHandler {
     private static final String REPLACEMENT_OF_DELIMITER = "";
     private InputView inputView = new InputView();
 
-    private <T> T doLoop(Supplier<T> inputFunction) {
-        while (true) {
-            try {
-                return inputFunction.get();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
     public long getPurchaseAmount() {
         return doLoop(() -> {
             inputView.showPurchaseAmountMsg();
@@ -61,6 +51,16 @@ public class InputHandler {
 
             return Integer.parseInt(bonusNumber);
         });
+    }
+
+    private <T> T doLoop(Supplier<T> inputFunction) {
+        while (true) {
+            try {
+                return inputFunction.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private String trimInput(String input) {
