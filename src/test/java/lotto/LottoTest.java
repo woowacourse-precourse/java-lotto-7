@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -21,5 +22,40 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    public void 당첨_번호_일치_개수_확인() throws Exception {
+    	//given
+        Lotto testLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        List<Integer> testWinningNumber = List.of(1, 2, 3, 4, 5, 6);
+        int testBonusNumber = 7;
+
+        WinningLotto testWinningLotto = WinningLotto.of(testWinningNumber, testBonusNumber);
+
+        long expectedMatchCount = 6;
+        //when
+        long actualMatchCount = testLotto.getMatchCount(testWinningLotto);
+
+        //then
+        assertEquals(expectedMatchCount, actualMatchCount);
+    }
+
+    @Test
+    public void 보너스_번호_일치_여부_확인() throws Exception {
+    	//given
+        Lotto testLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        List<Integer> testWinningNumber = List.of(1, 2, 3, 4, 5, 6);
+        int testBonusNumber = 7;
+
+        WinningLotto testWinningLotto = WinningLotto.of(testWinningNumber, testBonusNumber);
+
+        long expectedMatchCount = 6;
+    	//when
+        long actualMatchCount = testLotto.getMatchCount(testWinningLotto);
+
+        //then
+        assertEquals(expectedMatchCount, actualMatchCount);
+
+    }
 }
