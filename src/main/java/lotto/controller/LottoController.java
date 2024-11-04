@@ -41,8 +41,10 @@ public class LottoController {
             outputView.printLottoResult(result);
 
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            outputView.printMessage("[ERROR] " + e.getMessage());
             throw e;
+        } finally {
+            inputView.close();
         }
     }
 }

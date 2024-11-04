@@ -22,9 +22,7 @@ public class InputView {
         String input = Console.readLine();
         inputValidator.validateNotEmpty(input);
         inputValidator.checkDelimiter(input);
-        List<Integer> winningNumbers = inputParser.parseToIntegerList(input);
-        inputValidator.foundDuplicateNumber(winningNumbers);
-        return winningNumbers;
+        return inputParser.parseToIntegerList(input);
     }
 
     public int getBonusNumber() {
@@ -33,5 +31,8 @@ public class InputView {
         int bonusNumber = inputParser.parseToInt(input);
         inputValidator.validateBonusNumber(bonusNumber);
         return bonusNumber;
+    }
+    public void close() {
+        Console.close();
     }
 }

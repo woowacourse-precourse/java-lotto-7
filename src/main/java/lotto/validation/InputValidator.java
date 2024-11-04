@@ -25,12 +25,6 @@ public class InputValidator {
         }
     }
 
-    public void foundDuplicateNumber(List<Integer> numbers) {
-        if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
-        }
-    }
-
     public void validateBonusNumber(int number) {
         if (number < AppConstants.LOTTO_MIN_NUMBER || number > AppConstants.LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());

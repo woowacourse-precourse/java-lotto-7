@@ -33,8 +33,4 @@ public class OutputView {
 
         System.out.printf("총 수익률은 %.2f%%입니다.%n", result.profitRate());
     }
-
-    public void printErrorMessage(String message) {
-        System.out.println("[ERROR] " + message);
-    }
 }
