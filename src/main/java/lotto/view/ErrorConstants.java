@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 public class ErrorConstants {
     public static final String INVALID_PURCHASE_AMOUNT_NOT_A_NUMBER = "[ERROR] 구입 금액은 숫자여야 합니다.";
