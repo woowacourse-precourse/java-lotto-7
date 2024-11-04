@@ -20,7 +20,9 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
+    public LottoNumbers toLottoNumbers() {
+        return new LottoNumbers(this.numbers);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

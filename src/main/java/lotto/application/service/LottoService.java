@@ -3,7 +3,11 @@ package lotto.application.service;
 import lotto.application.dto.LottoTicketsDTO;
 import lotto.domain.generator.LottoNumberGenerator;
 import lotto.domain.model.Lotto;
+import lotto.domain.model.LottoNumbers;
 import lotto.domain.model.LottoTickets;
+import lotto.domain.model.WinningLotto;
+import lotto.domain.result.LottoResult;
+import lotto.domain.result.ResultCalculator;
 import lotto.infrastructure.repository.LottoRepository;
 
 import java.util.List;
@@ -34,5 +38,10 @@ public class LottoService {
         return IntStream.range(0, ticketCount)
                 .mapToObj(i -> new Lotto(numberGenerator.generate().stream().sorted().collect(Collectors.toList())))
                 .collect(Collectors.toList());
+    }
+    public LottoResult calculateResults(LottoTickets lottoTickets, LottoNumbers winningNumbers, int bonusNumber) {
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        ResultCalculator calculator = new ResultCalculator();
+        return new LottoResult(calculator.calculateResults(lottoTickets, winningLotto));
     }
 }

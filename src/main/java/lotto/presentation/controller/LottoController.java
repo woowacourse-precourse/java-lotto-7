@@ -8,6 +8,7 @@ import lotto.application.validation.BonusNumberValidator;
 import lotto.application.validation.LottoNumberValidator;
 import lotto.domain.model.LottoNumbers;
 import lotto.domain.model.LottoTickets;
+import lotto.domain.result.LottoResult;
 import lotto.presentation.view.InputView;
 import lotto.presentation.view.OutputView;
 
@@ -43,6 +44,9 @@ public class LottoController {
         LottoNumbers winningNumbers = getValidWinningNumbers();
 
         int bonusNumber = getValidBonusNumber(winningNumbers.getNumbers());
+
+        LottoResult result = lottoService.calculateResults(lottoTickets, winningNumbers, bonusNumber);
+        outputView.printResults(result);
 
     }
 
