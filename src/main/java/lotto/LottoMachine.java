@@ -46,7 +46,9 @@ public class LottoMachine {
     public void printLottos() {
         System.out.println(String.format("%d개를 구매했습니다.", this.count));
         for (int i = 0; i < this.count; i++) {
-            System.out.println(lottoNumbers.get(i).getNumbers());
+            List<Integer> sortedNumber = lottoNumbers.get(i).getNumbers();
+            Collections.sort(sortedNumber);
+            System.out.println(sortedNumber);
         }
     }
 

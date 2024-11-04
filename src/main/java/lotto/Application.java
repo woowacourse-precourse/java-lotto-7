@@ -22,11 +22,9 @@ public class Application {
                     throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요");
                 }
                 int amount = Integer.parseInt(input);
-
                 if (amount%1000 != 0) {
                     throw new IllegalArgumentException("[ERROR] 1000단위로 입력 가능합니다.");
                 }
-
                 return amount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
