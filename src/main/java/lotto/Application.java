@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
+    private static final int PERCENT = 100;
 
     public static void main(String[] args) {
         int lottoPieces;
@@ -166,6 +167,6 @@ public class Application {
             totalPrize += rank.getPrize() * count;
         }
 
-        return (double) totalPrize / totalBuyingLotto * 100;
+        return (double) totalPrize / totalBuyingLotto * PERCENT;
     }
 }
