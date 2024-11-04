@@ -31,6 +31,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_COUNT.getErrorMessage());
         }
+        validateDuplicateNumbers(numbers);
+    }
+
+    private void validateDuplicateNumbers(List<Integer> numbers) {
         int left = 0;
         while (left < 6) {
             for (int right = left + 1; right < 6; right++) {
