@@ -34,4 +34,11 @@ public class LottoController {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+    public int checkCorrectCount(Lotto lotto, List<Integer> winningNumbers) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
 }
