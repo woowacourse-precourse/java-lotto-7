@@ -3,6 +3,7 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -10,6 +11,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class IOManagerTest {
+
+    private IOManager ioManager;
+
+
     @DisplayName("숫자가 아닌 값이 입력됐을때 예외가 발생한다.")
     @Test
     void moneyTest() {
