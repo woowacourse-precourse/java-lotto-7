@@ -40,4 +40,15 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+    @Test
+    @DisplayName("보너스 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다.")
+    void 보너스번호_범위_검증() {
+        assertThatThrownBy(() -> new Winning(new int[] {1,2,3,4,5,6}, 0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+
+        assertThatThrownBy(() -> new Winning(new int[] {1,2,3,4,5,6}, 46))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
 }
