@@ -16,4 +16,8 @@ public class InputParser {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+    public static int parseBonusNumber(String bonusNumber) {
+        return Integer.parseInt(bonusNumber);
+    }
 }
