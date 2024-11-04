@@ -1,6 +1,4 @@
 package lotto;
-
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 
 public class LottoWinningNumbers {
@@ -9,23 +7,17 @@ public class LottoWinningNumbers {
 
   private int bonusNumber;
 
-  public LottoWinningNumbers(int[] winningNumber , int bonusNumber) {
-    assignWinningNumber(winningNumber);
-    assignBonusNumber(bonusNumber);
-  }
-
   private boolean validateWinningNumber(int[] winningNumber) {
     if (winningNumber.length != 6) {
       throw new IllegalArgumentException("[ERROR] 당첨 번호가 6자리가 아니면 안됨");
     }
-
     boolean isValid = Arrays.stream(winningNumber).allMatch(num -> num >= 1 && num <= 45);
-
     if (!isValid) {
       throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 한다.");
     }
     return isValid;
   }
+
 
   private boolean validateBonusNumber(int bonusNumber) {
     if (bonusNumber >= 1 && bonusNumber <= 45) {

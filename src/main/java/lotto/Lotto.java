@@ -16,5 +16,10 @@ public class Lotto {
         }
     }
 
+    public void lottoToString()
+    {
+        System.out.println(this.numbers.toString());
+    }
+
     // TODO: 추가 기능 구현
 }
