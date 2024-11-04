@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.constant.Error.DUPLICATED_WINNING_BONUS_NUMBERS;
+import static lotto.constant.Error.DUPLICATED_WINNING_NUMBERS;
+import static lotto.constant.Error.RANGE_WINNING_NUMBER;
+import static lotto.constant.Error.SIZE_WINNING_NUMBERS;
 import static lotto.domain.Rank.DRAW;
 import static lotto.domain.Rank.FIFTH;
 import static lotto.domain.Rank.FIRST;
@@ -47,26 +51,45 @@ class WinningTest {
     @Test
     void 당첨_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, 6, 7), 8))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(SIZE_WINNING_NUMBERS);
     }
 
     @DisplayName("당첨 번호의 개수가 6개보다 적으면 예외가 발생한다.")
     @Test
     void 당첨_번호의_개수가_6개보다_적으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5), 6))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(SIZE_WINNING_NUMBERS);
     }
 
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 당첨_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, 5), 6))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(DUPLICATED_WINNING_NUMBERS);
     }
 
     @Test
     void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() throws Exception {
         assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, 6), 6))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(DUPLICATED_WINNING_BONUS_NUMBERS);
+    }
+
+    @DisplayName("당첨 번호가 1보다 작으면 예외가 발생한다.")
+    @Test
+    void 당첨_번호가_1보다_작으면_예외가_발생한다() throws Exception {
+        assertThatThrownBy(() -> new Winning(List.of(0, 2, 3, 4, 5, 6), 7))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(RANGE_WINNING_NUMBER);
+    }
+
+    @Test
+    void 당첨_번호가_45보다_크면_예외가_발생한다() throws Exception {
+        assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, 46), 7))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(RANGE_WINNING_NUMBER);
     }
 }
