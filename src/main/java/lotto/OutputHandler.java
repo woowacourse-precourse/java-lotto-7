@@ -11,7 +11,7 @@ import java.util.Map;
 public class OutputHandler {
 
     private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
-    private static final String RESULT_MESSAGE = "당첨통계\n---\n";
+    private static final String RESULT_MESSAGE = "\n당첨통계\n---";
 
     public void printPurchasedLotto(int count, List<Lotto> lottos) {
         System.out.println("\n" + count + PURCHASE_MESSAGE);
