@@ -37,7 +37,8 @@ public class OutputView {
     }
 
     public static void displayProfitRate(double profitRate) {
-        System.out.printf(PROFIT_RATE_MESSAGE, profitRate);
+        System.out.printf(PROFIT_RATE_MESSAGE, Math.round(profitRate * 10) / 10.0);
     }
+
 }
 
