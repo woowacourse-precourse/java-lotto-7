@@ -14,13 +14,19 @@ public class LottoController {
     public void run() {
         LottoPurchase lottoPurchase = purchaseLotto();
         WinningNumbers winningNumbers = issueWinningNumbers();
+
         Lottos lottos = generateLottos(lottoPurchase);
         displayLottos(lottoPurchase, lottos);
-        displayResults(lottos, winningNumbers, lottoPurchase);
+
+        LottoResults lottoResults = calculateLottoResults(lottos, winningNumbers, lottoPurchase);
+        displayResults(lottoResults);
     }
 
-    private void displayResults(Lottos lottos, WinningNumbers winningNumbers, LottoPurchase lottoPurchase) {
-        LottoResults lottoResults = lottoService.calculateResults(lottos, winningNumbers, lottoPurchase);
+    private LottoResults calculateLottoResults(Lottos lottos, WinningNumbers winningNumbers, LottoPurchase lottoPurchase) {
+        return lottoService.calculateResults(lottos, winningNumbers, lottoPurchase);
+    }
+
+    private void displayResults(LottoResults lottoResults) {
         view.printWinningStatistics(lottoResults.getRankFrequency());
         view.printRevenue(lottoResults.getRevenue());
     }
