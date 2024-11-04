@@ -36,7 +36,7 @@ public class LottoMachine {
     /**
      * 보너스 번호 넣기
      *
-     * @param bonus  보너스 번호
+     * @param bonus 보너스 번호
      */
     public void setBonus(int bonus) {
         this.bonus = bonus;

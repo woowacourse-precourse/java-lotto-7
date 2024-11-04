@@ -97,6 +97,7 @@ public class InputHelper {
 
     /**
      * 입력을 받은 후 줄바꿈 처리를 위한 메서드
+     *
      * @return 입력받은 문자열
      */
     private String getInput() {
