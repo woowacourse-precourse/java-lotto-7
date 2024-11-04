@@ -211,3 +211,62 @@ public class Lotto {
 - [x]  숫자로된 리스트를 입력하면 해당 숫자들로 구성된 로또가 생성된다.
 - [x]  로또 번호는 1 ~ 45 범위 밖이면 예외가 발생한다.
 
+## 패키지 구조
+
+```
+lotto
+├── Application.java
+├── LottoApplication.java
+│
+├── application
+│   ├── CalculateProfitUseCase.java
+│   ├── FacadeLottoUseCase.java
+│   ├── LottoResultUseCase.java
+│   ├── PurchaseLottoUseCase.java
+│   ├── RetrieveLottoUseCase.java
+│   │
+│   └── service
+│       ├── CalculateProfitService.java
+│       ├── FacadeLottoService.java
+│       ├── LottoResultService.java
+│       ├── PurchaseLottoService.java
+│       ├── RetrieveLottoService.java
+│       └── vo
+│           └── MatchingInfo.java
+│
+├── common
+│   ├── ConsoleMessage.java
+│   ├── ExceptionMessage.java
+│   ├── LottoConfig.java
+│   ├── LottoConstant.java
+│   ├── NumberParser.java
+│   └── RandomNumbersCreator.java
+│
+├── domain
+│   ├── BonusNumber.java
+│   ├── Lotto.java
+│   ├── LottoFactory.java
+│   ├── LottoMatcher.java
+│   ├── LottoRank.java
+│   ├── Money.java
+│   ├── WinLotto.java
+│   ├── WinResult.java
+│   │
+│   └── repository
+│       ├── InMemoryLottoRepository.java
+│       ├── InMemoryWinLottoRepository.java
+│       ├── LottoRepository.java
+│       ├── WinLottoRepository.java
+│       └── WinResultHistory.java
+│
+└── view
+    ├── ApplicationConsoleView.java
+    ├── ApplicationView.java
+    │
+    ├── converter
+    │   ├── LottoMessageParser.java
+    │   └── MessageParser.java
+    │
+    └── dto
+        └── WinningInfo.java
+```
