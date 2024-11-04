@@ -18,7 +18,7 @@ public class Application {
         userRequestController.inputWinNumbers(winNumbers);
         bonusLottoMessage();
         String bonusNum = Console.readLine();
-        //userRequestController.inputBonusNum(bonusNum);
+        userRequestController.inputBonusNum(bonusNum);
 
     }
 }

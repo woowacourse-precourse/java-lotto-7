@@ -1,7 +1,5 @@
 package lotto.sevice;
 
-import java.security.spec.ECField;
-
 public class InputValidService {
     public boolean isMoney(String money){
         try{
@@ -27,6 +25,16 @@ public class InputValidService {
             }
         }
         return true;
+    }
+
+    public boolean isBonusNumber(String bonusNum){
+        int num;
+        try{
+            num = Integer.parseInt(bonusNum);
+        }catch(Exception e){
+            return false;
+        }
+        return isRange(num);
     }
 
     public boolean isRange(int tmp){

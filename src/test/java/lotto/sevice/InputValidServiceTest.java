@@ -47,4 +47,22 @@ class InputValidServiceTest {
         assertThat(resB).isTrue();
         assertThat(resC).isTrue();
     }
+    @Test
+    void isBonusNumberTest(){
+        //given
+        String str1 = "0";
+        String str2 = "45";
+        String str3 = "46";
+
+        //when
+        boolean res1 = inputValidService.isBonusNumber(str1);
+        boolean res2 = inputValidService.isBonusNumber(str2);
+        boolean res3 = inputValidService.isBonusNumber(str3);
+
+        //then
+        assertThat(res1).isTrue();
+        assertThat(res2).isTrue();
+        assertThat(res3).isFalse();
+
+    }
 }

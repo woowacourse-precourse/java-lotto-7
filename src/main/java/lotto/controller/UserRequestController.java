@@ -15,6 +15,7 @@ public class UserRequestController {
     int lottoCnt;
     RandomLotto randomLotto;
     Lotto lotto;
+    static int bonusNumber;
 
     public void inputMoney(String money){
         if(inputValidService.isMoney(money)){
@@ -32,6 +33,14 @@ public class UserRequestController {
             return;
         }
         error("로또 번호 입력이 잘 못 되었습니다.");
+    }
+
+    public void inputBonusNum(String bonusNum){
+        if(inputValidService.isBonusNumber(bonusNum)){
+            bonusNumber = Integer.parseInt(bonusNum);
+            return;
+        }
+        error("로또 보너스 번호의 입력이 잘 못 되었습니다.");
     }
 
     public void error(String detail){
