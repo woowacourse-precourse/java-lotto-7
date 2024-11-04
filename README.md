@@ -67,7 +67,7 @@
 ## 예외 처리 및 입력 검증
 - [x] **명확한 예외 사용**
     - [x] 잘못된 입력 감지: 유효하지 않은 금액, 번호 범위, 중복 번호 등을 감지한다.
-    - [] 예외 유형: `IllegalArgumentException`, `IllegalStateException` 등 명확한 예외 유형을 사용한다.
+    - [x] 예외 유형: `IllegalArgumentException`, `IllegalStateException` 등 명확한 예외 유형을 사용한다.
 
 - [x] **에러 메시지 출력**
     - [x] 형식: 예외 발생 시 "[ERROR]"로 시작하는 에러 메시지를 출력한다.
