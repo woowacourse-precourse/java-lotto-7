@@ -1,15 +1,11 @@
 package lotto.week3.controller;
 
-
 import lotto.week3.dto.PurchaseRequestDto;
-import lotto.week3.dto.StatisticsRequestDto;
 import lotto.week3.dto.WinningNumberRequestDto;
 import lotto.week3.global.error.handler.InputHandler;
-import lotto.week3.model.LottoGenerator;
 import lotto.week3.model.LottoMatching;
 import lotto.week3.model.LottoStatistics;
 import lotto.week3.service.LottoService;
-import lotto.week3.view.InputView;
 import lotto.week3.view.OutputView;
 
 public class LottoController {
