@@ -28,8 +28,8 @@ public class LottoResult {
         List<Integer> winCount = findPrize(resultList);
         boolean secondYN = false;
 
-        if (winCount.contains(5)) {
-            int index = winCount.indexOf(5);
+        if (winCount.contains(Prize.SECOND.getWinningCount())) {
+            int index = winCount.indexOf(Prize.SECOND.getWinningCount());
             int index2 = resultList.get(index).indexOf(false);
             int number = purchaseList.get(index).getNumbers().get(index2);
             secondYN = findSecondPrize(number);
@@ -72,10 +72,10 @@ public class LottoResult {
     }
 
     public void prizeCount(List<Integer> winCount, boolean secondYN) {
-        fifthPrize = Collections.frequency(winCount, 3);
-        fourthPrize = Collections.frequency(winCount, 4);
-        thirdPrize = Collections.frequency(winCount, 5);
-        firstPrize = Collections.frequency(winCount, 6);
+        fifthPrize = Collections.frequency(winCount, Prize.FIFTH.getWinningCount());
+        fourthPrize = Collections.frequency(winCount, Prize.FOURTH.getWinningCount());
+        thirdPrize = Collections.frequency(winCount, Prize.THIRD.getWinningCount());
+        firstPrize = Collections.frequency(winCount, Prize.FIRST.getWinningCount());
         if (secondYN) {
             secondPrize ++;
             thirdPrize --;
@@ -83,21 +83,28 @@ public class LottoResult {
     }
 
     public void getRateOfReturn() {
-        int purchaseMoney = purchaseList.size() * 1000;
-        int prizeMoney = fifthPrize * 5000 + fourthPrize * 50000 + thirdPrize * 1500000
-                + secondPrize * 30000000 + firstPrize * 2000000000;
+        int purchaseMoney = purchaseList.size() * Constants.PRICE_UNIT;
+        int prizeMoney = fifthPrize * Prize.FIFTH.getPrizeMoney()
+                + fourthPrize * Prize.FOURTH.getPrizeMoney()
+                + thirdPrize * Prize.THIRD.getPrizeMoney()
+                + secondPrize * Prize.SECOND.getPrizeMoney()
+                + firstPrize * Prize.FIRST.getPrizeMoney();
         float a = (float) prizeMoney / purchaseMoney * 100;
         rateOfReturn = (Math.round(a * 10)/10.0);
-
-
     }
 
     public void printResult() {
-        System.out.println(Prize.FIFTH.getPrizeCondition() + " - " + fifthPrize + "개");
-        System.out.println(Prize.FOURTH.getPrizeCondition() + " - " + fourthPrize + "개");
-        System.out.println(Prize.THIRD.getPrizeCondition() + " - " + thirdPrize + "개");
-        System.out.println(Prize.SECOND.getPrizeCondition() + " - " + secondPrize + "개");
-        System.out.println(Prize.FIRST.getPrizeCondition() + " - " + firstPrize + "개");
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        System.out.printf(Constants.PRINT_RESULT_STATICS + "\n");
+        System.out.println(Prize.FIFTH.getPrizeCondition()
+                + "(" + String.format("%,d", Prize.FIFTH.getPrizeMoney()) + "원)" + " - " + fifthPrize + "개");
+        System.out.println(Prize.FOURTH.getPrizeCondition()
+                + "(" + String.format("%,d", Prize.FOURTH.getPrizeMoney()) + "원)" + " - " + fourthPrize + "개");
+        System.out.println(Prize.THIRD.getPrizeCondition()
+                + "(" + String.format("%,d", Prize.THIRD.getPrizeMoney()) + "원)" + " - " + thirdPrize + "개");
+        System.out.println(Prize.SECOND.getPrizeCondition()
+                + "(" + String.format("%,d", Prize.SECOND.getPrizeMoney()) + "원)" + " - " + secondPrize + "개");
+        System.out.println(Prize.FIRST.getPrizeCondition()
+                + "(" + String.format("%,d", Prize.FIRST.getPrizeMoney()) + "원)" + " - " + firstPrize + "개");
+        System.out.printf(Constants.PRINT_RATE_OF_RETURN, rateOfReturn);
     }
 }

@@ -12,13 +12,14 @@ public class LottoPurchase {
     public ArrayList<Lotto> purchaseLottoList = new ArrayList<>();
 
     public void purchase() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(Constants.INPUT_LOTTO_PURCHASE_AMOUNT);
         String purchaseAmountInput = Console.readLine();
+        System.out.println();
         try {
             validateInput(purchaseAmountInput);
             int purchaseAmount = Integer.parseInt(purchaseAmountInput);
             validateInput(purchaseAmount);
-            purchaseQuantity = purchaseAmount/1000;
+            purchaseQuantity = purchaseAmount / Constants.PRICE_UNIT;
             makeNumbers(purchaseQuantity);
         } catch (IllegalArgumentException e) {
             purchase();
@@ -39,23 +40,24 @@ public class LottoPurchase {
     }
 
     public void printPurchaseLottoList() {
-        System.out.println(purchaseQuantity + "개를 구매했습니다.");
+        System.out.printf(Constants.PRINT_LOTTO_PURCHASE_QUANTITY + "\n", purchaseQuantity);
         for (Lotto list : purchaseLottoList) {
             System.out.println(list.getNumbers());
         }
+        System.out.println();
     }
 
     public void validateInput(String str) {
         if (!str.matches("\\d+")) {
-            System.out.println("[ERROR] 로또 구입금액은 숫자만 입력 가능합니다.");
-            throw new IllegalArgumentException("[ERROR] 로또 구입금액은 숫자만 입력 가능합니다.");
+            System.out.println(Constants.NOT_NUMBER);
+            throw new IllegalArgumentException(Constants.NOT_NUMBER);
         }
     }
 
     public void validateInput(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0 || purchaseAmount == 0) {
-            System.out.println("[ERROR] 로또 구입금액은 1000단위로 입력해야 합니다.");
-            throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1000단위로 입력해야 합니다.");
+        if (purchaseAmount % Constants.PRICE_UNIT != 0 || purchaseAmount == 0) {
+            System.out.println(Constants.NOT_PRICE_UNIT);
+            throw new IllegalArgumentException(Constants.NOT_PRICE_UNIT);
         }
     }
 }
