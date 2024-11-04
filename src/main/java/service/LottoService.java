@@ -12,7 +12,6 @@ public class LottoService {
     public LottoService() {
     }
 
-    
     public List<Lotto> makeRandomLottos(int lottoQuantity) {
         List<Lotto> lottos = new ArrayList<>();
 

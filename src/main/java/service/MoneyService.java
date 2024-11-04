@@ -2,7 +2,7 @@ package service;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputService {
+public class MoneyService {
 
     private int getMoney() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -23,6 +23,4 @@ public class InputService {
     public int lottoQuantityInput() {
         return convertQuantity(getMoney());
     }
-
-
 }
