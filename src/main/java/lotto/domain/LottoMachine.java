@@ -7,7 +7,7 @@ import java.util.List;
 public class LottoMachine {
     private final int purchaseAmount;
     private final List<Lotto> lottos;
-    private final int[] prizeCounts = new int[5];  // 각 등수에 대한 당첨 수
+    private final int[] prizeCounts = new int[5];
 
     public LottoMachine(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;

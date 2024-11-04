@@ -1,8 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+
 import java.util.HashSet;
 import java.util.Set;
+import lotto.utils.ErrorMessage;
 
 public class InputView implements Input {
 
@@ -13,7 +15,7 @@ public class InputView implements Input {
             try {
                 return validatePurchaseAmount(Console.readLine());
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 구입 금액은 숫자로 입력해 주세요.");
+                System.out.println(ErrorMessage.NON_NUMERIC_PURCHASE_AMOUNT);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -39,7 +41,7 @@ public class InputView implements Input {
             try {
                 return validateBonusNumber(Console.readLine());
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 보너스 번호는 숫자로 입력해 주세요.");
+                System.out.println(ErrorMessage.NON_NUMERIC_BONUS_NUMBER);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -50,7 +52,7 @@ public class InputView implements Input {
     private int validatePurchaseAmount(String input) {
         int amount = Integer.parseInt(input);
         if (amount < 1000 || amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위의 양수여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT);
         }
         return amount;
     }
@@ -58,16 +60,16 @@ public class InputView implements Input {
     private String validateWinningNumbers(String input) {
         String[] numbers = input.split(",");
         if (numbers.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표로 구분된 6개의 숫자로 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_FORMAT);
         }
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (String number : numbers) {
             int num = Integer.parseInt(number.trim());
             if (num < 1 || num > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE);
             }
             if (!uniqueNumbers.add(num)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER);
             }
         }
         return input;
@@ -76,7 +78,7 @@ public class InputView implements Input {
     private int validateBonusNumber(String input) {
         int bonusNumber = Integer.parseInt(input);
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_RANGE);
         }
         return bonusNumber;
     }
