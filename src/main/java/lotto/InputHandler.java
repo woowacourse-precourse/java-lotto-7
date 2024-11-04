@@ -62,7 +62,7 @@ public class InputHandler {
     }
 
     public void checkValidRange(int inputNumber) throws IllegalArgumentException {
-        if(inputNumber < 1 || inputNumber > 45) {
+        if (inputNumber < 1 || inputNumber > 45) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.toString());
         }
     }
@@ -99,7 +99,7 @@ public class InputHandler {
     }
 
     public void checkValidBonusNumber(List<Integer> winningNumberList, int bonusNumber) throws IllegalArgumentException {
-        if(winningNumberList.contains(bonusNumber)) {
+        if (winningNumberList.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS.toString());
         }
     }
