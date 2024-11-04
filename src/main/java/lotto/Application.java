@@ -98,7 +98,7 @@ public class Application {
         do{
             List<Integer> bonus = Randoms.pickUniqueNumbersInRange(1, 45, 1);
             bonusNum = bonus.get(0);
-        }while(!duplicateCheck.add(bonusNum));
+        }while(duplicateCheck.contains(bonusNum));
         return bonusNum;
     }
     public static Lotto inputWinningNumber(String[] numbers){
@@ -121,7 +121,7 @@ public class Application {
         for(int i=0;i<lottoList.size();i++){
             lottoList.get(i).getNumbers().retainAll(winningNumber.getNumbers());
             List<Integer> matchNumber = lottoList.get(i).getNumbers();
-            if(matchNumber.size() == 3) LottoResult.FIFTH_PRIZEl.increaseCount();
+            if(matchNumber.size() == 3) LottoResult.FIFTH_PRIZE.increaseCount();
             if(matchNumber.size() == 4) LottoResult.FOURTH_PRIZE.increaseCount();
             if(matchNumber.size() == 5 && bonusNumbers.get(i) != bonusNumber) LottoResult.THIRD_PRIZE.increaseCount();
             if(matchNumber.size() == 5 && bonusNumbers.get(i) == bonusNumber) LottoResult.SECOND_PRIZE.increaseCount();

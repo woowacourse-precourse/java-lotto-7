@@ -1,7 +1,7 @@
 package lotto;
 
 public enum LottoResult{
-    FIFTH_PRIZEl(3, false, 5000),
+    FIFTH_PRIZE(3, false, 5000),
     FOURTH_PRIZE(4, false, 50000),
     THIRD_PRIZE(5, false, 1500000),
     SECOND_PRIZE(5, true, 30000000),
