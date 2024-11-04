@@ -3,23 +3,13 @@ package lotto.view;
 import static lotto.constant.Constants.DEFAULT_STATISTIC_COUNT;
 
 import java.text.NumberFormat;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import lotto.constant.PurchaseOutputMessage;
 import lotto.constant.StatisticsOutputMessage;
-import lotto.model.Lotto;
 import lotto.model.Rank;
 
-public class OutputView {
+public class StatisticOutputView {
     private static final NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
-
-    public static void printPurchasedLotto(List<Lotto> purchasedLotto) {
-        System.out.printf(PurchaseOutputMessage.NUMBER_OF_PURCHASED_LOTTO.getMessage(), purchasedLotto.size());
-        for (Lotto lotto : purchasedLotto) {
-            System.out.println(lotto.getNumbers());
-        }
-    }
 
     public static void printLottoResults(Map<Rank, Integer> results) {
         System.out.println(StatisticsOutputMessage.START_COMMENT.getMessage());

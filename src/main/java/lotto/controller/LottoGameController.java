@@ -7,7 +7,8 @@ import lotto.model.LottoPurchase;
 import lotto.model.Rank;
 import lotto.service.HitNumberCalculator;
 import lotto.service.LottoGameService;
-import lotto.view.OutputView;
+import lotto.view.PurchaseOutputView;
+import lotto.view.StatisticOutputView;
 
 public class LottoGameController {
     private final LottoGameService lottoGameService = new LottoGameService();
@@ -16,7 +17,7 @@ public class LottoGameController {
     public void run() {
         LottoPurchase lottoPurchase = lottoGameService.inputPurchaseAmount();
         List<Lotto> purchasedLottos = lottoGameService.generateLottoTickets(lottoPurchase);
-        OutputView.printPurchasedLotto(purchasedLottos);
+        PurchaseOutputView.printPurchasedLotto(purchasedLottos);
 
         List<Integer> winningNumbers = lottoGameService.inputWinningNumbers();
         int bonusNumber = lottoGameService.inputBonusNumber(winningNumbers);
@@ -28,7 +29,7 @@ public class LottoGameController {
     }
 
     private void printWinResults(Map<Rank, Integer> results, double profitRate) {
-        OutputView.printLottoResults(results);
-        OutputView.printProfitRate(profitRate);
+        StatisticOutputView.printLottoResults(results);
+        StatisticOutputView.printProfitRate(profitRate);
     }
 }
