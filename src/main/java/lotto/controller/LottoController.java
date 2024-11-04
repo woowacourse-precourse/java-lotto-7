@@ -22,7 +22,7 @@ public class LottoController {
 
     public void run() {
         List<AutoLotto> autoLottos = getValidAutoLottoOrRepeat();
-        outputView.lottoCount(autoLottos.size());
+        outputView.lottoCount(autoLottos.stream().count());
         outputView.lottos(autoLottos);
         WinningLotto winningLotto = getWinningLottoOrReapeat();
         setWinningLottoBonusNumberOrRepeat(winningLotto);
