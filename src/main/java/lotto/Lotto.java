@@ -24,8 +24,9 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public static Lotto randomLotto() {
         List<Integer> random = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(random);
-        return new Lotto(random);
+        Lotto lotto = new Lotto(random);
+        Collections.sort(lotto.numbers);
+        return lotto;
     }
 
     public List<Integer> getNumbers() {

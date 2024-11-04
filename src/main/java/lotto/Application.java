@@ -48,7 +48,7 @@ public class Application {
         Print.numberPrint();
 
         // 당첨 번호를 입력받아서 리스트에 저장
-        String[] inputNumber = Input.stringInput().split(",");
+        String[] inputNumber = Input.splitInput();
         List<Integer> temporaryNumber = new ArrayList<>();
         for (int i = 0; i< inputNumber.length; i++) {
             temporaryNumber.add(Integer.parseInt(inputNumber[i]));
