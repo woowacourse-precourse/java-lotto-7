@@ -8,35 +8,31 @@ import static lotto.view.OutputView.*;
 
 import java.util.List;
 import java.util.Map;
+import lotto.model.LottoPrizeCalculator;
 import lotto.model.LottoTickets;
 import lotto.model.Prize;
 import lotto.model.WinningLotto;
 import lotto.validation.WinningNumberValidator;
 
-
 public class LottoController {
 
     public void run() {
+        LottoPrizeCalculator calculator = LottoPrizeCalculator.getInstance();
         int ticketCount = calculateTicketCount();
         printPurchaseLottoCount(ticketCount);
 
         LottoTickets lottoTickets = new LottoTickets(ticketCount);
         WinningLotto winningLotto = generateWinningLotto();
 
-        Map<Prize, Integer> lottoResult = calculate(lottoTickets, winningLotto);
-        double profitRatio = calculateProfitRatio(ticketCount, getTotalAmount());
+        Map<Prize, Integer> lottoResult = calculator.calculate(lottoTickets, winningLotto);
+        double profitRatio = calculator.calculateProfitRatio(ticketCount);
 
         printResultStatistics(lottoResult, profitRatio);
     }
 
     private int calculateTicketCount() {
         String purchaseAmount = requestPurchaseAmount();
-        try{
-            return parseValidatedTicketCount(purchaseAmount);
-        }catch (IllegalArgumentException e){
-            printErrorMessage(e.getMessage());
-            return calculateTicketCount();
-        }
+        return parseTicketCountWithValidation(purchaseAmount);
     }
 
     private String requestPurchaseAmount() {
@@ -44,31 +40,46 @@ public class LottoController {
         return userInput();
     }
 
-    private WinningLotto generateWinningLotto() {
-        List<Integer> winningNumber = requestWinningNumber();
-        int bonusNumber = requestBonusNumber(winningNumber);
-        return new WinningLotto(winningNumber, bonusNumber);
-    }
-
-    private List<Integer> requestWinningNumber() {
-        printWinningNumberInputMessage();
+    private int parseTicketCountWithValidation(String purchaseAmount) {
         try {
-            String winningNumber = userInput();
-            return WinningNumberValidator.parseValidatedWinningNumber(winningNumber);
+            return parseValidatedTicketCount(purchaseAmount);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
-            return requestWinningNumber();
+            return calculateTicketCount();
         }
     }
 
-    private int requestBonusNumber(List<Integer> winningNumber) {
-        printBonusNumberInputMessage();
+    private WinningLotto generateWinningLotto() {
+        List<Integer> winningNumbers = requestWinningNumbers();
+        int bonusNumber = requestBonusNumberWithValidation(winningNumbers);
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> requestWinningNumbers() {
+        printWinningNumberInputMessage();
+        return parseWinningNumbersWithValidation(userInput());
+    }
+
+    private List<Integer> parseWinningNumbersWithValidation(String winningNumberInput) {
         try {
-            String bonusNumber = userInput();
-            return parseValidatedBonusNumber(bonusNumber, winningNumber);
+            return WinningNumberValidator.parseValidatedWinningNumber(winningNumberInput);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
-            return requestBonusNumber(winningNumber);
+            return requestWinningNumbers();
+        }
+    }
+
+    private int requestBonusNumberWithValidation(List<Integer> winningNumbers) {
+        printBonusNumberInputMessage();
+        return parseBonusNumberWithValidation(userInput(), winningNumbers);
+    }
+
+    private int parseBonusNumberWithValidation(String bonusNumberInput, List<Integer> winningNumbers) {
+        try {
+            return parseValidatedBonusNumber(bonusNumberInput, winningNumbers);
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+            return requestBonusNumberWithValidation(winningNumbers);
         }
     }
 
@@ -77,5 +88,4 @@ public class LottoController {
         printResult(lottoResult);
         printProfitRatio(profitRatio);
     }
-
 }

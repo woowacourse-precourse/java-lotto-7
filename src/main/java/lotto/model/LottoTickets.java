@@ -19,6 +19,13 @@ public class LottoTickets {
         }
     }
 
+    public LottoTickets(List<List<Integer>> fixedNumbers) {
+        for (List<Integer> numbers : fixedNumbers) {
+            Collections.sort(numbers);
+            lottoTickets.add(new Lotto(numbers));
+        }
+    }
+
     public List<Lotto> getLottoTickets() {
         return lottoTickets;
     }
