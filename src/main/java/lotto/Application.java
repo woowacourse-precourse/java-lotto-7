@@ -31,10 +31,16 @@ public class Application {
     // 로또 구매
     private static int purchaseTickets() {
         System.out.println("구입 금액을 입력해 주세요.");
-        int tickets = Integer.parseInt(Console.readLine());
-        validateTicketAmount(tickets);
-        return tickets / 1000;
+        String input = Console.readLine();
+        try {
+            int tickets = Integer.parseInt(input);
+            validateTicketAmount(tickets);
+            return tickets / 1000;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
+        }
     }
+
 
     private static void validateTicketAmount(int tickets) {
         if (tickets % 1000 != 0) {
