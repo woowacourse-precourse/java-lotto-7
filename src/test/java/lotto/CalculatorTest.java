@@ -1,5 +1,7 @@
-package lotto.calculator;
+package lotto;
 
+import lotto.calculator.LottoRateCalculator;
+import lotto.calculator.LottoResultCalculator;
 import lotto.lottos.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +27,6 @@ class CalculatorTest {
         rateCalculator.calculate(price, lottoResult);
         assertEquals(0.0, rateCalculator.getRate(), 0.01);
     }
-
 
     @Test
     void 당첨번호가_있을_때_올바른_수익률을_반환해야_한다() {
@@ -109,7 +110,5 @@ class CalculatorTest {
         assertEquals(0, result.get(3));
         assertEquals(0, result.get(4));
     }
-
-
 }
 

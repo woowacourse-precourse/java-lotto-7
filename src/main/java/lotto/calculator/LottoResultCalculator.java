@@ -6,7 +6,7 @@ import java.util.*;
 
 public class LottoResultCalculator {
 
-    List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
+    private final List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
 
     public List<Integer> getResult() {
         return result;

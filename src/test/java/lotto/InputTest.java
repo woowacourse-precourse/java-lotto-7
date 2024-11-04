@@ -38,6 +38,4 @@ public class InputTest {
         List<Integer> numberList = Arrays.asList(1, 2, 3, 4, 5, 6);
         assertEquals(winningNumbers.get(), numberList);
     }
-
-
 }

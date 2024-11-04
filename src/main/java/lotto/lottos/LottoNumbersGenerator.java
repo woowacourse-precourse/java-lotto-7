@@ -1,12 +1,13 @@
-package lotto.lottos.NumberGenerator;
+package lotto.lottos;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.lottos.NumberGenerator.NumbersGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoNumbersGenerator implements NumbersGenerator {
+public class LottoNumbersGenerator {
 
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;

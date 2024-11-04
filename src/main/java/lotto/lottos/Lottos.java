@@ -1,7 +1,5 @@
 package lotto.lottos;
 
-import lotto.lottos.NumberGenerator.LottoNumbersGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;

@@ -31,7 +31,7 @@ public class OutputView {
     public void printLottoResult(List<Integer> result) {
         System.out.println(String.format(OutputMessage.THREE_MATCH.getMessage(), result.get(4)));
         System.out.println(String.format(OutputMessage.FOUR_MATCH.getMessage(), result.get(3)));
-        System.out.println(String.format(OutputMessage.FIVE_MATCH.getMessage(), result.get(2)));
+        System.out.println(String.format(OutputMessage.FIVE_MATCH.  getMessage(), result.get(2)));
         System.out.println(String.format(OutputMessage.FIVE_BONUS_MATCH.getMessage(), result.get(1)));
         System.out.println(String.format(OutputMessage.SIX_MATCH.getMessage(), result.get(0)));
     }

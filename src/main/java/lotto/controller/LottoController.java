@@ -9,15 +9,14 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-
-    final InputView inputView = new InputView();
-    final OutputView outputView = new OutputView();
-    final Lottos lottos = new Lottos();
-    final LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
-    final LottoRateCalculator lottoRateCalculator = new LottoRateCalculator();
-    final LottoPriceValidator lottoPriceValidator = new LottoPriceValidator();
-    final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
-    final WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final Lottos lottos = new Lottos();
+    private final LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
+    private final LottoRateCalculator lottoRateCalculator = new LottoRateCalculator();
+    private final LottoPriceValidator lottoPriceValidator = new LottoPriceValidator();
+    private final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
+    private final WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
 
     private LottoPrice lottoPrice;
     private WinningNumbers winningNumbers;

@@ -1,6 +1,7 @@
 package lotto.input;
 
 public enum ErrorMessage {
+
     EMPTY_INPUT("[ERROR] 아무것도 입력되지 않았습니다."),
     NEGATIVE_INPUT("[ERROR] 구입 금액은 양수여야 합니다."),
     MULTIPLE_INPUT("[ERROR] 구입 금액은 1000으로 나누어 떨어져야 합니다."),

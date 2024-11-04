@@ -25,7 +25,6 @@ public class WinningNumbersValidator {
         if (validateRange(winningNumbers)) {
             return ErrorMessage.INVALID_WINNING_NUMBER.getMessage();
         }
-
         return winningNumbersInput;
     }
 
