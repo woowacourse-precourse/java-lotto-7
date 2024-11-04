@@ -1,5 +1,8 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoGame {
 
@@ -7,7 +10,7 @@ public class LottoGame {
 
     public void start() {
         int purchaseAmount = inputPurchaseAmount();
-
+        List<Lotto> tickets = generateTickets(purchaseAmount / LOTTO_PRICE);
     }
 
     private int inputPurchaseAmount() {
@@ -23,5 +26,13 @@ public class LottoGame {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private List<Lotto> generateTickets(int ticketCount) {
+        List<Lotto> tickets = new ArrayList<>();
+        for (int i = 0; i < ticketCount; i++) {
+            tickets.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return tickets;
     }
 }
