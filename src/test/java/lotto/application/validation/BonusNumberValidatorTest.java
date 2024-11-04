@@ -72,4 +72,15 @@ public class BonusNumberValidatorTest {
         // Then
         assertEquals(8, bonusNumber);
     }
+
+    @Test
+    @DisplayName("보너스 번호가 하나가 아닐 때 예외 발생 테스트")
+    void validateBonusNumber_multiple_bonus_numbers_shouldThrowException() {
+        // Given
+        String input = "1,2";
+
+        // When & Then
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validator.validate(input));
+        assertEquals(ErrorMessages.ERROR_MULTIPLE_BONUS_NUMBERS, exception.getMessage());
+    }
 }
