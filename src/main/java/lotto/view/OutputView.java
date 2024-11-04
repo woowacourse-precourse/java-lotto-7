@@ -16,8 +16,14 @@ public class OutputView {
         System.out.println("---");
         Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.NONE)
-                .forEach(rank -> System.out.printf("%d개 일치 (%,d원) - %d개%n",
-                        rank.getMatchCount(), rank.getPrize(), results.getOrDefault(rank, 0)));
+                .forEach(rank -> {
+                    if (rank == Rank.SECOND) {
+                        System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n",
+                                rank.getMatchCount(), rank.getPrize(), results.getOrDefault(rank, 0));
+                    }
+                    System.out.printf("%d개 일치 (%,d원) - %d개%n",
+                    rank.getMatchCount(), rank.getPrize(), results.getOrDefault(rank, 0));
+                    });
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profit);
     }
 }

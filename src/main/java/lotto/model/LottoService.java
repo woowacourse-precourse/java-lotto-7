@@ -8,9 +8,9 @@ public interface LottoService {
 
     List<Lotto> getLottoList();
 
-    Rank checkWinning(Lotto lotto, List<Integer> winningNumbers, int bonusNumber);
+    Rank checkWinning(Lotto lotto, Lotto winningNumbers, int bonusNumber);
 
-    Map<Rank, Integer> calculateResults(List<Integer> winningNumbers, int bonusNumber);
+    Map<Rank, Integer> calculateResults(Lotto winningNumbers, int bonusNumber);
 
     double calculateProfit(Map<Rank, Integer> results);
 }

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.Lotto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,15 +18,17 @@ public class InputView {
         }
     }
 
-    public List<Integer> inputWinningNumbers() {
+    public Lotto inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
 
         try {
-            return Arrays.stream(Console.readLine().split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        }catch (NumberFormatException e){
+            return new Lotto(
+                    Arrays.stream(Console.readLine().split(","))
+                            .map(String::trim)
+                            .map(Integer::parseInt)
+                            .collect(Collectors.toList())
+            );
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
         }
     }

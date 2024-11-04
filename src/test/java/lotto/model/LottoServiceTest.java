@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -65,7 +66,7 @@ class LottoServiceTest {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
         Lotto testLotto = new Lotto(numbers);
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
         // when
@@ -92,7 +93,7 @@ class LottoServiceTest {
                 List.of(14, 15, 16, 17, 18, 19) // NONE
         );
 
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         Map<Rank, Integer> results = lottoService.calculateResults(winningNumbers, bonusNumber);
 
@@ -118,7 +119,7 @@ class LottoServiceTest {
                 List.of(2, 3, 4, 5, 6, 8)  // 3등
         );
 
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         Map<Rank, Integer> results = lottoService.calculateResults(winningNumbers, bonusNumber);
         double profit = lottoService.calculateProfit(results);

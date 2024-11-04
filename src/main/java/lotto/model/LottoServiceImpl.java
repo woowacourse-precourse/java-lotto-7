@@ -33,12 +33,15 @@ public class LottoServiceImpl implements LottoService {
         if (amount % ticketPrice != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
+        if (amount <= 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 이상이여야 합니다.");
+        }
     }
 
     @Override
-    public Rank checkWinning(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+    public Rank checkWinning(Lotto lotto, Lotto winningNumbers, int bonusNumber) {
         int matchCount = (int) lotto.getNumbers().stream()
-                .filter(winningNumbers::contains)
+                .filter(winningNumbers.getNumbers()::contains)
                 .count();
 
         boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
@@ -47,7 +50,7 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public Map<Rank, Integer> calculateResults(List<Integer> winningNumbers, int bonusNumber) {
+    public Map<Rank, Integer> calculateResults(Lotto winningNumbers, int bonusNumber) {
         Map<Rank, Integer> results = new HashMap<>();
         for (Lotto lotto : lottoList) {
             Rank rank = checkWinning(lotto, winningNumbers, bonusNumber);
@@ -59,9 +62,9 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public double calculateProfit(Map<Rank, Integer> results) {
         long totalPrize = results.entrySet().stream()
-                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+                .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
                 .sum();
-        long totalCost = lottoList.size() * ticketPrice;
+        long totalCost = (long) lottoList.size() * ticketPrice;
         return (double) totalPrize / totalCost * 100;
     }
 }
