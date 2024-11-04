@@ -5,35 +5,15 @@ import lotto.controller.LottoController;
 import lotto.controller.PurchaseController;
 import lotto.controller.RankCalculatorController;
 import lotto.controller.WinningNumberGenerationController;
-import lotto.model.LottoGenerator;
-import lotto.model.RankCalculator;
 import lotto.model.WinningNumber;
-import lotto.model.WinningNumberGenerator;
-import lotto.service.TicketService;
-import lotto.util.CommonIo;
 
 public class ControllerFactory {
     private final IoComponent ioComponent;
-    private final TicketService ticketService;
-    private final LottoGenerator lottoGenerator;
-    private final RankCalculator rankCalculator;
-    private final WinningNumberGenerator winningNumberGenerator;
+    private final LottoComponent lottoComponent;
 
-    private ControllerFactory(IoComponent ioComponent, TicketService ticketService, LottoGenerator lottoGenerator, RankCalculator rankCalculator, WinningNumberGenerator winningNumberGenerator) {
+    public ControllerFactory(IoComponent ioComponent, LottoComponent lottoComponent) {
         this.ioComponent = ioComponent;
-        this.ticketService = ticketService;
-        this.lottoGenerator = lottoGenerator;
-        this.rankCalculator = rankCalculator;
-        this.winningNumberGenerator = winningNumberGenerator;
-    }
-
-    public static ControllerFactory createFactory() {
-        IoComponent ioComponent = new IoComponent(new CommonIo());
-        TicketService ticketService = new TicketService();
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        RankCalculator rankCalculator = new RankCalculator();
-        WinningNumberGenerator winningNumberGenerator = new WinningNumberGenerator();
-        return new ControllerFactory(ioComponent, ticketService, lottoGenerator, rankCalculator, winningNumberGenerator);
+        this.lottoComponent = lottoComponent;
     }
 
     public BonusNumberController createBonusNumberController() {
@@ -41,18 +21,18 @@ public class ControllerFactory {
     }
 
     public LottoController createLottoController() {
-        return new LottoController(ticketService, lottoGenerator);
+        return new LottoController(lottoComponent.getTicketService(), lottoComponent.getLottoGenerator());
     }
 
     public PurchaseController createPurchaseController() {
-        return new PurchaseController(ticketService, ioComponent);
+        return new PurchaseController(lottoComponent.getTicketService(), ioComponent);
     }
 
     public RankCalculatorController createRankCalculatorController(WinningNumber winningNumber) {
-        return new RankCalculatorController(winningNumber, ioComponent, rankCalculator);
+        return new RankCalculatorController(winningNumber, ioComponent, lottoComponent.getRankCalculator());
     }
 
     public WinningNumberGenerationController createWinningNumberController() {
-        return new WinningNumberGenerationController(winningNumberGenerator, ioComponent);
+        return new WinningNumberGenerationController(lottoComponent.getWinningNumberGenerator(), ioComponent);
     }
 }
