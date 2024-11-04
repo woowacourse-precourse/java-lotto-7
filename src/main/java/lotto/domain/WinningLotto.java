@@ -7,33 +7,25 @@ import java.util.Set;
 public class WinningLotto {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
-    private static final int LOTTO_SIZE = 7;
     private final Lotto winningLotto;
     private final Integer bonusNumber;
 
-    public WinningLotto(List<Integer> winningLotto, Integer bonusNumber) {
-        this.winningLotto = new Lotto(winningLotto);
-
-        validate(winningLotto, bonusNumber);
+    public WinningLotto(List<Integer> winningLottoNumbers, Integer bonusNumber) {
+        this.winningLotto = new Lotto(winningLottoNumbers);
+        validateBonusNumber(bonusNumber);
+        validateDuplicateWithBonus(winningLottoNumbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(List<Integer> winningLotto, Integer bonusNumber) {
-        validateNumberRange(bonusNumber);
-        validateDuplicate(winningLotto, bonusNumber);
-    }
-
-    private void validateDuplicate(List<Integer> winningLotto, Integer bonusNumber) {
-        Set<Integer> uniqueNumbers = new HashSet<>(winningLotto);
-        uniqueNumbers.add(bonusNumber);
-        if (uniqueNumbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("로또 번호는 중복되지 않아야 합니다.");
+    private void validateBonusNumber(Integer bonusNumber) {
+        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+            throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
-    private void validateNumberRange(Integer bonusNumber) {
-        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
-                throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    private void validateDuplicateWithBonus(List<Integer> winningLottoNumbers, Integer bonusNumber) {
+        if (winningLottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("로또 번호와 보너스 번호는 중복되지 않아야 합니다.");
         }
     }
 
