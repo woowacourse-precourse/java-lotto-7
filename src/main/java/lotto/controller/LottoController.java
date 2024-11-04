@@ -16,16 +16,27 @@ public class LottoController {
         WinningLotto winningLotto = inputWinningLotto();
         LottoResult lottoResult = calculateResult(purchasedLottos, winningLotto);
         OutputView.printResult(lottoResult, purchaseAmount);
-        // 추후 기능 추가 예정
     }
 
-    private LottoResult calculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
-        LottoResult lottoResult = new LottoResult();
-        for (Lotto lotto : lottos) {
-            Rank rank = lotto.match(winningLotto);
-            lottoResult.addRank(rank);
+    private int inputPurchaseAmount() {
+        while (true) {
+            try {
+                String input = InputView.inputPurchaseAmount();
+                int amount = parsePositiveInteger(input);
+                InputValidator.validatePurchaseAmount(amount);
+                return amount;
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e);
+            }
         }
-        return lottoResult;
+    }
+
+    private List<Lotto> purchaseLottos(int amount) {
+        int count = amount / Lotto.PRICE;
+        OutputView.printPurchaseCount(count);
+        List<Lotto> lottos = Lotto.generateLottos(count);
+        OutputView.printLottos(lottos);
+        return lottos;
     }
 
     private WinningLotto inputWinningLotto() {
@@ -62,32 +73,28 @@ public class LottoController {
         }
     }
 
-    private List<Lotto> purchaseLottos(int amount) {
-        int count = amount / Lotto.PRICE;
-        OutputView.printPurchaseCount(count);
-        List<Lotto> lottos = Lotto.generateLottos(count);
-        OutputView.printLottos(lottos);
-        return lottos;
-    }
-
-    private int inputPurchaseAmount() {
-        while (true) {
-            try {
-                String input = InputView.inputPurchaseAmount();
-                int amount = parsePurchaseAmount(input);
-                InputValidator.validatePurchaseAmount(amount);
-                return amount;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private int parsePurchaseAmount(String input) {
+    private int parsePositiveInteger(String input) {
         try {
-            return Integer.parseInt(input);
+            int number = Integer.parseInt(input);
+            if (number <= 0) {
+                throw new IllegalArgumentException("[ERROR] 0보다 큰 숫자여야 합니다.");
+            }
+            return number;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
         }
+    }
+
+    private void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
+    private LottoResult calculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
+        LottoResult lottoResult = new LottoResult();
+        for (Lotto lotto : lottos) {
+            Rank rank = lotto.match(winningLotto);
+            lottoResult.addRank(rank);
+        }
+        return lottoResult;
     }
 }
