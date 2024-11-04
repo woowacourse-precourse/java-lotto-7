@@ -27,6 +27,7 @@ public class Validator {
     }
 
     public static void validateBonusNumber(Lotto winningNumbers, int bonusNumber) {
+        validateLottoNumberRange(bonusNumber);
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
         }
@@ -60,7 +61,7 @@ public class Validator {
 
     private static void validateLottoNumberRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 1~45 입니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 1부터 45까지 입니다.");
         }
     }
 
