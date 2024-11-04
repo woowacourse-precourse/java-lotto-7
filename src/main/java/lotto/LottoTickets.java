@@ -28,12 +28,12 @@ public class LottoTickets {
         }
     }
 
-    private int getValidatedPurchaseAmount(String purchaseAmountInput) {
+    public int getValidatedPurchaseAmount(String purchaseAmountInput) {
         validatePurchaseAmount(purchaseAmountInput);
         return Integer.parseInt(purchaseAmountInput);
     }
 
-    private void validatePurchaseAmount(String purchaseAmountInput) {
+    public void validatePurchaseAmount(String purchaseAmountInput) {
         Validator.validateNumericString(purchaseAmountInput);
         int purchaseAmount = Integer.parseInt(purchaseAmountInput);
         Validator.validatePositiveNumber(purchaseAmount);
@@ -45,7 +45,7 @@ public class LottoTickets {
         return Console.readLine();
     }
 
-    private void generateLottoTickets(int purchaseAmount) {
+    public void generateLottoTickets(int purchaseAmount) {
         int lottoCount = calculateLottoCount(purchaseAmount);
         lottoTickets = new ArrayList<>();
 
@@ -56,7 +56,7 @@ public class LottoTickets {
         }
     }
 
-    private int calculateLottoCount(int purchaseAmount) {
+    public int calculateLottoCount(int purchaseAmount) {
         return purchaseAmount / LOTTO_PRICE;
     }
 

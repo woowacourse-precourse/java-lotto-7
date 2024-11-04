@@ -18,7 +18,6 @@ class ValidatorTest {
 
         assertThatNoException().isThrownBy(() -> Validator.validateNumericString(string));
     }
-
     @Test
     void validateNumericString_정수가_아닌_문자열() {
         String string = "abcd";
@@ -33,7 +32,6 @@ class ValidatorTest {
 
         assertThatNoException().isThrownBy(() -> Validator.validatePositiveNumber(number));
     }
-
     @Test
     void validatePositiveNumber_양이_아닌_정수() {
         int number1 = -10;
@@ -51,7 +49,6 @@ class ValidatorTest {
 
         assertThatNoException().isThrownBy(() -> Validator.validateThousandUnit(amount));
     }
-
     @Test
     void validateThousandUnit_1000으로_나누어_떨어지지_않는_금액() {
         int amount = 12345;
@@ -66,7 +63,6 @@ class ValidatorTest {
 
         assertThatNoException().isThrownBy(() -> Validator.validateNumericStrings(strings));
     }
-
     @Test
     void validateNumericStrings_정수로_변환_불가능한_문자열_포함() {
         String[] strings = {"1","2","c","4"};
@@ -81,7 +77,6 @@ class ValidatorTest {
 
         assertThatNoException().isThrownBy(() -> Validator.validateLottoNumberInRange(number));
     }
-
     @Test
     void validateLottoNumberInRange_범위_밖의_값() {
         int number1 = -10;
@@ -99,7 +94,6 @@ class ValidatorTest {
 
         assertThatNoException().isThrownBy(() -> Validator.validateUniqueNumbers(numbers));
     }
-
     @Test
     void validateUniqueNumbers_중복되는_값이_존재() {
         ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 3, 5, 6));
@@ -114,7 +108,6 @@ class ValidatorTest {
 
         assertThatNoException().isThrownBy(() -> Validator.validateLottoNumbersInRange(numbers));
     }
-
     @Test
     void validateLottoNumbersInRange_범위_밖의_값_포함() {
         ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 3, 6, 13, 25, 47));
@@ -129,7 +122,6 @@ class ValidatorTest {
 
         assertThatNoException().isThrownBy(() -> Validator.validateWinningNumbersCount(strings));
     }
-
     @Test
     void validateWinningNumbersCount_6개가_아닌_경우() {
         String[] strings1 = {"1", "2", "3", "4", "5"};
@@ -147,7 +139,6 @@ class ValidatorTest {
 
         assertThatNoException().isThrownBy(() -> Validator.validateLottoNumbersCount(numbers));
     }
-
     @Test
     void validateLottoNumbersCount_6개가_아닌_경우() {
         List<Integer> numbers1 = new ArrayList<>(Arrays.asList(1, 3, 6, 13, 25));
@@ -166,7 +157,6 @@ class ValidatorTest {
 
         assertThatNoException().isThrownBy(() -> Validator.validateNewNumber(numbers, newNumber));
     }
-
     @Test
     void validateNewNumber_중복되는_값() {
         ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 3, 6, 13, 25, 42));
