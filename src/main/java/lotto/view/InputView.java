@@ -4,41 +4,48 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.validator.BonusNumberInputValidator;
-import lotto.validator.MoneyInputValidator;
-import lotto.validator.WinningNumberInputValidator;
+import lotto.validator.CommonInputValidator;
+import lotto.validator.NumberInputValidator;
 
 public class InputView {
 
     public int getMoneyFromUser() {
         String input = Console.readLine();
-        MoneyInputValidator.validateMoneyInput(input);
+        CommonInputValidator.validateCommonInput(input);
+        NumberInputValidator.validateNumberInput(input);
 
-        int money = Integer.parseInt(input);
-        return money;
+        return Integer.parseInt(input);
     }
 
     public Lotto getLottoWinningNumbersFromUser() {
         String input = Console.readLine();
+        CommonInputValidator.validateCommonInput(input);
+        String[] splitInput = validateParsedInput(input);
 
-        WinningNumberInputValidator.validateWinningNumberInput(input);
-
-        String[] splitInput = input.split(",");
-
-        List<Integer> lottoWinningNumbers = Arrays.stream(splitInput)
-                .map(Integer::parseInt)
-                .toList();
+        List<Integer> lottoWinningNumbers = convertToIntegerListFrom(splitInput);
 
         return Lotto.of(lottoWinningNumbers);
     }
 
+    private static String[] validateParsedInput(String input) {
+        String[] splitInput = input.split(",");
+        for (String s : splitInput) {
+            NumberInputValidator.validateNumberInput(s);
+        }
+        return splitInput;
+    }
+
+    private static List<Integer> convertToIntegerListFrom(String[] splitInput) {
+        return Arrays.stream(splitInput)
+                .map(Integer::parseInt)
+                .toList();
+    }
+
     public int getLottoBonusNumberFromUser() {
         String input = Console.readLine();
+        CommonInputValidator.validateCommonInput(input);
+        NumberInputValidator.validateNumberInput(input);
 
-        BonusNumberInputValidator.validateBonusNumberInput(input);
-
-        int lottoBonusNumber = Integer.parseInt(input);
-
-        return lottoBonusNumber;
+        return Integer.parseInt(input);
     }
 }

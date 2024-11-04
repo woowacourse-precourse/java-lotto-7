@@ -4,13 +4,11 @@ import lotto.exception.LottoErrorMessage;
 import lotto.exception.LottoException;
 import lotto.model.LottoConstants;
 
-public class MoneyInputValidator {
+public class MoneyValidator {
 
     private static final int ZERO = 0;
 
-    public static void validateMoneyInput(String input) {
-        CommonInputValidator.validateCommonInput(input);
-        NumberInputValidator.validateNumberInput(input);
+    public static void validateMoney(String input) {
         validateIsMoreThanThousand(input);
         validateIsDivisibleByThousand(input);
     }
