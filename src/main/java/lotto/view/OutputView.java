@@ -5,7 +5,6 @@ import lotto.model.LottoResult;
 import lotto.model.Rank;
 
 import java.util.List;
-import java.util.Map;
 
 public class OutputView {
     public static void printPurchasedLottos(List<Lotto> lottos) {
@@ -17,9 +16,11 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---------");
 
-        for (Map.Entry<Rank, Integer> entry : result.getRankCounts().entrySet()) {
-            if (entry.getKey() != Rank.NONE) {
-                System.out.printf("%s - %d개%n", entry.getKey().getMessage(), entry.getValue());
+        Rank[] ranks = Rank.values();
+        for (int i = ranks.length - 1; i >= 0; i--) {
+            Rank rank = ranks[i];
+            if (rank != Rank.NONE) {
+                System.out.printf("%s - %d개%n", rank.getMessage(), result.getRankCounts().getOrDefault(rank, 0));
             }
         }
 
