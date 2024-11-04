@@ -1,5 +1,7 @@
 package lotto.view.input.util;
 
+import java.util.List;
+import java.util.stream.Stream;
 import lotto.exception.ErrorMessage;
 
 public final class InputParser {
@@ -12,6 +14,12 @@ public final class InputParser {
 
     public static Integer parseWinningLottoBonusNumber(String input) {
         return parseInteger(input);
+    }
+
+    public static List<Integer> parseWinningLottoNumbers(String input) {
+        return Stream.of(input.split(",", -1))
+                .map(InputParser::parseInteger)
+                .toList();
     }
 
     private static Integer parseInteger(String input) {
