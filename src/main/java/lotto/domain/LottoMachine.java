@@ -38,16 +38,8 @@ public class LottoMachine {
     }
 
     private int getPrizeIndex(int matchCount, boolean bonusMatch) {
-        if (matchCount == 3) {
-            return 0;
-        } else if (matchCount == 4) {
-            return 1;
-        } else if (matchCount == 5) {
-            return bonusMatch ? 3 : 2;
-        } else if (matchCount == 6) {
-            return 4;
-        }
-        return -1;
+        Prize prize = Prize.getPrize(matchCount, bonusMatch);
+        return (prize != null) ? prize.getIndex() : -1;
     }
 
     public String getStatistics() {
