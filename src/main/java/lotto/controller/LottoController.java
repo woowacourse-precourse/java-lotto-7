@@ -42,6 +42,7 @@ public class LottoController {
         while(true){
             try {
                 int orderCount = InputView.parseOrder(InputView.inputOrderPrice());
+                System.out.println();
                 OutputView.printOrderNumber(orderCount);
                 return orderCount;
             } catch (IllegalArgumentException e) {
