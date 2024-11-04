@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Statistic {
+public class Statistics {
 
     private final Map<Rank, Integer> statistics;
     private final Money profit;
 
-    public Statistic(List<Rank> ranks) {
+    public Statistics(List<Rank> ranks) {
         this.statistics = createStatistics(ranks);
         this.profit = sumProfitsOf(ranks);
     }
