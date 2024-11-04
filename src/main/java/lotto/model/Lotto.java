@@ -13,6 +13,12 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
+    public List<Integer> getLottoNumbers() {
+        return numbers.stream()
+                .map(LottoNumber::getLottoNumber)
+                .collect(Collectors.toList());
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");

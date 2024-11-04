@@ -10,19 +10,15 @@ public class WinningLotto {
     private Lotto winningNumbers;
     private int bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        validateNumberDuplicate(numbers, bonusNumber);
-        this.winningNumbers = new Lotto(numbers);
+    public WinningLotto(Lotto winningNumbers, int bonusNumber) {
+        validateBonusNumberDuplicate(winningNumbers, bonusNumber);
+        this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateNumberDuplicate(List<Integer> numbers, int bonusNumber) {
-        List<Integer> totalNumbers = new ArrayList<>(numbers);
-        totalNumbers.add(bonusNumber);
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-
-        if (uniqueNumbers.size() != totalNumbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복된 숫자가 없어야 합니다.");
+    private void validateBonusNumberDuplicate(Lotto winningNumbers, int bonusNumber) {
+        if (winningNumbers.getLottoNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 없는 숫자여야 합니다.");
         }
     }
 }

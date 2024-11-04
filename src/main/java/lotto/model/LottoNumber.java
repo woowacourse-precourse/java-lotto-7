@@ -12,6 +12,10 @@ public class LottoNumber {
         this.number = number;
     }
 
+    public Integer getLottoNumber() {
+        return number;
+    }
+
     private void validate1To45Range(int number) {
         if (number > LOTTO_MAXIMUM_NUMBER || number < LOTTO_MINIMUM_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
