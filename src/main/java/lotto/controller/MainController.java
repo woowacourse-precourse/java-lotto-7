@@ -29,10 +29,33 @@ public class MainController {
                 .toList());
 
         // 당첨 번호 입력
-        LottoDto winningLotto = inputView.scanWinningLotto();
+        Lotto winningLotto = new Lotto(inputView.scanWinningLotto()
+                .getNumbers());
 
         // 보너스 번호 입력
-        Integer bonusNumber = inputView.scanBonusNumber();
-    }
+        Integer bonusNumber = inputView.scanBonusNumber(new LottoDto(winningLotto.getNumbers()));
 
+        // 당첨 통계 출력
+
+    }
+//
+//    private void validateDuplicate(Lotto winningLotto, Integer bonusNumber) {
+//        if (winningLotto.getNumbers().contains(bonusNumber)) {
+//
+//        }
+//    }
+//
+//    public LottoStatistics calcStatistics(List<Lotto> purchasedLottos, Lotto WinningLotto, Integer bonusNumber) {
+//        for (Lotto purchasedLotto : purchasedLottos) {
+//            int matchCount = calcMatchCount(purchasedLotto, WinningLotto);
+//            boolean isBonusNumberMatched = purchasedLotto.getNumbers().contains(bonusNumber);
+//
+//        }
+//    }
+//
+//    public int calcMatchCount(Lotto purchasedLotto, Lotto winningLotto) {
+//        return (int) winningLotto.getNumbers().stream()
+//                .filter(purchasedLotto.getNumbers()::contains)
+//                .count();
+//    }
 }

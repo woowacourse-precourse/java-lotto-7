@@ -98,17 +98,25 @@ public class InputView {
     }
 
     // 보너스 번호 입력
-    public Integer scanBonusNumber() {
+    public Integer scanBonusNumber(LottoDto winningLotto) {
         return (Integer) RetryUtil.retryUntilSuccess(() -> {
             System.out.print("보너스 번호를 입력해 주세요." + LINE_SEPARATOR);
             String input = Console.readLine();
-            validateBonusNumber(input);
+            validateBonusNumber(input, winningLotto);
             return Integer.parseInt(input);
         });
     }
 
-    private void validateBonusNumber(String target) {
+    private void validateBonusNumber(String target, LottoDto winningLotto) {
         validateInteger(target);
-        validateRange(Integer.parseInt(target));
+        int bonusNumber = Integer.parseInt(target);
+        validateRange(bonusNumber);
+        validateDuplication(bonusNumber, winningLotto);
+    }
+
+    private void validateDuplication(int bonusNumber, LottoDto winningLotto) {
+        if (winningLotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException("당첨 번호에 이미 포함된 번호입니다. 중복되지 않게 입력해주세요.");
+        }
     }
 }
