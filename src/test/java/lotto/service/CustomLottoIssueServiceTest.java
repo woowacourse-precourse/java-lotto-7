@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 
 class CustomLottoIssueServiceTest extends NsTest {
 
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     @DisplayName("쉼포를 구분자로 6개의 숫자를 입력하면 Lotto 를 반환한다.")
     @Test
     void createLotto() {
@@ -34,6 +36,7 @@ class CustomLottoIssueServiceTest extends NsTest {
         assertSimpleTest(
                 () -> {
                     runException(inputLottoNums);
+                    assertThat(output()).contains(ERROR_MESSAGE);
                 }
         );
     }
@@ -47,6 +50,7 @@ class CustomLottoIssueServiceTest extends NsTest {
         assertSimpleTest(
                 () -> {
                     runException(inputLottoNums);
+                    assertThat(output()).contains(ERROR_MESSAGE);
                 }
         );
     }
@@ -60,6 +64,7 @@ class CustomLottoIssueServiceTest extends NsTest {
         assertSimpleTest(
                 () -> {
                     runException(inputLottoNums);
+                    assertThat(output()).contains(ERROR_MESSAGE);
                 }
         );
     }
@@ -73,6 +78,7 @@ class CustomLottoIssueServiceTest extends NsTest {
         assertSimpleTest(
                 () -> {
                     runException(inputLottoNums);
+                    assertThat(output()).contains(ERROR_MESSAGE);
                 }
         );
     }
@@ -86,6 +92,7 @@ class CustomLottoIssueServiceTest extends NsTest {
         assertSimpleTest(
                 () -> {
                     runException(inputLottoNums);
+                    assertThat(output()).contains(ERROR_MESSAGE);
                 }
         );
     }
