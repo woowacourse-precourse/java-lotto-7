@@ -44,5 +44,4 @@ public class View {
         System.out.println(String.format(RATE_OF_RETURN_MONEY, rateOfReturnMoney));
     }
 
-
 }
