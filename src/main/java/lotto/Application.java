@@ -89,20 +89,26 @@ public class Application {
 
     private static void getRank() {
         for(Lotto numbers : LottoNumbers){
+            boolean flag = false;
             int count = (int) numbers.getLottoNumber().stream()
                     .filter(lottoNumber::contains) // list2에 포함된 요소만 필터링
                     .count();
-            if(count == 3) rank[0] += 1;
-            if(count == 4) rank[1] += 1;
-            if(count == 5) {
-                if(numbers.getLottoNumber().contains(bonusNumber.getBonusNumber())) {
-                    rank[3] += 1;
-                    continue;
-                }
-                rank[2] += 1;
-            }
-            if(count == 6) rank[4] += 1;
+            checkRank(numbers.getLottoNumber(), count);
         }
+    }
+
+    private static void checkRank(List<Integer> getLottoNumber, int count) {
+        if (count == 3) { rank[0] += 1; return; }
+        if (count == 4) { rank[1] += 1; return; }
+        if (count == 5) {
+            if (getLottoNumber.contains(bonusNumber.getBonusNumber())) {
+                rank[3] += 1;
+                return;
+            }
+            rank[2] += 1;
+            return;
+        }
+        if (count == 6) rank[4] += 1;
     }
 
     private static void printStatistic() {
