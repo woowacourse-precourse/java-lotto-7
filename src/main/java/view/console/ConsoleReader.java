@@ -15,7 +15,7 @@ public class ConsoleReader implements InputView {
         try {
             String purchaseAmount = readAndTrimInput();
             InputValidator.validatePurchaseAmount(purchaseAmount);
-            return new PurchaseAmountRequest(purchaseAmount);
+            return PurchaseAmountRequest.from(purchaseAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readPurchaseAmount();
