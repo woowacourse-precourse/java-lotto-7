@@ -38,8 +38,9 @@ public class LottoMachineController {
 
     private WinningLotto createWinningLotto() {
         List<Integer> winningLottoNumbers = inputView.readWinningLottoNumbers();
-        BonusNumber bonusNumber = readBonusNumber(winningLottoNumbers);
-        return createValidWinningLotto(winningLottoNumbers, bonusNumber);
+        Lotto winningLotto = createValidLotto(winningLottoNumbers);
+        BonusNumber bonusNumber = createBonusNumber(winningLottoNumbers);
+        return WinningLotto.of(winningLotto, bonusNumber);
     }
 
     private void displayLottoResults(CustomerLotto customerLotto, WinningLotto winningLotto) {
@@ -52,17 +53,17 @@ public class LottoMachineController {
         return generateTickets(price / TICKET_PRICE);
     }
 
-    private BonusNumber readBonusNumber(List<Integer> winningLottoNumbers) {
-        return attemptToGetBonusNumber(winningLottoNumbers);
-    }
-
-    private WinningLotto createValidWinningLotto(List<Integer> winningLottoNumbers, BonusNumber bonusNumber) {
+    private Lotto createValidLotto(List<Integer> winningLottoNumbers) {
         try {
-            return WinningLotto.of(winningLottoNumbers, bonusNumber);
+            return Lotto.of(winningLottoNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return createWinningLotto();
+            return createValidLotto(winningLottoNumbers);
         }
+    }
+
+    private BonusNumber createBonusNumber(List<Integer> winningLottoNumbers) {
+        return readValidBonusNumber(winningLottoNumbers);
     }
 
     private List<Lotto> generateTickets(int price) {
@@ -71,13 +72,13 @@ public class LottoMachineController {
                 .toList();
     }
 
-    private BonusNumber attemptToGetBonusNumber(List<Integer> winningLottoNumbers) {
+    private BonusNumber readValidBonusNumber(List<Integer> winningLottoNumbers) {
         try {
-            int bonusNumberValue = inputView.readBonusLottoNumber();
+            int bonusNumberValue = inputView.readBonusNumber();
             return BonusNumber.of(bonusNumberValue, winningLottoNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return attemptToGetBonusNumber(winningLottoNumbers);
+            return readValidBonusNumber(winningLottoNumbers);
         }
     }
 }
