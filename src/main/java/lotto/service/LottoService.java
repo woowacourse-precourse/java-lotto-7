@@ -43,8 +43,7 @@ public class LottoService {
         Map<Ranking, Integer> result = resultInit();
 
         for (Lotto lotto : lottos) {
-            int lottoResult = compareLottoWithWinning(winningNumber, lotto);
-            Ranking rank = Ranking.valueOf(lottoResult);
+            Ranking rank = compareLottoWithWinning(winningNumber, lotto);
 
             if (rank!= MISS ){
                 result.compute(rank, (ranking, integer) -> integer + 1);
@@ -52,7 +51,7 @@ public class LottoService {
         }
         return result;
     }
-    private int compareLottoWithWinning(WinningNumber winningNumber, Lotto lotto) {
+    private Ranking compareLottoWithWinning(WinningNumber winningNumber, Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         int cnt =0;
         for (Integer number : numbers) {
@@ -63,8 +62,9 @@ public class LottoService {
         if (cnt==5 && numbers.contains(winningNumber)){
             cnt+=2;
         }
-        return cnt;
+        return Ranking.valueOf(cnt);
     }
+
 
     private Map<Ranking, Integer> resultInit() {
         Map<Ranking, Integer> result = new LinkedHashMap<>();
@@ -77,5 +77,5 @@ public class LottoService {
         return result;
     }
 
-
+ 
 }
