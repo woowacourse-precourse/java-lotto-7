@@ -1,6 +1,5 @@
 package lotto;
 
-import java.io.PrintStream;
 import java.util.List;
 import lotto.domain.controller.LottoController;
 import lotto.domain.service.LottoService;
