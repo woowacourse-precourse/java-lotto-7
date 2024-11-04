@@ -117,6 +117,16 @@ class ApplicationTest extends NsTest {
                 () -> new Lotto(winningNumbers));
     }
 
+    @Test
+    @DisplayName("보너스 번호의 입력값이 1과 45 사이가 아니면 예외처리하는 테스트")
+    public void inputBonusNumberExceptionTest() {
+        //given
+        int bonusNumber = 46;
+        //when, then
+        assertThrows(IllegalArgumentException.class,
+                () -> exceptionHandler.validateBonusNumber(bonusNumber));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
