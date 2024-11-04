@@ -13,7 +13,6 @@ public class ParseNumbersService {
 
     private static final Pattern HAS_CHARACTER_PATTERN = Pattern.compile("[^0-9]");
     private static final String NUMBERS_DELIMITER = ",";
-    private static final String BLANK = " ";
     private static final int INCLUDE_AFTER_DELIMITER = -1;
 
     public ParseNumbersService() {
