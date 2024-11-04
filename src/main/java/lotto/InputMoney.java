@@ -7,7 +7,7 @@ public class InputMoney {
     public int paidPrice;
     public int purchaseNumber;
 
-    public int inputMoneyToBuyLotto() {
+    public void inputMoneyToBuyLotto() {
         boolean continueLoop = true;
 
         while (continueLoop) {      // 예외 발생 시 재입력 반복
@@ -17,9 +17,7 @@ public class InputMoney {
             validateInputMoney(inputMoney);         // 입력 금액 검증
             continueLoop = false;
         }
-
         purchaseNumber = paidPrice / 1000;      // 구매 수량 저장
-        return purchaseNumber;
     }
 
     // 입력 금액 검증
