@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,9 +34,21 @@ class LottoServiceTest {
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
     void validateNoDuplicates(int bonusNumber) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+            Set<Integer> winningNumbers = Set.of(1, 2, 3, 4, 5, 6);
             lottoService.checkBonusNumberDuplication(winningNumbers, bonusNumber);
         });
-        assertEquals("[ERROR] 보너스번호는 당첨번호 6개와 중복될 수 없습니다." , exception.getMessage());
+        assertEquals("[ERROR] 보너스번호는 당첨번호 6개와 중복될 수 없습니다.", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("내 로또와 당첨 번호 비교")
+    void calculateWinningRankCount() {
+        List<Lotto> myLottoTickets = new ArrayList<>();
+        myLottoTickets.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        Set<Integer> winningNumbers = Set.of(1, 2, 3, 4, 5, 6);
+        Integer bonusNumber = 7;
+        Map<LottoRules.Winning, Integer> winningCount =
+                lottoService.calculateWinningRankCount(myLottoTickets, winningNumbers, bonusNumber);
+        assertEquals(winningCount.get(LottoRules.Winning.WINNING_RANK_1), 1);
     }
 }
