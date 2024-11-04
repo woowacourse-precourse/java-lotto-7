@@ -27,21 +27,42 @@ public class ConsoleReader implements InputView {
     }
 
     private static class InputValidator {
+        private static final int MAX_AMOUNT = 100000;
+        private static final String VALID_AMOUNT_PATTERN = "^[1-9]\\d*000$";
+
         private static void validatePurchaseAmount(String purchaseAmount) {
-            validateNotNull(purchaseAmount);
-            validateNotEmpty(purchaseAmount);
+            validatePurchaseAmountNotNull(purchaseAmount);
+            validatePurchaseAmountNotEmpty(purchaseAmount);
+            validatePurchaseAmountPattern(purchaseAmount);
+            validateMaxPurchaseAmount(purchaseAmount);
         }
 
-        private static void validateNotNull(String purchaseAmount) {
+        private static void validatePurchaseAmountNotNull(String purchaseAmount) {
             if (purchaseAmount == null) {
                 throw LottoException.from(ErrorMessage.NULL_INPUT_ERROR);
             }
         }
 
-        private static void validateNotEmpty(String purchaseAmount) {
+        private static void validatePurchaseAmountNotEmpty(String purchaseAmount) {
             if (purchaseAmount.isBlank()) {
                 throw LottoException.from(ErrorMessage.EMPTY_INPUT_ERROR);
             }
+        }
+
+        private static void validatePurchaseAmountPattern(String purchaseAmount) {
+            if (!purchaseAmount.matches(VALID_AMOUNT_PATTERN)) {
+                throw LottoException.from(ErrorMessage.INVALID_AMOUNT_PATTERN_ERROR);
+            }
+        }
+
+        private static void validateMaxPurchaseAmount(String purchaseAmount) {
+            if (parsePurchaseAmountToInt(purchaseAmount) > MAX_AMOUNT) {
+                throw LottoException.from(ErrorMessage.MAX_AMOUNT_ERROR);
+            }
+        }
+
+        private static int parsePurchaseAmountToInt(String amountStr) {
+            return Integer.parseInt(amountStr);
         }
     }
 }
