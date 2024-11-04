@@ -57,7 +57,7 @@ public class LottoGameOutputDisplay {
         printRateOfResult(rateOfResult);
     }
 
-    private void printRankBreakdown(Map<LottoRank, Integer> rankMap) {
+    private void printRankBreakdown(Map<LottoRank, Integer> winningCntPerRank) {
         List<LottoRank> printLottoRanks = List.of(
                 LottoRank.GRADE_5TH,
                 LottoRank.GRADE_4TH,
@@ -70,7 +70,7 @@ public class LottoGameOutputDisplay {
             System.out.printf("%s (%,d%s) - %d개\n",
                     lottoRank.getWinCondition(),
                     lottoRank.getPrizeMoney(), LottoRank.UNIT,
-                    rankMap.get(lottoRank)
+                    winningCntPerRank.get(lottoRank)
             );
         }
     }
