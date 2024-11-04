@@ -10,7 +10,7 @@ import lotto.exception.PurchaseNumberInvalidException;
 import lotto.exception.PurchaseNumberOverFlowException;
 import lotto.exception.PurchaseNumberUnderFlowException;
 import lotto.exception.PurchaseNumberUnitException;
-import lotto.lottoMachine.Lotto;
+import lotto.Lotto;
 
 public class InputController {
     private static final String INPUT_LOTTO_NUMBER_DESCRIPTION = "당첨 번호를 입력해 주세요.";

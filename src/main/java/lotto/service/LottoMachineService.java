@@ -4,13 +4,13 @@ import java.util.List;
 import lotto.controller.InputController;
 import lotto.controller.OutputController;
 
-public class LottoMachine {
+public class LottoMachineService {
     private final InputController inputController = new InputController();
     private final OutputController outputController = new OutputController();
     private final LottoGenerator lottoGenerator = new LottoGenerator();
     private final LottoCalculator lottoCalculator = new LottoCalculator();
 
-    public LottoMachine() { }
+    public LottoMachineService() { }
 
     public void run() {
         //1. 구매 정보 입력

@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.lottoMachine.Lotto;
-import lotto.lottoMachine.LottoResult;
+import lotto.Lotto;
+import lotto.LottoResult;
 
 public class OutputController {
     public void printUserLottos (Integer purchaseNum,List<Lotto> userLottos){
