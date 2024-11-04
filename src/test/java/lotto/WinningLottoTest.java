@@ -40,14 +40,15 @@ class WinningLottoTest {
         );
 
         // when
-        Map<String, Integer> result = winningLotto.getWinningResult(playerLottos);
+        Map<LottoPrize, Integer> result = winningLotto.getWinningResult(playerLottos);
 
         // then
-        assertThat(result.get("MATCH_6")).isEqualTo(1);
-        assertThat(result.get("MATCH_5_BONUS")).isEqualTo(0);
-        assertThat(result.get("MATCH_5")).isEqualTo(0);
-        assertThat(result.get("MATCH_4")).isEqualTo(0);
-        assertThat(result.get("MATCH_3")).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FIRST)).isEqualTo(1);
+        assertThat(result.get(LottoPrize.SECOND)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.THIRD)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FOURTH)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FIFTH)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.NONE)).isEqualTo(0);
     }
 
     @Test
@@ -59,14 +60,15 @@ class WinningLottoTest {
         );
 
         // when
-        Map<String, Integer> result = winningLotto.getWinningResult(playerLottos);
+        Map<LottoPrize, Integer> result = winningLotto.getWinningResult(playerLottos);
 
         // then
-        assertThat(result.get("MATCH_6")).isEqualTo(0);
-        assertThat(result.get("MATCH_5_BONUS")).isEqualTo(1);
-        assertThat(result.get("MATCH_5")).isEqualTo(0);
-        assertThat(result.get("MATCH_4")).isEqualTo(0);
-        assertThat(result.get("MATCH_3")).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FIRST)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.SECOND)).isEqualTo(1);
+        assertThat(result.get(LottoPrize.THIRD)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FOURTH)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FIFTH)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.NONE)).isEqualTo(0);
     }
 
     @Test
@@ -78,14 +80,15 @@ class WinningLottoTest {
         );
 
         // when
-        Map<String, Integer> result = winningLotto.getWinningResult(playerLottos);
+        Map<LottoPrize, Integer> result = winningLotto.getWinningResult(playerLottos);
 
         // then
-        assertThat(result.get("MATCH_6")).isEqualTo(0);
-        assertThat(result.get("MATCH_5_BONUS")).isEqualTo(0);
-        assertThat(result.get("MATCH_5")).isEqualTo(1);
-        assertThat(result.get("MATCH_4")).isEqualTo(0);
-        assertThat(result.get("MATCH_3")).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FIRST)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.SECOND)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.THIRD)).isEqualTo(1);
+        assertThat(result.get(LottoPrize.FOURTH)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FIFTH)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.NONE)).isEqualTo(0);
     }
 
     @Test
@@ -97,14 +100,15 @@ class WinningLottoTest {
         );
 
         // when
-        Map<String, Integer> result = winningLotto.getWinningResult(playerLottos);
+        Map<LottoPrize, Integer> result = winningLotto.getWinningResult(playerLottos);
 
         // then
-        assertThat(result.get("MATCH_6")).isEqualTo(0);
-        assertThat(result.get("MATCH_5_BONUS")).isEqualTo(0);
-        assertThat(result.get("MATCH_5")).isEqualTo(0);
-        assertThat(result.get("MATCH_4")).isEqualTo(1);
-        assertThat(result.get("MATCH_3")).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FIRST)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.SECOND)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.THIRD)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FOURTH)).isEqualTo(1);
+        assertThat(result.get(LottoPrize.FIFTH)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.NONE)).isEqualTo(0);
     }
 
     @Test
@@ -116,14 +120,15 @@ class WinningLottoTest {
         );
 
         // when
-        Map<String, Integer> result = winningLotto.getWinningResult(playerLottos);
+        Map<LottoPrize, Integer> result = winningLotto.getWinningResult(playerLottos);
 
         // then
-        assertThat(result.get("MATCH_6")).isEqualTo(0);
-        assertThat(result.get("MATCH_5_BONUS")).isEqualTo(0);
-        assertThat(result.get("MATCH_5")).isEqualTo(0);
-        assertThat(result.get("MATCH_4")).isEqualTo(0);
-        assertThat(result.get("MATCH_3")).isEqualTo(1);
+        assertThat(result.get(LottoPrize.FIRST)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.SECOND)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.THIRD)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FOURTH)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FIFTH)).isEqualTo(1);
+        assertThat(result.get(LottoPrize.NONE)).isEqualTo(0);
     }
 
     @Test
@@ -134,18 +139,20 @@ class WinningLottoTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),  // 6개 일치
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),  // 5개 + 보너스
                 new Lotto(List.of(1, 2, 3, 4, 5, 45)), // 5개 일치
-                new Lotto(List.of(1, 2, 3, 4, 44, 45)) // 4개 일치
+                new Lotto(List.of(1, 2, 3, 4, 44, 45)), // 4개 일치
+                new Lotto(List.of(30, 31, 32, 33, 34, 35)) // 0개 일치
         );
 
         // when
-        Map<String, Integer> result = winningLotto.getWinningResult(playerLottos);
+        Map<LottoPrize, Integer> result = winningLotto.getWinningResult(playerLottos);
 
         // then
-        assertThat(result.get("MATCH_6")).isEqualTo(1);
-        assertThat(result.get("MATCH_5_BONUS")).isEqualTo(1);
-        assertThat(result.get("MATCH_5")).isEqualTo(1);
-        assertThat(result.get("MATCH_4")).isEqualTo(1);
-        assertThat(result.get("MATCH_3")).isEqualTo(0);
+        assertThat(result.get(LottoPrize.FIRST)).isEqualTo(1);
+        assertThat(result.get(LottoPrize.SECOND)).isEqualTo(1);
+        assertThat(result.get(LottoPrize.THIRD)).isEqualTo(1);
+        assertThat(result.get(LottoPrize.FOURTH)).isEqualTo(1);
+        assertThat(result.get(LottoPrize.FIFTH)).isEqualTo(0);
+        assertThat(result.get(LottoPrize.NONE)).isEqualTo(1);
     }
 
 }

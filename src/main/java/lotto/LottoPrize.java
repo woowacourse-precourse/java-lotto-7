@@ -32,5 +32,7 @@ public enum LottoPrize {
                 .orElse(NONE);
     }
 
-
+    public long getPrize() {
+        return prize;
+    }
 }
