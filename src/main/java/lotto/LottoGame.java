@@ -48,7 +48,7 @@ public class LottoGame {
         try {
             System.out.println("\n당첨 번호를 입력해 주세요.");
 
-            List<String> winningNumber = List.of(Console.readLine().split(","));
+            List<String> winningNumber = List.of(Console.readLine().replace(" ", "").split(","));
             List<Integer> winningNumbers = new ArrayList<>();
 
             for (String number : winningNumber) {
