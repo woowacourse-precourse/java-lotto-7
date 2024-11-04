@@ -20,7 +20,6 @@ public class LottoProvider {
 	private static final int LOTTO_DRAW_COUNT = 6;
 	private static final String LOTTO_PURCHASE_AMOUNT_MESSAGE = "개를 구매했습니다.";
 	private final int numberOfLottos;
-	private final int lottoPurchaseAmount;
 
 	private List<Lotto> pickedLottos = new ArrayList<>();
 
@@ -34,7 +33,6 @@ public class LottoProvider {
 		this.user = user;
 		user.setLottoPurchaseAmount(lottoPurchaseAmountNum);
 		this.answer = answer;
-		this.lottoPurchaseAmount = lottoPurchaseAmountNum;
 		this.numberOfLottos = lottoPurchaseAmountNum / THOUSAND;
 	}
 
