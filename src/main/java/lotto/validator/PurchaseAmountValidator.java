@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import static lotto.message.ExceptionMessage.INVALID_BLANK_INPUT;
+import static lotto.message.ExceptionMessage.INVALID_NUMBER_INPUT;
 import static lotto.message.ExceptionMessage.INVALID_TYPE_INPUT;
 
 import lotto.exception.IllegalInputException;
@@ -16,6 +17,7 @@ public class PurchaseAmountValidator {
     public static int validatePurchaseAmount(String input) {
         validateBlank(input);
         int purchaseAmount = validateType(input);
+        validateDivisibleByUnit(purchaseAmount);
         return purchaseAmount;
     }
 
@@ -31,6 +33,14 @@ public class PurchaseAmountValidator {
         } catch (NumberFormatException e) {
             throw new IllegalTypeException(
                     String.format(INVALID_TYPE_INPUT.getMessage(), input, type)
+            );
+        }
+    }
+
+    private static void validateDivisibleByUnit(int input) {
+        if (input % unit != 0) {
+            throw new IllegalArgumentException(
+                    String.format(INVALID_NUMBER_INPUT.getMessage(), input, unit)
             );
         }
     }
