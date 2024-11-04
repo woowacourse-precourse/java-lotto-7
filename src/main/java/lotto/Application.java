@@ -45,6 +45,7 @@ public class Application {
             }
         }
         System.out.println();
-        // TODO: show statistics
+        LottoStatistics statistics = new LottoStatistics(game);
+        statistics.prettyPrintLottoStatistics(game);
     }
 }
