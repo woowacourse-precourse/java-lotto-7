@@ -12,6 +12,9 @@ import java.util.List;
 
 public class LottoMachine {
 
+    public static final int START_NUMBER = 1;
+    public static final int END_NUMBER = 45;
+    public static final int COUNT = 6;
     private final OutPutHandler outPutHandler = new OutPutHandler();
     private final InputLottoHandler inputLottoHandler = new InputLottoHandler();
     private final OutPutLottoHandler outPutLottoHandler = new OutPutLottoHandler();
@@ -91,7 +94,7 @@ public class LottoMachine {
     }
 
     private List<Integer> createLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, COUNT);
         return numbers.stream().sorted().toList();
     }
 
