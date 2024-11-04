@@ -9,6 +9,7 @@ public enum ErrorCause {
     NUMBER_DUPLICATION("전체 번호에 중복 값이 있습니다."),
 
     // 사용자
+    NOT_FOUND_USER("회원 정보를 찾을 수 없습니다. id:"),
     ACCESS_ATTEMPT_EXCEEDED("회 이상 실패로 앱이 종료됩니다."),
     PURCHASE_PRICE_UNIT("구입 금액은 딱 떨어지게 입력해야 합니다."),
 
