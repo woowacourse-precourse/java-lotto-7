@@ -1,11 +1,12 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.controller.LottoControllerFactory;
 import lotto.model.administrator.Lotto;
 import lotto.model.administrator.LottoBonusNumber;
 import lotto.model.statistic.LottoStatisticsDto;
 import lotto.model.user.LottoResultDto;
+import lotto.service.LottoAdministratorService;
+import lotto.service.LottoUserService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,8 +19,10 @@ public class DrawGames {
     public DrawGames() {
         inputView = new InputView();
         outputView = new OutputView();
-        LottoControllerFactory controllerFactory = new LottoControllerFactory();
-        controller = controllerFactory.createLottoController();
+        controller = new LottoController(
+                new LottoUserService(),
+                new LottoAdministratorService()
+        );
     }
 
     public void run() {
@@ -27,7 +30,14 @@ public class DrawGames {
         Lotto winningNumbers = getWinningNumbers();
         LottoBonusNumber bonusNumber = getBonusNumber();
 
-        getLottoStatistics(lottoResultDto, winningNumbers, bonusNumber);
+        printLottoStatistics(lottoResultDto, winningNumbers, bonusNumber);
+    }
+
+    private void printLottoStatistics(LottoResultDto lottoResultDto, Lotto winningNumbers, LottoBonusNumber bonusNumber) {
+        LottoStatisticsDto lottoStatisticsDto = controller.getStatistics(
+                lottoResultDto, winningNumbers, bonusNumber
+        );
+        outputView.printWinningResult(lottoStatisticsDto);
     }
 
     private LottoResultDto getLottoResult() {
@@ -73,12 +83,5 @@ public class DrawGames {
             System.out.println(e.getMessage());
             return getBonusNumber();
         }
-    }
-
-    private void getLottoStatistics(LottoResultDto lottoResultDto, Lotto winningNumbers, LottoBonusNumber bonusNumber) {
-        LottoStatisticsDto lottoStatisticsDto = controller.getStatistics(
-                lottoResultDto, winningNumbers, bonusNumber
-        );
-        outputView.printWinningResult(lottoStatisticsDto);
     }
 }
