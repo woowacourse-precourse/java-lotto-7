@@ -24,7 +24,7 @@ public class MainNumber {
 
     private void validate(List<Integer> elements) {
         Validator.checkElementCount(elements);
-        Validator.checkNumberRange(elements);
+        Validator.checkWinningNumberRange(elements);
         Validator.checkDuplicate(elements);
     }
 
