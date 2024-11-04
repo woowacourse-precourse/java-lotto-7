@@ -13,6 +13,7 @@ public class Application {
         String lottoValue;
         Integer lottoLen;
         ArrayList<Lotto> LottoList = new ArrayList<>();
+        String winNumber;
 
         while (true) {
             try {
@@ -46,6 +47,9 @@ public class Application {
         for (Lotto list : LottoList){
             System.out.println(list.getNumbers());
         }
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+
 
 
 
