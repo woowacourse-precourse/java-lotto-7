@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoGenerator;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningLottoWithBonus;
+import lotto.domain.lotto.WinningLottoWithBonus;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.dto.LottoResponse;
