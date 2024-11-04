@@ -20,25 +20,13 @@ public class OutputView {
     }
 
     public static void printWinningHistory(Map<LottoRanking, Integer> map) {
-        for (LottoRanking ranking : LottoRanking.values()) {
-            StringBuilder resultMessage = new StringBuilder();
-            resultMessage.append(ranking.getMatchNumber()).append("개 일치");
-
-            isBonusMatch(ranking, resultMessage);
-
-            resultMessage.append(" (")
-                .append(String.format("%,d", ranking.getPrice()))
-                .append("원) - ")
-                .append(map.get(ranking))
-                .append("개");
-
-            System.out.println(resultMessage);
-        }
-    }
-
-    private static void isBonusMatch(LottoRanking ranking, StringBuilder resultMessage) {
-        if (ranking.isBonusMatch()) {
-            resultMessage.append(", 보너스 볼 일치");
+        System.out.println("당첨 통게");
+        System.out.println("---");
+        for (LottoRanking ranking : map.keySet()) {
+            if (ranking.isBonusMatch()) {
+                System.out.println(ranking.getMatchNumber() + "개 일치, 보너스 볼 일치 (" + String.format("%,d", ranking.getPrice()) + "원) - " + map.get(ranking) + "개");
+            }
+            System.out.println(ranking.getMatchNumber() + "개 일치 (" + String.format("%,d", ranking.getPrice()) + "원) - " + map.get(ranking) + "개");
         }
     }
 
