@@ -14,7 +14,7 @@ public class GamePlay {
     private static final String DELIMITER = ",";
     private static final String LIST_START = "[";
     private static final String LIST_END = "]";
-    private static final String COMMA = ",";
+    private static final String COMMA = ", ";
     private static final String LINE_BREAK = "\n";
 
     private final List<Lotto> lottos = new ArrayList<>();
@@ -59,7 +59,7 @@ public class GamePlay {
     }
 
     private Lotto pickLotto(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45, 6);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
