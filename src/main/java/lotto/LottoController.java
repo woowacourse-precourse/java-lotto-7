@@ -11,8 +11,6 @@ public class LottoController {
     private List<Lotto> purchasedLottos = new ArrayList<>();
     private List<Integer> lottoWinningNumbers = new ArrayList<>();
     private int lottoBonusNumber;
-    private List<LottoRank> lottoRanks = new ArrayList<>();
-
 
     LottoController(String purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
