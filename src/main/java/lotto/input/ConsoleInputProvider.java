@@ -12,13 +12,9 @@ public class ConsoleInputProvider implements InputProvider {
     }
 
     private static String readLineOrThrow() {
-        try {
-            String input = Console.readLine();
-            validateInput(input);
-            return input;
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException("[ERROR] null을 입력할 수 없습니다.");
-        }
+        String input = Console.readLine();
+        validateInput(input);
+        return input;
     }
 
     private static void validateInput(String input) {
