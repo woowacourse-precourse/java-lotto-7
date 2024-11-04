@@ -10,7 +10,7 @@ public class InputParser {
     public static List<Integer> parseLottoNumbers(String input) {
         String[] splitNumbers = input.split(COMMA);
         List<String> trimNumbers = new ArrayList<>();
-        for(String number: splitNumbers) {
+        for (String number : splitNumbers) {
             trimNumbers.add(number.trim());
         }
 
