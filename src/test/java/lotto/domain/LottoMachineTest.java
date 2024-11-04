@@ -15,8 +15,7 @@ class LottoMachineTest {
     private static final String EXPECT = """
             [1, 2, 3, 4, 5, 6]
             [7, 8, 9, 10, 11, 12]
-            [13, 14, 15, 16, 17, 18]
-            """;
+            [13, 14, 15, 16, 17, 18]""";
 
     @DisplayName("지정 갯수 만큼 로또 발행")
     @Test
