@@ -198,9 +198,56 @@
 <img width = "450" alt = "image" src="./image/flowchart(total).jpg">
 
 ## 클래스 다이어그램
-<img width = "600" alt = "image" src="./image/classDiagram.jpg">
+<img alt = "image" src="./image/classDiagram.jpg">
 
-## 파일 구조
+## 디렉토리 구조
 
 ````
+└── src
+    ├── main
+    │   └── java
+    │       └── lotto
+    │           ├── Application.java
+    │           ├── controller
+    │           │   └── LottoMachineController.java
+    │           ├── domain
+    │           │   ├── Lotto.java
+    │           │   ├── Lottos.java
+    │           │   ├── Result.java
+    │           │   ├── User.java
+    │           │   └── Winning.java
+    │           ├── message
+    │           │   ├── InputMessage.java
+    │           │   ├── LottoMessage.java
+    │           │   ├── ResultMessage.java
+    │           │   └── WinningInputMessage.java
+    │           ├── service
+    │           │   ├── InputService.java
+    │           │   ├── LottoService.java
+    │           │   ├── ResultService.java
+    │           │   └── WinningService.java
+    │           ├── validate
+    │           │   ├── InputValidate.java
+    │           │   ├── LottoValidate.java
+    │           │   ├── LottosValidate.java
+    │           │   └── WinningValidate.java
+    │           └── view
+    │               ├── InputView.java
+    │               ├── LottosView.java
+    │               ├── ResultView.java
+    │               └── WinningView.java
+    └── test
+        └── java
+            ├── lotto
+            │   ├── ApplicationTest.java
+            │   ├── LottoTest.java
+            │   ├── input
+            │   │   └── InputTest.java
+            │   ├── result
+            │   │   └── ResultTest.java
+            │   └── winning
+            │       └── WinningTest.java
+            └── study
+                └── SetTest.java
+                └── StringTest.java
 ````
