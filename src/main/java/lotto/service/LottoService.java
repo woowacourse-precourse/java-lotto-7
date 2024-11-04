@@ -90,7 +90,7 @@ public class LottoService {
         Map<LottoRank, Integer> winningCount = new EnumMap<>(LottoRank.class);
 
         if (rankForEach == null) {
-            throw new IllegalArgumentException("당첨 정보가 없습니다");
+            throw new IllegalArgumentException("[ERROR] 당첨 정보가 없습니다");
         }
 
         winningCount = initWinningCount(winningCount);
