@@ -14,7 +14,7 @@ class PurchaseAmountTest {
   void 정상적인_금액_입력_시_객체가_생성된다() {
     BigDecimal amount = new BigDecimal("8000");
     PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
-    assertEquals(amount, purchaseAmount.getAmount());
+    assertEquals(amount, purchaseAmount.amount());
   }
 
   @DisplayName("1000원 이하 금액 입력 시 예외가 발생한다")

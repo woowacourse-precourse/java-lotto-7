@@ -21,7 +21,7 @@ public class InputHandler {
         String input = inputView.readPurchaseAmount();
         BigDecimal amount = new BigDecimal(input);
         PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
-        return purchaseAmount.getAmount();
+        return purchaseAmount.amount();
       } catch (NumberFormatException e) {
         System.out.printf((ErrorMessages.NUMBER_REQUIRED) + "%n", "구입 금액");
       } catch (IllegalArgumentException e) {

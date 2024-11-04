@@ -6,7 +6,7 @@ import lotto.util.LottoConstants;
 
 public class LottoCalculator {
   public int calculateNumberOfTickets(BigDecimal purchaseAmount) {
-    return purchaseAmount.divide(LottoConstants.LOTTO_PRICE).intValue();
+    return purchaseAmount.divide(LottoConstants.LOTTO_PRICE, RoundingMode.DOWN).intValue();
   }
 
   public BigDecimal calculateProfitRate(long totalPrize, BigDecimal purchaseAmount) {

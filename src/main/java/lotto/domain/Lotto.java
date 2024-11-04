@@ -1,11 +1,8 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.util.ErrorMessages;
-import lotto.util.LottoConstants;
 import lotto.util.LottoNumberValidator;
 
 public class Lotto {

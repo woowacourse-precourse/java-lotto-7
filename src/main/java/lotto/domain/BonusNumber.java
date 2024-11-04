@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.util.ErrorMessages;
-import lotto.util.LottoConstants;
 import lotto.util.LottoNumberValidator;
 
 public class BonusNumber {
