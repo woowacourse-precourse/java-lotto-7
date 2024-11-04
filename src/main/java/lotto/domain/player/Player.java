@@ -17,13 +17,13 @@ public class Player {
 
     public Player(long money) {
         wallet = new Wallet(money);
+        rankCounts = new RankCounts();
     }
 
     public void buyLottos(LottoRandom lottoRandom) {
         long buyCount = wallet.getMoney() / LOTTO_COST;
         wallet = wallet.useMoney(buyCount * LOTTO_COST);
         lottos = Lottos.buy(lottoRandom, buyCount);
-        rankCounts = new RankCounts();
     }
 
     public List<Lotto> getLottos() {
