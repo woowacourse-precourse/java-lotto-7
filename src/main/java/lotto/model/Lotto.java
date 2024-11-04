@@ -39,10 +39,10 @@ public class Lotto {
     }
 
     private void validateDistinct(List<Integer> numbers) {
-        int beforeDistinct = numbers.size();
-        Set<Integer> distincted = new HashSet<>(numbers);
-        int afterDistinct = distincted.size();
-        if (beforeDistinct != afterDistinct) {
+        int beforeDeduplicate = numbers.size();
+        Set<Integer> deduplicated = new HashSet<>(numbers);
+        int afterDeduplicate = deduplicated.size();
+        if (beforeDeduplicate != afterDeduplicate) {
             throw new LottoException(LOTTO_NUMBER_DUPLICATED);
         }
     }
