@@ -10,6 +10,7 @@ import static lotto.validator.PurchaseAmountValidator.MIN_VALUE;
 import static lotto.validator.PurchaseAmountValidator.TYPE;
 import static lotto.validator.PurchaseAmountValidator.UNIT;
 import static lotto.validator.PurchaseAmountValidator.validatePurchaseAmount;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.message.ExceptionMessage;
@@ -59,5 +60,12 @@ class PurchaseAmountValidatorTest {
                 .hasMessage(
                         String.format(INVALID_NUMBER_INPUT.getMessage(), INPUT, UNIT)
                 );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1000  ", "10 00", "    1000"})
+    void 구입_금액_앞뒤에_공백이_있어도_예외가_발생하지_않는다(String input) {
+        assertThatCode(() -> validatePurchaseAmount(input))
+                .doesNotThrowAnyException();
     }
 }

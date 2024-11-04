@@ -33,7 +33,7 @@ public class PurchaseAmountValidator {
 
     private static int validateType(String input) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
             throw new IllegalTypeException(
                     String.format(INVALID_TYPE_INPUT.getMessage(), INPUT, TYPE)
