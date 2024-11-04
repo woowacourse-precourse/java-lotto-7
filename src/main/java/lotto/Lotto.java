@@ -21,12 +21,12 @@ public class Lotto {
         }
     }
 
-    public String start(OutputView outputView,InputView inputView){
+    public void start(OutputView outputView,InputView inputView){
         DecimalFormat df = new DecimalFormat("0.0");
         List<Integer> lottoMatchTable = lottoNumberCheck(outputView.getBoughtLottoNumbers(), inputView.getBonusNumber());
         outputView.lottoWinOutput(lottoMatchTable);
         double lottoReturnRate = calLottoReturnRate(lottoMatchTable,inputView.getLottoPurchase());
-        return df.format(lottoReturnRate);
+        outputView.lottoReturnRateOutput(df.format(lottoReturnRate));
     }
 
     public double calLottoReturnRate(List<Integer> lottoMatchTable, int lottoPurchase) {
