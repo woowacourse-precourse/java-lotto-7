@@ -14,7 +14,7 @@ public class OutputView {
     private static final String SEPARATE_LINE = "---";
     private static final String EACH_PRIZE_RESULT_STANDARD = "%d개 일치 (%s원) - %d개";
     private static final String EACH_PRIZE_RESULT_WITH_BONUS_BALL = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    private static final String PROFIT_RAET_STATEMENT = "총 수익률은 %.1f%%입니다.";
+    private static final String PROFIT_RATE_STATEMENT = "총 수익률은 %.1f%%입니다.";
 
     public void printLottos(Lottos lottos) {
         System.out.printf(System.lineSeparator() + BUY_LOTTOS_STATEMENT + System.lineSeparator(),
@@ -31,7 +31,7 @@ public class OutputView {
                 .filter(prize -> !prize.equals(Prize.EMPTY))
                 .forEach(prize -> System.out.println(makeStatement(prize, prizeResult)));
 
-        System.out.printf(PROFIT_RAET_STATEMENT, profitRate.getProfitRate());
+        System.out.printf(PROFIT_RATE_STATEMENT, profitRate.getProfitRate());
     }
 
     private void printEachLotto(Lotto lotto) {
