@@ -10,20 +10,12 @@ public class BonusNumberInputValidator {
     public static void validateBonusNumberInput(String input) {
         CommonInputValidator.validateCommonInput(input);
         validateIsNumeric(input);
-        validateIsInIntegerRange(input);
+        CommonInputValidator.validateIsInIntegerRange(input);
     }
 
     private static void validateIsNumeric(String input) {
         if (isNotNumeric(input)) {
             throw new LottoException(LottoErrorMessage.INPUT_IS_NOT_NUMERIC);
-        }
-    }
-
-    private static void validateIsInIntegerRange(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new LottoException(LottoErrorMessage.INVALID_NUMBER_RANGE);
         }
     }
 

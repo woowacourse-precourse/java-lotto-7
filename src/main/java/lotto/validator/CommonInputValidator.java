@@ -12,6 +12,14 @@ public class CommonInputValidator {
         validateHasNoWhiteSpace(input);
     }
 
+    public static void validateIsInIntegerRange(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new LottoException(LottoErrorMessage.INVALID_NUMBER_RANGE);
+        }
+    }
+
     private static void validateIsNotEmptyInput(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new LottoException(LottoErrorMessage.INPUT_IS_EMPTY);

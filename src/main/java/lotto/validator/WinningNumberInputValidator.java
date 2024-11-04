@@ -17,7 +17,7 @@ public class WinningNumberInputValidator {
         String[] splitInput = input.split(COMMA);
         for (String s : splitInput) {
             validateIsNumeric(s);
-            validateIsInIntegerRange(s);
+            CommonInputValidator.validateIsInIntegerRange(s);
         }
     }
 
@@ -29,13 +29,5 @@ public class WinningNumberInputValidator {
 
     private static boolean isNotNumeric(String input) {
         return !input.matches(NUMERIC_REGEX);
-    }
-
-    private static void validateIsInIntegerRange(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new LottoException(LottoErrorMessage.INVALID_NUMBER_RANGE);
-        }
     }
 }
