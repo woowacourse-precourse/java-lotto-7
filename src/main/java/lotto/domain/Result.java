@@ -38,11 +38,15 @@ public class Result {
 
     private void determinePrizeLevel(int matchCount, boolean bonusMatch) {
         for (PrizeLevel level : PrizeLevel.values()) {
-            if (level.getMatchCount() == matchCount && level.isBonusMatch() == bonusMatch) {
+            if (isMatchingPrizeLevel(matchCount, bonusMatch, level)) {
                 incrementResult(level);
                 return;
             }
         }
+    }
+
+    private static boolean isMatchingPrizeLevel(int matchCount, boolean bonusMatch, PrizeLevel level) {
+        return level.getMatchCount() == matchCount && level.isBonusMatch() == bonusMatch;
     }
 
     private void incrementResult(PrizeLevel level) {
