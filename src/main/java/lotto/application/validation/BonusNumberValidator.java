@@ -9,9 +9,16 @@ public class BonusNumberValidator implements BonusNumberValidation {
 
     @Override
     public Integer validate(String input) {
+        validateSingleNumber(input);
         int bonusNumber = parseNumber(input);
         validateBonusNumberRange(bonusNumber);
         return bonusNumber;
+    }
+
+    private void validateSingleNumber(String input) {
+        if (input.contains(",")) {
+            throw new IllegalArgumentException(ErrorMessages.ERROR_MULTIPLE_BONUS_NUMBERS);
+        }
     }
 
     @Override
