@@ -12,7 +12,7 @@ public class LottoView {
 
             return amount;
         } catch (NumberFormatException npe) {
-            throw new IllegalArgumentException("[Error] 입력하신 구입금액은 숫자가 아닙니다. 숫자만 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 입력하신 구입금액은 숫자가 아닙니다. 숫자만 입력해 주세요.");
         }
     }
 
