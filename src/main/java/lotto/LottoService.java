@@ -105,4 +105,46 @@ public class LottoService {
             System.out.println(numbers);
         }
     }
+
+    public void printWinningStatistics(int amountSpent, int bonusNum) {
+        int[] rankCount = new int[Rank.values().length];
+        int totalPrize = 0;
+
+        // 각 로또의 당첨 상태를 확인하여 등수별로 카운트
+        for (Lotto lotto : make_lottos) {
+            int matchCount = (int) lotto.getNumbers().stream()
+                    .filter(num -> lotto_nums.contains(num))
+                    .count();
+            boolean isBonusMatched = lotto.contains(bonusNum);
+
+            Rank rank = Rank.valueOf(matchCount, isBonusMatched);
+            if (rank != null) {
+                rankCount[rank.ordinal()]++;
+                totalPrize += rank.getPrize();
+            }
+        }
+
+        // 수익률 계산
+        double profitRate = calculateProfitRate(amountSpent, totalPrize);
+
+        // 출력
+        System.out.println("당첨 통계\n---");
+        for (Rank rank : Rank.values()) {
+            System.out.printf("%d개 일치%s (%d원) - %d개\n",
+                    rank.getMatchCount(),
+                    rank.isMatchBonus() ? ", 보너스 볼 일치" : "",
+                    rank.getPrize(),
+                    rankCount[rank.ordinal()]
+            );
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+    }
+
+    // 수익률 계산
+    private double calculateProfitRate(int amountSpent, int totalPrize) {
+        double profitRate = (double) totalPrize / amountSpent * 100;
+        return Math.round(profitRate * 10) / 10.0; // 소수점 둘째 자리에서 반올림
+    }
+
+
 }
