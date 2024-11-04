@@ -1,6 +1,6 @@
 package lotto.dto;
 
-import java.util.List;
+import lotto.model.Lotto;
 
-public record WinningNumberDto(List<Integer> numbers, int bonus) {
+public record WinningNumberDto(Lotto lotto, int bonus) {
 }

@@ -31,8 +31,8 @@ class LottoTest {
 
     @Test
     void 로또_당첨_결과_확인() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        Prize prize = lotto.determinePrize(List.of(1,2,3,4,5,7), 6);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Prize prize = lotto.determinePrize(new Lotto(List.of(1, 2, 3, 4, 5, 7)), 6);
 
         assertThat(prize).isEqualTo(Prize.BONUS);
     }

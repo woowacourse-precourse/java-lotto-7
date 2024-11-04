@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.dto.LottoDto;
 import lotto.dto.WinningNumberDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,9 @@ public class WinningNumberTest {
     @Test
     public void 당첨_번호_생성_확인() {
         WinningNumberDto winningNumberDto = new WinningNumber("1,2,3,4,5,6", 8).toWinningNumberDto();
+        LottoDto lottoDto = winningNumberDto.lotto().toLottoDto();
 
-        assertThat(winningNumberDto.numbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lottoDto.numbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @DisplayName("보너스 번호가 중복된 숫자이면 예외가 발생한다.")

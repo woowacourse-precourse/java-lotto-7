@@ -38,18 +38,18 @@ public class Lotto {
         }
     }
 
-    public Prize determinePrize(List<Integer> numbers, int bonus) {
-        return Prize.getPrize(countMatchNumber(numbers), hasBonus(bonus));
+    public Prize determinePrize(Lotto winningNumber, int bonus) {
+        return Prize.getPrize(countMatchNumber(winningNumber), contains(bonus));
     }
 
-    private int countMatchNumber(List<Integer> numbers) {
+    private int countMatchNumber(Lotto other) {
         return (int) this.numbers.stream()
-                .filter(numbers::contains)
+                .filter(other::contains)
                 .count();
     }
 
-    private boolean hasBonus(int bonus) {
-        return this.numbers.contains(bonus);
+    public boolean contains(int number) {
+        return this.numbers.contains(number);
     }
 
     public LottoDto toLottoDto() {

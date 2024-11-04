@@ -52,7 +52,7 @@ public class LottoMachine {
     public Map<Prize, Integer> calculateWinningCounts(WinningNumberDto winningNumber) {
         Map<Prize, Integer> prizeCount = new EnumMap<>(Prize.class);
         for (Lotto lotto : lottos) {
-            Prize prize = lotto.determinePrize(winningNumber.numbers(), winningNumber.bonus());
+            Prize prize = lotto.determinePrize(winningNumber.lotto(), winningNumber.bonus());
             prizeCount.put(prize, prizeCount.getOrDefault(prize, 0) + 1);
         }
         return prizeCount;
