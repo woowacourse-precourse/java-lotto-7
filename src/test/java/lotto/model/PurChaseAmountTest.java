@@ -1,4 +1,4 @@
-package lotto.controller.model;
+package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,7 +24,7 @@ class PurChaseAmountTest {
     void 최소_금액보다_적게_구매했을_때_예외_발생() {
         // given
         String input = String.valueOf(PurchaseAmount.MIN_PURCHASE_AMOUNT - 1);
-
+        
         // when
         // then
         assertThatThrownBy(() -> PurchaseAmount.from(input))

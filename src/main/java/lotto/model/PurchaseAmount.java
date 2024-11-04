@@ -1,4 +1,4 @@
-package lotto.controller.model;
+package lotto.model;
 
 import lotto.constants.ErrorMessages;
 
@@ -47,7 +47,7 @@ public class PurchaseAmount {
         try {
             return Integer.parseInt(amount);
         } catch (Exception e) {
-            throw new IllegalArgumentException("숫자가 아닌값은 입력할 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌값은 입력할 수 없습니다.");
         }
     }
 

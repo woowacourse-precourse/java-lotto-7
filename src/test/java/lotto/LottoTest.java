@@ -1,11 +1,10 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -21,5 +20,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호가_유효한_범위가_아니라면_예외_발생() {
+        // given
+        List<Integer> lotto = List.of(Lotto.START_NUMBER - 1, Lotto.START_NUMBER, Lotto.END_NUMBER,
+                Lotto.END_NUMBER + 1, Lotto.START_NUMBER + 1, Lotto.START_NUMBER - 2);
+
+        // when
+        // then
+        assertThatThrownBy(() -> new Lotto(lotto))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호는 1~45사이 여야 합니다.");
+    }
 }
