@@ -1,10 +1,10 @@
 package lotto.view;
 
-import lotto.Lotto;
-import lotto.LottoDraw;
-import lotto.LottoPrizeMap;
-import lotto.LottoWinning;
-import lotto.CalculateProfitRate;
+import lotto.domain.Lotto;
+import lotto.service.LottoDraw;
+import lotto.domain.LottoPrizeMap;
+import lotto.service.LottoWinning;
+import lotto.service.CalculateProfitRate;
 import lotto.enums.OutputMessage;
 
 import java.util.Map;
