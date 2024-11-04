@@ -33,8 +33,8 @@ public class LottoGenerator {
     }
 
     private List<Integer> sortAscending(List<Integer> numbers) {
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        return sortedNumbers;
+        List<Integer> newNumbers = new ArrayList<>(numbers);
+        Collections.sort(newNumbers);
+        return newNumbers;
     }
 }
