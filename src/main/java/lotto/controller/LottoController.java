@@ -10,6 +10,8 @@ import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.LottoValue;
 import lotto.model.Lottos;
+import lotto.model.WinningNumbers;
+import lotto.model.WinningValue;
 import lotto.view.LottoView;
 
 public class LottoController {
@@ -36,16 +38,16 @@ public class LottoController {
                 Lotto::new);
     }
 
-    public List<Integer> getWinningNumber() {
-        return view.inputWinningNumber();
+    public WinningNumbers getWinningNumber() {
+        return new WinningNumbers(view.inputWinningNumber());
     }
 
     public int getBonusNumber() {
         return view.inputBonusNumber();
     }
 
-    public void confirmWinning(List<Integer> winningNumber, int bonusNumber) {
-        lottos.setByCorrectCount(winningNumber, bonusNumber);
+    public void confirmWinning(WinningValue winningValue) {
+        lottos.setByCorrectCount(winningValue.winningNumbers(), winningValue.bonusNumber());
         view.printWinningTrace(toStringWithoutNone());
     }
 
@@ -56,7 +58,7 @@ public class LottoController {
     }
 
     private String formatString(BigDecimal winningRate) {
-        DecimalFormat df = new DecimalFormat("#,###");
+        DecimalFormat df = new DecimalFormat("#,###0.0");
         return df.format(winningRate);
     }
 

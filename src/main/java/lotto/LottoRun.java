@@ -4,15 +4,18 @@ import java.util.List;
 import lotto.controller.LottoController;
 import lotto.model.LottoValue;
 import lotto.model.Lottos;
+import lotto.model.WinningNumbers;
+import lotto.model.WinningValue;
 import lotto.view.LottoView;
 
 public class LottoRun {
     public static void start() {
         LottoController lottoController = init();
         set(lottoController);
-        List<Integer> winningNumber = winningNumber(lottoController);
+        WinningNumbers winningNumbers = winningNumber(lottoController);
         int bonusNumber = bonusNumber(lottoController);
-        lottoController.confirmWinning(winningNumber, bonusNumber);
+        WinningValue winningValue = new WinningValue(winningNumbers, bonusNumber);
+        lottoController.confirmWinning(winningValue);
         winningRate(lottoController);
     }
 
@@ -36,11 +39,11 @@ public class LottoRun {
         }
     }
 
-    private static List<Integer> winningNumber(LottoController lottoController) {
-        List<Integer> winningNumber = null;
+    private static WinningNumbers winningNumber(LottoController lottoController) {
+        WinningNumbers winningNumbers = null;
         try {
-            winningNumber = lottoController.getWinningNumber();
-            return winningNumber;
+            winningNumbers = lottoController.getWinningNumber();
+            return winningNumbers;
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
             return winningNumber(lottoController);

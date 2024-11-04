@@ -42,40 +42,21 @@ public class LottoView {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumber = Console.readLine();
         String[] winningNumberSplit = winningNumber.split(WINNING_DELIMITER);
-        validateSize(winningNumberSplit);
         System.out.println();
         return winningNumberToList(winningNumberSplit);
     }
 
     private List<Integer> winningNumberToList(String[] winningNumberSplit) {
         return Arrays.stream(winningNumberSplit)
-                .map(str -> {
-                    int num = convertStringToInt(str);
-                    validateRange(num);
-                    return num;
-                })
+                .map(this::convertStringToInt)
                 .toList();
-    }
-
-    private void validateSize(String[] split) {
-        if (split.length != MAX_SIZE) {
-            throw new IllegalArgumentException("담청 번호는 6자리 입니다.");
-        }
-    }
-
-    private void validateRange(int num) {
-        if (num < MIN_RANGE || num > MAX_RANGE) {
-            throw new IllegalArgumentException("번호는 1에서 45 사이여야 합니다.");
-        }
     }
 
     public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         System.out.println();
-        int num = convertStringToInt(bonusNumber);
-        validateRange(num);
-        return num;
+        return convertStringToInt(bonusNumber);
     }
 
     public void printWinningTrace(String winningTrace) {

@@ -2,8 +2,6 @@ package lotto.model;
 
 import static java.math.BigDecimal.valueOf;
 import static java.math.RoundingMode.HALF_UP;
-import static lotto.model.Winning.FIVE;
-import static lotto.model.Winning.FIVE_BONUS;
 import static lotto.model.Winning.NONE;
 import static lotto.model.Winning.getFromValue;
 import static lotto.model.Winning.getTotalWinningPrice;
@@ -44,13 +42,13 @@ public class Lottos {
         return lottos.get(lotto);
     }
 
-    public void setByCorrectCount(List<Integer> winningNumber, int bonusNumber) {
+    public void setByCorrectCount(List<Integer> winningNumbers, int bonusNumber) {
         lottos.keySet().forEach(lotto ->
-                setByWinningNumber(winningNumber, bonusNumber, lotto).increaseCount());
+                setByWinningNumber(winningNumbers, bonusNumber, lotto).increaseCount());
     }
 
-    private Winning setByWinningNumber(List<Integer> winningNumber, int bonusNumber, Lotto lotto) {
-        int correctCount = lotto.correctCount(winningNumber);
+    private Winning setByWinningNumber(List<Integer> winningNumbers, int bonusNumber , Lotto lotto) {
+        int correctCount = lotto.correctCount(winningNumbers);
         Winning winning = getFromValue(correctCount, lotto.isBonus(bonusNumber));
 
         lottos.put(lotto, winning);
