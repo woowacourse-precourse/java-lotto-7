@@ -4,7 +4,11 @@ import lotto.controller.LottoController;
 
 public class Application {
     public static void main(String[] args) {
-        LottoController lottoController = new LottoController();
-        lottoController.run();
+        try {
+            LottoController controller = new LottoController();
+            controller.run();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
