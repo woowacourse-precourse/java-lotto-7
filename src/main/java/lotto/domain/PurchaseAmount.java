@@ -31,7 +31,7 @@ public class PurchaseAmount {
         }
     }
 
-    private static void validateThousandUnit(int amount) {
+    private void validateThousandUnit(int amount) {
         if (amount % LottoConstants.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_THOUSAND_UNIT);
         }
