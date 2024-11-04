@@ -299,7 +299,7 @@ https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=
             <td>로또 머신에 대한 입력과 상태를 검증하는 클래스입니다. 로또 구매 시 입력의 유효성을 검사합니다.</td>
         </tr>
         <tr>
-            <td rowspan="8">
+            <td rowspan="9">
                 <img src="https://raw.githubusercontent.com/mallowigi/iconGenerator/master/assets/icons/folders/error.svg?sanitize=true" />
                 exception</td>
             <td>ExceptionUtils</td>
@@ -340,6 +340,11 @@ https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=
             <td>WinningNumbersExceptionMessage</td>
             <td>enum</td>
             <td>우승 번호 관련 예외 메시지를 정의하는 클래스입니다.</td>
+        </tr>
+        <tr>
+            <td>DtoExceptionMessage</td>
+            <td>enum</td>
+            <td>DTO 에서 발생하는 예외 메시지를 정의하는 클래스입니다.</td>
         </tr>
     </tbody>
 </table>
