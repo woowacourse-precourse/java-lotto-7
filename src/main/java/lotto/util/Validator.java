@@ -1,5 +1,7 @@
 package lotto.util;
 
+import lotto.domain.Lotto;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,9 +52,9 @@ public abstract class Validator {
         }
     }
 
-    public static void validateNumber(int number, List<Integer> intList) {
+    public static void validateNumber(int number, Lotto jackpotNumber) {
         validateInRange(number);
-        if (intList.contains(number)) {
+        if (jackpotNumber.getNumbers().contains(number)) {
             throw new IllegalArgumentException(DUPLICATE_INPUT_NUMBER.getMessage());
         }
     }
