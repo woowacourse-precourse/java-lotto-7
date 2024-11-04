@@ -6,7 +6,7 @@ import static lotto.ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_LOTTO_PRICE;
 import static lotto.LottoMachine.LOTTO_PRICE;
 
 public class PurchaseAmount {
-    private static final int MAX_PURCHASE_AMOUNT = 100000;
+    public static final int MAX_PURCHASE_AMOUNT = 100000;
     private static final int PERCENTAGE_FACTOR = 100;
     private final int purchaseAmount;
 
