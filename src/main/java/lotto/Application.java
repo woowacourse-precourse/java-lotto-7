@@ -33,9 +33,8 @@ public class Application {
         }
     }
     private static int validateBudgets(String inputs) {
-        int budgets;
         try{
-            budgets = Integer.parseInt(inputs);
+            int budgets = Integer.parseInt(inputs);
             if (budgets < 0) {
                 throwError("구입 금액은 0 이상의 숫자여야 합니다.");
             }

@@ -37,7 +37,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
-//    public int checkWinningStatus(Lotto winningLotto, int bonusNumber) {
-//
-//    }
 }
