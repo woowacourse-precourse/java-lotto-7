@@ -22,4 +22,19 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 비어 있을 경우 예외가 발생한다.")
+    @Test
+    void 로또_번호가_비어_있을_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 비어 있을 수 없습니다.");
+    }
+
+    @DisplayName("로또 번호가 1~45 범위를 벗어날 경우 예외가 발생한다.")
+    @Test
+    void 로또_번호가_1에서_45_범위를_벗어날_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
 }
