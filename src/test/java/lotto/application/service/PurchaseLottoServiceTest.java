@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
+import lotto.domain.Money;
 import lotto.domain.repository.InMemoryLottoRepository;
 import lotto.domain.repository.LottoRepository;
 import org.assertj.core.api.Assertions;
@@ -30,11 +31,11 @@ class PurchaseLottoServiceTest {
     void purchase() {
       // given
       int unit = 1000;
-      int money = 5000;
+      int amount = 5000;
       // when
-        purchaseLottoService.purchase(money);
+        purchaseLottoService.purchase(Money.from(amount));
       // then
         List<Lotto> purchasedLottos = lottoRepository.getAll();
-        assertThat(purchasedLottos).hasSize(money/unit);
+        assertThat(purchasedLottos).hasSize(amount/unit);
     }
 }

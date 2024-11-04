@@ -6,6 +6,7 @@ import lotto.application.LottoResultUseCase;
 import lotto.application.FacadeLottoUseCase;
 import lotto.application.PurchaseLottoUseCase;
 import lotto.application.RetrieveLottoUseCase;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.domain.WinResult;
@@ -40,7 +41,7 @@ public class FacadeLottoService implements FacadeLottoUseCase {
     }
 
     @Override
-    public void createWinLotto(List<Integer> numbers, int bonusNumber) {
+    public void createWinLotto(List<Integer> numbers, BonusNumber bonusNumber) {
         lottoResultUseCase.createWinLotto(numbers, bonusNumber);
     }
 

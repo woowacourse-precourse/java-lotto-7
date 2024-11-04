@@ -34,7 +34,7 @@ public class ApplicationConsoleView implements ApplicationView {
     @Override
     public int requestBonusNumber() {
         println(LINE_SEPARATOR + REQUEST_INPUT_BONUS_NUMBER);
-        return Integer.parseInt(Console.readLine());
+        return NumberParser.toInt(Console.readLine());
     }
 
     @Override

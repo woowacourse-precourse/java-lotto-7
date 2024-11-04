@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import lotto.application.FacadeLottoUseCase;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.domain.WinResult;
@@ -49,7 +50,7 @@ public class LottoApplication {
     private void drawWinner() {
         String winNumber = applicationView.requestWinNumber();
         int bonusNumber = applicationView.requestBonusNumber();
-        facadeLottoUseCase.createWinLotto(messageParser.toNumbers(winNumber), bonusNumber);
+        facadeLottoUseCase.createWinLotto(messageParser.toNumbers(winNumber), BonusNumber.from(bonusNumber));
         facadeLottoUseCase.checkWinning();
     }
 

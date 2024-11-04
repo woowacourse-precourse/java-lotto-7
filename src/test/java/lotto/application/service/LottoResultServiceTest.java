@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.test.Assertions;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMatcher;
 import lotto.domain.LottoRank;
@@ -46,7 +47,7 @@ class LottoResultServiceTest {
             List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
             int bonusNumber = 10;
 
-            lottoResultService.createWinLotto(numbers, bonusNumber);
+            lottoResultService.createWinLotto(numbers, BonusNumber.from(bonusNumber));
 
             WinLotto winLotto = winLottoRepository.getRecent();
             assertThat(winLotto.getLotto().getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);

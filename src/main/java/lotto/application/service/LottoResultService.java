@@ -3,6 +3,7 @@ package lotto.application.service;
 import java.util.List;
 import lotto.application.LottoResultUseCase;
 import lotto.application.service.vo.MatchingInfo;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMatcher;
 import lotto.domain.LottoRank;
@@ -32,8 +33,8 @@ public class LottoResultService implements LottoResultUseCase {
     }
 
     @Override
-    public void createWinLotto(List<Integer> numbers, int bonusNumber) {
-        WinLotto winLotto = WinLotto.of(Lotto.create(numbers), bonusNumber);
+    public void createWinLotto(List<Integer> numbers, BonusNumber bonusNumber) {
+        WinLotto winLotto = WinLotto.of(Lotto.create(numbers), bonusNumber.number());
         winLottoRepository.save(winLotto);
     }
 

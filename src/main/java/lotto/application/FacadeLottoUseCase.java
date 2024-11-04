@@ -1,6 +1,7 @@
 package lotto.application;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.domain.WinResult;
@@ -11,7 +12,7 @@ public interface FacadeLottoUseCase {
 
     List<Lotto> retrieveAll();
 
-    void createWinLotto(List<Integer> numbers, int bonusNumber);
+    void createWinLotto(List<Integer> numbers, BonusNumber bonusNumber);
 
     void checkWinning();
 
