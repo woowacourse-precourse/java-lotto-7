@@ -1,12 +1,16 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class OutputLottoResult {    // 로또 결과 출력
     public void printLottoInfo (int lottoCount, List<Lotto> purchasedLotto) {
         System.out.println(lottoCount + "개를 구매했습니다.");
         for (Lotto lotto : purchasedLotto) {
-            System.out.println(lotto.getNumbers());
+            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedNumbers);
+            System.out.println(sortedNumbers);
         }
     }
 
