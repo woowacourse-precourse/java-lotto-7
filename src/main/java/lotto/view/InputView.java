@@ -54,12 +54,12 @@ public class InputView {
 
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(List<Integer> winningNumber) {
         while(true){
             try{
                 String bonus = readBonusNumber();
                 System.out.println();
-                return inputValidator.validateBonusNumber(bonus);
+                return inputValidator.validateBonusNumber(bonus, winningNumber);
             }catch (IllegalArgumentException ex){
                 System.out.println(ex.getMessage());
             }

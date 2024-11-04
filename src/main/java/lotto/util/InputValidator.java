@@ -71,11 +71,17 @@ public class InputValidator {
         }
     }
 
-    public int validateBonusNumber(String input) {
+    public int validateBonusNumber(String input, List<Integer> winningNumber) {
         checkBlank(input);
         int bonus = convertStrToInt(input);
-
+        checkContainedWinningNumber(bonus, winningNumber);
         checkRange(bonus);
         return bonus;
+    }
+
+    private void checkContainedWinningNumber(int bonus, List<Integer> winningNumber) {
+        if(winningNumber.contains(bonus)) {
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER);
+        }
     }
 }

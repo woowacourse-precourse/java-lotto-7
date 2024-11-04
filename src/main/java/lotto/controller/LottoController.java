@@ -25,19 +25,11 @@ public class LottoController {
         List<Lotto> lottoTicket = lottoService.issueLotto(price);
         // 당첨번호 및 보너스번호 입력받기
         List<Integer> winningNumber = inputView.getWinningNumbers();
-        int bonusNumber = inputView.getBonusNumber();
+        int bonusNumber = inputView.getBonusNumber(winningNumber);
 
         WinningLotto winningLotto = lottoService.issueWinningLotto(winningNumber, bonusNumber);
         // 당첨 통계 및 수익률 출력
 
 
-    }
-
-    private void printLottoStatus(List<Lotto> lottoTicket) {
-        System.out.println(lottoTicket.size() + QUANTITY_OF_LOTTO);
-        for(Lotto lotto:lottoTicket){
-            System.out.println(lotto);
-        }
-        System.out.println();
     }
 }
