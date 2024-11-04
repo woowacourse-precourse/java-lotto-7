@@ -2,6 +2,7 @@ package lotto;
 
 import static lotto.constants.Constants.*;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoController;
 
 public class Application {
@@ -11,6 +12,8 @@ public class Application {
             lottoController.start();
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MESSAGE + e.getMessage());
+        } finally {
+            Console.close();
         }
     }
 }
