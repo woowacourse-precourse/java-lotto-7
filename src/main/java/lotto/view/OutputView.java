@@ -14,7 +14,7 @@ public class OutputView {
     }
 
     public static void printLottoCount(int amount) {
-        System.out.printf(RunMessage.PRINT_LOTTO_COUNT.getMessage(), amount);
+        System.out.printf(RunMessage.PRINT_LOTTO_COUNT.getMessage(), amount / 1000);
     }
 
     public static void printWinningStatisticsMessage(double yield) {
