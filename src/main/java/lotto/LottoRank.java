@@ -30,4 +30,19 @@ enum LottoRank {
     public String getDescription() {
         return description;
     }
+
+    public static LottoRank calculateRank(int matchCount, boolean isBonusMatched) {
+        if (matchCount == 6) {
+            return LottoRank.FIRST;
+        } else if (matchCount == 5 && isBonusMatched) {
+            return LottoRank.SECOND;
+        } else if (matchCount == 5) {
+            return LottoRank.THIRD;
+        } else if (matchCount == 4) {
+            return LottoRank.FOURTH;
+        } else if (matchCount == 3) {
+            return LottoRank.FIFTH;
+        }
+        return null;  // 당첨되지 않은 경우
+    }
 }
