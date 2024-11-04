@@ -1,0 +1,94 @@
+package lotto;
+
+import constant.Rank;
+import input.BonusNumberInputProcessor;
+import input.InputProcessor;
+import input.LottoWinnerNumberInputProcessor;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class WinnerManager {
+
+    private final InputProcessor<List<Integer>> lottoWinnerNumberInputProcessor;
+    private final InputProcessor<Integer> bonusNumberInputProcessor;
+
+    private final List<Rank> rankAggregation;
+
+    private Map<Rank, Long> rankStatistic;
+    private Lotto winnerLotto;
+    private Integer bonusNumber;
+
+
+    public WinnerManager(LottoWinnerNumberInputProcessor lottoWinnerNumberInputProcessor,
+            BonusNumberInputProcessor bonusNumberInputProcessor) {
+        this.lottoWinnerNumberInputProcessor = lottoWinnerNumberInputProcessor;
+        this.bonusNumberInputProcessor = bonusNumberInputProcessor;
+        this.rankAggregation = new ArrayList<>();
+        this.rankStatistic = new HashMap<>();
+    }
+
+    public void registerWinnerLotto() {
+        List<Integer> registedLottoNumber;
+        while (true) {
+            try {
+                registedLottoNumber = lottoWinnerNumberInputProcessor.putValue();
+                winnerLotto = new Lotto(registedLottoNumber);
+                registerBonusNumber();
+                winnerLotto.checkBonusNumberDuplication(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void registerBonusNumber() {
+        bonusNumber = bonusNumberInputProcessor.putValue();
+    }
+
+    public void rankStatistic() {
+        rankStatistic = rankAggregation.stream()
+                .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
+    }
+
+    public void printRankStatistic() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        Rank[] ranks = Rank.values();
+        for (int rankIndex = ranks.length - 1; rankIndex >= 0; rankIndex--) {
+            Rank rank = ranks[rankIndex];
+            if (rank != Rank.UN_RANK) {
+                System.out.println(rank.showRankCondition() + rankStatistic.getOrDefault(rank, 0L) + "개");
+            }
+        }
+    }
+
+    public void rankClassification(ArrayList<Lotto> lottoTickets) {
+        for (Lotto lottoTicket : lottoTickets) {
+            Integer matchCount = lottoTicket.computeMatchNumberCount(winnerLotto);
+            boolean bonusMatch = lottoTicket.matchBonusNumber(bonusNumber);
+            rankAggregation.add(rankingDecision(matchCount, bonusMatch));
+        }
+    }
+
+    public Rank rankingDecision(Integer matchCount, boolean bonusMatch) {
+        for (Rank rank : Rank.values()) {
+            if (rank.checkRank(matchCount, bonusMatch)) {
+                return rank;
+            }
+        }
+        return Rank.UN_RANK;
+    }
+
+    public long computeTotalRevenue() {
+        long totalRevenue = 0L;
+        for (Map.Entry<Rank, Long> entry : rankStatistic.entrySet()) {
+            totalRevenue += entry.getKey().computeRevenue(entry.getValue());
+        }
+        return totalRevenue;
+    }
+
+}
