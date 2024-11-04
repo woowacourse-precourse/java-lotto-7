@@ -45,4 +45,12 @@ public class LottoEvaluator {
         }
     }
 
+    public double getProfitRate() {
+        return profit / purchaseAmount * 100;
+    }
+
+    public Map<Rank, Integer> getLottoStats() {
+        return lottoStats;
+    }
+
 }
