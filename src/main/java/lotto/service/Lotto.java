@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.utils.LottoCriteria;
+import lotto.validation.Validation;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +16,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Validation.validateDuplicateNumbers(numbers);
         this.numbers = numbers;
     }
 
