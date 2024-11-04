@@ -12,7 +12,6 @@ public class LottoFactory {
         this.lottoNumberGenerator = new RandomLottoGenerator();
     }
 
-
     public List<Lotto> createLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {

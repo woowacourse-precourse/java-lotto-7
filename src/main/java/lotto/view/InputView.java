@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static lotto.constants.Constants.*;
 import static lotto.utils.InputUtil.*;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -16,7 +15,7 @@ public class InputView {
             userBuyingValidator.validateBuyingValidation(buyingPrice);
             return toIntStringNumberParser(buyingPrice);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + " 입력은 숫자만 가능합니다.");
+            throw new IllegalArgumentException("입력은 양수만 가능합니다.");
         }
     }
 
