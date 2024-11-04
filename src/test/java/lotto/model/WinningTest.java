@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model;
 
-import lotto.model.Winning;
+import lotto.DrawNumberHacker;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoPublisher;
 import lotto.model.draw_numbers.DrawNumbers;

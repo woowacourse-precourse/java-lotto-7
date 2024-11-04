@@ -1,7 +1,6 @@
-package lotto;
+package lotto.model.draw_numbers;
 
-import lotto.model.draw_numbers.DrawNumbers;
-import lotto.model.draw_numbers.DrawNumbersBuilder;
+import lotto.model.draw_numbers.builder.DrawNumbersBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -9,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-public class DrawNumbersTest {
+public class DrawNumbersBuilderTest {
 
     @ParameterizedTest
     @MethodSource("provideDuplicate")
