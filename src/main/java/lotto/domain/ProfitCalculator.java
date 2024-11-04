@@ -16,6 +16,10 @@ public class ProfitCalculator {
     }
 
     public double calculateProfitRate(long totalWinningAmount, long purchaseAmount) {
+        if (purchaseAmount == 0) {
+            throw new IllegalArgumentException("구입금액이 0원일 수 없습니다.");
+        }
+
         BigDecimal profit = BigDecimal.valueOf(totalWinningAmount);
         BigDecimal profitRate = profit.divide(BigDecimal.valueOf(purchaseAmount), 10, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100))
