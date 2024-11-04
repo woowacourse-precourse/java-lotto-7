@@ -25,7 +25,7 @@ public class WinningStatisticsDto {
 
     public double getLottoYield(int purchaseAmount) {
         long totalPrize = winningStatistics.entrySet().stream()
-            .mapToLong(entry -> (long) entry.getKey().getPrizeAmount() * entry.getValue())
+            .mapToLong(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
             .sum();
 
         return ((double) totalPrize / purchaseAmount) * 100;

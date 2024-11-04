@@ -13,17 +13,17 @@ public enum Rank {
 
     private int matchingCount;
     private boolean isBonusMatched;
-    private int prizeAmount;
+    private long prizeAmount;
     private String printMessage;
 
-    Rank(int matchingCount, boolean isBonusMatched, int prizeAmount, String printMessage) {
+    Rank(int matchingCount, boolean isBonusMatched, long prizeAmount, String printMessage) {
         this.matchingCount = matchingCount;
         this.isBonusMatched = isBonusMatched;
         this.prizeAmount = prizeAmount;
         this.printMessage = printMessage;
     }
 
-    public int getPrizeAmount() {
+    public long getPrizeAmount() {
         return prizeAmount;
     }
 
