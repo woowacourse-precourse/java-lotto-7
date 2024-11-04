@@ -14,7 +14,7 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         int amount = Integer.parseInt(Console.readLine());
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("천원 단위로 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 천원 단위로 입력해주세요.");
         }
         int cnt = amount / 1000;
         System.out.println();
@@ -26,11 +26,15 @@ public class Application {
 
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> input = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt).toList();
+        for(int num : input) {
+            validate(num);
+        }
         Lotto winningNums = new Lotto(input);
         System.out.println();
 
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNum = Integer.parseInt(Console.readLine());
+        validate(bonusNum);
         System.out.println();
 
         System.out.println("당첨 통계");
@@ -49,6 +53,12 @@ public class Application {
         }
 
         printTotalReturnRate(cntMap, amount);
+    }
+
+    private static void validate(int num) {
+        if(num < 1 || num > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 
     private static EnumMap<LottoRank, Integer> init() {
