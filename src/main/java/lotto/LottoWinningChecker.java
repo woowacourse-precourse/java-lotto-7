@@ -1,12 +1,10 @@
 package lotto;
 
+import lotto.enums.Rank;
+
 import java.util.List;
 
 public class LottoWinningChecker {
-    private static final int FIRST_PLACE_MATCH_COUNT = 6;
-    private static final int SECOND_AND_THIRD_PLACE_MATCH_COUNT = 5;
-    private static final int FOURTH_PLACE_MATCH_COUNT = 4;
-    private static final int FIFTH_PLACE_MATCH_COUNT = 3;
     private final List<Lotto> tickets;
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
@@ -40,15 +38,15 @@ public class LottoWinningChecker {
     }
 
     private void checkRank(int matchingCount, boolean isBonusIncluded) {
-        if (matchingCount == FIRST_PLACE_MATCH_COUNT) {
+        if (matchingCount == Rank.FIRST_PLACE_MATCH_COUNT.getValue()) {
             firstPlaceCount++;
-        } else if (isBonusIncluded && matchingCount == SECOND_AND_THIRD_PLACE_MATCH_COUNT) {
+        } else if (isBonusIncluded && matchingCount == Rank.SECOND_PLACE_MATCH_COUNT.getValue()) {
             secondPlaceCount++;
-        } else if (matchingCount == SECOND_AND_THIRD_PLACE_MATCH_COUNT) {
+        } else if (matchingCount == Rank.THIRD_PLACE_MATCH_COUNT.getValue()) {
             thirdPlaceCount++;
-        } else if (matchingCount == FOURTH_PLACE_MATCH_COUNT) {
+        } else if (matchingCount == Rank.FOURTH_PLACE_MATCH_COUNT.getValue()) {
             fourthPlaceCount++;
-        } else if (matchingCount == FIFTH_PLACE_MATCH_COUNT) {
+        } else if (matchingCount == Rank.FIFTH_PLACE_MATCH_COUNT.getValue()) {
             fifthPlaceCount++;
         }
     }
