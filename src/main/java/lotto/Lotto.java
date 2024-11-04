@@ -14,6 +14,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        //중복 번호 검증 추가
         if (numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.");
         }

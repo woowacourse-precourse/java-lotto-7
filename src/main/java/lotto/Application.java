@@ -112,6 +112,7 @@ public class Application {
         printResults(prizeCount);
         return totalPrize;
     }
+
     private static int getMatchCount(List<Integer> userNumbers, List<Integer> winningNumbers) {
         return (int) userNumbers.stream().filter(winningNumbers::contains).count();
     }
