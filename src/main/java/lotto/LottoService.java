@@ -9,10 +9,12 @@ import lotto.view.OutputView;
 public class LottoService {
     private static final Integer MINIMUM_CASH_UNIT = 1000;
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    public LottoService() {
+    public LottoService(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public Integer parseInputToCash(String input) {

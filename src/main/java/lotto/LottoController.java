@@ -8,7 +8,7 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final LottoService lottoService = new LottoService();
+    private final LottoService lottoService = new LottoService(inputView, outputView);
 
     public LottoController() {
     }
