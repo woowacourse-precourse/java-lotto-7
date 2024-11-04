@@ -10,27 +10,17 @@ import static lotto.common.ErrorMessage.EMPTY_INPUT;
 
 public class InputView {
     public static String inputMoney() {
-        return handleInput(ENTER_MONEY);
+        return readAndValidate(ENTER_MONEY);
     }
 
     public static String inputMainNumber() {
         System.lineSeparator();
-        return handleInput(ENTER_MAIN_NUMBER);
+        return readAndValidate(ENTER_MAIN_NUMBER);
     }
 
     public static String inputBonusNumber() {
         System.lineSeparator();
-        return handleInput(ENTER_BONUS_NUMBER);
-    }
-
-    private static String handleInput(InputMessage message) {
-        while (true) { // TODO: 반복 재귀 이외 방법으로 구현할 수 있는지?
-            try {
-                return readAndValidate(message);
-            } catch (IllegalArgumentException e) { // TODO: 적절한 Exception로 수정
-                System.out.println(e.getMessage());
-            }
-        }
+        return readAndValidate(ENTER_BONUS_NUMBER);
     }
 
     private static String readAndValidate(InputMessage message) {
