@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.validation.LottoSimulatorValidation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +22,8 @@ public class LottoSimulator {
     private Map<Integer, Integer> prizeResult;
 
     public LottoSimulator(String cost) {
+        LottoSimulatorValidation.validateLottoCost(cost);
+
         this.cost = Integer.parseInt(cost);
         purchasedLotto = new ArrayList<>();
         prizeResult = new HashMap<>();
