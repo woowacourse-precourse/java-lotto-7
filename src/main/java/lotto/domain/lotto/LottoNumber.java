@@ -4,7 +4,7 @@ import java.util.Objects;
 import lotto.common.constant.Constants;
 import lotto.common.exception.InvalidLottoNumberException;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
 
     private final int lottoNumber;
 
@@ -38,5 +38,10 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hashCode(lottoNumber);
+    }
+
+    @Override
+    public int compareTo(LottoNumber o) {
+        return Integer.compare(this.lottoNumber, o.lottoNumber);
     }
 }
