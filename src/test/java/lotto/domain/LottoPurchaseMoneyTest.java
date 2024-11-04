@@ -13,6 +13,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LottoPurchaseMoneyTest {
 
     @ParameterizedTest
+    @ValueSource(longs = {0L, -1000L})
+    void 구매_금액은_양수가_아니면_예외가_발생_한다(long money) {
+        assertThatThrownBy(() -> new LottoPurchaseMoney(money))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
     @ValueSource(longs = {100L, 1L, 20001L, 300L})
     void 구매_금액은_1000으로_나누어_떨어지지_않으면_예외가_발생_한다(long money) {
         assertThatThrownBy(() -> new LottoPurchaseMoney(money))
