@@ -26,6 +26,7 @@ public class OutputView {
     public static void printStatistics(Map<Rank, Integer> results, double profitRate) {
         System.out.println();
         System.out.println(RESULT_HEADER);
+        System.out.println(DIVIDER);
         printRankResult(results, Rank.FIFTH);
         printRankResult(results, Rank.FOURTH);
         printRankResult(results, Rank.THIRD);
