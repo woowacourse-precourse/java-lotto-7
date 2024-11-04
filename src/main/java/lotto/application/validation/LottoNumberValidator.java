@@ -21,7 +21,8 @@ public class LottoNumberValidator implements LottoNumberValidation {
         return numbers;
     }
 
-    private List<Integer> parseNumbers(String input) {
+    @Override
+    public List<Integer> parseNumbers(String input) {
         try {
             return Arrays.stream(input.split(","))
                     .map(String::trim)
@@ -31,8 +32,8 @@ public class LottoNumberValidator implements LottoNumberValidation {
             throw new IllegalArgumentException(ErrorMessages.INVALID_NUMBER_INPUT.getMessage());
         }
     }
-
-    private void validateNumbers(List<Integer> numbers) {
+    @Override
+    public void validateNumbers(List<Integer> numbers) {
         if (numbers.size() != REQUIRED_NUMBER_COUNT) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_COUNT.getMessage());
         }
