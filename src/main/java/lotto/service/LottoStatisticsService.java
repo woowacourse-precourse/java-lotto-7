@@ -8,17 +8,14 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoStatisticsService {
+
     public static void printStatistics(List<LottoResult> results, int totalPurchaseAmount) {
         Map<Winning, Integer> winningStats = calculateWinningStatistics(results);
         int totalWinningAmount = calculateTotalWinningAmount(results);
         double profitRate = calculateProfitRate(totalWinningAmount, totalPurchaseAmount);
 
         System.out.println("---");
-        printWinningCount(winningStats, Winning.FIFTH, "3개 일치 (5,000원)");
-        printWinningCount(winningStats, Winning.FOURTH, "4개 일치 (50,000원)");
-        printWinningCount(winningStats, Winning.THIRD, "5개 일치 (1,500,000원)");
-        printWinningCount(winningStats, Winning.SECOND, "5개 일치, 보너스 볼 일치 (30,000,000원)");
-        printWinningCount(winningStats, Winning.FIRST, "6개 일치 (2,000,000,000원)");
+        printWinningResults(winningStats);
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 
@@ -33,14 +30,28 @@ public class LottoStatisticsService {
         // Count occurrences
         for (LottoResult result : results) {
             Winning winning = result.getWinning();
-            winningStats.put(winning, winningStats.get(winning) + 1);
+            winningStats.merge(winning, 1, Integer::sum);
         }
 
         return winningStats;
     }
 
-    private static void printWinningCount(Map<Winning, Integer> stats, Winning winning, String description) {
-        System.out.printf("%s - %d개%n", description, stats.get(winning));
+    private static void printWinningResults(Map<Winning, Integer> stats) {
+        LottoResult[] results = {
+                new LottoResult(Winning.FIFTH),
+                new LottoResult(Winning.FOURTH),
+                new LottoResult(Winning.THIRD),
+                new LottoResult(Winning.SECOND),
+                new LottoResult(Winning.FIRST)
+        };
+
+        for (LottoResult result : results) {
+            Winning winning = result.getWinning();
+            String message = result.toString();
+            if (winning != Winning.NONE) {
+                System.out.printf("%s - %d개%n", message, stats.get(winning));
+            }
+        }
     }
 
     private static int calculateTotalWinningAmount(List<LottoResult> results) {
