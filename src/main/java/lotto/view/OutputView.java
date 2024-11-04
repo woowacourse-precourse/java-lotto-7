@@ -27,7 +27,6 @@ public class OutputView {
 			stringBuilder.append(getPurchaseLottoResult(lotto));
 			stringBuilder.append("\n");
 		}
-		stringBuilder.append("\n");
 		System.out.println(stringBuilder);
 	}
 
