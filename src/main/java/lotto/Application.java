@@ -95,14 +95,16 @@ public class Application {
         }
     }
 
-    public static int checkLottoMatch(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
+    // 한 줄마다 당첨 번호와 일치여부 확인
+    private static int countLineMatch(List<Integer> winningNumbers, List<Integer> line) {
         int matchCount = 0;
 
-        for (int number : lottoNumbers) {
+        for (int number : line) {
             if (winningNumbers.contains(number)) {
                 matchCount++;
             }
         }
+
         return matchCount;
     }
 }
