@@ -34,6 +34,28 @@ class LottoNumberParserTest {
     }
 
     @Test
+    public void 우승번호_입력_NULL시_예외_발생() {
+        // given
+        String winningLottoInput = null;
+
+        // when, then
+        Assertions.assertThatThrownBy(() -> LottoNumberParser.parseLottoNumbers(winningLottoInput))
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.EMPTY_USER_INPUT.getMessage());
+    }
+
+    @Test
+    public void 우승번호_입력_비어있을시_예외_발생() {
+        // given
+        String winningLottoInput = "";
+
+        // when, then
+        Assertions.assertThatThrownBy(() -> LottoNumberParser.parseLottoNumbers(winningLottoInput))
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.EMPTY_USER_INPUT.getMessage());
+    }
+
+    @Test
     public void 우승번호_입력에_문자_들어올시_예외_발생() {
         // given
         String winningLottoInput = "hello";
@@ -65,5 +87,27 @@ class LottoNumberParserTest {
         Assertions.assertThatThrownBy(() -> LottoNumberParser.parseBonusNumber(inputBonusNumber))
                 .isInstanceOf(LottoException.class)
                 .hasMessage(LottoErrorStatus.INVALID_BONUS_NUMBER.getMessage());
+    }
+
+    @Test
+    public void 보너스_번호_입력_NULL_들어올시_예외_발생() {
+        // given
+        String inputBonusNumber = null;
+
+        // when, then
+        Assertions.assertThatThrownBy(() -> LottoNumberParser.parseBonusNumber(inputBonusNumber))
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.EMPTY_USER_INPUT.getMessage());
+    }
+
+    @Test
+    public void 보너스_번호_입력에_빈값_들어올시_예외_발생() {
+        // given
+        String inputBonusNumber = "";
+
+        // when, then
+        Assertions.assertThatThrownBy(() -> LottoNumberParser.parseBonusNumber(inputBonusNumber))
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.EMPTY_USER_INPUT.getMessage());
     }
 }

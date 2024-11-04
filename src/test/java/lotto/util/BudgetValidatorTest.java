@@ -41,4 +41,26 @@ class BudgetValidatorTest {
                 .isInstanceOf(LottoException.class)
                 .hasMessage(LottoErrorStatus.INVALID_BUDGET_AMOUNT.getMessage());
     }
+
+    @Test
+    public void 구매_금액_NULL시_예외_발생() {
+        // given
+        String inputBudget = null;
+
+        // when, then
+        Assertions.assertThatThrownBy(() -> BudgetValidator.validateInputBudget(inputBudget))
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.EMPTY_USER_INPUT.getMessage());
+    }
+
+    @Test
+    public void 구매_금액_비어있을시_예외_발생() {
+        // given
+        String inputBudget = "";
+
+        // when, then
+        Assertions.assertThatThrownBy(() -> BudgetValidator.validateInputBudget(inputBudget))
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.EMPTY_USER_INPUT.getMessage());
+    }
 }
