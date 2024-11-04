@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constant.Constant;
 import lotto.exception.ErrorMessage;
+import lotto.exception.LottoException;
 
 public class Lotto {
     private static final String DELIMITER = ",";
@@ -28,7 +29,7 @@ public class Lotto {
 
     private static void validateBlank(String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.BLANK_WINNING_NUMBER.getMessage());
+            throw new LottoException(ErrorMessage.BLANK_WINNING_NUMBER.getMessage());
         }
     }
 
@@ -40,7 +41,7 @@ public class Lotto {
 
     private static void validateNumeric(String input) {
         if (!input.matches(Constant.NUMERIC_PATTERN)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC_LOTTO_NUMBER.getMessage());
+            throw new LottoException(ErrorMessage.NOT_NUMERIC_LOTTO_NUMBER.getMessage());
         }
     }
 
@@ -48,7 +49,7 @@ public class Lotto {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.TOO_BIG_LOTTO_NUMBER.getMessage());
+            throw new LottoException(ErrorMessage.TOO_BIG_LOTTO_NUMBER.getMessage());
         }
     }
 
@@ -60,19 +61,19 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != Constant.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_LOTTO_NUMBER_COUNT_SIX.getMessage());
+            throw new LottoException(ErrorMessage.NOT_LOTTO_NUMBER_COUNT_SIX.getMessage());
         }
     }
 
     private void validateNumberRange(Integer number) {
         if (number < Constant.MIN_LOTTO_NUMBER || number > Constant.MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(ErrorMessage.OUT_RANGE_LOTTO_NUMBER.getMessage());
+            throw new LottoException(ErrorMessage.OUT_RANGE_LOTTO_NUMBER.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
+            throw new LottoException(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }
 

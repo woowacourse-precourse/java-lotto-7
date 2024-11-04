@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PrizeCount;
 import lotto.domain.ProfitRate;
+import lotto.exception.LottoException;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -40,7 +41,7 @@ public class LottoController {
             try {
                 inputView.printPurchaseAmountInputMessage();
                 return Amount.of(inputView.getInput());
-            } catch (IllegalArgumentException e) {
+            } catch (LottoException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -51,7 +52,7 @@ public class LottoController {
             try {
                 inputView.printWinningNumberInputMessage();
                 return Lotto.of(inputView.getInput());
-            } catch (IllegalArgumentException e) {
+            } catch (LottoException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -62,7 +63,7 @@ public class LottoController {
             try {
                 inputView.printBonusNumberInputMessage();
                 return Bonus.of(inputView.getInput(), winningLotto);
-            } catch (IllegalArgumentException e) {
+            } catch (LottoException e) {
                 System.out.println(e.getMessage());
             }
         }
