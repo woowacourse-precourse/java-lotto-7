@@ -29,7 +29,7 @@ public class Output {
         System.out.printf("%d개 일치 (%s원) - %d개\n", 3, numberFormat.format(5000), winningCounts[3]);
         System.out.printf("%d개 일치 (%s원) - %d개\n", 4, numberFormat.format(50000), winningCounts[4]);
         System.out.printf("%d개 일치 (%s원) - %d개\n", 5, numberFormat.format(1500000), winningCounts[5]);
-        System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", 1, numberFormat.format(30000000), winningCounts[1]);
+        System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", 5, numberFormat.format(30000000), winningCounts[1]);
         System.out.printf("%d개 일치 (%s원) - %d개\n", 6, numberFormat.format(2000000000), winningCounts[6]);
     }
 
