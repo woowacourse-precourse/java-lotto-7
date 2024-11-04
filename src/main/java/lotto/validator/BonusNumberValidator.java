@@ -16,7 +16,6 @@ public class BonusNumberValidator {
                 throw new IllegalArgumentException("[ERROR] 보너스 숫자는 1에서 45 사이의 값만 입력 가능합니다.");
             }
 
-            // 로또 번호와 중복 체크
             if (winningNumbers.getNumbers().contains(number)) {
                 throw new IllegalArgumentException("[ERROR] 보너스 숫자는 로또 번호와 중복될 수 없습니다.");
             }

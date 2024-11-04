@@ -4,7 +4,7 @@ public class LottoConstants {
 
     public static final int PURCHASE_UNIT = 1000;
 
-    public static final int NUMBER_OF_CHOICES = 6; // 구체적인 설명 추가
+    public static final int NUMBER_OF_CHOICES = 6;
     public static final int RANGE_START = 1;
     public static final int RANGE_END = 45;
 

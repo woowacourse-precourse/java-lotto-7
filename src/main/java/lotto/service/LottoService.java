@@ -106,7 +106,7 @@ public class LottoService {
     private int countEqualAndBonusNumsCount(Lotto eachLottoNumber, Lotto winningNumbers, String bonusNumber) {
         int equalNumsCount = countEqualNumsLotto(eachLottoNumber, winningNumbers);
         if (equalNumsCount == 5 && hasBonusNumber(eachLottoNumber, bonusNumber)) {
-            equalNumsCount = 7; // 보너스 맞은 경우 7로 추가
+            equalNumsCount = 7;
         }
         return equalNumsCount;
     }
