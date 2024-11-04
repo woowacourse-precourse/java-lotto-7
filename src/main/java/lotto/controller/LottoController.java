@@ -2,8 +2,17 @@ package lotto.controller;
 
 
 import static lotto.common.Constants.LOTTO_PRICE;
+import static lotto.common.Messages.RESULT_DIVIDER;
+import static lotto.common.Messages.RESULT_TITLE;
+import static lotto.common.Messages.TOTAL_PROFIT_RATE_FORMAT;
+import static lotto.common.Messages.WINNING_STATISTICS_BONUS_FORMAT;
+import static lotto.common.Messages.WINNING_STATISTICS_FORMAT;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
@@ -33,7 +42,8 @@ public class LottoController {
         List<Integer> winningNumbers = requestWinningLotto();
         BonusNumber bonusNumber = requestBonusNumber(winningNumbers);
         WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
-        calculateResults(winningLotto, lottos);
+        displayResults(winningLotto, bonusNumber, lottos, purcharseAmount);
+
     }
 
     private PurchaseAmount requestPurchaseAmount() {
@@ -94,6 +104,44 @@ public class LottoController {
         }
 
         output.printResults(results);
+
         output.printEarningsRate(totalPrize, lottos.size() * LOTTO_PRICE);
+    }
+
+    private void displayResults(WinningLotto winningLotto, BonusNumber bonusNumber, Lottos lottos,
+                                PurchaseAmount purcharseAmount) {
+        Map<LottoRank, Integer> winnings = new EnumMap<>(LottoRank.class);
+        for (Lotto lotto : lottos.getLottos()) {
+            int matchCount = winningLotto.matchCount(lotto);
+            boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
+            LottoRank rank = LottoRank.determineRank(matchCount, hasBonus);
+            winnings.put(rank, winnings.getOrDefault(rank, 0) + 1);
+        }
+
+        System.out.println(RESULT_TITLE);
+        System.out.println(RESULT_DIVIDER);
+
+        // 모든 등수를 출력합니다.
+        Arrays.stream(LottoRank.values())
+                .sorted(Comparator.reverseOrder()) // 역순으로 정렬
+                .forEach(rank -> {
+                    if (rank == LottoRank.SECOND) {
+                        System.out.printf(
+                                WINNING_STATISTICS_FORMAT.formatted(rank.getMatchCount(),
+                                        String.format("%,d", rank.getPrize()),
+                                        winnings.getOrDefault(rank, 0)));
+                    } else {
+                        System.out.printf(WINNING_STATISTICS_BONUS_FORMAT.formatted(rank.getMatchCount(),
+                                String.format("%,d", rank.getPrize()),
+                                winnings.getOrDefault(rank, 0)));
+                    }
+                });
+
+        int totalWinnings = winnings.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+
+        double profitRate = (double) totalWinnings / purcharseAmount.getAmount() * 100;
+        System.out.printf(TOTAL_PROFIT_RATE_FORMAT, profitRate);
     }
 }

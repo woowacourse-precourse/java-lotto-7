@@ -23,7 +23,7 @@ public class ConsoleOutput implements Output {
 
     @Override
     public void printLottos(Lottos lottos) {
-        System.out.println(LOTTO_COUNT_MESSAGE.formatted(lottos.size()));
+        System.out.printf(LOTTO_COUNT_MESSAGE, lottos.size());
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.getNumbers());
         }
@@ -46,8 +46,11 @@ public class ConsoleOutput implements Output {
         LottoRank[] ranks = LottoRank.values();
         for (int i = 0; i < ranks.length; i++) {
             if (ranks[i] != LottoRank.NONE) {
-                System.out.printf(WINNING_STATISTICS_FORMAT.formatted(
-                        ranks[i].ordinal() + 3, ranks[i].getPrize(), results[i]));
+                System.out.printf(WINNING_STATISTICS_FORMAT,
+                        ranks[i].ordinal() + 3,
+                        String.format("%,d", ranks[i].getPrize()), // 쉼표 추가
+                        results[i]);
+                System.out.println();
             }
         }
     }
@@ -55,6 +58,7 @@ public class ConsoleOutput implements Output {
     @Override
     public void printEarningsRate(int totalPrize, int purchaseAmount) {
         double rate = (double) totalPrize / purchaseAmount * 100;
-        System.out.printf(TOTAL_PROFIT_RATE_FORMAT.formatted(rate));
+        // System.out.printf 사용하여 직접 출력
+        System.out.printf(TOTAL_PROFIT_RATE_FORMAT, rate);
     }
 }
