@@ -35,6 +35,10 @@ public class Lotto {
                 .count();
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         validateLottoCount(numbers);
         validateDuplicateNumbers(numbers);
