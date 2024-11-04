@@ -82,5 +82,4 @@ public class PriceTest {
             assertThat(quantity).isEqualTo(new Quantity(BigDecimal.TEN));
         }
     }
-
 }
