@@ -228,6 +228,150 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 순위가_1등인_경우_테스트() {
+        String purchasePrice = "1000";
+        String winningNumbers = "1,2,3,4,5,6";
+        String bonusNumber = "7";
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run(purchasePrice, winningNumbers, bonusNumber);
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 1개",
+                            "총 수익률은 200000000.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
+    @Test
+    void 순위가_2등인_경우_테스트() {
+        String purchasePrice = "1000";
+        String winningNumbers = "1,2,3,4,5,7";
+        String bonusNumber = "6";
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run(purchasePrice, winningNumbers, bonusNumber);
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 3000000.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
+    @Test
+    void 순위가_3등인_경우_테스트() {
+        String purchasePrice = "1000";
+        String winningNumbers = "1,2,3,4,5,7";
+        String bonusNumber = "8";
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run(purchasePrice, winningNumbers, bonusNumber);
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 1개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 150000.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
+    @Test
+    void 순위가_4등인_경우_테스트() {
+        String purchasePrice = "1000";
+        String winningNumbers = "1,2,3,4,7,8";
+        String bonusNumber = "9";
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run(purchasePrice, winningNumbers, bonusNumber);
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 1개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 5000.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
+    @Test
+    void 순위가_5등인_경우_테스트() {
+        String purchasePrice = "1000";
+        String winningNumbers = "1,2,3,7,8,9";
+        String bonusNumber = "10";
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run(purchasePrice, winningNumbers, bonusNumber);
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "3개 일치 (5,000원) - 1개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 500.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
+    @Test
+    void 당첨된_로또가_없는_경우_테스트() {
+        String purchasePrice = "1000";
+        String winningNumbers = "1,2,7,8,9,10";
+        String bonusNumber = "11";
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run(purchasePrice, winningNumbers, bonusNumber);
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 0.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
     private String numbersToString(List<Integer> numbers) {
         return numbers.stream()
                 .map(String::valueOf).collect(Collectors.joining(GENERATED_LOTTO_NUMBERS_DELIMITER));
