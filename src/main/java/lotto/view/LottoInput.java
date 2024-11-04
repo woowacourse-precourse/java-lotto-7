@@ -4,7 +4,7 @@ import lotto.constant.LottoConstant;
 import lotto.constant.LottoPrintMessage;
 import lotto.dto.LottoIssueCountDTO;
 import camp.nextstep.edu.missionutils.Console;
-import lotto.dto.LottoWinNumbersDTO;
+import lotto.dto.LottoGradingNumbersDTO;
 import lotto.exception.*;
 
 import java.util.*;
@@ -26,17 +26,17 @@ public class LottoInput {
         }
     }
 
-    public static LottoWinNumbersDTO getWinNumbers() {
+    public static LottoGradingNumbersDTO getGradingNumbers() {
         try {
             List<Integer> exactNumbers = getExactNumbers();
             int bonusNumber = getBonusNumber();
 
             validateNumbersDuplicate(exactNumbers, bonusNumber);
 
-            return new LottoWinNumbersDTO(exactNumbers, bonusNumber);
+            return new LottoGradingNumbersDTO(exactNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getWinNumbers();
+            return getGradingNumbers();
         }
     }
 

@@ -2,7 +2,7 @@ package lotto.dto;
 
 import java.util.List;
 
-public record LottoWinNumbersDTO(
+public record LottoGradingNumbersDTO(
         List<Integer> winNumbers,
         Integer bonusNumber
 ) {}
