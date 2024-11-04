@@ -27,6 +27,7 @@ public class LottoInputView {
         }
         return Arrays.stream(input.split(","))
                 .map(String::trim)
+                .filter(num -> !num.isEmpty())
                 .map(Integer::parseInt)
                 .toList();
     }
