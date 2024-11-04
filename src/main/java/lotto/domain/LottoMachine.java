@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.validator.WinningLottoValidator.MAX_VALUE;
 import static lotto.validator.WinningLottoValidator.MIN_VALUE;

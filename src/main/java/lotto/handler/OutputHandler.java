@@ -6,9 +6,9 @@ import static lotto.message.OutputMessage.WINNING_COUNT_OUTPUT_MESSAGE;
 import static lotto.message.OutputMessage.WINNING_STATICS_OUTPUT_MESSAGE;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.Rank;
-import lotto.WinningStatics;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.WinningStatics;
 
 public class OutputHandler {
 
@@ -21,7 +21,7 @@ public class OutputHandler {
                 String.format(PURCHASE_QUANTITY_OUTPUT_MESSAGE.getMessage(), lottoes.size())
         );
 
-        lottoes.forEach(lotto -> printLotto(lotto));
+        lottoes.forEach(this::printLotto);
     }
 
     public void printWinningStatics(WinningStatics winningStatics) {
