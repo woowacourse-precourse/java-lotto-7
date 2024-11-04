@@ -11,8 +11,8 @@ public class InputView {
 
     public String askWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        String initianlInput = Console.readLine();
-        return initianlInput;
+        String initialInput = Console.readLine();
+        return initialInput;
     }
 
     public String askBonusNumber() {
