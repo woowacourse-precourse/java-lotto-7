@@ -9,6 +9,7 @@ import static lotto.constants.Constants.*;
 public class OutputView {
 
     public static void printLottoNumbers(List<Lotto> lottos) {
+        System.out.println();
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
@@ -16,6 +17,8 @@ public class OutputView {
     }
 
     public static void printStatistics(int[] rankCount) {
+        System.out.println();
+        System.out.println("당첨 통계\n---");
         // 각 등수별 출력 문구에 맞게 출력
         System.out.println(FIFTH_PLACE.getValue() + "개 일치 (" + String.format("%,d",FIFTH_PLACE_PRIZE.getValue()) + "원) - " + rankCount[5] + "개");
         System.out.println(FOURTH_PLACE.getValue() + "개 일치 (" + String.format("%,d",FOURTH_PLACE_PRIZE.getValue()) + "원) - " + rankCount[4] + "개");
