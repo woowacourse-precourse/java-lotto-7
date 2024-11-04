@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.Map;
 import lotto.helper.ParseHelper;
 import lotto.model.FirstRankLotto;
 import lotto.model.Lotto;
