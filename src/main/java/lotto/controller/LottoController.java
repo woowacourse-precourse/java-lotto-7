@@ -20,6 +20,7 @@ public class LottoController {
         WinningNumbersCombinations winningCombinations = getBonusNumber(winningLotto);
 
         WinningResult winningResult = new WinningResult(lottos, winningCombinations);
+        
     }
 
     public PurchaseAmount getValidLottoPurchaseAmount() {

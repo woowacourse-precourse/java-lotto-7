@@ -13,6 +13,10 @@ public class PurchaseAmount {
         return purchaseAmount;
     }
 
+    public int getPurchasePrice() {
+        return purchaseAmount * LOTTO_MIN_AMOUNT;
+    }
+
     private int validate(String purchaseAmount) {
         int rawPurchaseAmount = validateIntegerInput(purchaseAmount);
         validateNonNegativeValue(rawPurchaseAmount);
