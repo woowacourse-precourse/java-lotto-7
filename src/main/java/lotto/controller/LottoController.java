@@ -32,7 +32,7 @@ public class LottoController {
 
         Map<LottoRank, Integer> lottoResult = lottoResultService.getLottoResult(lottos, winningLotto, bonusNumber);
 
-        printLottoResult(lottoResult);
+        printLottoResult(lottoResult, lottos.size());
 
     }
 
@@ -78,7 +78,9 @@ public class LottoController {
         }
     }
 
-    private void printLottoResult(Map<LottoRank, Integer> lottoResult){
+    private void printLottoResult(Map<LottoRank, Integer> lottoResult, int lottoNumber){
         outputView.showLottoResults(lottoResult);
+        double profitRate = lottoResultService.getProfitRate(lottoResult, lottoNumber);
+        outputView.showProfitRate(profitRate);
     }
 }

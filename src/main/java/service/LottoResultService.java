@@ -1,5 +1,6 @@
 package service;
 
+import lotto.constant.LottoConstant;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import java.util.HashMap;
@@ -19,5 +20,22 @@ public class LottoResultService {
             result.merge(rank, 1, Integer::sum);
         }
         return result;
+    }
+
+    public double getProfitRate(Map<LottoRank, Integer> result, int publiedLottoNumber){
+        double profit = getProfit(result);
+        double money = publiedLottoNumber * LottoConstant.LOTTO_PRICE;
+        return (profit/money)*100;
+    }
+
+    public double getProfit(Map<LottoRank, Integer> result){
+        double profit = 0;
+
+        for (Map.Entry<LottoRank, Integer> resultEntry : result.entrySet()) {
+            LottoRank rank = resultEntry.getKey();
+            int count = resultEntry.getValue();
+            profit += rank.getReward() * count;
+        }
+        return profit;
     }
 }
