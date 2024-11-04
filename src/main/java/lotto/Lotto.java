@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,6 +16,11 @@ public class Lotto {
         this.numbers = numbers.stream()
                 .map(LottoNumber::new)
                 .toList();
+    }
+
+    public static Lotto createRandomized() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(LottoNumber.RANGE_MINIMUM, LottoNumber.RANGE_MAXIMUM,
+                NUMBERS_LENGTH));
     }
 
     private void validateLength(List<Integer> numbers) {
