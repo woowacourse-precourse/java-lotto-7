@@ -11,20 +11,20 @@ public enum Rank {
     SECOND(30_000_000, 5, true, "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
     FIRST(2_000_000_000, 6, false, "6개 일치 (2,000,000,000원) - %d개");
 
-    private final int prizeMoney;
+    private final long prizeMoney;
     private final int matchingCount;
     private final boolean bonus;
     private final String message;
 
 
-    Rank(int prizeMoney, int matchingCount, boolean bonus, String message) {
+    Rank(long prizeMoney, int matchingCount, boolean bonus, String message) {
         this.prizeMoney = prizeMoney;
         this.matchingCount = matchingCount;
         this.bonus = bonus;
         this.message = message;
     }
 
-    public int getProfit(int count) {
+    public long getProfit(int count) {
         return this.prizeMoney * count;
     }
 
