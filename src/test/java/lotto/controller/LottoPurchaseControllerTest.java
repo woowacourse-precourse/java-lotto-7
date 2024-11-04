@@ -10,7 +10,7 @@ class LottoPurchaseControllerTest {
 
     @DisplayName("입금한 금액에 걸맞는 로또를 구입한다.")
     @Test
-    void test() {
+    void purchaseLottos() {
         // given
         LottoPurchaseController controller = new LottoPurchaseController();
 
