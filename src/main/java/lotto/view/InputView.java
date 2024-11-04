@@ -60,7 +60,7 @@ public class InputView {
         return money;
     }
 
-    public List<Integer> validateAndParseLottoNumbers(String input) {
+    private List<Integer> validateAndParseLottoNumbers(String input) {
         try {
             return Arrays.stream(input.split(","))
                     .map(String::trim)
