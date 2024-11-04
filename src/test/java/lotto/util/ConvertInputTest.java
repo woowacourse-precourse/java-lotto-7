@@ -43,4 +43,10 @@ public class ConvertInputTest {
                 Arguments.of("1,2,3,4,5,6", List.of(1, 2, 3, 4, 5, 6))
         );
     }
+
+    @Test
+    void 보너스_번호에_문자가_포함되면_예외가_발생한다() {
+        assertThatThrownBy(() -> ConvertInput.makeBonusNumberToInt("로또당첨기원"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
