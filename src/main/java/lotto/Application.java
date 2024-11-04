@@ -26,10 +26,13 @@ public class Application {
 
     private static void savePurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        try{
-            purchase = new Purchase(Integer.parseInt(Console.readLine()));
-        } catch (RuntimeException e){
-            System.out.println(e.getMessage());
+        while(true) {
+            try {
+                purchase = new Purchase(Console.readLine());
+                return;
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
