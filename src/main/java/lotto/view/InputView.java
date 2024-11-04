@@ -25,7 +25,7 @@ public class InputView {
 			} catch (NumberFormatException e) {
 				System.out.println("[ERROR] 당첨 번호는 숫자여야 합니다.");
 			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+				OutputView.promptErrorMessage(e);
 			}
 		}
 	}

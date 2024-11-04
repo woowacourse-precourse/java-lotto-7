@@ -45,7 +45,7 @@ public class LottoController {
 
 				return lottoService.createPurchaseMoney(purchaseAmount);
 			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+				OutputView.promptErrorMessage(e);
 			}
 		}
 	}
@@ -79,7 +79,7 @@ public class LottoController {
 
 				return lottoService.createWinningNumber(winningNumbers);
 			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+				OutputView.promptErrorMessage(e);
 			}
 		}
 	}
@@ -92,17 +92,17 @@ public class LottoController {
 
 				return lottoService.createBonusNumber(winningNumber, bonusNumber);
 			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+				OutputView.promptErrorMessage(e);
 			}
 		}
 	}
 
 	private void displayWinningStatistics(Winning winning) {
-		OutputView.printWinningStatistics(winning.getRankCounts());
+		OutputView.promptWinningStatistics(winning.getRankCounts());
 	}
 
 	private void displayReturnRate(Winning winning, PurchaseMoney purchaseMoney) {
 		ReturnRate returnRate = lottoService.calculateReturnRate(winning, purchaseMoney);
-		OutputView.printReturnRate(returnRate.calculate());
+		OutputView.promptReturnRate(returnRate.calculate());
 	}
 }
