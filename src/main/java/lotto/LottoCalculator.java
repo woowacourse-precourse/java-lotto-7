@@ -10,12 +10,14 @@ public class LottoCalculator {
     private final int bonusNumber;
     private final List<Lotto> lottos;
     private final Map<String, Integer> resultCounts;
+    private final int purchaseAmount;
 
-    public LottoCalculator(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottos) {
+    public LottoCalculator(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottos, int purchaseAmount) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
         this.lottos = lottos;
         this.resultCounts = initializeResultCounts();
+        this.purchaseAmount = purchaseAmount;
     }
 
     private Map<String, Integer> initializeResultCounts() {
@@ -31,6 +33,7 @@ public class LottoCalculator {
     public void calculateResults() {
         lottos.forEach(this::processLottoMatch);
         printResults();
+        printProfitRate();
     }
 
     private void processLottoMatch(Lotto lotto) {
@@ -94,5 +97,23 @@ public class LottoCalculator {
         for (String key : keys) {
             System.out.println(key + " - " + resultCounts.get(key) + "개");
         }
+    }
+
+    private void printProfitRate() {
+        int totalPrize = calculateTotalPrize();
+        double profitRate = ((double) totalPrize / purchaseAmount) * 100; // 수정된 수익률 계산
+        profitRate = Math.round(profitRate * 10.0) / 10.0; // 소수점 첫째 자리에서 반올림
+
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+    }
+
+    private int calculateTotalPrize() {
+        int totalPrize = 0;
+        totalPrize += resultCounts.get("3개 일치 (5,000원)") * 5000;
+        totalPrize += resultCounts.get("4개 일치 (50,000원)") * 50000;
+        totalPrize += resultCounts.get("5개 일치 (1,500,000원)") * 1500000;
+        totalPrize += resultCounts.get("5개 일치, 보너스 볼 일치 (30,000,000원)") * 30000000;
+        totalPrize += resultCounts.get("6개 일치 (2,000,000,000원)") * 2000000000;
+        return totalPrize;
     }
 }

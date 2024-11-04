@@ -8,6 +8,7 @@ import java.util.List;
 
 public class LottoGenerator {
     private final List<Lotto> Lottos;
+    private final int purchaseAmount;
 
     public LottoGenerator() {
         int amount = inputAmount();
@@ -22,6 +23,7 @@ public class LottoGenerator {
             tmpLottoList.add(new Lotto(tmpList));
         }
         this.Lottos = tmpLottoList;
+        this.purchaseAmount = amount;
     }
 
     private int inputAmount() {
@@ -58,6 +60,10 @@ public class LottoGenerator {
 
     public List<Lotto> getLottos() {
         return Lottos;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 
     public String toString() {
