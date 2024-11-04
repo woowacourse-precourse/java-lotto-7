@@ -2,17 +2,18 @@ package lotto.winningResult;
 
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.buying.BuyingAmount;
 
 public class RevenueRate {
-    private final int buyingAmount;
+    private final BuyingAmount buyingAmount;
     private final Map<WinningResultInfo, Long> winningResultStatistics;
 
-    private RevenueRate(int buyingAmount, Map<WinningResultInfo, Long> winningResultStatistics) {
+    private RevenueRate(BuyingAmount buyingAmount, Map<WinningResultInfo, Long> winningResultStatistics) {
         this.buyingAmount = buyingAmount;
         this.winningResultStatistics = winningResultStatistics;
     }
 
-    public static RevenueRate of(int buyingAmount, Map<WinningResultInfo, Long> winningResultStatistics) {
+    public static RevenueRate of(BuyingAmount buyingAmount, Map<WinningResultInfo, Long> winningResultStatistics) {
         return new RevenueRate(buyingAmount, winningResultStatistics);
     }
 
@@ -26,6 +27,6 @@ public class RevenueRate {
             revenue += winningAmount * matchingCount;
         }
 
-        return (double) revenue / buyingAmount;
+        return (double) revenue / buyingAmount.getBuyingAmount();
     }
 }
