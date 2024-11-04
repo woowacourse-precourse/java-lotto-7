@@ -74,9 +74,8 @@ public class LottoService {
         Map<Integer,Lotto> lottoNumList = new HashMap<>();
         int cnt=1;
         while(true){
-            List<Integer> lottoNum = new ArrayList<>();
-            lottoNum = Randoms.pickUniqueNumbersInRange(1,45,6);
-            //lottoNum.sort(Comparator.naturalOrder());
+            List<Integer> lottoNum = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
+            lottoNum.sort(Comparator.naturalOrder());
             Lotto lotto = new Lotto(lottoNum);
             if(isDuplicated(lottoNumList,lotto)) continue;
             lottoNumList.put(cnt++,lotto);
