@@ -15,7 +15,7 @@ public class Application {
             LottoController lottoController = new LottoController(inputView, outputView, lottoService);
             lottoController.run();
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            System.out.println(exception.getMessage());//output 이 할일을 왜 너가 하고있니... 로깅이라고 치자...
         }
     }
 }

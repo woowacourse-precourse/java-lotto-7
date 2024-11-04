@@ -2,64 +2,41 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.utils.ConstantMessage.ErrorMessage;
-import lotto.utils.ConstantValue;
+import lotto.utils.Validator;
 
 public class InputView {
+    Validator validator;
+
+    public InputView() {
+        validator = new Validator();
+    }
+
     public int inputPrice() {
-        try {
-            int price = Integer.parseInt(Console.readLine());
-            if (price <= 0 || price % 1000 != 0) {
-                throw new IllegalArgumentException();
-            }
-            return price;
-        } catch (Exception exception) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
-        }
+        int price = Integer.parseInt(Console.readLine());
+        validator.validatePrice(price);
+        return price;
     }
 
     public List<Integer> inputWinningNumbers() {
         try {
             List<Integer> winning = inputLottoNumbers();
-            Set<Integer> uniqueNumbers = new HashSet<>(winning);
-            if (winning.size() != ConstantValue.LOTTO_NUMBER_COUNT
-                    || uniqueNumbers.size() != ConstantValue.LOTTO_NUMBER_COUNT) {
-                throw new IllegalArgumentException();
-            }
-            winning.forEach(value -> {
-                if (value < ConstantValue.LOTTO_MIN_VALUE || value > ConstantValue.LOTTO_MAX_VALUE) {
-                    throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
-                }
-            });
+            validator.validateLottoNumber(winning);
             return winning;
         } catch (Exception exception) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
         }
     }
 
-    public int inputBonusNumber(List<Integer> winningNumbers) {
-        try {
-            return inputLottoNumber(winningNumbers);
-        } catch (Exception exception) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
-        }
-    }
-
-    private int inputLottoNumber(List<Integer> winningNumbers) {
+    public int inputLottoNumber(List<Integer> winningNumbers) {
         String sentence = Console.readLine();
         int value = Integer.parseInt(sentence);
-        if (winningNumbers.contains(value)
-                || value < ConstantValue.LOTTO_MIN_VALUE
-                || value > ConstantValue.LOTTO_MAX_VALUE
-        ) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
-        }
+        validator.validateLottoNumber(value);
         return value;
     }
+
 
     private List<Integer> inputLottoNumbers() {
         String sentence = Console.readLine();
