@@ -24,6 +24,10 @@ public class LottoGameController {
         inputView.displayWinningNumbersPrompt();
         List<Integer> parsedWinningNumbers = parseWinningNumbers(inputView.readWinningNumbers());
         WinningNumbers winningNumbers = WinningNumbers.from(parsedWinningNumbers);
+
+        inputView.displayBonusNumberPrompt();
+        int parsedBonusNumber = parseNumber(inputView.readBonusNumber());
+        BonusNumber bonusNumber = new BonusNumber(parsedBonusNumber);
     }
 
     private List<Integer> parseWinningNumbers(String userInput) {
