@@ -8,6 +8,7 @@ public class OutputView {
     private final String PURCHASE_OUTPUT = "구입금액을 입력해 주세요.";
     private final String QUANTITY_OUTPUT="개를 구매했습니다.";
     private final String WINNINGNUMBER_OUTPUT="당첨 번호를 입력해 주세요.";
+    private final String BONUSNUMBER_OUTPUT="보너스 번호를 입력해 주세요.";
 
     public void purchasePrint(){
         System.out.println(PURCHASE_OUTPUT);
@@ -26,5 +27,9 @@ public class OutputView {
 
     public void winningNumberPrint(){
         System.out.println("\n"+WINNINGNUMBER_OUTPUT);
+    }
+
+    public void bonusNumberPrint(){
+        System.out.println("\n"+BONUSNUMBER_OUTPUT);
     }
 }
