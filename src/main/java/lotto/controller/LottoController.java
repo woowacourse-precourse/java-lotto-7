@@ -32,7 +32,7 @@ public class LottoController {
         Bonus bonus = InputView.inputBonusNumber(winningLotto);
 
         rankingService.evaluateAllLottoResults(lottos, winningLotto, bonus.getNumber());
-        
+
         OutputView.printWinningStatisticsMessage(Ranking.calculateYield(amount.getAmount()));
     }
 }

@@ -23,14 +23,14 @@ public class InputView {
         return amount;
     }
 
-    public static Lotto inputWinningLotto(){
+    public static Lotto inputWinningLotto() {
         Lotto winningLotto = null;
-        while(winningLotto == null){
+        while (winningLotto == null) {
             System.out.print(RunMessage.INPUT_WINNING_MESSAGE.getMessage());
             try {
                 String input = Console.readLine();
-                winningLotto =new Lotto(Lotto.parseWinningNumbers(input));
-            }catch (IllegalArgumentException e){
+                winningLotto = new Lotto(Lotto.parseWinningNumbers(input));
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -38,15 +38,15 @@ public class InputView {
         return winningLotto;
     }
 
-    public static Bonus inputBonusNumber(Lotto winningLotto){
+    public static Bonus inputBonusNumber(Lotto winningLotto) {
         Bonus number = null;
 
-        while (number == null){
+        while (number == null) {
             System.out.print(RunMessage.INPUT_BONUS_MESSAGE.getMessage());
             try {
                 String input = Console.readLine();
                 number = new Bonus(winningLotto.getNumbers(), Bonus.parseBonusNumber(input));
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
