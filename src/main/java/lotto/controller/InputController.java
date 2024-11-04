@@ -28,8 +28,14 @@ public class InputController {
 
     public WinningLotto getWinningLotto() {
         Lotto lotto = retryOnException(this::readWinningNumber);
-        BonusNumber bonusNumber = retryOnException(this::readBonusNumber);
-        return retryOnException(() -> WinningLotto.createWinningLotto(lotto, bonusNumber));
+        while (true) {
+            try {
+                BonusNumber bonusNumber = retryOnException(this::readBonusNumber);
+                return WinningLotto.createWinningLotto(lotto, bonusNumber);
+            } catch (IllegalArgumentException exception) {
+                inputView.printException(exception);
+            }
+        }
     }
 
     private Payment readPayment() {
