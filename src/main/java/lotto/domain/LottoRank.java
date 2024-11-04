@@ -31,6 +31,10 @@ public enum LottoRank {
         return prize;
     }
 
+    public void setCount(int count) {
+        this.count = count;
+    }
+
 
     public static LottoRank valueOfMatch(int matchCount, boolean matchBonus) {
         if (matchCount == 6) return SIX;
