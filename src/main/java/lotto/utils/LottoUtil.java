@@ -26,4 +26,5 @@ public class LottoUtil {
         }
         return intList;
     }
+
 }
