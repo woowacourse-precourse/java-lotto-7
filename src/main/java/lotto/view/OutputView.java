@@ -19,7 +19,7 @@ public class OutputView {
             + "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"
             + "6개 일치 (2,000,000,000원) - %d개";
 
-    private static final String PROFIT_RATIO_VIEW = "총 수익률은 %, .1f%%입니다.";
+    private static final String PROFIT_RATIO_VIEW = "총 수익률은 %,.1f%%입니다.";
 
     public static void showLottoNumbers(List<Lotto> myLottos) {
         System.out.printf(BUYING_LOTTO_VIEW, myLottos.size());
