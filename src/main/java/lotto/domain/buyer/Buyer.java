@@ -12,14 +12,6 @@ public class Buyer {
         this.buyLottos = buyLottos;
     }
 
-    public int getLottosCount() {
-        return LottosCount.getLottosCount();
-    }
-
-    public Lottos getbuyLottos() {
-        return buyLottos;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -36,5 +28,13 @@ public class Buyer {
     @Override
     public int hashCode() {
         return Objects.hash(LottosCount, buyLottos);
+    }
+
+    public int getLottosCount() {
+        return LottosCount.getLottosCount();
+    }
+
+    public Lottos getbuyLottos() {
+        return buyLottos;
     }
 }

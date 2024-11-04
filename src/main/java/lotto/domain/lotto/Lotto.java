@@ -47,10 +47,6 @@ public class Lotto {
         return Numbers.of(sortedNumbers);
     }
 
-    public Numbers getLottoNumbers() {
-        return lottoNumbers;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -76,5 +72,9 @@ public class Lotto {
                 toString();
 
         return lottoNumbers + "\n";
+    }
+
+    public Numbers getLottoNumbers() {
+        return lottoNumbers;
     }
 }

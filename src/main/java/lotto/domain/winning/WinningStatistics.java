@@ -46,24 +46,6 @@ public class WinningStatistics {
         return (double) lottoStatistics.getTotalPrize() / totalSpent * 100;
     }
 
-    public Map<Rank, Integer> getStatistics() {
-        return lottoStatistics.getStatistics();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        List<Entry<Rank, Integer>> sortedStatistics = getSortedStatistics();
-
-        for (Entry<Rank, Integer> entry : sortedStatistics) {
-            sb.append(formatStatisticsEntry(entry));
-        }
-
-        sb.append(formatReturnRate());
-        return sb.toString();
-    }
-    
     private List<Entry<Rank, Integer>> getSortedStatistics() {
         return getStatistics().entrySet().stream()
                 .sorted(Comparator.comparingInt((Entry<Rank, Integer> e) -> e.getKey().getMatchCount())
@@ -113,4 +95,23 @@ public class WinningStatistics {
     private String formatReturnRate() {
         return "총 수익률은 " + String.format("%.1f", getReturnRate()) + "%입니다.";
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        List<Entry<Rank, Integer>> sortedStatistics = getSortedStatistics();
+
+        for (Entry<Rank, Integer> entry : sortedStatistics) {
+            sb.append(formatStatisticsEntry(entry));
+        }
+
+        sb.append(formatReturnRate());
+        return sb.toString();
+    }
+
+    public Map<Rank, Integer> getStatistics() {
+        return lottoStatistics.getStatistics();
+    }
+
 }

@@ -12,5 +12,4 @@ public class Constants {
     public static final int MATCH_SIX = 6;
     public static final boolean MATCH_BONUS = true;
     public static final boolean FAIL_MATCH_BONUS = false;
-
 }

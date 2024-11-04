@@ -12,14 +12,6 @@ public class Lottos {
         this.lottos = new ArrayList<>(lottos);
     }
 
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
-    }
-
-    public int getLottosSize() {
-        return lottos.size();
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -46,5 +38,13 @@ public class Lottos {
         }
 
         return buyLottos.toString();
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
+    }
+
+    public int getLottosSize() {
+        return lottos.size();
     }
 }

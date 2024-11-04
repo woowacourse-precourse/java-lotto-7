@@ -31,10 +31,6 @@ public class Number {
         }
     }
 
-    public int getNumber() {
-        return number;
-    }
-
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
@@ -50,5 +46,9 @@ public class Number {
     @Override
     public int hashCode() {
         return Objects.hashCode(number);
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

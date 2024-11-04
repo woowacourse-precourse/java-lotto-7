@@ -31,10 +31,6 @@ public class Numbers {
         return of(randomNumbers);
     }
 
-    public List<Number> getNumbers() {
-        return Collections.unmodifiableList(numbers);
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -50,5 +46,9 @@ public class Numbers {
     @Override
     public int hashCode() {
         return Objects.hashCode(numbers);
+    }
+
+    public List<Number> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

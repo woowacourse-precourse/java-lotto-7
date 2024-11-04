@@ -35,6 +35,13 @@ public enum Rank {
                 .orElse(NOTHING);
     }
 
+    private boolean isMatchingRank(final int matchCount, final boolean matchBonus) {
+        if (!this.matchBonus) {
+            return this.matchCount == matchCount;
+        }
+        return this.matchCount == matchCount && this.matchBonus == matchBonus;
+    }
+
     public int getMatchCount() {
         return matchCount;
     }
@@ -45,12 +52,5 @@ public enum Rank {
 
     public int getPrize() {
         return prize;
-    }
-
-    private boolean isMatchingRank(final int matchCount, final boolean matchBonus) {
-        if (!this.matchBonus) {
-            return this.matchCount == matchCount;
-        }
-        return this.matchCount == matchCount && this.matchBonus == matchBonus;
     }
 }
