@@ -1,10 +1,10 @@
-package lotto.model.purchase;
+package lotto.purchase.model;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.model.draw.BonusNumber;
-import lotto.model.draw.DrawNumbers;
+import lotto.draw.model.BonusNumber;
+import lotto.draw.model.DrawNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;

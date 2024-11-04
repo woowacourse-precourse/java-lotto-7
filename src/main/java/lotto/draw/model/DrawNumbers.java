@@ -1,4 +1,4 @@
-package lotto.model.draw;
+package lotto.draw.model;
 
 import static lotto.constant.ErrorMessage.INVALID_DRAW_NUMBER_COUNT;
 import static lotto.constant.ErrorMessage.INVALID_DRAW_NUMBER_DUPLICATE;

@@ -1,4 +1,4 @@
-package lotto.model.purchase;
+package lotto.purchase.model;
 
 import static lotto.constant.ErrorMessage.INVALID_PAYMENT_POSITIVE_INTEGER;
 import static lotto.constant.ErrorMessage.INVALID_PAYMENT_UNIT;

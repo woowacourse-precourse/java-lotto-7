@@ -1,4 +1,4 @@
-package lotto.model.purchase;
+package lotto.purchase.model;
 
 import static lotto.constant.LottoConstant.PRICE;
 

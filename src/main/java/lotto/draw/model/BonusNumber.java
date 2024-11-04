@@ -1,4 +1,4 @@
-package lotto.model.draw;
+package lotto.draw.model;
 
 import static lotto.constant.ErrorMessage.INVALID_BONUS_NUMBER_DUPLICATE;
 import static lotto.constant.ErrorMessage.INVALID_BONUS_NUMBER_FORMAT;

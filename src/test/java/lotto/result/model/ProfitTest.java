@@ -1,4 +1,4 @@
-package lotto.model.result;
+package lotto.result.model;
 
 import static lotto.constant.LottoWinInfo.FIFTH;
 import static lotto.constant.LottoWinInfo.FIRST;

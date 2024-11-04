@@ -1,10 +1,10 @@
-package lotto.view;
+package lotto.result;
 
 import java.util.EnumMap;
 import java.util.Map.Entry;
 import lotto.constant.LottoWinInfo;
 
-public class LottoResultView {
+public class ResultView {
     public void displayLottoWins(final EnumMap<LottoWinInfo, Integer> lottoWinCount) {
         System.out.println("\n당첨 통계");
         System.out.println("---");

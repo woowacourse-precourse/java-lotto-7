@@ -1,13 +1,13 @@
 package lotto.controller;
 
-import lotto.model.draw.BonusNumber;
-import lotto.model.draw.DrawNumbers;
-import lotto.model.purchase.Purchase;
-import lotto.model.result.LottoWinCount;
-import lotto.model.result.Profit;
-import lotto.view.LottoDrawView;
-import lotto.view.LottoResultView;
-import lotto.view.PurchaseView;
+import lotto.draw.DrawView;
+import lotto.draw.model.BonusNumber;
+import lotto.draw.model.DrawNumbers;
+import lotto.purchase.PurchaseView;
+import lotto.purchase.model.Purchase;
+import lotto.result.ResultView;
+import lotto.result.model.LottoWinCount;
+import lotto.result.model.Profit;
 
 public class LottoController {
     private Purchase purchase;
@@ -29,10 +29,10 @@ public class LottoController {
     }
 
     public void drawLotto() {
-        LottoDrawView lottoDrawView = new LottoDrawView();
+        DrawView drawView = new DrawView();
         while (true) {
             try {
-                String drawNumbersInput = lottoDrawView.readDrawNumber();
+                String drawNumbersInput = drawView.readDrawNumber();
                 drawNumbers = new DrawNumbers(drawNumbersInput);
                 break;
             } catch (IllegalArgumentException exception) {
@@ -41,7 +41,7 @@ public class LottoController {
         }
         while (true) {
             try {
-                String bonusNumberInput = lottoDrawView.readBonusNumber();
+                String bonusNumberInput = drawView.readBonusNumber();
                 bonusNumber = new BonusNumber(bonusNumberInput, drawNumbers);
                 break;
             } catch (IllegalArgumentException exception) {
@@ -51,10 +51,10 @@ public class LottoController {
     }
 
     public void lottoResult() {
-        LottoResultView lottoResultView = new LottoResultView();
+        ResultView resultView = new ResultView();
         LottoWinCount lottoWinCount = new LottoWinCount(drawNumbers, bonusNumber, purchase.getPurchasedLottoTickets());
         Profit profit = new Profit(lottoWinCount.getLottoWinCount(), purchase.getPayment());
-        lottoResultView.displayLottoWins(lottoWinCount.getLottoWinCount());
-        lottoResultView.displayProfit(profit.getProfit());
+        resultView.displayLottoWins(lottoWinCount.getLottoWinCount());
+        resultView.displayProfit(profit.getProfit());
     }
 }

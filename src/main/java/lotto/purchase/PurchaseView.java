@@ -1,8 +1,8 @@
-package lotto.view;
+package lotto.purchase;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.model.purchase.Lotto;
+import lotto.purchase.model.Lotto;
 
 public class PurchaseView {
     public String readPayment() {

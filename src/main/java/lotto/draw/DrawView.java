@@ -1,8 +1,8 @@
-package lotto.view;
+package lotto.draw;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class LottoDrawView {
+public class DrawView {
     public String readDrawNumber() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         return Console.readLine();
