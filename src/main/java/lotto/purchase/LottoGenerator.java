@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoGenerator {
+class LottoGenerator {
 
     private final List<MyLotto> lotteries;
 
-    public LottoGenerator() {
+    LottoGenerator() {
         this.lotteries = new ArrayList<>();
     }
 

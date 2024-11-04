@@ -2,7 +2,7 @@ package lotto.statistics;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class DrawInput {
+class DrawInput {
 
     public String getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MatchCounter {
+class MatchCounter {
 
     private static final int COUNTER_CHANGE_POINT = 5;
     private static final int COUNTER_UP = 1;

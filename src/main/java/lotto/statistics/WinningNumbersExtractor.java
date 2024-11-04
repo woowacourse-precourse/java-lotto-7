@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.util.Extractor;
 
-public class WinningNumbersExtractor implements Extractor<List<Integer>> {
+class WinningNumbersExtractor implements Extractor<List<Integer>> {
 
     private static final String NAME_DELIMITER = ",";
     private static final String NUMBER_REGULAR_EXPRESSION = "\\d+";

@@ -1,6 +1,6 @@
 package lotto.statistics;
 
-public enum WinningRule {
+enum WinningRule {
     THREE(5000, "3개 일치 (5,000원)"),
     FOUR(50000, "4개 일치 (50,000원)"),
     FIVE(1500000, "5개 일치 (1,500,000원)"),

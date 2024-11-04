@@ -2,7 +2,7 @@ package lotto.purchase;
 
 import lotto.util.Extractor;
 
-public class PaymentExtractor implements Extractor<Integer> {
+class PaymentExtractor implements Extractor<Integer> {
 
     private static final String NUMBER_REGULAR_EXPRESSION = "\\d+";
     private static final String PAYMENT_RULE_REGULAR_EXPRESSION = "^(\\d+)(000)$";

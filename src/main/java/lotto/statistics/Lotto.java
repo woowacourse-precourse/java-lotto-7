@@ -3,7 +3,7 @@ package lotto.statistics;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lotto {
+class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

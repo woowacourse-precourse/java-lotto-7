@@ -2,7 +2,7 @@ package lotto.statistics;
 
 import java.util.List;
 
-public class BonusBall {
+class BonusBall {
 
     private final int number;
 
