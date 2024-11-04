@@ -39,7 +39,7 @@ public class Results {
         for (int i = prizes.length - 2; i >= 0; i--) {
             System.out.println(prizes[i].toString(statistics.get(prizes[i])));
         }
-        System.out.println(String.format("총 수익률은 %.2f%% 입니다", rateOfReturn));
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", rateOfReturn));
     }
 
     private void getResults() {
