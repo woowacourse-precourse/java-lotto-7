@@ -17,15 +17,27 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
-    public Lotto getElement(int index) {
-        if(index < 0 || index >= lottos.size()) {
-            throw new IndexOutOfBoundsException(CommonErrorMessage.INVALID_INDEX.getMessage());
-        }
-        return lottos.get(index);
-    }
-
     public long getSize() {
         return lottos.size();
+    }
+
+    // 총 수익 및 LottoPrize 리스트 반환
+    public LottoResult getLottoResult(WinningNumbers winningNumbers, BonusNumber bonusNumber, InputMoney inputMoney) {
+        long totalEarning = 0;
+        List<LottoPrize> lottoPrizes = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            int matchCount = winningNumbers.countMatchingNumbers(lotto);
+            boolean containBonus = lotto.containBonusNumber(bonusNumber);
+            LottoPrize lottoPrize = LottoPrize.valueOf(matchCount, containBonus);
+
+            if (lottoPrize != LottoPrize.NONE) {
+                lottoPrizes.add(lottoPrize);
+                totalEarning += lottoPrize.getPrize();
+            }
+        }
+
+        return LottoResult.of(lottoPrizes, totalEarning,inputMoney);
     }
 
     public String result() {
