@@ -16,6 +16,9 @@ public enum Rank {
         this.matchLotto = matchLotto;
         this.matchBonus = matchBonus;
     }
+    public int getMatchLotto(){
+        return matchLotto;
+    }
 
     public int getPrize(){
         return prize;
