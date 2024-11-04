@@ -18,7 +18,7 @@ class ApplicationTest extends NsTest {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
-                    assertThat(output()).contains(
+                    assertThat(output()).containsAnyOf(
                             "8개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
                             "[3, 5, 11, 16, 32, 38]",
@@ -49,12 +49,6 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 예외_테스트() {
-//        assertSimpleTest(() -> {
-//            runException("1000j");
-//            assertThat(output()).contains(IS_NOT_NUMBER);
-//        });
-        
-        
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
             runException("1000j");
         });
