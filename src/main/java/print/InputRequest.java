@@ -6,14 +6,14 @@ import valid.ValidationUserInput;
 public class InputRequest {
     ValidationUserInput validationUserInput = new ValidationUserInput();
 
-    public String moneyRequest() {
-        boolean isMoneyValid = false;
-        String money = "";
+    public Integer moneyRequest() {
+        Integer money = -1;
+        String userInputMoney = "";
         do {
             System.out.println("구입금액을 입력해 주세요.");
-            money = Console.readLine();
-            isMoneyValid = validationUserInput.validateMoney(money);
-        } while (!isMoneyValid);
+            userInputMoney = Console.readLine();
+            money = validationUserInput.validateMoney(userInputMoney);
+        } while (money == -1);
 
         return money;
     }
@@ -31,13 +31,13 @@ public class InputRequest {
     }
 
     public String bonusNumberRequest() {
-        boolean isBonusNumberValid = false;
+        Integer validBonusNumber = -1;
         String bonusNumber = "";
         do {
             System.out.println("보너스 번호를 입력해 주세요.");
             bonusNumber = Console.readLine();
-            isBonusNumberValid = validationUserInput.validateBonusNumber(bonusNumber);
-        } while (!isBonusNumberValid);
+            validBonusNumber = validationUserInput.validateBonusNumber(bonusNumber);
+        } while (validBonusNumber == -1);
 
         return bonusNumber;
     }

@@ -1,5 +1,6 @@
 package valid;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,10 +17,10 @@ class ValidationForOneTest {
 
         //when
         ValidationForOne validationForOne = new ValidationForOne();
-        boolean result = validationForOne.consistOfOnlyPositiveNumbers(testInput);
+        Integer money = validationForOne.consistOfOnlyPositiveNumbers(testInput);
 
         //then
-        assertTrue(result);
+        assertEquals(1000, money);
     }
 
     @Test
@@ -54,7 +55,7 @@ class ValidationForOneTest {
     @DisplayName("1000원 단위로 정상 입력 케이스")
     void devisibleByThousandsSuccessCase() {
         //given
-        String testInput = "100000";
+        Integer testInput = 100000;
 
         //when
         ValidationForOne validationForOne = new ValidationForOne();
@@ -68,7 +69,7 @@ class ValidationForOneTest {
     @DisplayName("1000원 단위로 입력하지 않은 경우 예외 발생")
     void FailedCauseOfNotDevisibleByThousands() {
         //given
-        String testInput = "123456";
+        Integer testInput = 123456;
 
         //when, then
         ValidationForOne validationForOne = new ValidationForOne();

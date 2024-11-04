@@ -1,7 +1,7 @@
 package valid;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,10 +16,10 @@ class ValidationUserInputTest {
 
         //when
         ValidationUserInput validationUserInput = new ValidationUserInput();
-        boolean result = validationUserInput.validateMoney(testInput);
+        Integer money = validationUserInput.validateMoney(testInput);
 
         //then
-        assertTrue(result);
+        assertEquals(1000, money);
     }
 
     @Test

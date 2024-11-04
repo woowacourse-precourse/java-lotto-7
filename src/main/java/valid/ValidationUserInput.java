@@ -5,14 +5,15 @@ public class ValidationUserInput {
     ValidationForMany validationForMany = new ValidationForMany();
     ValidationForOne validationForOne = new ValidationForOne();
 
-    public boolean validateMoney(String money) {
+    public Integer validateMoney(String userInputMoney) {
+        Integer validMoney = 0;
         try {
-            validationForOne.consistOfOnlyPositiveNumbers(money);
-            validationForOne.devisibleByThousands(money);
+            validMoney = validationForOne.consistOfOnlyPositiveNumbers(userInputMoney);
+            validationForOne.devisibleByThousands(validMoney);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ERROR_MESSAGE + e.getMessage());
         }
-        return true;
+        return validMoney;
     }
 
     public boolean validateWinningNumbers(String winningNumbers) {
@@ -24,12 +25,13 @@ public class ValidationUserInput {
         return true;
     }
 
-    public boolean validateBonusNumber(String bonusNumber) {
+    public Integer validateBonusNumber(String bonusNumber) {
+        Integer validBonusNumber = 0;
         try {
             validationForOne.consistOfOnlyPositiveNumbers(bonusNumber);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ERROR_MESSAGE + e.getMessage());
         }
-        return true;
+        return validBonusNumber;
     }
 }
