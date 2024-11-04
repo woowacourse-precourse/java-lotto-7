@@ -36,10 +36,10 @@ public class output {
 
     public static void printWinCounts(List<Integer> winCounts){
         printSummaryMessage();
-        int i = 0;
+        int i = 4;
         for (OutputMessages outputMessage : OutputMessages.values()) {
-            System.out.println(outputMessage.getMessage() + winCounts.get(4 - i) + "개");
-            i++;
+            System.out.println(outputMessage.getMessage() + winCounts.get(i) + "개");
+            i--;
         }
     }
 

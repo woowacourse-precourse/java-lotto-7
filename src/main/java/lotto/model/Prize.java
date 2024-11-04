@@ -1,7 +1,7 @@
 package lotto.model;
 
 public enum Prize {
-    FIRST(6, 1, 2000000000),
+    FIRST(6, 0, 2000000000),
     SECOND(5, 1, 30000000),
     THIRD(5, 0, 1500000),
     FOURTH(4, 0, 50000),
@@ -30,6 +30,9 @@ public enum Prize {
     public static int calculatePrize(int count, int bonusCount) {
         for (Prize prize : values()) {
             if (prize.matchCount == count && prize.bonusCount == bonusCount) {
+                return prize.getAmount();
+            }
+            if (prize.matchCount == count) {
                 return prize.getAmount();
             }
         }
