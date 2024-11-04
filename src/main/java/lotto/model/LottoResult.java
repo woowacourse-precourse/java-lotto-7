@@ -1,7 +1,7 @@
 package lotto.model;
 
 public class LottoResult {
-    private int[] rankCounts; // 각 등수의 당첨 횟수 (index 0: 1등, index 1: 2등, ..., index 5: 꽝)
+    private final int[] rankCounts; // 각 등수의 당첨 횟수 (index 0: 1등, index 1: 2등, ..., index 5: 꽝)
 
     public LottoResult() {
         rankCounts = new int[PrizeAmount.values().length]; // Enum의 길이로 초기화
