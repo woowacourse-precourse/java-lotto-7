@@ -23,7 +23,7 @@ public class ValidatorTest {
 
     @Test
     void 구입금액이_숫자가_아닐_경우_예외_발생() {
-        assertThatThrownBy(() -> PurchaseAmountValidator.validate("abc"))
+        assertThatThrownBy(() -> PurchaseAmountValidator.validate("1000j"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구입금액은 숫자로 입력해 주세요");
     }

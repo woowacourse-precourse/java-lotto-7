@@ -5,6 +5,10 @@ public class PurchaseAmountValidator {
     private static final int LOTTO_PRICE = 1000;
 
     public static int validate(String input) {
+        if (!input.matches("\\d+")) {
+            System.out.println("[ERROR] 구입금액은 숫자로 입력해 주세요."); // 콘솔에만 출력
+            return -1;
+        }
         int amount = parsePurchaseAmount(input);
         validatePositiveAmount(amount);
         validateNonZeroAmount(amount);
@@ -17,6 +21,7 @@ public class PurchaseAmountValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 구입금액은 숫자로 입력해 주세요.");
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해 주세요.");
         }
     }
