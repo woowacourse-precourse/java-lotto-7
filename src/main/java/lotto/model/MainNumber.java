@@ -9,10 +9,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static lotto.common.ErrorMessage.*;
+import static lotto.common.Constants.*;
 
 public class MainNumber {
-    private static final int RANGE_START = 1;
-    private static final int RANGE_END = 45;
 
     private final List<Integer> numbers;
 

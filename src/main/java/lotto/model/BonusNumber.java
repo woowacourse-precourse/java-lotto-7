@@ -6,10 +6,9 @@ import lotto.util.Validator;
 import java.util.List;
 
 import static lotto.common.ErrorMessage.*;
+import static lotto.common.Constants.*;
 
 public class BonusNumber {
-    private static final int RANGE_START = 1;
-    private static final int RANGE_END = 45;
     private final int number;
 
     public BonusNumber(final String inputValue, final MainNumber mainNumber) {

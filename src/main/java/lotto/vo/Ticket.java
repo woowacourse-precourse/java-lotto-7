@@ -4,10 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import static lotto.common.Constants.*;
 
 public class Ticket {
-    private static final int RANGE_START = 1;
-    private static final int RANGE_END = 45;
     private static final int WINNING_NUMBER_COUNT = 6;
 
     private final List<Integer> ticket;

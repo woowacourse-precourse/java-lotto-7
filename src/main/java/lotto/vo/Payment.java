@@ -4,10 +4,10 @@ import lotto.util.Parser;
 import lotto.util.Validator;
 
 import static lotto.common.ErrorMessage.*;
+import static lotto.common.Constants.UNIT;
 
 public class Payment {
     private static final int ZERO = 0;
-    private static final int THOUSAND = 1000;
     private final int money;
 
     public Payment(final String inputValue) {
@@ -36,7 +36,7 @@ public class Payment {
     }
 
     private void checkMultiplesOfThousand(int money) {
-        if (money % THOUSAND != ZERO) {
+        if (money % UNIT != ZERO) {
             throw new IllegalArgumentException(MULTIPLES_OF_THOUSAND.getMessage());
         }
     }

@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class TicketManager {
-    private static final int UNIT = 1000;
+import static lotto.common.Constants.UNIT;
 
+public class TicketManager {
     private final Payment payment;
     private final int ticketAmount;
     private final List<Ticket> tickets;

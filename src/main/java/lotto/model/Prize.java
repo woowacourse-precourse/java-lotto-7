@@ -5,6 +5,8 @@ import lotto.vo.Payment;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static lotto.common.Constants.START_INDEX;
+
 public class Prize {
     private static final int FIRST_PRIZE = 2000000000;
     private static final int SECOND_PRIZE = 30000000;
@@ -13,7 +15,6 @@ public class Prize {
     private static final int FIFTH_PRIZE = 5000;
     private static final List<Integer> prizes = List.of(FIRST_PRIZE,
             SECOND_PRIZE, THIRD_PRIZE, FOURTH_PRIZE, FIFTH_PRIZE);
-    private static final int START_INDEX = 0;
     private final List<Integer> rankCount;
     private final int profit;
     private final double profitRate;
