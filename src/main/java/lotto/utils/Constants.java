@@ -7,5 +7,6 @@ public final class Constants {
     public static final int LOTTO_MAX_NUMBER = 45;
 
     private Constants() {
+        throw new UnsupportedOperationException("Utility class");
     }
 }
