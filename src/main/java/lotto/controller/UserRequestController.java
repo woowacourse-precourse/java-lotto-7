@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
 import lotto.model.RandomLotto;
 import lotto.model.WinLotto;
@@ -20,35 +21,46 @@ public class UserRequestController {
     List<Integer> winCounts;
     WinLotto[] winLotto;
 
-    public void inputMoney(String money){
-        if(inputValidService.isMoney(money)){
+    public void inputMoney(){
+        startMessage();
+        String money = Console.readLine();
+        try{
+            if(Integer.parseInt(money)%1000 != 0){
+                throw new IllegalArgumentException();
+            }
             lottoCnt = lottoService.countLotto(money);
             pickLotto();
             showRandomLotto();
-            return;
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 문제 발생");
+            inputMoney();
         }
-        error("로또 구입 금액이 잘 못 입력되었습니다.");
     }
 
-    public void inputWinNumbers(String numbers){
-        if(inputValidService.isWinNumbers(numbers)){
+    public void inputWinNumbers(){
+        winLottoMessage();
+        String numbers = Console.readLine();
+        try{
             lotto = new Lotto(lottoService.getWinLottoList(numbers));
-            return;
-        }else{
-            error("로또 번호 입력이 잘 못 되었습니다.");
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 로또 번호 입력이 잘 못 되었습니다.");
+            inputWinNumbers();
         }
-
     }
 
-    public void inputBonusNum(String bonusNum){
-        if(inputValidService.isBonusNumber(bonusNum)){
+    public void inputBonusNum(){
+        bonusLottoMessage();
+        String bonusNum = Console.readLine();
+        try{
             bonusNumber = Integer.parseInt(bonusNum);
             winCountLotto();
             statistics();
             totalRevenue();
-        }else{
-            error("로또 보너스 번호의 입력이 잘 못 되었습니다.");
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 로또 보너스 번호의 입력이 잘 못 되었습니다.");
+            inputBonusNum();
         }
+
     }
 
     public void totalRevenue(){
@@ -73,9 +85,6 @@ public class UserRequestController {
                 bonusNumber);
     }
 
-    public void error(String detail){
-        errorMessage(detail);
-    }
 
     public void pickLotto(){
         countLottoMessage(lottoCnt);

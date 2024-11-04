@@ -30,11 +30,11 @@ public class UserResponseView {
         System.out.println("당첨 통계");
         System.out.println("---");
         for(WinLotto win : winLotto){
-            System.out.print(win.getCnt()+"개 일치 ");
+            System.out.print(win.getCnt()+"개 일치");
             if(win.name().equals("WIN_FIVE_AND_BONUS")){
-                System.out.print(", 보너스 볼 일치 ");
+                System.out.print(", 보너스 볼 일치");
             }
-            System.out.println("("+win.getPrizeMoney()+")"+" - "+win.getWin()+"개");
+            System.out.println(" ("+win.getPrizeMoney()+"원)"+" - "+win.getWin()+"개");
         }
     }
 

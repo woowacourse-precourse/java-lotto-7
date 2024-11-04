@@ -10,21 +10,16 @@ public class Application {
         // TODO: 프로그램 구현
         UserRequestController userRequestController = new UserRequestController();
 
-        startMessage();
-        String money = Console.readLine();
+        userRequestController.inputMoney();
         System.out.println();
 
-        userRequestController.inputMoney(money);
-        winLottoMessage();
-        String winNumbers = Console.readLine();
+        userRequestController.inputWinNumbers();
         System.out.println();
 
-        userRequestController.inputWinNumbers(winNumbers);
-        bonusLottoMessage();
-        String bonusNum = Console.readLine();
+        userRequestController.inputBonusNum();
         System.out.println();
 
-        userRequestController.inputBonusNum(bonusNum);
+
 
     }
 }

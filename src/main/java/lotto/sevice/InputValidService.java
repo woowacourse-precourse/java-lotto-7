@@ -9,7 +9,7 @@ public class InputValidService {
         try{
             int mon = Integer.parseInt(money);
             return mon % 1000 == 0;
-        } catch (Exception e){
+        } catch (IllegalArgumentException e){
             return false;
         }
     }
@@ -33,13 +33,19 @@ public class InputValidService {
         return list.size() == newList.size();
     }
 
-    public boolean isBonusNumber(String bonusNum){
+    public boolean isBonusNumber(String bonusNum, List<Integer> lotto){
         int num;
         try{
             num = Integer.parseInt(bonusNum);
         }catch(Exception e){
             return false;
         }
+        for(int n : lotto){
+            if(n == num){
+                return false;
+            }
+        }
+
         return isRange(num);
     }
 
