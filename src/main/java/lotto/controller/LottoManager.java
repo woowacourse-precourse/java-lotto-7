@@ -26,7 +26,7 @@ public class LottoManager {
         int purchasePrice = getPurchasePrice();
         creatLottos(purchasePrice);
 
-        List<Integer> winningNumbers = getWinningNumbers(); // todo 입력한 수 중 중복 있는지 확인
+        List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(); // todo 당첨번호와 겹치는지 확인
 
         Map<WinningRank, Integer> rankCount = calculateWinningStatistic(winningNumbers, bonusNumber,

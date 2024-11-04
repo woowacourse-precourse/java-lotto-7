@@ -2,6 +2,7 @@ package lotto.util;
 
 import static lotto.constant.ErrorMessage.*;
 
+import java.util.HashSet;
 import java.util.regex.Pattern;
 import lotto.constant.ErrorMessage;
 
@@ -27,6 +28,9 @@ public class InputValidator {
         if (!isValidLottoNumbers(winningNumbers)) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
         }
+        if (winningNumbers.length() != new HashSet<>(inputParser.parseWinningNumbers(winningNumbers)).size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER_EXISTS.getMessage());
+        }
     }
 
     public void validateBonusNumber(String bonusNumber) {
@@ -40,6 +44,7 @@ public class InputValidator {
         if (parsedBonusNumber < 1 || parsedBonusNumber > 45) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
+
     }
 
     private boolean isValidLottoNumbers(String input) {
