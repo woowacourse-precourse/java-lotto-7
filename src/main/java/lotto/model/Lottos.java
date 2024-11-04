@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 
@@ -14,7 +15,11 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
+    public int size() {
+        return lottos.size();
+    }
+
     public List<Lotto> getLottos() {
-        return lottos;
+        return Collections.unmodifiableList(lottos);
     }
 }
