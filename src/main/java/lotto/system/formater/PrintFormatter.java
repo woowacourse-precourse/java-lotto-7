@@ -30,7 +30,6 @@ public class PrintFormatter {
     public void displayLottoTicketsWithQuantity(List<LottoTicket> lottoTickets, int quantity) {
         displayTicketQuantity(quantity);
         displayLottoTickets(lottoTickets);
-        printNewLine();
     }
 
     public Lotto handleWinningNumbers() {
