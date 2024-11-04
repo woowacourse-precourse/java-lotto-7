@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.domains.Lotto;
+import lotto.enums.ErrorCode;
 import lotto.enums.LottoRank;
 
 public class LottoService {
@@ -21,10 +22,10 @@ public class LottoService {
 
     public int issueLottoCount(int cost) {
         if (cost < 0) {
-            throw new IllegalArgumentException("[Error] 구입 금액은 0 이상의 정수이어야 합니다. 입력 값: " + cost);
+            throw new IllegalArgumentException(ErrorCode.MINUS_ISSUE_COST.getMessage());
         }
         if (cost % LOTTO_COST > 0) {
-            throw new IllegalArgumentException("[Error] 구입 금액은 " + LOTTO_COST + "원 단위이어야 합니다. 입력 값: " + cost);
+            throw new IllegalArgumentException(ErrorCode.INVALID_UNIT_ISSUE_COST.getMessage());
         }
 
         return cost / LOTTO_COST;
@@ -50,7 +51,7 @@ public class LottoService {
         return new Lotto(numbers);
     }
 
-    public Lotto setWinningLotto(String inputValue) {
+    public Lotto setWinningLotto(String inputValue) throws IllegalArgumentException {
         return new Lotto(getNumbers(inputValue));
     }
 
@@ -63,7 +64,7 @@ public class LottoService {
         }
 
         if (inputNumbers.size() != 6) {
-            throw new IllegalArgumentException("[Error] 중복되지 않은 입력 번호가 6개이어야 합니다. 입력된 번호 개수: " + inputNumbers.size());
+            throw new IllegalArgumentException(ErrorCode.MISMATCH_LOTTO_NUMBERS_COUNT.getMessage());
         }
 
         List<Integer> numbers = new ArrayList<>(inputNumbers);
@@ -77,9 +78,9 @@ public class LottoService {
             if (0 < number && number <= 45) {
                 return number;
             }
-            throw new IllegalArgumentException("[Error] 당첨 번호는 1 이상 45 이하의 번호만 가능합니다. 입력 번호: " + number);
+            throw new IllegalArgumentException(ErrorCode.OUT_OF_BOUNDS_LOTTO_NUMBER.getMessage());
         } catch (NumberFormatException exception) {
-            throw new NumberFormatException("[Error] 번호가 아닌 값을 입력받았습니다. 입력 값: " + value);
+            throw new NumberFormatException(ErrorCode.NOT_NUMBERS_INPUT.getMessage());
         }
     }
 

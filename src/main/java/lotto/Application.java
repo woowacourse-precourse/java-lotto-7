@@ -5,17 +5,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lotto.domains.Lotto;
+import lotto.enums.ErrorCode;
 import lotto.enums.LottoRank;
 import lotto.service.LottoService;
 
 public class Application {
 
     private static LottoService lottoService = new LottoService();
+    private static List<Lotto> lottos;
     private static Lotto winningLotto = null;
     private static int bonusNumber;
 
     public static void main(String[] args) {
-        List<Lotto> lottos = setLottos();
+        setLottos();
         printIssueLottos(lottos);
         setWinningLotto();
         setBonusNumber();
@@ -24,17 +26,28 @@ public class Application {
         printIncomePercent(lottos, winningCount);
     }
 
-    private static List<Lotto> setLottos() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String inputValue = Console.readLine();
+    private static void setLottos() {
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String inputValue = Console.readLine();
+                issueLottos(inputValue);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
 
+    private static void issueLottos(String inputValue) {
         try {
             int cost = Integer.parseInt(inputValue);
-            return lottoService.issueLotto(cost);
+            lottos = lottoService.issueLotto(cost);
         } catch (IllegalArgumentException exception) {
             if (exception.getClass() == NumberFormatException.class) {
-                throw new IllegalArgumentException("[Error] 구입금액의 입력이 올바르지 않습니다. 입력 값: " + inputValue);
+                throw new IllegalArgumentException(ErrorCode.NOT_NUMBERS_INPUT.getMessage());
             }
+
             throw exception;
         }
     }
@@ -52,23 +65,42 @@ public class Application {
     }
 
     private static void setWinningLotto() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        winningLotto = lottoService.setWinningLotto(Console.readLine());
+        while(true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                winningLotto = lottoService.setWinningLotto(Console.readLine());
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     private static void setBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String inputValue = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String inputValue = Console.readLine();
+                checkBonusNumber(inputValue);
+                bonusNumber = Integer.parseInt(inputValue.strip());
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private static void checkBonusNumber(String inputValue) {
         try {
-            bonusNumber = Integer.parseInt(inputValue.strip());
-            if (1 > bonusNumber || 45 < bonusNumber) {
-                throw new IllegalArgumentException("[Error] 보너스 번호는 1 이상 45 이하이어야 합니다. 입력된 값: " + bonusNumber);
+            int inputNumber = Integer.parseInt(inputValue.strip());
+            if (1 > inputNumber || 45 < inputNumber) {
+                throw new IllegalArgumentException(ErrorCode.OUT_OF_BOUNDS_LOTTO_NUMBER.getMessage());
             }
-            if (winningLotto.existsNumber(bonusNumber)) {
-                throw new IllegalArgumentException("[Error] 입력된 보너스 번호가 당첨 번호에 포함되어 있습니다. 입력된 값: " + bonusNumber);
+            if (winningLotto.existsNumber(inputNumber)) {
+                throw new IllegalArgumentException(ErrorCode.ALREADY_EXISTS_BONUS_NUMBER.getMessage());
             }
-        } catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException("[Error] 잘못된 값을 입력받았습니다. 입력된 보너스 번호 값: " + inputValue);
+        } catch (NumberFormatException exception) {
+            throw new NumberFormatException(ErrorCode.NOT_NUMBERS_INPUT.getMessage());
         }
     }
 
