@@ -41,7 +41,7 @@ public class Lotto {
     }
 
     private static List<Integer> createRandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(MINIMUM_NUMBER.value, MAX_LOTTO_NUMBER.value,
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.value, MAX_LOTTO_NUMBER.value,
                 LOTTO_NUMBERS_COUNT.value);
     }
 
