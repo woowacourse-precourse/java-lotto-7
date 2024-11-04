@@ -7,7 +7,7 @@ import lotto.model.domain.WinningNumber;
 
 public record WinningDTO(WinningNumber winningNumber, BonusNumber bonusNumber) {
 	public List<Integer> getWinningNumber() {
-		return winningNumber.getWinningNumber();
+		return winningNumber.winningNumber();
 	}
 
 	public int getBonusNumber() {

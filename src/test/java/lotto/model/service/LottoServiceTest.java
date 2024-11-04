@@ -50,7 +50,7 @@ class LottoServiceTest {
 	@Test
 	void 당첨_DTO_생성_확인() {
 		WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
-		BonusNumber bonusNumber = new BonusNumber(winningNumber.getWinningNumber(), 7);
+		BonusNumber bonusNumber = new BonusNumber(winningNumber.winningNumber(), 7);
 
 		WinningDTO winningDTO = lottoService.createWinningDTO(winningNumber, bonusNumber);
 		assertThat(winningDTO.getWinningNumber()).containsExactly(1, 2, 3, 4, 5, 6);
@@ -61,7 +61,7 @@ class LottoServiceTest {
 	@Test
 	void 당첨_번호_생성_확인() {
 		WinningNumber winningNumber = lottoService.createWinningNumber(List.of(1, 2, 3, 4, 5, 6));
-		assertThat(winningNumber.getWinningNumber()).containsExactly(1, 2, 3, 4, 5, 6);
+		assertThat(winningNumber.winningNumber()).containsExactly(1, 2, 3, 4, 5, 6);
 	}
 
 	@DisplayName("보너스 번호 생성 테스트")

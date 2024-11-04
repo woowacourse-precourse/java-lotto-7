@@ -4,12 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningNumber {
-	private final List<Integer> winningNumber;
-
-	public WinningNumber(List<Integer> winningNumber) {
+public record WinningNumber(List<Integer> winningNumber) {
+	public WinningNumber {
 		validate(winningNumber);
-		this.winningNumber = winningNumber;
 	}
 
 	private void validate(List<Integer> winningNumber) {
@@ -41,9 +38,5 @@ public class WinningNumber {
 		if (!winningNumber.contains(Delimiter.COMMA.getDelimiter())) {
 			throw new IllegalArgumentException("[ERROR] 구분자는 콤마(,)이어야 합니다.");
 		}
-	}
-
-	public List<Integer> getWinningNumber() {
-		return winningNumber;
 	}
 }

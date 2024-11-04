@@ -42,7 +42,7 @@ public class LottoService {
 	}
 
 	public BonusNumber createBonusNumber(WinningNumber winningNumber, int bonusNumber) {
-		return new BonusNumber(winningNumber.getWinningNumber(), bonusNumber);
+		return new BonusNumber(winningNumber.winningNumber(), bonusNumber);
 	}
 
 	public Winning checkWinningNumber(LottoBundle lottoBundle, WinningDTO winningDTO) {
