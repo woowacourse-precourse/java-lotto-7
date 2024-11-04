@@ -60,7 +60,8 @@ public class WinningDetailComputer {
         for (WinningPriceStore store : getWinningDetailList()) {
             totalPrice += store.getTotalPrice();
         }
-        long returnPercent = Math.round(((double) (totalPrice - money) / money) * 100);
+
+        long returnPercent = Math.round(((double) totalPrice / money) * 100.0);
         return returnPercent;
     }
 }
