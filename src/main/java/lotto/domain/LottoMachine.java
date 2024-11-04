@@ -15,7 +15,14 @@ public class LottoMachine implements DrawTool{
     @Override
     public List<Integer> quickPicks() {
         leftGames--;
-        return null;
+        return sortedNumbers();
+    }
+
+    private List<Integer> sortedNumbers() {
+        return mixedEntry()
+                .stream()
+                .sorted()
+                .toList();
     }
 
     private List<Integer> mixedEntry() {
