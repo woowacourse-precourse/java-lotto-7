@@ -24,7 +24,12 @@ public class LottoNumberParser {
         List<Integer> lottoNumber = new ArrayList<>();
 
         for (String number : splitNumbers) {
-            lottoNumber.add(Integer.parseInt(number));
+            try {
+                int parsedNumber = Integer.parseInt(number);
+                lottoNumber.add(parsedNumber);
+            } catch (NumberFormatException e) {
+                throw new CustomException(CustomErrorCode.EXCEPTION_NOT_NUMBER);
+            }
         }
 
         return lottoNumber;

@@ -1,4 +1,4 @@
-package lotto.domain.rank;
+package lotto.domain;
 
 public enum LottoPrice {
 

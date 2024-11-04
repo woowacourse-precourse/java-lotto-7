@@ -2,6 +2,7 @@ package lotto.domain.rank;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.LottoPrice;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.WinningLotto;
 

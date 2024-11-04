@@ -52,5 +52,14 @@ class LottoNumberParserTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(CustomErrorCode.EXCEPTION_LOTTO_SIZE.getMessage());
         }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1,2,3,4,5,a", "1,2,3,b,5,6", "1,2,3,4,5,x"})
+        void 숫자가_아닌_값이_포함된_입력을_받는다(String number) {
+            // when & then
+            assertThatThrownBy(() -> LottoNumberParser.parse(number))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(CustomErrorCode.EXCEPTION_NOT_NUMBER.getMessage());
+        }
     }
 }
