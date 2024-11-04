@@ -21,4 +21,15 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복값이 허용되지 않습니다.");
         }
     }
+
+    public int calculateEqualCount(Lotto lotto) {
+        return (int) lotto.numbers.stream()
+                .filter(numbers::contains)
+                .count();
+    }
+
+    public boolean hasNumber(int target) {
+        return numbers.stream()
+                .anyMatch(number -> number.equals(target));
+    }
 }
