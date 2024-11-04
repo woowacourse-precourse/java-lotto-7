@@ -3,11 +3,11 @@ package lotto.validator;
 import java.util.List;
 import lotto.constants.ErrorMessage;
 
-public final class Validator {
+public class Validator {
+
     public static void validateMoneyInput(String moneyInput) {
         validateNotBlank(moneyInput);
-        validateIsInteger(moneyInput);
-        validateIsPositive(moneyInput);
+        validatePositiveInteger(moneyInput);
         validateIsValidMoney(moneyInput);
     }
 
@@ -15,16 +15,19 @@ public final class Validator {
         validateNotBlank(numbersInput);
         List<String> numberStrings = List.of(numbersInput.split(","));
         for (String numberString : numberStrings) {
-            validateIsInteger(numberString);
-            validateIsPositive(numberString);
+            validatePositiveInteger(numberString);
         }
     }
 
     public static void validateBonusNumberInput(String numberInput) {
         validateNotBlank(numberInput);
-        validateIsInteger(numberInput);
-        validateIsPositive(numberInput);
+        validatePositiveInteger(numberInput);
         validateIsValidBonusNumber(numberInput);
+    }
+
+    private static void validatePositiveInteger(String input) {
+        validateIsInteger(input);
+        validateIsPositive(input);
     }
 
     private static void validateNotBlank(String input) {

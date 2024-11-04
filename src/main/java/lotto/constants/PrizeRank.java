@@ -3,6 +3,7 @@ package lotto.constants;
 import java.util.Arrays;
 
 public enum PrizeRank {
+
     MATCH_FAIL(0, false, 0, "낙첨"),
     MATCH_THREE(3, false, 5_000, "3개 일치 (5,000원) - "),
     MATCH_FOUR(4, false, 50_000, "4개 일치 (50,000원) - "),
@@ -22,14 +23,6 @@ public enum PrizeRank {
         this.isBonusMatch = isBonusMatch;
         this.prizeMoney = prizeMoney;
         this.message = message;
-    }
-
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public boolean isBonusMatch() {
-        return isBonusMatch;
     }
 
     public int getPrizeMoney() {

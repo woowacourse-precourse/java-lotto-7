@@ -1,7 +1,7 @@
 package lotto.view;
 
-public final class OutputView {
-    private static String NEW_LINE = "\n";
+public class OutputView {
+    private static final String NEW_LINE = "\n";
 
     public void print(String output) {
         System.out.println(output);

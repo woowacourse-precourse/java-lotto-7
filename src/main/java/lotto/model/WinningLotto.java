@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.constants.ErrorMessage;
 
 public record WinningLotto(Lotto lotto, int bonusNumber) {
+
     public WinningLotto {
         validateDuplicateBonusNumber(lotto.getNumbers(), bonusNumber);
     }

@@ -7,6 +7,7 @@ import lotto.constants.ErrorMessage;
 import lotto.constants.PrizeRank;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
