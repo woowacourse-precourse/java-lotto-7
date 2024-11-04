@@ -2,18 +2,24 @@ package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+import lotto.model.LottoRank;
+import lotto.model.db.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoResultViewTest {
+class LottoRankViewTest {
 
     @DisplayName("로또 구매 후 로또 개수와 로또 번호를 출력한다.")
     @Test
     void viewFormat() {
         // given
-        int[] matchCnts = {0, 0, 0, 0, 0, 1};
+        LottoRank rank = new LottoRank(
+                List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))),
+                new Lotto(List.of(1, 2, 3, 7, 8, 9)),
+                10);
         double rateOfReturn = 62.5;
-        LottoResultView view = new LottoResultView(matchCnts, rateOfReturn);
+        LottoResultView view = new LottoResultView(rank, rateOfReturn);
         // when
         String viewStr = view.render();
         // then

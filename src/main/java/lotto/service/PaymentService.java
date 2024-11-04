@@ -5,7 +5,7 @@ import lotto.util.ConsoleInput;
 
 public class PaymentService {
 
-    private final static int PRICE_PER_LOTTO = 1_000;
+    private static final int PRICE_PER_LOTTO = 1_000;
 
     public int buyLotto() {
         long payment = -1;
