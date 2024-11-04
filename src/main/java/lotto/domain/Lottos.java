@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,24 +14,24 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public Map<Rank, Integer> countMatchesWith(WinningLotto winningLotto) {
-        Map<Rank, Integer> rankCounts = initializeRankCounts();
+    public Map<Prize, Integer> countMatchesWith(WinningLotto winningLotto) {
+        Map<Prize, Integer> prizeCounts = initializeRankCounts();
 
         lottos.forEach(lotto -> {
-            Rank rank = winningLotto.determineRank(lotto);
-            rankCounts.put(rank, rankCounts.get(rank) + 1);
+            Prize prize = winningLotto.determineRank(lotto);
+            prizeCounts.put(prize, prizeCounts.get(prize) + 1);
         });
 
-        return rankCounts;
+        return prizeCounts;
     }
 
-    private Map<Rank, Integer> initializeRankCounts() {
-        return Arrays.stream(Rank.values())
+    private Map<Prize, Integer> initializeRankCounts() {
+        return Arrays.stream(Prize.values())
                 .collect(Collectors.toMap(
                         rank -> rank,
                         rank -> 0,
                         (a, b) -> a,
-                        () -> new EnumMap<>(Rank.class)
+                        () -> new EnumMap<>(Prize.class)
                 ));
     }
 

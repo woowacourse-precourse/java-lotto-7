@@ -2,7 +2,7 @@ package lotto.view.output;
 
 import java.math.BigDecimal;
 import java.util.Map;
-import lotto.domain.Rank;
+import lotto.domain.Prize;
 import lotto.dto.WinningResultDto;
 import lotto.util.Parse;
 
@@ -12,17 +12,17 @@ public class ResultView {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("\n당첨 통계\n---\n")
-                .append(RankCounts(winningResult.rankCounts()))
-                .append(ProfitRate(winningResult.profitRate()));
+                .append(prizeCounts(winningResult.rankCounts()))
+                .append(profitRate(winningResult.profitRate()));
 
         System.out.println(stringBuilder.toString());
     }
 
-    private static String RankCounts(Map<Rank, Integer> rankCounts) {
+    private static String prizeCounts(Map<Prize, Integer> rankCounts) {
         StringBuilder stringBuilder = new StringBuilder();
 
         rankCounts.forEach((rank, count) -> {
-            if (rank == Rank.NO_MATCH) {
+            if (rank == Prize.NO_MATCH) {
                 return;
             }
 
@@ -34,7 +34,7 @@ public class ResultView {
         return stringBuilder.toString();
     }
 
-    private static String ProfitRate(BigDecimal profitRate) {
+    private static String profitRate(BigDecimal profitRate) {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("\n총 수익률은 ")

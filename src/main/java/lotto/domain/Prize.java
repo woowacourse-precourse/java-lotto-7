@@ -2,7 +2,8 @@ package lotto.domain;
 
 import java.util.Arrays;
 
-public enum Rank {
+public enum Prize {
+
     SIX_MATCHES("6개 일치", 6, false, 2_000_000_000),
     FIVE_MATCHES_WITH_BONUS("5개 일치, 보너스 볼 일치", 5, true, 30_000_000),
     FIVE_MATCHES("5개 일치", 5, false, 1_500_000),
@@ -15,15 +16,15 @@ public enum Rank {
     private final boolean requiresBonusMatch;
     private final int prize;
 
-    Rank(String matchDescription, int requiredMatchCount, boolean requiresBonusMatch, int prize) {
+    Prize(String matchDescription, int requiredMatchCount, boolean requiresBonusMatch, int prize) {
         this.matchDescription = matchDescription;
         this.requiredMatchCount = requiredMatchCount;
         this.requiresBonusMatch = requiresBonusMatch;
         this.prize = prize;
     }
 
-    public static Rank valueOf(int matchCount, boolean bonusMatch) {
-        return Arrays.stream(Rank.values())
+    public static Prize valueOf(int matchCount, boolean bonusMatch) {
+        return Arrays.stream(Prize.values())
                 .filter(rank -> rank.isMatch(matchCount, bonusMatch))
                 .findFirst()
                 .orElse(NO_MATCH);

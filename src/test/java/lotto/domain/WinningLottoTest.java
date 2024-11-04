@@ -32,9 +32,9 @@ public class WinningLottoTest {
                 .toList());
         WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
 
-        Rank rank = winningLotto.determineRank(lotto);
+        Prize prize = winningLotto.determineRank(lotto);
 
-        Assertions.assertThat(rank.toString()).isEqualTo(expectedRank);
+        Assertions.assertThat(prize.toString()).isEqualTo(expectedRank);
     }
 
 }
