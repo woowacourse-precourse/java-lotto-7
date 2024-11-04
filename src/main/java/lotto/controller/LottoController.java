@@ -29,34 +29,54 @@ public class LottoController {
     }
 
     public void run() {
-        String purchaseAmount = inputView.getPurchaseAmount();
+        PurchaseAmount purchaseAmount = getPurchaseAmountWithRetry();
 
-        List<Lotto> lottoTickets = lottoIssuingService.issueForAmount(
-                PurchaseAmount.from(InputUtils.parseStringToInt(purchaseAmount))
-        );
-
+        List<Lotto> lottoTickets = lottoIssuingService.issueForAmount(purchaseAmount);
         outputView.printLottoTickets(LottoIssuingResponse.from(lottoTickets));
 
-        String numbers = inputView.getWinningNumbers();
-
-        WinningNumbers winningNumbers = WinningNumbers.from(
-                InputUtils.splitWithDelimiter(numbers, WINNING_NUMBERS_DELIMITER)
-                        .stream()
-                        .map(number -> LottoNumber.from(InputUtils.parseStringToInt(number)))
-                        .toList()
-        );
-
-        String number = inputView.getBonusNumber();
-
-        BonusNumber bonusNumber = BonusNumber.from(LottoNumber.from(InputUtils.parseStringToInt(number)));
-
+        WinningNumbers winningNumbers = getWinningNumbersWithRetry();
+        BonusNumber bonusNumber = getBonusNumberWithRetry();
         LottoResultService lottoResultService = new LottoResultService(winningNumbers, bonusNumber);
+
         Map<Winning, Integer> winningResults = lottoResultService.getWinningResults(lottoTickets);
-        double rateOfReturn = lottoResultService.calculateRateOfReturn(
-                PurchaseAmount.from(InputUtils.parseStringToInt(purchaseAmount)), winningResults
-        );
+        double rateOfReturn = lottoResultService.calculateRateOfReturn(purchaseAmount, winningResults);
 
         outputView.printWinningResult(winningResults);
         outputView.printRateOfReturn(rateOfReturn);
+    }
+
+    private PurchaseAmount getPurchaseAmountWithRetry() {
+        try {
+            String purchaseAmount = inputView.getPurchaseAmount();
+            return PurchaseAmount.from(InputUtils.parseStringToInt(purchaseAmount));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getPurchaseAmountWithRetry();
+        }
+    }
+
+    private WinningNumbers getWinningNumbersWithRetry() {
+        try {
+            String numbers = inputView.getWinningNumbers();
+            return WinningNumbers.from(
+                    InputUtils.splitWithDelimiter(numbers, WINNING_NUMBERS_DELIMITER)
+                            .stream()
+                            .map(number -> LottoNumber.from(InputUtils.parseStringToInt(number)))
+                            .toList()
+            );
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningNumbersWithRetry();
+        }
+    }
+
+    private BonusNumber getBonusNumberWithRetry() {
+        try {
+            String number = inputView.getBonusNumber();
+            return BonusNumber.from(LottoNumber.from(InputUtils.parseStringToInt(number)));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumberWithRetry();
+        }
     }
 }
