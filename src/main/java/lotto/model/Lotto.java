@@ -16,10 +16,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        validateNumberCount(numbers);
+        validateUniqueNumbers(numbers);
+    }
+
+    private void validateNumberCount(List<Integer> numbers) {
+        if (numbers.size() != LottoConstants.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(LottoConstants.ERROR_INVALID_LOTTO_NUMBER_COUNT);
         }
+    }
 
+    private void validateUniqueNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new InputException(LottoConstants.ERROR_DUPLICATE_LOTTO_NUMBER);
