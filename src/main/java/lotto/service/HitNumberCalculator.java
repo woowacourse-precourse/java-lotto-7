@@ -19,7 +19,8 @@ public class HitNumberCalculator {
             boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
             Rank rank = Rank.valueOf(matchCount, hasBonus);
 
-            results.put(rank, results.getOrDefault(rank, DEFAULT_STATISTIC_COUNT) + 1);
+            results.putIfAbsent(rank, DEFAULT_STATISTIC_COUNT);
+            results.put(rank, results.get(rank) + 1);
         }
 
         return results;
