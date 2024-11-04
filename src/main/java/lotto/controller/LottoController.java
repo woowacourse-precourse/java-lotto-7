@@ -10,6 +10,7 @@ import lotto.domain.LottoPurchasePrice;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
 import lotto.dto.LottoBundleDTO;
+import lotto.dto.LottoResultDTO;
 import lotto.enums.LottoConfig;
 import lotto.handler.RetryHandler;
 import lotto.view.LottoInputView;
@@ -43,7 +44,7 @@ public class LottoController {
         WinningLotto winningLotto = retryHandler.retry(this::requestLottoWinningNumbers);
         BonusNumber bonusNumber = retryHandler.retry(this::requestLottoBonusNumber, winningLotto);
         LottoResult lottoResult = lottoBundle.makeLottoResult(winningLotto, bonusNumber);
-        lottoOutputView.printLottoResult(lottoResult);
+        lottoOutputView.printLottoResult(createLottoResultDTO(lottoResult));
     }
 
     private LottoPurchasePrice requestLottoPurchasePrice() {
@@ -56,7 +57,7 @@ public class LottoController {
         return lottoDispenser.issueLottoBundle(lottoPurchasePrice);
     }
 
-    private LottoBundleDTO createLottoBundleDTO(LottoBundle lottoBundle){
+    private LottoBundleDTO createLottoBundleDTO(LottoBundle lottoBundle) {
         List<Lotto> lottos = lottoBundle.getLottos();
         return LottoBundleDTO.from(lottos);
     }
@@ -71,6 +72,10 @@ public class LottoController {
         lottoOutputView.printLottoBonusNumber();
         int lottoBonusNumber = lottoInputView.readLottoBonusNumber();
         return BonusNumber.ofNumberAndWinningLottoAndConfig(lottoBonusNumber, winningLotto, lottoConfig);
+    }
+
+    private LottoResultDTO createLottoResultDTO(LottoResult lottoResult) {
+        return LottoResultDTO.ofRankCountAndProfitRate(lottoResult.getRankCount(), lottoResult.getLottoProfitRate());
     }
 
 }

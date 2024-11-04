@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.dto.LottoBundleDTO;
+import lotto.dto.LottoResultDTO;
 import lotto.enums.LottoRank;
 import lotto.domain.LottoResult;
 
@@ -39,10 +40,10 @@ public class LottoOutputView {
         printLottos(lottos);
     }
 
-    public void printLottoResult(LottoResult lottoResult) {
+    public void printLottoResult(LottoResultDTO lottoResultDTO) {
         System.out.println(LOTTO_RESULT_MESSAGE);
-        printLottoRankCount(lottoResult.getRankCount());
-        printLottoProfitRate(lottoResult.getLottoProfitRate());
+        printLottoRankCount(lottoResultDTO.getLottoRankCount());
+        printLottoProfitRate(lottoResultDTO.getLottoProfitRate());
     }
 
     private void printLottos(List<Lotto> lottos) {
