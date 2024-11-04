@@ -19,8 +19,8 @@ public class LottoController {
     private static final int LOTTO_PRICE = 1000;
 
     private Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        numbers.sort(Integer::compareTo);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6)); // 변경 가능한 리스트로 복사
+        numbers.sort(Integer::compareTo); // 오름차순 정렬
         return new Lotto(numbers);
     }
 
@@ -52,7 +52,7 @@ public class LottoController {
                 if (uniqueNumbers.size() != 6) {
                     throw new IllegalArgumentException("[ERROR] 로또 번호에는 중복이 없어야 합니다.");
                 }
-                
+
                 return numbers; // 올바른 번호 개수면 반환
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage()); // 에러 메시지 출력
@@ -83,6 +83,6 @@ public class LottoController {
     public double checkProfitRate(LottoResult lottoResult) {
         int totalSpent = lottoResult.getLottoCost();
         int totalPrize = lottoResult.getTotalPrize();
-        return (totalPrize - totalSpent) / (double) totalSpent * 100;
+        return (double) totalPrize / totalSpent * 100;
     }
 }

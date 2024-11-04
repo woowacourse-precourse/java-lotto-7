@@ -20,6 +20,8 @@ public class InputView {
                 }
 
                 return cost; // 올바른 값이면 반환
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요."); // 숫자 형식 오류 처리
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage()); // 에러 메시지 출력
             }
