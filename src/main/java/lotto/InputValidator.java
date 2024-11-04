@@ -11,14 +11,12 @@ public class InputValidator {
     }
 
     public void validateNumbersByComma(String numbers) {
-        for(char ch : numbers.toCharArray()) {
-            if(isNotNumbersCondition(ch)) {
+        for (String number : numbers.split(",")) {
+            try {
+                Integer.parseInt(number);
+            } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 쉼표로 구분해서 숫자를 입력해주세요");
             }
         }
-    }
-
-    private boolean isNotNumbersCondition(char ch) {
-        return !Character.isDigit(ch) && ch != ',';
     }
 }
