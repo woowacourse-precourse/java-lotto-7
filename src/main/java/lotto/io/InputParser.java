@@ -10,7 +10,7 @@ public class InputParser {
 
     public long convertStringToLong(String input) {
         try {
-            return Long.parseLong(input.trim());
+            return Long.parseLong(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_FORMAT_ERROR.format());
         }
@@ -23,7 +23,7 @@ public class InputParser {
 
     public int convertStringToInt(String input) {
         try {
-            return Integer.parseInt(input.trim());
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR.format());
         }
