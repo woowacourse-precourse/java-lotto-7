@@ -9,6 +9,7 @@ public class OutputView {
         int buyCount = lottos.getCount();
 
         System.out.printf(PURCHASE_LOTTOS_MESSAGE, buyCount);
+        System.out.println(lottos);
         printEmptyLine();
     }
 
