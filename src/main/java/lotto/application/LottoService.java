@@ -24,7 +24,7 @@ public class LottoService {
     }
 
     public List<Lotto> buyLottos(int price) {
-        validatePrice(price);
+        LottoValidator.validatePurchasePrice(price);
         List<Lotto> lottos = new ArrayList<>();
 
         for(int i = 0; i < price / LOTTO_PRICE; i++) {
@@ -34,9 +34,10 @@ public class LottoService {
         return lottos;
     }
 
-    public LottoPrize calculatePrize(Lotto myLotto, Lotto LottoResult, int bonusNumber) {
+    public LottoPrize calculatePrize(Lotto myLotto, Lotto lottoResult, int bonusNumber) {
+        LottoValidator.validateBonusNumber(bonusNumber, lottoResult.getNumbers());
         long matchLottoCount = myLotto.getNumbers().stream()
-                .filter(LottoResult.getNumbers()::contains)
+                .filter(lottoResult.getNumbers()::contains)
                 .count();
 
         boolean matchBonusNumber = myLotto.getNumbers().contains(bonusNumber);
@@ -50,11 +51,5 @@ public class LottoService {
                 .mapToInt(Integer::parseInt)
                 .sum();
         return (double) totalPrize / purchaseQuantity;
-    }
-
-    private void validatePrice(int price) {
-        if (price <= 0 || price % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위로 입력해야 합니다.");
-        }
     }
 }
