@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,6 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
     @Test
@@ -20,6 +23,23 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void 랜덤값_생성() throws Exception {
+        //when
+        Lotto testLotto = Lotto.generateLottoTicket();
+        List<Integer> lottoNumbers = testLotto.getNumbers();
+
+        //then
+        boolean isWithinRange = lottoNumbers.stream()
+                .allMatch(num -> 1 <= num && num <= 45);
+        assertTrue(isWithinRange);
+
+        assertEquals(lottoNumbers.size(), 6);
+
+        Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
+        assertEquals(uniqueNumbers.size(), 6);
     }
 
     @Test
@@ -56,6 +76,5 @@ class LottoTest {
 
         //then
         assertEquals(expectedMatchCount, actualMatchCount);
-
     }
 }
