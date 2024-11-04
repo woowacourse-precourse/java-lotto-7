@@ -11,13 +11,19 @@ import lotto.service.NumbersSelector;
 
 public class PurchaseServiceImpl implements PurchaseService {
 
+    private final NumbersSelector numbersSelector;
+
+    public PurchaseServiceImpl(NumbersSelector numbersSelector) {
+        this.numbersSelector = numbersSelector;
+    }
+
     @Override
-    public LottoPurchase purchase(int payAmount, NumbersSelector selector) {
+    public LottoPurchase purchase(int payAmount) {
         validatePayAmount(payAmount);
         int lottoAmount = payAmount / PRICE;
 
         List<Lotto> lottos = IntStream.range(0, lottoAmount)
-            .mapToObj(sequence -> new Lotto(selector.select()))
+            .mapToObj(sequence -> new Lotto(numbersSelector.select()))
             .toList();
 
         return LottoPurchase.purchase(lottos);

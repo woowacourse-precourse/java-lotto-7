@@ -5,5 +5,5 @@ import lotto.service.NumbersSelector;
 
 public interface PurchaseService {
 
-    LottoPurchase purchase(int payAmount, NumbersSelector selector);
+    LottoPurchase purchase(int payAmount);
 }
