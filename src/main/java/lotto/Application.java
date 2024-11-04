@@ -23,8 +23,12 @@ public class Application {
         for (int i = 0; i <= 7; i++) {
             prizeMap.put(i, 0L);
         }
+
         checkPrize(prizeMap, lottoList, lotto.numbersList(), bonusNum);
         printPrize(prizeMap);
+
+        Long income = incomeCalculation(prizeMap);
+        rateCalculation(money, income);
     }
 
     public static Long inputMoney() {
@@ -150,6 +154,23 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + prizeMap.get(5) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + prizeMap.get(7) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + prizeMap.get(6) + "개");
+    }
+
+    public static Long incomeCalculation(Map<Integer, Long> prizeMap) {
+        Long income;
+
+        income = 5000L * prizeMap.get(3).longValue();
+        income += 50000L * prizeMap.get(4).longValue();
+        income += 1500000L * prizeMap.get(5).longValue();
+        income += 30000000L * prizeMap.get(7).longValue();
+        income += 2000000000L * prizeMap.get(6).longValue();
+
+        return income;
+    }
+
+    public static void rateCalculation(Long money, Long income) {
+        double rate = ((double) income / (double) money) * 100L;
+        System.out.println("총 수익률은 " + String.format("%.1f", rate) + "%입니다.");
     }
 
 }
