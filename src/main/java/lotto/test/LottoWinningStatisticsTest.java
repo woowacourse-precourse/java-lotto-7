@@ -1,10 +1,11 @@
-package lotto;
+package lotto.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import lotto.Lotto;
 import lotto.model.LottoDrawMachine;
 import lotto.model.LottoWinningStatistics;
 import org.junit.jupiter.api.BeforeEach;
