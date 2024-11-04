@@ -17,6 +17,15 @@ public class ConsoleInput implements Input {
         return new BigInteger(input);
     }
 
+    private boolean isInvalidAmount(String input) {
+        try {
+            new BigInteger(input);
+            return false;
+        } catch (NumberFormatException e) {
+            return true;
+        }
+    }
+
     @Override
     public List<Integer> inputWinningNumbers() {
         String input = Console.readLine();
@@ -32,15 +41,6 @@ public class ConsoleInput implements Input {
         }
     }
 
-    @Override
-    public Integer inputBonusNumber() {
-        String input = Console.readLine();
-        if (isInvalidInput(input) || isInvalidNumber(input)) {
-            throw new IllegalArgumentException("보너스 번호 입력이 올바르지 않습니다.");
-        }
-        return Integer.parseInt(input);
-    }
-
     private void validateNumbersInput(String input) {
         if (isInvalidInput(input)) {
             throw new IllegalArgumentException();
@@ -54,17 +54,17 @@ public class ConsoleInput implements Input {
         return Integer.parseInt(input);
     }
 
-    private boolean isInvalidInput(String input) {
-        return input == null || input.isBlank();
+    @Override
+    public Integer inputBonusNumber() {
+        String input = Console.readLine();
+        if (isInvalidInput(input) || isInvalidNumber(input)) {
+            throw new IllegalArgumentException("보너스 번호 입력이 올바르지 않습니다.");
+        }
+        return Integer.parseInt(input);
     }
 
-    private boolean isInvalidAmount(String input) {
-        try {
-            new BigInteger(input);
-            return false;
-        } catch (NumberFormatException e) {
-            return true;
-        }
+    private boolean isInvalidInput(String input) {
+        return input == null || input.isBlank();
     }
 
     private boolean isInvalidNumber(String input) {

@@ -70,11 +70,6 @@ public class ConsoleOutput implements Output {
         }
     }
 
-    @Override
-    public void showProfitPercentage(BigDecimal profitPercentage) {
-        System.out.println("총 수익률은 " + profitPercentage + "%입니다.");
-    }
-
     private Map<Rank, Long> groupingByCount(List<Rank> ranks) {
         return ranks.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
@@ -100,6 +95,11 @@ public class ConsoleOutput implements Output {
             return ", 보너스 볼 일치";
         }
         return "";
+    }
+
+    @Override
+    public void showProfitPercentage(BigDecimal profitPercentage) {
+        System.out.println("총 수익률은 " + profitPercentage + "%입니다.");
     }
 
 }
