@@ -76,4 +76,15 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorCode.LOTTO_NUMBER_COUNT_ERROR.getMessage());
     }
+
+    @DisplayName("입력 된 로또 당첨 번호가 1부터 45사이가 아닌 경우 예외 발생.")
+    @Test
+    void validWinningNumberTest_lottoNumberRange() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 46);
+        // when // then
+        assertThatThrownBy(() -> inputValidator.validWinningNumber(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.LOTTO_NUMBER_RANGE_ERROR.getMessage());
+    }
 }
