@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.common.constant.Constants;
 import lotto.common.exception.DuplicateLottoNumberException;
 import lotto.common.exception.InvalidLottoSizeException;
@@ -14,7 +15,7 @@ public class Lotto {
 
     public Lotto(List<LottoNumber> lottoNumbers) {
         validate(lottoNumbers);
-        this.lottoNumbers = lottoNumbers;
+        this.lottoNumbers = lottoNumbers.stream().sorted().collect(Collectors.toList());;
     }
 
     public List<LottoNumber> getLottoNumbers() {
