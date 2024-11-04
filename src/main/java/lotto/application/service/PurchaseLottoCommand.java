@@ -2,8 +2,10 @@ package lotto.application.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.application.dto.request.PurchaseLottoRequest;
 import lotto.application.dto.response.PurchaseLottoResponse;
 import lotto.application.port.input.PurchaseLottoUsecase;
+import lotto.domain.amount.PurchaseAmount;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.repository.LottoRepository;
 import lotto.domain.lotto.service.LottoMachine;
@@ -19,18 +21,18 @@ public class PurchaseLottoCommand implements PurchaseLottoUsecase {
     }
 
     @Override
-    public PurchaseLottoResponse execute(int purchaseAmount) {
-        int numberOfLottos = purchaseAmount / 1000;
-        int totalCost = numberOfLottos * 1000;
-        List<Lotto> lottos = new ArrayList<>(numberOfLottos);
+    public PurchaseLottoResponse execute(PurchaseLottoRequest purchaseLottoRequest) {
+        List<Lotto> lottos = new ArrayList<>();
+        PurchaseAmount purchaseAmount = purchaseLottoRequest.purchaseAmount();
 
-        for (int i = 0; i < numberOfLottos; i++) {
+        while (purchaseAmount.isEnough()) {
+            purchaseAmount.deduct();
+
             Lotto lotto = lottoMachine.create();
             lottoRepository.save(lotto);
             lottos.add(lotto);
         }
 
-        return new PurchaseLottoResponse(numberOfLottos, lottos, totalCost);
-
+        return new PurchaseLottoResponse(lottos.size(), lottos);
     }
 }

@@ -15,7 +15,7 @@ class PurchaseAmountTest {
         int purchaseAmount = 10002;
 
         // when & then
-        assertThatThrownBy(() -> new PurchaseAmount(purchaseAmount))
+        assertThatThrownBy(() -> PurchaseAmount.from(purchaseAmount))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(INVALID_PURCHASE_AMOUNT.getMessage());
     }

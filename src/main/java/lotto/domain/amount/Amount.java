@@ -2,7 +2,7 @@ package lotto.domain.amount;
 
 public class Amount {
 
-    private int amount;
+    protected int amount;
 
     public Amount(int amount) {
         this.amount = amount;

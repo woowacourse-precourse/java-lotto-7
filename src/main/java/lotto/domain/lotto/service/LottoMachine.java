@@ -1,13 +1,16 @@
 package lotto.domain.lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.List;
 import lotto.domain.lotto.Lotto;
 
 public class LottoMachine {
 
+    private final int LOTTO_START_INDEX = 1;
+    private final int LOTTO_END_INDEX = 45;
+    private final int LOTTO_SIZE = 6;
+
     public Lotto create() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(numbers);
+        return new Lotto(
+            Randoms.pickUniqueNumbersInRange(LOTTO_START_INDEX, LOTTO_END_INDEX, LOTTO_SIZE));
     }
 }

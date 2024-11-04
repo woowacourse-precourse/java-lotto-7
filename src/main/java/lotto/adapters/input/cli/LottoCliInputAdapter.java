@@ -38,7 +38,7 @@ public class LottoCliInputAdapter {
         String value = Console.readLine();
         inputValidator.validateAmount(value);
 
-        return new PurchaseAmount(NumberParser.parseNumber(value));
+        return PurchaseAmount.from(NumberParser.parseNumber(value));
     }
 
     private WinningNumber promptWinningNumber() {

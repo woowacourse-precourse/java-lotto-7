@@ -1,4 +1,4 @@
-package lotto;
+package lotto.application.validation;
 
 import static lotto.infrastructure.exception.ErrorCode.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
