@@ -37,13 +37,15 @@ public class WinnerLotto {
     }
 
     private static List<Integer> convertNumbers(String[] numberStrings) {
-        return Stream.of(numberStrings)
-                .map(String::trim)
-                .map(numberStringConverter::convert)
-                .peek(winnerLottoValidator::numberRange)
-                .peek(number -> winnerLottoValidator.checkForDuplicate(new ArrayList<>(), number))
-                .collect(Collectors.toList());
-    }
+    List<Integer> processedNumbers = new ArrayList<>();
+    return Stream.of(numberStrings)
+            .map(String::trim)
+            .map(numberStringConverter::convert)
+            .peek(winnerLottoValidator::numberRange)
+            .peek(number -> winnerLottoValidator.checkForDuplicate(processedNumbers, number))
+            .peek(processedNumbers::add)
+            .collect(Collectors.toList());
+}
 
     public void setBonusNumber(String rawBonusNumber) {
         int bonusNumber = numberStringConverter.convert(rawBonusNumber);
