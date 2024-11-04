@@ -7,6 +7,7 @@ import lotto.LottoInfo;
 import lotto.LottoPayment;
 import lotto.Results;
 import lotto.common.LottoResult;
+import lotto.exception.LottoArgumentException;
 
 public class OutputController {
     private final OutputUi outputUi;
@@ -48,5 +49,9 @@ public class OutputController {
     public void printProfitRatio(final Results results, final LottoPayment lottoPayment) {
         outputUi.printWithLineBreak(
                 "총 수익률은 " + results.getProfitRatio(lottoPayment).setScale(1, BigDecimal.ROUND_HALF_UP) + "%입니다.");
+    }
+
+    public void printErrorMessage(final LottoArgumentException lottoArgumentException) {
+        outputUi.printWithLineBreak(lottoArgumentException.getMessage());
     }
 }

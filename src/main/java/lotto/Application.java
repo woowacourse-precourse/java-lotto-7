@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.ui.InputController;
 import lotto.ui.OutputController;
+import lotto.ui.Repeater;
 import lotto.ui.UiInitializer;
 
 public class Application {
@@ -10,21 +11,23 @@ public class Application {
 
         final OutputController outputController = UiInitializer.initOutputController();
         final InputController inputController = UiInitializer.initInputController();
+        final Repeater repeater = new Repeater(outputController);
 
         outputController.printPurchaseInfo();
-        final LottoPayment lottoPayment = inputController.getPayment();
-        outputController.printToGetWinningNumberInput();
-        final Lotto inputWinnerLotto = inputController.getLotto();
-        outputController.printToGetBonusNumberInput();
-        final LottoNum bonusNumber = inputController.getBonusNumber();
-
-        final WinningLotto winningLotto = new WinningLotto(inputWinnerLotto, bonusNumber);
-
+        final LottoPayment lottoPayment = repeater.repeat(() -> inputController.getPayment());
         final LottoContainer container = new LottoGenerator().generate(lottoPayment);
+        outputController.printAllLotteries(container);
+
+        outputController.printToGetWinningNumberInput();
+        final Lotto inputWinnerLotto = repeater.repeat(() -> inputController.getLotto());
+        outputController.printToGetBonusNumberInput();
+        final WinningLotto winningLotto = repeater.repeat(() -> {
+            final LottoNum bonusNumber = inputController.getBonusNumber();
+            return new WinningLotto(inputWinnerLotto, bonusNumber);
+        });
 
         final Results results = container.verifyResults(winningLotto);
 
-        outputController.printAllLotteries(container);
         outputController.printStatisticResults(results);
         outputController.printProfitRatio(results, lottoPayment);
     }
