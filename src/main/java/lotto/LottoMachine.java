@@ -12,9 +12,9 @@ import java.util.List;
  * @version 2024/11/04
  */
 public class LottoMachine {
-    private static final int LOTTO_NUMBER_SIZE = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
+    public static final int LOTTO_NUMBER_SIZE = 6;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
 
     /**
      * 유틸리티 클래스의 인스턴스화 방지
