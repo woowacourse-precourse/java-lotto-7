@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import lotto.common.Constants;
 
 public class Lotto implements Iterable<Integer>{
     private final List<Integer> numbers;
@@ -13,7 +14,7 @@ public class Lotto implements Iterable<Integer>{
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constants.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }

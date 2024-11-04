@@ -10,4 +10,5 @@ public class Constants {
     public static final int THIRD_PRIZE = 1_500_000;
     public static final int FOURTH_PRIZE = 50000;
     public static final int FIFTH_PRIZE = 5000;
+    public static final String INPUT_REGEX = "[0-9]+";
 }
