@@ -1,20 +1,59 @@
 package lotto;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateUnique(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
+    public Optional<EnumLottoPrice> findMatch(List<Integer> numbers, Integer bonus) {
+        int count = 0;
+        for (int number : numbers) {
+            if (this.numbers.contains(number)) {
+                count++;
+            }
+        }
+        boolean isBonusInLotto = containsBonus(bonus);
+        if ((count == 5 && isBonusInLotto) || count == 6)
+            return Optional.of(EnumLottoPrice.MATCH_6);
+        if (count == 5 && !isBonusInLotto)
+            return Optional.ofNullable(EnumLottoPrice.MATCH_5_EXCEPT_BONUS);
+        if ((count == 4 && isBonusInLotto) || count == 5)
+            return Optional.of(EnumLottoPrice.MATCH_5);
+        if ((count == 3 && isBonusInLotto) || count == 4)
+            return Optional.of(EnumLottoPrice.MATCH_4);
+        if ((count == 2 && isBonusInLotto) || count == 3)
+            return Optional.of(EnumLottoPrice.MATCH_3);
+
+        return Optional.empty();
+    }
+
+    private boolean containsBonus(int bonus) {
+        return this.numbers.contains(bonus);
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    private static void validateUnique(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size())
+            throw new IllegalArgumentException("로또 번호는 중복 되지 않아야 합니다.");
+    }
 }
