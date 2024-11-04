@@ -1,17 +1,19 @@
 package lotto.domain;
 
-public class RateOfReturnDTO {
-    private double rateOfReturn;
+import java.math.BigDecimal;
 
-    public RateOfReturnDTO(double rateOfReturn) {
+public class RateOfReturnDTO {
+    private BigDecimal rateOfReturn;
+
+    public RateOfReturnDTO(BigDecimal rateOfReturn) {
         this.rateOfReturn = rateOfReturn;
     }
 
-    public double getRateOfReturn() {
+    public BigDecimal getRateOfReturn() {
         return rateOfReturn;
     }
 
-    public void setRateOfReturn(double rateOfReturn) {
+    public void setRateOfReturn(BigDecimal rateOfReturn) {
         this.rateOfReturn = rateOfReturn;
     }
 }

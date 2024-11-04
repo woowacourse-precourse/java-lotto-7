@@ -3,6 +3,8 @@ package lotto.service;
 import lotto.domain.*;
 import lotto.view.LottoView;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
@@ -48,14 +50,27 @@ public class LottoService {
         }
     }
 
-    public RateOfReturnDTO calculateRateOfReturn(MoneyDTO moneyDTO) {
-        int moneySum = 0;
+    private BigDecimal calculateTotalPrize() {
+        BigDecimal totalPrize = BigDecimal.ZERO;
         for (LottoRank rank : LottoRank.values()) {
-            moneySum += (rank.getPrize() * rank.getCount());
+            BigDecimal prize = BigDecimal.valueOf(rank.getPrize());
+            BigDecimal count = BigDecimal.valueOf(rank.getCount());
+            totalPrize = totalPrize.add(prize.multiply(count));
         }
-        double rateOfReturn = (double) moneySum / moneyDTO.getMoney() * 100;
-        return new RateOfReturnDTO(
-                Math.round(rateOfReturn * 100) / 100.0);
+        return totalPrize;
+    }
+
+    // 수익률 계산 함수
+    public RateOfReturnDTO calculateRateOfReturn(MoneyDTO moneyDTO) {
+        BigDecimal totalPrize = calculateTotalPrize();
+        BigDecimal investment = BigDecimal.valueOf(moneyDTO.getMoney());
+
+        BigDecimal rateOfReturn = totalPrize.divide(investment, 10, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(100));
+
+        rateOfReturn = rateOfReturn.setScale(2, RoundingMode.HALF_UP);
+
+        return new RateOfReturnDTO(rateOfReturn);
     }
 
 }
