@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.LottoConstants.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -25,14 +27,15 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new InvalidSizeLottoNumberException();
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_MIN_NUMBER.getValue()
+                    || number > LOTTO_MAX_NUMBER.getValue()) {
                 throw new InvalidRangeLottoNumberException();
             }
         }
@@ -40,7 +43,7 @@ public class Lotto {
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
-        if(nonDuplicateNumbers.size() != 6) {
+        if (nonDuplicateNumbers.size() != LOTTO_SIZE.getValue()) {
             throw new DuplicatedLottoNumberException();
         }
     }

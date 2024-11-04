@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.LottoConstants.*;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -7,6 +9,7 @@ import lotto.exception.DuplicatedWinningNumberException;
 import lotto.exception.InvalidRangeLottoNumberException;
 
 public class WinningLotto {
+    private final static int FINAL_LOTTO_SIZE = LOTTO_SIZE.getValue() + 1;
     private final Lotto winningLotto;
     private final Integer bonusNumber;
 
@@ -18,7 +21,7 @@ public class WinningLotto {
     }
 
     private void validateBonusNumberInRange(Integer bonusNumber) {
-        if (bonusNumber <1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_MIN_NUMBER.getValue() || bonusNumber > LOTTO_MAX_NUMBER.getValue()) {
             throw new InvalidRangeLottoNumberException();
         }
     }
@@ -26,7 +29,7 @@ public class WinningLotto {
     private void validateDuplicate(List<Integer> winningNumber, Integer bonusNumber) {
         Set<Integer> lottoNumbers = new HashSet<>(winningNumber);
         lottoNumbers.add(bonusNumber);
-        if (lottoNumbers.size() != 7) {
+        if (lottoNumbers.size() != FINAL_LOTTO_SIZE) {
             throw new DuplicatedWinningNumberException();
         }
     }

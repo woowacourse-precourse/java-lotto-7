@@ -11,7 +11,7 @@ public class Money {
     }
 
     private void validateDivide(int money) {
-        if (!(money % 1000 == 0)) {
+        if (!((money % LottoConstants.LOTTO_PRICE.getValue()) == 0)) {
             throw new DivideMoneyException();
         }
     }
