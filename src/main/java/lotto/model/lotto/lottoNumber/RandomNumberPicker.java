@@ -5,7 +5,7 @@ import static lotto.model.lotto.lottoNumber.LotteryRule.*;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class RandomNumberPicker implements NumberPicker{
+public class RandomNumberPicker implements NumberPicker {
     @Override
     public List<Integer> pick() {
         return Randoms.pickUniqueNumbersInRange(

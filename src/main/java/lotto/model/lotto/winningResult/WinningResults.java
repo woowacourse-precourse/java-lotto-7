@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.model.lotto.winningResult.rank.Rank;
 
-public class WinningResults{
+public class WinningResults {
     private final List<WinningResult> winningResults;
 
     public WinningResults() {

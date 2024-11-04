@@ -16,6 +16,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class DefaultMainNumberGeneratorTest {
     private final NumberGenerator numberGenerator = new DefaultNumberGenerator();
+
     @Test
     @DisplayName("[success] 당첨번호를 split해 순서대로 저장하여 MainNumber를 생성한다.")
     void splitAndcreateMainNumber() {

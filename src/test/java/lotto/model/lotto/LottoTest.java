@@ -47,6 +47,7 @@ class LottoTest {
 
         assertThat(matchingAmount).isEqualTo(expectedMatchingAmount);
     }
+
     static Stream<Object[]> lottoWithMatchingNumberProvider() {
         return Stream.of(
                 new Object[]{6, Arrays.asList(1, 2, 3, 4, 5, 6)},

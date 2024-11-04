@@ -17,7 +17,7 @@ public class LottosTest {
 
     @BeforeAll
     static void setUp() {
-         lottos = new Lottos(new ArrayList<>(Arrays.asList(
+        lottos = new Lottos(new ArrayList<>(Arrays.asList(
                 new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6))),
                 new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 7))),
                 new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 8)))

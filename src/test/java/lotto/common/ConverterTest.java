@@ -24,7 +24,7 @@ public class ConverterTest {
     @ValueSource(strings = {"12 ", "1 2", "1.2", "1,2", "1&2", " 12"})
     void fail_IfCannotConvertToInteger(String wrongString) {
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Converter.toInteger(wrongString))
+                        () -> Converter.toInteger(wrongString))
                 .withMessage(Exceptions.NOT_POSITIVE_INTEGER.getMessage());
     }
 }

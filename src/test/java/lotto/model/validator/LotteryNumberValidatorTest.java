@@ -28,9 +28,10 @@ public class LotteryNumberValidatorTest {
     @MethodSource("wrongSizeNumbersProvider")
     void fail_IfNumbersSizeNotSix(List<Integer> numbers) {
         Assertions.assertThatIllegalArgumentException().isThrownBy(
-                () -> LotteryNumberValidator.validate(numbers))
+                        () -> LotteryNumberValidator.validate(numbers))
                 .withMessage(Exceptions.WRONG_LOTTERY_NUMBER_SIZE.getMessage());
     }
+
     static Stream<List<Integer>> wrongSizeNumbersProvider() {
         return Stream.of(
                 new ArrayList<>(List.of(1, 2, 3, 4, 5)),
@@ -43,9 +44,10 @@ public class LotteryNumberValidatorTest {
     @MethodSource("duplicatedNumbersProvider")
     void fail_IfDuplicatedNumbersExist(List<Integer> numbers) {
         Assertions.assertThatIllegalArgumentException().isThrownBy(
-                () -> LotteryNumberValidator.validate(numbers))
+                        () -> LotteryNumberValidator.validate(numbers))
                 .withMessage(Exceptions.DUPLICATED_LOTTERY_NUMBER.getMessage());
     }
+
     static Stream<List<Integer>> duplicatedNumbersProvider() {
         return Stream.of(
                 new ArrayList<>(List.of(1, 1, 3, 4, 5, 6)),
@@ -59,7 +61,7 @@ public class LotteryNumberValidatorTest {
     void fail_IfOutOfRangeNumberExists(int wrongNumber) {
         List<Integer> testNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, wrongNumber));
         Assertions.assertThatIllegalArgumentException().isThrownBy(
-                () -> LotteryNumberValidator.validate(testNumbers))
+                        () -> LotteryNumberValidator.validate(testNumbers))
                 .withMessage(Exceptions.OUT_OF_LOTTERY_NUMBER_RANGE.getMessage());
     }
 }

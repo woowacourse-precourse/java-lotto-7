@@ -35,6 +35,7 @@ public class MainNumberTest {
                         () -> new MainNumber(testNumbers))
                 .withMessage(Exceptions.WRONG_LOTTERY_NUMBER_SIZE.getMessage());
     }
+
     static Stream<List<Integer>> wrongMainNumberSizeProvider() {
         return Stream.of(
                 Arrays.asList(1, 2, 3, 4, 5),

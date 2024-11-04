@@ -10,7 +10,7 @@ import lotto.dto.WinningNumbersDto;
 import lotto.model.winningNumber.BonusNumber;
 import lotto.model.winningNumber.MainNumber;
 
-public class DefaultNumberGenerator implements NumberGenerator<String, WinningNumbersDto>{
+public class DefaultNumberGenerator implements NumberGenerator<String, WinningNumbersDto> {
     private static final String NUMBER_DELIMITER = ",";
     private static final int SPLIT_NO_LIMIT = -1;
 

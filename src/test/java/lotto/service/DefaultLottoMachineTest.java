@@ -21,7 +21,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class DefaultLottoMachineTest {
-    private final DefaultLottoMachine defaultLottoMachine = new DefaultLottoMachine(new DefaultRankDeterminer(), new RandomNumberPicker());
+    private final DefaultLottoMachine defaultLottoMachine = new DefaultLottoMachine(new DefaultRankDeterminer(),
+            new RandomNumberPicker());
 
     WinningResults setUpDefaultWinningResults() {
         Lottos lottos = new Lottos(new ArrayList<>(Arrays.asList(

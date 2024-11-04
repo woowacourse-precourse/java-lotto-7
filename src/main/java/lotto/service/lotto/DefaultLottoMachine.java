@@ -14,7 +14,7 @@ import lotto.model.winningNumber.MainNumber;
 import lotto.model.lotto.winningResult.rank.Rank;
 import lotto.model.lotto.winningResult.WinningResults;
 
-public class DefaultLottoMachine implements LottoMachine{
+public class DefaultLottoMachine implements LottoMachine {
     private static final int PERCENTAGE_MULIPLIER = 100;
 
     private final RankDeterminer rankDeterminer;
