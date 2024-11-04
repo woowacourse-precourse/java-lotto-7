@@ -1,4 +1,4 @@
-package lotto.domain.utility.Splitter;
+package lotto.utility.Splitter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

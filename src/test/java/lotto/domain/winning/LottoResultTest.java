@@ -12,8 +12,8 @@ import lotto.domain.lotto.Investment;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.LottoNumber;
-import lotto.domain.utility.generator.RandomIntegerListGenerator;
-import lotto.domain.utility.sorting.AscendingSorter;
+import lotto.utility.generator.RandomIntegerListGenerator;
+import lotto.utility.sorting.AscendingSorter;
 import org.junit.jupiter.api.Test;
 
 class LottoResultTest {

@@ -1,4 +1,4 @@
-package lotto.domain.utility.sorting;
+package lotto.utility.sorting;
 
 import java.util.List;
 

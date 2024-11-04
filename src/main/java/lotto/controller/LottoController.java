@@ -11,14 +11,14 @@ import lotto.common.exception.LottoException;
 import lotto.domain.lotto.Investment;
 import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.LottoNumber;
-import lotto.domain.utility.Splitter.CustomSplitter;
-import lotto.domain.utility.converter.Converter;
-import lotto.domain.utility.generator.RandomIntegerListGenerator;
-import lotto.domain.utility.sorting.AscendingSorter;
 import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.LottoResult;
 import lotto.domain.winning.Rank;
 import lotto.domain.winning.WinningNumbers;
+import lotto.utility.Splitter.CustomSplitter;
+import lotto.utility.converter.Converter;
+import lotto.utility.generator.RandomIntegerListGenerator;
+import lotto.utility.sorting.AscendingSorter;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 

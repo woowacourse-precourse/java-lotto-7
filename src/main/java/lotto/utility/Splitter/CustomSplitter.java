@@ -1,4 +1,4 @@
-package lotto.domain.utility.Splitter;
+package lotto.utility.Splitter;
 
 public class CustomSplitter {
 

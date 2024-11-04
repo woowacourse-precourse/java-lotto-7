@@ -1,4 +1,4 @@
-package lotto.domain.utility.converter;
+package lotto.utility.converter;
 
 import static lotto.common.exception.ErrorMessage.INPUT_MUST_BE_NUMERIC;
 
