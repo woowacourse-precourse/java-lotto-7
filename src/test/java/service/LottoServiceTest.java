@@ -1,5 +1,6 @@
 package service;
 
+import exception.ErrorCode;
 import model.Lotto;
 import model.Rank;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoServiceTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
     private LottoService lottoService;
 
     @BeforeEach
@@ -32,7 +31,7 @@ class LottoServiceTest {
     void 숫자가_아닌_문자열_입력_예외() {
         assertThatThrownBy(() -> lottoService.purchaseAmount("1000j"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE);
+                .hasMessageContaining(ErrorCode.INVALID_NUMBER.getErrorMessage());
     }
 
     @Test
@@ -49,7 +48,14 @@ class LottoServiceTest {
     void 유효하지_않은_구분자_예외_발생() {
         assertThatThrownBy(() -> lottoService.inputWinningNumber("1/2/3/4/5/6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE);
+                .hasMessageContaining(ErrorCode.INVALID_DELIMITER.getErrorMessage());
+    }
+
+    @Test
+    void 로또_번호_입력_공백_예외_발생() {
+        assertThatThrownBy(() -> lottoService.inputWinningNumber("1, ,3,4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.RESTRICTION_WINNING_NUMBER.getErrorMessage());
     }
 
     @Test
@@ -60,12 +66,12 @@ class LottoServiceTest {
     }
 
     @Test
-    void 보너스_번호가_유효하지_않은_경우_예외_발생() {
+    void 보너스_번호가_당첨_번호와_중복된_경우_예외_발생() {
         Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
 
         assertThatThrownBy(() -> lottoService.bonusNumber("3", winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE);
+                .hasMessageContaining(ErrorCode.DUPLICATED_BONUS_NUMBER.getErrorMessage());
     }
 
     @Test
