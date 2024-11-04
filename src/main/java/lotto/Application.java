@@ -172,7 +172,7 @@ public class Application {
         for(int i = MIN_MATCHED_TO_WIN; i <= MAX_MATCHED_TO_WIN; i++){
             int count = howMatched(lottos, winning_lotto, bonus, i);
             if(i == MAX_MATCHED_TO_WIN){
-                int second_count = printSecondPrize(lottos, bonus, i, count);
+                int second_count = printSecondPrize(lottos, bonus, i, count, winning_lotto);
                 System.out.println(i+"개 일치 ("+strtoint(prize[i-MIN_MATCHED_TO_WIN])+"원) - "+(count-second_count)+"개");
                 total += second_count * SECOND_PRIZE + (count - second_count) * prize[i - MIN_MATCHED_TO_WIN];
                 return total;
@@ -183,19 +183,28 @@ public class Application {
         throw new IllegalArgumentException("[ERROR] Some error in statistics is occurred");
     }
 
-    private static int printSecondPrize(Lotto[] lottos, int bonus, int i, int count){
+    private static int printSecondPrize(Lotto[] lottos, int bonus, int i, int count, Lotto win_lotto){
         int second_count = 0;
         if(count == 0){
             System.out.println(i - 1 + "개 일치, 보너스 볼 일치 (" + strtoint(SECOND_PRIZE) + "원) - 0개");
             return 0;
         }
         for(int j = 0; j < lottos.length; j++){
-            if(isBonusMatched(lottos[j].getNumbers(), bonus) == 1){
+            if((isItFirst(lottos[j].getNumbers(), win_lotto)) && (isBonusMatched(lottos[j].getNumbers(), bonus) == 1)){
                 second_count += 1;
             }
         }
         System.out.println((i-1)+"개 일치, 보너스 볼 일치 (" + strtoint(SECOND_PRIZE) + "원) - "+second_count+"개");
         return second_count;
+    }
+
+    private static boolean isItFirst(List<Integer> numbers, Lotto win_lotto){
+        for(int i = 0; i < LOTTO_NUMBER_LENGTH; i++){
+            if(numbers.contains(win_lotto.getNumbers().get(i))){
+                return true;
+            }
+        }
+        return false;
     }
 
     private static String strtoint(int i){
