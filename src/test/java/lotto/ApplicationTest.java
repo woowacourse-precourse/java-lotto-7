@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    // 출력
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -48,6 +49,7 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    // 입력
     @Nested
     @DisplayName("로또 구매 예외 처리")
     class BuyLottosErrorTest {
