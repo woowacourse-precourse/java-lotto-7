@@ -13,7 +13,8 @@ public class Application {
         OutputView outputView = new OutputView();
         ViewFacade viewFacade = new ViewFacade(inputView, outputView);
         LottoMachine lottoMachine = new LottoMachine();
-        LottoController lottoController = new LottoController(viewFacade, lottoMachine);
+        Validator validator = new Validator();
+        LottoController lottoController = new LottoController(viewFacade, lottoMachine, validator);
 
         lottoController.run();
     }

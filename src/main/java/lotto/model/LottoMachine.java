@@ -1,22 +1,18 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Constant;
 
 import java.util.List;
 import java.util.Map;
 
 public class LottoMachine {
-    private static final int LOTTO_START_NUM = 1;
-    private static final int LOTTO_END_NUM = 45;
-    private static final int LOTTO_NUM_COUNT = 6;
-    private static final int LOTTO_PRICE = 1000;
-
     private final Stats stats = new Stats();
     private List<Integer> winningNums;
     private int bonusNum;
 
     public Lottos issueLottos(int purchaseAmount) {
-        int purchaseCount = (purchaseAmount / LOTTO_PRICE);
+        int purchaseCount = (purchaseAmount / Constant.LOTTO_PRICE);
         Lottos lottos = new Lottos();
         for (int i = purchaseCount; i > 0; i--) {
             Lotto lotto = issueLotto();
@@ -26,7 +22,7 @@ public class LottoMachine {
     }
 
     private Lotto issueLotto() {
-        List<Integer> lottoNums = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUM, LOTTO_END_NUM, LOTTO_NUM_COUNT);
+        List<Integer> lottoNums = Randoms.pickUniqueNumbersInRange(Constant.LOTTO_START_NUM, Constant.LOTTO_END_NUM, Constant.LOTTO_NUM_COUNT);
         lottoNums.sort(Integer::compareTo);
         return new Lotto(lottoNums);
     }
