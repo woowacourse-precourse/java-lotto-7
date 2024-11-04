@@ -45,7 +45,7 @@ public class Validator {
         }
     }
 
-    public static void numbersLength(List<String> numbers) {
+    public static void numbersLength(List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException(INVALID_NUMBER_LENGTH_MESSAGE);
         }

@@ -44,7 +44,7 @@ public class ValidatorTest {
 
     @Test
     void 당첨_번호_6개를_입력하지_않으면_예외가_발생한다() {
-        List<String> numbers = List.of("1", "2", "3");
+        List<Integer> numbers = List.of(1, 2, 3);
 
         assertThatThrownBy(() -> Validator.numbersLength(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
