@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.ErrorMessage.MONEY_UNIT_ERROR;
+import static lotto.domain.LotteryMachine.LOTTO_PRICE;
+
 public class Money {
     private final int paymentAmount;
 
@@ -13,8 +16,8 @@ public class Money {
     }
 
     private void validateMoneyUnit(int money) {
-        if (money % LotteryMachine.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 구매가능합니다.");
+        if (money % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(String.format(MONEY_UNIT_ERROR.getMessage(), LOTTO_PRICE));
         }
     }
 }

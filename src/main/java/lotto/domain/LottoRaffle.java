@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR;
+import static lotto.ErrorMessage.LOTTO_NUMBER_RANGE_ERROR;
+
 import java.util.List;
 
 public class LottoRaffle {
@@ -34,13 +37,13 @@ public class LottoRaffle {
     private void validateDuplicateWithLottoNumber(int bonusNumber) {
         boolean isDuplicate = getWinningNumbers().stream().anyMatch(i -> i == bonusNumber);
         if (isDuplicate) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호와 중복되지 않는 번호를 입력해주세요.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 
     private void validateLottoNumberRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 1-45 사이의 값을 입력해주세요. ");
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR.getMessage());
         }
     }
 }
