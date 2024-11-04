@@ -31,10 +31,10 @@ class LottoComparisonTest {
                 LottoRank.FOURTH, 1,
                 LottoRank.THIRD, 1
         );
-        int purchaseAmount = 1000;
+        int purchaseAmount = 4000;
 
         double profitRate = LottoComparison.calculateProfitRate(rankCounts, purchaseAmount);
 
-        assertThat(profitRate).isEqualTo(110.0);
+        assertThat(profitRate).isEqualTo(39000.0);
     }
 }
