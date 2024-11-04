@@ -5,6 +5,23 @@ build/
 !**/src/main/**
 !**/src/test/**
 
+### Build Artifacts ###
+*.jar
+*.war
+*.ear
+*.class
+
+### Eclipse ###
+*.pydevproject
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+
 ### STS ###
 .apt_generated
 .classpath
