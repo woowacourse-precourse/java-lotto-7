@@ -7,5 +7,4 @@ import lotto.command.Command;
  * @since : 24. 11. 2.
  */
 public interface OutputCommand extends Command {
-  String toString();
 }

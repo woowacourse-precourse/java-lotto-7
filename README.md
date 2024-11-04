@@ -103,29 +103,29 @@ View
         <td>✅로또 관련 예외처리</td> </tr><tr> 
 	<td rowspan="3">로또 구입 금액 사용자 입력</td>
         <td rowspan="1"><b><em>PurchaseAmountCommand</em></b></td>
-        <td>✅ `PurchaseAmount` 유효성 검증</td> 
+        <td>✅`PurchaseAmount` 유효성 검증</td> 
                 <td rowspan="3">feat/purchase-amount-input</td></tr><tr> 
         <td rowspan="1"><b><em>View</em></b></td>
-            <td>✅ `PurchaseAmountUserInput` 사용자 입력 처리 </td> </tr><tr> 
+            <td>✅`PurchaseAmountUserInput` 사용자 입력 처리 </td> </tr><tr> 
         <td rowspan="1">PurchaseAmountCommand</td>
-            <td>✅ `PurchaseAmountUserInput` 반환</td> </tr><tr>
+            <td>✅`PurchaseAmountUserInput` 반환</td> </tr><tr>
     <td rowspan="6">로또 구매</td>
         <td rowspan="1"><b><em>Lotto</em></b></td>
-            <td>✅ 1장 가격 상수 </td> 
+            <td>✅1장 가격 상수 </td> 
                 <td rowspan="6">feat/purchase-lottos</td></tr><tr> 
         <td rowspan="1"><b><em>LottoService</em></b></td>
-            <td>✅ `Lotto` 1장 가격 반환</td> </tr><tr> 
+            <td>✅`Lotto` 1장 가격 반환</td> </tr><tr> 
         <td rowspan="1"><b><em>AmountService</em></b></td>
-            <td>✅ `PurchasedLottos` 구매</td> </tr><tr> 
+            <td>✅`PurchasedLottos` 구매</td> </tr><tr> 
         <td rowspan="1"><b><em>PurchasedLottos</em></b></td>
-            <td>✅ `PurchasedLottos` 생성</td> </tr><tr>     
+            <td>✅`PurchasedLottos` 생성</td> </tr><tr>     
         <td rowspan="1">LottoService</td>
-            <td>✅ `PurchasedLottos` 발행</td> </tr><tr>
+            <td>✅`PurchasedLottos` 발행</td> </tr><tr>
         <td rowspan="1">Lotto</td>
-        <td>✅ `Lotto` 오름차순 정렬</td> </tr><tr> 
+        <td>✅`Lotto` 오름차순 정렬</td> </tr><tr> 
     <td rowspan="3">리팩토링</td>
         <td rowspan="1">View</td>
-            <td>✅ `displayOutPut` 메서드 추가</td> 
+            <td>✅`displayOutPut` 메서드 추가</td> 
                 <td rowspan="3">refactor</td></tr><tr> 
         <td rowspan="1">ValidateCommand</td>
             <td>✅사용자 입력 재시도 로직 추가</td> </tr><tr> 
@@ -133,45 +133,49 @@ View
             <td>✅`LottoTest` 통과 하기 위한 검증 로직 추가</td> </tr><tr>
     <td rowspan="4">당첨 번호 입력</td>
         <td rowspan="1"><b><em>LottoCommand</em></b></td>
-        <td>✅ `Lotto` 당첨 번호 유효성 검증</td> 
+        <td>✅`Lotto` 당첨 번호 유효성 검증</td> 
                 <td rowspan="4">feat/winning-lotto-input</td></tr><tr> 
         <td rowspan="1">View</td>
-            <td>✅ `WinningLottoUserInput`  당첨 번호 사용자 입력 처리 </td> </tr><tr> 
+            <td>✅`WinningLottoUserInput`  당첨 번호 사용자 입력 처리 </td> </tr><tr> 
         <td rowspan="1">LottoCommand</td>
-            <td>✅ `WinningLottoUserInput` 당첨 번호 반환</td> </tr><tr>
+            <td>✅`WinningLottoUserInput` 당첨 번호 반환</td> </tr><tr>
         <td rowspan="1">LottoService</td>
-            <td>✅ `WinningLottoUserInput`를 `WinningLotto`로 변환</td> </tr><tr> 
+            <td>✅`WinningLottoUserInput`를 `WinningLotto`로 변환</td> </tr><tr> 
     <td rowspan="4">보너스 번호 입력</td>
         <td rowspan="1"><b><em>BonusCommand</em></b></td>
-            <td>✅ `Bonus` 보너스 번호 유효성 검증</td> 
+            <td>✅`Bonus` 보너스 번호 유효성 검증</td> 
                 <td rowspan="4">feat/lotto-bonus-input</td></tr><tr>         
         <td rowspan="2">View</td>
-            <td>✅ `Bonus` 보너스 번호 사용자 입력 처리 </td> </tr><tr> 
-            <td>✅ `Bonus` 반환</td> </tr><tr>
+            <td>✅`Bonus` 보너스 번호 사용자 입력 처리 </td> </tr><tr> 
+            <td>✅`Bonus` 반환</td> </tr><tr>
         <td rowspan="1">LottoService</td>
-            <td>✅ `WinningLotto`에 보너스 번호 추가</td> </tr><tr> 
+            <td>✅`WinningLotto`에 보너스 번호 추가</td> </tr><tr> 
      <td rowspan="4">로또 당첨 조회</td>
         <td rowspan="1">LottoService</td>
-            <td>✅ `WinningLotto`와 `PurchasedLottos` 매칭 여부</td> 
+            <td>✅`WinningLotto`와 `PurchasedLottos` 매칭 여부</td> 
                 <td rowspan="4">feat/match-winning-lotto</tr><tr> 
         <td rowspan="1">LottoService</td>
-            <td>✅ `MatchResults` 반환</td> </tr><tr> 
+            <td>✅`MatchResults` 반환</td> </tr><tr> 
         <td rowspan="1"><b><em>MatchResult</em></b></td>
-            <td>✅ `MatchResult` 생성</td> </tr><tr> 
+            <td>✅`MatchResult` 생성</td> </tr><tr> 
         <td rowspan="1"><b><em>MatchResults</em></b></td>
-            <td>✅ `MatchResult` 추가</td> </tr><tr> 
+            <td>✅`MatchResult` 추가</td> </tr><tr> 
     <td rowspan="5">로또 당첨 통계 출력</td>
         <td rowspan="1"><b><em>ProfitRate</em></b></td>
-            <td>✅  `ProfitRate` 수익률 생성</td> 
+            <td>✅`ProfitRate` 수익률 생성</td> 
                 <td rowspan="5">feat/match-winning-lotto-output</tr><tr> 
         <td rowspan="1"><b><em>ProfitAmount</em></b></td>
-            <td>✅  `ProfitAmount` 수익 금액 생성</td> </tr><tr> 
+            <td>✅`ProfitAmount` 수익 금액 생성</td> </tr><tr> 
         <td rowspan="1">AmountService</td>
-            <td>✅ `ProfitRate` 반환</td> </tr><tr> 
+            <td>✅`ProfitRate` 반환</td> </tr><tr> 
         <td rowspan="1"><b><em>LottoProfitCommand</em></b></td>
-            <td>✅ `MatchResult` & `ProfitRate`당첨 금액 및 수익률 출력 커맨드 생성</td> </tr><tr>
+            <td>✅`MatchResult` & `ProfitRate`당첨 금액 및 수익률 출력 커맨드 생성</td> </tr><tr>
         <td rowspan="1">View</td>
-            <td>✅ `LottoProfitCommand`로 수익률 출력</td> </tr><tr>
+            <td>✅`LottoProfitCommand`로 수익률 출력</td> </tr><tr>
+    <td rowspan="1">출력 리팩토링</td>
+        <td rowspan="1">OutputCommand</td>
+            <td>✅출력 로직 개선</td> 
+                <td rowspan="1">refactor-output</tr><tr> 
     <td rowspan="1">의존성 주입</td>
         <td rowspan="1"><b><em>DependencyInjectionContainer</em></b></td>
             <td>⬜ 컴포넌트 의존성 주입</td> 
