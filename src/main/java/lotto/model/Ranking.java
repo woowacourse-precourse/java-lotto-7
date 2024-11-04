@@ -43,4 +43,16 @@ public enum Ranking {
         }
         return NONE;
     }
+
+    public static double calculateTotalPrizeMoney() {
+        int totalPrizeMoney = 0;
+        for (Ranking ranking : Ranking.values()) {
+            totalPrizeMoney += ranking.getPrize() * ranking.getCount();
+        }
+        return totalPrizeMoney;
+    }
+
+    public static double calculateYield(int amount) {
+        return calculateTotalPrizeMoney() / (double) amount * 100;
+    }
 }
