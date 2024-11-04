@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class CountTest {
     @Test
-    @DisplayName("1000 단위로 들어오지 않으면 예외가 발생한다.")
+    @DisplayName("from - 1000 단위로 들어오지 않으면 예외가 발생한다.")
     void failMakeCountWhenInvalidUnit() {
         // given
         int money = 13232;
@@ -25,7 +25,7 @@ class CountTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, -1000, -10000})
-    @DisplayName("1개 미만을 살 경우 예외가 발생한다.")
+    @DisplayName("from - 1개 미만을 살 경우 예외가 발생한다.")
     void failMakeCountWhenInvalidCount(int money) {
         assertThatThrownBy(() -> Count.from(money))
                 .isInstanceOf(LottoException.class)
@@ -33,7 +33,7 @@ class CountTest {
     }
 
     @Test
-    @DisplayName("정상적인 입력에 대해서는 개수를 정확히 센다")
+    @DisplayName("from - 정상적인 입력에 대해서는 개수를 정확히 센다")
     void successCount() {
         // given
         int money = 10000;
