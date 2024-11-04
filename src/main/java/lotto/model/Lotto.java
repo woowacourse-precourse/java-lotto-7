@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.model.exception.DomainExceptionMessage;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -36,7 +37,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(
                     DomainExceptionMessage.INVALID_LOTTO_SIZE.getMessage()
             );
