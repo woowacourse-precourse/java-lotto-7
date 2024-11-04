@@ -37,7 +37,6 @@ public class CorrectLotto {
         }
     }
 
-
     public Rank match(Lotto other) {
         int matchCount = (int) lotto.numbers().stream()
                 .filter(other.numbers()::contains)
