@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto;
 
 import lotto.domain.AutoLottos;
 import lotto.domain.Lotto;
@@ -7,13 +7,12 @@ import lotto.domain.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoController {
+public class LottoMission {
 
     public void start() {
         int purchaseAmount = getPurchaseAmountWithRetry();
 
         AutoLottos autoLottos = new AutoLottos(purchaseAmount);
-
         OutputView.outputAutoLottos(autoLottos.getAutoLottos());
 
         Lotto winningNumbers = getWinningNumbersWithRetry();
