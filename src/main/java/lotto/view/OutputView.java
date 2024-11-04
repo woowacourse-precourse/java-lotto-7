@@ -8,7 +8,7 @@ public class OutputView {
     }
 
     public static void printLottoNumbers(List<List<Integer>> lottoNumbers) {
-        System.out.println(lottoNumbers.size() + "개를 구매했습니다.");
+        System.out.println("\n" + lottoNumbers.size() + "개를 구매했습니다.");
         for (List<Integer> innerList : lottoNumbers) {
             System.out.print("[");
             for (int i = 0; i < innerList.size(); i++) {

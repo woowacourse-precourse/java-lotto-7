@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.controller.InputController;
 import lotto.model.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -12,6 +13,8 @@ public class Application {
         int purchase = InputView.inputPurchase();
         List<List<Integer>> lottoLists = LottoMachine.generateLotto(purchase);
         OutputView.printLottoNumbers(lottoLists);
+        String inputWinningNumbers = InputView.inputWinningNumbers();
+        List<Integer> winnnigNumbers = InputController.parseIntegerList(inputWinningNumbers);
 
     }
 }

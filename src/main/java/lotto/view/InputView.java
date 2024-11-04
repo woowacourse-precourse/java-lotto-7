@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
@@ -22,7 +23,8 @@ public class InputView {
         }
     }
 
-    /// 당첨번호의 유효성 검증
-//    public static List<Integer> inputWinningNumbers(int count) {
-//    }
+    public static String inputWinningNumbers() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
 }
