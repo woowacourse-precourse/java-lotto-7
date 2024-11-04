@@ -6,19 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottosCreator {
-    public Lottos createLottos(int price) {
-        if (price % 1000 != 0) {
-            throw new IllegalArgumentException("로또는 1000원단위 입니다.");
-        }
-        int lottoNumber = price / 1000;
+    public Lottos createLottos(Money money) {
+        long canBuyQuantityOfLottos = getCanBuyQuantityOfLottos(money);
         List<List<Integer>> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoNumber; i++) {
-            lottos.add(getNumbers());
+        for (int buy = 0; buy < canBuyQuantityOfLottos; buy++) {
+            lottos.add(pickNumbersRange1To45());
         }
         return Lottos.init(lottos);
     }
 
-    private List<Integer> getNumbers() {
+    private static Long getCanBuyQuantityOfLottos(Money money) {
+        return money.divideByUnit(1000L);
+    }
+
+    private List<Integer> pickNumbersRange1To45() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
