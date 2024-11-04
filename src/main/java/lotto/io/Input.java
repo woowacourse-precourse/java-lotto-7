@@ -8,6 +8,8 @@ public class Input {
     private final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private final String TARGET = ",";
+    private final String REPLACEMENT = "";
 
 
     public int getAmount() {
@@ -20,6 +22,7 @@ public class Input {
     }
 
     public String getWinningNumber() {
+        printNewLine();
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
 
         String winningNumber = Console.readLine();
@@ -29,6 +32,7 @@ public class Input {
     }
 
     public int getBonusNumber() {
+        printNewLine();
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
 
         String bonusNumber = Console.readLine();
@@ -47,7 +51,7 @@ public class Input {
     private void validateWinningNumber(String winningNumber) {
         validateInputExist(winningNumber);
 
-        winningNumber = winningNumber.replace(",", "");
+        winningNumber = winningNumber.replace(TARGET, REPLACEMENT);
         validateNumber(winningNumber);
     }
 
@@ -81,5 +85,9 @@ public class Input {
         if (Integer.parseInt(input) <= 0) {
             throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER);
         }
+    }
+
+    private void printNewLine() {
+        System.out.println();
     }
 }
