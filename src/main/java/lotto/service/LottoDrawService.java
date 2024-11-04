@@ -30,11 +30,10 @@ public class LottoDrawService {
     }
 
     private Map<String, Integer> calculateMatchingResults(Bonus bonus, Lotto winningLotto, List<List<Integer>> userLottoNumbers) {
-        WinningChecker winningChecker = new WinningChecker();
-        return winningChecker.checkWinning(bonus, winningLotto, userLottoNumbers);
+        return new WinningChecker().checkWinning(bonus, winningLotto, userLottoNumbers);
     }
 
     public double calculateRate(Map<String, Integer> matchingResult, int numberOfLotto) {
-        return WinningChecker.calculateReturn(matchingResult, numberOfLotto);
+        return new WinningChecker().calculateReturn(matchingResult, numberOfLotto);
     }
 }
