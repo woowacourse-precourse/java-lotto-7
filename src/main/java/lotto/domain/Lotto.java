@@ -3,9 +3,9 @@ package lotto.domain;
 import static lotto.constants.LottoConstants.LOTTO_RANGE_MAX;
 import static lotto.constants.LottoConstants.LOTTO_RANGE_MIN;
 import static lotto.constants.LottoConstants.LOTTO_SIZE;
-import static lotto.error.ErrorType.DUPLICATION_NUM;
+import static lotto.error.ErrorType.DUPLICATION_BONUS_NUM;
+import static lotto.error.ErrorType.DUPLICATION_WINNING_NUM;
 import static lotto.error.ErrorType.INSUFFICIENT_OR_EXCESSIVE_NUMBERS;
-import static lotto.error.ErrorType.INVALID_BONUS_NUM;
 import static lotto.error.ErrorType.INVALID_NUMBER_FORMAT;
 import static lotto.error.ErrorType.OUT_OF_RANGE_NUMBER;
 
@@ -55,7 +55,7 @@ public class Lotto {
         }
 
         if (numbers.contains(bonusNumber)) {
-            throw new InvalidBonusNumberException(INVALID_BONUS_NUM);
+            throw new InvalidBonusNumberException(DUPLICATION_BONUS_NUM);
         }
         validateNumberRange(bonusNumber);
     }
@@ -80,7 +80,7 @@ public class Lotto {
     private void validateNoDuplicate(final List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new InvalidLottoNumberException(DUPLICATION_NUM);
+            throw new InvalidLottoNumberException(DUPLICATION_WINNING_NUM);
         }
     }
 
