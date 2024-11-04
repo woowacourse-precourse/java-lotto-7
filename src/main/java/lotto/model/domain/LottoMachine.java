@@ -21,7 +21,7 @@ public class LottoMachine {
         return new Lotto(Randoms.pickUniqueNumbersInRange(
                 LottoConstantValue.LOTTO_MIN_NUM.getValue(),
                 LottoConstantValue.LOTTO_MAX_NUM.getValue(),
-                LottoConstantValue.LOTTO_PRICE.getValue()
+                LottoConstantValue.LOTTO_NUMBER_SIZE.getValue()
         ));
     }
 
