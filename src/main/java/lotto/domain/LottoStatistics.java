@@ -25,6 +25,10 @@ public class LottoStatistics {
                 .sum();
     }
 
+    public Map<LottoRanking, Integer> getRankingCount() {
+        return rankingCount;
+    }
+
     private Optional<LottoRanking> calculateRanking(Lotto lotto, WinningLotto winningLotto) {
         int matchCount = calculateMatchCount(lotto, winningLotto.getNumbers());
         boolean matchBonus = isBonusNumberMatched(lotto, winningLotto.getBonusNumber());
