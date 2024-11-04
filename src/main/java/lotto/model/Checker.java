@@ -27,6 +27,9 @@ public class Checker {
         }
 
         String winningRank = getWinningRank(winningCount, bonusCount);
+        int winningsMoney = getWinningsMoney(winningRank);
+
+        return new LottoResult(winningRank, winningsMoney);
     }
 
     private int calculateWinningCount(Lotto lotto) {
@@ -67,4 +70,19 @@ public class Checker {
         return "2";
     }
 
+    private int getWinningsMoney(String winningRank) {
+        if (winningRank.equals("1")) {
+            return FIRST_WINNINGS_MONEY;
+        }
+        if (winningRank.equals("2")) {
+            return SECOND_WINNINGS_MONEY;
+        }
+        if (winningRank.equals("3")) {
+            return THIRD_WINNINGS_MONEY;
+        }
+        if (winningRank.equals("4")) {
+            return FOURTH_WINNINGS_MONEY;
+        }
+        return FIFTH_WINNINGS_MONEY;
+    }
 }
