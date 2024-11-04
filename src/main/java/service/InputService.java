@@ -1,4 +1,4 @@
-package console;
+package service;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
