@@ -2,6 +2,7 @@ package lotto;
 
 import java.math.BigDecimal;
 import java.util.List;
+import lotto.common.Transaction;
 import lotto.console.view.InputView;
 import lotto.console.view.OutputView;
 import lotto.lotto.domain.Lotto;
@@ -18,7 +19,11 @@ public class Application {
     }
 
     public static void run(InputView inputView, OutputView outputView) {
-        User user = User.of(inputView.readMoney());
+        Transaction transaction = new Transaction();
+
+        User user = transaction.execute(
+                () -> User.of(inputView.readMoney())
+        );
 
         int numberOfLotto = user.calculateAvailableNumberOfLotto();
         for (int i = 0; i < numberOfLotto; i++) {
@@ -27,9 +32,11 @@ public class Application {
 
         outputView.printUserLottos(user);
 
-        LottoAnswer answer = LottoAnswer.issue(
-                inputView.readWinNumbers(),
-                inputView.readBonusNumber()
+        List<Integer> winNumbers = transaction.execute(inputView::readWinNumbers);
+        int bonusNumber = transaction.execute(inputView::readBonusNumber);
+
+        LottoAnswer answer = transaction.execute(
+                () -> LottoAnswer.issue(winNumbers, bonusNumber)
         );
         List<LottoResult> results = user.match(answer);
 
