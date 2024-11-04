@@ -1,6 +1,8 @@
 package lotto.view;
 
 import java.util.List;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class LottoOutputView {
     public String getLottoCountMessage(int count) {
@@ -13,5 +15,17 @@ public class LottoOutputView {
 
     public String getWinningStatisticsHeader() {
         return "당첨 통계\n---\n";
+    }
+
+    public String getWinningResultMessage(int matchCount, int prize, int count) {
+        String result = matchCount + "개 일치";
+        if (matchCount == 5 && prize == 30000000) {
+            result += ", 보너스 볼 일치";
+        }
+        return result + " (" + formatPrize(prize) + "원) - " + count + "개";
+    }
+
+    private String formatPrize(int prize) {
+        return NumberFormat.getNumberInstance(Locale.KOREA).format(prize);
     }
 }
