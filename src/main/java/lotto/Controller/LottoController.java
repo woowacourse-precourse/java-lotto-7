@@ -1,9 +1,9 @@
 package lotto.Controller;
 
 import java.util.List;
-import lotto.Input.InputProcessor;
-import lotto.Input.InputView;
-import lotto.Output.OutputView;
+import lotto.view.Input.InputProcessor;
+import lotto.view.Input.InputView;
+import lotto.view.Output.OutputView;
 import lotto.Service.LottoService;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;

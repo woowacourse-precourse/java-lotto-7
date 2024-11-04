@@ -1,6 +1,6 @@
-package lotto.Input;
+package lotto.view.Input;
 
-import lotto.Output.OutputView;
+import lotto.view.Output.OutputView;
 
 public abstract class InputProcessor<T> {
     private final OutputView outputView;

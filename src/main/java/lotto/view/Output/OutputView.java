@@ -1,4 +1,4 @@
-package lotto.Output;
+package lotto.view.Output;
 
 import java.util.Arrays;
 import java.util.List;
