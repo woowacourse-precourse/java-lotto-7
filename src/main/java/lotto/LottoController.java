@@ -44,8 +44,6 @@ public class LottoController {
                 int price = validator.isNumber(input);
                 validator.validatePrice(price);
                 return price;
-            } catch (NumberFormatException e) {
-                System.out.println(e.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
