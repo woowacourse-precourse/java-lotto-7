@@ -24,6 +24,15 @@ public class LottoService {
         return numbers;
     }
 
+    public Map<Integer, Integer> calculateRanks(List<Lotto> lottos, LottoGame game) {
+        return lottos.stream()
+                .collect(Collectors.toMap(
+                        lotto -> findRank(lotto, game),
+                        rank -> 1,
+                        Integer::sum
+                ));
+    }
+
     private int findRank(Lotto lotto, LottoGame game) {
         int matchCount = (int) lotto.getNumbers().stream()
                 .filter(game.getWinningNumbers()::contains)
