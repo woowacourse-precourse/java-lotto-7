@@ -1,8 +1,8 @@
 package lotto.utils;
 
-import static lotto.constant.LottoConstants.LOTTO_NUMBERS_COUNT;
-import static lotto.constant.LottoConstants.MAX_LOTTO_NUMBER;
-import static lotto.constant.LottoConstants.MIN_LOTTO_NUMBER;
+import static lotto.constant.lotto.LottoConstants.LOTTO_NUMBERS_COUNT;
+import static lotto.constant.lotto.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.constant.lotto.LottoConstants.MIN_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;

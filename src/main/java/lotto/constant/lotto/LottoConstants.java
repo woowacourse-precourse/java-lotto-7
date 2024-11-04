@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.constant.lotto;
 
 import java.math.BigDecimal;
 

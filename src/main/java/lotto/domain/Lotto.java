@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.constant.LottoConstants.LOTTO_NUMBERS_COUNT;
+import static lotto.constant.lotto.LottoConstants.LOTTO_NUMBERS_COUNT;
 import static lotto.exception.lotto.LottoErrorCode.INVALID_DUPLICATE_LOTTO_NUMBERS;
 import static lotto.exception.lotto.LottoErrorCode.INVALID_LOTTO_LENGTH;
 

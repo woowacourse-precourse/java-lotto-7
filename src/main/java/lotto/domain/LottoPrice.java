@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.constant.LottoConstants.LOTTO_UNIT_PRICE;
+import static lotto.constant.lotto.LottoConstants.LOTTO_UNIT_PRICE;
 import static lotto.exception.lottoPrice.LottoPriceErrorCode.INVALID_LOTTO_PRICE;
 
 import java.math.BigDecimal;
