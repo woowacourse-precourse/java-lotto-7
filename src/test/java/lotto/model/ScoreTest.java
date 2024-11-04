@@ -23,37 +23,37 @@ public class ScoreTest {
     static Stream<Arguments> 로또_당첨_통계를_반환한다_테스트_케이스() {
         return Stream.of(
                 Arguments.of(
-                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6), LOTTO_NUMBER_SIZE)),
+                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6))),
                         createWinningLotto(List.of(1, 2, 3, 4, 5, 6), 7),
                         Score.SIX
                 ),
                 Arguments.of(
-                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6), LOTTO_NUMBER_SIZE)),
+                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6))),
                         createWinningLotto(List.of(1, 2, 3, 4, 5, 7), 6),
                         Score.FIFTH_WITH_BONUS
                 ),
                 Arguments.of(
-                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6), LOTTO_NUMBER_SIZE)),
+                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6))),
                         createWinningLotto(List.of(1, 2, 3, 4, 5, 8), 9),
                         Score.FIFTH
                 ),
                 Arguments.of(
-                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6), LOTTO_NUMBER_SIZE)),
+                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6))),
                         createWinningLotto(List.of(1, 2, 3, 4, 7, 8), 9),
                         Score.FOURTH
                 ),
                 Arguments.of(
-                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6), LOTTO_NUMBER_SIZE)),
+                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6))),
                         createWinningLotto(List.of(1, 2, 3, 7, 8, 9), 10),
                         Score.THREE
                 ),
                 Arguments.of(
-                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6), LOTTO_NUMBER_SIZE)),
+                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6))),
                         createWinningLotto(List.of(1, 2, 7, 8, 9, 10), 11),
                         Score.ZERO
                 ),
                 Arguments.of(
-                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6), LOTTO_NUMBER_SIZE)),
+                        Lotto.generateBy(new ChoosableRandomNumberMaker(List.of(1, 2, 3, 4, 5, 6))),
                         createWinningLotto(List.of(7, 8, 9, 10, 11, 12), 13),
                         Score.ZERO
                 )

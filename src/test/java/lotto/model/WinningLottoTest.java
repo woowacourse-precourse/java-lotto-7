@@ -2,7 +2,6 @@ package lotto.model;
 
 import lotto.mock.number_generator.ChoosableRandomNumberMaker;
 import lotto.mock.number_generator.DuplicateRandomNumberGenerator;
-import lotto.mock.number_generator.RealRandomNumberGenerator;
 import lotto.mock.number_generator.SequentialRandomNumberGenerator;
 import lotto.model.exception.LottoNumberInvalidException;
 import lotto.model.number.LottoNumber;
@@ -23,11 +22,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("WinningLotto 테스트")
 public class WinningLottoTest {
 
-    private final int LOTTO_NUMBER_SIZE = 6;
     private final int WINNING_LOTTO_NUMBER_SIZE = 6;
     private final SequentialRandomNumberGenerator sequentialRandomNumberGenerator = new SequentialRandomNumberGenerator();
     private final DuplicateRandomNumberGenerator duplicateRandomNumberGenerator = new DuplicateRandomNumberGenerator();
-    private final RealRandomNumberGenerator realRandomNumberGenerator = new RealRandomNumberGenerator();
 
     private static WinningLotto createWinningLotto(List<Integer> numbers, int bonusNumber) {
         List<LottoNumber> lottoNumbers = numbers.stream()
@@ -133,7 +130,7 @@ public class WinningLottoTest {
         // given
         WinningLotto winningLotto = createWinningLotto(winningLottoNumbers, bonusNumber);
 
-        Lotto lotto = Lotto.generateBy(new ChoosableRandomNumberMaker(lottoNumbers, LOTTO_NUMBER_SIZE));
+        Lotto lotto = Lotto.generateBy(new ChoosableRandomNumberMaker(lottoNumbers));
 
         // when
         int actual = winningLotto.getMatchCount(lotto);
@@ -149,7 +146,7 @@ public class WinningLottoTest {
         // given
         WinningLotto winningLotto = createWinningLotto(winningLottoNumbers, bonusNumber);
 
-        Lotto lotto = Lotto.generateBy(new ChoosableRandomNumberMaker(lottoNumbers, LOTTO_NUMBER_SIZE));
+        Lotto lotto = Lotto.generateBy(new ChoosableRandomNumberMaker(lottoNumbers));
 
         // when
         boolean actual = winningLotto.isBonusNumberMatches(lotto);

@@ -44,7 +44,7 @@ public class LottoShopTest {
         int money = LOTTO_PRICE - 1;
 
         // when, then
-        assertThatThrownBy(() -> lottoShop.purchaseRandomLottos(money, choosableRandomNumberMaker))
+        assertThatThrownBy(() -> lottoShop.purchaseRandomLottos(money, realRandomNumberGenerator))
                 .isInstanceOf(PurchaseMoneyInvalidException.class)
                 .isInstanceOf(IllegalArgumentException.class);
     }
