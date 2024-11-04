@@ -77,6 +77,14 @@ public class WinningResult {
             return prize;
         }
 
+        public static LottoRank valueOf(int matchCount, boolean matchBonus) {
+            for (LottoRank rank : values()) {
+                if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {
+                    return rank;
+                }
+            }
+            return NONE;
+        }
     }
 
 	public void setWinningNumber(List<Integer> winningNumber2) {
