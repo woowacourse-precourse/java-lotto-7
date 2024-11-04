@@ -14,6 +14,7 @@ public class LottoSalesService {
     private static final int LOTTO_COUNT = 6;
 
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    private int payment;
 
     public List<Lotto> createLottos(int quantity) throws IllegalArgumentException {
         validateQuantity(quantity);
@@ -29,9 +30,14 @@ public class LottoSalesService {
     public int getAvailableLottoQuantity(int payment) throws IllegalArgumentException {
         validatePayment(payment);
         if (payment % LOTTO_PRICE == 0) {
+            this.payment = payment;
             return payment / LOTTO_PRICE;
         }
         throw new IllegalArgumentException(LottoExceptionMessage.PAYMENT_DIVISIBLE_BY_THE_LOTTO_PRICE);
+    }
+
+    public int getPayment() {
+        return payment;
     }
 
     private void validateQuantity(int quantity) throws IllegalArgumentException {
