@@ -18,6 +18,10 @@ public class OutputFormatBuilder {
     private static final String FIRST_PRIZE_FORMAT = "6개 일치 (2,000,000,000원) - %,d개\n";
     private static final String EARNING_RATE_FORMAT = "총 수익률은 %,.1f%%입니다.";
 
+    private OutputFormatBuilder() {
+    }
+
+
     public static String buildMyLottos(Lottos lottos) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format(BUY_AMOUNT_FORMAT, lottos.size()));
