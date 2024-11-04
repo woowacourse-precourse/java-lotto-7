@@ -51,6 +51,12 @@ public class Validator {
         }
     }
 
+    public void checkForDuplicates(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(ExceptionCode.LOTTO_DOES_NOT_UNIQUE.message());
+        }
+    }
+
     public void isUniqueBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         boolean isDuplicate = winningNumbers.stream()
                 .anyMatch(num -> num.equals(bonusNumber));
