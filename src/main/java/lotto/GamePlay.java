@@ -15,6 +15,10 @@ public class GamePlay {
 
     private static final int LOTTO_PRICE = 1000;
     private static final String DELIMITER = ",";
+    private static final String LIST_START = "[";
+    private static final String LIST_END = "]";
+    private static final String COMMA = ",";
+    private static final String LINE_BREAK = "\n";
 
     private List<Lotto> lottos = new ArrayList<>();
     private int useMoneys;
@@ -53,6 +57,7 @@ public class GamePlay {
             lottos.add(pickLotto());
         }
 
+        printLottos();
     }
 
     private Lotto pickLotto(){
@@ -61,5 +66,20 @@ public class GamePlay {
         return new Lotto(numbers);
     }
 
+    private void printLottos() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(lottos.size() + "개를 구매했습니다.\n");
 
+        for(Lotto lotto : lottos){
+            sb.append(LIST_START);
+            List<Integer> numbers = lotto.getNumbers();
+            sb.append(numbers.getFirst());
+            for(int i=1; i<numbers.size(); i++){
+                sb.append(COMMA).append(numbers.get(i));
+            }
+            sb.append(LIST_END).append(LINE_BREAK);
+        }
+
+        System.out.println(sb.toString());
+    }
 }
