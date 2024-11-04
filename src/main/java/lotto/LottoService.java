@@ -1,9 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class LottoService {
 
+    private Lotto lotto_nums;
 
     //로또 구입 금액 입력
     public int buy_lotto(){
@@ -31,4 +34,26 @@ public class LottoService {
     void validateAmountForTest(int amount) {
         validateAmount(amount);
     }
+
+    //당첨 번호 입력
+    public Lotto win_number(String numbers) {
+        while (true) {
+            try {
+                String[] numberStrings = numbers.split(",");
+                List<Integer> numberList = new ArrayList<>();
+
+                for (String numberString : numberStrings) {
+                    numberList.add(Integer.parseInt(numberString.trim()));
+                }
+
+                lotto_nums = new Lotto(numberList);
+                break;
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lotto_nums;
+    }
+
 }
