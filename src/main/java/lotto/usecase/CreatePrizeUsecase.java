@@ -1,24 +1,31 @@
 package lotto.usecase;
 
 import lotto.application.prize.controller.PrizeController;
+import lotto.application.prize.domain.BonusNumber;
+import lotto.application.prize.domain.WinnerNumbers;
 import lotto.application.prize.service.PrizeResponse;
-import lotto.application.prize.view.input.PrizeInputView;
-import lotto.application.prize.view.input.PrizeViewRequest;
+import lotto.usecase.nneew.bonus.CreateBonusNumberUsecase;
+import lotto.usecase.nneew.winner.CreateWinnerNumbersUsecase;
 
 public class CreatePrizeUsecase {
-    private final PrizeInputView inputView;
-    private final PrizeController controller;
 
-    public CreatePrizeUsecase(PrizeInputView inputView, PrizeController controller) {
-        this.inputView = inputView;
-        this.controller = controller;
+    private final CreateWinnerNumbersUsecase createWinnerNumbersUsecase;
+    private final CreateBonusNumberUsecase createBonusNumberUsecase;
+    private final PrizeController prizeController;
+
+    public CreatePrizeUsecase(CreateWinnerNumbersUsecase createWinnerNumbersUsecase,
+                              CreateBonusNumberUsecase createBonusNumberUsecase,
+                              PrizeController prizeController) {
+        this.createWinnerNumbersUsecase = createWinnerNumbersUsecase;
+        this.createBonusNumberUsecase = createBonusNumberUsecase;
+        this.prizeController = prizeController;
     }
 
     public PrizeResponse execute() {
-        PrizeViewRequest request = inputView.initialize();
-        Long createdId = controller.create(request.winnerNumbers(), request.bonusNumber());
+        WinnerNumbers winNums = createWinnerNumbersUsecase.execute();
+        BonusNumber bonus = createBonusNumberUsecase.execute(winNums);
 
-        return controller.getPrize(createdId);
+        Long createdId = prizeController.create(winNums.getLottoNumbers(), bonus.getValue());
+        return prizeController.getPrize(createdId);
     }
-
 }
