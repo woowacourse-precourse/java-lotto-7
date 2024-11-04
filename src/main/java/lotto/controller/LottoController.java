@@ -23,33 +23,63 @@ public class LottoController {
     }
 
     public void run() {
-        outputView.printPurchaseAmountMessage();
-        int amount = inputView.readPurchaseAmount();
-
+        int amount = getPurchaseAmount();
         List<Lotto> lottos = createLottos(amount);
+
         outputView.printPurchaseCount(lottos.size());
         outputView.printLottos(lottos);
 
-        WinningLotto winningLotto = createWinningLotto();
+        WinningLotto winningLotto = getWinningLotto();
         LottoResult lottoResult = new LottoResult(lottos, winningLotto);
         outputView.printResult(lottoResult);
     }
 
+    private int getPurchaseAmount() {
+        outputView.printPurchaseAmountMessage();
+        try {
+            return inputView.readPurchaseAmount();
+        } catch (IllegalArgumentException e) { // 실패할 경우 에러메세지 출력 후 다시 입력받음
+            outputView.printErrorMessage(e.getMessage());
+            return getPurchaseAmount();
+        }
+    }
+
+    private WinningLotto getWinningLotto() {
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
+
+        try {
+            return new WinningLotto(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) { // 실패할 경우 에러메세지 출력 후 다시 입력받음
+            outputView.printErrorMessage(e.getMessage());
+            return getWinningLotto();
+        }
+    }
+
+    private List<Integer> getWinningNumbers() {
+        outputView.printWinningNumbersMessage();
+        try {
+            return inputView.readWinningNumbers();
+        } catch (IllegalArgumentException e) { // 실패할 경우 에러메세지 출력 후 다시 입력받음
+            outputView.printErrorMessage(e.getMessage());
+            return getWinningNumbers();
+        }
+    }
+
+    private int getBonusNumber() {
+        outputView.printBonusNumberMessage();
+        try {
+            return inputView.readBonusNumber();
+        } catch (IllegalArgumentException e) { // 실패할 경우 에러메세지 출력 후 다시 입력받음
+            outputView.printErrorMessage(e.getMessage());
+            return getBonusNumber();
+        }
+    }
+
     private List<Lotto> createLottos(int amount) {
         int count = amount / LottoConstant.LOTTO_PURCHASE_AMOUNT.getIntValue();
-
         return IntStream.range(0, count)
                 .mapToObj(i -> new Lotto(lottoNumberGenerator.generate()))
                 .toList();
-    }
-
-    private WinningLotto createWinningLotto() {
-        outputView.printWinningNumbersMessage();
-        List<Integer> winningNumbers = inputView.readWinningNumbers();
-
-        outputView.printBonusNumberMessage();
-        int bonusNumber = inputView.readBonusNumber();
-
-        return new WinningLotto(winningNumbers, bonusNumber);
     }
 }
