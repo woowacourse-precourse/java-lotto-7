@@ -33,8 +33,9 @@ class LottoResultServiceTest {
                 LottoPrize.FIRST, 1, LottoPrize.SECOND, 1,
                 LottoPrize.THIRD, 0, LottoPrize.FOURTH, 0, LottoPrize.FIFTH, 1
         );
+        WinningLottoDto winningLottoDto = new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6), 7);
         return Stream.of(
-                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6), 7), lottos, expectedResult)
+                Arguments.of(winningLottoDto, lottos, expectedResult)
         );
     }
 
@@ -54,8 +55,9 @@ class LottoResultServiceTest {
         );
         Double winningRate = (2030005000.0 / (lottos.size() * 1000)) * 100;
         String expectedWinningRate = String.format("%.1f", winningRate);
+        WinningLottoDto winningLottoDto = new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6), 7);
         return Stream.of(
-                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6), 7), lottos, expectedWinningRate)
+                Arguments.of(winningLottoDto, lottos, expectedWinningRate)
         );
     }
 }
