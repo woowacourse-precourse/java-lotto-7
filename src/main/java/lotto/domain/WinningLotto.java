@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static lotto.domain.LottoPrize.FIRST_PRIZE;
-
 public class WinningLotto {
 
     private final Lotto lotto;

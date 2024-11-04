@@ -65,6 +65,7 @@ class LottoPrizesRecordTest {
         // When
         BigDecimal rateOfReturn = lottoPrizesRecord.getRateOfReturn(lottoPrice);
         System.out.println(rateOfReturn);
+
         // Then
         assertThat(rateOfReturn).isEqualByComparingTo(expectedRateOfReturn);
     }

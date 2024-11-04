@@ -12,7 +12,6 @@ public enum LottoErrorCode implements ErrorCode {
         this.message = message;
     }
 
-
     @Override
     public String getMessage() {
         return message;

@@ -1,9 +1,9 @@
 package lotto.view;
 
-import static lotto.constant.view.OutputViewConstant.INPUT_LOTTO_BONUS_NUMBER_PREFIX;
-import static lotto.constant.view.OutputViewConstant.INPUT_LOTTO_NUMBERS_PREFIX;
-import static lotto.constant.view.OutputViewConstant.INPUT_LOTTO_PRICE_PREFIX;
-import static lotto.constant.view.OutputViewConstant.LOTTO_TICKETS_COUNT_FORMAT;
+import static lotto.constant.view.OutputViewConstants.INPUT_LOTTO_BONUS_NUMBER_PREFIX;
+import static lotto.constant.view.OutputViewConstants.INPUT_LOTTO_NUMBERS_PREFIX;
+import static lotto.constant.view.OutputViewConstants.INPUT_LOTTO_PRICE_PREFIX;
+import static lotto.constant.view.OutputViewConstants.LOTTO_TICKETS_COUNT_FORMAT;
 
 import java.util.Comparator;
 import lotto.domain.LottoPrice;

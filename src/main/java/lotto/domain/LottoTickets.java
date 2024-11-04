@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static java.util.stream.Collectors.groupingBy;
-
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
