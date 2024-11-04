@@ -20,6 +20,17 @@ public class Lotto {
         return numbers;
     }
 
+    public int getMatchCount(Lotto winningLotto) {
+        int matchCount = 0;
+        for (int number : numbers) {
+            if (winningLotto.containsNumber(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
 
-    // TODO: 추가 기능 구현
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
 }
