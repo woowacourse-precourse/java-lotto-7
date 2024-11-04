@@ -5,7 +5,6 @@ import java.util.stream.IntStream;
 import lotto.dto.BonusLottoNumBerInput;
 import lotto.dto.LottoPurchasedAmountInput;
 import lotto.dto.WinnerLottoNumbersInput;
-import lotto.exception.LottoException;
 import lotto.model.Lotto;
 import lotto.model.LottoNumberGenerator;
 import lotto.model.LottoReport;
@@ -59,7 +58,7 @@ public class LottoController {
                 LottoPurchasedAmountInput lottoPurchasedAmountInput = inputView.readLottoPurchasedAmount();
 
                 return Buyer.from(lottoPurchasedAmountInput.rawAmount());
-            } catch (LottoException e) {
+            } catch (IllegalArgumentException e) {
                 outPutView.printErrorMessage(e.getMessage());
             }
         }
@@ -70,7 +69,7 @@ public class LottoController {
             try {
                 WinnerLottoNumbersInput winnerLottoNumbersInput = inputView.readWinnerLottoNumbers();
                 return WinnerLotto.from(winnerLottoNumbersInput.rawNumbers());
-            } catch (LottoException e) {
+            } catch (IllegalArgumentException e) {
                 outPutView.printErrorMessage(e.getMessage());
             }
         }
@@ -82,7 +81,7 @@ public class LottoController {
                 BonusLottoNumBerInput bonusLottoNumBerInput = inputView.readBonusLottoNumber();
                 winnerLotto.setBonusNumber(bonusLottoNumBerInput.rawNumber());
                 return;
-            } catch (LottoException e) {
+            } catch (IllegalArgumentException e) {
                 outPutView.printErrorMessage(e.getMessage());
             }
         }
