@@ -29,9 +29,15 @@ public class LottoOutput {
     }
 
     public void displayPlaceResult(List<Integer> placeCount) {
+        System.out.println(OutputMessage.WINNING_STATISTICS_HEADER.getText());
+        System.out.println(OutputMessage.WINNING_STATISTICS_SEPARATOR.getText());
         for (Rank rank : Rank.values()) {
             int count = placeCount.get(rank.getIndex());
             System.out.println(rank.getMessage(count));
         }
+    }
+
+    public void displayEarningsRate(double earningsRate) {
+        System.out.printf(OutputMessage.EARNINGS_RATE_MESSAGE.getText(), earningsRate);
     }
 }
