@@ -1,10 +1,11 @@
 package lotto.service;
 
 import java.util.List;
-import java.util.Set;
 import lotto.message.LottoErrorMessages;
 import lotto.message.LottoInfoMessages;
 import lotto.message.StatisticsMessages;
+import lotto.model.Lotto;
+import lotto.model.LottoGroup;
 
 public class PrintService {
     private static final int MATCHED_RESULT_LENGTH = 5;
@@ -31,33 +32,13 @@ public class PrintService {
         System.out.println(
                 amount + LottoInfoMessages.NOTICE_BUY_AMOUNT_START.text()
                         + change + LottoInfoMessages.NOTICE_BUY_AMOUNT_END.text());
-    }
-
-    public void printTotalLottoList(int amount, List<Set<Integer>> autoLottoList, List<Set<Integer>> manualLottoList) {
-        System.out.println(amount + LottoInfoMessages.TOTAL_BUY_AMOUNT.text());
-        for (Set<Integer> set : manualLottoList) {
-            System.out.println(set);
-        }
-        for (Set<Integer> set : autoLottoList) {
-            System.out.println(set);
-        }
         System.out.println();
     }
 
-    public void printInsertManualNumbers(int manualAmount) {
-        System.out.println(LottoInfoMessages.INSERT_NUMBERS_START.text()
-                + LottoInfoMessages.INSERT_NUMBERS_MIDDLE.text()
-                + manualAmount + LottoInfoMessages.INSERT_NUMBERS_END.text());
-    }
-
-    public void printInsertWinnerNumbers(int winnerUnit) {
-        System.out.println(LottoInfoMessages.INSERT_NUMBERS_START.text());
-    }
-
-    public void printWinnerNumbers(List<Set<Integer>> winnerLotto) {
-        for (Set<Integer> set : winnerLotto) {
-            System.out.println(set);
-        }
+    public void printWinnerNumbers(Lotto winnerLotto) {
+        System.out.println(LottoInfoMessages.WINNER_NUMBERS.text());
+        System.out.println(winnerLotto.getString());
+        System.out.println();
     }
 
     public void printWrongRange() {
@@ -65,7 +46,9 @@ public class PrintService {
     }
 
     public void printBonusNumbers(int bonusNumber) {
+        System.out.println(LottoInfoMessages.BONUS_NUMBER.text());
         System.out.println(bonusNumber);
+        System.out.println();
     }
 
     public void printWrongBonusNumber(int bonusNumber) {
@@ -112,5 +95,19 @@ public class PrintService {
             }
         }
         return matchedResult;
+    }
+
+    public void printLottoGroup(LottoGroup lottoGroup) {
+        int lottoGroupSize = lottoGroup.getSize();
+        List<Lotto> lottos = lottoGroup.getLottos();
+        System.out.println(LottoInfoMessages.TOTAL_BUY_AMOUNT.text());
+        for (int i = 0; i < lottoGroupSize; i++) {
+            System.out.println(lottos.get(i).getString());
+        }
+        System.out.println();
+    }
+
+    public void printSyntaxError() {
+        System.out.println(LottoErrorMessages.SYNTAX_NUMBER_ERROR.addErrorText());
     }
 }
