@@ -4,14 +4,14 @@ import java.math.BigInteger;
 import java.util.List;
 
 public class Winning {
-    List<BigInteger> winNumbers;
+    Lotto winNumbers;
     BigInteger bonusNumber;
 
-    public Winning(List<BigInteger> winNumbers, BigInteger bonusNumber) {
-        this.winNumbers = winNumbers;
+    public Winning(List<Integer> winNumbers, BigInteger bonusNumber) {
+        this.winNumbers = new Lotto(winNumbers);
         this.bonusNumber = bonusNumber;
     }
 
-    public List<BigInteger> getWinNumbers() { return winNumbers; }
+    public Lotto getWinNumbers() { return winNumbers; }
     public BigInteger getBonusNumber() { return bonusNumber; }
 }

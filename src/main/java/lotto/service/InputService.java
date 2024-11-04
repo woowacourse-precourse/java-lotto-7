@@ -19,7 +19,7 @@ public class InputService {
         }
     }
 
-    public List<BigInteger> getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         InputView inputView = new InputView();
         Validator validator = new Validator();
 

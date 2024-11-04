@@ -4,8 +4,12 @@ import lotto.message.ErrorMessage;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
+    private final Integer MIN_NUMBER = 1;
+    private final Integer MAX_NUMBER = 45;
+
     public BigInteger validPurchaseMoney(String number) {
         if (!isNumber(number))
             throw new IllegalArgumentException(ErrorMessage.PREFIX.getMessage() + ErrorMessage.NONE_NUMBER.getMessage());
@@ -24,14 +28,14 @@ public class Validator {
         return purchaseMoney.remainder(BigInteger.valueOf(1000)).equals(BigInteger.ZERO);
     }
 
-    public List<BigInteger> validWinningNumbers(String winningNumbers) {
-        List<BigInteger> winningNumberList = isNumbers(winningNumbers);
+    public List<Integer> validWinningNumbers(String winningNumbers) {
+        Set<Integer> winningNumberList = isNumbers(winningNumbers);
 
         if (!areBetweenOneAndFourtyFive(winningNumberList))
             throw new IllegalArgumentException(ErrorMessage.PREFIX.getMessage() + ErrorMessage.INVALID_RANGE.getMessage());
         if (!isSixNumber(winningNumberList.size()))
             throw new IllegalArgumentException(ErrorMessage.PREFIX.getMessage() + ErrorMessage.INVALID_NUMBER_COUNT.getMessage());
-        return winningNumberList;
+        return winningNumberList.stream().toList();
     }
 
     public BigInteger validBonusNumber(String bonusNumber) {
@@ -44,7 +48,7 @@ public class Validator {
         return bonus;
     }
 
-    private List<BigInteger> isNumbers(String winningNumbers) {
+    private Set<Integer> isNumbers(String winningNumbers) {
         Splitter splitter = new Splitter();
 
         try {
@@ -54,11 +58,11 @@ public class Validator {
         }
     }
 
-    private boolean areBetweenOneAndFourtyFive(List<BigInteger> winningNumbers) {
-        for (BigInteger winningNumber : winningNumbers) {
-            if (winningNumber.compareTo(BigInteger.ONE) < 0)
+    private boolean areBetweenOneAndFourtyFive(Set<Integer> winningNumbers) {
+        for (Integer winningNumber : winningNumbers) {
+            if (winningNumber.compareTo(MIN_NUMBER) < 0)
                 return false;
-            if (winningNumber.compareTo(BigInteger.valueOf(45L)) > 0)
+            if (winningNumber.compareTo(MAX_NUMBER) > 0)
                 return false;
         }
         return true;

@@ -40,7 +40,7 @@ public class LottoService {
 
     public void checkWinning(Purchase purchase, MyLotto myLotto, Winning winning) {
         for (Lotto lotto : myLotto.getLottos()) {
-            Long sameCount = matchLottoNumbers(lotto.getNumbers(), winning.getWinNumbers());
+            Long sameCount = matchLottoNumbers(lotto.getNumbers(), winning.getWinNumbers().getNumbers());
 
             updatePlaces(myLotto, sameCount, matchBonusNumbers(lotto.getNumbers(), winning.getBonusNumber()));
         }
@@ -49,12 +49,8 @@ public class LottoService {
         outputView.printProfitability(purchase, calculateWinning(myLotto));
     }
 
-    private Long matchLottoNumbers(List<Integer> lotto, List<BigInteger> winning) {
-        List<BigInteger> bigIntegerLotto = lotto.stream()
-                .map(BigInteger::valueOf)
-                .toList();
-
-        return bigIntegerLotto.stream()
+    private Long matchLottoNumbers(List<Integer> lotto, List<Integer> winning) {
+        return lotto.stream()
                 .filter(winning::contains)
                 .count();
     }
