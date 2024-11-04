@@ -1,5 +1,8 @@
 package lotto.service;
 
+import static lotto.constants.Constants.ONE;
+import static lotto.constants.Constants.ZERO;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGroup;
@@ -11,10 +14,10 @@ public class LottoGroupService {
 
         for (Lotto lotto : lottos) {
             int matchingCount = countMatchingNumbers(lotto.getNumbers(), winningLotto.getNumbers());
-            int bonusCount = 0;
+            int bonusCount = ZERO;
 
             if (hasBonusNumber(lotto.getNumbers(), bonusNumber)) {
-                bonusCount = 1;
+                bonusCount = ONE;
             }
 
             Winning winning = Winning.findPrize(matchingCount, bonusCount);

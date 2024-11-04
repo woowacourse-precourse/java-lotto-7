@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.constants.Constants.UNIT_PRICE;
+import static lotto.constants.Constants.ZERO;
+
 import java.util.Map;
 import lotto.domain.LottoGroup;
 import lotto.domain.Winning;
@@ -15,7 +18,7 @@ public class OutputView {
     }
 
     public int getQuantity(int amount) {
-        return amount / 1000;
+        return amount / UNIT_PRICE;
     }
 
     public void askLottoNumbers() {
@@ -39,11 +42,11 @@ public class OutputView {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + countOfWinning.getOrDefault(Winning.THIRD, 0) + "개");
-        System.out.println("4개 일치 (50,000원) - " + countOfWinning.getOrDefault(Winning.FOURTH, 0) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + countOfWinning.getOrDefault(Winning.FIFTH, 0) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + countOfWinning.getOrDefault(Winning.FIFTH_WITH_BONUS, 0) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + countOfWinning.getOrDefault(Winning.SIXTH, 0) + "개");
+        System.out.println("3개 일치 (5,000원) - " + countOfWinning.getOrDefault(Winning.THIRD, ZERO) + "개");
+        System.out.println("4개 일치 (50,000원) - " + countOfWinning.getOrDefault(Winning.FOURTH, ZERO) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + countOfWinning.getOrDefault(Winning.FIFTH, ZERO) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + countOfWinning.getOrDefault(Winning.FIFTH_WITH_BONUS, ZERO) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + countOfWinning.getOrDefault(Winning.SIXTH, ZERO) + "개");
     }
 
     public void responseYieldOfLotto(String yieldOfLotto) {

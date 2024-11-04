@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.LOTTO_NUMBER_COUNT;
+import static lotto.constants.Constants.MAX_NUMBER;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +24,7 @@ public class Lotto {
 
     private static void checkValidRange(List<Integer> numbers) {
         numbers.stream()
-                .filter(number -> number > 45)
+                .filter(number -> number > MAX_NUMBER)
                 .findAny()
                 .ifPresent(invalidNumber -> {
                     throw new IllegalArgumentException("로또 번호는 45 이하 양수여야 합니다.");
@@ -29,7 +32,7 @@ public class Lotto {
     }
 
     private static void checkSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
     }

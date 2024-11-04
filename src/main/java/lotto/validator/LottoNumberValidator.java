@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import static lotto.constants.Constants.ZERO;
+
 import java.util.List;
 
 public class LottoNumberValidator {
@@ -43,7 +45,7 @@ public class LottoNumberValidator {
         }
         try {
             int number = Integer.parseInt(input);
-            if (number < 0) {
+            if (number < ZERO) {
                 throw new IllegalArgumentException("보너스 숫자 입력은 양수만 가능합니다.");
             }
         } catch (NumberFormatException e) {

@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.HUNDRED;
+import static lotto.constants.Constants.ONE;
+import static lotto.constants.Constants.ZERO;
+import static lotto.constants.Constants.ZERO_POINT;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,17 +12,18 @@ import java.util.Map;
 public class LottoGroup {
     private final List<Lotto> lottos;
     private Map<Winning, Integer> matchCounts;
-    private int totalPrize = 0;
+    private int totalPrize;
 
     public LottoGroup(List<Lotto> lottos) {
         this.lottos = lottos;
         this.matchCounts = new HashMap<>();
+        this.totalPrize = ZERO;
         initializeWinningStatistics();
     }
 
     private void initializeWinningStatistics() {
         for (Winning winning : Winning.values()) {
-            matchCounts.put(winning, 0);
+            matchCounts.put(winning, ZERO);
         }
     }
 
@@ -38,13 +44,13 @@ public class LottoGroup {
     }
 
     public void updateWinningStatistics(Winning winning) {
-        matchCounts.put(winning, matchCounts.get(winning) + 1);
+        matchCounts.put(winning, matchCounts.get(winning) + ONE);
     }
 
     public double calculateYield(int purchaseAmount) {
-        if (purchaseAmount == 0) {
-            return 0.0;
+        if (purchaseAmount == ZERO) {
+            return ZERO_POINT;
         }
-        return (double) totalPrize / purchaseAmount * 100;
+        return (double) totalPrize / purchaseAmount * HUNDRED;
     }
 }

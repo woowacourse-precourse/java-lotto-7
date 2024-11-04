@@ -1,5 +1,11 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.MATCHING_COUNT_FIVE;
+import static lotto.constants.Constants.MATCHING_COUNT_FOUR;
+import static lotto.constants.Constants.MATCHING_COUNT_ONE;
+import static lotto.constants.Constants.MATCHING_COUNT_SIX;
+import static lotto.constants.Constants.MATCHING_COUNT_THREE;
+
 public enum Winning {
     NO_WIN(0, 0),
     THIRD(3, 5000),
@@ -34,22 +40,22 @@ public enum Winning {
     }
 
     private static boolean isSixthPrize(int matchCount) {
-        return matchCount == 6;
+        return matchCount == MATCHING_COUNT_SIX;
     }
 
     private static boolean isFifthWithBonusPrize(int matchCount, int bonusCount) {
-        return matchCount == 5 && bonusCount == 1;
+        return matchCount == MATCHING_COUNT_FIVE && bonusCount == MATCHING_COUNT_ONE;
     }
 
     private static boolean isFifthPrize(int matchCount) {
-        return matchCount == 5;
+        return matchCount == MATCHING_COUNT_FIVE;
     }
 
     private static boolean isFourthPrize(int matchCount) {
-        return matchCount == 4;
+        return matchCount == MATCHING_COUNT_FOUR;
     }
 
     private static boolean isThirdPrize(int matchCount) {
-        return matchCount == 3;
+        return matchCount == MATCHING_COUNT_THREE;
     }
 }

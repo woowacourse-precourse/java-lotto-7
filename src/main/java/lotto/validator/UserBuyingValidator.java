@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import static lotto.constants.Constants.STRING_ZERO;
+import static lotto.constants.Constants.ZERO;
+
 public class UserBuyingValidator {
     private final static int LOTTO_PRICE = 1000;
 
@@ -10,14 +13,14 @@ public class UserBuyingValidator {
     }
 
     private static void validIsZero(String buyingPrice) {
-        if (buyingPrice.equals("0")) {
+        if (buyingPrice.equals(STRING_ZERO)) {
             throw new IllegalArgumentException("0원으로 로또를 구매할 수 없습니다.");
         }
     }
 
     public void validPrice(String pay) {
         int buyingPrice = Integer.parseInt(pay);
-        if (buyingPrice % LOTTO_PRICE != 0) {
+        if (buyingPrice % LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException("구매는 1,000원 단위로 가능합니다.");
         }
     }
