@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class User {
 
@@ -31,5 +31,13 @@ public class User {
             winnings.put(rank, 1);
         }
         return winnings;
+    }
+
+    public double calculateReturn(Map<Rank, Integer> winnings, int purchaseAmount) {
+        double totalAmount = 0;
+        for (Entry<Rank, Integer> winning : winnings.entrySet()) {
+            totalAmount += Rank.getPrize(winning.getKey()) * winning.getValue();
+        }
+        return Math.round(totalAmount / purchaseAmount * 100 * 10) / 10.0;
     }
 }
