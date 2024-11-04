@@ -5,6 +5,8 @@ import lotto.constants.ConstraintConstants;
 import lotto.constants.ErrorViewConstants;
 import lotto.constants.InputViewConstants;
 
+import static lotto.service.ValidatorService.validatePurchaseAmount;
+
 public class InputService {
     public int getPurchaseAmount() {
         System.out.println(InputViewConstants.PURCHASE_AMOUNT_INSTRUCTION);
@@ -19,8 +21,4 @@ public class InputService {
         throw new IllegalArgumentException(ErrorViewConstants.INVALID_INPUT_CONSTRAINT);
     }
 
-    private boolean validatePurchaseAmount(int purchaseAmount) {
-        return purchaseAmount % ConstraintConstants.PURCHASE_UNIT == 0
-                && purchaseAmount <= ConstraintConstants.MAX_PURCHASE_AMOUNT;
-    }
 }
