@@ -60,9 +60,10 @@ class LottoBankTest {
         LottoResult lottoResult = new LottoResult(
                 List.of(Prize.FIRST_PRIZE, Prize.NO_PRIZE, Prize.NO_PRIZE, Prize.NO_PRIZE, Prize.NO_PRIZE));
         LottoBank lottoBank = new LottoBank();
-        double profitRate = lottoBank.calculateProfitRate(lottoResult);
+        double actualProfitRate = lottoBank.calculateProfitRate(lottoResult);
         double expectedProfitRate =
                 (Prize.FIRST_PRIZE.getMoney() / (Lotto.getLottoPrice() * lottoResult.getLottoCount())) * 100;
-        assertThat(profitRate).isEqualTo(Math.round(expectedProfitRate * 100) / 100.0);
+        double roundedExpectedProfitRate = Math.round(expectedProfitRate * 100) / 100.0;
+        assertThat(actualProfitRate).isEqualTo(roundedExpectedProfitRate);
     }
 }
