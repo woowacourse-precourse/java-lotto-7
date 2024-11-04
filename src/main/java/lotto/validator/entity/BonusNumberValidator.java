@@ -1,5 +1,6 @@
 package lotto.validator.entity;
 
+import lotto.enums.ExceptionMessage;
 import lotto.validator.Validator;
 
 // 보너스 번호 검증 클래스
@@ -19,13 +20,13 @@ public class BonusNumberValidator implements Validator {
 
     private void isValidatedForm(){
         if(!bonusNumber.matches("[0-9]+")){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 할 수 있습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_NOT_VALID_FORMAT.getMessage());
         }
     }
 
     private void isNull(){
         if(bonusNumber == null){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호 NULL 오류 입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_IS_NULL.getMessage());
         }
     }
 
@@ -37,7 +38,7 @@ public class BonusNumberValidator implements Validator {
                 throw new Exception();
             }
         }catch (Exception e){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자이어야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 }

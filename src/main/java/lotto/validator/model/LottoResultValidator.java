@@ -2,6 +2,7 @@ package lotto.validator.model;
 
 import lotto.entity.BonusNumber;
 import lotto.entity.WinningNumber;
+import lotto.enums.ExceptionMessage;
 import lotto.validator.Validator;
 
 import java.util.HashSet;
@@ -26,7 +27,7 @@ public class LottoResultValidator implements Validator {
         set.add(bonusNumber.getValue());
 
         if(winningNumber.getValue().getNumbers().size() == set.size()){
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복 될 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_BONUS_NUMBER_DUPLICATED.getMessage());
         }
     }
 }

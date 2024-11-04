@@ -1,5 +1,6 @@
 package lotto.validator.entity;
 
+import lotto.enums.ExceptionMessage;
 import lotto.validator.Validator;
 
 import java.util.HashSet;
@@ -22,13 +23,13 @@ public class LottoValidator implements Validator {
 
     private void isDuplicated(){
         if(numbers.size() > new HashSet<>(numbers).size()){
-            throw new IllegalArgumentException("[ERROR] 로또 번호 6개는 중복 될 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 
     private void isValidCount(){
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_NOT_VALID_COUNT.getMessage());
         }
     }
 
@@ -40,7 +41,7 @@ public class LottoValidator implements Validator {
 
     private void isInRange(int number){
         if(number < 1 || number > 45){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자이어야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 }

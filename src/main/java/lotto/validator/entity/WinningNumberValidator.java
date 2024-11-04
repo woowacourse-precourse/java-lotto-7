@@ -1,5 +1,6 @@
 package lotto.validator.entity;
 
+import lotto.enums.ExceptionMessage;
 import lotto.validator.Validator;
 
 // 당첨 번호 검증 클래스
@@ -28,25 +29,25 @@ public class WinningNumberValidator implements Validator {
 
     private void isNull(){
         if(winningNumbers == null){
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 NULL 오류 입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_IS_NULL.getMessage());
         }
     }
 
     private void isConsistOfNumberAndComma(){
-        if(winningNumbers == null || !winningNumbers.matches("[0-9|,]+")){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자와 쉼표만 입력 할 수 있습니다. (공백 없이 쉼표로만 숫자 구분)");
+        if(!winningNumbers.matches("[0-9|,]+")){
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_NOT_VALID_FORMAT.getMessage());
         }
     }
 
     private void isStartOrEndWithComma(){
         if(winningNumbers.startsWith(",") || winningNumbers.endsWith(",")){
-            throw new IllegalArgumentException("[ERROR] 쉼표로 시작하거나 끝날 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_START_OR_END_WITH_COMMA.getMessage());
         }
     }
 
     private void isContainsContinuousComma(){
         if(winningNumbers.contains(",,")){
-            throw new IllegalArgumentException("[ERROR] 쉼표 사이에는 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_HAS_CONTINUOUS_COMMA.getMessage());
         }
     }
 
@@ -55,7 +56,7 @@ public class WinningNumberValidator implements Validator {
             int number = Integer.parseInt(winningNumber);
 
         }catch (Exception e){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 정수 범위를 벗어 날 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 }
