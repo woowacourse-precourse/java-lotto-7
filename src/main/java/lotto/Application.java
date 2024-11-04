@@ -9,8 +9,8 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
         int lottoCount = 0;
+        int money = Integer.parseInt(Console.readLine());
         try {
-            int money = Integer.parseInt(Console.readLine());
             if (money <= 0) {
                 throw new IllegalArgumentException("[ERROR] 구입금액은 양수여야 합니다.");
             }
@@ -70,5 +70,10 @@ public class Application {
                 matchCounts[matches]++;
             }
         }
+
+        long totalMoney = matchCounts[3] * 5_000L + matchCounts[4] * 50_000L +
+                matchCounts[5] * 1_500_000L + matchCounts[7] * 30_000_000L + matchCounts[6] * 2_000_000_000L;
+
+        double returnRate = totalMoney * 100.0 / money;
     }
 }
