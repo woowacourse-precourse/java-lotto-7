@@ -3,12 +3,14 @@ package lotto.model;
 import lotto.exception.ErrorCode;
 
 public class PurchaseAmount {
+    private static final int MIN_PURCHASE_AMOUNT = 0;
+    private static final int LOTTO_PRICE = 1000;
+
     private final int value;
 
     public PurchaseAmount(String purchaseAmount) {
-        int value = parseInput(purchaseAmount);
-        validateValue(value);
-        this.value = value;
+        this.value = parseInput(purchaseAmount);
+        validate(value);
     }
 
     public int getValue() {
@@ -23,17 +25,24 @@ public class PurchaseAmount {
         }
     }
 
-    private void validateValue(int value) {
-        if (value % 1000 != 0) {
+    private void validate(int value) {
+        validateUnits(value);
+        validateNegative(value);
+    }
+
+    private void validateUnits(int value) {
+        if (value % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_NOT_IN_UNITS_OF_THOUSAND.getMessage());
         }
+    }
 
-        if (value < 0) {
+    private void validateNegative(int value) {
+        if (value < MIN_PURCHASE_AMOUNT) {
             throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_NEGATIVE.getMessage());
         }
     }
 
     public String calculatePurchaseLottoCount() {
-        return String.valueOf(value / 1000);
+        return String.valueOf(value / LOTTO_PRICE);
     }
 }
