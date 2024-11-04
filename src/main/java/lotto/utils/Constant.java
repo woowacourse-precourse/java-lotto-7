@@ -10,6 +10,7 @@ public class Constant {
     public static final int LOTTO_NUMBER_MAX = 45;
 
     public static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+
     private Constant() {
     }
 }
