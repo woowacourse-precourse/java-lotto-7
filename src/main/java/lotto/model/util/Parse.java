@@ -15,7 +15,7 @@ public class Parse {
 	}
 
 	public static List<Integer> parseToWinningNumber(String winningNumber) {
-		WinningNumber.validateDelimiter(winningNumber);
+		WinningNumber.checkDelimiter(winningNumber);
 
 		return Arrays.stream(winningNumber.split(Delimiter.COMMA.getDelimiter()))
 			.map(Integer::parseInt)

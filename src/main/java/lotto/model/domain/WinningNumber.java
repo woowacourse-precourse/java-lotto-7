@@ -38,7 +38,7 @@ public record WinningNumber(List<Integer> winningNumber) {
 		}
 	}
 
-	public static void validateDelimiter(String winningNumber) {
+	public static void checkDelimiter(String winningNumber) {
 		if (!winningNumber.contains(Delimiter.COMMA.getDelimiter())) {
 			throw new IllegalArgumentException("[ERROR] 구분자는 콤마(,)이어야 합니다.");
 		}

@@ -2,25 +2,31 @@ package lotto.model.domain;
 
 import lotto.model.dto.WinningDTO;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Winning {
 	private final LottoBundle lottoBundle;
 	private final WinningDTO winningDTO;
-	private final Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
+	private Map<Rank, Integer> rankCounts;
 
 	public Winning(LottoBundle lottoBundle, WinningDTO winningDTO) {
 		this.lottoBundle = lottoBundle;
 		this.winningDTO = winningDTO;
+		rankCounts = new EnumMap<>(Rank.class);
+		getWinningResult();
+	}
+
+	private void getWinningResult() {
 		initializeRankCounts();
 		calculateRanks();
 	}
 
 	private void initializeRankCounts() {
-		for (Rank rank : Rank.values()) {
-			rankCounts.put(rank, 0);
-		}
+		rankCounts = Arrays.stream(Rank.values())
+			.collect(Collectors.toMap(rank -> rank, rank -> 0));
 	}
 
 	private void calculateRanks() {
