@@ -1,8 +1,12 @@
 package study;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class SetTest {
     private Set<Integer> numbers;
@@ -16,5 +20,10 @@ public class SetTest {
         numbers.add(3);
     }
 
-    // Test Case 구현
+    // 요구사항 1
+    @Test
+    @DisplayName("Set의 size() 메소드를 활용해 Set의 크기를 확인하는 학습 테스트")
+    public void testSetSize() {
+        assertEquals(3, numbers.size());
+    }
 }
