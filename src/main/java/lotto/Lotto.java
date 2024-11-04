@@ -34,4 +34,26 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
+    public WinningStatus getWinningStatus(Lotto winLotto, int bonusNumber) {
+        List<Integer> numbers = winLotto.getNumbers();
+        long duplicatedNumbers = this.numbers.stream()
+                .filter(numbers::contains)
+                .count();
+        if (duplicatedNumbers == 6) {
+            return WinningStatus.FIRST_PLACE;
+        }
+        if (duplicatedNumbers == 5 && numbers.contains(bonusNumber)) {
+            return WinningStatus.SECOND_PLACE;
+        }
+        if (duplicatedNumbers == 5) {
+            return WinningStatus.THIRD_PLACE;
+        }
+        if (duplicatedNumbers == 4) {
+            return WinningStatus.FOURTH_PLACE;
+        }
+        if (duplicatedNumbers == 3) {
+            return WinningStatus.FIFTH_PLACE;
+        }
+        return WinningStatus.NO_WIN;
+    }
 }

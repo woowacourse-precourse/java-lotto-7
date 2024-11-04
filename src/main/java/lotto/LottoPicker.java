@@ -1,8 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class LottoPicker {
     private final List<Lotto> lottos;
@@ -26,5 +24,19 @@ public class LottoPicker {
             output.append(numbers).append("\n");
         }
         System.out.println(output);
+    }
+    public Map<WinningStatus, Integer> checkAllLottos(Lotto winLotto, int bonusNumber) {
+        Map<WinningStatus, Integer> winCounters = new EnumMap<>(WinningStatus.class);
+
+        for (WinningStatus status : WinningStatus.values()) {
+            winCounters.put(status, 0);
+        }
+
+        for (Lotto lotto : lottos) {
+            WinningStatus status = lotto.getWinningStatus(winLotto, bonusNumber);
+            winCounters.put(status, winCounters.get(status) + 1);
+        }
+
+        return winCounters;
     }
 }

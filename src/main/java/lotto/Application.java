@@ -4,9 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.text.NumberFormat;
+import java.util.*;
 
 public class Application {
     public static final int BUDGET_UNIT = 1000;
@@ -22,6 +21,8 @@ public class Application {
         Lotto winLotto = inputWinLotto();
         int bonusNumber = inputBonusNumber(winLotto);
 
+        Map<WinningStatus, Integer> results = lottoPicker.checkAllLottos(winLotto, bonusNumber);
+        printStatistics(results, budgets);
     }
 
     private static void throwError(String message) {
@@ -98,5 +99,30 @@ public class Application {
             throwError("로또 번호는 45 이하의 숫자여야 합니다.");
         }
         return 0;
+    }
+    public static void printStatistics(Map<WinningStatus, Integer> results, int totalSpent) {
+        int totalPrize = 0;
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (WinningStatus status : WinningStatus.values()) {
+            int count = results.getOrDefault(status, 0);
+            int prize = status.getPrize();
+            NumberFormat currencyFormat = NumberFormat.getNumberInstance(Locale.KOREA);
+            String formattedPrize = currencyFormat.format(prize);
+            int correct = status.getCorrect();
+            String description = "개 일치";
+            if (status == WinningStatus.SECOND_PLACE) {
+                description = "개 일치, 보너스 볼 일치";
+            }
+
+            System.out.printf("%d%s (%s원) - %d개%n", correct, description, formattedPrize, count);
+
+            totalPrize += count * prize;
+        }
+
+        double yield = (double) totalPrize / totalSpent * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", yield);
     }
 }
