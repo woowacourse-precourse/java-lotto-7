@@ -3,6 +3,15 @@ package lotto;
 import java.util.List;
 
 public class LottoChecker {
+    private static final int LOTTO_1_PRIZE = 2000000000;
+    private static final int LOTTO_2_PRIZE = 30000000;
+    private static final int LOTTO_3_PRIZE = 1500000;
+    private static final int LOTTO_4_PRIZE = 50000;
+    private static final int LOTTO_5_PRIZE = 5000;
+    private static final int TICKET_PRICE = 1000;
+
+    private static final int LOTTO_NUMS_COUNT = 6;
+
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
@@ -12,11 +21,10 @@ public class LottoChecker {
     }
 
     public double calculateRateOfReturn(int[] totalRanks) {
-        int prizeAmount =
-                5000 * totalRanks[5] + 50000 * totalRanks[4] + 1500000 * totalRanks[3] + 30000000 * totalRanks[2]
-                        + 2000000000 * totalRanks[1];
+        int prizeAmount = LOTTO_5_PRIZE * totalRanks[5] + LOTTO_4_PRIZE * totalRanks[4] + LOTTO_3_PRIZE * totalRanks[3]
+                + LOTTO_2_PRIZE * totalRanks[2] + LOTTO_1_PRIZE * totalRanks[1];
         int ticketNums = totalRanks[0] + totalRanks[1] + totalRanks[2] + totalRanks[3] + totalRanks[4] + totalRanks[5];
-        return (double) prizeAmount / (ticketNums * 1000) * 100;
+        return (double) prizeAmount / (ticketNums * TICKET_PRICE) * 100;
     }
 
     public void showLottoResult(int[] totalRanks) {
@@ -33,7 +41,7 @@ public class LottoChecker {
     }
 
     public int[] lottoCheck(Customer customer) {
-        int[] totalRanks = new int[6];
+        int[] totalRanks = new int[LOTTO_NUMS_COUNT];
 
         for (Lotto lotto : customer.getLottos()) {
             int count = determineRank(lotto);
@@ -71,7 +79,7 @@ public class LottoChecker {
     public int determineRank(Lotto lotto) {
         int count = 0;
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < LOTTO_NUMS_COUNT; i++) {
             int num = lotto.getNumbers().get(i);
             count = isWinningLotto(count, num);
         }
