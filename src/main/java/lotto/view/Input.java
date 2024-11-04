@@ -27,4 +27,14 @@ public class Input {
         } while (!NumValidation.checkWinNum(winNums));
         return Arrays.stream(winNums.split(",")).map(Integer::valueOf).collect(Collectors.toList());
     }
+
+    public static int inputBonusNum(List<Integer> winNums) {
+        String inputBonusNum;
+        do {
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            inputBonusNum = Console.readLine();
+        } while (!NumValidation.checkBonusNum(inputBonusNum, winNums));
+        return Integer.parseInt(inputBonusNum);
+    }
+
 }
