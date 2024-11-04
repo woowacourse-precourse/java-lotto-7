@@ -3,15 +3,13 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
-import lotto.util.WinnigResult;
+import lotto.util.WinningResult;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoService {
     static final int LOTTO_PRICE = 1000;
@@ -38,7 +36,7 @@ public class LottoService {
     }
 
     //당첨번호
-    public Lotto parseWinnigNumbers(String input) {
+    public Lotto parseWinningNumbers(String input) {
         List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -52,7 +50,7 @@ public class LottoService {
         return new Lotto(numbers);
     }
 
-    public WinnigResult checkWinningResults(Lotto winningLotto, int bonusNumber) {
+    public WinningResult checkWinningResults(Lotto winningLotto, int bonusNumber) {
         Map<LottoRank, Long> ranckCounts = purchasedLottos.stream()
                 .map(lotto -> calculateRank(lotto,winningLotto,bonusNumber))
                 .collect(Collectors.groupingBy(rank -> rank,Collectors.counting()));
@@ -60,7 +58,7 @@ public class LottoService {
         long totalPrize = calculateToalPrize(ranckCounts);
         double returnRate = calculateReturnRate(totalPrize,purchasedLottos.size());
 
-        return new WinnigResult(ranckCounts, returnRate);
+        return new WinningResult(ranckCounts, returnRate);
     }
 
     private LottoRank calculateRank(Lotto userLotto, Lotto winningLotto, int bonusNumber) {
@@ -83,6 +81,6 @@ public class LottoService {
     }
 
     private double calculateReturnRate(long totalPrize, int lottoCount) {
-        return Math.round((totalPrize * 100.0) / (lottoCount * LOTTO_PRICE)) / 100.0;
+        return (totalPrize * 100.0) / (lottoCount * LOTTO_PRICE) / 100.0;
     }
 }

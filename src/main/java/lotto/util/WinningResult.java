@@ -4,16 +4,16 @@ import lotto.domain.LottoRank;
 
 import java.util.Map;
 
-public class WinnigResult {
+public class WinningResult {
     private final Map<LottoRank, Long> rankCounts;
     private final double returnRate;
 
-    public WinnigResult(Map<LottoRank, Long> rankCounts, double returnRate) {
+    public WinningResult(Map<LottoRank, Long> rankCounts, double returnRate) {
         this.rankCounts = rankCounts;
         this.returnRate = returnRate;
     }
 
-    public String generateWinnigStatistics() {
+    public String generateWinningStatistics() {
         StringBuilder sb = new StringBuilder("당첨 통계\n---\n");
 
         appendRankStatistics(sb, LottoRank.FIFTH, "3개 일치");
