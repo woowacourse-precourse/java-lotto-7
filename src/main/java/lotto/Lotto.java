@@ -18,6 +18,10 @@ public class Lotto {
             if (number < 0 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
+            if (numbers.indexOf(number) != numbers.lastIndexOf(number)){
+                throw new IllegalArgumentException("[ERROR] 로또 번호에는 중복이 없어야 합니다.");
+            }
+
         }
     }
     public List<Integer> getNumbers(){

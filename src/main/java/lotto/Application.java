@@ -149,28 +149,39 @@ public class Application {
     }
 
     public static void displayResults(int[][] matchPoints, int payMoney) {
-        int[] rankCount = new int[PrizeMoneyByRank.values().length];
-        int myPorfit = 0;
+        int[] rankCounts = new int[PrizeMoneyByRank.values().length];
+
         for (int[] result : matchPoints) {
             PrizeMoneyByRank rank = PrizeMoneyByRank.getRankByMatchCount(result[0], result[1]);
-            rankCount[rank.ordinal()]++;
+            rankCounts[rank.ordinal()]++;
         }
 
+        printStatistics(rankCounts);
+        double totalProfit = calculateTotalProfit(rankCounts);
+        displayProfitRate(payMoney, totalProfit);
+    }
+
+    public static void printStatistics(int[] rankCounts) {
+        System.out.println("당첨 통계\n---");
+        System.out.printf("3개 일치 (%d원) - %d개%n", PrizeMoneyByRank.FIFTH.getPrizeMoney(), rankCounts[PrizeMoneyByRank.FIFTH.ordinal()]);
+        System.out.printf("4개 일치 (%d원) - %d개%n", PrizeMoneyByRank.FOURTH.getPrizeMoney(), rankCounts[PrizeMoneyByRank.FOURTH.ordinal()]);
+        System.out.printf("5개 일치 (%d원) - %d개%n", PrizeMoneyByRank.THIRD.getPrizeMoney(), rankCounts[PrizeMoneyByRank.THIRD.ordinal()]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (%d원) - %d개%n", PrizeMoneyByRank.SECOND.getPrizeMoney(), rankCounts[PrizeMoneyByRank.SECOND.ordinal()]);
+        System.out.printf("6개 일치 (%d원) - %d개%n", PrizeMoneyByRank.FIRST.getPrizeMoney(), rankCounts[PrizeMoneyByRank.FIRST.ordinal()]);
+    }
+
+    public static double calculateTotalProfit(int[] rankCounts) {
+        double totalProfit = 0;
         for (PrizeMoneyByRank rank : PrizeMoneyByRank.values()) {
             if (rank != PrizeMoneyByRank.TRASH) {
-                System.out.printf("%d개 일치 (%d원) - %d개%n", rank.getMatchCount(), rank.getPrizeMoney(), rankCount[rank.ordinal()]);
-                myPorfit += rank.getPrizeMoney()*rankCount[rank.ordinal()];
+                totalProfit += rank.getPrizeMoney() * rankCounts[rank.ordinal()];
             }
         }
-        myProfitRate(payMoney,myPorfit);
-
+        return totalProfit;
     }
-    public static double myProfitRate(double payMoney, double myProfit){
-        double profitRate = myProfit/payMoney*100;
-        System.out.println("총 수익률은 "+Math.round(profitRate*10/10)+"%입니다.");
-        return profitRate;
+
+    public static void displayProfitRate(double payMoney, double totalProfit) {
+        double profitRate = totalProfit / payMoney * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 }
-
-
-
