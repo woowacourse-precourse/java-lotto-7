@@ -37,6 +37,12 @@ public class LottoManager {
         return LottoPrize.valueOf(matchCount, matchBonus);
     }
 
+    public static List<LottoPrize> matchLottos(WinningLotto winningLotto, List<Lotto> lottos) {
+        return lottos.stream()
+                .map(lotto -> matchLotto(winningLotto, lotto))
+                .toList();
+    }
+
     public static Float calculateProfit(List<LottoPrize> prizes, int money) {
         int totalPrize = prizes.stream()
                 .mapToInt(LottoPrize::getPrize)
