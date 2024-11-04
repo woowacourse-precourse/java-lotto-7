@@ -17,4 +17,9 @@ public class InputParser {
                 num -> winningNumbers.add(Integer.parseInt(num)));
         return winningNumbers;
     }
+
+    public static int parseBonusNumber(String input) {
+        InputValidator.validateBonusNumber(input);
+        return Integer.parseInt(input);
+    }
 }

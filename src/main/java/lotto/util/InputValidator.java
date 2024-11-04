@@ -33,4 +33,16 @@ public class InputValidator {
         }
         new Lotto(winningNumbers);
     }
+
+    public static void validateBonusNumber(String input) {
+        int number;
+        try {
+            number = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 보너스 번호는 정수로 이루어져야 합니다.");
+        }
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
 }
