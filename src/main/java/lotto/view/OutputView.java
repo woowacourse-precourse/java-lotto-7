@@ -10,6 +10,8 @@ public class OutputView {
 
     public static final String AFTER_BUYING_MESSAGE = "개를 구매했습니다.";
     public static final String START_STATISTICS_MESSAGE = "당첨 통계";
+    public static final String START_RETURN_OF_RATE_MESSAGE = "총 수익률은 ";
+    public static final String END_RETURN_OF_RATE_MESSAGE = "%입니다.";
     public static final String DIVIDER = "---";
     public static final String NEWLINE = "\n";
 
@@ -36,5 +38,9 @@ public class OutputView {
                                 entry.getKey().getMatchCount() + " (" + entry.getKey().getFormattedPrize() + "원) - "
                                         + entry.getValue() + "개")
                 );
+    }
+
+    public void printReturnOfRate(double returnOfRate) {
+        System.out.println(START_RETURN_OF_RATE_MESSAGE + returnOfRate + END_RETURN_OF_RATE_MESSAGE);
     }
 }
