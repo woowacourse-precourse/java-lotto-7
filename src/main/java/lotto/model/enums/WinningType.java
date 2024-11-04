@@ -16,7 +16,7 @@ public enum WinningType {
         if(matchCount == 4){
             return FOUR;
         }
-        if(matchCount == 5){
+        if(matchCount == 5 && !matchBonus){
             return FIVE;
         }
         if(matchCount == 5 && matchBonus){
