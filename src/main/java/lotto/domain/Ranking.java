@@ -35,4 +35,12 @@ public enum Ranking {
     public long getPrice() {
         return price;
     }
+
+    public int getCollectCount() {
+        return collectCount;
+    }
+
+    public boolean isRequireBonusNumber() {
+        return requireBonusNumber;
+    }
 }
