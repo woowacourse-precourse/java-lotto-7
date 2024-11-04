@@ -21,10 +21,10 @@ public class Jackpot {
     }
 
     private void validateBonusRange(int bonus) {
-        if (bonus < Jackpot.getMinNumber()) {
+        if (bonus < getMinNumber()) {
             Exception.getInvalidRange();
         }
-        if (bonus > Jackpot.getMaxNumber()) {
+        if (bonus > getMaxNumber()) {
             Exception.getInvalidRange();
         }
     }
