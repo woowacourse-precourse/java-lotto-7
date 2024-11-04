@@ -19,7 +19,7 @@ public class LottoAmountValidator {
         try {
             return Integer.parseInt(lottoAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_NUMBER.getMessage());
         }
     }
 
