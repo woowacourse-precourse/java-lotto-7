@@ -16,7 +16,7 @@ public class OutputView {
     public final static String WINNING_STATISTIC = "당첨 통계";
     public final static String SEPERATOR = "---";
     public final static String STATISTIC_INFO = "%s (%s원) - %d개";
-    public final static String TOTAL_RETURN_RATE = "총 수익률은 %s 입니다";
+    public final static String TOTAL_RETURN_RATE = "총 수익률은 %s입니다.";
 
     // 메서드 명 길이에 대해 고민해보기
     // 메서드 명

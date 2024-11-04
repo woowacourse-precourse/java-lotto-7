@@ -40,7 +40,7 @@ public class Lotto {
     }
 
     public String toFormattedString() {
-        String lottoNumber = "[" + numbers.stream().map(String::valueOf).collect(Collectors.joining(",")) + "]";
+        String lottoNumber = "[" + numbers.stream().map(String::valueOf).collect(Collectors.joining(", ")) + "]";
         return lottoNumber;
     }
 
