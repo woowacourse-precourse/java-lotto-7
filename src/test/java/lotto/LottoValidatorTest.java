@@ -30,5 +30,9 @@ class LottoValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
+    @Test
+    void 보너스_번호가_1부터_45_사이의_정수가_아닐_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> LottoValidator.validateBonusNumber(50, List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
