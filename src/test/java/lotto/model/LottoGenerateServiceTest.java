@@ -14,7 +14,7 @@ class LottoGenerateServiceTest {
     @ParameterizedTest
     @CsvSource({"6000,6", "8000,8", "100000,100",})
     void generateLottosTest(int amount, int expected) {
-        assertThat(lottoGenerator.generateLottos(amount)).hasSize(expected);
+        assertThat(lottoGenerator.generateLottos(amount).getMyLottos()).hasSize(expected);
     }
 
 }
