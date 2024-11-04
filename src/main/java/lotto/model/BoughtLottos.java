@@ -18,7 +18,7 @@ public class BoughtLottos implements Iterable<Lotto> {
         this.lottos = lottos;
     }
     
-    public static BoughtLottos getInstance(SpendingMoney money) {
+    public static BoughtLottos getOfSpendingMoney(SpendingMoney money) {
         long lottoTicketCount = money.get() / Constants.LOTTO_TICKET_PRICE;
         List<Lotto> lottos = new ArrayList<>();
         for (long i = 0; i < lottoTicketCount; i++) {
