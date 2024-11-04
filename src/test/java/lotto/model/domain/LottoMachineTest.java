@@ -36,4 +36,12 @@ class LottoMachineTest {
         assertThat(lottos.getFirst().getNumbers())
                 .containsExactly(1, 2, 3, 4, 5, 6);
     }
+
+    @Test
+    @DisplayName("티켓 수가 0일 경우 로또를 생성하지 않는다.")
+    void testNoLottosWithZeroTickets() {
+        LottoTickets lottoTickets = new LottoTickets("0");
+        List<Lotto> lottos = lottoMachine.generateLottos(lottoTickets);
+        assertThat(lottos).isEmpty();
+    }
 }
