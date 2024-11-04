@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.exception.converter.InvalidConvertException;
 import lotto.exception.validator.InvalidInputException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,7 @@ import org.junit.jupiter.api.Test;
 public class SplitterTest {
 
     @Test
-    @DisplayName("쉼표로 문자열을 구분한다")
+    @DisplayName("쉼표로 문자열을 구분한다.")
     void 성공_문자열구분() {
         // Given
         Splitter splitter = new Splitter(",");
@@ -29,7 +28,7 @@ public class SplitterTest {
     }
 
     @Test
-    @DisplayName("빈 문자열이면 예외가 발생한다")
+    @DisplayName("빈 문자열이면 예외가 발생한다.")
     void 실패_문자열구분_빈문자열() {
         // Given
         Splitter splitter = new Splitter(",");
@@ -43,7 +42,7 @@ public class SplitterTest {
     }
 
     @Test
-    @DisplayName("공백이면 예외가 발생한다")
+    @DisplayName("공백이면 예외가 발생한다.")
     void 실패_문자열구분_공백() {
         // Given
         Splitter splitter = new Splitter(",");
@@ -57,7 +56,7 @@ public class SplitterTest {
     }
 
     @Test
-    @DisplayName("null이면 예외가 발생한다")
+    @DisplayName("null이면 예외가 발생한다.")
     void 실패_문자열구분_null() {
         // Given
         Splitter splitter = new Splitter(",");

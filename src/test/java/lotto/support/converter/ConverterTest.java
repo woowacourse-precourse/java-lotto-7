@@ -26,7 +26,7 @@ public class ConverterTest {
     class 문자열리스트_Integer리스트_변환 {
 
         @Test
-        @DisplayName("변환에 성공한다")
+        @DisplayName("변환에 성공한다.")
         void 성공_변환() {
             // Given
             List<String> numbers = List.of("1", "2");
@@ -37,7 +37,7 @@ public class ConverterTest {
         }
 
         @Test
-        @DisplayName("null일 경우 예외가 발생한다")
+        @DisplayName("null일 경우 예외가 발생한다.")
         void 실패_변환_null() {
             // Given
             Converter converter = new Converter();
@@ -48,11 +48,11 @@ public class ConverterTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidInputException.class)
                     .hasMessageStartingWith("[ERROR] ")
-                    .hasMessageContaining("null일 수 없습니다");
+                    .hasMessageContaining("null일 수 없습니다.");
         }
 
         @Test
-        @DisplayName("비어있을 경우 예외가 발생한다")
+        @DisplayName("비어있을 경우 예외가 발생한다.")
         void 실패_변환_비어있음() {
             // Given
             Converter converter = new Converter();
@@ -67,7 +67,7 @@ public class ConverterTest {
         }
 
         @Test
-        @DisplayName("빈 문자열이 포함될 경우 예외가 발생한다")
+        @DisplayName("빈 문자열이 포함될 경우 예외가 발생한다.")
         void 실패_변환_빈문자열포함() {
             // Given
             Converter converter = new Converter();
@@ -82,7 +82,7 @@ public class ConverterTest {
         }
 
         @Test
-        @DisplayName("문자열 안에 공백 포함될 경우 예외가 발생한다")
+        @DisplayName("문자열 안에 공백 포함될 경우 예외가 발생한다.")
         void 실패_변환_공백포함() {
             // Given
             Converter converter = new Converter();
@@ -97,7 +97,7 @@ public class ConverterTest {
         }
 
         @Test
-        @DisplayName("null이 포함될 경우 예외가 발생한다")
+        @DisplayName("null이 포함될 경우 예외가 발생한다.")
         void 실패_변환_null포함() {
             // Given
             Converter converter = new Converter();
@@ -114,7 +114,7 @@ public class ConverterTest {
 
         @ParameterizedTest
         @MethodSource
-        @DisplayName("Integer 타입 정수가 아닌 문자열일 경우 예외가 발생한다")
+        @DisplayName("Integer 타입 정수가 아닌 문자열일 경우 예외가 발생한다.")
         void 실패_변환_정수X(List<String> numbers) {
             // Given
             Converter converter = new Converter();
@@ -141,7 +141,7 @@ public class ConverterTest {
     class 문자열_Integer_변환 {
 
         @Test
-        @DisplayName("변환에 성공한다")
+        @DisplayName("변환에 성공한다.")
         void 성공_변환() {
             // Given
             Converter converter = new Converter();
@@ -152,7 +152,7 @@ public class ConverterTest {
 
         @ParameterizedTest
         @ValueSource(strings = {"a", "1.5", "2e20"})
-        @DisplayName("정수가 아닐 경우 실패한다")
+        @DisplayName("정수가 아닐 경우 실패한다.")
         void 실패_변환_정수X(String input) {
             // Given
             Converter converter = new Converter();
@@ -165,7 +165,7 @@ public class ConverterTest {
         }
 
         @Test
-        @DisplayName("null일 경우 예외가 발생한다")
+        @DisplayName("null일 경우 예외가 발생한다.")
         void 실패_변환_null() {
             // Given
             Converter converter = new Converter();
@@ -180,7 +180,7 @@ public class ConverterTest {
         }
 
         @Test
-        @DisplayName("비어있을 경우 예외가 발생한다")
+        @DisplayName("비어있을 경우 예외가 발생한다.")
         void 실패_변환_비어있음() {
             // Given
             Converter converter = new Converter();
@@ -195,7 +195,7 @@ public class ConverterTest {
         }
 
         @Test
-        @DisplayName("공백일 경우 예외가 발생한다")
+        @DisplayName("공백일 경우 예외가 발생한다.")
         void 실패_변환_공백() {
             // Given
             Converter converter = new Converter();
@@ -215,7 +215,7 @@ public class ConverterTest {
     class 문자열_BigDecimal_변환 {
 
         @Test
-        @DisplayName("변환에 성공한다")
+        @DisplayName("변환에 성공한다.")
         void 성공_변환() {
             // Given
             Converter converter = new Converter();
@@ -226,7 +226,7 @@ public class ConverterTest {
 
         @ParameterizedTest
         @ValueSource(strings = {"ab", "1.1.3"})
-        @DisplayName("실수가 아니면 예외가 발생한다")
+        @DisplayName("실수가 아니면 예외가 발생한다.")
         void 실패_변환_공백(String number) {
             // Given
             Converter converter = new Converter();

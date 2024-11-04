@@ -15,7 +15,7 @@ public class Quantity {
 
     private void validate(final BigDecimal quantity) {
         if (quantity.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new InvalidQuantityException("수량은 자연수여야 합니다");
+            throw new InvalidQuantityException("수량은 자연수여야 합니다.");
         }
     }
 

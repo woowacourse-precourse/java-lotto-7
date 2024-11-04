@@ -20,7 +20,7 @@ class QuantityTest {
     class 생성_테스트 {
 
         @Test
-        @DisplayName("로또 수량을 생성한다")
+        @DisplayName("로또 수량을 생성한다.")
         void 성공_생성() {
             // Given
 
@@ -32,7 +32,7 @@ class QuantityTest {
 
         @ParameterizedTest
         @MethodSource
-        @DisplayName("로또 수량이 자연수가 아닐 경우 실패한다")
+        @DisplayName("로또 수량이 자연수가 아닐 경우 실패한다.")
         void 실패_생성_자연수X(BigDecimal quantity) {
             // Given
 
@@ -40,7 +40,7 @@ class QuantityTest {
             assertThatThrownBy(() -> new Quantity(quantity))
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidQuantityException.class)
-                    .hasMessageContaining("수량은 자연수여야 합니다");
+                    .hasMessageContaining("수량은 자연수여야 합니다.");
         }
 
         private static Stream<Arguments> 실패_생성_자연수X() {

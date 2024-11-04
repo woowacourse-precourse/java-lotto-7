@@ -25,7 +25,7 @@ class LottoTest {
     class 로또_수동_생성_테스트 {
 
         @Test
-        @DisplayName("로또를 생성한다")
+        @DisplayName("로또를 생성한다.")
         void 성공_수동생성() {
             // Given
 
@@ -37,7 +37,7 @@ class LottoTest {
         }
 
         @Test
-        @DisplayName("생성시 로또 번호는 정렬되어 저장된다")
+        @DisplayName("생성시 로또 번호는 정렬되어 저장된다.")
         void 성공_수동생성_정렬() {
             // Given
 
@@ -50,7 +50,7 @@ class LottoTest {
 
         @ParameterizedTest
         @MethodSource
-        @DisplayName("로또 번호가 6개가 아닌 경우 예외가 발생한다")
+        @DisplayName("로또 번호가 6개가 아닌 경우 예외가 발생한다.")
         void 실패_수동생성_6개X(List<Integer> numbers) {
             // Given
 
@@ -59,7 +59,7 @@ class LottoTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidLottoException.class)
                     .hasMessageStartingWith("[ERROR] ")
-                    .hasMessageContaining("로또 번호는 중복되지 않은 6개의 숫자여야 합니다");
+                    .hasMessageContaining("로또 번호는 중복되지 않은 6개의 숫자여야 합니다.");
         }
 
         private static Stream<Arguments> 실패_수동생성_6개X() {
@@ -70,7 +70,7 @@ class LottoTest {
         }
 
         @Test
-        @DisplayName("로또 번호가 중복될 경우 예외가 발생한다")
+        @DisplayName("로또 번호가 중복될 경우 예외가 발생한다.")
         void 실패_수동생성_중복() {
             // Given
 
@@ -79,7 +79,7 @@ class LottoTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidLottoException.class)
                     .hasMessageStartingWith("[ERROR] ")
-                    .hasMessageContaining("로또 번호는 중복되지 않은 6개의 숫자여야 합니다");
+                    .hasMessageContaining("로또 번호는 중복되지 않은 6개의 숫자여야 합니다.");
         }
     }
 
@@ -88,7 +88,7 @@ class LottoTest {
     class 로또_다중_생성_테스트 {
 
         @Test
-        @DisplayName("로또를 여러개 생성한다")
+        @DisplayName("로또를 여러개 생성한다.")
         void 성공_생성() {
             // Given
 
@@ -109,7 +109,7 @@ class LottoTest {
 
         @ParameterizedTest
         @CsvSource({"1,true", "7,false"})
-        @DisplayName("로또 번호가 로또에 포함되는지 확인한다")
+        @DisplayName("로또 번호가 로또에 포함되는지 확인한다.")
         void 성공_포함확인(int number, boolean contains) {
             // Given
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -125,7 +125,7 @@ class LottoTest {
     class 두_로또_일치개수_테스트 {
 
         @Test
-        @DisplayName("일치 개수를 센다")
+        @DisplayName("일치 개수를 센다.")
         void 성공_일치개수() {
             // Given
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -145,7 +145,7 @@ class LottoTest {
 
         @ParameterizedTest
         @CsvSource({"1,true", "7,false"})
-        @DisplayName("일치 개수를 센다")
+        @DisplayName("일치 개수를 센다.")
         void 성공_일치개수(int number, boolean expected) {
             // Given
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

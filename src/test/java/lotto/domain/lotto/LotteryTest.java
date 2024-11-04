@@ -20,7 +20,7 @@ public class LotteryTest {
     class 생성_테스트 {
 
         @Test
-        @DisplayName("로또 당첨 번호와 보너스 번호를 입력받아 로또 시스템을 만든다")
+        @DisplayName("로또 당첨 번호와 보너스 번호를 입력받아 로또 시스템을 만든다.")
         void 성공_생성() {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -34,7 +34,7 @@ public class LotteryTest {
         }
 
         @Test
-        @DisplayName("보너스 번호가 발행한 로또에 포함되면 예외가 발생한다")
+        @DisplayName("보너스 번호가 발행한 로또에 포함되면 예외가 발생한다.")
         void 실패_생성() {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -46,7 +46,7 @@ public class LotteryTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidLottoNumberException.class)
                     .hasMessageStartingWith("[ERROR] ")
-                    .hasMessageContaining("보너스 번호가 로또에 포함되어서는 안됩니다");
+                    .hasMessageContaining("보너스 번호가 로또에 포함되어서는 안됩니다.");
         }
     }
 
@@ -55,7 +55,7 @@ public class LotteryTest {
     class 당첨_내역_테스트 {
 
         @Test
-        @DisplayName("당첨 내역을 계산한다")
+        @DisplayName("당첨 내역을 계산한다.")
         void 성공_계산() {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -81,7 +81,7 @@ public class LotteryTest {
     class 수익률_계산_테스트 {
 
         @Test
-        @DisplayName("수익률을 계산한다")
+        @DisplayName("수익률을 계산한다.")
         void 성공_계산() {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

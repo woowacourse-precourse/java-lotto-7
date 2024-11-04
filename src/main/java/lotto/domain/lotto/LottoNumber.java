@@ -30,7 +30,7 @@ public class LottoNumber {
 
     private static void validateNumber(final int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            throw new InvalidLottoNumberException("로또 번호는 1 이상 45 이하여야 합니다");
+            throw new InvalidLottoNumberException("로또 번호는 1 이상 45 이하여야 합니다.");
         }
     }
 

@@ -20,7 +20,7 @@ public class PriceTest {
     @DisplayName("생성 테스트")
     class 생성_테스트 {
         @Test
-        @DisplayName("구입 금액을 생성한다")
+        @DisplayName("구입 금액을 생성한다.")
         void 성공_생성() {
             // Given
 
@@ -31,7 +31,7 @@ public class PriceTest {
         }
 
         @Test
-        @DisplayName("구입 금액이 1000원 단위가 아니면 예외가 발생한다")
+        @DisplayName("구입 금액이 1000원 단위가 아니면 예외가 발생한다.")
         void 실패_생성_1000원단위아님() {
             // Given
 
@@ -39,12 +39,12 @@ public class PriceTest {
             assertThatThrownBy(() -> new Price(BigDecimal.valueOf(500)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidPurchasePriceException.class)
-                    .hasMessageContaining("구입 금액이 1000원 단위가 아닙니다");
+                    .hasMessageContaining("구입 금액이 1000원 단위가 아닙니다.");
         }
 
         @ParameterizedTest
         @ValueSource(strings = {"0", "-1000"})
-        @DisplayName("구입 금액이 자연수가 아닐 경우 예외가 발생한다")
+        @DisplayName("구입 금액이 자연수가 아닐 경우 예외가 발생한다.")
         void 실패_생성_자연수아님(String input) {
             // Given
 
@@ -52,7 +52,7 @@ public class PriceTest {
             assertThatThrownBy(() -> new Price(new BigDecimal(input)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidPurchasePriceException.class)
-                    .hasMessageContaining("구입 금액은 자연수여야 합니다");
+                    .hasMessageContaining("구입 금액은 자연수여야 합니다.");
         }
     }
 
@@ -61,7 +61,7 @@ public class PriceTest {
     class 로또_수량_계산_테스트 {
 
         @Test
-        @DisplayName("로또 수량을 계산한다")
+        @DisplayName("로또 수량을 계산한다.")
         void 성공_로또수량계산() {
             // Given
             Price price = new Price(BigDecimal.valueOf(10000));

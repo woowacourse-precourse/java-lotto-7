@@ -21,14 +21,14 @@ public class Price {
     }
 
     private void validate(final BigDecimal price) {
-        if (price.scale() > 0) {
-            throw new InvalidPurchasePriceException("구입 금액은 숫자로만 이루어져야 합니다");
+        if (price.stripTrailingZeros().scale() > 0) {
+            throw new InvalidPurchasePriceException("구입 금액은 숫자로만 이루어져야 합니다.");
         }
         if (isNotDivisible(price)) {
-            throw new InvalidPurchasePriceException("구입 금액이 1000원 단위가 아닙니다");
+            throw new InvalidPurchasePriceException("구입 금액이 1000원 단위가 아닙니다.");
         }
         if (price.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new InvalidPurchasePriceException("구입 금액은 자연수여야 합니다");
+            throw new InvalidPurchasePriceException("구입 금액은 자연수여야 합니다.");
         }
     }
 

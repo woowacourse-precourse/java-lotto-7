@@ -18,7 +18,7 @@ public class LottoNumberTest {
     class 생성_테스트_정수 {
 
         @Test
-        @DisplayName("로또 번호를 생성한다")
+        @DisplayName("로또 번호를 생성한다.")
         void 성공_생성() {
             // Given
 
@@ -30,7 +30,7 @@ public class LottoNumberTest {
 
         @ParameterizedTest
         @ValueSource(ints = {0, 46})
-        @DisplayName("로또 번호가 1 이상 45 이하가 아니면 예외가 발생한다")
+        @DisplayName("로또 번호가 1 이상 45 이하가 아니면 예외가 발생한다.")
         void 실패_생성_범위X(int number) {
             // Given
 
@@ -39,7 +39,7 @@ public class LottoNumberTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidLottoNumberException.class)
                     .hasMessageStartingWith("[ERROR] ")
-                    .hasMessageContaining("로또 번호는 1 이상 45 이하여야 합니다");
+                    .hasMessageContaining("로또 번호는 1 이상 45 이하여야 합니다.");
         }
     }
 }

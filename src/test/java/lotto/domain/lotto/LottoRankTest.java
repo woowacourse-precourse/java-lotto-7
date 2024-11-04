@@ -14,7 +14,7 @@ class LottoRankTest {
 
     @ParameterizedTest
     @MethodSource
-    @DisplayName("로또 등수를 확인한다")
+    @DisplayName("로또 등수를 확인한다.")
     void 성공_로또등수확인(int matchingCount, boolean isBonus, LottoRank expected) {
         // Given
 

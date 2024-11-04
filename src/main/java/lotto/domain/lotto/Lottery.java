@@ -39,7 +39,7 @@ public class Lottery {
 
     private void validateBonusNumber(final Lotto lotto, final LottoNumber bonusNumber) {
         if (lotto.contains(bonusNumber)) {
-            throw new InvalidLottoNumberException("보너스 번호가 로또에 포함되어서는 안됩니다");
+            throw new InvalidLottoNumberException("보너스 번호가 로또에 포함되어서는 안됩니다.");
         }
     }
 
