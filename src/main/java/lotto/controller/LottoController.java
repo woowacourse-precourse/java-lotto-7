@@ -12,36 +12,40 @@ import java.util.Map;
 
 public class LottoController {
 
-    LottoResults lottoResults;
+    private LottoResults lottoResults;
 
     public void run() {
         long purchaseAmount = InputView.inputPurchaseAmount();
         System.out.println();
 
+        List<Lotto> lottos = generateLottos(purchaseAmount);
+        List<Integer> winningNumbers = InputView.inputWinningNumbers();
+        int bonusNumber = InputView.inputBonusNumber(winningNumbers);
+
+        lottoResults = new LottoResults(purchaseAmount, lottos, winningNumbers, bonusNumber);
+        calculateAndDisplayResults();
+    }
+
+    private List<Lotto> generateLottos(long purchaseAmount) {
         LottoMachine lottoMachine = new LottoMachine();
         lottoMachine.start(purchaseAmount);
         List<Lotto> lottos = lottoMachine.getLottos();
-        printLottoMachineResults(lottos);
-
-        List<Integer> winningNumbers = InputView.inputWinningNumbers();
-        OutputView.print("\n");
-        int bonusNumber = InputView.inputBonusNumber(winningNumbers);
-        OutputView.print("\n");
-
-        lottoResults = new LottoResults(purchaseAmount, lottos, winningNumbers, bonusNumber);
-        lottoResults.calResults();
-        printLottoResults();
+        printLottoResults(lottos);
+        return lottos;
     }
 
-    private void printLottoMachineResults(List<Lotto> lottos) {
+    private void calculateAndDisplayResults() {
+        lottoResults.calResults();
+        Map<Rank, Integer> lottoStatistics = lottoResults.getLottoStatics();
+        double totalProfitRate = lottoResults.getTotalProfitRate();
+
+        OutputView.printLottoStatistics(lottoStatistics);
+        OutputView.printTotalProfitRate(totalProfitRate);
+    }
+
+    private void printLottoResults(List<Lotto> lottos) {
         OutputView.printLotteryCount(lottos.size());
         OutputView.printLottos(lottos);
     }
-
-    private void printLottoResults() {
-        Map<Rank, Integer> lottoStatics = lottoResults.getLottoStatics();
-        double totalProfitRate = lottoResults.getTotalProfitRate();
-        OutputView.printLottoStatics(lottoStatics);
-        OutputView.printTotalProfitRate(totalProfitRate);
-    }
 }
+
