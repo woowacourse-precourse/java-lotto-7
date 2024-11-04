@@ -1,39 +1,35 @@
 package lotto.view;
 
 public enum MatchLotto {
-    MATCH_THREE(3, 0),
-    MATCH_FOUR(4, 1),
-    MATCH_FIVE(5, 2),
-    MATCH_BONUS_FIVE(5, 3),
-    MATCH_SIX(6, 4);
+    NO_MATCH(0, false, 0),
+    FIFTH(3, false, 5000),
+    FOURTH(4, false, 50000),
+    THIRD(5, false, 1500000),
+    SECOND(5, true, 30000000),
+    FIRST(6, false, 2000000000);
 
     private final int matchCount;
-    private final int index;
+    private final boolean bonusNumberCheck;
+    private final int money;
 
-    MatchLotto(int matchCount, int index) {
+    MatchLotto(int matchCount, boolean requiresBonus, int winMoney) {
         this.matchCount = matchCount;
-        this.index = index;
+        this.bonusNumberCheck = requiresBonus;
+        this.money = winMoney;
     }
 
-    public int getMatchCount() {
-        return matchCount;
+    public int getWinMoney() {
+        return money;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public static MatchLotto getResult(int matchCount, boolean bonusMatch) {
-        if (matchCount == 5 && bonusMatch) {
-            return MATCH_BONUS_FIVE;
-        }
-
-        for (MatchLotto result : values()) {
-            if (result.getMatchCount() == matchCount) {
-                return result;
+    public static MatchLotto getRank(int matchCount, boolean bonusMatch) {
+        for (MatchLotto rank : MatchLotto.values()) {
+            if (rank.matchCount == matchCount && rank.bonusNumberCheck == bonusMatch) {
+                return rank;
             }
         }
-        return null;
+
+        return NO_MATCH;
     }
 }
 
