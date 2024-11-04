@@ -39,18 +39,10 @@ public class Input {
 	}
 
 	public static int readBonusLotto() {
-		while (true) {
-			try {
-				System.out.println(BONUS_LOTTO_INPUT_MESSAGE);
-				int bonusNumber = Integer.parseInt(Console.readLine());
-				validateLottoNumber(bonusNumber);
-				return bonusNumber;
-			} catch (NumberFormatException e) {
-				System.out.println("[ERROR] 보너스 번호가 잘못된 형식입니다.");
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			}
-		}
+		System.out.println(BONUS_LOTTO_INPUT_MESSAGE);
+		int bonusNumber =  validateLottoPurchaseAmountFormat(Console.readLine());
+		validateLottoNumber(bonusNumber);
+		return bonusNumber;
 	}
 
 	private static List<Integer> parseLottoNumbers(String input) {
