@@ -9,6 +9,7 @@ public class Constants {
     public static String RANK_DETAIL_PROMPT = "\n당첨 통계\n---";
     public static String WINNING_DETAIL_PROMPT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     public static String WINNING_WITH_BONUS_NUMBER_DETAIL_PROMPT = "%d개 일치 (%s원) - %d개\n";
+    public static String PROFIT_RATE_PROMPT = "총 수익률은 %.2f%입니다.";
 
     // number
     public static Long MIN_PURCHASE_AMOUNT = 1L;

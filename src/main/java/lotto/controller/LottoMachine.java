@@ -47,7 +47,7 @@ public class LottoMachine {
 
         WinningRankCountDto winningRankCountDto = getWinningRanks(lottos, winningNumbers);
 
-        lottoRankCounter.getProfitRate(winningRankCountDto, lottoTicketCount);
+        getProfitRate(winningRankCountDto, lottoTicketCount);
     }
 
     public Lottos generateLottos (Integer lottoTicketCount) {
@@ -100,5 +100,11 @@ public class LottoMachine {
         outputView.printWinningDetails(winningRankCountDto);
 
         return winningRankCountDto;
+    }
+
+    private void getProfitRate (WinningRankCountDto winningRankCountDto, Integer lottoTicketCount) {
+        Double profitRate = lottoRankCounter.getProfitRate(winningRankCountDto, lottoTicketCount);
+
+        outputView.printProfitRate(profitRate);
     }
 }

@@ -66,4 +66,8 @@ public class OutputView {
     public String formatWithCommas(long number) {
         return String.format("%,d", number);
     }
+
+    public void printProfitRate(Double profitRate) {
+        System.out.printf(PROFIT_RATE_PROMPT, profitRate);
+    }
 }

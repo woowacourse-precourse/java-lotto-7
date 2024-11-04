@@ -29,10 +29,10 @@ public class LottoRankCounter {
         return new WinningRankCountDto(rankCounts);
     }
 
-    public void getProfitRate(WinningRankCountDto winningRankCountDto, Integer lottoTicketCount) {
+    public Double getProfitRate(WinningRankCountDto winningRankCountDto, Integer lottoTicketCount) {
         Long winningPrize = getWinningPrize(winningRankCountDto);
 
-        Double profitRate = getProfitRate(winningPrize, lottoTicketCount);
+        return getProfitRate(winningPrize, lottoTicketCount);
     }
 
     public long getWinningPrize(WinningRankCountDto winningRankCountDto) {
