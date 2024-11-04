@@ -119,3 +119,9 @@
   - 당첨 내역을 출력한다.
 
 # 🚨 예외처리 
+- [ ] 로또 번호의 개수가 6개가 넘어가면 ```IllegalArgumentException``` 예외가 발생한다.
+- [ ] 로또 번호에 중복된 숫자가 있으면 ```IllegalArgumentException``` 예외가 발생한다.
+- [ ] 구입 금액이 1,000원 단위가 아닐 때 ```IllegalArgumentException``` 예외가 발생한다.
+- [ ] 로또 번호가 6개가 아니면 ```IllegalArgumentException``` 예외가 발생한다.
+- [ ] 보너스 번호가 1~45 범위를 벗어날 때 ```IllegalArgumentException``` 예외가 발생한다.
+- [ ] 보너스 번호가 로또 번호와 중복될 경우 ```IllegalArgumentException``` 예외가 발생한다.
