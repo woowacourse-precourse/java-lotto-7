@@ -1,7 +1,7 @@
 package lotto.utils.validator;
 
-import static lotto.constants.ErrorMessage.EMPTY_LOTTO_BONUS_NUMBERS;
-import static lotto.constants.ErrorMessage.ONLY_DIGITS_ALLOWED;
+import static lotto.constants.ErrorMessage.EMPTY_LOTTO_BONUS_NUMBER;
+import static lotto.constants.ErrorMessage.ONLY_DIGITS_ALLOWED_BONUS_NUMBER;
 
 public class BonusNumberValidator {
 
@@ -12,14 +12,14 @@ public class BonusNumberValidator {
 
     private static void checkEmptyNumber(String userBonusNumber) {
         if (userBonusNumber.isBlank()) {
-            throw new IllegalArgumentException(EMPTY_LOTTO_BONUS_NUMBERS.getMessage());
+            throw new IllegalArgumentException(EMPTY_LOTTO_BONUS_NUMBER.getMessage());
         }
     }
 
     private static void checkNonNumeric(String userBonusNumber) {
         for (int i = 0; i < userBonusNumber.length(); i++) {
             if (!Character.isDigit(userBonusNumber.charAt(i))) {
-                throw new IllegalArgumentException(ONLY_DIGITS_ALLOWED.getMessage());
+                throw new IllegalArgumentException(ONLY_DIGITS_ALLOWED_BONUS_NUMBER.getMessage());
             }
         }
     }
