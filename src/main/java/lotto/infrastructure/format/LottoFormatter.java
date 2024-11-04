@@ -37,7 +37,7 @@ public class LottoFormatter {
 
     public String format(EvaluateWinningLottoResponse response) {
         StringBuilder result = new StringBuilder();
-        result.append(AnnounceMessages.HEADER);
+        result.append(AnnounceMessages.HEADER.getMessage());
 
         appendWinningStatistics(result, response.winningResult());
 
