@@ -4,7 +4,6 @@ import static lotto.message.OutputMessage.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.message.OutputMessage;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.validator.WinningLottoValidator;
 
@@ -19,5 +18,11 @@ public class InputHandler {
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
         String input = Console.readLine();
         return WinningLottoValidator.validateWinningNumbers(input);
+    }
+
+    public int readBonusNumberInput() {
+        System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+        String input = Console.readLine();
+        return WinningLottoValidator.validateBonusNumber(input);
     }
 }

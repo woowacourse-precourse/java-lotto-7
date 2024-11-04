@@ -10,4 +10,8 @@ public class WinningLottoValidator {
     public static List<Integer> validateWinningNumbers(String input) {
         return new ArrayList<>();
     }
+
+    public static int validateBonusNumber(String input) {
+        return Integer.parseInt(input);
+    }
 }
