@@ -105,3 +105,4 @@ public static String getRankInfo(Rank rank) {
 
 `getOrDefault()`를 사용해 만약 당첨 기록이 없는 등수라면 0을 출력하고 당첨 기록이 있다면 당첨 횟수를 출력하도록 구현했습니다.
 
+수익률을 소수점 둘째 자리에서 반올림하기 위해 `%.1f`와 같이 작성하고 `printf()`로 출력했습니다.
