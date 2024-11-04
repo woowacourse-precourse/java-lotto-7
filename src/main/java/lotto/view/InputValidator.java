@@ -69,6 +69,15 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개만 가능합니다.");
         }
     }
+
+    public int getValidBonusNumber(String input, List<Integer> winningNumber) {
+        try {
+            int bonusNumber = Integer.parseInt(input);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 번호는 숫자만 가능합니다.");
+        }
+    }
     private int checkNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
