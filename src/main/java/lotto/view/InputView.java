@@ -43,6 +43,11 @@ public class InputView {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
     }
 
+    public static int getBonusNumber() {
+        String input = Console.readLine();
+        return Integer.parseInt(input);
+    }
+
     private static void validateInputIsNull(String input) {
         if (Objects.isNull(input) || input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");

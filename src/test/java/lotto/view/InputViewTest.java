@@ -76,4 +76,14 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자를 입력해야 합니다.");
     }
+
+    @Test
+    void 보너스_숫자_입력_정상_동작() {
+        // given
+        String validInput = "9\n";
+        System.setIn(new ByteArrayInputStream(validInput.getBytes()));
+
+        // when, then
+        assertEquals(9, InputView.getBonusNumber());
+    }
 }
