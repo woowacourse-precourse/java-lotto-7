@@ -6,6 +6,7 @@ import static lotto.constants.LottoRank.FOURTH;
 import static lotto.constants.LottoRank.NO_LUCK;
 import static lotto.constants.LottoRank.SECOND;
 import static lotto.constants.LottoRank.THIRD;
+import static lotto.constants.LottoTicket.LOTTO_PRICE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -15,6 +16,8 @@ import java.util.Set;
 import lotto.dto.FinalResultsDto;
 import lotto.dto.LottoDto;
 import lotto.dto.LottosDto;
+import lotto.dto.ProfitDto;
+import lotto.dto.RankResultsDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -37,7 +40,7 @@ public class MatchResultsTest {
     }
 
     @Nested
-    @DisplayName("[createMatchResults] 로또 결과 생성 기능")
+    @DisplayName("[createMatchResults] 로또 결과 생성 기능 테스트")
     class CreateMatchResultsTest {
 
         @Test
@@ -49,7 +52,48 @@ public class MatchResultsTest {
     }
 
     @Nested
-    @DisplayName("[buildFinalResultsDto] 최종 결과 DTO 생성 기능")
+    @DisplayName("[buildProfitDto] ProfitDto 생성 기능 테스트")
+    class BuildProfitDtoTest {
+
+        @Test
+        @DisplayName("[return] 매치 결과에 따라 ProfitDto를 올바르게 생성한다")
+        public void testBuildProfitDto() {
+            MatchResults results = MatchResults.createMatchResults(lottosDto, winningLotto);
+            FinalResultsDto finalResults = results.buildFinalResultsDto();
+
+            // 기대하는 총 수익 및 수익률 계산
+            long expectedTotalProfit = FIRST.getPrize() +SECOND.getPrize() + FIFTH.getPrize(); // 1등과 5등의 수익
+            double expectedProfitRate = (double) expectedTotalProfit / (lottosDto.lottoDtos().size() * LOTTO_PRICE.getValue()) * 100.0f;
+
+            ProfitDto profitDto = finalResults.profitDto();
+
+            assertEquals(expectedTotalProfit, profitDto.totalProfit());
+            assertEquals(expectedProfitRate, profitDto.profitRate(), 0.01);
+        }
+    }
+
+    @Nested
+    @DisplayName("[buildRankResultsDto] RankResultsDto 생성 기능 테스트")
+    class BuildRankResultsDtoTest {
+
+        @Test
+        @DisplayName("[return] 매치 결과에 따라 RankResultsDto를 올바르게 생성한다")
+        public void testBuildRankResultsDto() {
+            MatchResults results = MatchResults.createMatchResults(lottosDto, winningLotto);
+            FinalResultsDto finalResults = results.buildFinalResultsDto();
+            RankResultsDto rankResultsDto = finalResults.rankResultsDto();
+
+            assertEquals(1, rankResultsDto.rankResults().get(FIRST.getRank()));
+            assertEquals(1, rankResultsDto.rankResults().get(SECOND.getRank()));
+            assertNull(rankResultsDto.rankResults().get(THIRD.getRank()));
+            assertNull(rankResultsDto.rankResults().get(FOURTH.getRank()));
+            assertEquals(1, rankResultsDto.rankResults().get(FIFTH.getRank()));
+            assertEquals(1, rankResultsDto.rankResults().get(NO_LUCK.getRank()));
+        }
+    }
+
+    @Nested
+    @DisplayName("[buildFinalResultsDto] FinalResultsDto 생성 기능 테스트")
     class BuildFinalResultsDtoTest {
 
         @Test

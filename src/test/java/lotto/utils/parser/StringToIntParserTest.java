@@ -16,7 +16,7 @@ public class StringToIntParserTest {
     @DisplayName("[parse] 문자열의 int로의 파싱이 잘 이루어지는 지 테스트한다")
     class ParseTest{
         @Test
-        @DisplayName("유효한 문자열이 들어오면 성공적으로 Int를 반한한다.")
+        @DisplayName("[parsing] 유효한 문자열이 들어오면 성공적으로 Int를 반한한다.")
         public void Given_ValidInput_When_ParseStringToInt_Then_ReturnInt() {
             // Given
             String rawNumber = "123";
@@ -30,7 +30,7 @@ public class StringToIntParserTest {
         }
 
         @Test
-        @DisplayName("음수 정수를 담고 있는 문자열이 들어오면 성공적으로 Int를 반한한다.")
+        @DisplayName("[parsing] 음수 정수를 담고 있는 문자열이 들어오면 성공적으로 Int를 반한한다.")
         public void Given_NegativeInput_When_ParseStringToInt_Then_ReturnInt() {
             // Given
             String rawNumber = "-456";
@@ -44,7 +44,7 @@ public class StringToIntParserTest {
         }
 
         @Test
-        @DisplayName("0을 담고 있는 문자열이 들어오면 성공적으로 Int를 반한한다.")
+        @DisplayName("[parsing ]0을 담고 있는 문자열이 들어오면 성공적으로 Int를 반한한다.")
         public void Given_Zero_When_ParseStringToInt_Then_ReturnInt() {
             // Given
             String rawNumber = "0";
