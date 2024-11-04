@@ -8,7 +8,7 @@ public class OutputController {
     public static List<List<Integer>> getLottoNumbers(int purchaseQuantity){
         List<List<Integer>> lottoNumbersList = new ArrayList<>();
         for (int i = 0; i < purchaseQuantity; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottoNumbersList.add(lottoNumbers);
         }
         return lottoNumbersList;
