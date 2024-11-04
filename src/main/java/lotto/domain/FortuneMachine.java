@@ -10,20 +10,18 @@ import java.util.stream.LongStream;
 public class FortuneMachine {
 
     long count;
-    List<Lotto> lottos;
 
     public Lottos buyLotto(Money money) {
         count = money.value() / NumberConstants.LOTTO_COST;
-        lottos = new ArrayList<>();
-        draw(count);
-        return new Lottos(lottos);
+        return draw();
     }
 
-    private void draw(long count) {
-        LongStream.range(0, count).forEach(i -> {
-            Lotto lotto = new Lotto(generateNumbers());
-            lottos.add(lotto);
-        });
+    private Lottos draw() {
+        return new Lottos(
+                LongStream.range(0, count)
+                        .mapToObj(i -> new Lotto(generateNumbers()))
+                        .toList()
+        );
     }
 
     private List<Integer> generateNumbers() {

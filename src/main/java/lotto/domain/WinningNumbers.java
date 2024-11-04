@@ -17,7 +17,6 @@ public class WinningNumbers extends NumberImpl implements Iterable<Integer> {
         List<String> splitWinningNumbers = split(trimWinningNumbers);
         validateSize(splitWinningNumbers);
         List<Integer> winningNumbers = validateNumbers(splitWinningNumbers);
-        ;
         validateDuplicate(winningNumbers, getDomain());
         validateRange(winningNumbers);
         this.winningNumbers = winningNumbers;
