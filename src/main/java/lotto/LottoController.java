@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoController {
-
     private final InputHandler inputHandler;
     private final InputParser inputParser;
     private final OutputHandler outputHandler;
@@ -22,17 +21,50 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = inputParser.parsePurchaseAmount(inputHandler.getPurchaseAmount());
+        int purchaseAmount = getValidPurchaseAmount();
         List<Lotto> lottos = lottoGenerator.generateLottos(purchaseAmount);
         outputHandler.printLottoNumbers(lottos.size(), lottos.stream().map(Lotto::getNumbers).toList());
 
-        List<Integer> winningNumbers = inputParser.parseWinningNumbers(inputHandler.getWinningNumbers());
-        int bonusNumber = inputParser.parseBonusNumber(inputHandler.getBonusNumber(), winningNumbers);
+        List<Integer> winningNumbers = getValidWinningNumbers();
+        int bonusNumber = getValidBonusNumber(winningNumbers);
 
         Map<WinningRank, Integer> results = resultChecker.checkResults(lottos, winningNumbers, bonusNumber);
         outputHandler.printWinningStatistics(results);
 
         double yield = statistics.calculateYield(results, purchaseAmount);
         outputHandler.printYield(yield);
+    }
+
+    private int getValidPurchaseAmount() {
+        while (true) {
+            try {
+                String input = inputHandler.getPurchaseAmount();
+                return inputParser.parsePurchaseAmount(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> getValidWinningNumbers() {
+        while (true) {
+            try {
+                String input = inputHandler.getWinningNumbers();
+                return inputParser.parseWinningNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getValidBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String input = inputHandler.getBonusNumber();
+                return inputParser.parseBonusNumber(input, winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
