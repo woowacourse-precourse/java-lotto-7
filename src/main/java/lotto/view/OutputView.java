@@ -33,6 +33,10 @@ public class OutputView {
             int matchingCount = grade.getMatchingCount();
             String prizeMoney = formatter.format(grade.getPrizeMoney());
             int gradeCount = gradeWithCount.get(grade);
+            if (Grade.SECOND == grade) {
+                System.out.println(matchingCount+ "개 일치, 보너스 볼 일치 ("+prizeMoney+ "원) - " + gradeCount);
+                continue;
+            }
             System.out.println(matchingCount+ "개 일치 ("+prizeMoney+ "원) - " + gradeCount);
         }
     }
