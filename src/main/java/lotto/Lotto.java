@@ -19,7 +19,7 @@ public class Lotto {
     // TODO: 추가 기능
 
     public Lotto() {
-        this.numbers = generateUniqueRandomNumbers();
+        this.numbers = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     // 중복되지 않는 랜덤 숫자 생성 메서드
