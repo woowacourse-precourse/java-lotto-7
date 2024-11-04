@@ -8,21 +8,25 @@ import lotto.utils.ConstantMessage.ErrorMessage;
 public class Validator {
     public void validateLottoNumber(int value) {
         if (value < ConstantValue.LOTTO_MIN_VALUE || value > ConstantValue.LOTTO_MAX_VALUE) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.getMessage());
         }
     }
 
     public void validateLottoNumber(List<Integer> values) {
         Set<Integer> uniqueValues = new HashSet<>(values);
-        if (values.size() != ConstantValue.LOTTO_NUMBER_COUNT
-                || uniqueValues.size() != ConstantValue.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException();
+        if (values.size() != ConstantValue.LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_COUNT.getMessage());
         }
-        values.forEach(value -> {
-            if (value < ConstantValue.LOTTO_MIN_VALUE || value > ConstantValue.LOTTO_MAX_VALUE) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
-            }
-        });
+        if (uniqueValues.size() != ConstantValue.LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_VALUE.getMessage());
+        }
+        values.forEach(this::validateLottoNumber);
+    }
+
+    public <T> void validateDuplicated(List<T> values, T value) {
+        if (values.contains(value)) {
+            throw new IllegalStateException(ErrorMessage.DUPLICATED_LOTTO_VALUE.getMessage());
+        }
     }
 
     public void validatePrice(int value) {

@@ -15,9 +15,15 @@ public class InputView {
     }
 
     public int inputPrice() {
-        int price = Integer.parseInt(Console.readLine());
-        validator.validatePrice(price);
-        return price;
+        try {
+            int price = Integer.parseInt(Console.readLine());
+            validator.validatePrice(price);
+            return price;
+        } catch (IllegalArgumentException | IllegalStateException exception) {
+            throw exception;
+        } catch (Exception exception) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
+        }
     }
 
     public List<Integer> inputWinningNumbers() {
@@ -25,16 +31,25 @@ public class InputView {
             List<Integer> winning = inputLottoNumbers();
             validator.validateLottoNumber(winning);
             return winning;
+        } catch (IllegalArgumentException | IllegalStateException exception) {
+            throw exception;
         } catch (Exception exception) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
         }
     }
 
     public int inputLottoNumber(List<Integer> winningNumbers) {
-        String sentence = Console.readLine();
-        int value = Integer.parseInt(sentence);
-        validator.validateLottoNumber(value);
-        return value;
+        try {
+            String sentence = Console.readLine();
+            int value = Integer.parseInt(sentence);
+            validator.validateLottoNumber(value);
+            validator.validateDuplicated(winningNumbers, value);
+            return value;
+        } catch (IllegalArgumentException | IllegalStateException exception) {
+            throw exception;
+        } catch (Exception exception) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
+        }
     }
 
 

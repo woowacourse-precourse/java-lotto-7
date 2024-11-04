@@ -40,19 +40,13 @@ public class OutputView {
                 LottoPrize.MATCH_FIVE_PLUS_BONUS,
                 LottoPrize.MATCH_SIX
         );
-        prizeOrder.forEach(lottoPrize -> {
-            System.out.printf(
-                    lottoPrize.getPrizeMessage() + "\n",
-                    countMap.get(lottoPrize.name())
-            );
-        });
+        prizeOrder.forEach(lottoPrize -> System.out.printf(
+                lottoPrize.getPrizeMessage() + "\n",
+                countMap.get(lottoPrize.name())
+        ));
     }
 
     public void printReturnResult(float returnRate) {
         System.out.printf(GuideMessage.RESULT_OF_RETURN.getMessage(), returnRate);
-    }
-
-    public void printMessage(String message) {
-        System.out.println(message);
     }
 }
