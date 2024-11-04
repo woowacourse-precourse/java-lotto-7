@@ -10,6 +10,7 @@ public enum ErrorCode {
     PURCHASE_AMOUNT_OUT_OF_RANGE("로또 구입 금액은 0 이하가 될 수 없습니다.");
 
     private static final String ERROR_PREFIX = "[ERROR] ";
+
     private final String message;
 
     ErrorCode(String message) {
