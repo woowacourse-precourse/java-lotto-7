@@ -48,7 +48,6 @@ public class LottoService implements LottoConstants {
             if (count == 3) {
                 rank[4]++;
             }
-
         }
         return rank;
     }
