@@ -19,12 +19,12 @@ public class Application {
 
     public static void main(String[] args) {
         executeUntilNoException(Application::setLottos);
-        printIssueLottos(lottos);
+        printIssueLottos();
         executeUntilNoException(Application::setWinningLotto);
         executeUntilNoException(Application::setBonusNumber);
         int[] winningCount = lottoService.getWinningCount(lottos, winningLotto, bonusNumber);
         printLottoResult(winningCount);
-        printIncomePercent(lottos, winningCount);
+        printIncomePercent(winningCount);
     }
 
     private static void executeUntilNoException(Supplier<Void> method) {
@@ -57,7 +57,7 @@ public class Application {
         }
     }
 
-    private static void printIssueLottos(List<Lotto> lottos) {
+    private static void printIssueLottos() {
         String separator = System.lineSeparator();
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(lottos.size()).append("개를 구매했습니다.").append(separator);
@@ -146,7 +146,7 @@ public class Application {
         return stringBuilder.toString();
     }
 
-    private static void printIncomePercent(List<Lotto> lottos, int[] winningCount) {
+    private static void printIncomePercent(int[] winningCount) {
         int issueCost = lottos.size() * lottoService.getLottoCost();
         long income = lottoService.getWinningCost(winningCount);
         double incomePercent = Math.round((double)income / issueCost * 100 * 100) / 100.0;
