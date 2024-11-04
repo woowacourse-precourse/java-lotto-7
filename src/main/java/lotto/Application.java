@@ -14,6 +14,8 @@ public class Application {
 
         Map<Rank, Integer> statistics = lottos.calculateStatistics(winningLotto);
         double profitRate = lottos.calculateProfitRate(statistics, purchaseAmount.getAmount());
+
+        Output.printResult(statistics, profitRate);
     }
 
     private static PurchaseAmount promptForPurchaseAmount() {

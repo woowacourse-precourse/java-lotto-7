@@ -19,9 +19,15 @@ public class Lottos {
     public Map<Rank, Integer> calculateStatistics(WinningLotto winningLotto) {
         Map<Rank, Integer> rankCounts = new HashMap<>();
 
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                rankCounts.put(rank, 0);
+            }
+        }
+
         for (Lotto lotto : lottos) {
             Rank rank = winningLotto.calculateRank(lotto);
-            rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
+            rankCounts.put(rank, rankCounts.get(rank) + 1);
         }
         return rankCounts;
     }
