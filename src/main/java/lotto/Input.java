@@ -22,6 +22,11 @@ public class Input {
 			.toList();
 	}
 
+	public void getBonusNumber(List<Integer> numbers) {
+		String input = Console.readLine();
+		validateBonusNumber(numbers, input);
+	}
+
 	public void validateRemainder(String input) {
 		if (Integer.parseInt(input) % 1000 != 0) {
 			throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
