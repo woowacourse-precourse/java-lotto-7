@@ -35,11 +35,10 @@ public class LottoController {
         RandomLottos randomLottos = lottoService.createRandomLottos(ticket);
         noticeRandomLottos(randomLottos);
 
-        Lotto winningLottoNumbers = requestWinningNumber();
-
+        Lotto winningNumbers = requestWinningNumber();
         LottoNumber bonus = requestBonus();
-        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonus);
 
+        WinningLotto winningLotto = createWinningLotto(winningNumbers, bonus);
         calculatePrizeResult(randomLottos, winningLotto, price);
     }
 
@@ -92,6 +91,17 @@ public class LottoController {
             LottoErrorView.printErrorMessage(e.getMessage());
 
             return requestBonus();
+        }
+    }
+
+    private WinningLotto createWinningLotto(Lotto winningNumbers, LottoNumber bonus) {
+        try {
+            return lottoService.createWinningLotto(winningNumbers, bonus);
+        } catch (LottoExceptionBase e) {
+            LottoErrorView.printErrorMessage(e.getMessage());
+            LottoNumber newBonus = requestBonus();
+
+            return createWinningLotto(winningNumbers, newBonus);
         }
     }
 

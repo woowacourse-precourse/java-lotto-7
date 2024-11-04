@@ -12,6 +12,8 @@ import lotto.domain.RandomLottos;
 import lotto.domain.WinningLotto;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.LottoNumber;
+import lotto.exception.LottoNumberException;
+import lotto.exception.message.Error;
 import lotto.util.LottoMaker;
 import lotto.util.Parser;
 
@@ -34,6 +36,18 @@ public class LottoService {
                 .toList();
 
         return new Lotto(numbers);
+    }
+
+    public WinningLotto createWinningLotto(Lotto winningNumbers, LottoNumber bonus) {
+        validateDuplication(winningNumbers, bonus);
+
+        return new WinningLotto(winningNumbers, bonus);
+    }
+
+    private void validateDuplication(Lotto winningNumbers, LottoNumber bonus) {
+        if (winningNumbers.getNumbers().contains(bonus)) {
+            throw new LottoNumberException(Error.BONUS_DUPLICATED);
+        }
     }
 
     public PrizeResult calculateResult(RandomLottos randomLottos, WinningLotto winningLotto) {
