@@ -21,8 +21,8 @@ public class LottoBonusNumber {
         return instance;
     }
 
-    public static int getBonusNumber() {
-        return instance.bonusNumber;
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
 
