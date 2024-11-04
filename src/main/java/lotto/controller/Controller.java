@@ -14,19 +14,26 @@ public class Controller {
     private LottoResult lottoResult;
 
     public void run() {
-        int purchasePrice = Input.inputPurchasePrice();
-        lottoCreate = new LottoCreate(purchasePrice);
+        try {
+            int purchasePrice = Input.inputPurchasePrice();
+            lottoCreate = new LottoCreate(purchasePrice);
 
-        Output.printLottos(lottoCreate);
+            System.out.println();
+            Output.printLottos(lottoCreate);
 
-        List<Integer> winningNumbers = Input.inputWinningNumbers();
-        int bonusNumber = Input.inputBonusNumber();
-        winningNumbersObject = new WinningNumbers(winningNumbers, bonusNumber);
+            List<Integer> winningNumbers = Input.inputWinningNumbers();
+            System.out.println();
+            int bonusNumber = Input.inputBonusNumber();
+            winningNumbersObject = new WinningNumbers(winningNumbers, bonusNumber);
 
-        lottoResult = new LottoResult();
-        lottoResult.calculateLottoResult(lottoCreate, winningNumbersObject);
+            lottoResult = new LottoResult();
+            lottoResult.calculateLottoResult(lottoCreate, winningNumbersObject);
 
-        Output.printStatistics(lottoResult);
-        Output.printYield(lottoCreate, lottoResult);
+            System.out.println();
+            Output.printStatistics(lottoResult);
+            Output.printYield(lottoCreate, lottoResult);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
