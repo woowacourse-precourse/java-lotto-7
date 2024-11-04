@@ -33,7 +33,6 @@ public class User {
 	}
 
 	public void printResult() {
-		System.out.println("lottoStats = " + lottoStats);
 		for (Map.Entry<LottoRank, Integer> lottoRankEntry : lottoStats.entrySet()) {
 			lottoRankEntry.getKey().printInfo(lottoRankEntry.getValue());
 		}
