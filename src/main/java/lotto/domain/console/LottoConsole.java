@@ -20,25 +20,44 @@ public class LottoConsole {
     private final LottoController controller = LottoController.getInstance(LottoService.getInstance());
 
     public void run() {
-        // 구매 금액 입력 및 로또 구매
-        int amount = inputPurchaseAmount();
-        List<List<Integer>> purchasedLottos = controller.purchaseLottos(amount);
-        printPurchasedLottos(amount, purchasedLottos);
+        try {
+            // 구매 금액 입력 및 로또 구매
+            int amount = inputPurchaseAmount();
+            List<List<Integer>> purchasedLottos = controller.purchaseLottos(amount);
+            printPurchasedLottos(amount, purchasedLottos);
 
-        // 당첨 번호 및 보너스 번호 입력
-        List<Integer> winningNumbers = inputWinningNumbers();
-        int bonusNumber = inputBonusNumber();
+            // 당첨 번호 및 보너스 번호 입력
+            List<Integer> winningNumbers = inputWinningNumbers();
+            int bonusNumber = inputBonusNumber();
 
-        // 게임 실행
-        controller.playGame(purchasedLottos, winningNumbers, bonusNumber);
+            // 게임 실행
+            controller.playGame(purchasedLottos, winningNumbers, bonusNumber);
 
-        // 결과 출력
-        printResults();
+            // 결과 출력
+            printResults();
+        } catch (IllegalArgumentException e) {
+            CommandWriter.write(e.getMessage());
+        }
     }
 
     private int inputPurchaseAmount() {
         CommandWriter.write(PURCHASE_AMOUNT_MESSAGE);
-        return Integer.parseInt(CommandReader.read());
+        String input = CommandReader.read();
+        try {
+            int amount = Integer.parseInt(input);
+            if (amount > 100000000) {
+                throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 100,000,000원을 초과할 수 없습니다.");
+            }
+            if (amount < 1000) {
+                throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 이상이어야 합니다.");
+            }
+            if (amount % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 로또 구입은 1,000원 단위로 가능합니다.");
+            }
+            return amount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
     }
 
     private void printPurchasedLottos(int amount, List<List<Integer>> purchasedLottos) {
