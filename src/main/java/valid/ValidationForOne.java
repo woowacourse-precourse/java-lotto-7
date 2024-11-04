@@ -1,7 +1,7 @@
 package valid;
 
 public class ValidationForOne {
-    public void consistOfOnlyPositiveNumbers(String money) {
+    public boolean consistOfOnlyPositiveNumbers(String money) {
         try {
             Integer.parseInt(money);
         } catch (NumberFormatException ie) {
@@ -11,11 +11,15 @@ public class ValidationForOne {
         if (Integer.parseInt(money) <= 0) {
             throw new IllegalArgumentException("[ERROR] 0 보다 큰 숫자를 입력 해주세요.");
         }
+
+        return true;
     }
 
-    public void devisibleByThousands(String money) {
+    public boolean devisibleByThousands(String money) {
         if (Integer.parseInt(money) % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 금액은 1000원 단위로만 구매 가능합니다.");
         }
+
+        return true;
     }
 }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ValidationForMany {
-    public void consistOfOnlySixPositiveNumbers(String winningNumbers) {
+    public boolean consistOfOnlySixPositiveNumbers(String winningNumbers) {
         List<String> numbers = Arrays.stream(winningNumbers.split(",")).toList();
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -19,5 +19,7 @@ public class ValidationForMany {
         if (numbers.stream().anyMatch(number -> Integer.parseInt(number) <= 0)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 0보다 큰 숫자여야 합니다.");
         }
+
+        return true;
     }
 }
