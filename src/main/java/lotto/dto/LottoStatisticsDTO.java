@@ -9,20 +9,16 @@ public record LottoStatisticsDTO(
         Map<RankDTO, Integer> statistics,
         double profit
 ) {
-    public static LottoStatisticsDTO from(LottoResult lottoResult, int amount) {
-        Map<RankDTO, Integer> statistics = new TreeMap<>();
-        lottoResult.getResult().forEach((rank, value) -> putRank(
-                statistics,
-                rank,
-                value
-        ));
-        return new LottoStatisticsDTO(
-                statistics,
+    public static LottoStatisticsDTO from(LottoResult lottoResult, long amount) {
+        LottoStatisticsDTO lottoStatisticsDTO = new LottoStatisticsDTO(
+                new TreeMap<>(),
                 lottoResult.computeProfit(amount)
         );
+        lottoResult.getResult().forEach(lottoStatisticsDTO::putRank);
+        return lottoStatisticsDTO;
     }
 
-    private static void putRank(Map<RankDTO, Integer> statistics, Rank rank, int value) {
+    private void putRank(Rank rank, int value) {
         if (rank == Rank.LAST) {
             return;
         }

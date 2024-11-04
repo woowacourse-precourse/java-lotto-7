@@ -30,9 +30,9 @@ class LottoServiceTest {
                     new BonusNumber(7)
             );
             LottoResult result = lottoService.getStatistics(winningLotto, lottos);
-            long _1Count = result.getResult().get(RankDTO.from(Rank._1TH));
-            long _2Count = result.getResult().get(RankDTO.from(Rank._2TH));
-            long _3Count = result.getResult().get(RankDTO.from(Rank._3TH));
+            long _1Count = result.getResult().get(Rank._1TH);
+            long _2Count = result.getResult().get(Rank._2TH);
+            long _3Count = result.getResult().get(Rank._3TH);
             assertThat(_1Count).isEqualTo(1);
             assertThat(_2Count).isEqualTo(1);
             assertThat(_3Count).isEqualTo(1);
