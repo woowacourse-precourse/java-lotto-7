@@ -1,7 +1,7 @@
 package lotto.enums;
 
 public enum Rank {
-    FIRST(6,false,2_000_000_000, "6개 일치 (2,000,000,000원) - "),
+    FIRST(6, false, 2_000_000_000, "6개 일치 (2,000,000,000원) - "),
     SECOND(5, true, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     THIRD(5, false, 1_500_000, "5개 일치 (1,500,000원) - "),
     FOURTH(4, false, 50_000, "4개 일치 (50,000원) - "),
@@ -21,23 +21,23 @@ public enum Rank {
         this.message = message;
     }
 
-    public static Rank determineRank(int matchCount, boolean matchBonus){
-        if(matchCount == BONUS_CONDITION && matchBonus)
+    public static Rank determineRank(int matchCount, boolean matchBonus) {
+        if (matchCount == BONUS_CONDITION && matchBonus)
             return SECOND;
 
-        for(Rank rank : values()){
-            if(rank.matchCount == matchCount && rank.matchBonus == matchBonus){
+        for (Rank rank : values()) {
+            if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {
                 return rank;
             }
         }
         return NONE;
     }
 
-    public int getPrize(){
+    public int getPrize() {
         return prize;
     }
 
     public String generateResultMessage(int count) {
-        return message + count  + "개";
+        return message + count + "개";
     }
 }

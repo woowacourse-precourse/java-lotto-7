@@ -9,7 +9,7 @@ public class LottoTickets {
     private final List<Lotto> lottos;
     private final PurchaseAmount purchaseAmount;
 
-    public LottoTickets(PurchaseAmount purchaseAmount){
+    public LottoTickets(PurchaseAmount purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
         this.lottos = generateLottos(purchaseAmount.getLottoCount());
     }

@@ -37,10 +37,10 @@ public class LottoController {
     public void run() {
         LottoTickets lottoTickets = retryHandler.getInputUntilValid(this::purchaseLotto);
         WinningNumbers winningNumbers = retryHandler.getInputUntilValid(this::getWinningNumbers);
-        calculateProfit(lottoTickets,winningNumbers);
+        calculateProfit(lottoTickets, winningNumbers);
     }
 
-    private LottoTickets purchaseLotto(){
+    private LottoTickets purchaseLotto() {
         outputView.printInputPurchaseAmount();
 
         int purchaseAmount = inputView.getPurchaseAmount();
@@ -51,28 +51,28 @@ public class LottoController {
         return lottoTickets;
     }
 
-    private WinningNumbers getWinningNumbers(){
+    private WinningNumbers getWinningNumbers() {
         List<Integer> winningNumber = retryHandler.getInputUntilValid(this::getWinningNumbersOnly);
         int bonusNumber = retryHandler.getInputUntilValid(() -> getBonusNumber(winningNumber));
         return winningNumbersService.generateWinningNumbers(winningNumber, bonusNumber);
     }
 
-    private List<Integer> getWinningNumbersOnly(){
+    private List<Integer> getWinningNumbersOnly() {
         outputView.printInputWinnerNumber();
         List<Integer> winningNumbers = inputView.getWinningNumbers();
         winningNumbersService.validateWinningNumbers(winningNumbers);
         return winningNumbers;
     }
 
-    private int getBonusNumber(List<Integer> winningNumbers){
+    private int getBonusNumber(List<Integer> winningNumbers) {
         outputView.printInputBonusNumber();
         int bonusNumber = inputView.getBonusNumber();
         winningNumbersService.validateBonusNumber(winningNumbers, bonusNumber);
         return bonusNumber;
     }
 
-    private void calculateProfit(LottoTickets lottoTickets, WinningNumbers winningNumbers){
-        LottoStatistics lottoStatistics = statisticService.calculateStatistics(lottoTickets.getLottos(),winningNumbers);
+    private void calculateProfit(LottoTickets lottoTickets, WinningNumbers winningNumbers) {
+        LottoStatistics lottoStatistics = statisticService.calculateStatistics(lottoTickets.getLottos(), winningNumbers);
         outputView.printOutputLottoStatistics(lottoStatistics.getResultMap());
         double profit = statisticService.calculateProfit(lottoStatistics, lottoTickets.getPurchaseAmount());
         outputView.printOutputProfit(profit);

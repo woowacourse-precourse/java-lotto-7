@@ -18,7 +18,7 @@ public class PurchaseAmount {
         return lottoCount;
     }
 
-    public int getAmount(){
+    public int getAmount() {
         return amount;
     }
 }

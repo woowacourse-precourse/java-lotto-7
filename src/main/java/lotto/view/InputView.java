@@ -11,7 +11,7 @@ public class InputView {
     public int getPurchaseAmount() {
         try {
             return Integer.parseInt(Console.readLine());
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_INVALID_NUMBER_FORMAT.getMessage());
         }
     }
@@ -27,10 +27,10 @@ public class InputView {
         }
     }
 
-    public int getBonusNumber(){
+    public int getBonusNumber() {
         try {
             return Integer.parseInt(Console.readLine());
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }

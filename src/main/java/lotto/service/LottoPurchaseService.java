@@ -6,7 +6,7 @@ import lotto.validator.PurchaseAmountValidator;
 
 public class LottoPurchaseService {
 
-    public LottoTickets purchaseLotto(int amount){
+    public LottoTickets purchaseLotto(int amount) {
         PurchaseAmountValidator.validateAmount(amount);
         PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
         return new LottoTickets(purchaseAmount);

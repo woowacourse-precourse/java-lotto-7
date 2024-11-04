@@ -13,18 +13,18 @@ public class PurchaseAmountValidator {
         validateDivisibility(amount);
     }
 
-    private static void validateMinPrice(int amount){
-        if(amount < LOTTO_PRICE)
+    private static void validateMinPrice(int amount) {
+        if (amount < LOTTO_PRICE)
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_MIN_PRICE.getMessage());
     }
 
-    private static void validateMaxPrice(int amount){
-        if(amount > LOTTO_MAX_PRICE)
+    private static void validateMaxPrice(int amount) {
+        if (amount > LOTTO_MAX_PRICE)
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_MAX_PRICE.getMessage());
     }
 
-    private static void validateDivisibility(int amount){
-        if(amount % LOTTO_PRICE != 0)
+    private static void validateDivisibility(int amount) {
+        if (amount % LOTTO_PRICE != 0)
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_INVALID_DIVISIBILITY.getMessage());
     }
 }

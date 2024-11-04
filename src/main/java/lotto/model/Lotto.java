@@ -16,22 +16,22 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_INVALID_NUMBER_COUNT.getMessage());
         }
-        if(numbers.stream().distinct().count() != 6){
+        if (numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATE_NUMBER.getMessage());
         }
     }
 
-    public int countMatchingNumbers(List<Integer> winningNumbers){
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
         int matchCount = 0;
-        for(int number : numbers){
-            if(winningNumbers.contains(number)){
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
                 matchCount++;
             }
         }
         return matchCount;
     }
 
-    public boolean matchingBonusNumber(int bonusNumber){
+    public boolean matchingBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 

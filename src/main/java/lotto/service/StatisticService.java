@@ -7,13 +7,13 @@ import lotto.model.WinningNumbers;
 import java.util.List;
 
 public class StatisticService {
-    public LottoStatistics calculateStatistics(List<Lotto> lottos, WinningNumbers winningNumbers){
+    public LottoStatistics calculateStatistics(List<Lotto> lottos, WinningNumbers winningNumbers) {
         LottoStatistics lottoStatistics = new LottoStatistics();
-        lottoStatistics.calculateStatistics(lottos,winningNumbers);
+        lottoStatistics.calculateStatistics(lottos, winningNumbers);
         return lottoStatistics;
     }
 
-    public double calculateProfit(LottoStatistics lottoStatistics, int purchaseAmount){
+    public double calculateProfit(LottoStatistics lottoStatistics, int purchaseAmount) {
         return lottoStatistics.calculateProfit(purchaseAmount);
     }
 }
