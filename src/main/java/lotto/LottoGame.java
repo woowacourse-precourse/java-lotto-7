@@ -46,7 +46,7 @@ public class LottoGame {
     private Lotto createCorrectNumbers() {
         try {
             return CorrectLotto.createCorrectNumber(LottoInput.inputCorrectNumbers());
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createCorrectNumbers();
         }
