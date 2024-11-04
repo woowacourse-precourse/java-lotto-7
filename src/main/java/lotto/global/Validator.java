@@ -2,8 +2,7 @@ package lotto.global;
 
 import static lotto.enums.Symbol.COMMA;
 import static lotto.exception.ErrorCode.*;
-import static lotto.exception.ErrorCode.DUPLICATE_WINNING_NUMBER;
-import static lotto.exception.ErrorCode.INVALID_NUMBER_RANGE;
+import static lotto.exception.ErrorCode.DUPLICATE_BONUS_NUMBER;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -34,33 +33,15 @@ public class Validator {
         new Lotto(parsedWinningNumbers);
     }
 
-    private List<Integer> parseWinningNumbers(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(COMMA.getValue()))
-                .map(String::trim)
-                .map(this::parseNumber)
-                .toList();
-    }
+    public void validateBonusNumber(String winningNumbers, String bonusNumber) {
+        validateNotEmpty(bonusNumber);
+        validateInteger(bonusNumber);
 
-    private int parseNumber(String number) {
-        try {
-            int parsedNumber = Integer.parseInt(number);
-            validateNumberInRange(parsedNumber);
-            return parsedNumber;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_NUMBER_INPUT.getMessage());
-        }
-    }
+        List<Integer> parsedWinningNumbers = parseWinningNumbers(winningNumbers);
+        int parsedBonusNumber = Integer.parseInt(bonusNumber);
 
-    private void validateNumberInRange(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
-        }
-    }
-
-    private void validateUniqueNumbers(List<Integer> numbers) {
-        if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER.getMessage());
-        }
+        validateBonusNumberUnique(parsedWinningNumbers, parsedBonusNumber);
+        validateNumberInRange(parsedBonusNumber);
     }
 
     private void validateNotEmpty(String input) {
@@ -91,4 +72,38 @@ public class Validator {
         }
     }
 
+    private List<Integer> parseWinningNumbers(String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(COMMA.getValue()))
+                .map(String::trim)
+                .map(this::parseNumber)
+                .toList();
+    }
+
+    private int parseNumber(String number) {
+        try {
+            int parsedNumber = Integer.parseInt(number);
+            validateNumberInRange(parsedNumber);
+            return parsedNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_NUMBER_INPUT.getMessage());
+        }
+    }
+
+    private void validateNumberInRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void validateBonusNumberUnique(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getMessage());
+        }
+    }
+
+    private void validateUniqueNumbers(List<Integer> numbers) {
+        if (numbers.size() != new HashSet<>(numbers).size()) {
+            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER.getMessage());
+        }
+    }
 }
