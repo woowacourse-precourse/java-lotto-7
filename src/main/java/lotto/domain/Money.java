@@ -28,7 +28,7 @@ public class Money {
         }
     }
 
-    public int getPurchasableLottoCount(int money) {
-        return money / 1000;
+    public int getPurchasableLottoCount(Money money) {
+        return this.money / 1000;
     }
 }
