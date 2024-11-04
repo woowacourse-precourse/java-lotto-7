@@ -11,6 +11,8 @@ public final class Lottos {
     public static final int THIRD_PRIZE_AMOUNT = 1500000;
     public static final int FOURTH_PRIZE_AMOUNT = 50000;
     public static final int FIFTH_PRIZE_AMOUNT = 5000;
+    public static final int LOTTO_PRICE = 1000;
+
 
     private final List<Lotto> lottos;
 
@@ -22,22 +24,22 @@ public final class Lottos {
         return Collections.unmodifiableList(lottos);
     }
 
-    public Map<String, Integer> getResult(Lotto winningLotto, int bonusNumber) {
+    public LottosResult getResult(Lotto winningLotto, int bonusNumber) {
         Map<String, Integer> lottosResult = new HashMap<>(Map.of(
                 "1등",0,"2등",0,"3등",0,"4등",0,"5등",0 ,"꽝",0, "총상금",0,"구매금액",0));
 
-        lottosResult.put("총상금", getTotalPrizeMoney(lottosResult));
-        lottosResult.put("구매금액", lottos.size()*1000);
-
         for (Lotto lotto : lottos) {
             int matchCount = lotto.countMatchingNumbers(winningLotto);
-            boolean isMatchBonus = lotto.contains(bonusNumber);
+            boolean isMatchBonus = lotto.isContain(bonusNumber);
             String rank = determineLottoRank(matchCount,isMatchBonus);
 
             lottosResult.computeIfPresent(rank, (key,value)-> value+1);
         }
 
-        return lottosResult;
+        lottosResult.put("총상금", getTotalPrizeMoney(lottosResult));
+        lottosResult.put("구매금액", lottos.size()*LOTTO_PRICE);
+
+        return new LottosResult(lottosResult);
     }
 
     private String determineLottoRank(int matchCount, boolean isMatchBonus) {
@@ -59,14 +61,7 @@ public final class Lottos {
         return "꽝";
     }
 
-    public double calculateReturns(Map<String, Integer> lottoResult) {
-        int usingMoney = lottoResult.get("구매금액");
-        double value = getTotalPrizeMoney(lottoResult) / (double) usingMoney * 100;
-
-        return Math.round(value*10)/10.0;
-    }
-
-    public int getTotalPrizeMoney(Map<String, Integer> lottoResult) {
+    private int getTotalPrizeMoney(Map<String, Integer> lottoResult) {
         int totalPrize = 0;
         totalPrize += lottoResult.get("1등") * FIRST_PRIZE_AMOUNT;
         totalPrize += lottoResult.get("2등") * SECOND_PRIZE_AMOUNT;

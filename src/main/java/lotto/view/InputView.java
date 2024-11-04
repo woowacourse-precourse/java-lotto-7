@@ -78,7 +78,7 @@ public class InputView {
         }
     }
     private static void checKDuplicatedWithWinningNumber(Lotto lotto, int bonusNumber) {
-        if (lotto.contains(bonusNumber)) {
+        if (lotto.isContain(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_WITH_WINNING_NUMBERS.getMessage());
         }
     }

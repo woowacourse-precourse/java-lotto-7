@@ -2,18 +2,18 @@ package lotto.view;
 
 import static lotto.message.ViewMessage.*;
 
-import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.LottosResult;
 
 public class OutputView {
     public static final String LOTTO_NUMBER_JOINNING_MARK = ", ";
     public static final String PRINT_LOTTO_NUMBER_FORMAT_PREFIX = "[";
     public static final String PRINT_LOTTO_NUMBER_FORMAT_SUFFIX = "]";
 
-    public static void printLottosResult(Map<String, Integer> lottoResult) {
+    public static void printLottosResult(LottosResult lottoResult) {
         System.out.println(OUTPUT_RESULT_TITLE.getMessage());
         System.out.println(MATCH_3_COUNT.format(lottoResult.get("5등")));
         System.out.println(MATCH_4_COUNT.format(lottoResult.get("4등")));
@@ -25,7 +25,7 @@ public class OutputView {
     public static void printLottosReturns(double returnsByLottos) {
         System.out.printf(OUTPUT_LOTTOS_RETURNS.getMessage(),returnsByLottos);
     }
-    public static void printBoughtInfo(Lottos lottos) {
+    public static void printLottosInfo(Lottos lottos) {
         System.out.println(OUTPUT_LOTTOS_COUNT.format(lottos.getLotto().size()));
 
         for (Lotto lotto : lottos.getLotto())

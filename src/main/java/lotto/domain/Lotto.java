@@ -37,16 +37,15 @@ public class Lotto {
     public int countMatchingNumbers(Lotto winningLotto) {
         int matchingNumberCount = 0;
         for (Integer number : numbers) {
-            if (winningLotto.getNumbers().contains(number)) {
+            if (winningLotto.isContain(number)) {
                 matchingNumberCount++;
             }
         }
         return matchingNumberCount;
     }
 
-    public boolean contains(int bonusNumber) {
-        boolean iscontainBonusNumber = numbers.contains(bonusNumber);
-        return iscontainBonusNumber;
+    public boolean isContain(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     private void validate(List<Integer> numbers) {

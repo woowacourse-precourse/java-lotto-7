@@ -42,7 +42,7 @@ class LottoTest {
     @CsvSource({"10, true", "11,false", "13,false"})
     void 보너스_번호_일치_여부_기능_테스트(int bonusNumber, boolean expected) {
         Lotto lotto  = new Lotto(List.of(1,2,3,4,5,10));
-        boolean isContainBonusNumber = lotto.contains(bonusNumber);
+        boolean isContainBonusNumber = lotto.isContain(bonusNumber);
 
         assertThat(isContainBonusNumber).isEqualTo(expected);
     }
