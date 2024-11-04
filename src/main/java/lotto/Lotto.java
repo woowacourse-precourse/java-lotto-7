@@ -39,7 +39,7 @@ public class Lotto {
         calculateReward(matchCount, isBonusMatched); // 당첨금 계산
     }
 
-    // 로또 번호 개수 유효성 검사
+    // 유저가 입력한 로또번호 유효성 검사
     private void validate(List<Integer> numbers) {
 
         // 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다
@@ -63,7 +63,7 @@ public class Lotto {
         System.out.println("[result] 발행한 보너스 번호: " + lottoNumbers);
     }
 
-    // 로또번호 당첨여부 조회
+    // 로또 번호 당첨개수
     private int numbersMatcher(List<Integer> numbers, List<Integer> lottoNumbers) {
         int matchCount = 0;
 
@@ -77,12 +77,12 @@ public class Lotto {
         return matchCount;
     }
 
-    // 보너스번호 당첨여부 조회
+    // 보너스 번호 당첨여부
     private boolean bonusNumberMatcher(int bonusNumber) {
         return bonusNumber == lottoBonusNumber;
     }
 
-    // 등수별 상금
+    // 당첨금 계산
     private void calculateReward(int matchCount, boolean isBonusMatched){
         if (matchCount == 6) {
             reward = FIRST_PRIZE;
