@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoInputValidator {
     private final String string;
 
@@ -21,6 +23,12 @@ public class LottoInputValidator {
     private void validateLottoNumberExists(String string) {
         if (string == null || string.trim().isEmpty()) {
             throw new IllegalArgumentException(ExceptionMessage.EMPTY_INPUT.getErrorMessage());
+        }
+    }
+
+    public static void validateBonusDuplication(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_BONUS_NUMBER.getErrorMessage());
         }
     }
 }
