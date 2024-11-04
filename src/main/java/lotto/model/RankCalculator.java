@@ -31,14 +31,20 @@ public class RankCalculator {
     }
 
     public Map<Rank, Integer> finalRank(List<Rank> ranking) {
+        Map<Rank, Integer> ranks = initializeRanks();
+
+        for (Rank rank : ranking) {
+            ranks.put(rank, ranks.get(rank) + Limit.INCREASE_UNIT.getValue());
+        }
+
+        return ranks;
+    }
+
+    private Map<Rank, Integer> initializeRanks() {
         Map<Rank, Integer> ranks = new HashMap<>();
 
         for (Rank rank : Rank.values()) {
             ranks.put(rank, Limit.DEFAULT.getValue());
-        }
-
-        for (Rank rank : ranking) {
-            ranks.put(rank, ranks.get(rank) + Limit.INCREASE_UNIT.getValue());
         }
 
         return ranks;
