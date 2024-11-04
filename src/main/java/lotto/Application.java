@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -19,18 +20,21 @@ public class Application {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
+        Collections.sort(winningNumbers); // 당첨 번호 정렬
+
         System.out.println("보너스 번호를 입력하세요.");
         input = readLine();
-        int bonusNum = Integer.parseInt(input);
-        WinningNumbers winningNumber = new WinningNumbers(winningNumbers, bonusNum);
+        int bonusNumer = Integer.parseInt(input);
+        WinningNumbers winningNumber = new WinningNumbers(winningNumbers, bonusNumer);
 
         // 로또 구입 금액 입력받기
+        System.out.println("구입 금액을 입력해 주세요.");
         input = readLine();
         int numberOfLottos = buyLotto(Integer.parseInt(input));
 
         // 전체 로또 발행하기
         // 각각의 로또 숫자 뽑기
-        List<Lotto> tickets = null;
+        List<Lotto> tickets = new ArrayList<>();
 
         for (int i = 0; i < numberOfLottos; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -45,8 +49,12 @@ public class Application {
             System.out.println(ticket);
         }
 
+        // 당첨 확인하고 금액 계산하기
+        LottoGame lottoGame = new LottoGame(tickets, winningNumber);
+        lottoGame.calculateResults();
 
     }
+
 
     static public int buyLotto(int amount) {
         if (amount % 1000 != 0) {
