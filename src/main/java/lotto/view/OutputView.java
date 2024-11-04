@@ -37,9 +37,8 @@ public class OutputView {
     }
 
     private void showRankStatistics(Map<LottoRank, Integer> rankCount) {
-        for (Map.Entry<LottoRank, Integer> entry : rankCount.entrySet()) {
-            LottoRank rank = entry.getKey();
-            int count = entry.getValue();
+        for (LottoRank rank : LottoRank.values()) {
+            int count = rankCount.getOrDefault(rank, 0);
             System.out.println(rank.getMessage() + count + "개");
         }
     }

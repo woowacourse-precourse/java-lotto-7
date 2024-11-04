@@ -19,9 +19,16 @@ public class InputParser {
     }
 
     public int parsePrice() {
-        String rawPrice = inputView.requirePrice();
-        validator.isInputPriceValid(rawPrice);
-        return Integer.parseInt(rawPrice);
+        while(true) {
+            try {
+                String rawPrice = inputView.requirePrice();
+                validator.isInputPriceValid(rawPrice);
+                return Integer.parseInt(rawPrice);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     public int calculateLottoCount(int price) {
@@ -29,32 +36,46 @@ public class InputParser {
     }
 
     public List<Integer> parseLottoNumbers() {
-        String rawLottoNumbers = inputView.requireLottoNumbers();
-        List<String> lottoNumbers = List.of(rawLottoNumbers.split(Prompts.INPUT_DELIMITER));
-        List<Integer> convertedLottoNumbers = new ArrayList<>();
 
-        for (String lottoNumber : lottoNumbers) {
-            validator.isLottoNumberValid(lottoNumber);
-            convertedLottoNumbers.add(Integer.parseInt(lottoNumber));
+        while(true) {
+            try {
+                String rawLottoNumbers = inputView.requireLottoNumbers();
+                List<String> lottoNumbers = List.of(rawLottoNumbers.split(Prompts.INPUT_DELIMITER));
+                List<Integer> convertedLottoNumbers = new ArrayList<>();
+
+                for (String lottoNumber : lottoNumbers) {
+                    validator.isLottoNumberValid(lottoNumber);
+                    convertedLottoNumbers.add(Integer.parseInt(lottoNumber));
+                }
+
+                validator.isLottoNumbersValid(convertedLottoNumbers);
+                return convertedLottoNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
-        validator.isLottoNumbersValid(convertedLottoNumbers);
-        return convertedLottoNumbers;
     }
 
-    public int parseBonusNumber() {
-        String rawBonusNumber = inputView.requireBonusNumber();
-        validator.isBonusNumberValid(rawBonusNumber);
-        validator.isBonusNumberDuplicated(rawBonusNumber, parseLottoNumbers());
-        int bonusNumber = Integer.parseInt(rawBonusNumber);
-        return bonusNumber;
-    }
+    public int parseBonusNumber(List<Integer> lottoNumbers) {
+        while(true) {
+            try {
+                String rawBonusNumber = inputView.requireBonusNumber();
+                validator.isBonusNumberValid(rawBonusNumber);
+                validator.isBonusNumberDuplicated(rawBonusNumber, lottoNumbers);
+                int bonusNumber = Integer.parseInt(rawBonusNumber);
+                return bonusNumber;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
+    }
     public LottoPurchaseDTO lottoPurchaseDTO() {
         int parsedPrice = parsePrice();
         int lottoCount = calculateLottoCount(parsedPrice);
         List<Integer> parsedLottoNumbers = parseLottoNumbers();
-        int parsedBonusNumber = parseBonusNumber();
+        int parsedBonusNumber = parseBonusNumber(parsedLottoNumbers);
 
         return new LottoPurchaseDTO(parsedPrice, lottoCount, parsedLottoNumbers, parsedBonusNumber);
     }

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.common.Constants;
@@ -14,9 +15,10 @@ public class LottoFactory {
     }
 
     private List<Integer> createRandomNumbers() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(Constants.RANDOM_MIN_NUM,
+        List<Integer> randomNumbers = new ArrayList<>();
+        randomNumbers.addAll(Randoms.pickUniqueNumbersInRange(Constants.RANDOM_MIN_NUM,
                 Constants.RANDOM_MAX_NUM,
-                Constants.LOTTO_NUMBER_COUNT);
+                Constants.LOTTO_NUMBER_COUNT));
         Collections.sort(randomNumbers);
         return randomNumbers;
     }

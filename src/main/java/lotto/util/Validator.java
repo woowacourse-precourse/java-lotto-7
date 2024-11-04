@@ -7,7 +7,7 @@ import lotto.common.Constants;
 
 public class Validator {
     public void isInputPriceValid(String price) {
-        if(price.isBlank() || price == null) {
+        if(price == null || price.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 가격은 공백이나 null값이 될 수 없습니다.");
         }else if(!price.matches("[0-9]+")){
             throw new IllegalArgumentException("[ERROR] 가격은 숫자만 입력할 수 있습니다.");
@@ -19,7 +19,7 @@ public class Validator {
     }
 
     public void isBonusNumberValid(String bonusNumber) {
-        if(bonusNumber.isBlank() || bonusNumber == null) {
+        if(bonusNumber == null || bonusNumber.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자는 공백이나 null값이 될 수 없습니다.");
         }else if(!bonusNumber.matches("[0-9]+")){
             throw new IllegalArgumentException("[ERROR] 보너스 숫자는 숫자만 입력할 수 있습니다.");
@@ -35,7 +35,7 @@ public class Validator {
     }
 
     public void isLottoNumberValid(String lottoNumber) {
-        if(lottoNumber.isBlank() || lottoNumber==null) {
+        if(lottoNumber==null || lottoNumber.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 당첨 숫자는 공백이나 null값이 될 수 없습니다.");
         }else if(!lottoNumber.matches("[0-9]+")){
             throw new IllegalArgumentException("[ERROR] 당첨 숫자는 숫자만 입력할 수 있습니다.");
