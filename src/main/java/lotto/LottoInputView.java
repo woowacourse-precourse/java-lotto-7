@@ -17,6 +17,7 @@ public class LottoInputView {
     }
 
     public Lotto readWinningNumbers() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<Integer> numbers = parseNumbers(input);
@@ -26,6 +27,7 @@ public class LottoInputView {
     }
 
     public int readBonusNumber(Lotto winningLotto) {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         LottoValidator.validateNumericInput(input);
