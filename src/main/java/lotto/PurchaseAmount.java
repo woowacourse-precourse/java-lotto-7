@@ -28,5 +28,4 @@ public class PurchaseAmount {
         int totalPrize = lottoWinningResult.getTotalPrize();
         return (double) totalPrize/amount*100;
     }
-
 }
