@@ -22,6 +22,16 @@ public class LottoController {
 
     public LottoController() {}
 
+    public LottoController(Integer lottoAmount,
+                           List<Lotto> myLottoNumbers,
+                           Lotto winningLottoNumbers,
+                           BonusNumber winningBonusNumber) {
+        this.lottoAmount = lottoAmount;
+        this.myLottoNumbers = myLottoNumbers;
+        this.winningLottoNumbers = winningLottoNumbers;
+        this.winningBonusNumber = winningBonusNumber;
+    }
+
     public void playLottoGame() {
         buyMyLotto();
         assignLotto();
