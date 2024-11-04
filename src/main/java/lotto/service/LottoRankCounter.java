@@ -8,10 +8,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static lotto.domain.LottoRank.getLottoRanksWithoutNoRank;
+
 public class LottoRankCounter {
 
     public static LottoRankCountDto countRanks(List<LottoRank> lottoRanks) {
-        Map<LottoRank, Long> rankCounts = EnumSet.allOf(LottoRank.class).stream()
+        List<LottoRank> allLottoRanks = getLottoRanksWithoutNoRank();
+
+        Map<LottoRank, Long> rankCounts = allLottoRanks.stream()
                 .collect(Collectors.toMap(rank -> rank, rank -> 0L));
 
         for (LottoRank lottoRank : lottoRanks) {

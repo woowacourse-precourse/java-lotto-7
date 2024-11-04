@@ -1,11 +1,13 @@
 package lotto.view;
 
+import lotto.domain.LottoRank;
 import lotto.domain.Lottos;
+import lotto.dto.LottoRankCountDto;
 
 import java.util.List;
 
-import static lotto.common.Constants.ERROR_PROMPT;
-import static lotto.common.Constants.LOTTO_TICKET_COUNT_PROMPT;
+import static lotto.common.Constants.*;
+import static lotto.domain.LottoRank.getLottoRanksWithoutNoRank;
 
 public class OutputView {
     public static String getErrorMessage (String errorMessage) {
@@ -25,11 +27,43 @@ public class OutputView {
         printLineBreak();
     }
 
+    public void printWinningDetails (LottoRankCountDto lottoRankCountDto) {
+        List<LottoRank> availableRanks = getLottoRanksWithoutNoRank();
+
+        System.out.println(RANK_DETAIL_PROMPT);
+
+        for (LottoRank lottoRank : availableRanks) {
+            Integer matchCount = lottoRank.getMatchCount();
+            boolean hasBonusNumber = lottoRank.hasBonusNumber();
+
+            Integer prizeMoney = lottoRank.getPrizeMoney();
+            String formattedPrizeMoney = formatWithCommas(prizeMoney);
+
+            Long winningCount = lottoRankCountDto.getRankCount(lottoRank);
+
+            printWinningDetail(matchCount, formattedPrizeMoney, winningCount, hasBonusNumber);
+        }
+    }
+
+    private void printWinningDetail(Integer matchCount, String prizeMoney, Long winningCount, boolean hasBonusNumber) {
+        if (hasBonusNumber) {
+            System.out.printf(WINNING_DETAIL_PROMPT, matchCount, prizeMoney, winningCount);
+        }
+        else if (!hasBonusNumber) {
+            System.out.printf(WINNING_WITH_BONUS_NUMBER_DETAIL_PROMPT, matchCount, prizeMoney, winningCount);
+        }
+    }
+
     private void printLottoCount (Integer lottoTicketCount) {
         System.out.println(lottoTicketCount + LOTTO_TICKET_COUNT_PROMPT);
     }
 
     private void printLineBreak () {
         System.out.println();
+    }
+
+
+    public String formatWithCommas(long number) {
+        return String.format("%,d", number);
     }
 }

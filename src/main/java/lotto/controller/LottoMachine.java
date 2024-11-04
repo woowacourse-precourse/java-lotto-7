@@ -42,9 +42,7 @@ public class LottoMachine {
 
         WinningNumbers winningNumbers = getWinningNumbers();
 
-        List<LottoRank> lottoRanks = getLottoRanks(lottos, winningNumbers);
-
-        LottoRankCountDto lottoRankCountDto = countRanks(lottoRanks);
+        LottoRankCountDto lottoRankCountDto = getLottoRanks(lottos, winningNumbers);
     }
 
     public Lottos generateLottos (Integer lottoTicketCount) {
@@ -90,7 +88,12 @@ public class LottoMachine {
         return winningNumbers;
     }
 
-    private List<LottoRank> getLottoRanks (Lottos lottos, WinningNumbers winningNumbers) {
-        return winningNumbersService.getLottoRanks(lottos, winningNumbers);
+    private LottoRankCountDto getLottoRanks (Lottos lottos, WinningNumbers winningNumbers) {
+        List<LottoRank> lottoRanks = winningNumbersService.getLottoRanks(lottos, winningNumbers);
+
+        LottoRankCountDto lottoRankCountDto = countRanks(lottoRanks);
+        outputView.printWinningDetails(lottoRankCountDto);
+
+        return lottoRankCountDto;
     }
 }

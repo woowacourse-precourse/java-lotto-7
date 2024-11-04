@@ -14,4 +14,8 @@ public class LottoRankCountDto {
     public Map<LottoRank, Long> getRankCounts() {
         return rankCounts;
     }
+
+    public Long getRankCount (LottoRank lottoRank) {
+        return rankCounts.get(lottoRank);
+    }
 }

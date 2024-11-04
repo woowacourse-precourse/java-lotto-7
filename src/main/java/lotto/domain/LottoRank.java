@@ -1,7 +1,11 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.function.BiPredicate;
+import java.util.stream.Collectors;
 
 import static lotto.common.Constants.*;
 import static lotto.common.ValidationUtils.validateInRange;
@@ -37,6 +41,25 @@ public enum LottoRank {
                 .filter(rank -> rank.test(matchCount, bonusMatch))
                 .findAny()
                 .orElse(UN_RANK);
+    }
+
+    public static List<LottoRank> getLottoRanksWithoutNoRank () {
+        return EnumSet.allOf(LottoRank.class).stream()
+                .filter(rank -> rank.matchCount >= 3)
+                .sorted(Comparator.comparingInt(rank -> rank.matchCount))
+                .collect(Collectors.toList());
+    }
+
+    public Integer getMatchCount() {
+        return matchCount;
+    }
+
+    public Integer getPrizeMoney() {
+        return prizeMoney;
+    }
+
+    public boolean hasBonusNumber() {
+        return this == MATCH_5_NUMBERS_WITH_BONUS_NUMBER;
     }
 
     private boolean test(Integer matchCount, boolean bonusMatch) {

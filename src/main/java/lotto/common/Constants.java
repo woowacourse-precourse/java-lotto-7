@@ -6,6 +6,9 @@ public class Constants {
     public static String LOTTO_TICKET_COUNT_PROMPT = "개를 구매했습니다.";
     public static String WINNING_NUMBER_PROMPT = "당첨 번호를 입력해 주세요.";
     public static String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";
+    public static String RANK_DETAIL_PROMPT = "\n당첨 통계\n---";
+    public static String WINNING_DETAIL_PROMPT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    public static String WINNING_WITH_BONUS_NUMBER_DETAIL_PROMPT = "%d개 일치 (%s원) - %d개\n";
 
     // number
     public static Long MIN_PURCHASE_AMOUNT = 1L;
