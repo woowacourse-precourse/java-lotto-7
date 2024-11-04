@@ -1,11 +1,13 @@
 package lotto.validator;
 
 import static lotto.message.ExceptionMessage.INVALID_BLANK_INPUT;
+import static lotto.message.ExceptionMessage.INVALID_DUPLICATION_INPUT;
 import static lotto.message.ExceptionMessage.INVALID_RANGE_INPUT;
 import static lotto.message.ExceptionMessage.INVALID_TYPE_INPUT;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.IllegalDuplicationException;
 import lotto.exception.IllegalInputException;
 import lotto.exception.IllegalRangeException;
 import lotto.exception.IllegalTypeException;
@@ -19,13 +21,14 @@ public class WinningLottoValidator {
     private static final int MIN_VALUE = 1, MAX_VALUE = 45;
 
     public static List<Integer> validateWinningNumbers(String input) {
-        return Arrays.stream(input.split(DELIMITER))
+        List<Integer> winningNumbers = Arrays.stream(input.split(DELIMITER))
                 .peek(WinningLottoValidator::validateBlank)
                 .map(WinningLottoValidator::validateType)
-                .peek(number -> {
-                    validateRange(number);
-                })
+                .peek(WinningLottoValidator::validateRange)
                 .toList();
+        validateDuplication(winningNumbers);
+
+        return winningNumbers;
     }
 
     public static int validateBonusNumber(String input) {
@@ -52,6 +55,14 @@ public class WinningLottoValidator {
         if (input < MIN_VALUE || input > MAX_VALUE) {
             throw new IllegalRangeException(
                     String.format(INVALID_RANGE_INPUT.getMessage(), INPUT, MIN_VALUE, MAX_VALUE)
+            );
+        }
+    }
+
+    private static void validateDuplication(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalDuplicationException(
+                    String.format(INVALID_DUPLICATION_INPUT.getMessage(), INPUT)
             );
         }
     }
