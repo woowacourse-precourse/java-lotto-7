@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import lotto.constant.WinningCondition;
 import lotto.dto.LottoResult;
-import lotto.dto.MatchingCountResult;
 import lotto.model.Lotto;
+import lotto.model.MatchingCountResult;
 
 public class LottoResultService {
     private final LottoMatchingCounter lottoMatchingCounter;

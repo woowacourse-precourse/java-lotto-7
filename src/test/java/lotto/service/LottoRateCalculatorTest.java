@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import lotto.constant.WinningCondition;
-import lotto.dto.MatchingCountResult;
+import lotto.model.MatchingCountResult;
 import org.junit.jupiter.api.Test;
 
 class LottoRateCalculatorTest {
