@@ -1,10 +1,11 @@
 # java-lotto-precourse
 
 ## 기능 목록
-- [x] 입력 화면(InputView)
-    - [ ] 구매 금액 입력
-    - [ ] 구매 로또 개수 계산
+- [] 입력 화면(InputView)
+    - [x] 구매 금액 입력
+    - [x] 구매 로또 개수 계산
     - [ ] 당첨번호 입력
+    - [ ] 보너스 번호 입력
 - [ ] 로또 생성(LottoGenerator)
     - [ ] pickUniqueNumbersInRange()를 통해 생성
     - [ ] 오름차순 정렬
