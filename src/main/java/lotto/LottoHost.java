@@ -38,7 +38,6 @@ public class LottoHost {
         winningResult.put(new LottoResult(5, false), 0);
         winningResult.put(new LottoResult(5, true), 0);
         winningResult.put(new LottoResult(6, false), 0);
-        winningResult.put(new LottoResult(0, false), 0);
         return winningResult;
     }
 
