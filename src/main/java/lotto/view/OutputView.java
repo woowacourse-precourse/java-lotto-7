@@ -35,7 +35,7 @@ public class OutputView {
     }
 
 
-    public void printRate(double rate){
+    public static void printRate(double rate){
         System.out.printf(OUTPUT_TOTAL_RATE, rate);
     }
 }

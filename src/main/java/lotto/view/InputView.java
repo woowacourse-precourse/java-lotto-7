@@ -7,7 +7,6 @@ import static lotto.Constants.*;
 
 public class InputView {
 
-
     public static String getMoney(){
         System.out.println(INPUT_PURCHASE_AMOUNT);
         return Console.readLine();
