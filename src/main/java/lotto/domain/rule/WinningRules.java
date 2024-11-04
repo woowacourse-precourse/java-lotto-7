@@ -26,11 +26,11 @@ public enum WinningRules {
     }
 
     public static WinningRules valueOf(int winningMatchCount, boolean bonusMatch) {
-        if (winningMatchCount == 6) return SIX_MATCH;
-        if (winningMatchCount == 5 && bonusMatch) return FIVE_MATCH_WITH_BONUS;
-        if (winningMatchCount == 5) return FIVE_MATCH;
-        if (winningMatchCount == 4) return FOUR_MATCH;
-        if (winningMatchCount == 3) return THREE_MATCH;
+        if (winningMatchCount == SIX_MATCH.getMatchCount()) return SIX_MATCH;
+        if (winningMatchCount == FIVE_MATCH_WITH_BONUS.getMatchCount() && bonusMatch) return FIVE_MATCH_WITH_BONUS;
+        if (winningMatchCount == FIVE_MATCH.getMatchCount()) return FIVE_MATCH;
+        if (winningMatchCount == FOUR_MATCH.getMatchCount()) return FOUR_MATCH;
+        if (winningMatchCount == THREE_MATCH.getMatchCount()) return THREE_MATCH;
         return NO_MATCH;
     }
 
