@@ -15,7 +15,7 @@ public class Lotto {
 
     private void validateDuplication(List<Integer> numbers) {
         if (isDuplicated(numbers)) {
-            throw new BusinessException(ErrorMessage.DUPLICATED_LOTTO_NUM);
+            throw new BusinessException(ErrorMessage.DUPLICATE_LOTTO_NUM);
         }
     }
 
