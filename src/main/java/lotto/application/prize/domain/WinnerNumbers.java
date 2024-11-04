@@ -14,6 +14,10 @@ public class WinnerNumbers {
         return new WinnerNumbers(lotto);
     }
 
+    public Lotto getLotto() {
+        return lotto;
+    }
+
     public List<Integer> getLottoNumbers() {
         return lotto.getNumbers();
     }
