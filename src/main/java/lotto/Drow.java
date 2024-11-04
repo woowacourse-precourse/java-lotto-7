@@ -81,13 +81,16 @@ public class Drow {
         if (!validateNumberCount(inputNumbers)) return false;
 
         for (String inputNumber : inputNumbers) {
-            validateNumber(inputNumber);
+
+            if(!validateNumber(inputNumber)){
+                return false;
+            }
         }
 
         return true;
     }
 
-    private boolean validateDuplicateNumber(List<Integer> checkNumbers) {
+    public boolean validateDuplicateNumber(List<Integer> checkNumbers) {
 
         HashSet<Integer> numbersSet = new HashSet<>(checkNumbers);
 
@@ -139,7 +142,7 @@ public class Drow {
         }
     }
 
-    private boolean validateDuplicateBonusNumber(List<Integer> checkNumbers, Integer bonusNumber) {
+    public boolean validateDuplicateBonusNumber(List<Integer> checkNumbers, Integer bonusNumber) {
 
         HashSet<Integer> numbersSet = new HashSet<>(checkNumbers);
 

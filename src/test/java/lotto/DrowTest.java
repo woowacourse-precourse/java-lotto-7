@@ -26,11 +26,11 @@ public class DrowTest {
             String sixNumbers = "1,2,3,4,5,6"; //6자리 숫자
             String sevenNumbers = "1,2,3,4,5,6,7"; //6자리 숫자
 
-            assertThat(drow.validateDrowNumbers(fiveNumbers))
+            assertThat(drow.validateDrowNumberInput(fiveNumbers))
                     .isEqualTo(false);
-            assertThat(drow.validateDrowNumbers(sixNumbers)) // 6자리 숫자만 true 반환
+            assertThat(drow.validateDrowNumberInput(sixNumbers)) // 6자리 숫자만 true 반환
                     .isEqualTo(true);
-            assertThat(drow.validateDrowNumbers(sevenNumbers))
+            assertThat(drow.validateDrowNumberInput(sevenNumbers)) // 6자리 숫자만 true 반환
                     .isEqualTo(false);
 
         }
@@ -42,7 +42,7 @@ public class DrowTest {
 
             String numbersIncludeAlphabet = "1,2,3,root,5,6";
 
-            assertThat(drow.validateDrowNumbers(numbersIncludeAlphabet))
+            assertThat(drow.validateDrowNumberInput(numbersIncludeAlphabet))
                     .isEqualTo(false);
         }
 
@@ -53,7 +53,7 @@ public class DrowTest {
 
             String bonusNumberAlphabet = "root";
 
-            assertThat(drow.validateBonusNumber(bonusNumberAlphabet))
+            assertThat(drow.validateNumber(bonusNumberAlphabet))
                     .isEqualTo(false);
         }
 
@@ -63,10 +63,10 @@ public class DrowTest {
 
             Drow drow = new Drow();
 
-            int smallNumber = 0;
+            String smallNumber = "0";
 
-            assertThatThrownBy(() -> drow.validateInputNumber(smallNumber))
-                    .isInstanceOf(IllegalArgumentException.class);
+            assertThat(drow.validateNumber(smallNumber))
+                    .isEqualTo(false);
 
         }
 
@@ -75,10 +75,10 @@ public class DrowTest {
 
             Drow drow = new Drow();
 
-            int bigNumber = 46;
+            String bigNumber = "46";
 
-            assertThatThrownBy(() -> drow.validateInputNumber(bigNumber))
-                    .isInstanceOf(IllegalArgumentException.class);
+            assertThat(drow.validateNumber(bigNumber))
+                    .isEqualTo(false);
         }
 
 
@@ -86,9 +86,9 @@ public class DrowTest {
         void 숫자는_중복되면_안된다(){
             Drow drow = new Drow();
 
-            String duplicateNumbers = "41,42,43,44,45,45";
+            List<Integer> duplicateNumbers = List.of(41,42,43,44,45,45);
 
-            assertThat(drow.validateDrowNumbers(duplicateNumbers))
+            assertThat(drow.validateDuplicateNumber(duplicateNumbers))
                     .isEqualTo(false);
         }
 
@@ -99,8 +99,8 @@ public class DrowTest {
             List<Integer> drawNumbers = List.of(1, 2, 3, 4, 5, 6);
             int duplicateBonusNumber = 6;
 
-            assertThatThrownBy(() -> drow.validateDuplicationNumber(drawNumbers,duplicateBonusNumber))
-                    .isInstanceOf(IllegalArgumentException.class);
+            assertThat(drow.validateDuplicateBonusNumber(drawNumbers,duplicateBonusNumber))
+                    .isEqualTo(false);
         }
 
     }
