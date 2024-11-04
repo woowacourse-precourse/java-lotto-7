@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class Application {
@@ -9,6 +10,8 @@ public class Application {
     public static void main(String[] args) {
         LottoShop shop = new LottoShop();
         int money = repeatUntilNoException(() -> inputMoney());
+        List<Lotto> lottos = shop.sell(money);
+        printLottos(lottos);
     }
 
     private static int inputMoney() {
@@ -22,6 +25,10 @@ public class Application {
         InputValidator.validateMaxPurchaseAmount(money);
 
         return Integer.parseInt(rawMoney);
+    }
+
+    private static void printLottos(List<Lotto> lottos) {
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
     private static <T> T repeatUntilNoException(Supplier<T> inputFunction) {
