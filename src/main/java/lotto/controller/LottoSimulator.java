@@ -3,7 +3,6 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.Result;
 import lotto.model.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,6 +17,8 @@ public class LottoSimulator {
         getCorrectInput(() -> user.setPrice(InputView.inputPurchasePrice()));
         publishLottos();
         displayPublishedLottos();
+        getCorrectInput(() -> user.setLotto(new Lotto(InputView.inputWinningNumbers())));
+        getCorrectInput(() -> user.setBonusNumber(InputView.inputBonusNumber()));
     }
 
     private void init() {
