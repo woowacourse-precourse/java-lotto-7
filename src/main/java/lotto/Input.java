@@ -25,14 +25,20 @@ public class Input {
         System.out.println("구입금액을 입력해 주세요.");
 
         int inputData=Integer.parseInt(getUserInput());
-        validatePurchaseAmount(inputData);
+        validatePurchaseAmount1(inputData);
         this.PurchaseAmount= inputData;
 
     }
 
-    void validatePurchaseAmount(int inputData) {
+    void validatePurchaseAmount1(int inputData) {
         if(inputData %1000 !=0) {
             throw new IllegalArgumentException("[ERROR] 입력 금액이 1000원 단위여야 합니다.");
+        }
+    }
+
+    void validatePurchaseAmount2(int inputData) {
+        if(inputData <1000 ) {
+            throw new IllegalArgumentException("[ERROR] 입력 금액이 최소한 1000원 이상이여야 합니다.");
         }
     }
 
@@ -66,9 +72,11 @@ public class Input {
 
     void validateLottoWinningNumbersSize(Set<Integer> inputData) {
         if (inputData.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호가 6개가 아니거나 중복되는 숫자가 존재합니다.");
         }
     }
+
+
 
     void validateLottoWinningNumbersScope(int num) {
         if(num <1 || num > 45) {
@@ -98,7 +106,7 @@ public class Input {
     void validateBonusNumberScope(int inputData) {
 
         if(inputData < 1 || inputData > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 하나만 입력해야합니다");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이여야 합니다");
         }
 
     }

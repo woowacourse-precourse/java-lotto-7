@@ -53,6 +53,15 @@ public class InputTest extends Input{
     }
 
     @Test
+    void ValidPurchaseAmountTest3() {
+
+        testInput="0";
+        assertThrows(NumberFormatException.class,() ->{instance.setPurchaseAmount();}
+                ,"[ERROR] 당첨번호 입력은 숫자만 입력할수있습니다.");
+
+    }
+
+    @Test
     void invalidLottoWinningNumbersSizeTest1() {
 
         Set<Integer> validInput = Set.of(1, 2, 3, 4, 5, 6);
@@ -63,17 +72,19 @@ public class InputTest extends Input{
 
     @Test
     void invalidLottoWinningNumbersSizeTest2() {
-        // 유효하지 않은 경우: Set 크기가 5일 때
+
         Set<Integer> invalidInput = Set.of(1, 2, 3, 4, 5);
         assertThrows(IllegalArgumentException.class,
                 () -> instance.validateLottoWinningNumbersSize(invalidInput),
-                "[ERROR] 당첨 번호는 6개여야 합니다.");
+                "[ERROR] 당첨 번호가 6개가 아니거나 중복되는 숫자가 존재합니다.");
 
-        // 유효하지 않은 경우: Set 크기가 7일 때
+
         Set<Integer> invalidInput2 = Set.of(1, 2, 3, 4, 5, 6, 7);
         assertThrows(IllegalArgumentException.class,
                 () -> instance.validateLottoWinningNumbersSize(invalidInput2),
-                "[ERROR] 당첨 번호는 6개여야 합니다.");
+                "[ERROR] 당첨 번호가 6개가 아니거나 중복되는 숫자가 존재합니다.");
+
+
     }
 
     @Test
@@ -99,6 +110,8 @@ public class InputTest extends Input{
                 () -> instance.validateLottoWinningNumbersScope(invalidInput2),
                 "[ERROR] 당첨 번호는 1~45 사이 숫자여야 합니다.");
     }
+
+
 
     @Test
     void convertLottoWinningNumbersTest1() {
