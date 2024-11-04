@@ -22,7 +22,7 @@ public class TicketManager { // TODO: 이름 개선
 
     private int takeTicketAmount(Payment payment) {
         int money = payment.getMoney();
-        return money % UNIT;
+        return money / UNIT;
     }
 
     private List<Ticket> issueTickets(int ticketAmount) {
