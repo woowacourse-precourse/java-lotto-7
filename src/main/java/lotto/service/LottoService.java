@@ -2,7 +2,6 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
-import lotto.domain.Money;
 import lotto.dto.Lottos;
 import java.math.BigDecimal;
 import java.math.BigInteger;
