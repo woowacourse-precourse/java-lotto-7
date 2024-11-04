@@ -32,4 +32,14 @@ public enum Rank {
     public long getPrize() {
         return this.prize;
     }
+
+    @Override
+    public String toString() {
+        String str = String.format("%d개 일치", this.matchCount);
+        if (matchBonus) {
+            str += ", 보너스 볼 일치";
+        }
+        str += String.format(" (%,d원)", this.prize);
+        return str;
+    }
 }

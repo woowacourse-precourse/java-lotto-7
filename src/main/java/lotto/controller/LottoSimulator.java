@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.Result;
@@ -23,6 +25,7 @@ public class LottoSimulator {
         getCorrectInput(() -> user.setLotto(new Lotto(InputView.inputWinningNumbers())));
         getCorrectInput(() -> user.setBonusNumber(InputView.inputBonusNumber()));
         matchUserLotto();
+        displayLottoResult();
     }
 
     private void init() {
@@ -63,5 +66,17 @@ public class LottoSimulator {
             Rank rank = Rank.getMatchedRank(matchedNumbers, matchedBonus);
             result.updateMatchedRank(rank);
         }
+    }
+
+    private void displayLottoResult() {
+        Map<Rank, Integer> matchedRank = result.getMatchedRank();
+        List<String> ranksStrings = matchedRank.keySet().stream()
+                .filter(rank -> !Rank.NONE.equals(rank))
+                .sorted(Comparator.reverseOrder())
+                .map(rank -> String.format("%s - %d개", rank.toString(), matchedRank.get(rank)))
+                .toList();
+        OutputView.outputWinningPrize(ranksStrings);
+        double profitRate = (double) result.getTotalPrize() / user.getPrice() * 100;
+        OutputView.outputProfitRate(profitRate);
     }
 }
