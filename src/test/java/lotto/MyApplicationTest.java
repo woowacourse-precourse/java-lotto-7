@@ -1,12 +1,16 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import lotto.constants.ErrorMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class MyApplicationTest extends NsTest {
 
@@ -181,6 +185,36 @@ public class MyApplicationTest extends NsTest {
                 List.of(7, 11, 30, 40, 42, 43),
                 List.of(2, 13, 22, 32, 38, 45)
         );
+    }
+
+    @ParameterizedTest
+    @DisplayName("비어있는 금액입력을 테스트합니다.")
+    @ValueSource(strings = {"\n", " ", "    "})
+    void 금액_빈입력_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException(input);
+            assertThat(output()).contains(ErrorMessages.INVALID_USER_INPUT.getMessage());
+        });
+    }
+
+    @ParameterizedTest
+    @DisplayName("비어있는 로또입력을 테스트합니다.")
+    @ValueSource(strings = {"\n", " ", "    "})
+    void 로또_빈입력_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException("8000", input);
+            assertThat(output()).contains(ErrorMessages.INVALID_USER_INPUT.getMessage());
+        });
+    }
+
+    @ParameterizedTest
+    @DisplayName("비어있는 보너스입력을 테스트합니다.")
+    @ValueSource(strings = {"\n", " ", "    "})
+    void 보너스_빈입력_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", input);
+            assertThat(output()).contains(ErrorMessages.INVALID_USER_INPUT.getMessage());
+        });
     }
 
     @Override
