@@ -24,45 +24,13 @@ public class NumberList extends ArrayList<Integer> {
         }
     }
 
-    public int generateRandomNumber(){
-        return Randoms.pickNumberInRange( NUMBER_RANGE[NUMBER_RANGE_START], NUMBER_RANGE[NUMBER_RANGE_END]);
-    }
-
-
-    public NumberList addNewNumber(int newNumber){
-
-
-        if(isAddPossible()&&!isAlreadyNumberAdded(newNumber)){
-            this.add(newNumber);
-        }
-
-        return sortAscending();
-    }
-
-    public boolean isAlreadyNumberAdded(int newNumber){
-        boolean[] isNumberGenerated = new boolean[NUMBER_RANGE[NUMBER_RANGE_END]+1];
-
-        for(int num : this ){
-            isNumberGenerated[num] = true;
-        }
-
-        return isNumberGenerated[newNumber];
-
-    }
-
-    public boolean isAddPossible(){
-        return this.size() < MAX_SIZE;
-    }
-
     public NumberList generateRandomNumberList(){
 
-        while(isAddPossible()){
-            int newNumber = generateRandomNumber();
-            addNewNumber(newNumber);
-        }
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange( NUMBER_RANGE[NUMBER_RANGE_START], NUMBER_RANGE[NUMBER_RANGE_END],MAX_SIZE);
+
+        this.addAll(randomNumbers);
 
         return sortAscending();
-
     }
 
     public NumberList sortAscending() {
@@ -70,5 +38,4 @@ public class NumberList extends ArrayList<Integer> {
 
         return this;
     }
-
 }
