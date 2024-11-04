@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.constant.ErrorMessage.DUPLICATED_LOTTO_NUMBER;
+import static lotto.constant.ErrorMessage.NOT_SIX_LOTTO_NUMBERS;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -17,11 +20,11 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(
-                    ErrorMessage.NOT_SIX_LOTTO_NUMBERS.getMessage());
+                    NOT_SIX_LOTTO_NUMBERS.getMessage());
         }
         if (hasDuplicateNumber(numbers)) {
             throw new IllegalArgumentException(
-                    ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
+                    DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }
 

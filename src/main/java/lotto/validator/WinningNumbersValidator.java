@@ -1,28 +1,28 @@
 package lotto.validator;
 
-import lotto.constant.ErrorMessage;
-import lotto.constant.LottoConstant;
-
 import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 
+import static lotto.constant.ErrorMessage.*;
+import static lotto.constant.LottoConstant.*;
+
 public class WinningNumbersValidator {
     public static void validate(String lottoNumbersInput) {
         if (!isOnlyNumbersAndCommas(lottoNumbersInput)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBERS_AND_COMMAS_LOTTO_NUMBERS.getMessage());
+            throw new IllegalArgumentException(NOT_NUMBERS_AND_COMMAS_LOTTO_NUMBERS.getMessage());
         }
         if (isInValidFormat(lottoNumbersInput)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT_LOTTO_NUMBERS.getMessage());
+            throw new IllegalArgumentException(INVALID_FORMAT_LOTTO_NUMBERS.getMessage());
         }
         if (isNotSixNumbers(lottoNumbersInput)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_SIX_LOTTO_NUMBERS.getMessage());
+            throw new IllegalArgumentException(NOT_SIX_LOTTO_NUMBERS.getMessage());
         }
         if (isOutOfRangeNumber(lottoNumbersInput)) {
-            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS.getMessage());
+            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBERS.getMessage());
         }
         if (hasDuplicatedNumber(lottoNumbersInput)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }
 
@@ -35,13 +35,13 @@ public class WinningNumbersValidator {
     }
 
     private static boolean isNotSixNumbers(String lottoNumbersInput) {
-        return lottoNumbersInput.split(",").length != LottoConstant.LOTTO_NUMBERS_LENGTH.getValue();
+        return lottoNumbersInput.split(",").length != LOTTO_NUMBERS_LENGTH.getValue();
     }
 
     private static boolean isOutOfRangeNumber(String lottoNumbersInput) {
         String[] numbers = lottoNumbersInput.split(",");
-        BigInteger minNumber = BigInteger.valueOf(LottoConstant.MIN_LOTTO_NUMBER.getValue());
-        BigInteger maxNumber = BigInteger.valueOf(LottoConstant.MAX_LOTTO_NUMBER.getValue());
+        BigInteger minNumber = BigInteger.valueOf(MIN_LOTTO_NUMBER.getValue());
+        BigInteger maxNumber = BigInteger.valueOf(MAX_LOTTO_NUMBER.getValue());
 
         for (String number : numbers) {
             BigInteger num = new BigInteger(number);

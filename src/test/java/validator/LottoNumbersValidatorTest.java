@@ -1,6 +1,6 @@
 package validator;
 
-import lotto.validator.LottoNumbersValidator;
+import lotto.validator.WinningNumbersValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,10 +11,10 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class LottoNumbersValidatorTest {
-    private LottoNumbersValidator lottoNumbersValidator;
+    private WinningNumbersValidator winningNumbersValidator;
     @BeforeEach
     void    setUp() {
-        lottoNumbersValidator = new LottoNumbersValidator();
+        winningNumbersValidator = new WinningNumbersValidator();
     }
 
     @Test
@@ -35,7 +35,7 @@ public class LottoNumbersValidatorTest {
         errorLottoNumbersInputs.forEach((lottoNumbersInput) -> {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            lottoNumbersValidator.validate(lottoNumbersInput))
+                            winningNumbersValidator.validate(lottoNumbersInput))
                             .isInstanceOf(IllegalArgumentException.class));
         });
     }

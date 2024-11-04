@@ -14,7 +14,6 @@ public enum ErrorMessage {
     INVALID_FORMAT_BONUS_NUMBER("[ERROR]: 보너스 번호는 [+숫자] 또는 [숫자] 형식만 가능합니다.");
 
 
-
     private final String message;
 
     ErrorMessage(String message) {
