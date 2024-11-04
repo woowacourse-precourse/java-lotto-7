@@ -18,4 +18,22 @@ public class WinningLotto {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_BONUS_NUMBER);
         }
     }
+
+    public LottoResult calculateResult(Lottos lottos) {
+        LottoResult lottoResultForm = new LottoResult(LottoRank.createLottoResultForm());
+        lottos.getLottos()
+                .stream()
+                .map(this::calculateLottoRank)
+                .forEach(lottoResultForm::addCountByLottoRank);
+        return lottoResultForm;
+    }
+
+    public LottoRank calculateLottoRank(Lotto userLotto) {
+        int matchCount = answerLotto.getMatchCount(userLotto);
+        boolean matchBonusFlag = userLotto.hasNumber(bonusNumber.getNumber());
+        if (matchBonusFlag) {
+            matchCount += 1;
+        }
+        return LottoRank.findLottoRankByMatchCountAndBonus(matchCount, matchBonusFlag);
+    }
 }

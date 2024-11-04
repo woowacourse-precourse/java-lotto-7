@@ -4,6 +4,8 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoOption;
+import lotto.domain.LottoRank;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
@@ -19,13 +21,14 @@ public class LottoController {
         final LottoService lottoService = new LottoService();
         final Money money = requestPurchaseMoneyAmount();
 
-        final Lottos lottos = lottoService.generateLottos(money.getPurchasableLottoCount());
+        final Lottos purchasedLottos = lottoService.generateLottos(money.getPurchasableLottoCount());
         OutputView.printPurchasedLottos(money.getPurchasableLottoCount(),
-                OutputviewFormatter.formatLottoNumbers(lottos));
+                OutputviewFormatter.formatLottoNumbers(purchasedLottos));
 
         final Lotto lotto = requestWinningLottoNumbers();
         final WinningLotto winningLotto = requestBonusNumber(lotto);
 
+        LottoResult lottoResult = winningLotto.calculateResult(purchasedLottos);
 
     }
 
