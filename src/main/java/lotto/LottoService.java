@@ -10,6 +10,8 @@ public class LottoService {
     private final LottoGenerator lottoGenerator;
     public final RevenueCalculator revenueCalculator;
 
+    private static final Integer LOTTO_PRICE = 1000;
+
     public LottoService(LottoGenerator lottoGenerator, RevenueCalculator revenueCalculator) {
         this.lottoGenerator = lottoGenerator;
         this.revenueCalculator = revenueCalculator;
@@ -18,7 +20,7 @@ public class LottoService {
     public LottoResults calculateResults(Lottos lottos, WinningNumbers winningNumbers, Integer count) {
         List<Rank> ranks = calculateWinnings(lottos, winningNumbers);
         Map<Rank, Integer> rankFrequency = rankCounter(ranks);
-        double revenue = calculateRevenue(ranks, count);
+        double revenue = calculateRevenue(ranks, count * LOTTO_PRICE);
         return new LottoResults(rankFrequency, revenue);
     }
 
@@ -44,7 +46,7 @@ public class LottoService {
         return rankCounts;
     }
 
-    public double calculateRevenue(List<Rank> ranks, Integer count) {
-        return revenueCalculator.calculate(ranks, count);
+    public double calculateRevenue(List<Rank> ranks, Integer amount) {
+        return revenueCalculator.calculate(ranks, amount);
     }
 }
