@@ -32,7 +32,7 @@ public class LottoStatistics {
         }else if (matchCount == 4){
             statisticsRequest.put("4개 일치", statisticsRequest.get("4개 일치") +1);
         } else if (matchCount == 3) {
-            statisticsRequest.put("5개 일치", statisticsRequest.get("5개 일치") + 1);
+            statisticsRequest.put("3개 일치", statisticsRequest.get("3개 일치") + 1);
         }
     }
 
