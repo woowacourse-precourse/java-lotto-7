@@ -21,7 +21,7 @@ public class SpecialNumber {
             if(num>LOTTO_FINAL_NUM || num < LOTTO_START_NUM){
                 throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_MUST_BE_IN_CORRECT_RANGE.getMessage());
             }
-        } catch (Exception e){
+        } catch (NumberFormatException e){
             throw new IllegalArgumentException(ErrorCode.CANT_CONVERT_TO_INTEGER.getMessage());
         }
 
