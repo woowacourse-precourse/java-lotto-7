@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +12,9 @@ import lotto.service.LottoDrawService;
 import lotto.service.LottoService;
 import lotto.service.parser.AmountParser;
 import lotto.service.parser.WinningNumberParser;
+import lotto.validation.AmountValidator;
+import lotto.validation.BonusNumberValidator;
+import lotto.validation.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -32,17 +34,17 @@ public class LottoController {
     }
 
     public void run() {
-        String amountInput = InputView.readAmount();
-        int amount = AmountParser.parseAmount(amountInput);
+
+        int amount = getValidAmount();
 
         List<Lotto> lottos = lottoService.getLottos(amount);
         OutputView.purcharsedCount(lottos.size());
         OutputView.purchasedLottos(lottos);
 
-        String winningNumberInput = InputView.readWinningNumber();
-        String bonusNumberInput = InputView.readBonusNumber();
-        List<Integer> winningNumbers = WinningNumberParser.parseWinningNumber(winningNumberInput);
-        int bonusNumber = WinningNumberParser.parseBonusNumber(bonusNumberInput);
+        List<Integer> winningNumbers = getValidWinningNumbers();
+
+        int bonusNumber = getValidBonusNumber(winningNumbers);
+
         WinningLotto winningLotto = new WinningLotto(winningNumbers,bonusNumber);
 
         Map<LottoResult,Integer> drawResult = new HashMap<>();
@@ -70,6 +72,46 @@ public class LottoController {
         }
 
         OutputView.earnRatio(ratio);
+    }
+
+    private int getValidAmount() {
+        while (true) {
+            try {
+                String amountInput = InputView.readAmount();
+                AmountValidator.validateOnlyNumeric(amountInput);
+                return AmountParser.parseAmount(amountInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // 에러 메시지 출력
+            }
+        }
+    }
+
+    private List<Integer> getValidWinningNumbers() {
+        while (true) {
+            try {
+                String winningNumberInput = InputView.readWinningNumber();
+                WinningNumberValidator.validateWinningNumberInputAll(winningNumberInput);
+                List<Integer> winningNumbers = WinningNumberParser.parseWinningNumber(winningNumberInput);
+                WinningNumberValidator.validateWinningNumbersCount(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // 에러 메시지 출력
+            }
+        }
+    }
+
+    private int getValidBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String bonusNumberInput = InputView.readBonusNumber();
+                BonusNumberValidator.validateOnlyNumeric(bonusNumberInput);
+                int bonusNumber = WinningNumberParser.parseBonusNumber(bonusNumberInput);
+                BonusNumberValidator.validateBonusNumberDuplicate(winningNumbers, bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // 에러 메시지 출력
+            }
+        }
     }
 
     private static void settingMap(Map<Integer, Integer> resultMap) {

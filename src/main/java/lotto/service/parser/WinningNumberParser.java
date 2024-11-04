@@ -13,6 +13,7 @@ public class WinningNumberParser {
         List<Integer> winningNumbers = new ArrayList<>();
 
         for (String token : splittedInput){
+            WinningNumberValidator.validateOnlyNumeric(token);
             int parsedNumber = Integer.parseInt(token.trim());
             WinningNumberValidator.validateNumberRange(parsedNumber);
             WinningNumberValidator.validateWinningNumberDuplicate(winningNumbers,parsedNumber);
