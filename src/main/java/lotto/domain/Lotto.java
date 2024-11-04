@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<Integer> numbers;
+
     private static final Integer LOTTO_NUMBERS_SIZE = 6;
     protected static final Integer lowerBound = 1;
     protected static final Integer upperBound = 45;
+
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
