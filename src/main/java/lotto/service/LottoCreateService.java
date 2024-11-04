@@ -10,9 +10,11 @@ import lotto.domain.WinningLotto;
 
 public class LottoCreateService {
 
+    private final LottoInputConverter lottoInputConverter;
     private final LottoMoneyValidator lottoMoneyValidator;
 
     public LottoCreateService() {
+        this.lottoInputConverter = new LottoInputConverter();
         this.lottoMoneyValidator = new LottoMoneyValidator();
     }
 
@@ -41,6 +43,13 @@ public class LottoCreateService {
             LottoConstant.LOTTO_NUMBER_MIN,
             LottoConstant.LOTTO_NUMBER_MAX,
             LottoConstant.LOTTO_NUMBER_COUNT
+        );
+    }
+
+    public WinningLotto createWinningLotto(String winningNumbers, String bonusNumber) {
+        return createWinningLotto(
+            lottoInputConverter.convertNumbers(winningNumbers),
+            lottoInputConverter.convertBonusNumber(bonusNumber)
         );
     }
 
