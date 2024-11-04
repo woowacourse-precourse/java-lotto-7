@@ -1,8 +1,7 @@
 package lotto.back.domain;
 
+import lotto.global.enums.LottoConstant;
 import lotto.global.exception.InvalidLottoNumberRangeException;
-
-import static lotto.global.enums.LottoConstant.*;
 
 public class LottoNumber {
     private final Integer lottoNumber;
@@ -13,7 +12,8 @@ public class LottoNumber {
     }
 
     private void validate(Integer lottoNumber) {
-        if (lottoNumber < MIN_LOTTO_NUMBER.getNumber() || lottoNumber > MAX_LOTTO_NUMBER.getNumber()) {
+        if (lottoNumber < LottoConstant.MIN_LOTTO_NUMBER.getNumber()
+                || lottoNumber > LottoConstant.MAX_LOTTO_NUMBER.getNumber()) {
             throw new InvalidLottoNumberRangeException();
         }
     }
