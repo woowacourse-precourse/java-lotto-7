@@ -3,12 +3,14 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class InputHandler {
     public static final String CREDIT = "구입금액을 입력해 주세요.";
     private static final String NOT_MULTIPLE_1000 = "[ERROR] 구입 금액은 1,000의 배수여야 합니다.";
-    private static final String NOT_A_NUM = "[ERROR] 구입 금액은 숫자여야 합니다.";
+    private static final String NOT_A_NUM = "[ERROR] 숫자를 입력하세요.";
+    private static final String SAME_NUMBER = "[ERROR] 당첨 번호에 중복된 숫자가 존재합니다.";
     public static final String WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
@@ -49,12 +51,30 @@ public class InputHandler {
 
     public static List<Integer> getWinningNumbers() {
         System.out.println(WINNING_NUMBER);
-        String[] inputNumbers = Console.readLine().split(",");
-        List<Integer> winningNumbers = new ArrayList<>();
-        for (String number : inputNumbers) {
-            winningNumbers.add(Integer.parseInt(number.trim()));
+        List<Integer> winningNumbers = readAndParseNumbers();
+        try {
+            checkSameNumber(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningNumbers();
         }
         return winningNumbers;
+    }
+
+    private static List<Integer> readAndParseNumbers() {
+        String[] inputNumbers = Console.readLine().split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        for (String number : inputNumbers) {
+            winningNumbers.add(parseInt(number.trim()));
+        }
+        return winningNumbers;
+    }
+
+    public static void checkSameNumber(List<Integer> winningNumbers) {
+        if(new HashSet<>(winningNumbers).size() != winningNumbers.size()) {
+            throw new IllegalArgumentException(SAME_NUMBER);
+        }
     }
 
     public static int getBonusNumber() {
