@@ -21,13 +21,16 @@ public class Application {
         System.out.println(cnt + "개를 구매했습니다.");
         List<Lotto> lottos = generateLotto(cnt);
         printLotto(lottos);
+        System.out.println();
 
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> input = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt).toList();
         Lotto winning = new Lotto(input);
+        System.out.println();
 
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNum = Integer.parseInt(Console.readLine());
+        System.out.println();
 
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -44,16 +47,16 @@ public class Application {
             System.out.println(choiceText);
         }
 
-        System.out.println("총 수익률은 " + getPercentage(amount, cntMap) + "%입니다.");
+        printTotalReturnRate(amount, cntMap);
     }
 
-    private static double getPercentage(int amount, Map<LottoRank, Integer> cntMap) {
+    private static void printTotalReturnRate(int amount, Map<LottoRank, Integer> cntMap) {
         int sum = 0;
         for(LottoRank lottoRank : cntMap.keySet()) {
             sum += cntMap.get(lottoRank) * lottoRank.getPrize();
         }
 
-        return (double) sum / amount;
+        System.out.printf("총 수익률은 %.1f%%입니다.", (double) sum * 100 / amount);
     }
 
     private static EnumMap<LottoRank, Integer> init(){
