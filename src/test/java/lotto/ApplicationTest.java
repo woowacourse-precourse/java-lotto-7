@@ -16,7 +16,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR]";
 
     @Test
     void 기능_테스트() {
@@ -95,12 +95,12 @@ class ApplicationTest extends NsTest {
         void 예외_테스트_구입_금액이_빈_값() {
             assertSimpleTest(() -> {
                 runException("\n");
-                assertThat(output()).contains(ERROR_MESSAGE);
+                assertThat(output()).contains(ERROR_MESSAGE_PREFIX);
             });
 
             assertSimpleTest(() -> {
                 runException("  ");
-                assertThat(output()).contains(ERROR_MESSAGE);
+                assertThat(output()).contains(ERROR_MESSAGE_PREFIX);
             });
         }
 
@@ -108,17 +108,17 @@ class ApplicationTest extends NsTest {
         void 예외_테스트_구입_금액이_유효하지_않은_경우() {
             assertSimpleTest(() -> {
                 runException("1000j");
-                assertThat(output()).contains(ERROR_MESSAGE);
+                assertThat(output()).contains(ERROR_MESSAGE_PREFIX);
             });
 
             assertSimpleTest(() -> {
                 runException("-2000");
-                assertThat(output()).contains(ERROR_MESSAGE);
+                assertThat(output()).contains(ERROR_MESSAGE_PREFIX);
             });
 
             assertSimpleTest(() -> {
                 runException("##");
-                assertThat(output()).contains(ERROR_MESSAGE);
+                assertThat(output()).contains(ERROR_MESSAGE_PREFIX);
             });
         }
     }
