@@ -10,8 +10,12 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
-    private final GameService gameService = new GameService();
+    private final GameService gameService;
     private final Validator validator = new Validator();
+
+    public GameController(GameService gameService) {
+        this.gameService = gameService;
+    }
 
     public void lottoGameStart() {
         Money money = gameService.createMoney(getPurchaseMoney());
