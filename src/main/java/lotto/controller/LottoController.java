@@ -11,6 +11,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private static final int LOTTO_TICKET_PRICE = 1000;
+    private static final String YIELD_FORMAT = "%.1f";
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final LottoNumberGenerator lottoNumberGenerator = new RandomLottoGenerator();
@@ -21,7 +24,7 @@ public class LottoController {
         int purchaseAmount = inputView.inputBuyingPrice();
         outputView.responseQuantity(purchaseAmount);
 
-        int lottoCount = purchaseAmount / 1000;
+        int lottoCount = purchaseAmount / LOTTO_TICKET_PRICE;
         List<Lotto> userLottos = createLottos(lottoCount);
         LottoGroup lottoGroup = new LottoGroup(userLottos);
 
@@ -37,7 +40,7 @@ public class LottoController {
 
         outputView.responseWinningHistory(lottoGroup.getMatchCounts());
         double yield = lottoGroup.calculateYield(purchaseAmount);
-        outputView.responseYieldOfLotto(String.format("%.1f", yield));
+        outputView.responseYieldOfLotto(String.format(YIELD_FORMAT, yield));
     }
 
     private List<Lotto> createLottos(int count) {
