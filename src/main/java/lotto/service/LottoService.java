@@ -1,6 +1,5 @@
 package lotto.service;
 
-import static lotto.constants.LottoConstants.LOTTO_PRICE;
 import static lotto.error.ErrorType.INVALID_NUMBER_FORMAT;
 
 import java.util.Arrays;
@@ -23,7 +22,7 @@ public class LottoService {
     private final LottoGenerator lottoGenerator;
 
     public LottoCount getLottoCountByAmount(String purchaseAmount) {
-        return new LottoCount(parseInt(purchaseAmount), LOTTO_PRICE);
+        return new LottoCount(parseInt(purchaseAmount));
     }
 
     public List<Lotto> getLottosByCount(LottoCount lottoCount) {
