@@ -57,14 +57,16 @@ public class LottoProvider {
 		}
 	}
 
-	public void calculateRank() {
+	public List<LottoRank> calculateRank() {
+		List<LottoRank> ranks = new ArrayList<>();
 		for (Lotto pickedLotto : pickedLottos) {
 			int matchCounts = answer.checkLottoResult(pickedLotto);
 			boolean hasBonus = answer.hasBonusLotto(pickedLotto);
 			LottoRank rankByMatch = LottoRank.findRankByMatch(matchCounts, hasBonus);
 			if (rankByMatch != null) {
-				user.updateRank(rankByMatch);
+				ranks.add(rankByMatch);
 			}
 		}
+		return ranks;
 	}
 }
