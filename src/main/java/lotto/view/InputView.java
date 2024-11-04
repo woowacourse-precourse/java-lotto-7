@@ -6,7 +6,7 @@ import java.util.List;
 public class InputView {
 
     private static final String SEPARATOR = ",";
-    private static final String INPUT_AMOUNT = "구입 금액을 입력해주세요.";
+    private static final String INPUT_AMOUNT = "\n구입 금액을 입력해주세요.";
     private static final String INPUT_LOTTO = "\n당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS = "\n보너스 번호를 입력해 주세요.";
 

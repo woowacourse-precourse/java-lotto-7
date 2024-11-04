@@ -38,7 +38,7 @@ public class OutputView {
     }
 
     public static void printErrorMessage(String message) {
-        System.out.println(ERROR_MESSAGE_PREFIX + message + System.lineSeparator());
+        System.out.println(ERROR_MESSAGE_PREFIX + message);
     }
 
     private static void printRankDetails(RankResult result) {
