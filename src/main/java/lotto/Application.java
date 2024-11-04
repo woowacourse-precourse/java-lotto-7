@@ -93,8 +93,14 @@ public class Application {
     }
 
     private static int getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        try {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            printErrorMessage("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            return getBonusNumber();
+        }
     }
 
     private static LottoResult calculateResult(List<Lotto> tickets, Lotto winningLotto, int bonusNumber) {
