@@ -98,10 +98,6 @@
 - [x] 로또 구입 후 발행된 로또 목록을 출력한다.
 - [x] 번호 추첨 후 통계 및 수익률을 출력한다.
 
-## 예외
-
-- 미정
-
 ## 구조
 
 ```
@@ -112,6 +108,7 @@
     │           ├── Application.java
     │           ├── common
     │           │   ├── ExceptionMessage.java
+    │           │   ├── IntegerParser.java
     │           │   ├── LottoConfig.java
     │           │   └── RandomNumberGenerator.java
     │           ├── domain
@@ -144,4 +141,5 @@
                 │   ├── LottoResultTest.java
                 │   └── LottoTest.java
                 └── service
+                    └── LottoServiceTest.java
 ```
