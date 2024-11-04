@@ -30,4 +30,23 @@ class RankTest {
                 Arguments.of(2, false, Rank.NONE)
         );
     }
+
+    @DisplayName("Rank에 따라 올바른 당첨 통계 양식을 반환한다.")
+    @ParameterizedTest
+    @MethodSource("formatWinningStatisticsData")
+    void formatWinningStatisticsTest(Rank rank, int count, String expectedOutput) {
+        String result = rank.formatWinningStatistics(count);
+        assertThat(result).isEqualTo(expectedOutput);
+    }
+
+    private static Stream<Arguments> formatWinningStatisticsData() {
+        return Stream.of(
+                Arguments.of(Rank.FIRST, 1, "6개 일치 (2,000,000,000원) - 1개"),
+                Arguments.of(Rank.SECOND, 2, "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개"),
+                Arguments.of(Rank.THIRD, 0, "5개 일치 (1,500,000원) - 0개"),
+                Arguments.of(Rank.FOURTH, 5, "4개 일치 (50,000원) - 5개"),
+                Arguments.of(Rank.FIFTH, 10, "3개 일치 (5,000원) - 10개"),
+                Arguments.of(Rank.NONE, 0, "0개 일치 (0원) - 0개")
+        );
+    }
 }
