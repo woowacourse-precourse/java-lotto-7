@@ -2,6 +2,10 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static lotto.Validation.*;
 import static lotto.Validation.validateWinningNumber;
 
 public class Application {
@@ -35,17 +39,23 @@ public class Application {
             }
         }
 
-        String bonusNumber;
+        List<Integer> winningNumbers = Arrays.stream(winningNumberString)
+                .map(Integer::parseInt)
+                .toList();
+
+        int bonusNumber;
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
-                bonusNumber = Console.readLine();
-                Validation.validateBonusNumber(bonusNumber);
+                String bonusNumberString = Console.readLine();
+                validateBonusNumber(bonusNumberString);
+                bonusNumber = Integer.parseInt(bonusNumberString);
+                ValidateWinningNumberContainsBonusNumber(winningNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
             }
         }
 
-        lottoGame.matchNumbers(winningNumberString, bonusNumber);
+        lottoGame.matchNumbers(winningNumbers, bonusNumber);
     }
 }

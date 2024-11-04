@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Validation {
     private static final int LOTTO_COST = 1000;
@@ -36,6 +37,12 @@ public class Validation {
         }
         if (isNotInRange(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45까지 입력 가능합니다.");
+        }
+    }
+
+    public static void ValidateWinningNumberContainsBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복되면 안됩니다.");
         }
     }
 
