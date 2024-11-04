@@ -41,27 +41,12 @@ public class LottoSimulator {
         for (int i = 0; i < purchasedLotto.size(); i++) {
             int count = purchasedLotto.get(i).checkLotto(draw.getWinningNumbers());
             boolean bonus = purchasedLotto.get(i).checkBonus(draw.getBonusNumber());
-            Prize prize = findPrize(count, bonus);
+            Prize prize = Prize.findPrizeByCountAndBonus(count, bonus);
 
             if (prize != null) {
                 prizeResult.put(prize.rank, prizeResult.getOrDefault(prize.rank, DEFAULT) + 1);
             }
         }
-    }
-
-    private Prize findPrize(int count, boolean bonus) {
-        if (count == 6) {
-            return Prize.FIRST_PRIZE;
-        } else if (count == 5 && bonus) {
-            return Prize.SECOND_PRIZE;
-        } else if (count == 5) {
-            return Prize.THIRD_PRIZE;
-        } else if (count == 4) {
-            return Prize.FORTH_PRIZE;
-        } else if (count == 3) {
-            return Prize.FIFTH_PRIZE;
-        }
-        return null;
     }
 
     public double checkProfitRate() {
@@ -75,7 +60,6 @@ public class LottoSimulator {
         }
         return (sum / cost) * PERCENT_CONSTANT;
     }
-
 
     public List<Lotto> getPurchasedLotto() {
         return purchasedLotto;

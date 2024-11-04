@@ -36,6 +36,21 @@ public enum Prize {
         return null;
     }
 
+    public static Prize findPrizeByCountAndBonus(int count, boolean bonus) {
+        if (count == 6) {
+            return Prize.FIRST_PRIZE;
+        } else if (count == 5 && bonus) {
+            return Prize.SECOND_PRIZE;
+        } else if (count == 5) {
+            return Prize.THIRD_PRIZE;
+        } else if (count == 4) {
+            return Prize.FORTH_PRIZE;
+        } else if (count == 3) {
+            return Prize.FIFTH_PRIZE;
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         DecimalFormat decimalFormat = new DecimalFormat(FORMAT_OF_MONEY);
