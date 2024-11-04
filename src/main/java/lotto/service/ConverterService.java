@@ -4,8 +4,8 @@ import lotto.constants.ConstraintConstants;
 import lotto.domain.dto.LottoResultDto;
 import lotto.enums.Prize;
 
-import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.math.BigDecimal;
 
 import static lotto.constants.ErrorViewConstants.*;
 import static lotto.service.ValidatorService.validatePurchaseAmount;
@@ -24,6 +24,7 @@ public class ConverterService {
     }
 
     public static String[] splitWinningNumber(String enteredWinningNumber) {
+        enteredWinningNumber = enteredWinningNumber.replaceAll(" ", "");
         String[] splitWinningNumber = enteredWinningNumber.split(",");
         if (splitWinningNumber.length != ConstraintConstants.WINNING_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS);
@@ -56,7 +57,7 @@ public class ConverterService {
 
     public static double convertProfitToRate(long profit, int purchasePrice) {
         double rate = (float)profit / (float)purchasePrice;
-        BigDecimal formattedRate = new BigDecimal(rate).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal formattedRate = BigDecimal.valueOf(rate).setScale(2, RoundingMode.HALF_UP);
         return formattedRate.doubleValue();
     }
 }
