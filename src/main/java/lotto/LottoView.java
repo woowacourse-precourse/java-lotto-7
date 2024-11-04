@@ -34,7 +34,11 @@ public class LottoView {
 
     public int requestBonusNumber() {
         System.out.println("보너스 볼을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
+        }
+        return bonusNumber;
     }
 
     public void displayPurchaseLottos(List<Lotto> lottos) {
