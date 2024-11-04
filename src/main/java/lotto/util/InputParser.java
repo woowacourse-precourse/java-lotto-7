@@ -19,6 +19,7 @@ public class InputParser {
     public static List<Integer> parseWinningNumbers(String input) {
         validateWinningNumbers(input);
         return Arrays.stream(input.split(DELIMITER))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
     }
@@ -31,6 +32,7 @@ public class InputParser {
     private static void validateWinningNumbers(String winningNumbers) {
         validateInputNullOrEmpty(winningNumbers);
         Arrays.stream(winningNumbers.split(DELIMITER))
+                .map(String::trim)
                 .forEach(InputParser::validateInputIsNumber);
     }
 
