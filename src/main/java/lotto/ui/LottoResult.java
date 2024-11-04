@@ -5,8 +5,15 @@ import lotto.store.lotto.winner.LottoRank;
 import java.util.List;
 
 public class LottoResult {
+    private static final String RESULT_TITLE = "당첨 통계\n----\n";
+    private static final String RANK_INFO_FORMAT = "%d개 일치%s (%s원) - %d개";
+    private static final String RATE_OF_RETURN_PERCENT_FORMAT = "총 수익률은 %.1f%%입니다.";
+    private static final String BONUS_BALL_MESSAGE = ", 보너스 볼 일치";
+    private static final String EMPTY_MESSAGE = "";
+
     private final List<LottoRank> buyerLottoRanks;
     private final double rateOfReturnPercent;
+
 
     public LottoResult(List<LottoRank> lottoRanks, double rateOfReturnPercent) {
         this.buyerLottoRanks = List.copyOf(lottoRanks);
@@ -24,15 +31,30 @@ public class LottoResult {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("당첨 통계\n----\n");
-        sb.append("3개 일치 (5,000원) - %d개\n".formatted(count(buyerLottoRanks, LottoRank.FIFTH)));
-        sb.append("4개 일치 (50,000원) - %d개\n".formatted(count(buyerLottoRanks, LottoRank.FOURTH)));
-        sb.append("5개 일치 (1,500,000원) - %d개\n".formatted(count(buyerLottoRanks, LottoRank.THIRD)));
-        sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n".formatted(count(buyerLottoRanks, LottoRank.SECOND)));
-        sb.append("6개 일치 (2,000,000,000원) - %d개\n".formatted(count(buyerLottoRanks, LottoRank.FIRST)));
+        sb.append(RESULT_TITLE);
+        for (LottoRank rank : LottoRank.values()) {
+            if(rank == LottoRank.FAIL)
+                continue;
+            sb.append(createRankInfoMessage(rank)).append("\n");
+        }
 
-        sb.append("총 수익률은 %.1f%%입니다.".formatted(rateOfReturnPercent));
+        sb.append(RATE_OF_RETURN_PERCENT_FORMAT.formatted(rateOfReturnPercent));
         return sb.toString();
+    }
+
+    private String createRankInfoMessage(LottoRank rank) {
+        return RANK_INFO_FORMAT.formatted(
+                rank.matchCountCondition(),
+                getBonusMessage(rank.bonusMatchCondition()),
+                rank.price(),
+                count(buyerLottoRanks, rank)
+        );
+    }
+
+    private String getBonusMessage(boolean hasBonusBall) {
+        if(hasBonusBall)
+            return BONUS_BALL_MESSAGE;
+        return EMPTY_MESSAGE;
     }
 
     private int count(List<LottoRank> ranks, LottoRank found) {

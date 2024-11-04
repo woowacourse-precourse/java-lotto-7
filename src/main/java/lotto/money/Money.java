@@ -56,6 +56,11 @@ public class Money {
         return Objects.hash(amount);
     }
 
+    @Override
+    public String toString() {
+        return String.format("%,d",amount);
+    }
+
     private boolean isMinusMoney(int amount) {
         return amount < EMPTY_MONEY;
     }
