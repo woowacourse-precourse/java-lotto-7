@@ -41,7 +41,7 @@ public class LottoServiceTest {
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,6", "10,11,12,13,14,15"})
     void 당첨_번호_입력시_로또_객체로_생성되어야_한다(String input) {
-        Lotto winningNumber = lottoService.parseWinningNumberForLotto(input);
+        Lotto winningNumber = lottoService.createWinningNumbers(input);
 
         Assertions.assertThat(winningNumber).isInstanceOf(Lotto.class);
     }
@@ -50,7 +50,7 @@ public class LottoServiceTest {
     @ParameterizedTest
     @ValueSource(strings = {"0,2,3,4,5,6", "1,2,3,4,5,46"})
     void 당첨_번호_입력시_범위_예외_발생_테스트(String input) {
-        Assertions.assertThatThrownBy(() -> lottoService.parseWinningNumberForLotto(input))
+        Assertions.assertThatThrownBy(() -> lottoService.createWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.INVALID_LOTTO_RANGE.getMessage());
     }
@@ -59,7 +59,7 @@ public class LottoServiceTest {
     @ParameterizedTest
     @ValueSource(strings = {"34", "25", "36", "45", "15", "26"})
     void 보너스_번호_입력시_BonusNumber_객체로_생성되어야_한다(String input) {
-        Lotto winningNumber = lottoService.parseWinningNumberForLotto("1,2,3,4,5,6");
+        Lotto winningNumber = lottoService.createWinningNumbers("1,2,3,4,5,6");
         BonusNumber bonusNumber = lottoService.createBonusNumber(input, winningNumber);
 
         Assertions.assertThat(bonusNumber).isInstanceOf(BonusNumber.class);
@@ -69,7 +69,7 @@ public class LottoServiceTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
     void 보너스_번호_입력시_당첨_번호와_중복_예외_발생_테스트(String input) {
-        Lotto winningNumber = lottoService.parseWinningNumberForLotto("1,2,3,4,5,6");
+        Lotto winningNumber = lottoService.createWinningNumbers("1,2,3,4,5,6");
 
         Assertions.assertThatThrownBy(() -> lottoService.createBonusNumber(input, winningNumber))
                 .isInstanceOf(IllegalArgumentException.class)

@@ -28,13 +28,13 @@ public class LottoController {
         Lottos lottos = lottoService.createLottos(amount);
         LottoView.printLottos(lottos);
 
-        Lotto winningNumber = InputHandler.handle(InputView::inputWinningNumbers,
-                lottoService::parseWinningNumberForLotto);
+        Lotto winningNumbers = InputHandler.handle(InputView::inputWinningNumbers,
+                lottoService::createWinningNumbers);
         BonusNumber bonusNumber = InputHandler.handle(InputView::inputBonusNumber,
-                input -> lottoService.createBonusNumber(input, winningNumber));
+                input -> lottoService.createBonusNumber(input, winningNumbers));
         InputView.closeStream();
 
-        WinningLotto winningLotto = WinningLotto.of(winningNumber, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
         WinningResultDto winningResult = winningService.calculateWinningResult(lottos, winningLotto);
         ResultView.printResult(winningResult);
     }

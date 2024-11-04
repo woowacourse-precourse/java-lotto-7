@@ -31,8 +31,8 @@ public class LottoService {
         );
     }
 
-    public Lotto parseWinningNumberForLotto(String winningNumber) {
-        String[] numbers = winningNumber.split(COMMA);
+    public Lotto createWinningNumbers(String winningNumbers) {
+        String[] numbers = winningNumbers.split(COMMA);
 
         return new Lotto(Arrays.stream(numbers)
                 .map(String::trim)
@@ -41,9 +41,9 @@ public class LottoService {
                 .collect(Collectors.toList()));
     }
 
-    public BonusNumber createBonusNumber(String inputBonusNumber, Lotto winningNumber) {
+    public BonusNumber createBonusNumber(String inputBonusNumber, Lotto winningNumbers) {
         int parsedBonusNumber = Parse.stringToInt(inputBonusNumber);
-        LottoValidator.validateDuplicateWith(parsedBonusNumber, winningNumber);
+        LottoValidator.validateDuplicateWith(parsedBonusNumber, winningNumbers);
 
         return BonusNumber.of(parsedBonusNumber);
     }
