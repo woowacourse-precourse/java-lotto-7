@@ -12,6 +12,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static lotto.enums.LottoConstant.ACCESS_COUNT;
 import static lotto.view.OutputView.ENTER_PURCHASE_PRICE;
@@ -40,9 +41,16 @@ public class UserService {
     }
 
     public int inputPurchasePriceForUser() {
-        String purchasePrice = inputPurchasePrice();
-        return save(purchasePrice);
-
+        for (int count = 0; count < ACCESS_COUNT.getValue(); count++) {
+            String purchasePrice = inputPurchasePrice();
+            try {
+                return save(purchasePrice);
+            } catch (IllegalArgumentException e) {
+                ErrorOutputView.printErrorMessage(e.getMessage());
+            }
+        }
+        ProgramExit.run(ACCESS_COUNT.getValue());
+        return -1;
     }
 
     private String inputPurchasePrice() {
