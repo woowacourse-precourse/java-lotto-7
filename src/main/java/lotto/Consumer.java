@@ -51,12 +51,18 @@ public class Consumer {
     }
 
     public static List<Integer> getWinningNumbers() {
-        String input = enterWinningNumbers();
-        List<Integer> winningNumbers = converToNumber(input);
-        validateCount(winningNumbers);
-        validateRange(winningNumbers);
-        validateDuplicate(winningNumbers);
-        return winningNumbers;
+        while (true) {
+            String input = enterWinningNumbers();
+            try {
+                List<Integer> winningNumbers = converToNumber(input);
+                validateCount(winningNumbers);
+                validateRange(winningNumbers);
+                validateDuplicate(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static String enterWinningNumbers() {
@@ -93,9 +99,15 @@ public class Consumer {
     }
 
     public static int getBonusNumber() {
-        int bonusNumber = Integer.parseInt(input());
-        validateSingleNumber(bonusNumber);
-        return bonusNumber;
+        while (true) {
+            try {
+                int bonusNumber = Integer.parseInt(input());
+                validateSingleNumber(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static void validateSingleNumber(int number) {
