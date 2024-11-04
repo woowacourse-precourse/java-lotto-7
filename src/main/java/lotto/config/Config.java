@@ -4,6 +4,7 @@ import lotto.controller.LottoController;
 import lotto.model.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.InputViewFactory;
+import lotto.view.InputViewType;
 import lotto.view.LottoPurchasesView;
 import lotto.view.OutputView;
 
@@ -21,7 +22,7 @@ public class Config {
     }
 
     private static InputView inputView() {
-        return InputViewFactory.createInputViewOf(InputViewFactory.AMOUNT);
+        return InputViewFactory.createInputViewOf(InputViewType.AMOUNT);
     }
 
     private static LottoService lottoService() {

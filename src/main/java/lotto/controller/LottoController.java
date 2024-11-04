@@ -10,6 +10,7 @@ import lotto.model.domain.Lotto;
 import lotto.model.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.InputViewFactory;
+import lotto.view.InputViewType;
 import lotto.view.LottoPurchasesView;
 import lotto.view.LottoResultView;
 import lotto.view.OutputView;
@@ -43,7 +44,7 @@ public class LottoController {
     }
 
     private WinningLottoDto getWinningLottoDto(InputValidator inputValidator, Lotto lotto) {
-        showRequestMessageByTypeOf(InputViewFactory.BONUS_NUMBER);
+        showRequestMessageByTypeOf(InputViewType.BONUS_NUMBER);
         while (true) {
             try {
                 String input = inputView.getInput();
@@ -57,7 +58,7 @@ public class LottoController {
     }
 
     private Lotto getWinningLottoNumbers(InputValidator inputValidator) {
-        showRequestMessageByTypeOf(InputViewFactory.WINNING_NUMBER);
+        showRequestMessageByTypeOf(InputViewType.WINNING_NUMBER);
         while (true) {
             try {
                 String input = inputView.getInput();
@@ -71,7 +72,7 @@ public class LottoController {
     }
 
     private int getAmount(InputValidator inputValidator) {
-        showRequestMessageByTypeOf(InputViewFactory.AMOUNT);
+        showRequestMessageByTypeOf(InputViewType.AMOUNT);
         while (true) {
             try {
                 String input = inputView.getInput();
@@ -83,7 +84,7 @@ public class LottoController {
         }
     }
 
-    private void showRequestMessageByTypeOf(String type) {
+    private void showRequestMessageByTypeOf(InputViewType type) {
         inputView = InputViewFactory.createInputViewOf(type);
         inputView.showRequestMessage();
     }
