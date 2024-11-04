@@ -18,4 +18,10 @@ class JudgementNumberTest {
 		assertThat(judgementNumber.judgementRange(number)).isTrue();
 	}
 
+	@ParameterizedTest
+	@DisplayName("숫자가 맞는가?")
+	@ValueSource(strings = {"1234", "1223453", "0"})
+	void isValidNumber(String number) {
+		assertThat(judgementNumber.judgementNumber(number)).isTrue();
+	}
 }

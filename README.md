@@ -30,8 +30,8 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 ### API 명세서
 ```
 1. 숫자 뽑기
-- 숫자 범위 예외
-- 숫자 중복 예외
+- 숫자 범위 예외 (JudgementNumber.class)
+- 숫자 중복 예외 (JudgementNumber.class)
 - 보너스 번호 추가 뽑기
 
 2. 당첨 여부
