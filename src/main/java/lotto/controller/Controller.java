@@ -39,14 +39,12 @@ public class Controller {
     }
 
     private JackpotNumbers getJackpotNumbers() {
-        JackpotNumbers jackpotNumbers = new JackpotNumbers();
         List<Integer> intList = retryOnError(() -> {
             String inputJackpotNumbers = InputView.requestJackpotNumbers();
             List<Integer> jackpotList = StringParser.toIntList(inputJackpotNumbers);
             Validator.validateIntList(jackpotList);
             return jackpotList;
         });
-        jackpotNumbers.setLotto(new Lotto(intList));
 
         int bonusNumber = retryOnError(() -> {
             String inputBonusNumber = InputView.requestBonusNumber();
@@ -54,9 +52,8 @@ public class Controller {
             Validator.validateNumber(number, intList);
             return number;
         });
-        jackpotNumbers.setBonusNumber(bonusNumber);
 
-        return jackpotNumbers;
+        return new JackpotNumbers(new Lotto(intList), bonusNumber);
     }
 
     private <T> T retryOnError(Supplier<T> inputAction) {

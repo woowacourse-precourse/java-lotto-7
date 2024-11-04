@@ -16,9 +16,7 @@ class RankingEvaluatorTest {
     void initMapTest() {
         // given
         List<Lotto> purchasedLottos = List.of(new Lotto(List.of(1,2,3,4,5,6)));
-        JackpotNumbers jackpotNumbers = new JackpotNumbers();
-        jackpotNumbers.setLotto(new Lotto(List.of(7,8,9,10,11,12)));
-        jackpotNumbers.setBonusNumber(13);
+        JackpotNumbers jackpotNumbers = new JackpotNumbers(new Lotto(List.of(7,8,9,10,11,12)), 13);
         // when
         Map<Ranking, Integer> map = RankingEvaluator.evaluateAll(purchasedLottos, jackpotNumbers);
         // then
@@ -38,9 +36,7 @@ class RankingEvaluatorTest {
                 new Lotto(List.of(1,2,3,4,5,7)), // 2등
                 new Lotto(List.of(1,2,3,8,9,10)) // 5등
         );
-        JackpotNumbers jackpotNumbers = new JackpotNumbers();
-        jackpotNumbers.setLotto(new Lotto(List.of(1,2,3,4,5,6)));
-        jackpotNumbers.setBonusNumber(7);
+        JackpotNumbers jackpotNumbers = new JackpotNumbers(new Lotto(List.of(1,2,3,4,5,6)), 7);
 
         // when
         Map<Ranking, Integer> rankingMap = RankingEvaluator.evaluateAll(purchasedLottos, jackpotNumbers);
