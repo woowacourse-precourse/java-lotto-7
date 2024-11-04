@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -8,7 +7,7 @@ import lotto.domain.lotto.Lottery;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.LottoRank;
-import lotto.domain.price.PurchasePrice;
+import lotto.domain.price.Price;
 import lotto.domain.quantity.Quantity;
 import lotto.support.converter.IntegerConverter;
 import lotto.support.splitter.Splitter;
@@ -32,37 +31,45 @@ public class LottoController {
 
     public void process() {
         Quantity quantity = calculateQuantity();
-        List<Lotto> drawnLottos = drawLottos(quantity);
+        List<Lotto> lottos = generateLottos(quantity);
 
         Lotto winningLotto = makeWinningLotto();
         LottoNumber bonusNumber = makeBonusNumber();
 
-        Lottery lottery = new Lottery(winningLotto, bonusNumber, drawnLottos);
-        getWinningResults(lottery);
+        Lottery lottery = new Lottery(winningLotto, bonusNumber, lottos);
+        showLotteryReport(lottery);
     }
 
     private Quantity calculateQuantity() {
-        outputView.showCommentForPurchasePrice();
-        String inputPrice = inputView.readLine();
-        PurchasePrice purchasePrice = new PurchasePrice(inputPrice);
-        Quantity quantity = purchasePrice.calculateQuantity();
-        outputView.showQuantity(quantity.getQuantity());
+        Price price = makePrice();
+        Quantity quantity = price.calculateQuantity();
+        showQuantity(quantity);
         return quantity;
     }
 
-    private List<Lotto> drawLottos(final Quantity quantity) {
-        List<Lotto> lottos = Lotto.makeAsMuchAs(quantity.getQuantity());
-        for (Lotto lotto : lottos) {
-            outputView.showLotto(lotto.getNumbers());
-        }
+    private Price makePrice() {
+        outputView.showCommentForPrice();
+        return new Price(inputView.readLine());
+    }
+
+    private void showQuantity(final Quantity quantity) {
+        outputView.showQuantity(quantity.getQuantity());
+    }
+
+    private List<Lotto> generateLottos(final Quantity quantity) {
+        List<Lotto> lottos = Lotto.createMultipleLottos(quantity);
+        showLottos(lottos);
         return lottos;
+    }
+
+    private void showLottos(final List<Lotto> lottos) {
+        lottos.forEach(lotto -> outputView.showLotto(lotto.getNumbers()));
     }
 
     private Lotto makeWinningLotto() {
         outputView.showCommentForWinningLotto();
-        String inputNumbers = inputView.readLine();
-        List<Integer> numbers = converter.convertFrom(splitter.split(inputNumbers));
-        return new Lotto(numbers);
+        List<String> numbers = splitter.split(inputView.readLine());
+        return new Lotto(converter.convertFrom(numbers));
     }
 
     private LottoNumber makeBonusNumber() {
@@ -71,14 +78,21 @@ public class LottoController {
         return LottoNumber.valueOf(converter.convertFrom(inputBonusNumber));
     }
 
-    private void getWinningResults(final Lottery lottery) {
+    private void showLotteryReport(final Lottery lottery) {
         outputView.showCommentForWinningResults();
+        showWinningResults(lottery);
+        showProfitRate(lottery);
+    }
+
+    private void showWinningResults(final Lottery lottery) {
         Arrays.stream(LottoRank.values())
                 .sorted(Comparator.comparing(LottoRank::getMatchCount))
                 .forEach(lottoRank -> {
-                    BigDecimal count = lottery.get(lottoRank);
-                    outputView.showWinningResult(lottoRank, count);
+                    outputView.showWinningResult(lottoRank, lottery.get(lottoRank));
                 });
+    }
+
+    private void showProfitRate(final Lottery lottery) {
         outputView.showProfitRate(lottery.calculateProfitRate());
     }
 }

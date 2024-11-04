@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lotto.domain.quantity.Quantity;
 import lotto.dto.LottoNumberDto;
 import lotto.exception.lotto.InvalidLottoException;
 
@@ -19,18 +20,18 @@ public class Lotto {
 
     public Lotto(final List<Integer> numbers) {
         validateNumbers(numbers);
-        this.numbers = new ArrayList<>(mapToSortedLottoNumber(numbers));
+        this.numbers = new ArrayList<>(toSortedLottoNumbers(numbers));
     }
 
-    public static List<Lotto> makeAsMuchAs(BigDecimal quantity) {
+    public static List<Lotto> createMultipleLottos(Quantity quantity) {
         List<Lotto> lottos = new ArrayList<>();
-        for (BigDecimal count = BigDecimal.ZERO; count.compareTo(quantity) < 0; count = count.add(BigDecimal.ONE)) {
-            lottos.add(new Lotto(drawLotto()));
+        for (BigDecimal count = BigDecimal.ZERO; count.compareTo(quantity.getQuantity()) < 0; count = count.add(BigDecimal.ONE)) {
+            lottos.add(new Lotto(generateRandomLottoNumbers()));
         }
         return lottos;
     }
 
-    private static List<Integer> drawLotto() {
+    private static List<Integer> generateRandomLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
     }
 
@@ -50,16 +51,16 @@ public class Lotto {
     }
 
     private void validateNumbers(final List<Integer> numbers) {
-        if (countDistinctFrom(numbers) != LOTTO_SIZE) {
+        if (countUniqueFrom(numbers) != LOTTO_SIZE) {
             throw new InvalidLottoException("로또 번호는 중복되지 않은 6개의 숫자여야 합니다");
         }
     }
 
-    private long countDistinctFrom(final List<Integer> numbers) {
+    private long countUniqueFrom(final List<Integer> numbers) {
         return numbers.stream().distinct().count();
     }
 
-    private List<LottoNumber> mapToSortedLottoNumber(final List<Integer> numbers) {
+    private List<LottoNumber> toSortedLottoNumbers(final List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .map(LottoNumber::valueOf)

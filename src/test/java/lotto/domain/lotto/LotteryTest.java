@@ -25,11 +25,11 @@ public class LotteryTest {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             LottoNumber bonusNumber = LottoNumber.valueOf(10);
-            List<Lotto> drawnLottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+            List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
             // When & Then
             assertThatCode(() -> {
-                new Lottery(winningLotto, bonusNumber, drawnLottos);
+                new Lottery(winningLotto, bonusNumber, lottos);
             }).doesNotThrowAnyException();
         }
 
@@ -39,10 +39,10 @@ public class LotteryTest {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             LottoNumber bonusNumber = LottoNumber.valueOf(1);
-            List<Lotto> drawnLottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+            List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
             // When & Then
-            assertThatThrownBy(() -> new Lottery(winningLotto, bonusNumber, drawnLottos))
+            assertThatThrownBy(() -> new Lottery(winningLotto, bonusNumber, lottos))
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidLottoNumberException.class)
                     .hasMessageStartingWith("[ERROR] ")
@@ -60,9 +60,9 @@ public class LotteryTest {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             LottoNumber bonusNumber = LottoNumber.valueOf(10);
-            List<Lotto> drawnLottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+            List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                     new Lotto(List.of(1, 2, 3, 4, 5, 10)));
-            Lottery lottery = new Lottery(winningLotto, bonusNumber, drawnLottos);
+            Lottery lottery = new Lottery(winningLotto, bonusNumber, lottos);
 
             // When
             BigDecimal firstCount = lottery.get(LottoRank.FIRST);
@@ -86,9 +86,9 @@ public class LotteryTest {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             LottoNumber bonusNumber = LottoNumber.valueOf(10);
-            List<Lotto> drawnLottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+            List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                     new Lotto(List.of(1, 2, 3, 4, 5, 10)));
-            Lottery lottery = new Lottery(winningLotto, bonusNumber, drawnLottos);
+            Lottery lottery = new Lottery(winningLotto, bonusNumber, lottos);
 
             // When
             BigDecimal profitRate = lottery.calculateProfitRate();

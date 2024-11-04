@@ -1,5 +1,7 @@
 package lotto.domain.lotto;
 
+import static lotto.domain.price.Price.LOTTO_UNIT_PRICE;
+
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -11,12 +13,11 @@ import lotto.exception.lotto.InvalidLottoNumberException;
 
 public class Lottery {
 
-    private static final BigDecimal LOTTO_UNIT_PRICE = BigDecimal.valueOf(1000);
     private static final int SCALE = 1;
 
     private final Lotto winningLotto;
     private final LottoNumber bonusNumber;
-    private final List<Lotto> drawnLottos;
+    private final List<Lotto> lottos;
     private final Map<LottoRank, BigDecimal> results;
 
     public Lottery(final Lotto winningLotto, final LottoNumber bonusNumber, final List<Lotto> lottos) {
@@ -24,13 +25,13 @@ public class Lottery {
 
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
-        this.drawnLottos = lottos;
+        this.lottos = lottos;
         this.results = calculateWinningResults();
     }
 
     public BigDecimal calculateProfitRate() {
         BigDecimal profit = calculateProfit();
-        BigDecimal purchaseAmount = LOTTO_UNIT_PRICE.multiply(BigDecimal.valueOf(drawnLottos.size()));
+        BigDecimal purchaseAmount = LOTTO_UNIT_PRICE.multiply(BigDecimal.valueOf(lottos.size()));
         return profit.divide(purchaseAmount)
                 .multiply(BigDecimal.valueOf(100))
                 .setScale(SCALE, BigDecimal.ROUND_HALF_UP);
@@ -47,7 +48,7 @@ public class Lottery {
         for (LottoRank lottoRank : LottoRank.values()) {
             results.put(lottoRank, BigDecimal.ZERO);
         }
-        for (Lotto lotto : drawnLottos) {
+        for (Lotto lotto : lottos) {
             getRank(lotto).ifPresent(lottoRank ->
                     results.put(lottoRank, results.get(lottoRank).add(BigDecimal.ONE)));
         }

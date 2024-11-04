@@ -1,16 +1,17 @@
 package lotto.domain.price;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import lotto.domain.quantity.Quantity;
 import lotto.exception.price.InvalidPurchasePriceException;
 
-public class PurchasePrice {
+public class Price {
 
     public static final BigDecimal LOTTO_UNIT_PRICE = BigDecimal.valueOf(1000);
 
     private final BigDecimal price;
 
-    public PurchasePrice(final String input) {
+    public Price(final String input) {
         validateLength(input);
 
         BigDecimal price = parse(input);
@@ -53,5 +54,22 @@ public class PurchasePrice {
 
     private boolean isNotDivisible(final BigDecimal price) {
         return !price.remainder(LOTTO_UNIT_PRICE).equals(BigDecimal.ZERO);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Price that = (Price) o;
+        return Objects.equals(price, that.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(price);
     }
 }

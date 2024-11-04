@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.exception.converter.InvalidConvertException;
+import lotto.exception.converter.InvalidInputException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -43,7 +43,7 @@ public class IntegerConverterTest {
             // When & Then
             assertThatThrownBy(() -> converter.convertFrom(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .isExactlyInstanceOf(InvalidConvertException.class)
+                    .isExactlyInstanceOf(InvalidInputException.class)
                     .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("null일 수 없습니다");
         }
@@ -58,7 +58,7 @@ public class IntegerConverterTest {
             // When & Then
             assertThatThrownBy(() -> converter.convertFrom(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .isExactlyInstanceOf(InvalidConvertException.class)
+                    .isExactlyInstanceOf(InvalidInputException.class)
                     .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("Integer 타입의 정수가 아닙니다");
         }
@@ -73,7 +73,7 @@ public class IntegerConverterTest {
             // When & Then
             assertThatThrownBy(() -> converter.convertFrom(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .isExactlyInstanceOf(InvalidConvertException.class)
+                    .isExactlyInstanceOf(InvalidInputException.class)
                     .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("Integer 타입의 정수가 아닙니다");
         }
@@ -89,7 +89,7 @@ public class IntegerConverterTest {
             // When & Then
             assertThatThrownBy(() -> converter.convertFrom(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .isExactlyInstanceOf(InvalidConvertException.class)
+                    .isExactlyInstanceOf(InvalidInputException.class)
                     .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("null일 수 없습니다");
         }
@@ -104,7 +104,7 @@ public class IntegerConverterTest {
             // When & Then
             assertThatThrownBy(() -> converter.convertFrom(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .isExactlyInstanceOf(InvalidConvertException.class)
+                    .isExactlyInstanceOf(InvalidInputException.class)
                     .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("Integer 타입의 정수가 아닙니다");
         }
@@ -142,8 +142,53 @@ public class IntegerConverterTest {
             // When & Then
             assertThatThrownBy(() -> converter.convertFrom(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .isExactlyInstanceOf(InvalidConvertException.class)
+                    .isExactlyInstanceOf(InvalidInputException.class)
                     .hasMessageContaining("Integer 타입의 정수가 아닙니다");
+        }
+
+        @Test
+        @DisplayName("null일 경우 예외가 발생한다")
+        void 실패_변환_null() {
+            // Given
+            IntegerConverter converter = new IntegerConverter();
+            String number = null;
+
+            // When & Then
+            assertThatThrownBy(() -> converter.convertFrom(number))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .isExactlyInstanceOf(InvalidInputException.class)
+                    .hasMessageStartingWith("[ERROR] ")
+                    .hasMessageContaining("입력값은 null일 수 없습니다");
+        }
+
+        @Test
+        @DisplayName("비어있을 경우 예외가 발생한다")
+        void 실패_변환_비어있음() {
+            // Given
+            IntegerConverter converter = new IntegerConverter();
+            String number = "";
+
+            // When & Then
+            assertThatThrownBy(() -> converter.convertFrom(number))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .isExactlyInstanceOf(InvalidInputException.class)
+                    .hasMessageStartingWith("[ERROR] ")
+                    .hasMessageContaining("입력값은 빈 문자열이거나 공백일 수 없습니다");
+        }
+
+        @Test
+        @DisplayName("공백일 경우 예외가 발생한다")
+        void 실패_변환_공백() {
+            // Given
+            IntegerConverter converter = new IntegerConverter();
+            String number = " ";
+
+            // When & Then
+            assertThatThrownBy(() -> converter.convertFrom(number))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .isExactlyInstanceOf(InvalidInputException.class)
+                    .hasMessageStartingWith("[ERROR] ")
+                    .hasMessageContaining("입력값은 빈 문자열이거나 공백일 수 없습니다");
         }
     }
 }

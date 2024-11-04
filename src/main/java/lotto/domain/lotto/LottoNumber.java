@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 import lotto.exception.lotto.InvalidLottoNumberException;
-import lotto.support.converter.IntegerConverter;
 
 public class LottoNumber {
 
@@ -29,24 +28,10 @@ public class LottoNumber {
         return CACHE.get(number - 1);
     }
 
-    public static LottoNumber from(final String input, final IntegerConverter converter) {
-        return valueOf(converter.convertFrom(validateInput(input)));
-    }
-
     private static void validateNumber(final int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new InvalidLottoNumberException("로또 번호는 1 이상 45 이하여야 합니다");
         }
-    }
-
-    private static String validateInput(final String input) {
-        if (input == null) {
-            throw new InvalidLottoNumberException("로또 번호는 null일 수 없습니다");
-        }
-        if (input.isBlank()) {
-            throw new InvalidLottoNumberException("로또 번호는 비어있거나 공백일 수 없습니다");
-        }
-        return input;
     }
 
     public int getNumber() {

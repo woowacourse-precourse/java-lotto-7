@@ -5,7 +5,7 @@ import lotto.domain.lotto.LottoRank;
 import lotto.dto.LottoNumberDto;
 
 public interface OutputView {
-    void showCommentForPurchasePrice();
+    void showCommentForPrice();
 
     void showQuantity(final BigDecimal quantity);
 
