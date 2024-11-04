@@ -50,6 +50,20 @@ public class Lotto {
     }
 
     @Override
+    public int hashCode() {
+        return numbers.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Lotto) {
+            return numbers.equals(((Lotto) obj).numbers);
+        }
+
+        return false;
+    }
+
+    @Override
     public String toString() {
         return numbers.toString();
     }

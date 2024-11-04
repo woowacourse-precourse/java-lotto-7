@@ -3,6 +3,8 @@ package lotto.user.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+import lotto.lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -42,5 +44,26 @@ class UserTest {
         User user = new User(0);
 
         assertThat(user.canBuyLotto()).isFalse();
+    }
+
+    @DisplayName("성공 | 로또를 구매하는 경우")
+    @Test
+    void should_BuyLotto_When_Buy() {
+        User user = new User(1000);
+
+        user.buy(Lotto.issue(List.of(1, 2, 3, 4, 5, 6)));
+
+        assertThat(user.canBuyLotto()).isFalse();
+        assertThat(user.hasLotto(Lotto.issue(List.of(1, 2, 3, 4, 5, 6)))).isTrue();
+    }
+
+    @DisplayName("예외 | 로또를 구매할 수 없는 경우")
+    @Test
+    void should_ThrowException_When_CanNotBuyLotto() {
+        User user = new User(0);
+
+        assertThatThrownBy(() -> user.buy(Lotto.issue(List.of(1, 2, 3, 4, 5, 6)))
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
     }
 }

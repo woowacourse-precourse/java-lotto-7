@@ -24,12 +24,20 @@ public class User {
         }
     }
 
+    public void buy(Lotto lotto) {
+        if (!canBuyLotto()) {
+            throw new IllegalArgumentException("[ERROR] 로또를 구매할 수 없습니다.");
+        }
+
+        money -= Lotto.PRICE;
+        lottos.add(lotto);
+    }
+
     public boolean canBuyLotto() {
         return money >= Lotto.PRICE;
     }
 
-    public void buy(Lotto lotto) {
-        money -= Lotto.PRICE;
-        lottos.add(lotto);
+    public boolean hasLotto(Lotto lotto) {
+        return lottos.contains(lotto);
     }
 }
