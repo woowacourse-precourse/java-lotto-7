@@ -28,7 +28,7 @@ public enum Rank {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matchCount == count && rank.bonusMatchRequired == bonusMatch)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 조건에 맞는 Rank가 없습니다"));
+                .orElse(null);
     }
 
     // Getters (필요시 추가)
