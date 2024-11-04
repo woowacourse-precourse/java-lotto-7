@@ -86,7 +86,7 @@ public class LottoSimulator {
     }
 
     private void validateCost(String cost){
-        LottoSimulatorValidation.validateLottoCost(cost);
         LottoSimulatorValidation.validateCostFormat(cost);
+        LottoSimulatorValidation.validateLottoCost(cost);
     }
 }
