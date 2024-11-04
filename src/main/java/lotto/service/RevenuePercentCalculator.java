@@ -27,8 +27,7 @@ public class RevenuePercentCalculator implements RevenueCalculator {
         }
 
         return revenueSum.multiply(new BigDecimal("100"))
-                .divide(BigDecimal.valueOf(moneySpent), Constants.ROUND_TO.getNumber(),
-                        RoundingMode.HALF_UP);
+                .divide(BigDecimal.valueOf(moneySpent), Constants.ROUND_TO.getNumber(), RoundingMode.HALF_UP);
     }
 
     public BigDecimal getRevenue(Ranks rank) {

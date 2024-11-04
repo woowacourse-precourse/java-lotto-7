@@ -20,8 +20,8 @@ public class RankCounterTest {
         tickets.add(new Ticket(List.of(1, 2, 3, 6, 22, 44)));
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
         Bonus bonus = new Bonus(10, lotto.getNumbers());
+
         RankCounter counter = new RankCounter(tickets, lotto, bonus);
 
         assertThat(counter.getRankCount()).containsExactly(2L, 1L, 0L, 0L, 1L, 0L);

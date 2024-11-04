@@ -74,8 +74,8 @@
 
 - [x] indent(인덴트, 들여쓰기) depth는 2까지만 허용
 - [x] 3항 연산자 금지
-- [ ] 함수(또는 메서드)가 한 가지 일만 하며, 15라인을 넘어가지 않도록
-- [ ] else 예약어 및 switch/case 금지
+- [x] 함수(또는 메서드)가 한 가지 일만 하며, 15라인을 넘어가지 않도록
+- [x] else 예약어 및 switch/case 금지
 - [x] Java Enum 활용
 - [x] JUnit 5와 AssertJ를 이용하여 구현한 기능에 대한 단위 테스트. 단, UI(System.out, System.in, Scanner) 로직은 제외
 
