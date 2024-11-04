@@ -25,4 +25,19 @@ public class LottoTicketFactoryTest {
                 IllegalArgumentException.class).hasMessageContaining("[ERROR]");
 
     }
+
+    @DisplayName("돈을 숫자 이외의 문자가 들어갈 경우의 Exception")
+    @ParameterizedTest
+    @ValueSource(strings = {"1000l"})
+    void isNumericExceptionTest(String money) {
+        assertThatThrownBy(() -> LottoTicketFactory.isNumeric(money)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("돈을 숫자로만 이루어진 문자가 들어갈 경우의 Exception")
+    @ParameterizedTest
+    @ValueSource(strings = {"1000", "8000"})
+    void isNumericTest(String money) {
+        assertTrue(LottoTicketFactory.isNumeric(money) > 0);
+    }
 }
