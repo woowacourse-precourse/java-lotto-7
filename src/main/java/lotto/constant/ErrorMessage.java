@@ -8,7 +8,8 @@ public enum ErrorMessage {
     INCLUDE_CHARACTER_ERROR("[ERROR] 문자가 포함되어 있습니다"),
 
     /* 구매 입력 */
-    PURCHASE_PRICE_ERROR("[ERROR] 구매 금액을 딱 맞추어주세요 로또 가격: " + NumberType.LOTTO_PRICE);
+    PURCHASE_PRICE_ERROR("[ERROR] 구매 금액을 딱 맞추어주세요 로또 가격: " + NumberType.LOTTO_PRICE),
+    PURCHASE_PRICE_CHARACTER_ERROR("[ERROR] 숫자만 입력해주세요");
 
     private final String message;
 
