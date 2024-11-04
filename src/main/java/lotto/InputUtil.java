@@ -6,13 +6,13 @@ import java.util.List;
 
 public class InputUtil {
 
-    public static int money() {
+    public static int insertMoney() {
         String inputMoney = Console.readLine();
         // TODO: 숫자가 맞는지 검증 필요
         return Integer.parseInt(inputMoney) / 1000;
     }
 
-    public static List<Integer> winningNumber() {
+    public static List<Integer> insertWinningNumbers() {
         String[] inputNumbers = Console.readLine().split(",");
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number : inputNumbers) {
@@ -22,7 +22,7 @@ public class InputUtil {
         return winningNumbers;
     }
 
-    public static Integer bonusNumber() {
+    public static Integer insertBonusNumber() {
         // TODO: 숫자가 맞는지 검증 필요
         return Integer.parseInt(Console.readLine());
     }
