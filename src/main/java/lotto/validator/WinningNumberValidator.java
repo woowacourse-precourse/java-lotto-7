@@ -3,7 +3,7 @@ package lotto.validator;
 import java.util.List;
 import lotto.parser.InputParser;
 
-public class WinningNumberValidator {
+public class WinningNumberValidator implements InputValidator{
 
     public void validate(String input){
         validateNull(input);
@@ -15,7 +15,7 @@ public class WinningNumberValidator {
     }
 
     private void validateNull(String input) {
-        if (input.isEmpty() & input == null){
+        if (input.isEmpty() | input == null){
             throw new IllegalArgumentException("[ERROR] 당첨 번호을 입력하세요");
         }
     }

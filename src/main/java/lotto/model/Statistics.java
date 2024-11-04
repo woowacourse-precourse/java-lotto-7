@@ -34,16 +34,6 @@ public class Statistics {
         }
     }
 
-    public Float getRateOfReturn(Map<LottoResult, Integer> lottoResults) {
-        int purchaseCount = 0;
-        int lotteryReturn = 0;
-
-        for(Entry<LottoResult, Integer> entryLottery : lottoResults.entrySet()) {
-            purchaseCount += entryLottery.getValue();
-            lotteryReturn += entryLottery.getKey().getPrice() * entryLottery.getValue();
-        }
-        return (float) lotteryReturn / (purchaseCount * 1000) * 100;
-    }
 
     public Map<LottoResult, Integer> getResult(List<Lotto> issuedLotteries) {
         Map<LottoResult, Integer> lottoResults = initiateLottoResults();
@@ -58,6 +48,17 @@ public class Statistics {
             lottoResults.put(lottoResult, lottoResults.get(lottoResult) + 1);
         }
         return lottoResults;
+    }
+
+    public Float getRateOfReturn(Map<LottoResult, Integer> lottoResults) {
+        int purchaseCount = 0;
+        int lotteryReturn = 0;
+
+        for(Entry<LottoResult, Integer> entryLottery : lottoResults.entrySet()) {
+            purchaseCount += entryLottery.getValue();
+            lotteryReturn += entryLottery.getKey().getPrice() * entryLottery.getValue();
+        }
+        return (float) lotteryReturn / (purchaseCount * 1000) * 100;
     }
 
     private List<Integer> findNumberOverlapped(List<Integer> lottoNumbers) {

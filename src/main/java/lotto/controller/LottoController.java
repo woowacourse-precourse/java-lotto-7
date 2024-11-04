@@ -46,17 +46,17 @@ public class LottoController {
     }
 
     private List<Lotto> getLotteries(Integer purchaseAmount) {
-        List<Lotto> issuedLotteries = issuer.issueLotto(purchaseAmount);
+        List<Lotto> issuedLotteries = issuer.getIssuedLotteries(purchaseAmount);
         consoleView.printIssuedLotto(issuedLotteries);
         return issuedLotteries;
     }
 
     private Integer getPurchaseLottoAmount() {
         while (true) {
+            String userInputPurchase = consoleView.getPurchaseLottoAmount();
             try {
-                String userInputPurchase = consoleView.getPurchaseLottoAmount();
                 lottoPurchaseValidator.validate(userInputPurchase);
-                return InputParser.parseInput(userInputPurchase);
+                return InputParser.parseIntNumber(userInputPurchase);
             } catch (IllegalArgumentException e) {
                 consoleView.printErrorMessage(e.getMessage());
             }

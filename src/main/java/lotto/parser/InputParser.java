@@ -5,10 +5,6 @@ import java.util.List;
 
 public class InputParser {
 
-    public static Integer parseInput(String input) {
-        return Integer.parseInt(input);
-    }
-
     public static List<String> parseInputString(String input) {
         return Arrays.stream(input.split(",")).toList();
     }
