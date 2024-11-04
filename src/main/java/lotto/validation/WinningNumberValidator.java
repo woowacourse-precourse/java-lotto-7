@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constatnt.ExceptionMessage;
-import lotto.model.Lotto;
 
 public class WinningNumberValidator {
 
@@ -58,7 +57,7 @@ public class WinningNumberValidator {
 
     private void checkIfBlank(String bonusNumber) {
         if (bonusNumber == null || bonusNumber.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 빈 값이 될 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_BLANK_INPUT.getMessage());
         }
     }
 
@@ -66,19 +65,19 @@ public class WinningNumberValidator {
         try {
             return Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로만 입력해주세요.");
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_NOT_NUMBER.getMessage());
         }
     }
 
     private void checkRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 
     private void checkDuplicateWithWinning(int number, List<Integer> winningNumbers) {
         if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_DUPLICATE_WITH_WINNING.getMessage());
         }
     }
 }
