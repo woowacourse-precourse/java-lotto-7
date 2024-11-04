@@ -7,6 +7,7 @@ import lotto.application.FacadeLottoUseCase;
 import lotto.application.PurchaseLottoUseCase;
 import lotto.application.RetrieveLottoUseCase;
 import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.domain.WinResult;
 
 public class FacadeLottoService implements FacadeLottoUseCase {
@@ -29,7 +30,7 @@ public class FacadeLottoService implements FacadeLottoUseCase {
     }
 
     @Override
-    public void purchase(int money) {
+    public void purchase(Money money) {
         purchaseLottoUseCase.purchase(money);
     }
 

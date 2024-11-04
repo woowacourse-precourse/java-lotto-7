@@ -1,6 +1,8 @@
 package lotto.application;
 
+import lotto.domain.Money;
+
 public interface PurchaseLottoUseCase {
 
-    void purchase(int money);
+    void purchase(Money money);
 }

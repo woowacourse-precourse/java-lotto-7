@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import lotto.application.FacadeLottoUseCase;
 import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.domain.WinResult;
 import lotto.view.ApplicationView;
 import lotto.view.converter.MessageParser;
@@ -37,7 +38,7 @@ public class LottoApplication {
 
     private void purchaseLotto() {
         int money = applicationView.requestMoney();
-        facadeLottoUseCase.purchase(money);
+        facadeLottoUseCase.purchase(Money.from(money));
     }
 
     private void showPurchasedLotto() {
