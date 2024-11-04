@@ -52,6 +52,12 @@ public class Application {
         return lottos;
     }
 
+    private static void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.print(lotto.getNumbers());
+        }
+    }
+
     private static List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine().trim();
