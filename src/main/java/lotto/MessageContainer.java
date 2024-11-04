@@ -23,10 +23,13 @@ public class MessageContainer {
 
     public static final String NON_DIGIT_ERROR
             = String.format("%s 숫자만 입력해야 합니다.", ERROR_MESSAGE);
-    public static final String INVALID_PURCHASE_AMOUNT
-            = String.format("%s 구입 금액은 %,d원 단위로 입력해야 합니다.", ERROR_MESSAGE, LOTTO_PRICE);
     public static final String NEITHER_DIGIT_NOR_DELIMITER_ERROR
             = String.format("%s 숫자와 %s만 입력해야 합니다.", ERROR_MESSAGE, VIEW_DELIMITER_LABEL);
+    public static final String OVER_INTEGER_RANGE_ERROR
+            = String.format("%s %,d이 넘는 숫자는 입력할 수 없습니다.", ERROR_MESSAGE, Integer.MAX_VALUE);
+
+    public static final String INVALID_PURCHASE_AMOUNT
+            = String.format("%s 구입 금액은 %,d원 단위로 입력해야 합니다.", ERROR_MESSAGE, LOTTO_PRICE);
     public static final String COUNT_OF_LOTTO_NUMBERS_ERROR
             = String.format("%s 로또 번호는 %s개여야 합니다.", ERROR_MESSAGE, COUNT_OF_LOTTO_NUMBERS);
     public static final String DUPLICATE_NUMBER_ERROR
