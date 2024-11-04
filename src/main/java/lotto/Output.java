@@ -15,6 +15,7 @@ public class Output {
 
 	public void printLottos(List<Lotto> lottos) {
 		lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+		System.out.println();
 	}
 
 	public void printLuckyNumber() {
@@ -51,7 +52,7 @@ public class Output {
 	}
 
 	public void printEarningRate(double earningRate) {
-		System.out.println("총 수익률은 " + earningRate + "%입니다.");
+		System.out.printf("총 수익률은 %.1f%%입니다.%n", earningRate);;
 	}
 
 }
