@@ -6,10 +6,10 @@ import java.math.BigInteger;
 import java.util.List;
 
 public class LottoSeller {
-    private final int lottoPrice;
+    private final BigInteger lottoPrice;
     private final LottoMachine lottoMachine;
 
-    public LottoSeller(int lottoPrice, LottoMachine lottoMachine) {
+    public LottoSeller(BigInteger lottoPrice, LottoMachine lottoMachine) {
         this.lottoPrice = lottoPrice;
         this.lottoMachine = lottoMachine;
     }
@@ -21,8 +21,8 @@ public class LottoSeller {
     }
 
     private void validateMultiplesOfLottoPrice(BigInteger amount) {
-        BigInteger remainder = amount.remainder(BigInteger.valueOf(lottoPrice));
-        if ((amount.equals(BigInteger.ZERO)) || (!remainder.equals(BigInteger.ZERO))) {
+        BigInteger remainder = amount.remainder(lottoPrice);
+        if (BigInteger.ZERO.equals(amount) || !BigInteger.ZERO.equals(remainder)) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT);
         }
     }
@@ -42,6 +42,6 @@ public class LottoSeller {
     }
 
     private int calculateQuantityWith(BigInteger amount) {
-        return amount.divide(BigInteger.valueOf(lottoPrice)).intValue();
+        return amount.divide(lottoPrice).intValue();
     }
 }
