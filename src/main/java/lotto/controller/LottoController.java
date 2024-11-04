@@ -5,10 +5,10 @@ import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
 import lotto.dto.LottoResponse;
 import lotto.dto.PrizeResponse;
+import lotto.parser.LottoNumbersInputParser;
 import lotto.service.LottoService;
 import lotto.view.ConsoleView;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
@@ -56,11 +56,10 @@ public class LottoController {
 
     private Lotto readWinningLottoNumbers() {
         String winningLottoNumbersInput = consoleView.readWinningLottoNumbersInput();
-        List<Integer> winningLottoNumbers = Arrays.stream(winningLottoNumbersInput.split(","))
-                .map(Integer::parseInt)
-                .toList();
+        LottoNumbersInputParser lottoNumbersInputParser = new LottoNumbersInputParser();
+        List<String> lottoNumbers = lottoNumbersInputParser.parse(winningLottoNumbersInput);
 
-        return new Lotto(winningLottoNumbers);
+        return new Lotto(lottoNumbers);
     }
 
     private LottoNumber readBonusNumber() {
