@@ -13,6 +13,7 @@ public class InputHandler {
         return Integer.parseInt(buyingPrice);
     }
     public static List<Integer> getWinningNumber() {
+        System.out.println("당첨 번호를 입력해주세요.");
         String winningNumbers = Console.readLine();
         return Arrays.stream(winningNumbers.split(","))
                 .map(String::trim)
@@ -21,6 +22,7 @@ public class InputHandler {
     }
 
     public static int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해주세요.");
         String bonusNumber = Console.readLine();
         return Integer.parseInt(bonusNumber);
     }
