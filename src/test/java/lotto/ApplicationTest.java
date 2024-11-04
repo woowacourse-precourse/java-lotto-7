@@ -26,6 +26,12 @@ class ApplicationTest extends NsTest {
         assertThatThrownBy(() -> Application.buyLotto("1001")).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("parseWinningNumber 단위 테스트")
+    @Test
+    void parseWinningNumber_기능_테스트() {
+        assertThat(Application.parseWinningNumber("1,2,3,4,5,6")).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
