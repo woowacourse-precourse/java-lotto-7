@@ -32,4 +32,28 @@ class LottoNumberTest {
         assertFalse(actual);
     }
 
+    @Test
+    void 로또_숫자의_범위가_불일치하면_TRUE를_반환한다() {
+        //given
+        int count = 0;
+
+        //when
+        boolean actual = LottoNumber.isNotRange(count);
+
+        //then
+        assertTrue(actual);
+    }
+
+    @Test
+    void 로또_숫자의_범위가_일치하면_FALSE를_반환한다() {
+        //given
+        int count = 45;
+
+        //when
+        boolean actual = LottoNumber.isNotRange(count);
+
+        //then
+        assertFalse(actual);
+    }
+
 }
