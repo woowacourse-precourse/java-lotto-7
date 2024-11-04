@@ -21,28 +21,28 @@ public class Money {
         return price;
     }
 
-    private static void validate(final int price) {
+    private void validate(final int price) {
         validateRange(price);
         validateDivisibility(price);
     }
 
-    private static void validateRange(final int price) {
+    private void validateRange(final int price) {
         if (isInValidRange(price)) {
             throw new LottoException(format(MONEY_OUT_OF_RANGE.getMessage(), LOTTO_COST.getValue()));
         }
     }
 
-    private static void validateDivisibility(final int price) {
+    private void validateDivisibility(final int price) {
         if (isNotDivisible(price)) {
             throw new LottoException(format(MONEY_NOT_DIVISIBLE.getMessage(), LOTTO_COST.getValue()));
         }
     }
 
-    private static boolean isInValidRange(final int price) {
+    private boolean isInValidRange(final int price) {
         return price < LOTTO_COST.getValue();
     }
 
-    private static boolean isNotDivisible(final int price) {
+    private boolean isNotDivisible(final int price) {
         return price % LOTTO_COST.getValue() != 0;
     }
 

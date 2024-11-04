@@ -22,29 +22,29 @@ public class BonusNumber {
         return number;
     }
 
-    private static void validate(Lotto winningLotto, int number) {
+    private void validate(Lotto winningLotto, int number) {
         validateRange(number);
         validateDuplicate(winningLotto.getNumbers(), number);
     }
 
-    private static void validateRange(int number) {
+    private void validateRange(int number) {
         if (isOutOfBounds(number)) {
             throw new LottoException(BONUS_NUMBER_OUT_OF_RANGE);
         }
     }
 
-    private static void validateDuplicate(List<Integer> numbers, int number) {
+    private void validateDuplicate(List<Integer> numbers, int number) {
         if (isDuplicate(numbers, number)) {
             throw new LottoException(BONUS_NUMBER_DUPLICATE);
         }
     }
 
-    private static boolean isOutOfBounds(int number) {
+    private boolean isOutOfBounds(int number) {
         return number < MIN_LOTTO_NUMBER.getValue() ||
                 number > MAX_LOTTO_NUMBER.getValue();
     }
 
-    private static boolean isDuplicate(List<Integer> numbers, int number) {
+    private boolean isDuplicate(List<Integer> numbers, int number) {
         return numbers.contains(number);
     }
 }

@@ -23,43 +23,43 @@ public class Lotto {
         return numbers;
     }
 
-    private static void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         validateDuplicates(numbers);
         validateNumberRange(numbers);
         validateNumbersSize(numbers);
     }
 
-    private static void validateDuplicates(List<Integer> numbers) {
+    private void validateDuplicates(List<Integer> numbers) {
         if (isDuplicated(numbers)) {
             throw new LottoException(DUPLICATED_NUMBER);
         }
     }
 
-    private static void validateNumberRange(List<Integer> numbers) {
+    private void validateNumberRange(List<Integer> numbers) {
         if (isOutOfBounds(numbers)) {
             throw new LottoException(WINNING_NUMBER_OUT_OF_RANGE);
         }
     }
 
-    private static void validateNumbersSize(List<Integer> numbers) {
+    private void validateNumbersSize(List<Integer> numbers) {
         if (isInvalidSize(numbers)) {
             throw new LottoException(format(NUMBERS_SIZE_ERROR.getMessage(), NUMBER_OF_PICKS.getValue()));
         }
     }
 
-    private static boolean isDuplicated(List<Integer> numbers) {
+    private boolean isDuplicated(List<Integer> numbers) {
         return numbers.stream()
                 .distinct()
                 .count() != numbers.size();
     }
 
-    private static boolean isOutOfBounds(List<Integer> numbers) {
+    private boolean isOutOfBounds(List<Integer> numbers) {
         return !numbers.stream()
                 .allMatch(num -> num >= MIN_LOTTO_NUMBER.getValue() &&
                         num <= MAX_LOTTO_NUMBER.getValue());
     }
 
-    private static boolean isInvalidSize(List<Integer> numbers) {
+    private boolean isInvalidSize(List<Integer> numbers) {
         return numbers.size() != NUMBER_OF_PICKS.getValue();
     }
 }
