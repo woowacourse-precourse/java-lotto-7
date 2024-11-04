@@ -25,25 +25,12 @@ public class LottoController {
         outputView.responseBuyingQuantity(lottoNum);
         List<Lotto> lottos = CreateLottoService.createRandomLottos(lottoNum);
         outputView.askWinningLotto();
-        WinningLotto winningLotto = new WinningLotto(inputView.inputLottoNumbersView(), inputView.inputBonusNumberView());
+        String winningLottoNumber = inputView.inputLottoNumbersView();
         outputView.askBonusNumber();
-        int bonusNum = inputView.inputBonusNumberView();
-        LottoResult lottoResult = new LottoResult(WinningCalculateService.calculateLottoResult(lotto, winningLotto));
+        String bonusNumber = inputView.inputBonusNumberView();
+        WinningLotto winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
+        LottoResult lottoResult = new LottoResult(WinningCalculateService.calculateLottoResults(lottos, winningLotto));
 
-
-
-
-
-
-        calculateResults(lottos, winningLotto);
-    }
-
-    public Lotto setLottoData() {
-        return lottoInputDataService.inputLottoData();
-    }
-
-    public void calculateLottoWinning(User user, Lotto lotto) {
-        lottoCalculateService.calculateWinning(user, lotto);
     }
 
 }
