@@ -1,13 +1,12 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -47,9 +46,66 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 예외_문자_포함_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 최소금액_미만_테스트() {
+        assertSimpleTest(() -> {
+            runException("999");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    @Test
+    void 단위_금액_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("999");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 공백_입력_테스트() {
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_공백_입력_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_공백_입력_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_예외_입력_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "a,2,3,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_예외_입력_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
