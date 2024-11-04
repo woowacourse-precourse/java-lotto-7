@@ -2,25 +2,29 @@ package lotto.domain;
 
 import java.util.Arrays;
 
+import static lotto.domain.Prize.BonusNumberStatus.*;
+
 public enum Prize {
-    NONE(0, 0),
-    THREE_NUMBER_MATCH(3, 5000),
-    FOUR_NUMBER_MATCH(4, 50000),
-    FIVE_NUMBER_MATCH(5, 1500000),
-    FIVE_NUMBER_AND_BONUS_NUMBER_MATCH(5, 30000000),
-    SIX_NUMBER_MATCH(6, 2000000000);
+    NONE(0, 0, UNDEFINED),
+    FIFTH(3, 5_000, UNDEFINED),
+    FOURTH(4, 50_000, UNDEFINED),
+    THIRD(5, 1_500_000, EXCLUDE_BONUS),
+    SECOND(5, 30_000_000, INCLUDE_BONUS),
+    FIRST(6, 2_000_000_000, UNDEFINED);
 
     private final int matchingNumberCount;
     private final int prizeMoney;
+    private final BonusNumberStatus bonusNumberStatus;
 
-    Prize(int matchingNumberCount, int prizeMoney) {
+    Prize(int matchingNumberCount, int prizeMoney, BonusNumberStatus bonusNumberStatus) {
         this.matchingNumberCount = matchingNumberCount;
         this.prizeMoney = prizeMoney;
+        this.bonusNumberStatus = bonusNumberStatus;
     }
 
-    public static Prize findBy(int matchingNumberCount, boolean containsBonusNumber) {
-        if (matchingNumberCount == 5 && containsBonusNumber) {
-            return FIVE_NUMBER_AND_BONUS_NUMBER_MATCH;
+    public static Prize of(int matchingNumberCount, boolean containsBonusNumber) {
+        if (matchingNumberCount == SECOND.matchingNumberCount && containsBonusNumber) {
+            return SECOND;
         }
 
         return Arrays.stream(Prize.values())
@@ -29,11 +33,21 @@ public enum Prize {
                 .orElse(NONE);
     }
 
+    public enum BonusNumberStatus {
+        INCLUDE_BONUS,
+        EXCLUDE_BONUS,
+        UNDEFINED  // 상태가 명확하지 않을 때 사용
+    }
+
     public int getMatchingNumberCount() {
         return matchingNumberCount;
     }
 
     public int getPrizeMoney() {
         return prizeMoney;
+    }
+
+    public BonusNumberStatus getBonusNumberStatus() {
+        return bonusNumberStatus;
     }
 }
