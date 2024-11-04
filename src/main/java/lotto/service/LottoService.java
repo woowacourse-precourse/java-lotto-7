@@ -4,15 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.generator.LottoGenerator;
-import lotto.message.LottoErrorMessages;
-import lotto.message.LottoInfoMessages;
 import lotto.model.Lotto;
 import lotto.model.LottoGroup;
 import lotto.model.Pay;
 
 public class LottoService {
     private static final int MATCHED_LIST_LENGTH = 5;
-    private static final int BONUS_CHECK_NUMBER = 3;
+    private static final int BONUS_CHECK_NUMBER = 5;
     private static final int THREE_MATCHED = 0;
     private static final int FOUR_MATCHED = 1;
     private static final int FIVE_MATCHED = 2;
@@ -43,7 +41,6 @@ public class LottoService {
             matchedList = checkBonusMatched(lotto, checkSet, matchedList, bonusNumber);
             matchedList = checkThreeMatched(lotto, checkSet, matchedList);
             matchedList = checkFourMatched(lotto, checkSet, matchedList);
-            matchedList = checkFiveMatched(lotto, checkSet, matchedList);
             matchedList = checkSixMatched(lotto, checkSet, matchedList);
         }
         return matchedList;
@@ -52,14 +49,6 @@ public class LottoService {
     private List<int[]> checkSixMatched(Lotto lotto, List<Integer> checkSet, List<int[]> matchedList) {
         if (checkSet.size() == SIX) {
             int[] matched = addMatched(SIX_MATCHED);
-            matchedList.add(matched);
-        }
-        return matchedList;
-    }
-
-    private List<int[]> checkFiveMatched(Lotto lotto, List<Integer> checkSet, List<int[]> matchedList) {
-        if (checkSet.size() == FIVE) {
-            int[] matched = addMatched(FIVE_MATCHED);
             matchedList.add(matched);
         }
         return matchedList;
@@ -83,9 +72,15 @@ public class LottoService {
 
     private List<int[]> checkBonusMatched(Lotto lotto, List<Integer> checkSet, List<int[]> matchedList,
                                           int bonusNumber) {
-        if (checkSet.size() == BONUS_CHECK_NUMBER && lotto.getNumbers().contains(bonusNumber)) {
-            int[] matched = addMatched(FIVE_BONUS_MATCHED);
-            matchedList.add(matched);
+        if (checkSet.size() == FIVE) {
+            if (lotto.getNumbers().contains(bonusNumber)) {
+                int[] matched = addMatched(FIVE_BONUS_MATCHED);
+                matchedList.add(matched);
+            }
+            if (!lotto.getNumbers().contains(bonusNumber)) {
+                int[] matched = addMatched(FIVE_MATCHED);
+                matchedList.add(matched);
+            }
         }
         return matchedList;
     }
