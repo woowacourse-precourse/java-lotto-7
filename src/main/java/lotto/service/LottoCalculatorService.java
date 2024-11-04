@@ -18,7 +18,8 @@ public class LottoCalculatorService {
         return new LottoResult(resultMap, ratioOfProfit);
     }
 
-    protected Map<LottoRank, Integer> calculateResultMap(List<Lotto> userLottos, Lotto winningLotto, Integer bonusNumber) {
+    protected Map<LottoRank, Integer> calculateResultMap(List<Lotto> userLottos, Lotto winningLotto,
+                                                         Integer bonusNumber) {
         Map<LottoRank, Integer> resultMap = initResultMap();
 
         for (Lotto userLotto : userLottos) {
@@ -33,7 +34,7 @@ public class LottoCalculatorService {
 
     protected Map<LottoRank, Integer> initResultMap() {
         Map<LottoRank, Integer> resultMap = new EnumMap<>(LottoRank.class);
-        for(LottoRank rank : LottoRank.values()) {
+        for (LottoRank rank : LottoRank.values()) {
             resultMap.put(rank, 0);
         }
 
@@ -46,15 +47,15 @@ public class LottoCalculatorService {
                 .filter(winningLotto.getNumbers()::contains)
                 .count();
 
-        if(count == 6) {
+        if (count == 6) {
             return LottoRank.FIRST;
-        } else if(count == 5 && numbers.contains(bonusNumber)) {
+        } else if (count == 5 && numbers.contains(bonusNumber)) {
             return LottoRank.SECOND;
-        } else if(count == 5) {
+        } else if (count == 5) {
             return LottoRank.THIRD;
-        } else if(count == 4) {
+        } else if (count == 4) {
             return LottoRank.FOURTH;
-        } else if(count == 3) {
+        } else if (count == 3) {
             return LottoRank.FIFTH;
         }
         return null;

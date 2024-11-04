@@ -5,7 +5,7 @@ import lotto.Lotto;
 import lotto.LottoResult;
 
 public class OutputController {
-    public void printUserLottos (Integer purchaseNum,List<Lotto> userLottos){
+    public void printUserLottos(Integer purchaseNum, List<Lotto> userLottos) {
         StringBuilder sb = new StringBuilder();
         sb.append(purchaseNum).append("개를 구매했습니다. \n");
         userLottos.forEach(lotto -> sb.append(lotto).append("\n"));

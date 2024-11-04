@@ -19,11 +19,11 @@ public class Lotto {
             throw new LottoInvalidSizeException();
         }
 
-        if(numbers.stream().anyMatch(num -> num > 45 || num < 1)) {
+        if (numbers.stream().anyMatch(num -> num > 45 || num < 1)) {
             throw new LottoOutOfBoundException();
         }
 
-        if(numbers.stream().distinct().count() != numbers.size()) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
             throw new LottoDuplicateException();
         }
     }

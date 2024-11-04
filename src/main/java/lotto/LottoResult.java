@@ -14,7 +14,7 @@ public class LottoResult {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(Map.Entry<LottoRank, Integer> entry : resultMap.entrySet()) {
+        for (Map.Entry<LottoRank, Integer> entry : resultMap.entrySet()) {
             LottoRank lottoRank = entry.getKey();
             sb.append(lottoRank.getDescription()).append(entry.getValue()).append("개 \n");
         }

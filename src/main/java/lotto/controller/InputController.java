@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Lotto;
 import lotto.exception.BonusNumberDuplicateException;
 import lotto.exception.BonusNumberOutOfBoundException;
 import lotto.exception.LottoInvalidException;
@@ -10,7 +11,6 @@ import lotto.exception.PurchaseNumberInvalidException;
 import lotto.exception.PurchaseNumberOverFlowException;
 import lotto.exception.PurchaseNumberUnderFlowException;
 import lotto.exception.PurchaseNumberUnitException;
-import lotto.Lotto;
 
 public class InputController {
     private static final String INPUT_LOTTO_NUMBER_DESCRIPTION = "당첨 번호를 입력해 주세요.";
@@ -23,7 +23,7 @@ public class InputController {
     private static ExceptionController exceptionController = new ExceptionController();
 
     public Integer getPurchaseNumber() {
-        while(true) {
+        while (true) {
             System.out.println(INPUT_PURCHASE_NUMBER_DESCRIPTION);
             String input = Console.readLine();
             try {
@@ -48,11 +48,11 @@ public class InputController {
             throw new PurchaseNumberOverFlowException();
         }
 
-        if(purchaseNumber < MIN_PURCHASE_PRICE) {
+        if (purchaseNumber < MIN_PURCHASE_PRICE) {
             throw new PurchaseNumberUnderFlowException();
         }
 
-        if(purchaseNumber % LOTTO_PRICE != 0) {
+        if (purchaseNumber % LOTTO_PRICE != 0) {
             throw new PurchaseNumberUnitException();
         }
 
@@ -60,7 +60,7 @@ public class InputController {
     }
 
     public Lotto getLotto() {
-        while(true) {
+        while (true) {
             System.out.println(INPUT_LOTTO_NUMBER_DESCRIPTION);
             String input = Console.readLine();
             try {
@@ -76,7 +76,7 @@ public class InputController {
     protected Lotto validateLottoInput(String input) {
         List<Integer> numbers = new ArrayList<>();
         try {
-            for(String numberString : input.split(",")) {
+            for (String numberString : input.split(",")) {
                 numbers.add(Integer.parseInt(numberString));
             }
         } catch (NumberFormatException e) {
@@ -87,7 +87,7 @@ public class InputController {
     }
 
     public Integer getBonusNumber(Lotto lotto) {
-        while(true) {
+        while (true) {
             System.out.println(INPUT_BONUS_NUMBER_DESCRIPTION);
             String input = Console.readLine();
             try {
@@ -108,11 +108,11 @@ public class InputController {
             throw new BonusNumberOutOfBoundException();
         }
 
-        if(bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
             throw new BonusNumberOutOfBoundException();
         }
 
-        if(lotto.getNumbers().contains(bonusNumber)) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
             throw new BonusNumberDuplicateException();
         }
 

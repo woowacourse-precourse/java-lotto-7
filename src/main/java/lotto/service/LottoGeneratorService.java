@@ -8,7 +8,7 @@ import lotto.Lotto;
 public class LottoGeneratorService {
     public List<Lotto> generateLottos(Integer purchaseNumber) {
         List<Lotto> userLottos = new ArrayList<>();
-        for(int i = 0; i < purchaseNumber; i++) {
+        for (int i = 0; i < purchaseNumber; i++) {
             userLottos.add(generateLotto());
         }
         return userLottos;

@@ -12,7 +12,8 @@ public class LottoMachineService {
     private final LottoGeneratorService lottoGeneratorService = new LottoGeneratorService();
     private final LottoCalculatorService lottoCalculatorService = new LottoCalculatorService();
 
-    public LottoMachineService() { }
+    public LottoMachineService() {
+    }
 
     public void run() {
         //1. 구매 정보 입력
@@ -27,7 +28,8 @@ public class LottoMachineService {
         Integer bonusNumber = inputController.getBonusNumber(winningLotto);
 
         //4. 당첨 결과 계산 및 출력
-        LottoResult lottoResult = lottoCalculatorService.getResult(userLottos, winningLotto, bonusNumber, purchaseNumber);
+        LottoResult lottoResult = lottoCalculatorService.getResult(userLottos, winningLotto, bonusNumber,
+                purchaseNumber);
         outputController.printResult(lottoResult);
     }
 }
