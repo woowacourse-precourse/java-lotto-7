@@ -3,17 +3,19 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import lotto.repository.LottoRepository;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
+        validate(sortedNumbers);
         this.numbers = sortedNumbers;
     }
 
@@ -21,12 +23,15 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+        }
     }
 
     public List<Integer> getNumbers() {
         return numbers;
     }
-    // TODO: 추가 기능 구현
 
     public Winning match(List<Integer> winningNumbers) {
         Map<Lotto, Integer> frequencyMap = new HashMap<>();
