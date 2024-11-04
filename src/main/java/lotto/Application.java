@@ -17,9 +17,9 @@ public class Application {
         buyer.printPurchasedLottos();
 
         // 당첨 번호 및 보너스 번호 입력
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> winningNumber = InputView.inputWinningNumber();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = InputView.inputBonusNumber();
 
         // 로또 게임 객체 생성 및 당첨 번호 설정
