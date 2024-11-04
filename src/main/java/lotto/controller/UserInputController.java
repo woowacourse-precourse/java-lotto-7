@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.ExceptionMessages;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
 import lotto.view.UserInput;
@@ -17,15 +18,16 @@ public class UserInputController {
         try {
             num = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 정수값이 아닌 값이 들어왔습니다.");
+            throw new IllegalArgumentException
+                    (ExceptionMessages.NOT_INTEGER_EXCEPTION_MESSAGE.getMessage());
         }
         return num;
     }
 
-    private List<Integer> checkWinningNumber(String input){
+    private List<Integer> checkWinningNumber(String input) {
         List<String> unCheckWinningNumbers = Arrays.stream(input.split(",")).toList();
 
-        for(String winningNum : unCheckWinningNumbers){
+        for (String winningNum : unCheckWinningNumbers) {
             checkCanInteger(winningNum);
         }
 
@@ -38,12 +40,12 @@ public class UserInputController {
     }
 
 
-    public void purchaseAmountInput(){
+    public void purchaseAmountInput() {
         PurchaseAmount.getPurchaseAmount
                 (checkCanInteger(userInput.promptPurchaseAmountInput()));
     }
 
-    public void winningLottoInput(){
+    public void winningLottoInput() {
         WinningLotto.getWinningLotto
                 (checkWinningNumber(userInput.promptWinningNumberInput()),
                         checkCanInteger(userInput.promptBonusNumberInput()));

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.ExceptionMessages;
+
 import java.util.*;
 
 public class WinRecord {
@@ -13,7 +15,8 @@ public class WinRecord {
     }
 
     public static WinRecord getWinRecord() {
-        if (winRecordInstance == null) throw new IllegalArgumentException("[ERROR] 싱글톤 객체가 생성되기 전에 불렀습니다.");
+        if (winRecordInstance == null) throw new IllegalArgumentException
+                (ExceptionMessages.SINGLETON_NOT_CREATED_EXCEPTION_MESSAGE.getMessage());
         return winRecordInstance;
     }
 
@@ -61,9 +64,11 @@ public class WinRecord {
         private static void checkBoundaryWinRecode(List<Integer> winRecordInput) {
             for (Integer winRank : winRecordInput) {
                 if (winRank != NO_WIN_NUM && winRank > MAX_WIN_RANK)
-                    throw new IllegalArgumentException("[ERROR] 당첨 등수로 들어올 수 없는 값이 들어왔습니다.");
+                    throw new IllegalArgumentException
+                            (ExceptionMessages.WINNING_RANK_EXCEPTION_MESSAGE.getMessage());
                 if (winRank != NO_WIN_NUM && winRank < MIN_WIN_RANK)
-                    throw new IllegalArgumentException("[ERROR] 당첨 등수로 들어올 수 없는 값이 들어왔습니다.");
+                    throw new IllegalArgumentException
+                            (ExceptionMessages.WINNING_RANK_EXCEPTION_MESSAGE.getMessage());
             }
         }
     }

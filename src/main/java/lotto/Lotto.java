@@ -23,7 +23,7 @@ public class Lotto {
     protected static class ValidatorLottoNumber {
         public ValidatorLottoNumber(List<Integer> numbers) {
             validate(numbers);
-            for(int num : numbers){
+            for (int num : numbers) {
                 checkBoundaryLottoNumber(num);
             }
             checkDuplicatesNumber(numbers);
@@ -38,21 +38,25 @@ public class Lotto {
 
         private void validate(List<Integer> numbers) {
             if (numbers.size() != LOTTO_NUMBER_COUNT) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+                throw new IllegalArgumentException
+                        (ExceptionMessages.LOTTO_COUNT_OVER_EXCEPTION_MESSAGE.getMessage());
             }
         }
 
         private static void checkBoundaryLottoNumber(int number) {
             if (number > MAX_LOTTO_NUMBER)
-                throw new IllegalArgumentException("[ERROR] 로또 번호가 범위를 벗어나는 번호가 있습니다.");
+                throw new IllegalArgumentException
+                        (ExceptionMessages.LOTTO_BOUNDARY_OVER_EXCEPTION_MESSAGE.getMessage());
             if (number < MIN_LOTTO_NUMBER)
-                throw new IllegalArgumentException("[ERROR] 로또 번호가 범위를 벗어나는 번호가 있습니다.");
+                throw new IllegalArgumentException
+                        (ExceptionMessages.LOTTO_BOUNDARY_OVER_EXCEPTION_MESSAGE.getMessage());
         }
 
         private static void checkDuplicatesNumber(List<Integer> numbers) {
             boolean hasDuplicates = numbers.stream().distinct().count() != numbers.size();
             if (hasDuplicates) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 번호가 있습니다.");
+                throw new IllegalArgumentException
+                        (ExceptionMessages.LOTTO_DUPLICATE_EXCEPTION_MESSAGE.getMessage());
             }
         }
     }

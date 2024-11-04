@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.ExceptionMessages;
 import lotto.Lotto;
 
 import java.util.List;
@@ -15,7 +16,8 @@ public class WinningLotto extends Lotto {
     }
 
     public static WinningLotto getWinningLotto() {
-        if (winningLottoInstance == null) throw new IllegalArgumentException("[ERROR] 싱글톤 객체가 생성되기 전에 불렀습니다.");
+        if (winningLottoInstance == null) throw new IllegalArgumentException
+                (ExceptionMessages.SINGLETON_NOT_CREATED_EXCEPTION_MESSAGE.getMessage());
         return winningLottoInstance;
     }
 

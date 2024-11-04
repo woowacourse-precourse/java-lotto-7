@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.ExceptionMessages;
+
 public class PurchaseAmount {
     private final int purchaseAmount;
     private static PurchaseAmount purchaseAmountInstance;
@@ -9,8 +11,9 @@ public class PurchaseAmount {
         purchaseAmount = purchaseInput;
     }
 
-    public static PurchaseAmount getPurchaseAmount(){
-        if(purchaseAmountInstance == null) throw new IllegalArgumentException("[ERROR] 싱글톤 객체가 생성되기 전에 불렀습니다.");
+    public static PurchaseAmount getPurchaseAmount() {
+        if (purchaseAmountInstance == null) throw new IllegalArgumentException
+                (ExceptionMessages.SINGLETON_NOT_CREATED_EXCEPTION_MESSAGE.getMessage());
         return purchaseAmountInstance;
     }
 
@@ -46,14 +49,17 @@ public class PurchaseAmount {
 
         private static void checkBoundaryPurchaseAmount(int purchaseAmount) {
             if (purchaseAmount < MIN_PURCHASE_AMOUNT)
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1_000이상 100_000 이하의 값만 가능합니다.");
+                throw new IllegalArgumentException
+                        (ExceptionMessages.PURCHASE_BOUNDARY_OVER_EXCEPTION_MESSAGE.getMessage());
             if (purchaseAmount > MAX_PURCHASE_AMOUNT)
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1_000이상 100_000 이하의 값만 가능합니다.");
+                throw new IllegalArgumentException
+                        (ExceptionMessages.PURCHASE_BOUNDARY_OVER_EXCEPTION_MESSAGE.getMessage());
         }
 
         private static void checkMultipleOfThousand(int purchaseAmount) {
             if (purchaseAmount % 1000 != 0)
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로만 가능합니다.");
+                throw new IllegalArgumentException
+                        (ExceptionMessages.PURCHASE_MULTIPLE_THOUSAND_EXCEPTION_MESSAGE.getMessage());
         }
     }
 }
