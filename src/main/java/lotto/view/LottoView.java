@@ -41,7 +41,7 @@ public class LottoView {
         return inputSupplier.get();
     }
 
-    public String inputWinningLottos() {
+    public String inputWinningNumbers() {
         outputConsumer.accept(PROMPT_WINNING_NUMBERS);
         return inputSupplier.get();
     }
@@ -49,12 +49,6 @@ public class LottoView {
     public String inputBonusNumber() {
         outputConsumer.accept(PROMPT_BONUS_NUMBER);
         return inputSupplier.get();
-    }
-
-    public void printRottos(List<Lotto> lottos) {
-        outputConsumer.accept(String.format(PURCHASED_TICKETS_MESSAGE, lottos.size()));
-        lottos.forEach(this::printLotto);
-        outputConsumer.accept("");
     }
 
     public void printStatistics(Map<LottoPrizeInfo, Integer> prizeCounts, Double rate) {
@@ -65,6 +59,12 @@ public class LottoView {
 
         outputConsumer.accept("");
         outputConsumer.accept(String.format(YIELD, rate));
+    }
+
+    public void printRottos(List<Lotto> lottos) {
+        outputConsumer.accept(String.format(PURCHASED_TICKETS_MESSAGE, lottos.size()));
+        lottos.forEach(this::printLotto);
+        outputConsumer.accept("");
     }
 
     private void printLotto(Lotto lotto) {
