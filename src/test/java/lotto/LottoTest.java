@@ -42,7 +42,7 @@ class LottoTest {
     @Test
     void 로또_발급_테스트() {
         LottoGame lottoGame = new LottoGame();
-        assertSimpleTest(() -> lottoGame.lottoIssuance(5000));
+        assertSimpleTest(() -> lottoGame.lottoIssuance(5));
     }
 
     @Test
