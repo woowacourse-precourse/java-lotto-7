@@ -9,6 +9,7 @@ public class Price {
 
 	private static final int PRICE_DIVISIBILITY_UNIT = 1000;
 	private static final int PERCENTAGE_MULTIPLIER = 100;
+	private static final int ZERO = 0;
 
 	private final int price;
 
@@ -32,13 +33,13 @@ public class Price {
 	}
 
 	private void isDivisibleByThousand(int price) {
-		if (price % PRICE_DIVISIBILITY_UNIT != 0) {
+		if (price % PRICE_DIVISIBILITY_UNIT != ZERO) {
 			throw new IllegalArgumentException(INVALID_PRICE_VALUE.getMessage());
 		}
 	}
 
 	private void isPositive(int price) {
-		if (price <= 0) {
+		if (price <= ZERO) {
 			throw new IllegalArgumentException(INVALID_PRICE_AMOUNT.getMessage());
 		}
 	}
