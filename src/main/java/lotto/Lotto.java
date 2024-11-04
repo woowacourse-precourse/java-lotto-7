@@ -20,7 +20,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.WIN_NUMBER_SIZE_MUST_6.getMessage());
         }
         if (Validator.hasDuplicateNumber(numbers)) {
             throw new IllegalArgumentException("[ERROR] " + ErrorMessage.DUPLICATE_WIN_NUMBERS.getMessage());
