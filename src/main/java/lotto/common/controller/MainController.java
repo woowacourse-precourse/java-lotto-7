@@ -25,30 +25,42 @@ public class MainController {
     }
 
     public void control() {
-        long moneyValue = promptForMoneyInput();
-        Purchase purchase = processLottoPurchase(moneyValue);
+        Purchase purchaseInput = promptForMoneyInput();
+        Purchase purchase = processLottoPurchase(purchaseInput);
 
         setupWinningLotto(purchase.getLottoResultId());
         displayLottoResult(purchase.getId());
     }
 
-    private long promptForMoneyInput() {
-        outputHandler.printMoneyPromptMessage();
-        return inputHandler.inputMoney();
+    private Purchase promptForMoneyInput() {
+        while (true) {
+            try {
+                outputHandler.printMoneyPromptMessage();
+                long moneyValue = inputHandler.inputMoney();
+                return purchaseController.createPurchase(moneyValue);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private Purchase processLottoPurchase(long moneyValue) {
-        Purchase purchase = purchaseController.createPurchase(moneyValue);
+    private Purchase processLottoPurchase(Purchase purchase) {
         outputHandler.printBuyingLottoMessage(purchase.getMoney().getQuantitiesCanBuy());
         LottoResults lottosInfo = lottoController.getLottosInfo(purchase.getLottoResultId());
         outputHandler.printGeneratedLottos(lottosInfo);
         return purchase;
     }
 
-    private void setupWinningLotto(String lottoResultId) {
-        List<Integer> numbers = promptForWinningNumbers();
-        int bonusNumber = promptForBonusNumber();
-        lottoController.createWinningLotto(lottoResultId, numbers, bonusNumber);
+    private LottoResults setupWinningLotto(String lottoResultId) {
+        while (true) {
+            try {
+                List<Integer> numbers = promptForWinningNumbers();
+                int bonusNumber = promptForBonusNumber();
+                return lottoController.createWinningLotto(lottoResultId, numbers, bonusNumber);
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Integer> promptForWinningNumbers() {

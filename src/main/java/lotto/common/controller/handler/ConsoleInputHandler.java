@@ -16,15 +16,33 @@ public class ConsoleInputHandler {
     }
 
     public long inputMoney() {
-        return inputWithValidationAndParse(InputParser::parseLong);
+        while (true) {
+            try {
+                return inputWithValidationAndParse(InputParser::parseLong);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Integer> inputWinningLotto() {
-        return inputWithValidationAndParse(InputParser::parseIntegerList);
+        while (true) {
+            try {
+                return inputWithValidationAndParse(InputParser::parseIntegerList);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int inputBonusNumber() {
-        return inputWithValidationAndParse(InputParser::parseInt);
+        while (true) {
+            try {
+                return inputWithValidationAndParse(InputParser::parseInt);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public <T> T inputWithValidationAndParse(Function<String, T> parser) {
