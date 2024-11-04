@@ -100,9 +100,9 @@ WinningNumbers
 -[x] 당첨 번호 중복 입력
 
 WinningLottoNumber
--[ ] 6개 이상의 숫자 입력
--[ ] 중복된 숫자 입력
--[ ] 1~45 사이가 아닌 숫자 입력
+-[x] 6개 이상의 숫자 입력
+-[x] 중복된 숫자 입력
+-[x] 1~45 사이가 아닌 숫자 입력
 
 BonusNumberValidate
 -[x] 1~45 사이가 아닌 숫자 입력

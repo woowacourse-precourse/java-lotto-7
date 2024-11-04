@@ -1,5 +1,12 @@
 package lotto.model;
 
+import static lotto.Exception.ExceptionErrorMessage.DUPLICATED_LOTTO_NUMBER_MESSAGE;
+import static lotto.Exception.ExceptionErrorMessage.OUT_OF_RANGE_LOTTO_NUMBER_MESSAGE;
+import static lotto.Exception.ExceptionErrorMessage.OUT_OF_RANGE_LOTTO_SIZE_MESSAGE;
+import static lotto.constant.LottoValue.LOTTO_NUMBERS_LENGTH;
+import static lotto.constant.LottoValue.MAX_LOTTO_NUMBER;
+import static lotto.constant.LottoValue.MIN_LOTTO_NUMBER;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,11 +24,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBERS_LENGTH.getValue()) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_SIZE_MESSAGE.toString());
         }
         if (!isDuplicate(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 중복 입력되었습니다.");
+            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER_MESSAGE.toString());
+        }
+        if (!isLottoNumberInRange(numbers)) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER_MESSAGE.toString());
         }
     }
 
@@ -32,6 +42,15 @@ public class Lotto {
                 return false;
             }
             set.add(number);
+        }
+        return true;
+    }
+
+    private boolean isLottoNumberInRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (!(number >= MIN_LOTTO_NUMBER.getValue() && number <= MAX_LOTTO_NUMBER.getValue())) {
+                return false;
+            }
         }
         return true;
     }
