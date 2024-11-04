@@ -108,7 +108,6 @@ public class Application {
         if (!input.matches("^([0-9]{1,2},){5}[0-9]{1,2}$")) { // 1~2자리 숫자로 시작, 쉼표로 구분된 5개의 숫자, 마지막엔 쉼표 없는 숫자
             throw new IllegalArgumentException(ERROR_MESSAGE + " 당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.");
         }
-
         List<Integer> numbers = stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -116,7 +115,6 @@ public class Application {
         if (numbers.stream().anyMatch(n -> n < 1 || n > 45)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 당첨 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
-
         if (numbers.size() != 6 || numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 중복되지 않는 6개의 숫자를 입력해 주세요.");
         }
