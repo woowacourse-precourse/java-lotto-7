@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class InputHandler {
+    private List<Integer> winningNumbers;
 
     public int getPurchaseAmount() {
         String input = Console.readLine();
@@ -12,6 +13,12 @@ public class InputHandler {
 
     public List<Integer> getWinningNumbers() {
         String input = Console.readLine();
-        return WinningNumbersValidator.validate(input);
+        winningNumbers = WinningNumbersValidator.validate(input);
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        String input = Console.readLine();
+        return BonusNumberValidator.validate(input, winningNumbers);
     }
 }
