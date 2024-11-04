@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.constants.Constants;
+import lotto.constants.LottoConstants;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.Test;
 
@@ -56,11 +56,8 @@ class LottoServiceTest {
     void 당첨_통계() {
         Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         String bonusNumber = "7";
-        List<Lotto> generatedLottoNumbers = Arrays.asList(
-                new Lotto(Arrays.asList(1, 2, 3, 10, 11, 12)),
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new Lotto(Arrays.asList(1, 3, 5, 7, 9, 11))
-        );
+        List<Lotto> generatedLottoNumbers = Arrays.asList(new Lotto(Arrays.asList(1, 2, 3, 10, 11, 12)),
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new Lotto(Arrays.asList(1, 3, 5, 7, 9, 11)));
 
         Map<Integer, Integer> expected = new HashMap<>();
         expected.put(3, 2);
@@ -69,7 +66,8 @@ class LottoServiceTest {
         expected.put(6, 1);
         expected.put(7, 0);
 
-        Map<Integer, Integer> result = service.calculateLottoStatistics(winningNumbers, bonusNumber, generatedLottoNumbers);
+        Map<Integer, Integer> result = service.calculateLottoStatistics(winningNumbers, bonusNumber,
+                generatedLottoNumbers);
         assertThat(result).isEqualTo(expected);
     }
 
@@ -82,9 +80,8 @@ class LottoServiceTest {
         lottoStatistics.put(6, 1);
         lottoStatistics.put(7, 0);
 
-        int expected = Constants.THREE_MATCHED_PRIZE
-                + Constants.FIVE_MATCHED_PRIZE
-                + Constants.SIX_MATCHED_PRIZE;
+        int expected = LottoConstants.THREE_MATCHED_PRIZE + LottoConstants.FIVE_MATCHED_PRIZE
+                + LottoConstants.SIX_MATCHED_PRIZE;
         assertThat(service.calculateProfits(lottoStatistics)).isEqualTo(expected);
     }
 
@@ -93,10 +90,8 @@ class LottoServiceTest {
         int lottoCount = 10;
         int lottoSum = 5000;
 
-        double expectedRate = (double) lottoSum / (lottoCount * Constants.PURCHASE_UNIT) * 100;
-        expectedRate = new BigDecimal(expectedRate)
-                .setScale(2, RoundingMode.HALF_UP)
-                .doubleValue();
+        double expectedRate = (double) lottoSum / (lottoCount * LottoConstants.PURCHASE_UNIT) * 100;
+        expectedRate = new BigDecimal(expectedRate).setScale(2, RoundingMode.HALF_UP).doubleValue();
 
         assertThat(service.calculateRateOfReturn(lottoCount, lottoSum)).isEqualTo(expectedRate);
     }
