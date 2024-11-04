@@ -1,6 +1,7 @@
 package lotto.dto;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.stream.Collectors;
@@ -15,7 +16,7 @@ public record StatisticsDto(EnumMap<Rank, Integer> rankStatistics, float profitR
     public String getStatisticsAsString() {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.NONE)
-                .sorted(Comparator.comparingInt(Rank::getMatchNumber))
+                .sorted(Collections.reverseOrder())
                 .map(rank -> String.format("%s - %d개", rank, rankStatistics.getOrDefault(rank, 0)))
                 .collect(Collectors.joining("\n"));
     }
