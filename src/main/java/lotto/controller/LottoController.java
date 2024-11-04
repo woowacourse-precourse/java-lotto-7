@@ -8,6 +8,7 @@ import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
 import lotto.model.WinningStatistic;
 import lotto.service.LottoFacade;
+import lotto.util.InputSupplier;
 import lotto.util.Parser;
 import lotto.validator.ValidatorFacade;
 import lotto.view.ViewFacade;
@@ -24,64 +25,55 @@ public class LottoController {
     }
 
     public void run() {
-        int cost = getValidatedCost();
+        int cost = getValidatedInput(this::getValidatedCost);
 
         int purchaseAmount = Parser.parsePurchaseAmount(cost);
 
         Lottos lottos = lottoFacade.issueLottos(purchaseAmount);
         viewFacade.showLottos(purchaseAmount, lottos);
 
-        WinningNumbers winningNumbers = getValidatedWinningNumbers();
+        WinningNumbers winningNumbers = getValidatedInput(this::getValidatedWinningNumbers);
 
-        winningNumbers = getValidatedWinningNumbersWithBonusNumber(winningNumbers);
+        WinningNumbers winningNumbersWithBonusNumber = getValidatedInput(
+                () -> getValidatedWinningNumbersWithBonusNumber(winningNumbers));
 
-        WinningStatistic winningStatistic = lottoFacade.getStatistic(cost, lottos, winningNumbers);
+        WinningStatistic winningStatistic = lottoFacade.getStatistic(cost, lottos, winningNumbersWithBonusNumber);
 
         viewFacade.showWinningStatistics(winningStatistic);
     }
 
-    private int getValidatedCost() {
+    private <T> T getValidatedInput(InputSupplier<T> supplier) {
         while (true) {
             try {
-                String costInput = viewFacade.getCost();
-                validatorFacade.validateCostInput(costInput);
-                int cost = Parser.parseToInt(costInput);
-                validatorFacade.validateCost(cost);
-                return cost;
+                return supplier.get();
             } catch (IllegalArgumentException e) {
                 viewFacade.showErrorMessage(e.getMessage());
             }
         }
+    }
+
+    private int getValidatedCost() {
+        String costInput = viewFacade.getCost();
+        validatorFacade.validateCostInput(costInput);
+        int cost = Parser.parseToInt(costInput);
+        validatorFacade.validateCost(cost);
+        return cost;
     }
 
     private WinningNumbers getValidatedWinningNumbers() {
-        while (true) {
-            try {
-                String winningNumbersInput = viewFacade.getWinningNumbers();
-                validatorFacade.validateNumbersInput(winningNumbersInput);
+        String winningNumbersInput = viewFacade.getWinningNumbers();
+        validatorFacade.validateNumbersInput(winningNumbersInput);
 
-                List<Integer> numbers = Parser.parseWinningNumbers(winningNumbersInput);
+        List<Integer> numbers = Parser.parseWinningNumbers(winningNumbersInput);
 
-                Lotto winningLotto = LottoFactory.creatLotto(numbers);
-                return WinningNumbersFactory.createWinningNumbers(winningLotto);
-            } catch (IllegalArgumentException e) {
-                viewFacade.showErrorMessage(e.getMessage());
-            }
-        }
+        Lotto winningLotto = LottoFactory.creatLotto(numbers);
+        return WinningNumbersFactory.createWinningNumbers(winningLotto);
     }
 
     private WinningNumbers getValidatedWinningNumbersWithBonusNumber(WinningNumbers winningNumbers) {
-        while (true) {
-            try {
-                String bonusNumberInput = viewFacade.getBonusNumber();
-                validatorFacade.validateBonusNumberInput(bonusNumberInput);
-                int bonusNumber = Parser.parseToInt(bonusNumberInput);
-                return winningNumbers.createWithBonusNumber(winningNumbers, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                viewFacade.showErrorMessage(e.getMessage());
-            }
-        }
+        String bonusNumberInput = viewFacade.getBonusNumber();
+        validatorFacade.validateBonusNumberInput(bonusNumberInput);
+        int bonusNumber = Parser.parseToInt(bonusNumberInput);
+        return winningNumbers.createWithBonusNumber(winningNumbers, bonusNumber);
     }
-
-
 }
