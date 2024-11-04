@@ -1,15 +1,14 @@
 package validator;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class WinningNumbersValidator {
 
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
+    private static final int LOTTO_NUMBER_COUNT = 6;
 
     public static void validate(List<Integer> winningNumbers) {
         validateNumberRange(winningNumbers);
@@ -33,7 +32,7 @@ public class WinningNumbersValidator {
     }
 
     private static void validateNumberCount(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
+        if (winningNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자로 입력해야 합니다.");
         }
     }

@@ -34,7 +34,7 @@ public class PurchaseAmountValidator {
     }
 
     private static void validateThousandUnitAmount(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위여야 합니다.");
         }
     }
