@@ -1,6 +1,6 @@
 package controller;
 
-import Service.LottoService;
+import service.LottoService;
 import model.Lotto;
 import model.Rank;
 import view.InputView;
