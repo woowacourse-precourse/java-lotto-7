@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.handler.ExceptionHandler;
+import lotto.model.domain.Lotto;
 import lotto.model.service.LottServiceImpl;
 import lotto.model.service.LottoService;
 import lotto.view.inputview.InputView;
@@ -103,6 +104,17 @@ class ApplicationTest extends NsTest {
         //when, then
         assertThrows(IllegalArgumentException.class,
                 () -> exceptionHandler.validateWinningNumbers(str));
+    }
+
+    @Test
+    @DisplayName("당첨번호의 개수가 6개가 아닐 경우 예외처리 하는 테스트")
+    public void winningNumbersCountNotSixExceptionTest() {
+        //given
+        String str = "1,2,3,4,5,6,7";
+        List<Integer> winningNumbers = lottoService.extractWinningNumbersFromString(str);
+        //when, then
+        assertThrows(IllegalArgumentException.class,
+                () -> new Lotto(winningNumbers));
     }
 
     @Override

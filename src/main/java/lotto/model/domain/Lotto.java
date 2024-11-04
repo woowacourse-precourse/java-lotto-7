@@ -1,5 +1,7 @@
 package lotto.model.domain;
 
+import lotto.message.error.ErrorMessage;
+
 import java.util.List;
 
 public class Lotto {
@@ -12,7 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_CNT.getMessage());
         }
     }
 
