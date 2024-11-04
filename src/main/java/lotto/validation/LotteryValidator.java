@@ -14,6 +14,7 @@ public class LotteryValidator {
             final int lottoPurchaseAmount = Integer.parseInt(inputPurchaseAmount);
             allowUnitMoney(lottoPurchaseAmount);
 
+            checkPurchaseAmountRange(lottoPurchaseAmount);
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -38,6 +39,17 @@ public class LotteryValidator {
             }
         } catch (IllegalArgumentException e) {
             System.out.println(DEFAULT_ERROR_MESSAGE + " 로또 구입 금액은 1,000원 단위여야 합니다.");
+        }
+    }
+
+    // 1천원 이하 구매, 10만원 이상 구매를 금지한다.
+    public void checkPurchaseAmountRange(final int inputPurchaseAmount) {
+        try {
+            if (inputPurchaseAmount < 1000 || inputPurchaseAmount > 100000) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(DEFAULT_ERROR_MESSAGE + " 로또 최소 구매 금액은 1천원 이상, 최대 구매 금액은 10만원입니다.");
         }
     }
 
