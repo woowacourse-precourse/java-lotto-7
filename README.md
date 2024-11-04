@@ -44,11 +44,5 @@
     - 당첨 번호와 보너스 번호는 1부터 45 사이의 숫자여야 하며, 유효하지 않은 경우에도 예외 처리합니다.
 
 
-## 프로젝트 구조
-/lotto
-├── Application.java
-├── InputHandler.java
-├── Lotto.java
-├── LottoManager.java
-├── Statistics.java
-└── README.md
+# 프로젝트 구조
+/lotto ├── Application.java ├── InputHandler.java ├── Lotto.java ├── LottoManager.java ├── Statistics.java └── README.md
