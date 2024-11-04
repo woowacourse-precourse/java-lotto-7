@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.data.Database;
 import lotto.data.Lotto;
 import lotto.data.Result;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -45,5 +46,11 @@ public class LottoMachineTest {
         assertThat(result.getBonusNumberMatch()).isEqualTo(1);
         assertThat(result.getFiveNumberMatch()).isEqualTo(1);
         assertThat(result.getFourNumberMatch()).isEqualTo(1);
+    }
+
+    @AfterEach
+    void tearDown() {
+        Database.purchaseLottoList.clear();
+        Database.result = new Result();
     }
 }
