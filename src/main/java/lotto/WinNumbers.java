@@ -4,8 +4,8 @@ import java.util.List;
 
 public class WinNumbers {
 
-    private List<Integer> WinNumbers;
-    private int bonusNumber;
+    private final List<Integer> WinNumbers;
+    private final int bonusNumber;
 
     public WinNumbers(List<Integer> winNumbers, int bonusNumber) {
         Validator.validateWinNumber(winNumbers);
