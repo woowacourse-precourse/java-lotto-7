@@ -5,7 +5,7 @@ import java.util.Map;
 public class LottoResultPrinter {
     private static final int LOTTO_PRICE = 1000;
 
-    public void printResult(Map<Integer, Integer> resultCount, int totalPrize, int purchaseAmount) {
+    public void printResult(Map<Integer, Integer> resultCount, int totalPrize, long purchaseAmount) {
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.printf("3개 일치 (5,000원) - %d개\n", resultCount.getOrDefault(3, 0));
@@ -18,7 +18,7 @@ public class LottoResultPrinter {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
-    private double calculateProfitRate(int totalPrize, int purchaseAmount) {
+    private double calculateProfitRate(int totalPrize, long purchaseAmount) {
         double profitRate = (double) totalPrize / purchaseAmount * 100;
         return Math.round(profitRate * 100) / 10.0; // 소수점 둘째 자리에서 반올림
     }

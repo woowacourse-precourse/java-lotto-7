@@ -11,8 +11,8 @@ public class LottoService {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 
-    public List<Lotto> generateLottos(int purchaseAmount) {
-        int lottoCount = purchaseAmount / LOTTO_PRICE;
+    public List<Lotto> generateLottos(long purchaseAmount) {
+        long lottoCount = purchaseAmount / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
