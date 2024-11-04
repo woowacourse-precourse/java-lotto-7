@@ -19,7 +19,8 @@ class LottoDrawMachineTest {
 
         // when
         lottoDrawMachine.compareLottoToWinning();
-        Map<Rank, Integer> rankResult = lottoDrawMachine.prizeWinningResult();
+        LottoResult lottoResult = lottoDrawMachine.prizeWinningResult();
+        Map<Rank, Integer> rankResult = lottoResult.getRankCounts();
 
         // then
         assertThat(rankResult.get(Rank.FIRST)).isEqualTo(1);
@@ -35,10 +36,11 @@ class LottoDrawMachineTest {
 
         // when
         lottoDrawMachine.compareLottoToWinning();
-        Map<Rank, Integer> rankResult = lottoDrawMachine.prizeWinningResult();
+        LottoResult lottoResult = lottoDrawMachine.prizeWinningResult();
+        Map<Rank, Integer> rankResult = lottoResult.getRankCounts();
 
         // then
-        assertThat(rankResult.getOrDefault(Rank.NONE, 0)).isEqualTo(1);
+        assertThat(rankResult.containsKey(Rank.NONE)).isFalse();
         assertThat(rankResult.getOrDefault(Rank.FIRST, 0)).isEqualTo(0);
     }
 
@@ -91,10 +93,11 @@ class LottoDrawMachineTest {
 
         // when
         lottoDrawMachine.compareLottoToWinning();
-        Map<Rank, Integer> result = lottoDrawMachine.prizeWinningResult();
+        LottoResult lottoResult = lottoDrawMachine.prizeWinningResult();
+        Map<Rank, Integer> rankResult = lottoResult.getRankCounts();
 
         // then
-        assertThat(result.get(Rank.FIFTH)).isEqualTo(2);
+        assertThat(rankResult.get(Rank.FIFTH)).isEqualTo(2);
     }
 
     @Test
