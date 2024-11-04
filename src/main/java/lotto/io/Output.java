@@ -7,8 +7,6 @@ import lotto.Lotto;
 import lotto.WinningType;
 
 public class Output {
-
-    private static final int TOTAL_WINNING_COUNT = 5;
     private NumberFormat numberFormat;
 
     public Output() {
