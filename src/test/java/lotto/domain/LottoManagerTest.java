@@ -15,7 +15,10 @@ class LottoManagerTest {
     static Stream<Arguments> provideLottoManagerCases() {
         return Stream.of(
                 Arguments.of(
-                        List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(7, 8, 9, 10, 11, 12))),
+                        List.of(
+                                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                                new Lotto(List.of(7, 8, 9, 10, 11, 12))
+                        ),
                         new WinnerLotto(List.of(1, 2, 3, 4, 5, 6)).addBonusNumber("7"),
                         "1등 1개 - 모든 번호 일치",
                         Map.of(Prize.FIRST, 1)
@@ -39,13 +42,19 @@ class LottoManagerTest {
                         Map.of(Prize.FOURTH, 1)
                 ),
                 Arguments.of(
-                        List.of(new Lotto(List.of(1, 2, 3, 7, 8, 9)), new Lotto(List.of(4, 5, 6, 7, 8, 9))),
+                        List.of(
+                                new Lotto(List.of(1, 2, 3, 7, 8, 9)),
+                                new Lotto(List.of(4, 5, 6, 7, 8, 9))
+                        ),
                         new WinnerLotto(List.of(1, 2, 3, 4, 5, 6)).addBonusNumber("10"),
                         "5등 2개 - 3개 번호 일치",
                         Map.of(Prize.FIFTH, 2)
                 ),
                 Arguments.of(
-                        List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(7, 8, 9, 10, 11, 12))),
+                        List.of(
+                                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                                new Lotto(List.of(7, 8, 9, 10, 11, 12))
+                        ),
                         new WinnerLotto(List.of(1, 2, 3, 7, 8, 9)).addBonusNumber("4"),
                         "5등 2개 - 보너스 볼 일치해도 5등",
                         Map.of(Prize.FIFTH, 2) // 예상 결과
