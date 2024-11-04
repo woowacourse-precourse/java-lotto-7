@@ -60,7 +60,7 @@ public class Validation {
 
     public static void validateRank(int rank) {
         if (rank < 1 || rank > PrizeAmount.values().length) {
-            throw new IllegalArgumentException("[Error] 로또 결과는 1등에서 6등 사이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 결과는 1등에서 6등 사이어야 합니다.");
         }
     }
 
