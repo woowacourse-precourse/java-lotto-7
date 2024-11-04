@@ -7,6 +7,10 @@ import lotto.lottoModel.LottoDTO;
 import lotto.lottoModel.StatisticsLottoDTO;
 
 public class OutputView {
+    private static final int ONE_THOUSAND = 1000;
+    private static final int HIT_THREE = 3;
+    private static final int HIT_FIVE = 5;
+    private static final int HIT_Six = 6;
     private static final String HOW_MANY_BUY = "%d개를 구매했습니다.";
     private static final String STATISTIC_START = "당첨 통계\n---";
     private static final String VALUE_MATCH_START = "%d개 일치";
@@ -17,7 +21,7 @@ public class OutputView {
 
     public void howManyBuy(String numberOfBuy) {
         System.out.println();
-        System.out.printf(HOW_MANY_BUY, (Long.parseLong(numberOfBuy) / 1000));
+        System.out.printf(HOW_MANY_BUY, (Long.parseLong(numberOfBuy) / ONE_THOUSAND));
         System.out.println();
     }
 
@@ -33,13 +37,13 @@ public class OutputView {
     public void statisticStart(StatisticsLottoDTO stats) {
         System.out.println();
         System.out.println(STATISTIC_START);
-        for (int i = 3; i <= 6; i++) {
+        for (int i = HIT_THREE; i <= HIT_Six; i++) {
             statisticEnd(i, stats);
         }
     }
 
     public void statisticEnd(int i, StatisticsLottoDTO stats) {
-        if (i == 5) { // 맞춘 개수가 5개일 때
+        if (i == HIT_FIVE) { // 맞춘 개수가 5개일 때
             System.out.printf(VALUE_MATCH_START + VALUE_MATCH_END, i, LottoPrize.getPrize(i, false),
                     stats.getHitNumberValue(i) - stats.getBonusNumberFrequency()); // 그냥 5개인 경우
             System.out.println();
