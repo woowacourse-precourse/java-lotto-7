@@ -22,6 +22,13 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .map(lottoNumber -> Integer.toString(lottoNumber.getLottoNumber()))
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
+
     private void validateLottoNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
