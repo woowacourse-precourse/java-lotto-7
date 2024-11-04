@@ -26,7 +26,7 @@ public class Lotto {
     }
 
     private static Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_NUMBER_COUNT);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_NUMBER_COUNT));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
