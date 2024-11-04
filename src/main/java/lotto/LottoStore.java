@@ -8,11 +8,9 @@ public class LottoStore {
 
     public static final int LOTTO_PRICE = 1000;
     private LottoGenerator lottoGenerator;
-    private Map<LottoRank, PrizeInfo> rankInfo;
 
     public LottoStore() {
         this.lottoGenerator = new LottoGenerator();
-        createRankInfo();
     }
 
     public int calculateLottoCount(int money) {
@@ -35,21 +33,6 @@ public class LottoStore {
         if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + LOTTO_PRICE + "원 단위여야 합니다.");
         }
-    }
-
-    private void createRankInfo() {
-        rankInfo = Map.of(
-            LottoRank.FIRST, new PrizeInfo(6, false, 2000000000),
-            LottoRank.SECOND, new PrizeInfo(5, true, 30000000),
-            LottoRank.THIRD, new PrizeInfo(5, false, 1500000),
-            LottoRank.FOURTH, new PrizeInfo(4, false, 50000),
-            LottoRank.FIFTH, new PrizeInfo(3, false, 5000),
-            LottoRank.NONE, new PrizeInfo(0, false, 0)
-        );
-    }
-
-    public Map<LottoRank, PrizeInfo> getRankInfo() {
-        return rankInfo;
     }
 
 }

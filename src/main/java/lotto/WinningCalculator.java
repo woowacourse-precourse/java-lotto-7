@@ -7,8 +7,7 @@ import java.util.Set;
 
 public class WinningCalculator {
 
-    public Map<LottoRank, Integer> calculateWinningCountsByRank(LottoStore lottoStore, WinningLotto winningLotto, Customer customer) {
-        Map<LottoRank, PrizeInfo> rankInfo = lottoStore.getRankInfo();
+    public Map<LottoRank, Integer> calculateWinningCountsByRank(WinningLotto winningLotto, Customer customer) {
         List<Integer> winningLottoNumbers = winningLotto.getNumbers();
         int bonusNumber = winningLotto.getBonusNumber();
         List<Lotto> purchasedLotto = customer.getLottos();
@@ -17,21 +16,19 @@ public class WinningCalculator {
 
         for (Lotto userLotto : purchasedLotto) {
             List<Integer> userLottoNumbers = userLotto.getNumbers();
-            LottoRank lottoRank = calculateRank(rankInfo, winningLottoNumbers, bonusNumber, userLottoNumbers);
+            LottoRank lottoRank = calculateRank(winningLottoNumbers, bonusNumber, userLottoNumbers);
             winningCountsByRank.put(lottoRank, winningCountsByRank.getOrDefault(lottoRank, 0) + 1);
         }
 
         return winningCountsByRank;
     }
 
-    private LottoRank calculateRank(Map<LottoRank, PrizeInfo> rankInfo, List<Integer> winningLottoNumbers, int bonusNumber, List<Integer> userLottoNumbers) {
+    private LottoRank calculateRank(List<Integer> winningLottoNumbers, int bonusNumber, List<Integer> userLottoNumbers) {
         int matchCountResult = calculateMatchCount(winningLottoNumbers, userLottoNumbers);
         boolean matchBonusResult = isMatchBonusNumber(bonusNumber, userLottoNumbers);
 
-        Set<LottoRank> lottoRanks = rankInfo.keySet();
-        for (LottoRank lottoRank : lottoRanks) {
-            PrizeInfo info = rankInfo.get(lottoRank);
-            if (info.getMatchCount() == matchCountResult && info.isMatchBonus() == matchBonusResult) {
+        for (LottoRank lottoRank : LottoRank.values()) {
+            if (lottoRank.getMatchCount() == matchCountResult && lottoRank.isMatchBonus() == matchBonusResult) {
                 return lottoRank;
             }
         }
@@ -52,20 +49,16 @@ public class WinningCalculator {
         return userLottoNumbers.contains(bonusNumber);
     }
 
-    private int calculateTotalPrizeMoney(Map<LottoRank, PrizeInfo> rankInfo, Map<LottoRank, Integer> winningCountsByRank) {
+    private int calculateTotalPrizeMoney(Map<LottoRank, Integer> winningCountsByRank) {
         int totalPrizeMoney = 0;
-
-        Set<LottoRank> lottoRanks = winningCountsByRank.keySet();
-        for (LottoRank lottoRank : lottoRanks) {
-            PrizeInfo prizeInfo = rankInfo.get(lottoRank);
-            totalPrizeMoney += prizeInfo.getPrize() * winningCountsByRank.get(lottoRank);
+        for (LottoRank lottoRank : winningCountsByRank.keySet()) {
+            totalPrizeMoney += lottoRank.getPrize() * winningCountsByRank.get(lottoRank);
         }
-
         return totalPrizeMoney;
     }
 
-    public double calculateProfitRate(LottoStore lottoStore, Map<LottoRank, Integer> winningCountsByRank, int purchasedMoney) {
-        int totalPrizeMoney = calculateTotalPrizeMoney(lottoStore.getRankInfo(), winningCountsByRank);
+    public double calculateProfitRate(Map<LottoRank, Integer> winningCountsByRank, int purchasedMoney) {
+        int totalPrizeMoney = calculateTotalPrizeMoney(winningCountsByRank);
         double result = calculatePercentage(totalPrizeMoney,purchasedMoney);
         return roundToTwoDecimalPlaces(result);
     }

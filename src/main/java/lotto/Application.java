@@ -24,10 +24,10 @@ public class Application {
 
         WinningCalculator winningCalculator = new WinningCalculator();
 
-        Map<LottoRank, Integer> winningCountsByRank = winningCalculator.calculateWinningCountsByRank(lottoStore, winningLotto, customer);
-        consoleHandler.printWinningResult(winningCountsByRank, lottoStore.getRankInfo());
+        Map<LottoRank, Integer> winningCountsByRank = winningCalculator.calculateWinningCountsByRank(winningLotto, customer);
+        consoleHandler.printWinningResult(winningCountsByRank);
 
-        double profitRate = winningCalculator.calculateProfitRate(lottoStore, winningCountsByRank, money);
+        double profitRate = winningCalculator.calculateProfitRate(winningCountsByRank, money);
         consoleHandler.printProfitRate(profitRate);
     }
 

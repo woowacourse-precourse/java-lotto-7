@@ -44,26 +44,26 @@ public class ConsoleHandler {
         return readValidNumber();
     }
 
-    public void printWinningResult(Map<LottoRank, Integer> winningCountsByRank, Map<LottoRank, PrizeInfo> rankInfo) {
+    public void printWinningResult(Map<LottoRank, Integer> winningCountsByRank) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        rankInfo.keySet().stream()
-                .filter(lottoRank -> lottoRank.getPrintOrder() != null)
+        LottoRank[] ranks = LottoRank.values();
+        Arrays.stream(ranks)
+                .filter(lottoRank -> lottoRank != LottoRank.NONE)
                 .sorted(Comparator.comparingInt(LottoRank::getPrintOrder))
                 .forEach(lottoRank -> {
-                    PrizeInfo prizeInfo = rankInfo.get(lottoRank);
                     int winningCount = winningCountsByRank.getOrDefault(lottoRank, 0);
-                    printRankResult(prizeInfo, winningCount);
+                    printRankResult(lottoRank, winningCount);
                 });
     }
 
-    private void printRankResult(PrizeInfo prizeInfo, int winningCount) {
-        System.out.print(prizeInfo.getMatchCount() + "개 일치");
-        if (prizeInfo.isMatchBonus()) {
+    private void printRankResult(LottoRank lottoRank, int winningCount) {
+        System.out.print(lottoRank.getMatchCount() + "개 일치");
+        if (lottoRank.isMatchBonus()) {
             System.out.print(", 보너스 볼 일치");
         }
-        System.out.print(" (" + formatWithComma(prizeInfo.getPrize()) + "원) - ");
+        System.out.print(" (" + formatWithComma(lottoRank.getPrize()) + "원) - ");
         System.out.println(winningCount + "개");
     }
 
