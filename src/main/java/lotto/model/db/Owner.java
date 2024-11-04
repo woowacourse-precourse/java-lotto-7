@@ -7,8 +7,8 @@ import lotto.constant.UserId;
 public class Owner implements User {
 
     private final UserId id;
-    private Lotto winningLotto;
-    private Integer bonus;
+    private final Lotto winningLotto;
+    private final Integer bonus;
 
     private Owner(UserId id, Lotto winningLotto, Integer bonus) {
         this.id = id;

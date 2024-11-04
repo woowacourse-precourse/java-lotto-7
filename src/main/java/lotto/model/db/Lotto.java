@@ -13,9 +13,13 @@ public class Lotto {
     }
 
     private void validateDuplication(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (isDuplicated(numbers)) {
             throw new BusinessException("로또 번호는 중복되지 않는 번호 6개여야 합니다.");
         }
+    }
+
+    private boolean isDuplicated(List<Integer> numbers) {
+        return numbers.stream().distinct().count() != 6;
     }
 
     public boolean contains(int num) {
