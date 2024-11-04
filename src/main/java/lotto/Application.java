@@ -218,7 +218,7 @@ public class Application {
         System.out.println(FOUR_MATCH_MESSAGE + matchCounts.getOrDefault(LottoRank.FOURTH_RANK, 0) + UNIT);
         System.out.println(FIVE_MATCH_MESSAGE + matchCounts.getOrDefault(LottoRank.THIRD_RANK, 0) + UNIT);
         System.out.println(FIVE_MATCH_BONUS_MESSAGE + matchCounts.getOrDefault(LottoRank.SECOND_RANK, 0) + UNIT);
-        System.out.println(SIX_MATCH_MESSAGE + matchCounts.getOrDefault(LottoRank.FIFTH_RANK, 0) + UNIT);
+        System.out.println(SIX_MATCH_MESSAGE + matchCounts.getOrDefault(LottoRank.FIRST_RANK, 0) + UNIT);
 
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
