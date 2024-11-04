@@ -2,6 +2,7 @@ package lotto.application.model;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Lotto implements Model {
     private final List<Integer> numbers;
@@ -21,5 +22,13 @@ public class Lotto implements Model {
     @Override
     public String toString(){
         return Arrays.toString(numbers.toArray());
+    }
+
+    public WinningRanking match(List<Integer> winningNumber, int bonusNumber){
+        int count = (int) this.numbers.stream()
+                .filter(winningNumber::contains)
+                .count();
+
+        return WinningRanking.findWinningRankingByMatchedCount(count);
     }
 }
