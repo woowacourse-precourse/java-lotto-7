@@ -1,7 +1,7 @@
 package lotto.controller;
 
+import java.util.function.Supplier;
 import lotto.domain.InputMoney;
-import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.service.LottoService;
 import lotto.domain.Lottos;
@@ -22,8 +22,7 @@ public class LottoController {
     }
 
     public void start() {
-        long userInputMoney = inputView.getUserInputMoney();
-        InputMoney inputMoney = new InputMoney(userInputMoney);
+        InputMoney inputMoney = getInputMoney();
         Lottos lottos = lottoService.buyLottos(inputMoney);
         outputView.displayBuyLottos(lottos);
 
@@ -33,13 +32,31 @@ public class LottoController {
         outputView.displayWinningResult(lottoResult);
     }
 
+    private InputMoney getInputMoney() {
+        return retryInput(() ->
+                new InputMoney(inputView.getUserInputMoney())
+        );
+    }
+
     private WinningNumbers getWinningNumbers() {
-        String inputWinningNumbers = inputView.getWinningNumbers();
-        return new WinningNumbers(inputWinningNumbers);
+        return retryInput(() ->
+                new WinningNumbers(inputView.getWinningNumbers())
+        );
     }
 
     private BonusNumber getBonusNumber() {
-        String inputBonusNumber = inputView.getBonusNumber();
-        return new BonusNumber(inputBonusNumber);
+        return retryInput(() ->
+                new BonusNumber(inputView.getBonusNumber())
+        );
+    }
+
+    private <T> T retryInput(Supplier<T> inputSupplier) {
+        while (true) {
+            try {
+                return inputSupplier.get();  // 입력 받기 시도
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());  // 에러 메시지 출력
+            }
+        }
     }
 }
