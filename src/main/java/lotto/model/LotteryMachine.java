@@ -29,12 +29,6 @@ public class LotteryMachine {
         }
     }
 
-    public void printLottos() {
-        for (int i = 0; i < lottos.size(); i++) {
-            System.out.println(lottos.get(i).getNumbers());
-        }
-    }
-
     private List<Integer> pickRandomNumbers() {
         List<Integer> drawLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(drawLotto);
