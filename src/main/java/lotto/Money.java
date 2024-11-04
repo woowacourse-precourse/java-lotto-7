@@ -14,5 +14,9 @@ public class Money {
             throw new IllegalArgumentException("금액은 음수일 수 없습니다");
         }
     }
+
+    public boolean hasChangesWith(long price) {
+        return amount % price != 0;
+    }
 }
 
