@@ -12,7 +12,7 @@ public class Consts {
     public static final String WINNING_NUMBER_NOT_DUPLICATED_ERROR = "당첨 번호는 중복되면 안됩니다.";
     public static final String LOTTO_NUMBER_MUST_BE_BETWEEN_ONE_FORTY_FIVE_ERROR = "로또 번호는 1이상 45이하의 숫자여야 합니다.";
     public static final String WINNING_NUMBER_SIZE_MUST_BE_6_ERROR = "당첨 번호는 6개를 입력해야 합니다.";
-    public static final String CLASS_CAST_NOT_ACCEPTABLE_ERROR = "클래스 캐스팅 오류g";
+    public static final String CLASS_CAST_NOT_ACCEPTABLE_ERROR = "클래스 캐스팅 오류";
 
     //TODO: 입력 메세지는 INPUT_MESSAGE를 변수명 앞에 계속 붙여도 되겠다.
     public static final String INPUT_MESSAGE_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
