@@ -40,7 +40,9 @@ public class LottoCalculatorService {
 
     private void duplicateLottoNumberCalculate(UserLotto userLottoNumber, int duplicateNumber, Lotto winningLotto) {
         LottoRanking lottoRanking = getLottoRanking(duplicateNumber, matchesBonusNumberCondition(userLottoNumber, winningLotto));
-        addWinningCount(lottoRanking);
+        if (lottoRanking != null) {
+            addWinningCount(lottoRanking);
+        }
     }
 
     private boolean matchesBonusNumberCondition(UserLotto userLottoNumber, Lotto winningLotto) {
@@ -48,9 +50,7 @@ public class LottoCalculatorService {
     }
 
     private void addWinningCount(LottoRanking ranking) {
-        if (ranking != null) {
-            winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
-        }
+        winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
     }
 
     public String profitCalculate(User user) {
