@@ -3,7 +3,7 @@ package lotto.week3.controller;
 import lotto.week3.dto.PurchaseRequestDto;
 import lotto.week3.dto.WinningNumberRequestDto;
 import lotto.week3.global.error.handler.InputHandler;
-import lotto.week3.model.LottoMatching;
+import lotto.week3.domain.LottoMatching;
 import lotto.week3.model.LottoStatistics;
 import lotto.week3.service.LottoService;
 import lotto.week3.view.OutputView;
@@ -20,7 +20,6 @@ public class LottoController {
         try {
             // 구입 금액 입력
             PurchaseRequestDto purchaseAmount = InputHandler.purchaseInputHandler();
-           // System.out.println("금액 확인 해볼게 : " + purchaseAmount.getMoney());
 
             // 로또 발행
             LottoMatching matching = lottoService.generatorLottos(purchaseAmount);

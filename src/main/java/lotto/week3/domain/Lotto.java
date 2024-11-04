@@ -12,12 +12,10 @@ public class Lotto {
     private static final int MAX_NUMBER = 45;
     private final List<Integer> numbers;
 
-  public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) {
         this.numbers = List.copyOf(numbers);
         validate(numbers);
     }
-
-
 
     private void validate(List<Integer> numbers) {
         if (numbers == null) {
@@ -37,7 +35,7 @@ public class Lotto {
         }
     }
 
-    private Boolean hasDuplicates(List<Integer> numbers){
+    private Boolean hasDuplicates(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         return set.size() != numbers.size();
     }
@@ -48,11 +46,11 @@ public class Lotto {
 
 
     // TODO: 추가 기능 구현
-    public int matchCount(List<Integer> winningNumber){
+    public int matchCount(List<Integer> winningNumber) {
         return (int) numbers.stream().filter(winningNumber::contains).count();
     }
 
-    public boolean contains(int number){
+    public boolean contains(int number) {
         return numbers.contains(number);
     }
 
