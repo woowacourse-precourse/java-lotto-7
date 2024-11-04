@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class LottoStatisticsService {
 
-    public LottoStatistics calculateStatistics(List<LottoResult> results, int totalPurchaseAmount) {
+    public LottoStatistics calculateStatistics(List<LottoResult> results, int buyingPrice) {
         Map<Winning, Integer> winningStats = calculateWinningStatistics(results);
         int totalWinningAmount = calculateTotalWinningAmount(results);
         double profitRate = calculateProfitRate(totalWinningAmount, totalPurchaseAmount);
@@ -35,7 +35,7 @@ public class LottoStatisticsService {
 
     private int calculateTotalWinningAmount(List<LottoResult> results) {
         return results.stream()
-                .mapToInt(LottoResult::getReward)
+                .mapToInt(LottoResult::getPrize)
                 .sum();
     }
 

@@ -8,7 +8,7 @@ public class LottoResult {
     }
 
     // 당첨금 반환
-    public int getReward() {
+    public int getPrize() {
         return winning.getPrize();
     }
 

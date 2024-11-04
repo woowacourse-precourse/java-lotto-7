@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningCalculateService {
-    public static List<LottoResult> calculateLottoResults(List<Lotto> lottos, WinningLotto winningLotto) {
+    public List<LottoResult> calculateLottoResults(List<Lotto> lottos, WinningLotto winningLotto) {
         List<LottoResult> results = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
@@ -19,7 +19,7 @@ public class WinningCalculateService {
         return results;
     }
 
-    private static LottoResult calculateSingleLottoResult(Lotto lotto, WinningLotto winningLotto) {
+    private LottoResult calculateSingleLottoResult(Lotto lotto, WinningLotto winningLotto) {
         int matchCount = 0;
         boolean hasBonusMatch = false;
 
@@ -41,7 +41,7 @@ public class WinningCalculateService {
         return determineWinningResult(matchCount, hasBonusMatch);
     }
 
-    private static LottoResult determineWinningResult(int matchCount, boolean hasBonusMatch) {
+    private LottoResult determineWinningResult(int matchCount, boolean hasBonusMatch) {
         if (matchCount == 6) {
             return new LottoResult(Winning.FIRST);
         }

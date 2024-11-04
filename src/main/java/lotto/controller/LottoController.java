@@ -11,29 +11,65 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoController {
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final CreateLottoService createLottoService;
+    private final LottoStatisticsService statisticsService;
+    private final BuyingPriceService buyingPriceService;
+    private final WinningCalculateService winningCalculateService;
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private final CreateLottoService createLottoService = new CreateLottoService();
-    private final LottoStatisticsService statisticsService = new LottoStatisticsService();
-
-
-    public void start() {
-        outputView.askBuyingPriceView();
-        int price = inputView.inputBuyingPriceView();
-        BuyingPrice buyingPrice = new BuyingPrice(price);
-        int lottoNum = BuyingPriceService.returnNumberOfLotto(buyingPrice);
-        outputView.responseBuyingQuantity(lottoNum);
-        List<Lotto> lottos = createLottoService.createRandomLottos(lottoNum);
-        outputView.printLottos(lottos);
-        outputView.askWinningLotto();
-        String winningLottoNumber = inputView.inputLottoNumbersView();
-        outputView.askBonusNumber();
-        String bonusNumber = inputView.inputBonusNumberView();
-        WinningLotto winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
-        List<LottoResult> lottoResults = WinningCalculateService.calculateLottoResults(lottos, winningLotto);
-        LottoStatistics lottoStatistics = statisticsService.calculateStatistics(lottoResults, buyingPrice.getPrice());
-        outputView.printStatistics(lottoStatistics);
+    public LottoController(
+            InputView inputView,
+            OutputView outputView,
+            CreateLottoService createLottoService,
+            LottoStatisticsService statisticsService,
+            BuyingPriceService buyingPriceService,
+            WinningCalculateService winningCalculateService
+    ) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.createLottoService = createLottoService;
+        this.statisticsService = statisticsService;
+        this.buyingPriceService = buyingPriceService;
+        this.winningCalculateService = winningCalculateService;
     }
 
+    public void start() {
+        BuyingPrice buyingPrice = processPayment();
+        List<Lotto> purchasedLottos = purchaseLottos(buyingPrice);
+        WinningLotto winningLotto = getWinningLotto();
+        displayResults(purchasedLottos, winningLotto, buyingPrice);
+    }
+
+    private BuyingPrice processPayment() {
+        outputView.askBuyingPriceView();
+        int price = inputView.inputBuyingPriceView();
+        return new BuyingPrice(price);
+    }
+
+    private List<Lotto> purchaseLottos(BuyingPrice buyingPrice) {
+        int lottoQuantity = buyingPriceService.calculateLottoQuantity(buyingPrice);
+        outputView.responseBuyingQuantity(lottoQuantity);
+
+        List<Lotto> lottos = createLottoService.createRandomLottos(lottoQuantity);
+        outputView.printLottos(lottos);
+
+        return lottos;
+    }
+
+    private WinningLotto getWinningLotto() {
+        outputView.askWinningLotto();
+        String winningNumbers = inputView.inputLottoNumbersView();
+
+        outputView.askBonusNumber();
+        String bonusNumber = inputView.inputBonusNumberView();
+
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private void displayResults(List<Lotto> purchasedLottos, WinningLotto winningLotto, BuyingPrice buyingPrice) {
+        List<LottoResult> lottoResults = winningCalculateService.calculateLottoResults(purchasedLottos, winningLotto);
+        LottoStatistics statistics = statisticsService.calculateStatistics(lottoResults, buyingPrice.getPrice());
+        outputView.printStatistics(statistics);
+    }
 }
