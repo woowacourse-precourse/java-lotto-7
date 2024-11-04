@@ -28,10 +28,10 @@ public class InputParser {
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-            validator.validateWinningNumbers(winningNumbers);
+            new Lotto(winningNumbers);
             return winningNumbers;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 올바른 숫자 형식이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 올바른 숫자 형식이어야 합니다.");
         }
     }
 
