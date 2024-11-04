@@ -2,7 +2,7 @@ package lotto.io.input;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class WinningNumberInputConsoleHandler {
+public class WinningNumbersInputConsoleHandler {
 
     public static final String RAW_NUMBER_SEPARATOR = ",";
 
