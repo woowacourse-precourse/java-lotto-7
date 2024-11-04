@@ -1,9 +1,11 @@
 package lotto.service;
 
 import lotto.constants.ConstraintConstants;
-import lotto.constants.ErrorViewConstants;
 import lotto.domain.dto.LottoResultDto;
 import lotto.enums.Prize;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static lotto.constants.ErrorViewConstants.*;
 import static lotto.service.ValidatorService.validatePurchaseAmount;
@@ -50,5 +52,11 @@ public class ConverterService {
 
     public static Prize convertLottoResultDtoToPrize(LottoResultDto lottoResultDto) {
         return Prize.getPrizeByMatchCountAndBonus(lottoResultDto.getWinningNumber(), lottoResultDto.getIsBonus());
+    }
+
+    public static double convertProfitToRate(long profit, int purchasePrice) {
+        double rate = (float)profit / (float)purchasePrice;
+        BigDecimal formattedRate = new BigDecimal(rate).setScale(2, RoundingMode.HALF_UP);
+        return formattedRate.doubleValue();
     }
 }
