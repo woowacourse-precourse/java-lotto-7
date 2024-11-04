@@ -14,4 +14,15 @@ public class StatisticalMachine {
         }
     }
 
+    public void calculate(LottoTickets lottoTickets, WinningLotto winningLotto) {
+        for (Lotto lotto : lottoTickets.getLottos()) {
+            int matchCount = winningLotto.matchCount(lotto);
+            boolean matchBonus = winningLotto.matchBonus(matchCount, lotto);
+
+            WinningRank winningRank = WinningRank.getWinningRank(matchCount, matchBonus);
+
+            statistics.put(winningRank, statistics.get(winningRank) + 1);
+        }
+    }
+
 }
