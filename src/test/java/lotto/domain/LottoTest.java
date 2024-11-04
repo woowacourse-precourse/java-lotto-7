@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.domain.LottoInfo.END_NUMBER;
+import static lotto.constant.LottoInfo.END_NUMBER;
 import static lotto.domain.WinningInfo.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

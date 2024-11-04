@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.constant;
 
 public class LottoInfo {
 
@@ -6,4 +6,7 @@ public class LottoInfo {
     public static final int END_NUMBER = 45;
     public static final int PICK_COUNT = 6;
     public static final int PRICE = 1000;
+
+    private LottoInfo() {
+    }
 }

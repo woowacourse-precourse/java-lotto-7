@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.LottoInfo;
 import lotto.util.LottoNumbersGenerator;
 
 public class Purchaser {
