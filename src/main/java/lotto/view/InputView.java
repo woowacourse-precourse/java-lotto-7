@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class InputView {
     public static final int AmountUnit = 1000;
+    public static final char LINE_BREAK = '\n';
 
     //로또 구입 금액 입력 메소드
     public static int getPurchaseAmount() {
@@ -18,29 +19,26 @@ public class InputView {
         int PurchaseAmount =  Integer.parseInt(input);
 
         if (PurchaseAmount <= 0 || PurchaseAmount % AmountUnit != 0) {
-            throw new IllegalArgumentException("금액은 1000원 단위입니다.");
+            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위입니다.");
         }
         return PurchaseAmount;
     }
 
     // 당첨 로또 번호 입력
     public static List<Integer> getWinLottoNumbers() {
-        System.out.println("당첨 번호를 입력해주세요 (구분은 쉼표로):");
+        System.out.println(LINE_BREAK + "당첨 번호를 입력해주세요 (구분은 쉼표로):");
         String input = Console.readLine();
 
-        List<Integer> winningNumbers = Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(","))
                 .map(String::trim)         // 각 요소 공백 제거
                 .map(Integer::parseInt)    // 정수로 변환
                 .collect(Collectors.toList());
-        return winningNumbers;
     }
 
     // 보너스 번호 입력 받기
     public static int getBonusNumber() {
-        System.out.print("보너스 번호를 입력해주세요: ");
+        System.out.println(LINE_BREAK + "보너스 번호를 입력해주세요: ");
         String input = Console.readLine();
-        int BounusNum =  Integer.parseInt(input);
-        return BounusNum;
+        return Integer.parseInt(input);
     }
-
 }
