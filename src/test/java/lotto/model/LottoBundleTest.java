@@ -21,5 +21,6 @@ class LottoBundleTest {
 
 		// then
 		assertEquals(count, lottoBundle.getLottos().size());
+		assertEquals(count, lottoBundle.getCount());
 	}
 }
