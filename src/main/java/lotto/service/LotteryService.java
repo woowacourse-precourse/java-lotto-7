@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoBonus;
 import lotto.domain.LottoBuyer;
 import lotto.validation.LotteryValidator;
 import lotto.view.OutputView;
@@ -46,14 +47,16 @@ public class LotteryService {
 
     public void getLottoBonusNumber() {
         int lottoBonusNumber = Integer.parseInt(Console.readLine());
+        LottoBonus lottoBonus = new LottoBonus(lottoBonusNumber);
     }
 
     public void getLottoWinningStatistics() {
         outputView.printWinningStatistics();
     }
 
-    public void getLotteryYield() {
-        System.out.println("총 수익률은 " + "%입니다.");
+    public void getLotteryYield(final LottoBuyer lottoBuyer, final int purchaseAmount, final int totalWinningAmount) {
+        final int lotteryYield = lottoBuyer.calculateLotteryYield(purchaseAmount, totalWinningAmount);
+        System.out.println("총 수익률은 " + lotteryYield + "%입니다.");
     }
 
     private void issueLottoTickets(final int lottoIssueNumber) {

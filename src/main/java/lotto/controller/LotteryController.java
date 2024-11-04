@@ -10,10 +10,10 @@ public class LotteryController {
     }
 
     public void startLottery() {
+        // 로또를 구매한다.
         lotteryService.getPurchaseAmount();
         lotteryService.getLottoWinningNumber();
         lotteryService.getLottoBonusNumber();
         lotteryService.getLottoWinningStatistics();
-        lotteryService.getLotteryYield();
     }
 }
