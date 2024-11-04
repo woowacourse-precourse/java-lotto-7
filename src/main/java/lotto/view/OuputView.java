@@ -14,13 +14,14 @@ public class OuputView {
     private static final String WINNING_NUMBERS_PROMPT = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";
     private static final String LOTTO_RESULT_HEADER = "당첨 통계\n---";
-    private static final String RESULT_FORMAT = """
+    private static final String LOTTO_RESULT_FORMAT = """
             3개 일치 (5,000원) - %d개
             4개 일치 (50,000원) - %d개
             5개 일치 (1,500,000원) - %d개
             5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
             6개 일치 (2,000,000,000원) - %d개\n
             """;
+    private static final String LOTTO_PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void displayLottoCostPrompt(){
         System.out.println(LOTTO_COST_PROMPT);
@@ -46,6 +47,10 @@ public class OuputView {
 
     public void displayWinningResult(WinningResultDto winningResultDto){
         System.out.println(LOTTO_RESULT_HEADER);
-        System.out.printf(RESULT_FORMAT, winningResultDto.getWinningTypeCounts().toArray());
+        System.out.printf(LOTTO_RESULT_FORMAT, winningResultDto.getWinningTypeCounts().toArray());
+    }
+
+    public void displayLottoProfitRate(double profitRate){
+        System.out.printf(LOTTO_PROFIT_RATE_MESSAGE, profitRate);
     }
 }
