@@ -101,3 +101,6 @@ MatchingLotto에서 출력되는 부분을 view 패키지에 OutputView를 생�
 
 ### 📜feat: 당첨된 금액의 총합을 활용하여 수익률 구현 및 출력
 수익률을 구하고 OutputView를 활용하여 수익률 결과를 출력 하였습니다.
+
+### 📝test: ApplicationTest의 테스트 통과 성공
+기존 테스트 중 ApplicationTest에 예외_테스트 및 기능_테스트의 테스팅을 진행 완료 하였습니다.
