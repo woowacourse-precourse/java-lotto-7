@@ -31,9 +31,7 @@ public class OuputView {
         System.out.printf(LOTTO_COUNT_MESSAGE, lottosDto.lottoCount());
 
         for (LottoDto lottoDto : lottosDto.lottos()) {
-            List<Integer> sortedLottoNumbers = new ArrayList<>(lottoDto.numbers());
-            Collections.sort(sortedLottoNumbers);
-            System.out.println(sortedLottoNumbers);
+            System.out.println(lottoDto.numbers());
         }
     }
 
