@@ -37,6 +37,10 @@ public class IO {
     public void printResult(Map<WinningStandard, Integer> winningResult, double earningsRate) {
         System.out.println("당첨통계\n---");
         // TODO: 당첨 통계 출력 (n개 일치)
-        System.out.printf("총 수익률은 %f입니다", result);
+        for (WinningStandard place : WinningStandard.values()) {
+            int count = winningResult.get(place);
+            System.out.printf("%d개 일치 (%d원) - %d개\n", place.getMatchingNumber(), place.getPrize(), count);
+        }
+        System.out.printf("총 수익률은 %f입니다", earningsRate);
     }
 }
