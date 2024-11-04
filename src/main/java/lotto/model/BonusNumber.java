@@ -2,7 +2,6 @@ package lotto.model;
 
 import lotto.util.common.ErrorMessage;
 import lotto.util.common.Limit;
-import lotto.util.common.Message;
 
 public record BonusNumber(int bonusNumber) {
     public BonusNumber {

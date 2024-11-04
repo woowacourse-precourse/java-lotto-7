@@ -27,5 +27,4 @@ public class WinningNumber {
                     + ErrorMessage.UNIQUE_BONUS_NUMBER.getError());
         }
     }
-
 }

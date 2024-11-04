@@ -9,5 +9,4 @@ public class Statics {
         float profit = ((float) totalPrize / money) * Limit.PERCENT.getValue();
         return Math.round(profit * Limit.TEN.getValue()) / FLOAT_FORMAT;
     }
-
 }

@@ -3,9 +3,9 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.RankCalculator;
+import lotto.model.Statics;
 import lotto.model.WinningNumber;
 import lotto.util.IoComponent;
-import lotto.model.Statics;
 import lotto.util.common.Limit;
 
 import java.util.Arrays;
@@ -18,7 +18,7 @@ public class RankCalculatorController {
     private final WinningNumber winningNumber;
     private final IoComponent ioComponent;
 
-    public RankCalculatorController(WinningNumber winningNumber, IoComponent ioComponent , RankCalculator rankCalculator) {
+    public RankCalculatorController(WinningNumber winningNumber, IoComponent ioComponent, RankCalculator rankCalculator) {
         this.rankCalculator = rankCalculator;
         this.winningNumber = winningNumber;
         this.ioComponent = ioComponent;

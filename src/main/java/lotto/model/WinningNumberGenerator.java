@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.util.common.ErrorMessage;
-import lotto.util.common.Message;
 import lotto.util.common.Regex;
 
 import java.util.Arrays;

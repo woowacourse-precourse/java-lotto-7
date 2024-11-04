@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("수익률 테스트")
 class StaticsTest {
     private Statics statics;
 

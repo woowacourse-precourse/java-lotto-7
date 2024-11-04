@@ -17,12 +17,11 @@ public class WinningNumberGenerationController {
 
     public Lotto createWinningNumber() {
         ioComponent.getInputView().printRequestWinningNumbers();
-        return repeatUntilValid(this::requestWinningNumber,ioComponent.getCommonIo());
+        return repeatUntilValid(this::requestWinningNumber, ioComponent.getCommonIo());
     }
 
-    private Lotto requestWinningNumber(){
-            String rawWinningNumbers = ioComponent.getIoController().inputWinningNumbers();
-            return winningNumberGenerator.createWinningNumbers(rawWinningNumbers);
+    private Lotto requestWinningNumber() {
+        String trimWinningNumbers = ioComponent.getIoController().inputWinningNumbers();
+        return winningNumberGenerator.createWinningNumbers(trimWinningNumbers);
     }
-
 }

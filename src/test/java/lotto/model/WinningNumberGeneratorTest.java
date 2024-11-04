@@ -23,6 +23,4 @@ class WinningNumberGeneratorTest {
         assertThat(winningNumberGenerator.createWinningNumbers("3,5,14,26,34,45").getNumbers())
                 .containsExactly(3, 5, 14, 26, 34, 45);
     }
-
-
 }

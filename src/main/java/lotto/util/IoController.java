@@ -3,7 +3,6 @@ package lotto.util;
 import lotto.model.Lotto;
 import lotto.util.common.CommonIo;
 import lotto.util.common.ErrorMessage;
-import lotto.util.common.Message;
 
 import java.util.List;
 
@@ -31,7 +30,8 @@ public class IoController {
     }
 
     public String inputWinningNumbers() {
-        return io.receiveInput();
+        String winningNumbers = io.receiveInput();
+        return io.removeWhiteSpace(winningNumbers);
     }
 
     public String inputBonusNumber() {

@@ -48,7 +48,7 @@ public class Application {
         ioComponent.getIoController().printPurchaseLottoNumbers(lottos);
 
         WinningNumberGenerationController winningNumberGenerationController =
-               controllerFactoryFactory.createWinningNumberController();
+                controllerFactoryFactory.createWinningNumberController();
         BonusNumberController bonusNumberController = controllerFactoryFactory.createBonusNumberController();
 
         WinningNumber winningNumber = repeatUntilValid(() -> {
@@ -59,7 +59,7 @@ public class Application {
 
         RankCalculatorController rankCalculatorController = controllerFactoryFactory.createRankCalculatorController(winningNumber);
 
-        Map<Rank,Integer> result = rankCalculatorController.calculateResult(lottos);
+        Map<Rank, Integer> result = rankCalculatorController.calculateResult(lottos);
 
         rankCalculatorController.printResult(result);
         float profit = rankCalculatorController.calculateProfit(result, lottoComponent.getTicketService().getTicketCount());
