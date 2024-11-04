@@ -7,6 +7,9 @@ import lotto.exception.LottoExceptionMessage;
 
 public class LottoProfitCalculator {
 
+    private static final Long PERCENTAGE_FACTOR = 100L;
+    private static final int DECIMAL_PLACES = 1;
+
     public BigDecimal getProfit(List<Rank> winningResults) {
         BigDecimal profit = BigDecimal.valueOf(0L);
         for (Rank result : winningResults) {
@@ -19,10 +22,10 @@ public class LottoProfitCalculator {
         validate(payment);
         validateNegative(profit, payment);
         BigDecimal divider = BigDecimal.valueOf(payment);
-        BigDecimal percentageFactor = BigDecimal.valueOf(100L);
+        BigDecimal percentageFactor = BigDecimal.valueOf(PERCENTAGE_FACTOR);
 
         return profit.multiply(percentageFactor)
-            .divide(divider, 1, RoundingMode.HALF_UP)
+            .divide(divider, DECIMAL_PLACES, RoundingMode.HALF_UP)
             .stripTrailingZeros();
     }
 

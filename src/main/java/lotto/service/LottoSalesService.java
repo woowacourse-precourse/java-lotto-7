@@ -8,6 +8,11 @@ import lotto.exception.LottoExceptionMessage;
 
 public class LottoSalesService {
 
+    private static final int LOTTO_PRICE = 1000;
+    private static final int START_LOTTO_NUMBER = 1;
+    private static final int END_LOTTO_NUMBER = 45;
+    private static final int LOTTO_COUNT = 6;
+
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     public List<Lotto> createLottos(int quantity) throws IllegalArgumentException {
@@ -15,7 +20,7 @@ public class LottoSalesService {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < quantity; i++) {
-            Lotto lotto = new Lotto(randomNumberGenerator.generate(1, 45, 6));
+            Lotto lotto = new Lotto(randomNumberGenerator.generate(START_LOTTO_NUMBER, END_LOTTO_NUMBER, LOTTO_COUNT));
             lottos.add(lotto);
         }
         return lottos;
@@ -23,8 +28,8 @@ public class LottoSalesService {
 
     public int getAvailableLottoQuantity(int payment) throws IllegalArgumentException {
         validatePayment(payment);
-        if (payment % 1000 == 0) {
-            return payment / 1000;
+        if (payment % LOTTO_PRICE == 0) {
+            return payment / LOTTO_PRICE;
         }
         throw new IllegalArgumentException(LottoExceptionMessage.PAYMENT_DIVISIBLE_BY_THE_LOTTO_PRICE);
     }

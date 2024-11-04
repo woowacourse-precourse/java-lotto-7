@@ -13,6 +13,7 @@ import lotto.domain.Rank;
 
 public class LottoResultAnalysisService {
 
+    private static final int INITIAL_STATISTICS_VALUE = 0;
 
     private final Lotto winningNumbers;
     private final LottoNumber bonusNumber;
@@ -59,7 +60,7 @@ public class LottoResultAnalysisService {
     }
 
     public List<Integer> getWinningStatistics(List<Rank> ranks) {
-        List<Integer> statistics = new ArrayList<>(Collections.nCopies(Rank.values().length, 0));
+        List<Integer> statistics = new ArrayList<>(Collections.nCopies(Rank.values().length, INITIAL_STATISTICS_VALUE));
         for (Rank rank : ranks) {
             int index = rank.getIndex();
             statistics.set(index, statistics.get(index) + 1);
