@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -47,13 +48,13 @@ public class OutputView {
     }
 
     private void printWinningResults(Map<Winning, Integer> stats) {
-        LottoResult[] results = {
+        List<LottoResult> results = Arrays.asList(
                 new LottoResult(Winning.FIFTH),
                 new LottoResult(Winning.FOURTH),
                 new LottoResult(Winning.THIRD),
                 new LottoResult(Winning.SECOND),
                 new LottoResult(Winning.FIRST)
-        };
+        );
 
         for (LottoResult result : results) {
             Winning winning = result.getWinning();
