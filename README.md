@@ -60,11 +60,11 @@
 
 ### 입력
 
-- [ ] 로또 구입 금액을 입력받는다.
-- [ ] 당첨 로또 번호를 입력받는다.
-- [ ] 보너스 번호를 입력받는다.
-    - [ ] (공통) 공백을 제거한다.
-    - [ ] (공통) 유효성 검사에 실패하면 재입력 받는다.
+- [x] 로또 구입 금액을 입력받는다.
+- [x] 당첨 로또 번호를 입력받는다.
+- [x] 보너스 번호를 입력받는다.
+    - [x] (공통) 공백을 제거한다.
+    - [x] (공통) 유효성 검사에 실패하면 재입력 받는다.
 
 ### 로또
 
@@ -89,13 +89,13 @@
 
 ### 통계
 
-- [ ] 몇 개의 로또가 당첨되었는지 계산한다.
-- [ ] 수익률을 계산한다.
+- [x] 몇 개의 로또가 당첨되었는지 계산한다.
+- [x] 수익률을 계산한다.
 
 ### 출력
 
-- [ ] 로또 구입 후 발행된 로또 목록을 출력한다.
-- [ ] 번호 추첨 후 통계 및 수익률을 출력한다.
+- [x] 로또 구입 후 발행된 로또 목록을 출력한다.
+- [x] 번호 추첨 후 통계 및 수익률을 출력한다.
 
 ## 예외
 
@@ -103,4 +103,44 @@
 
 ## 구조
 
-- 미정
+```
+└── src
+    ├── main
+    │   └── java
+    │       └── lotto
+    │           ├── Application.java
+    │           ├── common
+    │           │   ├── ExceptionMessage.java
+    │           │   ├── LottoConfig.java
+    │           │   ├── RandomNumberGenerator.java
+    │           │   └── validator
+    │           │       ├── IssuedLottoValidator.java
+    │           │       ├── LottoResultValidator.java
+    │           │       └── LottoValidator.java
+    │           ├── domain
+    │           │   ├── IssuedLotto.java
+    │           │   ├── IssuedRandomLotto.java
+    │           │   ├── Lotto.java
+    │           │   ├── LottoProfitCalculator.java
+    │           │   ├── LottoRank.java
+    │           │   ├── LottoResult.java
+    │           │   └── dto
+    │           │       └── LottoStatisticsDto.java
+    │           ├── presentation
+    │           │   ├── LottoController.java
+    │           │   └── view
+    │           │       ├── InputView.java
+    │           │       └── OutputView.java
+    │           └── service
+    │               └── LottoService.java
+    └── test
+        └── java
+            └── lotto
+                ├── ApplicationTest.java
+                └── domain
+                    ├── IssuedRandomLottoTest.java
+                    ├── LottoProfitCalculatorTest.java
+                    ├── LottoResultTest.java
+                    └── LottoTest.java
+
+```
