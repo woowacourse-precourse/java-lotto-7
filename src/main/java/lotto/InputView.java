@@ -12,6 +12,9 @@ public class InputView {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String inputAmount = Console.readLine();
+
+                Validator.validateNumber(inputAmount);
+
                 int amount = Integer.parseInt(inputAmount);
 
                 Validator.validateAmount(amount);

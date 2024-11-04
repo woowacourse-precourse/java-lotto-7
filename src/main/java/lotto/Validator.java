@@ -38,5 +38,12 @@ public class Validator {
         }
     }
 
+    public static void validateNumber(String num) {
+        for (int i = 0; i < num.length(); i++) {
+            if (!Character.isDigit(num.charAt(i))) {
+                throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+            }
+        }
+    }
 
 }
