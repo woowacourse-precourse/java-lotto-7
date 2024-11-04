@@ -29,4 +29,15 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(8, 21, 23, 41, 42, 43));
         assertThat(lotto.getNumbers()).containsExactlyInAnyOrder(8, 21, 23, 41, 42, 43);
     }
+    @Test
+    @DisplayName("당첨 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다.")
+    void 당첨번호_범위_검증() {
+        assertThatThrownBy(() -> new Winning(new int[]{0,2,3,4,5,6}, 7))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+
+        assertThatThrownBy(() -> new Winning(new int[]{1,2,3,4,5,46}, 7))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
