@@ -16,6 +16,7 @@ public class Application {
             printLottos(purchasedLottos);
             List<Integer> winningNumbers = inputWinningNumbers();
             int bonusNumber = inputBonusNumber();
+            calculateResults(purchasedLottos, winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -85,5 +86,16 @@ public class Application {
                 System.out.println("[ERROR] 올바른 형식의 보너스 번호를 입력해 주세요.");
             }
         }
+    }
+
+    private static int[] calculateResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        int[] results = new int[Rank.values().length];
+        for (Lotto lotto : lottos) {
+            int matchCount = lotto.countMatchingNumbers(winningNumbers);
+            boolean matchBonus = lotto.containsBonusNumber(bonusNumber);
+            Rank rank = Rank.valueOf(matchCount, matchBonus);
+            results[rank.ordinal()]++;
+        }
+        return results;
     }
 }
