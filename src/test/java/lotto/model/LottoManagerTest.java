@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LottoManagerTest {
 
-    @Test
     @DisplayName("구입 가능한 로또 개수가 올바른지 확인한다.")
+    @Test
     void 구입_가능한_로또_개수가_올바른지_확인한다() {
         LottoManager lottoManager = new LottoManager();
         int expect = 5;
@@ -21,8 +21,8 @@ class LottoManagerTest {
         assertEquals(numOfLotto, expect);
     }
 
-    @Test
     @DisplayName("로또를 구입한 후 받았는지 확인한다.")
+    @Test
     void 로또를_구입한_후_받았는지_확인한다() {
         LottoManager lottoManager = new LottoManager();
         int expect = 5;
