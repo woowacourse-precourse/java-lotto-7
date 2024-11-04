@@ -32,14 +32,6 @@ class InputviewTest {
                 .hasMessageContaining("[ERROR]");
     }
 
-    @Test
-    @DisplayName("컴마로 분리된 문자열 분리")
-    void splitByComma_ValidInput()
-    {
-        String input = "1,2,3,4,5,6";
-        String[] result = inputView.splitByComma(input);
-        assertThat(result).containsExactly("1", "2", "3", "4", "5", "6");
-    }
 
     @Test
     @DisplayName("로또 번호 범위 검증 - 유효한 번호")

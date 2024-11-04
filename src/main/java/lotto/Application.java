@@ -19,17 +19,17 @@ public class Application {
             LottoUtils Lotto = new LottoUtils();
 
             output.requestPurchase();
-            output.inputUsedPrice(input.Purchase());
+            output.inputUsedPrice(input.getPurchaseAmount());
 
             output.amountPurchase();
             lottoNumbers=output.randomNumber(output.choose());
             output.printNumberLists(lottoNumbers);
 
             output.requestWinner();
-            Lotto winner = input.winningNumbr();
+            Lotto winner = input.getWinningNumbers();
 
             output.requestBonus();
-            bonus = input.bonusNumber();
+            bonus = input.getBonusNumber();
 
             output.inputPrice(
                     Lotto.compareLists(lottoNumbers, winner.getNumbers(), bonus)
