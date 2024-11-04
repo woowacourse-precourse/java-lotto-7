@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import lotto.message.NotifyMessage;
@@ -21,7 +22,7 @@ public class OutputView {
     }
 
     public static void printLottoNumbers(List<Integer> lottoNumbers) {
-        List<Integer> sortedLottoNumbers = lottoNumbers;
+        List<Integer> sortedLottoNumbers = new ArrayList<>(lottoNumbers);
         sortedLottoNumbers.sort(Comparator.naturalOrder());
         System.out.println(sortedLottoNumbers);
     }
