@@ -1,19 +1,18 @@
 package lotto.view;
 
 import java.util.Map;
+import lotto.constant.RankConstant;
 
 public class Winning_OutputView {
-    public void printRanks(Map<Integer, Integer> ranks) {
-
-        //Map: key를 등수 - value를 해당 개수로 설정하자. 그리고 등수에 따른 금액
-        //아냐. Map의 key를 enum으로 넣자
+    public void printRanks(Map<RankConstant, Integer> ranks) {
+        // 출력 문구 좀 더 가독성 높이기
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + + "개");
-        System.out.println("4개 일치 (50,000원) - " +  + "개");
-        System.out.println("5개 일치 (1,500,000원) - " +  + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " +  + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " +  + "개");
+        System.out.println("3개 일치 (" + RankConstant.FIFTHRANK + "원) - " + ranks.get(RankConstant.FIFTHRANK) + "개");
+        System.out.println("4개 일치 (" + RankConstant.FOURTHRANK + "원) - " + ranks.get(RankConstant.FOURTHRANK) + "개");
+        System.out.println("5개 일치 (" + RankConstant.THIRDRANK + "원) - " + ranks.get(RankConstant.THIRDRANK) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + RankConstant.SECONDRANK + "원) - " + ranks.get(RankConstant.SECONDRANK) + "개");
+        System.out.println("6개 일치 (" + RankConstant.FIRSTRANK + "원) - " + ranks.get(RankConstant.FIRSTRANK) + "개");
         System.out.println();
     }
 
