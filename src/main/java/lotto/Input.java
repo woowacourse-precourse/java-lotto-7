@@ -23,9 +23,11 @@ public class Input {
 
     public void setPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-
         int inputData=Integer.parseInt(getUserInput());
+        System.out.println();
+
         validatePurchaseAmount1(inputData);
+        validatePurchaseAmount2(inputData);
         this.PurchaseAmount= inputData;
 
     }
@@ -45,6 +47,7 @@ public class Input {
     public void setLottoWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputData=getUserInput();
+        System.out.println();
 
         this.LottoWinningNumbers=convertLottoWinningNumbers(inputData);
 
@@ -87,6 +90,7 @@ public class Input {
     public void setBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String inputData=getUserInput();
+        System.out.println();
 
         int tmp=Integer.parseInt(inputData);
         validateBonusNumberScope(tmp);
