@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
+import lotto.Rank;
 import lotto.message.Message;
 
 import java.util.List;
@@ -31,6 +32,26 @@ public class LottoView {
     public static void printLottoList(List<Lotto> lottoList){
         System.out.println(lottoList.size() + Message.OUTPUT_LOTTOS.toString());
         lottoList.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+
+    public static void printResults(int[] rankCount, int totalProfit, int amountSpent) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                if (rank == Rank.SECOND) {
+                    System.out.printf("5개 일치, 보너스 볼 일치 (%d원) - %d개\n", rank.getPrize(), rankCount[rank.ordinal()]);
+                }
+                if (rank != Rank.NONE && rank != Rank.SECOND) {
+                    System.out.printf("%d개 일치 (%d원) - %d개\n", rank.getMatchCount(), rank.getPrize(), rankCount[rank.ordinal()]);
+                }
+            }
+        }
+
+        // 총 수익률 계산
+        double profitRate = (double) totalProfit / amountSpent * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
 

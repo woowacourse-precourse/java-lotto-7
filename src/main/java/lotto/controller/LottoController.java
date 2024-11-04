@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.Rank;
 import lotto.message.Message;
 import lotto.view.LottoView;
 
@@ -17,6 +18,8 @@ public class LottoController {
         String inputWinningNumber = LottoView.inputWinningNumbers();
         List<Integer> winningNumbers = convertToIntegerList(inputWinningNumber);
         String bonusNumber = LottoView.inputBonusNumbers();
+
+        calculateResults(lottoList, winningNumbers, Integer.parseInt(bonusNumber), Integer.parseInt(inputAmount) / LOTTO_PRICE);
 
     }
 
@@ -54,5 +57,22 @@ public class LottoController {
         }
 
         return integerNumbers;
+    }
+
+    private void calculateResults(List<Lotto> lottoList, List<Integer> winningNumbers, int bonusNumber, int amountSpent) {
+        int[] rankCount = new int[Rank.values().length];
+        int totalProfit = 0;
+
+        for (Lotto lotto : lottoList) {
+            List <Integer> lottoNumbers = lotto.getNumbers();
+            int matchCount = (int) lottoNumbers.stream().filter(winningNumbers::contains).count();
+            boolean bonusMatch = lottoNumbers.contains(bonusNumber);
+
+            Rank rank = Rank.getRank(matchCount, bonusMatch);
+            rankCount[rank.ordinal()]++;
+            totalProfit += rank.getPrize();
+        }
+
+        LottoView.printResults(rankCount, totalProfit, amountSpent);
     }
 }
