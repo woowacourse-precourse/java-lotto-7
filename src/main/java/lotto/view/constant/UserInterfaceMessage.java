@@ -16,5 +16,5 @@ public class UserInterfaceMessage {
             + "---";
     public final static String PRINTF_MATCH_COUNT = "%d개 일치";
     public final static String PRINT_BONUS_NUMBER_MATCH = ", 보너스 볼 일치";
-    public final static String PRINTF_WINNING_INFO= " (%d원) - %d개";
+    public final static String PRINTF_WINNING_INFO= " (%,d원) - %d개";
 }
