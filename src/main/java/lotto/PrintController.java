@@ -29,14 +29,14 @@ public class PrintController {
     }
 
     //당첨번호
-    public List<Integer> inputWinNumber(){
+    public List<Integer> inputWinNumber() {
         System.out.println("당첨 번호흫 입력해 주세요.");
         String winNumber = Console.readLine();
         return lottoController.parseWinNumber(winNumber);
     }
 
     //보너스번호
-    public int inputBonusNumber(){
+    public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         return lottoController.parseBonusNumber(bonusNumber);
@@ -46,16 +46,16 @@ public class PrintController {
     public void printStatistics(List<Lotto> lottos, WinNumbers winNumbers) {
         System.out.println("당첨 통계\n---");
         LottoResult lottoResult = lottoController.calculateWinnings(lottos, winNumbers);
-        System.out.printf("3개 일치 (5,000원) - %d개\n",lottoResult.rankCount()[4]);
-        System.out.printf("4개 일치 (50,000원) - %d개\n",lottoResult.rankCount()[3]);
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n",lottoResult.rankCount()[2]);
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n",lottoResult.rankCount()[1]);
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n",lottoResult.rankCount()[0]);
+        System.out.printf("3개 일치 (5,000원) - %d개\n", lottoResult.rankCount()[4]);
+        System.out.printf("4개 일치 (50,000원) - %d개\n", lottoResult.rankCount()[3]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", lottoResult.rankCount()[2]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", lottoResult.rankCount()[1]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", lottoResult.rankCount()[0]);
     }
 
     //수익률
     public void printRateOfReturn(LottoResult lottoResult, int purchaseNumber) {
-        double rateOfReturn = lottoController.calculateRateOfReturn(lottoResult.totalWinnings(),purchaseNumber);
-        System.out.printf("총슈익률은 %f입니다.",rateOfReturn);
+        double rateOfReturn = lottoController.calculateRateOfReturn(lottoResult.totalWinnings(), purchaseNumber);
+        System.out.printf("총 수익률은 %f입니다.", rateOfReturn);
     }
 }
