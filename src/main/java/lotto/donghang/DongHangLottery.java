@@ -45,8 +45,7 @@ public class DongHangLottery {
         WinningLotto winningLotto = new WinningLotto(winningNumber, bonus);
 
         drawController.checkResult(winningLotto);
-
-
+        inputReader.close();
     }
 
     private static Lotto drawWinningNumbers() {
@@ -83,8 +82,6 @@ public class DongHangLottery {
         double earningsRate = vendingMachineRepository.getEarningRate();
 
         outputWriter.printStatistics(lottoStatistics, earningsRate);
-
-        inputReader.close();
     }
 
 }
