@@ -20,4 +20,8 @@ public class Lottos {
                 .map(winningLotto::findRank)
                 .collect(Collectors.groupingBy(match -> match, Collectors.counting()));
     }
+
+    public int size() {
+        return lottos.size();
+    }
 }
