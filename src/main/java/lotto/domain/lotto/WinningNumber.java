@@ -11,11 +11,16 @@ public class WinningNumber extends Lotto {
 
     public WinningNumber(List<Integer> numbers, int number) {
         super(numbers);
-        validate(numbers, number);
         this.bonusNumber = new Number(number);
     }
 
-    private void validate(List<Integer> numbers, int number) {
+    public static WinningNumber of(List<Integer> lottoNumbers, int bonusNumber) {
+        validateNotDuplicatedBonusNumber(lottoNumbers, bonusNumber);
+
+        return new WinningNumber(lottoNumbers, bonusNumber);
+    }
+
+    private static void validateNotDuplicatedBonusNumber(List<Integer> numbers, int number) {
         if (numbers.contains(number)) {
             throw new IllegalArgumentException(INVALID_LOTTO_DUPLICATED_BONUS_NUMBER.getMessage());
         }
