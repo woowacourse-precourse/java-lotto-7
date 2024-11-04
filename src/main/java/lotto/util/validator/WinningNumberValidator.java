@@ -52,3 +52,4 @@ public class WinningNumberValidator implements Validator {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_LOTTO_RANGE.getMessage());
         }
     }
+}
