@@ -15,6 +15,10 @@ public class Lotto {
         this.numbers = numbers.stream().sorted().toList();
     }
 
+    public List<Integer> getLottoNumbers() {
+        return this.numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers == null || numbers.isEmpty()) {
             throw new LottoException(LottoExceptionType.LOTTO_NUMBER_EMPTY_ERROR);

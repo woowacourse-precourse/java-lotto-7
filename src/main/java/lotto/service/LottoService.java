@@ -3,11 +3,12 @@ package lotto.service;
 import lotto.Exception.ExceptionType;
 import lotto.model.Lotto;
 import lotto.utils.LottoRules;
+import lotto.utils.LottoRules.Winning;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import static lotto.utils.LottoRules.LOTTO_PRICE;
+import static lotto.utils.LottoRules.*;
+import static lotto.utils.LottoRules.determineWinningRank;
 
 public class LottoService {
     private static final String BONUS_NUMBER_DUPLICATE_MESSAGE = "보너스번호는 당첨번호 6개와 중복될 수 없습니다.";
@@ -28,7 +29,7 @@ public class LottoService {
         return lottoTickets;
     }
 
-    public List<List<Integer>> displayPurchasedLottoTickets(List<Lotto> myLottoTickets) {
+    public List<List<Integer>> convertLottoTicketsToNumbers(List<Lotto> myLottoTickets) {
         List<List<Integer>> allLottoNumbers = new ArrayList<>();
         for (Lotto lotto : myLottoTickets) {
             allLottoNumbers.add(lotto.getLottoNumbers());
@@ -36,9 +37,47 @@ public class LottoService {
         return allLottoNumbers;
     }
 
-    public void checkBonusNumberDuplication(List<Integer> winningNumbers, Integer bonusNumber) {
+    public void checkBonusNumberDuplication(Set<Integer> winningNumbers, Integer bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionType.PREFIX_ERROR_MESSAGE + BONUS_NUMBER_DUPLICATE_MESSAGE);
         }
     }
+
+    public Map<Winning, Integer> calculateWinningRankCount(
+            List<Lotto> myLottoTickets,
+            Set<Integer> winningNumbers,
+            Integer bonusNumber
+    ) {
+        Map<Winning, Integer> winningRankCount = initWinningRankCount();
+
+        for (Lotto lotto : myLottoTickets) {
+            Winning rank = getRank(lotto, winningNumbers, bonusNumber);
+            winningRankCount.put(rank, winningRankCount.get(rank) + 1);
+        }
+        return winningRankCount;
+    }
+
+    private Map<Winning, Integer> initWinningRankCount() {
+        Map<Winning, Integer> winningRankCount = new HashMap<>();
+
+        for (Winning winning : Winning.values()) {
+            winningRankCount.put(winning, 0);
+        }
+
+        return winningRankCount;
+    }
+
+    private Winning getRank(Lotto lotto, Set<Integer> winningNumbers, Integer bonusNumber) {
+        List<Integer> lottoNumbers = lotto.getLottoNumbers();
+
+        int matchNumberCount = countMatchNumbers(lottoNumbers, winningNumbers);
+        boolean bonusMatch = lottoNumbers.contains(bonusNumber);
+
+        return determineWinningRank(matchNumberCount, bonusMatch);
+    }
+
+    private int countMatchNumbers(List<Integer> numbers, Set<Integer> targetNumbers) {
+        return (int) numbers.stream().filter(targetNumbers::contains).count();
+    }
+
 }
