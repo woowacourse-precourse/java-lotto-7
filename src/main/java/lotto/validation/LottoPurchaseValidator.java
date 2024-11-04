@@ -29,7 +29,7 @@ public class LottoPurchaseValidator {
     private void checkPositiveNumber(String input) {
         int price = Integer.parseInt(input);
         if (price <= 0) {
-            throw new IllegalArgumentException(ExceptionMessage.PURCHASE_PRICE_NEGATIVE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.PURCHASE_PRICE_NOT_POSITIVE_NUMBER.getMessage());
         }
     }
 
