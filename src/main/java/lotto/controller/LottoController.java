@@ -8,6 +8,7 @@ import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.enums.WinningType;
+import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,6 +20,7 @@ public class LottoController {
     private static final Integer LOTTO_PURCHASE_COST = 1000;
 
     public void run() {
+
         Integer lottoCount = buyLotto();
 
         List<Lotto> createLottos = createLotto(lottoCount);
@@ -26,7 +28,8 @@ public class LottoController {
         printLottos(createLottos, lottoCount);
 
         List<Integer> winningNumbers = inputWinningNumbers();
-        Integer bonusNumber = inputBonusNumber();
+
+        Integer bonusNumber = inputBonusNumber(winningNumbers);
 
         Lottos lottos = new Lottos(createLottos, winningNumbers, bonusNumber);
 
@@ -88,8 +91,10 @@ public class LottoController {
     private List<Lotto> createLotto(Integer lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(Lotto.LOTTO_MIN_NUMBER,
-                    Lotto.LOTTO_MAX_NUMBER, Lotto.LOTTO_NUMBER_COUNT);
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(Validator.LOTTO_MIN_NUMBER,
+                    Validator.LOTTO_MAX_NUMBER, Validator.LOTTO_NUMBER_COUNT);
+
+            List<Integer> lottoNumbers = new ArrayList<>(randomNumbers);
 
             Collections.sort(lottoNumbers);
 
@@ -105,16 +110,32 @@ public class LottoController {
         OutputView.getInstance().printWinningNumberInput();
         String input = InputView.getInstance().readUserInput();
 
-        for (String splitString : input.split(",")) {
-            winningNumbers.add(toInt(splitString));
-        }
+        try {
+            for (String splitString : input.split(",")) {
+                winningNumbers.add(toInt(splitString));
+            }
 
-        return winningNumbers;
+            Validator.validateWinningNumbersDuplicate(winningNumbers);
+            Validator.validateWinningCount(winningNumbers);
+            Validator.validateWinningNumbersRange(winningNumbers);
+
+            return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            OutputView.getInstance().println(e.getMessage());
+            return inputWinningNumbers();
+        }
     }
 
-    private Integer inputBonusNumber() {
-        OutputView.getInstance().printBonusNumberInput();
-        return toInt(InputView.getInstance().readUserInput());
+    private Integer inputBonusNumber(List<Integer> winningNumbers) {
+        try {
+            OutputView.getInstance().printBonusNumberInput();
+            Integer bonusNumber = toInt(InputView.getInstance().readUserInput());
+            Validator.validateBonusNumber(winningNumbers, bonusNumber);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            OutputView.getInstance().println(e.getMessage());
+            return inputBonusNumber(winningNumbers);
+        }
     }
 
 
@@ -132,20 +153,25 @@ public class LottoController {
     }
 
     private Integer getUserPurchaseCost() {
-        OutputView.getInstance().printPurchaseInput();
-        return toInt(InputView.getInstance().readUserInput());
+        try {
+            OutputView.getInstance().printPurchaseInput();
+            return toInt(InputView.getInstance().readUserInput());
+        } catch (IllegalArgumentException e) {
+            OutputView.getInstance().println(e.getMessage());
+            return getUserPurchaseCost();
+        }
     }
 
     private Integer toInt(String string) {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_NUMBER_ERROR_MESSAGE);
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자여야 합니다.");
         }
     }
 
     private double getReturnRate(Lottos lottos, Integer lottoCount) {
         Long totalPrize = lottos.getTotalPrize();
-        return ((double) totalPrize - lottoCount) / lottoCount * 100;
+        return ((double) totalPrize) / lottoCount * 100;
     }
 }
