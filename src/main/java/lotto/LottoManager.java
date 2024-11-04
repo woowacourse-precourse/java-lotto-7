@@ -66,7 +66,7 @@ public class LottoManager {
     public void buyLottos(int money){
         this.count=calculateCount(money);
         for (int i = 0; i < count; i++) {
-            List<Integer> nums=Randoms.pickUniqueNumbersInRange(1,45,6);
+            List<Integer> nums=new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
             Collections.sort(nums);
             lottos.add(new Lotto(nums));
         }
