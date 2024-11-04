@@ -10,4 +10,8 @@ public interface Output {
     void printWinningLottoPrompt();
 
     void printBonusNumberPrompt();
+
+    void printResults(int[] results);
+
+    void printEarningsRate(int totalPrize, int purchaseAmount);
 }
