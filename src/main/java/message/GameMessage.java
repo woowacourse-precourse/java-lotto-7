@@ -1,4 +1,4 @@
-package lotto;
+package message;
 
 public enum GameMessage {
     GET_INPUT_MESSAGE("구입금액을 입력해 주세요."),
@@ -8,7 +8,7 @@ public enum GameMessage {
     RESULT_AVERAGE_MESSAGE("당첨 통계"),
     RESULT_HYPE_MESSAGE("---"),
     RESULT_COUNT_MESSAGE("개 일치"),
-    RESULT_RATE_MESSAGE_START("총 수익률은 "),
+    RESULT_RATE_MESSAGE_START("총 수익률은"),
     RESULT_RATE_MESSAGE_END("%입니다.");
 
     private String message;

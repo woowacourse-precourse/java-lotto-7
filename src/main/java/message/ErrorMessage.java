@@ -1,4 +1,4 @@
-package lotto;
+package message;
 
 public enum ErrorMessage {
     DUPLICATE_LOTTO_NUMBER("중복된 당첨 번호가 입력되었습니다."),
