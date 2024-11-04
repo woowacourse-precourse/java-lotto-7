@@ -8,7 +8,7 @@ import lotto.view.OutputView;
 import java.util.List;
 
 import static lotto.common.constants.ViewMessage.WINNING_STATISTICS;
-import static lotto.view.InputView.readInput;
+import static lotto.view.InputView.readUserInput;
 
 public class LottoController {
 
@@ -43,7 +43,7 @@ public class LottoController {
     private int getBonusNumber(List<Integer> winningNumbers) {
         InputView.printBonusNumbersPrompt();
         try {
-            return BonusNumber.of(winningNumbers, readInput()).getBonusNumber();
+            return BonusNumber.of(winningNumbers, readUserInput()).getBonusNumber();
         } catch (IllegalArgumentException e) {
             InputView.printMessage(e.getMessage());
             return getBonusNumber(winningNumbers);
@@ -53,7 +53,7 @@ public class LottoController {
     private List<Integer> getWinningNumbers() {
         InputView.printWinningNumbersPrompt();
         try {
-            return WinningNumbers.from(readInput()).getNumbers();
+            return WinningNumbers.from(readUserInput()).getNumbers();
         } catch (IllegalArgumentException e) {
             InputView.printMessage(e.getMessage());
             return getWinningNumbers();
@@ -71,7 +71,7 @@ public class LottoController {
     private int getPurchaseAmount() {
         InputView.printPurchaseAmountPrompt();
         try {
-            return LottoPurchaseAmount.from(readInput()).getPurchaseAmount();
+            return LottoPurchaseAmount.from(readUserInput()).getPurchaseAmount();
         } catch (IllegalArgumentException e) {
             InputView.printMessage(e.getMessage());
             return getPurchaseAmount();

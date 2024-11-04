@@ -6,7 +6,7 @@ import static lotto.common.constants.ViewMessage.*;
 
 public class InputView {
 
-    public static String readInput() {
+    public static String readUserInput() {
         return Console.readLine();
     }
 
