@@ -18,7 +18,7 @@ public class Application {
                 System.out.println("구입금액을 입력해 주세요.");
                 String inputMoney = Console.readLine();
                 System.out.println(inputMoney);
-                MoneyPurchase moneyPurchas = new MoneyPurchase(inputMoney);
+                Purchase moneyPurchas = new Purchase(inputMoney);
                 lotoQuantity = moneyPurchas.getLotoCount();
                 break;
 
@@ -28,14 +28,30 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+
         for (int i = 0; i < lotoQuantity; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Lotto lotto = new Lotto(Randoms.
+                    pickUniqueNumbersInRange(1, 45, 6));
             lottos.add(lotto.getLotto());
+            System.out.println(lotto.getLotto());
         }
-        //
-        for (List<Integer> lotto : lottos) {
-            System.out.println(lotto);
+        PrizeCheck prizeCheck = new PrizeCheck();
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String prizeNum = Console.readLine();
+                prizeCheck.checkAndChangePrizeNum(prizeNum);
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String bonusNum = Console.readLine();
+                prizeCheck.checkAndChangeBonusNum(bonusNum);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
+
     }
 }
 
