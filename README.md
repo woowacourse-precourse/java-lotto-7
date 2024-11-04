@@ -9,7 +9,8 @@
 ---
 
 - [x] 로또 구입 금액을 입력받는다.
-    - 양의 정수가 아닐 경우 IllegalArgumentException을 발생시킨다.
+  - 입력 값이 공백일 경우 IllegalArgumentException을 발생시킨다.
+  - 양의 정수가 아닐 경우 IllegalArgumentException을 발생시킨다.
 - [x] 사용자가 잘못된 값을 입력할 경우 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력하고, 그 부분부터 입력을 다시 받는다.
 - [x] 로또 구입 금액에 해당하는 만큼 로또를 발행한다.
     - 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 IllegalArgumentException을 발생시킨다.
@@ -20,11 +21,13 @@
 - [x] 로또의 6개의 숫자는 오름차순으로 정렬되어 있어야한다.
 - [x] 사용자가 구매한 로또를 출력한다.
 - [x] 당첨 번호 6개를 입력받는다.
-    - 당첨 번호가 0 이상인 정수가 아니면 IllegalArgumentException을 발생시킨다.
-    - 당첨 번호가 6개가 아니면, IllegalArgumentException을 발생시킨다.
-    - 당첨 번호 중 중복되는 것이 있다면, IllegalArgumentException을 발생시킨다.
-    - 당첨 번호가 1~45까지가 아니면, IllegalArgumentException을 발생시킨다.
+  - 입력 값이 공백일 경우 IllegalArgumentException을 발생시킨다.
+  - 당첨 번호가 0 이상인 정수가 아니면 IllegalArgumentException을 발생시킨다.
+  - 당첨 번호가 6개가 아니면, IllegalArgumentException을 발생시킨다.
+  - 당첨 번호 중 중복되는 것이 있다면, IllegalArgumentException을 발생시킨다.
+  - 당첨 번호가 1~45까지가 아니면, IllegalArgumentException을 발생시킨다.
 - [x] 보너스 번호를 입력받는다.
+    - 입력 값이 공백일 경우 IllegalArgumentException을 발생시킨다.
     - 보너스 번호를 입력받을 때 0 이상의 정수가 아니면 IllegalArgumentException을 발생시킨다.
     - 보넌스 번호가 1~45까지가 아니면, IllegalArgumentException을 발생시킨다.
 - [x] 등수에 따른 금액을 명시한다

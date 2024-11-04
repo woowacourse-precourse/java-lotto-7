@@ -22,6 +22,7 @@ public class InputView {
     public MoneyDTO readMoney() {
         print(INPUT_MONEY_MESSAGE);
         String input = Console.readLine();
+        inputValidator.validateBlank(input);
         inputValidator.validateMoneyFormat(input);
         return MoneyDTO.from(Long.valueOf(input));
     }
@@ -30,6 +31,7 @@ public class InputView {
     public WinningLottoDTO readWinningLottoNumbers() {
         print(INPUT_WINNING_LOTTO_NUMBERS_MESSAGE);
         String input = Console.readLine();
+        inputValidator.validateBlank(input);
         String[] rawNumbers = split(input);
         inputValidator.validateLottoNumbers(rawNumbers);
         return WinningLottoDTO.from(Arrays.stream(rawNumbers).toList());
@@ -43,6 +45,7 @@ public class InputView {
     public BonusDTO readBonus() {
         print(INPUT_BONUS_NUMBER_MESSAGE);
         String input = Console.readLine();
+        inputValidator.validateBlank(input);
         inputValidator.validateLottoNumber(input);
         return BonusDTO.from(input);
     }
