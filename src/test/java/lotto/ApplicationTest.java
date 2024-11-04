@@ -54,6 +54,30 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_빈_문자가_입력되었을_경우() {
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_1000원_단위로_나누어_떨어지지_않을_경우() {
+        assertSimpleTest(() -> {
+            runException("1440");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_0원_이하일_경우() {
+        assertSimpleTest(() -> {
+            runException("-3000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
