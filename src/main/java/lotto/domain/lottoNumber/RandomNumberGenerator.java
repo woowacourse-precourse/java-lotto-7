@@ -1,6 +1,7 @@
 package lotto.domain.lottoNumber;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,7 +12,8 @@ public class RandomNumberGenerator {
     private static final int count = LottoRange.LOTTO.getCount();
 
     public static List<Integer> generateRandomNumbers() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
+        List<Integer> randomNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count));
         Collections.sort(randomNumbers);
         return randomNumbers;
     }
