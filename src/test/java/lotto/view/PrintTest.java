@@ -21,8 +21,9 @@ class PrintTest {
   @BeforeEach
   void setUp() throws Exception {
     // 사용자가 구매 금액을 입력하면
-    this.input = new Input();
+
     String readLine = "14000";
+    this.input = new Input(readLine);
     System.setIn(setReadLine(readLine));
 
     // 로또 발행 수를 요청한다

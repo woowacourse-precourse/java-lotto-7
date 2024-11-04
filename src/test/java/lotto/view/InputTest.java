@@ -11,10 +11,11 @@ import org.junit.jupiter.api.Test;
 public class InputTest {
 
   private Input input;
+  private String readLine;
 
   @BeforeEach
   void setUp() throws Exception {
-    this.input = new Input();
+    this.input = new Input(readLine);
   }
 
   public InputStream setReadLine(String readLine) {
@@ -32,13 +33,14 @@ public class InputTest {
     //given
     String given = "8000";
     System.setIn(setReadLine(given));
+    Input input = new Input(given);
 
     //when
     // find why : 함수를 하나식 쪼갰더니 전체 테스트 실행에서 NoSuchElementException
     int actualAmount = input.readAmount();
     int expectAmount = 8000;
 
-    int actualRequest = input.getLottoCounts(actualAmount);
+    int actualRequest = this.input.getLottoCounts(actualAmount);
     int expectRequest = 8;
     //then
     assertEquals(expectAmount, actualAmount);

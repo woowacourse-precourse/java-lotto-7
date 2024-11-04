@@ -3,14 +3,24 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Input {
+
+  public Input(String enteredValue) {
+    this.enteredValue = enteredValue;
+  }
+
+  private String enteredValue;
+
+
 
   private final int LOTTO_PRICE = 1000;
   
 
   public int readAmount() {
-    String enteredValue = Console.readLine();
+
+
     int amount = Integer.parseInt(enteredValue);
     return amount;
   }

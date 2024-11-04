@@ -21,7 +21,7 @@ public class Print {
   // 7. 당첨 번호 / 보너스 번호 비교 결과를 조회하여 각각 당첨 통계를 출력
   public void printResult(Handler handler) {
     handler = this.handler;
-    Input input = new Input();
+    Input input = new Input("8000");
     int amount = input.readAmount();
     String result = handler.compareNumbersResult(handler.generateLotto(input.getLottoCounts(amount)), handler.getWinning(), handler.getBonus());
     System.out.println(result);

@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.Input;
 
 /**
  *  1. 애플리케이션 실행시 사용자가 구매 금액을 입력하면
@@ -37,8 +38,6 @@ public class Application {
          * //       7. 당첨 번호 / 보너스 번호 비교 결과를 조회하여 각각 당첨 통계와 수익률을 출력하고 애플리케이션 종료
          *         printMetric(revenue, valuation);
          */
-
-
 
 
 

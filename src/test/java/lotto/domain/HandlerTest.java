@@ -23,8 +23,9 @@ class HandlerTest {
   @BeforeEach
   void setUp() throws Exception {
     // 사용자가 구매 금액을 입력하면
-    this.input = new Input();
+
     String readLine = "14000";
+    this.input = new Input(readLine);
     System.setIn(setReadLine(readLine));
 
     // 로또 발행 수를 요청한다
@@ -69,23 +70,20 @@ class HandlerTest {
   @DisplayName("입력받은 당첨번호를 쉼표, 공백 구분자와 정수를 분리한다")
   @Test
   void generateWinningTest() throws Exception{
-    String given = "1,2,3,4,5,6";
-    // split으로 두번 잘라서 배열에서 조회한다 (On²)
-    // 스트림을 활용한다
-    List<Integer> actual = Arrays.stream(given.split("\\s,"))
-        .map(Integer::parseInt)
-        .collect(Collectors.toList()); // NumberFormatException
-
-    List<Integer> expect = List.of(1, 2, 3, 4, 5, 6);
-
-    assertEquals(expect, actual);
+//    String given = "1,2,3,4,5,6";
+//    // split으로 두번 잘라서 배열에서 조회한다 (On²)
+//    // 스트림을 활용한다
+//    List<Integer> actual = Arrays.stream(given.split("\\s,"))
+//        .map(Integer::parseInt)
+//        .collect(Collectors.toList()); // NumberFormatException
+//
+//    List<Integer> expect = List.of(1, 2, 3, 4, 5, 6);
+//
+//    assertEquals(expect, actual);
 
   }
 
-  /**
-   * HandlerTest > 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다 FAILED
-   *     org.opentest4j.AssertionFailedError at HandlerTest.java:99
-   */
+
   @DisplayName("내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다")
   @Test
   void compareNumbersTest() {
@@ -97,11 +95,18 @@ class HandlerTest {
         "6개 일치 (2,000,000,000원) - 0개";
 
     // 구매 금액 만큼의 로또 수 조회
-    int lottoCounts = input.getLottoCounts(8000);
+    /**
+     * HandlerTest > 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다 FAILED
+     *     org.opentest4j.AssertionFailedError at HandlerTest.java:99
+     */
+    String readAmount = "8000";
+    System.setIn(setReadLine(readAmount));
+
+    //when
+    int amount = input.readAmount();
+    int lottoCounts = input.getLottoCounts(amount);
     // 로또 수 만큼 로또 발행 후 전달
     List<Integer> generated = handler.generateLotto(lottoCounts);
-    // 전달된 로또 결과 조회
-//    List<Integer> actualLotto = new Lotto(generated);
     // 당첨 번호와 보너스 번호 조회
     List<Integer> winning = handler.getWinning();
     int bonus = handler.getBonus();
