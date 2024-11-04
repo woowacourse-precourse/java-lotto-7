@@ -103,4 +103,10 @@ class LottoRankTest {
     void 두번째순위일치수확인_테스트() {
         assertEquals(5, LottoRank.SECOND.getMatchCount());
     }
+
+    @DisplayName("세 번째 순위의 일치 수 확인")
+    @Test
+    void 세번째순위일치수확인_테스트() {
+        assertEquals(5, LottoRank.THIRD.getMatchCount());
+    }
 }
