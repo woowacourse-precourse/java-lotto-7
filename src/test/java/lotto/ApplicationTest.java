@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -75,6 +76,31 @@ class ApplicationTest extends NsTest {
         LottoGenerator lottoGenerator = new LottoGenerator(price);
 
         assertEquals(expectedCount, lottoGenerator.getLottoList().size(), "생성된 로또 개수가 주어진 가격과 다름");
+    }
+
+    @Test
+    void TestLottoAnalyzer() {
+        List<Lotto> sampleLottoList = List.of(
+                new Lotto(List.of(1, 2, 3, 14, 15, 16)),
+                new Lotto(List.of(1, 2, 3, 4, 15, 16)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 16)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 6))
+        );
+
+        int[] winningNumbers = {1, 2, 3, 4, 5, 6};
+        int bonusNumber = 7;
+        int purchaseAmount = 10000;
+
+        LottoAnalyzer analyzer = new LottoAnalyzer(sampleLottoList, winningNumbers, bonusNumber, purchaseAmount);
+
+        HashMap<Prize, Integer> statistics = analyzer.getStatistics();
+
+        assertThat(statistics.getOrDefault(Prize.THREE_MATCH, 0)).isEqualTo(1);
+        assertThat(statistics.getOrDefault(Prize.FOUR_MATCH, 0)).isEqualTo(1);
+        assertThat(statistics.getOrDefault(Prize.FIVE_MATCH, 0)).isEqualTo(1);
+        assertThat(statistics.getOrDefault(Prize.FIVE_MATCH_BONUS, 0)).isEqualTo(1);
+        assertThat(statistics.getOrDefault(Prize.SIX_MATCH, 0)).isEqualTo(1);
     }
 
     @Override

@@ -30,6 +30,18 @@ public class Lotto {
         System.out.println(lottoPrintMessage);
     }
 
+    public int countMatchNumbers(int[] winningNumbers) {
+        int count = 0;
+        for(int number : winningNumbers) {
+            if (numbers.contains(number)) { count++; }
+        }
+        return count;
+    }
+
+    public boolean containBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
