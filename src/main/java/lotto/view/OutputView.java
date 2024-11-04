@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     public static void printErrorMessage(String message) {
-        System.out.println("[ERROR] " + message);
+        System.out.println(message);
     }
 
     public static void printLottoResults(Map<Rank, Integer> statistics, double roi) {
