@@ -47,9 +47,40 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 로또가격_숫자_이외의_값_입력_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또가격_천원_단위_아닌_경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1003");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_쉼표_숫자_이외의_값_입력인_경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3&4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 보너스번호_쉽표_숫자_이외의_값_입력인_경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "12A");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_당첨번호와_중복인_경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
