@@ -24,13 +24,20 @@ class LottoTest {
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
     @Test
     void 로또_번호에는_음수_포함_안됨(){
-        assertThatThrownBy(() -> new Lotto(List.of(1, -2, 3, -4, 5)))
+        assertThatThrownBy(() -> new Lotto(List.of(1, -2, 3, -4, 5,6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 로또_번호는_45_이하(){
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 46)))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 46,23)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호는_6개(){
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
     }
 }
