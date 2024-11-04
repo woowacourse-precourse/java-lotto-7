@@ -1,9 +1,9 @@
-# 👨‍💻 java-lotto-precourse
+# 👨‍💻 프로젝트 이름: java-lotto-precourse
 
 ## 🧑‍💻👉기능목록: 기능단위로 커밋 진행
 
 1. 프로젝트 초기 설정
-  - 패키지 구조 생성(service, controller, view)
+  - 패키지 구조 생성(service, controller, view, model, validator)
   - Application.java 로 실행 진행
 
 2. 도메인 모델 구현
