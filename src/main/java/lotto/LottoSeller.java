@@ -11,6 +11,7 @@ public class LottoSeller {
         int pay = readPay();
         List<Lotto> lottos = buyLottos(pay);
         Lotto winnerLotto = readWinnerLotto();
+        LottoBonus lottoBonus = readLottoBonus(winnerLotto);
     }
 
     private int readPay() {
@@ -78,5 +79,28 @@ public class LottoSeller {
             throw new IllegalArgumentException("[ERROR] 숫자와 콤마(,)를 제외한 문자는 입력할 수 없습니다.");
         }
         return numbers;
+    }
+
+    private LottoBonus readLottoBonus(Lotto lotto) {
+        LottoBonus lottoBonus;
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int bonusNumber = parseBonusNumber(Console.readLine());
+                lottoBonus = new LottoBonus(lotto, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lottoBonus;
+    }
+
+    private int parseBonusNumber(String input) throws IllegalArgumentException {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
+        }
     }
 }
