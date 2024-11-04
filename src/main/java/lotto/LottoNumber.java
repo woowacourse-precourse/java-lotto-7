@@ -52,26 +52,19 @@ public enum LottoNumber {
 
     private final int number;
 
-    private LottoNumber(int number){
+    private LottoNumber(int number) {
         this.number = number;
-        validateNumber(number);
-    }
-
-    private void validateNumber(int number){
-        if(number <0 || number > 45){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
+        LottoValidator.validateLottoNumberRange(number);  // 새로운 메소드
     }
 
     public int getNumber(){
         return number;
     }
 
-    public static LottoNumber of(int number){
-        if(number < 1 || number > 45 ){
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 로또 번호입니다.");
-        }
-        return LottoNumber.values()[number];
+    public static LottoNumber of(int number) {
+        LottoValidator.validateLottoNumberRange(number);
+        return LottoNumber.values()[number - 1];  // 인덱스 수정
     }
-
 }
+
+

@@ -11,8 +11,8 @@ import java.util.stream.IntStream;
 public class LottoService {
     private static final int LOTTO_PRICE = 1000;
 
-    public List<Lotto> purchaseLotto(int amount){
-        validatePurchaseAmount(amount);
+    public List<Lotto> purchaseLotto(int amount) {
+        LottoValidator.validatePurchaseAmount(amount); // 새로운 메소드
         int count = amount / LOTTO_PRICE;
         return generateLottos(count);
     }

@@ -11,6 +11,32 @@ public class LottoValidator {
     private static final int REQUIRED_LOTTO_NUMBERS = 6;
 
 
+    public static void validateNumericInput(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 필요합니다.");
+        }
+        for (char c : input.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            }
+        }
+    }
+
+    public static void validatePurchaseAmount(int amount) {
+        if (amount < LOTTO_PRICE) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 이상이어야 합니다.");
+        }
+        if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
+        }
+    }
+
+    public static void validateLottoNumberRange(int number) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
     public static void validatePurchaseInput(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 구입 금액을 입력해주세요.");
