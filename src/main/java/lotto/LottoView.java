@@ -55,4 +55,16 @@ public class LottoView {
         System.out.println();
     }
 
+    public void printLottoRanksInfo() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for(LottoRank lottoRank : LottoRank.VALUES) {
+            if(!lottoRank.getBonusMatched()) {
+                System.out.println(lottoRank.getMatchCount() + "개 일치 (" + String.format("%,d", lottoRank.getPrizeAmount()) + "원) - " + lottoRank.getCount() + "개");
+                continue;
+            }
+            System.out.println(lottoRank.getMatchCount() + "개 일치, 보너스 볼 일치 (" + String.format("%,d", lottoRank.getPrizeAmount()) + "원) - " + lottoRank.getCount() + "개");
+        }
+    }
+
 }

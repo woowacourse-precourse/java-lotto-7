@@ -11,6 +11,8 @@ public class LottoController {
     private List<Lotto> purchasedLottos = new ArrayList<>();
     private List<Integer> lottoWinningNumbers = new ArrayList<>();
     private int lottoBonusNumber;
+    private List<LottoRank> lottoRanks = new ArrayList<>();
+
 
     LottoController(String purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
@@ -66,6 +68,22 @@ public class LottoController {
     private void validateBonusNumber(String lottoBonusNumber) {
         if(!lottoBonusNumber.matches("\\d+") || Integer.parseInt(lottoBonusNumber) > 45 || lottoWinningNumbers.contains(Integer.parseInt(lottoBonusNumber))) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    public void checkWinningNumbers() {
+        for(Lotto lotto : purchasedLottos) {
+            int matchCount = 0;
+            boolean bonusMatched = false;
+            for(int number : lotto.getNumbers()) {
+                if(lottoWinningNumbers.contains(number)) {
+                    matchCount++;
+                }
+                if(number == lottoBonusNumber) {
+                    bonusMatched = true;
+                }
+            }
+            LottoRank lottoRank = LottoRank.getLottoRank(matchCount, bonusMatched);
         }
     }
 }

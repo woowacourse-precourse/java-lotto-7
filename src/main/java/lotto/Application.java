@@ -9,5 +9,8 @@ public class Application {
 
         lottoView.lottoWinningNumbersInput();
         lottoView.lottoBonusInput();
+
+        lottoController.checkWinningNumbers();
+        lottoView.printLottoRanksInfo();
     }
 }
