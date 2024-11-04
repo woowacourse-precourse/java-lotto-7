@@ -8,7 +8,7 @@ public class TicketCount {
 
     private final int ticketCount;
 
-    public TicketCount(InputAmount amount) {
+    public TicketCount(Amount amount) {
         this.ticketCount = amount.get() / ONE_LOTTO_TICKET_PRICE.get();
     }
 

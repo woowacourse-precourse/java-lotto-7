@@ -11,9 +11,9 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import lotto.constants.ErrorMessage;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class InputAmountTest {
+public class AmountTest {
 
-    private InputAmount inputAmount;
+    private Amount amount;
 
     @DisplayName("입력값이 빈 값이면 예외를 발생시킨다.")
     @ParameterizedTest
@@ -21,7 +21,7 @@ public class InputAmountTest {
     public void ThrowExceptionIfInputAmountBlank(String inputAmount) {
         // when
         Throwable thrown = catchThrowable(() -> {
-            this.inputAmount = new InputAmount(inputAmount);
+            this.amount = new Amount(inputAmount);
         });
 
         // then
@@ -35,7 +35,7 @@ public class InputAmountTest {
     public void ThrowExceptionIfInputAmountHasCharacter(String inputAmount) {
         // when
         Throwable thrown = catchThrowable(() -> {
-            this.inputAmount = new InputAmount(inputAmount);
+            this.amount = new Amount(inputAmount);
         });
 
         // then
@@ -51,7 +51,7 @@ public class InputAmountTest {
 
         // when
         Throwable thrown = catchThrowable(() -> {
-            this.inputAmount = new InputAmount(zeroAmount);
+            this.amount = new Amount(zeroAmount);
         });
 
         // then
@@ -65,7 +65,7 @@ public class InputAmountTest {
     public void ThrowExceptionIfAmountNotDividedByThousand(String inputAmount) {
         // when
         Throwable thrown = catchThrowable(() -> {
-            this.inputAmount = new InputAmount(inputAmount);
+            this.amount = new Amount(inputAmount);
         });
 
         // then

@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Comparator;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.InputAmount;
+import lotto.model.Amount;
 import lotto.model.PurchasedLottos;
 import lotto.model.TicketCount;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,8 +19,8 @@ public class PickLottoTest {
     @BeforeEach
     public void GetThreeLottos() {
         // given
-        InputAmount inputAmount = new InputAmount("3000");
-        this.ticketCount = new TicketCount(inputAmount);
+        Amount amount = new Amount("3000");
+        this.ticketCount = new TicketCount(amount);
     }
 
     @DisplayName("로또 발매 시 입력받은 개수와 같은 개수의 로또가 발매된다.")

@@ -8,9 +8,8 @@ import static lotto.constants.ErrorMessage.AMOUNT_SHOULD_BE_DIVIDED_BY_THOUSAND;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
-import lotto.constants.ErrorMessage;
 
-public class InputAmount {
+public class Amount {
 
     private static final Pattern HAS_CHARACTER_PATTERN = Pattern.compile("[^0-9]");
     private static final String AMOUNT_ZERO = "0";
@@ -18,7 +17,7 @@ public class InputAmount {
 
     private final int inputAmount;
 
-    public InputAmount(String inputAmount) {
+    public Amount(String inputAmount) {
         validate(inputAmount);
         this.inputAmount = Integer.parseInt(inputAmount);
     }
@@ -62,8 +61,8 @@ public class InputAmount {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        InputAmount comparingInputAmount = (InputAmount) obj;
-        return Objects.equals(inputAmount, comparingInputAmount.inputAmount);
+        Amount comparingAmount = (Amount) obj;
+        return Objects.equals(inputAmount, comparingAmount.inputAmount);
     }
 
     @Override
