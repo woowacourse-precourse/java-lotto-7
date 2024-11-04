@@ -1,9 +1,11 @@
 package lotto.business.contract;
 
 import java.util.List;
+import lotto.business.LottoPrize;
 import lotto.business.Money;
 import lotto.io.IOManager;
 import lotto.lotto.Lotto;
+import lotto.lotto.LottoResult;
 
 /**
  * Implementation of <code>ContractStrategy</code> that can be used for testing.
@@ -27,13 +29,16 @@ public class MockedContractStrategy implements ContractStrategy {
     public int sellLottoCallCount = 0;
     public int printBillCallCount = 0;
     public List<Lotto> printBillLastCalledWith = null;
+    public int printResultCallCount = 0;
+    public List<Lotto> printResultLastCalledWithLotteries = null;
+    public LottoResult printResultLastCalledWithLottoResult = null;
 
     public MockedContractStrategy(IOManager ioManager) {
         this.ioManager = ioManager;
     }
 
     @Override
-    public Money sellLotto() {
+    public Money askMoney() {
         sellLottoCallCount++;
 
         return new Money(payedMoney);
@@ -47,5 +52,17 @@ public class MockedContractStrategy implements ContractStrategy {
         ioManager.printMessage(lotteriesBuy.size() + "개를 구매했습니다.");
         lotteriesBuy.forEach(lotto -> ioManager.printMessage(lotto.toString()));
         ioManager.printMessage("");
+    }
+
+    @Override
+    public void printResult(List<Lotto> lotteries, LottoResult lottoResult) {
+        printResultCallCount++;
+        printResultLastCalledWithLotteries = lotteries;
+        printResultLastCalledWithLottoResult = lottoResult;
+
+        ioManager.printMessage("lotto prizes");
+        ioManager.printMessage("---");
+        List<LottoPrize> lottoPrizes = LottoPrize.from(lotteries, lottoResult);
+        lottoPrizes.forEach(prize -> ioManager.printMessage(prize.toString()));
     }
 }

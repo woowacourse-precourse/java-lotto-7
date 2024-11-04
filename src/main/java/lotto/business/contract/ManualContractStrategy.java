@@ -2,11 +2,17 @@ package lotto.business.contract;
 
 import static lotto.Util.tryGetUntilSuccess;
 
+import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import lotto.business.BusinessException;
+import lotto.business.LottoPrize;
 import lotto.business.Money;
 import lotto.io.IOManager;
 import lotto.lotto.Lotto;
+import lotto.lotto.LottoResult;
 
 public class ManualContractStrategy implements ContractStrategy {
     private final IOManager ioManager;
@@ -18,7 +24,7 @@ public class ManualContractStrategy implements ContractStrategy {
     }
 
     @Override
-    public Money sellLotto() {
+    public Money askMoney() {
         return tryGetUntilSuccess(this::getMoneyFromUser, this::printLinebreak);
     }
 
@@ -29,8 +35,17 @@ public class ManualContractStrategy implements ContractStrategy {
         printLinebreak();
     }
 
+    @Override
+    public void printResult(List<Lotto> lotteries, LottoResult lottoResult) {
+        ioManager.printMessage("당첨 통계");
+        ioManager.printMessage("---");
+        List<LottoPrize> lottoPrizes = LottoPrize.from(lotteries, lottoResult);
+        printWinningPrizes(lottoPrizes);
+        printProfitRate(lotteries, lottoPrizes);
+    }
+
     private Money getMoneyFromUser() {
-        askUserToInputMoney();
+        promptUserToInputMoney();
         Money inputMoney = new Money(getIntFromUser());
 
         if (!isDivisibleByLottoPrice(lottoPrice)) {
@@ -40,7 +55,7 @@ public class ManualContractStrategy implements ContractStrategy {
         return inputMoney;
     }
 
-    private void askUserToInputMoney() {
+    private void promptUserToInputMoney() {
         ioManager.printMessage("구입금액을 입력해 주세요.");
     }
 
@@ -50,6 +65,34 @@ public class ManualContractStrategy implements ContractStrategy {
 
     private boolean isDivisibleByLottoPrice(Money inputMoney) {
         return inputMoney.isDivisibleBy(lottoPrice);
+    }
+
+    private void printWinningPrizes(List<LottoPrize> lottoPrizes) {
+        Arrays.stream(LottoPrize.values())
+                .sorted(Comparator.reverseOrder())
+                .filter(lottoPrize -> lottoPrize != LottoPrize.NONE)
+                .forEach(targetPrize -> printWinningPrize(targetPrize, lottoPrizes));
+    }
+
+    private void printWinningPrize(LottoPrize targetPrize, List<LottoPrize> lottoPrizes) {
+        int count = Collections.frequency(lottoPrizes, targetPrize);
+        ioManager.printMessage(targetPrize.toString() + " - " + count + "개");
+    }
+
+    private void printProfitRate(List<Lotto> lotteries, List<LottoPrize> lottoPrizes) {
+        double profitRate = calculateProfitRate(lotteries, lottoPrizes);
+        DecimalFormat df = new DecimalFormat("#,##0.0");
+        ioManager.printMessage("총 수익률은 " + df.format(profitRate * 100) + "%입니다.");
+    }
+
+    private double calculateProfitRate(List<Lotto> lotteries, List<LottoPrize> lottoPrizes) {
+        int moneyUsed = lottoPrice.multiply(lotteries.size());
+        if (moneyUsed == 0) {
+            return 0;
+        }
+
+        int totalRewards = LottoPrize.sumOfRewards(lottoPrizes);
+        return (double) totalRewards / moneyUsed;
     }
 
     private void printLinebreak() {

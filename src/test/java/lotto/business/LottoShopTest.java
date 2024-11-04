@@ -36,8 +36,7 @@ class LottoShopTest {
         mockedContractStrategy = new MockedContractStrategy(mockedIOManager);
         mockedIssueStrategy = new MockedIssueStrategy();
         mockedDrawStrategy = new MockedDrawStrategy();
-        lottoShop = new LottoShop(mockedIOManager, lottoPrice,
-                mockedContractStrategy, mockedIssueStrategy, mockedDrawStrategy);
+        lottoShop = new LottoShop(lottoPrice, mockedContractStrategy, mockedIssueStrategy, mockedDrawStrategy);
     }
 
     @Nested
@@ -113,7 +112,7 @@ class LottoShopTest {
             // given
             List<Lotto> lotteries = List.of(
                     new Lotto(Stream.of(1, 2, 3, 4, 5, 6).map(LottoNumber::new).toList()),
-                    new Lotto(Stream.of(11, 21, 31, 41, 25, 26).map(LottoNumber::new).toList()),
+                    new Lotto(Stream.of(11, 21, 3, 4, 5, 6).map(LottoNumber::new).toList()),
                     new Lotto(Stream.of(13, 22, 33, 34, 45, 6).map(LottoNumber::new).toList())
             );
             LottoResult lottoResult = new LottoResult(
@@ -125,15 +124,15 @@ class LottoShopTest {
             lottoShop.printResult(lotteries, lottoResult);
 
             // then
+            assertThat(mockedContractStrategy.printResultCallCount).isEqualTo(1);
+            assertThat(mockedContractStrategy.printResultLastCalledWithLotteries).isEqualTo(lotteries);
+            assertThat(mockedContractStrategy.printResultLastCalledWithLottoResult).isEqualTo(lottoResult);
             assertThat(mockedIOManager.outputBuilder.toString()).contains(
-                    "당첨 통계",
+                    "lotto prizes",
                     "---",
-                    "3개 일치 (5,000원) - 0개",
-                    "4개 일치 (50,000원) - 0개",
-                    "5개 일치 (1,500,000원) - 0개",
-                    "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                    "6개 일치 (2,000,000,000원) - 1개",
-                    "총 수익률은 66,666,666.7%입니다."
+                    "6개 일치 (2,000,000,000원)",
+                    "4개 일치 (50,000원)",
+                    "0개 일치 (0원)"
             );
         }
     }

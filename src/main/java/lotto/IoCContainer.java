@@ -17,8 +17,7 @@ public class IoCContainer {
     private static final ContractStrategy contractStrategy = new ManualContractStrategy(ioManager, lottoPrice);
     private static final IssueStrategy issueStrategy = new RandomIssueStrategy();
     private static final DrawStrategy drawStrategy = new ManualDrawStrategy(ioManager);
-    private static final LottoShop lottoShop =
-            new LottoShop(ioManager, lottoPrice, contractStrategy, issueStrategy, drawStrategy);
+    private static final LottoShop lottoShop = new LottoShop(lottoPrice, contractStrategy, issueStrategy, drawStrategy);
 
     public static IOManager getIoManager() {
         return ioManager;
