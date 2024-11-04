@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.handler.ExceptionHandler;
+import lotto.message.info.InfoMessage;
 import lotto.model.domain.Lotto;
 import lotto.model.service.LottServiceImpl;
 import lotto.model.service.LottoService;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.IllformedLocaleException;
 import java.util.List;
+import java.util.Map;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -20,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private final InputView inputView = new InputView(new ExceptionHandler());
+    private final InputView inputView = new InputView(new ExceptionHandler(), new LottServiceImpl());
     private final LottoService lottoService = new LottServiceImpl();
     private final ExceptionHandler exceptionHandler = new ExceptionHandler();
 
@@ -126,6 +128,30 @@ class ApplicationTest extends NsTest {
         assertThrows(IllegalArgumentException.class,
                 () -> exceptionHandler.validateBonusNumber(bonusNumber));
     }
+
+    @Test
+    @DisplayName("당첨통계가 맞는지 검증하는 테스트 입니다.")
+    public void testCalculateWinningStatistics() {
+        //given
+        List<List<Integer>> purchasedLotto = List.of(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(3, 4, 5, 6, 7, 8),
+                List.of(10, 20, 30, 40, 45, 33)
+        );
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        //when
+        Map<String, Integer> matchCounts = lottoService.calculateWinningStatistics(purchasedLotto, winningNumbers, bonusNumber);
+        //then
+        assertEquals(1, matchCounts.get(InfoMessage.FIRST.getMessage()));
+        assertEquals(0, matchCounts.get(InfoMessage.SECOND.getMessage()));
+        assertEquals(0, matchCounts.get(InfoMessage.THIRD.getMessage()));
+        assertEquals(1, matchCounts.get(InfoMessage.FOURTH.getMessage()));
+        assertEquals(0, matchCounts.get(InfoMessage.FIFTH.getMessage()));
+
+    }
+
 
     @Override
     public void runMain() {
