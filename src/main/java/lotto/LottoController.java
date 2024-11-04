@@ -2,7 +2,7 @@ package lotto;
 
 import static lotto.Consumer.duplicateWithWinnging;
 import static lotto.Consumer.enterPurchaseAmount;
-import static lotto.Consumer.getBousNumber;
+import static lotto.Consumer.getBonusNumber;
 import static lotto.Consumer.getWinningNumbers;
 import static lotto.LottoCalculator.calculateProfitRate;
 import static lotto.LottoCalculator.calculateTotalRank;
@@ -20,21 +20,60 @@ import java.util.Map;
 
 public class LottoController {
     public void start() {
-        setInputPurchaseAmount();
-        int purchaseAmount = enterPurchaseAmount();
-        int numberOfLotto = countNumberOfLotto(purchaseAmount);
-        System.out.println();
-        System.out.println(getHowManyLottoMessage(numberOfLotto));
-        List<Lotto> lottos = giveLotto(numberOfLotto);
-        System.out.println();
-        setWinningNumbers();
-        List<Integer> winningNumbers = getWinningNumbers();
-        System.out.println();
-        setBonusNumbers();
-        int bonusNumber = getBousNumber();
-        duplicateWithWinnging(winningNumbers, bonusNumber);
+        int purchaseAmount = getPurchaseAmount();
+        int numberOfLotto = getLottoCount(purchaseAmount);
 
-        Map<Rank, Integer> rankCount = calculateTotalRank(lottos, winningNumbers, bonusNumber);
+        System.out.println();
+        printLottoCountMessage(numberOfLotto);
+
+        List lottos = issueLottos(numberOfLotto);
+
+        System.out.println();
+        List winningNumbers = getWinningNumbersInput();
+        System.out.println();
+        int bonusNumber = getBonusNumberInput();
+        validateBonusNumber(winningNumbers, bonusNumber);
+
+        Map rankCount = calculateRankings(lottos, winningNumbers, bonusNumber);
+        displayResults(rankCount, purchaseAmount);
+    }
+
+    private int getPurchaseAmount() {
+        setInputPurchaseAmount();
+        return enterPurchaseAmount();
+    }
+
+    private int getLottoCount(int purchaseAmount) {
+        return countNumberOfLotto(purchaseAmount);
+    }
+
+    private void printLottoCountMessage(int numberOfLotto) {
+        System.out.println(getHowManyLottoMessage(numberOfLotto));
+    }
+
+    private List issueLottos(int numberOfLotto) {
+        return giveLotto(numberOfLotto);
+    }
+
+    private List getWinningNumbersInput() {
+        setWinningNumbers();
+        return getWinningNumbers();
+    }
+
+    private int getBonusNumberInput() {
+        setBonusNumbers();
+        return getBonusNumber();
+    }
+
+    private void validateBonusNumber(List winningNumbers, int bonusNumber) {
+        duplicateWithWinnging(winningNumbers, bonusNumber);
+    }
+
+    private Map calculateRankings(List lottos, List winningNumbers, int bonusNumber) {
+        return calculateTotalRank(lottos, winningNumbers, bonusNumber);
+    }
+
+    private void displayResults(Map rankCount, int purchaseAmount) {
         printRank(rankCount);
         long totalReward = calculateTotalReward(rankCount);
         double profitRate = calculateProfitRate(totalReward, purchaseAmount);

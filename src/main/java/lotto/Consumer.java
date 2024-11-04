@@ -87,7 +87,7 @@ public class Consumer {
         }
     }
 
-    public static int getBousNumber() {
+    public static int getBonusNumber() {
         int bonusNumber = Integer.parseInt(input());
         validateSingleNumber(bonusNumber);
         return bonusNumber;
