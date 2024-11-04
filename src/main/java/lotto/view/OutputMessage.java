@@ -50,7 +50,6 @@ public enum OutputMessage {
         if (rank.getBonusMatch()) {
             resultFormat = SHOW_MATCH_RESULT_WITH_BONUS.getMessage();
         }
-
         sb.append(String.format(resultFormat, rank.getMatchCount(), rank.getPrize(), count));
         sb.append(System.lineSeparator());
     }
