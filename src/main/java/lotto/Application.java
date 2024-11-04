@@ -5,7 +5,13 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         PurchaseAmount purchaseAmount = promptForPurchaseAmount();
+        int lottoCount = purchaseAmount.getLottoCount();
+        Lottos lottos = LottoMachine.createLottos(lottoCount);
+
+        Output.printLottos(lottos);
+
         WinningLotto winningLotto = promptForWinningLotto();
+
     }
 
     private static PurchaseAmount promptForPurchaseAmount() {

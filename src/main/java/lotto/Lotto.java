@@ -29,4 +29,14 @@ public class Lotto {
             throw new IllegalArgumentException(DUPLICATE_ERROR);
         }
     }
+
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
