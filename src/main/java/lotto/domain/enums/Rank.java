@@ -37,10 +37,6 @@ public enum Rank {
 		return Optional.empty();
 	}
 
-	public int getMatchCount(){
-		return matchCount;
-	}
-
 	public int getPrizeMoney(){
 		return prizeMoney;
 	}
