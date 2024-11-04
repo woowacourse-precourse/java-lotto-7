@@ -20,7 +20,7 @@ public class Input {
 		System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
 		return validateLottoPurchaseAmountFormat(Console.readLine());
 	}
-	
+
 	public static Lotto readAnswerLotto() {
 		System.out.println(ANSWER_LOTTO_INPUT_MESSAGE);
 		String input = Console.readLine();
