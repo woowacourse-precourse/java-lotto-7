@@ -9,10 +9,17 @@ public class BonusNumber {
     private int bonusNumber;
 
 
-    public BonusNumber(int bonusNumber, List<Integer> lottoNumbers) {
+    public BonusNumber(int bonusNumber, Lotto winningNumbers) {
+        validateWinningNumbers(winningNumbers);
         validateRange(bonusNumber);
-        validateNumber(bonusNumber, lottoNumbers);
+        validateNumber(bonusNumber, winningNumbers.getNumbers());
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validateWinningNumbers(Lotto winningNumbers) {
+        if(winningNumbers == null) {
+            throw new IllegalStateException("[ERROR] 당첨 번호가 먼저 설정되어야 합니다.");
+        }
     }
 
     private void validateRange(int number) {

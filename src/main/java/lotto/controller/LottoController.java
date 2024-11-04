@@ -21,7 +21,11 @@ public class LottoController {
             BonusNumber bonusNumber = getBonusNumber(winningNumbers);
 
             printWinningResult(purchasedLottos, winningNumbers, bonusNumber, purchasedPrice);
-        } catch (Exception e) { //예상하지 못한 예외가 발생하는 경우 stack trace 를 출력하고 종료합니다.
+        } catch (IllegalStateException e) {
+            OutputView.printIllegalStateException(e);
+            throw e;
+        }
+        catch (Exception e) { //예상하지 못한 예외가 발생하는 경우 stack trace 를 출력하고 종료합니다.
             e.printStackTrace();
             throw e;
         }
