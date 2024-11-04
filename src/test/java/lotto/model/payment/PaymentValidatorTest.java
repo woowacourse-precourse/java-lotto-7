@@ -1,6 +1,5 @@
-package lotto.utils;
+package lotto.model.payment;
 
-import lotto.model.payment.PaymentValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
