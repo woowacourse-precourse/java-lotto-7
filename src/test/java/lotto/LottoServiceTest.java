@@ -175,7 +175,20 @@ public class LottoServiceTest {
     }
 
 
-
+    @DisplayName("로또 정렬 확인 테스트")
+    @Test
+    void 로또_정렬_테스트(){
+        //given
+        int amountOfLotto = 3;
+        //when
+        List<List<Integer>> sortedlotto = lottoService.publishLotto(amountOfLotto);
+        //then
+        for(List<Integer> lotto : sortedlotto){
+            for(int i = 0; i < lotto.size()-1; i++){
+                Assertions.assertTrue(lotto.get(i) < lotto.get(i+1));
+            }
+        }
+    }
 
 
 }
