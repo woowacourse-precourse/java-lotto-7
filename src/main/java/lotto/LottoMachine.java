@@ -29,5 +29,19 @@ public class LottoMachine {
                 .sorted()
                 .collect(Collectors.toList());
     }
+    public LottoResult checkWinning(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
+        LottoResult result = new LottoResult();
+        for (Lotto lotto : purchasedLottos) {
+            result.addResult(matchLotto(lotto, winningNumbers, bonusNumber));
+        }
+        return result;
+    }
 
+    private LottoRank matchLotto(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+        boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
+        return LottoRank.valueOf(matchCount, matchBonus);
+    }
 }

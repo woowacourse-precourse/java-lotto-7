@@ -6,11 +6,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoMachineTest {
 
@@ -78,4 +80,22 @@ class LottoMachineTest {
             }
         }
     }
+
+    @Test
+    void checkWinningTest() {
+        List<Lotto> purchasedLottos = Arrays.asList(
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)),
+                new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12))
+        );
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        LottoResult result = lottoMachine.checkWinning(purchasedLottos, winningNumbers, bonusNumber);
+
+        assertThat(result.getCountForRank(LottoRank.FIRST)).isEqualTo(1);
+        assertThat(result.getCountForRank(LottoRank.SECOND)).isEqualTo(1);
+        assertThat(result.getCountForRank(LottoRank.NONE)).isEqualTo(1);
+    }
+    
 }
