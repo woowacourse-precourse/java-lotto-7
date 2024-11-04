@@ -1,0 +1,54 @@
+package lotto;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+
+import java.util.List;
+import org.junit.jupiter.api.Test;
+
+class LottoMachineTest {
+
+    @Test
+    void 로또_구입_금액의_단위가_1000원이_아니면_예외가_발생한다() {
+        LottoMachine lottoMachine = new LottoMachine();
+
+        assertThatThrownBy(() -> lottoMachine.calculateLottoCount(1300))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_PURCHASE_AMOUNT.getErrorMessage());
+    }
+
+    @Test
+    void 중복_없이_번호_6개_뽑는_테스트() {
+        LottoMachine lottoMachine = new LottoMachine();
+        List<Integer> lottoNumbers = lottoMachine.generateLottoNumbers();
+
+        assertThat(lottoNumbers).hasSize(6);
+        assertThat(lottoNumbers).allMatch(num -> num >= 1 && num <= 45);
+        assertThat(lottoNumbers).doesNotHaveDuplicates();
+
+    }
+
+    @Test
+    void 주어진_개수만큼_로또_티켓이_생성되는지_확인() {
+        LottoMachine lottoMachine = new LottoMachine();
+        int count = 5;
+        List<List<Integer>> lottoTickets = lottoMachine.generateLottoTickets(count);
+
+        assertThat(lottoTickets).hasSize(count);
+    }
+
+    @Test
+    void 로또_티켓이_중복_없이_6개로_구성되었는지_확인() {
+        LottoMachine lottoMachine = new LottoMachine();
+        int count = 5;
+        List<List<Integer>> lottoTickets = lottoMachine.generateLottoTickets(count);
+
+        for (List<Integer> ticket : lottoTickets) {
+            assertThat(ticket).hasSize(6);
+            assertThat(ticket).allMatch(num -> num >= 1 && num <= 45);
+            assertThat(ticket).doesNotHaveDuplicates();
+        }
+    }
+
+}
