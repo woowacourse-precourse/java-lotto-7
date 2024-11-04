@@ -6,11 +6,11 @@ public class LottoAmountValidator {
     public static int validatePurchaseAmout(String lottoAmount) {
         inputNullOrEmpty(lottoAmount);
         int lottoRound = convertPurchaseAmountToInt(lottoAmount);
-        if (lottoRound % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
-        }
         if (lottoRound < 1000) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE_OR_ZERO.getMessage());
+        }
+        if (lottoRound % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
         }
         return lottoRound / 1000;
     }
