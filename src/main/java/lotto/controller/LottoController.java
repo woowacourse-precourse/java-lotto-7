@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import java.util.Map;
 import lotto.controller.manager.InputManager;
 import lotto.model.LottoRank;
@@ -19,17 +20,10 @@ public class LottoController {
     }
 
     public void run(User user) {
-        try {
-            buyTickets(user);
-            setupWinningNumbers();
-            printResults(user);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
 
-            // 프로그램 종료 또는 다른 오류 처리 로직
-        }
+        buyTickets(user);
+        setupWinningNumbers();
+        printResults(user);
     }
 
     private void buyTickets(User user) {
@@ -41,7 +35,10 @@ public class LottoController {
     }
 
     private void setupWinningNumbers() {
-        service.setWinningNumbers(manager.getWinningNumbers(), manager.getBonusNumber());
+        List<Integer> winningNumbers = manager.getWinningNumbers(); // 당첨 번호 입력
+        int bonusNumber = manager.getBonusNumber(winningNumbers);   // 보너스 번호 입력
+
+        service.setWinningNumbers(winningNumbers, bonusNumber);     // 서비스에 당첨 번호와 보너스 번호 설정
     }
 
     private void printResults(User user) {

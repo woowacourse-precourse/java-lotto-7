@@ -22,9 +22,10 @@ public class ValidatorUtils {
     public static int validateIntRange(BigInteger bigIntValue) {
         if (bigIntValue.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0 ||
                 bigIntValue.compareTo(BigInteger.valueOf(Integer.MIN_VALUE)) < 0) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + " 입력한 금액이 정수 범위를 초과합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 입력이 정수 범위를 초과합니다.");
         }
         return bigIntValue.intValue();  // int 범위 내이므로 변환 후 반환
     }
+
 }
 

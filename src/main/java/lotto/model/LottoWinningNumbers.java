@@ -8,7 +8,7 @@ public class LottoWinningNumbers {
     private final int bonusNumber;
 
     public LottoWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningNumbers = List.copyOf(winningNumbers);
+        this.winningNumbers = winningNumbers;
         BonusNumberValidator.checkDuplicate(winningNumbers, bonusNumber); // 생성 시 중복 검사
         this.bonusNumber = bonusNumber;
     }

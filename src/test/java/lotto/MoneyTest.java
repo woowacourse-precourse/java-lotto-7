@@ -23,8 +23,8 @@ class MoneyTest {
     @ParameterizedTest
     @CsvSource({
             "abc, 유효한 숫자를 입력해야 합니다.",
-            "2147483648, 입력한 금액이 정수 범위를 초과합니다.",
-            "-2147483649, 입력한 금액이 정수 범위를 초과합니다."
+            "2147483648, 입력이 정수 범위를 초과합니다.",
+            "-2147483649, 입력이 정수 범위를 초과합니다."
     })
     @DisplayName("문자 입력 또는 범위를 초과하는 경우")
     void testInvalidFormatOrOutOfRange(String input, String errorMessage) {

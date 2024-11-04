@@ -20,7 +20,7 @@ public class InputManager {
         try {
             int money = moneyValidator.validate(view.getUserInput());// 금액 입력
             return money; // 유효한 금액이면 반환
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage()); // 재입력 요청
             return getMoney();
         }
@@ -40,15 +40,15 @@ public class InputManager {
         }
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(List<Integer> winningNumbers) {
         BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
 
         try {
-            int bonusNumber = bonusNumberValidator.validate(view.getBonusNumbers());// 금액 입력
+            int bonusNumber = bonusNumberValidator.validate(view.getBonusNumbers(), winningNumbers);// 금액 입력
             return bonusNumber; // 유효한 금액이면 반환
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage()); // 재입력 요청
-            return getBonusNumber();
+            return getBonusNumber(winningNumbers);
         }
     }
 
