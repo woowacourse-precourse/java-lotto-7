@@ -41,6 +41,22 @@ class InputTest extends NsTest {
         });
     }
 
+    @Test
+    void 보너스_번호와_로또_번호가_중복() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,10", "10");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 금액이_1000으로_나누어떨어지지_않는_경우() {
+        assertSimpleTest(() -> {
+            runException("8100", "1,2,3,4,5,6", "10");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[] {});
