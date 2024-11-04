@@ -46,7 +46,7 @@ public class LottoController {
         return new WinNumbers(winNumber, bonusNumber);
     }
 
-    public int calculateWinnings(List<Lotto> lottos, WinNumbers winNumbers) {
+    public LottoResult calculateWinnings(List<Lotto> lottos, WinNumbers winNumbers) {
         int totalWinnings = 0;
         int[] rankCount = new int[Rank.values().length];
         for (Lotto lotto : lottos) {
@@ -54,7 +54,7 @@ public class LottoController {
             rankCount[rank.ordinal()]++;
             totalWinnings += rank.getPrizeMoney();
         }
-        return totalWinnings;
+        return new LottoResult(totalWinnings, rankCount);
     }
 
     public double calculateRateOfReturn(int totalWinnings, int purchaseNumber) {
