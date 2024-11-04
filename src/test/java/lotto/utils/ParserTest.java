@@ -31,6 +31,42 @@ public class ParserTest {
     }
 
     @Test
+    @DisplayName("int형을 벗어나는 양의 정수가 입력되면 예외를 발생시킨다.")
+    void throwExceptionWhenPositiveNumberExceedsIntRange() {
+        String exceptionMessage = Assertions.assertThrows(ParserException.class, () ->
+                Parser.parseStringToInt("2147483648")
+        ).getMessage();
+
+        Assertions.assertTrue(
+                exceptionMessage.contains(ParserExceptionMessage.NUMBER_OUT_OF_RANGE.getMessage())
+        );
+    }
+
+    @Test
+    @DisplayName("int형을 벗어나는 음의 정수가 입력되면 예외를 발생시킨다.")
+    void throwExceptionWhenNegativeNumberExceedsIntRange() {
+        String exceptionMessage = Assertions.assertThrows(ParserException.class, () ->
+                Parser.parseStringToInt("-2147483649")
+        ).getMessage();
+
+        Assertions.assertTrue(
+                exceptionMessage.contains(ParserExceptionMessage.NUMBER_OUT_OF_RANGE.getMessage())
+        );
+    }
+
+    @Test
+    @DisplayName("소수가 입력되면 예외를 발생시킨다.")
+    void throwExceptionWhenInputIsDecimalNumber() {
+        String exceptionMessage = Assertions.assertThrows(ParserException.class, () ->
+                Parser.parseStringToInt("2.1")
+        ).getMessage();
+
+        Assertions.assertTrue(
+                exceptionMessage.contains(ParserExceptionMessage.NOT_NUMBER.getMessage())
+        );
+    }
+
+    @Test
     @DisplayName("숫자가 아닌 값을 포함한 문자열을 입력하면 예외를 발생시킨다.")
     void throwExceptionWhenInvalidInputIncludeNonNumber() {
         String exceptionMessage = Assertions.assertThrows(ParserException.class, () ->
@@ -41,7 +77,6 @@ public class ParserTest {
                 exceptionMessage.contains(ParserExceptionMessage.NOT_NUMBER.getMessage())
         );
     }
-
     @Test
     @DisplayName("구분자로 구분된 문자열을 입력하면 숫자 리스트를 반환한다.")
     void returnListOfNumbersWhenValidInput() {
