@@ -12,7 +12,7 @@ class HistoryTest {
         History history = new History();
         history.addHistory(6,0);
 
-        Assertions.assertThat(history.getTotalPrizeMoney()).isEqualTo(2000000000/100);
+        Assertions.assertThat(history.getTotalPrizeMoney()).isEqualTo(2000000000);
     }
 
 }
