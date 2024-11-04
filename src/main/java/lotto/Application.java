@@ -6,7 +6,7 @@ public class Application {
     public static void main(String[] args) {
         UserLottos userLottos = createUserLottos();
         showUserLottos(userLottos);
-        Lotto winningLottoNumbers = getWinningLottoNumbers();
+        Lotto winningLotto = getWinningLotto();
     }
 
     private static UserLottos createUserLottos() {
@@ -39,7 +39,7 @@ public class Application {
         return sb.toString();
     }
 
-    private static Lotto getWinningLottoNumbers() {
+    private static Lotto getWinningLotto() {
         while (true) {
             try {
                 String input = inputWinningNumbers();
@@ -52,6 +52,11 @@ public class Application {
 
     private static String inputWinningNumbers() {
         System.out.println(IOMessage.WINNING_NUMBERS.getMessage());
+        return readLine();
+    }
+
+    private static String inputBonusNumber() {
+        System.out.println(IOMessage.BONUS_NUMBER.getMessage());
         return readLine();
     }
 }
