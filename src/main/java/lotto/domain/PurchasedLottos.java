@@ -21,14 +21,30 @@ public class PurchasedLottos {
     }
 
     public EnumMap<LottoRank, Integer> calculateRankCounts(WinningLotto winningLotto) {
-        EnumMap<LottoRank, Integer> rankCounts = new EnumMap<>(LottoRank.class);
-        lottos.forEach(lotto -> {
-            LottoRank rank = LottoRank.of(
-                    winningLotto.getCountMatchedNumber(lotto),
-                    winningLotto.checkBonusNumberMatched(lotto)
-            );
-            rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
-        });
+        EnumMap<LottoRank, Integer> rankCounts = initializeRankCounts();
+
+        lottos.forEach(lotto -> updateRankCounts(rankCounts, winningLotto, lotto));
+
         return rankCounts;
+    }
+
+    private EnumMap<LottoRank, Integer> initializeRankCounts() {
+        EnumMap<LottoRank, Integer> rankCounts = new EnumMap<>(LottoRank.class);
+        for (LottoRank rank : LottoRank.values()) {
+            rankCounts.put(rank, 0);
+        }
+        return rankCounts;
+    }
+
+    private void updateRankCounts(
+            EnumMap<LottoRank, Integer> rankCounts,
+            WinningLotto winningLotto,
+            Lotto lotto
+    ) {
+        LottoRank rank = LottoRank.of(
+                winningLotto.getCountMatchedNumber(lotto),
+                winningLotto.checkBonusNumberMatched(lotto)
+        );
+        rankCounts.put(rank, rankCounts.get(rank) + 1);
     }
 }
