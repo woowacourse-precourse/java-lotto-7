@@ -1,6 +1,9 @@
 package lotto.view;
 
+import java.text.NumberFormat;
 import lotto.domain.LottoPaper;
+import lotto.domain.enums.LottoPrize;
+import lotto.domain.enums.LottoRank;
 
 public class OutputView {
 
@@ -28,4 +31,35 @@ public class OutputView {
         System.out.println();
         System.out.println(OutputMessage.BONUS_NUMBER.getFormattedMessage());
     }
+
+    public static void printLottoResultMessagePrefix(){
+        System.out.println();
+        System.out.println(OutputMessage.RESULT_PREFIX.getMessage());
+        System.out.println(OutputMessage.DOTTED_LINE.getMessage());
+    }
+
+    public static void printLottoResultMessage(LottoRank rank, int resultCount) {
+        String bonusMessage = getBonusMessage(rank);
+        String formattedPrize = formatPrize(LottoPrize.fromRank(rank).getPrize());
+        String resultMessage = OutputMessage.RANK.getFormattedMessage(
+                rank.getMatchCount(),
+                bonusMessage,
+                formattedPrize);
+        resultMessage += OutputMessage.RANK_COUNT.getFormattedMessage(resultCount);
+        
+        System.out.println(resultMessage);
+    }
+
+
+    private static String getBonusMessage(LottoRank rank) {
+        if(rank.getMatchCount()==5 && rank.isMatchBonus()){
+            return OutputMessage.BONUS.getMessage();
+        }
+        return "";
+    }
+
+    private static String formatPrize(int prize) {
+        return NumberFormat.getInstance().format(prize);
+    }
+
 }
