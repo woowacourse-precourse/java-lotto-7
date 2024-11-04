@@ -60,20 +60,19 @@ public class InputNumberValidator {
         return false;
     }
 
+    private static boolean isSingleInteger(String input) {
+        return input.trim().matches(REGEX);
+    }
+
     public static void validatePaymentPriceType(String paymentPriceInput) {
         if (PriceValidator.isNotInteger(paymentPriceInput)) {
             throw new NumberFormatException(ErrorMessage.INVALID_PURCHASE_UNIT.getMessage());
         }
     }
 
-
-    private static boolean isSingleInteger(String input) {
-        return input.trim().matches(REGEX);
-    }
-
     public static void validatePaymentPriceValue(String paymentPriceInput) {
         if (PriceValidator.isOutOfIntegerRange(paymentPriceInput)) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_LIMIT_REACHED.getMessage());
+            throw new NumberFormatException(ErrorMessage.PURCHASE_LIMIT_REACHED.getMessage());
         }
         if (PriceValidator.isZero(paymentPriceInput) || PriceValidator.isNegative(paymentPriceInput)) {
             throw new IllegalArgumentException(ErrorMessage.MINIMUM_PURCHASE_AMOUNT.getMessage());
