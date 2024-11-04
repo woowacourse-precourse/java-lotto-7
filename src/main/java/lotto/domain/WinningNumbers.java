@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.constants.ErrorMessage;
 import lotto.constants.LottoRules;
 
@@ -12,6 +10,7 @@ public class WinningNumbers {
     public WinningNumbers(List<Integer> numbers) {
         validateNumbersCount(numbers);
         validateNumbersDuplication(numbers);
+        validateNumberInRange(numbers);
         this.numbers = numbers;
     }
 
@@ -24,20 +23,22 @@ public class WinningNumbers {
     }
 
     private static void validateNumbersDuplication(List<Integer> numbers) {
-        Set<Integer> numberSet = new HashSet<>();
-        for (Integer number : numbers) {
-            validateNumberInRange(number);
-            if (!numberSet.add(number)) {
-                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage());
-            }
+        if (hasDuplicateNumbers(numbers)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
-    public static void validateNumberInRange(int number) {
-        if (number < LottoRules.MIN_NUMBER || number > LottoRules.MAX_NUMBER) {
-            throw new IllegalArgumentException(
-                    String.format(ErrorMessage.OUT_OF_BOUNDS.getMessage(), LottoRules.MIN_NUMBER,
-                            LottoRules.MAX_NUMBER));
+    private static boolean hasDuplicateNumbers(List<Integer> numbers) {
+        return numbers.stream().distinct().count() != numbers.size();
+    }
+
+    public static void validateNumberInRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < LottoRules.MIN_NUMBER || number > LottoRules.MAX_NUMBER) {
+                throw new IllegalArgumentException(
+                        String.format(ErrorMessage.OUT_OF_BOUNDS.getMessage(), LottoRules.MIN_NUMBER,
+                                LottoRules.MAX_NUMBER));
+            }
         }
     }
 
