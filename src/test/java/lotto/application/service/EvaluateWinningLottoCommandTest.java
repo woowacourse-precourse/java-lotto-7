@@ -1,7 +1,8 @@
 package lotto.application.service;
 
 
-import static org.assertj.core.api.Assertions.*;
+import static lotto.domain.lotto.vo.LottoPrize.FIRST;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,7 +14,6 @@ import lotto.domain.lotto.WinningNumber;
 import lotto.domain.lotto.repository.FakeLottoRepository;
 import lotto.domain.lotto.repository.LottoRepository;
 import lotto.domain.lotto.service.WinningLottoEvaluator;
-import lotto.domain.lotto.vo.LottoPrize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,13 +41,13 @@ class EvaluateWinningLottoCommandTest {
         EvaluateWinningLottoRequest evaluateWinningLottoRequest = new EvaluateWinningLottoRequest(winningNumber, buyerId);
 
         lottoRepository.saveAll(lottos);
-        
+
         // when
-        EvaluateWinningLottoResponse evaluateWinningLottoResponse = evaluateWinningLottoUsecase.execute(
-            evaluateWinningLottoRequest);
+        EvaluateWinningLottoResponse evaluateWinningLottoResponse = evaluateWinningLottoUsecase.execute(evaluateWinningLottoRequest);
 
         // then
-        assertThat(evaluateWinningLottoResponse.lottoPrizes()).containsExactly(LottoPrize.FIRST);
+        assertThat(evaluateWinningLottoResponse.winningResult().get(FIRST)).isEqualTo(1);
+        assertThat(evaluateWinningLottoResponse.earningRate()).isGreaterThan(100.0);
     }
 
 }

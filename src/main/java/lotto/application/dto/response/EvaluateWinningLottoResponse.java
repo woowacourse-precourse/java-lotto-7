@@ -1,10 +1,11 @@
 package lotto.application.dto.response;
 
-import java.util.List;
+import java.util.Map;
 import lotto.domain.lotto.vo.LottoPrize;
 
 public record EvaluateWinningLottoResponse(
-    List<LottoPrize> lottoPrizes
+    Map<LottoPrize, Integer> winningResult,
+    double earningRate
 ) {
 
 }
