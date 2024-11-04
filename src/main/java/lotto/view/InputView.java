@@ -20,7 +20,7 @@ public class InputView {
             purchaseAmount = Integer.parseInt(Console.readLine());
             LottoValidator.validatePurchaseAmount(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.format(ERROR_MESSAGE_NUMBER_FORMAT, "구입 금액"));
+            throw new IllegalArgumentException(String.format(ERROR_MESSAGE_NUMBER_FORMAT, "구입금액"));
         }
         return purchaseAmount;
     }
@@ -41,7 +41,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.format(ERROR_MESSAGE_NUMBER_FORMAT, "당첨 번호"));
+            throw new IllegalArgumentException(String.format(ERROR_MESSAGE_NUMBER_FORMAT, "보너스 번호"));
         }
     }
 }
