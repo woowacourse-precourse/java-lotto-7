@@ -17,15 +17,18 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        List<Rank> sortedRanks = List.of(
+                Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST
+        );
+
         Map<Rank, Integer> rankCounts = result.getRankCounts();
-        for (Rank rank : Rank.values()) {
-            if (rank == Rank.NONE) continue; // NONE 등수는 출력하지 않음
+        for (Rank rank : sortedRanks) {
             int count = rankCounts.getOrDefault(rank, 0);
             System.out.printf("%d개 일치", rank.getMatchCount());
             if (rank.isMatchBonus()) {
                 System.out.print(", 보너스 볼 일치");
             }
-            System.out.printf(" (%d원) - %d개\n", rank.getPrize(), count);
+            System.out.printf(" (%s원) - %d개\n", rank.getFormattedPrize(), count);
         }
     }
 

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ public enum Rank {
     NONE(0, false, 0);
 
     private static final Map<List<Object>, Rank> RANK_MAP;
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,###");
 
     static {
         RANK_MAP = Arrays.stream(values())
@@ -35,6 +37,10 @@ public enum Rank {
 
     public int getPrize() {
         return prize;
+    }
+    
+    public String getFormattedPrize() {
+        return DECIMAL_FORMAT.format(prize);
     }
     
     public int getMatchCount() {
