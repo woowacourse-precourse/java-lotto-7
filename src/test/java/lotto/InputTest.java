@@ -27,5 +27,8 @@ class InputTest {
         assertThatThrownBy(() -> Input.validateNumberRange(47))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
+        assertThatThrownBy(() -> Input.validateNumberRange(0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 }
