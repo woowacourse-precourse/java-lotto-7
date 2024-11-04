@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.resources.Constants.COMMA;
 import static lotto.resources.Constants.CONTINUOUS_COMMA_REGEX;
 import static lotto.resources.Constants.NUMBER_AND_COMMA_REGEX;
 import static lotto.resources.Constants.ONLY_NUMBER_REGEX;
@@ -18,21 +19,21 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public String inputMoney() {
-        System.out.println(INPUT_MONEY);
+        System.out.println(INPUT_MONEY.getMessage());
         String input = Console.readLine();
         validateInputNumber(input);
         return input;
     }
 
     public String inputWinningNumbers() {
-        System.out.println(INPUT_WINNING_NUMBERS);
+        System.out.println(INPUT_WINNING_NUMBERS.getMessage());
         String input = Console.readLine();
         validateInputWinningNumbers(input);
         return input;
     }
 
     public String inputBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER);
+        System.out.println(INPUT_BONUS_NUMBER.getMessage());
         String input = Console.readLine();
         validateInputNumber(input);
         return input;
@@ -84,7 +85,7 @@ public class InputView {
     }
 
     private void noEndWithComma(final String input) {
-        if (input.endsWith(",")) {
+        if (input.endsWith(COMMA)) {
             throw new IllegalArgumentException(INVALID_END_WITH_COMMA.getMessage());
         }
     }

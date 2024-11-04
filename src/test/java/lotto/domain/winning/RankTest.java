@@ -18,7 +18,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class RankTest {
     private static Stream<Arguments> provideRankTestCases() {
         return Stream.of(
-                Arguments.of(Rank.of(MATCH_SIX, FAIL_MATCH_BONUS), 200000000),
+                Arguments.of(Rank.of(MATCH_SIX, FAIL_MATCH_BONUS), 2000000000),
                 Arguments.of(Rank.of(MATCH_FIVE, MATCH_BONUS), 30000000),
                 Arguments.of(Rank.of(MATCH_FIVE, FAIL_MATCH_BONUS), 1500000),
                 Arguments.of(Rank.of(MATCH_FOUR, FAIL_MATCH_BONUS), 50000),

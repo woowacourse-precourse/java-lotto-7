@@ -77,7 +77,7 @@ class WinningStatisticsTest {
     @Test
     void 총_수익률을_계산한다() {
         winningStatistics.calculateWinningStatistics(buyer, winningInfo);
-        Double expectedRate = 2894437.5;
+        Double expectedRate = 25394437.5;
 
         Assertions.assertThat(winningStatistics.getReturnRate())
                 .isEqualTo(expectedRate);
@@ -148,8 +148,8 @@ class WinningStatisticsTest {
                 + "4개 일치 (50,000원) - 1개\n"
                 + "5개 일치 (1,500,000원) - 1개\n"
                 + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
-                + "6개 일치 (200,000,000원) - 1개\n"
-                + "총 수익률은 2894437.5%입니다.";
+                + "6개 일치 (2,000,000,000원) - 1개\n"
+                + "총 수익률은 25394437.5%입니다.";
     }
 
     private String getExpectedPartialWinningStatisticsString() {
@@ -159,7 +159,7 @@ class WinningStatisticsTest {
                 + "4개 일치 (50,000원) - 1개\n"
                 + "5개 일치 (1,500,000원) - 0개\n"
                 + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n"
-                + "6개 일치 (200,000,000원) - 0개\n"
+                + "6개 일치 (2,000,000,000원) - 0개\n"
                 + "총 수익률은 1833.3%입니다.";
     }
 }
