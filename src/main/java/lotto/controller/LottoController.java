@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.BonusNumber;
-import lotto.model.LottoBuyer;
-import lotto.model.LottoMachine;
-import lotto.model.Money;
+import lotto.model.*;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -44,4 +41,19 @@ public class LottoController {
         }
     }
 
+    private WinningLotto createWinningLotto() {
+        Lotto lotto;
+        while (true) {
+            try {
+                String winningNumber = inputWinningNumber();
+                lotto = LottoGenerator.generate(winningNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                InputView.errorPrint(e.getMessage());
+            }
+        }
+
+        BonusNumber bonusNumber = inputBonusNumber();
+        return new WinningLotto(lotto, bonusNumber);
+    }
 }
