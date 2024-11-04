@@ -11,13 +11,13 @@ public enum LottoPrize {
     FIVE_MATCHES_WITH_BONUS(5, true, 30_000_000),
     SIX_MATCHES(6, false, 2_000_000_000);
 
-    private final int matchCount;
-    private final boolean matchedBonus;
-    private final int prizeAmount;
-
     private static final String MATCH_COUNT_FORMAT = "%d개 일치";
     private static final String BONUS_MATCH_FORMAT = "%d개 일치, 보너스 볼 일치";
     private static final String AMOUNT_FORMAT = " (%s원) - ";
+
+    private final int matchCount;
+    private final boolean matchedBonus;
+    private final int prizeAmount;
 
     LottoPrize(int matchCount, boolean matchedBonus, int prizeAmount) {
         this.matchCount = matchCount;
