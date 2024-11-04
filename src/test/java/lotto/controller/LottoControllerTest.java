@@ -28,6 +28,4 @@ class LottoControllerTest {
 
         assertThatThrownBy(lottoController::getMoney).isInstanceOf(IllegalStateException.class);
     }
-
-
 }

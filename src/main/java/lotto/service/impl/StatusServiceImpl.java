@@ -1,11 +1,9 @@
 package lotto.service.impl;
 
-import static lotto.utils.ErrorMessage.NOT_HAVE_BONUS_NUM;
 import static lotto.utils.ErrorMessage.NOT_SAVE_LOTTO_LIST;
 import static lotto.utils.ErrorMessage.NOT_SAVE_WINNER_LOTTO;
 
 import lotto.domain.LottoTickets;
-import lotto.domain.CountResults;
 import lotto.domain.WinnerLotto;
 import lotto.domain.WinnerStatus;
 import lotto.dto.WinnerStatusDto;
@@ -32,21 +30,16 @@ public class StatusServiceImpl implements StatusService {
         WinnerLotto winnerLotto = winnerLottoRepository.get()
                 .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_WINNER_LOTTO.getMessage()));
 
-        validHasBonusNumber(winnerLotto);
+        winnerLotto.validBonusNumber();
 
         LottoTickets lottoTickets = lottoListRepository.get()
                 .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_LOTTO_LIST.getMessage()));
 
-        CountResults countResults = CountResults.of(lottoTickets, winnerLotto);
-        WinnerStatus winnerStatus = WinnerStatus.create(countResults);
+        WinnerStatus winnerStatus = WinnerStatus.create(lottoTickets, winnerLotto);
 
         return winnerStatusRepository.save(winnerStatus)
                 .toDto();
     }
 
-    private void validHasBonusNumber(WinnerLotto winnerLotto) {
-        if (!winnerLotto.hasBonusNumber()) {
-            throw new IllegalStateException(NOT_HAVE_BONUS_NUM.getMessage());
-        }
-    }
+
 }

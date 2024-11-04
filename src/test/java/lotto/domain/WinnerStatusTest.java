@@ -32,9 +32,7 @@ class WinnerStatusTest {
         WinnerLotto winnerLotto = new WinnerLotto("1,2,3,4,5,6");
         winnerLotto.addBonusNumber(new LottoNumber(7));
 
-        CountResults countResults = CountResults.of(lottoTickets, winnerLotto);
-
-        BigDecimal sum = WinnerStatus.create(countResults).sum();
+        BigDecimal sum = WinnerStatus.create(lottoTickets, winnerLotto).sum();
 
         assertThat(sum).isGreaterThan(BigDecimal.valueOf(expected));
     }
@@ -55,9 +53,7 @@ class WinnerStatusTest {
         WinnerLotto winnerLotto = new WinnerLotto("1,2,3,4,5,8");
         winnerLotto.addBonusNumber(new LottoNumber(7));
 
-        CountResults countResults = CountResults.of(lottoTickets, winnerLotto);
-
-        BigDecimal result = WinnerStatus.create(countResults).sum();
+        BigDecimal result = WinnerStatus.create(lottoTickets, winnerLotto).sum();
 
         assertThat(result).isEqualTo(BigDecimal.valueOf(cnt).multiply(BigDecimal.valueOf(THIRD.getPrize())));
     }
@@ -78,10 +74,10 @@ class WinnerStatusTest {
         WinnerLotto winnerLotto = new WinnerLotto("20,21,22,23,24,25");
         winnerLotto.addBonusNumber(new LottoNumber(7));
 
-        CountResults countResults = CountResults.of(lottoTickets, winnerLotto);
-
-        BigDecimal result = WinnerStatus.create(countResults).sum();
+        BigDecimal result = WinnerStatus.create(lottoTickets, winnerLotto).sum();
 
         assertThat(result).isEqualTo(BigDecimal.ZERO);
     }
+
+
 }

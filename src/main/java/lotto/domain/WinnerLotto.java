@@ -1,10 +1,12 @@
 package lotto.domain;
 
 import static lotto.utils.ErrorMessage.INVALID_WINNER_NUMBER;
+import static lotto.utils.ErrorMessage.NOT_HAVE_BONUS_NUM;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import lotto.utils.Reward;
 
 public class WinnerLotto {
 
@@ -14,7 +16,7 @@ public class WinnerLotto {
     private LottoNumber bonusNumber;
 
     protected WinnerLotto(String input) {
-        valid(input);
+        validInput(input);
         this.winLotto = parseToLotto(input);
         this.bonusNumber = null;
     }
@@ -23,19 +25,22 @@ public class WinnerLotto {
         return new WinnerLotto(input);
     }
 
-    public boolean hasBonusNumber() {
-        return this.bonusNumber != null;
+    public void validBonusNumber() {
+        if (this.bonusNumber == null) {
+            throw new IllegalStateException(NOT_HAVE_BONUS_NUM.getMessage());
+        }
     }
 
-    public CountResult countWinnerMatch(Lotto compareLotto) {
+    public Reward countWinnerMatch(Lotto compareLotto) {
+        validBonusNumber();
         int matchedCount = compareLotto.matchCount(this.winLotto);
         boolean hasBonusNumber = compareLotto.hasNumber(this.bonusNumber);
 
-        return CountResult.of(matchedCount, hasBonusNumber);
+        return Reward.forMatch(matchedCount, hasBonusNumber);
     }
 
 
-    private void valid(String input) {
+    private void validInput(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(INVALID_WINNER_NUMBER.getMessage());
         }

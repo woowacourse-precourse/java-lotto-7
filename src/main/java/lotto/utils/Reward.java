@@ -22,7 +22,7 @@ public enum Reward {
         this.description = description;
     }
 
-    public static Reward getReward(int matchedCount, boolean hasBonus) {
+    public static Reward forMatch(int matchedCount, boolean hasBonus) {
         return Arrays
                 .stream(values())
                 .filter(reward -> reward.isMatchCountAndHasBonus(matchedCount, hasBonus))
@@ -39,11 +39,11 @@ public enum Reward {
     }
 
     private boolean isMatchCountAndHasBonus(int matchCount, boolean hasBonus) {
-        if (matchCount >= 6) {
-            return true;
+        if (this.matchCount == 5) {
+            return this.matchCount == matchCount && this.hasBonus == hasBonus;
         }
 
-        return this.matchCount == matchCount && this.hasBonus == hasBonus;
+        return this.matchCount == matchCount;
     }
 }
 

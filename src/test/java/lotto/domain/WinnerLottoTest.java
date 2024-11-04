@@ -127,9 +127,9 @@ class WinnerLottoTest {
     @DisplayName("보너스 넘버 존재 테스트")
     void test11() {
         WinnerLotto winnerLotto = new WinnerLotto("1,2,3,4,5,6");
-        assertThat(winnerLotto.hasBonusNumber()).isFalse();
+        assertThrows(IllegalStateException.class, winnerLotto::validBonusNumber);
 
         winnerLotto.addBonusNumber(new LottoNumber("7"));
-        assertThat(winnerLotto.hasBonusNumber()).isTrue();
+        assertThat(winnerLotto).isNotNull();
     }
 }

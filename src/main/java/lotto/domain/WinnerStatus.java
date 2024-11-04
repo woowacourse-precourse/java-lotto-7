@@ -8,6 +8,7 @@ import static lotto.utils.Reward.SECOND;
 import static lotto.utils.Reward.THIRD;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.util.TreeMap;
@@ -21,13 +22,18 @@ public class WinnerStatus {
     private final Map<Integer, Integer> rewardMap;
     private final Map<Integer, String> rewardMessage;
 
-    public WinnerStatus(CountResults countResults) {
-        this.rewardMap = countResults.calculateAllReward();
+    protected WinnerStatus(LottoTickets lottoTickets, WinnerLotto winnerLotto) {
+        winnerLotto.validBonusNumber();
+
+        this.rewardMap = initializeRewardMap();
+        calculateAllReward(lottoTickets, winnerLotto);
+
         this.rewardMessage = initMessage();
     }
 
-    public static WinnerStatus create(CountResults countResults) {
-        return new WinnerStatus(countResults);
+    public static WinnerStatus create(LottoTickets lottoTickets, WinnerLotto winnerLotto) {
+
+        return new WinnerStatus(lottoTickets, winnerLotto);
     }
 
     public WinnerStatusDto toDto() {
@@ -39,6 +45,13 @@ public class WinnerStatus {
                 .stream()
                 .map(entry -> calculate(entry.getKey(), entry.getValue()))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public void calculateAllReward(LottoTickets lottoTickets, WinnerLotto winnerLotto) {
+        lottoTickets.forEach(lotto -> {
+            int rewardPrize = winnerLotto.countWinnerMatch(lotto).getPrize();
+            this.rewardMap.computeIfPresent(rewardPrize, (key, value) -> value + 1);
+        });
     }
 
     private BigDecimal calculate(int key, int value) {
@@ -78,4 +91,19 @@ public class WinnerStatus {
         return message;
     }
 
+    private Map<Integer, Integer> initializeRewardMap() {
+        List<Integer> reward = List.of(
+                FIRST.getPrize(),
+                SECOND.getPrize(),
+                THIRD.getPrize(),
+                FOURTH.getPrize(),
+                FIFTH.getPrize());
+        Map<Integer, Integer> rewardMap = new TreeMap<>();
+
+        for (Integer amount : reward) {
+            rewardMap.put(amount, 0);
+        }
+
+        return rewardMap;
+    }
 }

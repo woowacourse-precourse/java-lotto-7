@@ -22,8 +22,7 @@ class ProfitRateTest {
         WinnerLotto winnerLotto = new WinnerLotto("1,2,3,7,8,9");
         winnerLotto.addBonusNumber(new LottoNumber(10));
 
-        CountResults countResults = CountResults.of(lottoTickets, winnerLotto);
-        WinnerStatus winnerStatus = WinnerStatus.create(countResults);
+        WinnerStatus winnerStatus = WinnerStatus.create(lottoTickets, winnerLotto);
         Money money = new Money("5000");
         ProfitRateResultDto result = ProfitRate.create(money, winnerStatus).toDto();
 
@@ -53,8 +52,7 @@ class ProfitRateTest {
         WinnerLotto winnerLotto = new WinnerLotto("1,2,3,4,5,6");
         winnerLotto.addBonusNumber(new LottoNumber(10));
 
-        CountResults countResults = CountResults.of(lottoTickets, winnerLotto);
-        WinnerStatus winnerStatus = WinnerStatus.create(countResults);
+        WinnerStatus winnerStatus = WinnerStatus.create(lottoTickets, winnerLotto);
         Money money = new Money("1000");
 
         // when
