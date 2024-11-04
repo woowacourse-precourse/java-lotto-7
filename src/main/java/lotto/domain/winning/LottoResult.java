@@ -11,6 +11,9 @@ public class LottoResult {
     private static final int DEFAULT_VALUE = 0;
     private static final int SUM_AMOUNT = 1;
     private static final int SECOND_PRIZE_MATCH_COUNT = 5;
+    private static final double PERCENTAGE_MULTIPLIER = 100.0;
+    private static final double RETURN_RATE_ROUNDING_SCALE = 10.0;
+    private static final int RETURN_RATE_ROUNDING_FACTOR = 10;
 
     private final Map<Rank, Integer> rankCount;
     private BigInteger totalPrize;
@@ -47,7 +50,7 @@ public class LottoResult {
     }
 
     public double calculateReturnRate(Investment investment) {
-        double returnRate = (totalPrize.doubleValue() / investment.getAmount().doubleValue()) * 100;
-        return Math.round(returnRate * 10) / 10.0;
+        double returnRate = (totalPrize.doubleValue() / investment.getAmount().doubleValue()) * PERCENTAGE_MULTIPLIER;
+        return Math.round(returnRate * RETURN_RATE_ROUNDING_FACTOR) / RETURN_RATE_ROUNDING_SCALE;
     }
 }
