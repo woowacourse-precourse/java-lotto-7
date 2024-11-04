@@ -3,6 +3,7 @@ package lotto.validator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constants.LottoConstants;
 
 public class InputValidator implements InputValidatorInterface{
 
@@ -14,7 +15,7 @@ public class InputValidator implements InputValidatorInterface{
       throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
     }
 
-    if (purchaseAmount <= 0 || purchaseAmount % 1000 != 0) {
+    if (purchaseAmount <= 0 || purchaseAmount % LottoConstants.LOTTO_PRICE != 0) {
       throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
     }
     return purchaseAmount;
@@ -25,7 +26,7 @@ public class InputValidator implements InputValidatorInterface{
         .map(Integer::parseInt)
         .collect(Collectors.toList());
 
-    if (numbers.size() != 6 || hasInvalidRange(numbers)) {
+    if (numbers.size() != LottoConstants.NUMBER_COUNT || hasInvalidRange(numbers)) {
       throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자 6개여야 합니다.");
     }
     return numbers;
@@ -38,13 +39,13 @@ public class InputValidator implements InputValidatorInterface{
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
     }
-    if (parsedBonusNumber < 1 || parsedBonusNumber > 45 || winningNumbers.contains(parsedBonusNumber)) {
+    if (parsedBonusNumber < LottoConstants.MIN_NUMBER || parsedBonusNumber > LottoConstants.MAX_NUMBER || winningNumbers.contains(parsedBonusNumber)) {
       throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자 중 당첨 번호와 중복되지 않는 숫자여야 합니다.");
     }
     return parsedBonusNumber;
   }
 
   private static boolean hasInvalidRange(List<Integer> numbers) {
-    return numbers.stream().anyMatch(num -> num < 1 || num > 45);
+    return numbers.stream().anyMatch(num -> num < LottoConstants.MIN_NUMBER || num > LottoConstants.MAX_NUMBER);
   }
 }
