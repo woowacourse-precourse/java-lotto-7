@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -22,5 +23,25 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("6개의 유효한 로또 번호가 주어졌을 때 성공적으로 생성된다.")
+    @Test
+    void 유효한_로또_번호_입력() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.getNumbers()).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
+    }
+
+    @DisplayName("로또 번호가 1~45 범위를 벗어나면 예외가 발생한다.")
+    @Test
+    void 번호_범위_벗어남_예외() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호와 당첨 번호가 정확히 일치하는 개수를 반환한다.")
+    @Test
+    void 매칭_개수_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int matchCount = lotto.countMatchingNumbers(List.of(1, 2, 3, 7, 8, 9));
+        assertThat(matchCount).isEqualTo(3);
+    }
 }
