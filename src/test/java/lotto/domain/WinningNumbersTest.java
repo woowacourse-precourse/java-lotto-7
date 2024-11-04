@@ -18,7 +18,7 @@ public class WinningNumbersTest {
         String input = "12,5,17,    10, 41, 38";
 
         // when & then
-        Assertions.assertThat(new WinningNumbers(input))
+        Assertions.assertThat(WinningNumbers.from(input))
                 .isInstanceOf(WinningNumbers.class);
     }
 
@@ -29,7 +29,7 @@ public class WinningNumbersTest {
         String input = "12,5,17,i10, 41, 38";
 
         // when & then
-        Assertions.assertThatThrownBy(() -> new WinningNumbers(input))
+        Assertions.assertThatThrownBy(() -> WinningNumbers.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NON_INTEGER_LOTTO.getMessage());
     }
@@ -39,7 +39,7 @@ public class WinningNumbersTest {
     @ValueSource(strings = {"", "12,5,17,i10, 41, 38"})
     void numberScopeExceptionTest(String input) {
         // when & then
-        Assertions.assertThatThrownBy(() -> new WinningNumbers(input))
+        Assertions.assertThatThrownBy(() -> WinningNumbers.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NON_INTEGER_LOTTO.getMessage());
     }
@@ -49,7 +49,7 @@ public class WinningNumbersTest {
     @ValueSource(strings = {"1,2,3,4,5", "12,7,13,6,9,2,5", "12,,,"})
     void sizeExceptionTest(String input) {
         // when & then
-        Assertions.assertThatThrownBy(() -> new WinningNumbers(input))
+        Assertions.assertThatThrownBy(() -> WinningNumbers.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_SIZE_ERROR.getMessage());
     }
@@ -61,7 +61,7 @@ public class WinningNumbersTest {
         String input = "1, 2, 12, 14, 13, 12";
 
         // when & then
-        Assertions.assertThatThrownBy(() -> new WinningNumbers(input))
+        Assertions.assertThatThrownBy(() -> WinningNumbers.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBERS_DUPLICATE.getMessage());
     }

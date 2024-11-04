@@ -8,17 +8,13 @@ import java.util.stream.Collectors;
 
 public class Lotto extends LottoForm {
     private final String DELIMITER = ", ";
-    private final List<LottoNumber> numbers;
 
-    private Lotto(List<Integer> numbers) {
-        this.numbers = numbers.stream()
-                .map(LottoNumber::new)
-                .toList();
+    private Lotto(List<Integer> rawNumbers) {
+        super(rawNumbers);
     }
 
     public static Lotto from(List<Integer> rawIntegers) {
-        List<Integer> integers = validateAndSort(rawIntegers);
-        return new Lotto(integers);
+        return new Lotto(rawIntegers);
     }
 
     @Override

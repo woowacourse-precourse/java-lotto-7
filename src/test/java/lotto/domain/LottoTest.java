@@ -88,7 +88,7 @@ public class LottoTest {
                 .map(Integer::parseInt)
                 .toList();
         Lotto lotto = Lotto.from(numbers);
-        WinningNumbers winningNumbers = new WinningNumbers(winningInput);
+        WinningNumbers winningNumbers = WinningNumbers.from(winningInput);
 
         // when
         int matchingNumbers = lotto.getMatchingNumbers(winningNumbers);

@@ -19,7 +19,7 @@ public class WinningNumbersInputHandlerTest {
     @Test
     void bonusNumberSuccessTest() {
         // given
-        WinningNumbers winningNumbers = new WinningNumbers("1,2,4,7,9,10");
+        WinningNumbers winningNumbers = WinningNumbers.from("1,2,4,7,9,10");
         int bonusNumber = 42;
 
         // when & then
@@ -54,7 +54,7 @@ public class WinningNumbersInputHandlerTest {
     @Test
     void duplicateExceptionTest() {
         // given
-        WinningNumbers winningNumbers = new WinningNumbers("1,2,4,7,9,10");
+        WinningNumbers winningNumbers = WinningNumbers.from("1,2,4,7,9,10");
         int bonusNumber = 4;
 
         // when & then
