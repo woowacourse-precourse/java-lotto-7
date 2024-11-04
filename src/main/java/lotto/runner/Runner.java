@@ -18,21 +18,39 @@ public class Runner {
         LottoService lottoService = LottoService.getInstance(lottoGenerator);
 
         int lottoPrice = InputParser.parseLottoPrice(InputView.inputLottoPurchase());
-        List<Lotto> purchasedLottos = lottoService.buyLottos(lottoPrice);
-        OutputView.printLottos(purchasedLottos);
+        List<Lotto> purchasedLottos = getLottos(lottoService, lottoPrice);
 
-        List<Integer> winningLottoNumbers = InputParser.parseLottoNumber(InputView.inputLottoNumber());
-        Lotto winningLotto = Lotto.of(winningLottoNumbers);
+        Lotto winningLotto = getWinningLotto();
 
         int bonusNumber = InputParser.parseBonusNumber(InputView.inputBonusNumber());
 
+        List<LottoPrize> results = getLottoPrizes(purchasedLottos, lottoService, winningLotto, bonusNumber);
+
+        getProfit(lottoService, results, lottoPrice);
+    }
+
+    private static List<Lotto> getLottos(LottoService lottoService, int lottoPrice) {
+        List<Lotto> purchasedLottos = lottoService.buyLottos(lottoPrice);
+        OutputView.printLottos(purchasedLottos);
+        return purchasedLottos;
+    }
+
+    private static Lotto getWinningLotto() {
+        List<Integer> winningLottoNumbers = InputParser.parseLottoNumber(InputView.inputLottoNumber());
+        return Lotto.of(winningLottoNumbers);
+    }
+
+    private static void getProfit(LottoService lottoService, List<LottoPrize> results, int lottoPrice) {
+        double profitRate = lottoService.calculateProfitRate(results, lottoPrice);
+        OutputView.printProfit(profitRate);
+    }
+
+    private static List<LottoPrize> getLottoPrizes(List<Lotto> purchasedLottos, LottoService lottoService, Lotto winningLotto, int bonusNumber) {
         List<LottoPrize> results = purchasedLottos.stream()
                 .map(lotto -> lottoService.calculatePrize(lotto, winningLotto, bonusNumber))
                 .collect(Collectors.toList());
 
         OutputView.printResult(results);
-
-        double profitRate = lottoService.calculateProfitRate(results, lottoPrice);
-        OutputView.printProfit(profitRate);
+        return results;
     }
 }
