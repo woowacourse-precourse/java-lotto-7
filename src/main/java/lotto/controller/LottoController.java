@@ -6,6 +6,7 @@ import lotto.model.lotto.LottoBuyer;
 import lotto.model.lotto.LottoStore;
 import lotto.model.lotto.LottoTickets;
 import lotto.model.result.WinningStatistics;
+import lotto.util.RetryTemplate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.model.draw.LottoDraw;
@@ -15,25 +16,22 @@ import java.util.function.Supplier;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final RetryTemplate retryTemplate;
     private LottoTickets lottoTickets;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, RetryTemplate retryTemplate) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.retryTemplate = retryTemplate;
     }
 
-    public void play() {
-        retryRunnable(this::buyTickets);
-        Lotto winningNumber = retrySupplier(this::readValidWinningNumber);
-        Bonus bonusNumber = retrySupplier(() -> new Bonus(inputView.readBonusNumber()));
-
-        LottoDraw lottoDraw = LottoDraw.by(winningNumber, bonusNumber);
-        WinningStatistics statistics = WinningStatistics.from(lottoDraw, lottoTickets);
-        outputView.printWinningStatistics(statistics);
+    public LottoTickets buyLottoTickets() {
+        retryTemplate.execute(this::buyTickets);
+        return lottoTickets;
     }
 
     private void buyTickets() {
-        int ticketCount = retrySupplier(this::readValidTicketCount);
+        int ticketCount = retryTemplate.execute(this::readValidTicketCount);
         outputView.printTicketNumber(ticketCount);
 
         lottoTickets = LottoTickets.createTickets(ticketCount);
@@ -46,30 +44,5 @@ public class LottoController {
         LottoBuyer buyer = new LottoBuyer();
         buyer.buyTickets(budget, store);
         return buyer.getOwnedTickets();
-    }
-
-    private Lotto readValidWinningNumber() {
-        return new Lotto(inputView.readWinningNumber());
-    }
-
-    private void retryRunnable(Runnable action) {
-        while (true) {
-            try {
-                action.run();
-                break;
-            } catch (IllegalArgumentException e) {
-                outputView.printExceptionMessage(e);
-            }
-        }
-    }
-
-    private <T> T retrySupplier(Supplier<T> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException e) {
-                outputView.printExceptionMessage(e);
-            }
-        }
     }
 }

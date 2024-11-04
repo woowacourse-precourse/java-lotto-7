@@ -1,6 +1,7 @@
 package lotto;
 
-import lotto.controller.LottoController;
+import lotto.controller.LottoGameController;
+import lotto.util.RetryTemplate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -8,8 +9,13 @@ public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+        RetryTemplate retryTemplate = new RetryTemplate(outputView);
 
-        LottoController lottoController = new LottoController(inputView, outputView);
-        lottoController.play();
+        LottoGameController gameController = new LottoGameController(
+                inputView,
+                outputView,
+                retryTemplate
+        );
+        gameController.play();
     }
 }
