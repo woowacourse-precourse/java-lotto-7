@@ -33,8 +33,9 @@ public class User {
 	}
 
 	public void printResult() {
+		System.out.println("lottoStats = " + lottoStats);
 		for (Map.Entry<LottoRank, Integer> lottoRankEntry : lottoStats.entrySet()) {
-			lottoRankEntry.getKey().printInfo();
+			lottoRankEntry.getKey().printInfo(lottoRankEntry.getValue());
 		}
 		System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
 	}
