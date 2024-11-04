@@ -8,7 +8,7 @@ import lotto.model.db.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoRankViewTest {
+class LottoResultViewTest {
 
     @DisplayName("로또 구매 후 로또 개수와 로또 번호를 출력한다.")
     @Test

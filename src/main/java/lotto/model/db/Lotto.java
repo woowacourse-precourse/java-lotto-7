@@ -29,7 +29,7 @@ public class Lotto {
     }
 
     public int getMatchCnt(Lotto lotto) {
-        return (int) numbers.stream ().filter(lotto::contains).count();
+        return (int) numbers.stream().filter(lotto::contains).count();
     }
 
     @Override

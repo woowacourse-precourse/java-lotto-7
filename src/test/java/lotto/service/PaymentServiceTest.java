@@ -24,7 +24,7 @@ class PaymentServiceTest extends NsTest {
                     run(inputMoney);
                     assertThat(output()).isEqualTo(
                             "구입금액을 입력해 주세요.\n"
-                            + lottoCnt);
+                                    + lottoCnt);
                 }
         );
     }

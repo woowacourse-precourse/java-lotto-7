@@ -16,7 +16,7 @@ public class LottoResultView implements View {
     public String render() {
         return "\n당첨 통계" +
                 "\n---" +
-                "\n3개 일치 (5,000원) - " + rankCnts.getCnt(5)+ "개" +
+                "\n3개 일치 (5,000원) - " + rankCnts.getCnt(5) + "개" +
                 "\n4개 일치 (50,000원) - " + rankCnts.getCnt(4) + "개" +
                 "\n5개 일치 (1,500,000원) - " + rankCnts.getCnt(3) + "개" +
                 "\n5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCnts.getCnt(2) + "개" +
