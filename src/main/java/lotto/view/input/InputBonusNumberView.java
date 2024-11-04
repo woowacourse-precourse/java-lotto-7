@@ -1,7 +1,7 @@
 package lotto.view.input;
 
 import java.util.regex.Pattern;
-import lotto.exception.input.NotIntegerException;
+import lotto.exception.SingleNumberFormatException;
 
 public class InputBonusNumberView extends InputView {
     private static final String INPUT_MESSAGE = "보너스 번호를 입력해주세요.";
@@ -17,7 +17,7 @@ public class InputBonusNumberView extends InputView {
 
     private void validate(String s) {
         if(!PATTERN.matcher(s).matches()) {
-            throw new NotIntegerException();
+            throw new SingleNumberFormatException();
         }
     }
 }
