@@ -1,4 +1,4 @@
-package lotto;
+package lotto.util;
 
 public enum Rank {
     PLACE_1ST(6, false, 200000000, 1),

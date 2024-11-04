@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.List;
 
-import lotto.Rank;
+import lotto.util.Rank;
 
 public class WinningMoney {
 
