@@ -52,4 +52,14 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
     }
+
+    @DisplayName("당첨 번호가 범위를 벗어나는 경우 예외가 발생한다.")
+    @Test
+    void 당첨_번호가_범위를_벗어나면_예외가_발생한다() {
+        // given & when
+        assertThatThrownBy(() -> Validator.validateAndParseWinningNumbers("1,2,3,4,5,46"))
+        // then
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
 }
