@@ -10,10 +10,14 @@ public class UserLotto {
     private final int bonusBall;
     private final Lotto userLotto;
 
-    public UserLotto(Lotto userLotto, int bonusBall) {
+    private UserLotto(Lotto userLotto, int bonusBall) {
         validate(userLotto, bonusBall);
         this.userLotto = userLotto;
         this.bonusBall = bonusBall;
+    }
+
+    public static UserLotto of(Lotto userLotto, int bonusBall) {
+        return new UserLotto(userLotto, bonusBall);
     }
 
     public Lotto getUserLotto() {
