@@ -1,13 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import enums.InputRegix;
 import enums.Prize;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoService {
 
@@ -15,9 +14,8 @@ public class LottoService {
         List<List<Integer>> tickets = new ArrayList<>();
         for (int i = 0; i < numberOfTickets; i++) {
             List<Integer> ticket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(ticket);
             tickets.add(ticket);
-            System.out.println(ticket);
+            System.out.println(ticket.stream().sorted().collect(Collectors.toList()));
         }
 
         return tickets;
