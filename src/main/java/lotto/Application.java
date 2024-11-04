@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -17,14 +19,18 @@ public class Application {
             System.out.println(LOTTO_PURCHASE_PRICE_INPUT_MESSAGE);
             List<Integer> lottoPurchaseAmount = getLottoPurchaseAmount(Console.readLine());
 
-            getWinningNumber();
-            getBonusNumber();
+            List<Integer> winningNumbers = getWinningNumber();
+
+            int bonusNumber = getBonusNumber();
 
             int lottoCount = getLottoCount(lottoPurchaseAmount);
-
             System.out.println(lottoCount + LOTTO_QUANTITY_MESSAGE);
 
+            List<Lotto> lottoNumbers = getLottoNumbers(lottoCount);
             printLottoNumbers(lottoCount);
+
+
+            calculateAllLineMatches(winningNumbers, lottoNumbers, bonusNumber);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -93,6 +99,34 @@ public class Application {
         for (Lotto lotto : lottoNumbers) {
             System.out.println(lotto);
         }
+    }
+
+    public static Map<Integer, Integer> calculateAllLineMatches(List<Integer> winningNumbers, List<Lotto> lottoNumbers, int bonusNumber) {
+        Map<Integer, Integer> matchCounts = new HashMap<>();
+        matchCounts.put(3, 0);
+        matchCounts.put(4, 0);
+        matchCounts.put(5, 0);
+        matchCounts.put(6, 0);
+
+        int bonusMatchCount = 0;
+
+        for (Lotto lotto : lottoNumbers) {
+            int matchCount = countLineMatch(winningNumbers, lotto.getNumbers());
+
+            if (matchCount >= 3 && matchCount <= 6) {
+                matchCounts.put(matchCount, matchCounts.get(matchCount) + 1);
+            }
+
+            if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
+                bonusMatchCount++;
+            }
+        }
+
+        // 보너스 매치 여부
+        matchCounts.put(5, matchCounts.get(5) - bonusMatchCount);
+        matchCounts.put(-5, bonusMatchCount);
+
+        return matchCounts;
     }
 
     // 한 줄마다 당첨 번호와 일치여부 확인

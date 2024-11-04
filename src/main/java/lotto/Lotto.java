@@ -22,6 +22,10 @@ public class Lotto {
             return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     @Override
     public String toString() {
         return numbers.toString(); // 리스트 형식으로 출력
