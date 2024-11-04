@@ -19,7 +19,7 @@ Lotto
 -[x] 로또 번호 개수를 검증한다.
 -[x] 로또 번호의 중복을 검증한다.
 
-Lotties
+Lottos
 -[x] Lotto 객체를 관리한다.
 
 LottoNumberGenerator
@@ -49,42 +49,63 @@ Analyst
 -[x] 분석한 결과를 토대로 통계(수익률)을 계산한다.
 -[x] 각 값을 반환한다.
 
+WinningNumbers 
+-[ ] 당첨 번호와 보너스 번호를 같이 관리한다.
+-[ ] 중복 검증을 한다.
+
 #### 흐름 제어 및 관리
 -[x] 컨트롤러를 통해 전체적인 흐름 제어를 구현한다.
 
 #### 예외처리
 Exception
--[ ] 각종 예외 사항을 enum class로 관리한다.
+-[ ] 각종 예외 사항을 enum으로 관리한다.
 
 Validator
 -[ ] 입력값을 검증한다.
 
+#### 상수 관리
+-[ ] 로또 관련 정보를 enum으로 관리한다.
+
 -- -- --
 ## 예외 사항
-InputMoney
-- 숫자가 아닌 값 입력
-- 공백 입력
-- 1000 단위가 아닌 숫자 입력
-- 음수 입력
+#### 예외 검증은 다음과 같은 규칙 하에 진행한다.
+1. validator는 입력값만 검증한다.
+2. 이외에는 객체 내에서 검증한다.
+3. 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 
-Calculator
-- 자료형을 넘는 범위 입력
+InputPurchaseAmount
+-[ ] 숫자가 아닌 값 입력
+-[ ] 공백 입력
+-[ ] 음수 입력
+-[ ] 0 입력
 
-InputWinningLotto
-- 숫자가 아닌 값 입력
-- 공백 입력
-- 유효하지 않은 delimiter 입력
+InputWinningLottoNumber
+-[ ] 숫자가 아닌 값 입력
+-[ ] 공백 입력
+-[ ] 유효하지 않은 delimiter 입력
+-[ ] 음수 입력
+-[ ] 0 입력
 
 InputBonusNumber
-- 숫자가 아닌 값 입략
-- 공백 입력
-- 음수 입력
-- 당첨 번호 중복 입력
+-[ ] 숫자가 아닌 값 입력
+-[ ] 공백 입력
+-[ ] 음수 입력
+-[ ] 0 입력
 
-WinningLottoNumbers
-- 6개 이상의 숫자 입력
-- 중복된 숫자 입력
-- 1~45 사이가 아닌 숫자 입력
+Calculator
+-[ ] 자료형을 넘는 범위 입력
+-[ ] 1000 단위가 아닌 숫자 입력
+
+WinningNumbers
+-[ ] 당첨 번호 중복 입력
+
+WinningLottoNumber
+-[ ] 6개 이상의 숫자 입력
+-[ ] 중복된 숫자 입력
+-[ ] 1~45 사이가 아닌 숫자 입력
+
+BonusNumberValidate
+-[ ] 1~45 사이가 아닌 숫자 입력
 
 -- -- --
 ## 다이어그램
@@ -245,5 +266,13 @@ Exception
 Validator
 - 입력값을 검증한다.
 
-Lotties
+Lottos
 - Lotto 객체를 관리한다.
+
+LottoResults (+ 구현 중 추가)
+- LottoResult를 관리한다.
+
+WinningNumbers (+ 구현 중 추가)
+- 당첨 번호와 보너스 번호를 같이 관리한다.
+- 중복 검증을 한다.
+
