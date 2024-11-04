@@ -31,21 +31,41 @@ public class LottoController {
     private static void setupWinningNumbers(LottoRound lottoRound) {
         Lotto winningLotto = inputWinningLotto();
         lottoRound.setWinningLotto(winningLotto);
-        int bonusNumber = inputBonusNumber();
+        int bonusNumber = inputBonusNumber(lottoRound);
         lottoRound.setBonusNumber(bonusNumber);
     }
     private static int inputOrderCount() {
-        int orderCount = InputView.parseOrder(InputView.inputOrderPrice());
-        OutputView.printOrderNumber(orderCount);
-        return orderCount;
+        while(true){
+            try {
+                int orderCount = InputView.parseOrder(InputView.inputOrderPrice());
+                OutputView.printOrderNumber(orderCount);
+                return orderCount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static Lotto inputWinningLotto() {
-        return new Lotto(InputView.parseWinningNumber(InputView.inputWinningNumber()));
+        while (true) {
+            try {
+                Lotto winningLotto = new Lotto(InputView.parseWinningNumber(InputView.inputWinningNumber()));
+                return winningLotto;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private static int inputBonusNumber() {
-        return InputView.parseBonusNumber(InputView.inputBonusNumber());
+    private static int inputBonusNumber(LottoRound lottoRound) {
+        while (true) {
+            try {
+                int bonusNumber = InputView.parseBonusNumber(InputView.inputBonusNumber(), lottoRound);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static void printResults(Order userOrder) {
