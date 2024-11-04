@@ -8,12 +8,8 @@ public class Application {
         InputView.requestAmount();
         int totalAmount = InputView.getAmount();
         List<Lotto> lotteries = LottoGenerator.generate(totalAmount);
-        // 여기에 출력하자.
 
-        System.out.println(totalAmount + "개 구매");
-        for (Lotto lottery : lotteries) {
-            System.out.println(lottery);
-        }
+        OutputView.printReceipt(new LottoReceipt(lotteries));
 
         InputView.requestWinningNumber();
         WinningNumber winningNumber = InputView.getWinningNumber();
