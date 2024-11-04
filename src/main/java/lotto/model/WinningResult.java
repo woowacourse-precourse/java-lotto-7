@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -22,6 +23,14 @@ public class WinningResult {
         return results;
     }
 
+    // 수익률 계산
+    private double calculateProfitRate(int purchaseAmount) {
+        int totalReward = results.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
+                .sum();
+        return ((double) totalReward / purchaseAmount) * 100;
+    }
+
     public void printWinningResult(Map<Rank, Integer> results) {
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -31,5 +40,9 @@ public class WinningResult {
         System.out.printf("5개 일치 (1,500,000원) - %d개%n", results.getOrDefault(Rank.FIVE, 0));
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", results.getOrDefault(Rank.FIVE_BONUS, 0));
         System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", results.getOrDefault(Rank.SIX, 0));
+
+        double profitRate = calculateProfitRate(purchaseAmount);
+        DecimalFormat df = new DecimalFormat("#,##0.0");  // 쉼표와 소수점 둘째 자리까지 형식 지정
+        System.out.printf("총 수익률은 %s%%입니다.%n", df.format(profitRate));
     }
 }

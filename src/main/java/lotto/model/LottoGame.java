@@ -31,9 +31,11 @@ public class LottoGame {
 
     public WinningResult playLottoGame(List<Lotto> lottoes, int price) {
         List<Integer> winningNumbers = winningLottoNumbers.getWinningNumber();
+        System.out.println();
         winningLottoNumbers.validatePositiveInteger(winningNumbers);
         outputView.promptBonusNumber();
         int BonusNumber = winningLottoNumbers.getBonusNumber(winningNumbers);
+        System.out.println();
         LottoNumberMatcher lottoNumberMatcher = new LottoNumberMatcher(lottoes, winningNumbers, BonusNumber);
         return lottoNumberMatcher.calculateWinningResult(price);
     }

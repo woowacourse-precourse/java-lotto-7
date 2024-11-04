@@ -18,10 +18,14 @@ public class LottoController {
     public void LottoGameStart() {
         outputView.printPriceInputPrompt();
         int price = lottoGame.getAmount();
+        System.out.println();
         List<Lotto> lottoes = lottoGame.purchase(price);
         outputView.printLottoes(lottoes);
+        System.out.println();
         outputView.promptWinningNumbers();
         WinningResult winningResult = lottoGame.playLottoGame(lottoes, price);
         winningResult.printWinningResult(winningResult.getResultMap());
+        System.out.println();
+
     }
 }
