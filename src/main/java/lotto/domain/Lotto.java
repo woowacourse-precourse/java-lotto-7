@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.util.NumberSorter;
+
 import java.util.*;
 
 public class Lotto {
@@ -25,6 +27,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        return NumberSorter.sort(numbers).toString();
     }
 }
