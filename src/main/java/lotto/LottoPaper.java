@@ -2,10 +2,10 @@ package lotto;
 
 import java.util.List;
 
-public class Lottos {
-    List<Lotto> values;
+public class LottoPaper {
+    private final List<Lotto> values;
 
-    public Lottos(List<Lotto> values) {
+    public LottoPaper(List<Lotto> values) {
         this.values = values;
     }
 
@@ -13,4 +13,7 @@ public class Lottos {
         values.forEach(lotto -> lotto.search(winNumbers, bonus));
     }
 
+    public List<Lotto> getValues() {
+        return values;
+    }
 }
