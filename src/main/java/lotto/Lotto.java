@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.LottoConstants.*;
@@ -40,6 +41,7 @@ public class Lotto {
 
     @Override
     public String toString() {
+        Collections.sort(numbers);
         return numbers.toString();
     }
 }
