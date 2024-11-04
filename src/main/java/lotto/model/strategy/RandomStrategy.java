@@ -19,4 +19,5 @@ public class RandomStrategy implements LottoStrategy{
     public Lotto generateLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE));
     }
+
 }

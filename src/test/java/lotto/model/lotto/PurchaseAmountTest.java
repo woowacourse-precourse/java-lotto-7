@@ -1,8 +1,7 @@
-package lotto;
+package lotto.model.lotto;
 
 import static org.assertj.core.api.Assertions.*;
 
-import lotto.model.lotto.PurchaseAmount;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -20,7 +19,6 @@ class PurchaseAmountTest {
         assertThatThrownBy(() -> PurchaseAmount.from("1100"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 
     @Test
     void 입력_받은_구입_금액이_숫자가_아닐_경우_예외가_발생한다() {

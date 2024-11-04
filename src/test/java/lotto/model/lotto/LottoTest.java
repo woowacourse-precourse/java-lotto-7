@@ -1,7 +1,6 @@
-package lotto;
+package lotto.model.lotto;
 
 import java.util.stream.Stream;
-import lotto.model.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +27,7 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource("provideLottoNumberForRangeCheck")
-    void 로또_번호가_1부터_45의_값이_아니면_예외가_발생한다(List<Integer> lottoNumber) {
+    void 로또_번호가_1부터_45의_값이_아닌_경우_예외가_발생한다(List<Integer> lottoNumber) {
         assertThatThrownBy(() -> new Lotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }

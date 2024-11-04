@@ -47,4 +47,5 @@ public class CustomStrategy implements LottoStrategy{
                 ).toList();
         return new Lotto(numbers);
     }
+
 }

@@ -57,6 +57,10 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int getSize() {
+        return numbers.size();
+    }
+
     public int countSameNumber(Lotto lotto) {
         int count = 0;
         for (Integer number : numbers) {
