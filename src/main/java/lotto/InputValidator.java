@@ -21,11 +21,11 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
         }
 
-        if(winningNumber.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR} 당첨 번호와 중복되지 않은 수를 입력해야 합니다.");
-        }
-
         int parsedBonusNumber = Integer.parseInt(bonusNumber);
+
+        if(winningNumber.getNumbers().contains(parsedBonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되지 않은 수를 입력해야 합니다.");
+        }
         if(parsedBonusNumber < 1 || parsedBonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
