@@ -11,5 +11,7 @@ public class Application {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
+        List<Integer> winningNumbers = WinningNumberInput.requestWinningNumbers();
+
     }
 }
