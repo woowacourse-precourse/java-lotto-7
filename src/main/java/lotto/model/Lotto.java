@@ -70,11 +70,16 @@ public class Lotto {
     private Integer matchNumbers(List<Integer> winningNumbers){
         int matchCount = 0;
         for (Integer number : numbers) {
-            if(winningNumbers.contains(number)){
-                matchCount ++;
-            }
+            matchCount += isMatched(winningNumbers, number);
         }
         return matchCount;
+    }
+
+    private Integer isMatched(List<Integer> winningNumbers, Integer number){
+        if(winningNumbers.contains(number)){
+            return 1;
+        }
+        return 0;
     }
 
     private boolean matchBonus(Integer bonusNumber){
