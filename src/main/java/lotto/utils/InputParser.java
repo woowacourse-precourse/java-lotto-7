@@ -12,10 +12,12 @@ public class InputParser {
 
     public static int purchaseNumParse(){
         String input;
+        int cash;
         while(true){
             try{
                 input=inputView.getCashInput();
-                return Integer.parseInt(input) / LOTTO_PRICE.getValue();
+                cash=Integer.parseInt(input);
+                return cash / LOTTO_PRICE.getValue();
             } catch (NumberFormatException e) {
                 System.out.println(INPUT_IS_NOT_INTEGER.getExceptionMessage());
             }
@@ -38,13 +40,13 @@ public class InputParser {
                 System.out.println(INPUT_IS_NOT_INTEGER.getExceptionMessage());
             }
         }
-
     }
 
-    public static Integer bonusNumParse(String input) {
+    public static Integer bonusNumParse() {
+        int bonusNum;
         while(true){
             try {
-                return Integer.parseInt(input);
+                return Integer.parseInt(inputView.getBonusNumInput());
             } catch (NumberFormatException e) {
                 System.out.println(INPUT_IS_NOT_INTEGER.getExceptionMessage());
             }
