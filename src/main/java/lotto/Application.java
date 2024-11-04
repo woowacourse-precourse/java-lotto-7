@@ -9,10 +9,10 @@ public class Application {
         List<LottoTicket> tickets = store.purchase();
 
         Lotto winningLotto = LottoDraw.inputWinningNumbers();
-        winningLotto.bonusNumber = LottoDraw.inputBonusNumber(winningLotto);
+        int bonusNumber = LottoDraw.inputBonusNumber(winningLotto);
 
         LottoResult result = new LottoResult();
-        result.calculateResults(tickets, winningLotto, winningLotto.bonusNumber);
+        result.calculateResults(tickets, winningLotto, bonusNumber);
         result.displayResults();
 
     }

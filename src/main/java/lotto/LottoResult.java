@@ -39,7 +39,7 @@ public class LottoResult {
         }
 
         for (LottoTicket ticket : tickets) {
-            LottoRank rank = findRank(ticket, winningLotto);
+            LottoRank rank = findRank(ticket, winningLotto, bonusNumber);
             this.results.put(rank, this.results.get(rank) + 1);
         }
 
@@ -57,12 +57,12 @@ public class LottoResult {
         totalProfit = (double) totalPrize / totalSpent * 100;
     }
 
-    public LottoRank findRank(LottoTicket ticket, Lotto winningLotto) {
+    public LottoRank findRank(LottoTicket ticket, Lotto winningLotto, int bonusNumber) {
         long matchCount = ticket.getNumbers().stream()
                 .filter(winningLotto.getNumbers()::contains)
                 .count();
 
-        boolean hasBonus = ticket.getNumbers().contains(winningLotto.bonusNumber);
+        boolean hasBonus = ticket.getNumbers().contains(bonusNumber);
 
         for (LottoRank rank : LottoRank.values()) {
             if (rank.getMatchCount() == matchCount && rank.hasBonus() == hasBonus) {

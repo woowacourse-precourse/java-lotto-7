@@ -7,7 +7,6 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
-    int bonusNumber;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
