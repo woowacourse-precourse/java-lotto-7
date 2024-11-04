@@ -24,7 +24,7 @@ public class UserMoney {
                 System.out.println("구입금액을 입력해 주세요.");
                 input = Console.readLine();
                 isNumber(input);
-                moneyValidate(Integer.parseInt(input));  // 001000 같은 것도 정상 처리되나?
+                moneyValidate(Integer.parseInt(input));
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
