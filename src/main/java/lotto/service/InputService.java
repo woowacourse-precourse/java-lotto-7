@@ -23,6 +23,7 @@ public class InputService {
         String winningNumbers = Console.readLine();
 
         inputException.validateInputEmpty(winningNumbers);
+        System.out.println();
 
         return winningNumbers;
     }
