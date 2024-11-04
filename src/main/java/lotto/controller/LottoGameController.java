@@ -28,17 +28,27 @@ public class LottoGameController {
 
     public void start() {
         int purchaseAmount = getPurchaseAmountAndValidate();
-        OutputView.displayPurchaseCount(lottoSeller.calculatePurchaseCount(purchaseAmount));
-
-        List<Lotto> lotto = lottoSeller.buyLotto(purchaseAmount);
-        OutputView.displayPurchaseLotto(lotto);
-
+        displayLottoCount(purchaseAmount);
+        List<Lotto> lotto = buyLottoAndDisplay(purchaseAmount);
         List<Integer> winningNumbers = getWinningNumbersAndValidate();
         int bonusNumber = getBonusNumberAndValidate(winningNumbers);
+        getLottoResultAndDisplay(lotto, winningNumbers, bonusNumber);
+    }
 
+    private void getLottoResultAndDisplay(List<Lotto> lotto, List<Integer> winningNumbers, int bonusNumber) {
         LottoResult lottoResult = getLottoResult(lotto, winningNumbers, bonusNumber);
         OutputView.displayResult(lottoResult);
+    }
 
+    private List<Lotto> buyLottoAndDisplay(int purchaseAmount) {
+        List<Lotto> lotto = lottoSeller.buyLotto(purchaseAmount);
+        OutputView.displayPurchaseLotto(lotto);
+        return lotto;
+    }
+
+    private void displayLottoCount(int purchaseAmount) {
+        int lottoCount = lottoSeller.calculatePurchaseCount(purchaseAmount);
+        OutputView.displayPurchaseCount(lottoCount);
     }
 
     private LottoResult getLottoResult(List<Lotto> lotto, List<Integer> winningNumbers, int bonusNumber) {
