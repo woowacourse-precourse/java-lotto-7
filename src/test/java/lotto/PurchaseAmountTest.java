@@ -19,4 +19,16 @@ class PurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expectedMessage);
     }
+
+    @Test
+    void 구입_금액이_양수가_아니면_예외가_발생한다() {
+        //given
+        final String expectedMessage = "[ERROR] 구입 금액은 양수인 숫자여야 합니다.";
+        final String purchaseAmount = "-14000";
+
+        //when & then
+        assertThatThrownBy(() -> new PurchaseAmount(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
+    }
 }
