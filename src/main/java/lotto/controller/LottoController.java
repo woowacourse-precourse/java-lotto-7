@@ -1,8 +1,13 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
+
+import static java.lang.System.in;
 
 public class LottoController {
     InputView inputView;
@@ -19,6 +24,6 @@ public class LottoController {
         String purchaseInput = inputView.purchaseInput();
         int lottoQuantity = service.lottoQuantity(purchaseInput);
         outputView.quantity(lottoQuantity);
-
+        List<Lotto> lottos = service.issueLottos(lottoQuantity);
     }
 }
