@@ -6,51 +6,47 @@ import lotto.domain.PurchaseAmount;
 import lotto.dto.LottoResponse;
 import lotto.dto.PrizeResponse;
 import lotto.service.LottoService;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.ConsoleView;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final ConsoleView consoleView;
     private final LottoService lottoService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public LottoController(ConsoleView consoleView, LottoService lottoService) {
+        this.consoleView = consoleView;
         this.lottoService = lottoService;
     }
 
     public void run() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         generateLottos(purchaseAmount);
-        outputView.printFormattedLottoNumbers(findGeneratedLottos());
+        consoleView.printFormattedLottoNumbers(findGeneratedLottos());
 
         Lotto winningLotto = readWinningLottoNumbers();
 
         LottoNumber bonusNumber = readBonusNumber();
 
         List<PrizeResponse> winningResult = lottoService.findWinningResult(winningLotto, bonusNumber);
-        outputView.printWinningResult(winningResult);
+        consoleView.printWinningResult(winningResult);
 
         double profitRate = lottoService.calculateProfitRate(purchaseAmount, winningResult);
-        outputView.printProfitRate(profitRate);
+        consoleView.printProfitRate(profitRate);
     }
 
 
 
     private PurchaseAmount readPurchaseAmount() {
-        outputView.promptPurchaseAmount();
-        int purchaseAmountInput = inputView.readPurchaseAmountInput();
+        int purchaseAmountInput = consoleView.readPurchaseAmountInput();
 
         return new PurchaseAmount(purchaseAmountInput);
     }
 
     private void generateLottos(PurchaseAmount purchaseAmount) {
         int lottoCount = purchaseAmount.calculatePurchasableLottoCount();
-        outputView.printPurchasableLottoCount(lottoCount);
+        consoleView.printPurchasableLottoCount(lottoCount);
         lottoService.generateLottos(lottoCount);
     }
 
@@ -59,9 +55,8 @@ public class LottoController {
     }
 
     private Lotto readWinningLottoNumbers() {
-        outputView.promptLottoNumbers();
-        String lottoNumbersInput = inputView.readLottoNumbersInput();
-        List<Integer> winningLottoNumbers = Arrays.stream(lottoNumbersInput.split(","))
+        String winningLottoNumbersInput = consoleView.readWinningLottoNumbersInput();
+        List<Integer> winningLottoNumbers = Arrays.stream(winningLottoNumbersInput.split(","))
                 .map(Integer::parseInt)
                 .toList();
 
@@ -69,8 +64,7 @@ public class LottoController {
     }
 
     private LottoNumber readBonusNumber() {
-        outputView.promptBonusNumber();
-        int bonusNumberInput = inputView.readBonusNumberInput();
+        int bonusNumberInput = consoleView.readBonusNumberInput();
 
         return new LottoNumber(bonusNumberInput);
     }
