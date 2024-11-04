@@ -43,10 +43,10 @@ public class LottoController {
     private WinningNumbers readWinningNumbers() {
         Lotto mainNumbers = retryUntilValid(this::readMainNumbers);
 
-        return retryUntilValid(() -> readBonusNumberAndAssembleWinningNumbers(mainNumbers));
+        return retryUntilValid(() -> assembleWinningNumbers(mainNumbers));
     }
 
-    private WinningNumbers readBonusNumberAndAssembleWinningNumbers(Lotto mainNumbers) {
+    private WinningNumbers assembleWinningNumbers(Lotto mainNumbers) {
         String bonusNumber = inputView.readBonusNumber();
         return new WinningNumbers(mainNumbers, bonusNumber);
     }
