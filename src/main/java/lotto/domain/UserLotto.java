@@ -26,7 +26,7 @@ public class UserLotto {
 
     private void validate(Lotto lotto, int number) {
         validateDuplication(lotto, number);
-        validateNumberRange(number, LOTTO_MAX, LOTTO_MIN);
+        validateNumberRange(number, LOTTO_MIN, LOTTO_MAX);
     }
 
     private void validateDuplication(Lotto lotto, int number) {

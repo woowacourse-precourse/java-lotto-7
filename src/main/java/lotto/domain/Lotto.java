@@ -40,7 +40,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        numbers.forEach(number -> validateNumberRange(number, LOTTO_MAX, LOTTO_MIN));
+        numbers.forEach(number -> validateNumberRange(number, LOTTO_MIN, LOTTO_MAX));
         validateCount(numbers);
         validateDuplication(numbers);
     }
