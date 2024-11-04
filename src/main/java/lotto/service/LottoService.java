@@ -14,7 +14,7 @@ public class LottoService {
 
     public List<Integer> extractWinningNumbers(String lottoNumbers) {
         Validator.validateWinningNumbers(lottoNumbers);
-        List<String> numbers = Arrays.asList(lottoNumbers.split(","));
+        List<String> numbers = Arrays.asList(lottoNumbers.replaceAll(" ", "").split(","));
         List<Integer> extractWinningNumbers = new ArrayList<>();
 
         for (String number : numbers) {
