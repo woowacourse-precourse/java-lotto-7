@@ -32,4 +32,16 @@ public class ResultService {
             System.out.printf(" (%s원) - %d개\n", String.format("%,d", prize.getAmount()), count);
         }
     }
+
+    public void rateOfReturn(int money) {
+        int totalPrizeAmount = 0;
+
+        for (Prize prize : Prize.values()) {
+            int count = prizeCountMap.get(prize);
+            totalPrizeAmount += prize.getAmount() * count;
+        }
+
+        double percent = (double) totalPrizeAmount / money * 100;
+        System.out.printf("총 수익률은 %.2f%%입니다.", percent);
+    }
 }
