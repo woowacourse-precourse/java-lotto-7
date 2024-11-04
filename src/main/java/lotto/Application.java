@@ -1,12 +1,32 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
 
 public class Application {
     private static int money;
     private static List<Lotto> lottos;
     public static void main(String[] args) {
+        init();
+    }
 
+    public static void init() {
+        while(true){
+            try{
+                System.out.println("구입금액을 입력해 주세요.");
+                money = getMoneyInput();
+                break;
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static int getMoneyInput() throws Exception{
+        String input = Console.readLine();
+        validateMoney(input);
+        return Integer.parseInt(input);
     }
 
     public static void validateMoney(String input) throws Exception{
