@@ -47,7 +47,6 @@ public enum Score {
         return scoreCounts;
     }
 
-
     public int getMatchCount() {
         return matchCount;
     }
