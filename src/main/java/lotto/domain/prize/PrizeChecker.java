@@ -2,7 +2,7 @@ package lotto.domain.prize;
 
 import java.util.List;
 
-public class KoreaPrizeChecker implements WinningStrategy {
+public class PrizeChecker implements WinningStrategy {
 
     @Override
     public WinningStatus checkPrize(List<Integer> lottoNumbers, List<Integer> winningLottoNumbers,

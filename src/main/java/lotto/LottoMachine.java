@@ -8,14 +8,14 @@ import lotto.domain.WinningLotto;
 import lotto.domain.prize.WinningStrategy;
 import lotto.domain.statistic.Statistic;
 import lotto.io.LottoIOHandler;
-import lotto.domain.prize.KoreaPrizeChecker;
+import lotto.domain.prize.PrizeChecker;
 import lotto.domain.user.User;
 import lotto.domain.user.User.UserLottoInfo;
 
 public class LottoMachine {
     private final LottoIOHandler lottoIOHandler = new LottoIOHandler();
     private final LottoGenerator lottoGenerator = new LottoGenerator();
-    private final WinningStrategy koreaPrizeChecker = new KoreaPrizeChecker();
+    private final WinningStrategy koreaPrizeChecker = new PrizeChecker();
     private final Statistic statistic = new Statistic();
     public void run() {
         long purchaseCost = lottoIOHandler.askPurchaseCost();
