@@ -31,16 +31,16 @@ public class InputView {
     }
 
     private static int getNumber(String purchaseAmountInputQuestion) {
-        int getPurchaseAmount = 0;
-        while (getPurchaseAmount == 0) {
+        int getNumber = 0;
+        while (getNumber == 0) {
             try {
                 String input = askInput(purchaseAmountInputQuestion);
-                getPurchaseAmount = InputParser.parseNumber(input);
+                getNumber = InputParser.parseNumber(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return getPurchaseAmount;
+        return getNumber;
     }
 
     private static String askInput(String question) {
