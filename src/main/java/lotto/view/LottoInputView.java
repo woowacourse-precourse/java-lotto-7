@@ -22,6 +22,9 @@ public class LottoInputView {
     }
 
     private List<Integer> parseNumbers(String input) {
+        if (input.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력 값은 비어 있을 수 없습니다.");
+        }
         return Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
