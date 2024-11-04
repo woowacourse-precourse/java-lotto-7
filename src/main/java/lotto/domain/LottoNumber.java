@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.ErrorMessage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoNumber {
@@ -14,13 +16,27 @@ public class LottoNumber {
 
     public static void validateNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] " + MIN_NUMBER + "~" + MAX_NUMBER + "사이의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_INVALID);
         }
     }
 
     public static void validateDuplicated(List<Integer> numbers, int number) {
         if (numbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 공입니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER);
+        }
+    }
+
+    public static void validateLottoRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            validateNumberRange(number);
+        }
+    }
+
+    public static void validateLottoDuplicated(List<Integer> numbers) {
+        List<Integer> temp = new ArrayList<>();
+        for (int number : numbers) {
+            validateDuplicated(temp, number);
+            temp.add(number);
         }
     }
 }
