@@ -1,8 +1,9 @@
 package lotto.view;
 
 import lotto.dto.LottoResponse;
-import lotto.dto.LottosResponse;
+import lotto.dto.PrizeResponse;
 
+import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
@@ -39,7 +40,23 @@ public class OutputView {
                 .forEach(lottoResponse -> System.out.println(formatLottoNumbers(lottoResponse, joiner)));
     }
 
-    private String formatLottoNumbers(LottoResponse lottoResponse, StringJoiner joiner) {
+    public void printWinningResult(List<PrizeResponse> prizeResponses) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        prizeResponses.forEach(prizeResponse -> {
+            String result = prizeResponse.matchingNumberCount() + "개 일치";
+            if (prizeResponse.bonusNumberStatus().equals("INCLUDE_BONUS")) {
+                result += ", 보너스 볼 일치";
+            }
+            result += "(" + prizeResponse.prizeMoney() + "원)- "
+                    + prizeResponse.winningCount() + "개";
+
+            System.out.println(result);
+        });
+    }
+
+    private String formatLottoNumbers(LottoResponse lottoResponse) {
+        StringJoiner joiner = new StringJoiner(", ", "[", "]");
         lottoResponse.numbers()
                 .forEach(number -> joiner.add(String.valueOf(number)));
 
