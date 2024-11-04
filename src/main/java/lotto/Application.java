@@ -2,6 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+import java.util.List;
+
 
 public class Application {
     static String introduction = "구입 금액을 입력해 주세요.";
@@ -12,13 +15,29 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        System.out.println(introduction);
+        Printer printer = new Printer();
+        InputHandler inputHandler = new InputHandler();
+        printer.printBudgetNotice();
         String money = Console.readLine();
         Customer customer = new Customer(money);
         spaceString();
-        System.out.println(customer.getLottoCount() + "개를 구매했습니다");
+
+        printer.printLottoNumbers(customer.getLottoCount());
         LottoNumberProducer producer = new LottoNumberProducer(customer.getLottoCount());
         producer.createRandomNumbers();
         producer.displayLottoNumbers();
+        spaceString();
+
+        printer.printWinNumbersNotice();
+        String winNumberStr = Console.readLine();
+        String[] winNumberList = winNumberStr.split(",");
+        List<Integer> winNumbers = inputHandler.integerInverter(winNumberList);
+        Lotto lotto = new Lotto(winNumbers);
+
+        spaceString();
+        printer.printBonusNumberNotice();
+        String bonusNumbers = Console.readLine();
+        spaceString();
+
     }
 }
