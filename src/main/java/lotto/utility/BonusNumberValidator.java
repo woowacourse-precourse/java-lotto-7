@@ -5,6 +5,7 @@ public class BonusNumberValidator {
 
     public static void validateUnderFourtySix(int bonusNumber) {
         if (bonusNumber > MAX_LOTTO_NUMBER) {
+            System.out.println(ExceptionEnum.CANNOT_OVER_FOURTY_SIX.getMessage());
             throw new IllegalArgumentException(ExceptionEnum.CANNOT_OVER_FOURTY_SIX.getMessage());
         }
     }

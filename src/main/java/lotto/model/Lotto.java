@@ -18,6 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            System.out.println("[ERROR] 로또 번호는 6개여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
@@ -26,12 +27,14 @@ public class Lotto {
         boolean hasZero = numbers.stream()
                 .anyMatch(num -> num < MIN_NUMBER);
         if (hasZero) {
+            System.out.println(ExceptionEnum.CANNOT_INCLUDE_ZERO.getMessage());
             throw new IllegalArgumentException(ExceptionEnum.CANNOT_INCLUDE_ZERO.getMessage());
         }
 
         boolean overFourtyFive = numbers.stream()
                 .anyMatch(num -> num > MAX_LOTTO_NUMBER);
         if (overFourtyFive) {
+            System.out.println(ExceptionEnum.CANNOT_OVER_FOURTY_SIX.getMessage());
             throw new IllegalArgumentException(ExceptionEnum.CANNOT_OVER_FOURTY_SIX.getMessage());
         }
     }
@@ -42,6 +45,7 @@ public class Lotto {
                 .count();
 
         if (uniqueCount != numbers.size()) {
+            System.out.println(ExceptionEnum.CANNOT_DRAW_DUPLICATE_NUMBER.getMessage());
             throw new IllegalArgumentException(ExceptionEnum.CANNOT_DRAW_DUPLICATE_NUMBER.getMessage());
         }
     }
