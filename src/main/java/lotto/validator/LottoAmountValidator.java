@@ -4,7 +4,7 @@ import lotto.message.ErrorMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class InputValidator {
+public class LottoAmountValidator {
     public static int validatePurchaseAmout(String lottoAmount) {
         inputNullOrEmpty(lottoAmount);
         int lottoRound = convertPurchaseAmountToInt(lottoAmount);
