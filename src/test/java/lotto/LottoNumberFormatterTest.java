@@ -83,4 +83,19 @@ public class LottoNumberFormatterTest {
                 IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 
+    @DisplayName("입력한 당첨 번호가 6개가 아닐 경우")
+    @ParameterizedTest
+    @MethodSource("validateWinningNumsException")
+    void validateWinningNumsExceptionTest(String[] inputNums) {
+        assertThatThrownBy(() -> lottoNumberFormatter.validateWinningNums(inputNums)).isInstanceOf(
+                IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+    }
+
+
+    public static Stream<Arguments> validateWinningNumsException() {
+        return Stream.of(
+                Arguments.of((Object) new String[]{"1", "2", "3", "4"}),
+                Arguments.of((Object) new String[]{"1", "2", "3", "4", "5", "6", "7"})
+        );
+    }
 }
