@@ -2,7 +2,7 @@ package lotto.util;
 
 import lotto.enums.ErrorMessage;
 
-public abstract class Validator {
+public class Validator {
     private static final String NUMBER_PATTERN = "^[0-9]+$";
 
     public static boolean isPatternNotMatched(String input, String pattern) {
