@@ -7,6 +7,13 @@ public class Application {
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int LOTTO_MAX_NUMBER = 45;
 
+    private static final Map<Integer, Integer> preizeMoney = Map.of(
+            6, 2_000_000_000, // 1등
+            5, 1_500_000, // 2등
+            4, 50_000, // 3등
+            3, 5_000 // 4등
+    );
+
     public static void main(String[] args) {
         try {
             int purchaseAmount = getPurchaseAmount();
@@ -21,6 +28,9 @@ public class Application {
 
             System.out.println("당첨 번호: " + winningNumbers);
             System.out.println("보너스 번호: " + bonusNumber);
+
+            Map<String, Integer> results = calculateResults(lottoTickets, winningNumbers, bonusNumber);
+            printResults(results);
 
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
@@ -107,5 +117,39 @@ public class Application {
         if (number < 1 || number > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    // 당첨 결과 계산
+    private static Map<String, Integer> calculateResults(List<Set<Integer>> tickets, Set<Integer> winningNumbers, int bonusNumber) {
+        Map<String, Integer> results = new LinkedHashMap<>();
+        results.put("3개 일치 (5,000원)", 0);
+        results.put("4개 일치 (50,000원)", 0);
+        results.put("5개 일치 (1,500,000원)", 0);
+        results.put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
+        results.put("6개 일치 (2,000,000,000원)", 0);
+
+        for (Set<Integer> ticket : tickets) {
+            int matchCount = (int) ticket.stream().filter(winningNumbers::contains).count();
+            boolean bonusMatch = ticket.contains(bonusNumber);
+
+            if (matchCount == 6) {
+                results.put("6개 일치 (2,000,000,000원)", results.get("6개 일치 (2,000,000,000원)") + 1);
+            } else if (matchCount == 5 && bonusMatch) {
+                results.put("5개 일치, 보너스 볼 일치 (30,000,000원)", results.get("5개 일치, 보너스 볼 일치 (30,000,000원)") + 1);
+            } else if (matchCount == 5) {
+                results.put("5개 일치 (1,500,000원)", results.get("5개 일치 (1,500,000원)") + 1);
+            } else if (matchCount == 4) {
+                results.put("4개 일치 (50,000원)", results.get("4개 일치 (50,000원)") + 1);
+            } else if (matchCount == 3) {
+                results.put("3개 일치 (5,000원)", results.get("3개 일치 (5,000원)") + 1);
+            }
+        }
+        return results;
+    }
+
+    // 당첨 결과 출력
+    private static void printResults(Map<String, Integer> results) {
+        System.out.println("당첨 통계\n---");
+        results.forEach((key, value) -> System.out.println(key + " - " + value + "개"));
     }
 }
