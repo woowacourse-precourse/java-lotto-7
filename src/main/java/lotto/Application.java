@@ -76,6 +76,36 @@ public class Application {
         return bonusNumber;
     }
 
+    private static void printResults(List<List<Integer>> entryLists, List<Integer> lottoNumbers, int bonusNumber, int attempts){
+        EnumMap<LottoResults, Integer> calculateResults = new EnumMap<>(LottoResults.class);
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for(LottoResults result : LottoResults.values()){
+            calculateResults.put(result,0); // 각 값 초기화, 0으로 초기화
+        }
+        for(int i=0; i<attempts; i++){
+            List<Integer> matchedNumbers = new ArrayList<>(entryLists.get(i));
+            matchedNumbers.retainAll(lottoNumbers);
+            if(matchedNumbers.size()==3){
+                calculateResults.put(LottoResults.THREE_MATCH, calculateResults.get(LottoResults.THREE_MATCH) + 1);
+            }
+            if(matchedNumbers.size()==4) {
+                calculateResults.put(LottoResults.FOUR_MATCH, calculateResults.get(LottoResults.FOUR_MATCH) + 1);
+            }
+            if(matchedNumbers.size()==5){
+                calculateResults.put(LottoResults.FIVE_MATCH, calculateResults.get(LottoResults.FIVE_MATCH) + 1);
+            }
+            if(matchedNumbers.size()==5 && entryLists.get(i).contains(bonusNumber)){
+                calculateResults.put(LottoResults.FIVE_BONUS_MATCH, calculateResults.get(LottoResults.FIVE_BONUS_MATCH) + 1);
+            }
+            if(matchedNumbers.size()==6){
+                calculateResults.put(LottoResults.SIX_MATCH, calculateResults.get(LottoResults.SIX_MATCH) + 1);
+            }
+        }
+        for(LottoResults result : LottoResults.values()){
+            System.out.println(result.getHowMany() +" (" + result.getPrize()+ "원) : " + calculateResults.get(result) + "개");
+        }
+    }
 
 
 }
