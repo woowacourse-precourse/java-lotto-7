@@ -29,7 +29,7 @@ public class OutputView {
         for (LottoPrize value : LottoPrize.values()) {
             String prize = String.format("%,d", value.getPrize());
 
-            if (value.getMatch() == 55) {
+            if (value.getMatch() == LottoPrize.SECOND.getMatch()) {
                 System.out.printf(BONUS_MESSAGE, value.getCount());
                 continue;
             }
