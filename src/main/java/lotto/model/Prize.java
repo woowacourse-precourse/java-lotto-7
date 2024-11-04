@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.vo.Payment;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -16,7 +18,9 @@ public class Prize {
     private final int profit;
     private final double profitRate;
 
-    public Prize(List<Integer> rankCount, int investment) {
+    public Prize(List<Integer> rankCount, Payment payment) {
+        int investment = payment.getMoney();
+
         this.rankCount = rankCount;
         this.profit = calculateProfit(rankCount);
         this.profitRate = calculateProfitRate(investment, profit);
