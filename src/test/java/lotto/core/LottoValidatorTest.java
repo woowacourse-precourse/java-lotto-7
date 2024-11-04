@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import constants.ErrorMessage;
 import java.util.List;
-import lotto.core.Lotto;
-import lotto.core.LottoNumber;
 import org.junit.jupiter.api.Test;
 
 public class LottoValidatorTest {
