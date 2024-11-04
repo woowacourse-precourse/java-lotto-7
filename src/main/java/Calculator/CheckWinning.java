@@ -27,7 +27,10 @@ public class CheckWinning {
     //보너스 번호 없이 확인하는 경우 1 ~ 5등까지 확인
     //단 2등의 경우 보너스 확인까지 필요.
     public List<Integer> check(List<Lotto> myLottos, HashSet<Integer> winningNumbers, int bonusNumber) {
-        List<Integer> localResult = new ArrayList<>(7);
+        List<Integer> localResult = new ArrayList<>(8);
+        for (int i = 0; i < 8; i++) {
+            localResult.add(0);
+        }
         for (Lotto myLotto : myLottos) {
             int rank = checkDetail(myLotto.getNumbers(), winningNumbers, bonusNumber);
             localResult.add(rank, localResult.get(rank) + 1);
