@@ -5,9 +5,12 @@ import lotto.domain.LottoGenerator;
 import lotto.domain.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import service.LottoResultService;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -134,6 +137,31 @@ public class LottoResultTest {
         LottoRank rank = LottoRank.getRank(count, bonusMatch);
 
         assertThat(rank).isEqualTo(LottoRank.FIFTH);
+    }
+
+    @Test
+    @DisplayName("1개의 로또가 번호가 3개 당첨된 경우 수익은 5,000원이다.")
+    public void lottoProfitFifth(){
+        Map<LottoRank, Integer> lottoResult = new HashMap<>();
+        LottoResultService lottoResultService = new LottoResultService();
+
+        lottoResult.put(LottoRank.FIFTH, 1);
+        double profit = lottoResultService.getProfit(lottoResult);
+
+        assertThat(profit).isEqualTo(5000);
+    }
+
+    @Test
+    @DisplayName("2개의 로또를 사 5,4등이 당첨되면 수익률은 5250%이다.")
+    public void lottoProfitRateFifthAndFourth(){
+        Map<LottoRank, Integer> lottoResult = new HashMap<>();
+        LottoResultService lottoResultService = new LottoResultService();
+
+        lottoResult.put(LottoRank.FIFTH, 1);
+        lottoResult.put(LottoRank.FOURTH, 2);
+        double profitRate = lottoResultService.getProfitRate(lottoResult, 2);
+
+        assertThat(profitRate).isEqualTo(5250);
     }
 
 }
