@@ -7,14 +7,14 @@ import java.util.List;
 public class InputUtil {
     static final String DELIMITER = ",";
 
-    public String readInput() {
+    public static String readInput() {
         String input = Console.readLine();
         Validator.validateNullInput(input);
         Validator.validateWhitespaceInput(input);
         return input;
     }
 
-    public List<Integer> parseInputToLottoList(String input) {
+    public static List<Integer> parseInputToLottoList(String input) {
         Validator.validateRightDelimiter(input);
         String[] numbers = input.split(DELIMITER);
         List<Integer> lottoList = new ArrayList<>();
