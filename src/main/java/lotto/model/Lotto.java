@@ -1,14 +1,14 @@
-package lotto.ticket;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Lotto implements Ticket {
+public class Lottery implements Ticket {
     public static final int LOTTO_PRICE = 1000;
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lottery(List<Integer> numbers) {
         validateNumbers(numbers);
         this.numbers = numbers;
     }

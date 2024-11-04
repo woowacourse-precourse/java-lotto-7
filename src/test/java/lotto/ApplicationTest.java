@@ -1,4 +1,4 @@
-package lotto;
+package ticket;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import lottogame.Application;
+import lotto.Application;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
