@@ -29,7 +29,7 @@ public enum Prize {
             case 6:
                 return FIRST_PRIZE;
             default:
-                return Prize.NO_PRIZE;
+                return NO_PRIZE;
         }
     }
 

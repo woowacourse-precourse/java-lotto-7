@@ -2,6 +2,9 @@ package lotto.model;
 
 import java.util.List;
 
+import static lotto.constant.Constants.LOTTO_END;
+import static lotto.constant.Constants.LOTTO_START;
+
 public class Bonus {
     private final int number;
 
@@ -16,7 +19,7 @@ public class Bonus {
     }
 
     private void validateRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LOTTO_START || number > LOTTO_END) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }

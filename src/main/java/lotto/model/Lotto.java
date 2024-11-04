@@ -2,11 +2,10 @@ package lotto.model;
 
 import java.util.List;
 
+import static lotto.constant.Constants.*;
+
 public class Lotto {
     private final List<Integer> numbers;
-    private static final int LOTTO_NUMBERS_COUNT = 6;
-    private static final int LOTTO_START = 1;
-    private static final int LOTTO_END = 45;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
