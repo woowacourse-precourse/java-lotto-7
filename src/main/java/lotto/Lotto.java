@@ -17,7 +17,7 @@ public class Lotto {
         }
     }
 
-    private int calcLotteryPlace(List<Integer> lotteryWinningNumbers, int lotteryBonusNumber) {
+    public int calcLotteryPlace(List<Integer> lotteryWinningNumbers, int lotteryBonusNumber) {
         int matchCount = 0;
         boolean hasBonusNumber = false;
 
