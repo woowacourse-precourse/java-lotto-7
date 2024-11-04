@@ -37,7 +37,7 @@ public class Lotto {
 
     @Override
     public String toString() {
-        StringJoiner stringJoiner = new StringJoiner(",");
+        StringJoiner stringJoiner = new StringJoiner(", ");
         numbers.forEach(number -> {
             stringJoiner.add(number.toString());
         });
