@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.view.UserInput;
 
 public class LottoController {
@@ -11,5 +12,8 @@ public class LottoController {
 
     public void process() {
         int amount = userInput.getPurchaseAmount();
+
+        List<Integer> winNumbers = userInput.inputWinNumbers();
+
     }
 }
