@@ -6,8 +6,10 @@ import lotto.exception.LottoErrorMessage;
 
 public class WinningNumberParser {
 
-    public List<Integer> comma(String userInput) {
-        String[] splitInput = userInput.split(",");
+    private static final String SPLIT_CRITERIA = ",";
+
+    public List<Integer> split(String userInput) {
+        String[] splitInput = userInput.split(SPLIT_CRITERIA);
         List<Integer> result = new ArrayList<>();
 
         for (String eachInput : splitInput) {
