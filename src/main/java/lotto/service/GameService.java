@@ -7,16 +7,21 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRaffle;
 import lotto.domain.LottoResultChecker;
 import lotto.domain.Money;
-import lotto.utils.RandomNumberGenerator;
+import lotto.utils.LottoNumberGenerator;
 
 public class GameService {
+    LottoNumberGenerator lottoNumberGenerator;
+
+    public GameService(LottoNumberGenerator lottoNumberGenerator) {
+        this.lottoNumberGenerator = lottoNumberGenerator;
+    }
 
     public Money createMoney(int purchaseMoney) {
         return new Money(purchaseMoney);
     }
 
     public LotteryMachine purchaseLotto(Money money) {
-        LotteryMachine lotteryMachine = new LotteryMachine(new RandomNumberGenerator());
+        LotteryMachine lotteryMachine = new LotteryMachine(lottoNumberGenerator);
         lotteryMachine.createLottoByPayment(money);
         return lotteryMachine;
     }
