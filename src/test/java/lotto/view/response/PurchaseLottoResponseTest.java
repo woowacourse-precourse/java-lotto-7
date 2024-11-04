@@ -33,7 +33,7 @@ public class PurchaseLottoResponseTest {
         );
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "lottos: {0}, expectedLottoNumberResponses: {1}, expectedPurchasedAmount: {2}")
     @MethodSource("로또_일급_컬렉션_객체로부터_생성된다_테스트_케이스")
     void 로또_일급_컬렉션_객체로부터_생성된다(
             Lottos lottos,
