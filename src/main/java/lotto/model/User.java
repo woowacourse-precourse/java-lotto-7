@@ -9,7 +9,8 @@ public class User {
     public List<Lotto> getLottos() {
         return lottos;
     }
-    public void addLotto(Lotto lotto){
+
+    public void addLotto(Lotto lotto) {
         lottos.add(lotto);
     }
 }

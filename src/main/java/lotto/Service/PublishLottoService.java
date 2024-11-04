@@ -6,7 +6,7 @@ import lotto.model.Lotto;
 import java.util.Collections;
 
 public class PublishLottoService {
-    public static Lotto publishLotto(){
-        return new Lotto((Randoms.pickUniqueNumbersInRange(1,45,6)));
+    public static Lotto publishLotto() {
+        return new Lotto((Randoms.pickUniqueNumbersInRange(1, 45, 6)));
     }
 }

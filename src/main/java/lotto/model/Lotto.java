@@ -20,8 +20,8 @@ public class Lotto {
         }
     }
 
-    private void checkLottoNum(int number){
-        if (number>45 || number<1){
+    private void checkLottoNum(int number) {
+        if (number > 45 || number < 1) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1 부터 45 사이여야 합니다.");
         }
     }
