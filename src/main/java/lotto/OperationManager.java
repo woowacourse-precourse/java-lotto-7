@@ -30,6 +30,32 @@ public class OperationManager {
         for (int i = 0; i < 6; i++) {
             winningNumbers.add(Integer.parseInt(winningNumber[i]));
         }
+
+        winningCalculator(Integer.parseInt(bonusNumber));
+    }
+
+    public void winningCalculator(int BonusNumber) {
+        Map<WinningStandard, Integer> winningResult = new HashMap<>();
+        for (WinningStandard place : WinningStandard.values()) {
+            winningResult.put(place, 0);
+        }
+
+        for (Lotto lotto : lottos) {
+            List<Integer> matchingNumbers = winningNumbers.stream()
+                    .filter(o -> lotto.getNumbers().stream().anyMatch(Predicate.isEqual(o)))
+                    .collect(Collectors.toList());
+
+            int matchingCount = matchingNumbers.size();
+            boolean hasBonusNumber = lotto.getNumbers().contains(BonusNumber);
+
+            for (WinningStandard place : WinningStandard.values()) {
+                if (place.getMatchingNumber() == matchingCount
+                        && place.isMatchingBonusNumber() == hasBonusNumber) {
+                    winningResult.put(place, winningResult.get(place) + 1);
+                    break;
+                }
+            }
+        }
     }
 
     // TODO: 수익률 계산 구현
