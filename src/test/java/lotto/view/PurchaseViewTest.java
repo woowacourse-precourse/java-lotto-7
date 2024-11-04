@@ -19,7 +19,7 @@ public class PurchaseViewTest {
     void validateNumericExceptionTest() {
         System.setIn(IoMock.consoleReadLine("1,2,c,3,4"));
 
-        Assertions.assertThatThrownBy(view::read)
+        Assertions.assertThatThrownBy(() -> view.read("구입금액을 입력해 주세요."))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,7 +28,7 @@ public class PurchaseViewTest {
     void validateEmptryExceptionTest() {
         System.setIn(IoMock.consoleReadLine("\n"));
 
-        Assertions.assertThatThrownBy(view::read)
+        Assertions.assertThatThrownBy(() -> view.read("구입금액을 입력해 주세요."))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

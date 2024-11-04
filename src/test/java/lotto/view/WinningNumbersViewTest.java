@@ -21,7 +21,7 @@ public class WinningNumbersViewTest {
     void validateNumericExceptionTest() {
         System.setIn(IoMock.consoleReadLine("a,v,b"));
 
-        assertThatThrownBy(view::read)
+        assertThatThrownBy(() -> view.read("당첨 번호를 입력해 주세요."))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,7 +30,7 @@ public class WinningNumbersViewTest {
     void validateEmptyExceptionTest() {
         System.setIn(IoMock.consoleReadLine("\n"));
 
-        assertThatThrownBy(view::read)
+        assertThatThrownBy(() -> view.read("당첨 번호를 입력해 주세요."))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
