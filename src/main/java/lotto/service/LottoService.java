@@ -2,6 +2,8 @@ package lotto.service;
 
 import lotto.model.IssuedLotto;
 
+import java.util.List;
+
 public class LottoService {
     public static int LOTTO_PRICES = 1000;
 
@@ -16,7 +18,7 @@ public class LottoService {
         return numberOfLottoes;
     }
 
-    public void lottoIssues(int numberOfLottoes) {
-        issuedLotto.lottoIssues(numberOfLottoes);
+    public List<List<Integer>> lottoIssues(int numberOfLottoes) {
+        return issuedLotto.lottoIssues(numberOfLottoes);
     }
 }

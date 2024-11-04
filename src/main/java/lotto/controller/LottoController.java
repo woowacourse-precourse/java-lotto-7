@@ -5,6 +5,8 @@ import lotto.service.OutputService;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class LottoController {
     public static int AMOUNT = 0;
 
@@ -21,7 +23,8 @@ public class LottoController {
         AMOUNT = Integer.parseInt(Console.readLine());
 
         int numberOfLottoes = lottoService.lottoPurchase(AMOUNT);
-        outputService.printNumberOfLottoesMessage(numberOfLottoes);
-        lottoService.lottoIssues(numberOfLottoes);
+        List<List<Integer>> issuedLottoNumbers = lottoService.lottoIssues(numberOfLottoes);
+        outputService.printIssuedLottoesMessage(numberOfLottoes, issuedLottoNumbers);
+
     }
 }
