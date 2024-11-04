@@ -1,8 +1,6 @@
 package service;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
-import java.util.List;
 
 public class InputService {
 
@@ -26,28 +24,5 @@ public class InputService {
         return convertQuantity(getMoney());
     }
 
-    private String getWinNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        return Console.readLine();
-    }
 
-    private String[] splitWinNumbers(String winNumbers) {
-        String[] splitWinNumbers = winNumbers.split(",");
-
-        return splitWinNumbers;
-    }
-
-    private List<Integer> convertWinNumbers(String[] splitWinNumbers) {
-        List<Integer> convertToInteger = new ArrayList<>();
-
-        for (String splitWinNumber : splitWinNumbers) {
-            convertToInteger.add(Integer.parseInt(splitWinNumber));
-        }
-
-        return convertToInteger;
-    }
-
-    public List<Integer> winNumbersInput() {
-        return convertWinNumbers(splitWinNumbers(getWinNumbers()));
-    }
 }
