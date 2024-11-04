@@ -45,18 +45,15 @@ public class LottoController {
     }
 
     private List<Lotto> purchaseLotto() {
-        amount = new Amount().processSetAmount()
-                             .getAmount();
+        amount = new Amount().processSetAmount().getAmount();
         LottoDomain lotto = new LottoDomain();
 
         return lotto.createLottoBundle(amount / LottoConstants.LOTTO_UNIT_PRICE);
     }
 
     private void setLuckyNumbers() {
-        luckyNumbers = new LuckyNumbers().processSetWinningNumbers()
-                                         .getLuckyNumbers();
-        bonusNumber = new BonusNumber(luckyNumbers).processSetBonusNumber()
-                                                   .getBonusNumber();
+        luckyNumbers = new LuckyNumbers().processSetWinningNumbers().getLuckyNumbers();
+        bonusNumber = new BonusNumber(luckyNumbers).processSetBonusNumber().getBonusNumber();
     }
 
 }

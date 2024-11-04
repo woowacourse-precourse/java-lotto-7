@@ -12,8 +12,7 @@ public class LottoService implements LottoConstants {
 
     public double calculateProfitRate(long sumPrize, int amount) {
         BigDecimal rate = new BigDecimal((double) sumPrize / amount * 100);
-        return rate.setScale(2, RoundingMode.HALF_UP)
-                   .doubleValue();
+        return rate.setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
     public long sumPrize(int[] prizeTickets) {
