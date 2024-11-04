@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.LottoScoreboard;
-import validator.InputValidator;
 import view.InputView;
 import view.OutputView;
 
