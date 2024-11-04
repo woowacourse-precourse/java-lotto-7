@@ -10,7 +10,6 @@ import lotto.view.InputReader;
 import lotto.view.OutputWriter;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class LottoGame {
