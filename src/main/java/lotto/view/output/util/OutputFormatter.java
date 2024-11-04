@@ -11,6 +11,7 @@ public final class OutputFormatter {
     private static final String RESULT_PREFIX = "당첨 통계\n---\n";
     private static final String WINNING_DESCRIPTION_WITH_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
     private static final String WINNING_DESCRIPTION_FORMAT = "%d개 일치 (%,d원) - %d개";
+    private static final String PROFIT_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     public static String formatPurchaseLottoCount(Integer count) {
@@ -32,7 +33,6 @@ public final class OutputFormatter {
                 .map(dto -> formatWinningDescription(dto.rank(), dto.count()))
                 .collect(Collectors.joining(LINE_SEPARATOR)) + LINE_SEPARATOR;
     }
-
     private static String formatWinningDescription(LottoRank rank, int winCount) {
         if (rank.isBonusMatch()) {
             return String.format(
@@ -48,5 +48,9 @@ public final class OutputFormatter {
                 rank.getPrize(),
                 winCount
         );
+    }
+
+    public static String formatProfitRate(double profitRate) {
+        return String.format(PROFIT_RATE_FORMAT, profitRate);
     }
 }
