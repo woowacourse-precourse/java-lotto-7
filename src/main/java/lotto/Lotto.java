@@ -11,10 +11,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        Validator.validateNumberCount(numbers, LottoConstant.NUMBER_COUNT);
+        Validator.validateUniqueNumbers(numbers);
+        numbers.forEach(Validator::validateLottoNumber);
     }
 
     // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
