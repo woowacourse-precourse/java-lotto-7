@@ -2,7 +2,6 @@ package study;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +14,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class SetTest {
 
     private Set<Integer> numbers;
+
     @BeforeEach
     void setUp() {
         numbers = new HashSet<>();
