@@ -6,6 +6,7 @@ public enum Constants {
     LOTTO_STARTING_RANGE(1),
     LOTTO_END_RANGE(45),
     LOTTO_COUNT(6),
+    BONUS_NUMBER_COUNT(1),
 
     // 각 등수에 대한 로또 번호 일치 개수 상수
     FIRST_PLACE(6),
