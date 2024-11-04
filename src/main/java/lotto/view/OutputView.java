@@ -55,7 +55,7 @@ public class OutputView {
     public void displayRateOfReturn(Double rateOfReturn) {
         System.out.printf(RATE_OF_RETURN_MESSAGE_FORMAT, rateOfReturn);
     }
-    
+
     public void displayError(String message) {
         System.out.printf(ERROR_MESSAGE_FORMAT, message);
     }
@@ -65,7 +65,10 @@ public class OutputView {
     }
 
     private void displayNumbers(Lotto lotto) {
-        List<String> numbers = lotto.getNumbers().stream().map(String::valueOf).toList();
+        List<String> numbers = lotto.getNumbers().stream()
+                .sorted()
+                .map(String::valueOf)
+                .toList();
 
         System.out.printf(NUMBERS_MESSAGE_FORMAT, String.join(NUMBERS_FORMAT_DELIMITER, numbers));
     }
