@@ -45,12 +45,21 @@ public class ConsoleOutputView implements OutputView {
         boolean isBonusMatch = lottoScoreResponse.containsBonus();
         int prize = lottoScoreResponse.getPrize();
 
-        String result = String.format(MATCH_RESULT_FORMAT,
+        System.out.println(getResult(matchCount, isBonusMatch, prize, count));
+    }
+
+    private String getResult(int matchCount, boolean isBonusMatch, int prize, int count) {
+        String bonusMatchMessage = EMPTY;
+
+        if (isBonusMatch) {
+            bonusMatchMessage = BONUS_MATCH;
+        }
+
+        return String.format(MATCH_RESULT_FORMAT,
                 matchCount,
-                isBonusMatch ? BONUS_MATCH : EMPTY,
+                bonusMatchMessage,
                 prize,
                 count);
-        System.out.println(result);
     }
 
     private void printLotto(LottoNumberResponse response) {
