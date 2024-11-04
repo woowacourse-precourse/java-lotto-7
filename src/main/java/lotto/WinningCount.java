@@ -9,9 +9,9 @@ public enum WinningCount {
 
     private int countOfWinningNumber;
     private boolean isBonusMatched;
-    private int  amountToWin;
+    private long  amountToWin;
 
-    WinningCount(int countOfWinningNumber, boolean isBonusMatched, int amountToWin) {
+    WinningCount(int countOfWinningNumber, boolean isBonusMatched, long amountToWin) {
         this.countOfWinningNumber = countOfWinningNumber;
         this.isBonusMatched = isBonusMatched;
         this.amountToWin = amountToWin;
@@ -25,7 +25,7 @@ public enum WinningCount {
         return isBonusMatched;
     }
 
-    public int getAmountToWin() {
+    public long getAmountToWin() {
         return amountToWin;
     }
 

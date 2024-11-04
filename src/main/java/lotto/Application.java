@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -127,7 +128,7 @@ public class Application {
         double sumOfGain = 0;
 
         for(WinningCount winningCount : WinningCount.values()){
-            sumOfGain += winningCount.getAmountToWin() * lottoCountByWinning.get(winningCount);
+            sumOfGain += lottoCountByWinning.get(winningCount) * winningCount.getAmountToWin();
         }
 
         return Math.round(sumOfGain / amountToPurchase * 10000.0) / 100.0;
@@ -138,7 +139,8 @@ public class Application {
         System.out.println("---");
 
         String result;
-        NumberFormat formatter = NumberFormat.getInstance();
+        NumberFormat numberFormatter = NumberFormat.getInstance();
+        DecimalFormat decimalFormatter = new DecimalFormat("#");
 
         for (WinningCount winningCount:WinningCount.values()){
             result = "";
@@ -149,11 +151,11 @@ public class Application {
                 result += ", 보너스 볼 일치 ";
             }
 
-            result += "(" + formatter.format(winningCount.getAmountToWin()) + "원)";
+            result += "(" + numberFormatter.format(winningCount.getAmountToWin()) + "원)";
             result += " - " + lottoCountByWinning.get(winningCount) + "개";
             System.out.println(result);
         }
 
-        System.out.println("총 수익률은 " + rateOfGain + "%입니다.");
+        System.out.println("총 수익률은 " + decimalFormatter.format(rateOfGain) + "%입니다.");
     }
 }
