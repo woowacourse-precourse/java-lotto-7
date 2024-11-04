@@ -11,13 +11,12 @@ public class Application {
         final InputView inputView = new InputView();
         final OutputView outputView = new OutputView();
 
-        final LottoService lottoService = new LottoService();
         final LottoMachineService lottoMachineService = new LottoMachineService();
         final LottoBundleService bundleService = new LottoBundleService();
         final LottoResultService lottoResultService = new LottoResultService();
         final ProfitCalculatorService profitCalculatorService = new ProfitCalculatorService();
 
-        final LottoController lottoController = new LottoController(inputView, outputView, lottoService, lottoMachineService, bundleService, lottoResultService, profitCalculatorService);
+        final LottoController lottoController = new LottoController(inputView, outputView, lottoMachineService, bundleService, lottoResultService, profitCalculatorService);
         lottoController.start();
     }
 }

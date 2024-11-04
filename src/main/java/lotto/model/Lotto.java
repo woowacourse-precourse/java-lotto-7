@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constant.LottoConstant;
+import lotto.exception.LottoException;
 import lotto.validation.LottoNumberValidator;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoConstant.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LottoException.INVALID_NUMBER_COUNT.getMessage());
         }
         checkDuplicateNumbers(numbers);
     }
