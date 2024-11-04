@@ -6,8 +6,7 @@ public class Input {
     public static PurchaseAmount getPurchaseAmount(){
         try{
             String input = Console.readLine();
-            InputValidator.validateBlank(input);
-            InputValidator.validateWhitespace(input);
+            validateInput(input);
             return new PurchaseAmount(input);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -18,8 +17,7 @@ public class Input {
     public static WinningNumber getWinningNumber(){
         try{
             String input = Console.readLine();
-            InputValidator.validateBlank(input);
-            InputValidator.validateWhitespace(input);
+            validateInput(input);
             return new WinningNumber(input);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -30,12 +28,16 @@ public class Input {
     public static BonusNumber getBonusNumber(WinningNumber winningNumber) {
         try{
             String input = Console.readLine();
-            InputValidator.validateBlank(input);
-            InputValidator.validateWhitespace(input);
+            validateInput(input);
             return new BonusNumber(new LottoNumber(input), winningNumber);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             return getBonusNumber(winningNumber);
         }
+    }
+
+    private static void validateInput(String input){
+        InputValidator.validateBlank(input);
+        InputValidator.validateWhitespace(input);
     }
 }
