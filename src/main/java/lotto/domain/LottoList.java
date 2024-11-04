@@ -1,24 +1,23 @@
 package lotto.domain;
 
-import global.errorMessage.CommonErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class Lottos {
-    private final List<Lotto> lottos;
+public class LottoList {
+    private final List<Lotto> lottoList;
 
-    public Lottos(List<Lotto> lottos) {
+    public LottoList(List<Lotto> lottoList) {
         // 방어적 copy
-        this.lottos = new ArrayList<>(lottos);
+        this.lottoList = new ArrayList<>(lottoList);
     }
 
-    public static Lottos create(List<Lotto> lottos) {
-        return new Lottos(lottos);
+    public static LottoList create(List<Lotto> lottoList) {
+        return new LottoList(lottoList);
     }
 
     public long getSize() {
-        return lottos.size();
+        return lottoList.size();
     }
 
     // 총 수익 및 LottoPrize 리스트 반환
@@ -26,7 +25,7 @@ public class Lottos {
         long totalEarning = 0;
         List<LottoPrize> lottoPrizes = new ArrayList<>();
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoList) {
             int matchCount = winningNumbers.countMatchingNumbers(lotto);
             boolean containBonus = lotto.containBonusNumber(bonusNumber);
             LottoPrize lottoPrize = LottoPrize.valueOf(matchCount, containBonus);
@@ -42,7 +41,7 @@ public class Lottos {
 
     public String result() {
         StringJoiner stringJoiner = new StringJoiner("\n");
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoList) {
             stringJoiner.add(lotto.result());
         }
         return stringJoiner.toString();
