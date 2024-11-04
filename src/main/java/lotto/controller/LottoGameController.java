@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
-import lotto.model.LottoPurchase;
+import lotto.dto.LottoPurchase;
 import lotto.model.Rank;
 import lotto.service.LottoResultService;
 import lotto.service.LottoGameService;

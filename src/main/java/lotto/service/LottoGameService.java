@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoIssuer;
-import lotto.model.LottoPurchase;
+import lotto.dto.LottoPurchase;
 import lotto.validator.LottoBonusNumberValidator;
 import lotto.validator.LottoNumberValidator;
 import lotto.validator.LottoPurchaseValidator;

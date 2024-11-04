@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.PurchaseException;
-import lotto.model.LottoPurchase;
+import lotto.dto.LottoPurchase;
 import lotto.validator.LottoPurchaseValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

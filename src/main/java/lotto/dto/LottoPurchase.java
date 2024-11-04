@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.dto;
 
 import lotto.validator.LottoPurchaseValidator;
 
