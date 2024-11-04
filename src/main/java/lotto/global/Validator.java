@@ -7,7 +7,7 @@ import static lotto.exception.ErrorCode.DUPLICATE_BONUS_NUMBER;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 
 public class Validator {
     private static final Validator instance = new Validator();

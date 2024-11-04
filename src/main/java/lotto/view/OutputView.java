@@ -11,7 +11,7 @@ import static lotto.enums.Symbol.OPEN_BRACKET;
 import java.math.BigDecimal;
 import lotto.enums.Message;
 import lotto.enums.Prize;
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

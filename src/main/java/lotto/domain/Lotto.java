@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import static lotto.exception.ErrorCode.INVALID_WINNING_NUMBERS_INPUT;
 
