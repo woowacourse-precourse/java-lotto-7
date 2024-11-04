@@ -1,6 +1,7 @@
-package lotto;
+package model;
 
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,5 +17,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public static List<Integer> generateLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
