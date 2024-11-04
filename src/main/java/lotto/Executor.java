@@ -18,8 +18,7 @@ public class Executor {
     public void run() {
         int purchaseAmount = getPurchaseAmount();
 
-        int purchaseCount = purchaseAmount / LOTTO_PRICE;
-        Lottos issuedLottos = Lottos.generateLottosByCount(purchaseCount);
+        Lottos issuedLottos = Lottos.generateLottosByCount(purchaseAmount / LOTTO_PRICE);
         ioController.printLottos(issuedLottos.getLottos());
 
         List<Integer> winningNumbers = getWinningNumbers();
