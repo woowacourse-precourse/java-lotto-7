@@ -1,4 +1,4 @@
-package lotto.domain.util;
+package lotto.controller.util;
 
 import java.util.function.Supplier;
 import lotto.validator.Validator;

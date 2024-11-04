@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Model;
-import lotto.domain.util.InputValidatorUtil;
+import lotto.controller.util.InputValidatorUtil;
 import lotto.validator.AmountValidator;
 import lotto.validator.NumberValidator;
 import lotto.view.InputView;
