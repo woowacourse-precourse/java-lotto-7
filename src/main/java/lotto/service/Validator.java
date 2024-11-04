@@ -13,7 +13,6 @@ public class Validator {
     private static final String IS_BETWEEN_LOTTO_RANGE_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String IS_NOT_DUPPLICATE_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 중복되지 않는 숫자여야 합니다.";
 
-
     public static void validateAmount(String amount) {
         if (!isNumbers(amount)) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자이어야 합니다.");
