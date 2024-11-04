@@ -11,6 +11,7 @@ public class Application {
             WinNumbers winningNumbers = getWinningNumbers();
             int bonusNumber = getBonusNumber();
             lottoGame.calculateResults(winningNumbers, bonusNumber);
+            lottoGame.printResults();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }

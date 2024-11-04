@@ -50,5 +50,21 @@ public class LottoGame {
         return Rank.of(matchCount, bonusMatch);
     }
 
+    public void printResults() {
+        System.out.println("당첨 통계\n---");
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                System.out.println(rank.getMatchMessage() + " - " + results.getOrDefault(rank, 0) + "개");
+            }
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", calculateYield());
+    }
 
+    private double calculateYield() {
+        double totalPrize = 0;
+        for (Map.Entry<Rank, Integer> entry : results.entrySet()) {
+            totalPrize += entry.getKey().getPrize() * entry.getValue();
+        }
+        return Math.round((totalPrize / purchaseAmount) * 1000) / 10.0;
+    }
 }
