@@ -2,11 +2,14 @@ package lotto.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoGroup;
+import lotto.model.Pay;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -48,11 +51,23 @@ class LottoServiceTest {
     }
 
     @Test
-    void payInput() {
+    @DisplayName("payInput 비정상 입력 후 정상 입력 테스트")
+    void payInputTest() {
+        // 정상적인 금액 입력 모킹
+        String input = "asdf\n25\n8000\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        LottoService payService = LottoService.createLottoService();
+        Pay pay = payService.payInput();
+
+        assertNotNull(pay, "Pay 객체가 null이 아닙니다.");
+        assertEquals(8000, pay.getMoney(), "금액이 예상과 다릅니다.");
     }
 
     @Test
     void generateLottoGroup() {
+
     }
 
     @Test
