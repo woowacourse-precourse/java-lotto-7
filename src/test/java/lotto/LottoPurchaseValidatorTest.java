@@ -8,6 +8,26 @@ import org.junit.jupiter.api.Test;
 
 public class LottoPurchaseValidatorTest {
 
+    @DisplayName("null 입력 시 예외 발생")
+    @Test
+    void null_입력_예외_발생() {
+        assertThatThrownBy(() -> LottoPurchaseValidator.validateAmount(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 입력이 null입니다.");
+    }
+
+    @DisplayName("빈 문자열 입력 시 예외 발생")
+    @Test
+    void 빈_문자열_입력_예외_발생() {
+        assertThatThrownBy(() -> LottoPurchaseValidator.validateAmount(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액을 입력해주세요.");
+
+        assertThatThrownBy(() -> LottoPurchaseValidator.validateAmount("  "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액을 입력해주세요.");
+    }
+
     @DisplayName("올바른 금액을 입력하면 해당값을 반환")
     @Test
     void 올바른_금액을_입력하면_해당값을_반환() {

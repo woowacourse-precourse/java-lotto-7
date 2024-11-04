@@ -1,12 +1,22 @@
 package lotto;
 
 public class LottoPurchaseValidator {
-    
+
     public static int validateAmount(String input) {
+        validateNullOrEmpty(input);
         int amount = parseAmount(input.trim());
         validatePositiveAmount(amount);
         validateThousandUnit(amount);
         return amount;
+    }
+
+    private static void validateNullOrEmpty(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("[ERROR] 입력이 null입니다.");
+        }
+        if (input.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액을 입력해주세요.");
+        }
     }
 
     private static int parseAmount(String input) {
