@@ -7,17 +7,22 @@ import java.nio.charset.StandardCharsets;
 import java.util.NoSuchElementException;
 
 public class Application {
-    private static final int BUDGET_UNIT = 1000;
+    public static final int BUDGET_UNIT = 1000;
 
     public static void main(String[] args) {
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
+
         int budgets = inputBudgets();
+
+        LottoPicker lottoPicker = new LottoPicker(budgets / BUDGET_UNIT);
+        lottoPicker.printLottos();
+
     }
 
     private static void throwError(String message) {
         throw new IllegalArgumentException("[ERROR] " + message);
     }
-
+    /** Get input budgets with stdin. If that input is invalid, retry */
     private static int inputBudgets() {
         System.out.println("구입금액을 입력해 주세요.");
         try {
@@ -27,7 +32,6 @@ public class Application {
             return inputBudgets();
         }
     }
-    /** */
     private static int validateBudgets(String inputs) {
         int budgets;
         try{
