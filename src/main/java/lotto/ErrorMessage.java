@@ -4,7 +4,8 @@ public enum ErrorMessage {
     NUMERIC_VALUE_ERROR("숫자를 입력해주세요."),
     POSITIVE_AMOUNT_ERROR("구매 금액을 양수로 입력해주세요."),
     PURCHASE_AMOUNT_THOUSAND_UNIT_ERROR("구매 금액을 1000원 단위로 입력해주세요."),
-    LOTTO_NUMBERS_COUNT_ERROR("로또 번호는 6개여야 합니다.");
+    LOTTO_NUMBERS_COUNT_ERROR("로또 번호는 6개여야 합니다."),
+    LOTTO_NUMBERS_DUPLICATION_ERROR("로또 번호는 중복될 수 없습니다.");
 
     private final String message;
 

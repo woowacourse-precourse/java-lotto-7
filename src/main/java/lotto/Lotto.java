@@ -12,6 +12,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateNumberSize(numbers);
+        validateDuplication(numbers);
     }
 
     private static void validateNumberSize(List<Integer> numbers) {
@@ -20,5 +21,10 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplication(List<Integer> numbers) {
+        long distinctCount = numbers.stream().distinct().count();
+        if (distinctCount != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_DUPLICATION_ERROR.getMessage());
+        }
+    }
 }
