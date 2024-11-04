@@ -12,6 +12,7 @@ public class LottoResult {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
+
     public void display() {
         int[] prizes = new int[5];
         int totalPrize = 0;
@@ -58,6 +59,6 @@ public class LottoResult {
         System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", prizes[4]);
 
         double profit = ((double) totalPrize / (lottos.size() * 1000)) * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", profit);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", Math.round(profit * 10) / 10.0);
     }
 }
