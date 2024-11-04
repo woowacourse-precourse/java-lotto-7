@@ -20,4 +20,8 @@ public enum Rank {
                 .findFirst()
                 .orElse(ETC);
     }
+
+    public String toString() {
+        return String.format("%s (%,d)", condition, prize);
+    }
 }
