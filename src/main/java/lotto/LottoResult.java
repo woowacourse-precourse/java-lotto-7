@@ -20,7 +20,7 @@ public class LottoResult {
         return result;
     }
 
-    public void addResult(Rank rank) {
+    private void addResult(Rank rank) {
         results.put(rank, results.get(rank) + 1);
     }
 
