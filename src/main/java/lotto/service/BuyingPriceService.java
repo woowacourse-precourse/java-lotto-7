@@ -8,11 +8,8 @@ public class BuyingPriceService {
     public static int returnNumberOfLotto(BuyingPrice buyingPrice){
         int lottoNum = 0;
         int price = buyingPrice.getPrice();
-        try {
-            lottoNum = price / 1000;
-        }catch(ArithmeticException e) {
-            System.out.println("연산에서의 오류 발생");
-        }
+        lottoNum = price / 1000;
+
         return lottoNum;
     }
 }

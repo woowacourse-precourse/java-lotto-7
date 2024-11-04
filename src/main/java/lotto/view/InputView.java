@@ -1,15 +1,18 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.BuyingPriceValidator;
 
 public class InputView {
 
     public int inputBuyingPriceView() {
         try {
             String buyingPrice = Console.readLine();
-
-        } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 입력은 숫자만 가능합니다.");
+            BuyingPriceValidator validator = new BuyingPriceValidator();
+            validator.validate(buyingPrice);
+            return Integer.parseInt(buyingPrice);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException(exception.getMessage());
         }
     }
 

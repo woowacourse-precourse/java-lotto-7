@@ -14,7 +14,7 @@ public class BuyingPriceValidator extends Validator<String>{
     public static void validIsNumber(String buyingPriceInput) {
         for (int i = 0; i < buyingPriceInput.length(); i++) {
             if (!Character.isDigit(buyingPriceInput.charAt(i))) {
-                throw new NumberFormatException(ERROR + "입력은 숫자만 가능합니다.");
+                throw new IllegalArgumentException(ERROR + "입력은 숫자만 가능합니다.");
             }
         }
     }
