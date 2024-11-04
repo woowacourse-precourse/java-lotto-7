@@ -19,9 +19,7 @@ public class Application {
         output.printPurchaseLotto(lottos);
 
         //당첨 번호 입력
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumbers = Arrays.stream(readLine().split(","))
-                .map(Integer::parseInt).sorted().toList();
+        List<Integer> winningNumbers = input.askWinningNumbers();
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
         Integer bonusNumber = Integer.parseInt(readLine());

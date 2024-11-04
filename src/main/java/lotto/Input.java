@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Input {
@@ -12,6 +15,16 @@ public class Input {
             return Integer.parseInt(readLine());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_MESSAGE);
+        }
+    }
+
+    public List<Integer> askWinningNumbers() {
+        try {
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            return Arrays.stream(readLine().split(","))
+                    .map(Integer::parseInt).sorted().toList();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("1,2,3,4,5,6 형식으로 입력해주세요");
         }
     }
 }
