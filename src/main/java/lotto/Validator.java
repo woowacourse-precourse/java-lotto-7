@@ -38,6 +38,12 @@ public class Validator {
         }
     }
 
+    private void checkIsDuplicateNumber(Set<Integer> base, int num) {
+        if (base.contains(num)) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
+        }
+    }
+
     public void validatePurchaseAmount(String purchaseInput) {
         try {
             if (purchaseInput.isEmpty()) {
@@ -65,9 +71,7 @@ public class Validator {
             Set<Integer> winningDigits = new HashSet<>();
             for (String splitInput : splitInputs) {
                 Integer parseInt = Integer.parseInt(splitInput);
-                if (winningDigits.contains(parseInt)) {
-                    throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
-                }
+                checkIsDuplicateNumber(winningDigits, parseInt)
                 winningDigits.add(parseInt);
             }
             if (winningDigits.size() != LottoConstants.LOTTERY_NUMBER_COUNT) {
