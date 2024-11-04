@@ -2,8 +2,6 @@ package lotto;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -61,15 +59,15 @@ public class LottoPurchaseTest {
     }
 
     @Test
-    void 로또번호가_입력되면_Lottos_리스트에_담긴다(){
+    void 로또번호가_입력되면_당첨로또_변수에_담긴다(){
         //given
         String userInputLottoNumber = "1,2,3,4,5,6";
         String userInputBonusNumber = "8";
         //when
         lottoPurchase.inputLottoNumber(userInputLottoNumber,userInputBonusNumber);
-        List<IssuedLotto> result = lottoPurchase.getLottos();
+        WinningLotto result = lottoPurchase.getWinningLotto();
         //then
-        assertThat(result.getFirst().getNumbers()).isEqualTo(new IssuedLotto(List.of(1,2,3,4,5,6),8).getNumbers());
+        assertThat(result.getNumbers()).isEqualTo(new WinningLotto(List.of(1,2,3,4,5,6),8).getNumbers());
 
     }
 }

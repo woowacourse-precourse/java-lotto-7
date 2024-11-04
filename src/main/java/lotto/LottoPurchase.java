@@ -2,18 +2,13 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoPurchase {
     private int purchaseAmount;
     private int purchaseCount;
-    private List<IssuedLotto> lottos;
-
-    public LottoPurchase() {
-        lottos = new ArrayList<>();
-    }
+    private WinningLotto winningLotto;
 
     public void inputAmount() {
         System.out.println("구입금액을 입력해주세요");
@@ -57,7 +52,7 @@ public class LottoPurchase {
         if (!userInputBonusNumber.matches("\\d+")){
             throw new IllegalArgumentException("보너스 번호는 숫자만 입력 가능합니다.");
         }
-        lottos.add(new IssuedLotto(splitLottoNumber(userInputLottoNumber),Integer.parseInt(userInputBonusNumber)));
+        winningLotto = new WinningLotto(splitLottoNumber(userInputLottoNumber),Integer.parseInt(userInputBonusNumber));
     }
 
     private List<Integer> splitLottoNumber(String userInputLottoNumber){
@@ -68,8 +63,8 @@ public class LottoPurchase {
         return purchaseAmount;
     }
 
-    public List<IssuedLotto> getLottos() {
-        return lottos;
+    public WinningLotto getWinningLotto() {
+        return winningLotto;
     }
 
     public int getPurchaseCount() {
