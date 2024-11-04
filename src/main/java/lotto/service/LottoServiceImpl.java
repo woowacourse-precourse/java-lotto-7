@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lotto.config.ErrorMessage;
 import lotto.config.LottoRule;
 import lotto.model.Lotto;
@@ -51,29 +50,47 @@ public class LottoServiceImpl implements LottoService {
                 numericWinningNumbers, numericBonusNumber
         );
 
-        Map<Object, Long> prizeCountMap = lottoRuleList
-                .stream()
-                .collect(Collectors.groupingBy(i -> i, Collectors.counting()));
-
-        List<String> winningReport = Arrays.stream(LottoRule.values())
-                .filter(i -> i != LottoRule.NONE)
-                .sorted(Comparator.reverseOrder())
-                .map(i -> String.format("%d개 일치%s (%s원) - %d개",
-                        i.getMatchCount(),
-                        i.isHasBonus() ? ", 보너스 볼 일치" : "",
-                        String.format("%,d", i.getPrize()),
-                        prizeCountMap.getOrDefault(i, 0L)))
-                .toList();
-
-        double profitRate = (double) lottoRuleList
-                .stream()
-                .map(LottoRule::getPrize)
-                .mapToInt(Integer::intValue)
-                .sum()
-                /
-                safeParsePurchaseAmount(purchaseAmount);
+        List<String> winningReport = generateWinningReport(lottoRuleList);
+        double profitRate = computeProfitRate(
+                lottoRuleList,
+                safeParsePurchaseAmount(purchaseAmount)
+        );
 
         return new LottoReport(winningReport, profitRate);
+    }
+
+    private List<String> generateWinningReport(List<LottoRule> lottoRuleList) {
+        Map<LottoRule, Long> prizeCountMap = countPrizes(lottoRuleList);
+
+        return Arrays.stream(LottoRule.values())
+                .filter(i -> i != LottoRule.NONE)
+                .sorted(Comparator.reverseOrder())
+                .map(i -> formatPrizeReport(i, prizeCountMap))
+                .toList();
+    }
+
+    private Map<LottoRule, Long> countPrizes(List<LottoRule> lottoRuleList) {
+        return lottoRuleList.stream()
+                .collect(Collectors.groupingBy(i -> i, Collectors.counting()));
+    }
+
+    private String formatPrizeReport(LottoRule rule, Map<LottoRule, Long> prizeCountMap) {
+        return String.format("%d개 일치%s (%s원) - %d개",
+                rule.getMatchCount(),
+                rule.isHasBonus() ? ", 보너스 볼 일치" : "",
+                String.format("%,d", rule.getPrize()),
+                prizeCountMap.getOrDefault(rule, 0L));
+    }
+
+    private double computeProfitRate(List<LottoRule> lottoRuleList, int purchaseAmount){
+        return (double) calculateTotalPrize(lottoRuleList) / purchaseAmount;
+    }
+
+    private int calculateTotalPrize(List<LottoRule> lottoRuleList) {
+        return lottoRuleList.stream()
+                .map(LottoRule::getPrize)
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     private int safeParsePurchaseAmount(String stringInput) {
