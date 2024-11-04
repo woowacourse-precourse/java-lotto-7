@@ -48,9 +48,9 @@ public class LottoNumberMatcher {
         return Math.round(earnRate * 100) / 100.0;
     }
 
-    private Integer calculateTotalEarning(List<WinRank> winningWinRanks) {
+    private Long calculateTotalEarning(List<WinRank> winningWinRanks) {
         return winningWinRanks.stream()
-                .mapToInt(LottoNumberMatcher::winPriceFromRank)
+                .mapToLong(LottoNumberMatcher::winPriceFromRank)
                 .sum();
     }
 
