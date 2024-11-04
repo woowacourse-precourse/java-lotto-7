@@ -158,10 +158,9 @@ public class Application {
     private static void displayStatistics(Map<Rank, Integer> results) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        for (Rank rank : Rank.values()) {
-            if (rank != Rank.NONE) {
-                System.out.println(rank.getDescription() + " - " + results.get(rank) + "개");
-            }
+        Rank[] orderedRanks = {Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST};
+        for (Rank rank : orderedRanks) {
+            System.out.println(rank.getDescription() + " - " + results.get(rank) + "개");
         }
     }
 
