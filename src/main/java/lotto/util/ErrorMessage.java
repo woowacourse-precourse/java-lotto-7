@@ -10,8 +10,7 @@ public enum ErrorMessage {
     SAME_WITH_LOTTO_NUMBER_ERROR("당첨 번호와 다른 번호를 입력해주세요."),
 
     NOT_ONE_THOUSAND_MULTIPLE_ERROR("금액이 1000원으로 떨어지지 않습니다. 금액을 다시 입력해주세요"),
-    NOT_PURCHASE_MORE_HUNDRED_THOUSAND_ERROR("총 구매는 10만원 이하로 가능합니다. 금액을 다시 입력해주세요")
-    ;
+    NOT_PURCHASE_MORE_HUNDRED_THOUSAND_ERROR("총 구매는 10만원 이하로 가능합니다. 금액을 다시 입력해주세요");
 
     private static final String PREFIX = "[ERROR] ";
     private final String message;
