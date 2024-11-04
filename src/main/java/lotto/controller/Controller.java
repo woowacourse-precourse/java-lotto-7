@@ -25,15 +25,15 @@ public class Controller {
     }
 
     public void run() {
-        Customer customer = tryforCorrentInput(this::createCustomer);
+        Customer customer = tryforCorrectInput(this::createCustomer);
 
         Seller seller = new Seller(lottoGenerator);
         seller.sellTo(customer);
 
         outputView.printLottoNumbers(EarnedLottos.from(customer.getMyLotto()));
 
-        AnswerNumbers answerNumbers = tryforCorrentInput(this::createAnswerNumbers);
-        BonusNumber bonusNumber = tryforCorrentInput(this::createBonusNumber);
+        AnswerNumbers answerNumbers = tryforCorrectInput(this::createAnswerNumbers);
+        BonusNumber bonusNumber = tryforCorrectInput(this::createBonusNumber);
 
         float earningRate = customer.getEarningRate(answerNumbers, bonusNumber);
         outputView.printWinningHistory(new WinningStatistics(customer.getWinningHistory()));
@@ -41,7 +41,7 @@ public class Controller {
     }
 
     private Customer createCustomer() {
-        Money money = tryforCorrentInput(() -> new Money(inputView.getAmount()));
+        Money money = tryforCorrectInput(() -> new Money(inputView.getAmount()));
         MyLotto myLotto = MyLotto.emptyMyLotto();
         return new Customer(money, myLotto);
     }
@@ -56,12 +56,12 @@ public class Controller {
         return AnswerNumbers.from(answer);
     }
 
-    private <T> T tryforCorrentInput(Supplier<T> supplier) {
+    private <T> T tryforCorrectInput(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e);
-            return tryforCorrentInput(supplier);
+            return tryforCorrectInput(supplier);
         }
     }
 }
