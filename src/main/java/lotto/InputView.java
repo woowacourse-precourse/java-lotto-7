@@ -6,10 +6,11 @@ import java.util.stream.Stream;
 
 public class InputView {
 
-    public static int requestPurchaseAmount() {
+	public static int requestPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
+        String input = readInput();
         try {
-            int amount = Integer.parseInt(Console.readLine());
+            int amount = Integer.parseInt(input);
             if (amount % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
             }
@@ -21,7 +22,7 @@ public class InputView {
 
     public static List<Integer> requestWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
+        String input = readInput();
         List<Integer> numbers = parseInputNumbers(input);
         validateWinningNumbers(numbers);
         return numbers;
@@ -29,14 +30,16 @@ public class InputView {
 
     public static int requestBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
+        String input = readInput();
         try {
-            int bonusNumber = Integer.parseInt(Console.readLine());
+            int bonusNumber = Integer.parseInt(input);
             validateBonusNumber(bonusNumber);
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
         }
     }
+
 
     private static List<Integer> parseInputNumbers(String input) {
         return Stream.of(input.split(","))
@@ -55,5 +58,9 @@ public class InputView {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+    }
+    
+    private static String readInput() {
+        return Console.readLine();
     }
 }
