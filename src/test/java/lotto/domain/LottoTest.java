@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -20,5 +21,35 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void createLotto_ValidNumbers_Success() {
+        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(validNumbers);
+
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @Test
+    void createLotto_InvalidNumberCount_ThrowsException() {
+        List<Integer> invalidNumbers = List.of(1, 2, 3, 4, 5); // 5개
+        assertThatThrownBy(() -> new Lotto(invalidNumbers)
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    @Test
+    void createLotto_DuplicateNumbers_ThrowsException() {
+        List<Integer> duplicateNumbers = List.of(1, 2, 2, 3, 4, 5); // 중복 2
+        assertThatThrownBy(() -> new Lotto(duplicateNumbers)
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 중복되면 안됩니다.");
+    }
+
+    @Test
+    void createLotto_OutOfRangeNumbers_ThrowsException() {
+        List<Integer> outOfRangeNumbers = List.of(0, 2, 3, 4, 5, 46); // 0과 46
+        assertThatThrownBy(() -> new Lotto(outOfRangeNumbers)
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1 ~ 45 사이여야 합니다.");
+    }
 }
