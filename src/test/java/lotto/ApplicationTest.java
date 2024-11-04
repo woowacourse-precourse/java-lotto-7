@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    @SuppressWarnings("unchecked")
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -43,6 +44,35 @@ class ApplicationTest extends NsTest {
                 List.of(7, 11, 30, 40, 42, 43),
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
+        );
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    void 기능_테스트_수익률_0퍼센트() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("5000", "1, 2, 3, 4, 5, 6", "7");
+                    assertThat(output()).contains(
+                            "5개를 구매했습니다.",
+                            "[8, 10, 12, 14, 16, 18]",
+                            "[20, 22, 24, 26, 28, 30]",
+                            "[32, 34, 36, 38, 40, 42]",
+                            "[9, 11, 13, 15, 17, 19]",
+                            "[21, 23, 25, 27, 29, 31]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "아쉽게도 수익이 발생하지 않았습니다. 다음 기회를 노려보세요!"
+                    );
+                },
+                List.of(8, 10, 12, 14, 16, 18),
+                List.of(20, 22, 24, 26, 28, 30),
+                List.of(32, 34, 36, 38, 40, 42),
+                List.of(9, 11, 13, 15, 17, 19),
+                List.of(21, 23, 25, 27, 29, 31)
         );
     }
 
