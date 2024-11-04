@@ -12,7 +12,7 @@ public class LottoGameDisplay {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
     public int inputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        printGuideMessage("구입금액을 입력해 주세요.");
 
         while (true) {
             try {
@@ -27,8 +27,7 @@ public class LottoGameDisplay {
     }
 
     public List<Integer> inputWinnerNumbers() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        printGuideMessageWithNewline("당첨 번호를 입력해 주세요.");
 
         while (true) {
             try {
@@ -43,8 +42,7 @@ public class LottoGameDisplay {
     }
 
     public int inputBonusNumber(List<Integer> winnerNumbers) {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        printGuideMessageWithNewline("보너스 번호를 입력해 주세요.");
 
         while (true) {
             try {
@@ -82,6 +80,15 @@ public class LottoGameDisplay {
         return rawNumbers.stream()
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    public void printGuideMessage(String msg) {
+        System.out.println(msg);
+    }
+
+    public void printGuideMessageWithNewline(String msg) {
+        System.out.println();
+        System.out.println(msg);
     }
 
     private void printErrorMessage(Exception e) {
