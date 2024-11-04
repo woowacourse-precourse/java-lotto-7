@@ -1,5 +1,5 @@
 package lotto.ui;
 
-public interface InputUi {
+interface InputUi {
     String readLine();
 }

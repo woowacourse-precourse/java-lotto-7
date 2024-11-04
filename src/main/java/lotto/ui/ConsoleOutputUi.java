@@ -1,6 +1,6 @@
 package lotto.ui;
 
-public class ConsoleOutputUi implements OutputUi {
+class ConsoleOutputUi implements OutputUi {
     @Override
     public void print(final String message) {
         System.out.print(message);

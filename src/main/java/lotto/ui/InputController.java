@@ -12,7 +12,7 @@ public class InputController {
 
     private final InputUi inputUi;
 
-    public InputController(final InputUi inputUi) {
+    InputController(final InputUi inputUi) {
         this.inputUi = inputUi;
     }
 

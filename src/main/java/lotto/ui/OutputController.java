@@ -12,7 +12,7 @@ import lotto.exception.LottoArgumentException;
 public class OutputController {
     private final OutputUi outputUi;
 
-    public OutputController(final OutputUi outputUi) {
+    OutputController(final OutputUi outputUi) {
         this.outputUi = outputUi;
     }
 
