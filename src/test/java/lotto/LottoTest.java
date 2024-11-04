@@ -29,10 +29,10 @@ class LottoTest {
     @DisplayName("생성자에 randomNumbersGenerator를 주입하면 오름차순 랜덤 로또가 생성된다")
     void lottoTest(String numbersInput, String expected) {
         //given
-        List<Integer> numbers = convertStringToIntegerList(numbersInput);
+        ArrayList<Integer> numbers = convertStringToIntegerList(numbersInput);
         RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator() {
             @Override
-            public List<Integer> generate() {
+            public ArrayList<Integer> generate() {
                 return numbers;
             }
         };

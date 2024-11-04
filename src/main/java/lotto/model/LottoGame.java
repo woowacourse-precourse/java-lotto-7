@@ -30,8 +30,7 @@ public class LottoGame {
     }
 
     public void validatePurchaseInput(String input) throws IllegalArgumentException {
-        int amount;
-        amount = tryParseInt(input);
+        int amount = tryParseInt(input);
         isNegativeNumber(amount);
         isDividedClearly(amount);
     }
@@ -57,10 +56,6 @@ public class LottoGame {
 
     public void registController(LottoController controller) {
         this.controller = controller;
-    }
-
-    public LottoGameDTO toDTO() {
-        return new LottoGameDTO(this.lottos, this.purchase, this.winingLotto, this.bonusNumber);
     }
 
     private List<Integer> trySplitParse(String input) throws IllegalArgumentException {
@@ -95,5 +90,21 @@ public class LottoGame {
             throw new IllegalArgumentException(ERROR_NUMBER_FORMAT_MESSAGE.getMessage());
         }
         return amount;
+    }
+
+    public Lotto getWiningLotto() {
+        return this.winingLotto;
+    }
+
+    public int getBonusNumber() {
+        return this.bonusNumber;
+    }
+
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
+
+    public double getPurchase() {
+        return this.purchase;
     }
 }

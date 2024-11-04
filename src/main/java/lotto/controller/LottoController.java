@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.InputType;
+import lotto.MatchType;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.LottoStatistic;
@@ -60,9 +61,27 @@ public class LottoController {
             System.out.println(e.getMessage());
             getBonusNumber();
         }
+        displayStatistics();
     }
 
     public void displayPurchase(int purchase) {
         outputView.printPurchase(purchase);
+    }
+
+    public void displayStatistics() {
+        statistic.checkMatch(game.getWiningLotto(), game.getBonusNumber(), game.getLottos());
+        outputView.printStatisticStart();
+        for (MatchType type : MatchType.values()) {
+            int total = statistic.getStatistics().get(type);
+            outputView.printStatisticMatchType(type, total);
+        }
+
+        double ratio = calculateRatio();
+        outputView.printTotalRatio(ratio);
+    }
+
+    private double calculateRatio() {
+        int totalPrize = statistic.calculateScore();
+        return (double) totalPrize / (game.getPurchase() * 1000) * 100;
     }
 }

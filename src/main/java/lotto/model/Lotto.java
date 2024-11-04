@@ -1,6 +1,8 @@
 package lotto.model;
 
-import static lotto.ErrorMessage.*;
+import static lotto.ErrorMessage.ERROR_DUPLICATE_MESSAGE;
+import static lotto.ErrorMessage.ERROR_RANGE_MESSAGE;
+import static lotto.ErrorMessage.ERROR_SIZE_MESSAGE;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,14 +23,16 @@ public class Lotto {
     public Lotto(RandomNumbersGenerator numbersGenerator) throws IllegalArgumentException {
         List<Integer> generatedNumbers = numbersGenerator.generate();
         validate(generatedNumbers);
-        generatedNumbers.sort(Integer::compareTo);
-        this.numbers = generatedNumbers;
+        ArrayList<Integer> mutableNumbers = new ArrayList<>(generatedNumbers);
+        mutableNumbers.sort(Integer::compareTo);
+        this.numbers = mutableNumbers;
     }
 
     public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         validate(numbers);
-        numbers.sort(Integer::compareTo);
-        this.numbers = numbers;
+        ArrayList<Integer> mutableNumbers = new ArrayList<>(numbers);
+        mutableNumbers.sort(Integer::compareTo);
+        this.numbers = mutableNumbers;
     }
 
     public void validate(List<Integer> numbers) throws IllegalArgumentException {
@@ -68,5 +72,9 @@ public class Lotto {
 
     public String displayNumbers() {
         return numbers.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
