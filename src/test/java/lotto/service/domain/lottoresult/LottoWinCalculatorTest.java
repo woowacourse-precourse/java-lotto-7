@@ -41,10 +41,6 @@ public class LottoWinCalculatorTest {
     public void 일등로또_반환_체크() {
         List<LottoReward> test = LottoWinCalculator.calculateReward(lottoBuyer,lottoWinNumber);
 
-//        for(LottoReward lottoReward : test){
-//            assertEquals(LottoReward.FIRST, lottoReward);
-//        }
-
         assertTrue(test.contains(LottoReward.FIRST), "[ERROR] : 있어야할 LottoReward.FIRST가 없습니다.");
     }
 }

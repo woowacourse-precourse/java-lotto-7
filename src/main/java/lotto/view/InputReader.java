@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 public class InputReader {
     public int readInteger() {
-        while(true){
+        while (true) {
             String input = Console.readLine();
             try {
                 return validateNotNumber(input);
-            }catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 숫자만 입력해야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -20,20 +20,31 @@ public class InputReader {
     private int validateNotNumber(String input) {
         try {
             return Integer.parseInt(input);
-        } catch (NumberFormatException e){
-            throw new IllegalArgumentException();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.", e);
         }
     }
 
     public List<Integer> readIntegerList() {
-        String input = Console.readLine();
-        return parseDelimiter(input);
+        while (true) {
+            String input = Console.readLine();
+            try {
+                return parseDelimiter(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Integer> parseDelimiter(String input) {
-        return Arrays.stream(input.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        try {
+            return Arrays.stream(input.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 올바른 당첨번호 입력이 아닙니다.");
+        }
+
     }
 }
