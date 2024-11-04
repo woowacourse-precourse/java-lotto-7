@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LottoInputConverter {
 
-    private LottoInputValidator lottoInputValidator;
+    private final LottoInputValidator lottoInputValidator;
 
     public LottoInputConverter() {
         this.lottoInputValidator = new LottoInputValidator();
@@ -32,7 +32,6 @@ public class LottoInputConverter {
         lottoInputValidator.validateNumberFromString(input);
         return Integer.parseInt(input);
     }
-
 
 
 }

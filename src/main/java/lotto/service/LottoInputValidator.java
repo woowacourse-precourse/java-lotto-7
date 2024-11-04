@@ -2,8 +2,8 @@ package lotto.service;
 
 public class LottoInputValidator {
 
-    private LottoMoneyValidator lottoMoneyValidator;
-    private DefaultValidator defaultValidator;
+    private final LottoMoneyValidator lottoMoneyValidator;
+    private final DefaultValidator defaultValidator;
 
     public LottoInputValidator() {
         this.lottoMoneyValidator = new LottoMoneyValidator();

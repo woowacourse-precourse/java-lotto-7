@@ -6,7 +6,7 @@ import lotto.service.LottoInputConverter;
 
 public class CliInputView {
 
-    private LottoInputConverter lottoInputConverter;
+    private final LottoInputConverter lottoInputConverter;
 
     public CliInputView() {
         this.lottoInputConverter = new LottoInputConverter();
