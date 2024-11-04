@@ -137,7 +137,7 @@ public class Application {
         return resultMap;
     }
 
-    private static int calculateTotalPrize(Map<Rank, Integer> results) {
+    static int calculateTotalPrize(Map<Rank, Integer> results) {
         int totalPrize = 0;
         for (Map.Entry<Rank, Integer> entry : results.entrySet()) {
             Rank rank = entry.getKey();
@@ -165,8 +165,8 @@ public class Application {
         double profitRate = calculateProfitRate(totalPrize, purchaseAmount);
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
-    
-    private static double calculateProfitRate(int totalPrize, int purchaseAmount) {
+
+    static double calculateProfitRate(int totalPrize, int purchaseAmount) {
         return (double) totalPrize / purchaseAmount * 100;
     }
 }

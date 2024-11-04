@@ -3,11 +3,14 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +55,28 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 총_당첨금_계산_테스트() {
+        Map<Rank, Integer> results = new HashMap<>();
+        results.put(Rank.FIRST, 1);    // 1등 1개
+        results.put(Rank.SECOND, 2);   // 2등 2개
+        results.put(Rank.THIRD, 0);    // 3등 없음
+        results.put(Rank.FOURTH, 3);   // 4등 3개
+        results.put(Rank.FIFTH, 5);    // 5등 5개
+
+        int totalPrize = Application.calculateTotalPrize(results);
+        assertEquals(2_000_000_000 + 2 * 30_000_000 + 3 * 50_000 + 5 * 5_000, totalPrize);
+    }
+
+    @Test
+    void 수익률_계산_테스트() {
+        int totalPrize = 1_500_000;  // 당첨금 1,500,000원
+        int purchaseAmount = 5_000_000; // 구입 금액 5,000,000원
+
+        double profitRate = Application.calculateProfitRate(totalPrize, purchaseAmount);
+        assertEquals(30.0, profitRate, 0.1); // 예상 수익률 30.0%
     }
 
     @Override
