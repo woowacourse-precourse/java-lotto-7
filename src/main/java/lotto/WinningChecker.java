@@ -19,11 +19,11 @@ public class WinningChecker {
 
         boolean bonusMatch = ticket.getNumbers().contains(bonusNumber);
 
-        if (matchCount == 6) return 6; // 6개 일치
-        if (matchCount == 5 && bonusMatch) return 5; // 5개 + 보너스 일치
-        if (matchCount == 5) return 4; // 5개 일치
-        if (matchCount == 4) return 3; // 4개 일치
-        if (matchCount == 3) return 2; // 3개 일치
-        return 0; // 2개 이하 일치
+        if (matchCount == 6) return 1;            // 1등: 6개 일치
+        if (matchCount == 5 && bonusMatch) return 2; // 2등: 5개 + 보너스 일치
+        if (matchCount == 5) return 3;              // 3등: 5개 일치
+        if (matchCount == 4) return 4;              // 4등: 4개 일치
+        if (matchCount == 3) return 5;              // 5등: 3개 일치
+        return 0;                                   // 꽝: 2개 이하 일치
     }
 }
