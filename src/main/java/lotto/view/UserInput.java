@@ -36,9 +36,16 @@ public class UserInput {
         return winNumbers;
     }
 
-    public static int inputBonusNumber() {
+    public static int inputBonusNumber(List<Integer> winNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        validateNumberRange(bonusNumber);
+
+        winNumbers.add(bonusNumber);
+        validateDuplicate(winNumbers);
+
+        return bonusNumber;
     }
 
     private static void validatePurchaseAmount(int amount) {

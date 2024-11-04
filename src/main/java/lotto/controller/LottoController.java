@@ -15,5 +15,6 @@ public class LottoController {
 
         List<Integer> winNumbers = userInput.inputWinNumbers();
 
+        int bonusNumber = userInput.inputBonusNumber(winNumbers);
     }
 }
