@@ -1,17 +1,13 @@
 package lotto.model;
 
+import lotto.enumMessage.Rank;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Result {
-    private final static int THREE_MATCHING_INDEX = 0;
-    private final static int FOUR_MATCHING_INDEX = 1;
-    private final static int FIVE_MATCHING_INDEX = 2;
-    private final static int BONUS_MATCHING_INDEX = 3;
-    private final static int SIX_MATCHING_INDEX = 4;
-
     private final List<Integer> results;
     private String rate;
 
@@ -20,25 +16,18 @@ public class Result {
     }
 
     public void put(long matchingCount, boolean hasBonusNumber) {
-        if (matchingCount == 3) {
-            increaseMatchingIndex(THREE_MATCHING_INDEX);
-            return;
+        if (isRecordableCount(matchingCount)) {
+            Rank rank = Rank.valueOf((int) matchingCount, hasBonusNumber);
+            int index = rank.ordinal();
+            increaseMatchingIndex(index);
         }
-        if (matchingCount == 4) {
-            increaseMatchingIndex(FOUR_MATCHING_INDEX);
-            return;
+    }
+
+    private boolean isRecordableCount(long matchingCount) {
+        if (matchingCount == 0 || matchingCount == 1 || matchingCount == 2) {
+            return false;
         }
-        if (matchingCount == 5) {
-            if (hasBonusNumber) {
-                increaseMatchingIndex(BONUS_MATCHING_INDEX);
-                return;
-            }
-            increaseMatchingIndex(FIVE_MATCHING_INDEX);
-            return;
-        }
-        if (matchingCount == 6) {
-            increaseMatchingIndex(SIX_MATCHING_INDEX);
-        }
+        return true;
     }
 
     private void increaseMatchingIndex(int matchingIndex) {
@@ -60,7 +49,11 @@ public class Result {
     }
 
     private long getProfit() {
-        return 5000L * results.get(THREE_MATCHING_INDEX) + 50000L * results.get(FOUR_MATCHING_INDEX) + 1500000L * results.get(FIVE_MATCHING_INDEX) + 30000000L * results.get(BONUS_MATCHING_INDEX) + 2000000000L * results.get(SIX_MATCHING_INDEX);
+        long profit = 0;
+        for (Rank rank : Rank.values()) {
+            profit += rank.getPrize() * results.get(rank.ordinal());
+        }
+        return profit;
     }
 
     public String getRate() {

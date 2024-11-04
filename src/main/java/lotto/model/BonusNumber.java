@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.errorMessage.ErrorMessage;
+import lotto.enumMessage.ErrorMessage;
 
 public class BonusNumber {
     private final static int MIN_RANGE = 1;

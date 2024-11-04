@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.Service.LottoService;
-import lotto.errorMessage.ErrorMessage;
+import lotto.enumMessage.ErrorMessage;
 import lotto.model.Lotto;
 import lotto.view.ViewFacade;
 

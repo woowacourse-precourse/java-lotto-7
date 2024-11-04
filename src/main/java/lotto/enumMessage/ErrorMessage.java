@@ -1,4 +1,4 @@
-package lotto.errorMessage;
+package lotto.enumMessage;
 
 public enum ErrorMessage {
     INVALID_VALUE("[ERROR] 숫자를 입력하세요."),

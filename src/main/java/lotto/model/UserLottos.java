@@ -1,7 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.errorMessage.ErrorMessage;
+import lotto.enumMessage.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
