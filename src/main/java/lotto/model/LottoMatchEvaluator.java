@@ -36,7 +36,7 @@ public class LottoMatchEvaluator {
             int lottoWinningCount = (int) lottoResults.stream()
                     .filter(lotto -> lotto.getMatchingCount() == rankMatchingcount).count();
 
-            if (ranks[i].getMatchingBonus()) {
+            if (ranks[i].getMatchingBonus()) { //5개 일치인데 보너스 번호가 일치하는 경우
                 int bonusWinnigCount = (int) lottoResults.stream()
                         .filter(lotto -> lotto.isMatchingBonus() && lotto.getMatchingCount() == rankMatchingcount)
                         .count();
