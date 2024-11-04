@@ -1,7 +1,7 @@
 package lotto.domain.vo;
 
-import static lotto.domain.constants.LottoConstants.LOTTO_PRICE;
-import static lotto.exception.ErrorMessage.*;
+import lotto.domain.constants.LottoConstants;
+import lotto.exception.ErrorMessage;
 
 public class PurchaseAmount {
     private final Integer amount;
@@ -16,16 +16,16 @@ public class PurchaseAmount {
     }
 
     private static void validate(Integer amount) {
-        if (amount < LOTTO_PRICE) {
-            throw new IllegalArgumentException(MONEY_INSUFFICIENT.getLottoPriceIncludeMessage());
+        if (amount < LottoConstants.LOTTO_PRICE) {
+            throw new IllegalArgumentException(ErrorMessage.MONEY_INSUFFICIENT.getLottoPriceIncludeMessage());
         }
         if (isMoneyLeft(amount)) {
-            throw new IllegalArgumentException(MONEY_LEFT.getLottoPriceIncludeMessage());
+            throw new IllegalArgumentException(ErrorMessage.MONEY_LEFT.getLottoPriceIncludeMessage());
         }
     }
 
     private static boolean isMoneyLeft(Integer amount) {
-        return (amount % LOTTO_PRICE) != 0;
+        return (amount % LottoConstants.LOTTO_PRICE) != 0;
     }
 
     public Integer getAmount() {
@@ -33,6 +33,6 @@ public class PurchaseAmount {
     }
 
     public Integer calculateLottoCount() {
-        return amount / LOTTO_PRICE;
+        return amount / LottoConstants.LOTTO_PRICE;
     }
 }
