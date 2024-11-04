@@ -14,5 +14,4 @@ public class LottoConstant {
             30000000,
             2000000000
     };
-    public static final int[] LOTTO_GRADES = new int[]{-1, -1, -1, 5, 4, 3, 1};
 }

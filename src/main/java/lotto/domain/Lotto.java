@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import lotto.constant.LottoConstant;
+import lotto.constant.LottoRank;
+import lotto.exception.DuplicateLottoNumberException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,6 +17,13 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+
+        Set<Integer> testSet = new HashSet<>(numbers);
+        int numbersCount = numbers.size();
+
+        if (testSet.size() != numbersCount) {
+            throw new DuplicateLottoNumberException();
+        }
     }
 
     // TODO: 추가 기능 구현
@@ -26,18 +33,14 @@ public class Lotto {
      *
      * @param gradingNumbers 비교대상이 될 로또 당첨번호
      * @param bonusNumber    비교대상이 될 로또 보너스번호
-     * @return 로또 당첨등수. 당첨되지 않은 경우 -1을 반환합니다.
+     * @return 로또 당첨등수
      */
-    public int grade(List<Integer> gradingNumbers, int bonusNumber) {
+    public LottoRank grade(List<Integer> gradingNumbers, int bonusNumber) {
         int[] compareResult = getSameNumberCount(gradingNumbers, bonusNumber);
         int sameCount = compareResult[0];
-        boolean isBonusInclude = compareResult[1] == 1;
+        boolean isBonusIncluded = compareResult[1] == 1;
 
-        if (sameCount == 5) {
-            if (!isBonusInclude) return 3;
-            return 2;
-        }
-        return LottoConstant.LOTTO_GRADES[sameCount];
+        return LottoRank.getRank(sameCount, isBonusIncluded);
     }
 
     /**

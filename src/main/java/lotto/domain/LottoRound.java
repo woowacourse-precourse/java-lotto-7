@@ -42,10 +42,12 @@ public class LottoRound {
 
         lottos.stream()
                 .map(v -> v.grade(this.gradingNumbers, this.bonusNumbers))
-                .forEach(i -> {
-                    if (i < 0) return;
-                    int wonHistoryCount = winHistory.get(i);
-                    winHistory.set(i, wonHistoryCount + 1);
+                .forEach(rank -> {
+                    int rankValue = rank.getRankValue();
+                    if (rankValue < 0) return;
+
+                    int wonHistoryCount = winHistory.get(rankValue);
+                    winHistory.set(rankValue, wonHistoryCount + 1);
                 });
 
         this.winHistory = winHistory;
