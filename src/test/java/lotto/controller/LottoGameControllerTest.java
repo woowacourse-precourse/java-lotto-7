@@ -40,4 +40,14 @@ class LottoGameControllerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
+
+    @DisplayName("보너스 번호가 유효할 때 예외가 발생하지 않아야 한다.")
+    @Test
+    void 보너스번호가_유효할때_예외가_발생하지않는다() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        assertThatCode(() -> Lotto.validateBonusNumber(winningNumbers, bonusNumber))
+                .doesNotThrowAnyException();
+    }
 }
