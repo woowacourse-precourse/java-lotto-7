@@ -6,6 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
+    private static final int LOTTO_PRICE = 1000;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+    private static final int LOTTO_NUMBER_COUNT = 6;
+
+    private static final String ERROR_INVALID_AMOUNT = "[ERROR] 구입 금액은 양수여야 합니다";
+    private static final String ERROR_AMOUNT_NOT_DIVISIBLE = "[ERROR] 구입 금액은 " + LOTTO_PRICE + "으로 나누어 떨어져야 합니다.";
+    private static final String ERROR_INVALID_INPUT = "[ERROR] 잘못된 입력입니다.";
+    private static final String ERROR_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호는 " + MIN_NUMBER + "부터 " + MAX_NUMBER + " 사이의 숫자여야 합니다.";
+    private static final String ERROR_BONUS_NUMBER_DUPLICATE = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
+    private static final String ERROR_INVALID_TYPE = "[ERROR] 올바르지 않은 타입입니다";
+
     public static void main(String[] args) {
         int amount = getAmount();
         int lottoCount = calculateLottoCount(amount);
@@ -32,7 +44,7 @@ public class Application {
     }
 
     private static int calculateLottoCount(int amount) {
-        return amount / 1000;
+        return amount / LOTTO_PRICE;
     }
 
     public static int getAmount() {
@@ -51,14 +63,14 @@ public class Application {
         try {
             int amount = Integer.parseInt(inputAmount);
             if (amount < 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 양수여야 합니다");
+                throw new IllegalArgumentException(ERROR_INVALID_AMOUNT);
             }
             if (amount % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000으로 나누어 떨어져야 합니다.");
+                throw new IllegalArgumentException(ERROR_AMOUNT_NOT_DIVISIBLE);
             }
             return amount;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다.");
+            throw new IllegalArgumentException(ERROR_INVALID_INPUT);
         }
 
     }
@@ -83,14 +95,14 @@ public class Application {
         try {
             int bonusNumber = Integer.parseInt(inputBonus.trim());
             if (bonusNumber < 1 || bonusNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ERROR_BONUS_NUMBER_RANGE);
             }
             if (winningNumbers.contains(bonusNumber)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                throw new IllegalArgumentException(ERROR_BONUS_NUMBER_DUPLICATE);
             }
             return bonusNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 올바르지 않은 타입입니다");
+            throw new IllegalArgumentException(ERROR_INVALID_TYPE);
         }
     }
 
