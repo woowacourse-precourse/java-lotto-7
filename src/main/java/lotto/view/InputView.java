@@ -32,6 +32,22 @@ public class InputView {
         }
     }
 
+    public static int inputBonusNumber(List<Integer> winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        while (true) {
+            String input = Console.readLine().trim();
+            try {
+                int bonusNumber = Integer.parseInt(input);
+                validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private static int validateAndParseAmount(String input) {
         int amount;
         try {
@@ -74,5 +90,14 @@ public class InputView {
         }
 
         return numbers;
+    }
+
+    private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+        }
     }
 }
