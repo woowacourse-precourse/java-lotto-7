@@ -1,6 +1,7 @@
 package lotto.domain.money;
 
 import java.util.Objects;
+import lotto.validator.PurchaseAmountValidator;
 
 public class Money {
     private static final int LOTTO_PRICE = 1_000;
@@ -10,7 +11,7 @@ public class Money {
     private final int amount;
 
     private Money(int amount) {
-        validateAmount(amount);
+        PurchaseAmountValidator.validate(amount);
         this.amount = amount;
     }
 
@@ -28,23 +29,6 @@ public class Money {
 
     public static Money multiply(Money money, int multiplier) {
         return new Money(money.amount * multiplier);
-    }
-
-    private void validateAmount(int amount) {
-        validatePositive(amount);
-        validateUnit(amount);
-    }
-
-    private void validatePositive(int amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException(ERROR_NEGATIVE);
-        }
-    }
-
-    private void validateUnit(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ERROR_UNIT);
-        }
     }
 
     public int getLottoQuantity() {
