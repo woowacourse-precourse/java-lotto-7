@@ -4,40 +4,38 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.LottoPrize;
-import lotto.model.User;
+import lotto.model.WinnerLotto;
 
 public class LottoService {
-    private static final int LOTTO_PRICE = 1000;
-
     public LottoMachine createLottoMachine(int amount) {
         return new LottoMachine(amount);
     }
 
-    public User createUser(List<Lotto> lottoTickets, Lotto winnerLotto, int bonus) {
-        return new User(lottoTickets, winnerLotto, bonus);
+    public WinnerLotto createWinnerLotto(Lotto winnerNumbers, int bonus) {
+        return new WinnerLotto(winnerNumbers, bonus);
     }
 
-    public long calculatePrize(User user) {
+    public long calculatePrize(List<Lotto> lottoTickets, WinnerLotto winnerLotto) {
         long totalPrize = 0;
 
-        for (Lotto lotto : user.getLottoTickets()) {
-            int matchCount = getMatchingNumbers(user, lotto);
+        for (Lotto lotto : lottoTickets) {
+            int matchCount = getMatchingNumbers(lotto, winnerLotto);
             totalPrize += prize(matchCount);
         }
         return totalPrize;
     }
 
-    private int getMatchingNumbers(User user, Lotto lotto) {
+    private int getMatchingNumbers(Lotto lotto, WinnerLotto winnerLotto) {
         int matchCount = 0;
-        List<Integer> winnerLotto = user.getWinnerLotto().getNumbers();
+        List<Integer> winnerNumbers = winnerLotto.getLotto().getNumbers();
 
         for (int number : lotto.getNumbers()) {
-            if (winnerLotto.contains(number)) {
+            if (winnerNumbers.contains(number)) {
                 matchCount++;
             }
         }
 
-        if (matchCount == 5 && lotto.getNumbers().contains(user.getBonus())) {
+        if (matchCount == 5 && lotto.getNumbers().contains(winnerLotto.getBonus())) {
             matchCount = 55;
         }
 
@@ -48,9 +46,10 @@ public class LottoService {
         return LottoPrize.getPrizeByRank(matchCount);
     }
 
-    public double totalReturn(User user, long prize) {
-        int amount = user.getLottoTickets().size() * LOTTO_PRICE;
+    public double totalReturn(LottoMachine lottoMachine, long prize) {
+        double amount = lottoMachine.totalAmonut();
 
-        return Math.round(prize / amount) * 100.0;
+        return Math.round((double) prize / amount * 1000.0) / 10.0;
+
     }
 }

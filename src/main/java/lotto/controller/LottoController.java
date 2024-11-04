@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
-import lotto.model.LottoPrize;
-import lotto.model.User;
+import lotto.model.WinnerLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -29,13 +28,10 @@ public class LottoController {
         LottoMachine lottoMachine = inputPrice();
         outputView.lottoTIckets(lottoMachine);
 
-        Lotto winnerLotto = inputWinnerLotto();
-        int bonus = inputBonus(winnerLotto);
+        WinnerLotto winnerLotto = inputWinner();
 
-        User user = lottoService.createUser(lottoMachine.getLottoTickets(), winnerLotto, bonus);
-        long prize = lottoService.calculatePrize(user);
-        double totalReturn = lottoService.totalReturn(user, prize);
-
+        long prize = lottoService.calculatePrize(lottoMachine.getLottoTickets(), winnerLotto);
+        double totalReturn = lottoService.totalReturn(lottoMachine, prize);
         outputView.winningStatistics(totalReturn);
 
     }
@@ -51,7 +47,13 @@ public class LottoController {
         }
     }
 
-    private Lotto inputWinnerLotto() {
+    private WinnerLotto inputWinner() {
+        Lotto winnerNumbers = inputWinnerNumbers();
+        int bonus = inputBonus(winnerNumbers);
+        return lottoService.createWinnerLotto(winnerNumbers, bonus);
+    }
+
+    private Lotto inputWinnerNumbers() {
         while (true) {
             try {
                 return new Lotto(parseNumbers());
@@ -67,8 +69,8 @@ public class LottoController {
         while (true) {
             try {
                 List<String> inputNumbers = inputView.inputNumbers();
-                for (String lotto : inputNumbers) {
-                    winnerNumbers.add(Integer.parseInt(lotto));
+                for (String number : inputNumbers) {
+                    winnerNumbers.add(Integer.parseInt(number));
                 }
                 return winnerNumbers;
             } catch (NumberFormatException e) {

@@ -14,11 +14,11 @@ public class LottoMachine {
     private List<Lotto> lottoTickets;
 
     public LottoMachine(int amount) {
-        amountValid(amount);
+        validateAmount(amount);
         this.lottoTickets = generateLotto(amount);
     }
 
-    private void amountValid(int amount) {
+    private void validateAmount(int amount) {
         canBuy(amount);
         checkDivisible(amount);
     }
@@ -52,11 +52,16 @@ public class LottoMachine {
         return sortNumbers;
     }
 
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
+    }
+
     public int getLottoTicketSize() {
         return lottoTickets.size();
     }
 
-    public List<Lotto> getLottoTickets() {
-        return lottoTickets;
+    public int totalAmonut() {
+        return getLottoTicketSize() * LOTTO_PRICE;
     }
 }
