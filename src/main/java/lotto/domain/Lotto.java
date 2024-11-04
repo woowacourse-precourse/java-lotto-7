@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.LottoWinningTable;
 import lotto.exceptions.LottoNotUniqueException;
 import lotto.exceptions.LottoShortLengthException;
 

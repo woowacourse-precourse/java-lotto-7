@@ -25,8 +25,11 @@ public class UserInputUtil {
         try {
             System.out.println(LOTTO_BONUS_REQUEST_MESSAGE);
             final String rawBonusInput = readLine();
+            System.out.println();
             return validateBonusNumber(rawBonusInput);
         } catch (BonusNumberException e) {
+            System.out.println(e.getMessage());
+            System.out.println();
             return takeBonusNumber();
         }
     }
@@ -34,8 +37,11 @@ public class UserInputUtil {
         try {
             System.out.println(PURCHASE_REQUEST_MESSAGE);
             final String rawPurchaseAmount = readLine();
+            System.out.println();
             return validatePurchaseAmount(rawPurchaseAmount);
         } catch (PurchaseUnitException e) {
+            System.out.println(e.getMessage());
+            System.out.println();
             return takePurchaseBudget();
         }
     }
@@ -44,8 +50,11 @@ public class UserInputUtil {
         try {
             System.out.println(LOTTO_NUMBERS_REQUEST_MESSAGE);
             final String rawPurchaseAmount = readLine();
+            System.out.println();
             return validateLottoNumbers(rawPurchaseAmount);
         } catch (LottoNumbersException e) {
+            System.out.println(e.getMessage());
+            System.out.println();
             return takeLottoNumbers();
         }
     }

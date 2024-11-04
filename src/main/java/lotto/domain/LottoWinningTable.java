@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.exceptions.LottoInvalidMatchException;
-import org.junit.platform.commons.util.StringUtils;
 
 import static lotto.utils.LottoValidator.BONUS_MATCH_INTERSECTION_NUMBER;
 

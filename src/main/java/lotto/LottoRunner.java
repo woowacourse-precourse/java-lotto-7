@@ -12,6 +12,7 @@ public class LottoRunner {
     public static void run() {
         long purchaseBudget = UserInputUtil.takePurchaseBudget();
         List<Lotto> userWallet = LottoGenerator.generateLottoWallet(purchaseBudget);
+        OutView.showWholeLottoInUserWallet(userWallet);
 
         final LottoService lottoService = new LottoService(userWallet);
         List<Integer> winningNumbers = UserInputUtil.takeLottoNumbers();
