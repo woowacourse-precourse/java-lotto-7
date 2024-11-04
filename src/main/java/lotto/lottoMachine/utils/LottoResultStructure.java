@@ -1,6 +1,6 @@
-package lotto.lottoMachine.lottoRank;
+package lotto.lottoMachine.utils;
 
-public enum LottoRankStructure {
+public enum LottoResultStructure {
     FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
     THIRD(5, false, 1_500_000),
@@ -12,14 +12,14 @@ public enum LottoRankStructure {
     private final boolean matchBonus;
     private final int prize;
 
-    LottoRankStructure(int matchCount, boolean matchBonus, int prize) {
+    LottoResultStructure(int matchCount, boolean matchBonus, int prize) {
         this.matchCount = matchCount;
         this.matchBonus = matchBonus;
         this.prize = prize;
     }
 
     // static으로 생성한 이유 -> return만 하기 때문, 내부에서 값을 변경하지 않는다.
-    public static LottoRankStructure valueOf(int matchCount, boolean matchBonus) {
+    public static LottoResultStructure valueOf(int matchCount, boolean matchBonus) {
         if (matchCount == 6) {
             return FIRST;
         }

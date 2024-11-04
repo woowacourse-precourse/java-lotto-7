@@ -1,12 +1,12 @@
 package lotto.lottoMachine.calculateManager;
 
 import java.util.Map;
-import lotto.lottoMachine.lottoRank.LottoRankStructure;
+import lotto.lottoMachine.utils.LottoResultStructure;
 
 public class LottoPrizeManager {
-    private final Map<LottoRankStructure, Integer> results;
+    private final Map<LottoResultStructure, Integer> results;
 
-    public LottoPrizeManager(Map<LottoRankStructure, Integer> results) {
+    public LottoPrizeManager(Map<LottoResultStructure, Integer> results) {
         this.results = results;
     }
     public long getTotalPrize() {

@@ -6,7 +6,7 @@ import java.util.List;
 import lotto.Lotties;
 import lotto.lottoMachine.lottoBonusNumber.LottoBonusNumberManager;
 import lotto.lottoMachine.lottoPurchaseAmount.LottoPurchaseAmountManager;
-import lotto.lottoMachine.lottoRank.LottoRankResultManager;
+import lotto.lottoMachine.lottoTotalResult.LottoTotalResultManager;
 import lotto.lottoMachine.lottoWinningNumber.LottoWinningNumberManager;
 import lotto.lottoMachine.calculateManager.LottoQuantityManager;
 
@@ -16,7 +16,7 @@ public class LottoMachineManager {
     private final Lotties lotties;
     private final LottoWinningNumberManager lottoWinningNumberManager;
     private final LottoNumberPrinter LottoNumberPrinter;
-    private final LottoRankResultManager lottoRankResultManager;
+    private final LottoTotalResultManager lottoRankResultManager;
 
     public LottoMachineManager() {
         lottoPurchaseAmountManager = new LottoPurchaseAmountManager();
@@ -24,7 +24,7 @@ public class LottoMachineManager {
         lotties = new Lotties();
         lottoWinningNumberManager = new LottoWinningNumberManager();
         LottoNumberPrinter = new LottoNumberPrinter();
-        lottoRankResultManager = new LottoRankResultManager();
+        lottoRankResultManager = new LottoTotalResultManager();
     }
 
     public void run() {
