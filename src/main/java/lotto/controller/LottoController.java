@@ -12,5 +12,6 @@ public class LottoController {
         String purchaseAmountInput = InputView.inputPurchase();
         List<Lotto> lottos = LottoGenerator.generateLottos(purchaseAmountInput);
         OutputView.printPurchasedLottos(lottos);
+        InputView.inputWinningNumbers();
     }
 }
