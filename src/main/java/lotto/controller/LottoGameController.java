@@ -41,13 +41,16 @@ public class LottoGameController {
         Lotto winningLotto;
         int bonusNumber;
         List<WinningStatistic> winningStatistics;
+        double totalEarnings;
 
         purchasedLottos = purchaseLotto();
         winningLotto = new Lotto(setWinningNumbers());
         bonusNumber = setBonusNumber(winningLotto.getNumbers());
         winningStatistics = calculateWinningStatics(purchasedLottos, winningLotto, bonusNumber);
         outputView.printStatistics(winningStatistics);
-
+        LottoResultService lottoResultService = new LottoResultService(purchasedLottos,winningLotto,bonusNumber);
+        totalEarnings = lottoResultService.calculateTotalEarnings(winningStatistics);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n",totalEarnings/purchasedLottos.size()* 100);
     }
 
     public List<Lotto> purchaseLotto() {
@@ -113,6 +116,7 @@ public class LottoGameController {
         }
         return winningStatistics;
     }
+
 
 
 }

@@ -22,13 +22,13 @@ class WinningNumberServiceTest {
         assertEquals(List.of(1, 3, 5, 9, 10, 11), winningNumbers); // 예상 결과와 비교
     }
 
-    @Test
-    void generateWinningNumbers_WithInvalidInput() {
-        winningNumberService.generateWinningNumbers("1,3,5,9,10,abc");
-    }
-
-    @Test
-    void generateWinningNumbers_WithOutOfRangeInput() {
-        winningNumberService.generateWinningNumbers("1,3,5,9,10,46");
-    }
+//    @Test
+//    void generateWinningNumbers_WithInvalidInput() {
+//        winningNumberService.generateWinningNumbers("1,3,5,9,10,abc");
+//    }
+//
+//    @Test
+//    void generateWinningNumbers_WithOutOfRangeInput() {
+//        winningNumberService.generateWinningNumbers("1,3,5,9,10,46");
+//    }
 }

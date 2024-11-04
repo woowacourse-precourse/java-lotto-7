@@ -31,6 +31,10 @@ public class WinningStatistic {
         this.occurrence++;
     }
 
+    public int calculateEarnings() {
+        return occurrence * prizeAmount;
+    }
+
     public String presentStatus(){
         String status = "";
         status += matchCount + "개 일치";

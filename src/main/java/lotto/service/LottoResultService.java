@@ -23,6 +23,8 @@ public class LottoResultService {
     private Lotto winningLotto;
     private int bonusNumber;
 
+
+
     public LottoResultService(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         this.lottos = lottos;
         this.winningLotto = winningLotto;
@@ -60,6 +62,14 @@ public class LottoResultService {
             }
         }
         return statistics;
+    }
+
+    public static long calculateTotalEarnings(List<WinningStatistic> statistics) {
+        long totalEarnings = 0;
+        for (WinningStatistic winningStatistic : statistics) {
+            totalEarnings += winningStatistic.calculateEarnings();
+        }
+        return totalEarnings;
     }
 
 }
