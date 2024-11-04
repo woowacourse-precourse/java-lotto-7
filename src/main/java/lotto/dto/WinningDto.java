@@ -10,9 +10,9 @@ import lotto.eunm.WinningResult;
 public class WinningDto {
 
     private final Map<WinningResult, Integer> winningCount;
-    private double price;
+    private String price;
 
-    private WinningDto(Map<WinningResult, Integer> winningCount, double price) {
+    private WinningDto(Map<WinningResult, Integer> winningCount, String price) {
         this.winningCount = winningCount;
         this.price = price;
     }
@@ -25,10 +25,10 @@ public class WinningDto {
         winning.put(FIVE_AND_BONUS, matchStatistics.get(FIVE_AND_BONUS.index));
         winning.put(SIX, matchStatistics.get(SIX.index));
 
-        return new WinningDto(winning, 0);
+        return new WinningDto(winning, "");
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -36,7 +36,7 @@ public class WinningDto {
         return winningCount;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
