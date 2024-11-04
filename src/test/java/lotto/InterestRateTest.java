@@ -25,12 +25,15 @@ public class InterestRateTest {
 
         userLottoInfos = new ArrayList<>();
         userLottoInfos.add(new UserLottoInfo(new Lotto(List.of(1, 2, 3, 4, 5, 6)), WinningStatus.fifth));
-        userLottoInfos.add(new UserLottoInfo(new Lotto(List.of(1, 2, 3, 4, 5, 7)), WinningStatus.fifth));
-        userLottoInfos.add(new UserLottoInfo(new Lotto(List.of(1, 2, 3, 4, 8, 9)), WinningStatus.fifth));
-        userLottoInfos.add(new UserLottoInfo(new Lotto(List.of(1, 2, 3, 10, 11, 12)), WinningStatus.fifth));
-        userLottoInfos.add(new UserLottoInfo(new Lotto(List.of(1, 2, 3, 14, 15, 16)), WinningStatus.fourth));
+        userLottoInfos.add(new UserLottoInfo(new Lotto(List.of(1, 2, 3, 10, 11, 12)), WinningStatus.blank));
+        userLottoInfos.add(new UserLottoInfo(new Lotto(List.of(1, 2, 3, 10, 11, 12)), WinningStatus.blank));
+        userLottoInfos.add(new UserLottoInfo(new Lotto(List.of(1, 2, 3, 10, 11, 12)), WinningStatus.blank));
+        userLottoInfos.add(new UserLottoInfo(new Lotto(List.of(1, 2, 3, 10, 11, 12)), WinningStatus.blank));
+        userLottoInfos.add(new UserLottoInfo(new Lotto(List.of(1, 2, 3, 10, 11, 12)), WinningStatus.blank));
+        userLottoInfos.add(new UserLottoInfo(new Lotto(List.of(1, 2, 3, 10, 11, 12)), WinningStatus.blank));
 
-        purchaseCost = 5000;
+
+        purchaseCost = 7000;
     }
 
     @DisplayName("수익률_계산")
@@ -38,7 +41,9 @@ public class InterestRateTest {
     void 수익률_계산() {
         double interestRate = statistic.getInterestRate(userLottoInfos, purchaseCost);
 
-        assertThat(interestRate).isEqualTo(1400.0);
+        assertThat(interestRate).isEqualTo(71.4);
     }
+
+
 
 }
