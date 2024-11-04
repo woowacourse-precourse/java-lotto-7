@@ -54,6 +54,71 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_로또_구입_금액_문자_입력() {
+        assertSimpleTest(() -> {
+            runException("a", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_번호_문자_입력() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,ㅁ,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스_번호_문자_입력() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "ㅁ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_번호_범위_오류() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,46", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스_번호_범위_오류() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_번호_중복(){
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,2,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스_번호_중복(){
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_번호_부족(){
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
