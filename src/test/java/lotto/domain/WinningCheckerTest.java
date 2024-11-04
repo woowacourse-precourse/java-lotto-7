@@ -38,19 +38,15 @@ public class WinningCheckerTest {
                 Arrays.asList(8, 9, 10, 11, 12, 13) // 꽝
         );
 
-        // 기대 결과 설정
         Map<String, Integer> expectedRankCount = LottoRank.LottoRankCollector();
         expectedRankCount.put("FIRST", 1);
         expectedRankCount.put("SECOND", 1);
         expectedRankCount.put("THIRD", 1);
         expectedRankCount.put("FOURTH", 1);
         expectedRankCount.put("FIFTH", 1);
-        expectedRankCount.put("NONE", 0);
 
-        // 메소드 실행
         Map<String, Integer> actualRankCount = winningChecker.checkWinning(bonus, winningLotto, userLottos);
 
-        // 검증
         assertEquals(expectedRankCount, actualRankCount, "당첨 결과가 예상과 일치해야 합니다.");
     }
 
@@ -63,21 +59,23 @@ public class WinningCheckerTest {
         rankCount.put("THIRD", 1); // 3등 1개
         rankCount.put("FOURTH", 1); // 4등 1개
         rankCount.put("FIFTH", 1); // 5등 1개
-        rankCount.put("NONE", 0); // 꽝 0개
 
         int numberOfTickets = 6;
 
-        // 예상 수익률 계산
-        double expectedReturnRate = ((LottoRank.FIRST.getPrize() * 1 +
+        double expectedReturnRate = ((double) LottoRank.FIRST.getPrize() * 1 +
                 LottoRank.SECOND.getPrize() * 1 +
                 LottoRank.THIRD.getPrize() * 1 +
                 LottoRank.FOURTH.getPrize() * 1 +
-                LottoRank.FIFTH.getPrize() * 1) / (numberOfTickets * LOTTO_PRICE)) * 100;
+                LottoRank.FIFTH.getPrize() * 1) / (numberOfTickets * LOTTO_PRICE) * 100;
 
-        // 메소드 실행
         double actualReturnRate = WinningChecker.calculateReturn(rankCount, numberOfTickets);
 
-        // 검증
-        assertEquals(expectedReturnRate, actualReturnRate, 0.01, "수익률이 예상과 일치해야 합니다.");
+        System.out.println(expectedReturnRate);
+
+        String expect = String.format("%.2f", expectedReturnRate);
+        String actual = String.format("%.2f",actualReturnRate);
+
+        assertEquals(expect, actual,"수익률이 예상과 일치해야 합니다.");
     }
 }
+
