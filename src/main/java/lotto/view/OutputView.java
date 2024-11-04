@@ -36,11 +36,12 @@ public class OutputView {
             if (rank == Rank.SECOND) {
                 System.out.printf(StatisticsOutputMessage.CONTENT_OF_RESULT_FOR_BONUS_NUMBER.getMessage(),
                         rank.getMatchCount(), formattedPrize, count);
-            } else {
+            }
+
+            if (rank != Rank.SECOND) {
                 System.out.printf(StatisticsOutputMessage.CONTENT_OF_LOTTO_RESULT.getMessage(),
                         rank.getMatchCount(), formattedPrize, count);
             }
-            System.out.println();
         }
     }
 
