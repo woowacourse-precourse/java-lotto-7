@@ -33,11 +33,11 @@ public class LottoWinningNumbers {
 
   private boolean validateWinningNumber(int[] winningNumber) {
     if (winningNumber.length != 6) {
-      throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+      throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
     }
     boolean isValidRange = Arrays.stream(winningNumber).allMatch(num -> num >= 1 && num <= 45);
     if (!isValidRange) {
-      throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+      throw new IllegalArgumentException("당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
     return true;
   }
@@ -46,7 +46,7 @@ public class LottoWinningNumbers {
     if (bonusNumber >= 1 && bonusNumber <= 45) {
       return true;
     }
-    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이여야 합니다.");
+    throw new IllegalArgumentException("보너스 번호는 1부터 45 사이여야 합니다.");
   }
 
   public void assignWinningNumber() {
@@ -57,7 +57,8 @@ public class LottoWinningNumbers {
           .boxed()
           .toList();
       this.winningNumber = new Lotto(winningNum);
-    } catch (IllegalArgumentException e) {
+    } catch (Exception e) {
+      System.out.print("[ERROR]");
       System.out.println(e.getMessage());
       assignWinningNumber();
     }
@@ -69,7 +70,8 @@ public class LottoWinningNumbers {
       int bonusNumber = inputBonusNumber();
       validateBonusNumber(bonusNumber);
       this.bonusNumber = bonusNumber;
-    } catch (IllegalArgumentException e) {
+    } catch (Exception e) {
+      System.out.print("[ERROR]");
       System.out.println(e.getMessage());
       assignBonusNumber();
     }

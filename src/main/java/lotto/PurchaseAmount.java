@@ -24,13 +24,14 @@ public class PurchaseAmount {
     if (purchaseAmount % 1000 == 0) {
       return true;
     }
-    throw new IllegalArgumentException("[ERROR] 잘못된 금액입니다.");
+    throw new IllegalArgumentException("잘못된 금액입니다.");
   }
 
   public void assignPurchaseQuantity(int purchaseAmount) {
     try {
       validatePurchaseAmount(purchaseAmount);
-    } catch (IllegalArgumentException e) {
+    } catch (Exception e) {
+      System.out.print("[ERROR] ");
       System.out.println(e.getMessage());
       assignPurchaseQuantity(inputPurchaseAmount());
     }
