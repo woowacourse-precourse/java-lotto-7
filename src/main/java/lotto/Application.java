@@ -20,9 +20,8 @@ public class Application {
 
         //당첨 번호 입력
         List<Integer> winningNumbers = input.askWinningNumbers();
+        int bonusNumber = input.askBonusNumber();
 
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        Integer bonusNumber = Integer.parseInt(readLine());
 
         Map<String, Integer> winningResult = new HashMap<>();
         winningResult.put("MATCH_3", 0);

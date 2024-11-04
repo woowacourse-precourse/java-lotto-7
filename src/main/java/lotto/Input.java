@@ -27,4 +27,13 @@ public class Input {
             throw new IllegalArgumentException("1,2,3,4,5,6 형식으로 입력해주세요");
         }
     }
+
+    public int askBonusNumber() {
+        try {
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            return Integer.parseInt(readLine());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("보너스 번호는 숫자로 입력해주세요");
+        }
+    }
 }
