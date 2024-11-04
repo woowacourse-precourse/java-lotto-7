@@ -1,6 +1,7 @@
 package lotto.util;
 
 public class ErrorMessages {
+
   public static final String INPUT_REQUIRED = "[ERROR] 입력이 필요합니다.";
   public static final String NUMBER_REQUIRED = "[ERROR] %s은(는) 숫자여야 합니다.";
   public static final String AMOUNT_MIN = "[ERROR] 구입 금액은 1,000원 이상이어야 합니다.";

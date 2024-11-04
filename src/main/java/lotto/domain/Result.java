@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class Result {
+
   private final Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
 
   public Result() {

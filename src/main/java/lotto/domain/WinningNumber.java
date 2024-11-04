@@ -6,6 +6,7 @@ import java.util.Set;
 import lotto.util.LottoNumberValidator;
 
 public class WinningNumber {
+
   private final Set<Integer> numbers;
 
   public WinningNumber(List<Integer> numbers) {

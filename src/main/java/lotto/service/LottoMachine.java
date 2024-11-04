@@ -8,6 +8,7 @@ import lotto.domain.Lotto;
 import lotto.util.LottoConstants;
 
 public class LottoMachine {
+
   public List<Lotto> generateLottoTickets(int ticketCount) {
     List<Lotto> lottoTickets = new ArrayList<>();
 
@@ -20,11 +21,8 @@ public class LottoMachine {
   }
 
   private List<Integer> pickUniqueNumbersInRange() {
-    List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-        LottoConstants.MIN_LOTTO_NUMBER,
-        LottoConstants.MAX_LOTTO_NUMBER,
-        LottoConstants.LOTTO_NUMBER_COUNT
-    );
+    List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_LOTTO_NUMBER,
+        LottoConstants.MAX_LOTTO_NUMBER, LottoConstants.LOTTO_NUMBER_COUNT);
 
     List<Integer> mutableNumbers = new ArrayList<>(numbers);
     Collections.sort(mutableNumbers);

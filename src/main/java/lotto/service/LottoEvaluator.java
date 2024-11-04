@@ -8,7 +8,9 @@ import lotto.domain.Result;
 import lotto.domain.WinningNumber;
 
 public class LottoEvaluator {
-  public Result evaluateLottoTickets(List<Lotto> lottos, WinningNumber winningNumber, BonusNumber bonusNumber) {
+
+  public Result evaluateLottoTickets(List<Lotto> lottos, WinningNumber winningNumber,
+      BonusNumber bonusNumber) {
     Result result = new Result();
 
     for (Lotto lotto : lottos) {

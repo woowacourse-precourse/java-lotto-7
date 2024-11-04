@@ -17,13 +17,9 @@ class ResultEvaluatorTest {
   @Test
   void 로또_티켓의_당첨_결과를_정확히_평가한다() {
     List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-        new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-        new Lotto(List.of(1, 2, 3, 4, 5, 8)),
-        new Lotto(List.of(1, 2, 3, 4, 7, 8)),
-        new Lotto(List.of(1, 2, 3, 7, 8, 9)),
-        new Lotto(List.of(1, 2, 7, 8, 9, 10)),
-        new Lotto(List.of(7, 8, 9, 10, 11, 12))
-    );
+        new Lotto(List.of(1, 2, 3, 4, 5, 7)), new Lotto(List.of(1, 2, 3, 4, 5, 8)),
+        new Lotto(List.of(1, 2, 3, 4, 7, 8)), new Lotto(List.of(1, 2, 3, 7, 8, 9)),
+        new Lotto(List.of(1, 2, 7, 8, 9, 10)), new Lotto(List.of(7, 8, 9, 10, 11, 12)));
 
     WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
     BonusNumber bonusNumber = new BonusNumber(7, winningNumber);

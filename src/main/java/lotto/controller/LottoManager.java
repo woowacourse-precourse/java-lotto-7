@@ -13,6 +13,7 @@ import lotto.view.InputHandler;
 import lotto.view.OutputView;
 
 public class LottoManager {
+
   private final OutputView outputView;
   private final LottoMachine lottoMachine;
   private final LottoCalculator lottoCalculator;
@@ -40,7 +41,8 @@ public class LottoManager {
     BonusNumber bonusNumber = inputHandler.getBonusNumber(winningNumber);
 
     Result result = lottoEvaluator.evaluateLottoTickets(lottos, winningNumber, bonusNumber);
-    BigDecimal profitRate = lottoCalculator.calculateProfitRate(result.calculateTotalPrize(), purchaseAmount);
+    BigDecimal profitRate = lottoCalculator.calculateProfitRate(result.calculateTotalPrize(),
+        purchaseAmount);
 
     outputView.printResult(result, profitRate);
   }

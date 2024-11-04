@@ -9,6 +9,7 @@ import lotto.domain.WinningNumber;
 import lotto.util.ErrorMessages;
 
 public class InputHandler {
+
   private final InputView inputView;
 
   public InputHandler(InputView inputView) {
@@ -58,10 +59,7 @@ public class InputHandler {
 
   private List<Integer> parseNumbers(String input) {
     try {
-      return Arrays.stream(input.split(","))
-          .map(String::trim)
-          .map(Integer::parseInt)
-          .toList();
+      return Arrays.stream(input.split(",")).map(String::trim).map(Integer::parseInt).toList();
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException(String.format(ErrorMessages.NUMBER_REQUIRED, "당첨 번호"));
     }
