@@ -18,7 +18,7 @@ public class PurchasingController {
         receivePayment();
         int numberOfTickets = payment.getNumberOfTickets();
         purchasingOutputView.printPurchasing(numberOfTickets);
-        NumberOfTicketsDto numberOfTicketsDto  = new NumberOfTicketsDto(numberOfTickets);
+        new NumberOfTicketsDto(numberOfTickets);
     }
 
     private void receivePayment() {

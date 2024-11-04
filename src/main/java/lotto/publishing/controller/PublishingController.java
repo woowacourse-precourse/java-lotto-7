@@ -2,21 +2,23 @@ package lotto.publishing.controller;
 
 import java.util.List;
 import lotto.common.model.Lotto;
+import lotto.dto.NumberOfTicketsDto;
 import lotto.publishing.PublishingService;
-import lotto.publishing.view.PublishingOutputTicketsView;
+import lotto.publishing.view.OutputPublishedTicketsView;
 
 public class PublishingController {
-    private final PublishingOutputTicketsView outputPublishedTicketsView;
+    private final OutputPublishedTicketsView outputPublishedTicketsView;
     private final int numberOfTickets;
 
-    public PublishingController(PublishingOutputTicketsView outputPublishedTicketsView, int numberOfTickets) {
-        this.outputPublishedTicketsView = outputPublishedTicketsView;
-        this.numberOfTickets = numberOfTickets;
+    public PublishingController() {
+        this.outputPublishedTicketsView = new OutputPublishedTicketsView();
+        NumberOfTicketsDto numberOfTicketsDto = NumberOfTicketsDto.getNumberOfTicketsDto();
+        this.numberOfTickets =numberOfTicketsDto.numberOfTickets();
     }
 
     public List<Lotto> publishLottoTickets() {
-        PublishingService publishing = PublishingService.getPublishingService();
-        List<Lotto> LottoTickets = publishing.publishByNumberOfTickets(numberOfTickets);
+        PublishingService publishingService = PublishingService.getPublishingService();
+        List<Lotto> LottoTickets = publishingService.publishByNumberOfTickets(numberOfTickets);
         printLottoTickets(LottoTickets);
         return LottoTickets;
     }

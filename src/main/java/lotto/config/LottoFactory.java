@@ -12,7 +12,7 @@ public class LottoFactory {
         PurchasingController purchasingController = new PurchasingController();
         purchasingController.purchaseLottoTickets();
 
-        PublishingController publishingController = new PublishingController(numberOfTickets);
+        PublishingController publishingController = new PublishingController();
         List<Lotto> LottoTickets = publishingController.publishLottoTickets();
 
         WinningController winningController = new WinningController(LottoTickets);
