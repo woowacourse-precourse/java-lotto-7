@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
@@ -30,9 +31,8 @@ public class PurchasedLottos {
 
     private EnumMap<LottoRank, Integer> initializeRankCounts() {
         EnumMap<LottoRank, Integer> rankCounts = new EnumMap<>(LottoRank.class);
-        for (LottoRank rank : LottoRank.values()) {
-            rankCounts.put(rank, 0);
-        }
+        Arrays.stream(LottoRank.values())
+                .forEach(rank -> rankCounts.put(rank, 0));
         return rankCounts;
     }
 
