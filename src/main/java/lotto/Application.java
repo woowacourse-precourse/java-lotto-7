@@ -27,8 +27,8 @@ public class Application {
             }
         }
 
-
+        // 구매 개수 출력
+        System.out.println(purchasesCount + "개를 구매했습니다.\n");
     }
-
 
 }
