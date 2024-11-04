@@ -40,7 +40,6 @@ public class LottoController {
     private int inputBonusNumber() {
         outputView.askBonusNumber();
         int bonusNumber = Integer.parseInt(inputView.inputBonusNumberView());
-
         return bonusNumber;
     }
 
@@ -48,14 +47,12 @@ public class LottoController {
         outputView.askLottoNumbers();
         List<Integer> winningNumbers = inputView.inputLottoNumbersView();
         Lotto winningLotto = new Lotto(winningNumbers);
-
         return winningLotto;
     }
 
     private LottoGroup purchaseLottos(int lottoCount) {
         List<Lotto> userLottos = lottoFactory.createLottos(lottoCount);
         LottoGroup lottoGroup = new LottoGroup(userLottos);
-
         return lottoGroup;
     }
 
@@ -67,7 +64,6 @@ public class LottoController {
         outputView.printBuyingRequest();
         int purchaseAmount = inputView.inputBuyingPrice();
         outputView.responseQuantity(purchaseAmount);
-
         return purchaseAmount;
     }
 }
