@@ -1,5 +1,6 @@
 package lotto.application.common;
 
+import static lotto.application.common.constants.Constants.NEW_LINE;
 import static lotto.application.common.constants.Constants.ZERO;
 
 public class OutputPrinter {
@@ -11,11 +12,11 @@ public class OutputPrinter {
     }
 
     public void appendWithLine(String message) {
-        messageBuilder.append(message).append('\n');
+        messageBuilder.append(message).append(NEW_LINE);
     }
 
     public void appendLine() {
-        messageBuilder.append('\n');
+        messageBuilder.append(NEW_LINE);
     }
 
 
