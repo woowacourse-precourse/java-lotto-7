@@ -11,21 +11,23 @@ import lotto.view.OutputView;
 
 public class LottoController {
     public void start() {
-        int money = InputView.getMoneyToBuy();
-        int amount = money / LottoInfo.PRICE.getNumber();
+        int money = getPurchaseAmount();
+        int amount = calculateLottoCount(money);
 
         User user = makeUserToBuyLotto(amount);
+        Computer computer = setupComputerWithWinningNumbers();
 
-        OutputView.printBlankLine();
-        List<Integer> winningNumbers = InputView.getWinningNumbers();
-
-        OutputView.printBlankLine();
-        int bonusNumber = InputView.getBonusNumber();
-
-        Computer computer = new Computer(winningNumbers, bonusNumber);
         computer.compareToWinningNumbers(user.getLotto());
 
         showResult(computer.getResult(), computer.getProfitRate(money));
+    }
+
+    private int getPurchaseAmount() {
+        return InputView.getMoneyToBuy();
+    }
+
+    private int calculateLottoCount(int money) {
+        return money / LottoInfo.PRICE.getNumber();
     }
 
     private User makeUserToBuyLotto(int amount) {
@@ -36,6 +38,16 @@ public class LottoController {
         showLottoNumbers(user.getLotto());
 
         return user;
+    }
+
+    private Computer setupComputerWithWinningNumbers() {
+        OutputView.printBlankLine();
+        List<Integer> winningNumbers = InputView.getWinningNumbers();
+
+        OutputView.printBlankLine();
+        int bonusNumber = InputView.getBonusNumber();
+
+        return new Computer(winningNumbers, bonusNumber);
     }
 
     private void showLottoNumbers(List<Lotto> lotto) {
