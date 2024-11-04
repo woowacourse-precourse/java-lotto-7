@@ -22,7 +22,7 @@ public class InputWinningNumberView {
 
         Set<Integer> winningNumbers = new HashSet<>();
         for (String str : input) {
-            winningNumbers.add(rangeValidatation(str));
+            winningNumbers.add(rangeValidation(str));
         }
         duplicationValidation(winningNumbers);
 
@@ -41,7 +41,7 @@ public class InputWinningNumberView {
         }
     }
 
-    private static int rangeValidatation(String input) {
+    private static int rangeValidation(String input) {
         try {
             int winningNumber = Integer.parseInt(input);
             if (winningNumber <= 0 || winningNumber > 45) {

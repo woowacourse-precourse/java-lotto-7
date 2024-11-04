@@ -18,7 +18,7 @@ public class InputBonusNumberView {
 
     private static int validate(String[] input, Set<Integer> winningNumbers) {
         countValidation(input);
-        int bonusNumber = rangeValidatation(input[0]);
+        int bonusNumber = rangeValidation(input[0]);
         duplicationValidation(winningNumbers, bonusNumber);
 
         return bonusNumber;
@@ -36,7 +36,7 @@ public class InputBonusNumberView {
         }
     }
 
-    private static int rangeValidatation(String input) {
+    private static int rangeValidation(String input) {
         try {
             int bonusNumber = Integer.parseInt(input);
             if (bonusNumber <= 0 || bonusNumber > 45) {
