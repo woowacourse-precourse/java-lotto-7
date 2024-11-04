@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public String getAmount() {
-        System.out.println(ViewMessage.AMOUNT_OF_MONEY.getMessage());
+        System.out.println(InputViewMessage.AMOUNT_OF_MONEY.getMessage());
         String amount = Console.readLine();
         validateNull(amount);
         return amount;
@@ -12,7 +12,7 @@ public class InputView {
 
     public String getAnswer() {
         System.out.println();
-        System.out.println(ViewMessage.ANSWER_LOTTO_NUMBER.getMessage());
+        System.out.println(InputViewMessage.ANSWER_LOTTO_NUMBER.getMessage());
         String answer = Console.readLine();
         validate(answer);
         return answer;
@@ -20,7 +20,7 @@ public class InputView {
 
     public String getBonusNumber() {
         System.out.println();
-        System.out.println(ViewMessage.BONUS_NUMBER.getMessage());
+        System.out.println(InputViewMessage.BONUS_NUMBER.getMessage());
         String bonusNumber = Console.readLine();
         validate(bonusNumber);
         return bonusNumber;
