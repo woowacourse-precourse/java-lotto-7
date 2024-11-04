@@ -16,6 +16,7 @@ public class LottoSweepstakesTvShow {
     }
 
     public void printResults(Integer money) {
+        System.out.println();
         System.out.println(winningStatistics);
         for (LottoPrizeDetail detail : LottoPrizeDetail.values()) {
             int count = getMatchCount(detail, matchResults, bonusMatchCount);

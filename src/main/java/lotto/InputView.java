@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,6 +42,7 @@ public class InputView {
     }
 
     public int inputBonusLottoNumber(List<Integer> winningNumbers) {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
 

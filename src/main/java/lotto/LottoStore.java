@@ -13,6 +13,8 @@ public class LottoStore {
 
     public List<Lotto> sellLotto(Integer money) {
         int purchaseQuantity = moneyToQuantity(money);
+        System.out.println();
+        System.out.println(purchaseQuantity + "개를 구매했습니다.");
         return generateLottos(purchaseQuantity);
     }
 
@@ -23,6 +25,7 @@ public class LottoStore {
             System.out.println(lotto.getIssuedLottoNumbers());
             issuedLottos.add(lotto);
         }
+        System.out.println();
         return issuedLottos;
     }
 

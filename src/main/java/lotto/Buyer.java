@@ -14,7 +14,6 @@ public class Buyer {
 
     public void buyLotto() {
         purchasedLottos = lottoStore.sellLotto(money);
-        System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
     }
 
     public List<Lotto> getPurchasedLottos() {
