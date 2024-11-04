@@ -65,6 +65,33 @@ public class Application {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해 주세요.");
         }
+
+        int[] perRankCount = {0, 0, 0, 0, 0, 0};    // 인덱스 0은 무시
+        // 당첨 확인 과정
+        for (Lotto lotto : lottos) {
+            int matchNum = lotto.cntMatchingNumbers(winLotto);
+            boolean matchBonus = lotto.getNumbers().contains(bonusNum);
+            Prize prize = null;
+            if(matchNum == 5 && matchBonus){
+                prize = prize.BONUS;
+                perRankCount[prize.getRank()]++;
+            }
+            if(matchNum >= 3 && prize == null){
+                 prize = Prize.checkByMatchNum(matchNum);
+                perRankCount[prize.getRank()]++;
+            }
+        }
+
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        for (int rank = 5; rank >=1; rank--) {
+            Prize prize = Prize.checkByRank(rank);
+            if(rank == 2) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", prize.getMatchNumbers(), prize.getMoney(), perRankCount[rank]);
+                continue;
+            }
+            System.out.printf("%d개 일치, (%s원) - %d개\n", prize.getMatchNumbers(), prize.getMoney(), perRankCount[rank]);
+        }
     }
 
     private static boolean duplicated(int number, Lotto lotto) {
@@ -75,4 +102,6 @@ public class Application {
         }
         return false;
     }
+
+
 }
