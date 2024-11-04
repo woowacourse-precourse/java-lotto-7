@@ -23,18 +23,3 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
-
-apply plugin: 'jacoco'
-
-test {
-    finalizedBy jacocoTestReport
-}
-
-jacocoTestReport {
-    reports {
-        xml.required.set(true)
-        csv.required.set(false)
-        html.required.set(true)
-    }
-}

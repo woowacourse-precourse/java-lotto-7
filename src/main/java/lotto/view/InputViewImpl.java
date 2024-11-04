@@ -9,7 +9,6 @@ import lotto.checker.domain.WinningNumbers;
 public class InputViewImpl implements InputView {
 
     public Money getMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
         while (true) {
             try {
                 return new Money(Console.readLine());

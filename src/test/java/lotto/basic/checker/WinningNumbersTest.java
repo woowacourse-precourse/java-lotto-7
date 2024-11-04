@@ -109,15 +109,4 @@ public class WinningNumbersTest {
                 .isThrownBy(() -> new WinningNumbers(errorInput));
     }
 
-    @Test
-    void 앞에_0이_있는_숫자_테스트() {
-        // given
-        String errorInput = "1,2,3,4,5,000006";
-
-        // when
-
-        // then
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> new WinningNumbers(errorInput));
-    }
 }

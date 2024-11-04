@@ -13,6 +13,10 @@ public class OutputService {
         this.outputView = outputView;
     }
 
+    public void showMoneyPrompt() {
+        outputView.showMoneyPrompt();
+    }
+
     public void showLotto(Lottos lottos) {
         outputView.showLottos(lottos);
     }

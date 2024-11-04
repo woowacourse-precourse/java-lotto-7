@@ -8,6 +8,9 @@ import lotto.common.NumberConstants;
 import java.util.List;
 import java.util.stream.LongStream;
 
+import static lotto.common.NumberConstants.*;
+
+
 public class FortuneMachine {
 
     long count;
@@ -26,6 +29,6 @@ public class FortuneMachine {
     }
 
     private List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_LENGTH);
     }
 }

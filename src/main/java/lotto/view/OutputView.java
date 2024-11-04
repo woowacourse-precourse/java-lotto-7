@@ -7,6 +7,8 @@ import lotto.results.domain.Results;
 
 public interface OutputView {
 
+    void showMoneyPrompt();
+
     void showLottos(Lottos lottos);
 
     void showWinningNumbersPrompt();

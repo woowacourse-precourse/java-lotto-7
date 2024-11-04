@@ -4,6 +4,7 @@ import lotto.common.NumberConstants;
 import lotto.checker.domain.NumberImpl;
 
 import static lotto.common.ErrorMessage.ERROR_MESSAGE;
+import static lotto.common.NumberConstants.ZERO;
 
 public class Money extends NumberImpl {
 
@@ -25,7 +26,7 @@ public class Money extends NumberImpl {
     }
 
     private boolean isDivisibleBy(Long money) {
-        return money % NumberConstants.LOTTO_COST == 0;
+        return money % NumberConstants.LOTTO_COST == ZERO;
     }
 
     public long value() {

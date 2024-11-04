@@ -1,17 +1,17 @@
-package lotto.checker.listener;
+package lotto.purchase.listener;
 
 import lotto.checker.domain.Lottos;
 import lotto.purchase.event.MoneyCreatedEvent;
 import lotto.purchase.application.FortuneMachineService;
 import lotto.shared.event.*;
 
-public class CheckerListener implements EventListener {
+public class PurchaseListener implements EventListener {
 
     private final EventPublisher eventPublisher;
     private final EventOrchestrator eventOrchestrator;
     private final FortuneMachineService fortuneMachineService;
 
-    public CheckerListener(EventPublisher eventPublisher,
+    public PurchaseListener(EventPublisher eventPublisher,
                          FortuneMachineService fortuneMachineService,
                          EventOrchestrator eventOrchestrator) {
         this.eventPublisher = eventPublisher;

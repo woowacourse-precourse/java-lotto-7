@@ -12,6 +12,10 @@ import static lotto.common.NumberConstants.TOTAL_RANK_TYPES;
 
 public class OutputViewImpl implements OutputView {
 
+    public void showMoneyPrompt() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+
     public void showLottos(Lottos lottos) {
         System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
         lottos.forEach(lotto -> {

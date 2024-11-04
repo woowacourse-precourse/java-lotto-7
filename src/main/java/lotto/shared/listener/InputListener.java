@@ -4,6 +4,9 @@ import lotto.checker.domain.BonusNumber;
 import lotto.checker.domain.WinningNumbers;
 import lotto.checker.event.BonusNumberCreatedEvent;
 import lotto.checker.event.WinningNumbersCreatedEvent;
+import lotto.purchase.domain.Money;
+import lotto.purchase.event.MoneyCreatedEvent;
+import lotto.purchase.event.ShowMoneyPromptEvent;
 import lotto.shared.application.InputService;
 import lotto.shared.event.*;
 
@@ -24,8 +27,16 @@ public class InputListener implements EventListener {
 
     @Override
     public void handle(DomainEvent event) {
+        showMoneyPromptEvent(event);
         showWinningNumbersPromptEvent(event);
         showBonusNumberPromptEvent(event);
+    }
+
+    private void showMoneyPromptEvent(DomainEvent event) {
+        if (event instanceof ShowMoneyPromptEvent) {
+            Money money = inputService.getMoney();
+            eventPublisher.publish(new MoneyCreatedEvent(money));
+        }
     }
 
     private void showWinningNumbersPromptEvent(DomainEvent event) {

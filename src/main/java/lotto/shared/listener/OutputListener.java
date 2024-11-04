@@ -1,10 +1,8 @@
 package lotto.shared.listener;
 
 import lotto.checker.event.WinningNumbersCreatedEvent;
-import lotto.checker.event.BonusNumberCreatedEvent;
-import lotto.results.domain.Results;
+import lotto.purchase.event.ShowMoneyPromptEvent;
 import lotto.results.event.ResultsRequestCreatedEvent;
-import lotto.results.dto.ResultsRequest;
 import lotto.shared.application.OutputService;
 import lotto.results.application.ResultsService;
 import lotto.shared.event.*;
@@ -28,11 +26,21 @@ public class OutputListener implements EventListener {
 
     @Override
     public void handle(DomainEvent event) {
+        applicationStartEvent(event);
         lottosCreatedEvent(event);
         showLottoEvent(event);
         winningNumbersCreatedEvent(event);
         resultsRequestCreatedEvent(event);
     }
+
+    private void applicationStartEvent(DomainEvent event) {
+        if (event instanceof ApplicationStartEvent) {
+            outputService.showMoneyPrompt();
+            eventPublisher.publish(new ShowMoneyPromptEvent());
+        }
+    }
+
+
 
     private void lottosCreatedEvent(DomainEvent event) {
         if (event instanceof LottosCreatedEvent lottosCreatedEvent) {
@@ -56,8 +64,6 @@ public class OutputListener implements EventListener {
             eventPublisher.publish(new ShowBonusNumberPromptEvent());
         }
     }
-
-
 
     private void resultsRequestCreatedEvent(DomainEvent event) {
         if (event instanceof ResultsRequestCreatedEvent resultsRequestCreatedEvent) {
