@@ -41,5 +41,8 @@ public class LottoController {
             System.out.printf("%s - %d개\n", rule.getInfo(), count);
             totalPrize += count * rule.getPrize();
         }
+
+        double profitRate = (double) totalPrize / amount * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 }
