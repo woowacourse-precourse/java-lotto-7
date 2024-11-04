@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoTest {
+
     @DisplayName("로또 번호가 6개가 아니면 예외를 발생 한다.")
     @Test
     void validateCountExceptionTest() {
@@ -39,5 +40,4 @@ class LottoTest {
         // 두 객체가 서로 다른 객체임을 테스트한다.
         assertThat(lotto1).isNotSameAs(lotto2);
     }
-
 }

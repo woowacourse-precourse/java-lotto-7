@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoScore;
 import lotto.service.LottoService;
 import lotto.view.BonusNumberView;
 import lotto.view.InputView;
@@ -10,7 +9,6 @@ import lotto.view.WinningNumbersView;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoManager {
 

@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.config.LottoSettings;
 import lotto.error.Error;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
