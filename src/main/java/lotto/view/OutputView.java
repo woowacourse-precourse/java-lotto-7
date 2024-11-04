@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.Lotto;
+import lotto.LottoResult;
 import lotto.UserLotto;
 import lotto.enums.LottoPrizes;
 
@@ -12,7 +13,7 @@ public class OutputView {
     private static final String PRINT_MATCH_NUMBERS = "개 일치 (";
     private static final String PRINT_MATCH_NUMBERS_SECOND = "개 일치, 보너스 볼 일치 (";
     private static final String PRINT_PRIZE = "원) - ";
-    private static final String PRINT_RESULT_STATISTICS = "총 수익률은";
+    private static final String PRINT_RESULT_STATISTICS = "총 수익률은 ";
     private static final String PRINT_WINNING_LOTTO_COUNT = "개";
     private static final String PRINT_PERCENT = "%입니다.";
     public void printLottoCount(int price) {
@@ -28,7 +29,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResultStatistics() {
+    public void printResultStatistics(double rateOfReturn) {
         System.out.println(PRINT_RESULT_STATISTICS_TITLE);
         System.out.println(PRINT_3LINES);
         for (LottoPrizes prize : LottoPrizes.values()) {
@@ -37,6 +38,7 @@ public class OutputView {
             }
             System.out.println(prize.getMatchNumberCount() + PRINT_MATCH_NUMBERS + prize.getPrizeMoney() + PRINT_PRIZE + prize.getCount() + PRINT_WINNING_LOTTO_COUNT);
         }
-        System.out.println(PRINT_RESULT_STATISTICS+ n + PRINT_PERCENT);
+
+        System.out.println(PRINT_RESULT_STATISTICS+ rateOfReturn + PRINT_PERCENT);
     }
 }

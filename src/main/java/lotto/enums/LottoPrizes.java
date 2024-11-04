@@ -60,4 +60,23 @@ public enum LottoPrizes {
     public String  getPrizeMoney() {
         return prizeMoney;
     }
+
+    public int moneyToInt(LottoPrizes prize) {
+        if (prize == FIRST) {
+            return 2000000000;
+        }
+        if (prize == SECOND) {
+            return 30000000;
+        }
+        if (prize == THIRD) {
+            return 1500000;
+        }
+        if (prize == FOURTH) {
+            return 50000;
+        }
+        if (prize == FIFTH) {
+            return 5000;
+        }
+        return 0;
+    }
 }

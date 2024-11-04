@@ -24,4 +24,17 @@ public class LottoResult {
     private void checkRank(long matchingCount, boolean isBonusMatched) {
         LottoPrizes.checkLottoRank(matchingCount, isBonusMatched);
     }
+
+    public double calculateRateOfReturn(UserLotto userLotto) {
+        int allPrizeMoney = 0;
+        for (LottoPrizes prize : LottoPrizes.values()) {
+            for (int i = 0; i < prize.getCount(); i++) {
+                allPrizeMoney += prize.moneyToInt(prize);
+            }
+        }
+        int price = userLotto.getPrice();
+
+        double rateOfReturn = (double) (allPrizeMoney * 100) / price;
+        return Math.round(rateOfReturn * 100.0) / 100.0;
+    }
 }

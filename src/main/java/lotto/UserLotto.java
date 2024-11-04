@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.enums.ErrorMessages;
 
 public class UserLotto {
+
     private int price;
     private List<Lotto> lotto;
 
@@ -28,7 +29,9 @@ public class UserLotto {
     public List<Lotto> getLotto() {
         return lotto;
     }
-
+    public int getPrice() {
+        return price;
+    }
     public List<Lotto> generateLotto() {
         for (int i = 0; i < price / 1000; i++) {
 
