@@ -17,7 +17,7 @@ public class LottoResultAggregatorTest {
 
     private static final LottoResultAggregator lottoResultAggregator = new LottoResultAggregator();
     private static final List<List<Integer>> lottoTickets = new ArrayList<>();
-    private static final int purchaseAmount = 2000;
+    private static final int PURCHASE_AMOUNT = 2000;
     private static final int MATCHED_ONE_TIME = 1;
 
     @Test
@@ -35,7 +35,7 @@ public class LottoResultAggregatorTest {
         LottoPurchaseDetails lottoPurchaseDetails = new LottoPurchaseDetails();
 
         lottoPurchaseDetails.assignIssuedLottoTickets(lottoTickets);
-        lottoPurchaseDetails.assignPurchaseAmount(purchaseAmount);
+        lottoPurchaseDetails.assignPurchaseAmount(PURCHASE_AMOUNT);
 
         BonusNumber bonusNumber = new BonusNumber(7, WinningNumbers.getNumbers());
 
@@ -44,9 +44,9 @@ public class LottoResultAggregatorTest {
         lottoDrawResult.assignWinningNumber(WinningNumbers);
         lottoDrawResult.assignBonusNumber(bonusNumber);
 
-        Map<LottoGrade, Integer> aggregatedLottoResults = lottoResultAggregator.aggregateLottoResults(lottoDrawResult, lottoPurchaseDetails, purchaseAmount);
+        Map<LottoGrade, Integer> aggregatedLottoResults = lottoResultAggregator.aggregateLottoResults(lottoDrawResult, lottoPurchaseDetails, PURCHASE_AMOUNT);
 
-        Assertions.assertEquals(aggregatedLottoResults.get(LottoGrade.FOUR_MATCHED), MATCHED_ONE_TIME);
+        Assertions.assertEquals(MATCHED_ONE_TIME, aggregatedLottoResults.get(LottoGrade.FOUR_MATCHED));
 
 
     }

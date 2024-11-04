@@ -16,7 +16,7 @@ import java.util.Map;
 public class ReturnOnInvestmentCalculatorTest {
     private static final LottoResultAggregator lottoResultAggregator = new LottoResultAggregator();
     private static final List<List<Integer>> lottoTickets = new ArrayList<>();
-    private static final int purchaseAmount = 2000;
+    private static final int PURCHASE_AMOUNT = 2000;
     private static final int MATCHED_ONE_TIME = 1;
     private static final double EXPECTED_VALUE = 250.0;
 
@@ -35,7 +35,7 @@ public class ReturnOnInvestmentCalculatorTest {
         LottoPurchaseDetails lottoPurchaseDetails = new LottoPurchaseDetails();
 
         lottoPurchaseDetails.assignIssuedLottoTickets(lottoTickets);
-        lottoPurchaseDetails.assignPurchaseAmount(purchaseAmount);
+        lottoPurchaseDetails.assignPurchaseAmount(PURCHASE_AMOUNT);
 
         BonusNumber bonusNumber = new BonusNumber(7, WinningNumbers.getNumbers());
 
@@ -44,11 +44,13 @@ public class ReturnOnInvestmentCalculatorTest {
         lottoDrawResult.assignWinningNumber(WinningNumbers);
         lottoDrawResult.assignBonusNumber(bonusNumber);
 
-        Map<LottoGrade, Integer> aggregatedLottoResults = lottoResultAggregator.aggregateLottoResults(lottoDrawResult, lottoPurchaseDetails, purchaseAmount);
+        Map<LottoGrade, Integer> aggregatedLottoResults = lottoResultAggregator.aggregateLottoResults(lottoDrawResult, lottoPurchaseDetails, PURCHASE_AMOUNT);
 
-        double calculatedReturnOnInvestment = ReturnOnInvestmentCalculator.calculateReturnOnInvestment(aggregatedLottoResults, purchaseAmount);
+        Integer i = aggregatedLottoResults.get(LottoGrade.THREE_MATCHED);
 
-        Assertions.assertEquals(calculatedReturnOnInvestment, EXPECTED_VALUE);
+        double calculatedReturnOnInvestment = ReturnOnInvestmentCalculator.calculateReturnOnInvestment(aggregatedLottoResults, PURCHASE_AMOUNT);
+
+        Assertions.assertEquals(EXPECTED_VALUE, calculatedReturnOnInvestment);
 
     }
 }
