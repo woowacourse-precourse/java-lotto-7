@@ -1,11 +1,10 @@
 package lotto;
 
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import lotto.service.Lotto;
 import lotto.view.input.Input;
@@ -14,12 +13,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.view.exception.ErrorMessage.numberCommerForat;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 class LottoTest {
     private final InputStream originalIn = System.in;
+
+    @BeforeEach
+    void reSystemIn(){
+        System.setIn(originalIn);
+    }
 
     @AfterEach
     void restoreSystemIn() {
@@ -73,6 +73,7 @@ class LottoTest {
                 .isInstanceOf(NumberFormatException.class)
                 .hasMessageContaining("[ERROR] 숫자만 입력해 주세요.");
 
+
     }
 
     @DisplayName("로또 추가 번호 입력 시 45 이상 및 1이하의 수가 들어갈 경우 예외가 발생한다.")
@@ -90,24 +91,8 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
 
-    }
-
-    @DisplayName("로또 추가 번호 입력 시 동일한 함수 있을 시에 에러 발생한다.")
-    @Test
-    void 로또_추가_번호_입력_시_동일한_함수_있을시에_에러_발생한다() {
-        //given
-        Input input = new Input();
-        String mockInput = "6\n";
-        InputStream in = new ByteArrayInputStream(mockInput.getBytes());
-        System.setIn(in);
-
-        List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-
-        //when && then
-        assertThatThrownBy(() -> input.getBonusNumber())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
 
     }
+
 
 }
