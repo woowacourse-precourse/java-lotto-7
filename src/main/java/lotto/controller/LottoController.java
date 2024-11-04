@@ -38,6 +38,7 @@ public class LottoController {
         prizeResult.calculatePrizes(winningLotto, lottos);
 
         ProfitRate profitRate = new ProfitRate(money, prizeResult);
+        outputView.printPrizeResult(prizeResult, profitRate);
     }
 
     private Money getMoney() {
