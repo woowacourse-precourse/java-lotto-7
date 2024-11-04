@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-    private final InputView view;
+    private final LottoView view;
     private List<Lotto> purchasedTickets;
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    public LottoController(InputView view) {
+    public LottoController(LottoView view) {
         this.view = view;
         this.purchasedTickets = new ArrayList<>();
     }
