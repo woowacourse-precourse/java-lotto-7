@@ -14,6 +14,10 @@ public class Application {
             // 구입 금액 입력 및 유효성 검증
             int purchaseAmount = validatePurchaseAmount();
 
+            // 로또 번호 발행
+            List<Lotto> userLottos = publishLottos(purchaseAmount);
+            System.out.println(userLottos.size() + "개를 구매했습니다.");
+
 
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
@@ -38,6 +42,16 @@ public class Application {
             throw new IllegalArgumentException("유효한 숫자를 입력해 주세요.");
         }
     }
+    //로또 티켓 발행기능
+    private static List<Lotto> publishLottos(int amount) {
+        int count = amount / 1000;
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            lottos.add(generateLotto());
+        }
+        return lottos;
+    }
+
 
 
 }
