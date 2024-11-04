@@ -1,5 +1,6 @@
 package lotto.handler;
 
+import static lotto.message.OutputMessage.PRIZE_RATIO_OUTPUT_MESSAGE;
 import static lotto.message.OutputMessage.PURCHASE_QUANTITY_OUTPUT_MESSAGE;
 import static lotto.message.OutputMessage.WINNING_COUNT_OUTPUT_MESSAGE;
 import static lotto.message.OutputMessage.WINNING_STATICS_OUTPUT_MESSAGE;
@@ -33,6 +34,10 @@ public class OutputHandler {
                     String.format(WINNING_COUNT_OUTPUT_MESSAGE.getMessage(), rank.getMatchCount(), prize, count)
             );
         }
+    }
+
+    public void printPrizeRatio(double prizeRatio) {
+        System.out.println(String.format(PRIZE_RATIO_OUTPUT_MESSAGE.getMessage(), prizeRatio));
     }
 
     private void printLotto(Lotto lotto) {
