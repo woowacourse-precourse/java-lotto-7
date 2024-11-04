@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.dto.LottoResult;
 import lotto.service.LottoService;
 import lotto.service.dto.SellLotto;
 import lotto.view.LottoView;
@@ -19,28 +20,24 @@ public class LottoController {
     }
 
     public void sellLotto() {
-        try {
-            LottoBuyDTO lottoBuyDTO = lottoView.lottoBuyView();
-            SellLotto sellLotto = lottoService.sellLotto(lottoBuyDTO.money());
+        LottoBuyDTO lottoBuyDTO = lottoView.lottoBuyView();
+        SellLotto sellLotto = lottoService.sellLotto(lottoBuyDTO.money());
 
-            lottoView.printSellLottos(sellLotto.lottoDetails());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        lottoView.printSellLottos(sellLotto.lottoDetails());
     }
 
-    public void createWinning(){
+    public void createWinning() {
         WinningNumberDTO winningNumberDTO = lottoView.winningNumberView();
         lottoService.createWinningNumber(winningNumberDTO.winningNumbers());
     }
 
-    public void createBonus(){
+    public void createBonus() {
         BonusNumberDTO bonusNumberDTO = lottoView.bonusNumberView();
         lottoService.createBonusNumber(bonusNumberDTO.bonusNumber());
     }
 
-    public void result(){
-        List<String> results = lottoService.compareWinningNumbers();
-        lottoView.printLottoResults(results);
+    public void result() {
+        LottoResult lottoResult = lottoService.compareWinningNumbers();
+        lottoView.printLottoResults(lottoResult.history(), lottoResult.returnRate());
     }
 }
