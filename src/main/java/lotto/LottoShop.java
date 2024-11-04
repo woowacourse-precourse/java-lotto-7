@@ -34,9 +34,6 @@ public class LottoShop {
         return lottoMachine.drawLotto(count);
     }
 
-    public int getLottoCount(int amount) {
-        return amount / LOTTO_PRIZE;
-    }
     public int insertMoney() {
         System.out.println("구입 금액을 입력해주세요.");
         insert = Integer.parseInt(Console.readLine());
