@@ -29,7 +29,7 @@ public class OutputView {
 
     public void printWinningStatistics(WinningResult winningResult) {
         System.out.print(WINNING_RESULT_PREFIX);
-        printWinningResults(winningResult.getLottoResult());
+        printWinningResults(winningResult.lottoResult());
         printProfitRate(winningResult);
     }
 
@@ -52,7 +52,7 @@ public class OutputView {
     }
 
     private double getProfitRate(WinningResult winningResult) {
-        return winningResult.getRevenue()
+        return winningResult.revenue()
                 .calculateProfitRate();
     }
 }
