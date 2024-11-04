@@ -3,12 +3,12 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Rank {
-    THREE(3, 5000, false),
-    FOUR(4, 50000, false),
-    FIVE(5, 1500000, false),
-    FIVE_AND_BONUS(5, 30000000, true),
-    SIX(6, 2000000000, false),
-    NONE(0, 0, false);
+    THREE(3, 5000L, false),
+    FOUR(4, 50000L, false),
+    FIVE(5, 1500000L, false),
+    FIVE_AND_BONUS(5, 30000000L, true),
+    SIX(6, 2000000000L, false),
+    NONE(0, 0L, false);
 
     private final int matchCount;
     private final long prize;
