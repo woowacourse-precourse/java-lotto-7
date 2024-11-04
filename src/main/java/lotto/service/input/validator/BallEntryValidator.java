@@ -30,7 +30,7 @@ public class BallEntryValidator extends CommonValidator implements InputValidato
 
     private void overcomeSeparatorCount(String input) {
         if(Arrays.stream(input.split("")).filter(s -> s.equals(separator)).count() != ValidateStatus.TOTAL_SEPARATOR_COUNT.get()) {
-            throw new IllegalArgumentException("[ERROR] 구분자 양식이 맞지 않습니다.");
+            throw new IllegalArgumentException("[ERROR] 구분자 갯수가 일치하지 않습니다.");
         }
     }
 
