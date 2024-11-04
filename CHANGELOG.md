@@ -3,6 +3,19 @@
 <br>
 <br>
 
+## v1.1 (2024.11.04)
+
+> 주요 작업 : 리팩토링
+
+- [e7e14c3] [style: 메소드 순선 변경](https://github.com/Gilbert9172/java-lotto-7/commit/e7e14c3)
+- [1765cf4] [refactor: 순위를 계산하는 로직을 Lotto 도메인으로 위임](https://github.com/Gilbert9172/java-lotto-7/commit/1765cf4)
+- [66dd280] [style: money#toString 메소드 수정](https://github.com/Gilbert9172/java-lotto-7/commit/66dd280)
+- [9dc5fc0] [refactor: Java functional interface를 사용하여 입력 실패시 재 입력로직 템플릿화](https://github.com/Gilbert9172/java-lotto-7/commit/9dc5fc0)
+- [d9fedc9] [refactor: Lotto에 종속되는 상수들의 위치 변경 및 예외 추가](https://github.com/Gilbert9172/java-lotto-7/commit/d9fedc9)
+- [bdc6729] [refactor: EnumMap을 제대로 활용하기 위해 불필요한 sorting 작업 제거](https://github.com/Gilbert9172/java-lotto-7/commit/bdc6729)
+
+<br>
+
 ## v1.0 (2024.11.03)
 
 > 주요 작업 : 주요 기능 개발 및 로직 수정
