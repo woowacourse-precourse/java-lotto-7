@@ -1,21 +1,18 @@
 package lotto;
 
+import java.util.List;
+
 public class BonusNumber {
     private final int BONUS_NUMBER;
 
-    public BonusNumber(String bonusNumber) {
+    public BonusNumber(String bonusNumber, List<Integer> lottoNumber) {
         validateNull(bonusNumber);
         validateSpace(bonusNumber);
         validateNotNumber(bonusNumber);
         int BONUS_NUMBER = Integer.parseInt(bonusNumber);
         validateRange(BONUS_NUMBER);
+        validateRepeat(BONUS_NUMBER, lottoNumber);
         this.BONUS_NUMBER = BONUS_NUMBER;
-    }
-
-    private void validateRange(int BONUS_NUMBER) {
-        if (BONUS_NUMBER < 1 || BONUS_NUMBER > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45중 양수여야 합니다.");
-        }
     }
 
     private void validateNull(String bonusNumber) {
@@ -38,5 +35,15 @@ public class BonusNumber {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateRange(int BONUS_NUMBER) {
+        if (BONUS_NUMBER < 1 || BONUS_NUMBER > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45중 양수여야 합니다.");
+        }
+    }
+
+    private void validateRepeat(int BONUS_NUMBER, List<Integer> lottoNumber) {
+        if(lottoNumber.contains(BONUS_NUMBER)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨번호와 중복됩니다.");
+        }
+    }
 }

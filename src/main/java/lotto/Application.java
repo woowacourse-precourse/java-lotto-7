@@ -42,21 +42,23 @@ public class Application {
         }
     }
 
-    private static void getLottoNumbers() {
+    private static String getLottoNumbers() {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
+        LottoNumberValidator lottoNumberValidator = new LottoNumberValidator(input);
         // 입력된 문자열을 정수 리스트로 변환
         LOTTO_NUMBER = Arrays.stream(input.split(","))
 //                .map(String::trim) // 공백 제거
                 .map(Integer::parseInt) // String을 Integer로 변환
                 .collect(Collectors.toList());
+        return input;
     }
 
     private static void saveLottoNumbers() {
         while(true){
             try {
-                getLottoNumbers();
+                String input = getLottoNumbers();
                 lotto = new Lotto(LOTTO_NUMBER);
                 return;
             } catch (RuntimeException e) {
@@ -70,7 +72,7 @@ public class Application {
             System.out.println();
             System.out.println("보너스 번호를 입력해 주세요.");
             try {
-                bonusNumber = new BonusNumber(Console.readLine());
+                bonusNumber = new BonusNumber(Console.readLine(), LOTTO_NUMBER);
                 return;
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
