@@ -37,7 +37,7 @@ public class Validator {
             int userIntInput = Integer.parseInt(userInput);
 
             if (userIntInput <= 0) {
-                throw new IllegalArgumentException("[ERROR] 0과 음수는 입력할 수 없습니다.");
+                throw new IllegalArgumentException("[ERROR] 0보다 큰 수를 입력해야 합니다.");
             }
 
             return userIntInput;
