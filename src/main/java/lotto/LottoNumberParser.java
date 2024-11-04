@@ -13,10 +13,10 @@ public class LottoNumberParser implements Parser<String, List<Integer>> {
         return convert2lottoNumbers(lottoNumbers);
     }
 
-    private List<Integer> convert2lottoNumbers(String[] givenNumbers){
-        try{
+    private List<Integer> convert2lottoNumbers(String[] givenNumbers) {
+        try {
             return Arrays.stream(givenNumbers).map(Integer::parseInt).toList();
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ParserExceptionMessage.NUMBER_FORMAT_INCORRECT.getMessage());
         }
     }

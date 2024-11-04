@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public enum LottoPrices {
-    FIRST(6,2000000000),
-    SECOND(5,30000000),
-    THIRD(5,1500000),
-    FOURTH(4,50000),
-    FIFTH(3,5000),
-    NOT_EARN(0,0);
+    FIRST(6, 2000000000),
+    SECOND(5, 30000000),
+    THIRD(5, 1500000),
+    FOURTH(4, 50000),
+    FIFTH(3, 5000),
+    NOT_EARN(0, 0);
 
     private final int price;
     private final int matchedCount;
@@ -23,22 +23,26 @@ public enum LottoPrices {
     public int getPrice() {
         return this.price;
     }
+
     public int getMatchedCount() {
         return this.matchedCount;
     }
-    public String getString(){
+
+    public String getString() {
         String price = new DecimalFormat("###,###").format(getPrice());
         String bonus = "";
 
-        if(this.equals(SECOND)){
+        if (this.equals(SECOND)) {
             bonus = ", 보너스 볼 일치";
         }
 
-        return getMatchedCount()+"개 일치" +bonus+" ("+price+"원) - ";
+        return getMatchedCount() + "개 일치" + bonus + " (" + price + "원) - ";
     }
-    public static List<LottoPrices> getPrices(){
-        return Stream.of(LottoPrices.values()).sorted((o1,o2)->o1.price-o2.price).toList();
+
+    public static List<LottoPrices> getPrices() {
+        return Stream.of(LottoPrices.values()).sorted((o1, o2) -> o1.price - o2.price).toList();
     }
+
     public static LottoPrices findPriceByMatchCount(int matchCount, boolean bonusMatched) {
         if (matchCount == 5 && bonusMatched) {
             return LottoPrices.SECOND;

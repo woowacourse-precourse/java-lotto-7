@@ -10,10 +10,11 @@ public enum LottoExceptionMessage {
     PURCHASING_MONEY_LASTED("구입 금액은 1,000원 단위이어야 합니다.");
     private final String message;
 
-    public String getMessage(){
-        return "[ERROR] "+ this.message;
+    public String getMessage() {
+        return "[ERROR] " + this.message;
     }
-    LottoExceptionMessage(String message){
-        this.message=message;
+
+    LottoExceptionMessage(String message) {
+        this.message = message;
     }
 }

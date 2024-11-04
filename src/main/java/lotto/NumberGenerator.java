@@ -6,6 +6,6 @@ import java.util.List;
 
 public class NumberGenerator {
     public List<Integer> generateUniqueNumber(int start, int end, int count) {
-         return Randoms.pickUniqueNumbersInRange(start, end, count);
+        return Randoms.pickUniqueNumbersInRange(start, end, count);
     }
 }

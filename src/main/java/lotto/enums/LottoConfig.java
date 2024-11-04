@@ -1,6 +1,6 @@
 package lotto.enums;
 
-public enum LottoConfig{
+public enum LottoConfig {
     LOTTO_START_NUM(1),
     LOTTO_END_NUM(45),
 
@@ -9,11 +9,11 @@ public enum LottoConfig{
 
     private final int value;
 
-    LottoConfig(int value){
+    LottoConfig(int value) {
         this.value = value;
     }
 
-    public int getValue(){
+    public int getValue() {
         return this.value;
     }
 }

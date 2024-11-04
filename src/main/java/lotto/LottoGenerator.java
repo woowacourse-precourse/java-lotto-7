@@ -21,7 +21,7 @@ public class LottoGenerator {
         return new Lotto(numberGenerator.generateUniqueNumber(start, end, count));
     }
 
-    public Lotto generate(List<Integer> numbers){
+    public Lotto generate(List<Integer> numbers) {
         return new Lotto(numbers);
     }
 
@@ -40,7 +40,7 @@ public class LottoGenerator {
     }
 
     private void validate(int givenMoney) {
-        if (givenMoney % LottoConfig.LOTTO_PRICE.getValue() != 0 || givenMoney ==0) {
+        if (givenMoney % LottoConfig.LOTTO_PRICE.getValue() != 0 || givenMoney == 0) {
             throw new IllegalArgumentException(LottoExceptionMessage.PURCHASING_MONEY_LASTED.getMessage());
         }
     }

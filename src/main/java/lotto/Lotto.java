@@ -22,11 +22,11 @@ public class Lotto {
             throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUM_LENGTH_NOT_SATISFIED.getMessage());
         }
 
-        if (numbers.stream().anyMatch(number -> (number < start) || (number > end))){
+        if (numbers.stream().anyMatch(number -> (number < start) || (number > end))) {
             throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUM_OUT_OF_RANGE.getMessage());
         }
 
-        if(numbers.stream().distinct().count() != numbers.size()){
+        if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUM_DUPLICATED.getMessage());
         }
     }
