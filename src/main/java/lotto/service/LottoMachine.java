@@ -56,4 +56,8 @@ public class LottoMachine {
     public Result getResult() {
         return database.result;
     }
+
+    public Long getPurchaseMoney() {
+        return database.purchaseLottoList.size() * Value.lottoPrice;
+    }
 }

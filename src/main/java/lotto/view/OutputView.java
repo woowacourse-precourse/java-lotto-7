@@ -24,11 +24,12 @@ public class OutputView {
     }
 
     public void printProfitRate(Result result, Long purchaseMoney) {
-        double profitRate = (result.getThreeNumberMatch() * 5000
-                + result.getFourNumberMatch() * 50000
-                + result.getFiveNumberMatch() * 1500000
-                + result.getBonusNumberMatch() * 30000000
-                + result.getSixNumberMatch() * 2000000000) / purchaseMoney;
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+        double profitRate =
+                (result.getThreeNumberMatch() * 5000L
+                        + result.getFourNumberMatch() * 50000L
+                        + result.getFiveNumberMatch() * 1500000L
+                        + result.getBonusNumberMatch() * 30000000L
+                        + result.getSixNumberMatch() * 2000000000L) / (double) purchaseMoney;
+        System.out.println("총 수익률은 " + profitRate * 100 + "%입니다.");
     }
 }

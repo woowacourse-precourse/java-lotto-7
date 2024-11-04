@@ -22,5 +22,6 @@ public class ResultController {
         Integer bonusNumber = inputView.inputBonusNumber();
         lottoMachine.calculateResult(winningNumbers, bonusNumber);
         outputView.printResult(lottoMachine.getResult());
+        outputView.printProfitRate(lottoMachine.getResult(), lottoMachine.getPurchaseMoney());
     }
 }
