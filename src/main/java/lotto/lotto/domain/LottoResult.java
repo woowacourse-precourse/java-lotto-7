@@ -1,5 +1,8 @@
 package lotto.lotto.domain;
 
+import static lotto.common.exception.ExceptionName.LOTTO_RESULT_MODIFY;
+import static lotto.common.exception.ExceptionName.LOTTO_RESULT_UNDETERMINED;
+
 import lotto.lotto.domain.value.LottoRank;
 import lotto.lotto.domain.value.LottoState;
 
@@ -27,7 +30,7 @@ public class LottoResult {
 
     public LottoResult updateLottoRank(LottoRank lottoRank) {
         if (this.lottoState.equals(LottoState.MATCHED)) {
-            throw new IllegalStateException("[ERROR] 이미 확인된 로또의 등수를 수정할 수 없습니다");
+            throw new IllegalStateException(LOTTO_RESULT_MODIFY);
         }
         return new LottoResult(this.lotto, lottoRank, LottoState.MATCHED);
     }
@@ -39,7 +42,7 @@ public class LottoResult {
 
     public LottoRank getLottoRank() {
         if (this.lottoRank == null || this.lottoState.equals(LottoState.PENDING)) {
-            throw new IllegalStateException("[ERROR] 아직 로또의 등수가 정해지지 않았습니다.");
+            throw new IllegalStateException(LOTTO_RESULT_UNDETERMINED);
         }
         return this.lottoRank;
     }

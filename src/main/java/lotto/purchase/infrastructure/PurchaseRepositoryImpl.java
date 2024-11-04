@@ -1,5 +1,9 @@
 package lotto.purchase.infrastructure;
 
+import static lotto.common.exception.ExceptionName.REPOSITORY_ID_NULL;
+import static lotto.common.exception.ExceptionName.REPOSITORY_NOT_FOUND;
+import static lotto.common.exception.ExceptionName.REPOSITORY_VALUE_NULL;
+
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -29,19 +33,21 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
     public Purchase findById(String id) {
         try {
             return Optional.ofNullable(purchaseCache.get(id))
-                    .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 id값이 존재하지 않습니다."));
+                    .orElseThrow(() -> new IllegalArgumentException(REPOSITORY_NOT_FOUND));
         } catch (NullPointerException e) {
-            throw new IllegalStateException("[ERROR] 해당 id 값이 null일 수 없습니다.");
+            throw new IllegalStateException(REPOSITORY_ID_NULL);
         }
     }
 
     @Override
     public Purchase save(String id, Purchase purchase) {
-        try {
-            purchaseCache.put(id, purchase);
-            return purchase;
-        } catch (NullPointerException e) {
-            throw new IllegalArgumentException("[ERROR] key 또는 value에 null이 존재할 수 없습니다");
+        if (id == null) {
+            throw new IllegalArgumentException(REPOSITORY_ID_NULL);
         }
+        if (purchase == null) {
+            throw new IllegalArgumentException(REPOSITORY_VALUE_NULL);
+        }
+        purchaseCache.put(id, purchase);
+        return purchase;
     }
 }

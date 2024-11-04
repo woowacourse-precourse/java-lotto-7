@@ -1,5 +1,7 @@
 package lotto.common.controller.handler;
 
+import static lotto.common.exception.ExceptionName.INPUT_NULL;
+
 import java.util.List;
 import java.util.function.Function;
 import lotto.common.controller.parser.InputParser;
@@ -33,7 +35,7 @@ public class ConsoleInputHandler {
 
     private void checkInputIsNull(String input) {
         if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 null 이거나 공백이 될 수 없습니다.");
+            throw new IllegalArgumentException(INPUT_NULL);
         }
     }
 }

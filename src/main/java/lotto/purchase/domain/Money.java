@@ -1,6 +1,11 @@
 package lotto.purchase.domain;
 
-import lotto.common.rule.Rule;
+import static lotto.common.exception.ExceptionName.MONEY_MIN_UNIT;
+import static lotto.common.exception.ExceptionName.MONEY_MIN_VALUE;
+import static lotto.common.rule.Rule.LOTTO_PRICE;
+import static lotto.common.rule.Rule.MONEY_MINIMUM_VALUE;
+
+import lotto.common.exception.ExceptionName;
 
 public class Money {
 
@@ -17,18 +22,18 @@ public class Money {
 
     private static void validateMoney(long moneyValue) {
         if (moneyValue <= 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 음수일 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionName.MONEY_NEG_NUM);
         }
-        if (moneyValue < Rule.MONEY_MINIMUM_VALUE) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원 미만일 수 없습니다.");
+        if (moneyValue < MONEY_MINIMUM_VALUE) {
+            throw new IllegalArgumentException(MONEY_MIN_VALUE);
         }
-        if (moneyValue % Rule.MONEY_MINIMUM_VALUE != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다");
+        if (moneyValue % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(MONEY_MIN_UNIT);
         }
     }
 
     public long getQuantitiesCanBuy() {
-        return moneyValue / Rule.LOTTO_PRICE;
+        return moneyValue / LOTTO_PRICE;
     }
 
     public double calculateRateOfIncome(long amount) {

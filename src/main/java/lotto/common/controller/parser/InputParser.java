@@ -1,12 +1,15 @@
 package lotto.common.controller.parser;
 
+import static lotto.common.exception.ExceptionName.PARSE_INT;
+import static lotto.common.exception.ExceptionName.PARSE_LIST_DELIMITER;
+import static lotto.common.exception.ExceptionName.PARSE_LONG;
+import static lotto.common.rule.Rule.LIST_DELIMITER;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
 public class InputParser {
-
-    private static final String LIST_DELIMITER = ",";
 
     private InputParser() {
     }
@@ -15,7 +18,7 @@ public class InputParser {
         try {
             return Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력 값이 long 타입의 수로 변환될 수 없습니다.");
+            throw new IllegalArgumentException(PARSE_LONG);
         }
     }
 
@@ -23,7 +26,7 @@ public class InputParser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력 값이 int 타입의 수로 변환될 수 없습니다.");
+            throw new IllegalArgumentException(PARSE_INT);
         }
     }
 
@@ -31,9 +34,9 @@ public class InputParser {
         try {
             return Arrays.stream(input.split(LIST_DELIMITER)).map(InputParser::parseInt).toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력 값이 int 타입의 수로 변환될 수 없습니다.");
+            throw new IllegalArgumentException(PARSE_INT);
         } catch (PatternSyntaxException e) {
-            throw new IllegalArgumentException("[ERROR] list 구분자가 유효하지 않습니다.");
+            throw new IllegalArgumentException(PARSE_LIST_DELIMITER);
         }
     }
 }

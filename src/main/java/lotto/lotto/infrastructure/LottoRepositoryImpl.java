@@ -1,5 +1,9 @@
 package lotto.lotto.infrastructure;
 
+import static lotto.common.exception.ExceptionName.REPOSITORY_ID_NULL;
+import static lotto.common.exception.ExceptionName.REPOSITORY_NOT_FOUND;
+import static lotto.common.exception.ExceptionName.REPOSITORY_VALUE_NULL;
+
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -27,6 +31,12 @@ public class LottoRepositoryImpl implements LottoRepository {
 
     @Override
     public LottoResults save(LottoResults lottoResults) {
+        if (lottoResults == null) {
+            throw new IllegalArgumentException(REPOSITORY_VALUE_NULL);
+        }
+        if (lottoResults.getId() == null) {
+            throw new IllegalArgumentException(REPOSITORY_ID_NULL);
+        }
         lottoResultsMap.put(lottoResults.getId(), lottoResults);
         return lottoResults;
     }
@@ -35,9 +45,9 @@ public class LottoRepositoryImpl implements LottoRepository {
     public LottoResults findById(String id) {
         try {
             return Optional.ofNullable(lottoResultsMap.get(id))
-                    .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 id 값이 존재하지 않습니다."));
+                    .orElseThrow(() -> new IllegalArgumentException(REPOSITORY_NOT_FOUND));
         } catch (NullPointerException e) {
-            throw new IllegalStateException("[ERROR] id는 null이 될 수 없습니다.");
+            throw new IllegalStateException(REPOSITORY_ID_NULL);
         }
     }
 
