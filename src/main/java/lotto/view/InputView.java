@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import lotto.util.StringParser;
 
 public class InputView {
@@ -29,7 +30,10 @@ public class InputView {
 
     public static List<Integer> getWinningNumbers() {
         String input = Console.readLine();
-        return StringParser.parseWinningNumbers(input);
+        List<String> inputStrings = StringParser.splitByCommaAndTrim(input);
+        return inputStrings.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     private static void validateInputIsNull(String input) {
