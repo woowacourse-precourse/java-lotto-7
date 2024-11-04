@@ -1,6 +1,7 @@
 package lotto.user.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.lotto.domain.Lotto;
 
@@ -43,5 +44,9 @@ public class User {
 
     public boolean hasLotto(Lotto lotto) {
         return lottos.contains(lotto);
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 }

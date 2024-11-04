@@ -9,4 +9,8 @@ public class LottoAnswer extends Lotto {
         super(numbers);
         this.bonusNumber = bonusNumber;
     }
+
+    public static LottoAnswer issue(List<Integer> numbers, int bonusNumber) {
+        return new LottoAnswer(numbers, bonusNumber);
+    }
 }

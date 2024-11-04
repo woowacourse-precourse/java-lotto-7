@@ -11,7 +11,9 @@ public class Lotto {
     Lotto(List<Integer> numbers) {
         validate(numbers);
 
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .sorted()
+                .toList();
     }
 
     private void validate(List<Integer> numbers) {

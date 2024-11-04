@@ -76,12 +76,13 @@ class LottoTest {
     void should_Success_When_IssueLotto() {
         Lotto lotto = Lotto.issue();
 
-        List<Integer> numbers = Stream.of(lotto.toString().replaceAll("[\\[\\]\\s]", "").split(","))
+        List<Integer> expected = Stream.of(lotto.toString().replaceAll("[\\[\\]\\s]", "").split(","))
                 .map(Integer::parseInt)
+                .sorted()
                 .toList();
 
         assertThat(lotto).isNotNull();
-        assertThat(numbers.size()).isEqualTo(6);
+        assertThat(expected.size()).isEqualTo(6);
     }
 
     @DisplayName("성공 | 수동 로또 발행")
@@ -91,6 +92,6 @@ class LottoTest {
         Lotto lotto = Lotto.issue(numbers);
 
         assertThat(lotto).isNotNull();
-        assertThat(lotto.toString()).isEqualTo(numbers.toString());
+        assertThat(lotto.toString()).isEqualTo(numbers.stream().sorted().toList().toString());
     }
 }
