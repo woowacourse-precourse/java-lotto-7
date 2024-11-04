@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.model.LottoCollection;
+import lotto.model.LottoGenerator;
 import lotto.model.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -7,8 +9,15 @@ import lotto.view.OutputView;
 public class LottoController {
     private Money money;
 
+    private LottoGenerator lottoGenerator;
+
+    public LottoController() {
+        lottoGenerator = new LottoGenerator();
+    }
+
     public void run() {
         inputLottoPurchaseMoney();
+        LottoCollection lottoCollection = generateLottoCollection(money.getLottoCount());
     }
 
     private void inputLottoPurchaseMoney() {
@@ -21,6 +30,10 @@ public class LottoController {
                 OutputView.outputErrorMessage(e);
             }
         }
+    }
+
+    private LottoCollection generateLottoCollection(int lottoCount) {
+        return new LottoCollection(lottoGenerator.generateLottos(lottoCount));
     }
 
 }

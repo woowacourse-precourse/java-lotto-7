@@ -20,6 +20,10 @@ public class Money {
         return money;
     }
 
+    public int getLottoCount() {
+        return money / LottoBoundInfo.PRICE_PER_LOTTO.getInfo();
+    }
+
     private void validateIsNumber(String rawInput) {
         try {
             Integer.parseInt(rawInput);

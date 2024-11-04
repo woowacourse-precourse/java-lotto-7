@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.enums.LottoPurchaseMoneyErrorMessage;
+import org.assertj.core.util.Strings;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class MoneyTest {
@@ -32,6 +34,19 @@ class MoneyTest {
 
         // then
         assertThat(result).isEqualTo(39000);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1000,1", "2000,2"})
+    void getLottoCount_로또_개수_반환(String rawInput, int expected) {
+        // given
+        Money money = new Money(rawInput);
+
+        // when
+        int result = money.getLottoCount();
+
+        // then
+        assertThat(result).isEqualTo(expected);
     }
 
     @Test
