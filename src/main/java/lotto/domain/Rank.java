@@ -11,9 +11,9 @@ public enum Rank {
     NONE(0, 0);
 
     private final int matchCount;
-    private final long winningMoney;
+    private final int winningMoney;
 
-    Rank(int matchCount, long winningMoney) {
+    Rank(int matchCount, int winningMoney) {
         this.matchCount = matchCount;
         this.winningMoney = winningMoney;
     }
@@ -39,5 +39,9 @@ public enum Rank {
             return String.format("%d개 일치 (%s원) - %d개",
                     matchCount, String.format("%,d", winningMoney), count);
         }
+    }
+
+    public int getWinningMoney() {
+        return winningMoney;
     }
 }

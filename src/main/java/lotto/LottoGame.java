@@ -29,7 +29,7 @@ public class LottoGame {
         PurchaseAmount purchaseAmount = purchase();
         LottoTicket lottoTicket = draw(purchaseAmount);
         WinningCombination winningCombination = announceResults();
-        match(lottoTicket, winningCombination);
+        match(lottoTicket, winningCombination, purchaseAmount);
     }
 
     private PurchaseAmount purchase() {
@@ -62,10 +62,12 @@ public class LottoGame {
         return new WinningCombination(winningLotto, bonus);
     }
 
-    private void match(LottoTicket lottoTicket, WinningCombination winningCombination) {
+    private void match(LottoTicket lottoTicket, WinningCombination winningCombination, PurchaseAmount purchaseAmount) {
         Map<Rank, Integer> lottoResult = winningCombination.lottoWinningResult(lottoTicket);
-
         output.printLottoStatistics(lottoResult);
+
+        double profitRate = winningCombination.calculateProfitRate(lottoResult, purchaseAmount.getPurchaseAmount());
+        output.printProfitRate(profitRate);
     }
 
     private <T> T retryUntilValid(Supplier<T> supplier) {

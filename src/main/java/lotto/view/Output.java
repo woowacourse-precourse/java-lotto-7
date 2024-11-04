@@ -24,4 +24,8 @@ public class Output {
             System.out.println(rank.formatWinningStatistics(count));
         }
     }
+
+    public void printProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+    }
 }
