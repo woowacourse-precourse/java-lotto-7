@@ -47,4 +47,8 @@ public enum Rank {
         throw new IllegalArgumentException("로또 번호에 매칭결과와 다른 예외적인 상황이 발생했습니다.");
     }
 
+    public int getMatchingCount() {
+        return matchingCount;
+    }
+
 }
