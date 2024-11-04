@@ -1,6 +1,7 @@
 package lotto.application.ticket.view.output;
 
 import java.util.List;
+import lotto.application.common.OutputPrinter;
 import lotto.application.ticket.dto.TicketResponse;
 
 public class TicketOutputView {
@@ -21,13 +22,16 @@ public class TicketOutputView {
 
     private void appendPurchaseCount(int count) {
         String message = formatter.formatPurchaseMessage(count);
-        printer.appendLine(message);
+        printer.appendLine();
+        printer.appendWithLine(message);
     }
 
     private void appendLottoNumbers(List<List<Integer>> tickets) {
         tickets.stream()
                 .map(formatter::formatLottoNumbers)
-                .forEach(printer::appendLine);
+                .forEach(printer::appendWithLine);
+
+        printer.appendLine();
     }
 
 }

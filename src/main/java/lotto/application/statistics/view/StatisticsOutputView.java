@@ -6,8 +6,8 @@ import static lotto.application.statistics.domain.Rank.FOURTH;
 import static lotto.application.statistics.domain.Rank.SECOND;
 import static lotto.application.statistics.domain.Rank.THIRD;
 
+import lotto.application.common.OutputPrinter;
 import lotto.application.statistics.dto.StatisticsResponse;
-import lotto.application.ticket.view.output.OutputPrinter;
 
 public class StatisticsOutputView {
     private static final String DIVISION_LINE = "---";
@@ -28,20 +28,20 @@ public class StatisticsOutputView {
     }
 
     private void appendHeader() {
-        printer.appendLine(DIVISION_LINE);
-        printer.appendLine(TITLE);
+        printer.appendWithLine(DIVISION_LINE);
+        printer.appendWithLine(TITLE);
     }
 
     private void appendStatistics(StatisticsResponse response) {
-        printer.appendLine(FIFTH.toFormattedString(response.fifthCount()));
-        printer.appendLine(FOURTH.toFormattedString(response.fourthCount()));
-        printer.appendLine(THIRD.toFormattedString(response.thirdCount()));
-        printer.appendLine(SECOND.toFormattedString(response.secondCount()));
-        printer.appendLine(FIRST.toFormattedString(response.firstCount()));
+        printer.appendWithLine(FIFTH.toFormattedString(response.fifthCount()));
+        printer.appendWithLine(FOURTH.toFormattedString(response.fourthCount()));
+        printer.appendWithLine(THIRD.toFormattedString(response.thirdCount()));
+        printer.appendWithLine(SECOND.toFormattedString(response.secondCount()));
+        printer.appendWithLine(FIRST.toFormattedString(response.firstCount()));
     }
 
     private void appendProfitRate(StatisticsResponse response) {
-        printer.appendLine(formatProfitRate(response.profitRate()));
+        printer.appendWithLine(formatProfitRate(response.profitRate()));
     }
 
     private String formatProfitRate(double profitRate) {
