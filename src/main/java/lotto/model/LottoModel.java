@@ -19,10 +19,6 @@ public class LottoModel {
     }
 
     public List<Lotto> createLotto(int count){
-
-        /*TODO
-        *  - count값 양수 검증*/
-
         List<Lotto> createdLottos = new ArrayList<Lotto>();
 
         for(int i = 0; i < count; ++i){
