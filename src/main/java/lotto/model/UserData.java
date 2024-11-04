@@ -5,14 +5,15 @@ import java.util.List;
 public class UserData {
     private int money = 0;
     private int lottoPapers = 0;
+    private int bonusNumber = 0;
     private List<Integer> winNumbers;
-    private int bonusNumber;
 
     public int getMoney() {
         return money;
     }
 
     public void setMoney(int money) {
+        UserDataValidator.validateMoney(money);
         this.money = money;
     }
 
@@ -20,11 +21,12 @@ public class UserData {
         return lottoPapers;
     }
 
-    public void setLottoPapers(int lottoPapes) {
-        this.lottoPapers = lottoPapes;
+    public void setLottoPapers(int lottoPapers) {
+        this.lottoPapers = lottoPapers;
     }
 
     public List<Integer> getWinNumbers() {
+        UserDataValidator.validateWinNumbers(winNumbers);
         return winNumbers;
     }
 
@@ -37,6 +39,7 @@ public class UserData {
     }
 
     public void setBonusNumber(int bonusNumber) {
+        UserDataValidator.validateBonusNumber(winNumbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
