@@ -22,6 +22,8 @@ public class LottoGenerator {
     }
 
     public List<Integer> createLottoNumber() {
-        return drawStrategy.draw().stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
+        return drawStrategy.draw().stream()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
     }
 }
