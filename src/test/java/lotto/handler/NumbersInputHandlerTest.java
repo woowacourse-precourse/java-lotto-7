@@ -1,13 +1,12 @@
 package lotto.handler;
 
-import lotto.domain.lottoForm.WinningNumbers;
 import lotto.domain.LottoNumber;
+import lotto.domain.lottoForm.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static lotto.constant.LottoValues.SIZE;
 import static lotto.message.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
@@ -59,6 +58,6 @@ public class NumbersInputHandlerTest {
         // when & then
         assertThatCode(() -> winningNumbers.validateDuplicate(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(BONUS_NUMBER_DUPLICATE.formatValue(SIZE.value()));
+                .hasMessageContaining(BONUS_NUMBER_DUPLICATE.getMessage());
     }
 }

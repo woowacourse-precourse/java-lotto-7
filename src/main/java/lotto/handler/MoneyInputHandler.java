@@ -33,16 +33,16 @@ public class MoneyInputHandler {
 
     private void validateMoneyScope(long rawMoney) {
         if (rawMoney < MONEY_MIN_LIMIT.value()) {
-            throw new IllegalArgumentException(NEGATIVE_PURCHASE_AMOUNT.formatValue(MONEY_MIN_LIMIT.value()));
+            throw new IllegalArgumentException(NEGATIVE_PURCHASE_AMOUNT.formatCost(MONEY_MIN_LIMIT.value()));
         }
         if (rawMoney > MONEY_MAX_LIMIT.value()) {
-            throw new IllegalArgumentException(OVERFLOW_PURCHASE_AMOUNT.formatValue(MONEY_MAX_LIMIT.value()));
+            throw new IllegalArgumentException(OVERFLOW_PURCHASE_AMOUNT.formatCost(MONEY_MAX_LIMIT.value()));
         }
     }
 
     private void validateMoneyUnit(long rawMoney) {
         if (rawMoney % PRICE.value() != 0) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT.formatValue(PRICE.value()));
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT.formatCost(PRICE.value()));
         }
     }
 }

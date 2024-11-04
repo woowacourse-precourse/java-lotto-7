@@ -62,7 +62,7 @@ public class MoneyInputHandlerTest {
         // when & then
         assertThatCode(() -> moneyInputHandler.validateMoney(negativeLong))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NEGATIVE_PURCHASE_AMOUNT.formatValue(MONEY_MIN_LIMIT.value()));
+                .hasMessageContaining(NEGATIVE_PURCHASE_AMOUNT.formatCost(MONEY_MIN_LIMIT.value()));
     }
 
 
@@ -75,7 +75,7 @@ public class MoneyInputHandlerTest {
         // when & then
         assertThatCode(() -> moneyInputHandler.validateMoney(inputNum))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(INVALID_PURCHASE_AMOUNT_UNIT.formatValue(PRICE.value()));
+                .hasMessageContaining(INVALID_PURCHASE_AMOUNT_UNIT.formatCost(PRICE.value()));
     }
 
 }

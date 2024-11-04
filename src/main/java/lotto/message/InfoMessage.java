@@ -21,7 +21,7 @@ public enum InfoMessage {
     }
 
     public String formatProfit(double profit){
-        String roundedProfit = String.format("%.1f", profit);
+        String roundedProfit = String.format("%,.1f", profit);
         return message.replace("{}", roundedProfit);
     }
 

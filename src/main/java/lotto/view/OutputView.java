@@ -10,7 +10,7 @@ import static lotto.constant.LottoValues.PERCENT_MULTIPLIER;
 import static lotto.message.InfoMessage.*;
 
 public class OutputView {
-    public static void showLottosInfo(Lottos lottos){
+    public static void showLottoInfo(Lottos lottos){
         long lottoCount = lottos.getLottoCount();
         System.out.println(LOTTO_COUNT_INFO.formatNumber(lottoCount));
         lottos.showInfo();

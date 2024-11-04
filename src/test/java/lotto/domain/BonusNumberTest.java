@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static lotto.constant.LottoValues.SIZE;
 import static lotto.message.ErrorMessage.BONUS_NUMBER_DUPLICATE;
 import static lotto.message.ErrorMessage.LOTTO_SCOPE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -57,6 +56,6 @@ public class BonusNumberTest {
         // when & then
         assertThatThrownBy(() -> winningNumbers.validateDuplicate(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(BONUS_NUMBER_DUPLICATE.formatValue(SIZE.value()));
+                .hasMessageContaining(BONUS_NUMBER_DUPLICATE.getMessage());
     }
 }

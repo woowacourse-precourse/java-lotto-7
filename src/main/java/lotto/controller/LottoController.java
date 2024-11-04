@@ -24,7 +24,7 @@ public class LottoController {
     public void run() {
         long lottoCount = moneyInputHandler.getLottoCount();
         Lottos lottos = lottoMachine.issue(lottoCount);
-        showLottosInfo(lottos);
+        showLottoInfo(lottos);
 
         WinningNumbers winningNumbers = numbersInputHandler.getWinningNumbers();
         LottoNumber bonusNumber = numbersInputHandler.getBonusNumber(winningNumbers);

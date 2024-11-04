@@ -11,7 +11,6 @@ import static lotto.message.ErrorMessage.LOTTO_NUMBERS_DUPLICATE;
 import static lotto.message.ErrorMessage.LOTTO_SIZE_ERROR;
 
 public abstract class LottoForm {
-
     protected final List<LottoNumber> numbers;
 
     protected LottoForm(List<Integer> rawNumbers) {
@@ -27,15 +26,15 @@ public abstract class LottoForm {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != SIZE.value()) {
-            throw new IllegalArgumentException(LOTTO_SIZE_ERROR.formatValue(SIZE.value()));
+        if (!SIZE.isEqualTo(numbers.size())) {
+            throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATE.formatValue(SIZE.value()));
+            throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATE.getMessage());
         }
     }
 }
