@@ -88,6 +88,8 @@ public class Lotto {
         ProfitCalc profit = new ProfitCalc();
         float profit_ = profit.profitCalc(price);
 
+        List<Integer> winTickets = lottoChecker.getWinTickets();
+
         //출력하기
         System.out.println("당첨통계");
         System.out.println("---");
