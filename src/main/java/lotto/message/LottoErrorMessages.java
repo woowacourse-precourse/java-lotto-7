@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.message;
 
 public enum LottoErrorMessages {
     ERROR_UNIT("[ERROR] "),
