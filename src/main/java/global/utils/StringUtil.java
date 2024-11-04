@@ -3,6 +3,8 @@ package global.utils;
 import static lotto.constant.LottoStatic.ERROR_MSG_PREFIX;
 import static lotto.constant.LottoStatic.WEEKLY_NUMBER_SEPARATOR;
 
+import global.exception.ErrorCode;
+import global.view.OutputView;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,8 @@ public class StringUtil {
             try {
                 return new BigInteger(input);
             } catch (NumberFormatException e) {
-                throw new NumberFormatException(ERROR_MSG_PREFIX + "숫자가 아닌 값은 입력할 수 없습니다.");
+                OutputView.printErrorMsgWithReason(ErrorCode.INPUT_SHOULD_BE_PARSING, input);
+                throw new NumberFormatException(ErrorCode.INPUT_SHOULD_BE_PARSING.getMsg());
             }
         }
     }
@@ -32,7 +35,8 @@ public class StringUtil {
                 try {
                     numbers.add(Integer.parseInt(weeklyNumber));
                 } catch (NumberFormatException e) {
-                    throw new NumberFormatException(ERROR_MSG_PREFIX + "숫자가 아닌 값은 입력할 수 없습니다.");
+                    OutputView.printErrorMsgWithReason(ErrorCode.INPUT_SHOULD_BE_PARSING, weeklyNumber);
+                    throw new NumberFormatException(ErrorCode.INPUT_SHOULD_BE_PARSING.getMsg());
                 }
             }
 
@@ -45,7 +49,8 @@ public class StringUtil {
             try {
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                throw new NumberFormatException(ERROR_MSG_PREFIX + "숫자가 아닌 값은 입력할 수 없습니다.");
+                OutputView.printErrorMsgWithReason(ErrorCode.INPUT_SHOULD_BE_PARSING, input);
+                throw new NumberFormatException(ErrorCode.INPUT_SHOULD_BE_PARSING.getMsg());
             }
         }
     }

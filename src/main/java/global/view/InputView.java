@@ -14,12 +14,12 @@ public class InputView {
     }
 
     public static String inputWeeklyNumbers() {
-        System.out.println(INPUT_WEEKLY_NUMBERS);
+        System.out.println(INPUT_WEEKLY_NUMBERS.getMsg());
         return Console.readLine();
     }
 
     public static String inputBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER);
+        System.out.println(INPUT_BONUS_NUMBER.getMsg());
         return Console.readLine();
     }
 }

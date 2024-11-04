@@ -7,4 +7,5 @@ public class LottoStatic {
     public static final Integer LOTTO_END_NUMBER = 45;
     public static final Integer LOTTO_NUMBER_COUNTS = 6;
     public static final String WEEKLY_NUMBER_SEPARATOR = ",";
+    public static final Integer WEEKLY_NUMBER_COUNTS = 6;
 }

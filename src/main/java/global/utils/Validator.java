@@ -4,17 +4,14 @@ import static global.utils.StringUtil.BonusNumber.parsingBonusNumber;
 import static global.utils.StringUtil.PurchaseAmount.parsingPurchaseAmount;
 import static global.utils.StringUtil.WeeklyNumber.parsingWeeklyNumbers;
 import static global.utils.StringUtil.WeeklyNumber.splitWeeklyNumberWithSeparator;
-import static lotto.constant.LottoStatic.ERROR_MSG_PREFIX;
-import static lotto.constant.LottoStatic.LOTTO_END_NUMBER;
-import static lotto.constant.LottoStatic.LOTTO_NUMBER_COUNTS;
-import static lotto.constant.LottoStatic.LOTTO_START_NUMBER;
-import static lotto.constant.LottoStatic.PURCHASE_AMOUNT_UNIT;
-import static lotto.constant.LottoStatic.WEEKLY_NUMBER_SEPARATOR;
 
+import global.exception.ErrorCode;
+import global.view.OutputView;
 import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constant.LottoStatic;
 
 public class Validator {
 
@@ -24,16 +21,17 @@ public class Validator {
     }
 
     private static void lottoNumberCountValidate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNTS) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX +
-                    "로또 번호는 %d개여야 합니다.".formatted(LOTTO_NUMBER_COUNTS));
+        if (numbers.size() != LottoStatic.LOTTO_NUMBER_COUNTS) {
+            OutputView.printErrorMsgWithReason(ErrorCode.LOTTO_NUMBER_COUNT_MISMATCH, String.valueOf(numbers));
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_COUNT_MISMATCH.getMsg());
         }
     }
 
     private static void numbersDuplicateValidate(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);    //set을 사용하면 중복이 제거됨
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);    //Set 자료구조는 중복이 허용되지 않음
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "중복된 값은 불가합니다.");
+            OutputView.printErrorMsgWithReason(ErrorCode.LOTTO_NUMBER_CANNOT_BE_DUPLICATE, numbers.toString());
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_CANNOT_BE_DUPLICATE.getMsg());
         }
     }
 
@@ -48,9 +46,9 @@ public class Validator {
     }
 
     private static void purchaseAmountUnitValidate(BigInteger purchaseAmount) {
-        if (!purchaseAmount.remainder(BigInteger.valueOf(PURCHASE_AMOUNT_UNIT)).equals(BigInteger.ZERO)) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX
-                    + "%d원 단위의 입력만 가능합니다.".formatted(PURCHASE_AMOUNT_UNIT));
+        if (!purchaseAmount.remainder(BigInteger.valueOf(LottoStatic.PURCHASE_AMOUNT_UNIT)).equals(BigInteger.ZERO)) {
+            OutputView.printErrorMsgWithReason(ErrorCode.PURCHASE_AMOUNT_UNIT_MISMATCH, purchaseAmount.toString());
+            throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_UNIT_MISMATCH.getMsg());
         }
     }
 
@@ -73,8 +71,10 @@ public class Validator {
     }
 
     private static void splitWeeklyNumbersCountValidate(List<String> splitWeeklyNumbers) {
-        if (splitWeeklyNumbers.size() != LOTTO_NUMBER_COUNTS) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "6개의 숫자가 입력되어야 합니다.");
+        if (splitWeeklyNumbers.size() != LottoStatic.LOTTO_NUMBER_COUNTS) {
+            OutputView.printErrorMsgWithReason(ErrorCode.WEEKLY_NUMBERS_COUNT_MISMATCH,
+                    String.valueOf(splitWeeklyNumbers.size()));
+            throw new IllegalArgumentException(ErrorCode.WEEKLY_NUMBERS_COUNT_MISMATCH.getMsg());
         }
     }
 
@@ -87,8 +87,10 @@ public class Validator {
     }
 
     private static void separatorAtStartOrEndValidate(String input) {
-        if (input.startsWith(WEEKLY_NUMBER_SEPARATOR) || input.endsWith(WEEKLY_NUMBER_SEPARATOR)) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "공백이 포함된 입력은 불가합니다." + input);
+        if (input.startsWith(LottoStatic.WEEKLY_NUMBER_SEPARATOR) ||
+                input.endsWith(LottoStatic.WEEKLY_NUMBER_SEPARATOR)) {
+            OutputView.printErrorMsgWithReason(ErrorCode.INPUT_CANNOT_INCLUDE_BLANK, input);
+            throw new IllegalArgumentException(ErrorCode.INPUT_CANNOT_INCLUDE_BLANK.getMsg());
         }
     }
 
@@ -105,44 +107,50 @@ public class Validator {
 
     private static void notStartWithZeroValidate(String input) {
         if (input.startsWith("0") && input.length() > 1) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "0으로 시작하는 값은 입력할 수 없습니다." + input);
+            OutputView.printErrorMsgWithReason(ErrorCode.INPUT_CANNOT_START_WITH_ZERO, input);
+            throw new IllegalArgumentException(ErrorCode.INPUT_CANNOT_START_WITH_ZERO.getMsg());
         }
     }
 
     private static void plusSignValidate(String input) {
         if (input.contains("+")) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "+ 기호가 포함된 입력은 불가합니다." + input);
+            OutputView.printErrorMsgWithReason(ErrorCode.INPUT_CANNOT_INCLUDE_PLUS_SIGN, input);
+            throw new IllegalArgumentException(ErrorCode.INPUT_CANNOT_INCLUDE_PLUS_SIGN.getMsg());
         }
     }
 
     private static void blankValidate(String input) {
         if (input.contains(" ") || input.isBlank()) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "공백이 포함된 입력은 불가합니다." + input);
+            OutputView.printErrorMsgWithReason(ErrorCode.INPUT_CANNOT_INCLUDE_BLANK, input);
+            throw new IllegalArgumentException(ErrorCode.INPUT_CANNOT_INCLUDE_BLANK.getMsg());
         }
     }
 
     private static void decimalValidate(String input) {
         if (input.contains(".")) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "소수의 입력은 불가합니다." + input);
+            OutputView.printErrorMsgWithReason(ErrorCode.INPUT_CANNOT_BE_DECIMAL, input);
+            throw new IllegalArgumentException(ErrorCode.INPUT_CANNOT_BE_DECIMAL.getMsg());
         }
     }
 
     private static void greaterThanZeroValidate(BigInteger value) {
         if (value.compareTo(BigInteger.ZERO) <= 0) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "0 이하의 값은 입력할 수 없습니다.");
+            OutputView.printErrorMsgWithReason(ErrorCode.INPUT_MUST_BE_POSITIVE, value.toString());
+            throw new IllegalArgumentException(ErrorCode.INPUT_MUST_BE_POSITIVE.getMsg());
         }
     }
 
     private static void lottoNumberRangeValidate(int number) {
-        if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX
-                    + "%d와 %d 사이의 값이 입력되어야 합니다.".formatted(LOTTO_START_NUMBER, LOTTO_END_NUMBER));
+        if (number < LottoStatic.LOTTO_START_NUMBER || number > LottoStatic.LOTTO_END_NUMBER) {
+            OutputView.printErrorMsgWithReason(ErrorCode.LOTTO_NUMBER_RANGE_MISMATCH, String.valueOf(number));
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_RANGE_MISMATCH.getMsg());
         }
     }
 
     private static void weeklyAndBonusNumbersDuplicateValidate(int bonusNumber, List<Integer> weeklyNumbers) {
         if (weeklyNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "이미 당첨 번호로 설정된 중복 숫자입니다" + bonusNumber);
+            OutputView.printErrorMsgWithReason(ErrorCode.BONUS_NUMBER_CANNOT_BE_DUPLICATE, String.valueOf(bonusNumber));
+            throw new IllegalArgumentException(ErrorCode.BONUS_NUMBER_CANNOT_BE_DUPLICATE.getMsg());
         }
     }
 }
