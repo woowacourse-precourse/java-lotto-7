@@ -4,11 +4,14 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.service.LottoMachine;
 import lotto.util.ErrorMessage;
 import lotto.util.LottoValidator;
 
 public class Lotto {
+    public static final int LOTTO_NUM_START = 1;
+    public static final int LOTTO_NUM_END = 45;
+    public static final int LOTTO_NUM_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -29,7 +32,7 @@ public class Lotto {
     }
 
     private void validateLottoNumberSizeIn(List<Integer> numbers) {
-        if (numbers.size() != LottoMachine.LOTTO_NUM_SIZE) {
+        if (numbers.size() != LOTTO_NUM_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_OUT_OF_RANGE.getMsg());
         }
     }
