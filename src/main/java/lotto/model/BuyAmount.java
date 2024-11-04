@@ -11,6 +11,10 @@ public class BuyAmount {
         this.buyAmount = Integer.parseInt(buyAmountString);
     }
 
+    public int lottoAmount(){
+        return (buyAmount/1000);
+    }
+
     private void emptyValidation(String buyAmount) {
         if(buyAmount.isEmpty()) throw new IllegalArgumentException("[ERROR] 구입금액은 빈 값이 들어올 수 없습니다.");
     }

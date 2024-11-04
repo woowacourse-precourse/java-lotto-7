@@ -8,14 +8,10 @@ public class LottoSimulator {
     private final ConsoleOutputHandler consoleOutputHandler = new ConsoleOutputHandler();
     private final ConsoleInputHandler consoleInputHandler = new ConsoleInputHandler();
     public void run() {
-        while (true) {
-            consoleOutputHandler.buyAmountMessage();
-            String buyAmountString = consoleInputHandler.buyAmount();
-            try {
-                BuyAmount buyAmount = new BuyAmount(buyAmountString);
-            } catch (IllegalArgumentException e) {
-                consoleOutputHandler.exceptionMessage(e);
-            }
-        }
+        consoleOutputHandler.buyAmountMessage();
+        String buyAmountString = consoleInputHandler.buyAmount();
+        BuyAmount buyAmount = new BuyAmount(buyAmountString);
+        int lottoAmount = buyAmount.lottoAmount();
+        consoleOutputHandler.lottoAmountMessage(lottoAmount);
     }
 }
