@@ -23,7 +23,7 @@ public class Print {
     handler = this.handler;
     Input input = new Input("8000");
     int amount = input.readAmount();
-    String result = handler.compareNumbersResult(handler.generateLotto(input.getLottoCounts(amount)), handler.getWinning(), handler.getBonus());
+    String result = handler.compareNumbersResult(handler.generateLotto(), handler.getWinning(), handler.getBonus());
     System.out.println(result);
   }
 

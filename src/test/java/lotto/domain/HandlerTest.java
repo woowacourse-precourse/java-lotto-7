@@ -34,27 +34,23 @@ class HandlerTest {
   @DisplayName("사용자 입력 후 로또를 요청 수만큼 발행했는지 확인한다")
   @Test
   public void generateLottoTest() throws Exception{
-    // 사용자가 구매 금액을 입력하면
+    // given : 사용자가 구매 금액을 입력하면
 
     String readLine = "14000";
     this.input = new Input(readLine);
     System.setIn(setReadLine(readLine));
 
+    // 구매액만큼 로또수를 요청하고
+    int request = 14;
+    int givenRequest = input.getLottoCounts(request);
+    this.handler = new Handler(request);
+    // when : 요청 수만큼 로또 생성을 반복해서 이중리스트에 추가
+    Lotto lotto = new Lotto(handler.generateLotto());
+    List<List<Integer>> lottoRequest = lotto.responseLottoCounts(request);
 
-      //given
-    int expectGenerated = 14;
-    int givenRequest = input.getLottoCounts(expectGenerated);
+    int actualGenerated = lottoRequest.size();
 
-    // when
-    List<List<Integer>> model = new ArrayList<>();
-    for (int i = 0; i < expectGenerated; i++) {
-      List<Integer> generated = handler.generateLotto(givenRequest);
-      model.add(generated);
-    }
-
-
-    int actualGenerated = model.size();
-    assertEquals(expectGenerated, actualGenerated);
+    assertEquals(request, actualGenerated);
   }
 
 
@@ -94,7 +90,7 @@ class HandlerTest {
     int amount = input.readAmount();
     int lottoCounts = input.getLottoCounts(amount);
     // 로또 수 만큼 로또 발행 후 전달
-    List<Integer> generated = handler.generateLotto(lottoCounts);
+    List<Integer> generated = handler.generateLotto();
     // 당첨 번호와 보너스 번호 조회
     List<Integer> winning = handler.getWinning();
     int bonus = handler.getBonus();

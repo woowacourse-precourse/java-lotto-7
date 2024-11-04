@@ -30,7 +30,7 @@ public class Handler {
   }
 
   // 1~45 범위 정수 6개가 담긴 로또를 요청 수만큼 발행하여 전달한다
-  public List<Integer> generateLotto(int request) {
+  public List<Integer> generateLotto() {
     List<Integer> numbers = new ArrayList<>();
     int random = Randoms.pickNumberInRange(1, 45);
     for (int i = START.getMagicNumber(); i < SIZE.getMagicNumber(); i++) {

@@ -55,7 +55,7 @@ class PrintTest {
     int amount = input.readAmount();
     int lottoCounts = input.getLottoCounts(amount);
     // 입력 값에 기반하여 요청을 전달하고
-    List<Integer> generated = handler.generateLotto(lottoCounts);
+    List<Integer> generated = handler.generateLotto();
     // 요청받은만큼 로또를 발행한다
     Lotto lotto = new Lotto(generated);
     // 로또 발행 결과를 전달함으로써 요청값에 응답한다
@@ -91,7 +91,7 @@ class PrintTest {
     int amount = input.readAmount();
     int lottoCounts = input.getLottoCounts(amount);
     // 입력 값에 기반하여 요청을 전달하고
-    List<Integer> actualLotto = handler.generateLotto(lottoCounts);
+    List<Integer> actualLotto = handler.generateLotto();
 
     List<Integer> winning = handler.getWinning();
     int bonus = handler.getBonus();
