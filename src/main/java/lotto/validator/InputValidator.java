@@ -36,8 +36,14 @@ public class InputValidator {
     }
 
     public static void checkWinningNumbers(List<Integer> winningNumbers) {
+        checkSizeWinningNumbers(winningNumbers);
         checkDuplicateWinningNumbers(winningNumbers);
         checkRangeWinningNumbers(winningNumbers);
+    }
+
+    public static void checkSizeWinningNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6)
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
     }
 
     public static void checkDuplicateWinningNumbers(List<Integer> numbers) {
