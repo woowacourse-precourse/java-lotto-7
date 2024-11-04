@@ -1,11 +1,11 @@
 package lotto;
 
-public class LottoGame {
+public class LottoGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoMachine lottoMachine;
 
-    public LottoGame(InputView inputView, OutputView outputView, LottoMachine lottoMachine) {
+    public LottoGameController(InputView inputView, OutputView outputView, LottoMachine lottoMachine) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoMachine = lottoMachine;

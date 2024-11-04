@@ -2,7 +2,8 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        LottoGame lottoGame = new LottoGame(new InputView(), new OutputView(), new LottoMachine());
-        lottoGame.run();
+        LottoGameController lottoGameController = new LottoGameController(new InputView(), new OutputView(),
+                new LottoMachine());
+        lottoGameController.run();
     }
 }
