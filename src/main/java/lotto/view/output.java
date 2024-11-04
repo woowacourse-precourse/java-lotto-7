@@ -1,20 +1,20 @@
 package lotto.view;
 
-import static lotto.constants.Output_Messages.MATCH_MESSAGE;
 import static lotto.view.input.printWhiteSpace;
 
 import java.util.List;
-import lotto.constants.Request_Messages;
+import lotto.Constants.OutputMessages;
+import lotto.Constants.RequestMessages;
 import lotto.controller.LottoController;
 import lotto.model.Lotto;
 
 public class output {
     public static void printOutputTotalCount(int count){
-        System.out.println(count + Request_Messages.OUTPUT_TOTAL_COUNT);
+        System.out.println(count + RequestMessages.OUTPUT_TOTAL_COUNT.getMessage());
     }
 
     public static void printSummaryMessage(){
-        System.out.println(Request_Messages.SUMMARY);
+        System.out.println(RequestMessages.SUMMARY.getMessage());
     }
 
     public static void printLottos(List<Lotto> Lottos){
@@ -31,8 +31,10 @@ public class output {
 
     public static void printWinCounts(List<Integer> winCounts){
         printSummaryMessage();
-        for (int i = 0; i < winCounts.size() - 1; i++) {
-            System.out.println(MATCH_MESSAGE[i] + winCounts.get(4-i) + "개");
+        int i = 0;
+        for (OutputMessages outputMessage : OutputMessages.values()) {
+            System.out.println(outputMessage.getMessage() + winCounts.get(4 - i) + "개");
+            i++;
         }
     }
 

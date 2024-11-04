@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.constants.Error_Messages;
+import lotto.Constants.ErrorMessages;
 
 public class WinningLotto extends Lotto {
     private int bonusNumber;
@@ -22,7 +22,7 @@ public class WinningLotto extends Lotto {
         int num = Integer.parseInt(number);
         checkRange(num);
         if (this.numbers.contains(num)) {
-            throw new IllegalArgumentException(Error_Messages.DUPLICATE_ERROR);
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_ERROR.getMessage());
         }
         return num;
     }

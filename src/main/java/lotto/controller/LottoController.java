@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.CalculateResult;
 import lotto.model.Lotto;
-import lotto.constants.Error_Messages;
+import lotto.Constants.ErrorMessages;
 import lotto.model.WinningLotto;
 
 public class LottoController {
@@ -30,21 +30,17 @@ public class LottoController {
         try{
             result = Integer.parseInt(input);
         }catch(NumberFormatException e){
-            System.out.println(Error_Messages.NUMBER_FORMAT_ERROR);
+            System.out.println(ErrorMessages.NUMBER_FORMAT_ERROR.getMessage());
             return getValidInputTotalAmount();
         }
         return result;
     }
 
     public static int checkTotalAmountIfValid(int totalAmount) {
-        if (totalAmount <= 0)
-            throw new IllegalArgumentException(Error_Messages.INPUT_NOT_POSITIVE_INT);
-        if (totalAmount < 1000)
-            throw new IllegalArgumentException(Error_Messages.INPUT_TOTAL_AMOUNT_NOT_LARGER_THAN_1000);
-        if (totalAmount % 1000 == 0) {
-            return totalAmount / 1000;
+        if (totalAmount % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessages.INPUT_TOTAL_AMOUNT_ERROR.getMessage());
         }
-        throw new IllegalArgumentException(Error_Messages.INPUT_TOTAL_AMOUNT_ERROR);
+        return totalAmount / 1000;
     }
 
     public static void setTotalCount(LottoController lottoController){
@@ -69,7 +65,7 @@ public class LottoController {
 
     private static void inputNullCheck(String s){
         if (s.isEmpty()){
-            throw new IllegalArgumentException(Error_Messages.NUMBER_FORMAT_ERROR);
+            throw new IllegalArgumentException(ErrorMessages.NUMBER_FORMAT_ERROR.getMessage());
         }
     }
 

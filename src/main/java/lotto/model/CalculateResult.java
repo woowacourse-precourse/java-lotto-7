@@ -29,7 +29,6 @@ public class CalculateResult {
         if (numbers.contains(this.bonusNumber)) {
             result.bonusCountUp();
         }
-        result.getRank();
         return result;
     }
 
@@ -43,7 +42,7 @@ public class CalculateResult {
         List<Integer> winCounts = new ArrayList<>(Collections.nCopies(6, 0));
         for (SingleResult singleResult : this.results) {
             int rank = singleResult.getRank();
-            winCounts.set(rank - 1, winCounts.get(rank - 1) + 1);
+            winCounts.set(rank, winCounts.get(rank) + 1);
         }
         return winCounts;
     }
@@ -57,8 +56,8 @@ public class CalculateResult {
     }
 
     public void getTotalResult(int totalCount){
-        List<Integer> winCounts = getWinCounts();
         float lottoReturn = getLottoReturns(totalCount);
+        List<Integer> winCounts = getWinCounts();
         printWinCounts(winCounts);
         printLottoReturn(lottoReturn);
     }

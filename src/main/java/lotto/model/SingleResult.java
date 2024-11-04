@@ -3,33 +3,23 @@ package lotto.model;
 public class SingleResult {
     private int count;
     private int bonusCount;
-    private int rank;
+    private int prize;
 
-    public SingleResult(){
+    public SingleResult() {
         this.count = 0;
         this.bonusCount = 0;
-        this.rank = 0;
+        this.prize = 0;
     }
 
-    public void countUp() {this.count++;}
-    public void bonusCountUp() {this.bonusCount++;}
+    public void countUp() { this.count++; }
+    public void bonusCountUp() { this.bonusCount++; }
 
-    private void calculateRank(){
-        this.rank = 6;
-        if (this.count == 6) this.rank = 1;
-        if (this.count == 5 && this.bonusCount == 1) this.rank = 2;
-        if (this.count == 5) this.rank = 3;
-        if (this.count == 4) this.rank = 4;
-        if (this.count == 3) this.rank = 5;
+    public int getRank(){
+        return Prize.getIndex(this.prize);
     }
 
-    public int getRank() {
-        calculateRank();
-        return this.rank;
-    }
-
-    public int getPrize(){
-        Prize prize = new Prize();
-        return prize.getOfPrizeAmount(rank);
+    public int getPrize() {
+        this.prize = Prize.calculatePrize(count, bonusCount);
+        return prize;
     }
 }

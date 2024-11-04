@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.constants.Request_Messages;
+import lotto.Constants.RequestMessages;
 
 public class input {
     public static void printWhiteSpace(){
@@ -10,15 +10,15 @@ public class input {
     }
 
     public static void printInputTotalAmount(){
-        System.out.println(Request_Messages.INPUT_TOTAL_AMOUNT);
+        System.out.println(RequestMessages.INPUT_TOTAL_AMOUNT.getMessage());
     }
 
     public static void printInputWinningNumbers(){
-        System.out.println(Request_Messages.INPUT_WINNING_NUMBER);
+        System.out.println(RequestMessages.INPUT_WINNING_NUMBER.getMessage());
     }
 
     public static void printInputBonusNumber(){
-        System.out.println(Request_Messages.INPUT_BONUS_WINNING_NUMBER);
+        System.out.println(RequestMessages.INPUT_BONUS_WINNING_NUMBER.getMessage());
     }
 
     public static String readTotalAmount() {
