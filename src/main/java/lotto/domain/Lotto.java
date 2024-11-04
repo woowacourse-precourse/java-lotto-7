@@ -16,6 +16,16 @@ public class Lotto {
         }
     }
 
+    public int countMatchingNumbers(List<Integer> winninNumbers) {
+        return (int) numbers.stream()
+                .filter(winninNumbers::contains)
+                .count();
+    }
+
+    public boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
