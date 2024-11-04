@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.enums.ViewMessage.OUTPUT_LOTTO_COUNT;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
@@ -25,6 +26,7 @@ public class OutputView {
 
     private void printLotto(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
+        Collections.sort(numbers);
         System.out.println(numbers);
     }
 }
