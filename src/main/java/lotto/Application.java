@@ -128,7 +128,40 @@ public class Application {
         }
     }
 
+    // 6. 결과 계산 및 통계 출력
+    private static void checkLottoResults(List<List<Integer>> lottoBoxes, Lotto lotto, int bonusBall, int num) {
+        int[] cnt = {0, 0, 0, 0, 0};
 
+        for (List<Integer> lottoBox : lottoBoxes) {
+            Set<Integer> set = new HashSet<>(lotto.getNumbers());
+            boolean bonusResult = set.contains(bonusBall);
+
+            set.addAll(lottoBox);
+            int sizeCheck = cntSizeCheck(set.size());
+            if (sizeCheck == 1) {
+                int matches = set.size() - 6;
+                cnt = countWinningMatches(matches, cnt, bonusResult);
+            }
+        }
+        printWinningSummary(cnt);
+        getTotalWinnings(cnt, num);
+    }
+
+    private static int cntSizeCheck(int size) {
+        return (size > 5 && size < 10) ? 1 : 0;
+    }
+
+    private static int[] countWinningMatches(int size, int[] cnt, boolean bonusResult) {
+        if (size == 1 && bonusResult) {
+            cnt[4]++;
+            return cnt;
+        }
+        cnt[size]++;
+        return cnt;
+    }
+    private static double getReturnOnInvestment(int total, int cost) {
+        return ((double) total / cost) * 100;
+    }
 
  
 }
