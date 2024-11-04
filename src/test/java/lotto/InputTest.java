@@ -86,4 +86,11 @@ public class InputTest {
 		// String numbers = "1,2,3,4,5 ,6";
 		assertThrows(IllegalArgumentException.class, () -> input.validateBlank(numbers));
 	}
+
+	@Test
+	@DisplayName("당첨번호 입력이 숫자로 끝나는지 검증 테스트")
+	void 당첨번호_입력이_숫자로_끝나는지_검증하는_테스트() {
+		String numbers = "1,2,3,4,5,6";
+		assertThrows(IllegalArgumentException.class, () -> input.validateBlank(numbers));
+	}
 }
