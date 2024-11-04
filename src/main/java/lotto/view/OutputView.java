@@ -20,4 +20,8 @@ public class OutputView {
 		System.out.println(ErrorMessage.MAX_PURCHASE_EXCEED.getMessage());
 	}
 
+	public void printPurchaseCountMessage(int purchaseCount) {
+		System.out.println(String.format(ConsoleMessage.PURCHASE_COUNT_MESSAGE.getMessage(), purchaseCount));
+	}
+	
 }
