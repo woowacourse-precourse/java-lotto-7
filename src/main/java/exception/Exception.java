@@ -14,13 +14,14 @@ public class Exception extends Throwable {
     public static final String LOTTO_LENGTH_ONLY_SIX = "로또 번호는 6개여야 합니다.";
     public static final String DUPLICATE_NUMBER = "중복된 숫자를 입력할 수 없습니다.";
     public static final String ONLY_ONE_TO_FORTY_FIVE = "로또번호는 1~45만 가능합니다";
+    private static final String ONLY_NUMBER_REGEX = "\\d+";
 
     public void throwException(String errorMessage) {
         throw new IllegalArgumentException(ERROR_PREFIX + errorMessage);
     }
 
     public long changeInputStrToNumber(String number) {
-        if (!number.matches("\\d+")) {
+        if (!number.matches(ONLY_NUMBER_REGEX)) {
             throwException(ONLY_NUMBER);
         }
         long buyPrice = 0;

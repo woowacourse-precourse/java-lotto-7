@@ -13,6 +13,5 @@ public class Application {
 
         lottoBuyer.setWinningLottoAndBonusNumber(input.receiveWiningNumber(), input.receiveBonusNumber());
         lottoBuyer.printTotalPrize();
-
     }
 }

@@ -86,7 +86,7 @@ public class LottoBuyer {
     }
 
     public void printTotalPrize() {
-        System.out.printf("%n" + WINNING_STATISTICS + "%n---%n");
+        System.out.printf(WINNING_STATISTICS + "%n---%n");
         long totalPrize = calculateTotalPrize();
         System.out.printf(RATE_OF_RETURN, prizeFormat(totalPrize));
     }
