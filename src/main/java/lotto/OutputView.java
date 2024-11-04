@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class OutputView {
 
-    private static final String PURCHASE_NUMBER = "%d개를 구매했습니다.\n";
-    private static final String WINNING_STATISTICS = "당첨 통계\n---";
-    private static final String EARNING_RATE = "총 수익률은 %.1f%% 입니다.";
+    private static final String PURCHASE_NUMBER = "\n%d개를 구매했습니다.\n";
+    private static final String WINNING_STATISTICS = "\n당첨 통계\n---";
+    private static final String EARNING_RATE = "총 수익률은 %.1f%%입니다.";
 
     public void printLottos(List<Lotto> lottos) {
         System.out.printf(PURCHASE_NUMBER, lottos.size());
