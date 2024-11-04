@@ -14,7 +14,7 @@ public class LottoShop {
     public List<Lotto> purchaseLotto(int money) {
 
         int lottoCount = money / LOTTO_PRICE;
-        System.out.println(lottoCount + "개를 구매했습니다");
+        System.out.println(lottoCount + "개를 구매했습니다.");
 
         ArrayList<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {

@@ -56,7 +56,7 @@ public class LottoWinning {
         System.out.printf("5개 일치 (%s원) - %d개\n", WinningAmountEnum.THREE.getStringValue(), winning3rdCount);
         System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개\n", WinningAmountEnum.TWO.getStringValue(), winning2ndCount);
         System.out.printf("6개 일치 (%s원) - %d개\n", WinningAmountEnum.ONE.getStringValue(), winning1stCount);
-        System.out.print("총 수익률은 " + getYield() + "%입니다" );
+        System.out.print("총 수익률은 " + getYield() + "%입니다." );
     }
 
     private int getRanking(int winningCount, Lotto lotto) {
