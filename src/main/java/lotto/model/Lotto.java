@@ -3,6 +3,8 @@ package lotto.model;
 import static lotto.common.constants.ExceptionMessages.ERROR_LOTTO_NUMBER_COUNT;
 import static lotto.common.constants.ExceptionMessages.ERROR_LOTTO_NUMBER_DUPLICATED;
 import static lotto.common.constants.ExceptionMessages.ERROR_LOTTO_NUMBER_RANGE;
+import static lotto.common.constants.LottoConstants.LOTTO_RANGE_END;
+import static lotto.common.constants.LottoConstants.LOTTO_RANGE_START;
 
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +19,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_RANGE_END) {
             throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_COUNT.getMessage());
         }
         if (hasDuplicates(numbers)) {
@@ -35,7 +37,7 @@ public class Lotto {
 
     private boolean isNumberInRange(List<Integer> numbers) {
         for (Integer number :numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_RANGE_START || number > LOTTO_RANGE_END) {
                 return false;
             }
         }

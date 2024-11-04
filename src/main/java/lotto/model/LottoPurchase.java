@@ -17,7 +17,7 @@ public class LottoPurchase {
         if (amount <= 0) {
             throw new IllegalArgumentException(INVALID_INPUT.getMessage());
         }
-        if (amount % 1000 != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_INPUT.getMessage());
         }
     }

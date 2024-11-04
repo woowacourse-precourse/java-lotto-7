@@ -1,6 +1,8 @@
 package lotto.model;
 
 import static lotto.common.constants.ExceptionMessages.ERROR_LOTTO_NUMBER_RANGE;
+import static lotto.common.constants.LottoConstants.LOTTO_RANGE_END;
+import static lotto.common.constants.LottoConstants.LOTTO_RANGE_START;
 
 public class Bonus {
     private final Integer number;
@@ -11,7 +13,7 @@ public class Bonus {
     }
 
     private void validate(Integer number) {
-        if (number < 1 || number > 45) {
+        if (number < LOTTO_RANGE_START || number > LOTTO_RANGE_END) {
             throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
