@@ -3,11 +3,9 @@ package lotto.service;
 import lotto.data.Database;
 import lotto.data.Lotto;
 import lotto.data.Result;
-import lotto.service.LottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
