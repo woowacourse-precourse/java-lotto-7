@@ -27,10 +27,10 @@ public class LottoController {
 
     public void run() {
         // TODO: Input이 Null인지 확인!!
-        outputView.printPaymentRequestMessage();
         int payment;
         List<Lotto> lottos;
-        while(true) {
+        while (true) {
+            outputView.printPaymentRequestMessage();
             payment = inputView.readPayment();
             try {
                 int quantity = salesService.getAvailableLottoQuantity(payment);
@@ -42,23 +42,38 @@ public class LottoController {
             }
         }
 
+        String numbers;
+        int bonusNumber;
+        List<Integer> winningNumbers;
+        List<Rank> winningResults;
+        List<Integer> winningStatistics;
+        String lottoProfitRate;
+        while (true) {
+            outputView.printWinningNumbersRequestMessage();
+            numbers = inputView.readWinningNumbers();
 
-        outputView.printWinningNumbersRequestMessage();
-        String numbers = inputView.readWinningNumbers();
+            outputView.printBonusNumberRequestMessage();
+            bonusNumber = inputView.readBonusNumber();
 
-        outputView.printBonusNumberRequestMessage();
-        int bonusNumber = inputView.readBonusNumber();
+            try {
+                winningNumbers = createWinningNumbers(numbers);
+
+                // TODO: 개선 요망
+                setLottoResultAnalysisService(winningNumbers, bonusNumber);
+                winningResults = resultAnalysisService.generateWinningResults(lottos);
+
+                winningStatistics = resultAnalysisService.getWinningStatistics(winningResults);
+                lottoProfitRate = resultAnalysisService.getLottoProfitRate(winningResults, payment);
+                outputView.printWinningResults(winningStatistics, lottoProfitRate);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printExceptionMessage(e.getMessage());
+            } catch (Exception e) {
+                OutputView.printExceptionMessage("예기치 못한 예외가 발생하였습니다.");
+            }
+        }
+
         inputView.closeConsole();
-
-        List<Integer> winningNumbers = createWinningNumbers(numbers);
-        // TODO: 개선 요망
-        setLottoResultAnalysisService(winningNumbers, bonusNumber);
-
-        List<Rank> winningResults = resultAnalysisService.generateWinningResults(lottos);
-        List<Integer> winningStatistics = resultAnalysisService.getWinningStatistics(winningResults);
-        String lottoProfitRate = resultAnalysisService.getLottoProfitRate(winningResults, payment);
-
-        outputView.printWinningResults(winningStatistics, lottoProfitRate);
     }
 
     private void setLottoResultAnalysisService(List<Integer> winningLottoNumbers, int bonusNumber) {
@@ -73,7 +88,7 @@ public class LottoController {
         try {
             return splitNumbers.stream().map(Integer::parseInt).toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 정수여야 합니다.");
+            throw new IllegalArgumentException("당첨 번호는 정수여야 합니다.");
         }
     }
 }
