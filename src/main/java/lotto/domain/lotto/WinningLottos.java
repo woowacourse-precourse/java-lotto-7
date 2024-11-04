@@ -9,11 +9,19 @@ public class WinningLottos {
 
     private final List<WinningLotto> winningLottos;
 
-    private WinningLottos(final PurchasedLottos purchasedLottos, final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
+    private WinningLottos(
+            final PurchasedLottos purchasedLottos,
+            final WinningNumbers winningNumbers,
+            final BonusNumber bonusNumber
+    ) {
         this.winningLottos = createWinningLottos(purchasedLottos, winningNumbers, bonusNumber);
     }
 
-    public static WinningLottos of(final PurchasedLottos purchasedLottos, final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
+    public static WinningLottos of(
+            final PurchasedLottos purchasedLottos,
+            final WinningNumbers winningNumbers,
+            final BonusNumber bonusNumber
+    ) {
         return new WinningLottos(purchasedLottos, winningNumbers, bonusNumber);
     }
 
