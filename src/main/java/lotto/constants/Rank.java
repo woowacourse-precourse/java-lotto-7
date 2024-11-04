@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constants;
 
 public enum Rank {
     NONE(0, false, 0, ""),

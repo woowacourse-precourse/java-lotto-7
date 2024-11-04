@@ -1,8 +1,12 @@
-package lotto;
+package lotto.io;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.constants.Rank;
+import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.Result;
 
 public class OutputHandler {
     private static final String PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";

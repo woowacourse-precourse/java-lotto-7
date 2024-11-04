@@ -1,6 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+import lotto.constants.ErrorMessage;
+import lotto.constants.LottoRules;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,13 +21,13 @@ public class Lotto {
         for (int number : numbers) {
             if (number < LottoRules.MIN_NUMBER || number > LottoRules.MAX_NUMBER) {
                 throw new IllegalArgumentException(
-                        String.format(lotto.ErrorMessage.OUT_OF_BOUNDS.getMessage(), LottoRules.MIN_NUMBER,
+                        String.format(ErrorMessage.OUT_OF_BOUNDS.getMessage(), LottoRules.MIN_NUMBER,
                                 LottoRules.MAX_NUMBER));
             }
         }
 
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(lotto.ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 

@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.constants.Rank;
 
 public class Result {
     private final Map<Rank, Integer> results = new HashMap<>();

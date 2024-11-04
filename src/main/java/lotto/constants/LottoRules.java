@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constants;
 
 public class LottoRules {
     public static final int LOTTO_TICKET_PRICE = 1000;

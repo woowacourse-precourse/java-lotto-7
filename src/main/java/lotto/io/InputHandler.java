@@ -1,9 +1,14 @@
-package lotto;
+package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constants.ErrorMessage;
+import lotto.domain.BonusNumber;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningNumbers;
 
 public class InputHandler {
     private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";

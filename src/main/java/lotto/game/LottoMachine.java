@@ -1,8 +1,11 @@
-package lotto;
+package lotto.game;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.LottoRules;
+import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
 
 public class LottoMachine {
     private final List<Lotto> generatedLottos = new ArrayList<>();

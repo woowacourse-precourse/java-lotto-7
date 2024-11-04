@@ -1,6 +1,12 @@
-package lotto;
+package lotto.game;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.Result;
+import lotto.domain.WinningLotto;
+import lotto.io.InputHandler;
+import lotto.io.OutputHandler;
 
 public class LottoGame {
     private LottoMachine lottoMachine;

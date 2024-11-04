@@ -1,8 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constants.ErrorMessage;
+import lotto.constants.LottoRules;
 
 public class WinningNumbers {
     private final List<Integer> numbers;

@@ -1,4 +1,7 @@
-package lotto;
+package lotto.domain;
+
+import lotto.constants.ErrorMessage;
+import lotto.constants.LottoRules;
 
 public class PurchaseAmount {
     private int amount;
