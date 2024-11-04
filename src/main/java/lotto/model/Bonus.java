@@ -30,4 +30,12 @@ public class Bonus {
     public int getNumber() {
         return number;
     }
+
+    public static int parseBonusNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_FORMAT.getMessage());
+        }
+    }
 }

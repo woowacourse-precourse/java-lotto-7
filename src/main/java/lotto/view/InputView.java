@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Amount;
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 
 public class InputView {
@@ -32,5 +33,20 @@ public class InputView {
         }
 
         return winningLotto;
+    }
+
+    public Bonus inputBonusNumber(Lotto winningNumber){
+        Bonus number = null;
+
+        while (number == null){
+            try {
+                String input = Console.readLine();
+                number = new Bonus(winningNumber.getNumbers(), Bonus.parseBonusNumber(input));
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return number;
     }
 }
