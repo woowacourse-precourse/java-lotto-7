@@ -9,6 +9,7 @@ import lotto.model.domain.ReturnRate;
 import lotto.model.domain.Winning;
 import lotto.model.domain.WinningNumber;
 import lotto.model.dto.WinningDTO;
+import lotto.model.service.CalculateService;
 import lotto.model.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,9 +18,11 @@ public class LottoController {
 	private static final LottoController instance = new LottoController();
 
 	private final LottoService lottoService;
+	private final CalculateService calculateService;
 
 	private LottoController() {
 		lottoService = new LottoService();
+		calculateService = new CalculateService();
 	}
 
 	public static LottoController getInstance() {
@@ -28,7 +31,7 @@ public class LottoController {
 
 	public void start() {
 		PurchaseMoney purchaseMoney = getPurchaseMoney();
-		int lottoCount = lottoService.calculateLottoCount(purchaseMoney);
+		int lottoCount = calculateService.calculateLottoCount(purchaseMoney);
 
 		OutputView.promptPurchaseCount(lottoCount);
 		Winning winning = getWinning(lottoCount);
@@ -51,20 +54,20 @@ public class LottoController {
 	}
 
 	private Winning getWinning(int lottoCount) {
-		LottoBundle lottoBundle = createLottoBundle(lottoCount);
-		WinningDTO winningDTO = createWinningDTO();
+		LottoBundle lottoBundle = getLottoBundle(lottoCount);
+		WinningDTO winningDTO = getWinningDTO();
 
 		return lottoService.checkWinningNumber(lottoBundle, winningDTO);
 	}
 
-	private LottoBundle createLottoBundle(int lottoCount) {
+	private LottoBundle getLottoBundle(int lottoCount) {
 		LottoBundle lottoBundle = lottoService.createLottoBundle(lottoCount);
 		OutputView.promptLottoNumbers(lottoBundle);
 
 		return lottoBundle;
 	}
 
-	private WinningDTO createWinningDTO() {
+	private WinningDTO getWinningDTO() {
 		WinningNumber winningNumber = getWinningNumber();
 		BonusNumber bonusNumber = getBonusNumber(winningNumber);
 
@@ -102,7 +105,7 @@ public class LottoController {
 	}
 
 	private void displayReturnRate(Winning winning, PurchaseMoney purchaseMoney) {
-		ReturnRate returnRate = lottoService.calculateReturnRate(winning, purchaseMoney);
+		ReturnRate returnRate = calculateService.calculateReturnRate(winning, purchaseMoney);
 		OutputView.promptReturnRate(returnRate.calculate());
 	}
 }

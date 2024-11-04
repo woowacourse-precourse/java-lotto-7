@@ -21,10 +21,6 @@ public class LottoService {
 		return new PurchaseMoney(purchaseAmount);
 	}
 
-	public int calculateLottoCount(PurchaseMoney purchaseMoney) {
-		return purchaseMoney.getLottoCount();
-	}
-
 	public LottoBundle createLottoBundle(int count) {
 		List<Lotto> lottoList = IntStream.range(MIN_RANGE_COUNT, count)
 			.mapToObj(i -> LottoFactory.of())
@@ -47,9 +43,5 @@ public class LottoService {
 
 	public Winning checkWinningNumber(LottoBundle lottoBundle, WinningDTO winningDTO) {
 		return new Winning(lottoBundle, winningDTO);
-	}
-
-	public ReturnRate calculateReturnRate(Winning winning, PurchaseMoney purchaseMoney) {
-		return new ReturnRate(purchaseMoney.money(), winning.getTotalPrize());
 	}
 }

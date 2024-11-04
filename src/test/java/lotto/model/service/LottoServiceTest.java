@@ -32,13 +32,6 @@ class LottoServiceTest {
 		assertThat(purchaseMoney.money()).isEqualTo(1000);
 	}
 
-	@DisplayName("로또 개수 계산 테스트")
-	@Test
-	void 로또_개수_계산_확인() {
-		PurchaseMoney purchaseMoney = lottoService.createPurchaseMoney(5000);
-		assertThat(lottoService.calculateLottoCount(purchaseMoney)).isEqualTo(5);
-	}
-
 	@DisplayName("로또 번들 생성 테스트")
 	@Test
 	void 로또_번들_생성_확인() {
@@ -71,17 +64,5 @@ class LottoServiceTest {
 		BonusNumber bonusNumber = lottoService.createBonusNumber(winningNumber, 7);
 
 		assertThat(bonusNumber.getBonusNumber()).isEqualTo(7);
-	}
-
-	@DisplayName("수익률 계산 테스트")
-	@Test
-	void 수익률_계산_확인() {
-		Winning winning = new Winning(LottoBundle.of(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)))),
-			new WinningDTO(new WinningNumber(List.of(1, 2, 3, 4, 5, 6)),
-				new BonusNumber(List.of(1, 2, 3, 4, 5, 6), 7)));
-		PurchaseMoney purchaseMoney = new PurchaseMoney(1000);
-
-		ReturnRate returnRate = lottoService.calculateReturnRate(winning, purchaseMoney);
-		assertThat(returnRate.calculate()).isGreaterThan(0);
 	}
 }
