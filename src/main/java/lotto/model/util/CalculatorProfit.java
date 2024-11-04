@@ -7,7 +7,7 @@ public class CalculatorProfit {
 
     public static double calProfitRate(Map<String, Integer> status, int buyAmount) {
 
-        double profitRate = 0.0;
+        long profitRate = 0L;
 
         for (String key : status.keySet()) {
             int correctCount = status.get(key);
@@ -20,6 +20,6 @@ public class CalculatorProfit {
         if (profitRate <= 0) {
             return 0;
         }
-        return profitRate / buyAmount * 100;
+        return ((double) profitRate / buyAmount) * 100;
     }
 }
