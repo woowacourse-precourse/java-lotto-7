@@ -15,7 +15,7 @@ public class ConsoleLottoView implements LottoView {
     @Override
     public void displayLottoNumbers(PurchaseDto purchaseDto) {
         List<LottoDto> lottos = purchaseDto.getLottoDtos();
-        System.out.println(lottos.size() + "개를 구매했습니다.");
+        System.out.println('\n' + lottos.size() + "개를 구매했습니다.");
         for (LottoDto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
@@ -23,13 +23,13 @@ public class ConsoleLottoView implements LottoView {
 
     @Override
     public String readWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         return Console.readLine();
     }
 
     @Override
     public String readBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }
 }
