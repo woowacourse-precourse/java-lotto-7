@@ -11,23 +11,31 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        validateSize(numbers.size());
+        validateNumbers(numbers);
+        validateNumbersDuplicate(numbers);
+    }
+
+    private void validateSize(int size) {
+        if (size != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO.getMessage());
         }
+    }
 
+    private void validateNumbers(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO.getMessage());
             }
         }
+    }
 
+    private void validateNumbersDuplicate(List<Integer> numbers) {
         int number = numbers.getFirst();
-
         for (int i = 1; i < numbers.size(); i++) {
             if (number == numbers.get(i)) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO.getMessage());
             }
-
             number = numbers.get(i);
         }
     }
