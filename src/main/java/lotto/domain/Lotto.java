@@ -1,17 +1,19 @@
 package lotto.domain;
 
+import static lotto.util.LottoNumberValidator.validateLottoNumbers;
+
+import java.util.Collections;
 import java.util.List;
-import lotto.util.LottoNumberValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        LottoNumberValidator.validate(numbers);
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }
