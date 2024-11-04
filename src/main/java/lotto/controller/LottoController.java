@@ -11,9 +11,13 @@ import java.util.List;
 
 public class LottoController {
     private final LottoService lottoService;
+    private final WinningLottoController winningLottoController;
+    private final ResultController resultController;
 
-    public LottoController(LottoService lottoService) {
+    public LottoController(LottoService lottoService, WinningLottoController winningLottoController, ResultController resultController) {
         this.lottoService = lottoService;
+        this.winningLottoController = winningLottoController;
+        this.resultController = resultController;
     }
 
     public void run() {
@@ -23,15 +27,8 @@ public class LottoController {
             List<Lotto> userLottos = lottoService.purchase(amount);
             OutputView.printPurchase(userLottos);
 
-            // 당첨 번호와 보너스 번호를 입력 받음
-            String winningNumbersInput = InputView.getWinningNumbers();
-            Lotto winningNumbers = lottoService.parseLotto(winningNumbersInput);
-            int bonusNumber = InputView.getBonusNumbers();
-
-            WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-            Result result = lottoService.calculateResult(userLottos, winningLotto);
-            OutputView.printResult(result);
-
+            WinningLotto winningLotto = winningLottoController.getWinningLotto();
+            resultController.displayResult(userLottos, winningLotto);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

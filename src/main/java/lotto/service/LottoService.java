@@ -1,77 +1,33 @@
 package lotto.service;
 
-import lotto.factory.LottoFactory;
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
-import lotto.model.Rank;
-import lotto.model.Result;
-import lotto.model.WinningLotto;
 
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoService {
+    public static final int PRICE = 1000;
 
     // 구매 금액에 따라 로또를 생성
     public List<Lotto> purchase(int amount) {
-        int count = amount / LottoFactory.PRICE;
+        int count = amount / PRICE;
 
-        return LottoFactory.create(count);
+        return create(count);
     }
 
-    // 문자열을 파싱하여 Lotto 객체로 변환
-    public Lotto parseLotto(String input) {
-        try {
-            List<Integer> numbers = Arrays.stream(input.split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
+    public static List<Lotto> create(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            // 1부터 45 사이의 중복되지 않는 6개의 랜덤 숫자를 선택
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                    .stream()
+                    .sorted()  // 오름차순 정렬
                     .collect(Collectors.toList());
 
-            return new Lotto(numbers);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함되어있습니다.");
-        }
-    }
-
-    // 사용자 로또와 당첨 번호를 비교하여 결과 계산
-    public Result calculateResult(List<Lotto> userLottos, WinningLotto winningLotto) {
-        Map<Rank, Integer> result = setResult();
-
-        for (Lotto lotto : userLottos) {
-            Rank rank = Rank.valueOf(lotto, winningLotto);
-            result.put(rank, result.get(rank) + 1);
+            lottos.add(new Lotto(numbers));
         }
 
-        int totalPrize = calculateTotalPrize(result);
-        double profitRate = calculateProfitRate(totalPrize, userLottos.size() * LottoFactory.PRICE);
-
-        return new Result(result, profitRate, totalPrize);
-    }
-
-    // 각 Rank에 대한 초기 결과 설정
-    private Map<Rank, Integer> setResult() {
-        Map<Rank, Integer> result = new EnumMap<>(Rank.class);
-        for (Rank rank : Rank.values()) {
-            result.put(rank, 0);
-        }
-
-        return result;
-    }
-
-    // 총 상금을 계산
-    private int calculateTotalPrize(Map<Rank, Integer> result) {
-        return result.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
-                .sum();
-    }
-
-    // 수익률 계산
-    private double calculateProfitRate(int totalPrize, int totalSpent) {
-        if (totalSpent == 0) //0으로 나누는 경우 처리
-            return 0;
-
-        return (double) totalPrize / totalSpent * 100;
+        return lottos;
     }
 }

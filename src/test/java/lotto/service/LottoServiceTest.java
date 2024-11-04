@@ -1,17 +1,12 @@
 package lotto.service;
 
-import lotto.factory.LottoFactory;
 import lotto.model.Lotto;
-import lotto.model.Rank;
-import lotto.model.Result;
-import lotto.model.WinningLotto;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LottoServiceTest {
 
@@ -48,81 +43,29 @@ class LottoServiceTest {
     }
 
     @Test
-    void 유효한_문자열_입력으로_로또_생성() {
-        String input = "1, 2, 3, 4, 5, 6";
-        Lotto lotto = lottoService.parseLotto(input);
+    void 로또_개수_확인() {
+        // 로또 5개 생성 요청
+        int count = 5;
+        List<Lotto> lottos = lottoService.create(count);
 
-        // 생성된 로또 객체의 번호가 입력과 일치하는지 확인
-        assertEquals(List.of(1, 2, 3, 4, 5, 6), lotto.getNumbers(), "입력된 문자열에 따라 올바른 로또가 생성되어야 합니다.");
+        // 생성된 로또의 개수가 요청한 개수와 동일한지 확인
+        assertEquals(count, lottos.size(), "요청한 개수만큼 로또가 생성되어야 합니다.");
     }
 
     @Test
-    void 숫자가_아닌_값이_포함된_입력_예외_확인() {
-        String invalidInput = "1, 2, a, 4, 5, 6";
+    void 로또_번호_유효성_확인() {
+        // 로또 1개 생성 요청
+        List<Lotto> lottos = lottoService.create(1);
+        Lotto lotto = lottos.get(0);
 
-        // 예외가 발생하는지 확인
-        assertThrows(IllegalArgumentException.class, () -> lottoService.parseLotto(invalidInput), "[ERROR] 숫자가 아닌 값이 포함되어있습니다.");
+        // 로또 번호가 6개인지 확인
+        assertEquals(6, lotto.getNumbers().size(), "로또는 6개의 숫자로 구성되어야 합니다.");
+
+        // 로또 번호가 중복되지 않음을 확인
+        assertEquals(6, new HashSet<>(lotto.getNumbers()).size(), "로또 번호는 중복되지 않아야 합니다.");
+
+        // 각 번호가 1~45 범위 내에 있는지 확인
+        assertTrue(lotto.getNumbers().stream().allMatch(num -> num >= 1 && num <= 45),
+                "로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
-
-    @Test
-    void 결과_계산_테스트() {
-        List<Lotto> userLottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 1등
-                new Lotto(List.of(1, 2, 3, 4, 5, 7)), // 2등
-                new Lotto(List.of(1, 2, 3, 4, 5, 8)), // 3등
-                new Lotto(List.of(1, 2, 3, 4, 10, 11)), // 4등
-                new Lotto(List.of(1, 2, 3, 20, 21, 22)) // 5등
-        );
-
-        // 당첨 로또 번호 및 보너스 번호 설정
-        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
-
-        // 결과 계산
-        Result result = lottoService.calculateResult(userLottos, winningLotto);
-
-        // 예상 결과 검증
-        Map<Rank, Integer> matchCount = result.getMatchCount();
-        assertEquals(1, matchCount.get(Rank.FIRST));
-        assertEquals(1, matchCount.get(Rank.SECOND));
-        assertEquals(1, matchCount.get(Rank.THIRD));
-        assertEquals(1, matchCount.get(Rank.FOURTH));
-        assertEquals(1, matchCount.get(Rank.FIFTH));
-        assertEquals(0, matchCount.get(Rank.NONE));
-    }
-
-    @Test
-    void 총_상금_계산_테스트() {
-        List<Lotto> userLottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 1등
-                new Lotto(List.of(1, 2, 3, 4, 5, 7))  // 2등
-        );
-
-        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
-        Result result = lottoService.calculateResult(userLottos, winningLotto);
-
-        int totalPrize = Rank.FIRST.getPrize() + Rank.SECOND.getPrize();
-        assertEquals(totalPrize, result.getTotalPrize(), "총 상금이 올바르게 계산되어야 합니다.");
-    }
-
-    @Test
-    void 수익률_계산_테스트() {
-        // 사용자 로또 생성 (더미 데이터)
-        List<Lotto> userLottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 1등 당첨용
-                new Lotto(List.of(7, 8, 9, 10, 11, 12))
-        );
-
-        // 당첨 로또 생성
-        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
-
-        // 결과 계산
-        Result result = lottoService.calculateResult(userLottos, winningLotto);
-
-        // 예상 수익률 계산
-        int totalSpent = userLottos.size() * LottoFactory.PRICE;
-        double expectedProfitRate = (double) Rank.FIRST.getPrize() / totalSpent * 100;
-
-        assertEquals(expectedProfitRate, result.getProfitRate(), 0.01, "수익률이 올바르게 계산되어야 합니다.");
-    }
-
 }
