@@ -2,9 +2,10 @@ package lotto.service;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
+import lotto.input.BonusNumberProcessor;
+import lotto.input.PurchaseAmountProcessor;
+import lotto.input.WinningNumberProcessor;
 
 public class LottoService {
     public Lottos generateLottos(int purchaseAmount) {
@@ -14,8 +15,26 @@ public class LottoService {
         return new Lottos(lottos);
     }
 
+    public int getValidPurchaseCount(String purchaseAmount) {
+        return PurchaseAmountProcessor.calculatePurchaseCount(purchaseAmount);
+    }
+
+    public Lotto getValidLotto(String winNumbers){
+        List<Integer> winningNumbers = WinningNumberProcessor.processWinningNumbers(winNumbers);
+        return new Lotto(winningNumbers);
+    }
+
+    public int getValidBonusNumber(String bonusNumber){
+        return BonusNumberProcessor.validateAndParse(bonusNumber);
+    }
+
+
+    public WinningLotto getValidWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        Lotto lotto = new Lotto(winningNumbers);
+        return new WinningLotto(lotto, bonusNumber);
+    }
+
     public ResultCalculator calculateResult(Lottos lottos, WinningLotto winningLotto){
         return new ResultCalculator(lottos, winningLotto);
     }
-
 }

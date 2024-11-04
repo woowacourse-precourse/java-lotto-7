@@ -3,9 +3,7 @@ package lotto.controller;
 import static lotto.constant.LottoConstants.PURCHASE_UNIT;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
 import lotto.domain.*;
-import lotto.input.*;
 import lotto.service.*;
 import lotto.view.input.Input;
 import lotto.view.output.Output;
@@ -40,7 +38,7 @@ public class LottoController {
         while (true) {
             String purchaseAmount = input.getPurchaseAmount();
             try {
-                return PurchaseAmountProcessor.calculatePurchaseCount(purchaseAmount);
+                return lottoService.getValidPurchaseCount(purchaseAmount);
             } catch (IllegalArgumentException e) {
                 output.printExceptionMessage(e.getMessage());
             }
@@ -63,8 +61,7 @@ public class LottoController {
         while (true) {
             try {
                 String winNumbers = input.getWinningNumber();
-                List<Integer> winningNumbers = WinningNumberProcessor.processWinningNumbers(winNumbers);
-                return new Lotto(winningNumbers);
+                return lottoService.getValidLotto(winNumbers);
             } catch (IllegalArgumentException e) {
                 output.printExceptionMessage(e.getMessage());
             }
@@ -75,12 +72,10 @@ public class LottoController {
         while (true) {
             try {
                 String bonusNumber = input.getBonusNumber();
-                return BonusNumberProcessor.validateAndParse(bonusNumber);
+                return lottoService.getValidBonusNumber(bonusNumber);
             } catch (IllegalArgumentException e) {
                 output.printExceptionMessage(e.getMessage());
             }
         }
     }
-
-
 }
