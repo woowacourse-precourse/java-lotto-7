@@ -1,22 +1,22 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import lotto.message.ErrorMessage;
 import lotto.view.InputView;
 
 public class WinningNumberValidator {
-    public static List<Integer> validateWinningNumber(String[] winningNumbers) {
-        List<Integer> winningNumberList = new ArrayList<Integer>();
+    public static Set<Integer> validateWinningNumber(String[] winningNumbers) {
+        Set<Integer> winningNumberList = new HashSet<>();
         checkWinningNumbersAmount(winningNumbers);
-
         for (var winningNumber : winningNumbers) {
             checkNullOrEmptyNumber(winningNumber);
             checkInteger(winningNumber);
             checkValidWinningNumber(winningNumber);
+            duplicateWinningNumber(winningNumber, winningNumberList);
             winningNumberList.add(Integer.parseInt(winningNumber));
         }
-
         return winningNumberList;
     }
 
@@ -69,6 +69,21 @@ public class WinningNumberValidator {
     private static void handleValidWinningNumber() {
         try {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            InputView.inputWinningNumber();
+        }
+    }
+
+    private static void duplicateWinningNumber(String winningNumber, Set<Integer> winningNumberList) {
+        if (winningNumberList.contains(Integer.parseInt(winningNumber))) {
+            handleDuplicateWinningNumber();
+        }
+    }
+
+    private static void handleDuplicateWinningNumber() {
+        try {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             InputView.inputWinningNumber();

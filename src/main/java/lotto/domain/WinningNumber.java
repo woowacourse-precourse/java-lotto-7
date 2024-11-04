@@ -1,12 +1,11 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class WinningNumber {
-    private List<Integer> winningNumbers = new ArrayList<Integer>();
+    private Set<Integer> winningNumbers;
 
-    public WinningNumber(List<Integer> winningNumbers) {
+    public WinningNumber(Set<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;
     }
 }

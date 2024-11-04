@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import java.util.Set;
 import lotto.domain.WinningNumberValidator;
 import lotto.message.ErrorMessage;
 import lotto.validator.LottoAmountValidator;
@@ -13,7 +14,7 @@ public class InputView {
         return LottoAmountValidator.validatePurchaseAmout(purchaseAmout);
     }
 
-    public static List<Integer> inputWinningNumber() {
+    public static Set<Integer> inputWinningNumber() {
         OutputView.printWinningNumberInput();
         String winningNumber = Console.readLine();
 
