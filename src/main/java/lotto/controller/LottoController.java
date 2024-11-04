@@ -126,5 +126,10 @@ public class LottoController {
         if (!Pattern.matches("[\\d]+", numberString)) {
             throw new IllegalArgumentException(ErrorStatus.INVALID_BONUS_INPUT.getMessage());
         }
+
+        // 너무 큰 값이 들어온 경우
+        if (numberString.length() > 3) {
+            throw new IllegalArgumentException(ErrorStatus.MONEY_OUT_OF_RANGE.getMessage());
+        }
     }
 }
