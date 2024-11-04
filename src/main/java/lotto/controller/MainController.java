@@ -2,11 +2,14 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoDraw;
-import lotto.domain.LottoPrizeMap;
+import lotto.domain.LottoPriceMap;
 import lotto.service.LottoWinning;
 import lotto.service.CalculateProfitRate;
+import lotto.service.RandomNumbersDraw;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class MainController {
     private int purchaseAmount;
@@ -20,11 +23,11 @@ public class MainController {
         inputBonusNumber();
 
         LottoWinning lottoWinning = new LottoWinning(winningNumbers.getNumbers(), bonusNumber, lottoDraw.getLottoDrawNumbers());
-        LottoPrizeMap lottoPrizeMap = new LottoPrizeMap();
-        OutputView.outputWinningResult(lottoWinning.getWinningLotto(), lottoPrizeMap.getPrizes());
+        LottoPriceMap lottoPriceMap = new LottoPriceMap();
+        OutputView.outputWinningResult(lottoWinning.getWinningLotto(), lottoPriceMap.getPrizes());
 
         CalculateProfitRate calculateRateOfReturn
-                = new CalculateProfitRate(purchaseAmount, lottoWinning.getWinningLotto(), lottoPrizeMap.getPrizes());
+                = new CalculateProfitRate(purchaseAmount, lottoWinning.getWinningLotto(), lottoPriceMap.getPrizes());
         OutputView.outputRateOfReturn(calculateRateOfReturn.getProfitRate());
     }
 
@@ -33,7 +36,9 @@ public class MainController {
             try {
                 purchaseAmount = InputView.inputPurchaseAmount();
 
-                lottoDraw = new LottoDraw(purchaseAmount);
+                RandomNumbersDraw randomNumbersDraw = new RandomNumbersDraw();
+                List<Lotto> lottoDrawNumbers = randomNumbersDraw.randomLottoNumberDraw(purchaseAmount);
+                lottoDraw = new LottoDraw(purchaseAmount, lottoDrawNumbers);
                 OutputView.outputNumberOfPurchaseLotto(lottoDraw);
                 return;
             } catch (IllegalArgumentException e) {

@@ -1,19 +1,16 @@
 package lotto.domain;
 
-import lotto.service.RandomNumbersDraw;
+import lotto.enums.LottoPrice;
 
 import java.util.List;
 
 public class LottoDraw {
-    private final int LOTTO_PRICE = 1000;
-
     private final int purchasesCount;
     private final List<Lotto> lottoDrawNumbers;
 
-    public LottoDraw(int purchaseAmount) {
-        purchasesCount = purchaseAmount / LOTTO_PRICE;
-        RandomNumbersDraw randomNumbersDraw = new RandomNumbersDraw();
-        lottoDrawNumbers = randomNumbersDraw.randomLottoNumberDraw(purchasesCount);
+    public LottoDraw(int purchaseAmount, List<Lotto> lottoDrawNumbers) {
+        purchasesCount = purchaseAmount / LottoPrice.LOTTO_PRICE_UNIT.getPrice();
+        this.lottoDrawNumbers = lottoDrawNumbers;
     }
 
     public int getPurchasesCount() {

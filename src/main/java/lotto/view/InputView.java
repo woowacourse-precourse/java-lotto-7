@@ -23,7 +23,7 @@ public class InputView {
     }
 
     public static List<Integer> inputLottoNumbers() {
-        System.out.println(InputMessage.PRIZE_NUMBERS_INPUT.getMessage());
+        System.out.println(InputMessage.PRICE_NUMBERS_INPUT.getMessage());
         List<String> lottoNumbers = Arrays.stream(Console.readLine().split(LOTTO_NUMBERS_SPLIT_STRING)).toList();
 
         LottoValidator.validateNumbersInteger(lottoNumbers);

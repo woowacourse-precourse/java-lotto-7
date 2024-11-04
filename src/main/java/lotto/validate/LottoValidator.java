@@ -6,18 +6,18 @@ import lotto.enums.ErrorMessage;
 import java.util.List;
 
 public class LottoValidator {
-    private final static int LOTTO_PRIZE = 1000;
+    private final static int LOTTO_PRICE = 1000;
     private final static String IS_STRING_INTEGER = "\\d+";
 
     public static void validatePurchaseAmountPositive(int purchaseAmount) {
         if (purchaseAmount < 0) {
-            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_LOTTO_PRIZE_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_LOTTO_PRICE_ERROR.getMessage());
         }
     }
 
     public static void validatePurchaseAmountUnit(int purchaseAmount) {
-        if (purchaseAmount % LOTTO_PRIZE != 0) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_LOTTO_PRIZE_ERROR.getMessage());
+        if (purchaseAmount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_LOTTO_PRICE_ERROR.getMessage());
         }
     }
 
