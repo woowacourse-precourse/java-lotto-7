@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.exception.LottoException;
+import lotto.exception.LottoValidationException;
 
 public class WinningNumbers {
 
@@ -16,7 +16,7 @@ public class WinningNumbers {
 
     private void validateDuplicate(List<Integer> winningNumbers, int bonusNumber){
         if(winningNumbers.contains(bonusNumber)){
-            throw new LottoException(LottoException.DUPLICATED_BONUS_NUMBER_ERROR);
+            throw new LottoValidationException(LottoValidationException.DUPLICATED_BONUS_NUMBER_ERROR);
         }
     }
 

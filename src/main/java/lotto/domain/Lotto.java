@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
-import lotto.exception.LottoException;
+import lotto.exception.LottoValidationException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -29,7 +29,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6 || new HashSet<>(numbers).size() != 6) {
-            throw new LottoException(LottoException.DUPLICATED_INPUT_ERROR);
+            throw new LottoValidationException(LottoValidationException.DUPLICATED_INPUT_ERROR);
         }
     }
 
