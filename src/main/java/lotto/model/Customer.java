@@ -32,4 +32,17 @@ public class Customer {
         return lottoResults;
     }
 
+    public double getWinningsYield(int clientMoney) {
+        double yield = ((double) clientMoney / getResultSum()) * 100.0;
+        return Math.round(yield * 10) / 10.0;
+    }
+
+    public long getResultSum() {
+        long sum = 0;
+        for (Ranking ranking : lottoResults.keySet()) {
+            sum += (long) ranking.getWinnings() * lottoResults.get(ranking);
+        }
+        return sum;
+    }
+
 }
