@@ -52,7 +52,7 @@ public class WinningService {
         earn += result[2]*1500000;
         earn += result[3]*50000;
         earn += result[4]*5000;
-        earn = Math.round((earn / 8000) * 100)/100.0;
+        earn = Math.round((earn / 8000) * 1000)/10.0;
         return earn;
     }
 }

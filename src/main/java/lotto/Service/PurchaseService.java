@@ -28,13 +28,11 @@ public class PurchaseService {
     }
 
     public List<Lotto> draw(int count) {
-        List<Lotto> lottos = new ArrayList<Lotto>();
-        List<Integer> numbers = new ArrayList<>();
-        for(int i = 0; i < count; i++) {
-            for(int j = 0; j < 6; j++) {
-                numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-                Collections.sort(numbers);
-            }
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            numbers = new ArrayList<>(numbers);  // 변환하여 가변 리스트로 만듭니다.
+            Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
