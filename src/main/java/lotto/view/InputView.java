@@ -1,5 +1,9 @@
 package lotto.view;
 
+import static lotto.model.ErrorMessage.INVALID_BONUS_NUMBER_INPUT;
+import static lotto.model.ErrorMessage.INVALID_PRICE_INPUT;
+import static lotto.model.ErrorMessage.INVALID_WINNING_NUMBERS_INPUT;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,7 +16,7 @@ public class InputView {
 			String purchasePrice = Console.readLine();
 			return Integer.parseInt(purchasePrice);
 		} catch (NumberFormatException exception) {
-			throw new IllegalArgumentException("[ERROR] 구입금액은 숫자이어야 합니다.");
+			throw new IllegalArgumentException(INVALID_PRICE_INPUT.getMessage());
 		}
 	}
 
@@ -21,7 +25,7 @@ public class InputView {
 			String winningNumbers = Console.readLine();
 			return parseToNumbers(winningNumbers);
 		} catch (NumberFormatException exception) {
-			throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자이어야 합니다.");
+			throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_INPUT.getMessage());
 		}
 	}
 
@@ -29,7 +33,7 @@ public class InputView {
 		try {
 			return Integer.parseInt(Console.readLine());
 		} catch (NumberFormatException exception) {
-			throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자이어야 합니다.");
+			throw new IllegalArgumentException(INVALID_BONUS_NUMBER_INPUT.getMessage());
 		}
 	}
 
