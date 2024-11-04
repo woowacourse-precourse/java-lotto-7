@@ -9,7 +9,7 @@ public class Parser {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_INT_NUMBER.getMessage());
+            throw new NumberFormatException(ErrorMessage.INVALID_INT_NUMBER.getMessage());
         }
     }
 
@@ -19,7 +19,7 @@ public class Parser {
               try {
                   intNumbers.add(Integer.parseInt(number));
               } catch (NumberFormatException e) {
-                  throw new IllegalArgumentException(ErrorMessage.INVALID_INT_NUMBER.getMessage());
+                  throw new NumberFormatException(ErrorMessage.INVALID_INT_NUMBER.getMessage());
               }
         }
         return intNumbers;

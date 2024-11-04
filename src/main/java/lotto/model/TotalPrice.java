@@ -40,7 +40,7 @@ public class TotalPrice implements ReturnRate {
         try {
             return ((double) this.totalPrice / money.getMoney()) * PERCENTAGE_FOR_CALCULATION;
         } catch (ArithmeticException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_CALCULATE.getMessage());
+            throw new ArithmeticException(ErrorMessage.INVALID_CALCULATE.getMessage());
         }
     }
 }
