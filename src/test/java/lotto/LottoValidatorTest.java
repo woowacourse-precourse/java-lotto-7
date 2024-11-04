@@ -17,4 +17,10 @@ class LottoValidatorTest {
         assertThatThrownBy(() -> LottoValidator.validateWinningNumbers(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 당첨_번호에_중복된_숫자가_있는_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> LottoValidator.validateWinningNumbers(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
