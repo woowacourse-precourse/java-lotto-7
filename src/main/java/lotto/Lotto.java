@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -27,15 +28,51 @@ public class Lotto {
     }
 
     /**
+     * 로또 번호에 대한 모든 유효성 검사를 수행합니다.
+     *
+     * @param numbers 검증할 로또 번호 리스트
+     * @throws IllegalArgumentException 유효하지 않은 번호가 있는 경우
+     */
+    private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateRange(numbers);
+        validateDuplicate(numbers);
+    }
+
+    /**
      * 로또 번호의 개수가 정확히 6개인지 검증합니다.
      *
      * @param numbers 검증할 로또 번호 리스트
      * @throws IllegalArgumentException 번호의 개수가 6개가 아닌 경우
      */
-    private void validate(List<Integer> numbers) {
-
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    /**
+     * 모든 로또 번호가 1부터 45 사이의 숫자인지 검증합니다.
+     *
+     * @param numbers 검증할 로또 번호 리스트
+     * @throws IllegalArgumentException 1-45 범위를 벗어나는 번호가 있는 경우
+     */
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(num -> num < LottoMachine.MIN_LOTTO_NUMBER
+                || num > LottoMachine.MAX_LOTTO_NUMBER)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    /**
+     * 로또 번호에 중복된 숫자가 있는지 검증합니다.
+     *
+     * @param numbers 검증할 로또 번호 리스트
+     * @throws IllegalArgumentException 중복된 번호가 있는 경우
+     */
+    private void validateDuplicate(List<Integer> numbers) {
+        if (numbers.size() != new HashSet<>(numbers).size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
 
