@@ -37,7 +37,7 @@ public class LottoController {
             try {
                 String input = Console.readLine();
                 int amount = convertToNumber(input);
-                validateNonNegativeAmount(amount);
+                validateMinimumAmount(amount);
                 validateNoChangeAmount(amount);
                 return amount;
             } catch (IllegalArgumentException e) {
@@ -54,8 +54,8 @@ public class LottoController {
         }
     }
 
-    private void validateNonNegativeAmount(int amount) {
-        if(amount < 0) {
+    private void validateMinimumAmount(int amount) {
+        if(amount < LOTTO_PRICE) {
             throw new IllegalArgumentException(NEGATIVE_PURCHASE_AMOUNT);
         }
     }
