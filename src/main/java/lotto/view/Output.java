@@ -26,13 +26,13 @@ public class Output {
         }
         if (rank.equals(Rank.SECOND)) {
             System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",
-                rank.getMatchLotto(), rank.getPrize(), result.get(rank));
+                rank.getMatchLotto(), rank.getFormattingPrize(), result.get(rank));
             return;
         }
-        System.out.printf("%d개 일치 (%s원) - %d개\n", rank.getMatchLotto(), rank.getPrize(), result.get(rank));
+        System.out.printf("%d개 일치 (%s원) - %d개\n", rank.getMatchLotto(), rank.getFormattingPrize(), result.get(rank));
     }
     public static void printEarningRate(double rate){
-        System.out.printf("총 수익률은 %.1f입니다",rate);
+        System.out.printf("총 수익률은 %.1f%%입니다.",rate);
     }
 
 }
