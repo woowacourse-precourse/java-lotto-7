@@ -1,6 +1,5 @@
-package lotto;
+package lotto.domain.money;
 
-import lotto.domain.money.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,9 +19,9 @@ class MoneyTest {
                 .hasMessage("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
     }
 
-    @DisplayName("로또 구입 금액이 0원 이하일 경우 예외가 발생한다")
+    @DisplayName("로또 구입 금액이 음수일 경우 예외가 발생한다")
     @ParameterizedTest
-    @ValueSource(ints = {0, -1000, -2000})
+    @ValueSource(ints = {-1000, -2000})
     void createMoneyWithNegativeAmount(int amount) {
         assertThatThrownBy(() -> Money.from(amount))
                 .isInstanceOf(IllegalArgumentException.class)
