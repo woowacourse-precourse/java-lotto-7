@@ -30,6 +30,7 @@ public class Money {
     public int calculateLottoTickets() {
         return money / ONE_THOUSAND;
     }
+
     public int getMoney() {
         return money;
     }

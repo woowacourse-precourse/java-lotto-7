@@ -49,7 +49,7 @@ public class OutputView {
                 .filter(this::isWinningRank)
                 .sorted(Comparator.comparingInt(LottoRank::getMatchCount)
                         .thenComparingInt(LottoRank::getPrize))
-                .forEach(prize -> System.out.println(getPrintResultPrize(prize, prizeResult)));
+                .forEach(prize -> System.out.println(createPrizeResultMessage(prize, prizeResult)));
     }
 
     private boolean isWinningRank(LottoRank prize) {
@@ -61,7 +61,7 @@ public class OutputView {
     }
 
 
-    private String getPrintResultPrize(LottoRank lottoRank, PrizeResult prizeResult) {
+    private String createPrizeResultMessage(LottoRank lottoRank, PrizeResult prizeResult) {
         if (lottoRank == LottoRank.SECOND) {
             return String.format(SECOND_RESULT_MESSAGE,
                     lottoRank.getMatchCount(),

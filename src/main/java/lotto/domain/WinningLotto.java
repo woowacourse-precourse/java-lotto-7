@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class WinningLotto {
     private static final int MIN_NUMBER = 1;

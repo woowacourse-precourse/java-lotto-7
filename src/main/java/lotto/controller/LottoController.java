@@ -1,9 +1,7 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import lotto.domain.LottoTicket;
 import lotto.domain.Money;
 import lotto.domain.PrizeResult;
