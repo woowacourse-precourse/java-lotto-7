@@ -4,12 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class LottoGame {
     private static final int LOTTO_PRICE = 1000;
     private final List<Lotto> lottos = new ArrayList<>();
-    private List<Integer> winningNumbers;
+    private Lotto winningLotto;
     private int bonusNumber;
 
     // 1. 구입 금액 입력 및 검증
@@ -62,7 +61,8 @@ public class LottoGame {
     // 3. 당첨 번호 및 보너스 번호 입력 및 검증
     public void inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        winningNumbers = parseAndValidate(Console.readLine());
+        List<Integer> numbers = parseNumbers(Console.readLine());
+        winningLotto = new Lotto(numbers);  // Lotto 생성 시 검증 포함
         System.out.println();
     }
 
@@ -73,23 +73,14 @@ public class LottoGame {
         System.out.println();
     }
 
-    private List<Integer> parseAndValidate(String input) {
-        List<Integer> numbers = Arrays.stream(input.split(","))
+    private List<Integer> parseNumbers(String input) {
+        return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        if (numbers.size() != 6 || new HashSet<>(numbers).size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 6개의 숫자여야 합니다.");
-        }
-        for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
-            }
-        }
-        return numbers;
+                .toList();
     }
 
     private void validateBonusNumber() {
-        if (bonusNumber < 1 || bonusNumber > 45 || winningNumbers.contains(bonusNumber)) {
+        if (bonusNumber < 1 || bonusNumber > 45 || winningLotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 하며, 당첨 번호와 중복되지 않아야 합니다.");
         }
     }
@@ -124,7 +115,7 @@ public class LottoGame {
     }
 
     private int getMatchCount(List<Integer> lottoNumbers) {
-        return (int) lottoNumbers.stream().filter(winningNumbers::contains).count();
+        return (int) lottoNumbers.stream().filter(winningLotto.getNumbers()::contains).count();
     }
 
     private void printResults(Map<String, Integer> rankCount) {
