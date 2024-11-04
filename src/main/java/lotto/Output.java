@@ -19,6 +19,7 @@ public class Output {
             6개 일치 (2,000,000,000원) - %s개
             총 수익률은 %s%%입니다.
             """;
+    private static final String YIELD_FORMAT = "%.1f";
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
     public void printPurchaseLotto(List<Lotto> lottos) {
@@ -35,7 +36,7 @@ public class Output {
                 winningResult.get(LottoPrize.THIRD),
                 winningResult.get(LottoPrize.SECOND),
                 winningResult.get(LottoPrize.FIRST),
-                String.format("%.1f", yield)
+                String.format(YIELD_FORMAT, yield)
         );
         System.out.println(result);
     }
