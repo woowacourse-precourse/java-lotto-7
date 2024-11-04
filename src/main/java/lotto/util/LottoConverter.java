@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoConverter {
-    public static List<Integer> parseLottoNumbers(String lottoNumbers) {
-        String[] splitNumbers = lottoNumbers.split(",");
+    public static List<Integer> parseWinningNumbers(String WinningNumbers) {
+        String[] splitNumbers = WinningNumbers.split(",");
         List<Integer> numbers = new ArrayList<>();
 
         for (String splitNumber : splitNumbers) {
@@ -13,6 +13,7 @@ public class LottoConverter {
         }
         return numbers;
     }
+
     public static int parseBonusNumber(String bonusNumber) {
         return Integer.parseInt(bonusNumber);
     }

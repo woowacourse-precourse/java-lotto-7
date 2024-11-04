@@ -2,20 +2,21 @@ package lotto.dto;
 
 public class LottoRequestDto {
     private final String purchaseAmount;
-    private final String lottoNumbers;
+    private final String winningNumbers;
     private final String bonusNumber;
 
-    public LottoRequestDto(String purchaseAmount, String lottoNumbers, String bonusNumber) {
+    public LottoRequestDto(String purchaseAmount, String winningNumbers, String bonusNumber) {
         this.purchaseAmount = purchaseAmount;
-        this.lottoNumbers = lottoNumbers;
+        this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
+
     public String getPurchaseAmount() {
         return this.purchaseAmount;
     }
 
-    public String getLottoNumbers() {
-        return this.lottoNumbers;
+    public String getWinningNumbers() {
+        return this.winningNumbers;
     }
 
     public String getBonusNumber() {

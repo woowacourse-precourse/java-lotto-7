@@ -18,7 +18,7 @@ public class InputView {
             try {
                 purchaseAmount = getPurchaseAmount();
                 PurchaseAmountValidator.validate(purchaseAmount);
-                break ;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -33,7 +33,7 @@ public class InputView {
             try {
                 winningNumbers = getWinningNumbers();
                 WinningNumbersValidator.validate(winningNumbers);
-                break ;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -48,7 +48,7 @@ public class InputView {
             try {
                 bonusNumber = getBonusNumber();
                 BonusNumberValidator.validate(bonusNumber, lottoNumbers);
-                break ;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

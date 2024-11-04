@@ -34,7 +34,7 @@ public class LottoController {
 
         LottoRequestDto lottoRequestDto = new LottoRequestDto(purchaseAmount, winningNumbers, bonusNumber);
         LottoService lottoService = new LottoService(
-                LottoConverter.parseLottoNumbers(lottoRequestDto.getLottoNumbers()),
+                LottoConverter.parseWinningNumbers(lottoRequestDto.getWinningNumbers()),
                 LottoConverter.parseBonusNumber(lottoRequestDto.getBonusNumber()));
 
         LinkedHashMap<String, Integer> userLottoStatistics = lottoService.calculateUserLottoStatistics(userLottos);

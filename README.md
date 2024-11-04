@@ -68,3 +68,38 @@
       - 총 당첨금 계산
       - 수익률(총 당첨금 / 구입 금액 * 100) 계산 후 출력 (소수점 둘째 자리에서 반올림)
       - 예외 상황 발생 시 에러 문구 출력
+
+### 프로젝트 구조
+- **constant**: 프로젝트 전반에서 사용되는 상수들을 정의하는 클래스를 정의합니다.
+  - `ErrorMessage`: 발생할 수 있는 다양한 에러에 대한 메시지를 상수로 정의한 클래스입니다.
+  - `LottoConstant`: 로또 관련 상수들을 정의한 클래스입니다. 예를 들어, 로또 번호의 범위, 한 장의 가격, 로또 번호의 개수 같은 필요한 정보들을 저장합니다.
+  - `LottoMatchConstant`: 로또 결과에 따른 상수를 정의한 클래스입니다. 예를 들어, 3개 일치, 4개 일치 같은 정보를 저장합니다.
+- **controller**: `LottoController` 클래스는 전체 흐름을 제어합니다.
+  - `InputView`를 통해 사용자에게 구매금액을 입력받습니다.
+  - `PurchaseAmountValidator`를 통해 입력값의 유효성을 검사합니다.
+  - `LottoService`를 통해 구매금액만큼 로또를 구매한 후 `OutputView`를 통해 로또들을 출력합니다.
+  - `InputView`를 통해 사용자에게 당첨번호와 보너스번호를 입력받습니다.
+  - `WinningNumbersValidator`, `BonusNumberValidator`를 통해 입력값의 유효성을 검사합니다.
+  - 유효성 검사를 마친 입력값들을 `LottoRequestDto` 객체에 저장합니다.
+  - `LottoRequestDto` 객체를 이용해서 `LottoService` 객체를 생성합니다.,
+  - `LottoService`를 통해 당첨 통계를 계산하고, `OutputView`를 통해 당첨 통계를 출력합니다.
+  - `LottoService`를 통해 수익률을 계산하고, `OutputView`를 통해 수익률을 출력합니다.
+- **dto**: 데이터 전송 객체를 정의하는 클래스입니다.
+  - `LottoRequestDto`: 사용자가 입력한 정보(구매금액, 당첨번호, 보너스번호)를 담기 위한 클래스입니다.
+- **model**
+  - `Lotto`: 로또 번호를 저장하고, 입력된 유효성을 검사하는 클래스입니다.
+- **service**
+  - `LottoCreator`: 로또 번호를 무작위로 생성해서 로또를 생성하는 클래스입니다.
+  - `LottoProfitCalculator`: 로또의 수익률을 계산하는 클래스입니다.
+  - `LottoStatistics`: 로또의 당첨 통계를 계산하는 클래스입니다.
+  - `LottoService`: `LottoCreator`, `LottoProfitCalculator`, `LottoStatistics`들을 호출하여 로또 번호 생성,
+당첨 통계 계산 및 수익률 계산 등의 작업을 진행합니다.
+- **util**
+  - `LottoConverter`: 당첨 번호와 보너스 번호를 문자열에서 정수 리스트로 변환하는 클래스입니다.
+- **validator**
+  - `PurchaseAmountValidator`: 입력받은 구매 금액에 대한 유효성 검사를 합니다.
+  - `WinningNumbersValidator`: 입력받은 당첨 번호에 대한 유효성 검사를 합니다.
+  - `BonusNumberValidator`: 입력받은 보너스 번호에 대한 유효성 검사를 합니다.
+- **view**
+  - `InputView`: 사용자로부터 입력값을 받습니다.
+  - `OutputView`: 출력을 담당합니다.

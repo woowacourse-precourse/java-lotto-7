@@ -16,6 +16,7 @@ public class LottoStatistics {
         this.winningNumbers = winningNumbers;
         this.winningBonusNumber = winningBonusNumber;
     }
+
     public LinkedHashMap<String, Integer> calculateUserLottoStatistics(List<Lotto> userLottos) {
         LinkedHashMap<String, Integer> userLottoStatistics = new LinkedHashMap<>();
         userLottoStatistics.put(MATCH_3.getMatch(), 0);
