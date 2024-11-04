@@ -19,4 +19,11 @@ public class ConvertInputTest {
     void 구입금액에_수를_입력하면_예외가_발생하지_않는다(String input, int expected) {
         assertThat(ConvertInput.makeMoneyToInt(input)).isEqualTo(expected);
     }
+
+    @Test
+    void 로또_번호에_문자가_포함되면_예외가_발생한다() {
+        assertThatThrownBy(() -> ConvertInput.makeWinningNumberToList("우테코,프리코스,3주차,화이팅,7,7"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
