@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.common.Constants;
+import lotto.dto.LottoPurchaseDTO;
 
 public class LottoFactory {
     private int lottoCount;
@@ -10,8 +11,6 @@ public class LottoFactory {
 
     public LottoFactory(Lottos lottos) {
         this.lottos = lottos;
-
-        createLottos();
     }
 
     private void calculateLottoCount(int price) {
@@ -25,7 +24,9 @@ public class LottoFactory {
         return randomNumbers;
     }
 
-    private void createLottos() {
+    public void createLottos(LottoPurchaseDTO lottoPurchaseDTO) {
+        calculateLottoCount(lottoPurchaseDTO.getPrice());
+
         for(int i=0; i<lottoCount; i++) {
             Lotto lotto = new Lotto(createRandomNumbers());
             lottos.addLotto(lotto);

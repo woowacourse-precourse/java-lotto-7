@@ -16,8 +16,8 @@ public class Application {
 
         Lottos lottos = new Lottos();
         LottoFactory lottoFactory = new LottoFactory(lottos);
-        LottoService lottoService = new LottoService(lottoFactory);
-        LottoController lottoController = new LottoController(inputParser, outputView, lottoService);
+        LottoService lottoService = new LottoService();
+        LottoController lottoController = new LottoController(inputParser, outputView, lottoFactory, lottoService);
 
         lottoController.start();
     }
