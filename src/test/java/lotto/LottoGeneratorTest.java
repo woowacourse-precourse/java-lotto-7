@@ -49,4 +49,13 @@ class LottoGeneratorTest {
             Assertions.assertTrue(numbers.get(i) < numbers.get(i + 1), "로또 번호는 오름차순으로 정렬되어야 합니다.");
         }
     }
+    @Test
+    @DisplayName("보너스 번호 생성 시 당첨 번호와 중복되지 않아야 한다")
+    void testGenerateBonusNumber() {
+        List<Integer> winningNumbers = List.of(1, 5, 10, 20, 30, 40);
+        int bonusNumber = LottoGenerator.generateBonusNumber(winningNumbers);
+
+        Assertions.assertTrue(bonusNumber >= 1 && bonusNumber <= 45, "보너스 번호는 1부터 45 사이여야 합니다.");
+        Assertions.assertFalse(winningNumbers.contains(bonusNumber), "보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+    }
 }
