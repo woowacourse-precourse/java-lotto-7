@@ -26,23 +26,50 @@ public class LottoController {
     }
 
     public void process() {
-        output.printPurchaseAmount();
-        int amount = userInput.getPurchaseAmount();
-
+        int amount = getValidAmount();
         Lottos lottos = lottoGenerator.getnerateLottos(amount);
         output.printPurchaseResult(lottos);
 
-        output.printWinNumbers();
-        List<Integer> winNumbers = userInput.inputWinNumbers();
+        List<Integer> winNumbers = getValidWinNumbers();
+        int bonusNumber = getValidBonusNumber(winNumbers);
 
-        output.printBonusNumber();
-        int bonusNumber = userInput.inputBonusNumber(winNumbers);
-
-        Map<LottoRule, Integer> matchedLotto = lottoMatcher.calculateMatch(lottos, winNumbers, bonusNumber);
-
-        double profitRate = profitCalculator.calculateProfitRate(matchedLotto,amount);
+        Map<LottoRule, Integer> matchedLotto = lottoMatcher.calculateMatchResult(lottos, winNumbers, bonusNumber);
+        double profitRate = profitCalculator.calculateProfitRate(matchedLotto, amount);
 
         output.printMatchedLottoResult(matchedLotto);
         output.printProfitRate(profitRate);
+    }
+
+    private int getValidAmount() {
+        while (true) {
+            try {
+                output.printPurchaseAmount();
+                return userInput.getPurchaseAmount();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> getValidWinNumbers() {
+        while (true) {
+            try {
+                output.printWinNumbers();
+                return userInput.inputWinNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getValidBonusNumber(List<Integer> winNumbers) {
+        while (true) {
+            try {
+                output.printBonusNumber();
+                return userInput.inputBonusNumber(winNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
