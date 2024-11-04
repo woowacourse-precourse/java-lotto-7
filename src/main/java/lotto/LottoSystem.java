@@ -8,13 +8,32 @@ import java.util.List;
 public class LottoSystem {
     private static final String PURCHASE_GUIDE = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_RESULT = "%d개를 구매했습니다.";
+    private static final String WINNING_NUMBER_GUIDE = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_GUIDE = "보너스 번호를 입력해 주세요.";
 
     private final List<Lotto> purchasedLottos = new ArrayList<>();
+    private WinningNumber winningNumber;
 
     public void start() {
         Money money = purchaseMoney();
         generateLottos(money);
         displayPurchaseResult();
+        inputWinningNumbers();
+    }
+
+    private void inputWinningNumbers() {
+        while (true) {
+            try {
+                System.out.println(WINNING_NUMBER_GUIDE);
+                String winningInput = Console.readLine();
+                System.out.println(BONUS_NUMBER_GUIDE);
+                String bonusInput = Console.readLine();
+                winningNumber = new WinningNumber(winningInput, bonusInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Money purchaseMoney() {
