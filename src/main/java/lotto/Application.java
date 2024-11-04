@@ -1,7 +1,16 @@
 package lotto;
 
+import lotto.run.*;
+import lotto.view.*;
+
+import java.util.List;
+import java.util.Map;
+
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        long purchasePrice = Input.inputNum();
+        System.out.println(purchasePrice / 1000 + "개를 구매했습니다.");
+
     }
 }
