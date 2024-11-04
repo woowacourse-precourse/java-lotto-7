@@ -10,13 +10,20 @@ public class Money {
     private final int money;
 
     public Money(int money) {
-        validate(money);
+        validateRange(money);
+        validateDivision(money);
         this.money = money;
     }
 
-    private void validate(int money) throws IllegalArgumentException {
-        if (money < MINIMUM_MONEY || money > MAXIMUM_MONEY || money % LOTTO_PRIZE != 0) {
+    private void validateRange(int money) throws IllegalArgumentException {
+        if (money < MINIMUM_MONEY || money > MAXIMUM_MONEY) {
             throw new IllegalArgumentException(MoneyExceptionType.OUT_OF_RANGE_MONEY.getMessage());
+        }
+    }
+
+    private void validateDivision(int money) throws IllegalArgumentException {
+        if (money % LOTTO_PRIZE != 0) {
+            throw new IllegalArgumentException(MoneyExceptionType.NON_DIVISIBLE_MONEY.getMessage());
         }
     }
 

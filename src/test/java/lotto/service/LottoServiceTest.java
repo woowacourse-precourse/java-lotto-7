@@ -34,7 +34,7 @@ class LottoServiceTest {
     void exception_non_divisible_money() {
         assertThatThrownBy(() -> lottoService.checkAndConvertInputMoney("1234"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(MoneyExceptionType.OUT_OF_RANGE_MONEY.getMessage());
+                .hasMessage(MoneyExceptionType.NON_DIVISIBLE_MONEY.getMessage());
     }
 
     @ParameterizedTest
