@@ -22,22 +22,35 @@ public class OutputView {
     }
 
     private void printLottoNumbers(Lottos lottos) {
-        for (Lotto lotto : lottos.getLottos()) {
-            System.out.println(lotto);
-        }
+        lottos.forEach(this::printLotto);
     }
 
-    private void printRankResults(WinningResult result) {
+    private void printLotto(Lotto lotto) {
+        System.out.println(lotto);
+    }
+
+    public void printWinningStatistics(WinningResult result) {
+        System.out.println(STATISTICS_HEADER);
+        printRankStatistics(result);
+        printProfitRate(result);
+    }
+
+    private void printRankStatistics(WinningResult result) {
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.NONE) {
-                printRankResult(rank, result);
+                printRankCount(rank, result);
             }
         }
     }
 
-    private void printRankResult(LottoRank rank, WinningResult result) {
+    private void printRankCount(LottoRank rank, WinningResult result) {
         int count = result.getWinningCount(rank);
         System.out.printf(WINNING_RESULT_FORMAT, rank, count);
+        System.out.println();
+    }
+
+    private void printProfitRate(WinningResult result) {
+        System.out.printf(PROFIT_RATE_FORMAT, result.calculateProfitRate());
         System.out.println();
     }
 }
