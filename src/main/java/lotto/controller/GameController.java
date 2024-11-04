@@ -73,7 +73,8 @@ public class GameController {
         for (Lotto usernumber : lottos) {
             prize += LottoCalculator.calculatePrize(usernumber.getNumbers(), winnerNumbers, bonusNumber);
         }
-        finalMatchNumbers = LottoCalculator.getFinalMatchNumbers();
+        System.out.println(finalMatchNumbers);
+        System.out.println(prize);
     }
 
     private void printPrize() {
