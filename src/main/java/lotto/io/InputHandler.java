@@ -7,9 +7,13 @@ import java.util.stream.Collectors;
 
 public class InputHandler {
 
-    public Integer getPurchaseCost() {
+    public long getPurchaseCost() {
         try {
-            Integer purchaseCost = Integer.valueOf(Console.readLine());
+            long purchaseCost = Long.parseLong(Console.readLine());
+
+            if (purchaseCost <= 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 0원이나 음수가 될 수 없습니다.");
+            }
 
             if (purchaseCost % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
