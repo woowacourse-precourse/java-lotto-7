@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.constant.Rank;
+
 import java.util.List;
 
 public class Output {
@@ -27,11 +29,15 @@ public class Output {
     }
 
 
-    public static void requestWinningResult(List<Integer> winningResult) {
+    public static void requestWinningResult(List<Integer> winningResult, int five_bonus) {
         System.out.println(" ");
         System.out.println("당첨통계");
         System.out.println("---");
-        System.out.println();
+        System.out.println("3개 일치 ("+Rank.FIFTH.winningPrize()+"원) - "+winningResult.get(3)+"개");
+        System.out.println("4개 일치 ("+Rank.FIRTH.winningPrize()+"원) - "+winningResult.get(4)+"개");
+        System.out.println("5개 일치 ("+Rank.Third.winningPrize()+"원) - "+winningResult.get(5)+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 ("+Rank.SECOND.winningPrize()+"원) - "+five_bonus+"개");
+        System.out.println("6개 일치 ("+Rank.FIRST.winningPrize()+"원) - "+winningResult.get(6)+"개");
     }
 
 
