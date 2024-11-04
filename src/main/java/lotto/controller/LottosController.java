@@ -4,6 +4,7 @@ import lotto.enums.WinningMoney;
 
 import lotto.service.LottoCalculateService;
 import lotto.service.LottoSaveService;
+import lotto.validation.LottoWinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.UserInput;
@@ -23,20 +24,39 @@ public class LottosController {
     }
 
     public void buy() {
-        int purchaseCount = lottoService.buyLottos(inputView.inputPurchaseMoney());
-        outputView.outputLottoCount(purchaseCount);
-        lottoService.saveLottos(purchaseCount);
+        while(true)
+            try {
+                int purchaseCount = lottoService.buyLottos(inputView.inputPurchaseMoney());
+                outputView.outputLottoCount(purchaseCount);
+                lottoService.saveLottos(purchaseCount);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         outputView.outputStatistics(lottoService.getLottos());
         save();
     }
 
     public void save() {
-        String winningNumber = inputView.inputWinningNumbers();
-        String bonusNumber = inputView.inputBonusBumber();
-        lottoService.saveWinningLotto(winningNumber);
-        lottoService.saveBonusNumber(bonusNumber);
+        while (true)
+            try {
+                String winningNumber = inputView.inputWinningNumbers();
+                lottoService.saveWinningLotto(winningNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        while(true)
+            try {
+                String bonusNumber = inputView.inputBonusBumber();
+                lottoService.saveBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         matchLotto();
     }
+
 
     public void matchLotto() {
         lottoService.makeDataForReturn();
