@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @AfterEach
@@ -34,6 +33,19 @@ class LottoTest {
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
     @Test
+    void 로또_번호가_1_에서_45_사이의_값이_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 정상적인_로또_번호_입력시_정상_작동() {
+        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatNoException().isThrownBy(() -> new Lotto(validNumbers));
+    }
+
+    @Test
     void search() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
@@ -54,5 +66,9 @@ class LottoTest {
 
         assertThat(LottoEnum.sum()).isEqualTo(new BigDecimal(2000000000));
     }
+
+
+
+
 
 }
