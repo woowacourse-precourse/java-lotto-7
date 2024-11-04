@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.Service.LottoService;
+import lotto.service.LottoService;
 import lotto.model.Lotto;
 import lotto.validator.InputValidator;
 import org.junit.jupiter.api.Test;
