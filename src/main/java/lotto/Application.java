@@ -27,6 +27,9 @@ public class Application {
 
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
         HitLotto hitLotto = new HitLotto(hitNumbers, bonusNumber);
 
         Map<Rank, Integer> hitDetails = PlayLotto.getHitDetails(totalLotto, hitLotto);
@@ -45,6 +48,10 @@ public class Application {
                             getFormattingPrice(entry.getKey().getWinningPrice()),
                             entry.getValue());
                 });
+
+        long winningAmount = PlayLotto.getHitAmount(hitDetails);
+        double lottoYield=PlayLotto.getLottoYield(winningAmount, amount);
+        System.out.println("총 수익률은 "+lottoYield+"%입니다.");
     }
     private static String getFormattingPrice(int winningPrice) {
         DecimalFormat df = new DecimalFormat("###,###");

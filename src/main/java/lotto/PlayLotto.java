@@ -39,4 +39,13 @@ public class PlayLotto {
         int bonusNumber = hitLotto.getBonusNumber();
         return numbers.contains(bonusNumber);
     }
+    public static long getHitAmount(Map<Rank, Integer> winningDetails) {
+        return winningDetails.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getWinningPrice() * entry.getValue())
+                .sum();
+    }
+    public static double getLottoYield(long winningAmount, int money) {
+        double lottoYield = 100 + (double) (winningAmount - money) / money * 100;
+        return Math.round(lottoYield * 10) / 10.0;
+    }
 }
