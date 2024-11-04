@@ -10,7 +10,6 @@ public class WinningResultService {
     public WinningResult determineWinningRanks(LottoTickets lottoTickets, WinningLotto winningLotto) {
         WinningResult winningResult = new WinningResult();
 
-        // 각 티켓을 순회하며 당첨 등수를 계산
         lottoTickets.getLottoTickets().forEach(lotto -> {
             int matchCount = winningLotto.getMatchCount(lotto);
             boolean hasBonus = winningLotto.hasBonusNumber(lotto);
@@ -19,5 +18,9 @@ public class WinningResultService {
         });
 
         return winningResult;
+    }
+
+    public double calculateProfitRate(int totalPrize, int purchaseAmount) {
+        return (double) totalPrize / purchaseAmount * 100;
     }
 }
