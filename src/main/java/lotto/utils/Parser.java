@@ -17,9 +17,13 @@ public final class Parser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
+            if (input.matches("-?\\d+")) {
+                throw new ParserException(ParserExceptionMessage.NUMBER_OUT_OF_RANGE);
+            }
             throw new ParserException(ParserExceptionMessage.NOT_NUMBER);
         }
     }
+
 
     public static List<Integer> splitBySeparator(String input){
         return Arrays.stream(input.split(SEPARATOR, -1))
