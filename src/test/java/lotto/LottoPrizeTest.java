@@ -10,6 +10,7 @@ import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Purchase;
+import lotto.model.LottosPrizeCount;
 import lotto.service.LottoPrize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,23 +41,24 @@ class LottoPrizeTest {
     @Test
     void 로또_당첨을_확인한다() {
         Lottos lottos = new Lottos(tickets);
-        Map<Rank, Integer> rankCount = lottoPrize.determineLottoPrizes(lottos);
+        LottosPrizeCount lottosPrizeCount = lottoPrize.determineLottoPrizes(lottos);
+        Map<Rank, Integer> prizeCounts = lottosPrizeCount.getPrizeCounts();
 
-        assertThat(rankCount).containsEntry(Rank.FIRST, 1);
-        assertThat(rankCount).containsEntry(Rank.SECOND, 1);
-        assertThat(rankCount).containsEntry(Rank.THIRD, 1);
-        assertThat(rankCount).containsEntry(Rank.FOURTH, 1);
-        assertThat(rankCount).containsEntry(Rank.FIFTH, 1);
-        assertThat(rankCount).containsEntry(Rank.NOTHING, 3);
+        assertThat(prizeCounts).containsEntry(Rank.FIRST, 1);
+        assertThat(prizeCounts).containsEntry(Rank.SECOND, 1);
+        assertThat(prizeCounts).containsEntry(Rank.THIRD, 1);
+        assertThat(prizeCounts).containsEntry(Rank.FOURTH, 1);
+        assertThat(prizeCounts).containsEntry(Rank.FIFTH, 1);
+        assertThat(prizeCounts).containsEntry(Rank.NOTHING, 3);
     }
 
     @Test
     void 수익률을_계산한다() {
         Lottos lottos = new Lottos(tickets);
-        Map<Rank, Integer> rankCount = lottoPrize.determineLottoPrizes(lottos);
+        LottosPrizeCount lottosPrizeCount = lottoPrize.determineLottoPrizes(lottos);
         Purchase purchase = new Purchase(10000);
 
-        Double rateOfReturn = lottoPrize.calculateRateOfReturn(rankCount, purchase);
+        Double rateOfReturn = lottoPrize.calculateRateOfReturn(lottosPrizeCount, purchase);
         assertThat(rateOfReturn).isEqualTo(20_315_550.0);
     }
 }

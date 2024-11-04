@@ -3,12 +3,13 @@ package lotto;
 import static lotto.constant.PurchaseConfig.PURCHASE_UNIT;
 
 import java.util.Map;
-import lotto.constant.LottoConfig;
+
 import lotto.constant.LottoConfig.Rank;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Purchase;
+import lotto.model.LottosPrizeCount;
 import lotto.service.LottoPrize;
 import lotto.service.LottoTicketing;
 import lotto.util.InputHandler;
@@ -23,10 +24,10 @@ public class LottoSystem {
         Bonus bonus = getBonusNumber(lotto);
 
         LottoPrize lottoPrize = new LottoPrize(lotto, bonus);
-        Map<LottoConfig.Rank, Integer> result = lottoPrize.determineLottoPrizes(lottos);
-        Double rateOfReturn = lottoPrize.calculateRateOfReturn(result, purchase);
+        LottosPrizeCount lottosPrizeCount = lottoPrize.determineLottoPrizes(lottos);
+        Double rateOfReturn = lottoPrize.calculateRateOfReturn(lottosPrizeCount, purchase);
 
-        printLottoSummary(result, rateOfReturn);
+        printLottoSummary(lottosPrizeCount.getPrizeCounts(), rateOfReturn);
     }
 
     private Purchase settingPurchase() {

@@ -6,6 +6,7 @@ import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Purchase;
+import lotto.model.LottosPrizeCount;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,16 +29,16 @@ public class LottoPrize {
         this.bonus = bonus;
     }
 
-    public Double calculateRateOfReturn(Map<Rank, Integer> prizeCountForRanks, Purchase purchase) {
-        long totalPrizeMoney = calculateTotalPrizeMoney(prizeCountForRanks);
+    public Double calculateRateOfReturn(LottosPrizeCount lottosPrizeCount, Purchase purchase) {
+        long totalPrizeMoney = calculateTotalPrizeMoney(lottosPrizeCount.getPrizeCounts());
         int cost = purchase.getCost();
         double rateOfReturn = ((double) totalPrizeMoney / cost) * HUNDRED_PERCENT;
         return roundToFirstDecimal(rateOfReturn);
     }
 
-    private long calculateTotalPrizeMoney(Map<Rank, Integer> prizeCountForRanks) {
+    private long calculateTotalPrizeMoney(Map<Rank, Integer> prizeCounts) {
         return Stream.of(Rank.values())
-                .mapToLong(rank -> rank.calculatePrizeMoney(prizeCountForRanks.getOrDefault(rank, DEFAULT_VALUE)))
+                .mapToLong(rank -> rank.calculatePrizeMoney(prizeCounts.getOrDefault(rank, DEFAULT_VALUE)))
                 .sum();
     }
 
@@ -45,14 +46,14 @@ public class LottoPrize {
         return Math.round(rateOfReturn * ROUND_TO_FIRST_DECIMAL) / ROUND_TO_FIRST_DECIMAL;
     }
 
-    public Map<Rank, Integer> determineLottoPrizes(Lottos lottos) {
-        Map<Rank, Integer> prizeCountForRanks = new HashMap<>();
+    public LottosPrizeCount determineLottoPrizes(Lottos lottos) {
+        Map<Rank, Integer> prizeCounts = new HashMap<>();
 
         for (Lotto ticket : lottos.getTickets()) {
             Rank rank = determineRank(lotto.getNumbers(), ticket.getNumbers());
-            prizeCountForRanks.put(rank, prizeCountForRanks.getOrDefault(rank, DEFAULT_VALUE) + COUNT_INCREMENT_VALUE);
+            prizeCounts.put(rank, prizeCounts.getOrDefault(rank, DEFAULT_VALUE) + COUNT_INCREMENT_VALUE);
         }
-        return prizeCountForRanks;
+        return new LottosPrizeCount(prizeCounts);
     }
 
     private Rank determineRank(List<Integer> prizeNumbers, List<Integer> userNumbers) {
