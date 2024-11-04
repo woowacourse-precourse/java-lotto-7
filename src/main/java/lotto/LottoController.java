@@ -12,12 +12,12 @@ public class LottoController {
     }
 
     public void run() {
-        Integer count = getCount();
+        Integer lottoPurchaseCount = getCount();
         WinningNumbers winningNumbers = getWinningNumbers();
-        Lottos lottos = createLottos(count);
+        Lottos lottos = createLottos(lottoPurchaseCount);
 
-        displayLottos(count, lottos);
-        displayResults(lottos, winningNumbers, count);
+        displayLottos(lottoPurchaseCount, lottos);
+        displayResults(lottos, winningNumbers, lottoPurchaseCount);
     }
 
     public void displayResults(Lottos lottos, WinningNumbers winningNumbers, Integer count) {
@@ -41,7 +41,7 @@ public class LottoController {
         return inputHandler.handleBonusNumber(winNumberLotto);
     }
 
-    public Lottos createLottos(Integer count) {
-        return lottoService.createLottos(count);
+    public Lottos createLottos(Integer lottoPurchaseCount) {
+        return lottoService.createLottos(lottoPurchaseCount);
     }
 }

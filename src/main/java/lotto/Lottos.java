@@ -18,7 +18,7 @@ public class Lottos {
         List<Integer> winNumbers = winningNumbers.getWinLottoNumbers();
 
         return lottos.stream()
-                .map(lotto -> determineRank(lotto, winNumbers, winningNumbers.getBonus()))
+                .map(lotto -> determineRank(lotto, winNumbers, winningNumbers.getBonusNumber()))
                 .collect(Collectors.toList());
     }
 

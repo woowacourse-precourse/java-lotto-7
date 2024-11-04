@@ -37,10 +37,12 @@ public class Input {
 
     public WinningNumbers getBonusNumberWithGuide(Lotto lotto) {
         view.printGuide(INPUT_BONUS_NUMBER_GUIDE);
-        return new WinningNumbers(lotto, getValidatedBonusNumber());
+        return getValidatedBonusNumber(lotto);
     }
 
-    private Integer getValidatedBonusNumber() {
-        return StringParser.toInteger(Console.readLine());
+    private WinningNumbers getValidatedBonusNumber(Lotto lotto) {
+        String input = Console.readLine();
+        Bonus bonus = new Bonus(StringParser.toInteger(input));
+        return new WinningNumbers(lotto, bonus);
     }
 }

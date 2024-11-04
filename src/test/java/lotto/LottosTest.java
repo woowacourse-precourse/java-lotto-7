@@ -29,17 +29,17 @@ class LottosTest {
         return Stream.of(
                 new Object[] {
                         List.of(new Lotto(List.of(6, 34, 2, 7, 9, 10)), new Lotto(List.of(1, 2, 3, 4, 5, 6))),
-                        new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 45)), 10),
+                        new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 45)), new Bonus(10)),
                         List.of(Rank.THIRD)
                 },
                 new Object[] {
                         List.of(new Lotto(List.of(11, 12, 13, 14, 15, 16)), new Lotto(List.of(17, 18, 19, 20, 21, 22))),
-                        new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 45)), 10),
+                        new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 45)), new Bonus(10)),
                         List.of(Rank.NONE)
                 },
                 new Object[] {
                         List.of(new Lotto(List.of(1, 2, 3, 4, 5, 45)), new Lotto(List.of(1, 2, 3, 4, 5, 10))),
-                        new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 45)), 10),
+                        new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 45)), new Bonus(10)),
                         List.of(Rank.FIRST, Rank.SECOND)
                 },
                 new Object[] {
@@ -47,7 +47,7 @@ class LottosTest {
                                 new Lotto(List.of(1, 2, 3, 4, 6, 10)),
                                 new Lotto(List.of(1, 2, 3, 4, 5, 8)),
                                 new Lotto(List.of(6, 7, 8, 9, 10, 11))),
-                        new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 45)), 10),
+                        new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 45)), new Bonus(10)),
                         List.of(Rank.SECOND, Rank.FOURTH, Rank.THIRD, Rank.NONE)
                 }
         );
