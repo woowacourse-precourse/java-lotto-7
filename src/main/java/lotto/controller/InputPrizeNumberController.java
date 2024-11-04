@@ -40,8 +40,6 @@ public class InputPrizeNumberController {
                 List<Integer> prizeNumbers = Arrays.stream(inputNumbers)
                         .mapToInt(Integer::parseInt).boxed()
                         .toList();
-                checkNumberListRange(prizeNumbers);
-                checkNumbersDuplicate(prizeNumbers);
 
                 ViewUtil.printEmptyLine();
                 return new Lotto(prizeNumbers);
@@ -84,12 +82,6 @@ public class InputPrizeNumberController {
     private void checkNumberFormat(final String number) {
         if (!number.matches(INT_REGEX)) {
             throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION.getMessage());
-        }
-    }
-
-    private void checkNumberListRange(final List<Integer> numbers) {
-        for (final int number : numbers) {
-            checkNumberRange(number);
         }
     }
 
