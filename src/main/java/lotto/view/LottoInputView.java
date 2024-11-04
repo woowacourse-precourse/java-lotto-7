@@ -23,6 +23,7 @@ public class LottoInputView {
     }
 
     public String getBonusInput() {
+        System.out.print(BLANK_LINE);
         System.out.println(BONUS_REQUEST);
 
         return Console.readLine();

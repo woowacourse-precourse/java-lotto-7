@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.Map.Entry;
+import lotto.domain.Prize;
 import lotto.domain.PrizeResult;
 import lotto.domain.RandomLottos;
 import lotto.domain.WinningLotto;
@@ -40,5 +42,12 @@ public class LottoController {
         WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonus);
 
         PrizeResult prizeResult = lottoService.calculateResult(randomLottos, winningLotto);
+
+        outputView.printGuideMessage();
+        for (Entry<Prize, Integer> prize : prizeResult.getEntrySet()) {
+            outputView.printWinningResults(
+                    prize.getKey().getMatchingCount(), prize.getKey().getMoney(),
+                    prize.getValue(), prize.getKey().isMatchBonus());
+        }
     }
 }

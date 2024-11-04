@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class PrizeResult {
 
@@ -30,5 +32,9 @@ public class PrizeResult {
 
     public void removeNoPrize() {
         prizes.remove(Prize.NO_PRIZE);
+    }
+
+    public Set<Entry<Prize, Integer>> getEntrySet() {
+        return prizes.entrySet();
     }
 }
