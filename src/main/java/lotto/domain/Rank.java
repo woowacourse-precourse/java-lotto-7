@@ -28,7 +28,10 @@ public enum Rank {
     }
 
     private boolean isMatchingCriteria(int matchCount, boolean isBonusMatched) {
-        return this.matchCount == matchCount && this.isBonusMatched == isBonusMatched;
+        if (this == SECOND) {
+            return this.matchCount == matchCount && this.isBonusMatched == isBonusMatched;
+        }
+        return this.matchCount == matchCount;
     }
 
     public int getMatchCount() {
