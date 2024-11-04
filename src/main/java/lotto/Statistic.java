@@ -11,6 +11,7 @@ public class Statistic {
 
     public Statistic(List<Rank> ranks) {
         this.statistics = createStatistics(ranks);
+
     }
 
     private Map<Rank, Integer> createStatistics(List<Rank> ranks) {
@@ -24,5 +25,9 @@ public class Statistic {
 
     private int countRankFrequency(List<Rank> ranks, Rank objectiveRank) {
         return Collections.frequency(ranks, objectiveRank);
+    }
+
+    public int getFrequencyOf(Rank rank) {
+        return statistics.get(rank);
     }
 }
