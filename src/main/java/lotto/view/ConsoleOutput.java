@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.configuration.Prize;
 import lotto.dto.ProfitStatisticsDto;
 import lotto.entity.Lotto;
@@ -32,7 +31,7 @@ public class ConsoleOutput {
     public void printPurchasedLottos(List<Lotto> lottos) {
         ConsoleUtils.printFormattedMessage(PURCHASED_LOTTO_COUNT_FORMAT, lottos.size());
         lottos.forEach(lotto -> ConsoleUtils.printMessageWithNewLine(
-                lotto.getNumbers().stream().sorted().toList().toString()
+                lotto.getNumbers().stream().toList().toString()
         ));
     }
 
@@ -41,11 +40,6 @@ public class ConsoleOutput {
     }
 
     // private methods
-
-    private Map<Prize, Integer> getCompletePrizeMap(ProfitStatisticsDto input) {
-        return Arrays.stream(Prize.values())
-                .collect(Collectors.toMap(prize -> prize, prize -> input.prizeCountMap().getOrDefault(prize, 0)));
-    }
 
     private void printPrizeStatistics(Map<Prize, Integer> completePrizeMap) {
         Arrays.stream(Prize.values())
