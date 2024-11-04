@@ -27,6 +27,9 @@ public class LottoService {
 
         for (Lotto lotto : lottos) {
             Prize prize = convertLottoResultDtoToPrize(lotto.countNumberOfWinnings(winningNumber));
+            if (prize.getPrizeMoney() == 0) {
+                continue;
+            }
             prizeCount.putIfAbsent(prize, 0);
             prizeCount.put(prize, prizeCount.get(prize) + 1);
         }
