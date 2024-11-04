@@ -8,4 +8,12 @@ public class InputValidation {
         }
     }
 
+    public void checkIsInteger(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력값이 정수가 아닙니다.");
+        }
+    }
+
 }

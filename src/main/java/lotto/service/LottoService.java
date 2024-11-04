@@ -1,28 +1,33 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.Lotto;
 import lotto.repository.LottoRepository;
 import lotto.validation.InputValidation;
 import lotto.validation.PurchasePriceValidation;
+import lotto.validation.WinningNumbersValidation;
 
 public class LottoService {
 
     private final InputValidation inputValidation;
     private final PurchasePriceValidation purchasePriceValidation;
     private final LottoRepository lottoRepository;
+    private final WinningNumbersValidation winningNumbersValidation;
 
     public LottoService() {
         this.inputValidation = new InputValidation();
         this.purchasePriceValidation = new PurchasePriceValidation();
         this.lottoRepository = new LottoRepository();
+        this.winningNumbersValidation = new WinningNumbersValidation();
     }
 
     public int validatePurchasePrice(String purchasePriceInput) throws IllegalArgumentException {
         inputValidation.checkNotNullAndNotBlank(purchasePriceInput);
-        purchasePriceValidation.checkIsInteger(purchasePriceInput);
+        inputValidation.checkIsInteger(purchasePriceInput);
 
         int purchasePrice = Integer.parseInt(purchasePriceInput);
 
@@ -43,6 +48,32 @@ public class LottoService {
 
     public Set<List<Integer>> getLottoTickets() {
         return lottoRepository.getLottoTickets();
+    }
+
+    public List<Integer> validateWinningNumbers(String winningNumbersInput)
+            throws IllegalArgumentException {
+        inputValidation.checkNotNullAndNotBlank(winningNumbersInput);
+
+        String[] winningNumbers = winningNumbersInput.split(",");
+
+        List<Integer> lotto = new ArrayList<>();
+
+        for (String number : winningNumbers) {
+            number = number.trim();
+            inputValidation.checkIsInteger(number);
+
+            int winningNumber = Integer.parseInt(number);
+            winningNumbersValidation.checkRange(winningNumber);
+
+            lotto.add(winningNumber);
+        }
+
+        return lotto;
+    }
+
+    public void generateWinningLotto(List<Integer> numbers) {
+        Lotto lotto = new Lotto(numbers);
+        lottoRepository.insertWinningLotto(lotto);
     }
 
 }

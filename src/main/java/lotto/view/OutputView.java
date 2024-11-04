@@ -10,6 +10,7 @@ public class OutputView {
         for (List<Integer> ticketNumber : ticketNumbers) {
             System.out.println(ticketNumber);
         }
+        System.out.println();
     }
 
 }
