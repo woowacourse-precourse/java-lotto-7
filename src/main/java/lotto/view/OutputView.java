@@ -18,7 +18,10 @@ public class OutputView {
         System.out.println("\n당첨 통계\n---");
         NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
 
-        for (PrizeTier tier : PrizeTier.values()) {
+        PrizeTier[] sortedTiers = {PrizeTier.FIFTH, PrizeTier.FOURTH, PrizeTier.THIRD, PrizeTier.SECOND,
+                PrizeTier.FIRST};
+
+        for (PrizeTier tier : sortedTiers) {
             String prizeWithComma = numberFormat.format(tier.getPrize());
             System.out.printf("%d개 일치%s (%s원) - %d개\n",
                     tier.getMatchingCount(),
