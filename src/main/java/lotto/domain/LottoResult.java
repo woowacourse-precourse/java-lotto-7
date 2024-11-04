@@ -41,4 +41,8 @@ public class LottoResult {
         }
         return 0;
     }
+
+    public int getPrize(List<Integer> lottoNumbers) {
+        return LottoPrize.getPrize(getRank(lottoNumbers));
+    }
 }
