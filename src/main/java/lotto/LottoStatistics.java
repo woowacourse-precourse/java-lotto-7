@@ -97,7 +97,7 @@ public class LottoStatistics {
         System.out.println("5개 일치 (1,500,000원) - " + thirdPrizeNum + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + secondPrizeNum + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + firstPrizeNum + "개");
-        DecimalFormat df = new DecimalFormat("#,###.0");
+        DecimalFormat df = new DecimalFormat("#,##0.0");
         System.out.println("총 수익률은 " + df.format(profitRate) + "%입니다.");
     }
 
