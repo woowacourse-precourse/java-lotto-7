@@ -16,8 +16,7 @@ import lotto.view.LottoGameOutputView;
 public class LottoGameController {
 
     public void run() {
-        LottoTickets lottoTickets = new LottoTickets(LottoGameInputView.inputMoney());
-        LottoGameOutputView.printTicketCount(lottoTickets);
+        LottoTickets lottoTickets = getValidLottoTickets();
 
         LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator());
         List<Lotto> lottos = lottoMachine.exchangeLotto(lottoTickets);
@@ -28,8 +27,16 @@ public class LottoGameController {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         List<LottoRank> lottoResult = lottos.stream().map(winningLotto::matchLotto).toList();
+        LottoGameOutputView.printLottoStatistics(new LottoStatisticsDto(lottoResult, lottoTickets.getPurchasePrice()));
+    }
 
-        LottoStatisticsDto lottoStatisticsDto = new LottoStatisticsDto(lottoResult, lottoTickets.getPurchasePrice());
-        LottoGameOutputView.printLottoStatistics(lottoStatisticsDto);
+    private LottoTickets getValidLottoTickets() {
+        while (true) {
+            try {
+                return new LottoTickets(LottoGameInputView.inputMoney());
+            } catch (IllegalArgumentException e) {
+                LottoGameOutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

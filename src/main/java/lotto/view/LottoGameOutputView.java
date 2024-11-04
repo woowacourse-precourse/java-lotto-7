@@ -5,22 +5,17 @@ import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.model.LottoRankCount;
 import lotto.model.LottoStatisticsDto;
-import lotto.model.LottoTickets;
 
 public class LottoGameOutputView {
 
-    private LottoGameOutputView() {
-    }
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
-    public static void printTicketCount(LottoTickets lottoTickets) {
-        System.out.println();
-        System.out.println(lottoTickets.getTicketCount() + "개를 구매했습니다.");
+    private LottoGameOutputView() {
     }
 
     public static void printLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
-        System.out.println();
     }
 
     public static void printLottoStatistics(LottoStatisticsDto lottoStatisticsDto) {
@@ -54,4 +49,7 @@ public class LottoGameOutputView {
     }
 
 
+    public static void printErrorMessage(String message) {
+        System.out.println(ERROR_MESSAGE_PREFIX + message);
+    }
 }
