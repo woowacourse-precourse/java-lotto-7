@@ -1,14 +1,12 @@
 package lotto;
 
+import lotto.enums.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class WinningNumbers {
-    private final static String ERROR_WINNING_NUMBERS_COUNT = "[ERROR] 당첨 번호는 6개여야 합니다.";
-    private final static String ERROR_WINNING_NUMBERS_DUPLICATE = "[ERROR] 당첨 번호는 서로 중복되지 않아야합니다.";
-    private final static String ERROR_WINNING_NUMBERS_RANGE = "[ERROR] 당첨 번호는 1에서 45사이의 숫자만 가능합니다.";
-    private final static String ERROR_INVALID_NUMBER = "[ERROR] 유효하지 않는 번호입니다. ";
     private final static String DELIMITER = ",";
     private final static int LOTTO_NUMBER_COUNT = 6;
     private final static int LOTTO_MIN_NUMBER = 1;
@@ -26,15 +24,15 @@ public class WinningNumbers {
 
     private void validate(String winningNumbers) {
         if (winningNumbers == null || winningNumbers.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_WINNING_NUMBERS_COUNT);
+            throw new IllegalArgumentException(ErrorMessage.REQUIRED_LOTTO_NUMBER_COUNT.getText());
         }
         List<Integer> parsedNumbers = splitWinningNumbers(winningNumbers);
         if (parsedNumbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(ERROR_WINNING_NUMBERS_COUNT);
+            throw new IllegalArgumentException(ErrorMessage.REQUIRED_LOTTO_NUMBER_COUNT.getText());
         } else if (new HashSet<>(parsedNumbers).size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(ERROR_WINNING_NUMBERS_DUPLICATE);
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.getText());
         } else if (!isNumbersInRange(parsedNumbers)) {
-            throw new IllegalArgumentException(ERROR_WINNING_NUMBERS_RANGE);
+            throw new IllegalArgumentException(ErrorMessage.NUMBERS_RANGE.getText());
         }
     }
 
@@ -44,7 +42,7 @@ public class WinningNumbers {
             try {
                 parsedNumbers.add(Integer.parseInt(winningNumber.trim()));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ERROR_INVALID_NUMBER + winningNumber);
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getText() + winningNumber);
             }
         }
         return parsedNumbers;

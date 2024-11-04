@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.enums.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,9 +21,9 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.REQUIRED_LOTTO_NUMBER_COUNT.getText());
         } else if (new HashSet<>(numbers).size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.getText());
         }
     }
 
