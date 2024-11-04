@@ -29,4 +29,19 @@ class LottoResultTest {
         assertThat(results.get(LottoRank.FOURTH)).isEqualTo(1);
         assertThat(results.get(LottoRank.FIFTH)).isNull();
     }
+
+    @DisplayName("구입 금액 대비 총 수익률을 계산한다")
+    @Test
+    void 총_수익률을_계산한다() {
+        LottoResult result = new LottoResult();
+        result.addResult(LottoRank.FIRST);
+        result.addResult(LottoRank.THIRD);
+
+        int purchaseAmount = 2000;
+        double yield = result.calculateYield(purchaseAmount);
+
+        double expectedYield = (LottoRank.FIRST.getPrize() + LottoRank.THIRD.getPrize()) / (double) purchaseAmount * 100; // (당첨금 총합 / 구매 금액)
+
+        assertThat(yield).isEqualTo(expectedYield);
+    }
 }
