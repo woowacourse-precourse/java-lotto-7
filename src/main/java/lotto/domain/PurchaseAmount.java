@@ -5,6 +5,7 @@ public class PurchaseAmount {
     private static final String SHOULD_INTEGER_MESSAGE = "[ERROR] 구입금액을 숫자로 입력해주세요.";
     private static final String SHOULD_DIVISIBLE_BY_THOUSAND_MESSAGE = "[ERROR] 구입금액을 1000원 단위로 입력해주세요.";
     private static final int LOTTO_PRICE = 1000;
+    
     private final int amount;
 
     public PurchaseAmount(String rawPurchaseAmount) {

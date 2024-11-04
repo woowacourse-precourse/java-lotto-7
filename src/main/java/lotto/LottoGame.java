@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 import lotto.domain.Bonus;
 import lotto.domain.LottoDrawer;
 import lotto.domain.LottoTicket;
@@ -24,14 +25,17 @@ public class LottoGame {
     }
 
     public void purchase() {
-        String rawPurchaseAmount = input.readPurchaseAmount();
-        PurchaseAmount purchaseAmount = new PurchaseAmount(rawPurchaseAmount);
+        PurchaseAmount purchaseAmount = retryUntilValid(() -> {
+            String rawPurchaseAmount = input.readPurchaseAmount();
+            return new PurchaseAmount(rawPurchaseAmount);
+        });
 
         draw(purchaseAmount);
     }
 
     private void draw(PurchaseAmount purchaseAmount) {
         NumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
+        
         LottoDrawer lottoDrawer = new LottoDrawer(purchaseAmount, randomNumbersGenerator);
 
         LottoTicket lottoTicket = lottoDrawer.generateLottos();
@@ -53,5 +57,15 @@ public class LottoGame {
         );
 
         Map<Rank, Integer> lottoResult = winningLotto.lottoWinningResult(lottoTicket);
+    }
+
+    private <T> T retryUntilValid(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

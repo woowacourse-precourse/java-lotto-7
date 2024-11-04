@@ -7,8 +7,7 @@ public class Bonus {
     private final int number;
 
     public Bonus(String rawBonusNumber) {
-        int bonusNumber = toInt(rawBonusNumber);
-        this.number = bonusNumber;
+        this.number = toInt(rawBonusNumber);
     }
 
     private int toInt(String bonusNumber) {
