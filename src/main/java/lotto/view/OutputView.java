@@ -18,7 +18,7 @@ public class OutputView {
 	}
 
 	public static void promptPurchaseCount(int lottoCount) {
-		System.out.printf((PROMPT_PURCHASE_COUNT.getMessage()) + NEW_LINE, lottoCount);
+		System.out.printf(NEW_LINE.getMessage() + PROMPT_PURCHASE_COUNT.getMessage() + NEW_LINE.getMessage(), lottoCount);
 	}
 
 	public static void promptLottoNumbers(LottoBundle lottoBundle) {
@@ -28,7 +28,7 @@ public class OutputView {
 				.map(String::valueOf)
 				.collect(Collectors.joining(Delimiter.COMMA.getDelimiter() + " "));
 
-			System.out.printf((LOTTO_NUMBERS_FORMAT.getMessage()) + NEW_LINE, formattedNumbers);
+			System.out.printf((LOTTO_NUMBERS_FORMAT.getMessage()) + NEW_LINE.getMessage(), formattedNumbers);
 		});
 	}
 
