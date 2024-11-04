@@ -22,8 +22,8 @@ public class LottoResult {
                 .sum();
     }
 
-    public Long calculateRevenueRate(int payment) {
-        return getTotalPrize() / payment * 100;
+    public Double calculateRevenueRate(int payment) {
+        return ((double) getTotalPrize() / payment) * 100;
     }
 
 }

@@ -20,10 +20,10 @@ class LottoResultTest {
     @DisplayName("당첨 결과에 따른 수익률 테스트")
     @Test
     void revenueRateTest() {
-        List<Rank> ranks = List.of(Rank.FIRST, Rank.THIRD, Rank.FIFTH);
+        List<Rank> ranks = List.of(Rank.FIFTH);
         LottoResult result = LottoResult.createResult(ranks);
-        int payment = 5000;
-        assertThat(result.calculateRevenueRate(payment)).isEqualTo(40_030_100);
+        int payment = 8000;
+        assertThat(result.calculateRevenueRate(payment)).isEqualTo(62.5);
     }
 
 }
