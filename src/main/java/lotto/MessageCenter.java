@@ -5,6 +5,7 @@ public enum MessageCenter {
     COUNT("개를 구매했습니다."),
     PICK_MAIN("당첨 번호를 입력해 주세요."),
     PICK_BONUS("보너스 번호를 입력해 주세요."),
+    NEW_LINE(""),
     ERROR("[ERROR] "),
     ERROR_PICK("[ERROR] 당첨번호를 잘못 입력했습니다. 다시 입력해 주세요."),
     ERROR_NOTNULL("[ERROR] 기추첨결과가 존재합니다."),

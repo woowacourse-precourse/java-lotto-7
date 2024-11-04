@@ -7,80 +7,33 @@ import lotto.MessageCenter;
 
 public class HeadQuarter {
 
-    WonNumbers wonNumbers;
+    WonNumbers wonNumbers = new WonNumbers();
 
     public WonNumbers pickNumbers() {
 
-        MessageCenter.PICK_MAIN.print();
         pickMainNumbers();
-        MessageCenter.PICK_BONUS.print();
         pickBonusNumber();
-
 
         return wonNumbers;
     }
 
-    private void pickBonusNumber() {
-        boolean result = false;
-        while(result == true) {
-            wonNumbers.cleanBonus();
-            loopBonus();
-            result = true;
+    void pickMainNumbers() {
+
+        MessageCenter.NEW_LINE.print();
+        MessageCenter.PICK_MAIN.print();
+
+        while(wonNumbers.getLotto() == null) {
+            String initialNums = read();
+            loopMains(initialNums);
         }
     }
 
-    private void loopBonus() {
+    void loopMains(String initialNums) {
         try {
-            String initialNums = read();
             saveMains(initialNums);
         } catch(IllegalArgumentException e) {
             throw new IllegalArgumentException(MessageCenter.ERROR_PICK.get());
         }
-    }
-
-
-    private void pickMainNumbers() {
-        boolean result = false;
-        while(result == true) {
-            wonNumbers.cleanAll();
-            loopMains();
-            result = true;
-        }
-    }
-
-    private void loopMains() {
-        try {
-            String initialNum = read();
-            saveBonus(initialNum);
-        } catch(IllegalArgumentException e) {
-            throw new IllegalArgumentException(MessageCenter.ERROR_PICK.get());
-        }
-    }
-
-    private void saveBonus(String initialNum) {
-        Integer parsedBonus = parseBonus(initialNum);
-        wonNumbers.saveWonBonus(parsedBonus);
-    }
-
-    private Integer parseBonus(String initialNum) {
-        Integer parsedBonus= parse(initialNum);
-        List<Integer> mainNumbers = wonNumbers.getLotto().getNumbers();
-        validateUnique(mainNumbers, parsedBonus);
-        validateRange(parsedBonus);
-        return parsedBonus;
-    }
-
-    ;
-
-    private void saveMains(String initialNums) {
-        String[] initialMains = initialNums.split(",");
-        List<Integer> parsedMains = parseMains(initialMains);
-        Lotto mainNumbers = new Lotto(parsedMains);
-        wonNumbers.saveWonLotto(mainNumbers);
-    }
-
-    private String read() {
-        return Console.readLine();
     }
 
     private List<Integer> parseMains(String[] initialMains) {
@@ -94,6 +47,49 @@ public class HeadQuarter {
         return parsedMains;
     }
 
+    private void saveMains(String initialNums) {
+        String[] initialMains = initialNums.split(",");
+        List<Integer> parsedMains = parseMains(initialMains);
+        Lotto mainNumbers = new Lotto(parsedMains);
+        wonNumbers.saveWonLotto(mainNumbers);
+    }
+
+    void pickBonusNumber() {
+
+        MessageCenter.NEW_LINE.print();
+        MessageCenter.PICK_BONUS.print();
+
+        while(wonNumbers.getBonus() == null) {
+            wonNumbers.cleanBonus();
+            String initialNum = read();
+            loopBonus(initialNum);
+        }
+    }
+
+    void loopBonus(String initialNum) {
+        try {
+            saveBonus(initialNum);
+        } catch(IllegalArgumentException e) {
+            throw new IllegalArgumentException(MessageCenter.ERROR_PICK.get());
+        }
+    }
+
+    Integer parseBonus(String initialNum) {
+        Integer parsedBonus= parse(initialNum);
+        List<Integer> mainNumbers = wonNumbers.getLotto().getNumbers();
+        validateUnique(mainNumbers, parsedBonus);
+        validateRange(parsedBonus);
+        return parsedBonus;
+    }
+
+    private void saveBonus(String initialNum) {
+        Integer parsedBonus = parseBonus(initialNum);
+        wonNumbers.saveWonBonus(parsedBonus);
+    }
+
+    private String read() {
+        return Console.readLine();
+    }
 
     private Integer parse(String textNum) {
         String trimmedNum = trim(textNum);

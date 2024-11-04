@@ -25,12 +25,17 @@ public class TouchScreen {
         validatePaid();
         getDrawnNumbers(totalCount);
         UserStorage.save(trialHistory.getDrawnNumberPacks());
-        System.out.println(trialHistory.getTotalCount() + MessageCenter.COUNT.get());
-        printer.getPrintedPaper();
+        print();
     }
 
     public TrialHistory getTrialHistory() {
         return trialHistory;
+    }
+
+    private void print() {
+        MessageCenter.NEW_LINE.print();
+        System.out.println(trialHistory.getTotalCount() + MessageCenter.COUNT.get());
+        printer.getPrintedPaper();
     }
 
 

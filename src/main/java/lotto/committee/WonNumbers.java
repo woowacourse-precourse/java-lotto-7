@@ -20,6 +20,10 @@ public class WonNumbers {
         return this.lotto;
     }
 
+    public Integer getBonus() {
+        return this.bonusNumber;
+    }
+
     void cleanAll() {
         this.lotto = null;
         this.bonusNumber = null;
