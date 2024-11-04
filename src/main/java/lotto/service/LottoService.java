@@ -83,6 +83,6 @@ public class LottoService {
 
             resultService.updatePrizeCount(winningAmount, containsBonus);
         }
+        resultService.printLottoResult();
     }
-
 }

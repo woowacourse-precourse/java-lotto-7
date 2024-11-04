@@ -21,4 +21,15 @@ public class ResultService {
             }
         }
     }
+
+    public void printLottoResult() {
+        for (Prize prize : Prize.values()) {
+            int count = prizeCountMap.get(prize);
+            System.out.printf("%d개 일치", prize.getMatchCount());
+            if(prize.requiresBonus()) {
+                System.out.print(", 보너스 볼 일치");
+            }
+            System.out.printf(" (%s원) - %d개\n", String.format("%,d", prize.getAmount()), count);
+        }
+    }
 }
