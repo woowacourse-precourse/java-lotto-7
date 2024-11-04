@@ -11,6 +11,8 @@ public class User {
 
     private final List<Lotto> lottos = new ArrayList<>();
     private List<Price> prices = new ArrayList<>();
+    private double returns;
+
     public User(String userMoney) throws IllegalArgumentException {
         validateUserMoney(userMoney);
         this.money = Long.parseLong(userMoney);
@@ -38,7 +40,14 @@ public class User {
         for (Lotto lotto : lottos) {
             prices.add(lottoMachine.calculatePrice(lotto));
         }
+        calculateReturns();
     }
+
+    private void calculateReturns() {
+        long priceSum = prices.stream().mapToLong(Price::getPriceMoney).sum();
+        this.returns = ((float)priceSum/money) * 100.0;
+    }
+
     public List<Lotto> getLottos() {
         return lottos;
     }
@@ -49,5 +58,9 @@ public class User {
 
     public List<Price> getPrices() {
         return prices;
+    }
+
+    public double getReturns() {
+        return returns;
     }
 }

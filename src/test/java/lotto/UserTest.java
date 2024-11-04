@@ -3,6 +3,8 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class UserTest {
@@ -43,5 +45,16 @@ class UserTest {
         RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
         user.buyLotto(randomNumbersGenerator);
         assertThat(user.getLottos().size()).isEqualTo(user.getLottoCount());
+    }
+
+    @Test
+    void 당첨_결과와_수익률을_계산한다() {
+        User user = new User("2000");
+        TestNumbersGenerator testNumbersGenerator = new TestNumbersGenerator(List.of(1,2,3,4,5,6,5,6,7,8,9,10));
+        user.buyLotto(testNumbersGenerator);
+        LottoMachine lottoMachine = new LottoMachine(new Lotto(List.of(5,6,7,11,12,13)), "15");
+        user.calculateFinalPrice(lottoMachine);
+
+        assertThat(user.getReturns()).isEqualTo(250);
     }
 }
