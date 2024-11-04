@@ -22,11 +22,10 @@ public class Lotto {
 
     public static Lotto newInstance() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER,MAX_NUMBER, COUNT);
-        Collections.sort(randomNumbers);
         return new Lotto(randomNumbers);
     }
 
-    protected List<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
