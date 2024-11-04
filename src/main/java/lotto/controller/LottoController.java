@@ -15,7 +15,9 @@ public class LottoController {
     public void run() {
         Lottos purchasedLottos = initLotts();
         printPurchaseResult(purchasedLottos);
+
         WinningNumbers winningNumbers = inputWinningNumbers();
+
         printLottoResults(purchasedLottos, winningNumbers);
     }
 
@@ -34,14 +36,9 @@ public class LottoController {
     }
 
     private WinningNumbers inputWinningNumbers() {
-        try {
-            Lotto winnerLotto = inputLotto();
-            BonusNumber bonusNumber = inputBonus();
-            return WinningNumbers.of(winnerLotto, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            OutputView.printException(e);
-            return inputWinningNumbers();
-        }
+        Lotto winnerLotto = inputLotto();
+        BonusNumber bonusNumber = createBonusNumber();
+        return createWinningNumbers(winnerLotto, bonusNumber);
     }
 
     private Lotto inputLotto() {
@@ -54,13 +51,21 @@ public class LottoController {
         }
     }
 
-    private BonusNumber inputBonus() {
+    private WinningNumbers createWinningNumbers(Lotto winnerLotto, BonusNumber bonusNumber) {
         try {
-            long winningBonusNumberInput = InputView.inputNumber(InputMessage.BONUS_NUMBER);
-            return BonusNumber.from((int)winningBonusNumberInput);
+            return WinningNumbers.of(winnerLotto, bonusNumber);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            return inputBonus();
+            return createWinningNumbers(winnerLotto, createBonusNumber());
+        }
+    }
+
+    private BonusNumber createBonusNumber() {
+        try {
+            return BonusNumber.from((int) InputView.inputNumber(InputMessage.BONUS_NUMBER));
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return createBonusNumber();
         }
     }
 
