@@ -20,7 +20,7 @@ public class LottoMachineTest {
     @BeforeEach
     public void setUp() {
         List<Lotto> fixedLottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)),   // 6개 일치
+                new Lotto(List.of(6, 5, 4, 3, 2, 1)),   // 6개 일치
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),   // 5개 일치 (보너스 번호 일치)
                 new Lotto(List.of(1, 2, 3, 4, 5, 8)),   // 5개 일치
                 new Lotto(List.of(1, 2, 3, 4, 10, 11)), // 4개 일치
@@ -50,9 +50,9 @@ public class LottoMachineTest {
         assertThat(lottoMachine.lottos()).hasSize(8);
     }
 
-    @DisplayName("로또 리스트가 문자열로 표시되는지 확인한다.")
+    @DisplayName("로또 리스트 내 로또 번호가 오름차순으로 정렬되어 문자열로 표시되는지 확인한다.")
     @Test
-    void 로또_리스트_문자열_표시() {
+    void 로또_리스트_내_로또_번호가_오름차순_문자열로_표시() {
         List<String> lottos = lottoMachine.displayLottos();
 
         List<String> expected = List.of(
