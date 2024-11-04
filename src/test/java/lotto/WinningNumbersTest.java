@@ -76,4 +76,15 @@ public class WinningNumbersTest {
         });
         assertEquals(WINNING_NUMBERS_DUPLICATED.message(), e.getMessage());
     }
+
+    @Test
+    void 당첨_번호에_1_미만의_숫자가_포함된다면_예외발생() {
+        // given
+        String winningNumbers = "0,1,2,3,4,5";
+        // when & then
+        LottoException e = assertThrows(LottoException.class, () -> {
+            WinningNumbersValidator.validate(winningNumbers);
+        });
+        assertEquals(INVALID_WINNING_NUMBERS.message(), e.getMessage());
+    }
 }
