@@ -12,7 +12,7 @@ public class LottoStoreTest {
 
     @DisplayName("로또 구입 개수 계산 테스트")
     @Test
-    void calculateLottoCountTest() {
+    void 삼천원을_넣으면_로또_구입_개수는_3개_이다() {
         // given
         int money = 3000;
         LottoStore lottoStore = new LottoStore();
@@ -26,7 +26,7 @@ public class LottoStoreTest {
 
     @DisplayName("로또 구입 금액이 로또 가격보다 작을 때 예외 발생")
     @Test
-    void validateMoneyTest() {
+    void 로또_구입_금액이_로또_가격보다_작으면_예외가_발생한다() {
         // given
         int money = 500;
         LottoStore lottoStore = new LottoStore();
@@ -38,7 +38,7 @@ public class LottoStoreTest {
 
     @DisplayName("로또 구입 금액이 로또 가격의 배수가 아닐 때 예외 발생")
     @Test
-    void validateMoneyMultipleTest() {
+    void 로또_구입_금액이_로또_가격의_배수가_아니면_예외가_발생한다() {
         // given
         int money = 1500;
         LottoStore lottoStore = new LottoStore();
@@ -48,9 +48,9 @@ public class LottoStoreTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 구입 테스트")
+    @DisplayName("로또 생성 테스트")
     @Test
-    void sellTest() {
+    void 로또_개수를_입력받으면_개수만큼_로또가_생성된다() {
         // given
         int lottoCount = 3;
         LottoStore lottoStore = new LottoStore();
