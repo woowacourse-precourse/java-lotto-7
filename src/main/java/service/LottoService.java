@@ -19,7 +19,7 @@ public class LottoService {
     private static final int LOTTO_MAX_NUMBER = 45;
 
     public PurchaseCount getCount(String purchaseAmountFromView) {
-        int purchaseAmount = purchaseAmountValidate(purchaseAmountFromView);
+        int purchaseAmount = validatePurchaseAmount(purchaseAmountFromView);
         return new PurchaseCount(purchaseAmount);
     }
 
@@ -46,7 +46,7 @@ public class LottoService {
                 fiveMatchesWithBonusCount, sixMatchesCount);
     }
 
-    private int purchaseAmountValidate(String purchaseAmountFromView) {
+    private int validatePurchaseAmount(String purchaseAmountFromView) {
         int purchaseAmount;
         try {
             purchaseAmount = Integer.parseInt(purchaseAmountFromView);
