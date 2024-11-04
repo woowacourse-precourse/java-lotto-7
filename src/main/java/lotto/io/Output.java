@@ -29,12 +29,16 @@ public class Output {
         System.out.printf("%d개 일치 (%s원) - %d개\n", 3, numberFormat.format(5000), winningCounts[3]);
         System.out.printf("%d개 일치 (%s원) - %d개\n", 4, numberFormat.format(50000), winningCounts[4]);
         System.out.printf("%d개 일치 (%s원) - %d개\n", 5, numberFormat.format(1500000), winningCounts[5]);
-        System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", 1, numberFormat.format(30000000), winningCounts[1]);
+        System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", 5, numberFormat.format(30000000), winningCounts[1]);
         System.out.printf("%d개 일치 (%s원) - %d개\n", 6, numberFormat.format(2000000000), winningCounts[6]);
     }
 
     public void outputSummary(double incomePercent) {
-        System.out.printf("총 수익률은 %.2f\n", incomePercent);
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        numberFormat.setMinimumFractionDigits(1);
+        numberFormat.setMaximumFractionDigits(1);
+        String formattedValue = numberFormat.format(incomePercent * 100) + "%";
+        System.out.printf("총 수익률은 %s입니다.\n", formattedValue);
     }
 
     private int[] sortAndCountingWinningType(List<WinningType> winningTypes) {
