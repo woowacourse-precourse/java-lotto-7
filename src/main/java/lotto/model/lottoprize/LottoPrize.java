@@ -39,14 +39,10 @@ public enum LottoPrize {
     public String toString() {
         NumberFormat formatter = NumberFormat.getNumberInstance();
         String formattedPrizeAmount = formatter.format(prizeAmount);
-        String prizeDescription;
 
         if (matchedBonus) {
-            prizeDescription = String.format(BONUS_MATCH_FORMAT, matchCount);
-        } else {
-            prizeDescription = String.format(MATCH_COUNT_FORMAT, matchCount);
+            return String.format(BONUS_MATCH_FORMAT, matchCount) + String.format(AMOUNT_FORMAT, formattedPrizeAmount);
         }
-
-        return prizeDescription + String.format(AMOUNT_FORMAT, formattedPrizeAmount);
+        return String.format(MATCH_COUNT_FORMAT, matchCount) + String.format(AMOUNT_FORMAT, formattedPrizeAmount);
     }
 }
