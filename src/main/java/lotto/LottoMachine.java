@@ -32,6 +32,7 @@ public class LottoMachine {
 
     public void vendorLotto(){
         int lottoCount = calculateLottoCount(userMoney);
+        System.out.println(lottoCount + "개를 구매했습니다.");
         for(int i=0; i<lottoCount; ++i){
             lotto.add(purchaseLotto());
         }
