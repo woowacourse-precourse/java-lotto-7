@@ -14,24 +14,21 @@ public class LottoUtils {
     public int totalPrize = 0;
 
     public Map<MatchResult, Integer> countMatchResults(List<MatchResult> lottoResults) {
-        Map<MatchResult, Integer> matchCounts = new EnumMap<>(MatchResult.class);
-        for (MatchResult matchResult : MatchResult.values()){
-            matchCounts.put(matchResult, 0);}
-        for (MatchResult matchResult : lottoResults){
-            matchCounts.put(matchResult, matchCounts.get(matchResult) + 1);
-        }
+        Map<MatchResult, Integer> matchCounts = initializeMatchCounts();
+        lottoResults.forEach(matchResult -> incrementMatchCount(matchCounts, matchResult));
         printMatchResults(matchCounts);
         return matchCounts;
     }
 
-    public MatchResult determineMatchResult(LottoResult lottoResult){
-        if (lottoResult.matchingCount() < 3){
+
+    public MatchResult determineMatchResult(LottoResult lottoResult) {
+        if (lottoResult.matchingCount() < 3) {
             return MatchResult.NONE;
         }
         if (lottoResult.matchingCount() == 3) {
             return MatchResult.THREE_MATCH;
         }
-        if (lottoResult.matchingCount() == 4){
+        if (lottoResult.matchingCount() == 4) {
             return MatchResult.FOUR_MATCH;
         }
         if (lottoResult.matchingCount() == 5) {
@@ -39,15 +36,25 @@ public class LottoUtils {
         }
         return MatchResult.SIX_MATCH;
     }
-
     public double calculateRateOfReturn(List<MatchResult> matchResults, int purchaseAmount) {
-        for (int i = 0; i < matchResults.size(); i++){
-            totalPrize += matchResults.get(i).prizeAmount();}
+        totalPrize = 0;
+        for (MatchResult result : matchResults) {
+            totalPrize += result.prizeAmount();
+        }
         double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
-        String formattedRate = String.format("%.1f", rateOfReturn);
-        System.out.println("총 수익률은 " + formattedRate + "%입니다.");
+        printRateOfReturn(rateOfReturn);
         return rateOfReturn;
     }
+
+    private int calculateTotalPrize(List<MatchResult> matchResults) {
+        return matchResults.stream().mapToInt(MatchResult::prizeAmount).sum();
+    }
+
+    private void printRateOfReturn(double rateOfReturn) {
+        String formattedRate = String.format("%.1f", rateOfReturn);
+        System.out.println("총 수익률은 " + formattedRate + "%입니다.");
+    }
+
 
     private void printMatchResults(Map<MatchResult, Integer> matchResult) {
         System.out.println("당첨 통계");
@@ -64,6 +71,18 @@ public class LottoUtils {
             return MatchResult.FIVE_MATCH_BONUS;
         }
         return MatchResult.FIVE_MATCH;
+    }
+
+    private Map<MatchResult, Integer> initializeMatchCounts() {
+        Map<MatchResult, Integer> matchCounts = new EnumMap<>(MatchResult.class);
+        for (MatchResult matchResult : MatchResult.values()) {
+            matchCounts.put(matchResult, 0);
+        }
+        return matchCounts;
+    }
+
+    private void incrementMatchCount(Map<MatchResult, Integer> matchCounts, MatchResult matchResult) {
+        matchCounts.put(matchResult, matchCounts.get(matchResult) + 1);
     }
 
 }
