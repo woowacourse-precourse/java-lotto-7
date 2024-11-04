@@ -23,7 +23,7 @@ public class LottoController {
         BuyingPrice buyingPrice = new BuyingPrice(inputView.inputBuyingPriceView());
         int lottoNum = BuyingPriceService.returnNumberOfLotto(buyingPrice);
         outputView.responseBuyingQuantity(lottoNum);
-        List<Lotto> lottos = CreateLottoService.createRandomLotto(lottoNum);
+        List<Lotto> lottos = CreateLottoService.createRandomLottos(lottoNum);
         outputView.askWinningLotto();
         WinningLotto winningLotto = new WinningLotto(inputView.inputLottoNumbersView());
         outputView.askBonusNumber();

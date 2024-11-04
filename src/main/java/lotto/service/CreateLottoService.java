@@ -8,9 +8,19 @@ import java.util.Collections;
 import java.util.List;
 
 public class CreateLottoService {
-    public static Lotto createRandomLotto(int lottoNum) {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, lottoNum);
-        Collections.sort(lotto);
-        return new Lotto(lotto);
+    private static final int LOTTO_SIZE = 6;
+
+    public static List<Lotto> createRandomLottos(int numberOfLottos) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < numberOfLottos; i++) {
+            lottos.add(createSingleLotto());
+        }
+        return lottos;
+    }
+
+    private static Lotto createSingleLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_SIZE);
+        Collections.sort(numbers);
+        return new Lotto(numbers);
     }
 }
