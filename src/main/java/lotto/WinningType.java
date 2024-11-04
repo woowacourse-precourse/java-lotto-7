@@ -12,8 +12,8 @@ public enum WinningType {
         countToMap.put(3, THREE);
         countToMap.put(4, FOUR);
         countToMap.put(5, FIVE);
-        countToMap.put(6, SIX);
         countToMap.put(7, FIVE_BONUS);
+        countToMap.put(6, SIX);
     }
 
     public static WinningType fromCount(int count) {
