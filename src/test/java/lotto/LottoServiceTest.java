@@ -113,7 +113,7 @@ public class LottoServiceTest {
     @Test
     void 로또_당첨_통계_반환_테스트() {
         //given
-        String winningNumbers = "1,2,3,4,5,6";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
         List<List<Integer>> lottos = List.of(
                 List.of(1, 2, 3, 4, 5, 6),

@@ -7,14 +7,14 @@ import java.util.*;
 
 public class LottoService {
 
-    private StringParser stringParser = new StringParser();
+//    private StringParser stringParser = new StringParser();
 
-    public Map<LottoRank, Integer> calculateStatistic(String winningNumbers, int bonusNumber, List<List<Integer>> lottos) {
 
-        List<Integer> parsedWinningNumbers = stringParser.convertStringToIntegerList(winningNumbers);
+    public Map<LottoRank, Integer> calculateStatistic(List<Integer> winningNumbers, int bonusNumber, List<List<Integer>> lottos) {
+
         Map<LottoRank, Integer> result = new HashMap<>();
         for (List<Integer> lotto : lottos) {
-            LottoRank lottoRank = prizeWinningDiscriminationPerLotto(parsedWinningNumbers, bonusNumber, lotto);
+            LottoRank lottoRank = prizeWinningDiscriminationPerLotto(winningNumbers, bonusNumber, lotto);
             result.put(lottoRank, result.getOrDefault(lottoRank, 0) + 1);
         }
         return result;
@@ -55,9 +55,8 @@ public class LottoService {
         return lottos;
     }
 
-    public int calCulateLottoAmount(String purchaseAmount) {
-        int amount = stringParser.convertStringToInt(purchaseAmount);
-        return amount / 1000;
+    public int calCulateLottoAmount(int purchaseAmount) {
+        return purchaseAmount / 1000;
     }
 
 
