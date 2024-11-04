@@ -23,8 +23,7 @@ public class LottoController {
     }
 
     public void run() {
-        String purchaseAmount = inputView.getPurchaseAmount();
-        PurchaseAmountValidator.validate(purchaseAmount);
+        String purchaseAmount = inputView.getValidatePurchaseAmount();
         int userAmount = Integer.parseInt(purchaseAmount) / 1000;
         List<Lotto> userLottos = new ArrayList<>();
         for (int i = 0; i < userAmount; i++) {
@@ -32,10 +31,8 @@ public class LottoController {
         }
         OutputView.printUserLottos(userLottos, userAmount);
 
-        String lottoNumbers = inputView.getLottoNumbers();
-        String bonusNumber = inputView.getBonusNumber();
-        LottoNumbersValidator.validate(lottoNumbers);
-        BonusNumberValidator.validate(bonusNumber, lottoNumbers.split(","));
+        String lottoNumbers = inputView.getValidateLottoNumbers();
+        String bonusNumber = inputView.getValidateBonusNumber(lottoNumbers.split(","));
 
         LottoRequestDto lottoRequestDto = new LottoRequestDto(purchaseAmount, lottoNumbers, bonusNumber);
         LottoService lottoService = new LottoService(
