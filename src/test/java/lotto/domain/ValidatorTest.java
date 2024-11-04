@@ -92,10 +92,21 @@ class ValidatorTest {
         // given
         String outOfRangeBonusNumber = "46";
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-
         // when & then
         assertThatThrownBy(() -> Validator.validateAndParseBonusNumber(outOfRangeBonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Validator.INVALID_BONUS_NUMBER_RANGE_ERROR);
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
+    @Test
+    void 보너스_번호가_당첨_번호와_중복되면_예외() {
+        // given
+        String duplicateBonusNumber = "6";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        // when & then
+        assertThatThrownBy(() -> Validator.validateAndParseBonusNumber(duplicateBonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Validator.DUPLICATE_BONUS_NUMBER_ERROR);
     }
 }
