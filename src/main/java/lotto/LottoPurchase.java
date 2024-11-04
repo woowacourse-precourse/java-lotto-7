@@ -1,10 +1,9 @@
 package lotto;
 
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoTicket;
 
 public class LottoPurchase {
-    private final static int LOTTO_PRICE = 1000;
-    private final static int ZERO = 0;
     final long purchaseAmount;
 
     public LottoPurchase(String purchaseAmount) {
@@ -16,7 +15,7 @@ public class LottoPurchase {
     }
 
     public long getPurchasedLottoCount() {
-        return purchaseAmount / LOTTO_PRICE;
+        return purchaseAmount / LottoTicket.PRICE.getValue();
     }
 
     private long validate(String inputAmount) {
@@ -31,9 +30,9 @@ public class LottoPurchase {
     }
 
     private void validatePurchaseAmount(long purchaseAmount) {
-        if (purchaseAmount % LOTTO_PRICE != ZERO) {
+        if (purchaseAmount % LottoTicket.PRICE.getValue() != LottoTicket.ZERO.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_PURCHASE_UNIT.getText());
-        } else if (purchaseAmount < ZERO) {
+        } else if (purchaseAmount < LottoTicket.ZERO.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.NEGATIVE_AMOUNT.getText());
         }
     }
