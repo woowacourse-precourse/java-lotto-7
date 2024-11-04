@@ -19,4 +19,8 @@ public class LottoCollection {
         return sb.toString();
     }
 
+    public int getLottoCount() {
+        return lottoCollection.size();
+    }
+
 }

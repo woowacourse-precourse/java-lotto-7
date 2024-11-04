@@ -22,5 +22,17 @@ class LottoCollectionTest {
         assertThat(result).isEqualTo("[1, 2, 3, 4, 5, 6]\n[1, 2, 3, 4, 5, 6]\n");
     }
 
+    @Test
+    void getLottoCount_로또_개수_반환_확인() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoCollection lottoCollection = new LottoCollection(List.of(lotto, lotto));
+
+        // when
+        int result = lottoCollection.getLottoCount();
+
+        // then
+        assertThat(result).isEqualTo(2);
+    }
 
 }

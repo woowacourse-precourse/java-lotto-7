@@ -18,6 +18,7 @@ public class LottoController {
     public void run() {
         inputLottoPurchaseMoney();
         LottoCollection lottoCollection = generateLottoCollection(money.getLottoCount());
+        outputLottoCollection(lottoCollection);
     }
 
     private void inputLottoPurchaseMoney() {
@@ -34,6 +35,10 @@ public class LottoController {
 
     private LottoCollection generateLottoCollection(int lottoCount) {
         return new LottoCollection(lottoGenerator.generateLottos(lottoCount));
+    }
+
+    private void outputLottoCollection(LottoCollection lottoCollection) {
+        OutputView.outputLottoCollection(lottoCollection);
     }
 
 }
