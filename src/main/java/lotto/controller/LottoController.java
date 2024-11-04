@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.dto.LottoDTO;
 import lotto.dto.LottoResultDTO;
 import lotto.dto.LottoStatisticsDTO;
 import lotto.model.Lotto;
@@ -8,7 +7,7 @@ import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.utils.InputConverter;
-import lotto.utils.InputLottoNumbersValidator;
+import lotto.validator.InputLottoNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

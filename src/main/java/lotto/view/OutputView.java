@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OutputView {
 
-    public static void printLottoNumbers(List<LottoDTO> lottoDTOs, int budget) {
+    public void printLottoNumbers(List<LottoDTO> lottoDTOs, int budget) {
         int LottoCount = budget / 1000;
         System.out.printf("Message.PURCHASED_NUMBERS.getMessage()", LottoCount);
         for (LottoDTO lottoDTO : lottoDTOs) {
@@ -15,7 +15,7 @@ public class OutputView {
         }
     }
 
-    public static void printWinningResults(LottoResultDTO resultDTO) {
+    public void printWinningResults(LottoResultDTO resultDTO) {
         System.out.println(Message.WINNING_STATISTICS.getMessage());
         List<Integer> winningCounts = resultDTO.getWinningCounts();
 
@@ -26,7 +26,7 @@ public class OutputView {
         System.out.println(Message.MATCH_6.getMessage() + winningCounts.get(0) + Message.PIECES.getMessage());
     }
 
-    public static void printProfitRate(LottoStatisticsDTO statisticsDTO) {
+    public void printProfitRate(LottoStatisticsDTO statisticsDTO) {
         System.out.printf(Message.PROFIT_RATE.getMessage(), statisticsDTO.getProfitRate());
     }
 }

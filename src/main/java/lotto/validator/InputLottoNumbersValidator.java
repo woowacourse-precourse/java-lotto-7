@@ -1,4 +1,6 @@
-package lotto.utils;
+package lotto.validator;
+
+import lotto.utils.Message;
 
 public class InputLottoNumbersValidator {
     private void validate1000Multiple(String input) {

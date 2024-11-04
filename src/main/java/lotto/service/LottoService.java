@@ -16,7 +16,8 @@ public class LottoService {
     public LottoResultDTO checkWinnings(Lottos userLottos, WinningLotto winningLotto) {
         List<LottoDTO> lottoDTOs = userLottos.toDtoList();
 
-        List<Integer> winningCounts = new ArrayList<>(Arrays.asList(INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE));
+        List<Integer> winningCounts = new ArrayList<>(
+                Arrays.asList(INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE));
         int totalPrize = INITIAL_VALUE;
 
         for (LottoDTO lottoDTO : lottoDTOs) {
