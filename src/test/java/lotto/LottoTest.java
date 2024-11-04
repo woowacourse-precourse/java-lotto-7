@@ -32,7 +32,7 @@ class LottoTest {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 10, 11, 12);
 
         // when
-        int matchingCount = lotto.countMatchingNumbers(winningNumbers);
+        int matchingCount = lotto.countLottoNumbers(winningNumbers);
 
         // then
         assertThat(matchingCount).isEqualTo(3);
