@@ -53,7 +53,7 @@
    - [x] validate string whether string is blank or not
    - [x] validate number whether number is divisible by specific number or not
    - [x] validate number whether number is out of specific range or not
-   - [ ] validate list whether list is equal to specific size or not
+   - [x] validate list whether list is equal to specific size or not
 
 ### Throwing Exception logic
 

@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.assertj.core.util.Strings;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -58,4 +60,18 @@ public class ValidatorTest {
 
         assertThatThrownBy(()->Validator.validateSpecificRange(value,start,end)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,3,4,5,7,8,9,150})
+    void testValidateListSize(int listSize){
+        int size= 6;
+        List<Integer> list = new ArrayList<>();
+
+        for(int i = 0; i < listSize; ++i) {
+            list.add(i);
+        }
+        assertThatThrownBy(()->Validator.validateListSize(list,size)).isInstanceOf(IllegalArgumentException.class);
+        Validator.validateListSize(list,listSize);
+    }
+
 }
