@@ -55,7 +55,7 @@ public class LottoController {
             int matched = inputLotto.countMatchedNumber(lotto.getNumbers());
             if (matched > matchedCount) matchedCount = matched;
             boolean bonus = lotto.getNumbers().contains(bonusNumber);
-            if (bonus) bonusMatch = true;
+            if (matched >=5 && bonus) bonusMatch = true;
         }
         Rank rank = getRank(matchedCount, bonusMatch);
         output.printWinningStat(rank, lotteryTickets.size());
