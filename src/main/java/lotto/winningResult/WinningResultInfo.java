@@ -4,17 +4,19 @@ import java.util.Arrays;
 import lotto.lotto.MatchingCondition;
 
 public enum WinningResultInfo {
-    FIRST_RANK(2000000000L, MatchingCondition.SIX),
-    SECOND_RANK(30000000L, MatchingCondition.FIVE_AND_BONUS),
-    THIRD_RANK(1500000L, MatchingCondition.FIVE),
-    FOURTH_RANK(50000L, MatchingCondition.FOUR),
-    FIFTH_RANK(5000L, MatchingCondition.THREE),
-    FAILURE_RANK(0L, MatchingCondition.FAILURE);
+    FIRST_RANK("1등", 2_000_000_000L, MatchingCondition.SIX),
+    SECOND_RANK("2등", 30_000_000L, MatchingCondition.FIVE_AND_BONUS),
+    THIRD_RANK("3등", 1_500_000L, MatchingCondition.FIVE),
+    FOURTH_RANK("4등", 50_000L, MatchingCondition.FOUR),
+    FIFTH_RANK("5등", 5_000L, MatchingCondition.THREE),
+    FAILURE_RANK("탈락", 0L, MatchingCondition.FAILURE);
 
+    private final String description;
     private final long winningAmount;
     private final MatchingCondition condition;
 
-    WinningResultInfo(long winningAmount, MatchingCondition condition) {
+    WinningResultInfo(String description, long winningAmount, MatchingCondition condition) {
+        this.description = description;
         this.winningAmount = winningAmount;
         this.condition = condition;
     }
@@ -28,6 +30,10 @@ public enum WinningResultInfo {
 
     public boolean isSameCondition(MatchingCondition condition) {
         return this.condition == condition;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public long getWinningAmount() {
