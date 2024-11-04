@@ -16,13 +16,22 @@ public class LottoWinningChecker {
     }
 
     private Integer countingMatchingNumber(Lotto lotto) {
-        int count = 0;
+        int hitCount = 0;
         for (int index = LOTTO_START_INDEX; index <= LOTTO_END_INDEX; index++) {
-            if (lotto.getNumber(index).equals(winningNumbers.getNumber(index))) {
-                count++;
+           if(isMatchWinningNumber(lotto.getNumber(index))){
+               hitCount++;
+           }
+        }
+        return hitCount;
+    }
+
+    private Boolean isMatchWinningNumber(int lottoNumber){
+        for(int index = LOTTO_START_INDEX; index <= LOTTO_END_INDEX; index++){
+            if(lottoNumber == winningNumbers.getNumber(index)){
+                return true;
             }
         }
-        return count;
+        return false;
     }
 
     private Boolean hasBonusNumber(Lotto lotto) {
