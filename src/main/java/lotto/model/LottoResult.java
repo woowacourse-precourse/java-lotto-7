@@ -19,24 +19,24 @@ public class LottoResult {
         calculateLottosResult(lottos, winningNumbers, bonusNumber);
     }
 
-    public void calculateLottosResult(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public Map<Rank, Integer> getLottoResult() {
+        return Collections.unmodifiableMap(lottoResult);
+    }
+
+    private void calculateLottosResult(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         List<LottoDto> lottoDtos = lottos.getLottoDtos();
 
         for (LottoDto lottoDto : lottoDtos) {
 
             List<Integer> lottoNumbers = lottoDto.numbers();
 
-            int duplicateCount = getDuplicateNubers(lottoNumbers, winningNumbers.getWinningNumbers());
+            int duplicateCount = getDuplicateNumbers(lottoNumbers, winningNumbers.getWinningNumbers());
             boolean isBonusNumberDuplicated = isBonusNumberDuplicated(lottoNumbers, bonusNumber.getBonusNumber());
             saveLottoResult(duplicateCount, isBonusNumberDuplicated);
         }
     }
 
-    public Map<Rank, Integer> getLottoResult() {
-        return Collections.unmodifiableMap(lottoResult);
-    }
-
-    private int getDuplicateNubers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+    private int getDuplicateNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         lottoNumbers = new ArrayList<>(lottoNumbers);
         winningNumbers = new ArrayList<>(winningNumbers);
 
