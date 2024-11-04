@@ -19,9 +19,7 @@ public class NumberList extends ArrayList<Integer> {
     }
 
     static public void validateLottoNumbersSize(List<Integer> list){
-        if(list.size() > MAX_SIZE){
-            ExceptionFactory.throwIllegalArgumentException(ExceptionType.LIST_OVER_MAX_LENGTH);
-        }
+        Validator.validateListSize(list,MAX_SIZE);
     }
 
     static public void validateLottoNumberRange(int number){
