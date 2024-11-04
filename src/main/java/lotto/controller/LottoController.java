@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.model.Lotto;
-import lotto.model.LottoBudget;
+import lotto.model.PurchaseAmount;
 import lotto.model.LottoPrizes;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
@@ -21,9 +21,9 @@ public class LottoController {
     }
 
     public void run() {
-        LottoBudget lottoBudget = retryUntilValid(this::readLottoBudget);
+        PurchaseAmount purchaseAmount = retryUntilValid(this::readPurchaseAmount);
 
-        String lottoCount = lottoBudget.getLottoCount();
+        String lottoCount = purchaseAmount.calculatePurchaseLottoCount();
         outputView.printLottoCount(lottoCount);
 
         Lottos lottos = generateLottos(lottoCount);
@@ -41,19 +41,18 @@ public class LottoController {
         List<String> matchStatistics = lottoPrizes.calculateMatchStatistics();
         outputView.printMatchStatistics(matchStatistics);
 
-        String yield = lottoPrizes.calculateYield(lottoBudget.getValue());
+        String yield = lottoPrizes.calculateYield(purchaseAmount.getValue());
         outputView.printYield(yield);
     }
 
     private static Lottos generateLottos(String lottoCount) {
         int lottoCountNumber = Integer.parseInt(lottoCount);
-        Lottos lottos = Lottos.fromCount(lottoCountNumber);
-        return lottos;
+        return Lottos.fromCount(lottoCountNumber);
     }
 
-    private LottoBudget readLottoBudget() {
-        String lottoBudgetInput = inputView.readLottoBudget();
-        return new LottoBudget(lottoBudgetInput);
+    private PurchaseAmount readPurchaseAmount() {
+        String lottoBudgetInput = inputView.readPurchaseAmount();
+        return new PurchaseAmount(lottoBudgetInput);
     }
 
     private <T> T retryUntilValid(Supplier<T> action) {

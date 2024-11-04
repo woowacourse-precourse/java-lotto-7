@@ -1,10 +1,11 @@
 package lotto.model;
 
 public class LottoBudget {
+public class PurchaseAmount {
     private final int value;
 
-    public LottoBudget(String lottoBudgetString) {
-        int value = parseInput(lottoBudgetString);
+    public PurchaseAmount(String purchaseAmount) {
+        int value = parseInput(purchaseAmount);
         validateValue(value);
         this.value = value;
     }
@@ -31,7 +32,7 @@ public class LottoBudget {
         }
     }
 
-    public String getLottoCount() {
+    public String calculatePurchaseLottoCount() {
         return String.valueOf(value / 1000);
     }
 }
