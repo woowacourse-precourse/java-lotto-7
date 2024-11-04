@@ -76,7 +76,7 @@ public class Application {
     }
 
     private static List<Integer> generateRandomLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER,MAX_NUMBER,LOTTO_NUMBER_COUNT);
     }
 
     private static int getBonusNumber(List<Integer> winningNumbers) {
@@ -94,7 +94,7 @@ public class Application {
     private static int validateBonusNumber(String inputBonus, List<Integer> winningNumbers) {
         try {
             int bonusNumber = Integer.parseInt(inputBonus.trim());
-            if (bonusNumber < 1 || bonusNumber > 45) {
+            if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
                 throw new IllegalArgumentException(ERROR_BONUS_NUMBER_RANGE);
             }
             if (winningNumbers.contains(bonusNumber)) {
@@ -109,7 +109,7 @@ public class Application {
     private static void showResult(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
         int[] rankCount = calculateRank(purchasedLottos, winningLotto, bonusNumber);
         printStatistics(rankCount);
-        calculateYield(rankCount,purchasedLottos.size()*1000);
+        calculateYield(rankCount,purchasedLottos.size()*LOTTO_PRICE);
     }
 
     private static void printStatistics(int[] rankCount) {
