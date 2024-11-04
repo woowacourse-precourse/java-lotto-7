@@ -1,10 +1,15 @@
 package lotto;
 
+import lotto.Lotto;
 import lotto.core.LottoGenerator;
+import lotto.core.LottoMatcher;
+import lotto.core.LottoResult;
+import lotto.core.LottoStatistics;
 import lotto.inputview.BonusNumberInputView;
 import lotto.inputview.LottoNumbersInputView;
 import lotto.inputview.PurchaseAmountInputView;
 import lotto.outputview.LottoNumbersOutputView;
+import lotto.outputview.LottoStatisticsOutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +28,26 @@ public class run {
 
         // 3. 로또 번호 출력
         LottoNumbersOutputView.printPurchasedLottos(numberOfLottos, purchasedLottos);
+
         // 4. 당첨 번호 입력
         Lotto winningLotto = LottoNumbersInputView.inputLottoNumbers();
-
-        // 5. 보너스 번호 입력
         int bonusNumber = BonusNumberInputView.inputBonusNumber();
 
-        // 6. 추가 로직: 당첨 번호와 구매한 로또 번호 비교 (예시: 출력)
-        //LottoNumbersOutputView.printResult(purchasedLottos, winningLotto, bonusNumber);
+        // 5. 당첨 통계 계산 및 출력
+        List<LottoResult> results = new ArrayList<>();
+        LottoMatcher lottoMatcher = new LottoMatcher(winningLotto.getNumbers(), bonusNumber);
+        for (Lotto lotto : purchasedLottos) {
+            LottoResult result = lottoMatcher.match(lotto.getNumbers());
+            results.add(result);
+        }
+
+        // 6. 통계 출력
+        LottoStatisticsOutputView.printStatistics(results);
+        // 7. 수익률 계산
+        LottoStatistics lottoStatistics = new LottoStatistics(results, numberOfLottos * 1000);
+        double profitRate = lottoStatistics.calculateProfitRate();
+
+        // 8. 수익률 출력
+        System.out.printf("총 수익률은 %.2f%%입니다.%n", profitRate);
     }
 }
