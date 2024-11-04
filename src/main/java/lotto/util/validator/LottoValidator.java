@@ -2,42 +2,53 @@ package lotto.util.validator;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.exception.LottoException.InvalidBonusNumberException;
+import lotto.exception.LottoException.InvalidLottoDuplicateException;
+import lotto.exception.LottoException.InvalidLottoPriceDivisibleException;
+import lotto.exception.LottoException.InvalidLottoPriceException;
+import lotto.exception.LottoException.InvalidLottoRangeException;
+import lotto.exception.LottoException.InvalidLottoSizeException;
 
 public class LottoValidator {
 
+    private final static int MIN_LOTTO_NUMBER = 1;
+    private final static int MAX_LOTTO_NUMBER = 45;
+    private final static int LOTTO_SIZE = 6;
+    private final static int LOTTO_PRICE = 1000;
+
     public static void validateDuplicateWith(int bonusNumber, Lotto winningNumber) {
         if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되는 보너스 번호는 입력할 수 없습니다.");
+            throw new InvalidBonusNumberException();
         }
     }
 
     public static void validateRange(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이여야 합니다.");
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new InvalidLottoRangeException();
         }
     }
 
     public static void validateDivisible(int amount) {
-        if ((amount / 1000) * 1000 != amount) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
+        if ((amount / LOTTO_PRICE) * LOTTO_PRICE != amount) {
+            throw new InvalidLottoPriceDivisibleException();
         }
     }
 
     public static void validatePrice(int amount) {
-        if (amount < 1000) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 이상이어야 합니다.");
+        if (amount < LOTTO_PRICE) {
+            throw new InvalidLottoPriceException();
         }
     }
 
     public static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new InvalidLottoSizeException();
         }
     }
 
     public static void validateDuplicateNumbers(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
+        if (numbers.stream().distinct().count() != LOTTO_SIZE) {
+            throw new InvalidLottoDuplicateException();
         }
     }
 

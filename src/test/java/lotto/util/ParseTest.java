@@ -1,6 +1,7 @@
 package lotto.util;
 
 import java.math.BigDecimal;
+import lotto.exception.ErrorMessages;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ public class ParseTest {
     void 정수_변환_불가시_예외를_던진다(String input) {
         Assertions.assertThatThrownBy(() -> Parse.stringToInt(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자로 변환할 수 없습니다.");
+                .hasMessage(ErrorMessages.INVALID_LOTTO_PRICE_TYPE.getMessage());
     }
 
     @DisplayName("숫자를 콤마로 포맷팅한다.")

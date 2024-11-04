@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.exception.ErrorMessages;
 import lotto.wrapper.Amount;
 import lotto.wrapper.BonusNumber;
 import lotto.domain.Lotto;
@@ -51,7 +52,7 @@ public class LottoServiceTest {
     void 당첨_번호_입력시_범위_예외_발생_테스트(String input) {
         Assertions.assertThatThrownBy(() -> lottoService.parseWinningNumberForLotto(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 1부터 45 사이여야 합니다.");
+                .hasMessage(ErrorMessages.INVALID_LOTTO_RANGE.getMessage());
     }
 
     @DisplayName("보너스 번호 입력시 BonusNumber 객체로 생성되어야 한다.")
@@ -72,7 +73,7 @@ public class LottoServiceTest {
 
         Assertions.assertThatThrownBy(() -> lottoService.createBonusNumber(input, winningNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호와 중복되는 보너스 번호는 입력할 수 없습니다.");
+                .hasMessage(ErrorMessages.INVALID_BONUS_NUMBER.getMessage());
     }
 
 }

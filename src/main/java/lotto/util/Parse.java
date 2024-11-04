@@ -3,6 +3,8 @@ package lotto.util;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
+import lotto.exception.LottoException;
+import lotto.exception.LottoException.InvalidLottoPriceTypeException;
 
 public class Parse {
 
@@ -10,7 +12,7 @@ public class Parse {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자로 변환할 수 없습니다.");
+            throw new InvalidLottoPriceTypeException();
         }
     }
 

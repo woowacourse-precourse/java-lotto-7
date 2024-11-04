@@ -1,5 +1,7 @@
 package lotto.wrapper;
 
+import lotto.exception.ErrorMessages;
+import lotto.util.validator.LottoValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +24,7 @@ public class BonusNumberTest {
     void 보너스_번호는_1부터_45_사이여야_한다(int inputNumber) {
         Assertions.assertThatThrownBy(() -> BonusNumber.of(inputNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 1부터 45 사이여야 합니다.");
+                .hasMessage(ErrorMessages.INVALID_LOTTO_RANGE.getMessage());
     }
 
 }
