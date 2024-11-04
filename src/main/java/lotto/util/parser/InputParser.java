@@ -12,7 +12,6 @@ public class InputParser {
 
     private InputParser() {}
 
-
     public static WinningNumbers parseWinningNumbers(String input) {
         List<Integer> winningNumbers = Arrays.stream(input.split(SPLIT_DELIMITER))
                 .map(String::trim)

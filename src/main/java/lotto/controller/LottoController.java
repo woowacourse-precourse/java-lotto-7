@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.domain.BonusNumber;
-import lotto.model.domain.Lottos;
-import lotto.model.domain.Money;
-import lotto.model.domain.WinningNumbers;
+import lotto.model.domain.*;
 import lotto.model.service.LottoCreationService;
 import lotto.model.service.LottoRateService;
 import lotto.util.parser.InputParser;
@@ -16,10 +13,12 @@ public class LottoController {
     private LottoView lottoView;
     private LottoCreationService lottoCreationService;
     private LottoRateService lottoRateService;
+
     private Money money;
     private Lottos lottos;
     private WinningNumbers winningNumbers;
     private BonusNumber bonus;
+    private Rate rate;
 
     public LottoController(
             InputView inputView,
@@ -33,63 +32,72 @@ public class LottoController {
     }
 
     public void run() {
-        createMoney();
-        createAndPrintLottos();
-        createWinningNumbers();
-        createBonusNumber();
-        calculateRateStatus(lottos,winningNumbers,bonus);
+        money = createMoney();
+        lottos = createLottos();
+        printLottos();
+        winningNumbers = createWinningNumbers();
+        bonus = createBonusNumber();
+        rate = calculateRateStatus(lottos, winningNumbers, bonus);
+        printRateStatus(rate, money);
     }
 
-    private void createMoney() {
+    private Money createMoney() {
         while (true) {
             try {
                 String inputAmount = inputView.readPurchaseAmount();
                 InputValidator.validateInputValue(inputAmount);
                 int amount = InputParser.parseNumber(inputAmount);
-                money = new Money(amount);
-                break;
+                return new Money(amount);
             } catch (IllegalArgumentException iae) {
                 System.out.println(iae.getMessage());
             }
         }
     }
 
-    private void createAndPrintLottos() {
-        lottos = lottoCreationService.createLottos(money.getAmount());
+    private Lottos createLottos() {
+        return lottoCreationService.createLottos(money.getAmount());
+
+    }
+
+    private void printLottos() {
         int lottoCount = lottoCreationService.calculateLottoCount(money.getAmount());
         lottoView.printTotalLottoCount(lottoCount);
         lottoView.printCreatedLotto(lottos);
     }
 
-    private void createWinningNumbers() {
+    private WinningNumbers createWinningNumbers() {
         while (true) {
             try {
                 String inputWinningNumbers = inputView.readWinningNumbers();
                 InputValidator.validateInputLottoValue(inputWinningNumbers);
-                winningNumbers = InputParser.parseWinningNumbers(inputWinningNumbers);
-                break;
+                return InputParser.parseWinningNumbers(inputWinningNumbers);
             } catch (IllegalArgumentException iae) {
                 System.out.println(iae.getMessage());
             }
         }
     }
 
-    private void createBonusNumber() {
+    private BonusNumber createBonusNumber() {
         while (true) {
             try {
                 String inputBonus = inputView.readBonusNumber();
                 InputValidator.validateInputValue(inputBonus);
                 int bounusNumber = InputParser.parseNumber(inputBonus);
-                bonus = new BonusNumber(bounusNumber, winningNumbers);
-                break;
+                return new BonusNumber(bounusNumber, winningNumbers);
             } catch (IllegalArgumentException iae) {
                 System.out.println(iae.getMessage());
             }
         }
     }
 
-    private void calculateRateStatus(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonus) {
-        lottoRateService.calculateRate(lottos, winningNumbers, bonus);
+    private Rate calculateRateStatus(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonus) {
+        return lottoRateService.calculateRate(lottos, winningNumbers, bonus);
+    }
+
+    private void printRateStatus(Rate rate, Money money) {
+        lottoView.printRateStatus(rate);
+        double returnPrize = lottoRateService.caculateRateReturn(rate, money);
+        lottoView.printRateReturn(returnPrize);
     }
 
 }

@@ -1,7 +1,6 @@
 package lotto.util.validator;
 
 import lotto.exception.InputErrorMessage;
-import lotto.util.parser.InputParser;
 
 public class InputValidator {
     private final static String LOTTO_RANGE_PATTERN = "([1-9]|[1-9][0-9]?|45)(,([1-9]|[1-9][0-9]?|45))*";
