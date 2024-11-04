@@ -10,6 +10,7 @@ public class OutputView {
     private final String LOTTO_NUMBER_DELIMITER = ", ";
     private final String OPEN_BRACKET = "[";
     private final String CLOSED_BRACKET = "]";
+    private final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
     public void displayLottoCount(Lottos lottos) {
         System.out.println("\n" + lottos.getLottoCount() + "개를 구매했습니다.");
@@ -42,7 +43,7 @@ public class OutputView {
     }
 
     public void displayErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
+        System.out.println(ERROR_MESSAGE_PREFIX + errorMessage);
     }
 
     private void displayLotto(Lotto lotto) {

@@ -7,6 +7,7 @@ import lotto.model.BonusNumber;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
 import lotto.model.WinningResult;
+import lotto.model.constant.ErrorMessage;
 import lotto.service.LottoEvaluator;
 import lotto.service.LottoGenerator;
 import lotto.view.InputView;
@@ -78,7 +79,7 @@ public class LottoGameController {
         try {
             parsedNumber = Integer.parseInt(userInputNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 정수 형태여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT);
         }
 
         return parsedNumber;
@@ -86,7 +87,7 @@ public class LottoGameController {
 
     private void validateMultipleOf1000(int lottoPurchaseAmount) {
         if (lottoPurchaseAmount == 0 || lottoPurchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000의 배수여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_MULTIPLE_OF_1000);
         }
     }
 }
