@@ -30,9 +30,12 @@ public class Winning {
     }
 
     private void validateBonus(int[] winningNumbers, int bonusNumber){
-        for(int i : winningNumbers) {
-            if (i == bonusNumber) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        for(int number : winningNumbers) {
+            if(number == bonusNumber) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
             }
         }
     }
