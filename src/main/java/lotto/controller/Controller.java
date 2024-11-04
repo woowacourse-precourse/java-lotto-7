@@ -30,8 +30,7 @@ public class Controller {
         Seller seller = new Seller(lottoGenerator);
         seller.sellTo(customer);
 
-        EarnedLottos generatedLottos = EarnedLottos.from(customer.getMyLotto());
-        outputView.printLottoNumbers(generatedLottos);
+        outputView.printLottoNumbers(EarnedLottos.from(customer.getMyLotto()));
 
         AnswerNumbers answerNumbers = tryforCorrentInput(this::createAnswerNumbers);
         BonusNumber bonusNumber = tryforCorrentInput(this::createBonusNumber);
