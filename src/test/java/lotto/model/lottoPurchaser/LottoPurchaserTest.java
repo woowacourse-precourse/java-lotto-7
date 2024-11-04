@@ -19,7 +19,7 @@ public class LottoPurchaserTest {
 
     @BeforeEach
     void setUp() {
-        lottoBuyer = new LottoPurchaser(8000, 20);
+        lottoBuyer = new LottoPurchaser(8000);
     }
 
     @Test
