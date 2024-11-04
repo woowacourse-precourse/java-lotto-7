@@ -37,28 +37,43 @@ public class LottoGame {
     }
 
     private CorrectLotto createCorrectLotto() {
+
+        Lotto lotto = createCorrectNumbers();
+        int bonusNumber = createBonusNumber();
+
+        return new CorrectLotto(lotto, bonusNumber);
+
+    }
+
+    private Lotto createCorrectNumbers() {
         try {
             List<Integer> numbers = LottoInput.inputCorrectNumbers().stream()
-                    .map(Integer::parseInt)
+                    .map(input -> {
+                        try {
+                            return Integer.parseInt(input);
+                        } catch (Exception e) {
+                            throw new IllegalArgumentException("[ERROR] 당첨번호는 1~45의 정수이어야 합니다.");
+                        }
+                    })
                     .toList();
-            Lotto lotto = new Lotto(numbers);
-            int bonusNumber = createBonusNumber();
-
-            return new CorrectLotto(lotto, bonusNumber);
+            return new Lotto(numbers);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return createCorrectLotto();
+            return createCorrectNumbers();
         }
     }
 
     private int createBonusNumber() {
         try {
             int bonusNumber = Integer.parseInt(LottoInput.inputBonusNumber());
-            if(bonusNumber < 1 || bonusNumber > 45) {
+            if (bonusNumber < 1 || bonusNumber > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
             return bonusNumber;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            return createBonusNumber();
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createBonusNumber();
         }
