@@ -14,6 +14,10 @@ public class MoneyValidator {
     }
 
     private static int parseAndValidateInteger(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    DEFAULT_ERROR_MESSAGE + ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE.getMessage());
+        }
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

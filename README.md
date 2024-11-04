@@ -142,15 +142,19 @@
     - 숫자가 아닌 경우 NumberFormatException 발생 (+다시 입력 받음)
     - 1,000으로 나누어 떨어지지 않으면 IllegalArgumentException 발생 (+다시 입력 받음)
     - 양수가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
+    - 입력이 비어있으면 IllegalArgumentException 발생 (+다시 입력 받음)
   - 당첨 번호 입력
     - 1~45 사이의 숫자가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - 숫자가 6개가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - 구분자가 쉼표가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - 중복된 숫자가 있으면 IllegalArgumentException 발생 (+다시 입력 받음)
+    - 입력이 비어있으면 IllegalArgumentException 발생 (+다시 입력 받음)
   - 보너스 번호 입력
     - 1~45 사이의 숫자가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - 숫자가 1개가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - 양수가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
+    - 입력이 비어있으면 IllegalArgumentException 발생 (+다시 입력 받음)
+    - 당첨 번호 중 같은 수가 있으면 IllegalArgumentException 발생 (+다시 입력 받음)
 - 출력
   - 진행 멘트 출력
   - 발행한 로또 수량, 번호 출력
@@ -176,15 +180,19 @@
     - [x] 숫자가 아닌 경우 NumberFormatException 발생 (+다시 입력 받음)
     - [x] 1,000으로 나누어 떨어지지 않으면 IllegalArgumentException 발생 (+다시 입력 받음)
     - [x] 양수가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
+    - [x] 입력이 비어있으면 IllegalArgumentException 발생 (+다시 입력 받음)
   - [x] 당첨 번호 입력
     - [x] 1~45 사이의 숫자가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - [x] 숫자가 6개가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - [x] 구분자가 쉼표가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - [x] 중복된 숫자가 있으면 IllegalArgumentException 발생 (+다시 입력 받음)
+    - [ ] 입력이 비어있으면 IllegalArgumentException 발생 (+다시 입력 받음)
   - [x] 보너스 번호 입력
     - [x] 1~45 사이의 숫자가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - [x] 숫자가 1개가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - [x] 양수가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
+    - [ ] 입력이 비어있으면 IllegalArgumentException 발생 (+다시 입력 받음)
+    - [ ] 당첨 번호 중 같은 수가 있으면 IllegalArgumentException 발생 (+다시 입력 받음)
 - 출력
   - [x] 진행 멘트 출력
   - [x] 발행한 로또 수량, 번호 출력

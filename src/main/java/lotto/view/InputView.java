@@ -14,10 +14,8 @@ public class InputView {
                 String input = Console.readLine();
                 return MoneyValidator.validateMoneyToBuy(input);
             } catch (Exception e) {
-                OutputView.printErrorMessage(e.getMessage());
-                if ("true".equals(System.getProperty("TEST_MODE"))) {  // TEST_MODE 확인
-                    throw e;
-                }
+                //OutputView.printErrorMessage(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }

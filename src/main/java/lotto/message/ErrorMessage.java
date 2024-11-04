@@ -7,7 +7,8 @@ public enum ErrorMessage {
     INVALID_COUNT_ERROR_MESSAGE("로또 번호는 6개여야 합니다."),
     OUT_OF_RANGE_ERROR_MESSAGE("로또 번호는 1 이상 45 이하의 정수여야 합니다."),
     DUPLICATE_NUMBER_ERROR_MESSAGE("중복된 숫자는 허용되지 않습니다."),
-    SINGLE_NUMBER_ERROR_MESSAGE("보너스 번호는 1개여야 합니다.");
+    SINGLE_NUMBER_ERROR_MESSAGE("보너스 번호는 1개여야 합니다."),
+    EMPTY_INPUT_ERROR_MESSAGE("입력 값이 비어 있습니다. 유효한 금액을 입력해 주세요.");
 
     private final String message;
 
