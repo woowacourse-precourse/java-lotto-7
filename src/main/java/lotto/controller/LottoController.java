@@ -55,6 +55,7 @@ public class LottoController {
     }
 
     private void outputWinningStatistics() {
+        OutputMessage.winningStatistics();
         lottoHandler.staticsResults(customer);
         rankingHandler.printResults(customer);
 

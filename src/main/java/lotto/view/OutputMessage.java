@@ -12,4 +12,8 @@ public class OutputMessage {
         System.out.println(buyLottoResults + "\n");
     }
 
+    public static void winningStatistics() {
+        System.out.println(OutputMessageType.OUTPUT_WINNING_STATISTICS.getMessage());
+    }
+
 }
