@@ -37,4 +37,9 @@ public class LottoResult {
     public long calculateTotalEarnings() {
         return totalEarnings;
     }
+
+    public Double calculateEarningsRate(long purchaseAmount) {
+        long totalWinningPrice = calculateTotalEarnings();
+        return (double) totalWinningPrice / purchaseAmount * 100;
+    }
 }

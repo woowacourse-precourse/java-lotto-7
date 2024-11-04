@@ -18,8 +18,7 @@ class LottoDrawMachineTest {
         LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(lottos, winningNumbers, bonus);
 
         // when
-        lottoDrawMachine.compareLottoToWinning();
-        LottoResult lottoResult = lottoDrawMachine.prizeWinningResult();
+        LottoResult lottoResult = lottoDrawMachine.calculateLottoResult();
         Map<Rank, Integer> rankResult = lottoResult.getRankCounts();
 
         // then
@@ -35,8 +34,7 @@ class LottoDrawMachineTest {
         LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(lottos, winningNumbers, bonus);
 
         // when
-        lottoDrawMachine.compareLottoToWinning();
-        LottoResult lottoResult = lottoDrawMachine.prizeWinningResult();
+        LottoResult lottoResult = lottoDrawMachine.calculateLottoResult();
         Map<Rank, Integer> rankResult = lottoResult.getRankCounts();
 
         // then
@@ -53,9 +51,11 @@ class LottoDrawMachineTest {
         LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(lottos, winningNumbers, bonus);
 
         // when
-        lottoDrawMachine.compareLottoToWinning();
-        Double earningsRate = lottoDrawMachine.calculateEarningsRate();
-        Double result = (double) Rank.FIRST.price() / 1000 * 100;
+        long winningSum = Rank.FIRST.price();
+        long purchaseAmount = lottos.size() * 1000L;
+        LottoResult lottoResult = lottoDrawMachine.calculateLottoResult();
+        double earningsRate = lottoResult.calculateEarningsRate(purchaseAmount);
+        double result = (double) winningSum / purchaseAmount * 100;
 
         // then
         assertThat(earningsRate).isEqualTo(result);
@@ -73,9 +73,11 @@ class LottoDrawMachineTest {
         LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(lottos, winningNumbers, bonus);
 
         // when
-        lottoDrawMachine.compareLottoToWinning();
-        Double earningsRate = lottoDrawMachine.calculateEarningsRate();
-        Double result = (double) (Rank.FIRST.price() + Rank.SECOND.price()) / 2000 * 100;
+        long winningSum = Rank.FIRST.price() + Rank.SECOND.price();
+        long purchaseAmount = lottos.size() * 1000L;
+        LottoResult lottoResult = lottoDrawMachine.calculateLottoResult();
+        double earningsRate = lottoResult.calculateEarningsRate(purchaseAmount);
+        double result = (double) winningSum / purchaseAmount * 100;
 
         // then
         assertThat(earningsRate).isEqualTo(result);
@@ -92,8 +94,7 @@ class LottoDrawMachineTest {
         LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(lottos, winningNumbers, bonus);
 
         // when
-        lottoDrawMachine.compareLottoToWinning();
-        LottoResult lottoResult = lottoDrawMachine.prizeWinningResult();
+        LottoResult lottoResult = lottoDrawMachine.calculateLottoResult();
         Map<Rank, Integer> rankResult = lottoResult.getRankCounts();
 
         // then
@@ -109,11 +110,11 @@ class LottoDrawMachineTest {
         LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(lottos, winningNumbers, bonus);
 
         // when
-        lottoDrawMachine.compareLottoToWinning();
-        Double earningsRate = lottoDrawMachine.calculateEarningsRate();
-        long winningSum = 5000L;
-        long purchaseAmount = 1000L;
-        Double result = (double) winningSum / purchaseAmount * 100;
+        long winningSum = Rank.FIFTH.price();
+        long purchaseAmount = lottos.size() * 1000L;
+        LottoResult lottoResult = lottoDrawMachine.calculateLottoResult();
+        double earningsRate = lottoResult.calculateEarningsRate(purchaseAmount);
+        double result = (double) winningSum / purchaseAmount * 100;
 
         // then
         assertThat(earningsRate).isEqualTo(result);

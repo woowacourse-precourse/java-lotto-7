@@ -21,7 +21,7 @@ public class OutputView {
         System.out.printf(LOTTO_MATCH_RESULT_MESSAGE, count, price, prizeCount);
     }
 
-    public void printLottoRate(Double rate) {
+    public void printLottoRate(double rate) {
         System.out.printf(EARNINGS_RATE_MESSAGE, rate);
     }
 }

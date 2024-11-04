@@ -17,15 +17,13 @@ public class LottoService {
         return new LottoDrawMachine(lottos, winningNumbers, bonusNumber);
     }
 
-    public void compareWinning(LottoDrawMachine machine) {
-        machine.compareLottoToWinning();
-    }
-
     public LottoResult getWinningResult(LottoDrawMachine machine) {
-        return machine.prizeWinningResult();
+        return machine.calculateLottoResult();
     }
 
-    public Double generateEarningsRate(LottoDrawMachine machine) {
-        return machine.calculateEarningsRate();
+    public double generateEarningsRate(LottoResult lottoResult, LottoDrawMachine machine) {
+        long purchaseAmount = machine.getPurchaseAmount();
+        return lottoResult.calculateEarningsRate(purchaseAmount);
     }
+
 }

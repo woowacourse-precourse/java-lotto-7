@@ -34,10 +34,7 @@ public class LottoController {
         int bonusNumber = getBonusNumber(winningNumbers);
 
         LottoDrawMachine lottoDrawMachine = lottoService.makeLottoDrawMachine(lottos, winningNumbers, bonusNumber);
-        lottoService.compareWinning(lottoDrawMachine);
-
-        announceLottoPrize(lottoDrawMachine);
-        announceEarningsRate(lottoDrawMachine);
+        announceResults(lottoDrawMachine);
     }
 
     private int getPriceFromUser() {
@@ -90,17 +87,14 @@ public class LottoController {
                 .forEach(inputView::printLottos);
     }
 
-    private void announceLottoPrize(LottoDrawMachine lottoDrawMachine) {
+    private void announceResults(LottoDrawMachine lottoDrawMachine) {
         outputView.printResultMessage();
         LottoResult lottoResult = lottoService.getWinningResult(lottoDrawMachine);
         lottoResult.getRankCounts().forEach((rank, count) -> {
             String formattedPrice = rank.getFormattedPrice();
             outputView.printLottoPrize(rank.count(), rank.hasBonus(), formattedPrice, count);
         });
-    }
-
-    private void announceEarningsRate(LottoDrawMachine lottoDrawMachine) {
-        Double earningsRate = lottoService.generateEarningsRate(lottoDrawMachine);
+        double earningsRate = lottoService.generateEarningsRate(lottoResult, lottoDrawMachine);
         outputView.printLottoRate(earningsRate);
     }
 }
