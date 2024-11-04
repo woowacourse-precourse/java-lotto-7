@@ -26,7 +26,7 @@ public class LottoGame {
 
     // 첫 번째 입력(구입 금액)
     private void inputPurchaseAmount() {
-        while(true) {
+        while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
 
@@ -46,7 +46,7 @@ public class LottoGame {
 
     // 두 번째 입력(로또 번호(당첨 번호))
     private void inputLottoWinningNumber() {
-        while(true) {
+        while (true) {
             try {
                 System.out.println("\n당첨 번호를 입력해 주세요.");
 
@@ -84,8 +84,10 @@ public class LottoGame {
         System.out.println("---");
 
         for (LottoPrize lottoPrize : LottoPrize.values()) {
+            int matchCount = calculateAndAddTotalPrizeMoney(lottoPrize);
+
             System.out.println(lottoPrize.getDescription() + " ("
-                    + lottoPrize.getPrizeMoney() + "원) - " + lottoNumberMatchCount(lottoPrize) + "개");
+                    + lottoPrize.getPrizeMoney() + "원) - " + matchCount + "개");
         }
 
         System.out.println("총 수익률은 " + totalLottoPrizeMoneyCalc() + "%입니다.");
@@ -96,33 +98,53 @@ public class LottoGame {
         return ((double) totalLottoPrizeMoney / purchaseAmount) * 100.0;
     }
 
-    // 구입한 로또가 몇 등, 몇 번 당첨됐는지 확인하는 메서드
+    // 주어진 로또 번호가 2등 또는 3등에 해당하는지 확인하는 메서드
+    private boolean isSecondOrThirdPlace(List<Integer> numbers, LottoPrize lottoPrize) {
+        boolean containsBonusNumber = numbers.contains(bonusNumber);
+
+        return (lottoPrize == LottoPrize.SECOND_PLACE && containsBonusNumber)
+                || (lottoPrize == LottoPrize.THIRD_PLACE && !containsBonusNumber);
+    }
+
+    // 로또 번호와 당첨 번호 사이의 일치하는 숫자를 저장하고 그 컬렉션의 크기를 반환하는 메서드
+    private int countMatchNumbers(List<Integer> numbers) {
+        Set<Integer> duplicateValues = new HashSet<>(numbers);
+        duplicateValues.retainAll(lotto.getNumbers());
+
+        return duplicateValues.size();
+    }
+
+    // 로또 번호가 당첨된 등수에 해당하는지 확인하는 메서드
+    private boolean isMatchPrize(LottoPrize lottoPrize, List<Integer> numbers) {
+        int matchNumberCount = countMatchNumbers(numbers);
+
+        if (matchNumberCount != lottoPrize.getWinningNumberMatchCount()) {
+            return false;
+        }
+
+        if (lottoPrize.getWinningNumberMatchCount() == THIRD_AND_SECOND_PLACE_WINNING_NUMBER_MATCH_COUNT) {
+            return isSecondOrThirdPlace(numbers, lottoPrize);
+        }
+
+        return true;
+    }
+
+    // 당첨된 등수의 로또 건수를 계산하는 메서드
     public int lottoNumberMatchCount(LottoPrize lottoPrize) {
         int matchCount = 0;
 
         for (List<Integer> numbers : lottoNumbers) {
-            Set<Integer> duplicateValues = new HashSet<>(numbers);
-            duplicateValues.retainAll(lotto.getNumbers());
-
-            if (duplicateValues.size() != lottoPrize.getWinningNumberMatchCount()) {
-                continue;
-            }
-
-            boolean isSecondPlace =
-                    lottoPrize.getWinningNumberMatchCount() == THIRD_AND_SECOND_PLACE_WINNING_NUMBER_MATCH_COUNT
-                            && numbers.contains(bonusNumber)
-                            && lottoPrize == LottoPrize.SECOND_PLACE;
-
-            boolean isThirdPlace =
-                    lottoPrize.getWinningNumberMatchCount() == THIRD_AND_SECOND_PLACE_WINNING_NUMBER_MATCH_COUNT
-                            && !numbers.contains(bonusNumber)
-                            && lottoPrize == LottoPrize.THIRD_PLACE;
-
-            if (isSecondPlace || isThirdPlace
-                    || lottoPrize.getWinningNumberMatchCount() != THIRD_AND_SECOND_PLACE_WINNING_NUMBER_MATCH_COUNT) {
+            if (isMatchPrize(lottoPrize, numbers)) {
                 matchCount++;
             }
         }
+
+        return matchCount;
+    }
+
+    // 당첨된 등수의 당첨 건수를 계산하고 총당첨금액을 계산하는 메서드를 호출하는 메서드
+    public int calculateAndAddTotalPrizeMoney(LottoPrize lottoPrize) {
+        int matchCount = lottoNumberMatchCount(lottoPrize);
         addTotalLottoPrizeMoney(lottoPrize, matchCount);
 
         return matchCount;
@@ -133,7 +155,7 @@ public class LottoGame {
         totalLottoPrizeMoney += lottoPrize.getRealPrizeMoney() * matchCount;
     }
 
-    // 금액에 맞게 로또를 발급하는 메서드
+    // 금액에 맞는 로또를 발급하는 메서드
     public void lottoIssuance(int numberOfLottoPurchases) {
         for (int i = 0; i < numberOfLottoPurchases; i++) {
             List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
