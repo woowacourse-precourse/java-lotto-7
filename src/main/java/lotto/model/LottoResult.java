@@ -1,11 +1,14 @@
 package lotto.model;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoResult {
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
+    private final Map<Prize, Integer> prizeCounts = new EnumMap<>(Prize.class);
     private int lottoCost;
     private int totalPrize;
 
@@ -13,6 +16,21 @@ public class LottoResult {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
         this.lottoCost = lottoCost;
+        initializeRankCounts();
+    }
+
+    private void initializeRankCounts() {
+        for (Prize prize : Prize.values()) {
+            prizeCounts.put(prize, 0);  // 각 Rank의 초기 당첨 횟수를 0으로 설정
+        }
+    }
+
+    public void increasePrizeCount(Prize prize) {
+        prizeCounts.put(prize, prizeCounts.get(prize) + 1); // 해당 Rank의 당첨 횟수를 1 증가
+    }
+
+    public int getRankCount(Prize prize) {
+        return prizeCounts.getOrDefault(prize, 0); // 해당 Rank의 당첨 횟수를 반환
     }
 
     public void setTotalPrize(int totalPrize) {

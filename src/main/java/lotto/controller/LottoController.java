@@ -49,6 +49,7 @@ public class LottoController {
             int matchCount = checkCorrectCount(lotto, lottoResult.getWinningNumbers());
             boolean bonusMatch = lotto.getNumbers().contains(lottoResult.getBonusNumber());
             Prize prize = Prize.valueOf(matchCount, bonusMatch);
+            lottoResult.increasePrizeCount(prize);
             resultPrize += prize.getResultPrize();
         }
         lottoResult.setTotalPrize(resultPrize);

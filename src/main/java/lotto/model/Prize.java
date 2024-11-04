@@ -24,6 +24,11 @@ public enum Prize {
         return resultPrize;
     }
 
+    public int getCorrectCount() {
+        return correctCount;
+    }
+
+
     public static Prize valueOf(int isCorrectedCount, boolean isRequiredBonus) {
         return Arrays.stream(values())
                 .filter(rank -> rank.correctCount == isCorrectedCount && rank.checkBonus == isRequiredBonus)
