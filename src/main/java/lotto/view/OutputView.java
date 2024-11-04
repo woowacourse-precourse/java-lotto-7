@@ -16,7 +16,7 @@ public class OutputView implements UserOutput {
 
     @Override
     public void outputLottoCount(int lottoCount) {
-        System.out.println(String.format("%d개를 구매했습니다.", lottoCount));
+        System.out.println(String.format("\n%d개를 구매했습니다.", lottoCount));
     }
 
     @Override
@@ -29,14 +29,14 @@ public class OutputView implements UserOutput {
 
     @Override
     public void outputMatchResult(Map<String, Integer> lottoMatchCount) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---------");
 
-        System.out.printf("3개 일치 (%d원) - %d개%n", WinningMoney.FIFTH_PRIZE_MONEY.getPrizeMoney(), lottoMatchCount.get(THREE_MATCH));
-        System.out.printf("4개 일치 (%d원) - %d개%n", WinningMoney.FOURTH_PRIZE_MONEY.getPrizeMoney(), lottoMatchCount.get(FOUR_MATCH));
-        System.out.printf("5개 일치 (%d원) - %d개%n", WinningMoney.THIRD_PRIZE_MONEY.getPrizeMoney(), lottoMatchCount.get(FIVE_MATCH));
-        System.out.printf("5개 일치, 보너스 볼 일치 (%d원) - %d개%n", WinningMoney.SECOND_PRIZE_MONEY.getPrizeMoney(), lottoMatchCount.get(FIVE_BONUS_MATCH));
-        System.out.printf("6개 일치 (%d원) - %d개%n", WinningMoney.FIRST_PRIZE_MONEY.getPrizeMoney(), lottoMatchCount.get(SIX_MATCH));
+        System.out.printf("3개 일치 (5,000) - %d개%n", lottoMatchCount.get(THREE_MATCH));
+        System.out.printf("4개 일치 (50,000원) - %d개%n", lottoMatchCount.get(FOUR_MATCH));
+        System.out.printf("5개 일치 (1,500,000원) - %d개%n", lottoMatchCount.get(FIVE_MATCH));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", lottoMatchCount.get(FIVE_BONUS_MATCH));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", lottoMatchCount.get(SIX_MATCH));
     }
 
     @Override

@@ -79,9 +79,10 @@ public class LottoSaveService {
     public Map<String, Integer> matchLotto() {
         List<Integer> winningNumbers = lottoWinningNumber.getLottoWinningNumbers();
         int bonusNumber = lottoBonusNumber.getBonusNumber();
-        int matchedCount = 0;
+
 
         for (Lotto lotto : lottos.getLottos()) {
+            int matchedCount = 0;
             List<Integer> numbers = lotto.getNumbers();
             for (Integer number : numbers) {
                 if (winningNumbers.contains(number)) {
