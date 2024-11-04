@@ -32,7 +32,7 @@ public class LottoController {
         try {
             return Integer.parseInt(input.trim());
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 올바른 로또 번호 형식이 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 잘못된 형식의 로또 번호입니다.");
         }
     }
 }
