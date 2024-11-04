@@ -7,13 +7,12 @@ import java.util.stream.Collectors;
 
 public class Validator {
     public static final String INVALID_PURCHASE_AMOUNT_TYPE_ERROR = "[ERROR] 구입 금액은 숫자로 입력해야 합니다.";
-    public static final String INVALID_PURCHASE_AMOUNT_DIVISIBILITY_ERROR = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
-    public static final String INVALID_LOTTO_NUMBER_COUNT_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
+    public static final String INVALID_PURCHASE_AMOUNT_DIVISIBILITY_ERROR = "[ERROR] 구입 금액은 " + LottoConstant.LOTTO_PRICE + "원 단위로 입력해야 합니다.";
+    public static final String INVALID_LOTTO_NUMBER_COUNT_ERROR = "[ERROR] 로또 번호는 " + LottoConstant.LOTTO_NUMBER_COUNT + "개여야 합니다.";
     public static final String INVALID_WINNING_NUMBERS_TYPE_ERROR = "[ERROR] 당첨 번호는 숫자로 입력해야 합니다.";
     public static final String DUPLICATE_WINNING_NUMBER_ERROR = "[ERROR] 당첨 번호에 중복된 숫자가 있습니다.";
-    public static final String INVALID_WINNING_NUMBER_RANGE_ERROR = "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.";
-    public static final String INVALID_WINNING_NUMBER_COUNT_ERROR = "[ERROR] 당첨 번호는 6개여야 합니다.";
-
+    public static final String INVALID_WINNING_NUMBER_RANGE_ERROR = "[ERROR] 당첨 번호는 " + LottoConstant.LOTTO_MIN_NUMBER + "부터 " + LottoConstant.LOTTO_MAX_NUMBER + " 사이의 숫자여야 합니다.";
+    public static final String INVALID_WINNING_NUMBER_COUNT_ERROR = "[ERROR] 당첨 번호는 " + LottoConstant.LOTTO_NUMBER_COUNT + "개여야 합니다.";
 
     public static int validateAndParsePurchaseAmount(String input) {
         int purchaseAmount = parsePurchaseAmount(input);
@@ -30,41 +29,52 @@ public class Validator {
     }
 
     private static void validateDivisibility(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % LottoConstant.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_DIVISIBILITY_ERROR);
         }
     }
 
     public static void validateLottoNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConstant.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT_ERROR);
         }
     }
 
     public static List<Integer> validateAndParseWinningNumbers(String input) {
-        List<Integer> numbers;
+        List<Integer> numbers = parseWinningNumbers(input);
+        validateWinningNumberCount(numbers);
+        validateDuplicate(numbers);
+        validateWinningNumberRange(numbers);
+        return numbers;
+    }
+
+    private static List<Integer> parseWinningNumbers(String input) {
         try {
-            numbers = List.of(input.split(","))
+            return List.of(input.split(","))
                     .stream()
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_TYPE_ERROR);
         }
-        if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER_ERROR);
-        }
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE_ERROR);
-        }
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_COUNT_ERROR);
-        }
-        return numbers;
     }
 
-    private static boolean hasDuplicate(List<Integer> numbers) {
+    private static void validateWinningNumberCount(List<Integer> numbers) {
+        if (numbers.size() != LottoConstant.LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_COUNT_ERROR);
+        }
+    }
+
+    private static void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        return uniqueNumbers.size() != numbers.size();
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER_ERROR);
+        }
+    }
+
+    private static void validateWinningNumberRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> number < LottoConstant.LOTTO_MIN_NUMBER || number > LottoConstant.LOTTO_MAX_NUMBER)) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE_ERROR);
+        }
     }
 }
