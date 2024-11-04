@@ -8,12 +8,10 @@ public class PurchaseController {
     private PurchaseService service = new PurchaseService();
     private PurchaseView view = new PurchaseView();
 
-    public int run() {
+    public void run() {
         int price = view.inputPrice();
         int ticketCount = service.getTicketCount(price);
-        PurchaseModel model = new PurchaseModel(ticketCount);
-
-        return model.getTicketCount();
+        PurchaseModel.setTicketCount(ticketCount);
     }
 
 }

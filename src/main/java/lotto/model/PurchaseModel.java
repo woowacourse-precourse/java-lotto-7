@@ -1,13 +1,16 @@
 package lotto.model;
 
 public class PurchaseModel {
-    private int ticketCount;
+    private static PurchaseModel purchaseModel = new PurchaseModel();
+    private static int ticketCount;
 
-    public PurchaseModel(int ticketCount) {
-        this.ticketCount = ticketCount;
-    }
+    private PurchaseModel() {}
 
     public int getTicketCount() {
         return ticketCount;
+    }
+
+    public static void setTicketCount(int ticketCount) {
+        PurchaseModel.ticketCount = ticketCount;
     }
 }
