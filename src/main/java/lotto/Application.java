@@ -51,6 +51,9 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+
+
+
     }
 
     public static int getPurchaseNum() throws NumberFormatException {
