@@ -5,22 +5,22 @@ import lotto.exception.LottoArgumentException;
 
 public class Repeater {
     private final OutputController outputController;
+
     public Repeater(final OutputController outputController) {
         this.outputController = outputController;
     }
 
-
-    public <T> T repeat(final Supplier<T> supplier) {
+    public <T> T repeatWithErrorMessage(final Supplier<T> supplier) {
         while (true) {
             try {
-                return get(supplier);
-            }catch (LottoArgumentException lottoArgumentException) {
+                return getObject(supplier);
+            } catch (LottoArgumentException lottoArgumentException) {
                 outputController.printErrorMessage(lottoArgumentException);
             }
         }
     }
 
-    private static <T> T get(Supplier<T> supplier) {
+    private static <T> T getObject(final Supplier<T> supplier) {
         return supplier.get();
     }
 }

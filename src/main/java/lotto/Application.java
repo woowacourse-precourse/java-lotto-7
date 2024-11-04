@@ -14,14 +14,14 @@ public class Application {
         final Repeater repeater = new Repeater(outputController);
 
         outputController.printPurchaseInfo();
-        final LottoPayment lottoPayment = repeater.repeat(() -> inputController.getPayment());
+        final LottoPayment lottoPayment = repeater.repeatWithErrorMessage(() -> inputController.getPayment());
         final LottoContainer container = new LottoGenerator().generate(lottoPayment);
         outputController.printAllLotteries(container);
 
         outputController.printToGetWinningNumberInput();
-        final Lotto inputWinnerLotto = repeater.repeat(() -> inputController.getLotto());
+        final Lotto inputWinnerLotto = repeater.repeatWithErrorMessage(() -> inputController.getLotto());
         outputController.printToGetBonusNumberInput();
-        final WinningLotto winningLotto = repeater.repeat(() -> {
+        final WinningLotto winningLotto = repeater.repeatWithErrorMessage(() -> {
             final LottoNum bonusNumber = inputController.getBonusNumber();
             return new WinningLotto(inputWinnerLotto, bonusNumber);
         });
