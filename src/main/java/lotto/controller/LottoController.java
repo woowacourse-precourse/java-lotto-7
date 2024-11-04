@@ -34,6 +34,7 @@ public class LottoController {
         return new Money(input);
     }
 
+
     private WinningLotto getWinningLotto() {
 
         String inputWinningNumbers = InputView.getWinningNumber();
