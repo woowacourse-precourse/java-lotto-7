@@ -10,4 +10,8 @@ public class LottoOutputView {
     public String getLottoNumbersMessage(List<Integer> numbers) {
         return numbers.toString();
     }
+
+    public String getWinningStatisticsHeader() {
+        return "당첨 통계\n---\n";
+    }
 }
