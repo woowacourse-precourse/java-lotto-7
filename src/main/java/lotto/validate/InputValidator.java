@@ -62,6 +62,6 @@ public class InputValidator {
 
     private void validateExistNotDigitElems(String input) {
         String[] elems = input.split(INPUT_DELIM);
-        Arrays.stream(elems).forEach(this::validateNonDigitInput);
+        Arrays.stream(elems).forEach(elem -> validateNonDigitInput(elem.strip()));
     }
 }
