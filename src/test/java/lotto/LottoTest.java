@@ -1,13 +1,14 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 import lotto.domain.Lotto;
+import lotto.enums.ErrorMessage;
+import org.assertj.core.api.AssertionsForClassTypes;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -23,5 +24,45 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호가_정확히_6개일_경우_Lotto_객체를_생성할_수_있다() {
+        // given
+        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        Lotto lotto = new Lotto(validNumbers);
+
+        // then
+        assertThat(lotto).isInstanceOf(Lotto.class);
+    }
+
+    @Test
+    void 로또_번호가_6개가_아니면_Lotto_객체_생성에_실패한다() {
+        // given
+        List<Integer> invalidNumbers = List.of(1, 2, 3, 4, 5);
+
+        // when & then
+        AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(invalidNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    @Test
+    void 로또_번호가_1에서_45_사이가_아니면_Lotto_객체_생성에_실패한다() {
+        // given
+        List<Integer> outOfRangeNumbers = List.of(1, 2, 3, 4, 5, 46);
+
+        // when & then
+        AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(outOfRangeNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+    }
+
+    @Test
+    void 로또_번호가_음수일_경우_Lotto_객체_생성에_실패한다() {
+        List<Integer> negativeNumbers = List.of(-1, 2, 3, 4, 5, 6);
+        AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(negativeNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.NEGATIVE_LOTTO_NUMBER_NOT_ALLOWED.getMessage());
+    }
 }
