@@ -5,10 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.util.Constant.*;
+
 public class InputValidator {
     public static int validatePurchasePrice(String input) {
-        int price = parseIntWithValidation(input, "[ERROR] 금액은 숫자로 입력해야 합니다.");
-        if (price % 1000 != 0) throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        int price = parseIntWithValidation(input, String.format(ERROR_NOT_A_NUMBER, "금액은"));
+        if (price % 1000 != 0) throw new IllegalArgumentException(ERROR_PRICE_UNIT);
         return price;
     }
 
@@ -18,11 +20,11 @@ public class InputValidator {
         Set<Integer> uniqueNumbers = new HashSet<>();
 
         for (String s : parts) {
-            int number = parseIntWithValidation(s.trim(), "[ERROR] 당첨 번호는 숫자로 입력해야 합니다.");
-            if (number < 1 || number > 45) throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+            int number = parseIntWithValidation(s.trim(), String.format(ERROR_NOT_A_NUMBER, "당첨 번호는"));
+            if (number < 1 || number > 45) throw new IllegalArgumentException(ERROR_WINNING_RANGE);
 
             if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호에는 중복된 숫자를 입력할 수 없습니다.");
+                throw new IllegalArgumentException(ERROR_DUPLICATE_WINNING_NUMBERS);
             }
 
             winningNumbers.add(number);
@@ -31,8 +33,8 @@ public class InputValidator {
     }
 
     public static int validateBonusNumber(String input) {
-        int bonusNumber = parseIntWithValidation(input, "[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
-        if (bonusNumber < 1 || bonusNumber > 45) throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        int bonusNumber = parseIntWithValidation(input, String.format(ERROR_NOT_A_NUMBER, "보너스 번호는"));
+        if (bonusNumber < 1 || bonusNumber > 45) throw new IllegalArgumentException(ERROR_WINNING_RANGE);
         return bonusNumber;
     }
 
