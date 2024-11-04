@@ -33,6 +33,9 @@ public class LottoWinningChecker {
         if (winningMatched == 4) {
             return 4;
         }
-        return 5;
+        if (winningMatched == 3) {
+            return 5;
+        }
+        return 6;
     }
 }
