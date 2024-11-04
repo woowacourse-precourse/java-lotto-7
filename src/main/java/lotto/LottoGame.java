@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -79,6 +80,7 @@ public class LottoGame {
             createLottoStatistics(matchCount, lottoNumbers, prizeCount);
         }
         finalResult(prizeCount);
+        profitabilityCalculation(prizeCount);
     }
 
     public void showMyLotto() {
@@ -132,4 +134,18 @@ public class LottoGame {
         }
     }
 
+    public void profitabilityCalculation(List<Integer> prizeCount) {
+        // 수익률 출력
+        int totalSpent = amount;
+        double yield;
+        double totalRevenue = 0;
+
+        for (Prize prize : Prize.values()) {
+            totalRevenue += prize.getPrizeMoney() * prizeCount.get(prize.ordinal());
+        }
+
+        yield = (double) totalRevenue / totalSpent * 100;
+        DecimalFormat df = new DecimalFormat("#.#"); // 소수점 첫째 자리까지 표시
+        System.out.println("총 수익률은 " + df.format(yield) + "%입니다.");
+    }
 }
