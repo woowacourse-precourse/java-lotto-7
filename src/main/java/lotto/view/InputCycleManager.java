@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.function.Supplier;
 
-public class RepeatInput {
+public class InputCycleManager {
 
     public static <T> T getValidInput(Supplier<T> inputSupplier) {
         while (true) {
