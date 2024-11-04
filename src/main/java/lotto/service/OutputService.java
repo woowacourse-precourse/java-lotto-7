@@ -32,4 +32,8 @@ public class OutputService {
         long prize = rank.getPrize();
         return String.format(" (%,d원)", prize);
     }
+
+    public void printProfitRate(String profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+    }
 }
