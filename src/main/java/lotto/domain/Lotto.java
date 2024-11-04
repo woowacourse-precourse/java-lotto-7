@@ -10,7 +10,7 @@ public class Lotto {
     protected static final int LOTTO_MIN_NUMBER = 1;
     protected static final int LOTTO_MAX_NUMBER = 45;
 
-    protected final List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

@@ -22,7 +22,7 @@ public class WinnerLotto extends Lotto {
 
     public WinnerLotto addBonusNumber(String bonusNumberInput) {
         Integer bonusNumber = parseInt(bonusNumberInput);
-        validateBonusNumber(bonusNumber, super.numbers);
+        validateBonusNumber(bonusNumber, super.getNumbers());
         this.bonusNumber = bonusNumber;
         return this;
     }
@@ -35,7 +35,7 @@ public class WinnerLotto extends Lotto {
 
     private Integer getSameNumberCount(Lotto lotto) {
         return (int) lotto.getNumbers().stream()
-                .filter(super.numbers::contains)
+                .filter(super.getNumbers()::contains)
                 .count();
     }
 
