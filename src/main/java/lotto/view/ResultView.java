@@ -3,7 +3,6 @@ package lotto.view;
 import static lotto.constants.ResultMessages.*;
 
 import lotto.dto.LottoDTO;
-import lotto.model.Lotto;
 import lotto.model.Rank;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +27,9 @@ public class ResultView {
     }
 
     private static void printRankResults(Map<Rank, Integer> results) {
-        for (Rank rank : Rank.values()) {
+        Rank[] ranks = Rank.values();
+        for (int i = ranks.length - 1; i >= 0; i--) {
+            Rank rank = ranks[i];
             if (rank == Rank.NONE) {
                 continue;
             }
