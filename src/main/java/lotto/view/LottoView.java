@@ -8,4 +8,6 @@ public interface LottoView {
     void displayLottoNumbers(PurchaseDto purchaseDto);
 
     String readWinningNumbers();
+
+    String readBonusNumber();
 }

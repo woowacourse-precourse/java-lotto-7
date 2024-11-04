@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.common.LottoConstants;
 import lotto.common.LottoValidateUtil;
+import lotto.domain.bonus.Bonus;
+import lotto.domain.bonus.BonusDto;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoDto;
 import lotto.domain.purchase.Purchase;
@@ -13,6 +15,7 @@ import lotto.domain.purchase.PurchaseDto;
 public class LottoServiceImpl implements LottoService {
     private Purchase purchase;
     private Lotto winningLotto;
+    private Bonus bonus;
 
     @Override
     public void buyLotto(String amount) {
@@ -29,8 +32,22 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
+    public void assignBonus(String number) {
+        int convertedNumber = convertStringToInt(number);
+        if (winningLotto != null) {
+            LottoValidateUtil.validateNumberExists(winningLotto.getNumbers(), convertedNumber);
+        }
+        bonus = new Bonus(convertedNumber);
+    }
+
+    @Override
     public LottoDto getWinningLottoDto() {
         return new LottoDto(winningLotto.getNumbers());
+    }
+
+    @Override
+    public BonusDto getBonusDto() {
+        return new BonusDto(bonus.getNumber());
     }
 
     @Override

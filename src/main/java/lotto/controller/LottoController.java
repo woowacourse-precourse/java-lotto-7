@@ -18,6 +18,7 @@ public class LottoController {
         lottoView.displayLottoNumbers(lottoService.getPurchaseDto());
 
         assignWinningNumbers();
+        assignBonusNumber();
     }
 
     private void purchaseLotto() {
@@ -37,6 +38,16 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             assignWinningNumbers();
+        }
+    }
+
+    private void assignBonusNumber() {
+        try {
+            String number = lottoView.readBonusNumber();
+            lottoService.assignBonus(number);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            assignBonusNumber();
         }
     }
 }
