@@ -8,7 +8,8 @@ public enum Error {
     NOT_NUMERIC(CAPTION.message + "숫자 이외엔 입력할 수 없습니다."),
     REMAIN_EXISTS(CAPTION.message + "가격은 %,d원 단위로 입력해야 합니다."),
     INVALID_RANGE(CAPTION.message + "숫자는 %d에서 %d까지만 입력할 수 있습니다."),
-    BONUS_DUPLICATED(CAPTION.message + "당첨 번호에 입력한 숫자는 보너스 번호로 입력할 수 없습니다.");
+    BONUS_DUPLICATED(CAPTION.message + "당첨 번호에 입력한 숫자는 보너스 번호로 입력할 수 없습니다."),
+    EMPTY_VALUE(CAPTION.message + "공백 혹은 빈 문자열은 입력할 수 없습니다");
 
     private final String message;
 
