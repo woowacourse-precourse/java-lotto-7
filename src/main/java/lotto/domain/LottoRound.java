@@ -106,6 +106,7 @@ public class LottoRound {
 
     /**
      * 값을 소수 둘째자리에서 반올림합니다
+     *
      * @param rate 반올림할 값
      * @return 소수 둘째자리에서 반올림된 값
      */

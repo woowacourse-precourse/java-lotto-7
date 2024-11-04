@@ -51,13 +51,12 @@ public class Lotto {
         int gradingNumbersPointer = 0, numbersPointer = 0;
         int sameCount = 0, isBonusInclude = 0;
         List<Integer> orderedNumbers = this.getSortedNumbers();
-        while (numbersPointer < orderedNumbers.size() && gradingNumbersPointer < gradingNumbers.size() ) {
+        while (numbersPointer < orderedNumbers.size() && gradingNumbersPointer < gradingNumbers.size()) {
             int gradeNumber = gradingNumbers.get(gradingNumbersPointer);
             int compareNumber = orderedNumbers.get(numbersPointer);
 
             if (gradeNumber == compareNumber) sameCount++;
             if (bonusNumber == compareNumber) isBonusInclude = 1;
-
 
             if (gradeNumber >= compareNumber) numbersPointer++;
             if (gradeNumber <= compareNumber) gradingNumbersPointer++;
