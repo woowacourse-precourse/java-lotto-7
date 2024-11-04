@@ -31,4 +31,8 @@ public enum Rank {
     private static boolean isThird(int matchCount, boolean hasBonusNumber) {
         return matchCount == THIRD.matchCount && !hasBonusNumber;
     }
+
+    public boolean hasBonusNumber() {
+        return this == SECOND;
+    }
 }
