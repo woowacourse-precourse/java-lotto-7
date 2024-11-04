@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.MessageContainer.DUPLICATE_IN_WINNING_NUMBERS_ERROR;
 import static lotto.MessageContainer.OUT_OF_RANGE_NUMBER_ERROR;
 import static lotto.domain.LottoConstants.MAX_LOTTO_NUMBER;
 import static lotto.domain.LottoConstants.MIN_LOTTO_NUMBER;
@@ -11,6 +12,7 @@ public class WinningLotto {
     public WinningLotto(LottoTicket winningTicket, int bonusNumber) {
         this.winningTicket = winningTicket;
         validateRangeOf(bonusNumber);
+        validateWinningNumbersDifferentFrom(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -37,5 +39,12 @@ public class WinningLotto {
 
     private boolean verifyInLottoNumberRange(Integer number) {
         return (number >= MIN_LOTTO_NUMBER) && (number <= MAX_LOTTO_NUMBER);
+    }
+
+    private void validateWinningNumbersDifferentFrom(int bonusNumber) {
+        Lotto winningLotto = winningTicket.lottos().getFirst();
+        if (winningLotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_IN_WINNING_NUMBERS_ERROR);
+        }
     }
 }

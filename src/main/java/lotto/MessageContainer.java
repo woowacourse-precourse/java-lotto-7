@@ -33,4 +33,6 @@ public class MessageContainer {
             = String.format("%s 로또 번호는 중복되지 않아야 합니다.", ERROR_MESSAGE);
     public static final String OUT_OF_RANGE_NUMBER_ERROR
             = String.format("%s 로또 번호는 %d부터 %d 사이의 숫자여야 합니다.", ERROR_MESSAGE, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+    public static final String DUPLICATE_IN_WINNING_NUMBERS_ERROR
+            = String.format("%s 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.", ERROR_MESSAGE);
 }
