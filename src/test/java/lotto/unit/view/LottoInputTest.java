@@ -2,17 +2,13 @@ package lotto.unit.view;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
-import lotto.domain.Lotto;
 import lotto.constant.LottoErrorMessage;
-
-import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static camp.nextstep.edu.missionutils.test.Assertions.*;
 
 class LottoInputTest extends NsTest {
