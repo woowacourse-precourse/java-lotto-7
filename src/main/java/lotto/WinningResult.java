@@ -21,6 +21,7 @@ public class WinningResult {
         System.out.println("---");
 
         int[] rankCount = calculateRankCount(); // 등수 카운트 계산
+        printRankResults(rankCount);            // 결과 출력
     }
 
     int[] calculateRankCount() {
@@ -35,6 +36,13 @@ public class WinningResult {
         return rankCount;
     }
 
+    private void printRankResults(int[] rankCount) {
+        System.out.printf("3개 일치 (5,000원) - %d개%n", rankCount[LottoRank.FIFTH.ordinal()]);
+        System.out.printf("4개 일치 (50,000원) - %d개%n", rankCount[LottoRank.FOURTH.ordinal()]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개%n", rankCount[LottoRank.THIRD.ordinal()]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", rankCount[LottoRank.SECOND.ordinal()]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", rankCount[LottoRank.FIRST.ordinal()]);
+    }
 
 
     int countMatches(List<Integer> ticket) {
