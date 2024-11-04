@@ -1,10 +1,12 @@
 package lotto;
 
-import lotto.view.LottoInput;
+import lotto.exception.InvalidNumberException;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static lotto.exception.ErrorMessage.*;
 
 public class CorrectLotto {
     private final Lotto lotto;
@@ -22,20 +24,14 @@ public class CorrectLotto {
                             try {
                                 return Integer.parseInt(input);
                             } catch (NumberFormatException e) {
-                                throw new IllegalArgumentException("[ERROR] 당첨번호는 1~45의 정수이어야 합니다.");
+                                throw new InvalidNumberException(INVALID_NUMBER_RANGE.getMessage());
                             }
                         })
                 .toList();
-        validateDuplicates(numbers);
         return new Lotto(numbers);
     }
 
-    public static void validateDuplicates(List<Integer> numbers) {
-        Set<Integer> set = new HashSet<>(numbers);
-        if(set.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 중복될 수 없습니다.");
-        }
-    }
+
 
     public Rank match(Lotto other) {
         int matchCount = (int) lotto.numbers().stream()
