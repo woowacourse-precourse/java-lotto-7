@@ -11,7 +11,7 @@ public class WinLotto {
     private Integer bonusNumber;
 
     public WinLotto(List<Integer> numbers) {
-        lotto = new Lotto(numbers);
+        this.lotto = new Lotto(numbers);
     }
 
     public void setBonusNumber(Integer number) {

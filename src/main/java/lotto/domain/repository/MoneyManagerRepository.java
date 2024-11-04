@@ -6,8 +6,8 @@ public class MoneyManagerRepository {
 
     private MoneyManager moneyManager;
 
-    public void add(MoneyManager moneyManager) {
-        this.moneyManager = moneyManager;
+    public void add(MoneyManager addMoneyManager) {
+        moneyManager = addMoneyManager;
     }
 
     public MoneyManager getMoneyManger() {

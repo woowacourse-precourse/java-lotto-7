@@ -6,8 +6,8 @@ public class WinLottoRepository {
 
     private WinLotto winLotto;
 
-    public void add(WinLotto winLotto) {
-        this.winLotto = winLotto;
+    public void add(WinLotto addWinLotto) {
+        winLotto = addWinLotto;
     }
 
     public WinLotto getWinLotto() {

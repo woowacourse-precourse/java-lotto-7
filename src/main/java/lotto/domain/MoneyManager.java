@@ -15,8 +15,8 @@ public class MoneyManager {
         this.purchaseMoney = purchaseMoney;
     }
 
-    public void setPrizeMoney(Long prizeMoney) {
-        this.prizeMoney = prizeMoney;
+    public void setPrizeMoney(Long money) {
+        prizeMoney = money;
     }
 
     private void validatePurchaseMoney(Long money) {
