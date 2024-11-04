@@ -24,6 +24,11 @@ public class InputParser {
                 .toList();
     }
 
+    public static int parseBonusNumber(String input) {
+        validateBonusNumber(input);
+        return Integer.parseInt(input);
+    }
+
     private static void validateLottoPrice(String lottoPrice) {
         validateInputNullOrEmpty(lottoPrice);
         validateInputIsNumber(lottoPrice);
@@ -34,6 +39,11 @@ public class InputParser {
         Arrays.stream(winningNumbers.split(DELIMITER))
                 .map(String::trim)
                 .forEach(InputParser::validateInputIsNumber);
+    }
+
+    private static void validateBonusNumber(String bonusNumber) {
+        validateInputNullOrEmpty(bonusNumber);
+        validateInputIsNumber(bonusNumber);
     }
 
     private static void validateInputNullOrEmpty(String input) {
