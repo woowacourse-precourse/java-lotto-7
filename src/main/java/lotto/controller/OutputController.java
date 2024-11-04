@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.Map;
 import lotto.lottoMachine.Lotto;
 import lotto.lottoMachine.LottoResult;
 
@@ -14,15 +13,8 @@ public class OutputController {
         System.out.println(sb);
     }
 
-    public void printResult(Map<LottoResult, Integer> resultMap, Double ratioOfProfit) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("당첨통계 \n").append("--- \n");
-        for(Map.Entry<LottoResult, Integer> entry : resultMap.entrySet()) {
-            LottoResult lottoResult = entry.getKey();
-            sb.append(lottoResult.getDescription()).append(entry.getValue()).append("개 \n");
-        }
-
-        sb.append(String.format("총 수익률은 %.1f%%입니다.\n", ratioOfProfit));
-        System.out.println(sb);
+    public void printResult(LottoResult lottoResult) {
+        System.out.println("당첨통계 \n--- \n");
+        System.out.println(lottoResult);
     }
 }
