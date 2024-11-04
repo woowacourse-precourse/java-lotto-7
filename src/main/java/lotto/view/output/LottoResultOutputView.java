@@ -1,7 +1,7 @@
 package lotto.view.output;
 
 import lotto.enums.LottoPrize;
-import lotto.view.output.OutputView;
+import lotto.enums.OutputMessage;
 
 import java.util.HashMap;
 
@@ -29,18 +29,18 @@ public class LottoResultOutputView implements OutputView {
     }
 
     private void printWinningHistory(){
-        System.out.println("당첨 통계\n---");
+        System.out.println(OutputMessage.WINNING_HISTORY_TITLE.getMessage());
 
         for(LottoPrize lottoPrize: lottoPrizes){
             int correctCount = lottoPrize.getCorrectCount();
             int prizeMoney = lottoPrize.getPrizeMoney();
             int winningCount = winningHistory.getOrDefault(lottoPrize, 0);
 
-            System.out.printf("%d개 일치 (%,d원) - %d개\n", correctCount, prizeMoney, winningCount);
+            System.out.printf(OutputMessage.WINNING_HISTORY.getMessage(), correctCount, prizeMoney, winningCount);
         }
     }
 
     private void printRateOfReturn(){
-        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
+        System.out.printf(OutputMessage.TOTAL_RATE_OF_RETURN.getMessage(), rateOfReturn);
     }
 }

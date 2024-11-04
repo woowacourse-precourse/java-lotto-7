@@ -1,11 +1,11 @@
 package lotto.view.output;
 
 import lotto.entity.Lotto;
+import lotto.enums.OutputMessage;
 
 import java.util.List;
 
 public class LottoGeneratorOutputView implements OutputView {
-    private final String OUTPUT_MESSAGE = "%d개를 구매했습니다.\n";
     private final List<Lotto> lottoList;
 
     public LottoGeneratorOutputView(List<Lotto> lottoList){
@@ -19,12 +19,14 @@ public class LottoGeneratorOutputView implements OutputView {
     }
 
     private void printLottoListSize(){
-        System.out.printf(OUTPUT_MESSAGE, lottoList.size());
+        System.out.printf(OutputMessage.LOTTO_COUNT.getMessage(), lottoList.size());
     }
 
     private void printLottoList(){
         for (Lotto lotto : lottoList) {
             System.out.println(lotto.getNumbers().toString());
         }
+
+        System.out.println();
     }
 }
