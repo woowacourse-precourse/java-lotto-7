@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,16 +10,18 @@ import java.util.List;
 public class LottoGame {
     private static final int LOTTO_PRICE = 1000;
     public List<Lotto> lottos = new ArrayList<>();
+    private Printer printer = new Printer();
     LottoGameValidator lottoGameValidate = new LottoGameValidator();
 
     int amount;
     int lottoQuantity;
     int bonusNumber;
+
     public void inputAmount() {
         // 로또 구매액 설정
         this.amount = lottoGameValidate.readAmount(LOTTO_PRICE);
         this.lottoQuantity = amount / LOTTO_PRICE;
-    }
+        printer.printLottoPurchaseCount(lottoQuantity);     }
 
     public void buyLotto() {
         // 로또 구매
@@ -33,18 +34,17 @@ public class LottoGame {
     }
 
     public void setWinningNumbers() {
-        // 당첨 번호 설정
         List<Integer> winningNumbers;
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                printer.promptWinningNumbers();
                 String input = Console.readLine();
                 winningNumbers = lottoGameValidate.parseWinningNumbers(input);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자 형식이 올바르지 않습니다. 다시 입력해 주세요.");
+                printer.printError("[ERROR] 숫자 형식이 올바르지 않습니다. 다시 입력해 주세요.");
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                printer.printError(e.getMessage());
             }
         }
         setBonusNumber(winningNumbers);
@@ -55,7 +55,7 @@ public class LottoGame {
         // 보너스 번호 설정
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                printer.promptBonusNumber();
                 int bonusNumber = Integer.parseInt(Console.readLine());
                 lottoGameValidate.validateBonusNumber(bonusNumber, winningNumbers);
                 this.bonusNumber = bonusNumber;
@@ -85,9 +85,8 @@ public class LottoGame {
 
     public void showMyLotto() {
         // 로또 번호 출력
-        System.out.println(lottoQuantity + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
+            printer.print(lotto.getNumbers().toString());
         }
     }
 
@@ -102,7 +101,7 @@ public class LottoGame {
     }
 
     public void createLottoStatistics(int matchCount, List<Integer> lottoNumbers, List<Integer> prizeCount) {
-        //당첨 갯수 별 정리
+        // 당첨 갯수 별 정리
         for (int i = 3; i <= 6; i++) {
             if (matchCount == i) {
                 if (i == 6) {
@@ -127,11 +126,7 @@ public class LottoGame {
 
     public void finalResult(List<Integer> prizeCount) {
         // 결과 출력
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        for (Prize prize : Prize.values()) {
-            System.out.println(prize.getDescription() + " - " + prizeCount.get(prize.ordinal()) + "개");
-        }
+        printer.printWinningStatistics(prizeCount);
     }
 
     public void profitabilityCalculation(List<Integer> prizeCount) {
@@ -145,7 +140,6 @@ public class LottoGame {
         }
 
         yield = (double) totalRevenue / totalSpent * 100;
-        DecimalFormat df = new DecimalFormat("#.#"); // 소수점 첫째 자리까지 표시
-        System.out.println("총 수익률은 " + df.format(yield) + "%입니다.");
+        printer.printProfitability(yield);
     }
 }
