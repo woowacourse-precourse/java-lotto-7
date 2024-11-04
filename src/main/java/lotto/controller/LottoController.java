@@ -5,7 +5,7 @@ import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
 import lotto.sevice.LottoService;
 import lotto.view.InputView;
-import lotto.view.OuputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
@@ -20,8 +20,9 @@ public class LottoController {
     public void run() {
         int purchaseCount = InputView.requestPurchaseAmount();
         List<Lotto> lottos = lottoService.issueLottos(purchaseCount);
-        OuputView.printLottos(lottos);
+        OutputView.printLottos(lottos);
         WinningLotto winningLotto = new WinningLotto(InputView.requestWinningNumbers(), InputView.requestBonusNumber());
         LottoResult result = lottoService.winningProgress(lottos, winningLotto);
+        OutputView.printStatistics(result);
     }
 }

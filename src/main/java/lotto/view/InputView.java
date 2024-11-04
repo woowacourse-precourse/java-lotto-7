@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";
@@ -19,6 +21,7 @@ public class InputView {
     private static final int START_INCLUSIVE = 1;
     private static final int END_INCLUSIVE = 45;
     private static final String ERROR_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호의 범위는 1 이상 45 이하여야 합니다.";
+    private static final String ERROR_DUPLICATE_NUMBER = "[ERROR] 당첨 번호에 중복된 숫자가 있습니다.";
     public static int requestPurchaseAmount() {
         while (true) {
             try {
@@ -73,6 +76,13 @@ public class InputView {
         String[] numbers = winningNumbers.split(COMMA);
         if (numbers.length != WINNING_NUMBER_COUNT) {
             throw new IllegalArgumentException(ERROR_WINNING_COUNT);
+        }
+
+        Set<String> uniqueNumbers = new HashSet<>();
+        for (String number : numbers) {
+            if (!uniqueNumbers.add(number.trim())) {
+                throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBER);
+            }
         }
     }
 
