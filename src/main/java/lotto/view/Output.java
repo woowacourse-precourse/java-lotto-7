@@ -6,6 +6,9 @@ import lotto.domain.Ranks;
 import java.math.BigDecimal;
 
 public interface Output {
+    void showPurchaseAmountInputGuide();
+    void showWinningNumbersInputGuide();
+    void showBonusNumberInputGuide();
     void outputError(Exception exception);
     void showLottos(Lottos lottos);
     void goToNext();

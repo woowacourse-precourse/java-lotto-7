@@ -17,6 +17,21 @@ public class ConsoleOutput implements Output {
     private static final DecimalFormat AMOUNT_FORMATTER = new DecimalFormat("#,###");
 
     @Override
+    public void showPurchaseAmountInputGuide() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+
+    @Override
+    public void showWinningNumbersInputGuide() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    @Override
+    public void showBonusNumberInputGuide() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    @Override
     public void outputError(Exception exception) {
         System.out.printf("%s %s", ERROR_PREFIX, exception.getMessage());
         System.out.println();

@@ -44,6 +44,7 @@ public class LottoController {
 
     private Money getPurchaseMoney() {
         try {
+            output.showPurchaseAmountInputGuide();
             BigInteger amount = input.inputPurchaseAmount();
             return new Money(amount);
         } catch (IllegalArgumentException ex) {
@@ -78,6 +79,7 @@ public class LottoController {
 
     private Lotto getWinningNumbers() {
         try {
+            output.showWinningNumbersInputGuide();
             List<Integer> winningNumbers = input.inputWinningNumbers();
             NumberProvider drawNumberProvider = new DefinedNumberProvider(winningNumbers);
             return new Lotto(drawNumberProvider, rangeValidator);
@@ -89,6 +91,7 @@ public class LottoController {
 
     private BonusNumber getBonusNumber() {
         try {
+            output.showBonusNumberInputGuide();
             Integer number = input.inputBonusNumber();
             return new BonusNumber(number, rangeValidator);
         } catch (IllegalArgumentException ex) {
