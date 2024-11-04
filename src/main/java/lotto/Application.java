@@ -190,7 +190,7 @@ class MainController {
 
 class UserView {
 	public static void printInputGuide() {
-		System.out.println("금액을 입력해주세요.");
+		System.out.println("구입금액을 입력해주세요.");
 	}
 
 	public static void printLottoNumber(int purchaseCount) {
