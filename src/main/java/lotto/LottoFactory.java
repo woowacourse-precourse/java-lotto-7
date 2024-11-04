@@ -7,7 +7,7 @@ public class LottoFactory {
 
     private final int RANDOM_START_NUMBER = 1;
     private final int RANDOM_END_NUMBER = 60;
-    private final int LOTTO_LENGTH = 5;
+    private final int LOTTO_LENGTH = 6;
 
     private RandomCreator randomCreator;
     private final LottoValidator lottoValidator;
