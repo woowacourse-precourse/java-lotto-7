@@ -39,7 +39,7 @@ public class LottoService {
 
                 break;
             } catch (IllegalArgumentException e) {
-                inputView.inputCash();
+                input = inputView.inputCash();
             }
         }
 
@@ -51,24 +51,46 @@ public class LottoService {
     }
 
     public Lotto parseWinningNumber(String input) {
+        Lotto winningLotto;
         List<Integer> winningNumbers = new ArrayList<>();
 
-        String[] numbers = input.split(",");
-        for (String number : numbers) {
-            winningNumbers.add(Integer.parseInt(number));
-        }
+        while (true) {
+            try {
+                String[] numbers = input.split(",");
 
-        Lotto winningLotto = new Lotto(winningNumbers);
+                winningNumbers.clear();
+
+                for (String number : numbers) {
+                    winningNumbers.add(Integer.parseInt(number));
+                }
+
+                winningLotto = new Lotto(winningNumbers);
+
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(ErrorMessage.INVALID_WINNING_NUMBER);
+                input = inputView.inputWinningNumber();
+            }
+        }
 
         return winningLotto;
     }
 
     public Integer parseBonusNumber(String input) {
-        if (!LottoUtils.isNumber(input)) {
-            throw new IllegalArgumentException();
+        Integer bonusNumber = 0;
+
+        while (true) {
+            try {
+                bonusNumber = Integer.parseInt(input);
+
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(ErrorMessage.INVALID_BONUS_NUMBER);
+                input = inputView.inputBonusNumber();
+            }
         }
 
-        return Integer.parseInt(input);
+        return bonusNumber;
     }
 
     public List<Lotto> getLotto(Integer lottoAmount) {

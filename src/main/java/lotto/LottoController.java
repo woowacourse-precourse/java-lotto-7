@@ -28,8 +28,8 @@ public class LottoController {
         Lotto winningLotto = lottoService.parseWinningNumber(winningNumbersInput);
 
         outputView.printInputBonusNumberMessage();
-        String inputBonusNumber = inputView.inputBonusNumber();
-        Integer bonusNumber = lottoService.parseBonusNumber(inputBonusNumber);
+        String bonusNumberInput = inputView.inputBonusNumber();
+        Integer bonusNumber = lottoService.parseBonusNumber(bonusNumberInput);
 
         Integer price = 0;
         Integer count1st = 0;
@@ -67,7 +67,7 @@ public class LottoController {
             }
         }
 
-        Float earningRate = (float) price / lottoService.parseInputToCash(input) * 100;
+        Float earningRate = (float) price / cash * 100;
 
         outputView.printWinningDetail(count1st, count2nd, count3rd, count4th, count5th, earningRate);
     }
