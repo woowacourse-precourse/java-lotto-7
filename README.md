@@ -32,8 +32,7 @@
     │      Numbers # 로또 숫자 모음 생성 및 검증
     │      Price # 구입 금액 생성 및 검증
     ├─service
-    │      PurchaseService # 구입 관련 비즈니스 로직
-    │      ResultService # 결과 관련 비즈니스 로직
+    │      LottoService # 비즈니스 로직
     └─view
            ErrorMessage # 에러 메세지 관리
            InputView # 입력 메세지 관리
