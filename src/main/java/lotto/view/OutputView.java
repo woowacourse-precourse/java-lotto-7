@@ -18,17 +18,28 @@ public class OutputView {
         }
     }
 
+
+
+
     public static void printResult(Map<Winning, Integer> results) {
         System.out.println("당첨 통계\n---");
-
         for (Winning winning : Winning.values()) {
             int count = results.getOrDefault(winning, 0);
-            System.out.printf("%d개 일치 (%d원) - %d개\n",
+            String output = String.format("%d개 일치 (%s) - %d개\n",
                     winning.getMatchCount(),
-                    winning.getPrize(),
+                    String.format("%,d원", winning.getPrize()),
                     count);
+            if (winning == Winning.FIVE_MATCH_WITH_BONUS) {
+                output = String.format("%d개 일치, 보너스 볼 일치 (%s) - %d개\n",
+                        winning.getMatchCount(),
+                        String.format("%,d원", winning.getPrize()),
+                        count);
+            }
+            System.out.print(output);
         }
     }
+
+
 
     public static void printRateOfReturn(double rateOfReturn) {
         System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
