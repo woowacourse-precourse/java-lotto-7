@@ -25,5 +25,8 @@ public class OutputManager {
         }
     }
 
+    public static void printProfitRate(double profitRate) {
+        System.out.printf((OutputMessage.TOTAL_PROFIT.getMessage()) + "%n", profitRate);
+    }
 
 }
