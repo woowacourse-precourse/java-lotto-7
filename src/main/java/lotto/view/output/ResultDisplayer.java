@@ -19,14 +19,19 @@ public class ResultDisplayer {
     public void showWinningStatistics(Map<WinningRank, Integer> winningCounts) {
         System.out.println("---");
 
-        for (WinningRank rank : WinningRank.values()) {
-            if (rank != WinningRank.NO_PRIZE) {
-                System.out.printf("%d개 일치 (%d원) - %d개%n",
+        winningCounts.forEach((rank, count) -> {
+            if (rank == WinningRank.SECOND_PRIZE_WITH_BONUS) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n",
                         rank.getRequiredMatchingCount(),
                         rank.getPrizeAmount(),
-                        winningCounts.getOrDefault(rank, 0));
+                        count);
+            } else if (rank != WinningRank.NO_PRIZE) {
+                System.out.printf("%d개 일치 (%,d원) - %d개%n",
+                        rank.getRequiredMatchingCount(),
+                        rank.getPrizeAmount(),
+                        count);
             }
-        }
+        });
     }
 
     public void showYield(double yield) {
