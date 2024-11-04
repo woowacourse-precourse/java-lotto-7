@@ -12,7 +12,8 @@ public enum ErrorMessage {
     THERE_IS_DUPLICATE_NUMBER_IN_LOTTO("로또에 중복된 값이 있습니다."),
     NOT_MATCH_LOTTO_COUNT_WITH_PRICE("로또 가격과 개수가 일치하지 않습니다."),
     WINNING_LOTTO_NUMBER_FORMAT_ERROR("당첨 번호 형식이 알맞지 않습니다."),
-    THERE_IS_DUPLICATE_NUMBER_IN_WINNING_LOTTO("당첨 번호에 중복된 숫자가 있습니다.");
+    THERE_IS_DUPLICATE_NUMBER_IN_WINNING_LOTTO("당첨 번호에 중복된 숫자가 있습니다."),
+    THERE_IS_INVALID_NUMBER_IN_WINNING_LOTTO("당첨번호는 1~45의 값만 가능합니다.");
 
     private final String errorMessage;
     private final String errorLogo = "[ERROR] ";
