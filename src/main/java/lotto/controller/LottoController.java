@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
@@ -12,5 +13,6 @@ public class LottoController {
     public void run() {
         int purchaseAmount = InputView.getPurchaseAmount();
         List<Lotto> lottos = lottoService.getLotto(purchaseAmount);
+        OutputView.printLottos(lottos);
     }
 }
