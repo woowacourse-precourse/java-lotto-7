@@ -32,7 +32,7 @@ public class Drow {
             setDrowNumbers(userInput); // 당첨번호 저장
             validation = validateDuplicateNumber(drowNumbers); // 당첨번호 중복 관련 예외처리
 
-        } while (validation); // 모든 밸리디에이션에 충족하면 다음 로직으로 넘어감
+        } while (!validation); // 모든 밸리디에이션에 충족하면 다음 로직으로 넘어감
 
     }
 
@@ -48,7 +48,7 @@ public class Drow {
             setBonusNumber(userInput); // 보너스번호 저장
             validation = validateDuplicateBonusNumber(drowNumbers, bonusNumber); // 보너스번호 중복 관련 예외처리
 
-        } while (validation); // 유효한 값을 입력받을때까지 반복
+        } while (!validation); // 유효한 값을 입력받을때까지 반복
     }
 
 
