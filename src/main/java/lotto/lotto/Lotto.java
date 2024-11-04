@@ -24,8 +24,8 @@ public class Lotto {
     }
 
     public int calculateMatchingCount(List<Integer> numbers) {
-        return (int) numbers.stream()
-                .filter(this::hasNumber)
+        return (int) this.numbers.stream()
+                .filter(numbers::contains)
                 .count();
     }
 
