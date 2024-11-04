@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.HashSet;
 public class LottoLogic {
     private List<Lotto> lottos;
     private int lottoPrice;
+    private int purchaseAmount;
     private Map<LottoEnum, Integer> winningCounts;
     
     //디폴트 생성자.
@@ -34,6 +36,8 @@ public class LottoLogic {
             lottos.add(lotto);
         }
 
+        setPurchaseAmount(purchaseAmount);
+
         return lottos;
     }
 
@@ -52,6 +56,7 @@ public class LottoLogic {
             try {
                 List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_VALUE, 
                                                                                 Lotto.MAX_VALUE, Lotto.LOTTO_COUNT);
+                randomNumbers = new ArrayList<>(randomNumbers);
                 randomNumbers.sort(Comparator.naturalOrder());
                 Lotto lotto = new Lotto(randomNumbers);
                 return lotto;
@@ -155,12 +160,30 @@ public class LottoLogic {
                                                 + " 사이의 값이 아닙니다.");
         }
     }
+
+    public double calculateBenefit() {
+        double benefit = 0.0;
+
+        for (Map.Entry<LottoEnum, Integer> entry : this.winningCounts.entrySet()) {
+            LottoEnum rank = entry.getKey();
+            int winningCount = entry.getValue();
+            benefit += rank.getPrize() * (double)winningCount;
+        }
+
+        benefit /= (double)this.purchaseAmount;
+        benefit = Math.round(benefit * 1000.0) / 10.0;
+        return benefit;
+    }
     
     public int getTicketCount(int purchaseAmount) {
         return purchaseAmount / this.lottoPrice;
     }
 
-    private void setWinningCounts(Map<LottoEnum, Integer> winningCounts) {
+    public void setPurchaseAmount(int purchaseAmount) {
+        this.purchaseAmount = purchaseAmount;
+    }
+
+    public void setWinningCounts(Map<LottoEnum, Integer> winningCounts) {
         this.winningCounts = winningCounts;
     }
 }

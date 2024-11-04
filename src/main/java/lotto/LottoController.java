@@ -15,6 +15,8 @@ public class LottoController {
     public void run() {
         buyLottos();
         Map<LottoEnum, Integer> matchResult = matchWinningLotto();
+        double benefit = logic.calculateBenefit();
+        view.printFinalStatus(matchResult, benefit);
     }
 
     private void buyLottos() {

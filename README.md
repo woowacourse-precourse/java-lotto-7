@@ -94,7 +94,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
     총 수익률은 62.5%입니다.
 
 #### 예외 상황
-현재까지는 보이지 않음.
+없음.
 
 ## 입출력 예시
 ### 전체 실행 결과

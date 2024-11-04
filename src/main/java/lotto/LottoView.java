@@ -3,7 +3,10 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Map;
 
 public class LottoView {
     private List<Integer> winningNumbersStored;
@@ -51,7 +54,7 @@ public class LottoView {
             if (this.winningNumbersStored.contains(bonusNumber)) {
                 throw new IllegalArgumentException("[ERROR] 입력하신 보너스 번호가 당첨 번호 중 하나와 중복됩니다.");
             }
-            
+
             System.out.println();
 
             return bonusNumber;
@@ -67,6 +70,43 @@ public class LottoView {
             System.out.println(lottoNumbers);
         }
         System.out.println();
+    }
+
+    public void printFinalStatus(Map<LottoEnum, Integer> winningCounts, double benefit) {
+        List<Map.Entry<LottoEnum, Integer>> winningCountsSorted = new ArrayList<>(winningCounts.entrySet());
+        winningCountsSorted.sort(Map.Entry.comparingByKey(Comparator.reverseOrder()));
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (Map.Entry<LottoEnum, Integer> entry : winningCountsSorted) {
+            String printedText = getTextPerLottoEnum(entry.getKey()) + entry.getValue() + "개";
+            System.out.println(printedText);
+        }
+        System.out.println("총 수익률은 " + String.format("%,.1f", benefit) + "%입니다.");
+    }
+
+    private String getTextPerLottoEnum(LottoEnum rank) {
+        if (rank == LottoEnum.FIRST) {
+            return "6개 일치 (2,000,000,000원) - ";
+        }
+
+        if (rank == LottoEnum.SECOND) {
+            return "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+        }
+
+        if (rank == LottoEnum.THIRD) {
+            return "5개 일치 (1,500,000원) - ";
+        }
+
+        if (rank == LottoEnum.FOURTH) {
+            return "4개 일치 (50,000원) - ";
+        }
+
+        if (rank == LottoEnum.FIFTH) {
+            return "3개 일치 (5,000원) - ";
+        }
+
+        return "";
     }
 
     public void printErrorMessage(String msg) {
