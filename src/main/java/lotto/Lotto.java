@@ -5,12 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 로또 한 장을 의미하는 객체
+ * class: Lotto.
+ *
+ * 로또 한장을 의미하는 객체
+ * @author JBumLee
+ * @version 2024/11/04
  */
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
     private final List<Integer> numbers;
 
     /**
