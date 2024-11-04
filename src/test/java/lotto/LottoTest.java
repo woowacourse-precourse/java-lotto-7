@@ -19,7 +19,7 @@ class LottoTest {
     }
 
     @Test
-    void 랜점_로또_생성_성공() {
+    void 랜덤_로또_생성_성공() {
         Lotto lotto = Lotto.createFixedNumberLotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(Lotto.createRandomNumberLotto(lottoGenerator).getNumbers())
                 .isEqualTo(lotto.getNumbers());
