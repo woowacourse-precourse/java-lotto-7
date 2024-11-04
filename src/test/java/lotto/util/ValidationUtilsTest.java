@@ -1,9 +1,12 @@
 package lotto.util;
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import static lotto.util.ValidationUtils.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ValidationUtilsTest {
@@ -58,5 +61,39 @@ public class ValidationUtilsTest {
         String largeNumber = "9223372036854775808"; // Long.MAX_VALUE + 1
 
         assertThrows(NumberFormatException.class, () -> Long.parseLong(largeNumber));
+    }
+
+    @Test
+    public void testValidateWinningNumbers_ValidNumbers() {
+        List<Integer> validNumbers = Arrays.asList(1, 15, 23, 34, 42, 45);
+        assertDoesNotThrow(() -> validateWinningNumbers(validNumbers));
+    }
+
+    @Test
+    public void testValidateWinningNumbers_SizeNotSix() {
+        List<Integer> numbersWithFive = Arrays.asList(1, 15, 23, 34, 42);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validateWinningNumbers(numbersWithFive);
+        });
+        assertEquals("[ERROR] 당첨 번호는 6개여야 합니다.", exception.getMessage());
+    }
+
+    @Test
+    public void testValidateWinningNumbers_DuplicateNumbers() {
+        List<Integer> duplicateNumbers = Arrays.asList(1, 15, 15, 34, 42, 45);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validateWinningNumbers(duplicateNumbers);
+        });
+        assertEquals("[ERROR] 당첨 번호는 중복될 수 없습니다.", exception.getMessage());
+    }
+
+    @Test
+    public void testValidateWinningNumbers_OutOfRangeNumbers() {
+        // 1~45 범위를 벗어나는 숫자가 포함된 경우
+        List<Integer> outOfRangeNumbers = Arrays.asList(1, 15, 23, 34, 46, 45);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validateWinningNumbers(outOfRangeNumbers);
+        });
+        assertEquals("[ERROR] 당첨 번호는 1~45 사이여야 합니다.", exception.getMessage());
     }
 }

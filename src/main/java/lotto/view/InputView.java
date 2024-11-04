@@ -48,6 +48,24 @@ public class InputView {
         }
     }
 
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String userInput = Console.readLine().trim();
+
+                int bonusNumber = Integer.parseInt(userInput);
+                validateBonusNumber(bonusNumber, winningNumbers);
+
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 입력 값은 숫자여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private List<Integer> parseWinningNumbers(String input) {
         try {
             return Arrays.stream(input.split(","))

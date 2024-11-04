@@ -38,4 +38,13 @@ public class ValidationUtils {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이여야 합니다.");
         }
     }
+
+    public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
 }
