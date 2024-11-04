@@ -29,4 +29,10 @@ public class Lottos {
     private int getPrice() {
         return lottos.size() * 1000;
     }
+
+    private List<Rank> getRanks() {
+        return lottos.stream()
+                .map(lotto -> winningLotto.getRank(lotto))
+                .toList();
+    }
 }
