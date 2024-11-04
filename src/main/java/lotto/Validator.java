@@ -36,8 +36,8 @@ public class Validator {
         try {
             int userIntInput = Integer.parseInt(userInput);
 
-            if (userIntInput < 0) {
-                throw new IllegalArgumentException("[ERROR] 음수는 입력할 수 없습니다.");
+            if (userIntInput <= 0) {
+                throw new IllegalArgumentException("[ERROR] 0과 음수는 입력할 수 없습니다.");
             }
 
             return userIntInput;
