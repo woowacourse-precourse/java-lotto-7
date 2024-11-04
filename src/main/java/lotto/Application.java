@@ -14,5 +14,6 @@ public class Application {
         // 4. 보너스 번호 입력
         Integer bonusNumber = InputUtil.insertBonusNumber();
         // 5. 당첨 통계 출력
+        LottoResult lottoResult = lottoMachine.generateResult(winningNumbers, bonusNumber);
     }
 }

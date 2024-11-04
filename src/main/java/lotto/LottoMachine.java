@@ -17,4 +17,12 @@ public class LottoMachine {
         }
     }
 
+    public LottoResult generateResult (List<Integer> winningNumbers, Integer bonusNumber) {
+        LottoResult result = new LottoResult();
+        for (Lotto lotto : lottos) {
+            int matchCount = lotto.countMatchNumber(winningNumbers);
+            result.addMatchCount(matchCount, lotto.hasBonus(bonusNumber));
+        }
+        return result;
+    }
 }
