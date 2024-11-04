@@ -46,6 +46,7 @@ public class LottoGameController {
         outputView.displayWinningResult(winningResults);
 
         double profitRate = lottoEvaluator.evaluateProfitRate(winningResults, lottoPurchaseAmount);
+        outputView.displayProfitRate(profitRate);
     }
 
     private List<Integer> parseWinningNumbers(String userInput) {
