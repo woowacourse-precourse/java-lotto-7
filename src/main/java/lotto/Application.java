@@ -158,7 +158,6 @@ public class Application {
             if (rank != Rank.MISS)
                 Rank.printRankPrize(rank, count);
         });
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", calculateBenfit() / (10000 * lottos.size()) * 100);
     }
 
     public static void main(String[] args) {
