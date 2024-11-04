@@ -11,9 +11,16 @@ public class LottoGeneratorService {
     }
 
     public int lottoPurchase() {
-        String input = inputView.promptPurchaseAmount();
-        int number = NumberUtil.parsePositiveNumber(input);
-        return number;
+        while (true) {
+            try {
+                String input = inputView.promptPurchaseAmount();
+                int number = NumberUtil.parsePositiveNumber(input);
+                checkThousandUnit(number);
+                return number;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public boolean checkThousandUnit(int number) {

@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.util.NumberUtil;
 import lotto.view.InputView;
+import lotto.view.TestInputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,6 @@ class LottoGeneratorServiceTest {
 
     @BeforeEach
     void setUp() {
-        inputView = new InputView(); // InputView도 필드로 선언하고 초기화
         lottoGeneratorService = new LottoGeneratorService(inputView);
     }
 
@@ -31,5 +31,13 @@ class LottoGeneratorServiceTest {
     void 천원단위일시_참_반환(){
         boolean result = lottoGeneratorService.checkThousandUnit(10000);
         assertTrue(result);
+    }
+
+    @Test
+    void 잘못된_값_입력시_다시_입력요청후_1000반환(){
+        TestInputView testInputView = new TestInputView("-10","0","abc","1500","1000");
+        LottoGeneratorService lottoGeneratorService = new LottoGeneratorService(testInputView);
+        int result = lottoGeneratorService.lottoPurchase();
+        assertEquals(1000, result);
     }
 }
