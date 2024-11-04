@@ -31,11 +31,11 @@ public class LottoMachine {
 
 	private Result parseResult(Map<Prize, Integer> winningResults, double prizeRate) {
 		return new Result(
-				winningResults.getOrDefault(Prize.FIFTH, 0),
-				winningResults.getOrDefault(Prize.FOURTH, 0),
-				winningResults.getOrDefault(Prize.THIRD, 0),
-				winningResults.getOrDefault(Prize.SECOND, 0),
-				winningResults.getOrDefault(Prize.FIRST, 0),
+				winningResults.get(Prize.FIFTH),
+				winningResults.get(Prize.FOURTH),
+				winningResults.get(Prize.THIRD),
+				winningResults.get(Prize.SECOND),
+				winningResults.get(Prize.FIRST),
 				prizeRate
 		);
 	}
