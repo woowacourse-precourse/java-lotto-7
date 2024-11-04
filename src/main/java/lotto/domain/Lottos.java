@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lottos {
@@ -14,14 +12,19 @@ public class Lottos {
     }
 
     public Map<LottoGrade, Integer> convertGrades(TargetLotto targetLotto) {
-        return lottos.stream()
+        EnumMap<LottoGrade, Integer> lottoCountMap = lottos.stream()
                 .map(lotto -> lotto.match(targetLotto))
                 .collect(Collectors.toMap(
                         lottoGrade -> lottoGrade,
                         lottoGrade -> 1,
-                        (a, b) -> a + b,
+                        Integer::sum,
                         () -> new EnumMap<>(LottoGrade.class)
                 ));
+
+        return lottoCountMap;
     }
 
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
+    }
 }

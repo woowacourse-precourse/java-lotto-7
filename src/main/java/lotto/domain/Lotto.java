@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -13,6 +14,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicated(numbers);
+        validateRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -27,11 +29,17 @@ public class Lotto {
         }
     }
 
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream().filter(num -> num <= 45 && num >= 1).count() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 1 ~ 45 입니다.");
+        }
+    }
+
     // TODO: 추가 기능 구현
     public LottoGrade match(TargetLotto targetLotto) {
         List<Integer> targetNumbers = targetLotto.lotto().numbers;
         int targetCount = (int) numbers.stream()
-                .filter(num -> targetNumbers.contains(num))
+                .filter(targetNumbers::contains)
                 .count();
 
         int bonus = targetLotto.bonus();
@@ -40,5 +48,9 @@ public class Lotto {
                 .count();
 
         return LottoGrade.match(targetCount, bonusCount);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

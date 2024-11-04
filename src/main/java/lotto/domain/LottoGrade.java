@@ -41,4 +41,8 @@ public enum LottoGrade {
     public long getPrice() {
         return price;
     }
+
+    public int getTarget() {
+        return target;
+    }
 }
