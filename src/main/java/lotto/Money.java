@@ -26,5 +26,9 @@ public class Money {
     public long getAmount() {
         return amount;
     }
+
+    public Money add(Money money) {
+        return new Money(amount + money.amount);
+    }
 }
 
