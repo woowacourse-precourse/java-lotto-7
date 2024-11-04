@@ -13,6 +13,8 @@ public class OutputView {
     private static final String LOTTO_INFORMATION_SUFFIX = "]";
     private static final String LOTTO_NUMBER_SEPARATOR = ", ";
     private static final DecimalFormat formatter = new DecimalFormat("#,###");
+    private static final int PERCENTAGE = 100;
+
     public void printLottoNumbers(EarnedLottos dto) {
         System.out.printf(OutputViewMessage.LOTTO_BUY_COUNT_MESSAGE.getMessage(), dto.lottosDto().size());
         dto.lottosDto().forEach(this::printLottoDto);
@@ -33,7 +35,7 @@ public class OutputView {
     }
 
     public void printEarningRate(float earningRate) {
-        System.out.printf(OutputViewMessage.EARNING_RATE.getMessage(), earningRate*100);
+        System.out.printf(OutputViewMessage.EARNING_RATE.getMessage(), earningRate * PERCENTAGE);
     }
 
     private void printWinningType(WinningType type, int winningCount) {
