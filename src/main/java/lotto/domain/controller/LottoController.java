@@ -4,7 +4,6 @@ import lotto.domain.Lotteries;
 import lotto.domain.Lotto;
 import lotto.domain.service.LottoService;
 import lotto.domain.util.Statistics;
-import lotto.global.exception.ExceptionHandler;
 import lotto.global.io.InputConsole;
 import lotto.global.io.OutputConsole;
 
@@ -33,33 +32,46 @@ public class LottoController {
     }
 
     public void play() {
-        try {
-            Lotteries lotteries = purchaseLotteries();
-            Lotto winningNumber = setWinningNumber();
-            Integer bonusNumber = setBonusNumber();
+        Lotteries lotteries = purchaseLotteries();
+        Lotto winningNumber = setWinningNumber();
+        Integer bonusNumber = setBonusNumber();
 
-            calculateProfit(lotteries, winningNumber, bonusNumber);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(ExceptionHandler.createErrorMessage(e.getMessage()), e);
-        }
-
+        calculateProfit(lotteries, winningNumber, bonusNumber);
     }
 
     private Lotteries purchaseLotteries() {
         output.printPurchaseMessage();
-        Lotteries lotteries = service.purchaseLotteries(input.read());
-        output.printPurchaseResult(lotteries);
-        return lotteries;
+
+        try {
+            Lotteries lotteries = service.purchaseLotteries(input.read());
+            output.printPurchaseResult(lotteries);
+            return lotteries;
+        } catch (IllegalArgumentException e) {
+            output.printError(e);
+            return purchaseLotteries();
+        }
     }
 
     private Lotto setWinningNumber() {
         output.printWinningNumberMessage();
-        return service.setWinningNumber(input.read());
+
+        try {
+            return service.setWinningNumber(input.read());
+        } catch (IllegalArgumentException e) {
+            output.printError(e);
+            return setWinningNumber();
+        }
     }
 
     private Integer setBonusNumber() {
         output.printBonusNumberMessage();
-        return service.setBonusNumber(input.read());
+
+        try {
+            return service.setBonusNumber(input.read());
+        } catch (IllegalArgumentException e) {
+            output.printError(e);
+            return setBonusNumber();
+        }
     }
 
     private void calculateProfit(Lotteries lotteries, Lotto winningLotto, Integer bonusNumber) {

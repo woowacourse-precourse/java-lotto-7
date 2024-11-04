@@ -3,8 +3,12 @@ package lotto.domain.service;
 import java.util.List;
 import lotto.domain.Lotteries;
 import lotto.domain.Lotto;
+import lotto.domain.exception.BonusNumberFormatException;
+import lotto.domain.exception.DelimitedNumberFormatException;
+import lotto.domain.exception.MoneyFormatException;
 import lotto.domain.util.Statistics;
 import lotto.domain.util.parser.StringParser;
+import lotto.global.exception.ExceptionHandler;
 
 public class LottoService {
 
@@ -35,15 +39,27 @@ public class LottoService {
     }
 
     public Lotteries purchaseLotteries(String input) {
-        return Lotteries.of(moneyParser.parse(input));
+        try {
+            return Lotteries.of(moneyParser.parse(input));
+        } catch (MoneyFormatException e) {
+            throw new IllegalArgumentException(ExceptionHandler.createErrorMessage(e.getMessage()), e);
+        }
     }
 
     public Lotto setWinningNumber(String input) {
-        return new Lotto(delimitedNumberParser.parse(input));
+        try {
+            return new Lotto(delimitedNumberParser.parse(input));
+        } catch (DelimitedNumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionHandler.createErrorMessage(e.getMessage()), e);
+        }
     }
 
     public Integer setBonusNumber(String input) {
-        return bonusNumberParser.parse(input);
+        try {
+            return bonusNumberParser.parse(input);
+        } catch (BonusNumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionHandler.createErrorMessage(e.getMessage()), e);
+        }
     }
 
     public Statistics calculateProfit(Lotteries lotteries, Lotto winningLotto, Integer bonusNumber) {

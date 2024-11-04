@@ -50,4 +50,8 @@ public class OutputConsole {
     public void printProfitRate(double rate) {
         out.printf("총 수익률은 %.1f%%입니다.%n", rate);
     }
+
+    public void printError(Exception e) {
+        out.println(e.getMessage());
+    }
 }
