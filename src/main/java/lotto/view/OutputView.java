@@ -1,14 +1,11 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.LottoResult;
 import lotto.enums.OutputMessage;
 
 public class OutputView {
-    public void printEnter() {
-        System.out.println(OutputMessage.ENTER.getMessage());
-    }
-
     public void printLottoCount(int lottoCount) {
         System.out.println(OutputMessage.LOTTO_COUNT.getMessage(lottoCount));
     }
@@ -25,12 +22,16 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinningStatistics() {
+    public void printWinningStatistics(LottoResult lottoResult, int count) {
         System.out.println(OutputMessage.WINNING_STATISTICS.getMessage());
-    }
-
-    public void printSection() {
         System.out.println(OutputMessage.SECTION.getMessage());
+        Map<String, Integer> result = lottoResult.getResult();
+        printThreeMatches(result.get("three"));
+        printFourMatches(result.get("four"));
+        printFiveMatches(result.get("five"));
+        printFiveBonusMatches(result.get("fiveBonus"));
+        printSixMatches(result.get("six"));
+        printResult(count * 1000, lottoResult);
     }
 
     public void printThreeMatches(int count) {

@@ -33,7 +33,23 @@ public class LottoResult {
         result.replace(rank, result.get(rank) + 1);
     }
 
-    public void updateResult() {
+    public void updateWinningResult(LottoCount lottoCount) {
+        int matchCount = lottoCount.getMatchCount();
+        boolean hasBonusNumber = lottoCount.isHasBonusNumber();
+        if (matchCount == 6) {
+            addResult("six");
+        } else if (matchCount == 5 && hasBonusNumber) {
+            addResult("fiveBonus");
+        } else if (matchCount == 5) {
+            addResult("five");
+        } else if (matchCount == 4) {
+            addResult("four");
+        } else if (matchCount == 3) {
+            addResult("three");
+        }
+    }
+
+    public void calculatePrize() {
         this.prize = result.get("three") * 5000 +
                 result.get("four") * 50000 +
                 result.get("five") * 1500000 +

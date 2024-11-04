@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 import lotto.domain.LottoResult;
@@ -19,13 +18,15 @@ public class LottoController {
     private static List<Integer> winningNumbers;
     private static int bonusNumber;
 
-    public void start() {
-        start_1();
-        start_2();
-        start_3();
+    public void run() {
+        inputCount();
+        inputWinningNumbers();
+        inputBonusNumber();
+        checkLotto();
+        outputWinningResult();
     }
 
-    private void start_1() {
+    private void inputCount() {
         while (true) {
             try {
                 String inputCount = inputView.readPurchaseAmount();
@@ -38,7 +39,7 @@ public class LottoController {
         }
     }
 
-    private void start_2() {
+    private void inputWinningNumbers() {
         while (true) {
             try {
                 String inputWinningNumbers = inputView.readWinningNumbers();
@@ -50,7 +51,7 @@ public class LottoController {
         }
     }
 
-    private void start_3() {
+    private void inputBonusNumber() {
         while (true) {
             try {
                 String inputBonusNumbers = inputView.readBonusNumber();
@@ -62,26 +63,17 @@ public class LottoController {
         }
     }
 
-    public void proceed() {
+    private void checkLotto() {
         for (int i = 0; i < count; i++) {
-            List<Integer> lottoNumbers = lottoService.extractRandomNumbers();
-            Lotto lotto = new Lotto(lottoNumbers);
-            outputView.printLottoNumbers(lottoNumbers);
-            LottoCount lottoCount = lottoService.matchLottoNumbers(winningNumbers, bonusNumber, lotto);
-            lottoService.updateWinningResult(lottoCount, lottoResult);
+            Lotto lotto = new Lotto();
+            outputView.printLottoNumbers(lotto.getNumbers());
+            LottoCount lottoCount = lotto.matchLottoNumbers(winningNumbers, bonusNumber);
+            lottoResult.updateWinningResult(lottoCount);
         }
-        lottoResult.updateResult();
+        lottoResult.calculatePrize();
     }
 
-    public void finish() {
-        outputView.printWinningStatistics();
-        outputView.printSection();
-        Map<String, Integer> result = lottoResult.getResult();
-        outputView.printThreeMatches(result.get("three"));
-        outputView.printFourMatches(result.get("four"));
-        outputView.printFiveMatches(result.get("five"));
-        outputView.printFiveBonusMatches(result.get("fiveBonus"));
-        outputView.printSixMatches(result.get("six"));
-        outputView.printResult(count * 1000, lottoResult);
+    private void outputWinningResult() {
+        outputView.printWinningStatistics(lottoResult, count);
     }
 }
