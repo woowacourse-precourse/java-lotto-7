@@ -19,6 +19,7 @@ public class LottoNumberParser {
         this.inputValidator = inputValidator;
     }
 
+
     public Lotto parse(String lottoNumbers) {
         String trimmedLottoNumbers = lottoNumbers.trim();
         inputValidator.checkIfEmpty(trimmedLottoNumbers);
@@ -36,8 +37,6 @@ public class LottoNumberParser {
         return parsedLottoNumbers;
 
     }
-
-
 
     private Lotto parseInt(List<String> lottoNumbers) {
         try {

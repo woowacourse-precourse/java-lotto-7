@@ -24,11 +24,11 @@ public enum WinningDetails {
         return matchedLottoCount;
     }
 
-    public int getSameNumberCount(){
+    public int getSameNumberCount() {
         return rank.matchCount();
     }
 
-    public boolean getMatchBonusNumber(){
+    public boolean getMatchBonusNumber() {
         return rank.isBonusMatched();
     }
 
@@ -39,8 +39,8 @@ public enum WinningDetails {
         this.matchedLottoCount = matchedLottoCount;
     }
 
-    public static EnumSet<WinningDetails> getWinningDetails(){
-        EnumSet<WinningDetails> noWin =  EnumSet.of(WinningDetails.NO_WIN);
+    public static EnumSet<WinningDetails> getWinningDetails() {
+        EnumSet<WinningDetails> noWin = EnumSet.of(WinningDetails.NO_WIN);
         return EnumSet.complementOf(noWin);
     }
 
