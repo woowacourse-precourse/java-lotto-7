@@ -19,4 +19,24 @@ public class LottoEvaluator {
         this.profit = 0;
     }
 
+    public void evaluateResult() {
+        for (Lotto lotto : lottos) {
+            Set<Integer> matchedNumbers = new HashSet<>(lotto.getNumbers());
+            matchedNumbers.retainAll(winningLotto.getNumbers());
+            int matchCount = matchedNumbers.size();
+            boolean hasBonus = matchedNumbers.contains(bonusNum);
+            Rank rank = getRank(matchCount, hasBonus);
+            lottoStats.put(rank, lottoStats.getOrDefault(rank, 0) + 1);
+        }
+    }
+
+    public Rank getRank(int matchCount, boolean hasBonus) {
+        if (matchCount == 6) return Rank.FIRST;
+        if (matchCount == 5 && hasBonus) return Rank.SECOND;
+        if (matchCount == 5) return Rank.THIRD;
+        if (matchCount == 4) return Rank.FOURTH;
+        if (matchCount == 3) return Rank.FIFTH;
+        return Rank.NONE;
+    }
+
 }
