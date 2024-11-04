@@ -57,6 +57,16 @@ public class LottoResult {
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", prizeCount.get(7));
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", prizeCount.get(6));
         // 수익률 계산 추가 가능
+        double totalEarnings = prizeCount.get(3) * 5000
+                + prizeCount.get(4) * 50000
+                + prizeCount.get(5) * 1500000
+                + prizeCount.get(7) * 30000000
+                + prizeCount.get(6) * 2000000000;
+
+        double investment = purchasedLottos.size() * 1000;
+        double rateOfReturn = (totalEarnings / investment) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn);
     }
+
 
 }
