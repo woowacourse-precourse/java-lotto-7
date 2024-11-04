@@ -26,7 +26,7 @@ public class LottoWinningTierManager {
         return lottoWinningTiers.get(lottoWinningTier);
     }
 
-    public int calculateTotalPrize() {
+    public long calculateTotalPrize() {
         return lottoWinningTiers.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
