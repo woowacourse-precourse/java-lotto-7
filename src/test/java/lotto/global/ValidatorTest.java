@@ -131,4 +131,55 @@ public class ValidatorTest {
         }
     }
 
+    @Nested
+    @DisplayName("보너스 번호 테스트")
+    class ValidateBonusNumberTests {
+
+        @Test
+        @DisplayName("1-45 사이의 숫자가 아닌 경우 예외 발생")
+        void 보너스_번호_범위가_아니면_예외가_발생한다() {
+            // given
+            String invalidBonusNumber = "46";
+
+            // when & then
+            assertThatThrownBy(() -> validator.validateBonusNumber(validWinningNumbers, invalidBonusNumber))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(INVALID_NUMBER_RANGE.getMessage());
+        }
+
+        @Test
+        @DisplayName("당첨 번호와 보너스 번호가 중복된 경우 예외 발생")
+        void 보너스_번호_중복되면_예외가_발생한다() {
+            // given
+            String duplicateBonusNumber = "1";
+
+            // when & then
+            assertThatThrownBy(() -> validator.validateBonusNumber(validWinningNumbers, duplicateBonusNumber))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(DUPLICATE_BONUS_NUMBER.getMessage());
+        }
+
+        @Test
+        @DisplayName("빈 입력인 경우 예외 발생")
+        void 보너스_번호_빈입력이면_예외가_발생한다() {
+            // when & then
+            invalidInputs.forEach(input ->
+                    assertThatThrownBy(() -> validator.validateBonusNumber(validWinningNumbers, input))
+                            .isInstanceOf(IllegalArgumentException.class)
+                            .hasMessage(EMPTY_INPUT.getMessage())
+            );
+        }
+
+        @Test
+        @DisplayName("정상적인 보너스 번호 입력 시 예외 발생하지 않음")
+        void 보너스_번호_정상_입력_테스트() {
+            // given
+            String validBonusNumber = "7"; // 예를 들어, 유효한 보너스 번호
+
+            // when & then
+            assertThatCode(() -> validator.validateBonusNumber(validWinningNumbers, validBonusNumber))
+                    .doesNotThrowAnyException(); // 예외가 발생하지 않음을 확인
+        }
+    }
+
 }
