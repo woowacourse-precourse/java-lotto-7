@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -31,5 +32,21 @@ class LottoTest {
                 .collect(Collectors.toList());
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("로또 번호가 오름차순으로 정렬된다.")
+    void 로또_번호_정렬() {
+        Lotto lotto = new Lotto(createLottoNumbers(6, 5, 4, 3, 2, 1));
+        List<Integer> sortedNumbers = lotto.getNumbers().stream()
+                .map(LottoNumber::lottoNumber)
+                .collect(Collectors.toList());
+        assertThat(sortedNumbers).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @Test
+    @DisplayName("특정 번호가 로또에 포함되는지 확인한다.")
+    void 특정_번호_포함_확인() {
+        Lotto lotto = new Lotto(createLottoNumbers(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.contains(new LottoNumber(3))).isTrue();
+        assertThat(lotto.contains(new LottoNumber(7))).isFalse();
+    }
 }
