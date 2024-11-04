@@ -22,12 +22,12 @@ public class LottoResult {
         return lottoResults.get(lottoMatch);
     }
 
-    public void calculateLottoResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        for (Lotto lotto : lottos) {
-            int matchCount = countMatchCount(lotto.getNumbers(),winningNumbers);
-            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
-            LottoMatch lottoMatch = LottoMatch.getLottoMatch(matchCount,bonusMatch);
-            if(lottoMatch!=LottoMatch.NONE)
+    public void calculateLottoResult(LottoCreate lottoCreate, WinningNumbers winningNumbers) {
+        for (Lotto lotto : lottoCreate.getLottos()) {
+            int matchCount = countMatchCount(lotto.getNumbers(), winningNumbers.getWinningNumbers());
+            boolean bonusMatch = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
+            LottoMatch lottoMatch = LottoMatch.getLottoMatch(matchCount, bonusMatch);
+            if (lottoMatch != LottoMatch.NONE)
                 addLottoResult(lottoMatch);
         }
     }
