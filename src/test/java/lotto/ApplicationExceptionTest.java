@@ -7,10 +7,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import lotto.constant.ErrorMessage;
+import lotto.domain.Prize;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ApplicationExceptionTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @BeforeEach
+    void resetPrizeCount() {
+        for (Prize prize : Prize.values()) {
+            prize.resetCount();
+        }
+    }
 
     @Test
     void 기능_테스트_3개일치_1개() {
@@ -46,7 +55,6 @@ class ApplicationExceptionTest extends NsTest {
         );
     }
 
-    //에러메시지 상수로 만들어서 제대로 테스트
     @Test
     void 예외_테스트_구매금액_문자() {
         assertSimpleTest(() -> {
