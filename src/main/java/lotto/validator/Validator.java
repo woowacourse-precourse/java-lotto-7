@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.enums.ErrorMessages;
 
 public class Validator {
@@ -24,13 +27,34 @@ public class Validator {
         if (!lottoNumber.matches("^[0-9,]+$")) {
             throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_DELIMETER_ONLY_HAS_COMMA));
         }
+        List<Integer> numbers = splitLottoNumber(lottoNumber);
+        for (Integer number : numbers) {
+            if (validateNumberRange(number)) {
+                throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_NUMBER_UNDER_ZERO_OVER_FORTY_FIVE));
+            }
+        }
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_LOTTO_NUMBER_IS_SIX));
+        }
+
         return lottoNumber;
     }
 
     public int validateNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (validateNumberRange(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_NUMBER_UNDER_ZERO_OVER_FORTY_FIVE));
         }
         return bonusNumber;
+    }
+
+    private boolean validateNumberRange(int number) {
+        return number < 1 || number > 45;
+    }
+
+    private List<Integer> splitLottoNumber(String lottoNumber) {
+
+        return Arrays.stream(lottoNumber.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
