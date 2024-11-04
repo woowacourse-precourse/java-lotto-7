@@ -1,16 +1,21 @@
 package lotto.io;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.Ranking;
 
 public class Output {
-    private final String PRINT_LOTTO_QUANTITY = "개를 구매했습니다.";
-    private final String PRINT_WINNING_STATISTICS = "당첨 통계";
-    private final String SEPARATING_LINE = "---";
+    private final String PRINT_LOTTO_QUANTITY_MESSAGE = "개를 구매했습니다.";
+    private final String PRINT_WINNING_STATISTICS_MESSAGE = "당첨 통계";
+    private final String PRINT_SEPARATING_LINE_MESSAGE = "---";
+    private final String PRINT_EARNINGS_RATE_MESSAGE = "총 수익률은 ";
+    private final String PRINT_PERCENT_MESSAGE = "% 입니다.";
+
 
     public void printLottoQuantity(int lottoQuantity) {
         printNewLine();
-        System.out.println(lottoQuantity + PRINT_LOTTO_QUANTITY);
+        System.out.println(lottoQuantity + PRINT_LOTTO_QUANTITY_MESSAGE);
     }
 
     public void printLottos(List<Lotto> lottos) {
@@ -21,8 +26,16 @@ public class Output {
 
     public void printWinningStatistics() {
         printNewLine();
-        System.out.println(PRINT_WINNING_STATISTICS);
-        System.out.println(SEPARATING_LINE);
+        System.out.println(PRINT_WINNING_STATISTICS_MESSAGE);
+        System.out.println(PRINT_SEPARATING_LINE_MESSAGE);
+    }
+
+    public void printRanking(Map<Ranking, Integer> rankingResult) {
+
+    }
+
+    public void printEarningsRate(double earningsRate) {
+        System.out.println(PRINT_EARNINGS_RATE_MESSAGE + earningsRate + PRINT_PERCENT_MESSAGE);
     }
 
     private void printNewLine() {
