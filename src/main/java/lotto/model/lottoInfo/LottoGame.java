@@ -55,7 +55,7 @@ public class LottoGame {
     }
 
     public PrizeResultsDto getPrizeResult(LottoResult lottoResult) {
-        Map<Rank, Long> rankCounting = groupByRank(lottoResult.ranks());
+        Map<Rank, Long> rankCounting = Rank.groupByRank(lottoResult.ranks());
         return new PrizeResultsDto(generatePrizeInfo(rankCounting));
     }
 
@@ -67,13 +67,5 @@ public class LottoGame {
                     return PrizeResultInfo.from(rank, priceByRank.getByRank(rank), count);
                 })
                 .toList();
-    }
-
-    private Map<Rank, Long> groupByRank(List<Rank> ranks) {
-        return ranks.stream()
-                .filter(rank -> !rank.isNone())
-                .collect(Collectors.groupingBy(rank -> rank,
-                        () -> new EnumMap<>(Rank.class),
-                        Collectors.counting()));
     }
 }

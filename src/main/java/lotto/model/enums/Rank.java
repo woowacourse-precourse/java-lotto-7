@@ -1,5 +1,10 @@
 package lotto.model.enums;
 
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public enum Rank {
     FIRST("6개 일치", 6),
     SECOND("5개 일치, 보너스 볼 일치", 5),
@@ -23,6 +28,14 @@ public enum Rank {
 
     public boolean isNone() {
         return this == NONE;
+    }
+
+    public static Map<Rank, Long> groupByRank(List<Rank> ranks) {
+        return ranks.stream()
+                .filter(rank -> !rank.isNone())
+                .collect(Collectors.groupingBy(rank -> rank,
+                        () -> new EnumMap<>(Rank.class),
+                        Collectors.counting()));
     }
 
     public static Rank checkRank(long match, boolean bonus) {
