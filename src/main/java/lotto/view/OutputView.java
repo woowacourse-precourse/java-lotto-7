@@ -15,7 +15,7 @@ public class OutputView {
     private static final String LOTTO_RESULT_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String RETURN_RATE = "총 수익률은 %.1f%%입니다.";
 
-    public static void printLotties(List<List<Integer>> lottoNums) {
+    public static void printLottos(List<List<Integer>> lottoNums) {
         System.out.printf(COUNT_LOTTO + "\n", lottoNums.size());
 
         for (List<Integer> lottoNum : lottoNums) {

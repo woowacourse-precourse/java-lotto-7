@@ -20,7 +20,7 @@ public class LottoController {
         Money money = inputMoneyWithRetry();
         Trial trial = new Trial(money.getMoney());
         Lottos lottos = new Lottos(numberGenerator, trial);
-        OutputView.printLotties(lottos.getLottoNums());
+        OutputView.printLottos(lottos.getLottoNums());
 
         WinningNumber winningNumber = inputWinningNumberWithRetry();
         LottoChecker lottoChecker = new LottoChecker(lottos, winningNumber);
