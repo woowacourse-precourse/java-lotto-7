@@ -115,7 +115,15 @@ public class Application {
         }
     }
 
+    public static void initializeMap() {
+        for (Rank rank : Rank.values()) {
+            rankCounter.put(rank, 0);
+        }
+    }
+
     public static void checkWinning() {
+        initializeMap();
+
         int winningCount = 0;
         for (Lotto lotto : lottos) {
             winningCount = 0;
@@ -124,11 +132,7 @@ public class Application {
             }
 
             Rank rank = Rank.checkRank(winningCount, lotto.checkNumber(bonusNumber));
-
-            int rank_count = 0;
-            if (rankCounter.containsKey(rank))
-                rank_count = rankCounter.get(rank);
-            rankCounter.put(rank, rank_count + 1);
+            rankCounter.put(rank, rankCounter.get(rank) + 1);
         }
     }
 
