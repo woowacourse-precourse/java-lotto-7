@@ -22,6 +22,10 @@ public class InputTest {
   }
 
 
+  /**
+   * 애플리케이션을 실행하면 사용자가 로또 구매 금액을 입력하여 값을 읽고 로또 발행 수량까지 요청한다 FAILED
+   *     java.util.NoSuchElementException at InputTest.java:34
+   */
   @DisplayName("애플리케이션을 실행하면 사용자가 로또 구매 금액을 입력하여 값을 읽고 로또 발행 수량까지 요청한다")
   @Test
   void runApplicationTest() {
@@ -52,6 +56,11 @@ public class InputTest {
 
     // then
   }
+
+  /**
+   * InputTest > 보너스 번호를 입력받는다 FAILED
+   *     java.util.NoSuchElementException at InputTest.java:64
+   */
   @DisplayName("보너스 번호를 입력받는다")
   @Test
   void readBonusNumberTest() {

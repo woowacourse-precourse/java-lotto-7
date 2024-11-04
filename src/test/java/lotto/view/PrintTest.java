@@ -40,6 +40,11 @@ class PrintTest {
     System.out.println("hello world!");
   }
 
+  /**
+   * PrintTest > 사용자 입력을 요청받은만큼 로또를 발행하여 응답하면 응답 결과를 출력한다 FAILED
+   *     java.util.NoSuchElementException at PrintTest.java:29
+   * @throws Exception
+   */
   @DisplayName("사용자 입력을 요청받은만큼 로또를 발행하여 응답하면 응답 결과를 출력한다")
   @Test
   public void printGeneratedTest() throws Exception{
@@ -62,6 +67,10 @@ class PrintTest {
     assertEquals(given, actualOutput);
   }
 
+  /**
+   * PrintTest > 당첨 번호 / 보너스 번호 비교 결과를 조회하여 각각 당첨 통계와 수익률을 출력하고 애플리케이션 종료 FAILED
+   *     java.util.NoSuchElementException at PrintTest.java:29
+   */
   // 이 테스트는 쪼개야 하는건가 아니면 함께 출력하기 위해 통합해야 하는건가..???
   @DisplayName("당첨 번호 / 보너스 번호 비교 결과를 조회하여 각각 당첨 통계와 수익률을 출력하고 애플리케이션 종료")
   @Test

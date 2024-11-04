@@ -37,6 +37,11 @@ class HandlerTest {
     return new ByteArrayInputStream(readLine.getBytes());
   }
 
+  /**
+   * HandlerTest > 사용자 입력 후 로또를 요청 수만큼 발행했는지 확인한다 FAILED
+   *     java.util.NoSuchElementException at HandlerTest.java:31
+   * @throws Exception
+   */
   @DisplayName("사용자 입력 후 로또를 요청 수만큼 발행했는지 확인한다")
   @Test
   public void generateLottoTest() throws Exception{
@@ -56,6 +61,11 @@ class HandlerTest {
     assertEquals(expectGenerated, actualGenerated);
   }
 
+  /**
+   * HandlerTest > 입력받은 당첨번호를 쉼표, 공백 구분자와 정수를 분리한다 FAILED
+   *     java.util.NoSuchElementException at HandlerTest.java:31
+   * @throws Exception
+   */
   @DisplayName("입력받은 당첨번호를 쉼표, 공백 구분자와 정수를 분리한다")
   @Test
   void generateWinningTest() throws Exception{
@@ -72,6 +82,10 @@ class HandlerTest {
 
   }
 
+  /**
+   * HandlerTest > 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다 FAILED
+   *     org.opentest4j.AssertionFailedError at HandlerTest.java:99
+   */
   @DisplayName("내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다")
   @Test
   void compareNumbersTest() {
@@ -99,6 +113,10 @@ class HandlerTest {
     assertEquals(given, actualResult);
   }
 
+  /**
+   * HandlerTest > 비교한 결과를 토대로 총 수익률 계산한다 FAILED
+   *     java.util.NoSuchElementException at HandlerTest.java:31
+   */
   @DisplayName("비교한 결과를 토대로 총 수익률 계산한다")
   @Test
   void calculateRevenueTest() {
