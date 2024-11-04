@@ -47,4 +47,12 @@ public class WinningLottoTest {
 
         assertThat(result).isFalse();
     }
+
+    @DisplayName("보너스 번호가 당첨번호와 중복되면 예외가 발생한다.")
+    @Test
+    void 보너스_번호가_당첨번호와_중복되면_예외가_발생한다() {
+        assertThatThrownBy(() -> new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 6))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복");
+    }
 }
