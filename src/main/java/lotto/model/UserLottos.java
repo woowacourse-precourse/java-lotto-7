@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.errorMessage.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class UserLottos {
 
     private void validate(int num) {
         if (num % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 한 장 가격은" + LOTTO_PRICE + "원 입니다. 올바른 금액을 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.USER_LOTTO_PRICE.getMessage());
         }
     }
 

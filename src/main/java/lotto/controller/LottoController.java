@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.Service.LottoService;
+import lotto.errorMessage.ErrorMessage;
 import lotto.model.Lotto;
 import lotto.view.ViewFacade;
 
@@ -36,7 +37,7 @@ public class LottoController {
                 service.generateUserNumbers(num);
                 return;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력하세요.");
+                System.out.println(ErrorMessage.INVALID_VALUE.getMessage());
             }
         }
     }
@@ -51,7 +52,7 @@ public class LottoController {
                 service.generateLotto(new Lotto(lottoNumberList));
                 return;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력하세요.");
+                System.out.println(ErrorMessage.INVALID_VALUE.getMessage());
             }
         }
     }
@@ -64,7 +65,7 @@ public class LottoController {
                 service.generateBonusNumber(num);
                 return;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력하세요.");
+                System.out.println(ErrorMessage.INVALID_VALUE.getMessage());
             }
         }
     }
