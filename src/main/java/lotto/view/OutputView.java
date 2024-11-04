@@ -13,7 +13,7 @@ public class OutputView {
         System.out.printf(RunMessage.PRINT_LOTTO_COUNT.getMessage(), amount);
     }
 
-    public void printWinningStatisticsMessage(int first, int second, int third, int fourth, int fifth, double yield){
+    public static void printWinningStatisticsMessage(int first, int second, int third, int fourth, int fifth, double yield){
         System.out.print(RunMessage.PRINT_WINNING_STATISTIC_MESSAGE.getMessage());
         System.out.printf(RunMessage.PRINT_WINNING_FIFTH.getMessage(),fifth);
         System.out.printf(RunMessage.PRINT_WINNING_FOURTH.getMessage(),fourth);

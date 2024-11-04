@@ -23,7 +23,7 @@ public class InputView {
         return amount;
     }
 
-    public Lotto inputWinningLotto(){
+    public static Lotto inputWinningLotto(){
         Lotto winningLotto = null;
         while(winningLotto == null){
             System.out.print(RunMessage.INPUT_WINNING_MESSAGE.getMessage());
@@ -38,7 +38,7 @@ public class InputView {
         return winningLotto;
     }
 
-    public Bonus inputBonusNumber(Lotto winningNumber){
+    public static Bonus inputBonusNumber(Lotto winningNumber){
         Bonus number = null;
 
         while (number == null){
