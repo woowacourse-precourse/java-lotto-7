@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
 
 public class Lotto {
@@ -15,6 +17,17 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
+
+    public static Lotto generateRandomLotto() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(randomNumbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+
 
     // TODO: 추가 기능 구현
 }
