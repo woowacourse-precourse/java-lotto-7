@@ -1,6 +1,6 @@
 package lotto;
 
-public record PurchaseAmount(int amount) {
+public record PurchaseAmount(int value) {
     private static final String SIGNED_NUMBER_REGEX = "-?[0-9]+";
 
     public PurchaseAmount(String input) {
@@ -11,14 +11,12 @@ public record PurchaseAmount(int amount) {
         validateLetter(input);
         int purchaseAmount = parseInt(input);
         validatePositive(purchaseAmount);
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
-        }
+        validateAmount(purchaseAmount);
         return purchaseAmount;
     }
 
-    private static void validateLetter(String value) {
-        if (isLetter(value)) {
+    private static void validateLetter(String input) {
+        if (isLetter(input)) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 문자가 아닌 숫자여야 합니다.");
         }
     }
@@ -29,15 +27,25 @@ public record PurchaseAmount(int amount) {
         }
     }
 
-    private static boolean isLetter(String value) {
-        return !value.matches(SIGNED_NUMBER_REGEX);
+    private static void validateAmount(int purchaseAmount) {
+        if (isPurchasableLottoAmount(purchaseAmount)) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        }
+    }
+
+    private static boolean isLetter(String input) {
+        return !input.matches(SIGNED_NUMBER_REGEX);
     }
 
     private static boolean isPositive(int purchaseAmount) {
         return purchaseAmount > 0;
     }
 
-    private static int parseInt(String amount) {
-        return Integer.parseInt(amount);
+    private static boolean isPurchasableLottoAmount(int purchaseAmount) {
+        return purchaseAmount % 1000 != 0;
+    }
+
+    private static int parseInt(String input) {
+        return Integer.parseInt(input);
     }
 }
