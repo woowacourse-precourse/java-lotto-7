@@ -34,7 +34,7 @@ public class Output {
     }
 
     public void outputSummary(double incomePercent) {
-        System.out.printf("총 수익률은 %.1f%%입니다\n", incomePercent);
+        System.out.printf("총 수익률은 %.1f%%입니다\n", incomePercent * 100);
     }
 
     private int[] sortAndCountingWinningType(List<WinningType> winningTypes) {
