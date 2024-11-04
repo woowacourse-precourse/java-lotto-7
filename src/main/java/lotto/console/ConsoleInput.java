@@ -14,4 +14,9 @@ public class ConsoleInput implements Input {
     public String getWinningLotto() {
         return Console.readLine();
     }
+
+    @Override
+    public String getBonusNumber() {
+        return Console.readLine();
+    }
 }

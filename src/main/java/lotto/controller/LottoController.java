@@ -1,8 +1,11 @@
 package lotto.controller;
 
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoValidationService;
 import lotto.view.Input;
 import lotto.view.Output;
@@ -21,8 +24,10 @@ public class LottoController {
 
     public void run() {
         PurchaseAmount purcharseAmount = requestPurchaseAmount();
-        Lottos lottos = purchaseLotto(purcharseAmount.calculateLottoCount());
-        output.printLottos(lottos);
+        int count = purcharseAmount.calculateLottoCount();
+        Lottos lottos = purchaseLotto(count);
+        WinningLotto winningLotto = requestWinningLotto();
+
     }
 
     private PurchaseAmount requestPurchaseAmount() {
@@ -39,7 +44,23 @@ public class LottoController {
     }
 
     private Lottos purchaseLotto(int count) {
-        return Lottos.generateLottos(count);
+        Lottos lottos = Lottos.generateLottos(count);
+        output.printLottos(lottos);
+        return lottos;
+    }
+
+    private WinningLotto requestWinningLotto() {
+        output.printWinningLottoPrompt();
+        while (true) {
+            try {
+                String winningLottoInput = input.getWinningLotto();
+                List<Integer> winningLotto = lottoValidationService.validateWinningLotto(winningLottoInput);
+                Lotto lotto = new Lotto(winningLotto);
+                return new WinningLotto(lotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package lotto.console;
 
+import static lotto.common.Messages.BONUS_NUMBER_PROMPT;
 import static lotto.common.Messages.PURCHASE_AMOUNT_PROMPT;
 import static lotto.common.Messages.WINNING_NUMBER_PROMPT;
 
@@ -25,5 +26,10 @@ public class ConsoleOutput implements Output {
     @Override
     public void printWinningLottoPrompt() {
         System.out.println("\n" + WINNING_NUMBER_PROMPT);
+    }
+
+    @Override
+    public void printBonusNumberPrompt() {
+        System.out.println("\n" + BONUS_NUMBER_PROMPT);
     }
 }
