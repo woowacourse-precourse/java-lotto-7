@@ -1,12 +1,14 @@
 package lotto;
 
 import lotto.model.Lotto;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -22,5 +24,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호에 1-45 범위를 넘는 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void 로또_번호에_숫자가_범위를_넘으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("로또 번호가 정렬 되지 않고 저장이 되면 예외가 발생한다.")
+    @Test
+    void 로또_번호가_정령되지_않고_저장이_되면_예외가_발생한다() {
+        Lotto lotto = new Lotto(List.of(1, 3, 2, 4, 6, 5));
+        assertEquals(List.of(1, 2, 3, 4, 5, 6), lotto.getNumbers());
+    }
 }
