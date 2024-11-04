@@ -54,9 +54,9 @@ public class LottoValidator {
         }
     }
 
-    public static void validateWinningLottoNumbers(List<Integer> lottoNumbers, int bonusNumber) {
-        validateLottoNumbers(lottoNumbers);
-        validateBonusNumber(bonusNumber, lottoNumbers);
+    public static void validateWinningLotto(WinningLotto winningLotto) {
+        validateLottoNumbers(winningLotto.getLotto().getNumbers());
+        validateBonusNumber(winningLotto.getBonusNumber(), winningLotto.getLotto().getNumbers());
     }
 
     public static void validateMoney(int money) {

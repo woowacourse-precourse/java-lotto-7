@@ -34,5 +34,4 @@ public class ResultView {
     public static void printProfit(double profit) {
         System.out.printf(ResultMessage.LOTTO_PROFIT_MESSAGE.getMessage(), profit);
     }
-
 }

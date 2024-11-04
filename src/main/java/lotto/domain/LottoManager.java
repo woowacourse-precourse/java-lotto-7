@@ -18,7 +18,7 @@ public class LottoManager {
         List<Integer> sortedNumbers = numbers.stream()
                 .sorted()
                 .toList();
-        return new Lotto(numbers);
+        return new Lotto(sortedNumbers);
     }
 
     public static ArrayList<Lotto> createLottos(int money) {

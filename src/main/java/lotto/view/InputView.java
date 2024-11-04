@@ -1,10 +1,10 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.domain.LottoValidator.*;
 import static lotto.domain.LottoValidator.validateInput;
 import static lotto.domain.LottoValidator.validateLottoNumbers;
 import static lotto.domain.LottoValidator.validateMoney;
-import static lotto.domain.LottoValidator.validateWinningLottoNumbers;
 import static lotto.util.InputMessage.*;
 
 import java.util.ArrayList;
@@ -12,14 +12,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
-import lotto.domain.LottoValidator;
 import lotto.domain.WinningLotto;
 
 public class InputView {
     public static int inputMoney() {
         System.out.println(INPUT_MONEY.getMessage());
         String input = input();
-        LottoValidator.validateNumber(input);
+        validateNumber(input);
 
         int money = Integer.parseInt(input);
         validateMoney(money);
@@ -47,9 +46,11 @@ public class InputView {
     public static WinningLotto inputWinningLotto() {
         List<Integer> winningNumbers = inputWinningNumbers();
         int bonusNumber = inputBonusNumber();
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
 
-        validateWinningLottoNumbers(winningNumbers, bonusNumber);
-        return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+        validateWinningLotto(winningLotto);
+
+        return winningLotto;
     }
 
     private static String input() {
