@@ -13,7 +13,9 @@ public class InputView {
         while (true) {
             try {
                 String inputAmount = Console.readLine();
-                return convertInputToInt(inputAmount);
+                int amount = convertInputToInt(inputAmount);
+                validateMultipleOfThousandLottoAmount(amount);
+                return amount;
             } catch (CustomLottoException exception) {
                 System.out.println(exception.getMessage());
             }
@@ -32,7 +34,7 @@ public class InputView {
     }
 
     public static int inputBonusNumber() {
-        while(true) {
+        while (true) {
             try {
                 String bonusNumber = Console.readLine();
                 return convertInputToInt(bonusNumber);
@@ -44,46 +46,25 @@ public class InputView {
 
     private static int convertInputToInt(String input) {
         try {
-            int intNumber = Integer.parseInt(input);
-            long longNumber = Long.parseLong(input);
-            validateAmountEquality(intNumber, longNumber);
-            return intNumber;
+            return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
             throw new CustomLottoException(ErrorMessage.NOT_INTEGER_NUMBER);
         }
     }
 
-    private static void validateAmountEquality(int intAmount, long longAmount) {
-        if (intAmount != longAmount) {
-            throw new CustomLottoException(ErrorMessage.NOT_INTEGER_NUMBER);
+    private static void validateMultipleOfThousandLottoAmount(int amount) {
+        if (amount % 1000 != 0) {
+            throw new CustomLottoException(ErrorMessage.NOT_MULTIPLE_THOUSAND);
         }
     }
 
     private static List<Integer> convertInputWinningNumbersToIntegerList(String inputWinningNumbers) {
         try {
-            List<Long> winningNumbers =
-                    Stream.of(inputWinningNumbers.split(","))
-                            .map(Long::parseLong)
-                            .collect(Collectors.toList());
-            validateNumberEquality(winningNumbers);
-            return convertWinningNumbersToInteger(winningNumbers);
+            return Stream.of(inputWinningNumbers.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
         } catch (NumberFormatException exception) {
             throw new CustomLottoException(ErrorMessage.NOT_INTEGER_NUMBER);
         }
-    }
-
-    private static void validateNumberEquality(List<Long> numbers) {
-        for (long number : numbers) {
-            int intNumber = (int) number;
-            if (number != intNumber) {
-                throw new CustomLottoException(ErrorMessage.NOT_INTEGER_NUMBER);
-            }
-        }
-    }
-
-    private static List<Integer> convertWinningNumbersToInteger(List<Long> winningNumbers) {
-        return winningNumbers.stream()
-                .map(Long::intValue)
-                .collect(Collectors.toList());
     }
 }
