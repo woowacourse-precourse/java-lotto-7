@@ -1,5 +1,7 @@
 package lotto.config;
 
+import static lotto.view.ViewConstants.NEW_LINE;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import lotto.controller.LottoController;
@@ -17,7 +19,8 @@ public class AppRunner {
     private final OutputView outputView;
     private final LottoController controller;
 
-    public AppRunner(InputView inputView, InputValidator inputValidator, OutputView outputView, LottoController controller) {
+    public AppRunner(InputView inputView, InputValidator inputValidator,
+                     OutputView outputView, LottoController controller) {
         this.inputView = inputView;
         this.inputValidator = inputValidator;
         this.outputView = outputView;
@@ -25,9 +28,7 @@ public class AppRunner {
     }
 
     public void run() {
-        String inputAmount = inputView.requestPurchaseAmount();
-        inputValidator.validateDigitOnly(inputAmount);
-        LottoReceipt lottoReceipt = controller.readPurchaseAmount(inputAmount);
+        LottoReceipt lottoReceipt = readPurchaseAmount();
 
         outputView.printIssuedLottoQuantity(lottoReceipt.getIssuedLottoQuantity());
         outputView.printIssuedLottoDetails(lottoReceipt.toString());
@@ -44,5 +45,21 @@ public class AppRunner {
         BigInteger totalPrize = Winning.tellTotalPrize(winningReport.getWinningCounts());
         BigDecimal rateOfReturn = lottoReceipt.calculateRateOfReturn(totalPrize);
         outputView.printRateOfReturn(rateOfReturn.toString());
+    }
+
+    private LottoReceipt readPurchaseAmount() {
+        LottoReceipt lottoReceipt;
+        while (true) {
+            String inputAmount = inputView.requestPurchaseAmount();
+            try {
+                inputValidator.validateDigitOnly(inputAmount);
+                lottoReceipt = controller.readPurchaseAmount(inputAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + NEW_LINE);
+                continue;
+            }
+            break;
+        }
+        return lottoReceipt;
     }
 }
