@@ -9,8 +9,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static lotto.Constants.*;
+import static lotto.ErrorMessages.*;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -33,7 +35,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != PICK_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_SIZE_WRONG);
         }
     }
 
@@ -43,14 +45,14 @@ public class Lotto {
 
     private void validateRange(Integer number) {
         if (!(MIN_NUMBER <= number && number <= MAX_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 1 ~ 45 사이의 수가 아닙니다.");
+            throw new IllegalArgumentException(LOTTO_RANGE_WRONG);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
         if (nonDuplicateNumbers.size() != PICK_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 번호가 중복되는 로또 번호가 존재합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE);
         }
     }
 

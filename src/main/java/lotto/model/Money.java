@@ -6,8 +6,10 @@ import lotto.ErrorMessages;
 import java.util.regex.Pattern;
 
 import static lotto.Constants.*;
+import static lotto.ErrorMessages.*;
 
 public class Money {
+
     private final int money;
 
     public Money(String stringMoney){
@@ -16,24 +18,24 @@ public class Money {
         validateAmount();
     }
 
-
     private void validateInput(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액을 입력해 주세요.");
+            throw new IllegalArgumentException(INPUT_MONEY_NULL);
         }
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(INPUT_MONEY_WONG);
+
         }
     }
 
     private void validateAmount() {
         if (money < LOTTO_UNIT) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 " + LOTTO_UNIT + "원 이상이어야 합니다.");
+            throw new IllegalArgumentException(MONEY_WRONG);
         }
         if (money % LOTTO_UNIT != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 " + LOTTO_UNIT + "원 단위여야 합니다.");
+            throw new IllegalArgumentException(MONEY_UNIT_WRONG);
         }
     }
 

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.Constants;
+import lotto.ErrorMessages;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,9 +10,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static lotto.Constants.*;
+import static lotto.ErrorMessages.*;
 
 public class WinningLotto {
-
+    ;
     private final Lotto winningLotto;
     private final Integer bonusNumber;
 
@@ -30,13 +32,13 @@ public class WinningLotto {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(winningLotto);
         nonDuplicateNumbers.add(number);
         if (nonDuplicateNumbers.size() != WINNING_LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 번호가 중복되는 로또 번호가 존재합니다.");
+            throw new IllegalArgumentException(WINNING_LOTTO_DUPLICATE);
         }
     }
 
     private void validateRange(Integer number) {
         if (!(MIN_NUMBER <= number && number <= MAX_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 1 ~ 45 사이의 수가 아닙니다.");
+            throw new IllegalArgumentException(WINNING_LOTTO_RANGE_WRONG);
         }
     }
 
