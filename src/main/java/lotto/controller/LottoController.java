@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.NoSuchElementException;
 import java.util.function.Function;
+import lotto.dto.LottoStatisticsDto;
 import lotto.dto.LottosDto;
 import lotto.model.BonusNumber;
 import lotto.model.LottoMachine;
@@ -23,6 +24,7 @@ public class LottoController {
             WinningNumbers winningNumbers = getInput(OutputView::printWinningNumberInputMessage, WinningNumbers::from);
             BonusNumber bonusNumber = getBonusNumber(winningNumbers);
             LottoStatistics calculate = calculate(lottoMachine, winningNumbers, bonusNumber, purchaseAmount);
+            OutputView.printStatistics(LottoStatisticsDto.from(calculate));
         } catch (NullPointerException e) {
             OutputView.printErrorMessage("[ERROR] 입력값이 존재하지 않아 로또가 종료됩니다.");
         }
