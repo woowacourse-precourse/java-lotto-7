@@ -65,6 +65,7 @@ public class LottoGameController {
             try {
                 inputView.displayBonusNumberPrompt();
                 int parsedBonusNumber = parseLottoNumber(inputView.readBonusNumber());
+                validateIfExistsInWinningNumbers(winningNumbers, parsedBonusNumber);
                 bonusNumber = new BonusNumber(parsedBonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
@@ -78,6 +79,12 @@ public class LottoGameController {
 
         double profitRate = lottoEvaluator.evaluateProfitRate(winningResults, lottoPurchaseAmount);
         outputView.displayProfitRate(profitRate);
+    }
+
+    private void validateIfExistsInWinningNumbers(WinningNumbers winningNumbers, int number) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER_WITH_WINNING_NUMBERS);
+        }
     }
 
     private List<Integer> parseWinningNumbers(String userInput) {

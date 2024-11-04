@@ -50,4 +50,8 @@ public class WinningNumbers {
     public Iterator<Integer> getNumbers() {
         return numbers.iterator();
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }
