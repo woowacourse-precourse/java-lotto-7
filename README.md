@@ -2,7 +2,7 @@
 
 ## 기능 요구 사항
 
-간단한 로또 발매기를 구현한다.
+간단한 로또 발매기 구현
 
 ### 로또
 
@@ -122,4 +122,25 @@ lotto/
 │
 └── main/
     └── Application.java
+```
+
+## 클래스 다이어그램
+
+*View*
+
+```mermaid
+classDiagram
+    class InputView {
+	    +getPurchaseAmount() int
+	    +getWinningNumbers() List~Integer~
+	    +getBonusNumber() int
+    }
+    class OutputView {
+	    +displayLottoCount(int count)
+	    +displayLottos(List~Lotto~ lottos)
+	    +displayResults(Map~Rank, Integer~ lottoStats, double profitRate)
+    }
+
+    style InputView fill:white,stroke-width:2px,stroke:#CCF
+    style OutputView fill:white,stroke-width:2px,stroke:#CCF
 ```
