@@ -6,6 +6,7 @@ public enum ErrorMessage {
     INVALID_INPUT_FORMAT("잘못된 입력 형식입니다."),
     INVALID_ZERO_PAYMENT("0원은 구매할 수 없습니다."),
     INVALID_PAYMENT_FORMAT("1000원 단위로 입력해주세요"),
+    INVALID_MAXIMUM_PAYMENT("로또 최대 구매 금액은 100,000원 입니다."),
     INVALID_NUMBER_FORMAT("양의 정수만 입력이 가능합니다."),
     INVALID_LOTTO_NUMBERS_SIZE("로또 번호는 6개여야 합니다."),
     INVALID_DUPLICATION_NUMBER("중복된 숫자가 존재합니다."),

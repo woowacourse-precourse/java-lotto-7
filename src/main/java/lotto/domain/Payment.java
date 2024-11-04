@@ -33,6 +33,17 @@ public class Payment {
         private static void validate(int payment, LottoDetail price) {
             validateZero(payment);
             validateDivisibleByPrice(payment, price);
+            validateMaximum(payment);
+        }
+
+        private static void validateMaximum(int payment) {
+            if (isOverMaximum(payment)) {
+                throw new LottoException(ErrorMessage.INVALID_MAXIMUM_PAYMENT);
+            }
+        }
+
+        private static boolean isOverMaximum(int payment) {
+            return payment > 100_000;
         }
 
         private static void validateZero(int payment) {
