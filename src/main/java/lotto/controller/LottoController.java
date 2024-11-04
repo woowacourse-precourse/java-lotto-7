@@ -40,6 +40,8 @@ public class LottoController {
 
         inputBonusNumber();
         validateBonusNumber();
+
+        printLottoWinMessage();
     }
 
     public void inputPurchaseAmount() {
@@ -111,6 +113,10 @@ public class LottoController {
     public void validateBonusNumber() {
         int parsedBonusNumber = lottoService.validateBonusNumber(bonusNumber);
         BonusNumber bonusNumber = lottoService.addBonusNumber(parsedBonusNumber);
+    }
+
+    public void printLottoWinMessage() {
+        outputView.printLottoWinningMessage();
     }
 
 

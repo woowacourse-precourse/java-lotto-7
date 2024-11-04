@@ -1,8 +1,8 @@
 package lotto.enums;
 
 public enum OutputMessage implements MessageProvider {
-    INPUT_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
-    PURCHASED_LOTTO_COUNT_MESSAGE("%d개를 구매했습니다.");
+    PURCHASED_LOTTO_COUNT_MESSAGE("%d개를 구매했습니다."),
+    LOTTO_WINNING_MESSAGE("당첨 통계\n---");
 
     private final String message;
 
@@ -19,4 +19,3 @@ public enum OutputMessage implements MessageProvider {
         return String.format(message, count);
     }
 }
-
