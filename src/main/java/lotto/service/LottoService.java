@@ -9,12 +9,17 @@ import lotto.domain.WinningLotto;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static lotto.service.ValidationService.validatePurchaseAmount;
+
 public class LottoService {
 
     private final List<Lotto> purchasedLottos = new ArrayList<>();
 
-    public void purchaseLottos(int amout){
-        for(int i=0;i<amout/1000;i++){
+    public void purchaseLottos(int amount){
+        // 검증 클래스에서 금액 검증 수행
+        validatePurchaseAmount(amount);
+
+        for (int i = 0; i < amount / 1000; i++) {
             purchasedLottos.add(createNewLotto());
         }
     }
