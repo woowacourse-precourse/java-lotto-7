@@ -44,7 +44,7 @@ public class Controller {
                 buyer = new Buyer(lottos);
                 break;
             } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -57,7 +57,7 @@ public class Controller {
                 winningNumber.setNumbers(winningNumberStr);
                 break;
             } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -70,7 +70,7 @@ public class Controller {
                 bonusNumber.setNumber(Integer.parseInt(bonusNumberStr));
                 break;
             } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
     }
