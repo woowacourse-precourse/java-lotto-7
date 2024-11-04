@@ -1,11 +1,11 @@
-package lotto;
+package lotto.model;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -22,4 +22,10 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호 입력이 올바른지 확인")
+    @Test
+    void 로또_번호_조회_확인() {
+        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).getNumbers().toString())
+                .contains(List.of(1, 2, 3, 4, 5, 6).toString());
+    }
 }
