@@ -18,6 +18,7 @@ public class InputHandler {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
                 int purchaseAmount = parseToInt(input);
+                inputValidator.checkMinimumAmount(purchaseAmount);
                 inputValidator.checkDividedBy1000(purchaseAmount);
                 return purchaseAmount;
             } catch (IllegalArgumentException e) {

@@ -12,4 +12,10 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 번호이어야 합니다.");
         }
     }
+
+    public void checkMinimumAmount(int purchaseAmount) {
+        if (purchaseAmount <= 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 0원 이상이어야 합니다.");
+        }
+    }
 }
