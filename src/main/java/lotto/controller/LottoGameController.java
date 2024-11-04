@@ -19,13 +19,11 @@ public class LottoGameController {
     }
 
     public void run() {
-        int paidMoney = inputView.purchaseLotto();
-
+        int paidMoney = getPaidMoney();
         LotteryMachine machine = new LotteryMachine(paidMoney);
-        machine.drawLottos();
         outputView.printLottos(machine.getLottos());
 
-        List<Integer> winningNumbers = inputView.inputWinningNumber();
+        List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = inputView.inputBonusNumber();
 
         LottoChecker checker = new LottoChecker(winningNumbers, bonusNumber);
@@ -34,6 +32,28 @@ public class LottoGameController {
 
         Calculator calculator = new Calculator(paidMoney);
         outputView.printEarningRate(calculator.calculateEarningRate());
+    }
+
+    private int getPaidMoney() {
+        while (true) {
+            try {
+                return inputView.purchaseLotto();
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+            }
+        }
+    }
+
+    private List<Integer> getWinningNumbers() {
+        while (true) {
+            try {
+                return inputView.inputWinningNumber();
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new IllegalArgumentException("[ERROR] 당첨 숫자는 6개만 입력해 주세요.");
+            }
+        }
     }
 
 }
