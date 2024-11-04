@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Comparator;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.model.InputAmount;
 import lotto.model.PurchasedLottos;
 import lotto.model.TicketCount;

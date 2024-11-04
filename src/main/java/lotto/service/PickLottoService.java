@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.model.PurchasedLottos;
 import lotto.model.TicketCount;
 

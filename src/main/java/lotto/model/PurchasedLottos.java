@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.List;
 import java.util.Objects;
-import lotto.Lotto;
 
 public class PurchasedLottos {
 
