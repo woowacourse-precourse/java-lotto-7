@@ -8,11 +8,14 @@ public class LottoFactory {
     private int lottoCount;
     private final Lottos lottos;
 
-    public LottoFactory(int lottoCount, Lottos lottos) {
-        this.lottoCount = lottoCount;
+    public LottoFactory(Lottos lottos) {
         this.lottos = lottos;
 
         createLottos();
+    }
+
+    private void calculateLottoCount(int price) {
+        lottoCount = price / Constants.LOTTO_PRICE;
     }
 
     private List<Integer> createRandomNumbers() {

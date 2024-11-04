@@ -13,10 +13,12 @@ public class Application {
         InputView inputView = new InputView();
         InputParser inputParser = new InputParser(inputView);
         OutputView outputView = new OutputView();
+
         Lottos lottos = new Lottos();
-        LottoFactory lottoFactory = new LottoFactory(inputParser.parsePrice(), lottos);
+        LottoFactory lottoFactory = new LottoFactory(lottos);
         LottoService lottoService = new LottoService(lottoFactory);
-        LottoController lottoController = new LottoController(inputView, outputView, lottoService);
+        LottoController lottoController = new LottoController(inputParser, outputView, lottoService);
+
         lottoController.start();
     }
 }

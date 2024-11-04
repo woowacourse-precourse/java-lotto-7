@@ -15,8 +15,7 @@ public class InputParser {
 
     public int parsePrice() {
         String rawPrice = inputView.requirePrice();
-        int price = Integer.parseInt(rawPrice);
-        return calculateLottoCount(price);
+        return Integer.parseInt(rawPrice);
     }
 
     public List<Integer> parseLottoNumbers() {
@@ -35,10 +34,5 @@ public class InputParser {
         String rawBonusNumber = inputView.requireBonusNumber();
         int bonusNumber = Integer.parseInt(rawBonusNumber);
         return bonusNumber;
-    }
-
-    private int calculateLottoCount(int price) {
-        int lottoCount = price / Constants.LOTTO_PRICE;
-        return lottoCount;
     }
 }
