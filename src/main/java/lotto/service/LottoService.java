@@ -4,13 +4,15 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Number;
+import lotto.domain.Numbers;
 import lotto.domain.Price;
 
-public class PurchaseService {
+public class LottoService {
 
     private final List<Lotto> purchasedLotteries;
 
-    public PurchaseService(List<Lotto> purchasedLotteries) {
+    public LottoService(List<Lotto> purchasedLotteries) {
         this.purchasedLotteries = purchasedLotteries;
     }
 
@@ -34,5 +36,15 @@ public class PurchaseService {
 
     public List<Lotto> getPurchasedLotteries() {
         return Collections.unmodifiableList(purchasedLotteries);
+    }
+
+    public Numbers getWinNumbers(String input) {
+        return new Numbers(input);
+    }
+
+    public lotto.domain.Number getBonusNumber(Numbers winNumbers, String input) {
+        lotto.domain.Number bonusNumber = new lotto.domain.Number(input);
+        Number.validateBonusNumber(winNumbers, bonusNumber);
+        return bonusNumber;
     }
 }
