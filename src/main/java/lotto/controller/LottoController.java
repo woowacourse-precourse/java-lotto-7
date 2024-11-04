@@ -35,12 +35,12 @@ public class LottoController {
     public void run() {
         int purchaseAmount = getInputPurchaseAmount();
         int purchaseCount = purchaseAmount / LOTTO_PRICE;
-        List<Lotto> purchasedLottoList = lottoMachine.generateLotto(purchaseCount);
-        outputView.printPurchasedLotto(purchaseCount, purchasedLottoList);
+        List<Lotto> purchasedLottos = lottoMachine.generateLotto(purchaseCount);
+        outputView.printPurchasedLotto(purchaseCount, purchasedLottos);
 
         List<Integer> winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber(winningNumber);
-        LottoGame lottoGame = new LottoGame(winningNumber, bonusNumber, purchasedLottoList);
+        LottoGame lottoGame = new LottoGame(winningNumber, bonusNumber, purchasedLottos);
         Map<LottoRank, Integer> lottoResult = lottoGame.checkLottoResult();
         double lottoResultStatistics = lottoGame.calculateStatistics(purchaseAmount);
         outputView.printLottoResult(lottoResult, lottoResultStatistics);
