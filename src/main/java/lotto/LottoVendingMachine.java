@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoVendingMachine {
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     public List<Lotto> purchaseLottos() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -31,25 +32,25 @@ public class LottoVendingMachine {
             int money = Integer.parseInt(userInput);
 
             if(money < 1000){
-                throw new IllegalArgumentException("로또는 최소 1장 이상 구매해야 합니다.");
+                throw new IllegalArgumentException(ERROR_MESSAGE + " 로또는 최소 1장 이상 구매해야 합니다.");
             }
 
             if(money > 50000){
-                throw new IllegalArgumentException("로또는 최대 50장까지 구매 가능합니다.");
+                throw new IllegalArgumentException(ERROR_MESSAGE + " 로또는 최대 50장까지 구매 가능합니다.");
             }
 
             if(money % 1000 != 0){
-                throw new IllegalArgumentException("로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
+                throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
             }
 
             return true;
 
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 유효한 숫자를 입력해야 합니다.");
+            System.out.println(ERROR_MESSAGE+" 유효한 숫자를 입력해야 합니다.");
             return false;
 
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] "+e.getMessage());
+            System.out.println(ERROR_MESSAGE+" "+e.getMessage());
             return false;
 
         }

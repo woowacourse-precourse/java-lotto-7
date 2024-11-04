@@ -13,6 +13,7 @@ public class Drow {
 
     List<Integer> drowNumbers = new ArrayList<>(); // 당첨 번호
     Integer bonusNumber; // 보너스 번호
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     /// 당첨 번호 입력
     public void inputDrowNumbers(){
@@ -59,7 +60,7 @@ public class Drow {
             String[] inputNumbers = userInput.split(",");
 
             if(inputNumbers.length!=6){
-                throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
+                throw new IllegalArgumentException(ERROR_MESSAGE+" 당첨 번호는 6개여야 합니다.");
             }
 
             for(String inputNumber : inputNumbers){
@@ -72,11 +73,11 @@ public class Drow {
             }
             return true;
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 유효한 숫자를 입력해야 합니다.");
+            System.out.println(ERROR_MESSAGE+" 유효한 숫자를 입력해야 합니다.");
             return false;
 
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] "+e.getMessage());
+            System.out.println(ERROR_MESSAGE+e.getMessage());
             return false;
 
         }
@@ -94,11 +95,11 @@ public class Drow {
 
             return true;
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 유효한 숫자를 입력해야 합니다.");
+            System.out.println(ERROR_MESSAGE+" 유효한 숫자를 입력해야 합니다.");
             return false;
 
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] "+e.getMessage());
+            System.out.println(ERROR_MESSAGE+" "+e.getMessage());
             return false;
 
         }
@@ -107,11 +108,11 @@ public class Drow {
     void validateInputNumber(int drowNumber){
 
         if (drowNumber < 1){
-            throw new IllegalArgumentException("당첨 번호는 1보다 커야합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE+" 당첨 번호는 1보다 커야합니다.");
         }
 
         if (drowNumber > 45){
-            throw new IllegalArgumentException("당첨 번호는 45보다 작아야합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE+" 당첨 번호는 45보다 작아야합니다.");
         }
 
     }
@@ -121,7 +122,7 @@ public class Drow {
         for(int checkNumber : checkNumbers){
 
             if(checkNumber == drowNumber){
-                throw new IllegalArgumentException("중복되는 당첨 번호가 있습니다");
+                throw new IllegalArgumentException(ERROR_MESSAGE+" 중복되는 당첨 번호가 있습니다");
             }
 
         }
@@ -182,11 +183,11 @@ public class Drow {
     /// 등수 별 상금 및 당첨갯수 출력
     private void printPrize(){
 
-        Prize.First.printPrizeInfo();
-        Prize.Second.printPrizeInfo();
-        Prize.Third.printPrizeInfo();
-        Prize.Fourth.printPrizeInfo();
         Prize.Fifth.printPrizeInfo();
+        Prize.Fourth.printPrizeInfo();
+        Prize.Third.printPrizeInfo();
+        Prize.Second.printPrizeInfo();
+        Prize.First.printPrizeInfo();
 
     }
 
@@ -199,12 +200,12 @@ public class Drow {
         prizeMoney += Prize.Fourth.getPrizeMoney();
         prizeMoney += Prize.Fifth.getPrizeMoney();
 
-        return (double) prizeMoney /inputMoney;
+        return (double)  prizeMoney*100/inputMoney;
     }
 
     private void printRate(double rate){
 
-        String rateInfo = "총 수익률은 " + String.format("%.1f", rate) + "% 입니다.";
+        String rateInfo = "총 수익률은 " + String.format("%.1f", rate) + "%입니다.";
         System.out.println(rateInfo);
 
     }
