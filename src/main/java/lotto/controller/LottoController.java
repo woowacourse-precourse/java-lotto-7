@@ -45,14 +45,4 @@ public class LottoController {
 
         LottoStatisticsView.announceStatistics(statistics);
     }
-
-//    public void announceStatistics(List<Lotto> lottos, FirstRankLotto firstRankLotto) {
-//
-//        LottoStatisticsView.announceStatistics(lottoStatistics);
-//    }
-
-//    public void annouceLottoRateOfReturn(List<Lotto> lottos, FirstRankLotto firstRankLotto) {
-//
-//        LottoStatisticsView.announcePercentOfReturn(percentRateOfReturn);
-//    }
 }
