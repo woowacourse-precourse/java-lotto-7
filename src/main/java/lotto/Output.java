@@ -24,6 +24,10 @@ public class Output {
         System.out.println();
     }
 
+    public static void printError(String message){
+        System.out.println(message);
+    }
+
     private static void printLotto(Lotto lotto) {
         System.out.println(String.join(",",lotto.getNumbers().toString()));
     }

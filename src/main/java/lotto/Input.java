@@ -54,6 +54,9 @@ public class Input {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if (Validator.validateDuplicate(winningNumbers)){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안됩니다.");
+        }
         for (Integer winningNumber : winningNumbers) {
             validateNumberRange(winningNumber);
         }
