@@ -32,5 +32,7 @@ public class LottoGameController {
 
         LottoStatisticsDTO lottoStatisticsDTO = lottoService.calculatePrizeMoney(winningNumberDTO, bonusNumberDTO,
                 randomLottoNumberDTO);
+
+        outputView.outputLottoStatistics(lottoStatisticsDTO);
     }
 }
