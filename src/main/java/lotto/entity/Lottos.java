@@ -66,5 +66,10 @@ public class Lottos {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(ErrorStatus.NUMBER_OUT_OF_RANGE.getMessage());
         }
+
+        // 보너스 숫자에 중복이 있는지 체크
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorStatus.DUPLICATE_BONUS_NUMBER.getMessage());
+        }
     }
 }
