@@ -26,8 +26,22 @@ public class UserInput {
             String winningNumberBeforeCheck = Console.readLine();
 
             try {
-               return new Lotto(lottoService.checkWinningNumber(winningNumberBeforeCheck));
+                return new Lotto(lottoService.checkWinningNumber(winningNumberBeforeCheck));
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + "\n");
+            }
+        }
+    }
+
+    public int bonusNumber(List<Integer> winningNumber) {
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String bonusNumberBeforeCheck = Console.readLine();
+
+            try {
+                return lottoService.checkBonusNumber(bonusNumberBeforeCheck,
+                        winningNumber);
+            }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + "\n");
             }
         }

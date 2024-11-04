@@ -22,9 +22,7 @@ public class Application {
         Lotto winningNumber = userInput.winningNumber();
         System.out.println();
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = lottoService.checkBonusNumber(Console.readLine(),
-                winningNumber.getNumbers());
+        int bonusNumber = userInput.bonusNumber(winningNumber.getNumbers());
         System.out.println();
 
         HashMap<String, Integer> lottoResult = lottoService.assessLottoOutcome(
