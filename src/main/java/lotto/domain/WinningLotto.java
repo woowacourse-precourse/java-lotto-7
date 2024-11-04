@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.MessageContainer.DUPLICATE_IN_WINNING_NUMBERS_ERROR;
-import static lotto.MessageContainer.OUT_OF_RANGE_NUMBER_ERROR;
+import static lotto.domain.LottoMessageContainer.DUPLICATE_IN_WINNING_NUMBERS_ERROR;
+import static lotto.domain.LottoMessageContainer.OUT_OF_RANGE_NUMBER_ERROR;
 import static lotto.domain.LottoConstants.MAX_LOTTO_NUMBER;
 import static lotto.domain.LottoConstants.MIN_LOTTO_NUMBER;
 

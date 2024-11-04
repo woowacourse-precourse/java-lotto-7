@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.MessageContainer.ERROR_MESSAGE;
-import static lotto.MessageContainer.INVALID_PURCHASE_AMOUNT;
+import static lotto.view.ViewMessageContainer.ERROR_MESSAGE;
+import static lotto.domain.LottoMessageContainer.INVALID_PURCHASE_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

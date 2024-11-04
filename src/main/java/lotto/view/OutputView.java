@@ -1,8 +1,8 @@
 package lotto.view;
 
-import static lotto.MessageContainer.NOTICE_ISSUED_LOTTO_QUANTITY;
-import static lotto.MessageContainer.RATE_OF_RETURN_MESSAGE;
-import static lotto.MessageContainer.WINNING_STATISTICS;
+import static lotto.view.ViewMessageContainer.NOTICE_ISSUED_LOTTO_QUANTITY;
+import static lotto.view.ViewMessageContainer.RATE_OF_RETURN_MESSAGE;
+import static lotto.view.ViewMessageContainer.WINNING_STATISTICS;
 import static lotto.view.ViewConstants.NEW_LINE;
 
 public class OutputView {

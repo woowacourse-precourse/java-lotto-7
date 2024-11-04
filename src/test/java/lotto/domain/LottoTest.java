@@ -10,10 +10,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static lotto.MessageContainer.COUNT_OF_LOTTO_NUMBERS_ERROR;
-import static lotto.MessageContainer.DUPLICATE_NUMBER_ERROR;
-import static lotto.MessageContainer.ERROR_MESSAGE;
-import static lotto.MessageContainer.OUT_OF_RANGE_NUMBER_ERROR;
+import static lotto.view.ViewMessageContainer.ERROR_MESSAGE;
+import static lotto.domain.LottoMessageContainer.COUNT_OF_LOTTO_NUMBERS_ERROR;
+import static lotto.domain.LottoMessageContainer.DUPLICATE_NUMBER_ERROR;
+import static lotto.domain.LottoMessageContainer.OUT_OF_RANGE_NUMBER_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

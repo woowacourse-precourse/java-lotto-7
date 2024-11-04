@@ -1,12 +1,12 @@
 package lotto;
 
 import lotto.config.AppConfig;
-import lotto.config.AppRunner;
+import lotto.controller.ApplicationController;
 
 public class Application {
     public static void main(String[] args) {
         AppConfig appConfig = new AppConfig();
-        AppRunner appRunner = appConfig.createAppRunner();
-        appRunner.run();
+        ApplicationController applicationController = appConfig.createAppRunner();
+        applicationController.run();
     }
 }

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.MessageContainer.INVALID_PURCHASE_AMOUNT;
+import static lotto.domain.LottoMessageContainer.INVALID_PURCHASE_AMOUNT;
 
 import java.math.BigInteger;
 import java.util.List;

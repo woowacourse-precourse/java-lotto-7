@@ -1,10 +1,9 @@
-package lotto.config;
+package lotto.controller;
 
 import static lotto.view.ViewConstants.NEW_LINE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.controller.LottoController;
 import lotto.domain.LottoReceipt;
 import lotto.domain.LottoTicket;
 import lotto.domain.WinningLotto;
@@ -12,14 +11,14 @@ import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class AppRunner {
+public class ApplicationController {
     private final InputView inputView;
     private final InputValidator inputValidator;
     private final OutputView outputView;
     private final LottoController controller;
 
-    public AppRunner(InputView inputView, InputValidator inputValidator,
-                     OutputView outputView, LottoController controller) {
+    public ApplicationController(InputView inputView, InputValidator inputValidator,
+                                 OutputView outputView, LottoController controller) {
         this.inputView = inputView;
         this.inputValidator = inputValidator;
         this.outputView = outputView;

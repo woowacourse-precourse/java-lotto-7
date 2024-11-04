@@ -1,8 +1,8 @@
 package lotto.view;
 
-import static lotto.MessageContainer.ENTER_BONUS_NUMBER;
-import static lotto.MessageContainer.ENTER_PURCHASE_AMOUNT;
-import static lotto.MessageContainer.ENTER_WINNING_LOTTO_NUMBERS;
+import static lotto.view.ViewMessageContainer.ENTER_BONUS_NUMBER;
+import static lotto.view.ViewMessageContainer.ENTER_PURCHASE_AMOUNT;
+import static lotto.view.ViewMessageContainer.ENTER_WINNING_LOTTO_NUMBERS;
 import static lotto.view.ViewConstants.NEW_LINE;
 
 import camp.nextstep.edu.missionutils.Console;

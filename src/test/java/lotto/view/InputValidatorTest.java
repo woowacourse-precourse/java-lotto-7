@@ -1,8 +1,8 @@
 package lotto.view;
 
-import static lotto.MessageContainer.ERROR_MESSAGE;
-import static lotto.MessageContainer.NEITHER_DIGIT_NOR_DELIMITER_ERROR;
-import static lotto.MessageContainer.NON_DIGIT_ERROR;
+import static lotto.view.ViewMessageContainer.ERROR_MESSAGE;
+import static lotto.view.ViewMessageContainer.NEITHER_DIGIT_NOR_DELIMITER_ERROR;
+import static lotto.view.ViewMessageContainer.NON_DIGIT_ERROR;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

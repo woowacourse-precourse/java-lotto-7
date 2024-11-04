@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import static lotto.MessageContainer.OVER_INTEGER_RANGE_ERROR;
-import static lotto.MessageContainer.SECOND_WINNING_DETAILS_TEMPLATE;
-import static lotto.MessageContainer.WINNING_DETAILS_TEMPLATE;
+import static lotto.view.ViewMessageContainer.OVER_INTEGER_RANGE_ERROR;
+import static lotto.view.ViewMessageContainer.SECOND_WINNING_DETAILS_TEMPLATE;
+import static lotto.view.ViewMessageContainer.WINNING_DETAILS_TEMPLATE;
 import static lotto.view.ViewConstants.VIEW_DELIMITER;
 
 import java.math.BigDecimal;
