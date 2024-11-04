@@ -66,6 +66,7 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해 주세요.");
         }
 
+        double totalSum = 0;
         int[] perRankCount = {0, 0, 0, 0, 0, 0};    // 인덱스 0은 무시
         // 당첨 확인 과정
         for (Lotto lotto : lottos) {
@@ -75,12 +76,16 @@ public class Application {
             if(matchNum == 5 && matchBonus){
                 prize = prize.BONUS;
                 perRankCount[prize.getRank()]++;
+                totalSum += prize.money();
             }
             if(matchNum >= 3 && prize == null){
-                 prize = Prize.checkByMatchNum(matchNum);
+                prize = Prize.checkByMatchNum(matchNum);
                 perRankCount[prize.getRank()]++;
+                totalSum += prize.money();
             }
         }
+
+        System.out.println(totalSum);
 
         System.out.println("\n당첨 통계");
         System.out.println("---");
@@ -92,6 +97,10 @@ public class Application {
             }
             System.out.printf("%d개 일치, (%s원) - %d개\n", prize.getMatchNumbers(), prize.getMoney(), perRankCount[rank]);
         }
+
+        // 총 수익률
+        double totalRevenue = totalSum / totalLotto * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", totalRevenue);
     }
 
     private static boolean duplicated(int number, Lotto lotto) {
