@@ -16,7 +16,7 @@ public class StatisticsController {
     }
 
     public double calculateRateOfReturn(int totalWinnings, int purchaseNumber) {
-        double rateOfReturn = ((double) totalWinnings / purchaseNumber) * 100;
+        double rateOfReturn = (double) totalWinnings / purchaseNumber;
         return Math.round(rateOfReturn) / 10.0;
     }
 }
