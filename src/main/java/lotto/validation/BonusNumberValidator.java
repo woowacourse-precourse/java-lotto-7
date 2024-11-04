@@ -7,6 +7,9 @@ import static lotto.common.constant.LottoInfo.DEFAULT_LOTTO;
 
 public class BonusNumberValidator {
 
+    private BonusNumberValidator(){
+    }
+
     public static void validateBonusNumber(Integer bonusNumber) {
         throwExceptionIfNumberIsNull(bonusNumber);
         throwExceptionIfNumberIsNotValid(bonusNumber);

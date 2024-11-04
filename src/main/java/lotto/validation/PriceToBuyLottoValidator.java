@@ -9,6 +9,9 @@ public class PriceToBuyLottoValidator {
 
     private static Integer priceMaxLimit = 2000000000;
 
+    private PriceToBuyLottoValidator(){
+    }
+
     public static void validatePriceToBuyLotto(Integer priceToBuyLotto) {
         throwExceptionIfPriceIsNull(priceToBuyLotto);
         throwExceptionIfNotDivideBy1000(priceToBuyLotto);

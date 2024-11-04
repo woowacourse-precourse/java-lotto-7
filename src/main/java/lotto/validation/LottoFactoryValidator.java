@@ -10,6 +10,10 @@ import static lotto.common.constant.ErrorMessage.NOT_MATCH_LOTTO_COUNT_WITH_PRIC
 import static lotto.common.constant.LottoInfo.DEFAULT_LOTTO;
 
 public class LottoFactoryValidator {
+
+    private LottoFactoryValidator(){
+    }
+
     public static void validateLottoFactory(List<Lotto> lottoes, PriceToBuyLotto priceToBuyLotto){
         throwExceptionIfNotMatchPriceAndLottoCount(lottoes, priceToBuyLotto);
     }

@@ -12,6 +12,9 @@ public class WinningLottoNumberValidator {
 
     private static final String defaultDelimiter = ",";
 
+    private WinningLottoNumberValidator(){
+    }
+
     public static void validateWinningLottoNumber(List<Integer> winningNumbers){
         throwExceptionIfDuplicateNumber(winningNumbers);
         throwExceptionIfNumberIsNotValid(winningNumbers);
