@@ -35,7 +35,7 @@ public class LottoController {
         outputView.printYield(lottoPrizeCalculator.calculateYield(lottos.getTotalPrice()));
     }
 
-    private static Lottos createLottos(PurchaseAmount purchaseAmount) {
+    private Lottos createLottos(PurchaseAmount purchaseAmount) {
         int lottoCountNumber = Integer.parseInt(purchaseAmount.calculatePurchaseLottoCount());
         return Lottos.fromCount(lottoCountNumber);
     }

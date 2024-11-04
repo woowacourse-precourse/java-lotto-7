@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Lottos {
-    public static final int LOTTO_COUNT = 6;
+    public static final int LOTTO_NUMBER_COUNT = 6;
     private final List<Lotto> lottos;
 
     private Lottos(List<Lotto> lottos) {
@@ -27,7 +27,7 @@ public class Lottos {
 
     private static Lotto generateLotto() {
         List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
-                Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, LOTTO_COUNT));
+                Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, LOTTO_NUMBER_COUNT));
         randomNumbers.sort(Comparator.naturalOrder());
         return new Lotto(randomNumbers);
     }
