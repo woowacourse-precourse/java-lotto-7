@@ -29,6 +29,11 @@ public enum Rank {
 
     public static void printRankPrize(Rank rank, int counter) {
         int matchCount = rank.numberCount + rank.bounsExist;
-        System.out.printf("%d개 일치 (%s)원 - %d개\n", matchCount, rank.prize, counter);
+        String bounsExistString = "";
+        if (rank.bounsExist == 1) {
+            bounsExistString = ", 보너스 볼 일치";
+            matchCount--;
+        }
+        System.out.printf("%d개 일치%s (%s)원 - %d개\n", matchCount, bounsExistString, rank.prize, counter);
     }
 }
