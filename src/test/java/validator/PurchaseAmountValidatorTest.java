@@ -41,4 +41,15 @@ public class PurchaseAmountValidatorTest {
         assertThatThrownBy(() -> PurchaseAmountValidator.validatePurchaseAmount(invalidPurchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("구입 금액이 1,000원 단위가 아닐 때 예외가 발생한다.")
+    void 구입_금액이_천_원_단위가_아니어서_예외가_발생한다() {
+        // given
+        BigDecimal invalidPurchaseAmount = new BigDecimal("1500");
+
+        // when, then
+        assertThatThrownBy(() -> PurchaseAmountValidator.validatePurchaseAmount(invalidPurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
