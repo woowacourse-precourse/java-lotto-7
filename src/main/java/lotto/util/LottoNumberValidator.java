@@ -9,7 +9,7 @@ public class LottoNumberValidator {
     private LottoNumberValidator() {
     }
 
-    public static void validateRange(int number) {
+    public static void validateNumberInRange(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_ERROR);
         }

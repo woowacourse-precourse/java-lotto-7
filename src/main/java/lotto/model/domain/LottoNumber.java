@@ -12,7 +12,7 @@ public class LottoNumber {
 
     public LottoNumber(String stringNumber) {
         int number = InputParser.parsePositiveNumber(stringNumber, INVALID_LOTTO_NUMBER_ERROR);
-        LottoNumberValidator.validateRange(number);
+        LottoNumberValidator.validateNumberInRange(number);
         this.number = number;
     }
 

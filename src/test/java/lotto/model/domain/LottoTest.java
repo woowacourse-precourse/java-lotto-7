@@ -37,6 +37,13 @@ class LottoTest {
     }
 
     @Test
+    @DisplayName("로또 번호의 범위가 1~45 아니면 예외를 던진다.")
+    void testInvalidRangeNumbersThrowsException() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 100, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     @DisplayName("로또는 번호들을 오름차순으로 정렬한다.")
     void testSortLottoNumbers() {
         Lotto lotto = new Lotto(List.of(5, 3, 6, 1, 2, 4));

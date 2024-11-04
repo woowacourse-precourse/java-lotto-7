@@ -32,7 +32,7 @@ public class Lotto {
     }
 
     private void validateNumbersInRange(List<Integer> numbers) {
-        numbers.forEach(LottoNumberValidator::validateRange);
+        numbers.forEach(LottoNumberValidator::validateNumberInRange);
     }
 
     public List<Integer> getNumbers() {
