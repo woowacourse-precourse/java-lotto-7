@@ -12,8 +12,8 @@ class NumberTest {
     }
 
     @Test
-    void 로또_번호는_빈값이_될수없다(){
-        assertThrows(IllegalArgumentException.class, () -> new Number(null));
+    void 로또_번호는_45를_넘길_수_없다(){
+        assertThrows(IllegalArgumentException.class, () -> new Number(47));
     }
 
 }
