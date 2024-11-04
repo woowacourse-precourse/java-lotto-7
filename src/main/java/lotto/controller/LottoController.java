@@ -6,7 +6,9 @@ import java.util.List;
 
 import lotto.model.*;
 import lotto.model.enums.Prize;
-import lotto.service.LottoService;
+import lotto.service.LottoMatchService;
+import lotto.service.LottoNumberService;
+import lotto.service.ProfitService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -49,7 +51,7 @@ public class LottoController {
     public void generateLotto() {
         OutputView.printLottoTicketMessage(balance.getTicket());
         for (int i = 0; i < balance.getTicket(); i++) {
-            user.addLotto(LottoService.createLottoNumbers());
+            user.addLotto(LottoNumberService.createLottoNumbers());
             List<Integer> sortedNumbers = new ArrayList<>(user.getLottos().get(i));
             Collections.sort(sortedNumbers);
             OutputView.printLottoNumbers(sortedNumbers);
@@ -61,7 +63,7 @@ public class LottoController {
         while (!isValid) {
             try {
                 OutputView.printLottoNumbersGuide();
-                lotto = new Lotto(LottoService.splitLottoNumbers(InputView.inputLottoNumbers()));
+                lotto = new Lotto(LottoNumberService.splitLottoNumbers(InputView.inputLottoNumbers()));
                 isValid = true;
             } catch (IllegalArgumentException e) {
                 OutputView.printError(e.getMessage());
@@ -84,20 +86,20 @@ public class LottoController {
 
     public void calculateLottoResults() {
         for (List<Integer> userLotto : user.getLottos()) {
-            int matchCount = LottoService.calculateMatchCount(lotto.getNumbers(), userLotto);
-            boolean hasBonusMatch = LottoService.calculateBonusMatch(matchCount, bonus.getNumber(), userLotto);
+            int matchCount = LottoMatchService.calculateMatchCount(lotto.getNumbers(), userLotto);
+            boolean hasBonusMatch = LottoMatchService.calculateBonusMatch(matchCount, bonus.getNumber(), userLotto);
             user.addResult(Prize.valueOf(matchCount, hasBonusMatch));
         }
     }
 
     public void calculateProfit() {
         for (Prize prize : user.getResults().keySet()) {
-            profit.addProfit(LottoService.calculateProfit(prize.getPrize(), user.getResults().get(prize)));
+            profit.addProfit(ProfitService.calculateProfit(prize.getPrize(), user.getResults().get(prize)));
         }
     }
 
     public void calculateProfitRate() {
-        profit.setProfitRate(LottoService.calculateProfitRate(profit.getProfit(), balance.getMoney()));
+        profit.setProfitRate(ProfitService.calculateProfitRate(profit.getProfit(), balance.getMoney()));
     }
 
     public void displayResult() {
