@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.view.converter.LottoInputConverter;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +14,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayName("LottoInputConverter 테스트")
 public class LottoInputConverterTest {
 
-    private LottoInputConverter lottoInputConverter = new LottoInputConverter();
+    private LottoInputConverter lottoInputConverter;
+
+    @BeforeEach
+    void setUp() {
+        lottoInputConverter = new LottoInputConverter();
+    }
 
     @Test
     void 로또_구입금액을_입력받는다() {
