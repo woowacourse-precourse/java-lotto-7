@@ -18,8 +18,18 @@ public class UserLottos {
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
-        boolean condition = purchaseAmount > 0 && purchaseAmount % LottoInfo.PRICE.getInfo() == 0;
-        if (!condition) {
+        validatePositiveNumber(purchaseAmount);
+        validateThousandUnitAmount(purchaseAmount);
+    }
+
+    private void validatePositiveNumber(int purchaseAmount) {
+        if (purchaseAmount <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.POSITIVE_AMOUNT_ERROR.getMessage());
+        }
+    }
+
+    private void validateThousandUnitAmount(int purchaseAmount) {
+        if (purchaseAmount % LottoInfo.PRICE.getInfo() != 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_THOUSAND_UNIT_ERROR.getMessage());
         }
     }
