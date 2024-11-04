@@ -27,7 +27,7 @@ class RankCalculatorTest {
         System.out.println(profit);
 
         // then
-        assertThat(profit).isEqualTo(11);
+        assertThat(profit).isEqualTo(1100.0);
     }
 
 }
