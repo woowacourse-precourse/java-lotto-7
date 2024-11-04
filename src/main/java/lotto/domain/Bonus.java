@@ -12,7 +12,7 @@ public class Bonus {
 
     public Bonus(int number, List<Integer> lottoNumbers) {
         validateOverThanFortyFive(number);
-        validateDistinctWithLotto(number ,lottoNumbers);
+        validateDistinctWithLotto(number, lottoNumbers);
         this.number = number;
     }
 
