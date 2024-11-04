@@ -21,4 +21,10 @@ public class InputView {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public int promptBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        return Integer.parseInt(input);
+    }
 }
