@@ -1,33 +1,39 @@
 package lotto.common.utils;
 
+import lotto.common.ConstantData;
+
 import java.util.List;
 
 import static lotto.common.ExceptionConstants.*;
 
 public class ValidationUtils {
 
+    private static final int NUMBER_MIN_RANGE = 1;
+    private static final int NUMBER_MAX_RANGE = 45;
+    private static final String DIGIT_PATTERN_STRING = "\\d+";
+
     public static void validateInt(String str){
-        if( !str.matches("\\d+") ) throw new IllegalArgumentException(NOT_INTEGER.getMessage());
+        if( !str.matches(DIGIT_PATTERN_STRING) ) throw new IllegalArgumentException(NOT_INTEGER.getMessage());
     }
 
-    public static void validateNULL(int number){
-        if(number == 0) throw new IllegalArgumentException(IS_NULL.getMessage());
+    public static void validateNotUsedNumber(int number){
+        if(number <= 0) throw new IllegalArgumentException(IS_NULL.getMessage());
     }
 
-    public static void validateNULL(String str){
-        if(str.isEmpty() || str == null) throw new IllegalArgumentException(IS_NULL.getMessage());
+    public static void validateNull(String str){
+        if(str == null || str.isEmpty() ) throw new IllegalArgumentException(IS_NULL.getMessage());
     }
 
     public static void validateNumberRange(int number){
-        if(number >= 45 ) throw new IllegalArgumentException(OVER_NUMBER_RANGE.getMessage());
+        if(number < NUMBER_MIN_RANGE || number >= NUMBER_MAX_RANGE ) throw new IllegalArgumentException(OVER_NUMBER_RANGE.getMessage());
     }
 
     public static void validateNumberSize(int arraySize){
-        if(arraySize != 6 ) throw new IllegalArgumentException(OVER_NUMBER_SIZE.getMessage());
+        if(arraySize != ConstantData.NUMBER_COUNT ) throw new IllegalArgumentException(OVER_NUMBER_SIZE.getMessage());
     }
 
     public static void validateUnit(int money){
-        if ( (money % 1000) != 0) throw new IllegalArgumentException(NOT_BUY_UNIT.getMessage());
+        if ( (money % ConstantData.MONEY_UNIT) != 0) throw new IllegalArgumentException(NOT_BUY_UNIT.getMessage());
     }
 
     public static void validateDuplicateWinNumber(List<Integer> number){
