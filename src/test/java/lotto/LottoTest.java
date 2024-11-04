@@ -21,5 +21,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 1미만 45초과면 예외가 발생한다.")
+    @Test
+    void 로또_번호가_1미만_45초과면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(-2, -1, 0, 46, 47, 48)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호의 개수가 5개 이하면 예외가 발생한다.")
+    @Test
+    void 로또_번호의_개수가_5개_이하면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
