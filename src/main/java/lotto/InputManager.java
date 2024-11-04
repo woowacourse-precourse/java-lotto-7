@@ -28,13 +28,15 @@ public class InputManager {
         return numbers;
     }
 
-    public static int readBonusNumber() {
+    public static int readBonusNumber(List<Integer> winningNumbers) {
         System.out.println(OutputMessage.ENTER_BONUS_NUMBER.getMessage());
         String input = Console.readLine();
 
         new LottoInputValidator(input);
+        int bonusNumber = Integer.parseInt(input.trim());
 
-        return Integer.parseInt(input.trim());
+        LottoInputValidator.validateBonusDuplication(bonusNumber, winningNumbers);
+        return bonusNumber;
     }
 
 

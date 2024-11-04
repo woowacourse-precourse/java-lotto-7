@@ -20,7 +20,7 @@ public class LottoGenerator {
             OutputManager.printLottoTickets(lottoTickets);
 
             List<Integer> winningNumbers = InputManager.readWinningNumbers();
-            int bonusNumber = InputManager.readBonusNumber();
+            int bonusNumber = InputManager.readBonusNumber(winningNumbers);
 
             LottoResultChecker lottoResultChecker = new LottoResultChecker(winningNumbers, bonusNumber);
 
