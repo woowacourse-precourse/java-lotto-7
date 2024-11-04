@@ -25,7 +25,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private List<Integer> sortNumbers(List<Integer> numbers) {
         List<Integer> copyOfNumbers = new ArrayList<>(numbers);
         Collections.sort(copyOfNumbers);

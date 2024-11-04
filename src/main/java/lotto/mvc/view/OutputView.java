@@ -1,40 +1,56 @@
 package lotto.mvc.view;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Map;
 import lotto.mvc.model.Lotto;
+import lotto.mvc.model.LottoList;
 import lotto.mvc.model.LottoWinningAmount;
 
 public class OutputView {
-    public void showNumberOfLottoPurchases(int count) {
-        System.out.print(count);
-        System.out.println("개를 구매했습니다.");
+    private static final String NUMBER_OF_LOTTO_PURCHASES = "개를 구매했습니다.";
+    private static final String WINNING_STATISTICS_MSG = "당첨 통계";
+    private static final String WINNING_STATISTICS_DIVIDER = "---";
+    private static final String WINNING_STATISTICS_FORMAT = "%s (%,d원) - %d개%n";
+    private static final String Total_Return_FORMAT = "총 수익률은 %.1f%%입니다.";
+
+    public void showPurchaseDetails(LottoList lottoes, int count) {
+        showNumberOfLottoPurchases(count);
+        showLottoDetails(lottoes);
     }
 
-    public void showLottoDetails(List<Lotto> lottos) {
-        for (Lotto lotto : lottos) {
+    private void showNumberOfLottoPurchases(int count) {
+        System.out.print(count);
+        System.out.println(NUMBER_OF_LOTTO_PURCHASES);
+    }
+
+    private void showLottoDetails(LottoList lottoes) {
+        for (Lotto lotto : lottoes.getBunchofLottoes()) {
             System.out.println(lotto);
         }
     }
 
-    public void showWinningStatisticsMsg() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+    public void showWinningStatisticsDetails(Map<LottoWinningAmount, Integer> winningCounts) {
+        showWinningStatisticsMsg();
+        showWinningStatistics(winningCounts);
     }
 
-    public void showWinningStatistics(Map<LottoWinningAmount, Integer> winningCounts) {
+    private void showWinningStatisticsMsg() {
+        System.out.println(WINNING_STATISTICS_MSG);
+        System.out.println(WINNING_STATISTICS_DIVIDER);
+    }
+
+    private void showWinningStatistics(Map<LottoWinningAmount, Integer> winningCounts) {
         LottoWinningAmount[] winningAmounts = LottoWinningAmount.values();
 
         for (LottoWinningAmount winningAmount : winningAmounts) {
-            System.out.printf("%s (%,d원) - %d개%n",
+            System.out.printf(WINNING_STATISTICS_FORMAT,
                     winningAmount.getDescription(),
-                    winningAmount.getAmount(),
+                    winningAmount.getPrizeAmount(),
                     winningCounts.getOrDefault(winningAmount, 0));
         }
     }
 
     public void showTotalReturn(BigDecimal totalReturn) {
-        System.out.printf("총 수익률은 %s%%입니다.", totalReturn.toPlainString());
+        System.out.printf(Total_Return_FORMAT, totalReturn.doubleValue());
     }
 }
