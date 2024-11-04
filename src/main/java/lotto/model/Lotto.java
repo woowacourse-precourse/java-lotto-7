@@ -48,6 +48,15 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int indexOf(Integer number) {
+        for (int i = 0; i < numbers.size(); i++) {
+            if (number.equals(numbers.get(i))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     @Override
     public String toString() {
         return numbers.toString();
