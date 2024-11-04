@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -26,7 +27,7 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource("provideOutRangeCase")
-    void 로또_번호가_1_45_범위를_벗어나면_예외가_발생한다(List<Integer> lotto) {
+    void 로또_번호가_1_45_범위를_벗어나면_예외가_발생(List<Integer> lotto) {
         assertThatThrownBy(() -> new Lotto(lotto))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -40,5 +41,10 @@ class LottoTest {
         );
     }
 
-
+    @Test
+    void 당첨_번호와_일치하는_번호_개수_정확히_계산() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winning = new Lotto(List.of(1, 2, 3, 11, 22, 33));
+        assertThat(lotto.countMatchNumbers(winning)).isEqualTo(3);
+    }
 }
