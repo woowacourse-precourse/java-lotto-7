@@ -11,7 +11,7 @@ public class InputView {
         try {
             return convertInputToMoney(input);
         } catch (IllegalArgumentException e) {
-            //Todo: 입력 요구 메시지 추가
+            OutputView.printErrorOfRequestMoney();
             return readMoney();
         }
     }
@@ -29,7 +29,7 @@ public class InputView {
         try {
             return convertInputToNumbers(input);
         } catch(IllegalArgumentException e) {
-            //Todo: 입력 요구 메시지 추가
+            OutputView.printErrorOfRequestNumbers();
             return readNumbers();
         }
     }
@@ -48,7 +48,7 @@ public class InputView {
         try {
             return convertInputToNumber(input);
         } catch(IllegalArgumentException e) {
-            //Todo: 입력 요구 메시지 추가
+            OutputView.printErrorOfRequestNumber();
             return readNumber();
         }
     }

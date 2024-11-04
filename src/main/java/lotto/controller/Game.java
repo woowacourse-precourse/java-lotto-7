@@ -23,7 +23,7 @@ public class Game {
         List<Result> lottoResults =  comparator.compareLottos(lottoManager.getLottos(), winningNumbers, bonusNumber);
         lottoManager.setResults(lottoResults);
         money.receiveWinningAmount(lottoManager.getWinningAmount());
-        OutputView.printStastistics();
+        OutputView.printStastistics(Result.getStatistics(lottoResults));
         OutputView.printRateOfReturn(money.getRateOfReturn());
     }
 }
