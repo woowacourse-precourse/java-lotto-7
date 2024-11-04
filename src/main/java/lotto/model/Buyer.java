@@ -16,11 +16,8 @@ public class Buyer {
 
     public static Buyer from(String rawAmount) {
         NumberStringConverter numberStringConverter = new NumberStringConverter();
-
         int purchaseAmount = numberStringConverter.convert(rawAmount);
-
         validatePurchaseAmount(purchaseAmount);
-
         return new Buyer(purchaseAmount);
     }
 
@@ -28,7 +25,6 @@ public class Buyer {
         if (purchaseAmount < LOTTO_PRICE) {
             throw LottoException.from(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_AT_LEAST_1000);
         }
-
         if (purchaseAmount % LOTTO_PRICE != 0) {
             throw LottoException.from(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_MULTIPLE_OF_1000);
         }
