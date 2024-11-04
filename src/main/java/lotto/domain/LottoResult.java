@@ -1,60 +1,39 @@
 package lotto.domain;
 
 public class LottoResult {
-    private final int matchCount;
-    private final boolean hasBonusMatch;
+    private final Winning winning;
 
-    public LottoResult(int matchCount, boolean hasBonusMatch) {
-        this.matchCount = matchCount;
-        this.hasBonusMatch = hasBonusMatch;
-    }
-
-    public Winning getWinning() {
-        // 6개 모두 일치하면 1등
-        if (matchCount == 6) {
-            return Winning.FIRST;
-        }
-
-        // 5개 일치하고 보너스 볼도 맞으면 2등
-        if (matchCount == 5 && hasBonusMatch) {
-            return Winning.SECOND;
-        }
-
-        // 나머지는 matchCount로 판단
-        for (Winning winning : Winning.values()) {
-            if (matchCount == winning.valueOf(matchCount)) {
-                return winning;
-            }
-        }
-
-        return null;  // 당첨되지 않은 경우
-    }
-
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public boolean hasBonusMatch() {
-        return hasBonusMatch;
+    public LottoResult(Winning winning) {
+        this.winning = winning;
     }
 
     // 당첨금 반환
     public int getReward() {
-        Winning winning = getWinning();
-        return winning != null ? winning.getReward() : 0;
+        return winning.getPrize();
+    }
+
+    public Winning getWinning() {
+        return winning;
     }
 
     @Override
     public String toString() {
-        Winning winning = getWinning();
-        if (winning == null) {
+        if (winning == Winning.NONE) {
             return "미당첨";
         }
 
         if (winning == Winning.SECOND) {
-            return String.format("5개 일치, 보너스 볼 일치 (%d원)", winning.getReward());
+            return String.format("5개 일치, 보너스 볼 일치 (%d원)", winning.getPrize());
         }
 
-        return String.format("%d개 일치 (%d원)", matchCount, winning.getReward());
+        int matchCount = switch (winning) {
+            case FIRST -> 6;
+            case THIRD -> 5;
+            case FOURTH -> 4;
+            case FIFTH -> 3;
+            default -> 0;
+        };
+
+        return String.format("%d개 일치 (%d원)", matchCount, winning.getPrize());
     }
 }
