@@ -39,6 +39,9 @@ public class LottoService {
     public HashMap<LottoRank, Integer> getWinningResults(List<Lotto> lotto, Lotto winningLotto,
                                                          BonusNumber bonusNumber) {
         HashMap<LottoRank, Integer> winningResult = new HashMap<>();
+        for (int rank = 0; rank <= 5; rank++) {
+            winningResult.putIfAbsent(LottoRank.getEnumsValue(rank), 0);
+        }
         for (Lotto curLotto : lotto) {
             LottoRank curLottoRank = calculateLottoRank(curLotto.getNumbers(), winningLotto.getNumbers(), bonusNumber);
             winningResult.putIfAbsent(curLottoRank, 0);
@@ -73,5 +76,15 @@ public class LottoService {
             return LottoRank.NONE_RANK;
         }
         return LottoRank.getEnumsValue(8 - count);
+    }
+
+    public double calculateRateOfReturn(HashMap<LottoRank, Integer> results, PurchaseAmount purchaseAmount) {
+        long sum = 0;
+        for (int rank = 1; rank <= 5; rank++) {
+            LottoRank lottoRank = LottoRank.getEnumsValue(rank);
+            int count = results.get(lottoRank);
+            sum += (long)lottoRank.getPrize() * count;
+        }
+        return sum / (double)purchaseAmount.getMoney();
     }
 }
