@@ -13,7 +13,7 @@ public class LottoBuyer {
     private final List<Lotto> myLotto;
 
     public LottoBuyer(LottoStore store, Money seedMoney) {
-        myLotto = store.sale(seedMoney);
+        myLotto = List.copyOf(store.sale(seedMoney));
         if(myLotto.isEmpty()) {
             throw new IllegalArgumentException(LOTTO_SEED_MONEY_ERROR_MESSAGE);
         }
