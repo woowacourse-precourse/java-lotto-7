@@ -107,4 +107,16 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.BONUS_NUMBER_DUPLICATE.getMessage());
     }
+
+    @Test
+    @DisplayName("구입 금액이 100,000원을 초과하는 경우 예외 발생")
+    void 구입_금액_최댓값_초과_테스트() {
+        // given
+        String excessiveAmount = "1000000000000000000";
+
+        // when & then
+        assertThatThrownBy(() -> InputValidator.validatePurchaseAmount(excessiveAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.MAX_PURCHASE_AMOUNT_EXCEEDED.getMessage());
+    }
 }
