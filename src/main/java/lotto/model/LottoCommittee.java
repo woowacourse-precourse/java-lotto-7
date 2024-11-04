@@ -20,7 +20,6 @@ public class LottoCommittee {
     private static final int MINIMUM_WINNING_OR_BONUS_NUMBER = 1;
     private static final int MAXIMUM_WINNING_OR_BONUS_NUMBER = 45;
     private static final int INITIAL_COUNT = 0;
-    private static final int LOOP_START_INDEX = 0;
     private static final int DEFAULT_COUNT_ZERO = 0;
     private static final int ONE = 1;
 
@@ -66,11 +65,10 @@ public class LottoCommittee {
 
     public Ranking calculateRanking(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
-        int size = numbers.size();
 
         int matchingCount = INITIAL_COUNT;
-        for (int i = LOOP_START_INDEX; i < size; i++) {
-            if (numbers.contains(winningNumbers.get(i))) {
+        for (Integer winningNumber : winningNumbers) {
+            if (numbers.contains(winningNumber)) {
                 matchingCount++;
             }
         }
