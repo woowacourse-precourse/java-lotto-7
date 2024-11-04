@@ -38,6 +38,6 @@ public class User {
         for (Entry<Rank, Integer> winning : winnings.entrySet()) {
             totalAmount += Rank.getPrize(winning.getKey()) * winning.getValue();
         }
-        return Math.round(totalAmount / purchaseAmount * 100 * 10) / 10.0;
+        return totalAmount / purchaseAmount * 100;
     }
 }

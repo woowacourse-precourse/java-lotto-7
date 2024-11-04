@@ -24,6 +24,10 @@ public enum Rank {
         return rank.prize;
     }
 
+    public static String getRankInfo(Rank rank) {
+        return rank.matchCount + "개 일치 (" + String.format("%,d", rank.prize) + "원)";
+    }
+
     public static Rank findRank(long matchCount, boolean matchBonus) {
         return Arrays.stream(values()).filter(v -> v.matchCount == matchCount && v.matchBonus == matchBonus)
                 .findFirst()
