@@ -14,7 +14,7 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateAndParsePurchaseAmount("abc"))
         // then
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
+                .hasMessage(Validator.INVALID_PURCHASE_AMOUNT_TYPE_ERROR);
     }
 
     @DisplayName("구입 금액이 1000원 단위가 아니면 예외가 발생한다.")
@@ -24,7 +24,7 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateAndParsePurchaseAmount("1500"))
         // then
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+                .hasMessage(Validator.INVALID_PURCHASE_AMOUNT_DIVISIBILITY_ERROR);
     }
 
     @DisplayName("구입 금액이 올바르면 예외가 발생하지 않는다.")
@@ -40,7 +40,7 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateAndParseWinningNumbers("1,2,3,a,5,6"))
         // then
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 숫자로 입력해야 합니다.");
+                .hasMessage(Validator.INVALID_WINNING_NUMBERS_TYPE_ERROR);
     }
 
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -50,7 +50,7 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateAndParseWinningNumbers("1,2,3,3,5,6"))
         // then
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
+                .hasMessage(Validator.DUPLICATE_WINNING_NUMBER_ERROR);
     }
 
     @DisplayName("당첨 번호가 범위를 벗어나는 경우 예외가 발생한다.")
@@ -60,7 +60,7 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateAndParseWinningNumbers("1,2,3,4,5,46"))
         // then
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessage(Validator.INVALID_WINNING_NUMBER_RANGE_ERROR);
     }
 
     @DisplayName("당첨 번호의 개수가 6개가 아닌 경우 예외가 발생한다.")
@@ -70,6 +70,6 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateAndParseWinningNumbers("1,2,3,4,5"))
         // then
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 6개여야 합니다.");
+                .hasMessage(Validator.INVALID_WINNING_NUMBER_COUNT_ERROR);
     }
 }
