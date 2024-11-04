@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static validator.InputValidator.*;
+
 public class LottoShop {
     private static final int WIN_LOTTO_SIZE = 6;
     private static final int LOTTO_PRIZE = 1_000;
@@ -36,6 +38,9 @@ public class LottoShop {
     public int insertMoney() {
         System.out.println("구입 금액을 입력해주세요.");
         insert = Integer.parseInt(Console.readLine());
+
+        validateInsertMoney(insert);
+
         return insert;
     }
 
@@ -49,6 +54,7 @@ public class LottoShop {
     public List<Integer> winNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String numbers = Console.readLine();
+        validateWinNumbers(numbers);
 
         winNumbers = Arrays.stream(numbers.split(","))
                 .map(String::trim)
@@ -59,7 +65,11 @@ public class LottoShop {
     }
     public int bonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        validateBonusNumber(bonusNumber);
+
+        return bonusNumber;
     }
 
     public String check(int amount, List<Integer> winNumbers, int bonusNumber, List<Lotto> lottos) {

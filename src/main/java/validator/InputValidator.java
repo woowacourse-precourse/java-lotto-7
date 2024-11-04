@@ -14,7 +14,7 @@ public class InputValidator {
         }
     }
 
-    public static void validateWinNumber(String numbers) {
+    public static void validateWinNumbers(String numbers) {
         final int NUMBERS_COUNT = 6;
         final int NUMBER_LIMIT = 45;
         List<Integer> winNumbers = new ArrayList<>();
