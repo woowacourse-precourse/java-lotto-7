@@ -24,9 +24,10 @@ public class Consumer {
     }
 
     private List<Integer> getNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(CompareInteger.LOTTO_NUMBER_MINIMUM.getNumber(), CompareInteger.LOTTO_NUMBER_MAXIMUM.getNumber(), CompareInteger.LOTTO_NUMBER_COUNT.getNumber());
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                CompareInteger.LOTTO_NUMBER_MINIMUM.getNumber(),
+                CompareInteger.LOTTO_NUMBER_MAXIMUM.getNumber(),
+                CompareInteger.LOTTO_NUMBER_COUNT.getNumber()));
     }
 
     public List<Lotto> getLottoTicket() {

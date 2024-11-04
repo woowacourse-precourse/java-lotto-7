@@ -5,6 +5,7 @@ import lotto.constant.LottoGuide;
 import lotto.constant.WinningNumberRule;
 import lotto.validator.NumberValidator;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -15,6 +16,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
 
