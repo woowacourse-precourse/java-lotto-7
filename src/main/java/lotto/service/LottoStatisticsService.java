@@ -13,7 +13,7 @@ public class LottoStatisticsService {
     public LottoStatistics calculateStatistics(List<LottoResult> results, int buyingPrice) {
         Map<Winning, Integer> winningStats = calculateWinningStatistics(results);
         int totalWinningAmount = calculateTotalWinningAmount(results);
-        double profitRate = calculateProfitRate(totalWinningAmount, totalPurchaseAmount);
+        double profitRate = calculateProfitRate(totalWinningAmount, buyingPrice);
 
         return new LottoStatistics(winningStats, profitRate);
     }

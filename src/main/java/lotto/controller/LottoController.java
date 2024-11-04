@@ -48,10 +48,10 @@ public class LottoController {
     }
 
     private List<Lotto> purchaseLottos(BuyingPrice buyingPrice) {
-        int lottoQuantity = buyingPriceService.calculateLottoQuantity(buyingPrice);
-        outputView.responseBuyingQuantity(lottoQuantity);
+        int numberOfLotto = buyingPriceService.returnNumberOfLotto(buyingPrice);
+        outputView.responseBuyingQuantity(numberOfLotto);
 
-        List<Lotto> lottos = createLottoService.createRandomLottos(lottoQuantity);
+        List<Lotto> lottos = createLottoService.createRandomLottos(numberOfLotto);
         outputView.printLottos(lottos);
 
         return lottos;
