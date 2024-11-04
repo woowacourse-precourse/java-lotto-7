@@ -29,7 +29,7 @@ public class OutputConsole {
     }
 
     public void printPurchaseResult(Lotteries lotteries) {
-        out.println(lotteries.size() + "개를 구입했습니다.");
+        out.println(lotteries.size() + "개를 구매했습니다.");
         out.println(lotteries);
     }
 
