@@ -18,6 +18,17 @@ class WinningLottoTest {
     private final BonusNumber bonusNumber = BonusNumber.from(7);
     private final WinningLotto winningLotto = WinningLotto.of(lotto, bonusNumber);
 
+    @Test
+    void 우승_로또와_일치하는_당첨_번호의_개수를_계산한다() {
+        //given
+        Lotto lotto = Lotto.from(List.of(1,2,3,4,5,7));
+
+        //when
+        int actual = winningLotto.matchCount(lotto);
+
+        //then
+        assertThat(actual).isEqualTo(5);
+    }
 
     @Test
     void 우승_로또와_일치하는_당첨_번호의_개수가_5이고_보너스_번호가_일치하면_TRUE를_반환한다() {
