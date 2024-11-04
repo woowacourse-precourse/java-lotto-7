@@ -24,6 +24,9 @@ public class Pay {
         return new Pay(input);
     }
 
+    public int getMoney(){
+        return this.money;
+    }
     public int getAmount() {
         return this.amount;
     }
