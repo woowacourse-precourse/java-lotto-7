@@ -71,7 +71,7 @@ public class Validator {
             Set<Integer> winningDigits = new HashSet<>();
             for (String splitInput : splitInputs) {
                 Integer parseInt = Integer.parseInt(splitInput);
-                checkIsDuplicateNumber(winningDigits, parseInt)
+                checkIsDuplicateNumber(winningDigits, parseInt);
                 winningDigits.add(parseInt);
             }
             if (winningDigits.size() != LottoConstants.LOTTERY_NUMBER_COUNT) {
