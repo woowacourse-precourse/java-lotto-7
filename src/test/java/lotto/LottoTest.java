@@ -23,18 +23,6 @@ class LottoTest {
     }
 
     @Test
-    void 당첨번호와_보너스번호에_따른_당첨_결과_반환() {
-        //Given
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        List<Integer> winningNumbers = List.of(2,3,4,5,6,9);
-        int bonus = 14;
-        //When
-        Rank result = lotto.getResult(winningNumbers,bonus);
-        //Then
-        Assertions.assertThat(result).isEqualTo(Rank.THIRD);
-    }
-
-    @Test
     void 당첨번호가_1부터_45사이의_번호가_아닌경우_예외_발생(){
         Assertions.assertThatThrownBy(()->new Lotto((List.of(111,222,333,444,555,666))))
                 .isInstanceOf(IllegalArgumentException.class)

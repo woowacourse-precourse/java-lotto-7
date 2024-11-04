@@ -33,19 +33,4 @@ public class Lotto {
         return numbers;
     }
 
-    public Rank getResult(List<Integer> winningNumbers, int bonus) {
-        int numberMatch=0;
-        boolean hasBonus=false;
-        for (int number :numbers){
-            if(winningNumbers.contains(number)){
-                numberMatch++;
-            }
-            if(number == bonus){
-                hasBonus=true;
-            }
-        }
-        return Rank.getRank(numberMatch,hasBonus);
-
-    }
-
 }
