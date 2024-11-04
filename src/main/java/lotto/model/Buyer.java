@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.HashMap;
 import java.util.List;
+import lotto.Utils;
 
 public class Buyer {
     private List<Lotto> lottos;
@@ -68,7 +69,7 @@ public class Buyer {
 
     public double getTotalRevenue() {
         double total = 0;
-        double cost = lottos.size() * 1000;
+        double cost = lottos.size() * Utils.COST_UNIT;
         for (Rank key : resultLotto.keySet()) {
             if (resultLotto.get(key) > 0) {
                 total += (key.getPrize() * resultLotto.get(key));

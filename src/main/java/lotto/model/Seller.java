@@ -19,14 +19,14 @@ public class Seller {
             Error.reject(Error.INVALID_MSG);
         }
 
-        if (Utils.strToInteger(input) % 1000 != 0) {
+        if (Utils.strToInteger(input) % Utils.COST_UNIT != 0) {
             Error.reject(Error.MONEY_MSG);
         }
     }
 
     public List<Lotto> createLottoTickets(int money) {
         List<Lotto> lottos = new ArrayList<>();
-        int howmany = money / 1000;
+        int howmany = money / Utils.COST_UNIT;
 
         for (int i = 0; i < howmany; i++) {
             setLottoTicket(lottos, new Lotto(getLottoNumber()));
