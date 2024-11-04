@@ -14,6 +14,7 @@ public class OutputView {
 
     public void printStatistics(LottoStatistics lottoStatistics) {
         System.out.println("\n당첨 통계");
+        System.out.println("---");
         lottoStatistics.printStatistics();
     }
 
