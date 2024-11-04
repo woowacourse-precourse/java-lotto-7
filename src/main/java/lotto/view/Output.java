@@ -26,6 +26,7 @@ public class Output {
     }
 
     public void printYield(double yield) {
-        System.out.print("총 수익률은" + yield + "%입니다.");
+        System.out.printf("총 수익률은 %.1f%%입니다.", yield);
+
     }
 }
