@@ -18,7 +18,7 @@ public class WinningLottoNumberValidator {
         validateCount();
     }
 
-    public void validateRange(){
+    private void validateRange(){
         winningLottoNumbers.stream()
                 .filter(num -> num < LottoConstant.NUMBER_START_INCLUSIVE || num > LottoConstant.NUMBER_END_INCLUSIVE)
                 .findFirst()
@@ -27,7 +27,7 @@ public class WinningLottoNumberValidator {
                 });
     }
 
-    public void validateCount(){
+    private void validateCount(){
         if (winningLottoNumbers.size() != LottoConstant.NUMBER_COUNT){
             throw new IllegalArgumentException(LottoException.INVALID_COUNT.getMessage());
         }

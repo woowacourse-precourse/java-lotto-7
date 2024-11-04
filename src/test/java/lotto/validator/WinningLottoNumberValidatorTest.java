@@ -16,15 +16,14 @@ public class WinningLottoNumberValidatorTest {
     void shouldThrowExceptionForInvalidLottoNumberRange() {
         // given
         Set<Integer> invalidNumbers = Set.of(1, 2, 3, 4, 5, 100);
-        WinningLottoNumberValidator lottoNumberRangeValidator = new WinningLottoNumberValidator(invalidNumbers);
+        WinningLottoNumberValidator validator = new WinningLottoNumberValidator(invalidNumbers);
 
         // when & then
         assertSimpleTest(() ->
-                assertThatThrownBy(lottoNumberRangeValidator::validateRange)
+                assertThatThrownBy(validator::validateAll)
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(LottoException.INVALID_RANGE.getMessage())
         );
-
     }
 
     @Test
@@ -32,11 +31,11 @@ public class WinningLottoNumberValidatorTest {
     void shouldThrowExceptionForInvalidLottoCount() {
         // given
         Set<Integer> invalidNumbers = Set.of(1, 2, 3, 4, 5);
-        WinningLottoNumberValidator lottoNumberRangeValidator = new WinningLottoNumberValidator(invalidNumbers);
+        WinningLottoNumberValidator validator = new WinningLottoNumberValidator(invalidNumbers);
 
         // when & then
         assertSimpleTest(() ->
-                assertThatThrownBy(lottoNumberRangeValidator::validateCount)
+                assertThatThrownBy(validator::validateAll)
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(LottoException.INVALID_COUNT.getMessage())
         );
@@ -47,12 +46,12 @@ public class WinningLottoNumberValidatorTest {
     void shouldThrowExceptionForDuplicationBonusNumber() {
         // given
         Set<Integer> invalidNumbers = Set.of(1, 2, 3, 4, 5, 6);
-        WinningLottoNumberValidator lottoNumberRangeValidator = new WinningLottoNumberValidator(invalidNumbers);
+        WinningLottoNumberValidator validator = new WinningLottoNumberValidator(invalidNumbers);
         int bonusNumber = 6;
 
         // when & then
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> lottoNumberRangeValidator.validateBonusNumber(bonusNumber))
+                assertThatThrownBy(() -> validator.validateBonusNumber(bonusNumber))
                         .hasMessage(LottoException.DUPLICATE_LOTTO_NUMBER.getMessage())
         );
     }

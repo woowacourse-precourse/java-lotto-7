@@ -30,7 +30,7 @@ public enum LottoRankAward {
         return isBonusNumberMatched;
     }
 
-    public static LottoRankAward findRank(int matchedCount, boolean isBonusNumberMatched) {
+    public static LottoRankAward findLottoRank(int matchedCount, boolean isBonusNumberMatched) {
         for (LottoRankAward rank : values()) {
             if (rank.matchedNumberCount == matchedCount && rank.isBonusNumberMatched == isBonusNumberMatched) {
                 return rank;
@@ -38,9 +38,4 @@ public enum LottoRankAward {
         }
         return null;
     }
-
-
-
-
-
 }

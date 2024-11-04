@@ -1,7 +1,6 @@
 package lotto.view.lottoPurchaseView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoPurchaseOutputView {
@@ -13,7 +12,7 @@ public class LottoPurchaseOutputView {
     public void showIssuedLottoNumbers(List<Integer> issuedLottoNumber){
         List<Integer> sortableLottoNumbers = new ArrayList<>(issuedLottoNumber);
         sortableLottoNumbers.sort(Integer::compareTo);
-        System.out.println(issuedLottoNumber);
+        System.out.println(sortableLottoNumbers);
     }
 
 }

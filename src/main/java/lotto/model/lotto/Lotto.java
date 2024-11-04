@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private final List<Integer> lottoNumbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> lottoNumbers) {
         validateLottoNumberCount(lottoNumbers);
         validateLottoNumberDuplication(lottoNumbers);
-        this.lottoNumbers = lottoNumbers;
+        this.numbers = lottoNumbers;
     }
 
     private void validateLottoNumberCount(List<Integer> lottoNumbers) {
@@ -29,7 +29,7 @@ public class Lotto {
     }
 
     public List<Integer> getLottoNumbers(){
-        return lottoNumbers;
+        return numbers;
     }
 
 }

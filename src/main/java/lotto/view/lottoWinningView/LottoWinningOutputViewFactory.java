@@ -4,6 +4,7 @@ import lotto.util.NumberFormatterWithComma;
 import lotto.util.NumberFormatterWithPercentage;
 
 public class LottoWinningOutputViewFactory {
+
     public WinningLottoOutputView createWinningLottoOutputView() {
         return new WinningLottoOutputView(new NumberFormatterWithComma());
     }
