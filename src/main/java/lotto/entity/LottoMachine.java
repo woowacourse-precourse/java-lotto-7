@@ -2,20 +2,23 @@ package lotto.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.configuration.LottoConfiguration;
 import lotto.validator.LottoMachineValidator;
 
 public class LottoMachine {
     private final WinningNumbers winningNumbers;
     private final List<Lotto> purchasedLottos;
-    private final int paymentAmount;
+    private final PaymentAmount paymentAmount;
 
-    public LottoMachine(int paymentAmount, List<Integer> winningMainNumbers, int winningBonusNumber) {
-        LottoMachineValidator.validate(paymentAmount, winningMainNumbers);
+    // constructor
+
+    public LottoMachine(int amount, List<Integer> winningMainNumbers, int winningBonusNumber) {
+        LottoMachineValidator.validate(amount, winningMainNumbers);
         this.winningNumbers = new WinningNumbers(winningMainNumbers, winningBonusNumber);
-        this.paymentAmount = paymentAmount;
-        this.purchasedLottos = createLottos(calculateLottoCount(paymentAmount));
+        this.paymentAmount = new PaymentAmount(amount);
+        this.purchasedLottos = createLottos(paymentAmount.calculateTicketCount());
     }
+
+    // public methods
 
     public List<Lotto> getPurchasedLottos() {
         return purchasedLottos;
@@ -25,6 +28,8 @@ public class LottoMachine {
         return winningNumbers;
     }
 
+    // private methods
+
     private List<Lotto> createLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
@@ -32,9 +37,4 @@ public class LottoMachine {
         }
         return lottos;
     }
-
-    private int calculateLottoCount(int paymentAmount) {
-        return paymentAmount / LottoConfiguration.LOTTO_PRICE.getValue();
-    }
-
 }
