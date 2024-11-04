@@ -6,6 +6,9 @@ import lotto.global.exception.LottoException;
 
 public class Payment {
 
+    private static final int MAX_PAYMENT = 100_000;
+    private static final int ZERO = 0;
+
     private final int payment;
 
     private Payment(int payment, LottoDetail price) {
@@ -43,7 +46,7 @@ public class Payment {
         }
 
         private static boolean isOverMaximum(int payment) {
-            return payment > 100_000;
+            return payment > MAX_PAYMENT;
         }
 
         private static void validateZero(int payment) {
@@ -53,7 +56,7 @@ public class Payment {
         }
 
         private static boolean isZero(int payment) {
-            return payment == 0;
+            return payment == ZERO;
         }
 
         private static void validateDivisibleByPrice(int payment,

@@ -10,6 +10,10 @@ import lotto.domain.winning.AnswerNumbers;
 
 public class Result {
 
+    private static final int PERCENTAGE = 100;
+    private static final int INCREMENT = 1;
+    private static final int INITIAL = 0;
+
     private Map<Rank, Integer> results;
 
     private Result(Lottos lottos, AnswerNumbers answerNumbers) {
@@ -24,7 +28,7 @@ public class Result {
     private void setUp() {
         this.results = new EnumMap<>(Rank.class);
         Arrays.stream(Rank.values())
-                .forEach(rank -> results.put(rank, 0));
+                .forEach(rank -> results.put(rank, INITIAL));
     }
 
     private void process(Lottos lottos, AnswerNumbers answerNumbers) {
@@ -34,11 +38,11 @@ public class Result {
     }
 
     private void count(Rank rank) {
-        results.put(rank, results.get(rank) + 1);
+        results.put(rank, results.get(rank) + INCREMENT);
     }
 
     public double calculateProfitRate(Payment payment) {
-        return payment.divide(getTotalProfit()) * 100;
+        return payment.divide(getTotalProfit()) * PERCENTAGE;
     }
 
     private long getTotalProfit() {
