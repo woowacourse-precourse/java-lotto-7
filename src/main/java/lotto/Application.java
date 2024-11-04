@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
+        Integer amount;
         List<Integer> numbers;
         Integer specNum;
         Map<Rank, Integer> resultCount = new EnumMap<>(Rank.class);
@@ -18,7 +19,14 @@ public class Application {
         Double ROI = 0d;
 
         System.out.println("구입금액을 입력해 주세요");
-        Integer amount = Integer.valueOf(Console.readLine());
+        while (true) {
+            try {
+                amount = Integer.valueOf(Console.readLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 입력 값이 올바르지 않습니다. 숫자만 입력해 주세요.");
+            }
+        }
 
         System.out.println(amount + "개를 구매했습니다.");
         List<Lotto> lottos = new ArrayList<>(amount);
@@ -41,6 +49,8 @@ public class Application {
                 validate(numbers);
                 isDuplicated(numbers);
                 break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 입력 값이 올바르지 않습니다. 숫자만 입력해 주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -54,6 +64,8 @@ public class Application {
                 validateOne(specNum);
                 isSpecNumDuplicated(numbers, specNum);
                 break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 입력 값이 올바르지 않습니다. 숫자만 입력해 주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
