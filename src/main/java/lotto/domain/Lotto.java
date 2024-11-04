@@ -10,6 +10,11 @@ public class Lotto {
     protected static final Integer lowerBound = 1;
     protected static final Integer upperBound = 45;
 
+    private static final String ERROR_INVALID_LOTTO_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
+    private static final String ERROR_DUPLICATE_LOTTO_NUMBERS = "[ERROR] 로또 번호는 중복될 수 없습니다.";
+    private static final String ERROR_INVALID_RANGE = "[ERROR] 로또 번호는 1~45 숫자만 가능합니다.";
+    private static final String ERROR_BONUS_NUMBER_DUPLICATE = "[ERROR] 보너스 로또 번호가 로또 번호와 중복되면 안 됩니다.";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -25,13 +30,13 @@ public class Lotto {
 
     protected static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ERROR_INVALID_LOTTO_SIZE);
         }
     }
 
     protected static void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != getDistinctSize(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATE_LOTTO_NUMBERS);
         }
     }
 
@@ -42,14 +47,14 @@ public class Lotto {
     protected static void validateRange(List<Integer> numbers) {
         numbers.forEach(num -> {
             if (num < lowerBound || num > upperBound) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 숫자만 가능합니다.");
+                throw new IllegalArgumentException(ERROR_INVALID_RANGE);
             }
         });
     }
 
     protected void containBonusNumber(Integer bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 로또 번호가 로또 번호와 중복되면 안 됩니다.");
+            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_DUPLICATE);
         }
     }
 

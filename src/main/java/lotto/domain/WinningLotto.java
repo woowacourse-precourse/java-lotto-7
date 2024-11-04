@@ -4,6 +4,8 @@ import java.util.List;
 
 public class WinningLotto extends Lotto {
 
+    public static final String ERROR_INVALID_BONUS_NUM_RANGE = "[ERROR] 보너스 번호는 1~45 숫자만 가능합니다.";
+    public static final String ERROR_BOTH_NUM_HAVE_TO_SET = "[ERROR] 로또 번호와 보너스 번호를 모두 설정해야 합니다.";
     private Integer bonusNumber;
 
     public WinningLotto(List<Integer> numbers, Integer bonusNumber) {
@@ -39,7 +41,7 @@ public class WinningLotto extends Lotto {
 
         public WinningLotto build() {
             if (numbers == null || bonusNumber == null) {
-                throw new IllegalStateException("[ERROR] 로또 번호와 보너스 번호를 모두 설정해야 합니다.");
+                throw new IllegalStateException(ERROR_BOTH_NUM_HAVE_TO_SET);
             }
             new Lotto(numbers).containBonusNumber(bonusNumber);
 
@@ -48,7 +50,7 @@ public class WinningLotto extends Lotto {
 
         private void validateBonusNumberRange(Integer bonusNumber) {
             if (bonusNumber < lowerBound || bonusNumber > upperBound) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 숫자만 가능합니다.");
+                throw new IllegalArgumentException(ERROR_INVALID_BONUS_NUM_RANGE);
             }
         }
 
