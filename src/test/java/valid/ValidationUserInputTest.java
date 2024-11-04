@@ -1,12 +1,28 @@
 package valid;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ValidationUserInputTest {
+
+    private static ByteArrayOutputStream outputMessage;
+
+    @BeforeEach
+    void setUpStreams() {
+        outputMessage = new ByteArrayOutputStream(); // OutputStream 생성
+        System.setOut(new PrintStream(outputMessage)); // 생성한 OutputStream 으로 설정
+    }
+
+    @AfterEach
+    void restoresStreams() {
+        System.setOut(System.out); // 원상복귀
+    }
 
     @Test
     @DisplayName("사용자 입력 정상")
@@ -30,24 +46,25 @@ class ValidationUserInputTest {
 
         //when, then
         ValidationUserInput validationUserInput = new ValidationUserInput();
+        validationUserInput.validateMoney(testInput);
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            validationUserInput.validateMoney(testInput);
-        });
+        // then
+        assertEquals("[ERROR] 0 보다 큰 숫자를 입력 해주세요.", outputMessage.toString().trim());
+
     }
 
     @Test
     @DisplayName("사용자가 돈에 문자 입력시 예외 발생")
     void validateMoneyFailedCase2() {
-        //given
+        // given
         String testInput = "1000a";
 
-        //when, then
+        // when
         ValidationUserInput validationUserInput = new ValidationUserInput();
+        validationUserInput.validateMoney(testInput); // 예외 발생 시도
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            validationUserInput.validateMoney(testInput);
-        });
+        // then
+        assertEquals("[ERROR] 숫자만 입력 가능합니다.", outputMessage.toString().trim());
     }
 
     @Test
@@ -58,9 +75,9 @@ class ValidationUserInputTest {
 
         //when, then
         ValidationUserInput validationUserInput = new ValidationUserInput();
+        validationUserInput.validateMoney(testInput);
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            validationUserInput.validateMoney(testInput);
-        });
+        // then
+        assertEquals("[ERROR] 로또 금액은 1000원 단위로만 구매 가능합니다.", outputMessage.toString().trim());
     }
 }

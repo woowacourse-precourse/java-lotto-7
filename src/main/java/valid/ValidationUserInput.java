@@ -10,7 +10,7 @@ public class ValidationUserInput {
             validMoney = validationForOne.consistOfOnlyPositiveNumbers(userInputMoney);
             validationForOne.devisibleByThousands(validMoney);
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자로만 이루어져야 합니다");
+            System.out.println(e.getMessage());
         }
         return validMoney;
     }
@@ -19,7 +19,7 @@ public class ValidationUserInput {
         try {
             validationForMany.consistOfOnlySixPositiveNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return true;
     }
@@ -29,7 +29,7 @@ public class ValidationUserInput {
         try {
             validationForOne.consistOfOnlyPositiveNumbers(bonusNumber);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return validBonusNumber;
     }
