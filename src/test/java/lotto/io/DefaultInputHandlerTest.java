@@ -3,18 +3,19 @@ package lotto.io;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.io.inputHandler.DefaultInputHandler;
 import lotto.testUtil.testDouble.ReaderFake;
 import lotto.testUtil.testDouble.WriterFake;
 import org.junit.jupiter.api.Test;
 
-class InputHandlerTest {
+class DefaultInputHandlerTest {
 
     @Test
     void 구입금액을_입력받는다() {
         //given
         ReaderFake readerFake = new ReaderFake();
         WriterFake writerFake = new WriterFake();
-        InputHandler sut = new InputHandler(readerFake, writerFake);
+        DefaultInputHandler sut = new DefaultInputHandler(readerFake, writerFake);
         readerFake.setInput("1000");
 
         //when
@@ -30,7 +31,7 @@ class InputHandlerTest {
         //given
         ReaderFake readerFake = new ReaderFake();
         WriterFake writerFake = new WriterFake();
-        InputHandler sut = new InputHandler(readerFake, writerFake);
+        DefaultInputHandler sut = new DefaultInputHandler(readerFake, writerFake);
         readerFake.setInput("1,2,3,4,5,6");
 
         //when
@@ -46,7 +47,7 @@ class InputHandlerTest {
         //given
         ReaderFake readerFake = new ReaderFake();
         WriterFake writerFake = new WriterFake();
-        InputHandler sut = new InputHandler(readerFake, writerFake);
+        DefaultInputHandler sut = new DefaultInputHandler(readerFake, writerFake);
         readerFake.setInput("7");
 
         //when

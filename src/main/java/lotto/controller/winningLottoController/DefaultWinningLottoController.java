@@ -2,9 +2,8 @@ package lotto.controller.winningLottoController;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Number;
 import lotto.domain.WinningLotto;
-import lotto.io.InputHandler;
+import lotto.io.inputHandler.InputHandler;
 
 public class DefaultWinningLottoController implements WinningLottoController {
 
