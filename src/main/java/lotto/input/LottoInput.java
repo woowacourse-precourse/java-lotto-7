@@ -11,9 +11,8 @@ public class LottoInput {
             System.out.println("구입 금액을 입력해 주세요.");
             return Integer.parseInt(Console.readLine());
         }catch (NumberFormatException e){
-            System.out.println("[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해야 합니다.", e);
         }
-        return 0;
     }
 
     public List<Integer> readWinningNumbers(){
@@ -27,23 +26,17 @@ public class LottoInput {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
             }
             return winningNumbers;
-        }catch (IllegalArgumentException e){
-
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자로 입력해야 합니다.");
         }
-        return List.of();
     }
 
     public int readBonus(){
         try{
             System.out.println("보너스 번호를 입력해 주세요:");
-            int bonusInput = Integer.parseInt(Console.readLine());
-            return bonusInput;
+            return Integer.parseInt(Console.readLine());
         }catch (NumberFormatException e){
-            System.out.println("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
-        }catch (IllegalArgumentException e){
-
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.", e);
         }
-        return 0;
     }
-
 }
