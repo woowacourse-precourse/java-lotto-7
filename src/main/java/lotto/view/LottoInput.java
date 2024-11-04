@@ -28,26 +28,26 @@ public class LottoInput {
 
     public static LottoGradingNumbersDTO getGradingNumbers() {
         try {
-            List<Integer> exactNumbers = getExactNumbers();
+            List<Integer> winNumbers = getWinNumbers();
             int bonusNumber = getBonusNumber();
 
-            validateNumbersDuplicate(exactNumbers, bonusNumber);
+            validateNumbersDuplicate(winNumbers, bonusNumber);
 
-            return new LottoGradingNumbersDTO(exactNumbers, bonusNumber);
+            return new LottoGradingNumbersDTO(winNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getGradingNumbers();
         }
     }
 
-    private static List<Integer> getExactNumbers() throws IllegalArgumentException {
+    private static List<Integer> getWinNumbers() throws IllegalArgumentException {
         System.out.println(LottoPrintMessage.GUIDE_MESSAGE_B);
 
-        String exactNumbersInput = Console.readLine();
-        List<Integer> exactNumbers = parseExactNumbers(exactNumbersInput);
-        validateWinNumbers(exactNumbers);
+        String winNumbersInput = Console.readLine();
+        List<Integer> winNumbers = parseWinNumbers(winNumbersInput);
+        validateWinNumbers(winNumbers);
 
-        return exactNumbers;
+        return winNumbers;
     }
 
     private static int getBonusNumber() throws IllegalArgumentException {
@@ -70,7 +70,7 @@ public class LottoInput {
         }
     }
 
-    private static List<Integer> parseExactNumbers(String userInput) throws IllegalArgumentException {
+    private static List<Integer> parseWinNumbers(String userInput) throws IllegalArgumentException {
         try {
             String[] inputSplit = userInput.split(",");
 
@@ -78,7 +78,7 @@ public class LottoInput {
                     .map(Integer::parseInt)
                     .toList();
         } catch (IllegalArgumentException e) {
-            throw new InvalidExactNumberFormatException();
+            throw new InvalidWinNumberFormatException();
         }
     }
 
@@ -102,7 +102,7 @@ public class LottoInput {
 
     private static boolean validateWinNumbers(List<Integer> winNumbers) throws IllegalArgumentException {
         if (winNumbers.size() != 6) {
-            throw new InvalidExactNumberFormatException();
+            throw new InvalidWinNumberFormatException();
         }
 
         validateNumbersDuplicate(winNumbers);
