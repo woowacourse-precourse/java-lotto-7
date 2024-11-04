@@ -27,7 +27,7 @@ public class LottoManager {
         creatLottos(purchasePrice);
 
         List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber(); // todo 당첨번호와 겹치는지 확인
+        int bonusNumber = getBonusNumber(winningNumbers);
 
         Map<WinningRank, Integer> rankCount = calculateWinningStatistic(winningNumbers, bonusNumber,
                 purchasePrice);
@@ -75,12 +75,12 @@ public class LottoManager {
         rankCountMap.put(rank, rankCountMap.get(rank) + 1);
     }
 
-    private int getBonusNumber() {
+    private int getBonusNumber(List<Integer> winningNumbers) {
         int bonusNumberResult = 0;
         while (true) {
             try {
                 String bonusNumber = inputView.getBonusNumber();
-                inputValidator.validateBonusNumber(bonusNumber);
+                inputValidator.validateBonusNumber(bonusNumber, winningNumbers);
                 bonusNumberResult = inputParser.parseBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {

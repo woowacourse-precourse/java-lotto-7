@@ -8,7 +8,8 @@ public enum ErrorMessage {
     INVALID_WINNING_NUMBER_RANGE("[ERROR] 6개의 1에서 45사이의 숫자만 (,)로 구분해서 입력 가능합니다"),
     NOT_NUMBER("[ERROR] 숫자만 입력 가능합니다."),
     INVALID_NUMBER_RANGE("[ERROR] 1에서 45사이의 숫자만 입력 가능합니다"),
-    DUPLICATED_NUMBER_EXISTS("[ERROR] 중복된 숫자가 존재합니다")
+    DUPLICATED_NUMBER_EXISTS("[ERROR] 중복된 숫자가 존재합니다"),
+    ALREADY_EXISTING_NUMBER("[ERROR] 당첨번호에 이미 존재하는 번호입니다")
     ;
     private final String message;
 
