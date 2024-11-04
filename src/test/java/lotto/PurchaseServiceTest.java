@@ -17,6 +17,6 @@ public class PurchaseServiceTest {
         List<WinningResult> result = List.of(WinningResult.FIFTH, WinningResult.FOURTH, WinningResult.NONE);
 
         int totalPrize = 55000;
-        assertEquals(((double)totalPrize - investment) / investment * 100, service.calculateWinningPercent(result));
+        assertEquals(((double)totalPrize) / investment * 100, service.calculateWinningPercent(result));
     }
 }
