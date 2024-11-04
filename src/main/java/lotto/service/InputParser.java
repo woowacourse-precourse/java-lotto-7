@@ -14,9 +14,15 @@ public class InputParser {
         return price;
     }
 
-    public List<String> parseLottoNumbers() {
+    public List<Integer> parseLottoNumbers() {
         List<String> lottoNumbers = List.of(rawLottoNumbers.split(Prompts.INPUT_DELIMITER));
-        return lottoNumbers;
+        List<Integer> convertedLottoNumbers = List.of();
+
+        for (String lottoNumber : lottoNumbers) {
+            convertedLottoNumbers.add(Integer.parseInt(lottoNumber));
+        }
+
+        return convertedLottoNumbers;
     }
 
     public int parseBonusNumber() {
