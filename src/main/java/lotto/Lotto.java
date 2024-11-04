@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,5 +26,22 @@ public class Lotto {
 
     public void lottoView() {
         System.out.println(numbers);
+    }
+
+    public int compareNumber(final Lotto winningLotto) {
+        List<Integer> duplicatedLotto = new ArrayList<>(this.numbers);
+
+        duplicatedLotto.retainAll(winningLotto.numbers);
+
+        return duplicatedLotto.size();
+    }
+
+    public boolean compareBonusNumber(final int bonusNumber) {
+        for (int num : this.numbers) {
+            if (num == bonusNumber) {
+                return true;
+            }
+        }
+        return false;
     }
 }

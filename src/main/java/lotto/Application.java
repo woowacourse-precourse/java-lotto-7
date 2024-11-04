@@ -2,8 +2,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
+
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class Application {
     public static int lottoPrice = 1000;
@@ -13,8 +16,10 @@ public class Application {
         // 예외 처리 때문에 가독성이 너무 안좋다. 리팩토링 할 때 이 부분 고려하기.
         while (true) {
             try {
+                System.out.println("구입 금액을 입력해 주세요.");
                 String Money = Console.readLine();
                 lottoPieces = buyLotto(Money);
+                System.out.printf("\n%d개를 구매했습니다.\n", lottoPieces);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
@@ -26,11 +31,17 @@ public class Application {
         List<Lotto> lottos = createLotto(lottoPieces);
         lottosView(lottos);
 
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String winningNumber = Console.readLine();
         Lotto winningLotto = new Lotto(parseWinningNumber(winningNumber));
 
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String rawBonusNumber = Console.readLine();
         int bonusNumber = parseBonusNumber(rawBonusNumber);
+
+        Map<String, Integer> lottoReseult = drawLotto(lottos, winningLotto, bonusNumber);
+        viewWinningLotto(lottoReseult);
+
     }
 
     public static int buyLotto(final String input) {
@@ -75,9 +86,66 @@ public class Application {
         }
         return winningNumber;
     }
-    
+
     // 예외 처리 필요
     public static int parseBonusNumber(String input) {
         return Integer.parseInt(input);
+    }
+
+    public static Map<String, Integer> drawLotto(final List<Lotto> lottos, final Lotto winningLotto, final int bonusNumber) {
+        Map<String, Integer> resultLotto = initWinCount();
+
+        for (Lotto lotto : lottos) {
+            int matchCount = lotto.compareNumber(winningLotto);
+            boolean bonusMatch = lotto.compareBonusNumber(bonusNumber);
+
+            LottoRank rank = LottoRank.win(matchCount, bonusMatch);
+
+            String rankName = rank.name();
+            if (rankName.equals("BLANK")) {
+                continue;
+            }
+            resultLotto.put(rankName, resultLotto.get(rankName) + 1);
+        }
+        return resultLotto;
+    }
+
+    public static Map<String, Integer> initWinCount() {
+        Map<String, Integer> result = new LinkedHashMap<>();
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank != LottoRank.BLANK) {
+                String key = rank.name();
+                result.put(key, 0);
+            }
+        }
+        return result;
+    }
+
+    public static void viewWinningLotto(final Map<String, Integer> lottoResult) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (int i = 5; i >= 1; i--) {
+
+        }
+        for (Map.Entry<String, Integer> rank : lottoResult.entrySet()) {
+            String lottoRank = generateLottoRank(rank.getKey());
+            System.out.printf("%s - %d개\n", lottoRank, rank.getValue());
+        }
+    }
+
+    // return 구조 개선 필요 (예외 처리)
+    public static String generateLottoRank(final String rankName) {
+        for (LottoRank standardRank : LottoRank.values()) {
+            String matchResult = standardRank.getMatch() + "개 일치";
+            String prizeResult = " (" + String.format("%,d", standardRank.getPrize()) + "원)";
+            if (rankName.equals(standardRank.name()) && rankName.equals("SECOND")) {
+                return matchResult + ", 보너스 볼 일치" + prizeResult;
+            }
+            if (rankName.equals(standardRank.name())) {
+                return matchResult + prizeResult;
+            }
+        }
+        return "";
     }
 }
