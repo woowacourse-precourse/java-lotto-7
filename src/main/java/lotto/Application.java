@@ -57,7 +57,30 @@ public class Application {
         }
     }
 
+    // 4. 로또 번호 생성
+    public static List<List<Integer>> getLottoNumbers(int num) {
+        System.out.println(num + "개를 구매했습니다.");
+        List<List<Integer>> lottoBoxes = initializeLottoBoxes(num);
 
+        for (int i = 0; i < num; i++) {
+            lottoBoxes.get(i).addAll(lottoRandomizer());
+            Collections.sort(lottoBoxes.get(i));
+            System.out.println(lottoBoxes.get(i));
+        }
+        return lottoBoxes;
+    }
+
+    private static List<List<Integer>> initializeLottoBoxes(int num) {
+        List<List<Integer>> lottoBoxes = new ArrayList<>();
+        for (int i = 0; i < num; i++) {
+            lottoBoxes.add(new ArrayList<>());
+        }
+        return lottoBoxes;
+    }
+
+    private static List<Integer> lottoRandomizer() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
 
 
 
