@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import lotto.Lotto;
+import lotto.utils.ErrorMessages;
 
 public class LottoResultCalculator {
     private static final int LOTTO_NUMBER_MIN = 1;
@@ -70,7 +71,7 @@ public class LottoResultCalculator {
      */
     private void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < LOTTO_NUMBER_MIN || bonusNumber > LOTTO_NUMBER_MAX) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 " + LOTTO_NUMBER_MIN + "부터 " + LOTTO_NUMBER_MAX + " 사이여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 }
