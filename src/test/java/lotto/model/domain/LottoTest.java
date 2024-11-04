@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.dto.WinningLottoDto;
 import lotto.message.ExceptionMessage;
-import lotto.model.domain.Lotto;
-import lotto.model.domain.LottoPrize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
