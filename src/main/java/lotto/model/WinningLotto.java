@@ -2,7 +2,6 @@ package lotto.model;
 
 import lotto.common.ExceptionConstant;
 
-import java.util.List;
 
 public record WinningLotto(Lotto winningLotto, LottoNumber bonusNumber) {
 

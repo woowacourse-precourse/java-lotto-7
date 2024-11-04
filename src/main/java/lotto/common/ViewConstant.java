@@ -14,6 +14,6 @@ public class ViewConstant {
     public static final String OUTPUT_PROFIT_RATE_MESSAGE = "총 수익률은 %.2f%입니다.";
 
     public static final String DASH = "---";
-    public static final String DELIMITER = ", ";
+    public static final String DELIMITER = ",";
 
 }
