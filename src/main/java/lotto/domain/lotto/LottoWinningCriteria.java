@@ -17,13 +17,13 @@ public enum LottoWinningCriteria {
         this.prizeMoney = prizeMoney;
     }
 
-    public static LottoWinningCriteria findRank(int matchCount, boolean matchBonus) {
-        for (LottoWinningCriteria rank : LottoWinningCriteria.values()) {
-            if (rank.checkBonus && matchBonus && rank.matchCount == matchCount) {
-                return rank;
+    public static LottoWinningCriteria findWinningCriteria(int matchCount, boolean matchBonus) {
+        for (LottoWinningCriteria winningCriteria : LottoWinningCriteria.values()) {
+            if (winningCriteria.checkBonus && matchBonus && winningCriteria.matchCount == matchCount) {
+                return winningCriteria;
             }
-            if (rank.matchCount == matchCount) {
-                return rank;
+            if (!winningCriteria.checkBonus && winningCriteria.matchCount == matchCount) {
+                return winningCriteria;
             }
         }
         return null;

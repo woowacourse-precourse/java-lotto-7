@@ -53,7 +53,7 @@ public class LottoResultCalculator {
     private LottoWinningCriteria checkWinning(Lotto lotto) {
         int matchCount = matchingWinningNumberCount(lotto);
         boolean matchBonus = matchBonusNumber(lotto);
-        return LottoWinningCriteria.findRank(matchCount, matchBonus);
+        return LottoWinningCriteria.findWinningCriteria(matchCount, matchBonus);
     }
 
     private int matchingWinningNumberCount(Lotto lotto) {
