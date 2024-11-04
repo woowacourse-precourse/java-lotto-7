@@ -3,8 +3,10 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +23,27 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호와_당첨_번호를_비교하여_당첨_내역에_반영한다() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winningNumber = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        lotto.matchNumbers(winningNumber, 7);
+        assertThat(Winning.FIRST.getCount()).isEqualTo(1);
+    }
+
+    @Test
+    void 로또_번호와_당첨_번호가_5개_매치되고_보너스도_매치() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winningNumber = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+        lotto.matchNumbers(winningNumber, 6);
+        assertThat(Winning.SECOND.getCount()).isEqualTo(1);
+    }
+
+    @Test
+    void 로또_번호와_당첨_번호가_5개_매치되고_보너스는_매치_안됨() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winningNumber = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+        lotto.matchNumbers(winningNumber, 8);
+        assertThat(Winning.THIRD.getCount()).isEqualTo(1);
+    }
 }
