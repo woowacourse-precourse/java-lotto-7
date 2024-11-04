@@ -11,14 +11,14 @@ public class Lotto {
 
     protected Lotto(List<Integer> numbers) {
         Validator.validate(numbers);
-        this.numbers = generate(numbers);
+        this.numbers = convert(numbers);
     }
 
     public static Lotto of(List<Integer> numbers) {
         return new Lotto(numbers);
     }
 
-    private List<Number> generate(List<Integer> numbers) {
+    private List<Number> convert(List<Integer> numbers) {
         return numbers.stream()
                 .map(Number::of)
                 .sorted()
