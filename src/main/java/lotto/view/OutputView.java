@@ -34,4 +34,21 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public void printInputWinningNumbersPrompt() {
+        System.out.println(INPUT_WINNING_NUMBERS_PROMPT);
+    }
+
+    public void printInputBonusNumbersPrompt() {
+        System.out.println(INPUT_BONUS_NUMBER_PROMPT);
+    }
+
+    public void printWinningStatics(Analyst analyst) {
+        System.out.println(WINNING_STATICS_PROMPT);
+        for (int i = 0; i < 5; i++) {
+            System.out.printf("%s (%s원) - %d개\n",
+                    WINNING_STATICS_FORMAT[i], numberFormat.format(analyst.winningsMoney()[i]), analyst.getWinLottos()[5-i]);
+        }
+        System.out.printf("총 수익률은 %s입니다.", analyst.getYield());
+    }
 }
