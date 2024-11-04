@@ -16,7 +16,7 @@ class DtoConverterTest {
     private float profitRate;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 12));
 
@@ -30,8 +30,6 @@ class DtoConverterTest {
         // when
         LotteriesResponse response = converter.toLotteriesResponse(lotteries);
         // then
-
-
         Assertions.assertThat(response.lotteriesCount()).isEqualTo(2);
         Assertions.assertThat(response.lotteries().get(0)).isEqualTo(lotto1.getNumbers());
         Assertions.assertThat(response.lotteries().get(1)).isEqualTo(lotto2.getNumbers());
