@@ -20,9 +20,7 @@ public class Lottos {
         Map<Rank, Integer> rankCounts = new HashMap<>();
 
         for (Rank rank : Rank.values()) {
-            if (rank != Rank.NONE) {
-                rankCounts.put(rank, 0);
-            }
+            rankCounts.put(rank, 0);
         }
 
         for (Lotto lotto : lottos) {
