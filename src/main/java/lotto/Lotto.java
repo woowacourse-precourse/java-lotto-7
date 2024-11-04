@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.valid.LottoNumbersValidator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,11 +21,11 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return numbers;
     }
 
     public static Lotto generateRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(randomNumbers);
         return new Lotto(randomNumbers);
     }
