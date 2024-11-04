@@ -113,8 +113,12 @@ public class Application {
     }
 
     public static void checkWinning() {
+        int winningCount = 0;
         for (Lotto lotto : lottos) {
-
+            winningCount = 0;
+            for (Integer num : winningLotto) {
+                winningCount += lotto.checkNumber(num);
+            }
         }
     }
 

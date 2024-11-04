@@ -28,4 +28,12 @@ public class Lotto {
         return '[' + outputStirng + ']';
     }
 
+    public int checkNumber(int bonus) {
+        for (Integer e : numbers) {
+            if (e == bonus) {
+                return 1;
+            }
+        }
+        return 0;
+    }
 }
