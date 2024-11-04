@@ -4,8 +4,8 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import static java.lang.Integer.parseInt;
 import static view.message.ExceptionMessage.BANK_EXCEPTION_MESSAGE;
 import static view.message.ExceptionMessage.COMMA_SEPARATED_NUMBERS_REGEX;
-import static view.message.ExceptionMessage.NUMBER_EXCEPTION_MESSAGE;
-import static view.message.ExceptionMessage.NUMBER_REGEX;
+import static view.message.ExceptionMessage.POSITIVE_NUMBER_EXCEPTION_MESSAGE;
+import static view.message.ExceptionMessage.POSITIVE_NUMBER_REGEX;
 import static view.message.ExceptionMessage.FORMAT_EXCEPTION_MESSAGE;
 
 import java.math.BigDecimal;
@@ -17,7 +17,7 @@ public class InputView {
     public static BigDecimal readPurchaseAmount() {
         String purchaseAmount = readLine();
         validateBlank(purchaseAmount);
-        validateNumber(purchaseAmount);
+        validatePositiveNumber(purchaseAmount);
         return new BigDecimal(purchaseAmount);
     }
 
@@ -33,7 +33,7 @@ public class InputView {
     public static int readBonusNumber() {
         String bonusNumber = readLine();
         validateBlank(bonusNumber);
-        validateNumber(bonusNumber);
+        validatePositiveNumber(bonusNumber);
         return parseInt(bonusNumber);
     }
 
@@ -43,9 +43,9 @@ public class InputView {
         }
     }
 
-    private static void validateNumber(String input) {
-        if (!input.matches(NUMBER_REGEX)) {
-            throw new IllegalArgumentException(NUMBER_EXCEPTION_MESSAGE);
+    private static void validatePositiveNumber(String input) {
+        if (!input.matches(POSITIVE_NUMBER_REGEX)) {
+            throw new IllegalArgumentException(POSITIVE_NUMBER_EXCEPTION_MESSAGE);
         }
     }
 
