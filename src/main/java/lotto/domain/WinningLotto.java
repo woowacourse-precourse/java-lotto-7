@@ -4,12 +4,12 @@ import static lotto.message.ErrorMessage.DUPLICATE_BONUS_NUMBER;
 
 public class WinningLotto {
 
-    private final Lotto winngLotto;
+    private final Lotto winningNumbers;
     private final BonusNumber bonusNumber;
 
-    private WinningLotto(Lotto winngLotto, BonusNumber bonusNumber) {
-        validateDuplicate(winngLotto, bonusNumber);
-        this.winngLotto = winngLotto;
+    private WinningLotto(Lotto winningNumbers, BonusNumber bonusNumber) {
+        validateDuplicate(winningNumbers, bonusNumber);
+        this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
@@ -18,7 +18,7 @@ public class WinningLotto {
     }
 
     public Rank getRank(Lotto lotto) {
-        return Rank.calculateRank(winngLotto.countSameNumbers(lotto), bonusNumber.hasBonusNumber(lotto));
+        return Rank.calculateRank(winningNumbers.countSameNumbers(lotto), bonusNumber.hasBonusNumber(lotto));
     }
 
     private void validateDuplicate(Lotto lotto, BonusNumber bonusNumber) {
