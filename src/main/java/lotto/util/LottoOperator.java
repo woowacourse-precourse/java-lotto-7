@@ -26,6 +26,14 @@ public enum LottoOperator {
         return agree;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     private void incrementCount() {
         this.count += LottoOperator.INCREMENT_STEP;
     }
