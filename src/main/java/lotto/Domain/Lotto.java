@@ -3,6 +3,7 @@ package lotto.Domain;
 import static lotto.Util.Error.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.Util.Error.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -13,8 +14,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
