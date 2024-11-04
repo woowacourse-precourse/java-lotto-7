@@ -4,12 +4,15 @@ import lotto.exception.BusinessException;
 import lotto.exception.ErrorMessage;
 import lotto.model.db.Lotto;
 import lotto.model.db.Owner;
+import lotto.model.db.UserRepository;
 import lotto.util.ConsoleInput;
 
 public class WinningLottoIssueService extends CustomLottoIssueService {
 
     private static final String BONUS_ENTER_PROMPT = "\n보너스 번호를 입력해 주세요.";
     private static final int UNINITIALIZED = -1;
+
+    private final UserRepository userRepository = UserRepository.getInstance();
 
     @Override
     public Lotto issue(String prompt) {

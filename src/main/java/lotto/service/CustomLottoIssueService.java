@@ -8,11 +8,14 @@ import lotto.exception.BusinessException;
 import lotto.exception.ErrorMessage;
 import lotto.model.db.Buyer;
 import lotto.model.db.Lotto;
+import lotto.model.db.UserRepository;
 import lotto.util.ConsoleInput;
 
 public class CustomLottoIssueService implements LottoIssueService {
 
-    public static final String LOTTO_NUM_DELIMITERS = ",";
+    private static final String LOTTO_NUM_DELIMITERS = ",";
+
+    private final UserRepository userRepository = UserRepository.getInstance();
 
     @Override
     public List<Lotto> issue(String prompt, int lottoCnt) {

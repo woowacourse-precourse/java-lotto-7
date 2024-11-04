@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.db.Buyer;
 import lotto.model.db.Lotto;
+import lotto.model.db.UserRepository;
 
 public class RandomLottoIssueService implements LottoIssueService {
+
+    private final UserRepository userRepository = UserRepository.getInstance();
 
     @Override
     public List<Lotto> issue(String prompt, int lottoCnt) {

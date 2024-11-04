@@ -6,8 +6,6 @@ import lotto.model.db.UserRepository;
 
 public interface LottoIssueService {
 
-    UserRepository userRepository = UserRepository.getInstance();
-
     int MIN_LOTTO_NUM = 1;
     int MAX_LOTTO_NUM = 45;
     int LOTTO_NUM_SIZE = 6;
