@@ -44,22 +44,28 @@ class LottoTest {
     }
     @Test
     void 보너스_번호_있음(){
+        // 로또 번호 -> 1, 2, 3, 4, 5, 6
+        // 보너스 번호 -> 7
         List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(lottoNumbers);
 
         int bonusNumber = 7;
         boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumber);
 
+        // 예상 결과 -> False
         assertFalse(hasBonusNumber);
     }
     @Test
     void 보너스_번호_없음(){
+        // 로또 번호 -> 1, 2, 3, 4, 5, 6
+        // 보너스 번호 -> 6
         List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(lottoNumbers);
 
         int bonusNumber = 6;
         boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumber);
 
+        // 예상 결과 -> True
         assertTrue(hasBonusNumber);
     }
 }

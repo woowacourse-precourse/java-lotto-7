@@ -50,7 +50,7 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_MESSAGE + " 구매금액은 숫자로만 작성해야합니다.");
         });
     }
 
