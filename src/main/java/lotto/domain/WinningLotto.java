@@ -4,6 +4,8 @@ import java.util.List;
 
 public class WinningLotto {
 
+    public static final int SECOND_RANK_MATCH_COUNT = 5;
+
     private final Lotto winningNumbers;
     private final Integer bonusNumber;
 
@@ -37,7 +39,7 @@ public class WinningLotto {
         int matchCount = calculateMatchCount(lotto);
         List<Integer> lottoNumbers = lotto.getNumbers();
 
-        if (matchCount == 5 && lottoNumbers.contains(bonusNumber)) {
+        if (matchCount == SECOND_RANK_MATCH_COUNT && lottoNumbers.contains(bonusNumber)) {
             return true;
         }
         return false;

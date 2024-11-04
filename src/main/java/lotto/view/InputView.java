@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.domain.AutoLottos.LOTTO_PRICE_PER_PIECE;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,7 +10,6 @@ import lotto.domain.Lotto;
 
 public class InputView {
 
-    private static int PURCHASE_AMOUNT_UNIT = 1000;
     private static String WINNING_NUMBER_DELIMETER = ",";
 
     public static int inputLottoPurchaseAmount() {
@@ -16,7 +17,7 @@ public class InputView {
         validateInputIsNumber(input);
 
         int purchaseAmount = Integer.parseInt(input);
-        validatePurchaseAmountIsDivisible(purchaseAmount, PURCHASE_AMOUNT_UNIT);
+        validatePurchaseAmountIsDivisible(purchaseAmount, LOTTO_PRICE_PER_PIECE);
         validatePurchaseAmountIsNotZero(purchaseAmount);
 
         return purchaseAmount;

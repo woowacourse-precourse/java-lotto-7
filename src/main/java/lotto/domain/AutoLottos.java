@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 public class AutoLottos {
 
+    public static final int LOTTO_PRICE_PER_PIECE = 1000;
+
     private final List<Lotto> autoLottos;
 
     public AutoLottos(int purchaseAmount) {
@@ -23,7 +25,7 @@ public class AutoLottos {
     }
 
     private List<Lotto> makeAutoLottos(int purchaseAmount) {
-        int lottoCnt = purchaseAmount / 1000;
+        int lottoCnt = purchaseAmount / LOTTO_PRICE_PER_PIECE;
         List<Lotto> autoLottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCnt; i++) {
