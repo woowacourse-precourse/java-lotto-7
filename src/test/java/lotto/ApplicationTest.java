@@ -66,10 +66,10 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    @DisplayName("음수의 로또 구입 금액을 입력받는다면 예외가 발생한다.")
-    void negativePurchaseAmountTest() {
+    @DisplayName("로또 한 장의 구입 금액보다 적은 금액을 입력받는다면 예외가 발생한다.")
+    void minimumPurchaseAmountTest() {
         assertSimpleTest(() -> {
-            runException("-2000");
+            runException("0");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
