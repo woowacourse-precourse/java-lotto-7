@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.view.error.ErrorType;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String NEED_NUMBER_IN_RANGE = "[ERROR] 구매 금액은 1000이상 10000000이하여야 합니다.";
+
 
     @Test
     void 기능_테스트() {
@@ -53,6 +56,31 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    void 구입금액_입력_오류로_다시_입력받는_테스트() {
+        assertSimpleTest(() -> {
+            run("10", "1000", "10, 11, 12, 13, 14, 15", "45");
+            assertThat(output()).contains(NEED_NUMBER_IN_RANGE);
+        });
+    }
+
+    @Test
+    void 당첨번호에_중복_숫자_입력_오류로_다시_입력받는_테스트() {
+        assertSimpleTest(() -> {
+            run("1000", "10, 10, 12, 13, 14, 15", "10, 11, 12, 13, 14, 15", "6");
+            assertThat(output()).contains(ErrorType.NEED_DISTINCT_NUMBER.getMessage());
+        });
+    }
+
+    @Test
+    void 보너스_번호에_당첨번호와_중복_숫자_입력_오류로_다시_입력받는_테스트() {
+        assertSimpleTest(() -> {
+            run("1000", "10, 11, 12, 13, 14, 15", "15", "6");
+            assertThat(output()).contains(ErrorType.NEED_DISTINCT_NUMBER.getMessage());
+        });
+    }
+
 
     @Override
     public void runMain() {
