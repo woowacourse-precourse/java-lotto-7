@@ -6,18 +6,41 @@ import lotto.io.request.NumberRequest;
 
 public class InputHandler {
 
+    PurchasePrintHandler purchasePrintHandler = new PurchasePrintHandler();
+
     public NumberRequest getBudgets() {
-        String budgets = Console.readLine();
-        return new NumberRequest(budgets);
+        while (true) {
+            try {
+                purchasePrintHandler.printPurchaseMessage();
+                String budgets = Console.readLine();
+                return new NumberRequest(budgets);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public LottoRequest getWinningNumbers() {
-        String winningNumbers = Console.readLine();
-        return new LottoRequest(winningNumbers);
+        while (true) {
+            try {
+                purchasePrintHandler.printWinningNumbers();
+                String winningNumbers = Console.readLine();
+                return new LottoRequest(winningNumbers);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public NumberRequest getBonusNumber() {
-        String bonusNumber = Console.readLine();
-        return new NumberRequest(bonusNumber);
+        while (true) {
+            try {
+                purchasePrintHandler.printBonusNumbers();
+                String bonusNumber = Console.readLine();
+                return new NumberRequest(bonusNumber);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }

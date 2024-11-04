@@ -18,13 +18,13 @@ import lotto.io.request.NumberRequest;
 public class LottoService {
 
     private final InputHandler inputHandler;
-    private final PurchasePrintHandler purchaseHandler;
-    private final ResultPrintHandler resultHandler;
+    private final PurchasePrintHandler purchasePrintHandler;
+    private final ResultPrintHandler resultPrintHandler;
 
     public LottoService() {
         this.inputHandler = new InputHandler();
-        this.purchaseHandler = new PurchasePrintHandler();
-        this.resultHandler = new ResultPrintHandler();
+        this.purchasePrintHandler = new PurchasePrintHandler();
+        this.resultPrintHandler = new ResultPrintHandler();
     }
 
     public void run() {
@@ -34,7 +34,6 @@ public class LottoService {
     }
 
     private Lottos getLottos() {
-        purchaseHandler.printPurchaseMessage();
         NumberRequest request = inputHandler.getBudgets();
         return createLottos(request);
     }
@@ -42,8 +41,8 @@ public class LottoService {
     private Lottos createLottos(NumberRequest request) {
         int budgets = Integer.parseInt(request.number());
         Lottos lottos = Lottos.from(budgets);
-        purchaseHandler.printPurchaseAmounts(lottos.getAmounts());
-        purchaseHandler.printPurchaseResult(lottos.getPurchaseLotto());
+        purchasePrintHandler.printPurchaseAmounts(lottos.getAmounts());
+        purchasePrintHandler.printPurchaseResult(lottos.getPurchaseLotto());
         return lottos;
     }
 
@@ -54,7 +53,6 @@ public class LottoService {
     }
 
     private Lotto getWinningNumber() {
-        purchaseHandler.printWinningNumbers();
         LottoRequest lottoRequest = inputHandler.getWinningNumbers();
         LottoExtractor extractor = new LottoExtractor();
         List<Integer> numbers = extractor.extractLotto(lottoRequest.winningNumbers());
@@ -62,7 +60,6 @@ public class LottoService {
     }
 
     private int getBonusNumber() {
-        purchaseHandler.printBonusNumbers();
         NumberRequest numberRequest = inputHandler.getBonusNumber();
         return Integer.parseInt(numberRequest.number());
     }
@@ -80,17 +77,17 @@ public class LottoService {
     }
 
     private void printResult(Result results) {
-        resultHandler.printWinningStatics();
-        resultHandler.printFifthPrize(results.getResultCount(Ranking.FIFTH));
-        resultHandler.printFourthPrize(results.getResultCount(Ranking.FOURTH));
-        resultHandler.printThirdPrize(results.getResultCount(Ranking.THIRD));
-        resultHandler.printSecondPrize(results.getResultCount(Ranking.SECOND));
-        resultHandler.printFirstPrize(results.getResultCount(Ranking.FIRST));
+        resultPrintHandler.printWinningStatics();
+        resultPrintHandler.printFifthPrize(results.getResultCount(Ranking.FIFTH));
+        resultPrintHandler.printFourthPrize(results.getResultCount(Ranking.FOURTH));
+        resultPrintHandler.printThirdPrize(results.getResultCount(Ranking.THIRD));
+        resultPrintHandler.printSecondPrize(results.getResultCount(Ranking.SECOND));
+        resultPrintHandler.printFirstPrize(results.getResultCount(Ranking.FIRST));
     }
 
     private void printProfitRate(Result results, int budget) {
         Profit profit = Profit.from(results, budget);
         float profitRate = profit.calculateProfitRate();
-        resultHandler.printProfitRate(profitRate);
+        resultPrintHandler.printProfitRate(profitRate);
     }
 }
