@@ -1,7 +1,9 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoWinningManager {
     InputHandler inputHandler = new InputHandler();
@@ -51,7 +53,7 @@ public class LottoWinningManager {
     }
 
     public void showTotalYield(int totalLottoPrice, EnumMap<MatchCount, Integer> winningResult) {
-        int totalYield = calculateTotalYield(int totalLottoPrice, EnumMap<MatchCount, Integer> winningResult);
+        double totalYield = calculateTotalYield(totalLottoPrice, winningResult);
         printManager.printTotalYield(totalYield);
     }
 
@@ -86,10 +88,25 @@ public class LottoWinningManager {
         }
         numberOfMatches.put(MatchCount.FIVE, numberOfMatches.get(MatchCount.FIVE) + 1);
         return numberOfMatches;
-        }
     }
 
-    private int calculateTotalYield(int totalLottoPrice, EnumMap<MatchCount, Integer> winningResult) {
+    private double calculateTotalYield(int totalLottoPrice, EnumMap<MatchCount, Integer> winningResult) {
+        long totalWinningPrize = 0;
+        double totalYield = 0;
+        for (Map.Entry<MatchCount, Integer> entry : winningResult.entrySet()) {
+            MatchCount matchCount = entry.getKey();
+            int numberOfMatches = entry.getValue();
 
+            long prizeMoney = matchCount.getPrizeMoney();
+            totalWinningPrize += numberOfMatches * prizeMoney;
+        }
+        totalYield = ((double) totalWinningPrize / totalLottoPrice) * 100;
+        totalYield = roundTwoDecimalPlace(totalYield);
+        return totalYield;
+    }
+
+    private double roundTwoDecimalPlace(double number) {
+        number = Math.round(number * 100) / 100.0;
+        return number;
     }
 }

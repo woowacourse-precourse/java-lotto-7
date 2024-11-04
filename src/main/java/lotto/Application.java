@@ -24,7 +24,6 @@ public class Application {
 
         EnumMap<MatchCount, Integer> winningResult = lottoWinningManager.WinningResult(purchasedLotto, winningLotto, bonusNumber);
         lottoWinningManager.showWinningResult(winningResult);
-        lottoWinningManager.showTotalYield(totalLottoPrice, winningResult);
-        
+        lottoWinningManager.showTotalYield(totalLottoPrice, winningResult);      
     }
 }

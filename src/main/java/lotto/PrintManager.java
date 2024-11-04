@@ -1,5 +1,7 @@
 package lotto;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -33,6 +35,42 @@ public class PrintManager {
     }
 
     public void printWinningResult(EnumMap<MatchCount, Integer> winningResult) {
-        
+        System.out.println("\n" + "당첨 통계" + "\n" + "---");
+        List<Integer> winningStastics = new ArrayList<>(winningResult.values());
+        System.out.println("3개 일치 (5,000원) - " + winningStastics.get(0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + winningStastics.get(1) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winningStastics.get(2) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningStastics.get(3) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winningStastics.get(4) + "개");
+    }
+
+    public void printTotalYield(double totalYield) {
+        String formattedYield = setNumberFormat(totalYield);
+        System.out.println("총 수익률은 " + formattedYield + "%입니다.");
+    }
+
+    private String setNumberFormat(double number) {
+        BigDecimal bigNumber = new BigDecimal(number);
+        String numberToString = bigNumber.toPlainString();
+        String[] splittedNumber = numberToString.split("\\.");
+        String integerPart = splittedNumber[0];
+        String decimalPart = setDecimalPart(splittedNumber);
+
+        StringBuilder commaAddedIntegerPart = new StringBuilder(integerPart);
+        for (int i = commaAddedIntegerPart.length() - 3; i > 0; i -= 3) {
+            commaAddedIntegerPart.insert(i, ',');
+        }
+        String formattedNumber = commaAddedIntegerPart.toString() + "." + decimalPart;
+        return formattedNumber;
+    }
+
+    private String setDecimalPart(String[] splittedNumber) {
+        String decimalPart = new String();
+        if (splittedNumber.length > 1) {
+            decimalPart = splittedNumber[1];
+            return decimalPart;
+        }
+        decimalPart = "0";
+        return decimalPart;
     }
 }
