@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
-import lotto.domain.WinningCombinations;
+import lotto.domain.WinningNumbersCombinations;
 import lotto.dto.BonusNumber;
 import lotto.dto.LottoResult;
 import lotto.dto.PurchaseAmount;
@@ -16,7 +16,7 @@ public class LottoController {
         showLottoNumbers(purchaseAmount, lottos);
 
         WinningNumbers winningLotto = getWinningNumbers();
-        WinningCombinations winningCombinations = getBonusNumber(winningLotto);
+        WinningNumbersCombinations winningCombinations = getBonusNumber(winningLotto);
     }
 
     public PurchaseAmount getValidLottoPurchaseAmount() {
@@ -46,10 +46,10 @@ public class LottoController {
         }
     }
 
-    public WinningCombinations getBonusNumber(WinningNumbers winningNumbers) {
+    public WinningNumbersCombinations getBonusNumber(WinningNumbers winningNumbers) {
         try {
             BonusNumber bonusNumber = new BonusNumber(InputView.inputBonusNumber());
-            return new WinningCombinations(winningNumbers, bonusNumber);
+            return new WinningNumbersCombinations(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getBonusNumber(winningNumbers);

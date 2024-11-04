@@ -4,11 +4,11 @@ import java.util.List;
 import lotto.dto.BonusNumber;
 import lotto.dto.WinningNumbers;
 
-public class WinningCombinations {
+public class WinningNumbersCombinations {
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
 
-    public WinningCombinations(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public WinningNumbersCombinations(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         validate(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
@@ -20,11 +20,16 @@ public class WinningCombinations {
         }
     }
 
-    public void compare(final Lotto lotto) {
+    public int compareWinningNumbers(final Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
-
         int winningCount = winningNumbers.countMatchedNumbers(lottoNumbers);
+        return winningCount;
+    }
 
+    public boolean compareBonusNumber(final Lotto lotto) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        boolean checkBonusNumberMatched = bonusNumber.isBonusNumberMatched(lottoNumbers);
+        return checkBonusNumberMatched;
     }
 }
 

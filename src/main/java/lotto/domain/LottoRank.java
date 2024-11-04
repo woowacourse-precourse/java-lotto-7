@@ -42,7 +42,7 @@ public enum LottoRank {
         this.standard = standard;
     }
 
-    public LottoRank findLottoRank(final int winningCount, final boolean bonusNumberMatched) {
+    public static LottoRank findLottoRank(final int winningCount, final boolean bonusNumberMatched) {
         return Arrays.stream(LottoRank.values())
                 .filter(winning -> winning.standard.test(winningCount, bonusNumberMatched))
                 .findFirst()
