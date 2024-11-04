@@ -33,7 +33,7 @@ class LottoTest {
 
     @Test
     @DisplayName("로또 당첨 번호가 올바른 숫자로 입력된 경우")
-    public void test1(){
+    public void testWinningNumbers(){
         setup();
 
         assertThat(lotto.getNumbers()).isEqualTo(List.of(1,2,3,4,5,6));
@@ -41,14 +41,14 @@ class LottoTest {
 
     @Test
     @DisplayName("로또 당첨 번호가 1 ~ 45 범위를 벗어난 경우")
-    public void test2(){
+    public void testWinningNumbersRange(){
         assertThatThrownBy(() -> new Lotto(List.of(111, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
     }
 
     @Test
     @DisplayName("보너스 번호가 정상적으로 입력된 경우")
-    public void test3(){
+    public void testBonusNumber(){
         setup();
 
         lotto.addBonusNumber("7");
@@ -58,7 +58,7 @@ class LottoTest {
 
     @Test
     @DisplayName("보너스 번호가 빈 값인 경우")
-    public void test4(){
+    public void testBonusNumberNull(){
         setup();
 
         assertThatThrownBy(() -> lotto.addBonusNumber(""))
@@ -67,7 +67,7 @@ class LottoTest {
 
     @Test
     @DisplayName("보너스 번호가 숫자가 아닌 경우")
-    public void test5(){
+    public void testBonusNumberNotNumber(){
         setup();
 
         assertThatThrownBy(() -> lotto.addBonusNumber("test"))
@@ -76,7 +76,7 @@ class LottoTest {
 
     @Test
     @DisplayName("보너스 번호가 당첨 번호와 중복인 경우")
-    public void test6(){
+    public void testDuplicateBonusNumber(){
         setup();
 
         assertThatThrownBy(() -> lotto.addBonusNumber("1"))
@@ -85,7 +85,7 @@ class LottoTest {
 
     @Test
     @DisplayName("보너스 번호가 1 ~ 45 사이의 숫자가 아닌 경우")
-    public void test7(){
+    public void testBonusNumberRange(){
         setup();
 
         assertThatThrownBy(() -> lotto.addBonusNumber("46"))

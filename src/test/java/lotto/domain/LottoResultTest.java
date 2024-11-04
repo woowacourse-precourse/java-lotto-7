@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ class LottoResultTest {
     }
 
     @Test
-    public void testLottoResultCreation() {
+    @DisplayName("1등 1개, 2등 1개, 3등 1개인 경우")
+    public void testLottoResult() {
 
         List<PurchaseLotto> purchaseLottos = List.of(
                 new PurchaseLotto(List.of(1, 2, 3, 4, 5, 6)),
@@ -38,6 +40,7 @@ class LottoResultTest {
     }
 
     @Test
+    @DisplayName("총 수익률 계산")
     public void testCalculateTotalPrize() {
 
         List<PurchaseLotto> purchaseLottos = List.of(
