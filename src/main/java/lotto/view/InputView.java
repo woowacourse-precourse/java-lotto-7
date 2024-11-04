@@ -2,6 +2,9 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.StringParser;
+import lotto.validation.Validation;
+
+import java.util.List;
 
 
 public class InputView {
@@ -30,10 +33,42 @@ public class InputView {
         while (true) {
             String inputMoney = InputView.moneyInput();
             try {
-                return StringParser.parseStringToInt(inputMoney);
+                return getValidMoney(inputMoney);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public static List<Integer> getWinningNumbers() {
+        while (true) {
+            String inputWinningNumbers = InputView.winningNumbersInput();
+            try {
+                return StringParser.parseStringToIntegerList(inputWinningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static Integer getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            String inputBonusNumber = InputView.bonusNumberInput();
+            try {
+                return getValidBonusNumber(winningNumbers, inputBonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static Integer getValidMoney(String inputMoney) {
+        return StringParser.parseStringToInt(inputMoney);
+    }
+
+    private static Integer getValidBonusNumber(List<Integer> winningNumbers, String inputBonusNumber) {
+        Integer bonusNumber = StringParser.parseStringToInt(inputBonusNumber);
+        Validation.validateDuplicateNumbersWithBonusNumber(winningNumbers, bonusNumber);
+        return bonusNumber;
     }
 }
