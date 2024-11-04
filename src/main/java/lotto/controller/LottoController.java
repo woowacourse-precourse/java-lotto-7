@@ -20,6 +20,9 @@ public class LottoController {
         Lottos lottos = lottoGenerator.getnerateLottos(amount);
         System.out.println(lottos.getSize() + "개를 구매했습니다.");
 
+        lottos.getLottos().forEach(lotto -> System.out.println(lotto));
+
+
         List<Integer> winNumbers = userInput.inputWinNumbers();
 
         int bonusNumber = userInput.inputBonusNumber(winNumbers);
