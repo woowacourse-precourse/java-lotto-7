@@ -28,7 +28,7 @@ public class Converter {
             return WinningCondition.MATCH_4;
         }
         if (winningCount == 5) {
-            return checkBonusNumber(winningCount, bonusCount);
+            return checkBonusNumber(bonusCount);
         }
         if (winningCount == 6) {
             return WinningCondition.MATCH_6;
@@ -36,7 +36,7 @@ public class Converter {
         return WinningCondition.NO_MATCH;
     }
 
-    private static WinningCondition checkBonusNumber(int winningCount, int bonusCount) {
+    private static WinningCondition checkBonusNumber(int bonusCount) {
         if (bonusCount == 1) {
             return WinningCondition.MATCH_5_BONUS;
         }
