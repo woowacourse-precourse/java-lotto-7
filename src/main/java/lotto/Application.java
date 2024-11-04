@@ -76,4 +76,19 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
+    public static void drawingLotteries() {
+        int[] placeCount = new int[7];
+        for(Lotto lotto: purchasedLotteries) {
+            placeCount[lotto.calcLotteryPlace(lotteryWinningNumbers, lotteryBonusNumber)]++;
+        }
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.printf("3개 일치 (5,000원) - %d개\n", placeCount[5]);
+        System.out.printf("4개 일치 (50,000원) - %d개\n", placeCount[4]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", placeCount[3]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", placeCount[2]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", placeCount[1]);
+        System.out.printf("총 수익률은 %f%입니다.\n", (5000 * placeCount[5] + 50000 * placeCount[4] +
+                1500000 * placeCount[3] + 30_000_000 * placeCount[2] + 2_000_000_000 * placeCount[1]) / amountForLottery);
+    }
 }
