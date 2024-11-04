@@ -1,5 +1,7 @@
 package lotto.Model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class LottoResult {
@@ -11,6 +13,13 @@ public class LottoResult {
 
     public double calculateProfitRate(int purchaseAmount) {
         int totalPrize = ranks.stream().mapToInt(Rank::getPrize).sum();
-        return ((double) totalPrize / purchaseAmount) * 100;
+        double profitRate = (double) totalPrize / purchaseAmount * 100;
+        return roundToTwoDecimalPlaces(profitRate);
+    }
+
+    private double roundToTwoDecimalPlaces(double value) {
+        return BigDecimal.valueOf(value)
+                .setScale(1, RoundingMode.HALF_UP)
+                .doubleValue();
     }
 }
