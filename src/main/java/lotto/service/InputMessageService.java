@@ -40,12 +40,16 @@ public class InputMessageService {
     boolean isValid = false;
     List<Integer> enterNumbers = null;
     while (!isValid) {
-      enterNumbers = new ArrayList<>();
-      String[] splitResult = inputMessageView.enterWinningNumber().split(",");
-      for (int i = 0; i < splitResult.length; i++) {
-        enterNumbers.add(Integer.parseInt(splitResult[i]));
+      try {
+        enterNumbers = new ArrayList<>();
+        String[] splitResult = inputMessageView.enterWinningNumber().split(",");
+        for (int i = 0; i < splitResult.length; i++) {
+          enterNumbers.add(Integer.parseInt(splitResult[i]));
+        }
+        isValid = enterWinningNumberValidation.validateEnterWinningNumber(enterNumbers);
+      } catch (NumberFormatException e) {
+        System.out.println("[ERROR] 로또 번호는 1~45의 숫자여야 합니다.");
       }
-      isValid = enterWinningNumberValidation.validateEnterWinningNumber(enterNumbers);
     }
     return enterNumbers;
   }

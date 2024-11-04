@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 public class InputMessageTest {
   private final EnterWinningNumberValidation validator = new EnterWinningNumberValidation();
-
   @Test
   void 로또_번호가_6자리가_안될때() {
     assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
@@ -38,6 +37,8 @@ public class InputMessageTest {
     List<Integer> invalidNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
     assertThat(validator.validateEnterWinningNumber(invalidNumbers));
   }
+
+
 
 
 }
