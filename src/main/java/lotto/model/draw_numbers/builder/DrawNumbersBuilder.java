@@ -1,6 +1,6 @@
-package lotto.model.draw_numbers;
+package lotto.model.draw_numbers.builder;
 
-import lotto.utils.DrawNumbersValidator;
+import lotto.model.draw_numbers.DrawNumbers;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.model.draw_numbers.builder;
 
 import lotto.error.LottoErrorMessage;
 import lotto.model.lotto.Lotto;

@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.InputViewConstant;
-import lotto.model.draw_numbers.DrawNumbersBuilder;
+import lotto.model.draw_numbers.builder.DrawNumbersBuilder;
 import lotto.utils.PaymentValidator;
 
 public class InputView {
