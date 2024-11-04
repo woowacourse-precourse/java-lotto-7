@@ -27,6 +27,10 @@ public enum Prize {
 		return reward;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
 	public static Prize getPrize(int matchCount, boolean isBonusMatch) {
 		return Arrays.stream(values())
 			.filter(prize -> prize.matchCount == matchCount)
