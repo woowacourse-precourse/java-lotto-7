@@ -65,4 +65,9 @@ public class LottoService {
         result = customer.result(winningLotto);
         OutputView.resultMessage(result);
     }
+
+    public void calculate() {
+        double earningRate = customer.calculate(result);
+        OutputView.calculateMessage(earningRate);
+    }
 }
