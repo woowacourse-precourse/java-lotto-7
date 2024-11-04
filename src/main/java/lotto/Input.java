@@ -3,14 +3,13 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Input {
     private static final String INPUT_DELIM = ",";
 
     private String inputAmount(){
-        System.out.println(InputMessage.AMOUNT_INPUT_MESSAGE);
+        System.out.println(InputMessage.AMOUNT_INPUT_MESSAGE.getMessage());
         String amount = Console.readLine();
         InputValidator.validateMoneyIsNumber(amount);
 
@@ -24,8 +23,8 @@ public class Input {
         return new Money(amount);
     }
 
-    private String winnigNumbers(){
-        System.out.println(InputMessage.NUMBER_INPUT_MESSAGE);
+    private static String winnigNumbers(){
+        System.out.println(InputMessage.NUMBER_INPUT_MESSAGE.getMessage());
         String input = Console.readLine();
         InputValidator.validateNumbers(input);
 
@@ -33,20 +32,26 @@ public class Input {
     }
 
     public Lotto setWinningNumbers(){
-        Lotto winning = new Lotto(createWinningNumber());
-
-        return winning;
-    }
-
-    private List<Integer> createWinningNumber(){
         String input = winnigNumbers();
-        List<String> list = Arrays.asList(input.split(INPUT_DELIM));
         List<Integer> numbers = new ArrayList<>();
-        for(String s : list){
+        for(String s : input.split(INPUT_DELIM)){
             numbers.add(Integer.parseInt(s));
         }
 
-        return numbers;
+        return new Lotto(numbers);
+    }
+
+
+    private String bonusNumers(){
+        System.out.println(InputMessage.BONUS_INPUT_MESSAGE.getMessage());
+        String input = Console.readLine();
+        InputValidator.validateBonus(input);
+
+        return input;
+    }
+
+    public Integer setBonusNumber(){
+        return Integer.parseInt(bonusNumers());
     }
 
 }
