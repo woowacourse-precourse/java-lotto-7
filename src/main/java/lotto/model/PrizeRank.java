@@ -13,8 +13,7 @@ public enum PrizeRank {
     private final boolean isBounsNumber;
     private final String rank;
     static final PrizeRank[] RANK_LOOKUP = {PrizeRank.LOSE, PrizeRank.LOSE, PrizeRank.LOSE, PrizeRank.FIFTH,
-            PrizeRank.FOURTH,
-            PrizeRank.THIRD, PrizeRank.FIRST, PrizeRank.SECOND};
+            PrizeRank.FOURTH, PrizeRank.THIRD, PrizeRank.FIRST, PrizeRank.SECOND};
 
 
     PrizeRank(int count, int prize, boolean isBonusNumber, String rank) {
