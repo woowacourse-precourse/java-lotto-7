@@ -39,8 +39,7 @@ public class InputView {
             try {
                 System.out.println();
                 System.out.println(InputMessages.BONUS_NUMBER_PROMPT);
-                String input = Console.readLine();
-                int bonusNumber = Integer.parseInt(input.trim());
+                int bonusNumber = Integer.parseInt(Console.readLine().trim());
                 return new BonusNumber(bonusNumber, winningNumbers);
             } catch (NumberFormatException e) {
                 System.out.println(ErrorMessages.BONUS_NUMBER_NOT_NUMBER);
