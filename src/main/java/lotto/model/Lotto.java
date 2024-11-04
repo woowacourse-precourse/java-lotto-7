@@ -19,15 +19,18 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LottoIntConst.LOTTO_SIZE.getValue()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 " + LottoIntConst.LOTTO_SIZE.getValue() + "개여야 합니다.");
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45사이 여야 합니다.");
+            if (number < LottoIntConst.MIN_LOTTO_NUM.getValue() || number > LottoIntConst.MAX_LOTTO_NUM.getValue()) {
+                throw new IllegalArgumentException(
+                        "[ERROR] 로또 번호는 " + LottoIntConst.MIN_LOTTO_NUM.getValue() + "에서 "
+                                + LottoIntConst.MAX_LOTTO_NUM.getValue() + "사이 여야 합니다."
+                );
             }
         }
     }

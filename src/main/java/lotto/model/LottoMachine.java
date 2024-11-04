@@ -24,20 +24,24 @@ public class LottoMachine {
     // Test용 생성자
     public LottoMachine(List<Lotto> lottos) {
         this.lottos = lottos;
-        this.money = lottos.size() * 1000;
+        this.money = lottos.size() * LottoIntConst.PRICE.getValue();
     }
 
     private void validateMoney(int money) {
-        if (money % 1000 != 0) {
+        if (money % LottoIntConst.PRICE.getValue() != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위여야 합니다.");
         }
     }
 
     private List<Lotto> createLotto(int money) {
         List<Lotto> lottos = new ArrayList<>();
-        int quantity = money / 1000;
+        int quantity = money / LottoIntConst.PRICE.getValue();
         for (int i = 0; i < quantity; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                    LottoIntConst.MIN_LOTTO_NUM.getValue(),
+                    LottoIntConst.MAX_LOTTO_NUM.getValue(),
+                    LottoIntConst.LOTTO_SIZE.getValue()
+            );
             lottos.add(new Lotto(numbers));
         }
         return lottos;
