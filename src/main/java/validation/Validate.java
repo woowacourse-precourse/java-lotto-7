@@ -17,7 +17,7 @@ public class Validate {
         }
     }
 
-    // 보너스 번호가 로또 번호의 최솟값과 최댓값을 벗어났는지 검증하는 메서드
+    // 보너스 번호가 1~45 사이의 숫자를 입력했는지 검증하는 메서드
     public static void checkBonusNumberRange(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이여야 합니다.");
