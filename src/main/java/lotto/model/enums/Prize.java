@@ -17,20 +17,17 @@ public enum Prize {
     }
 
     public static Prize valueOf(int matchCount, boolean hasBonusMatch) {
-        switch (matchCount) {
-            case 3:
-                return FIFTH_PRIZE;
-            case 4:
-                return FOURTH_PRIZE;
-            case 5:
+        return switch (matchCount) {
+            case 3 -> FIFTH_PRIZE;
+            case 4 -> FOURTH_PRIZE;
+            case 5 -> {
                 if (hasBonusMatch)
-                    return SECOND_PRIZE;
-                return THIRD_PRIZE;
-            case 6:
-                return FIRST_PRIZE;
-            default:
-                return NO_PRIZE;
-        }
+                    yield SECOND_PRIZE;
+                yield THIRD_PRIZE;
+            }
+            case 6 -> FIRST_PRIZE;
+            default -> NO_PRIZE;
+        };
     }
 
     public int getPrize() {
