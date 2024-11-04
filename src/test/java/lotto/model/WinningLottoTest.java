@@ -65,7 +65,6 @@ public class WinningLottoTest {
 
         LottoNumber bonusNumber = LottoNumber.from(WINNING_LOTTO_NUMBER_SIZE + 2);
 
-
         // when & then
         assertThatThrownBy(() -> new WinningLotto(winningLottoNumbers, bonusNumber))
                 .isInstanceOf(LottoNumberInvalidException.class)
@@ -82,7 +81,6 @@ public class WinningLottoTest {
                 sequentialRandomNumberGenerator);
 
         LottoNumber bonusNumber = LottoNumber.from(WINNING_LOTTO_NUMBER_SIZE);
-
 
         // when & then
         assertThatThrownBy(() -> new WinningLotto(winningLottoNumbers, bonusNumber))
@@ -115,7 +113,6 @@ public class WinningLottoTest {
         LottoNumbers winningLottoNumbers = LottoNumbers.generateBy(WINNING_LOTTO_NUMBER_SIZE,
                 sequentialRandomNumberGenerator);
         LottoNumber bonusNumber = LottoNumber.from(sequentialRandomNumberGenerator.getLastGeneratedNumbers().getFirst());
-
 
         // when & then
         assertThatThrownBy(() -> new WinningLotto(winningLottoNumbers, bonusNumber))
