@@ -1,8 +1,9 @@
-package lotto;
+package lotto.service;
 
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import lotto.domain.WinningPrize;
 
 public class LottoWinningResult {
     private final Map<WinningPrize, Integer> results;

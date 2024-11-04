@@ -1,7 +1,10 @@
-package lotto;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.LottoTickets;
+import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
 
 public class LottoShopImpl implements LottoShop {
     private final LottoMachine lottoMachine;

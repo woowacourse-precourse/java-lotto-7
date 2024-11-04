@@ -1,11 +1,12 @@
-package lotto;
+package lotto.service;
 
-import static lotto.LottoConstants.LOTTO_NUMBER_COUNT;
-import static lotto.LottoConstants.MAXIMUM_LOTTO_NUMBER;
-import static lotto.LottoConstants.MINIMUM_LOTTO_NUMBER;
+import static lotto.constants.LottoConstants.LOTTO_NUMBER_COUNT;
+import static lotto.constants.LottoConstants.MAXIMUM_LOTTO_NUMBER;
+import static lotto.constants.LottoConstants.MINIMUM_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class LottoMachineImpl implements LottoMachine {
     @Override

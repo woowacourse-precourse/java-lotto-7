@@ -3,6 +3,8 @@ package lotto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.Arrays;
+import lotto.domain.Lotto;
+import lotto.domain.LottoTickets;
 import org.junit.jupiter.api.Test;
 
 class LottoTicketsTest {

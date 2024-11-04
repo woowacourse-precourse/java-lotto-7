@@ -1,9 +1,11 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE;
-import static lotto.ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT;
-import static lotto.LottoConstants.LOTTO_PRICE;
-import static lotto.LottoConstants.MAX_LOTTO_PURCHASE_AMOUNT;
+import static lotto.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE;
+import static lotto.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT;
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
+import static lotto.constants.LottoConstants.MAX_LOTTO_PURCHASE_AMOUNT;
+
+import lotto.service.LottoWinningResult;
 
 public class PurchaseAmount {
     private final int amount;

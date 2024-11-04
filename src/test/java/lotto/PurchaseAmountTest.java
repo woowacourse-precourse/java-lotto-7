@@ -1,10 +1,13 @@
 package lotto;
 
-import static lotto.ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE;
-import static lotto.ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT;
+import static lotto.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE;
+import static lotto.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningPrize;
+import lotto.service.LottoWinningResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

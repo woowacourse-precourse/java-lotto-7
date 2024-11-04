@@ -1,7 +1,11 @@
-package lotto;
+package lotto.service;
 
 import java.util.List;
 import java.util.Optional;
+import lotto.domain.LottoTickets;
+import lotto.domain.WinningPrize;
+import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 
 public class LottoWinningCalculator {
     private LottoWinningCalculator() {

@@ -1,6 +1,10 @@
 package lotto;
 
-import java.util.List;
+import lotto.domain.LottoTickets;
+import lotto.domain.PurchaseAmount;
+import lotto.service.LottoMachine;
+import lotto.service.LottoMachineImpl;
+import lotto.service.LottoShopImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

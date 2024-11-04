@@ -1,9 +1,9 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.ErrorMessage.DUPLICATE_BONUS_NUMBER;
-import static lotto.ErrorMessage.INVALID_BONUS_NUMBER_FORMAT;
-import static lotto.LottoConstants.MAXIMUM_LOTTO_NUMBER;
-import static lotto.LottoConstants.MINIMUM_LOTTO_NUMBER;
+import static lotto.constants.ErrorMessage.DUPLICATE_BONUS_NUMBER;
+import static lotto.constants.ErrorMessage.INVALID_BONUS_NUMBER_FORMAT;
+import static lotto.constants.LottoConstants.MAXIMUM_LOTTO_NUMBER;
+import static lotto.constants.LottoConstants.MINIMUM_LOTTO_NUMBER;
 
 public class WinningLotto {
     private final Lotto winningNumbers;

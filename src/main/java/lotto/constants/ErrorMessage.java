@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constants;
 
 public class ErrorMessage {
     public static final String INVALID_PURCHASE_AMOUNT_RANGE = "[ERROR] 구입 금액은 1000원이상 100000원 이하로 입력 가능합니다.";

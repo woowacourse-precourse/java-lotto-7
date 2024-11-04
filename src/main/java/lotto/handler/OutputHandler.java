@@ -1,14 +1,18 @@
-package lotto;
+package lotto.handler;
 
-import static lotto.OutputMessage.DASH_LINE;
-import static lotto.OutputMessage.INPUT_BONUS_NUMBER_MESSAGE;
-import static lotto.OutputMessage.INPUT_PURCHASE_AMOUNT_MESSAGE;
-import static lotto.OutputMessage.INPUT_WINNING_NUMBERS_MESSAGE;
-import static lotto.OutputMessage.PURCHASE_QUANTITY_INFORMATION_MESSAGE;
-import static lotto.OutputMessage.TOTAL_PROFIT_RATE_MESSAGE_FORMAT;
-import static lotto.OutputMessage.WINNING_STATISTICS_HEADER;
+import static lotto.constants.OutputMessage.DASH_LINE;
+import static lotto.constants.OutputMessage.INPUT_BONUS_NUMBER_MESSAGE;
+import static lotto.constants.OutputMessage.INPUT_PURCHASE_AMOUNT_MESSAGE;
+import static lotto.constants.OutputMessage.INPUT_WINNING_NUMBERS_MESSAGE;
+import static lotto.constants.OutputMessage.PURCHASE_QUANTITY_INFORMATION_MESSAGE;
+import static lotto.constants.OutputMessage.TOTAL_PROFIT_RATE_MESSAGE_FORMAT;
+import static lotto.constants.OutputMessage.WINNING_STATISTICS_HEADER;
 
 import java.util.List;
+import lotto.domain.WinningPrize;
+import lotto.domain.Lotto;
+import lotto.domain.LottoTickets;
+import lotto.service.LottoWinningResult;
 
 public class OutputHandler {
     private OutputHandler() {

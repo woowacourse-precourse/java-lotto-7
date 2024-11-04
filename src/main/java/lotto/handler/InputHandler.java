@@ -1,9 +1,9 @@
-package lotto;
+package lotto.handler;
 
-import static lotto.ErrorMessage.INVALID_BONUS_NUMBER_FORMAT;
-import static lotto.ErrorMessage.INVALID_PURCHASE_AMOUNT_FORMAT;
-import static lotto.ErrorMessage.INVALID_WINNING_NUMBER_FORMAT;
-import static lotto.LottoConstants.LOTTO_NUMBER_DELIMITER;
+import static lotto.constants.ErrorMessage.INVALID_BONUS_NUMBER_FORMAT;
+import static lotto.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT_FORMAT;
+import static lotto.constants.ErrorMessage.INVALID_WINNING_NUMBER_FORMAT;
+import static lotto.constants.LottoConstants.LOTTO_NUMBER_DELIMITER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;

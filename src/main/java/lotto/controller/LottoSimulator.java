@@ -1,6 +1,15 @@
-package lotto;
+package lotto.controller;
 
 import java.util.function.Supplier;
+import lotto.handler.InputHandler;
+import lotto.domain.Lotto;
+import lotto.service.LottoShop;
+import lotto.domain.LottoTickets;
+import lotto.service.LottoWinningCalculator;
+import lotto.service.LottoWinningResult;
+import lotto.handler.OutputHandler;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningLotto;
 
 public class LottoSimulator {
     private final LottoShop lottoShop;

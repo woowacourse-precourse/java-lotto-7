@@ -1,7 +1,7 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.OutputMessage.MATCH_BONUS_MESSAGE_FORMAT;
-import static lotto.OutputMessage.MATCH_MESSAGE_FORMAT;
+import static lotto.constants.OutputMessage.MATCH_BONUS_MESSAGE_FORMAT;
+import static lotto.constants.OutputMessage.MATCH_MESSAGE_FORMAT;
 
 import java.util.Arrays;
 import java.util.Optional;
