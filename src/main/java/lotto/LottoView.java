@@ -41,7 +41,7 @@ public class LottoView {
         return bonusNumber;
     }
 
-    public void displayPurchaseLottos(List<Lotto> lottos) {
+    public void displayPurchasedLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
