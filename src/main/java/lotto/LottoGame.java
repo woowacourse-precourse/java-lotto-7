@@ -1,5 +1,7 @@
 package lotto;
 
+import static constant.Constant.*;
+
 import camp.nextstep.edu.missionutils.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,12 +10,6 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoGame {
-    private static final int MIN_LOTTO_PRICE = 1000;
-    private static final int MAX_LOTTO_PRICE = 100000;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int THIRD_AND_SECOND_PLACE_WINNING_NUMBER_MATCH_COUNT = 5;
-
     private int purchaseAmount;
     private int bonusNumber;
     private final List<List<Integer>> lottoNumbers = new ArrayList<>();
