@@ -11,7 +11,7 @@ import lotto.view.LottoOutputView;
 public class WoowaLottoControllerFactory {
     private static final LottoConfig CONFIG = LottoConfig.WOOWA_CONFIG;
 
-    public static LottoController create(){
+    public static LottoController create() {
         LottoInputView lottoInputView = new LottoInputView(new LottoInputValidator(), new LottoInputParser(CONFIG));
         LottoOutputView lottoOutputView = new LottoOutputView();
         RetryHandler retryHandler = new RetryHandler();
