@@ -24,7 +24,7 @@ public class FrontController {
     private void processWithExceptionHandling(LottoController lottoController, Model model) {
         try {
             lottoController.process(model);
-        } catch (RuntimeException exception) {
+        } catch (IllegalArgumentException exception) {
             handleException(lottoController, model, exception);
         }
     }

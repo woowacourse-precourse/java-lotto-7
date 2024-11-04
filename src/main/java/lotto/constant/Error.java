@@ -27,5 +27,4 @@ public class Error {
     public static final String RANGE_BONUS_NUMBER = String.format("%s 보너스 번호는 %d이상 %d이하만 가능합니다.", PREFIX, MIN_NUMBER, MAX_NUMBER);
 
     public static final String TYPE_MISMATCH_INTEGER = String.format("%s 반드시 정수만 입력 가능합니다.", PREFIX);
-    public static final String UNKNOWN = String.format("%s 예기치 못한 오류입니다.", PREFIX);
 }
