@@ -11,14 +11,6 @@ public class LottoManagementSystem {
 
     }
 
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
-
     public void setWinningNumbers(List<Integer> winningNumbers){
         this.winningNumbers = winningNumbers;
     }

@@ -16,6 +16,17 @@ public class LottoResult {
         rankCounts[rank - 1]++; // rank 1에 대해 index 0에 증가
     }
 
+    public long getTotalPrizeAmount() {
+        long totalPrize = 0;
+
+        for (int i = 0; i < rankCounts.length; i++) {
+            totalPrize += rankCounts[i] * (i < prizeAmounts.length ? prizeAmounts[i] : 0);
+        }
+
+        return totalPrize;
+    }
+
+
     public int[] getRankCounts() {
         return rankCounts;
     }

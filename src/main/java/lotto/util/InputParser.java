@@ -17,6 +17,8 @@ public class InputParser {
         for (String num : input) {
             numbers.add((Integer.parseInt(num)));
         }
+
+        Validation.validateWinningLength(numbers.size());
         return numbers;
     }
 }

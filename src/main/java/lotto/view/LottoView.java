@@ -39,6 +39,7 @@ public class LottoView {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
 
     public void printStat(LottoResult result){
@@ -55,7 +56,7 @@ public class LottoView {
     }
 
     public void printYield(float yield){
-        System.out.println("총 수익률은" + yield + "입니다.");
+        System.out.println("총 수익률은 " + yield + "% 입니다.");
     }
 
 }

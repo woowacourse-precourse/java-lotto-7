@@ -7,7 +7,7 @@ public class MyWallet {
 
     private int money;
     private final List<Lotto> lottos;
-    private final int winnings;
+    private long winnings;
 
 
     public MyWallet() {
@@ -24,12 +24,16 @@ public class MyWallet {
         return money;
     }
 
-    public int getWinnings() {
+    public long getWinnings() {
         return winnings;
     }
 
     public void saveMoney(int money){
         this.money = money;
+    }
+
+    public void saveWinnings(long winnings){
+        this.winnings = winnings;
     }
 
     public void buyLottos() {
