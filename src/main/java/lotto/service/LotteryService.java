@@ -18,7 +18,7 @@ public class LotteryService {
         this.lotteryValidator = new LotteryValidator();
     }
 
-    public void getPurchaseAmount() {
+    public void purchaseLotto() {
         outputView.printRequirePurchaseAmount();
 
         final String inputPurchaseAmount = Console.readLine();
