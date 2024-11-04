@@ -40,9 +40,8 @@ public class ResultCalculator {
             }
             if (matchCount == Rank.FIFTH.getMatchCount()) {
                 fifth++;
-                continue;
             }
-            // No action needed for none
+
         }
 
         return new Statistics(first, second, third, fourth, fifth, lottos.size() * LottoGenerator.LOTTO_PRICE);
