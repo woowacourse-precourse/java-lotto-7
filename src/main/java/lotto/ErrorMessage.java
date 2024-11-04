@@ -2,10 +2,10 @@ package lotto;
 
 public enum ErrorMessage {
     ERROR_PREFIX("[ERROR]"),
-    
+
     INVALID_AMOUNT("구입 금액은 %d원 단위여야 합니다."),
     POSITIVE_AMOUNT_REQUIRED("구입 금액은 양수여야 합니다."),
-    INTEGER_REQUIRED("구입 금액은 숫자여야 합니다."),
+    INTEGER_AMOUNT_REQUIRED("구입 금액은 숫자여야 합니다."),
 
     EMPTY_INPUT("입력값이 비어 있습니다. 값을 입력해 주세요."),
 

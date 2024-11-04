@@ -16,7 +16,7 @@ public class InputHandler {
             String input = Console.readLine();
 
             try {
-                validateNotEmpty(input);
+                validateNotEmptyInput(input);
                 return new PurchaseAmount(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -24,15 +24,15 @@ public class InputHandler {
         }
     }
 
-    private static void validateNotEmpty(String input) {
+    private static void validateNotEmptyInput(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException(lotto.ErrorMessage.EMPTY_INPUT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
         }
     }
 
     public static WinningLotto getWinningLotto() {
-        WinningLottoNumbers winningNumbers = getValidWinningNumbers();
-        lotto.BonusNumber bonusNumber = getValidBonusNumber(winningNumbers);
+        WinningNumbers winningNumbers = getValidWinningNumbers();
+        BonusNumber bonusNumber = getValidBonusNumber(winningNumbers);
 
         List<String> winningNumbersAsString = winningNumbers.getNumbers().stream()
                 .map(String::valueOf)
@@ -41,34 +41,33 @@ public class InputHandler {
         return new WinningLotto(winningNumbersAsString, List.of(String.valueOf(bonusNumber.getNumber())));
     }
 
-
-    private static WinningLottoNumbers getValidWinningNumbers() {
+    private static WinningNumbers getValidWinningNumbers() {
         System.out.println(WINNING_NUMBERS_PROMPT);
 
         while (true) {
             String input = Console.readLine();
             try {
-                validateNotEmpty(input);
+                validateNotEmptyInput(input);
                 List<String> numbers = Arrays.stream(input.split(","))
                         .map(String::trim)
                         .collect(Collectors.toList());
-                return new WinningLottoNumbers(numbers);
+                return new WinningNumbers(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + WINNING_NUMBERS_PROMPT);
             }
         }
     }
 
-    private static lotto.BonusNumber getValidBonusNumber(WinningLottoNumbers winningNumbers) {
+    private static BonusNumber getValidBonusNumber(WinningNumbers winningNumbers) {
         System.out.println(BONUS_NUMBER_PROMPT);
 
         while (true) {
             String input = Console.readLine().trim();
 
             try {
-                validateNotEmpty(input);
+                validateNotEmptyInput(input);
                 List<String> bonusNumber = List.of(input.split(","));
-                return new lotto.BonusNumber(bonusNumber, winningNumbers.getNumbers().stream()
+                return new BonusNumber(bonusNumber, winningNumbers.getNumbers().stream()
                         .map(String::valueOf)
                         .collect(Collectors.toList()));
             } catch (IllegalArgumentException e) {

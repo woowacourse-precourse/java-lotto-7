@@ -10,15 +10,15 @@ public class OutputHandler {
     private static final String TOTAL_PROFIT_RATE_MESSAGE = "\n총 수익률은 %,.1f%%입니다.%n";
 
 
-    public static void printLottos(List<lotto.Lotto> lottos) {
+    public static void printLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + PURCHASE_COUNT_MESSAGE);
 
-        for (lotto.Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             System.out.println(sortLotto(lotto));
         }
     }
 
-    public static List<Integer> sortLotto(lotto.Lotto lotto) {
+    public static List<Integer> sortLotto(Lotto lotto) {
         List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
         Collections.sort(sortedNumbers);
         return sortedNumbers;

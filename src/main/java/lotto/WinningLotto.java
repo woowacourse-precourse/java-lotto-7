@@ -3,19 +3,19 @@ package lotto;
 import java.util.List;
 
 public class WinningLotto {
-    private final WinningLottoNumbers winningNumbers;
-    private final lotto.BonusNumber bonusNumber;
+    private final WinningNumbers winningNumbers;
+    private final BonusNumber bonusNumber;
 
     public WinningLotto(List<String> winningNumbers, List<String> bonusNumbers) {
-        this.winningNumbers = new WinningLottoNumbers(winningNumbers);
-        this.bonusNumber = new lotto.BonusNumber(bonusNumbers, winningNumbers);
+        this.winningNumbers = new WinningNumbers(winningNumbers);
+        this.bonusNumber = new BonusNumber(bonusNumbers, winningNumbers);
     }
 
-    public WinningLottoNumbers getWinningNumbers() {
+    public WinningNumbers getWinningNumbers() {
         return winningNumbers;
     }
 
-    public lotto.BonusNumber getBonusNumber() {
+    public BonusNumber getBonusNumber() {
         return bonusNumber;
     }
 }

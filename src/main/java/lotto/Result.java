@@ -5,22 +5,22 @@ import java.util.List;
 import java.util.Map;
 
 public class Result {
-    private final Map<lotto.Rank, Integer> results = new HashMap<>();
+    private final Map<Rank, Integer> results = new HashMap<>();
 
     public Result() {
-        for (lotto.Rank rank : lotto.Rank.values()) {
+        for (Rank rank : Rank.values()) {
             results.put(rank, 0);
         }
     }
 
-    public void calculateResults(WinningLotto winningLotto, List<lotto.Lotto> lottos) {
+    public void calculateResults(WinningLotto winningLotto, List<Lotto> lottos) {
         List<Integer> winningNumbers = winningLotto.getWinningNumbers().getNumbers();
         int bonusNumber = winningLotto.getBonusNumber().getNumber();
 
-        for (lotto.Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             int matchCount = countMatches(lotto.getNumbers(), winningNumbers);
             boolean isBonusMatched = isBonusMatch(lotto.getNumbers(), bonusNumber);
-            lotto.Rank rank = Rank.findRank(matchCount, isBonusMatched);
+            Rank rank = Rank.findRank(matchCount, isBonusMatched);
 
             results.put(rank, results.get(rank) + 1);
         }
@@ -34,11 +34,11 @@ public class Result {
         return playerNumbers.contains(bonusNumber);
     }
 
-    public int getRankCount(lotto.Rank rank) {
+    public int getRankCount(Rank rank) {
         return results.get(rank);
     }
 
-    public double calculateProfitRate(lotto.PurchaseAmount purchaseAmount) {
+    public double calculateProfitRate(PurchaseAmount purchaseAmount) {
         int totalPrize = results.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();

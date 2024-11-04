@@ -12,22 +12,22 @@ public class PurchaseAmount {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(lotto.ErrorMessage.INTEGER_REQUIRED.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INTEGER_AMOUNT_REQUIRED.getMessage());
         }
     }
 
     private void validateAmount(int purchaseAmount) {
         if (purchaseAmount <= 0) {
-            throw new IllegalArgumentException(lotto.ErrorMessage.POSITIVE_AMOUNT_REQUIRED.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.POSITIVE_AMOUNT_REQUIRED.getMessage());
         }
         if (!isThousandUnit(purchaseAmount)) {
             throw new IllegalArgumentException(
-                    String.format(lotto.ErrorMessage.INVALID_AMOUNT.getMessage(), lotto.LottoRules.LOTTO_TICKET_PRICE));
+                    String.format(ErrorMessage.INVALID_AMOUNT.getMessage(), LottoRules.LOTTO_TICKET_PRICE));
         }
     }
 
     public boolean isThousandUnit(int purchaseAmount) {
-        return amount % 1000 == 0;
+        return purchaseAmount % 1000 == 0;
     }
 
     public int getAmount() {
