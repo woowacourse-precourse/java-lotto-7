@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constants.ConstraintConstants;
 import lotto.domain.Lotto;
 
 import lotto.enums.Prize;
@@ -26,5 +27,10 @@ public class OutputService {
         for (Prize prize : winnerResult.keySet()) {
             System.out.println(prize.getPrizeInfo() + winnerResult.get(prize) + COUNT_SUFFIX);
         }
+    }
+
+    public void showProfitRate(long profit, int purchaseAmount) {
+        double profitRate = ConverterService.convertProfitToRate(profit, purchaseAmount * ConstraintConstants.PURCHASE_UNIT);
+        System.out.println(RATE_OF_RETURN_PREFIX + profitRate + RATE_OF_RETURN_SUFFIX);
     }
 }
