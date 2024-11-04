@@ -1,9 +1,9 @@
 package lotto.util;
 
 import lotto.constants.LottoConstantNumbers;
-import lotto.exception.InvalidPurchaseAmountException;
-import lotto.exception.MaxPurchaseExceedException;
-import lotto.exception.NotDivisibleByLottoPriceException;
+import lotto.exception.purchaseamountexception.InvalidPurchaseAmountException;
+import lotto.exception.purchaseamountexception.MaxPurchaseExceedException;
+import lotto.exception.purchaseamountexception.NotDivisibleByLottoPriceException;
 
 public class PurchaseAmountValidator {
 
