@@ -5,12 +5,12 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.lottoticketexception.DuplicateException;
 import lotto.exception.lottoticketexception.LottoNumberSizeException;
-import lotto.exception.numberexception.InvalidNumberException;
 import lotto.exception.numberexception.OutOfRangeNumberException;
 import lotto.exception.purchaseamountexception.InvalidPurchaseAmountException;
 import lotto.exception.purchaseamountexception.MaxPurchaseExceedException;
 import lotto.exception.purchaseamountexception.NegativePurchaseAmountException;
 import lotto.exception.purchaseamountexception.NotDivisibleByLottoPriceException;
+import lotto.util.DuplicateValidator;
 import lotto.util.PurchaseAmountValidator;
 import lotto.util.WinningNumberSeparator;
 
@@ -19,12 +19,14 @@ public class InputView {
 	private final OutputView outputView;
 	private final PurchaseAmountValidator purchaseAmountValidator;
 	private final WinningNumberSeparator winningNumberSeparator;
+	private final DuplicateValidator duplicateValidator;
 
 	public InputView(OutputView outputView, PurchaseAmountValidator purchaseAmountValidator,
-		WinningNumberSeparator winningNumberSeparator) {
+		WinningNumberSeparator winningNumberSeparator, DuplicateValidator duplicateValidator) {
 		this.outputView = outputView;
 		this.purchaseAmountValidator = purchaseAmountValidator;
 		this.winningNumberSeparator = winningNumberSeparator;
+		this.duplicateValidator = duplicateValidator;
 	}
 
 	public String readLine() {
@@ -54,9 +56,11 @@ public class InputView {
 		while (true) {
 			outputView.printToGetWinningNumbers();
 			String input = readLine();
-
+			List<Integer> numbers = winningNumberSeparator.splitByComma(input);
 			try {
-				return winningNumberSeparator.splitByComma(input);
+				return duplicateValidator.validateNoDuplicates(numbers);
+			} catch (NumberFormatException e) {
+				outputView.printOutOfRangeNumberMessage();
 			} catch (LottoNumberSizeException e) {
 				outputView.printInvalidLottoNumberSizeMessage();
 			} catch (OutOfRangeNumberException e) {
@@ -67,14 +71,16 @@ public class InputView {
 		}
 	}
 
-	public int getBonusNumber() {
+	public int getBonusNumber(List<Integer> winningNumbers) {
 		while (true) {
 			outputView.printToGetBonusNumbers();
 			String input = readLine();
 
 			try {
-				return Integer.parseInt(input);
-			} catch (InvalidNumberException e) {
+				int bonusNumber = Integer.parseInt(input);
+				duplicateValidator.validateNoOverlapWithWinningNumbers(bonusNumber, winningNumbers);
+				return bonusNumber;
+			} catch (NumberFormatException e) {
 				outputView.printOutOfRangeNumberMessage();
 			} catch (OutOfRangeNumberException e) {
 				outputView.printOutOfRangeNumberMessage();
