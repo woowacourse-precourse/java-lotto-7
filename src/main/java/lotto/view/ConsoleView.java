@@ -3,6 +3,7 @@ import lotto.dto.LottoResponse;
 import lotto.dto.PrizeResponse;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ConsoleView {
     private final InputView inputView;
@@ -53,5 +54,15 @@ public class ConsoleView {
 
     public void printProfitRate(double profitRate) {
         outputView.printProfitRate(profitRate);
+    }
+
+    private <T> T readInput(Runnable prompt, Supplier<T> inputSupplier) {
+        try {
+            prompt.run();
+            return inputSupplier.get();
+        } catch (IllegalArgumentException exception) {
+            outputView.printException(exception);
+            return readInput(prompt, inputSupplier);
+        }
     }
 }
