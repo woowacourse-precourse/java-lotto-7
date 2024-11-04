@@ -1,0 +1,59 @@
+package lotto.view;
+
+import lotto.model.Lotto;
+import lotto.model.LottoResult;
+import lotto.model.WinningRank;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
+
+public class OutputView {
+    // 구매한 로또 출력 메소드
+    public void purchaseTickets(List<Lotto> tickets) {
+        System.out.println(tickets.size() + "개를 구매했습니다.");
+        for (Lotto ticket : tickets) {
+            System.out.println(ticket.getNumbers());
+        }
+        System.out.println();
+    }
+
+    // 당첨 결과 출력 메소드
+    public void printResult(LottoResult result, int amount) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        printWinningRanks(result);
+        printTotalProfitRate(result, amount);
+    }
+
+    // 당첨 순위별 결과 출력 메소드
+    private void printWinningRanks(LottoResult result) {
+        for (WinningRank rank : WinningRank.values()) {
+            int count = result.getResults().getOrDefault(rank, 0);
+            String matchMessage = formatMatchMessage(rank);
+            System.out.println(matchMessage + " (" + formatPrize(rank.getPrize()) + "원) - " + count + "개");
+        }
+    }
+
+    // 수익률 계산 및 출력 메소드
+    private void printTotalProfitRate(LottoResult result, int amount) {
+        long totalPrize = result.totalPrize();
+        double rate = (double) totalPrize / amount;
+
+        // 수익률을 소수점 둘째 자리까지 반올림하여 출력
+        DecimalFormat df = new DecimalFormat("###,###.0");
+        System.out.println("총 수익률은 " + df.format(rate * 100) + "%입니다.");
+    }
+
+    private String formatMatchMessage(WinningRank rank) {
+        if (rank == WinningRank.SECOND) {
+            return "5개 일치, 보너스 볼 일치";
+        }
+        return rank.getMatchCount() + "개 일치";
+    }
+
+    private String formatPrize(int prize) {
+        return NumberFormat.getNumberInstance(Locale.KOREA).format(prize);
+    }
+}
