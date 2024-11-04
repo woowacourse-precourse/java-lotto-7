@@ -14,7 +14,7 @@ public class WinningController {
     private final InputWinningNumberView inputWinningNumberView;
     private final OutputwinningResultView outputwinningResultView;
     private CheckingWinningService checkingWinningService;
-    private WinningNumber winningNumber;
+    private WinningNumbers winningNumber;
     private WinningStatistics winningStatistics;
 
     public WinningController() {
@@ -23,7 +23,7 @@ public class WinningController {
         this.outputwinningResultView = new OutputwinningResultView();
 
         checkingWinningService = new CheckingWinningService();
-        winningNumber = new WinningNumber();
+        winningNumber = new WinningNumbers();
         winningStatistics = new WinningStatistics(checkingWinningService);
     }
 
