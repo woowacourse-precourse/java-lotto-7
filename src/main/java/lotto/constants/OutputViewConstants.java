@@ -8,7 +8,8 @@ public class OutputViewConstants {
     public static final String SECOND_PRIZE = "5개 일치, 보너스 볼 일치 (30,000,000원) -";
     public static final String FIRST_PRIZE = "6개 일치 (6개 일치 (2,000,000,000원) -";
     public static final String STATISTIC_DESCRIPTION_PREFIX = "당첨 통계";
-    public static final String STATISTIC_DESCRIPTION_SUFFIX = "---";
+    public static final String STATISTIC_DESCRIPTION_DIVISION_LINE = "---";
+    public static final String COUNT_SUFFIX = "개";
     public static final String RATE_OF_RETURN_PREFIX = "총 수익률은 ";
     public static final String RATE_OF_RETURN_SUFFIX = "%입니다.";
 }
