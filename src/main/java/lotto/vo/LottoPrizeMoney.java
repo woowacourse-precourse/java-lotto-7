@@ -2,9 +2,8 @@ package lotto.vo;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Optional;
 
-public enum LottoResult {
+public enum LottoPrizeMoney {
     NOT_MATCHES(0, 0, 0),
     THREE_MATCHES(3, 5_000),
     FOUR_MATCHES(4, 50_000),
@@ -16,15 +15,15 @@ public enum LottoResult {
     private int prizeMoney;
     private int bonusCount;
 
-    private final static List<LottoResult> resultGroup;
+    private final static List<LottoPrizeMoney> resultGroup;
     private final static DecimalFormat decimalFormat;
 
-    LottoResult(int matchingCount, int prizeMoney) {
+    LottoPrizeMoney(int matchingCount, int prizeMoney) {
         this.matchingCount = matchingCount;
         this.prizeMoney = prizeMoney;
     }
 
-    LottoResult(int matchingCount, int bonusCount, int prizeMoney) {
+    LottoPrizeMoney(int matchingCount, int bonusCount, int prizeMoney) {
         this.bonusCount = bonusCount;
         this.matchingCount = matchingCount;
         this.prizeMoney = prizeMoney;
@@ -35,7 +34,7 @@ public enum LottoResult {
         decimalFormat = new DecimalFormat("#,###");
     }
 
-    public static LottoResult findByHitCount(long hitCount, long bonusCount) {
+    public static LottoPrizeMoney findByHitCount(long hitCount, long bonusCount) {
         if (hitCount == 5 && bonusCount == 1) {
             return FIVE_AND_BONUS_MATCHES;
         }
