@@ -21,4 +21,8 @@ public class OutputView {
         }
     }
 
+    public static void printWinningComment() {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+    }
 }

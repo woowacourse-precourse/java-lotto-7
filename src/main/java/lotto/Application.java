@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.controller.InputController;
 import lotto.model.LottoMachine;
+import lotto.model.LottoMatcher;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,6 +19,7 @@ public class Application {
         int inputBonusNumber = InputView.inputBonusNumber();
         int bonusNumber = InputController.validateBonusNumber(inputBonusNumber);
 
-
+        OutputView.printWinningComment();
+        LottoMatcher.matchingLotto(lottoLists, winningNumbers, bonusNumber);
     }
 }
