@@ -15,7 +15,7 @@ class YieldCalculatorTest {
         myWallet.saveMoney(10000);
         myWallet.saveWinnings(5000);
 
-        float yield = YieldCalculator.calculateYield(myWallet);
+        double yield = YieldCalculator.calculateYield(myWallet);
 
         assertThat(yield).isEqualTo(50.0f);
     }
@@ -27,7 +27,7 @@ class YieldCalculatorTest {
         myWallet.saveMoney(10000);
         myWallet.saveWinnings(0);
 
-        float yield = YieldCalculator.calculateYield(myWallet);
+        double yield = YieldCalculator.calculateYield(myWallet);
 
         assertThat(yield).isEqualTo(0.0f);
     }
