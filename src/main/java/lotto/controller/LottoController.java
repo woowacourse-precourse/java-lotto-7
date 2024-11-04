@@ -68,10 +68,7 @@ public class LottoController {
                 () -> {
                     Lotto winningLotto = generateWinningLottoFromInput();
                     LottoNumber bonusNumber = generateBonusNumberFromInput();
-                    return WinningLotto.of(
-                            winningLotto,
-                            bonusNumber
-                    );
+                    return WinningLotto.of(winningLotto, bonusNumber);
                 },
                 outputView::printError
         );
