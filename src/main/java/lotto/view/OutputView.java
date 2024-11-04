@@ -10,10 +10,11 @@ import lotto.domain.PublishLotto;
 
 public class OutputView {
 
-    private static final String WINNING_STAT_MESSAGE = "당첨 통계\n---\n";
+    private static final String WINNING_STAT_MESSAGE = "\n당첨 통계\n---\n";
+    private static final String DECIMAL_FORMAT_PATTER = "#,##0.0";
 
     public void printPublishCountMessage(int publishCount) {
-        System.out.printf("%d개를 구매했습니다.", publishCount);
+        System.out.printf("\n%d개를 구매했습니다.\n", publishCount);
     }
 
     public void printPublishLottos(List<PublishLotto> publishLottoList) {
@@ -44,8 +45,7 @@ public class OutputView {
     }
 
     private String Profitformat(BigDecimal profit) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.0");
-        String formattedProfit = decimalFormat.format(profit);
-        return formattedProfit;
+        DecimalFormat df = new DecimalFormat(DECIMAL_FORMAT_PATTER);
+        return df.format(profit);
     }
 }

@@ -5,12 +5,14 @@ import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.PublishCount;
+import lotto.service.LottoResultService;
 import lotto.service.PublishLottoService;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.DefaultDuplicateValidator;
 import lotto.validator.DefaultRangeValidator;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -28,10 +30,10 @@ public class LottoControllerTest {
     @BeforeEach
     void setUp() {
         lottoController = new LottoController(
-            new PublishLottoService(PublishCount.getInstance(0), new LottoValidator(new DefaultRangeValidator(), new DefaultDuplicateValidator())),
+            new LottoResultService(),
             new LottoValidator(new DefaultRangeValidator(), new DefaultDuplicateValidator()),
             new BonusNumberValidator(new DefaultRangeValidator()),
-            new InputView()
+            new InputView(), new OutputView()
         );
     }
 

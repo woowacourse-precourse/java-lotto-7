@@ -1,8 +1,8 @@
 package lotto.service;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import lotto.domain.Prize;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -11,12 +11,14 @@ import lotto.domain.PublishLotto;
 public class LottoResultService {
 
     public Map<Prize, Integer> calculatePrize(Lotto winningLotto, BonusNumber bonusNumber,
-        Set<PublishLotto> publishLottos) {
+        List<PublishLotto> publishLottos) {
         Map<Prize, Integer> prizeCounts = initializePrizeCounts();
 
         for (PublishLotto publishLotto : publishLottos) {
             Prize prize = getPrizeForLotto(winningLotto, bonusNumber, publishLotto);
-            prizeCounts.put(prize, prizeCounts.get(prize) + 1);
+            if (prize != null) {
+                prizeCounts.put(prize, prizeCounts.get(prize) + 1);
+            }
         }
 
         return prizeCounts;

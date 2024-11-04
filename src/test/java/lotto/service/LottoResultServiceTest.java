@@ -2,6 +2,7 @@ package lotto.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class LottoResultServiceTest {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6), lottoValidator);
         BonusNumber bonusLotto = BonusNumber.getInstance(7, winningLotto, bonusNumberValidator);
 
-        Set<PublishLotto> publishLottoList = new HashSet<>();
+        List<PublishLotto> publishLottoList = new ArrayList<>();
         publishLottoList.add(new PublishLotto(List.of(1, 2, 3, 8, 9, 10), lottoValidator));
         publishLottoList.add(new PublishLotto(List.of(4, 5, 6, 11, 12, 13), lottoValidator));
         publishLottoList.add(new PublishLotto(List.of(1, 2, 3, 4, 5, 6), lottoValidator));

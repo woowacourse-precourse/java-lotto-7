@@ -4,44 +4,56 @@ import static lotto.constant.ErrorCode.CONTIGIOUS_COMMA;
 import static lotto.constant.ErrorCode.INVALID_INPUT_FORMAT;
 import static lotto.constant.ErrorCode.INVALID_PURCHASE_AMOUNT;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 import lotto.domain.PublishCount;
 import lotto.repository.PublishLottoRepository;
+import lotto.service.LottoResultService;
+import lotto.service.ProfitCalculate;
 import lotto.service.PublishLottoService;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
     private static final int TICKET_PRICE = 1000;
     private static final String COMMAS = ",,";
 
-    private final PublishLottoService publishLottoService;
+    private PublishLottoService publishLottoService;
+    private final LottoResultService lottoResultService;
     private final LottoValidator lottoValidator;
     private final BonusNumberValidator bonusNumberValidator;
     private final InputView inputView;
+    private final OutputView outputView;
 
     private PublishCount publishCount;
     private Lotto lotto;
     private BonusNumber bonusNumber;
     private PublishLottoRepository publishLottoRepository;
 
-    public LottoController(PublishLottoService publishLottoService, LottoValidator lottoValidator, BonusNumberValidator bonusNumberValidator,
-        InputView inputView) {
-        this.publishLottoService = publishLottoService;
+    public LottoController(
+        LottoResultService lottoResultService, LottoValidator lottoValidator,
+        BonusNumberValidator bonusNumberValidator,
+        InputView inputView, OutputView outputView) {
+        this.lottoResultService = lottoResultService;
         this.lottoValidator = lottoValidator;
         this.bonusNumberValidator = bonusNumberValidator;
         this.inputView = inputView;
+        this.outputView = outputView;
         publishLottoRepository = PublishLottoRepository.getInstance();
     }
 
     public void setUp() {
         publishCountSetUp();
+        publishLottoSetup();
         lottoSetUp();
         bonusNumberSetUp();
     }
@@ -50,6 +62,13 @@ public class LottoController {
         int purchasePrice = getPurchasePrice();
         validatePurchaseAmount(purchasePrice);
         publishCount = createPublishCount(purchasePrice);
+        outputView.printPublishCountMessage(publishCount.getPublishCount());
+    }
+
+    public void publishLottoSetup() {
+        publishLottoService = new PublishLottoService(publishCount, lottoValidator);
+        publishLottoService.publishLotto();
+        outputView.printPublishLottos(publishLottoRepository.findAll());
     }
 
     public void lottoSetUp() {
@@ -61,8 +80,13 @@ public class LottoController {
         bonusNumber = createBonusNumber(parsedBonusNumber);
     }
 
-    public void publishLottoSetup() {
-        publishLottoService.publishLotto();
+    public void run() {
+        Map<Prize, Integer> winningCounts = lottoResultService.calculatePrize(lotto, bonusNumber,
+            publishLottoRepository.findAll());
+        outputView.printWinningStatMessage(winningCounts);
+        BigDecimal profit = ProfitCalculate.calculateProfit(
+            publishCount.getPublishCount() * TICKET_PRICE, winningCounts);
+        outputView.printProfit(profit);
     }
 
     public void validatePurchaseAmount(final int purchaseAmount) {
@@ -72,7 +96,7 @@ public class LottoController {
     }
 
     private BonusNumber createBonusNumber(int parsedBonusNumber) {
-        return  BonusNumber.getInstance(parsedBonusNumber, lotto, bonusNumberValidator);
+        return BonusNumber.getInstance(parsedBonusNumber, lotto, bonusNumberValidator);
     }
 
     private int getParsedBonusNumber() {
