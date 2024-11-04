@@ -1,5 +1,8 @@
 package lotto.view;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OutputView {
 
     public static void printInitialMessage() {
@@ -8,6 +11,15 @@ public class OutputView {
 
     public static void printBuyingLotto(int lottoAmount) {
         System.out.println(lottoAmount + "개를 구매했습니다.");
+    }
+
+
+    public static void printLottoNumbers(List<Integer> lottoNumbers) {
+        System.out.println(
+            lottoNumbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ","[","]"))
+        );
     }
 
     public static void printAskingNumbersMessage() {
