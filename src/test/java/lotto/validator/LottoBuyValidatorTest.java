@@ -16,7 +16,7 @@ class LottoBuyValidatorTest {
     }
 
     @Test
-    @DisplayName("validateMoneyAmount는 로또 가격으로 나눠지지 않는 금액이 들어올 경우, IllegalArgumentException을 던진다.")
+    @DisplayName("validateMoneyAmount는 양수가 아닌 금액이 들어올 경우, IllegalArgumentException을 던진다.")
     void validateMoneyAmount_WithNonPositive_ThrowIllegalArgumentException() {
         // given
         int nonPositive = 0;
