@@ -13,10 +13,9 @@ public class LottoMachine {
 
     public void run() {
         PurchaseAmount purchaseAmount = InputView.readPurchaseAmount();
-        System.out.println();
-
         purchaseLottos(purchaseAmount);
-        System.out.println();
+
+        WinningNumbers winningNumbers = InputView.readWinningNumbers();
     }
 
     private void purchaseLottos(final PurchaseAmount purchaseAmount) {
