@@ -9,7 +9,7 @@ import lotto.exception.InvalidLottoNumbersDuplicateException;
 import lotto.exception.InvalidLottoNumbersSizeException;
 
 public class Lotto {
-    private static final int LOTTO_NUMBERS_SIZE = 6;
+    private static final Integer LOTTO_NUMBERS_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -41,9 +41,9 @@ public class Lotto {
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        Set<Integer> numbersSet = new HashSet<>(numbers);
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
-        if (numbersSet.size() != numbers.size()) {
+        if (uniqueNumbers.size() != numbers.size()) {
             throw new InvalidLottoNumbersDuplicateException();
         }
     }
