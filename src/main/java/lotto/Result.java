@@ -10,7 +10,7 @@ public class Result {
     private final Map<String, Integer> hitResult;
 
     public Result(Lotto winningLotto, int bonusNumber, List<Lotto> userTickets) {
-        this.hitResult = createResult(winningLotto, bonusNumber, userTickets);;
+        this.hitResult = createResult(winningLotto, bonusNumber, userTickets);
     }
 
     private Map<String, Integer> createResult(Lotto winningLotto, int bonusNumber, List<Lotto> userTickets) {

@@ -30,7 +30,7 @@ public class ResultTest {
     }
 
     @Test
-    void 사용자_복궈번호와_당첨번호를_비교해서_결과를_생성한다() {
+    void 사용자_복권번호와_당첨번호를_비교해서_결과를_생성한다() {
         Map<String, Integer> hitResult = new Result(winningLotto, bonus, userTickets).getHitResult();
 
         assertThat(Arrays.stream(Ranking.values()).allMatch(rank -> hitResult.get(rank.name()) == 1))
