@@ -36,10 +36,10 @@ class LottoTest {
                 .allMatch(num -> 1 <= num && num <= 45);
         assertTrue(isWithinRange);
 
-        assertEquals(lottoNumbers.size(), 6);
+        assertEquals(6, lottoNumbers.size());
 
         Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
-        assertEquals(uniqueNumbers.size(), 6);
+        assertEquals(6, uniqueNumbers.size());
     }
 
     @Test

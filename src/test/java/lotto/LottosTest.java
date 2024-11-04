@@ -27,7 +27,7 @@ class LottosTest {
         WinningStatisticsDto actualWinningStatisticsDto
                 = testLottos.calculateWinningResults(testWinningLotto);
         //then
-        assertTrue(expectedWinningStatisticsDto.getWinningStatistics().entrySet()
-                .equals(actualWinningStatisticsDto.getWinningStatistics().entrySet()));
+        assertTrue(actualWinningStatisticsDto.getWinningStatistics().entrySet()
+                .equals(expectedWinningStatisticsDto.getWinningStatistics().entrySet()));
     }
 }
