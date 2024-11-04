@@ -17,7 +17,7 @@ public class LottoGenerator {
         return Randoms.pickNumberInRange(START_NUM, END_NUM);
     }
 
-    private LottoGenerator() {
+    public LottoGenerator() {
 
     }
 
