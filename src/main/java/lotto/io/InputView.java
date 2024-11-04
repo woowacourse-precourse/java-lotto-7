@@ -1,5 +1,6 @@
 package lotto.io;
 
+import lotto.domain.PurchaseAmount;
 import lotto.error.ErrorCode;
 
 public class InputView {
@@ -16,16 +17,9 @@ public class InputView {
     }
 
     private String readLine() {
-        String input;
-        while(true){
-            try{
-                input = reader.readLine();
-                validate(input);
-                break;
-            } catch (IllegalArgumentException ex){
-                printReInput(ex);
-            }
-        }
+        String input = reader.readLine();
+        validate(input);
+
         return input;
     }
 
@@ -40,8 +34,15 @@ public class InputView {
         }
     }
 
-    public String inputPurchaseAmount(){
+    public PurchaseAmount inputPurchaseAmount(){
         System.out.println("구입금액을 입력해 주세요.");
-        return readLine();
+        while(true){
+            try{
+                String inputPurchaseAmount = readLine();
+                return new PurchaseAmount(inputPurchaseAmount);
+            } catch (IllegalArgumentException ex){
+                printReInput(ex);
+            }
+        }
     }
 }
