@@ -18,13 +18,18 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        sort(this.numbers);
+        return numbers;
+    }
+
     @Override
     public String toString() {
-        sort();
+        sort(this.numbers);
         return numbers.toString();
     }
 
-    private void sort() {
-        this.numbers.sort(Comparator.naturalOrder());
+    private void sort(List<Integer> numbers) {
+        numbers.sort(Comparator.naturalOrder());
     }
 }

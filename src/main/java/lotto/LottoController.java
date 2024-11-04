@@ -1,7 +1,7 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,11 +23,34 @@ public class LottoController {
         outputView.printLottos(lottos);
 
         outputView.printInputWinningNumberMessage();
-        String winningNumbers = inputView.inputWinningNumber();
-        Lotto winningLotto = lottoService.parseWinningNumber(winningNumbers);
+        String winningNumbersInput = inputView.inputWinningNumber();
+        Lotto winningLotto = lottoService.parseWinningNumber(winningNumbersInput);
 
         outputView.printInputBonusNumberMessage();
         String inputBonusNumber = inputView.inputBonusNumber();
         Integer bonusNumber = lottoService.parseBonusNumber(inputBonusNumber);
+
+        Integer price = 0;
+
+        for (Lotto lotto : lottos) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            List<Integer> winningNumbers = winningLotto.getNumbers();
+
+            List<Integer> matchNumbers = lottoNumbers.stream().filter(o -> winningNumbers.stream()
+                    .anyMatch(Predicate.isEqual(o))).toList();
+
+            if (matchNumbers.size() == 6) {
+                price += 2000000000;
+            }
+            if (matchNumbers.size() == 5) {
+                price += 1500000;
+            }
+            if (matchNumbers.size() == 4) {
+                price += 50000;
+            }
+            if (matchNumbers.size() == 3) {
+                price += 5000;
+            }
+        }
     }
 }
