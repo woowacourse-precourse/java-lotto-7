@@ -26,12 +26,14 @@ public class LottoController {
 
     public void buyLotto() {
 
-        NumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-        lottoPublisher = new LottoPublisher(lottoNumberGenerator);
+        Payment payment = getPayment();
+        long lottoCount = printLottoCount(payment);
+        List<Lotto> lottos = publishLotto(lottoCount);
 
-        long payment = getPayment();
-        long lottoCount = calcLottoCount(payment);
-        System.out.println("\n" + lottoCount + "개를 구매했습니다.");
+        DrawNumbers drawNumbers = getDrawNumbers();
+        lottoChecker = new LottoChecker(drawNumbers);
+        printResult(lottos, lottoCount);
+    }
 
         List<Lotto> lottos = lottoPublisher.publishLotto(lottoCount);
         outputView.printLottos(lottos);
@@ -47,8 +49,8 @@ public class LottoController {
         return payment / Lotto.PRICE;
     }
 
-    private long getPayment() {
-        long payment = 0;
+    private Payment getPayment() {
+        Payment payment = null;
         boolean isInvalidInput = true;
         while (isInvalidInput) {
             try {

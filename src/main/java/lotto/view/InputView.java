@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.view.InputViewMessage;
+import lotto.model.Payment;
 import lotto.model.draw_numbers.builder.DrawNumbersBuilder;
 import lotto.utils.PaymentValidator;
 
@@ -9,11 +10,9 @@ public class InputView {
 
     private final PaymentValidator paymentValidator = new PaymentValidator();
 
-    public long getPayment() {
+    public Payment getPayment() {
         System.out.println(InputViewMessage.ENTER_PAYMENT);
-        String payment = readLine();
-        paymentValidator.validate(payment);
-        return Long.parseLong(payment);
+        return new Payment(readLine());
     }
 
     public DrawNumbersBuilder getWinningNumbers(DrawNumbersBuilder builder) {
