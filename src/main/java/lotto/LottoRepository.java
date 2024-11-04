@@ -28,12 +28,16 @@ public class LottoRepository {
 
     //로또 구입 메서드 구현
     private int getPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요");
-        int amount = Integer.parseInt(Console.readLine());
-        if (amount % lotto_Price == 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+        System.out.println("구입금액을 입력해 주세요.");
+        try {
+            int amount = Integer.parseInt(Console.readLine());
+            if (amount % lotto_Price != 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+            }
+            return amount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자 형식으로 입력해 주세요.");
         }
-        return amount;
     }
 
     //로또 구입 갯수 메서드 구현
