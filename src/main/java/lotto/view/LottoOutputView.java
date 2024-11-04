@@ -4,10 +4,13 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
 public class LottoOutputView {
+    private static final DecimalFormat formatter = new DecimalFormat("#,###");
+
     public void printTickets(List<Lotto> tickets) {
         System.out.println();
         System.out.println(tickets.size() + "개를 구매했습니다.");
@@ -39,7 +42,8 @@ public class LottoOutputView {
             String rankOutput = (rank == LottoRank.SECOND)
                     ? "5개 일치, 보너스 볼 일치"
                     : rank.getMatchCount() + "개 일치";
-            System.out.println(rankOutput + " (" + rank.getPrize() + "원) - " + results.getOrDefault(rank, 0) + "개");
+            String prizeWithComma = formatter.format(rank.getPrize());
+            System.out.println(rankOutput + " (" + prizeWithComma + "원) - " + results.getOrDefault(rank, 0) + "개");
         }
     }
 }
