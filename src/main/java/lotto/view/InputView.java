@@ -19,6 +19,7 @@ public class InputView {
     }
 
     public int printGetBonusNumber() {
+        System.out.println();
         System.out.println(PRINT_BONUS_NUMBER);
         return Integer.parseInt(Console.readLine());
     }

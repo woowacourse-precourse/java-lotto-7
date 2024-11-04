@@ -17,13 +17,16 @@ public class OutputView {
     private static final String PRINT_WINNING_LOTTO_COUNT = "개";
     private static final String PRINT_PERCENT = "%입니다.";
     public void printLottoCount(int price) {
+        System.out.println();
         System.out.println(price / 1000 + PRINT_LOTTO_COUNT);
+
     }
 
     public void printUserLottoNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
 
     public void printResultStatistics(UserLotto userLotto) {

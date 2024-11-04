@@ -9,6 +9,7 @@ public class LottoController {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private UserLotto userLotto;
+    private WinningLotto winningLotto;
 
     public void run() {
         int price = inputView.printGetPurchasePrice();
@@ -16,5 +17,10 @@ public class LottoController {
         outputView.printLottoCount(price);
 
         outputView.printUserLottoNumbers(userLotto.generateLotto());
+        String winningLottoNumber = inputView.printGetWinningLottoNumber();
+        int bonusNumber = inputView.printGetBonusNumber();
+
+        winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
+
     }
 }
