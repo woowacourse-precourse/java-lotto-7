@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Lotto {
 
-    private static final int NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
@@ -34,14 +33,14 @@ public class Lotto {
     }
 
     private void validateNumberCount(List<Integer> numbers) {
-        if (numbers.size() != NUMBER_COUNT) {
+        if (LottoNumber.isNotEqualCount(numbers.size())) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 0 || number > 45) {
+            if (LottoNumber.isNotRange(number)) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
