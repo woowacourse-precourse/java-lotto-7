@@ -50,7 +50,7 @@ public final class OutputFormatter {
         );
     }
 
-    public static String formatProfitRate(double profitRate) {
+    public static String formatProfitRate(Double profitRate) {
         return String.format(PROFIT_RATE_FORMAT, profitRate);
     }
 }
