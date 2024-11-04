@@ -1,6 +1,5 @@
 package lotto.service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,29 +21,30 @@ public class Validator {
         }
     }
 
-    public List<Integer> validateAndParseWinningNumbers(String input) {
-        String[] numbers = input.split(",");
-        if (numbers.length != LOTTO_NUMBERS_COUNT) {
+    public void validateWinningNumbers(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_COUNT.format(LOTTO_NUMBERS_COUNT));
         }
-        Set<Integer> numberSet = new HashSet<>();
-        for (String numStr : numbers) {
-            try {
-                int num = Integer.parseInt(numStr.trim());
-                if (num < LOTTO_NUMBER_MIN || num > LOTTO_NUMBER_MAX) {
-                    throw new IllegalArgumentException(
-                        ErrorMessage.NUMBER_RANGE.format(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX));
-                }
-                numberSet.add(num);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT.getMessage());
-            }
-        }
+        Set<Integer> numberSet = new HashSet<>(winningNumbers);
         if (numberSet.size() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.getMessage());
         }
-        return new ArrayList<>(numberSet);
+        for (int num : winningNumbers) {
+            validateLottoNumberRange(num);
+        }
     }
 
-    public
+    public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        validateLottoNumberRange(bonusNumber);
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE.getMessage());
+        }
+    }
+
+    private void validateLottoNumberRange(int number) {
+        if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
+            throw new IllegalArgumentException(
+                ErrorMessage.NUMBER_RANGE.format(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX));
+        }
+    }
 }
