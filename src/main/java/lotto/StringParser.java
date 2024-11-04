@@ -9,7 +9,8 @@ public class StringParser {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+
         }
     }
 

@@ -22,30 +22,43 @@ public class View {
     private StringParser stringParser = new StringParser();
 
     public int printAndgetPurchaseAmount() {
-
-        System.out.println(PURCHASE_AMOUNT_PROMPT);
-
-        int purchaseAmount = stringParser.convertStringToInt(Console.readLine());
-        validatePurchaseAmount(purchaseAmount);
-
-        return purchaseAmount;
-
+        while(true){
+            System.out.println(PURCHASE_AMOUNT_PROMPT);
+            try {
+                int purchaseAmount = stringParser.convertStringToInt(Console.readLine());
+                validatePurchaseAmount(purchaseAmount);
+                return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Integer> getLottoNumber() {
+        while(true){
+            System.out.println(WINNING_NUMBERS_PROMPT);
 
-        System.out.println(WINNING_NUMBERS_PROMPT);
-        List<Integer> numbers = stringParser.convertStringToIntegerList(Console.readLine());
-        System.out.println();
-        return numbers;
+            try{
+                List<Integer> numbers = stringParser.convertStringToIntegerList(Console.readLine());
+                return numbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
     }
 
     public int getBonusNumber() {
         System.out.println(BONUS_NUMBER_PROMPT);
-        int bonusNumber = stringParser.convertStringToInt(Console.readLine());
-        System.out.println();
-        return bonusNumber;
+        while(true){
+            try{
+                int bonusNumber = stringParser.convertStringToInt(Console.readLine());
+                System.out.println();
+                return bonusNumber;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void printNumberOfLotto(int numberOfLotto) {
