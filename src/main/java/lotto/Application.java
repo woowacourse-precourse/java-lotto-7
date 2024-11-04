@@ -10,7 +10,7 @@ public class Application {
         lottoView.lottoWinningNumbersInput();
         lottoView.lottoBonusInput();
 
-        lottoController.checkWinningNumbers();
+        lottoController.checkWinning();
         lottoView.printLottoRanksInfo();
 
         lottoView.printLottoPrizeInfo();

@@ -72,20 +72,31 @@ public class LottoController {
         }
     }
 
-    public void checkWinningNumbers() {
+    public void checkWinning() {
         for(Lotto lotto : purchasedLottos) {
-            int matchCount = 0;
-            boolean bonusMatched = false;
-            for(int number : lotto.getNumbers()) {
-                if(lottoWinningNumbers.contains(number)) {
-                    matchCount++;
-                }
-                if(number == lottoBonusNumber) {
-                    bonusMatched = true;
-                }
-            }
+            int matchCount = countWinningNumbers(lotto);
+            boolean bonusMatched = checkBonusNumber(lotto);
             LottoRank.setLottoRank(matchCount, bonusMatched);
         }
+    }
+
+    private int countWinningNumbers(Lotto lotto) {
+        int matchCount = 0;
+        for(int number : lotto.getNumbers()) {
+            if(lottoWinningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    private boolean checkBonusNumber(Lotto lotto) {
+        for(int number : lotto.getNumbers()) {
+            if(number == lottoBonusNumber) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int calculateTotalPrize() {
