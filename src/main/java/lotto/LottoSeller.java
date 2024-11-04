@@ -3,15 +3,16 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoSeller {
-    private static int lottoPrice = 1000;
+    private static final int lottoPrice = 1000;
 
     public void run() {
         int pay = readPay();
         List<Lotto> lottos = buyLottos(pay);
-        Lotto winnerLotto = readWinnerLotto();
-        LottoBonus lottoBonus = readLottoBonus(winnerLotto);
+        LottoBonus lottoBonus = readLottoBonus(readWinnerLotto());
+        Map<Place, Integer> winningResult = LottoInspector.checkLottos(lottoBonus, lottos);
     }
 
     private int readPay() {
