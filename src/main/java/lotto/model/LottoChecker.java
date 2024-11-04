@@ -11,7 +11,7 @@ public class LottoChecker {
 
     private final Lottos lottos;
     private final WinningNumber winningNumber;
-    private List<Rank> result = new ArrayList<>();
+    private final List<Rank> result = new ArrayList<>();
 
     public LottoChecker(Lottos lottos, WinningNumber winningNumber) {
         this.lottos = lottos;
@@ -27,21 +27,14 @@ public class LottoChecker {
     }
 
     private Rank checkLotto(Lotto lotto) {
-        int match = 0;
-        boolean isBonus = false;
+        int matchCount = (int)lotto.getNumbers().stream()
+            .filter(winningNumber.getWinningNumbers()::contains)
+            .count();
 
-        for (int number : lotto.getNumbers()) {
+        boolean isBonusMatched = matchCount == 5 &&
+            lotto.getNumbers().contains(winningNumber.getBonusNumber());
 
-            if (winningNumber.getWinningNumbers().contains(number)) {
-                match += 1;
-            }
-
-            if (match == 5 && lotto.getNumbers().contains(winningNumber.getBonusNumber())) {
-                isBonus = true;
-            }
-        }
-
-        return Rank.of(match, isBonus);
+        return Rank.of(matchCount, isBonusMatched);
     }
 
     public Map<Integer, Integer> getResultMap() {
