@@ -1,5 +1,78 @@
 # java-lotto-precourse
 
+## 개요
+이 프로그램은, 로또 발행기입니다. 사용자에게 로또 구매 가격과, 로또의 당첨번호와 보너스 번호를 입력받아 로또를 무작위로 발행해주는 프로그램입니다.
+<br>
+<br>
+## 프로젝트 구조
+```
+📦 
+├─ .gitignore
+├─ README.md
+├─ build.gradle
+├─ gradle
+│  └─ wrapper
+│     ├─ gradle-wrapper.jar
+│     └─ gradle-wrapper.properties
+├─ gradlew
+├─ gradlew.bat
+├─ settings.gradle
+└─ src
+   ├─ main
+   │  └─ java
+   │     └─ lotto
+   │        ├─ Application.java
+   │        ├─ common
+   │        │  ├─ config
+   │        │  │  └─ LottoFactory.java
+   │        │  ├─ constants
+   │        │  │  └─ ExceptionMessages.java
+   │        │  └─ util
+   │        │     └─ StringParser.java
+   │        ├─ dto
+   │        │  └─ LottoResults.java
+   │        ├─ model
+   │        │  ├─ Bonus.java
+   │        │  ├─ Lotto.java
+   │        │  ├─ LottoPurchase.java
+   │        │  ├─ Lottos.java
+   │        │  ├─ Rank.java
+   │        │  └─ WinningNumbers.java
+   │        ├─ presentation
+   │        │  ├─ controller
+   │        │  │  └─ LottoController.java
+   │        │  ├─ input
+   │        │  │  ├─ Input.java
+   │        │  │  └─ InputHandler.java
+   │        │  └─ view
+   │        │     └─ View.java
+   │        └─ service
+   │           ├─ LottoGenerator.java
+   │           ├─ LottoService.java
+   │           ├─ RevenueCalculator.java
+   │           └─ strategy
+   │              ├─ DrawStrategy.java
+   │              └─ RandomStrategy.java
+   └─ test
+      └─ java
+         └─ lotto
+            ├─ ApplicationTest.java
+            ├─ BonusTest.java
+            ├─ LottoGeneratorTest.java
+            ├─ LottoPurchaseTest.java
+            ├─ LottoServiceTest.java
+            ├─ LottoTest.java
+            ├─ LottosTest.java
+            ├─ RevenueCalculatorTest.java
+            ├─ StringParserTest.java
+            └─ WinningNumbersTest.java
+```
+
+<br>
+<br>
+
+## 기능목록 
+
 ### 로또 번호를 발행한다
 
 ---
@@ -38,8 +111,8 @@
 [1, 3, 5, 14, 22, 45]
 ```
 
-</br>
-</br>
+<br>
+<br>
 
 ### 당첨 번호와 발행 번호를 비교한다.
 
