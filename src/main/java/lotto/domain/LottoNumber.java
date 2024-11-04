@@ -30,7 +30,7 @@ public class LottoNumber {
     }
 
     private void validate(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LOTTO_MIN_VALUE || number > LOTTO_MAX_VALUE) {
             throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MSG);
         }
     }
