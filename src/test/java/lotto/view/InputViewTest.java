@@ -13,7 +13,7 @@ public class InputViewTest {
 
         Assertions.assertThatThrownBy(() -> view.validCanPurchaseLotto(999))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("1000원 미만으론 구매할 수 없음");
+                .hasMessage("1000 이상의 숫자를 입력해야함");
     }
 
     @Test

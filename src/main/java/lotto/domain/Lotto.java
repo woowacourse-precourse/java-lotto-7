@@ -41,4 +41,22 @@ public class Lotto {
     public boolean checkContainsBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
+
+    public int lottoWinningStatus(Lotto winningLotto) {
+        int count = 0;
+        List<Integer> winningNumbers = winningLotto.getLotto();
+
+        for (int i = 0; i < winningNumbers.size(); i++) {
+            count += isNumberMatched(winningNumbers, i, numbers);
+        }
+        return count;
+    }
+
+    private int isNumberMatched(List<Integer> winningNumbers, int i, List<Integer> lottoNumbers) {
+        if (winningNumbers.contains(lottoNumbers.get(i))) {
+            return 1;
+        }
+        return 0;
+    }
+
 }

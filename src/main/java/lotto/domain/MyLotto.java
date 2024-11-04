@@ -23,4 +23,18 @@ public class MyLotto {
     public List<Lotto> getMyLottos() {
         return new ArrayList<>(lottos);
     }
+
+    public LottoResultStatistic getResultStatistic(WinningLotto winningLotto) {
+        LottoResultStatistic statistic = new LottoResultStatistic();
+        for (Lotto lotto : lottos) {
+            int count = lotto.lottoWinningStatus(winningLotto.getWinningLotto());
+            boolean bonusHit = lotto.checkContainsBonusNumber(winningLotto.getBonusLottoNumber());
+            statistic.updatePrize(Prize.getHit(count, bonusHit));
+        }
+        return statistic;
+    }
+
+    public void additionalLotto(Lotto lotto){
+        lottos.add(lotto);
+    }
 }

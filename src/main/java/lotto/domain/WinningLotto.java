@@ -14,4 +14,12 @@ public class WinningLotto {
             throw new IllegalArgumentException("당첨 번호와 보너스 번호가 중복됩니다");
         }
     }
+
+    public int getBonusLottoNumber() {
+        return bonusNumber;
+    }
+
+    public Lotto getWinningLotto() {
+        return lotto;
+    }
 }

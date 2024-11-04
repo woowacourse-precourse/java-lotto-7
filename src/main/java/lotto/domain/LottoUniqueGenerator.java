@@ -33,7 +33,7 @@ public class LottoUniqueGenerator implements LottoGenerator {
     }
 
     List<Integer> generateUniqueLotto() {
-        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE));
     }
 
     Lotto sortLotto(List<Integer> shuffledLotto) {
