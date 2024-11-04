@@ -35,7 +35,7 @@ public class User {
     }
 
     public void setPrice(int price) {
-        if (price % 1000 != 0) {
+        if (price % Lotto.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_PURCHASE_PRICE.getMessage());
         }
         this.price = price;
