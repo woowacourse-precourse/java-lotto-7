@@ -97,7 +97,7 @@ public class LottoMachine {
     }
 
     private void getProfitRate (WinningRankCountDto winningRankCountDto, Integer lottoTicketCount) {
-        Double profitRate = lottoRankCounter.getProfitRate(winningRankCountDto, lottoTicketCount);
+        String profitRate = lottoRankCounter.getProfitRate(winningRankCountDto, lottoTicketCount);
 
         outputView.printProfitRate(profitRate);
     }

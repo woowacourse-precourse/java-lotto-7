@@ -71,7 +71,7 @@ public class OutputView {
         return String.format("%,d", number);
     }
 
-    public void printProfitRate(Double profitRate) {
+    public void printProfitRate(String profitRate) {
         System.out.printf(PROFIT_RATE_PROMPT, profitRate);
     }
 }

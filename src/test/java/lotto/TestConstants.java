@@ -36,6 +36,9 @@ public class TestConstants {
     public static Long MATCH_5_NUMBERS_PRIZE = 1500000L;
     public static Long MATCH_5_NUMBERS_WITH_BONUS_NUMBER_PRIZE = 30000000L;
     public static Long MATCH_6_NUMBERS = 2000000000L;
+    public static Long WINNING_PRIZE = 62250L;
+    public static Integer LOTTO_TICKET_COUNT = 1;
+    public static String PROFIT_RATE = "6225";
 
     public static boolean HAS_BONUS_NUMBER = true;
     public static boolean NO_BONUS_NUMBER = false;

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.TestConstants.*;
-import static lotto.common.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoRankCounterTest {
@@ -68,7 +67,7 @@ class LottoRankCounterTest {
         Integer lottoTicketCount = LOTTO_TICKET_COUNT;
 
         // when
-        Double profitRate = lottoRankCounter.getProfitRate(winningPrize, lottoTicketCount);
+        String profitRate = lottoRankCounter.getProfitRate(winningPrize, lottoTicketCount);
 
         // then
         assertEquals(PROFIT_RATE, profitRate);

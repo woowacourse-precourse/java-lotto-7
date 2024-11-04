@@ -29,7 +29,7 @@ public class LottoRankCounter {
         return new WinningRankCountDto(rankCounts);
     }
 
-    public Double getProfitRate(WinningRankCountDto winningRankCountDto, Integer lottoTicketCount) {
+    public String getProfitRate(WinningRankCountDto winningRankCountDto, Integer lottoTicketCount) {
         Long winningPrize = getWinningPrize(winningRankCountDto);
 
         return getProfitRate(winningPrize, lottoTicketCount);
@@ -47,15 +47,14 @@ public class LottoRankCounter {
         return winningPrize;
     }
 
-    public Double getProfitRate (Long winningPrize, Integer lottoTicketCount) {
+    public String getProfitRate (Long winningPrize, Integer lottoTicketCount) {
         Long purchaseAmount = ((long) lottoTicketCount * LOTTO_PRICE_UNIT);
 
-        double profitRate = (double) winningPrize / purchaseAmount;
+        double profitRate = (double) winningPrize / purchaseAmount * 100;
 
         BigDecimal bdProfitRate = BigDecimal.valueOf(profitRate);
-        bdProfitRate = bdProfitRate.setScale(DECIMAL_SCALE, RoundingMode.DOWN);
 
-        return bdProfitRate.doubleValue();
+        return bdProfitRate.stripTrailingZeros().toPlainString();
     }
 
     private Long getWinningPrizePerRank (LottoRank lottoRank, WinningRankCountDto winningRankCountDto) {
