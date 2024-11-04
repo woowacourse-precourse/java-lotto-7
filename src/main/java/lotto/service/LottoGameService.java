@@ -32,7 +32,7 @@ public class LottoGameService {
     }
 
     private List<Integer> generateRandomLottoNumbers() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         sortNumbersAscending(randomNumbers);
         return randomNumbers;
     }
