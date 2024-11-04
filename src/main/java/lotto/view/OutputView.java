@@ -16,15 +16,13 @@ public class OutputView {
     private static final String FIVE_MATCHING_AND_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     private static final String SIX_MATCHING = "6개 일치 (2,000,000,000원) - ";
     private static final String PIECES = "개";
-    private static final String NEXT_LINE = "\n";
 
-
-    public void printRequestMoney(){
+    public void printRequestMoney() {
         System.out.println(INPUT_MONEY);
     }
 
-    public void printLottoCount(int lottoCount){
-        System.out.println(NEXT_LINE);
+    public void printLottoCount(int lottoCount) {
+        System.out.println();
         System.out.println(lottoCount + LOTTO_COUNT);
     }
 
@@ -32,19 +30,19 @@ public class OutputView {
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
 
-    public void printRequestWinningNumbers(){
-        System.out.println(NEXT_LINE);
+    public void printRequestWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS);
     }
 
-    public void printRequestBonusNumbers(){
-        System.out.println(NEXT_LINE);
+    public void printRequestBonusNumbers() {
         System.out.println(INPUT_BONUS_NUMBER);
     }
 
     public void printWinningResult(WinningResult result) {
+        System.out.println();
         System.out.println(WINNING_STATISTICS_HEADER);
         System.out.println(THREE_MATCHING + result.getMatchThreeCount() + PIECES);
         System.out.println(FOUR_MATCHING + result.getMatchFourCount() + PIECES);
