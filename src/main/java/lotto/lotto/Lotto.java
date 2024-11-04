@@ -14,13 +14,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
-    
-    public List<List<Integer>> generateLotteryTickets(int numberOfTickets) {
+
+    public static List<List<Integer>> generateLotteryTickets(int numberOfTickets) {
         List<List<Integer>> lotteryTickets = new ArrayList<>();
 
         for (int i = 0; i < numberOfTickets; i++) {
