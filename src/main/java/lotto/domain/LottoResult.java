@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.constant.Constant.BONUS_NUMBER_INDEX;
+
 public class LottoResult {
 
     private final Map<WinningType, Integer> lottoResult = new HashMap<>();
@@ -17,7 +19,7 @@ public class LottoResult {
     public LottoResult(List<PurchaseLotto> purchaseLottos, Lotto winningLotto) {
         for (PurchaseLotto lotto : purchaseLottos) {
             int matchCount = calculateMatchCount(lotto.getLottoNumbers(), winningLotto.getNumbers());
-            boolean bonusMatched = lotto.getLottoNumbers().contains(winningLotto.getNumbers().get(Lotto.BONUS_NUMBER_INDEX));
+            boolean bonusMatched = lotto.getLottoNumbers().contains(winningLotto.getNumbers().get(BONUS_NUMBER_INDEX));
             WinningType winningType = WinningType.valueOf(matchCount, bonusMatched);
 
             if (winningType != null) {
@@ -34,7 +36,7 @@ public class LottoResult {
      */
     private int calculateMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         int count = 0;
-        for(int i=0; i<Lotto.BONUS_NUMBER_INDEX; i++){
+        for(int i = 0; i< BONUS_NUMBER_INDEX; i++){
             if(lottoNumbers.contains(winningNumbers.get(i))){
                 count++;
             }

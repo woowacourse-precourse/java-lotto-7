@@ -2,10 +2,9 @@ package lotto.validation;
 
 import lotto.message.ErrorMessage;
 
+import static lotto.constant.Constant.LOTTO_PRICE;
+
 public class AmountValidator {
-
-    private static final int LOTTO_PRICE = 1000;
-
     /**
      * 구입 금액이 0보다 작은지 검증
      * @param amount 구입 금액

@@ -7,8 +7,6 @@ import java.util.List;
 
 public class Lotto {
 
-    public static final int BONUS_NUMBER_INDEX = 6;
-
     private final List<Integer> numbers;
 
     /**

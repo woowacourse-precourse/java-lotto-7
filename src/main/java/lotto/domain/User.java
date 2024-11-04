@@ -3,9 +3,9 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+import static lotto.constant.Constant.LOTTO_PRICE;
 
-    private static final int LOTTO_PRICE = 1000;
+public class User {
 
     private final int purchaseAmount;
     private List<PurchaseLotto> purchaseLottos = new ArrayList<>();

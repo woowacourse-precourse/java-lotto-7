@@ -3,9 +3,10 @@ package lotto.domain;
 import lotto.util.ParserToInt;
 import lotto.validation.AmountValidator;
 
+import static lotto.constant.Constant.LOTTO_PRICE;
+
 public class PurchaseAmount {
 
-    private static final int LOTTO_PRICE = 1000;
     private final int lottoTickets;
 
     /**

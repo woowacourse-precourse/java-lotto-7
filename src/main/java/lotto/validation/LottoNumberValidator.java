@@ -6,12 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.constant.Constant.*;
+
 public class LottoNumberValidator {
-
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int REQUIRED_NUMBER_SIZE = 6;
-
     /**
      * 당첨 번호 검증
      * @param numbers 당첨 번호
