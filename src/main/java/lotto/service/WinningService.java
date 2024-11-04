@@ -10,7 +10,6 @@ import lotto.validate.WinningValidate;
 import lotto.view.WinningView;
 
 public class WinningService {
-
     private final Lottos lottos;
     private static Winning winning;
 
@@ -75,8 +74,7 @@ public class WinningService {
             break;
         }
 
-        HashSet<Integer> winningNumberSet = addWinningNumber(winningString);
-        winning.setHashSet(winningNumberSet);
+        winning.setHashSet(addWinningNumber(winningString));
     }
 
     public static HashSet<Integer> addWinningNumber(String winningString) {

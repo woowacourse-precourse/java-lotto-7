@@ -1,6 +1,5 @@
 package lotto.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -11,7 +10,6 @@ import lotto.domain.Winning;
 import lotto.view.ResultView;
 
 public class ResultService {
-
     private final User user;
     private final Lottos lottos;
     private static Winning winning;

@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 import lotto.message.InputMessage;
 
 public class InputValidate {
-
     private static final String REGEX = "[0-9]+";
     private static final Pattern pattern = Pattern.compile(REGEX);
 
@@ -46,7 +45,7 @@ public class InputValidate {
 
     public static boolean isParsableAsInteger(String input) {
         try {
-            int money = Integer.parseInt(input);
+            Integer.parseInt(input);
 
             return true;
         } catch (NumberFormatException e) {

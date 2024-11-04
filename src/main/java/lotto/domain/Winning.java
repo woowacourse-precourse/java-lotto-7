@@ -7,7 +7,7 @@ public class Winning {
     private int bonusNumber;
 
     public Winning() {
-        this.winningSet = new HashSet<>();
+        this.winningSet = new HashSet<Integer>();
         this.bonusNumber = 0;
     }
 
@@ -24,11 +24,11 @@ public class Winning {
         return winningSet;
     }
 
-    public void setHashSet(HashSet<Integer> winningNumberSet) {
-        this.winningSet = winningNumberSet;
-    }
-
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
+    }
+
+    public void setHashSet(HashSet<Integer> winningNumberSet) {
+        this.winningSet = winningNumberSet;
     }
 }

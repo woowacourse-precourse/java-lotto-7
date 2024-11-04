@@ -12,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class InputTest {
-
     @Test
     @DisplayName("구입금액을 입력하라는 메시지가 정상출력된다.")
     public void testDisplayRequestInputAmount() {

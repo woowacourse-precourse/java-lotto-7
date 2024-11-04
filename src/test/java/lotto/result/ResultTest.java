@@ -47,7 +47,7 @@ public class ResultTest {
     @Test
     @DisplayName("당첨 번호 갯수를 확인한다.")
     public void testWinningNumbersCount() {
-        List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(lottoNumbers);
 
         WinningService.containsWinningNumber(lotto);
@@ -59,7 +59,7 @@ public class ResultTest {
     @Test
     @DisplayName("당첨 번호 갯수가 5개이다.")
     public void testIsWinningNumberFive() {
-        List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,7,9);
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 7, 9);
         Lotto lotto = new Lotto(lottoNumbers);
 
         WinningService.containsWinningNumber(lotto);
@@ -71,7 +71,7 @@ public class ResultTest {
     @Test
     @DisplayName("보너스 번호를 확인한다.")
     public void testHashBonusNumber() {
-        Lotto lotto = new Lotto(new LinkedList<>(Arrays.asList(1,2,3,4,7,9)));
+        Lotto lotto = new Lotto(new LinkedList<>(Arrays.asList(1, 2, 3, 4, 7, 9)));
         winning.setBonusNumber(9);
 
         int winningCount = resultService.hasBonusNumber(lotto.getNumber(), winning.getBonusNumber());

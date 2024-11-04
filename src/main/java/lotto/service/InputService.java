@@ -7,7 +7,6 @@ import lotto.validate.InputValidate;
 import lotto.view.InputView;
 
 public class InputService {
-
     private final User user;
 
     public InputService(User user) {
@@ -24,7 +23,9 @@ public class InputService {
             System.out.println(InputMessage.REQUEST_INPUT_AMOUNT.getMessage());
 
             String input = Console.readLine();
-            if (!InputValidate.run(input)) continue;
+            if (!InputValidate.run(input)) {
+                continue;
+            }
 
             user.setMoney(input);
             break;

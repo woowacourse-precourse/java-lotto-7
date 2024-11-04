@@ -1,7 +1,6 @@
 package lotto.message;
 
 public enum ResultMessage {
-
     // View message
     DISPLAY_LOTTO_RESULT("당첨 통계"),
     DISPLAY_LOTTO_RESULT_BOUNDARY("---");

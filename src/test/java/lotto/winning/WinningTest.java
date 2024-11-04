@@ -116,7 +116,7 @@ public class WinningTest {
     @DisplayName("당첨 번호와 동일하지 않은 숫자는 보너스 숫자로 가능하다.")
     public void testIsBonusNotInWinning() {
         Winning winning = new Winning();
-        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
+        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         winning.setHashSet(winningSet);
 
         int bonusNumber = 10;
@@ -128,7 +128,7 @@ public class WinningTest {
     @DisplayName("당첨 번호와 동일한 숫자는 보너스 숫자로 불가능하다.")
     public void testIsBonusInWinning() {
         Winning winning = new Winning();
-        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
+        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         winning.setHashSet(winningSet);
 
         int bonusNumber = 2;
@@ -140,10 +140,10 @@ public class WinningTest {
     @DisplayName("당첨 번호와 동일한 숫자는 제거된다.")
     public void testRemoveWinningNumber() {
         Winning winning = new Winning();
-        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
+        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         winning.setHashSet(winningSet);
 
-        List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(lottoNumbers);
         Lottos lottos = new Lottos();
         WinningService winningService = new WinningService(lottos, winning);
@@ -157,10 +157,10 @@ public class WinningTest {
     @DisplayName("당첨 번호와 동일하지 않은 숫자는 제거되지 않는다.")
     public void testNotRemoveWinningNumber() {
         Winning winning = new Winning();
-        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
+        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         winning.setHashSet(winningSet);
 
-        List<Integer> lottoNumbers = Arrays.asList(7,8,9,10,11,12);
+        List<Integer> lottoNumbers = Arrays.asList(7, 8, 9, 10, 11, 12);
         Lotto lotto = new Lotto(lottoNumbers);
 
         Lottos lottos = new Lottos();

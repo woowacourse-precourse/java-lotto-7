@@ -6,7 +6,6 @@ import lotto.domain.Winning;
 import lotto.message.WinningInputMessage;
 
 public class WinningValidate {
-
     private static final String WINNITG_REGEX = "[0-9]+(,[0-9]+)*$";
     private static final String BONUS_REGEX = "[0-9]+";
     private static Pattern pattern;

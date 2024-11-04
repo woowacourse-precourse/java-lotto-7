@@ -8,7 +8,6 @@ public class User {
     private List<Lottos> lottos;
 
     public User() {
-
     }
 
     public User(String money, int numOfLottos, List<Lottos> lottos) {

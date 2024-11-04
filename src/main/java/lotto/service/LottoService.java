@@ -11,7 +11,6 @@ import lotto.validate.LottosValidate;
 import lotto.view.LottosView;
 
 public class LottoService {
-
     private final User user;
     private final Lottos lottos;
 

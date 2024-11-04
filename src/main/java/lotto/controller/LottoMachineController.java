@@ -9,7 +9,6 @@ import lotto.service.ResultService;
 import lotto.service.WinningService;
 
 public class LottoMachineController {
-
     private final User user = new User();
     private final Lottos lottos = new Lottos();
     private final Winning winning = new Winning();
