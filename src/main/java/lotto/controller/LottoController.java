@@ -50,10 +50,10 @@ public class LottoController {
 
         printLottoWinMessage();
         decideRanking();
-        printRanking();
+        printRankingResult();
 
         computeEarningRate();
-        printEarningRate();
+        printEarningRateResult();
     }
 
     public void inputPurchaseAmount() {
@@ -147,7 +147,7 @@ public class LottoController {
                 winningNumberObject, bonusNumberObject);
     }
 
-    public void printRanking() {
+    public void printRankingResult() {
         outputView.printRankingResult(rankingResult);
     }
 
@@ -155,7 +155,7 @@ public class LottoController {
         earningRateResult = lottoService.computeEarningRate(inputCost, rankingResult);
     }
 
-    public void printEarningRate() {
+    public void printEarningRateResult() {
         outputView.printEarningRate(earningRateResult);
     }
 
