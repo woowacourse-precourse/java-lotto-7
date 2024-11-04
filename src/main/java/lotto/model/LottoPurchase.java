@@ -31,7 +31,7 @@ public class LottoPurchase {
     }
 
     private boolean isNumeric(String input) {
-        return input.matches("-?\\d+(\\.\\d+)?");
+        return input.matches("\\d+");
     }
 
     private int validateAmount(int amount) {

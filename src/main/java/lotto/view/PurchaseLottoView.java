@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PurchaseLottoView {
-    public static int inputPurchaseAmount() {
+    public static String inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 
     public static void printPurchasedLottos(List<Lotto> lottos) {
