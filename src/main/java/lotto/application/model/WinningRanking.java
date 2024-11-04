@@ -30,6 +30,7 @@ public enum WinningRanking implements Model{
 
     @Override
     public String toString(){
+        if(this==WinningRanking.SECOND) return String.format("%d개 일치, 보너스 볼 일치 (%s원) - ", this.matchedCount, legiblePrizeMoney());
         return String.format("%d개 일치 (%s원) - ",this.matchedCount, legiblePrizeMoney());
     }
 

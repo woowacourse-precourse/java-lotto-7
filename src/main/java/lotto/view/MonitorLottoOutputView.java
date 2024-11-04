@@ -23,6 +23,6 @@ public class MonitorLottoOutputView implements OutputView<Model> {
 
     @Override
     public void print(Number number) {
-        System.out.println(String.format("총 수익률은 %.1f", number)+"% 입니다.");
+        System.out.println(String.format("총 수익률은 %.1f", number)+"%입니다.");
     }
 }
