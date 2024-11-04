@@ -16,6 +16,8 @@ public class Constants {
     public static Integer LOTTO_MAX_NUMBER = 45;
     public static Long MIN_WINNING_NUMBER = 1L;
     public static Long MAX_WINNING_NUMBER = 45L;
+    public static Long MIN_MATCH_COUNT = 0L;
+    public static Long MAX_MATCH_COUNT = 6L;
 
     // string
     public static String LOTTO_NUMBER_PRINT_DELIMITER = ", ";
@@ -31,4 +33,5 @@ public class Constants {
     public static String INVALID_DUPLICATE_WINNING_NUMBER = "당첨 번호에는 중복된 수가 들어갈 수 없습니다.";
     public static String INVALID_BONUS_NUMBER = "보너스 번호는 1~45 사이의 숫자여야 합니다.";
     public static String INVALID_DUPLICATE_BONUS_NUMBER = "보너스 번호는 당첨 번호와 중복될 수 없습니다.";
+    public static String INVALID_MATCH_COUNT = "당첨 개수가 범위 밖입니다.";
 }

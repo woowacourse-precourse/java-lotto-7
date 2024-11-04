@@ -16,12 +16,29 @@ public class WinningNumbers {
         this.bonusNumber = null;
     }
 
-    public void getBonusNumber(String rawBonusNumber) {
+    public void addBonusNumber(String rawBonusNumber) {
         validateBonusNumber(rawBonusNumber);
 
         bonusNumber = Integer.parseInt(rawBonusNumber);
     }
 
+    public List<LottoRank> getLottoRanks (Lottos lottos) {
+        List<LottoRank> lottoRanks = new ArrayList<>();
+
+        for (Lotto lotto: lottos.getLottos()) {
+            LottoRank lottoRank = getLottoRank(lotto);
+            lottoRanks.add(lottoRank);
+        }
+
+        return lottoRanks;
+    }
+
+    public LottoRank getLottoRank(Lotto lotto) {
+        int matchCount = countMatchingNumbers(lotto);
+        boolean bonusMatch = lotto.containBonusNumber(bonusNumber);
+
+        return LottoRank.findRank(matchCount, bonusMatch);
+    }
 
     public boolean compareNumbers(List<Integer> winningNumbers) {
         return Objects.equals(this.winningNumbers, winningNumbers);
@@ -30,6 +47,14 @@ public class WinningNumbers {
 
     public boolean compareBonusNumber(Integer bonusNumber) {
         return Objects.equals(this.bonusNumber, bonusNumber);
+    }
+
+    public List<Integer> getWinningNumbers () {
+        return winningNumbers;
+    }
+
+    private int countMatchingNumbers(Lotto lotto) {
+        return lotto.countMatchingNumbers(winningNumbers);
     }
 
     private List<Integer> getWinningNumbers (String inputWinningNumbers) {

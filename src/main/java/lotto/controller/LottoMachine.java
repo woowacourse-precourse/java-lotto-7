@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
@@ -38,6 +39,8 @@ public class LottoMachine {
         Lottos lottos = generateLottos(lottoTicketCount);
 
         WinningNumbers winningNumbers = getWinningNumbers();
+
+        List<LottoRank> lottoRanks = getLottoRanks(lottos, winningNumbers);
     }
 
     public Lottos generateLottos (Integer lottoTicketCount) {
@@ -81,5 +84,9 @@ public class LottoMachine {
         winningNumbersService.getBonusNumber(winningNumbers, rawBonusNumber);
 
         return winningNumbers;
+    }
+
+    private List<LottoRank> getLottoRanks (Lottos lottos, WinningNumbers winningNumbers) {
+        return winningNumbersService.getLottoRanks(lottos, winningNumbers);
     }
 }

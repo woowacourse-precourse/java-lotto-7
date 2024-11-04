@@ -16,9 +16,20 @@ public class Lotto {
         sortDesc();
     }
 
-    private void validateLottoNumbers(List<Integer> numbers) {
-        validateSize(numbers, LOTTO_SIZE, INVALID_LOTTO_SIZE);
-        validateDuplicate(numbers, INVALID_DUPLICATE_LOTTO);
+    public boolean containBonusNumber(Integer bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+        int matchingCount = 0;
+
+        for (Integer number: numbers) {
+            if (winningNumbers.contains(number)) {
+                matchingCount ++;
+            }
+        }
+
+        return matchingCount;
     }
 
     public Integer size () {
@@ -40,6 +51,11 @@ public class Lotto {
                 .toList();
 
         return String.join(LOTTO_NUMBER_PRINT_DELIMITER, numbersToString);
+    }
+
+    private void validateLottoNumbers(List<Integer> numbers) {
+        validateSize(numbers, LOTTO_SIZE, INVALID_LOTTO_SIZE);
+        validateDuplicate(numbers, INVALID_DUPLICATE_LOTTO);
     }
 
     private void sortDesc () {

@@ -24,8 +24,25 @@ public class TestConstants {
 
     public static Integer TICKET_COUNT = 10;
     public static Integer BONUS_NUMBER = 7;
+    public static Integer UNDER_MATCH_COUNT = -1;
+    public static Integer NO_MATCH_COUNT = 0;
+    public static Integer MATCH_COUNT_3 = 3;
+    public static Integer MATCH_COUNT_4 = 4;
+    public static Integer MATCH_COUNT_5 = 5;
+    public static Integer MATCH_COUNT_6 = 6;
+    public static Integer UP_MATCH_COUNt = 7;
+
+    public static boolean HAS_BONUS_NUMBER = true;
+    public static boolean NO_BONUS_NUMBER = false;
 
     public static List<Integer> LOTTO_NUMBERS = new ArrayList<>(List.of(2, 1, 4, 3, 6, 5));
+
+    public static List<Integer> LOTTO_NUMBERS_WITH_NO_MATCH = new ArrayList<>(List.of(7, 8, 9, 10, 11, 12));
+    public static List<Integer> LOTTO_NUMBERS_WITH_MATCH_3 = new ArrayList<>(List.of(1, 2, 3, 7, 8, 10));
+    public static List<Integer> LOTTO_NUMBERS_WITH_MATCH_4 = new ArrayList<>(List.of(1, 2, 3, 4, 8, 10));
+    public static List<Integer> LOTTO_NUMBERS_WITH_MATCH_5 = new ArrayList<>(List.of(1, 2, 3, 4, 5, 10));
+    public static List<Integer> LOTTO_NUMBERS_WITH_MATCH_5_AND_BONUS_NUMBER = new ArrayList<>(List.of(1, 2, 3, 4, 5, 7));
+    public static List<Integer> LOTTO_NUMBERS_WITH_MATCH_6 = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
     public static final List<Integer> SORTED_LOTTO_NUMBERS = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
     public static final List<Integer> WINNING_NUMBERS = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
 }

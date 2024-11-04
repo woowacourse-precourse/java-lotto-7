@@ -3,6 +3,8 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static lotto.TestConstants.*;
 import static lotto.common.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -113,7 +115,7 @@ class WinningNumbersTest {
         String rawBonusNumber = VALID_BONUS_NUMBER;
 
         // when
-        winningNumbers.getBonusNumber(rawBonusNumber);
+        winningNumbers.addBonusNumber(rawBonusNumber);
 
         // then
         assertTrue(winningNumbers.compareBonusNumber(BONUS_NUMBER));
@@ -128,7 +130,7 @@ class WinningNumbersTest {
 
         // when & then
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            winningNumbers.getBonusNumber(rawBonusNumber);
+            winningNumbers.addBonusNumber(rawBonusNumber);
         });
 
         assertEquals(ERROR_PROMPT + INVALID_BONUS_NUMBER, exception.getMessage());
@@ -143,7 +145,7 @@ class WinningNumbersTest {
 
         // when & then
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            winningNumbers.getBonusNumber(rawBonusNumber);
+            winningNumbers.addBonusNumber(rawBonusNumber);
         });
 
         assertEquals(ERROR_PROMPT + INVALID_BONUS_NUMBER, exception.getMessage());
@@ -158,7 +160,7 @@ class WinningNumbersTest {
 
         // when & then
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            winningNumbers.getBonusNumber(rawBonusNumber);
+            winningNumbers.addBonusNumber(rawBonusNumber);
         });
 
         assertEquals(ERROR_PROMPT + INVALID_BONUS_NUMBER, exception.getMessage());
@@ -173,10 +175,52 @@ class WinningNumbersTest {
 
         // when & then
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            winningNumbers.getBonusNumber(rawBonusNumber);
+            winningNumbers.addBonusNumber(rawBonusNumber);
         });
 
         assertEquals(ERROR_PROMPT + INVALID_DUPLICATE_BONUS_NUMBER, exception.getMessage());
     }
+
+    @Test
+    @DisplayName("당첨된 랭크를 잘 반환한다.")
+    void getLottoRank () {
+        // given
+        Lotto lotto = new Lotto(LOTTO_NUMBERS_WITH_MATCH_3);
+        WinningNumbers winningNumbers = new WinningNumbers(VALID_WINNING_NUMBERS);
+        winningNumbers.addBonusNumber(VALID_BONUS_NUMBER);
+
+        // when
+        LottoRank lottoRank = winningNumbers.getLottoRank(lotto);
+
+        // then
+        assertEquals(LottoRank.MATCH_3_NUMBERS, lottoRank);
+
+    }
+
+    @Test
+    @DisplayName("당첨된 랭크들을 잘 반환한다.")
+    void getLottoRanks () {
+        // given
+        List<Lotto> lottos = List.of(
+                new Lotto(LOTTO_NUMBERS_WITH_NO_MATCH),
+                new Lotto(LOTTO_NUMBERS_WITH_MATCH_3),
+                new Lotto(LOTTO_NUMBERS_WITH_MATCH_5_AND_BONUS_NUMBER)
+        );
+
+        Lottos savedLottos = new Lottos(lottos);
+        WinningNumbers winningNumbers = new WinningNumbers(VALID_WINNING_NUMBERS);
+        winningNumbers.addBonusNumber(VALID_BONUS_NUMBER);
+
+        // when
+        List<LottoRank> lottoRanks = winningNumbers.getLottoRanks(savedLottos);
+
+        // then
+        assertEquals(lottoRanks.size(), lottos.size());
+
+        assertEquals(LottoRank.UN_RANK, lottoRanks.get(0));
+        assertEquals(LottoRank.MATCH_3_NUMBERS, lottoRanks.get(1));
+        assertEquals(LottoRank.MATCH_5_NUMBERS_WITH_BONUS_NUMBER, lottoRanks.get(2));
+    }
+
 
 }
