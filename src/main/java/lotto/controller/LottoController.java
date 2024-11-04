@@ -35,7 +35,7 @@ public class LottoController {
 
         while (true) {
             try {
-                // to output -> "당첨 번호를 입력해 주세요."
+                lottoOutput.requestWinningNumbers();
                 String winningNumbersString = Console.readLine();
                 List<Integer> winningNumbers = changeStringToNumberList(winningNumbersString);
                 lottos.setWinningNumbers(winningNumbers);
@@ -46,10 +46,12 @@ public class LottoController {
         }
 
         while (true) {
-            try {// to output -> "보너스 번호를 입력해 주세요."
+            try {
+                lottoOutput.requestBonusNumber();
                 String bonusNumberString = Console.readLine();
                 Integer bonusNumber = changeStringToNumber(bonusNumberString);
                 lottos.setBonusNumber(bonusNumber);
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }

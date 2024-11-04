@@ -30,4 +30,14 @@ public class LottoOutput {
         System.out.print(String.join(", ", numbers.stream().map(String::valueOf).toArray(String[]::new)));
         System.out.println("]");
     }
+
+    public void requestWinningNumbers() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public void requestBonusNumber() {
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
 }
