@@ -1,6 +1,5 @@
-package lotto;
+package lotto.service;
 
-import lotto.service.LottoInput;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

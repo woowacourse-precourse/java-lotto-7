@@ -1,7 +1,6 @@
-package lotto;
+package lotto.service;
 
 import lotto.domain.Lotto;
-import lotto.service.LottoWinning;
 import lotto.staticenum.WinningAmountEnum;
 import org.junit.jupiter.api.Test;
 
