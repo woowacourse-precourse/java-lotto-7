@@ -1,10 +1,10 @@
 package lotto.util;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class InputValidator {
     private static final int LOTTO_PRICE = 1000;
