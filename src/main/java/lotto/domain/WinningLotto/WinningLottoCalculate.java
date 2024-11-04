@@ -1,5 +1,6 @@
 package lotto.domain.WinningLotto;
 
+import lotto.exception.ExceptionMessages;
 import lotto.formatter.LottoFormatter;
 
 import java.util.Map;
@@ -44,7 +45,7 @@ public class WinningLottoCalculate {
 
     private void validateBuyAmount(int buyLottoMoney) {
         if (buyLottoMoney % 1000 != 0) {
-            throw new IllegalArgumentException("구매 금액은 1,000 단위여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessages.LOTTO_BUY_AMOUNT_UNIT_ERROR);
         }
     }
 }

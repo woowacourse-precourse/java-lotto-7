@@ -15,4 +15,11 @@ public class LottoValidator {
             }
         }
     }
+
+    public void validateLottoNumbersDuplication(List<Integer> lottoNumbers) {
+        long uniqueCount = lottoNumbers.stream().distinct().count();
+        if (uniqueCount != lottoNumbers.size()) {
+            throw new IllegalArgumentException(ExceptionMessages.LOTTO_NUMBER_DUPLICATION_ERROR);
+        }
+    }
 }

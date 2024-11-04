@@ -16,6 +16,7 @@ public class LottoNumbersGenerator {
 
     public List<Integer> generateLottoNumbers(List<Integer> randomNumbers) {
         lottoValidator.validateLottoRange(randomNumbers);
+        lottoValidator.validateLottoNumbersDuplication(randomNumbers);
         validateDuplicationLottoNumbers(randomNumbers);
         return randomNumbers;
     }
