@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class ListValidatorTest {
 
-    private ListValidator listValidator;
+    private ListValidator<Integer> listValidator;
     private NumberValidator numberValidator;
 
     @BeforeEach

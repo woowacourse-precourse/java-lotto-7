@@ -4,54 +4,54 @@ import java.util.List;
 import lotto.error.ErrorType;
 import lotto.error.exception.InvalidNumbersException;
 
-public class ListValidator {
+public class ListValidator<T> {
 
     private ListValidator() {
 
     }
 
-    public static ListValidator getInstance() {
+    public static ListValidator<Integer> getInstance() {
         return BillPughSingleton.INSTANCE;
     }
 
-    public ListValidator validateSize(final List<Integer> numbers, final int size) {
-        if (isInvalidNumbersSize(numbers, size)) {
+    public ListValidator<T> validateSize(final List<T> values, final int size) {
+        if (isInvalidNumbersSize(values, size)) {
             throw new InvalidNumbersException(ErrorType.INVALID_WINNING_NUMBER_SIZE);
         }
         return this;
     }
 
-    public ListValidator validateDuplicate(final List<Integer> numbers) {
-        if (isDuplicateNumbers(numbers)) {
+    public ListValidator<T> validateDuplicate(final List<T> values) {
+        if (isDuplicate(values)) {
             throw new InvalidNumbersException(ErrorType.DUPLICATED_WINNING_NUMBERS);
         }
         return this;
     }
 
-    public ListValidator validateRange(final List<Integer> numbers, final ValidateFunction validateFunction) {
-        for (Integer number : numbers) {
-            validateFunction.validate(number);
+    public ListValidator<T> validateRange(final List<T> values, final ValidateFunction<T> validateFunction) {
+        for (T value : values) {
+            validateFunction.validate(value);
         }
         return this;
     }
 
     @FunctionalInterface
-    public interface ValidateFunction {
-        void validate(final int number);
+    public interface ValidateFunction<T> {
+        void validate(final T value);
     }
 
-    private boolean isInvalidNumbersSize(final List<Integer> numbers, final int size) {
-        return numbers.size() != size;
+    private boolean isInvalidNumbersSize(final List<T> values, final int size) {
+        return values.size() != size;
     }
 
-    private boolean isDuplicateNumbers(final List<Integer> numbers) {
-        return numbers.stream()
+    private boolean isDuplicate(final List<T> values) {
+        return values.stream()
                 .distinct()
-                .count() != numbers.size();
+                .count() != values.size();
     }
 
 
     private static class BillPughSingleton {
-        private static final ListValidator INSTANCE = new ListValidator();
+        private static final ListValidator<Integer> INSTANCE = new ListValidator<>();
     }
 }

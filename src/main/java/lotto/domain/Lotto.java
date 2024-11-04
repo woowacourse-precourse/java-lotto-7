@@ -27,7 +27,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        final ListValidator listValidator = ListValidator.getInstance();
+        final ListValidator<Integer> listValidator = ListValidator.getInstance();
         final NumberValidator numberValidator = NumberValidator.getInstance();
         listValidator.validateSize(numbers, LottoRule.WINNING_NUMBER_SIZE)
                 .validateRange(numbers,
