@@ -3,6 +3,8 @@ package lotto.controller;
 import static lotto.model.Winning.toStringWithoutNone;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.Lotto;
@@ -48,12 +50,17 @@ public class LottoController {
     }
 
     public void printAndCalculateWinningRate() {
-        String winningRate = getWinningRate();
-        view.printWinningRate(winningRate);
+        BigDecimal winningRate = getWinningRate();
+        String formatRate = formatString(winningRate);
+        view.printWinningRate(formatRate);
     }
 
-    private String getWinningRate() {
-        return lottos.calculateWinningRate(lottoValue.lottoPrice())
-                .toPlainString();
+    private String formatString(BigDecimal winningRate) {
+        DecimalFormat df = new DecimalFormat("#,###");
+        return df.format(winningRate);
+    }
+
+    private BigDecimal getWinningRate() {
+        return lottos.calculateWinningRate(lottoValue.lottoPrice());
     }
 }
