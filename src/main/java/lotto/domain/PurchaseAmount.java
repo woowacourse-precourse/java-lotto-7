@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.exception.ErrorMessage.PURCHASE_AMOUNT_NOT_DIVISIBLE;
+import static lotto.exception.ErrorMessage.PURCHASE_AMOUNT_NOT_ENOUGH;
+
 public class PurchaseAmount {
     private static final int LOTTO_PRICE = 1000;
 
@@ -25,13 +28,13 @@ public class PurchaseAmount {
 
     private void validateMinimumPurchaseAmount(int purchaseAmount) {
         if (purchaseAmount < LOTTO_PRICE) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 0 이상이어야 합니다.");
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_ENOUGH.getMessage());
         }
     }
 
     private void validateDivisibility(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 " + LOTTO_PRICE + "원 단위여야 합니다.");
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_DIVISIBLE.getMessage());
         }
     }
 

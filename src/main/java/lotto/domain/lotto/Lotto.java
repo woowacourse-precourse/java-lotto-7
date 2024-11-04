@@ -3,6 +3,9 @@ package lotto.domain.lotto;
 import java.util.HashSet;
 import java.util.List;
 
+import static lotto.exception.ErrorMessage.LOTTO_NUMBER_COUNT_NOT_MATCHED;
+import static lotto.exception.ErrorMessage.LOTTO_NUMBER_DUPLICATED;
+
 public class Lotto {
     private final List<LottoNumber> numbers;
 
@@ -30,13 +33,13 @@ public class Lotto {
 
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_NOT_MATCHED.getMessage());
         }
     }
 
     private void validateUnique(List<Integer> numbers) {
         if (containsDuplicates(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 

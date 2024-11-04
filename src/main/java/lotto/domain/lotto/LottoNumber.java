@@ -2,6 +2,8 @@ package lotto.domain.lotto;
 
 import java.util.Objects;
 
+import static lotto.exception.ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
+
 public class LottoNumber {
 	private static final int MIN_NUMBER = 1;
 	private static final int MAX_NUMBER = 45;
@@ -15,7 +17,7 @@ public class LottoNumber {
 
 	private void validate(int number) {
 		if (isNumberOutOfRange(number)) {
-			throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 범위의 정수여야 합니다.");
+			throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
 		}
 	}
 

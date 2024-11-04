@@ -2,6 +2,9 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static lotto.exception.ErrorMessage.INPUT_BLANK;
+import static lotto.exception.ErrorMessage.INPUT_NOT_DIGIT;
+
 public class InputView {
 	private InputView() {
 	}
@@ -51,13 +54,13 @@ public class InputView {
 
 	private void validateNotBlank(String input) {
 		if (input.isBlank()) {
-			System.out.println("[ERROR] 입력값은 비어있지 않아야 합니다.");
+			System.out.println(INPUT_BLANK.getMessage());
 		}
 	}
 
 	private void validateDigit(String input) {
 		if (!isDigit(input)) {
-			System.out.println("[ERROR] 입력값은 숫자여야 합니다.");
+			System.out.println(INPUT_NOT_DIGIT.getMessage());
 		}
 	}
 

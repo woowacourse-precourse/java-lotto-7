@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.exception.ErrorMessage.LOTTO_NUMBER_DUPLICATED;
+
 public class WinningLottoWithBonus {
     private final Lotto winningLotto;
     private final LottoNumber bonusNumber;
@@ -62,7 +64,7 @@ public class WinningLottoWithBonus {
 
     public void validateUnique(Lotto winningLotto, LottoNumber bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 }
