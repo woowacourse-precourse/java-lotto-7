@@ -48,7 +48,8 @@ class LottoTest {
         assertThatThrownBy(
                 () -> new InputValidation().checkBonusNumber(null, List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(NullPointerException.class); // null 값
-        assertThatThrownBy(() -> new InputValidation().checkBonusNumber("", List.of(1, 2, 3, 4, 5, 6)))
+        assertThatThrownBy(
+                () -> new InputValidation().checkBonusNumber("", List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class); // 빈 값
         assertThatThrownBy(
                 () -> new InputValidation().checkBonusNumber("J", List.of(1, 2, 3, 4, 5, 6)))

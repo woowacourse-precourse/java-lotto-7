@@ -45,7 +45,7 @@ public class UserInput {
             try {
                 return validation.checkBonusNumber(bonusNumberBeforeCheck,
                         winningNumber);
-            }catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + "\n");
             }
         }
