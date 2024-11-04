@@ -25,8 +25,9 @@ public class Lottos {
         List<List<Integer>> allLottos = new ArrayList<>();
 
         for (Lotto lotto : this.lottos) {
-            Collections.sort(new ArrayList<>(lotto.getNumbers()));
-            allLottos.add(lotto.getNumbers());
+            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedNumbers);
+            allLottos.add(sortedNumbers);
         }
 
         return allLottos;
