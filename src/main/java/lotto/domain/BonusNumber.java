@@ -6,9 +6,11 @@ import static lotto.common.LottoConstant.*;
 public record BonusNumber(
         int number
 ) {
+    public BonusNumber {
+        validateNumberRange(number);
+    }
 
     public static BonusNumber from(int number) {
-        validateNumberRange(number);
         return new BonusNumber(number);
     }
 

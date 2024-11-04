@@ -10,10 +10,9 @@ public record Money(
         BigDecimal amount
 ) {
 
-    public Money(BigDecimal amount) {
+    public Money {
         validatePositive(amount);
         validateUnit(amount);
-        this.amount = amount;
     }
 
     public static Money from(int money) {
