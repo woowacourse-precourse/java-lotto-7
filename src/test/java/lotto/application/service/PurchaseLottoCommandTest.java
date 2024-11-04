@@ -2,6 +2,7 @@ package lotto.application.service;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.UUID;
 import lotto.application.dto.request.PurchaseLottoRequest;
 import lotto.application.dto.response.PurchaseLottoResponse;
 import lotto.application.port.input.PurchaseLottoUsecase;
@@ -28,7 +29,8 @@ class PurchaseLottoCommandTest {
     @Test
     void 구매_금액_만큼의_로또를_구매한다() {
         // given
-        PurchaseLottoRequest purchaseLottoRequest = new PurchaseLottoRequest(PurchaseAmount.from(5000));
+        PurchaseLottoRequest purchaseLottoRequest = new PurchaseLottoRequest(PurchaseAmount.from(5000),
+            UUID.randomUUID());
 
         // when
         PurchaseLottoResponse response = purchaseLottoUsecase.execute(purchaseLottoRequest);

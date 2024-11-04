@@ -4,6 +4,8 @@ import static lotto.infrastructure.constants.AnnounceMessages.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import java.util.UUID;
+import lotto.Application;
 import lotto.application.port.output.OutputPort;
 import lotto.application.validation.InputValidator;
 import lotto.domain.amount.PurchaseAmount;
@@ -14,6 +16,7 @@ public class LottoCliInputAdapter {
 
     private final InputValidator inputValidator;
     private final OutputPort outputPort;
+    private final UUID buyerId = Application.userId;
 
     public LottoCliInputAdapter(InputValidator inputValidator, OutputPort outputPort) {
         this.inputValidator = inputValidator;

@@ -12,18 +12,20 @@ public class Lotto {
     public final static int LOTTO_NUMBER_MAXIMUM_CRITERION = 45;
     private final List<Integer> numbers;
     private final UUID id;
+    private final UUID buyerId;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers, UUID buyerId) {
         this.numbers = numbers;
         this.id = UUID.randomUUID();
+        this.buyerId = buyerId;
     }
 
-    public static Lotto from(List<Integer> numbers) {
+    public static Lotto of(List<Integer> numbers, UUID buyerId) {
         validateLottoNumberCount(numbers);
         validateNoDuplicatedNumber(numbers);
         validateProperNumberRange(numbers);
 
-        return new Lotto(numbers);
+        return new Lotto(numbers, buyerId);
     }
 
     private static void validateLottoNumberCount(List<Integer> numbers) {
@@ -51,5 +53,9 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public boolean isOwnedBy(UUID uuid) {
+        return this.buyerId.equals(uuid);
     }
 }

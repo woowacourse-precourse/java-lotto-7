@@ -24,6 +24,18 @@ public class FakeLottoRepository implements LottoRepository {
         return List.copyOf(storage.values());
     }
 
+    @Override
+    public List<Lotto> findAllByBuyerId(UUID uuid) {
+        return storage.values().stream()
+            .filter(lotto -> lotto.isOwnedBy(uuid))
+            .toList();
+    }
+
+    @Override
+    public void saveAll(List<Lotto> lottos) {
+        lottos.forEach(this::save);
+    }
+
     public void clear() {
         storage.clear();
     }

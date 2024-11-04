@@ -10,7 +10,7 @@ public class WinningNumber extends Lotto {
     private final Number bonusNumber;
 
     public WinningNumber(List<Integer> numbers, int number) {
-        super(numbers);
+        super(numbers, null);
         this.bonusNumber = new Number(number);
     }
 

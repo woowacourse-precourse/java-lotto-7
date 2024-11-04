@@ -22,4 +22,13 @@ public class LottoMemoryRepository {
         return List.copyOf(storage.values());
     }
 
+    public List<Lotto> findAllByBuyerId(UUID uuid) {
+        return storage.values().stream()
+            .filter(lotto -> lotto.isOwnedBy(uuid))
+            .toList();
+    }
+
+    public void saveAll(List<Lotto> lottos) {
+        lottos.forEach(this::save);
+    }
 }

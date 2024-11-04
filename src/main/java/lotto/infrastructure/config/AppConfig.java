@@ -33,7 +33,7 @@ public class AppConfig {
         this.lottoRepository = new LottoPersistenceAdapter(lottoMemoryRepository);
         this.lottoMachine = new LottoMachine();
         this.purchaseLottoUsecase = new PurchaseLottoCommand(lottoRepository, lottoMachine);
-        this.evaluateWinningLottoUsecase = new EvaluateWinningLottoCommand(new WinningLottoEvaluator());
+        this.evaluateWinningLottoUsecase = new EvaluateWinningLottoCommand(new WinningLottoEvaluator(), lottoRepository);
     }
 
     public LottoCliInputAdapter getLottoCliInputAdapter() {

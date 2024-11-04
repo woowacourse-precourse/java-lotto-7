@@ -28,7 +28,7 @@ public class PurchaseLottoCommand implements PurchaseLottoUsecase {
         while (purchaseAmount.isEnough()) {
             purchaseAmount.deduct();
 
-            Lotto lotto = lottoMachine.create();
+            Lotto lotto = lottoMachine.create(purchaseLottoRequest.buyerId());
             lottoRepository.save(lotto);
             lottos.add(lotto);
         }
