@@ -1,8 +1,8 @@
 package lotto;
 
-import constant.OutputNotice;
 import constant.Rank;
 import input.BonusNumberInputProcessor;
+import input.InputProcessor;
 import input.LottoWinnerNumberInputProcessor;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 
 public class WinnerManager {
 
-    private final LottoWinnerNumberInputProcessor lottoWinnerNumberInputProcessor;
-    private final BonusNumberInputProcessor bonusNumberInputProcessor;
+    private final InputProcessor<List<Integer>> lottoWinnerNumberInputProcessor;
+    private final InputProcessor<Integer> bonusNumberInputProcessor;
 
     private final List<Rank> rankAggregation;
 

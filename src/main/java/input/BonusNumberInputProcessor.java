@@ -2,10 +2,11 @@ package input;
 
 import constant.InputNotice;
 import validation.BonusNumberValidator;
+import validation.Validator;
 
 public class BonusNumberInputProcessor implements InputProcessor<Integer> {
 
-    private final BonusNumberValidator bonusNumberValidator;
+    private final Validator<Integer> bonusNumberValidator;
 
     public BonusNumberInputProcessor(BonusNumberValidator bonusNumberValidator) {
         this.bonusNumberValidator = bonusNumberValidator;
