@@ -9,7 +9,7 @@ import lotto.data.WinningResult;
 public class ResultPrinter {
 
     public static void printLottoesBought(List<Lotto> lottoes) {
-        System.out.println(lottoes.size() + "개를 구매했습니다.");
+        System.out.println("\n" + lottoes.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottoes) {
             System.out.println(lotto.getNumbers());
         }

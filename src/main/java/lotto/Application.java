@@ -32,7 +32,7 @@ public class Application {
             String lottoWinningNumbersInput = Console.readLine();
             List<Integer> winningNumbers = userInputParser.getLottoWinningNumbers(lottoWinningNumbersInput);
 
-            System.out.println("보너스 번호를 입력해 주세요.");
+            System.out.println("\n보너스 번호를 입력해 주세요.");
             String winningBonusNumberInput = Console.readLine();
             int bonusNumber = userInputParser.getLottoWinningBonusNumber(winningBonusNumberInput);
 
