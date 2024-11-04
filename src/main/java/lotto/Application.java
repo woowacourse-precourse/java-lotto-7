@@ -24,28 +24,34 @@ public class Application {
                 System.out.println("구입금액을 입력해 주세요.");
                 lottoValue = Console.readLine();
 
-
                 lottoLen = Integer.parseInt(lottoValue);
-                if ((lottoLen % 1000) != 0) {
-                    new IllegalArgumentException("[ERROR] 로또 구입 값은 1000원 단위로만 받을 수 있습니다.");
+                if (lottoLen % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 로또 구입 값은 1000원 단위로만 받을 수 있습니다.");
                 }
 
-                break;
-
+                break;  // 유효한 값이 입력되면 반복문 종료
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 금액은 숫자 형식이어야 합니다. 다시 입력해 주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+
 
         lottoLen = lottoLen / 1000;
         System.out.println();
         System.out.println(lottoLen+"개를 구매했습니다.");
 
         for(int i = 0; i < lottoLen; i++){
-            List<Integer> newPick = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            newPick.sort(Comparator.naturalOrder());
-            Lotto lotto = new Lotto(newPick);
-            LottoList.add(lotto);
+            try {
+                List<Integer> newPick = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+                newPick.sort(Comparator.naturalOrder());
+                Lotto lotto = new Lotto(newPick);  // Lotto 생성 시 예외 발생 가능
+                LottoList.add(lotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                i--; // 예외 발생 시 해당 로또 재생성
+            }
         }
 
         for (Lotto list : LottoList){
@@ -56,14 +62,36 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         tmpWinNumber = Console.readLine();
 
-        Arrays.stream(tmpWinNumber.split(","))
-                .map(String::trim) // 공백 제거
-                .map(Integer::parseInt) // Integer로 변환
-                .forEach(winNumbers::add); // List에 추가
+        try {
+            Arrays.stream(tmpWinNumber.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .forEach(winNumbers::add);
+            if (winNumbers.size() != 6) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 당첨 번호는 숫자 형식이어야 합니다.");
+            return;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
 
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
-        bonusNumber = Integer.parseInt(Console.readLine());
+        try {
+            bonusNumber = Integer.parseInt(Console.readLine());
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 보너스 번호는 숫자 형식이어야 합니다.");
+            return;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
 
         System.out.println();
         System.out.println("당첨 통계");
@@ -126,12 +154,6 @@ public class Application {
 
         double profitRate = ((double) sum / Integer.parseInt(lottoValue)) * 100;
         System.out.println("총 수익률은 "+String.format("%.1f",profitRate)+"%입니다.");
-
-
-
-
-
-
 
 
     }
