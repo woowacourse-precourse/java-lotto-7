@@ -23,13 +23,17 @@ public class Lotto {
         }
 
         if(set.size() != 6) throw new InputException(HAS_NUMBER_EXIST);
+
+        for (Integer value : numbers) {
+            if(value <=0) throw new InputException(NUMBER_ZERO_AND_LESS);
+        }
     }
 
     // TODO: 추가 기능 구현
 
 
     public void setBonusNumber(int bonusNumber) {
-        if (bonusNumber <= 0) throw new InputException(BONUS_NUMBER_ZERO_AND_LESS);
+        if (bonusNumber <= 0) throw new InputException(NUMBER_ZERO_AND_LESS);
         if (numbers.contains(bonusNumber)) throw new InputException(WIN_NOT_EXIST_NUMBER);
     }
 
