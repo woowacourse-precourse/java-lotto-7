@@ -36,6 +36,4 @@ class LottoStatisticTest {
                 .isEqualTo(profitRate);
     }
 
-    //TODO: 너무 큰 수 예외처리
-
 }
