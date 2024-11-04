@@ -28,7 +28,7 @@ public class LottoResult {
         int allPrizeMoney = 0;
         for (LottoPrizes prize : LottoPrizes.values()) {
             for (int i = 0; i < prize.getCount(); i++) {
-                allPrizeMoney += prize.moneyToInt(prize);
+                allPrizeMoney += prize.moneyToInt();
             }
         }
         int price = userLotto.getPrice();

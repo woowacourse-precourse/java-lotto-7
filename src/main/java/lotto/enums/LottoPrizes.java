@@ -14,39 +14,34 @@ public enum LottoPrizes {
 
     private final String prizeMoney;
 
-    private  int count;
+    private int count;
+
     LottoPrizes(int matchNumberCount, String prizeMoney, int count) {
         this.matchNumberCount = matchNumberCount;
         this.prizeMoney = prizeMoney;
         this.count = count;
     }
 
-    public static LottoPrizes checkLottoRank(long matchingCount, boolean isBonusMatched) {
+    public static void checkLottoRank(long matchingCount, boolean isBonusMatched) {
         if (matchingCount == 6) {
             FIRST.count++;
-            return FIRST;
         }
 
         if (matchingCount == 5 && isBonusMatched) {
             SECOND.count++;
-            return SECOND;
         }
 
         if (matchingCount == 5) {
             THIRD.count++;
-            return THIRD;
         }
 
         if (matchingCount == 4) {
             FOURTH.count++;
-            return FOURTH;
         }
 
         if (matchingCount == 3) {
             FIFTH.count++;
-            return FIFTH;
         }
-        return null;
     }
 
     public int getMatchNumberCount() {
@@ -57,26 +52,12 @@ public enum LottoPrizes {
         return this.count;
     }
 
-    public String  getPrizeMoney() {
+    public String getPrizeMoney() {
         return prizeMoney;
     }
 
-    public int moneyToInt(LottoPrizes prize) {
-        if (prize == FIRST) {
-            return 2000000000;
-        }
-        if (prize == SECOND) {
-            return 30000000;
-        }
-        if (prize == THIRD) {
-            return 1500000;
-        }
-        if (prize == FOURTH) {
-            return 50000;
-        }
-        if (prize == FIFTH) {
-            return 5000;
-        }
-        return 0;
+    public int moneyToInt() {
+        int[] prizeValues = {5000, 50000, 1500000, 30000000, 2000000000};
+        return prizeValues[ordinal()];
     }
 }
