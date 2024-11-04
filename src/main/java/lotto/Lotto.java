@@ -23,9 +23,10 @@ public class Lotto {
 
         for (List<Integer> randomNumbers : randomNumberList) {
             Object matchResult = countLottoMatchesWithBonus(numbers, bonusNumber, randomNumbers);
-            checkLotto.put(matchResult, checkLotto.getOrDefault(matchResult, 0) + 1);
+            if (matchResult != null) {
+                checkLotto.put(matchResult, checkLotto.getOrDefault(matchResult, 0) + 1);
+            }
         }
-
         return checkLotto;
     }
 
@@ -45,6 +46,9 @@ public class Lotto {
         if (matchCount == 5 && lottoNumbers.contains(bonusNumber)) {
             return "bonus";
         }
-        return matchCount;
+        if (matchCount >= 3){
+            return matchCount;
+        }
+        return null;
     }
 }
