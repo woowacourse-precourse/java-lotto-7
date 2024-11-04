@@ -23,7 +23,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoRange.NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.REQUIRED_LOTTO_NUMBER_COUNT.getText());
-        } else if (new HashSet<>(numbers).size() != 6) {
+        } else if (new HashSet<>(numbers).size() != LottoRange.NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.getText());
         }
     }
