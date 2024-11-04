@@ -11,7 +11,7 @@ import static lotto.Exception.LottoNumber.LottoNumberInputErrorCode.INCORRECT_DE
 public class InputValidator{
     private static final String None = "";
     private static final String Delimiter = ",";
-    private static final String Regexp = "^[0-9" + Delimiter + "]+$";
+    private static final String Regexp = "^[0-9a-zA-Z,]+$";
 
     public int validateCashByInput(String input) {
         isNull(input);
