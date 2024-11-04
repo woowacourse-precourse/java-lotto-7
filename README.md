@@ -37,6 +37,10 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 * 목적에 맞게 static, final 사용하기
 * 2주차 피드백 반영하기
 
+# 🌱 성장 노트
+* * *
+
+
 # 🧩 패키지 구조
 * * *
 ```
