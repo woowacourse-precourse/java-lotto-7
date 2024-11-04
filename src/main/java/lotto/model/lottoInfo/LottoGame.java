@@ -71,6 +71,7 @@ public class LottoGame {
 
     private Map<Rank, Long> groupByRank(List<Rank> ranks) {
         return ranks.stream()
+                .filter(rank -> !rank.isNone())
                 .collect(Collectors.groupingBy(rank -> rank,
                         () -> new EnumMap<>(Rank.class),
                         Collectors.counting()));

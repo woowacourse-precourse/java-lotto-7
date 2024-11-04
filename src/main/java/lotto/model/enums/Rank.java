@@ -21,6 +21,10 @@ public enum Rank {
         return message;
     }
 
+    public boolean isNone() {
+        return this == NONE;
+    }
+
     public static Rank checkRank(long match, boolean bonus) {
         if (match == FIRST.match) {
             return FIRST;
