@@ -1,5 +1,7 @@
-package lotto;
+package lotto.model.domain;
 
+import lotto.constant.ErrorMessage;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,5 +23,18 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    public void 로또_번호의_범위를_벗어나면_예외가_발생한다() throws Exception {
+        //given
+        List<Integer> list1 = List.of(1, 2, 3, 4, 5, 46);
+        List<Integer> list2 = List.of(1, 2, 3, 4, 5, -1);
+
+        //when
+
+        //then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Lotto(list1),
+                ErrorMessage.LOTTO_NUMBER_RANGE_VALIDATOR.getMessage());
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Lotto(list2),
+                ErrorMessage.LOTTO_NUMBER_RANGE_VALIDATOR.getMessage());
+    }
 }
