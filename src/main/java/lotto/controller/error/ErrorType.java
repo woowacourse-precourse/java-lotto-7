@@ -2,7 +2,6 @@ package lotto.controller.error;
 
 public enum ErrorType {
 
-    NULL_INPUT("입력이 null일 수 없습니다."),
     INVALID_DELIMITER("로또 번호 구분자 형식이 잘못되었습니다."),
     NULL_OR_BLANK_INPUT("입력이 null이거나 빈 문자열일 수 없습니다."),
     INVALID_NUMBER_FORMAT("입력이 int 범위를 벗어났거나 숫자가 아닙니다."),
