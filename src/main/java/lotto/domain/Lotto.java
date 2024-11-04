@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import lotto.exception.InvalidLottoNumbersDuplicateException;
 import lotto.exception.InvalidLottoNumbersSizeException;
@@ -13,7 +15,18 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = createSortedNumbers(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    private List<Integer> createSortedNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(List.copyOf(numbers));
+        Collections.sort(sortedNumbers);
+        return Collections.unmodifiableList(sortedNumbers);
     }
 
     private void validate(List<Integer> numbers) {
