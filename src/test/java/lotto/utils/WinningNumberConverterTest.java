@@ -1,10 +1,9 @@
-package lotto.domain;
+package lotto.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.utils.ErrorMessages;
 import lotto.utils.converter.WinningNumberConverter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
