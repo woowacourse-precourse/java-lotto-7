@@ -13,6 +13,7 @@ public class WinningNumberValidator implements Validator<List<Integer>> {
     public void validate(List<Integer> winningNumber) {
         validateNumberCount(winningNumber);
         validateWinningNumbersRange(winningNumber);
+        validateDuplicate(winningNumber);
     }
 
     private void validateNumberCount(List<Integer> winningNumber) {
@@ -26,6 +27,12 @@ public class WinningNumberValidator implements Validator<List<Integer>> {
             if (!isNumberInRange(number)) {
                 throw new IllegalArgumentException(WINNING_NUMBER_ERROR_MESSAGE);
             }
+        }
+    }
+
+    private void validateDuplicate(List<Integer> winningNumber) {
+        if (winningNumber.size() != winningNumber.stream().distinct().count()) {
+            throw new IllegalArgumentException(WINNING_NUMBER_ERROR_MESSAGE);
         }
     }
 }
