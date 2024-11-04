@@ -44,20 +44,15 @@ public class LottoResultManager {
         int matches = 0;
         boolean checkBonusNumber = false;
         for (Integer integer : lotto) {
-            if (winningLotto.getNumbers().contains(integer)) {
-                matches++;
-            }
+            if (winningLotto.getNumbers().contains(integer)) matches++;
         }
-        if(lotto.contains(bonusNumber)){
-            checkBonusNumber = true;
-        }
+        if(lotto.contains(bonusNumber)) checkBonusNumber = true;
         int result = 0;
         if(matches == 3) result = 1;
         if(matches == 4) result = 2;
         if(matches == 5 && !checkBonusNumber) result = 3;
         if(matches == 5 && checkBonusNumber) result = 4;
         if(matches == 6) result = 5;
-
         return result;
     }
 

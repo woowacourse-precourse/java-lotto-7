@@ -31,7 +31,6 @@ public class LottoController {
 
         lottoResultManager.printResult(lottos, winningLotto, bonusNumber);
         lottoResultManager.printProfitRate(lottos, winningLotto, bonusNumber, purchaseAmount);
-
     }
 
 }

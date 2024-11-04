@@ -11,6 +11,5 @@ public class Application {
 
         LottoController lottoController = new LottoController(lottoGenerator, lottoResultManager);
         lottoController.startLotto();
-
     }
 }
