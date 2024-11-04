@@ -17,6 +17,9 @@ public class OutputLottoResult {    // 로또 결과 출력
         printLottoResult("5개 일치 (1,500,000원)", lottoResult[2]);
         printLottoResult("5개 일치, 보너스 볼 일치 (30,000,000원)", lottoResult[1]);
         printLottoResult("6개 일치 (2,000,000,000원)", lottoResult[0]);
+
+        double rateResult = calculateRate(totalPrize, puchaseAmount);
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateResult);
     }
 
     private void printLottoResult(String message, int count) {
