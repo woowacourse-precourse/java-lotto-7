@@ -29,7 +29,6 @@ public class WinningStatistics {
         return rateOfWinning;
     }
 
-
     private void calculateRanks() {
         ranks = new HashMap<>(5);
 

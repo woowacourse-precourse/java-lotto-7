@@ -7,5 +7,4 @@ public class LottoConstant {
     public static final int PAYMENT_UNIT_WON = 1_000;
 
     public static final String WINNING_NUMBER_DELIMITER = ",";
-
 }

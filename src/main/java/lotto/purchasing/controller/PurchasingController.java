@@ -30,7 +30,5 @@ public class PurchasingController {
             purchasingInputView.setPaymentNull();
             receivePayment();
         }
-
     }
-
 }

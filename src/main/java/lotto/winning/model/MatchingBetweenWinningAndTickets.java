@@ -1,5 +1,8 @@
 package lotto.winning.model;
 
+import static lotto.common.constant.RankConstant.SECONDRANK;
+import static lotto.common.constant.RankConstant.THIRDRANK;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.common.model.Lotto;
@@ -35,7 +38,7 @@ public class MatchingBetweenWinningAndTickets {
 
     private void checkBonusWinning() {
         for (int i = 0; i < numberOfMatching.size(); i++) {
-            if(numberOfMatching.get(i) == 5) {
+            if(numberOfMatching.get(i) == THIRDRANK.getMatching()) {
                 numberOfMatching.set(i, matchBonusNumber(LottoTickets.get(i)));
             }
         }
@@ -44,8 +47,8 @@ public class MatchingBetweenWinningAndTickets {
     private int matchBonusNumber(Lotto LottoTicketOf5matches) {
         boolean isMatchedWithBonus = LottoTicketOf5matches.getNumbers().stream().anyMatch(number -> number == bonusNumber);
         if(isMatchedWithBonus) {
-            return 10;
+            return SECONDRANK.getMatching();
         }
-        return 5;
+        return THIRDRANK.getMatching();
     }
 }

@@ -35,6 +35,4 @@ public class WinningNumbers {
         validator.validateLottoLimit(winningNumbers);
         Collections.sort(winningNumbers);
     }
-    
-
 }
