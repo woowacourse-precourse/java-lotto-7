@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -17,6 +18,8 @@ public class Application {
 
         List<Integer> winningNumbers = inputWinningNumbers();
         int bonusNumber = inputBonusNumber();
+
+        Map<Integer, Integer> results = calculateResults(lottos, winningNumbers, bonusNumber);
 
         // TODO: 로또 번호 출력
     }
@@ -107,5 +110,47 @@ public class Application {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    public static Map<Integer, Integer> calculateResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        Map<Integer, Integer> resultMap = new HashMap<>();
+        for (Lotto lotto : lottos) {
+            int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers);
+            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+            int rank = getRank(matchCount, bonusMatch);
+            if (rank != 0) {
+                resultMap.put(rank, resultMap.getOrDefault(rank, 0) + 1);
+            }
+        }
+        return resultMap;
+    }
+
+    public static int getMatchCount(List<Integer> numbers, List<Integer> winningNumbers) {
+        int count = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int getRank(int matchCount, boolean bonusMatch) {
+        if (matchCount == 6) {
+            return 1;
+        }
+        if (matchCount == 5 && bonusMatch) {
+            return 2;
+        }
+        if (matchCount == 5) {
+            return 3;
+        }
+        if (matchCount == 4) {
+            return 4;
+        }
+        if (matchCount == 3) {
+            return 5;
+        }
+        return 0;
     }
 }
