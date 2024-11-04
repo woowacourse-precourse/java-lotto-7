@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LottoControllerTest {
 
-   private final LottoService lottoService = new LottoService();
+    private final LottoService lottoService = new LottoService();
 
     @Test
     @DisplayName("입력받은 금액이 1000원 단위로 떨어지지 않는 경우")
@@ -36,7 +36,7 @@ class LottoControllerTest {
     @Test
     @DisplayName("올바르지 않은 당첨번호를 입력받은 경우")
     void 올바르지_않은_당첨번호_입력() {
-        assertThatThrownBy(()->new CorrectDTO(new Lotto(Arrays.asList(1,2,3,4,5,46))))
+        assertThatThrownBy(() -> new CorrectDTO(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 46))))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 45이하의 숫자여야 합니다.");
     }

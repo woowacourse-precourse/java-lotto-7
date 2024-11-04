@@ -92,7 +92,7 @@ public class LottoViewTest {
         String expectedOutput = "[8, 21, 23, 41, 42, 43]\n[3, 5, 11, 16, 32, 38]\n";
 
         // 출력값 검증
-        assertEquals(expectedOutput,  outputStreamCaptor.toString());
+        assertEquals(expectedOutput, outputStreamCaptor.toString());
     }
 
     @Test
@@ -109,10 +109,10 @@ public class LottoViewTest {
     }
 
     @Test
-    public void 음수_입력된_경우(){
+    public void 음수_입력된_경우() {
         String invalidInput = "8, 21, -2, 41, 42, 43\n";
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()-> {
-                lottoView.validateAndParseLottoInput(invalidInput);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            lottoView.validateAndParseLottoInput(invalidInput);
         });
         assertEquals("[ERROR] 로또 번호에는 음수 값이 포함되어서는 안됩니다.", exception.getMessage());
     }
@@ -125,7 +125,6 @@ public class LottoViewTest {
         });
         assertEquals("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
     }
-
 
 
 }

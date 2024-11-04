@@ -14,7 +14,7 @@ public class LottoView {
     }
 
     public void printTicketNumber(MoneyDTO moneyDTO) {
-        System.out.println("\n"+moneyDTO.getTicketNumber() + "개를 구매했습니다.");
+        System.out.println("\n" + moneyDTO.getTicketNumber() + "개를 구매했습니다.");
     }
 
     public void printLottos(LottoDTO lottoDTO) {
@@ -33,9 +33,8 @@ public class LottoView {
 
     //전체적으로 통계가 어떻게 나왔는지 출력
     public void printRateOfReturn(RateOfReturnDTO returnDTO) {
-        System.out.println("총 수익률은 "+returnDTO.getRateOfReturn()+"%입니다.");
+        System.out.println("총 수익률은 " + returnDTO.getRateOfReturn() + "%입니다.");
     }
-
 
 
     public void printLottoResult() {
@@ -45,7 +44,7 @@ public class LottoView {
         }
     }
 
-    public void printResult(RateOfReturnDTO returnDTO){
+    public void printResult(RateOfReturnDTO returnDTO) {
         printLottoResult();
         printRateOfReturn(returnDTO);
     }
@@ -107,7 +106,7 @@ public class LottoView {
         }
     }
 
-    public CorrectDTO validateAndParseLottoInput(String input){
+    public CorrectDTO validateAndParseLottoInput(String input) {
         validateInput(input);
         Lotto lotto = new Lotto(sliceToken(input));
         return new CorrectDTO(lotto);

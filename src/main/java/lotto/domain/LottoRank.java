@@ -47,8 +47,8 @@ public enum LottoRank {
     }
 
     //통계 출력을 위한 부분
-    public String getFormattedOutput(){
-        if(this == FIVE_BONUS){
+    public String getFormattedOutput() {
+        if (this == FIVE_BONUS) {
             return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", matchCount, formatCurrency(prize), count);
         }
         return String.format("%d개 일치 (%s원) - %d개", matchCount, formatCurrency(prize), count);
