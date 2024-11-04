@@ -14,8 +14,8 @@ public class LottoControllerTest {
     private LottoController lottoController;
 
     @BeforeEach
-    void setup(){
-        lottoController= new LottoController("test");
+    void setup() {
+        lottoController = new LottoController("test");
     }
 
     @Nested
@@ -29,12 +29,13 @@ public class LottoControllerTest {
             //then,
             assertThat(lottoController.getLottos().size()).isEqualTo(count);
         }
+
         @RepeatedTest(5)
-        void 로또번호에_중복은_없어야_한다(){
+        void 로또번호에_중복은_없어야_한다() {
             //when
             lottoController.issueLotto(5);
             //then
-            for(Lotto lotto : lottoController.getLottos()){
+            for (Lotto lotto : lottoController.getLottos()) {
                 assertThat(lotto.getNumbers().size()).isEqualTo(new HashSet<Integer>(lotto.getNumbers()).size());
             }
         }
@@ -70,7 +71,7 @@ public class LottoControllerTest {
     }
 
     @Test
-    void 당첨정보를_담고있는_map을_생성한다(){
+    void 당첨정보를_담고있는_map을_생성한다() {
         assertThat(lottoController.getWinningList().size()).isEqualTo(6);
     }
 }

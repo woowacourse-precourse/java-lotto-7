@@ -42,20 +42,21 @@ public class LottoPurchase {
         String userInputLottoNumber = Console.readLine();
         System.out.println("보너스 번호를 입력해 주세요.");
         String userInputBonusNumber = Console.readLine();
-        inputLottoNumber(userInputLottoNumber,userInputBonusNumber);
+        inputLottoNumber(userInputLottoNumber, userInputBonusNumber);
 
     }
-    public void inputLottoNumber(String userInputLottoNumber,String userInputBonusNumber){
+
+    public void inputLottoNumber(String userInputLottoNumber, String userInputBonusNumber) {
         if (!userInputLottoNumber.matches("^\\d+(?:,\\d+)*$")) {
             throw new IllegalArgumentException("[ERROR] 숫자와 쉼표만 입력해야 합니다.");
         }
-        if (!userInputBonusNumber.matches("\\d+")){
+        if (!userInputBonusNumber.matches("\\d+")) {
             throw new IllegalArgumentException("보너스 번호는 숫자만 입력 가능합니다.");
         }
-        winningLotto = new WinningLotto(splitLottoNumber(userInputLottoNumber),Integer.parseInt(userInputBonusNumber));
+        winningLotto = new WinningLotto(splitLottoNumber(userInputLottoNumber), Integer.parseInt(userInputBonusNumber));
     }
 
-    private List<Integer> splitLottoNumber(String userInputLottoNumber){
+    private List<Integer> splitLottoNumber(String userInputLottoNumber) {
         return Arrays.stream(userInputLottoNumber.split(",")).map(Integer::parseInt).toList();
     }
 

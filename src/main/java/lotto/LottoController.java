@@ -15,14 +15,14 @@ public class LottoController {
     private List<Lotto> lottos;
     private int purchaseCount;
     private WinningLotto winningLotto;
-    private LottoPurchase lottoPurchase = new LottoPurchase();
-    private Map<Integer, Integer> winningList = new HashMap<>();
+    private LottoPurchase lottoPurchase;
+    private Map<Integer, Integer> winningList;
     private double winningRate;
 
-
     public LottoController() {
-        lottoPurchase = new LottoPurchase();
         lottos = new ArrayList<>();
+        lottoPurchase = new LottoPurchase();
+        winningList = new HashMap<>();
         initialWinningList();
     }
 
@@ -50,6 +50,7 @@ public class LottoController {
             }
         }
 
+        //수익률 관련 메서드
         calculateWinningRate();
         printWinningRage();
     }

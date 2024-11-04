@@ -55,7 +55,7 @@ public class Lotto {
         return numbers.stream().sorted().toList();
     }
 
-    public void printLotto(){
+    public void printLotto() {
         System.out.println(numbers.toString());
     }
 

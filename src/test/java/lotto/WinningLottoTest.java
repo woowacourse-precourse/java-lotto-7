@@ -30,7 +30,7 @@ public class WinningLottoTest extends LottoTest {
         List<Integer> lotto_number = List.of(1, 2, 3, 4, 5, 6);
         int bonus_number = 46;
         //when
-        Throwable thrown = catchException(() -> new WinningLotto(lotto_number,bonus_number));
+        Throwable thrown = catchException(() -> new WinningLotto(lotto_number, bonus_number));
         //then
         assertThat(thrown).isInstanceOf(IllegalArgumentException.class);
     }
