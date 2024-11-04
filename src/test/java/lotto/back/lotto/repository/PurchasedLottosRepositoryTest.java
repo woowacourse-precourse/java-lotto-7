@@ -1,5 +1,6 @@
 package lotto.back.lotto.repository;
 
+import lotto.back.lotto.config.LottoConfig;
 import lotto.back.lotto.domain.Lottos;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,10 @@ class PurchasedLottosRepositoryTest {
     @Test
     void 기본_동작_테스트() {
         // given
-        Lottos lottos = Lottos.generateRandomLottos(1000);
+        int price = 1000;
+        int count = price / LottoConfig.PRICE.get();
+
+        Lottos lottos = Lottos.generateRandomLottos(count, price);
 
         // when
         purchasedLottosRepository.save(lottos);

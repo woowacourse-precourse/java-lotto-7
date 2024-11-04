@@ -19,12 +19,12 @@ public class Lottos {
     }
 
 
-    public static Lottos generateRandomLottos(Integer count) {
+    public static Lottos generateRandomLottos(Integer count, Integer price) {
         List<Lotto> lottos = IntStream.range(0, count)
                 .mapToObj(i -> Lotto.generateRandomLotto())
                 .toList();
 
-        return new Lottos(UUID.randomUUID(), lottos, count);
+        return new Lottos(UUID.randomUUID(), lottos, price);
     }
 
 

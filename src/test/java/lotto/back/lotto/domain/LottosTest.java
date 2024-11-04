@@ -11,9 +11,10 @@ class LottosTest {
     void 구입_금액_예외() {
         // given
         int price = LottoConfig.PRICE.get() / 10;
+        int count = price / LottoConfig.PRICE.get();
 
         // when, then
-        assertThatThrownBy(() -> Lottos.generateRandomLottos(price))
+        assertThatThrownBy(() -> Lottos.generateRandomLottos(count, price))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -34,7 +34,7 @@ public class LottoServiceImpl implements LottoService {
         validatePrice(purchaseLottoRequestDTO.price());
         Integer lottoCount = getLottoCount(purchaseLottoRequestDTO.price());
 
-        Lottos lottos = Lottos.generateRandomLottos(lottoCount);
+        Lottos lottos = Lottos.generateRandomLottos(lottoCount, purchaseLottoRequestDTO.price());
         purchasedLottosRepository.save(lottos);
 
         return PurchasedLottoResponseDTOs.from(lottos);
