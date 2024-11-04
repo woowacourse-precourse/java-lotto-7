@@ -19,9 +19,6 @@ public class NumberList extends ArrayList<Integer> {
     }
 
     static public void isListOverMaxLength(List<Integer> list, int maxLength){
-        /*TODO
-         * Exception Message를 ENUM 이나 상수로 정의하여 사용하기.
-         * */
         if(list.size() > maxLength){
             ExceptionFactory.throwIllegalArgumentException(ExceptionType.LIST_OVER_MAX_LENGTH);
         }
