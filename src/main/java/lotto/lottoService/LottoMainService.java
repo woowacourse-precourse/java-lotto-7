@@ -109,7 +109,7 @@ public class LottoMainService {
             }
             sumPrize += LottoPrize.getPrize(i, false) * stats.getHitNumberValue(i);
         }
-        return (double) sumPrize / Integer.parseInt(cost);
+        return (double) sumPrize / Long.parseLong(cost);
     }
 
 }
