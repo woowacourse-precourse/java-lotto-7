@@ -74,5 +74,5 @@ Controller
 - DrawController: 추첨 프로세스 컨트롤
 - PurchaseController: 구매 프로세스 컨트롤
 
-Service
-- ApplicationRunner: 애플리케이션 프로세스 조합
+
+ApplicationRunner: 애플리케이션 프로세스 조합
