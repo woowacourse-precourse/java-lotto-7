@@ -4,7 +4,6 @@ import static lotto.common.Constant.ZERO;
 import static lotto.common.ErrorMessage.INVALID_PRICE;
 import static lotto.common.Constant.THOUSAND;
 
-
 public class Money {
     private final int userInputMoney;
 
