@@ -7,6 +7,7 @@ import lotto.model.lotto.LottoChecker;
 import lotto.model.lotto.LottoPublisher;
 import lotto.model.number_generator.NumberGenerator;
 import lotto.model.number_generator.TestNumberGenerator;
+import lotto.view.OutputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

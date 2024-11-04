@@ -8,6 +8,7 @@ import lotto.model.draw_numbers.DrawNumbersBuilder;
 import lotto.model.number_generator.LottoNumberGenerator;
 import lotto.model.number_generator.NumberGenerator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
