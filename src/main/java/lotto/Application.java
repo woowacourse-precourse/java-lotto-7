@@ -19,8 +19,25 @@ public class Application {
 
         displayLotto(numOfLotto);
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        final List<Integer> winningNumbers = getWinningNumbers();
 
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+
+        final String inputForBonus = Console.readLine();
+        try {
+            int bonusNumber = isNotNum(inputForBonus);
+            rangeOfNumber(bonusNumber);
+            isAlreadyExist(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
+
+    private static List<Integer> getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
 
         final String inputForWinningNumbers = Console.readLine();
 
@@ -45,21 +62,7 @@ public class Application {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
-
-        System.out.println("보너스 번호를 입력해 주세요.");
-
-
-        final String inputForBonus = Console.readLine();
-        try {
-            int bonusNumber = isNotNum(inputForBonus);
-            rangeOfNumber(bonusNumber);
-            isAlreadyExist(winningNumbers, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-
-
+        return winningNumbers;
     }
 
     private static void displayLotto(int numOfLotto) {
