@@ -6,4 +6,5 @@ public class ErrorMessages {
     public static final String LOTTO_NUMBER_LENGTH_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
     public static final String DUPLICATE_LOTTO_NUMBER_ERROR = "[ERROR] 로또 번호는 중복될 수 없습니다.";
     public static final String INVALID_LOTTO_NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 1에서 45 사이의 수여야 합니다.";
+    public static final String LOTTO_NUMBER_NOT_INTEGER_ERROR = "[ERROR] 로또 번호는 숫자여야 합니다.";
 }
