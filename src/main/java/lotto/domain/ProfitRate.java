@@ -21,4 +21,8 @@ public class ProfitRate {
 
         return totalReward;
     }
+
+    public double getProfitRate() {
+        return profitRate;
+    }
 }
