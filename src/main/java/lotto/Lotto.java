@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+    private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int MIN_NUM = 1;
+    private static final int MAX_NUM = 45;
     private final List<Integer> numbers;
 
     public Lotto() {
@@ -20,20 +23,16 @@ public class Lotto {
         sortNumbers();
     }
 
-    private void sortNumbers() {
-        Collections.sort(this.numbers);
-    }
-
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new InvalidLottoNumberException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는" + LOTTO_NUMBER_COUNT + "개여야 합니다.");
         }
         if (new HashSet<>(numbers).size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
         }
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            if (number < MIN_NUM || number > MAX_NUM) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 " + MIN_NUM + "부터 " + MAX_NUM + " 사이의 숫자여야 합니다.");
             }
         }
     }
@@ -64,10 +63,14 @@ public class Lotto {
             }
             validate(numbers);
         }catch(NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력한 값이 숫자가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 올바르지 않은 타입입니다.");
         }
 
         return numbers;
+    }
+
+    private void sortNumbers() {
+        Collections.sort(this.numbers);
     }
 
     public List<Integer> getNumbers() {
