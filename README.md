@@ -41,6 +41,7 @@
   - [ ] print rate of return
   - [ ] validate money input
   - [ ] validate winning numbers input
+  - [ ] validate bonus number input
 
 - handle user request
   - [ ] deliver user request and info 

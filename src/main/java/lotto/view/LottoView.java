@@ -12,9 +12,7 @@ import lotto.view.constant.UserInterfaceMessage;
 
 public class LottoView {
 
-    /*TODO
-     *  - 보너스 번호 범위 1~45 검사 필요
-     *  - */
+
     public static final String DELIMITERS = ",";
     public static final int LOTTO_PRICE = 1000;
 
@@ -65,7 +63,7 @@ public class LottoView {
         guideInputBonusNumber();
         String rawBonusNumber = Console.readLine();
         try {
-            Validator.validateBlankString(rawBonusNumber);
+            this.validateBonusNumber(rawBonusNumber);
             return this.parseInt(rawBonusNumber);
         }catch (IllegalArgumentException exception){
             return readBonusNumber();
@@ -111,6 +109,14 @@ public class LottoView {
         }
 
         Validator.validateListSize(winningNumberList,NumberList.MAX_SIZE);
+    }
+
+    public void validateBonusNumber(String rawBonusNumber){
+        int bonusNumber = this.parseInt(rawBonusNumber);
+        int startRange = NumberList.NUMBER_RANGE[NumberList.NUMBER_RANGE_START];
+        int endRange = NumberList.NUMBER_RANGE[NumberList.NUMBER_RANGE_END];
+        Validator.validateSpecificRange(bonusNumber, startRange,endRange);
+
     }
 
     /*TODO
