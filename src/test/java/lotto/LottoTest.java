@@ -30,7 +30,7 @@ class LottoTest {
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 
-    @DisplayName("로또 번호 범위가 잘못된 경우 예외 발생")
+    @DisplayName("로또 번호 범위가 잘못된 경우 예외 발생해야함")
     @ParameterizedTest
     @MethodSource("providedLottoNumbers")
     void lottoNumberRangeTest(List<Integer> lottoNumber) {
@@ -44,5 +44,11 @@ class LottoTest {
                 List.of(-1, 1, 2, 3, 4, 5), // 음수 포함
                 List.of(1, 2, 3, 4, 5, 46)  // 45 초과 숫자 포함
         );
+    }
+
+    @Test
+    @DisplayName("로또 번호 출력시 오름차순 인지 확인하는 테스트")
+    void 로또번호는_오름차순으로_출력한다() {
+        
     }
 }
