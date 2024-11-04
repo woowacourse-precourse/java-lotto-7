@@ -52,4 +52,24 @@ class BonusNumberTest {
                         ErrorMessage.LOTTO_NUMBER_DUPLICATE, "당첨 번호와 중복될 때")
         );
     }
+
+    @Test
+    @DisplayName("구매한 로또와 보너스 번호의 일치 여부를 계산하는지 - 일치할 때")
+    void calculateMatchedBonusNumberWithLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+
+        BonusNumber bonusNumber = BonusNumber.of(winningLotto, 7);
+
+        assertThat(bonusNumber.matchesBonusNumber(lotto)).isTrue();
+    }
+
+    @Test
+    @DisplayName("구매한 로또와 보너스 번호의 일치 여부를 계산하는지 - 일치하지 않을 때")
+    void calculateNotMatchedBonusNumberWithLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+
+        BonusNumber bonusNumber = BonusNumber.of(winningLotto, 8);
+
+        assertThat(bonusNumber.matchesBonusNumber(lotto)).isFalse();
+    }
 }

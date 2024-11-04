@@ -49,4 +49,14 @@ class WinningLottoTest {
                         ErrorMessage.LOTTO_NUMBER_DUPLICATE, "숫자가 중복될 때")
         );
     }
+
+    @Test
+    @DisplayName("구매한 로또와 당첨 번호의 일치 개수를 계산하는지")
+    void calculateMatchedCountLottoWithWinningLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        WinningLotto winningLotto = WinningLotto.from(List.of(1, 2, 3, 4, 5, 7));
+
+        assertThat(winningLotto.getMatchedNumberCount(lotto)).isEqualTo(5);
+    }
 }
