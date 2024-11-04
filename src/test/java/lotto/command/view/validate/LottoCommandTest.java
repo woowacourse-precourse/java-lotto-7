@@ -1,9 +1,11 @@
 package lotto.command.view.validate;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.common.exception.ExceptionEnum;
@@ -15,13 +17,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * @author : jiffyin7@gmail.com
  * @since : 24. 11. 3.
  */
-class LottoCommandTest {
+class LottoCommandTest extends NsTest {
   private LottoCommand command;
 
   @BeforeEach
@@ -30,10 +31,27 @@ class LottoCommandTest {
   }
 
   @ParameterizedTest
+  @MethodSource("provideInputsForRetry")
+  @DisplayName("[success]execute : 재시도 로직")
+  void execute_shouldRetryOnInvalidInput(String invalidInput, String validInput, ExceptionEnum exceptionEnum) {
+    String ask = "당첨 번호를 입력해 주세요.";
+    assertSimpleTest(()-> {
+      run(invalidInput, validInput);
+      assertThat(output()).satisfies(
+          text -> assertThat(text).containsSubsequence(
+              ask,
+              ask
+          ),
+          text -> assertThat(text).contains(exceptionEnum.getMessage())
+      );
+    });
+  }
+
+  @ParameterizedTest
   @MethodSource("provideValidLottoInputs")
-  @DisplayName("[success]execute : 유효한 로또 번호")
-  void execute_shouldReturnCorrectUserInput(String input, List<Integer> expectedNumbers) {
-    UserInput result = command.execute(input);
+  @DisplayName("[success]validate : 유효한 로또 번호")
+  void validate_shouldReturnCorrectUserInput(String input, List<Integer> expectedNumbers) {
+    UserInput result = command.validate(input);
     assertThat(result)
         .isInstanceOf(WinningLottoUserInput.class);
     assertThat(((WinningLottoUserInput) result)
@@ -43,67 +61,72 @@ class LottoCommandTest {
 
   @ParameterizedTest
   @MethodSource("invalidWhiteSpace")
-  @DisplayName("[fail]execute : 공백 입력 처리")
-  void execute_shouldThrowExceptionWithWhiteSpace(String blankInput,
+  @DisplayName("[fail]validate : 공백 입력 처리")
+  void validate_shouldThrowExceptionWithWhiteSpace(String blankInput,
       ExceptionEnum exceptionEnum) {
-    assertThatThrownBy(() -> command.execute(blankInput))
+    assertThatThrownBy(() -> command.validate(blankInput))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR]")
         .hasMessageContaining(exceptionEnum.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 공백이 포함된 입력 처리")
-  void execute_shouldThrowExceptionWithSpace() {
+  @DisplayName("[fail]validate : 공백이 포함된 입력 처리")
+  void validate_shouldThrowExceptionWithSpace() {
     String inputWithSpace = "1,2,3,4,5,6 ";
-    assertThatThrownBy(() -> command.execute(inputWithSpace))
+    assertThatThrownBy(() -> command.validate(inputWithSpace))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.CONTAIN_WHITESPACE.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 최소 번호보다 작은 값 입력")
-  void execute_shouldThrowExceptionWhenNumberLessThanMinimum() {
+  @DisplayName("[fail]validate : 최소 번호보다 작은 값 입력")
+  void validate_shouldThrowExceptionWhenNumberLessThanMinimum() {
     String inputLessThanMinimum = "0,1,2,3,4,5";
-    assertThatThrownBy(() -> command.execute(inputLessThanMinimum))
+    assertThatThrownBy(() -> command.validate(inputLessThanMinimum))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.INPUT_LESS_THAN_MINIMUM.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 최대 번호보다 큰 값 입력")
-  void execute_shouldThrowExceptionWhenNumberGreaterThanMaximum() {
+  @DisplayName("[fail]validate : 최대 번호보다 큰 값 입력")
+  void validate_shouldThrowExceptionWhenNumberGreaterThanMaximum() {
     String inputGreaterThanMaximum = "1,2,3,4,5,50";
-    assertThatThrownBy(() -> command.execute(inputGreaterThanMaximum))
+    assertThatThrownBy(() -> command.validate(inputGreaterThanMaximum))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.INPUT_GREATER_THAN_MAXIMUM.getMessage());
   }
 
   @ParameterizedTest
   @MethodSource("provideInputsWithDuplicates")
-  @DisplayName("[fail]execute : 중복된 번호 입력")
-  void execute_shouldThrowExceptionWhenNumbersNotDistinct(String input) {
-    assertThatThrownBy(() -> command.execute(input))
+  @DisplayName("[fail]validate : 중복된 번호 입력")
+  void validate_shouldThrowExceptionWhenNumbersNotDistinct(String input) {
+    assertThatThrownBy(() -> command.validate(input))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.LOTTO_NUMBER_NOT_DISTINCT.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 잘못된 숫자 형식 입력")
-  void execute_shouldThrowExceptionWhenInvalidNumberFormat() {
+  @DisplayName("[fail]validate : 잘못된 숫자 형식 입력")
+  void validate_shouldThrowExceptionWhenInvalidNumberFormat() {
     String invalidInput = "1,two,3,four,five,six";
-    assertThatThrownBy(() -> command.execute(invalidInput))
+    assertThatThrownBy(() -> command.validate(invalidInput))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.INVALID_INTEGER_RANGE.getMessage());
   }
 
-  @Test
-  void execute() {
-  }
-
-  @Test
-  void ask() {
+  private static Stream<org.junit.jupiter.params.provider.Arguments> provideInputsForRetry() {
+    return Stream.of(
+        org.junit.jupiter.params.provider.Arguments.of("1,2,3,4,5,6,7", "1,2,3,4,5,6", ExceptionEnum.LOTTO_NUMBER_COUNT_NOT_AVAILABLE),
+        org.junit.jupiter.params.provider.Arguments.of("1,2,3,4,5", "1,2,3,4,5,6", ExceptionEnum.LOTTO_NUMBER_COUNT_NOT_AVAILABLE),
+        org.junit.jupiter.params.provider.Arguments.of("a,b,c,d,e,f", "1,2,3,4,5,6", ExceptionEnum.INVALID_LONG_RANGE),
+        org.junit.jupiter.params.provider.Arguments.of("1,2,3,4,5,5", "1,2,3,4,5,6", ExceptionEnum.LOTTO_NUMBER_NOT_DISTINCT)
+    );
   }
 
   private static Stream<Arguments> provideValidLottoInputs() {
@@ -133,5 +156,10 @@ class LottoCommandTest {
         Arguments.of("\n", ExceptionEnum.CONTAIN_BLANK),
         Arguments.of("\r", ExceptionEnum.CONTAIN_BLANK),
         Arguments.of("\f", ExceptionEnum.CONTAIN_BLANK));
+  }
+
+  @Override
+  protected void runMain() {
+    command.execute(Arrays.toString(new String[]{}));
   }
 }

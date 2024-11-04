@@ -21,10 +21,15 @@ public class LottoCommand implements ValidateCommand {
 
   @Override
   public UserInput execute(String input) {
-    return validate(input);
+    try {
+      return validate(input);
+    } catch (IllegalArgumentException | IllegalStateException e) {
+      view.displayOutput(e.getMessage());
+      return redo();
+    }
   }
 
-  private WinningLottoUserInput validate(String input) {
+  public WinningLottoUserInput validate(String input) {
     validateBlank(input);
     validateWhiteSpace(input);
     String[] rawNumbers = input.split(DELIMITER);

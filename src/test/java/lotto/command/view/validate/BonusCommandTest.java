@@ -1,9 +1,12 @@
 package lotto.command.view.validate;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.common.exception.ExceptionEnum;
@@ -23,7 +26,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  * @author : jiffyin7@gmail.com
  * @since : 24. 11. 3.
  */
-class BonusCommandTest {
+class BonusCommandTest extends NsTest {
   private BonusCommand command;
 
   @BeforeEach
@@ -34,14 +37,31 @@ class BonusCommandTest {
   }
 
   @ParameterizedTest
+  @MethodSource("provideInputsForRetry")
+  @DisplayName("[success]execute : 재시도 로직")
+  void execute_shouldRetryOnInvalidInput(String invalidInput, String validInput, ExceptionEnum exceptionEnum) {
+    String ask = "보너스 번호를 입력해 주세요.";
+    assertSimpleTest(()-> {
+      run(invalidInput, validInput);
+      assertThat(output()).satisfies(
+          text -> assertThat(text).containsSubsequence(
+              ask,
+              ask
+          ),
+          text -> assertThat(text).contains(exceptionEnum.getMessage())
+      );
+    });
+  }
+
+  @ParameterizedTest
   @ValueSource(strings = {
       "8",
       "10",
       "45"
   })
-  @DisplayName("[success]execute : 유효한 보너스 번호")
-  void execute_shouldReturnCorrectUserInput(String input) {
-    UserInput result = command.execute(input);
+  @DisplayName("[success]validate : 유효한 보너스 번호")
+  void validate_shouldReturnCorrectUserInput(String input) {
+    UserInput result = command.validate(input);
     assertThat(result)
         .isInstanceOf(BonusUserInput.class);
 
@@ -51,9 +71,9 @@ class BonusCommandTest {
 
   @ParameterizedTest
   @MethodSource("provideInvalidBonusInputs")
-  @DisplayName("[fail]execute : 유효하지 않은 보너스 번호")
-  void execute_shouldThrowExceptionWhenInvalidInput(String input, ExceptionEnum expectedException) {
-    assertThatThrownBy(() -> command.execute(input))
+  @DisplayName("[fail]validate : 유효하지 않은 보너스 번호")
+  void validate_shouldThrowExceptionWhenInvalidInput(String input, ExceptionEnum expectedException) {
+    assertThatThrownBy(() -> command.validate(input))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR]")
         .hasMessageContaining(expectedException.getMessage());
@@ -61,23 +81,33 @@ class BonusCommandTest {
 
   @ParameterizedTest
   @MethodSource("invalidWhiteSpace")
-  @DisplayName("[fail]execute : 공백 입력 처리")
-  void execute_shouldThrowExceptionWithWhiteSpace(String blankInput,
+  @DisplayName("[fail]validate : 공백 입력 처리")
+  void validate_shouldThrowExceptionWithWhiteSpace(String blankInput,
       ExceptionEnum exceptionEnum) {
-    assertThatThrownBy(() -> command.execute(blankInput))
+    assertThatThrownBy(() -> command.validate(blankInput))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR]")
         .hasMessageContaining(exceptionEnum.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 공백이 포함된 입력 처리")
-  void execute_shouldThrowExceptionWithSpace() {
+  @DisplayName("[fail]validate : 공백이 포함된 입력 처리")
+  void validate_shouldThrowExceptionWithSpace() {
     String inputWithSpace = "1,4,3,4,5,6 ";
-    assertThatThrownBy(() -> command.execute(inputWithSpace))
+    assertThatThrownBy(() -> command.validate(inputWithSpace))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.CONTAIN_WHITESPACE.getMessage());
+  }
+
+  private static Stream<org.junit.jupiter.params.provider.Arguments> provideInputsForRetry() {
+    return Stream.of(
+        org.junit.jupiter.params.provider.Arguments.of("46", "9", ExceptionEnum.INPUT_GREATER_THAN_MAXIMUM),
+        org.junit.jupiter.params.provider.Arguments.of("2", "10", ExceptionEnum.BONUS_NUMBER_NOT_DISTICT),
+        org.junit.jupiter.params.provider.Arguments.of("0", "11", ExceptionEnum.INPUT_LESS_THAN_MINIMUM),
+        org.junit.jupiter.params.provider.Arguments.of("-1", "12", ExceptionEnum.INPUT_LESS_THAN_MINIMUM),
+        org.junit.jupiter.params.provider.Arguments.of("a", "13", ExceptionEnum.INVALID_INTEGER_RANGE)
+    );
   }
 
   private static Stream<Arguments> invalidWhiteSpace() {
@@ -102,5 +132,10 @@ class BonusCommandTest {
         Arguments.of("3", ExceptionEnum.BONUS_NUMBER_NOT_DISTICT),
         Arguments.of("4", ExceptionEnum.BONUS_NUMBER_NOT_DISTICT)
     );
+  }
+
+  @Override
+  protected void runMain() {
+    command.execute(Arrays.toString(new String[]{}));
   }
 }

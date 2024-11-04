@@ -28,10 +28,15 @@ public class BonusCommand implements ValidateCommand {
 
   @Override
   public UserInput execute(String input) {
-    return validate(input);
+    try {
+      return validate(input);
+    } catch (IllegalArgumentException | IllegalStateException e) {
+      view.displayOutput(e.getMessage());
+      return redo();
+    }
   }
 
-  private BonusUserInput validate(String input) {
+  public BonusUserInput validate(String input) {
     validateBlank(input);
     validateWhiteSpace(input);
     int number = validateIntegerRange(input, LOTTO_MINIMUM_NUMBER, LOTTO_MAXIMUM_NUMBER);
