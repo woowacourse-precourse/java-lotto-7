@@ -78,4 +78,10 @@ public class Lotto {
         }
         return numbers;
     }
+
+    private static int matchNumbers(List<Integer> numbers, List<Integer> winning_numbers) {
+        return numbers.stream().filter(winning_numbers::contains).toList().size();
+    }
+
+
 }
