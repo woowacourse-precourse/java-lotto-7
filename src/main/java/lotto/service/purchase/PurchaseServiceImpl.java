@@ -16,7 +16,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     public DrawTool openTrade() {
-        return null;
+        return new LottoMachine(getBetSlip());
     }
 
     private Long getBetSlip() {
