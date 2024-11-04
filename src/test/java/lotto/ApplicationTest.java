@@ -47,12 +47,61 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void not_integer_input() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    void duplicated_bonus_number() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void out_boundary_bonus_number() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void indivisible_input_test() {
+        assertSimpleTest(() -> {
+            runException("3333");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void blank_input_test() {
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void blank_second_input_test() {
+        assertSimpleTest(() -> {
+            runException("1000"," ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void blank_third_input_test() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6"," ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Override
     public void runMain() {
