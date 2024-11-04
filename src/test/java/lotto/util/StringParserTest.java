@@ -34,6 +34,17 @@ class StringParserTest {
     }
 
     @Test
+    void 문자에서_숫자로_변환_큰_수_예외_테스트() {
+        //given
+        String input = "2147483648";
+
+        //when,then
+        assertThatThrownBy(
+                () -> StringParser.toNumber(input)
+        ).isInstanceOf(ParseErrorHandler.class);
+    }
+
+    @Test
     void 문자열에서_숫자_리스트로_변환_테스트() {
         //given
         String input = "1,2,3";
@@ -54,6 +65,18 @@ class StringParserTest {
         //when,then
         assertThatThrownBy(
                 () -> StringParser.toNumbers(input)
+        ).isInstanceOf(ParseErrorHandler.class);
+    }
+
+
+    @Test
+    void 문자에서_숫자_리스트로_변환_큰_수_예외_테스트() {
+        //given
+        String input = "2147483648,2147483648";
+
+        //when,then
+        assertThatThrownBy(
+                () -> StringParser.toNumber(input)
         ).isInstanceOf(ParseErrorHandler.class);
     }
 }
