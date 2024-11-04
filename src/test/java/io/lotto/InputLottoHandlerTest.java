@@ -21,7 +21,7 @@ class InputLottoHandlerTest {
         // when // then
         assertThatThrownBy(() -> inputLottoHandler.isDivisibleByThousand(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1,000원 단위로 입력해주세요");
+                .hasMessage("[ERROR] 1,000원 단위로 입력해주세요.");
     }
 
     @DisplayName("로또 당첨 번호가 6개가 아닌 경우 예외 처리")
