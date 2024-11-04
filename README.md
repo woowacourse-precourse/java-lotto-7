@@ -40,7 +40,7 @@ LottoResult
 
 LottoResults
 -[ ] LottoResult를 생성한다.
--[ ] Check 객체를 생성한다.
+-[x] Check 객체를 생성한다.
 -[ ] LottoResults를 관리한다.
 
 Analyst
