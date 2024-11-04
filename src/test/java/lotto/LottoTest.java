@@ -1,11 +1,16 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -23,4 +28,33 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+    @DisplayName("로또 번호가 1에서 45 사이의 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void 로또_번호가_1에서_45_사이의_숫자가_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호는_항상_오름차순이여야_한다(){
+        Lotto lotto = new Lotto(List.of(6,5,4,3,2,1));
+
+        List<Integer> expected = Arrays.asList(1,2,3,4,5,6);
+
+        assertThat(lotto.getNumbers()).isEqualTo(expected);
+    }
+    @Test
+    void 로또_당첨번호_비교(){
+        Lotto lotto  = new Lotto(List.of(1,2,3,4,5,6));
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1,2,3,4,5,6)),7);
+        WinningLotto losingLotto = new WinningLotto(new Lotto(List.of(8,9,10,11,12,13)),7);
+        WinningLotto fifthLotto = new WinningLotto(new Lotto(List.of(1,2,3,10,11,12)),7);
+        WinningLotto secondLotto = new WinningLotto(new Lotto(List.of(1,2,3,4,5,7)),6);
+
+        assertThat(lotto.compareTo(winningLotto.getWinningLotto())).isEqualTo(6);
+        assertThat(lotto.compareTo(losingLotto.getWinningLotto())).isEqualTo(0);
+        assertThat(lotto.compareTo(fifthLotto.getWinningLotto())).isEqualTo(3);
+        assertThat(lotto.compareTo(secondLotto.getWinningLotto())).isEqualTo(5);
+    }
 }
