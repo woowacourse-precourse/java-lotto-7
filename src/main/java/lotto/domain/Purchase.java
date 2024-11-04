@@ -8,7 +8,7 @@ public class Purchase {
         this.price = price;
     }
 
-    private void validate(int price) {
+    private void validate(int price) throws IllegalArgumentException {
         if (price % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구매는 1천원 단위로 가능합니다.");
         }

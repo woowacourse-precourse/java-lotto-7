@@ -14,28 +14,32 @@ public class LottoController {
     private final PurchaseService purchaseService = new PurchaseService();
 
     public void purchaseLotto() {
-        int price = inputView.getPrice();
-        int lottoCount = purchaseService.buyLotto(price);
+        try {
+            int price = inputView.getPrice();
+            int lottoCount = purchaseService.buyLotto(price);
 
-        outputView.printPurchaseResult(lottoCount);
-        makeLotto(lottoCount);
+            outputView.printPurchaseResult(lottoCount);
+            makeLotto(lottoCount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void makeLotto(int lottoCount) {
+    public void makeLotto(int lottoCount)  throws IllegalArgumentException {
         lottoService.makeLotto(lottoCount);
 
         lottoService.printLottoNumbers();
         makeWinningNumbers();
     }
 
-    public void makeWinningNumbers() {
+    public void makeWinningNumbers()  throws IllegalArgumentException {
         List<Integer> winningNumbers = inputView.getWinningNumbers();
         int bonusNumber = inputView.getBonusNumber();
         lottoService.makeWinningLotto(winningNumbers, bonusNumber);
         calculateLotto(winningNumbers, bonusNumber);
     }
 
-    private void calculateLotto(List<Integer> winningNumbers, int bonusNumber) {
+    private void calculateLotto(List<Integer> winningNumbers, int bonusNumber)  throws IllegalArgumentException {
         List<WinningResult> results = lottoService.countLottoMatchNumbers(winningNumbers, bonusNumber);
         String resultToString = lottoService.toStringResult(results);
         outputView.printLottoResult(resultToString);

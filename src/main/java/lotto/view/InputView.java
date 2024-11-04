@@ -35,14 +35,14 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    private String[] validateNumbersInput(String input) {
+    private String[] validateNumbersInput(String input) throws IllegalArgumentException {
          if (!isNumbers(input)) {
              throw new IllegalArgumentException("[ERROR] 6개 숫자를 콤마(, 또는 , )로 나열해야 합니다.");
          }
          return input.split("\\s*,\\s*");
     }
 
-    private void validateNumberInput(String input) {
+    private void validateNumberInput(String input) throws IllegalArgumentException {
         if (!isNumber(input)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
