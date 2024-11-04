@@ -8,16 +8,15 @@ public class IssuedLotto {
     public static int LOTTO_NUMBER_RANGE_MIN = 1;
     public static int LOTTO_NUMBER_RANGE_MAX = 45;
     public static int NUMBER_OF_LOTTO_ISSUED = 6;
+    public static List<List<Integer>> ISSUED_LOTTO_NUMBERS = new ArrayList<>();
 
     public List<List<Integer>> lottoIssues(int numberOfLottoes) {
-        List<List<Integer>> issuedLottoNumbers = new ArrayList<>();
-
         for (int i = 0; i < numberOfLottoes; i++) {
             List<Integer> randomLottoNum = generateRandomLottoNum();
             Collections.sort(randomLottoNum);
-            issuedLottoNumbers.add(randomLottoNum);
+            ISSUED_LOTTO_NUMBERS.add(randomLottoNum);
         }
-        return issuedLottoNumbers;
+        return ISSUED_LOTTO_NUMBERS;
     }
 
     public List<Integer> generateRandomLottoNum() {

@@ -5,7 +5,9 @@ import lotto.service.OutputService;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     public static int AMOUNT = 0;
@@ -31,5 +33,8 @@ public class LottoController {
 
         outputService.printBonusNumberMessage();
         lottoService.bonusNumber(Console.readLine());
+
+        Map<String, Integer> matchingNumbers = lottoService.winningStatistics();
+        outputService.printWinningStatisticsMessage((HashMap<String, Integer>) matchingNumbers);
     }
 }
