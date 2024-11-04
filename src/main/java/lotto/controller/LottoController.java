@@ -100,8 +100,6 @@ public class LottoController {
                 return money;
             } catch (IllegalArgumentException e) {
                 lottoView.showErrorMessage(e.getMessage());
-            } catch (Exception e) {
-                lottoView.showErrorMessage("[ERROR] 유효하지 않은 금액입니다. 다시 입력해주세요.");
             }
         }
     }
