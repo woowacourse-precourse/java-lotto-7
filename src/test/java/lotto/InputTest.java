@@ -47,4 +47,11 @@ public class InputTest {
 		String numbers = "1,2,3,4,5,짱구";
 		assertThrows(IllegalArgumentException.class, () -> input.validateLuckyNumberInteger(numbers));
 	}
+
+	@Test
+	@DisplayName("입력이 숫자인지 검증 테스트")
+	void 입력이_숫자인지_검증하는_테스트() {
+		String number = "왁";
+		assertThrows(IllegalArgumentException.class, () -> input.validateInteger(number));
+	}
 }
