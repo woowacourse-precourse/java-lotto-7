@@ -8,7 +8,7 @@ public class RetryUtil {
             try {
                 return function.get();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
