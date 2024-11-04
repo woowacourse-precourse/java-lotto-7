@@ -4,7 +4,7 @@ public enum InputValidator {
     MONEY {
         @Override
         public boolean check(String input) {
-            return input != null && input.matches(MONEY_REGEX);
+            return input != null && input.matches(NUMBER_REGEX);
         }
     },
 
@@ -14,9 +14,15 @@ public enum InputValidator {
             return input != null && input.matches(WIN_NUMBERS_REGEX);
         }
     },
-    ;
 
-    private static final String MONEY_REGEX = "^\\d+$";
+    BONUS_NUMBER {
+        @Override
+        public boolean check(String input) {
+            return input != null && input.matches(NUMBER_REGEX);
+        }
+    };
+
+    private static final String NUMBER_REGEX = "^\\d+$";
     private static final String WIN_NUMBERS_REGEX = "^\\d+(?:,\\d+){5}$";
 
     public abstract boolean check(String input);

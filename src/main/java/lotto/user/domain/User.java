@@ -24,6 +24,10 @@ public class User {
         }
     }
 
+    public static User of(int money) {
+        return new User(money);
+    }
+
     public void buy(Lotto lotto) {
         if (!canBuyLotto()) {
             throw new IllegalArgumentException("[ERROR] 로또를 구매할 수 없습니다.");

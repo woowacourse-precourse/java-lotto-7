@@ -55,4 +55,19 @@ public class InputView {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public Integer readBonusNumber() {
+        System.out.println("보너스 번호을 입력해 주세요.");
+        String input = readLine();
+
+        validateBonusNumber(input);
+
+        return Integer.parseInt(input);
+    }
+
+    private void validateBonusNumber(String input) {
+        if (!InputValidator.BONUS_NUMBER.check(input)) {
+            throw new IllegalArgumentException("[ERROR] 입력은 양수여야 합니다.");
+        }
+    }
 }
