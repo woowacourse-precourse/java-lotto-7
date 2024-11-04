@@ -24,21 +24,21 @@ public class LottoResult {
         if (isBonusMatched) {
             matchCount++;
         }
+        int prizeKey = 0;
         if (matchCount == FIRST_WINNER.getMatchCount()) {
-            int key = FIRST_WINNER.getRank();
+            prizeKey = FIRST_WINNER.getRank();
             if (isBonusMatched) {
-                key = SECOND_WINNER.getRank();
+                prizeKey = SECOND_WINNER.getRank();
             }
-            prizeMatchResults.put(key, prizeMatchResults.getOrDefault(key, 0) + 1);
         } else if (matchCount == THIRD_WINNER.getMatchCount()) {
-            prizeMatchResults.put(THIRD_WINNER.getRank(),
-                    prizeMatchResults.getOrDefault(THIRD_WINNER.getRank(), 0) + 1);
+            prizeKey = THIRD_WINNER.getRank();
         } else if (matchCount == FOURTH_WINNER.getMatchCount()) {
-            prizeMatchResults.put(FOURTH_WINNER.getRank(),
-                    prizeMatchResults.getOrDefault(FOURTH_WINNER.getRank(), 0) + 1);
+            prizeKey = FOURTH_WINNER.getRank();
         } else if (matchCount == FIFTH_WINNER.getMatchCount()) {
-            prizeMatchResults.put(FIFTH_WINNER.getRank(),
-                    prizeMatchResults.getOrDefault(FIFTH_WINNER.getRank(), 0) + 1);
+            prizeKey = FIFTH_WINNER.getRank();
+        }
+        if (prizeKey != 0) {
+            prizeMatchResults.put(prizeKey, prizeMatchResults.getOrDefault(prizeKey, 0) + 1);
         }
     }
 
