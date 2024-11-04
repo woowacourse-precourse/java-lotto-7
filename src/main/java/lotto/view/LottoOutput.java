@@ -40,4 +40,23 @@ public class LottoOutput {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
+
+    public void printStatistics(Lottos lottos) {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        printAboutPrize(lottos, Prize.FIFTH);
+        printAboutPrize(lottos, Prize.FOURTH);
+        printAboutPrize(lottos, Prize.THIRD);
+        printAboutPrize(lottos, Prize.SECOND);
+        printAboutPrize(lottos, Prize.FIRST);
+
+        System.out.printf("총 수익률은 %.1f%%입니다.", lottos.getRateOfReturn());
+    }
+
+    private void printAboutPrize(Lottos lottos, Prize prize) {
+        int numOfPrize = lottos.getCountOfPrize(prize);
+        System.out.println(prize.getDescription() + " - " + numOfPrize + "개");
+    }
 }

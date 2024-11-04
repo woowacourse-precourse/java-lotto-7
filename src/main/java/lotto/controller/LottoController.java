@@ -57,7 +57,7 @@ public class LottoController {
             }
         }
 
-        // to output -> "당첨 통계 ~~"
+        lottoOutput.printStatistics(lottos);
     }
 
     private Long changeStringToMoney(String moneyString) throws IllegalArgumentException {
