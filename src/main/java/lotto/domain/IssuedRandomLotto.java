@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.common.LottoConfig;
 import lotto.common.RandomNumberGenerator;
-import lotto.common.validator.IssuedLottoValidator;
+import lotto.domain.validator.IssuedLottoValidator;
 
 public class IssuedRandomLotto implements IssuedLotto {
     private final RandomNumberGenerator randomNumberGenerator;

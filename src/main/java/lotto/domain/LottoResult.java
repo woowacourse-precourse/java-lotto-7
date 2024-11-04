@@ -1,8 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.common.LottoConfig;
-import lotto.common.validator.LottoResultValidator;
+import lotto.domain.validator.LottoResultValidator;
 
 public class LottoResult {
     private final Lotto winningNumbers;

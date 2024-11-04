@@ -1,4 +1,4 @@
-package lotto.common.validator;
+package lotto.domain.validator;
 
 import static lotto.common.ExceptionMessage.INVALID_DUPLICATE_LOTTO_NUMBER;
 import static lotto.common.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;

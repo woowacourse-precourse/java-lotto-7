@@ -5,7 +5,6 @@ import static lotto.common.ExceptionMessage.INVALID_NUMBER_FORMAT;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.common.validator.LottoResultValidator;
 
 public class InputView {
     public String getValidPurchaseAmount() {

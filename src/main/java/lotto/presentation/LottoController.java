@@ -3,8 +3,8 @@ package lotto.presentation;
 import static lotto.common.ExceptionMessage.INVALID_NUMBER_FORMAT;
 
 import java.util.List;
-import lotto.common.validator.LottoResultValidator;
-import lotto.common.validator.LottoValidator;
+import lotto.domain.validator.LottoResultValidator;
+import lotto.domain.validator.LottoValidator;
 import lotto.domain.IssuedLotto;
 import lotto.domain.LottoResult;
 import lotto.dto.LottoStatisticsDto;

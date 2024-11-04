@@ -1,4 +1,4 @@
-package lotto.common.validator;
+package lotto.domain.validator;
 
 import static lotto.common.ExceptionMessage.ERROR_INVALID_PURCHASE_AMOUNT_UNIT;
 import static lotto.common.ExceptionMessage.ERROR_MAXIMUM_PURCHASE_AMOUNT;
