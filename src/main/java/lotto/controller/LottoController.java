@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.dto.LottoRequestDto;
 import lotto.model.Lotto;
 import lotto.service.LottoService;
-import lotto.utils.LottoConverter;
+import lotto.util.LottoConverter;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoNumbersValidator;
 import lotto.validator.PurchaseAmountValidator;
@@ -13,7 +13,6 @@ import lotto.view.OutputView;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class LottoController {
