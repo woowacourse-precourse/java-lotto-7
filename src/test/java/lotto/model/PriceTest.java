@@ -1,7 +1,11 @@
 package lotto.model;
 
+import static lotto.model.Winning.FIRST;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.text.DecimalFormat;
+import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,5 +53,22 @@ class PriceTest {
 		assertThatThrownBy(() -> new Price(expectedPrice))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessage("[ERROR] 구입금액은 0보다 커야 합니다.");
+	}
+
+	@Test
+	@DisplayName("수익률을 정확하게 계산하고 문자열로 파싱할 수 있다.")
+	void 수익률을_정확하게_계산하고_문자열로_파싱한다() {
+		// given
+		Price price = new Price(1000);
+		Map<Winning, Integer> winningResult = Winning.initializeWinningResults();
+		winningResult.put(FIRST, 1);
+		DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+		String expectedProfitRate = decimalFormat.format(FIRST.getPrize() / 1000 * 100);
+
+		// when
+		String profitRate = price.getProfitRate(winningResult);
+
+		// then
+		assertEquals(expectedProfitRate, profitRate);
 	}
 }
