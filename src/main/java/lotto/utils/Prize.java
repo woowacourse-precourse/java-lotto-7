@@ -26,8 +26,8 @@ public enum Prize {
     public static Prize match(int matchCount, boolean withBonus) {
         if (matchCount == 3) return THREE;
         if (matchCount == 4) return FOUR;
-        if (matchCount == 5 && withBonus) return FIVE;
-        if (matchCount == 5) return FIVE_AND_BONUS;
+        if (matchCount == 5 && withBonus) return FIVE_AND_BONUS;
+        if (matchCount == 5) return FIVE;
         if (matchCount == 6) return SIX;
 
         return null;
