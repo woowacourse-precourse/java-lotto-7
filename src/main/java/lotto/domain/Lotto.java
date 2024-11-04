@@ -15,6 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        NumberValidate.isduplicated(numbers);
         for(int number : numbers){
             NumberValidate.isSizeSix(numbers);
             NumberValidate.isOutOfRange(numbers);
@@ -23,5 +24,9 @@ public class Lotto {
 
     public void printNumber() {
         System.out.println(Arrays.toString(numbers.toArray()));
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

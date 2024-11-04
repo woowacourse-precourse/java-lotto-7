@@ -31,7 +31,7 @@ public class InputView {
                 String[] delimitedValue = getDelimitedValue(input);
 
                 List<Integer> WinningNumber = convertNumericList(delimitedValue);
-
+                System.out.println();
                 return new Lotto(WinningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -39,14 +39,14 @@ public class InputView {
         }
     }
 
-    public static int getBonus() {
+    public static int getBonus(Lotto winningNumber) {
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String input = readLine();
 
-                NumberValidate.validateBonus(input);
-
+                NumberValidate.validateBonus(winningNumber, input);
+                System.out.println();
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
