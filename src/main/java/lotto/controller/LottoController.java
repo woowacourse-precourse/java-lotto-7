@@ -8,7 +8,6 @@ import lotto.domain.PrizeResult;
 import lotto.domain.ProfitRate;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
-import lotto.validation.InputValidator;
 import lotto.view.ErrorView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -47,7 +46,6 @@ public class LottoController {
         while (money == null) {
             try {
                 String moneyInput = inputView.requestMoneyInput();
-                InputValidator.validateNotEmpty(moneyInput);
                 money = new Money(Integer.parseInt(moneyInput));
             } catch (NumberFormatException e) {
                 errorView.printMoneyParsingError();
@@ -65,7 +63,6 @@ public class LottoController {
         while (winningNumbers == null) {
             try {
                 String winningNumbersInput = inputView.requestWinningNumbersInput();
-                InputValidator.validateNotEmpty(winningNumbersInput);
                 winningNumbers = lottoService.makeLottoBySplitting(winningNumbersInput);
             } catch (NumberFormatException e) {
                 errorView.printWinningNumbersParsingError();
@@ -83,7 +80,6 @@ public class LottoController {
         while (bonusNumber == null) {
             try {
                 String bonusNumberInput = inputView.requestBonusNumberInput().trim();
-                InputValidator.validateNotEmpty(bonusNumberInput);
                 bonusNumber = new BonusNumber(Integer.parseInt(bonusNumberInput));
             } catch (NumberFormatException e) {
                 errorView.printBonusNumberParsingError();
