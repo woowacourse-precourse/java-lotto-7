@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
@@ -35,6 +36,7 @@ public class LottoService {
 
         purchasePriceValidation.checkRange(purchasePrice);
         purchasePriceValidation.validateDivisibleByThousand(purchasePrice);
+        lottoRepository.insertPurchasePrice(purchasePrice);
 
         return purchasePrice / 1000;
     }
@@ -99,6 +101,8 @@ public class LottoService {
         List<Integer> winningNumbers = lottoRepository.getWinningLotto();
         long matchCount;
 
+//        Map<LottoRank, Integer> test = lottoRepository.getWinningResults();
+
         for (List<Integer> lottoTicket : lottoTickets) {
             matchCount = lottoTicket.stream()
                     .filter(winningNumbers::contains)
@@ -109,7 +113,12 @@ public class LottoService {
                 return;
             }
             insertMatchCount(matchCount);
+//            System.out.println("개수: " + matchCount);
+//            for (LottoRank lottoRank : test.keySet()) {
+//                System.out.println(lottoRank.name() + ": " + test.get(lottoRank));
+//            }
         }
+
     }
 
     public void insertMatchCount(long matchCount) {
@@ -139,5 +148,20 @@ public class LottoService {
     public int getMatchedCount(LottoRank value) {
         Map<LottoRank, Integer> winningResults = lottoRepository.getWinningResults();
         return winningResults.getOrDefault(value, 0);
+    }
+
+    public float calculateProfitRate() {
+        Map<LottoRank, Integer> winningResults = lottoRepository.getWinningResults();
+        int purchasePrice = lottoRepository.getPurchasePrice();
+
+        int totalMatchedPrice = 0;
+
+        for (LottoRank lottoRank : winningResults.keySet()) {
+            int matchedCount = winningResults.getOrDefault(lottoRank, 0);
+            totalMatchedPrice += lottoRank.getPrize() * matchedCount;
+        }
+
+        float profitRate = ((float) totalMatchedPrice / purchasePrice) * 100;
+        return Math.round(profitRate * 10) / 10.0f;
     }
 }

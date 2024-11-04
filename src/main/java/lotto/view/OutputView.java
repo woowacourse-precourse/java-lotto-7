@@ -14,6 +14,11 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printResult() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+
     public void printLottoResultWithoutBonusNumber(int resultMatchCount, String formattedPrize,
             int matchedCount) {
         System.out.println(
@@ -27,4 +32,7 @@ public class OutputView {
                         + "개");
     }
 
+    public void printProfitRate(float profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+    }
 }

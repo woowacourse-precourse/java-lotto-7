@@ -75,6 +75,7 @@ public class LottoController {
         lottoService.calculateWinningNumbers();
 
         // 당첨 통계 결과 출력
+        outputView.printResult();
         for (LottoRank value : LottoRank.values()) {
             int matchedCount = lottoService.getMatchedCount(value);
             if (value == LottoRank.SECOND) {
@@ -87,6 +88,9 @@ public class LottoController {
                     value.getFormattedPrize(),
                     matchedCount);
         }
+
+        // 총 수익률 출력
+        outputView.printProfitRate(lottoService.calculateProfitRate());
     }
 
 }

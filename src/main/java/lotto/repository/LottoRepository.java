@@ -1,5 +1,6 @@
 package lotto.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +15,7 @@ public class LottoRepository {
     private static Lotto winningLotto = null;
     private static int bonusNumber = 0;
     private static final Map<LottoRank, Integer> winningResults = new HashMap<>();
+    private static int purchasePrice = 0;
 
     public LottoRepository() {
         winningResults.put(LottoRank.FIRST, 0);
@@ -24,7 +26,7 @@ public class LottoRepository {
     }
 
     public void insertNumbers(List<Integer> randomNumbers) {
-        lottoTickets.add(randomNumbers);
+        lottoTickets.add(new ArrayList<>(randomNumbers));
     }
 
     public Set<List<Integer>> getLottoTickets() {
@@ -55,4 +57,11 @@ public class LottoRepository {
         return winningResults;
     }
 
+    public void insertPurchasePrice(int purchasePrice) {
+        LottoRepository.purchasePrice = purchasePrice;
+    }
+
+    public int getPurchasePrice() {
+        return purchasePrice;
+    }
 }
