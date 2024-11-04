@@ -5,8 +5,8 @@ import lotto.Domain.PurchasePriceCalculator;
 import lotto.Domain.RandomLottoNumbersGenerator;
 
 public class LottoDomainFactory {
-    public PrizeMoneyCalculator createPrizeMoneyCalculator() {
-        return new PrizeMoneyCalculator();
+    public PrizeMoneyCalculator createPrizeMoneyCalculator(Integer lottoPurchaseCount) {
+        return new PrizeMoneyCalculator(lottoPurchaseCount);
     }
 
     public PurchasePriceCalculator createPurchasePriceCalculator() {
