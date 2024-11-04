@@ -39,4 +39,10 @@ public class LottoEvaluator {
         return Rank.NONE;
     }
 
+    public void calculateProfit() {
+        for (Rank rank : lottoStats.keySet()) {
+            profit += rank.getPrize() * lottoStats.get(rank);
+        }
+    }
+
 }
