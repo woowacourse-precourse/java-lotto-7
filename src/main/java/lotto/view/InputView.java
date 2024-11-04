@@ -10,23 +10,15 @@ public class InputView {
 
     public int readMoney() {
         int money;
-        while (true) {
-            System.out.println("구입금액을 입력해 주세요.");
-            String userInput = Console.readLine();
-            Console.close();
-            try {
-                money = parseInteger(userInput);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return money;  // 유효한 금액을 반환
+        System.out.println("구입금액을 입력해 주세요.");
+        String userInput = Console.readLine();
+
+        money = parseInteger(userInput);
+        return money;
     }
     public List<Integer> readWiningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String userInput=Console.readLine();
-        Console.close();
         try {
             List<Integer> numbers=Arrays.stream(userInput.split(","))
                     .map(Integer::parseInt)
@@ -41,7 +33,6 @@ public class InputView {
     public int readBonusNumbers() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String userInput=Console.readLine();
-        Console.close();
         return parseInteger(userInput);
     }
 
