@@ -13,9 +13,6 @@ import java.util.function.Supplier;
 
 public class Controller {
 
-    private final Validator inputPurchaseAmountValidator = new InputPurchaseAmountValidator();
-    private final Validator inputJackpotNumbersValidator = new InputJackpotNumbersValidator();
-
     public void run() {
         int totalAmount = getTotalAmount();
         int lottoCount = totalAmount / 1000;
@@ -35,8 +32,9 @@ public class Controller {
     private Integer getTotalAmount() {
         return retryOnError(() -> {
             String inputTotalAmount = InputView.requestAmountToPurchase();
-            inputPurchaseAmountValidator.validate(inputTotalAmount);
-            return Integer.parseInt(inputTotalAmount);
+            int purchaseAmount = StringParser.toInt(inputTotalAmount);
+            Validator.validateTotalAmount(purchaseAmount);
+            return purchaseAmount;
         });
     }
 
@@ -44,8 +42,9 @@ public class Controller {
         JackpotNumbers jackpotNumbers = new JackpotNumbers();
         List<Integer> intList = retryOnError(() -> {
             String inputJackpotNumbers = InputView.requestJackpotNumbers();
-            inputJackpotNumbersValidator.validate(inputJackpotNumbers);
-            return StringParser.toIntList(inputJackpotNumbers);
+            List<Integer> jackpotList = StringParser.toIntList(inputJackpotNumbers);
+            Validator.validateIntList(jackpotList);
+            return jackpotList;
         });
         jackpotNumbers.setLotto(new Lotto(intList));
 
