@@ -10,7 +10,7 @@ public enum Rank {
     MATCHES_5_BONUS_MATCH(count -> count * Constant.FIVE_MATCHES_BONUS_MATCH_PRIZE),
     MATCHES_6(count -> count * Constant.SIX_MATCHES_PRIZE);
 
-    private Function<Integer, Integer> expression;
+    private final Function<Integer, Integer> expression;
 
     Rank(Function<Integer, Integer> expression) {
         this.expression = expression;
