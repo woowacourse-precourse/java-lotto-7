@@ -1,9 +1,5 @@
 package lotto.controller;
 
-import static lotto.constant.ErrorCode.CONTIGIOUS_COMMA;
-import static lotto.constant.ErrorCode.INVALID_INPUT_FORMAT;
-import static lotto.constant.ErrorCode.INVALID_PURCHASE_AMOUNT;
-
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -18,15 +14,16 @@ import lotto.service.LottoResultService;
 import lotto.service.ProfitCalculate;
 import lotto.service.PublishLottoService;
 import lotto.validator.BonusNumberValidator;
+import lotto.validator.CommaValidator;
+import lotto.validator.InputFormatValidator;
 import lotto.validator.LottoValidator;
+import lotto.validator.PurchaseAmountValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
     private static final int TICKET_PRICE = 1000;
-    private static final String COMMAS = ",,";
-
     private PublishLottoService publishLottoService;
     private final LottoResultService lottoResultService;
     private final LottoValidator lottoValidator;
@@ -60,36 +57,18 @@ public class LottoController {
 
     public void publishCountSetUp() {
         int purchasePrice = getPurchasePrice();
-        validatePurchaseAmount(purchasePrice);
+        PurchaseAmountValidator.validate(purchasePrice);
         publishCount = createPublishCount(purchasePrice);
         outputView.printPublishCountMessage(publishCount.getPublishCount());
     }
 
     private PublishCount createPublishCount(int purchasePrice) {
-        int countOfPublish = getCountOfPublish(purchasePrice);
+        int countOfPublish = purchasePrice / TICKET_PRICE;
         return PublishCount.getInstance(countOfPublish);
     }
 
-    public int getCountOfPublish(final int purchasePrice) {
-        return purchasePrice / TICKET_PRICE;
-    }
-
     private int getPurchasePrice() {
-        return parseInt(inputView.printEnterPurChasePriceMessage());
-    }
-
-    public int parseInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage());
-        }
-    }
-
-    public void validatePurchaseAmount(final int purchaseAmount) {
-        if (purchaseAmount == 0 || purchaseAmount % TICKET_PRICE != 0 ) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
-        }
+        return InputFormatValidator.parseInt(inputView.printEnterPurChasePriceMessage());
     }
 
     public void publishLottoSetup() {
@@ -104,16 +83,10 @@ public class LottoController {
 
     private Lotto createLotto() {
         String inputWinningNumbers = inputView.printEnterWinningNumberMessage();
-        validateInputWinnigNumber(inputWinningNumbers);
+        CommaValidator.validate(inputWinningNumbers);
         List<String> splitWinningNumbers = splitByComma(inputWinningNumbers);
         List<Integer> winningNumbers = stringListToIntList(splitWinningNumbers);
         return new Lotto(winningNumbers, lottoValidator);
-    }
-
-    public void validateInputWinnigNumber(final String inputWinnigNumber) {
-        if (inputWinnigNumber.contains(COMMAS)) {
-            throw new IllegalArgumentException(CONTIGIOUS_COMMA.getMessage());
-        }
     }
 
     public List<String> splitByComma(String input) {
@@ -121,13 +94,9 @@ public class LottoController {
     }
 
     public List<Integer> stringListToIntList(List<String> stringList) {
-        try {
-            return stringList.stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage());
-        }
+        return stringList.stream()
+            .map(InputFormatValidator::parseInt)
+            .collect(Collectors.toList());
     }
 
     public void bonusNumberSetUp() {
@@ -137,7 +106,7 @@ public class LottoController {
 
     private int getParsedBonusNumber() {
         String inputBonusNumber = inputView.printBonusNumberMessage();
-        return parseInt(inputBonusNumber);
+        return InputFormatValidator.parseInt(inputBonusNumber);
     }
 
     private BonusNumber createBonusNumber(int parsedBonusNumber) {
