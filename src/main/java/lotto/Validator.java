@@ -33,6 +33,9 @@ public class Validator {
         if (inputs.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 함.");
         }
+        for (String input : inputs) {
+            validateNumber(input);
+        }
     }
 
     private static void validateNumber(String input) {
