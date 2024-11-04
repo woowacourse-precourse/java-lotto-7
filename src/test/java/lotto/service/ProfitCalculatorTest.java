@@ -34,19 +34,19 @@ public class ProfitCalculatorTest {
     @Test
     void 계산기_테스트() {
         double profitRate = profitCalculator.calculateProfit();
-        double expectedProfit = (2_000_000_000 + 30_000_000 + 1_500_000 + 50_000 + 5_000) / 6000.0;
+        double expectedProfit = (2_000_000_000 + 30_000_000 + 1_500_000 + 50_000 + 5_000) / 6000.0 * 100;
 
         Assertions.assertThat(profitRate).isCloseTo(expectedProfit, Offset.offset(0.01));
     }
 
     @Test
-    @DisplayName("5000원 1장, 0원 99장 -> 수익률 0.05")
+    @DisplayName("5000원 1장, 0원 9999장 -> 수익률 0.05")
     void 계산기_반올림_올림_테스트() {
         List<Lotto> lottoList = new ArrayList<>();
         Lotto fifth = new Lotto(List.of(1, 2, 3, 11, 12, 13));
         lottoList.add(fifth);
 
-        for (int i = 0; i < 99; i++) {
+        for (int i = 0; i < 9999; i++) {
             Lotto fail = new Lotto(List.of(11, 12, 13, 14, 15, 16));
             lottoList.add(fail);
         }
@@ -59,13 +59,13 @@ public class ProfitCalculatorTest {
     }
 
     @Test
-    @DisplayName("5000원 1장, 0원 100장 -> 수익률 0.04xx")
+    @DisplayName("5000원 1장, 0원 10000장 -> 수익률 0.04xx")
     void 계산기_반올림_버림_테스트() {
         List<Lotto> lottoList = new ArrayList<>();
         Lotto fifth = new Lotto(List.of(1, 2, 3, 11, 12, 13));
         lottoList.add(fifth);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10000; i++) {
             Lotto fail = new Lotto(List.of(11, 12, 13, 14, 15, 16));
             lottoList.add(fail);
         }
