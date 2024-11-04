@@ -14,20 +14,25 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = inputPurchaseAmount();
-
-        List<Lotto> lottos = LottoGenerator.generateLottos(purchaseAmount);
+        List<Lotto> lottos = generateLottos(purchaseAmount);
         OutputView.printPurchasedLottos(lottos);
 
-        List<Integer> winningNumbers = inputWinningNumbers();
-        int bonusNumber = inputBonusNumber(winningNumbers);
-
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-
+        WinningLotto winningLotto = inputWinningLotto();
         Map<Rank, Integer> results = winningLotto.calculateResults(lottos);
         OutputView.printWinningStatistics(results);
 
         double yield = winningLotto.calculateYield(results, purchaseAmount);
         OutputView.printYield(yield);
+    }
+
+    private List<Lotto> generateLottos(int purchaseAmount) {
+        return LottoGenerator.generateLottos(purchaseAmount);
+    }
+
+    private WinningLotto inputWinningLotto() {
+        List<Integer> winningNumbers = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber(winningNumbers);
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
     private List<Integer> inputWinningNumbers() {
