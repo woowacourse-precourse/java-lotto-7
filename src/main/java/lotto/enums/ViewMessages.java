@@ -11,6 +11,9 @@ public enum ViewMessages {
     // Output
     PRINT_BLANK("\n"),
     PRINT_LOTTO_AMOUNT("{0}개를 구매했습니다."),
+    PRINT_RESULT_COMMENT("당첨 통계\n---"),
+    PRINT_LOTTO_NORMAL_RESULT("{0}개 일치 ({1}원) - {2}개"),
+    PRINT_LOTTO_BONUS_RESULT("{0}개 일치, 보너스 볼 일치 ({1}원) - {2}개"),
     ;
     private final String message;
 
