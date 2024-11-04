@@ -29,7 +29,7 @@ public class LottoResultAggregator {
 
         initializeDefaultLottoGrade();
 
-        List<List<Integer>> lottoTicketList = lottoPurchaseDetails.getLottoTicketList();
+        List<List<Integer>> lottoTicketList = lottoPurchaseDetails.getLottoTickets();
 
         BonusNumber bonusNumber = lottoDrawResult.getBonusNumber();
 
