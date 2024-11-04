@@ -14,6 +14,7 @@ public class InputHandler {
     public int readPurchaseAmountInput() {
         while (true) {
             try {
+                System.out.println();
                 System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE.getMessage());
                 String input = Console.readLine();
                 return PurchaseAmountValidator.validatePurchaseAmount(input);
@@ -27,6 +28,7 @@ public class InputHandler {
     public List<Integer> readWinningNumbersInput() {
         while (true) {
             try {
+                System.out.println();
                 System.out.println(WINNING_NUMBERS_INPUT_MESSAGE.getMessage());
                 String input = Console.readLine();
                 return WinningLottoValidator.validateWinningNumbers(input);
@@ -39,6 +41,7 @@ public class InputHandler {
     public int readBonusNumberInput(List<Integer> winningNumbers) {
         while (true) {
             try {
+                System.out.println();
                 System.out.println(BONUS_NUMBER_INPUT_MESSAGE.getMessage());
                 String input = Console.readLine();
                 return BonusNumberValidator.validateBonusNumber(input, winningNumbers);

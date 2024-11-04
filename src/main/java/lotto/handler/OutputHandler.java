@@ -5,7 +5,6 @@ import static lotto.message.OutputMessage.PURCHASE_QUANTITY_OUTPUT_MESSAGE;
 import static lotto.message.OutputMessage.WINNING_COUNT_OUTPUT_MESSAGE;
 import static lotto.message.OutputMessage.WINNING_STATICS_OUTPUT_MESSAGE;
 
-import java.text.NumberFormat;
 import java.util.List;
 import lotto.Lotto;
 import lotto.Rank;
@@ -17,6 +16,7 @@ public class OutputHandler {
     private static final String PREFIX = "[", SUFFIX = "]";
 
     public void printPurchaseResult(List<Lotto> lottoes) {
+        System.out.println();
         System.out.println(
                 String.format(PURCHASE_QUANTITY_OUTPUT_MESSAGE.getMessage(), lottoes.size())
         );
@@ -25,6 +25,7 @@ public class OutputHandler {
     }
 
     public void printWinningStatics(WinningStatics winningStatics) {
+        System.out.println();
         System.out.println(WINNING_STATICS_OUTPUT_MESSAGE.getMessage());
 
         for (Rank rank : Rank.values()) {
@@ -33,9 +34,8 @@ public class OutputHandler {
             }
 
             int count = winningStatics.getWinningCount(rank);
-            String prize = NumberFormat.getInstance().format(rank.getPrize());
             System.out.println(
-                    String.format(WINNING_COUNT_OUTPUT_MESSAGE.getMessage(), rank.getMatchCount(), prize, count)
+                    String.format(WINNING_COUNT_OUTPUT_MESSAGE.getMessage(), rank.getMessage(), count)
             );
         }
     }
