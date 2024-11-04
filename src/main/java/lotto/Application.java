@@ -65,4 +65,20 @@ public class Application {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
+    private static int getBonusNumber() {
+        System.out.print("보너스 번호를 입력하세요: ");
+        int bonus = Integer.parseInt(Console.readLine().trim());
+        validateRange(bonus);
+        return bonus;
+    }
+
+    private static Map<Rank, Integer> calculateResults(List<Lotto> lottos, Set<Integer> winningNumbers, int bonusNumber) {
+        Map<Rank, Integer> results = new EnumMap<>(Rank.class);
+        for (Lotto lotto : lottos) {
+            Rank rank = Rank.getRank(lotto, winningNumbers, bonusNumber);
+            results.put(rank, results.getOrDefault(rank, 0) + 1);
+        }
+        return results;
+    }
+
 }
