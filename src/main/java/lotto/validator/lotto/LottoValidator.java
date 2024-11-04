@@ -10,6 +10,7 @@ public class LottoValidator {
     public void validatePurchaseAmount(String amount) {
         validatePurchaseAmountType(amount);
         validatePurchaseAmountMultiple(amount);
+        validatePurchaseAmountLimit(amount);
     }
 
     private void validatePurchaseAmountType(String amount) {
@@ -24,6 +25,13 @@ public class LottoValidator {
         int amountOfInt = Integer.parseInt(amount);
         if (amountOfInt % LottoConstant.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(LottoErrorMessage.INVALID_PURCHASE_POLICY);
+        }
+    }
+
+    private void validatePurchaseAmountLimit(String amount) {
+        int amountOfInt = Integer.parseInt(amount);
+        if (amountOfInt > LottoConstant.LOTTO_PRICE * 100) {
+            throw new IllegalArgumentException(LottoErrorMessage.OUT_OF_PURCHASE_LIMIT);
         }
     }
 

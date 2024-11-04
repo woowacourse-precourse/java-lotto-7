@@ -2,6 +2,7 @@ package lotto.domain.lotto;
 
 public class LottoConstant {
     public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PURCHASE_LIMIT = 100;
     public static final int LOTTO_RANGE_LEFT = 1;
     public static final int LOTTO_RANGE_RIGHT = 45;
     public static final int LOTTO_NUMBER_COUNT = 6;
