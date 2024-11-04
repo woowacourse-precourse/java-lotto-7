@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.util.Map;
-
 public enum LottoRank {
     FAIL(2, 0L, false),
     THREE(3, 5000L, false),
@@ -30,12 +28,6 @@ public enum LottoRank {
         if (matchingCount.equals(FOUR.matchedCount)) return FOUR;
         if (matchingCount.equals(THREE.matchedCount)) return THREE;
         return FAIL;
-    }
-
-    public static Long calculatePrize(Map<LottoRank, Integer> result) {
-        return result.entrySet().stream()
-                .mapToLong(entry -> (long) entry.getValue() * entry.getKey().getPrize())
-                .sum();
     }
 
     public Long getPrize() {

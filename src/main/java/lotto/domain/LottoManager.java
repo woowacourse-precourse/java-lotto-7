@@ -35,4 +35,10 @@ public enum LottoManager {
 
         return result;
     }
+
+    public Long calculatePrize(Map<LottoRank, Integer> result) {
+        return result.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getValue() * entry.getKey().getPrize())
+                .sum();
+    }
 }

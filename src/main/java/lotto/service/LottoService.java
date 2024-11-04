@@ -53,7 +53,7 @@ public class LottoService {
     public getLottoResultResponse getLottoResult() {
         Map<LottoRank, Integer> result = lottoManager.drawResult(lottoRepository.getLottos(), winLottoRepository.getWinLotto());
         MoneyManager moneyManager = moneyManagerRepository.getMoneyManger();
-        moneyManager.setPrizeMoney(LottoRank.calculatePrize(result));
+        moneyManager.setPrizeMoney(lottoManager.calculatePrize(result));
 
         return getLottoResultResponse.of(result, moneyManager.getReturnRate());
     }
