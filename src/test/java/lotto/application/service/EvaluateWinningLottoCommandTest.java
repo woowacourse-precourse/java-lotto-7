@@ -7,7 +7,8 @@ import java.util.List;
 import lotto.application.port.input.EvaluateWinningLottoUsecase;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.WinningNumber;
-import org.assertj.core.api.Assertions;
+import lotto.domain.lotto.service.WinningLottoEvaluator;
+import lotto.domain.lotto.vo.LottoPrize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ class EvaluateWinningLottoCommandTest {
 
     @BeforeEach
     void setup() {
-        this.evaluateWinningLottoUsecase = new EvaluateWinningLottoCommand();
+        this.evaluateWinningLottoUsecase = new EvaluateWinningLottoCommand(new WinningLottoEvaluator());
     }
 
     @Test

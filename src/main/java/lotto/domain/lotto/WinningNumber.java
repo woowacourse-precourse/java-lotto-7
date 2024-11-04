@@ -25,4 +25,15 @@ public class WinningNumber extends Lotto {
             throw new IllegalArgumentException(INVALID_LOTTO_DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
+
+    public int getMatchingNumbersCount(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+            .filter(this.getNumbers()::contains)
+            .count();
+    }
+
+
+    public boolean isBonusNumberMatched(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber.number());
+    }
 }

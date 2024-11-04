@@ -48,4 +48,8 @@ public class Lotto {
     public UUID getId() {
         return this.id;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
