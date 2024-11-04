@@ -8,9 +8,10 @@ import java.util.Set;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
-	public void getPayment() {
+	public int getPayment() {
 		String input = Console.readLine();
 		validatePayment(input);
+		return Integer.parseInt(input);
 	}
 
 	public List<Integer> getLuckyNumber() {
@@ -22,9 +23,10 @@ public class Input {
 			.toList();
 	}
 
-	public void getBonusNumber(List<Integer> numbers) {
+	public int getBonusNumber(List<Integer> numbers) {
 		String input = Console.readLine();
 		validateBonusNumber(numbers, input);
+		return Integer.parseInt(input);
 	}
 
 	public void validateRemainder(String input) {
