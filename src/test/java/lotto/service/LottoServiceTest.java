@@ -238,4 +238,26 @@ class LottoServiceTest {
         //then
         assertEquals(62.5, profitRate);
     }
+    
+    @Test
+    void 당첨_개수가_여러_개일_때_수익률을_계산한다() {
+        //given
+        int purchaseAmount = 2_000;
+        List<Lotto> lottos = lottoService.getLottos();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottos.add(new Lotto(List.of(7, 8, 9, 10, 11, 12)));
+
+        List<Integer> winningNumbers = List.of(1, 2, 3, 7, 8, 9);
+        int bonusNumber = 10;
+
+        lottoService.saveLottoRanks(winningNumbers, bonusNumber);
+
+        //when
+        long winningAmount = lottoService.calculateWinningAmount();
+        double profitRate = lottoService.calculateProfitRate(winningAmount, purchaseAmount);
+
+        //then
+        assertEquals(10_000, winningAmount);
+        assertEquals(500.0, profitRate);
+    }
 }
