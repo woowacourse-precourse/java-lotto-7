@@ -1,8 +1,6 @@
 package lotto.service.paper;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
@@ -11,9 +9,10 @@ import lotto.exception.paper.PurchaseAmountNotNatureException;
 import lotto.exception.paper.PurchaseAmountUnitException;
 import lotto.repository.paper.PaperRepository;
 
-public class PaperServiceImpl implements PaperService{
-    private final PaperRepository paperRepository;
+public class PaperServiceImpl implements PaperService {
     private static final int LOTTO_PRICE = 1000;
+    private final PaperRepository paperRepository;
+
     public PaperServiceImpl(PaperRepository paperRepository) {
         this.paperRepository = paperRepository;
     }
@@ -45,7 +44,6 @@ public class PaperServiceImpl implements PaperService{
 
     private List<Integer> generateLottoNumbers() {
         List<Integer> paper = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(paper);
         return paper;
     }
 }

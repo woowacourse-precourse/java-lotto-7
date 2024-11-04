@@ -1,5 +1,6 @@
 package lotto.repository.winning;
 
+import java.util.List;
 import lotto.Lotto;
 
 public interface WinningRepository {
@@ -8,4 +9,8 @@ public interface WinningRepository {
     Lotto getWinning();
 
     void saveBonusNumber(int bonusNumber);
+
+    List<Integer> getWinningNumbers();
+
+    int getBonusNumber();
 }

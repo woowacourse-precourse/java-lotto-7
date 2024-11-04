@@ -26,6 +26,13 @@ public class LottoController {
         printLottoList();
         saveWinningLotto();
         saveWinningBonusNumber();
+        getResult();
+    }
+
+    private void getResult() {
+        var papers = paperService.getAllPaper();
+        var result = winningService.getResult(papers);
+        view.printResult(result);
     }
 
     private void saveWinningBonusNumber() {

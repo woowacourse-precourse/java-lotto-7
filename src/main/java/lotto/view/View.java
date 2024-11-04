@@ -3,6 +3,8 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.dto.PaperDto;
+import lotto.dto.ResultDto;
+import lotto.rank.Rank;
 
 public class View {
 
@@ -44,5 +46,18 @@ public class View {
 
     public void printError(String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    public void printResult(ResultDto resultDto) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (var result : resultDto.getResults()) {
+            Rank rank = result.getRank();
+            int count = result.getCount();
+            System.out.printf(String.format(rank.getRankFormat(), count));
+        }
+
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", resultDto.getYield());
     }
 }

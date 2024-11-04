@@ -1,5 +1,6 @@
 package lotto.repository.winning;
 
+import java.util.List;
 import lotto.Lotto;
 
 public class WinningRepositoryImpl implements WinningRepository {
@@ -19,5 +20,15 @@ public class WinningRepositoryImpl implements WinningRepository {
     @Override
     public void saveBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
+    }
+
+    @Override
+    public List<Integer> getWinningNumbers() {
+        return winning.getLotto();
+    }
+
+    @Override
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
