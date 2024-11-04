@@ -26,6 +26,7 @@ class LottoTest {
 
     @Test
     void getMatchCount_test() {
+        // given
         Lotto lotto1 = new Lotto(List.of(11, 12, 13, 14, 15, 16));
         Lotto lotto2 = new Lotto(List.of(11, 12, 13, 14, 15, 6));
         Lotto lotto3 = new Lotto(List.of(11, 12, 13, 14, 5, 6));
@@ -35,6 +36,7 @@ class LottoTest {
         Lotto lotto7 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         ArrayList<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
 
+        // then
         assertThat(lotto1.getMatchCount(winningNumbers)).isEqualTo(0);
         assertThat(lotto2.getMatchCount(winningNumbers)).isEqualTo(1);
         assertThat(lotto3.getMatchCount(winningNumbers)).isEqualTo(2);
@@ -46,19 +48,23 @@ class LottoTest {
 
     @Test
     void hasBonusNumber_test() {
+        // given
         Lotto lotto1 = new Lotto(List.of(11, 12, 13, 14, 15, 16));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 13;
 
+        // then
         assertThat(lotto1.hasBonusNumber(bonusNumber)).isEqualTo(true);
         assertThat(lotto2.hasBonusNumber(bonusNumber)).isEqualTo(false);
     }
 
     @Test
     void toString_test() {
+        // given
         Lotto lotto1 = new Lotto(List.of(11, 12, 13, 14, 15, 16));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
+        // then
         assertThat(lotto1.toString()).isEqualTo("[11, 12, 13, 14, 15, 16]");
         assertThat(lotto2.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
