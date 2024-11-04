@@ -27,21 +27,12 @@ public class LottoResultChecker {
         int matchCount = countMatchingNumbers(userNumbers);
         boolean bonusMatch = userNumbers.contains(bonusNumber);
 
-        if (matchCount == 6) {
-            return MatchCountMessage.SIX_MATCH;
-        }
-        if (matchCount == 5 && bonusMatch) {
-            return MatchCountMessage.FIVE_MATCH_WITH_BONUS;
-        }
-        if (matchCount == 5) {
-            return MatchCountMessage.FIVE_MATCH;
-        }
-        if (matchCount == 4) {
-            return MatchCountMessage.FOUR_MATCH;
-        }
-        if (matchCount == 3) {
-            return MatchCountMessage.THREE_MATCH;
-        }
+        if (matchCount == 6) {return MatchCountMessage.SIX_MATCH;}
+        if (matchCount == 5 && bonusMatch) {return MatchCountMessage.FIVE_MATCH_WITH_BONUS;}
+        if (matchCount == 5) {return MatchCountMessage.FIVE_MATCH;}
+        if (matchCount == 4) {return MatchCountMessage.FOUR_MATCH;}
+        if (matchCount == 3) {return MatchCountMessage.THREE_MATCH;}
+
         return null;
     }
 }
