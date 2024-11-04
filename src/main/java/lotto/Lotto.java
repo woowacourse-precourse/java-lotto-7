@@ -24,4 +24,9 @@ public class Lotto {
     private void arrangeInAscendingOrder(List<Integer> numbers) {
         numbers.sort(Integer::compareTo);
     }
+
+    @Override
+    public String toString() {
+        return this.numbers.toString();
+    }
 }
