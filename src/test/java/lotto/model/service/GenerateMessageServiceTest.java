@@ -46,7 +46,7 @@ class GenerateMessageServiceTest {
                 LottoPrize.FIRST, 1, LottoPrize.SECOND, 1,
                 LottoPrize.THIRD, 0, LottoPrize.FOURTH, 0, LottoPrize.FIFTH, 1
         );
-        Double winningRate = 2030005000.0 / (4 * 1000);
+        Double winningRate = (2030005000.0 / (4 * 1000)) * 100;
         String expectedWinningRate = String.format("%.1f", winningRate);
         String expectedMessage = "3개 일치 (5,000원) - 1개%n4개 일치 (50,000원) - 0개%n5개 일치 (1,500,000원) - 0개%n"
                 + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개%n6개 일치 (2,000,000,000원) - 1개%n";

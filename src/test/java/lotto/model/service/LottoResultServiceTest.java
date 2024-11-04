@@ -52,7 +52,7 @@ class LottoResultServiceTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 7)),
                 new Lotto(List.of(11, 12, 13, 4, 5, 6)), new Lotto(List.of(11, 12, 13, 14, 5, 6))
         );
-        Double winningRate = 2030005000.0 / (lottos.size() * 1000);
+        Double winningRate = (2030005000.0 / (lottos.size() * 1000)) * 100;
         String expectedWinningRate = String.format("%.1f", winningRate);
         return Stream.of(
                 Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6), 7), lottos, expectedWinningRate)

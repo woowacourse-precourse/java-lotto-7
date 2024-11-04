@@ -28,6 +28,6 @@ public class LottoResultService {
         for (LottoPrize lottoPrize : result.keySet()) {
             wholePrize += lottoPrize.calculateWholePrize(result.get(lottoPrize));
         }
-        return new LottoResultDto(result, String.format("%.1f", wholePrize / (myLottos.size() * 1000)));
+        return new LottoResultDto(result, String.format("%.1f", (wholePrize / (myLottos.size() * 1000)) * 100));
     }
 }
