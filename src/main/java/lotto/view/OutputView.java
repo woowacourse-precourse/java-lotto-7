@@ -1,0 +1,25 @@
+package lotto.view;
+
+import static lotto.view.ViewMessageContainer.NOTICE_ISSUED_LOTTO_QUANTITY;
+import static lotto.view.ViewMessageContainer.RATE_OF_RETURN_MESSAGE;
+import static lotto.view.ViewMessageContainer.WINNING_STATISTICS;
+import static lotto.view.ViewConstants.NEW_LINE;
+
+public class OutputView {
+    public void printIssuedLottoQuantity(String lottoQuantity) {
+        System.out.printf(NEW_LINE + NOTICE_ISSUED_LOTTO_QUANTITY + NEW_LINE, lottoQuantity);
+    }
+
+    public void printIssuedLottoDetails(String lottoDetails) {
+        System.out.println(lottoDetails);
+    }
+
+    public void printWinningDetails(String winningDetails) {
+        System.out.println(NEW_LINE + WINNING_STATISTICS);
+        System.out.println(winningDetails);
+    }
+
+    public void printRateOfReturn(String rateOfReturn) {
+        System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
+    }
+}
