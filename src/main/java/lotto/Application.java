@@ -85,7 +85,14 @@ public class Application {
 
         for (int i = 0; i < winningNumbers.size(); i++) {
             try {
-                integerList.add(i, Integer.parseInt(winningNumbers.get(i)));
+                int parsedNumber = Integer.parseInt(winningNumbers.get(i));
+
+                if (parsedNumber < 1 || parsedNumber > 45) {
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 1 ~ 45번까지만 입력이 가능합니다.");
+                }
+
+                integerList.add(parsedNumber);
+
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력해주세요");
             }
