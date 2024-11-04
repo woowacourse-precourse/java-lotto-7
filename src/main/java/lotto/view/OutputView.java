@@ -14,11 +14,13 @@ public class OutputView {
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static void displayPurchasedLottos(List<Lotto> lottos) {
-        System.out.println(String.format(PURCHASED_MESSAGE, lottos.size()));
+        System.out.printf(PURCHASED_MESSAGE + "%n", lottos.size()); // %n은 줄바꿈
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
+
 
     public static void displayResults(Map<Rank, Integer> rankResults) {
         System.out.println(STATISTICS_HEADER);
@@ -29,7 +31,7 @@ public class OutputView {
                 int count = rankResults.getOrDefault(rank, 0);
                 System.out.println(rank.getMatchCount() + "개 일치" +
                         (rank.isBonusMatch() ? ", 보너스 볼 일치" : "") +
-                        " (" + rank.getPrize() + "원) - " + count + "개");
+                        " (" + rank.getFormattedPrize() + ") - " + count + "개");
             }
         }
     }

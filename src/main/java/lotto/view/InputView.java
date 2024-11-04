@@ -18,6 +18,7 @@ public class InputView {
         System.out.println(PURCHASE_AMOUNT_PROMPT);
         int amount = readValidatedIntegerInput();
         InputValidator.validatePurchaseAmount(amount);
+        System.out.println();
         return amount;
     }
 
@@ -37,6 +38,7 @@ public class InputView {
         System.out.println(BONUS_NUMBER_PROMPT);
         int bonusNumber = readValidatedIntegerInput();
         InputValidator.validateSingleNumberRange(bonusNumber);
+        System.out.println();
         return bonusNumber;
     }
 
@@ -59,6 +61,7 @@ public class InputView {
                 throw new IllegalArgumentException(WINNING_NUMBER_PARSE_ERROR);
             }
         }
+        System.out.println();
         return winningNumbers;
     }
 }
