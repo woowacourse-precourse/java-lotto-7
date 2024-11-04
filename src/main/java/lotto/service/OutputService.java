@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Prize;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -40,17 +41,22 @@ public class OutputService {
         }
     }
 
-    public String checkPrizeAndShow(Prize prize, boolean bonus) {
+    private String checkPrizeAndShow(Prize prize, boolean bonus) {
         StringBuilder sb = new StringBuilder();
         sb.append(prize.getAmount());
         sb.append("개 일치");
         if(bonus) {
             sb.append(", 보너스 볼 일치");
         }
-        sb.append("(");
-        sb.append(prize.getReward());
+        sb.append(" (");
+        sb.append(getDecimalFormatted(prize.getReward()));
         sb.append("원) - ");
         return sb.toString();
+    }
+
+    private String getDecimalFormatted(int reward) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        return decimalFormat.format(reward);
     }
 
     public void showRateOfReturn(double rate) {
