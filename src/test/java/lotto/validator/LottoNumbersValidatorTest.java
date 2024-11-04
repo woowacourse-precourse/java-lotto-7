@@ -10,9 +10,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class WinningNumbersValidatorTest {
+class LottoNumbersValidatorTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private WinningNumbersValidator validator;
+    private LottoNumbersValidator validator;
 
     public static Stream<Arguments> getInvalidWinningNumbersData() {
         return Stream.of(
@@ -23,7 +23,7 @@ class WinningNumbersValidatorTest {
     @ParameterizedTest
     @MethodSource("getInvalidWinningNumbersData")
     void winningNumbersCountNotSixTest(List<Integer> value) {
-        validator = new WinningNumbersValidator(value);
+        validator = new LottoNumbersValidator(value);
 
         assertThatThrownBy(() -> validator.validate())
             .isInstanceOf(IllegalArgumentException.class)
@@ -34,7 +34,7 @@ class WinningNumbersValidatorTest {
     @ValueSource(ints = {-1, 0, 46})
     void winningNumbersOutOfRangeTest(int value) {
         List<Integer> invalidNumbers = List.of(value, 2, 3, 4, 5, 6);
-        validator = new WinningNumbersValidator(invalidNumbers);
+        validator = new LottoNumbersValidator(invalidNumbers);
 
         assertThatThrownBy(() -> validator.validate())
             .isInstanceOf(IllegalArgumentException.class)
@@ -44,8 +44,8 @@ class WinningNumbersValidatorTest {
     @Test
     void winningNumbersDuplicatedTest() {
         List<Integer> duplicatedNumbers = List.of(1, 1, 2, 3, 4, 5);
-        validator = new WinningNumbersValidator(duplicatedNumbers);
-        
+        validator = new LottoNumbersValidator(duplicatedNumbers);
+
         assertThatThrownBy(() -> validator.validate())
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR_MESSAGE);

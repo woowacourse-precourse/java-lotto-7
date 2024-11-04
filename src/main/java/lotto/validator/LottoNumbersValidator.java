@@ -2,7 +2,7 @@ package lotto.validator;
 
 import java.util.List;
 
-public class WinningNumbersValidator implements Validator {
+public class LottoNumbersValidator implements Validator {
     private static final String WINNING_NUMBERS_COUNT_NOT_SIX = "[ERROR] 당첨 번호는 6개를 입력해 주세요.";
     private static final String WINNING_NUMBERS_OUT_OF_RANGE = "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String WINNING_NUMBERS_DUPLICATED = "[ERROR] 당첨 번호가 중복되었습니다.";
@@ -11,7 +11,7 @@ public class WinningNumbersValidator implements Validator {
     private static final int FIXED_SIZE = 6;
     private final List<Integer> winningNumbers;
 
-    public WinningNumbersValidator(List<Integer> winningNumbers) {
+    public LottoNumbersValidator(List<Integer> winningNumbers) {
         this.winningNumbers = List.copyOf(winningNumbers);
     }
 

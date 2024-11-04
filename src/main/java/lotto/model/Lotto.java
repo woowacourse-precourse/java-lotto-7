@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.List;
 import java.util.function.Predicate;
+import lotto.validator.LottoNumbersValidator;
+import lotto.validator.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,12 +14,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 말아야 합니다.");
-        }
+        Validator validator = new LottoNumbersValidator(numbers);
+        validator.validate();
     }
 
     public boolean isNumbersContains(int otherNumber) {

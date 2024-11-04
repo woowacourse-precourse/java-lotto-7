@@ -6,9 +6,9 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.parser.NumberParser;
 import lotto.validator.BonusNumberValidator;
+import lotto.validator.LottoNumbersValidator;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.validator.Validator;
-import lotto.validator.WinningNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -48,7 +48,7 @@ public class LottoVending {
                     Integer winningNumber = NumberParser.parseInteger(winningNumberInput);
                     winningNumbers.add(winningNumber);
                 }
-                validator = new WinningNumbersValidator(winningNumbers);
+                validator = new LottoNumbersValidator(winningNumbers);
                 validator.validate();
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
