@@ -14,6 +14,7 @@ import lotto.service.TicketService;
 import lotto.temp.IoController;
 import lotto.model.WinningNumberGenerator;
 import lotto.util.CommonIo;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
@@ -36,8 +37,12 @@ public class Application {
 
         ioController.printPurchaseLottoNumbers(lottos);
 
+        CommonIo commonIo = new CommonIo();
+        InputView inputView = new InputView(commonIo);
+        OutputView outputView = new OutputView(commonIo);
+
         WinningNumberGenerationController winningNumberGenerationController = new WinningNumberGenerationController(new WinningNumberGenerator());
-        BonusNumberController bonusNumberController = new BonusNumberController();
+        BonusNumberController bonusNumberController = new BonusNumberController(inputView,ioController,commonIo);
 
         WinningNumber winningNumber = repeatUntilValid(() -> {
             Lotto winningNumbers = winningNumberGenerationController.createWinningNumber();

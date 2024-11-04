@@ -10,21 +10,22 @@ import static lotto.util.RepeatInput.repeatUntilValid;
 public class BonusNumberController {
     private final InputView inputView;
     private final IoController ioController;
-    private final CommonIo commonIo = new CommonIo();
+    private final CommonIo commonIo;
 
-    public BonusNumberController() {
-        this.inputView = new InputView(commonIo);
-        this.ioController = new IoController(commonIo);
+    public BonusNumberController(InputView inputView, IoController ioController, CommonIo commonIo) {
+        this.inputView = inputView;
+        this.ioController = ioController;
+        this.commonIo = commonIo;
     }
 
     public BonusNumber createBonusNumber() {
         inputView.printRequestBonusNumber();
+        return repeatUntilValid(this::requestBonusNumber, commonIo);
+    }
 
-        return repeatUntilValid(() -> {
-            String rawBonusNumber = ioController.inputBonusNumber();
-            int bonusNumber = ioController.convertInputToInt(rawBonusNumber);
-            return new BonusNumber(bonusNumber);
-        },commonIo);
-
+    private BonusNumber requestBonusNumber() {
+        String rawBonusNumber = ioController.inputBonusNumber();
+        int bonusNumber = ioController.convertInputToInt(rawBonusNumber);
+        return new BonusNumber(bonusNumber);
     }
 }
