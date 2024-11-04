@@ -5,7 +5,7 @@ import lotto.constants.ConstraintConstants;
 import lotto.constants.ErrorViewConstants;
 import lotto.constants.InputViewConstants;
 
-import static lotto.service.ValidatorService.validatePurchaseAmount;
+import static lotto.service.ValidatorService.*;
 
 public class InputService {
     public int getPurchaseAmount() {
@@ -21,4 +21,9 @@ public class InputService {
         throw new IllegalArgumentException(ErrorViewConstants.INVALID_INPUT_CONSTRAINT);
     }
 
+    public void getWinningNumbers() {
+        System.out.println(InputViewConstants.WINNING_NUMBER_INSTRUCTION);
+        String[] winningNumbers = Console.readLine().split(",");
+        validateWinningNumbersFormat(winningNumbers);
+    }
 }
