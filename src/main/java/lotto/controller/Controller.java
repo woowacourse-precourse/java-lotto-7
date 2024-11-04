@@ -18,12 +18,11 @@ public class Controller {
 
     public void start() {
         List<Lotto> lottos = pickLottos();
-        outputView.printResult("\n");
+        outputView.printResult(" ");
         outputView.printLottos(lottos);
-        outputView.printResult("\n");
 
         Winning winning = createWinning();
-        outputView.printResult("\n");
+        outputView.printResult(" ");
 
         ScoreBoard scoreBoard = new ScoreBoard(lottos, winning);
 
@@ -37,7 +36,7 @@ public class Controller {
 
     private Winning createWinning() {
         Winning winning = inputView.inputWinningNumbers();
-        outputView.printResult("\n");
+        outputView.printResult(" ");
         return inputView.inputBonusNumber(winning);
     }
 
