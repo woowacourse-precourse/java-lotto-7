@@ -11,6 +11,7 @@ public class TrialHistory {
     private List<DrawnNumbers> drawnNumberPacks;
 
     void savePayment(Integer money) {
+        validatePayment();
         this.payment = money;
     }
 
@@ -39,11 +40,17 @@ public class TrialHistory {
     }
 
     public List<DrawnNumbers> getDrawnNumberPacks() {
-        validateNotNULL();
+        validatePacks();
         return drawnNumberPacks;
     }
 
-    private void validateNotNULL() {
+    private void validatePayment() {
+        if (payment != null) {
+            throw new IllegalArgumentException(MessageCenter.ERROR_PAID.get());
+        }
+    }
+
+    private void validatePacks() {
         if (drawnNumberPacks == null || drawnNumberPacks.isEmpty()) {
             throw new IllegalArgumentException(MessageCenter.ERROR_SAVE.get());
         }

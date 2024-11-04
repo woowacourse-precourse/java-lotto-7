@@ -10,7 +10,8 @@ public enum MessageCenter {
     ERROR_USERSTORAGE("[ERROR] 구매기록이 없습니다."),
     ERROR_COUNT("[ERROR] 구매장수를 인식할 수 없습니다."),
     ERROR_PAYMENT("[ERROR] 결제 내역을 찾을 수 없습니다."),
-    ERROR_SAVE("[ERROR] 저장된 내역이 없습니다.");
+    ERROR_SAVE("[ERROR] 저장된 내역이 없습니다."),
+    ERROR_PAID("[ERROR] 기결제 내역이 있습니다.");
 
 
     private final String msg;
