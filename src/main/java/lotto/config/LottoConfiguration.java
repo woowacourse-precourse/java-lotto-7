@@ -1,12 +1,11 @@
 package lotto.config;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.input.InputHandler;
 import lotto.input.InputParser;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class LottoConfiguration {
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    LottoConfiguration(InputHandler inputHandler, InputParser inputParser) {
+    public LottoConfiguration(InputHandler inputHandler, InputParser inputParser) {
         this.purchaseAmount = inputHandler.inputPurchaseAmount();
         this.lottoCount = calculateLottoCount(purchaseAmount);
         this.lottos = createLotto(lottoCount);
@@ -50,7 +49,7 @@ public class LottoConfiguration {
     private List<Lotto> createLotto(int lottoCount) {
         List<Lotto> generatedLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = (Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(lottoNumbers);
             showLottoNumbers(lottoNumbers);
             generatedLottos.add(new Lotto(lottoNumbers));
