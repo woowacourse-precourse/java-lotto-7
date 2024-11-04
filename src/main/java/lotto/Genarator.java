@@ -8,20 +8,19 @@ import java.util.List;
 
 public class Genarator {
 
-    public List<Lotto> autoGen() {
+    private static final int LOTTO_PRICE = 1000;
+    private static final int NUMBER_RANGE = 45;
+
+    public List<Lotto> autoGen(int amount) {
         List<Lotto> lottos = new ArrayList<>();
-        System.out.println("몇장?");
-        int no = Integer.parseInt(Console.readLine());
-        System.out.println(no);
+        int numOfLottos = amount / LOTTO_PRICE;
 
 
-        for (int i = 0; i < no; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        for (int i = 0; i < numOfLottos; i++) {
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, NUMBER_RANGE, 6);
             Lotto lotto = new Lotto(lottoNumbers);
             lottos.add(lotto);
         }
-
-        System.out.println(lottos);
 
         return lottos;
     }

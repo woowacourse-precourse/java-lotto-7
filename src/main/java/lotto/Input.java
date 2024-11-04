@@ -11,7 +11,7 @@ import java.util.Set;
 public class Input {
 
     public Lotto winner() {
-        System.out.println("당첨 번호를 입력해 주세요 (쉼표로 구분):");
+        System.out.println("당첨 번호를 입력해 주세요.\n");
         String inputNo = Console.readLine();
         System.out.println(inputNo);
 
@@ -43,7 +43,7 @@ public class Input {
     }
 
     public int bonus(Lotto winNo) {
-        System.out.println("보너스 번호를 입력해 주세요:");
+        System.out.println("보너스 번호를 입력해 주세요.\n");
         int bonusNo = Integer.parseInt(Console.readLine());
         System.out.println(bonusNo);
 
