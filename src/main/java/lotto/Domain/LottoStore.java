@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoStore {
-    public static List<Lotto> saleLotto(int lottoNumbers) {
+    public static List<Lotto> saleLotto(long lottoNumbers) {
         final int MIN = 1;
         final int MAX = 45;
         final int LOTTO_SIZE = 6;
