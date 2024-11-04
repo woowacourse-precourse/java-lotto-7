@@ -47,7 +47,9 @@ public class Lotto {
         int count = 0;
 
         for (Integer number : numbers) {
-            if (otherNumbers.contains(number)) count++;
+            if (otherNumbers.contains(number)) {
+                count++;
+            }
         }
         return count;
     }
