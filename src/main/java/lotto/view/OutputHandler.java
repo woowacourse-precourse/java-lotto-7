@@ -31,14 +31,14 @@ public class OutputHandler {
                 .filter(rank -> rank != PrizeRank.NONE)
                 .forEach(rank -> {
                     int count = rankCounts.getOrDefault(rank.getRank(), 0);
-                    String resultText = rank.getMatchCount() + "개 일치";
+                    String resultText = rank.getMatchCount() + MATCH_COUNT_SUFFIX;
 
                     if (rank.isSecondRank()) {
-                        resultText += ", 보너스 볼 일치";
+                        resultText += BONUS_BALL_MATCH;
                     }
 
                     String formattedPrize = String.format("%,d", rank.getPrize());
-                    System.out.printf("%s (%s원) - %d개%n", resultText, formattedPrize, count);
+                    System.out.printf(RESULT_FORMAT, resultText, formattedPrize, count);
                 });
     }
 
