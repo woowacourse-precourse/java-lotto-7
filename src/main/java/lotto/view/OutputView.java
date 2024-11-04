@@ -18,6 +18,8 @@ public class OutputView {
     private static final String BONUS_MATCH_TEXT = ", 보너스 볼 일치";
 
     private static final int LOTTO_PRICE = 1000;
+    private static final int PERCENTAGE = 100;
+    private static final long DEFAULT_COUNT = 0L;
 
     public static void printPurchasedLottos(List<Lotto> lottos) {
         System.out.printf(MESSAGE_PURCHASED_LOTTOS, lottos.size());
@@ -59,7 +61,7 @@ public class OutputView {
                 rank.getMatchCount(),
                 rank.isMatchBonus() ? BONUS_MATCH_TEXT : "",
                 numberFormat.format(rank.getPrize()),
-                statistics.getOrDefault(rank, 0L));
+                statistics.getOrDefault(rank, DEFAULT_COUNT));
     }
 
     private static void printTotalYield(Map<LottoRank, Long> statistics, int lottoCount) {
@@ -67,7 +69,7 @@ public class OutputView {
                 .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
         double purchaseAmount = lottoCount * LOTTO_PRICE;
-        double yield = (totalPrize / purchaseAmount) * 100;
+        double yield = (totalPrize / purchaseAmount) * PERCENTAGE;
         System.out.printf(MESSAGE_TOTAL_YIELD, yield);
     }
 
