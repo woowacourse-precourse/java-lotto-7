@@ -11,6 +11,10 @@ public class AppConfig {
 
     private static final AppConfig appConfig = new AppConfig();
 
+    public static AppConfig getAppConfig() {
+        return appConfig;
+    }
+
     public LottoController getLottoController() {
         return new LottoController(getInputView(), getOutputview(), getErrorView(), getLottoService());
     }
