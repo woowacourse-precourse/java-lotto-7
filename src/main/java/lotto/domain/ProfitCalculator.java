@@ -13,7 +13,7 @@ public class ProfitCalculator {
             int matchingCount = matchLottoAndWinning(lotto, winningBonus);
             boolean containsBonusNumber = checkBonusNumber(lotto, winningBonus, matchingCount);
             Ranking ranking = Ranking.findRanking(matchingCount, containsBonusNumber);
-            winningInfo.replace(ranking, winningInfo.get(winningInfo) + 1);
+            winningInfo.replace(ranking, winningInfo.get(ranking) + 1);
         }
         return winningInfo;
     }
