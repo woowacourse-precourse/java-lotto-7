@@ -1,9 +1,12 @@
 package lotto.util;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.exception.InputErrorMessage;
 
 public class InputParser {
     private static final String INTEGER_REGEX = "^[0-9]*$";
+    private static final String DELIMITER = ",";
 
     private InputParser() {
     }
@@ -13,9 +16,22 @@ public class InputParser {
         return Integer.parseInt(input);
     }
 
+    public static List<Integer> parseWinningNumbers(String input) {
+        validateWinningNumbers(input);
+        return Arrays.stream(input.split(DELIMITER))
+                .map(Integer::parseInt)
+                .toList();
+    }
+
     private static void validateLottoPrice(String lottoPrice) {
         validateInputNullOrEmpty(lottoPrice);
         validateInputIsNumber(lottoPrice);
+    }
+
+    private static void validateWinningNumbers(String winningNumbers) {
+        validateInputNullOrEmpty(winningNumbers);
+        Arrays.stream(winningNumbers.split(DELIMITER))
+                .forEach(InputParser::validateInputIsNumber);
     }
 
     private static void validateInputNullOrEmpty(String input) {
