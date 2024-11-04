@@ -36,8 +36,10 @@ public class OutputView {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println();
         Winning.sortedByMatchCount().forEach(winning -> {
+            if (winning == Winning.NONE) {
+                return;
+            }
             String bonusNumberMessage = "";
             if (winning.isBonusNumberMatched()) {
                 bonusNumberMessage = ", 보너스 볼 일치";
@@ -47,12 +49,12 @@ public class OutputView {
                     winning.matchCount(),
                     bonusNumberMessage,
                     formatter.format(winning.prizeMoney()),
-                    winningResults.get(winning)
+                    winningResults.getOrDefault(winning, 0)
             );
         });
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.printf("총 수익률은 %f입니다.", rateOfReturn);
+        System.out.printf("총 수익률은 %.1f입니다.", rateOfReturn);
     }
 }
