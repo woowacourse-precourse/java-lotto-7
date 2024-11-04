@@ -88,7 +88,6 @@ class LottoResultCalculatorTest {
     }
 
     @Test
-    @DisplayName("수익률이 올바르게 계산된다")
     void 수익률이_올바르게_계산된다() {
         LottoTicket ticket = new LottoTicket(List.of(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),  // 1등
@@ -105,15 +104,13 @@ class LottoResultCalculatorTest {
     }
 
     @Test
-    @DisplayName("여러 장의 로또에 대한 당첨 결과가 올바르게 집계된다")
     void 여러_장의_로또에_대한_당첨_결과가_올바르게_집계된다() {
-        Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoBonusNumber bonusNumber = new LottoBonusNumber(winningNumber, 7);
         LottoTicket ticket = new LottoTicket(List.of(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),  // 1등
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),  // 2등
                 new Lotto(List.of(1, 2, 3, 4, 5, 8)),  // 3등
-                new Lotto(List.of(1, 2, 3, 4, 7, 8))   // 4등
+                new Lotto(List.of(1, 2, 3, 4, 7, 8)),  // 4등
+                new Lotto(List.of(1, 2, 3, 9, 7, 8))   // 5등
         ));
         LottoResultCalculator calculator = new LottoResultCalculator(winningNumber, bonusNumber, ticket);
         calculator.run();
@@ -123,6 +120,7 @@ class LottoResultCalculatorTest {
         assertThat(results.get("SECOND")).isEqualTo(1);
         assertThat(results.get("THIRD")).isEqualTo(1);
         assertThat(results.get("FOURTH")).isEqualTo(1);
+        assertThat(results.get("FIFTH")).isEqualTo(1);
     }
 
 }
