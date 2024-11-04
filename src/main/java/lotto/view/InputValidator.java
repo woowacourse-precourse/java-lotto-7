@@ -73,6 +73,7 @@ public class InputValidator {
     public int getValidBonusNumber(String input, List<Integer> winningNumber) {
         try {
             int bonusNumber = Integer.parseInt(input);
+            checkNumberRange(bonusNumber);
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 번호는 숫자만 가능합니다.");
