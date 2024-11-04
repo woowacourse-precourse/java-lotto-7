@@ -3,6 +3,7 @@ package lotto.service;
 import static lotto.eunm.LottoConstants.*;
 import static lotto.eunm.WinningResult.*;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
@@ -10,6 +11,8 @@ import lotto.dto.LottoDto;
 import lotto.dto.WinningDto;
 
 public class LottoService {
+
+    private static final String FORMAT_PATTERN = "#,##0.0";
 
     public WinningDto statisticsNumbers(LottoDto lottoDto) {
         List<Integer> matchStatistics = calculateLottoNumber(lottoDto, lottoDto.getLottos(),
@@ -56,7 +59,7 @@ public class LottoService {
                 .filter(lottoNumbers::contains)
                 .count();
 
-        if (matchedCount == 6) {
+        if (matchedCount == SIX.winningCount) {
             return 7;
         }
 
@@ -75,7 +78,7 @@ public class LottoService {
         return lotto.getSortNumbers().contains(lottoDto.getBonusNumber());
     }
 
-    private double totalPrice(WinningDto winningDto, int buyPrice) {
+    private String totalPrice(WinningDto winningDto, int buyPrice) {
         return calculateProfit(getTotalPrize(winningDto), buyPrice);
     }
 
@@ -86,8 +89,18 @@ public class LottoService {
                 .sum();
     }
 
-    private double calculateProfit(int totalPrize, int buyPrice) {
-        return ((double) totalPrize / buyPrice) * PERCENTAGE_BASE.value;    // 수익률 계산: (당첨금 / 구매금액) * 100
+    private static String calculateProfit(int totalPrize, int buyPrice) {
+        double profitPercentage = calculateProfitPercentage(totalPrize, buyPrice);
+        return formatProfitPercentage(profitPercentage);
     }
 
+    private static double calculateProfitPercentage(int totalPrize, int buyPrice) {
+        return ((double) totalPrize / buyPrice) * PERCENTAGE_BASE.value;
+    }
+
+    private static String formatProfitPercentage(double profitPercentage) {
+        profitPercentage = Math.round(profitPercentage * PERCENTAGE_BASE.value) / 100.0;
+        DecimalFormat decimalFormat = new DecimalFormat(FORMAT_PATTERN);
+        return decimalFormat.format(profitPercentage);
+    }
 }
