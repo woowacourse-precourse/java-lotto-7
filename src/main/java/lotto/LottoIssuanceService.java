@@ -17,4 +17,8 @@ public class LottoIssuanceService {
         this.lottoNumbers = lottoNumbers;       // 오름차순 저장
         System.out.println(this.lottoNumbers);  // 정렬된 리스트 출력
     }
+
+    public List<Integer> getLottoNumbers() {
+        return lottoNumbers;
+    }
 }
