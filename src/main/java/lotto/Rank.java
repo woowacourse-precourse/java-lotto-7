@@ -25,4 +25,8 @@ public enum Rank {
     public String toString() {
         return String.format("%s (%,d)", condition, prize);
     }
+
+    public int getPrize() {
+        return this.prize;
+    }
 }
