@@ -79,7 +79,11 @@ public class Application {
         List<Integer> integerList = new ArrayList<>();
 
         for (int i = 0; i < winningNumbers.size(); i++) {
-            integerList.add(i, Integer.parseInt(winningNumbers.get(i)));
+            try {
+                integerList.add(i, Integer.parseInt(winningNumbers.get(i)));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력해주세요");
+            }
         }
 
         return integerList;
