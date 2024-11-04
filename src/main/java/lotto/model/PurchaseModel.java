@@ -6,7 +6,7 @@ public class PurchaseModel {
 
     private PurchaseModel() {}
 
-    public int getTicketCount() {
+    public static int getTicketCount() {
         return ticketCount;
     }
 
