@@ -29,8 +29,9 @@ public enum Ranking {
 
     //로또에서 당첨숫자 일치개수와 보너스 일치를 받아서 Rank를 정하는 로직
     public static Ranking valueOf(int countOfMatch, boolean matchBonus) {
-        if (countOfMatch < WINNING_MIN_COUNT) {
-            return MISS;
+        Ranking specialCheckCase = specialCheckCase(countOfMatch, matchBonus);
+        if (specialCheckCase != null) {
+            return specialCheckCase;
         }
         for (Ranking rank : values()) {
             if (rank.isMatchingRank(countOfMatch, matchBonus)) {
@@ -40,11 +41,18 @@ public enum Ranking {
         throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_CONDITION.getMessage());
     }
 
-    private boolean isMatchingRank(int countOfMatch, boolean matchBonus) {
-        if (this == SECOND) {
-            return this.matchingCount == countOfMatch && (this.bonusState == matchBonus);
+    private static Ranking specialCheckCase(int countOfMatch, boolean matchBonus) {
+        if (countOfMatch < WINNING_MIN_COUNT) {
+            return MISS;
         }
-        return this.matchingCount == countOfMatch;
+        if (countOfMatch == 5 && matchBonus) {
+            return SECOND;
+        }
+        return null;
+    }
+
+    private boolean isMatchingRank(int countOfMatch, boolean matchBonus) {
+        return this.matchingCount == countOfMatch && (this.bonusState == matchBonus);
     }
 
     public String getMessage() {

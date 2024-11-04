@@ -6,6 +6,9 @@ import static lotto.Model.ErrorCode.RETRY_MESSAGE;
 import static lotto.constants.Constants.*;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import lotto.Lotto;
 import lotto.Model.Validation;
 import lotto.constants.Constants;
 
@@ -34,16 +37,17 @@ public class InputView {
     }
 
     //사용자에게 당첨번호 받는 로직
-    public static String[] getWinningNumber() {
-        System.out.println(SET_WINNING_NUMBER);
+    public static Lotto getWinningLottoNumber() {
         while (true) {
             try {
-                String[] winningNumber = Console.readLine().split(",");
-                validation.winningNumberValidator(winningNumber);
-                return winningNumber;
+                String lotto = Console.readLine();
+                List<Integer> lottoNumbers = Arrays.stream(lotto.split(","))
+                        .map(Integer::valueOf)
+                        .toList();
+                return new Lotto(lottoNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                System.out.println(RETRY_MESSAGE.getMessage());
+                System.out.println(RETRY_MESSAGE);
             }
         }
     }

@@ -1,10 +1,13 @@
 package lotto;
 
-import static lotto.Model.ErrorCode.*;
+import static lotto.Model.ErrorCode.DUPLICATE_NUMBER;
+import static lotto.Model.ErrorCode.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.Model.ErrorCode.INVALID_NUMBER_RANGE;
 import static lotto.constants.Constants.LOTTO_MAX_VALUE;
 import static lotto.constants.Constants.LOTTO_MIN_VALUE;
 import static lotto.constants.Constants.LOTTO_NUMBER_LENGTH;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +17,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -24,6 +27,7 @@ public class Lotto {
         hasDuplicate(numbers);
         validateNumberRange(numbers);
     }
+
 
     private void hasDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
@@ -44,5 +48,5 @@ public class Lotto {
         return numbers;
     }
 
-    // TODO: 추가 기능 구현
+// TODO: 추가 기능 구현
 }

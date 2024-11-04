@@ -76,9 +76,9 @@ class LottoBasicTest {
 
     @Test
     void testPlayLottoGame() {
-        ArrayList<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLottoNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Lotto> lottoList = LottoNumbers.makeLottoList(1);
-        PlayLottoGame playLottoGame = new PlayLottoGame(winningNumbers, lottoList, 7);
+        PlayLottoGame playLottoGame = new PlayLottoGame(winningLottoNumbers, lottoList, 7);
 
         Map<Integer, Boolean> matchingResults = playLottoGame.play();
         assertThat(matchingResults).isNotNull();
