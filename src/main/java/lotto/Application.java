@@ -25,11 +25,18 @@ public class Application {
         }
     }
 
+    public static void checkLottoCost(int cost) {
+        if (cost % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1,000원으로 나누어 떨어지지 않습니다.");
+        }
+    }
+
     public static int inputAmount() {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 int lotto_cost = stringToNum(readLine());
+                checkLottoCost(lotto_cost);
                 return lotto_cost;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
