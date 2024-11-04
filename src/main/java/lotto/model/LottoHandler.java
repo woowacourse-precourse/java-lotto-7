@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.constants.Ranking;
 import lotto.constants.lottoType.LottoType;
+import lotto.constants.messageType.OutputMessageType;
 import lotto.utils.WinningNumberValidation;
 
 import java.util.ArrayList;
@@ -25,11 +26,11 @@ public class LottoHandler {
     public String getAllLottos() {
         return getLottos().stream()
                 .map(lottos -> lottos.getLottoNumbers().toString())
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(OutputMessageType.NEW_LINE.getMessage()));
     }
 
     public void inputWinningLottoNumbers(String rawWinningNumbers) {
-        List<Integer> winningNumbers = Arrays.stream(rawWinningNumbers.split(","))
+        List<Integer> winningNumbers = Arrays.stream(rawWinningNumbers.split(OutputMessageType.COMMA.getMessage()))
                 .map(String::trim)
                 .map(WinningNumberValidation::validateNumberFormat)
                 .collect(Collectors.toList());

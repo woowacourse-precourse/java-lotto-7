@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Customer {
 
-    private int lottoTickets = 0;
+    private int lottoTickets = LottoType.ZERO_TICKET.getValue();
     private final Map<Ranking, Integer> lottoResults = new EnumMap<>(Ranking.class);
 
     public void buyLottoTickets(int clientMoney) {
@@ -35,7 +35,7 @@ public class Customer {
     }
 
     public long getResultSum() {
-        long sum = 0;
+        long sum = LottoType.ZERO_MONEY.getValue();
         for (Ranking ranking : lottoResults.keySet()) {
             sum += (long) ranking.getWinnings() * lottoResults.get(ranking);
         }
