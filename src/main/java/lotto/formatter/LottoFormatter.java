@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.formatter;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.WinningLotto.WinningLotto;

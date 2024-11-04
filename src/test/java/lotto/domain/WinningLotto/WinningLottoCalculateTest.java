@@ -1,6 +1,6 @@
 package lotto.domain.WinningLotto;
 
-import lotto.domain.LottoFormatter;
+import lotto.formatter.LottoFormatter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

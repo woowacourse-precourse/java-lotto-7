@@ -2,7 +2,7 @@ package lotto.service;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoManager;
-import lotto.domain.LottoFormatter;
+import lotto.formatter.LottoFormatter;
 import lotto.domain.WinningLotto.WinningLotto;
 import lotto.domain.WinningLotto.WinningLottoCalculate;
 import lotto.domain.WinningLotto.WinningLottoCounter;

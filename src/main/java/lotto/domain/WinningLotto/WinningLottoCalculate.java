@@ -1,6 +1,6 @@
 package lotto.domain.WinningLotto;
 
-import lotto.domain.LottoFormatter;
+import lotto.formatter.LottoFormatter;
 
 import java.util.Map;
 
