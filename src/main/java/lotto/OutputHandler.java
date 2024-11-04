@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class OutputHandler {
@@ -13,6 +15,8 @@ public class OutputHandler {
     }
 
     private static void printLottoNumbers(Lotto lotto) {
-        System.out.println(lotto.getNumbers());
+    List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+    Collections.sort(sortedNumbers);
+    System.out.println(sortedNumbers);
     }
 }
