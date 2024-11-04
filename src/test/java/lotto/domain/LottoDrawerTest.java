@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class LottoDrawerTest {
 
-    @DisplayName("여러 개의 로또를 생성한다.")
+    @DisplayName("올바른 개수의 랜덤 로또를 발행한다.")
     @Test
     void generateLottosTest() {
         PurchaseAmount purchaseAmount = new PurchaseAmount("3000");
@@ -16,7 +16,7 @@ class LottoDrawerTest {
         LottoDrawer lottoDrawer = new LottoDrawer(purchaseAmount, fixedNumbersGenerator);
 
         LottoTicket lottoTicket = lottoDrawer.generateLottos();
-
+        
         lottoTicket.getLottos().forEach(lotto ->
                 assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6))
         );

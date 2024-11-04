@@ -41,6 +41,7 @@ public class LottoGame {
 
     private LottoTicket draw(PurchaseAmount purchaseAmount) {
         NumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
+        
         LottoDrawer lottoDrawer = new LottoDrawer(purchaseAmount, randomNumbersGenerator);
         LottoTicket lottoTicket = lottoDrawer.generateLottos();
 
