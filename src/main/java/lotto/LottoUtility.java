@@ -20,7 +20,7 @@ public class LottoUtility {
         return numbers;
     }
 
-    public String getWinningInfo(LottoWinningStandard standard, int matchedCount) {
+    public String getWinningInfoMessage(LottoWinningStandard standard, int matchedCount) {
         if(standard.equals(LottoWinningStandard.SECOND_PRIZE)) {
             return "5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchedCount + "개";
         }
