@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -69,6 +71,10 @@ public class Lotto {
 
     public boolean contain(Integer number) {
         return numbers.contains(number);
+    }
+
+    public static Lotto getRandom() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(NUMBER_MIN, NUMBER_MAX, NUMBER_SIZE));
     }
 
     // TODO: 구현 기능 목록

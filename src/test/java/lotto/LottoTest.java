@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -71,6 +72,11 @@ class LottoTest {
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 45)), 5),
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6)
         );
+    }
+
+    @Test
+    public void 랜덤_로또() {
+        assertThat(Lotto.getRandom()).isInstanceOf(Lotto.class);
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
