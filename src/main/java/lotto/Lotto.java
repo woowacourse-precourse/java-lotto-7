@@ -32,17 +32,8 @@ public class Lotto {
         return numbers;
     }
 
+    // 당첨 로또 번호와 일치하는 번호의 개수를 구하는 함수
     public int getMatchCount(Lotto otherLotto) {
-        List<Integer> curwinningLotto = this.numbers;
-        List<Integer> tempLotto = otherLotto.getNumbers();
-        int match = 0;
-
-        for (Integer number : curwinningLotto) {
-            if (tempLotto.contains(number)) {
-                match++;
-            }
-        }
-
-        return match; // 일치하는 번호 개수 반환
+        return (int) this.numbers.stream().filter(otherLotto.getNumbers()::contains).count();
     }
 }

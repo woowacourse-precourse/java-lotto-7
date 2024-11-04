@@ -38,19 +38,12 @@ public enum LottoRank{
         if (matchCount == SECOND.matchCount && matchBonus) {
             return SECOND;
         }
-        if (matchCount == THIRD.matchCount) {
-            return THIRD;
+        for (LottoRank rank : new LottoRank[]{THIRD, FOURTH, FIFTH}) {
+            if (matchCount == rank.matchCount) {
+                return rank;
+            }
         }
-        if (matchCount == FOURTH.matchCount) {
-            return FOURTH;
-        }
-        if (matchCount == FIFTH.matchCount) {
-            return FIFTH;
-        }
-
         return null;
-
-
     }
 
 }

@@ -24,7 +24,6 @@ public class LottoInputView
     }
 
     public static List<Integer> lottoWinningNumbers() {
-
         try {
             System.out.println("당첨 번호를 입력해 주세요.");
             String numbers = Console.readLine().trim();
@@ -85,7 +84,6 @@ public class LottoInputView
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("당첨 번호를 6개 입력해야 합니다.");
         }
-
         Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
 
         if (uniqueNumbers.size() != winningNumbers.size()) {
@@ -102,7 +100,6 @@ public class LottoInputView
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
-
         Set<Integer> uniqueBonusNumbers = new HashSet<>(winningNumbers);
         uniqueBonusNumbers.add(bonusNumber);
 

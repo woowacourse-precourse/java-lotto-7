@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoGame {
-
     private Lotto winningLotto;
     private int bonusNumber;
     private final Map<LottoRank,Integer> result = new HashMap<>();
