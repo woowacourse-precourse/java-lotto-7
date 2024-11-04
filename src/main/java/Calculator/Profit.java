@@ -11,7 +11,7 @@ public class Profit {
             totalEarnMoney = totalEarnMoney + getPrice(i, ranks.get(i));
         }
 
-        double profit = totalEarnMoney / (double) money;
+        double profit = totalEarnMoney / (double) money * 100;
         profit = Math.round(profit * 100) / 100.0;
 
         return profit;
