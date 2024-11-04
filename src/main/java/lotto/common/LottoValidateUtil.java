@@ -2,7 +2,7 @@ package lotto.common;
 
 import java.util.List;
 
-public class LottoValidateUtil {
+public final class LottoValidateUtil {
     private LottoValidateUtil() {
     }
 
