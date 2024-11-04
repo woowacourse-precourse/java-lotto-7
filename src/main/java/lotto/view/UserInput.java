@@ -7,8 +7,8 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class UserInput {
     private enum InputMessage{
         INPUT_PURCHASE_AMOUNT_PROMPT("구입금액을 입력해 주세요."),
-        INPUT_WINNING_NUMBER_PROMPT("당첨 번호를 입력해 주세요."),
-        INPUT_BOUNS_NUMBER_PROMPT("보너스 번호를 입력해 주세요.");
+        INPUT_WINNING_NUMBER_PROMPT("\n당첨 번호를 입력해 주세요."),
+        INPUT_BOUNS_NUMBER_PROMPT("\n보너스 번호를 입력해 주세요.");
 
         final private String message;
 
