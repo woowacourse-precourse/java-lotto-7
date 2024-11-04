@@ -30,7 +30,7 @@ class GameStatisticServiceTest {
 
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoTicket lottoTicket = new LottoTicket(Arrays.asList(lotto), 1000);
+        LottoTicket lottoTicket = new LottoTicket(Arrays.asList(lotto), 1000, 1);
 
         LottoStatistic result = gameStatisticService.calculateLottoResult(lottoTicket, winningNumbers);
 
@@ -47,7 +47,7 @@ class GameStatisticServiceTest {
 
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        LottoTicket lottoTicket = new LottoTicket(Arrays.asList(lotto), 1000);
+        LottoTicket lottoTicket = new LottoTicket(Arrays.asList(lotto), 1000, 1);
 
         LottoStatistic result = gameStatisticService.calculateLottoResult(lottoTicket, winningNumbers);
 
@@ -64,7 +64,7 @@ class GameStatisticServiceTest {
 
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
-        LottoTicket lottoTicket = new LottoTicket(Arrays.asList(lotto), 1000);
+        LottoTicket lottoTicket = new LottoTicket(Arrays.asList(lotto), 1000, 1);
 
         LottoStatistic result = gameStatisticService.calculateLottoResult(lottoTicket, winningNumbers);
 

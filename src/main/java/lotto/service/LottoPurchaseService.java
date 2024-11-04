@@ -18,25 +18,25 @@ public class LottoPurchaseService {
         this.lottoMachine = lottoMachine;
     }
 
-    public LottoTicket purchaseLotto(String input){
+    public LottoTicket purchaseLotto(String input) {
         int price = validateAmount(input);
         int ticketCount = calculateQuantity(price);
         List<Lotto> lotteries = generateLotteries(ticketCount);
-        return new LottoTicket(lotteries, price);
+        return new LottoTicket(lotteries, price, ticketCount);
     }
 
-    private int validateAmount(String input){
+    private int validateAmount(String input) {
         amountValidator.validate(input);
         return Integer.parseInt(input);
     }
 
-    private int calculateQuantity(int price){
+    private int calculateQuantity(int price) {
         return price / 1000;
     }
 
-    private List<Lotto> generateLotteries(int quantity){
+    private List<Lotto> generateLotteries(int quantity) {
         List<Lotto> lotteries = new ArrayList<>();
-        for(int i = 0; i < quantity; i++){
+        for (int i = 0; i < quantity; i++) {
             lotteries.add(lottoMachine.generate());
         }
         return lotteries;
