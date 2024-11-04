@@ -18,7 +18,7 @@ public class WinningNumbers {
     }
 
     private void validateBonusDuplicated() {
-        if (sixNumbers.getSixNumbers().contains(bonusNumber)) {
+        if (sixNumbers.getSixNumbers().contains(bonusNumber.getBonusNumber())) {
             throw new LottoException(ExceptionCode.DUPICATED_ERROR);
         }
     }
