@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import store.repository.StoreSingleRepositoryImpl;
+import store.repository.StoreRepositoryImpl;
 import store.service.StoreService;
 
 class ValidatorTest {
@@ -305,8 +305,8 @@ class ValidatorTest {
     @DisplayName("입력한 보너스 번호는 사전에 설정된 당첨 번호와 중복될 수 없다")
     void t026(String bonusNumber) {
         String inputWeeklyNumbers = "1,2,3,4,5,6";
-        StoreService storeService = new StoreService(new StoreSingleRepositoryImpl());
-        storeService.modifyWeeklyNumbers(inputWeeklyNumbers);
+        StoreService storeService = new StoreService(new StoreRepositoryImpl());
+        storeService.tryUpdateWeeklyNumbers(inputWeeklyNumbers);
         List<Integer> weeklyNumbers = storeService.getStoredWeeklyNumbers();
 
         assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber, weeklyNumbers))

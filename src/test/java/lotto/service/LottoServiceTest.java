@@ -13,13 +13,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import store.repository.StoreSingleRepository;
-import store.repository.StoreSingleRepositoryImpl;
+import store.repository.StoreRepositoryImpl;
 import store.service.StoreService;
 
 class LottoServiceTest {
 
-    private final StoreSingleRepositoryImpl storeRepository = new StoreSingleRepositoryImpl();
+    private final StoreRepositoryImpl storeRepository = new StoreRepositoryImpl();
     private final StoreService storeService = new StoreService(storeRepository);
     private final LottoRepositoryImpl lottoRepository = new LottoRepositoryImpl();
     private final LottoService lottoService = new LottoService(storeService, lottoRepository);
