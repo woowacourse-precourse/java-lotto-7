@@ -4,6 +4,7 @@ import static lotto.MessageContainer.WINNING_DETAILS_TEMPLATE;
 import static lotto.view.ViewConstants.VIEW_DELIMITER;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -39,8 +40,7 @@ public class LottoController {
 
     private List<Integer> extractNumbers(String input) {
         return Arrays.stream(input.split(VIEW_DELIMITER))
-                .map(this::toInt)
-                .toList();
+                .map(this::toInt).collect(Collectors.toCollection(ArrayList::new));
     }
 
     private int toInt(String input) {

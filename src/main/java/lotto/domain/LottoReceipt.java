@@ -28,4 +28,9 @@ public class LottoReceipt {
     public BigInteger getIssuedLottoQuantity() {
         return BigInteger.valueOf(issuedTicket.lottos().size());
     }
+
+    @Override
+    public String toString() {
+        return issuedTicket.toString();
+    }
 }

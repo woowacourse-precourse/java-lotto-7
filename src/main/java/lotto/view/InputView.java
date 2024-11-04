@@ -14,7 +14,7 @@ public class InputView {
     }
 
     public String requestWinningLottoNumbers() {
-        System.out.println(ENTER_WINNING_LOTTO_NUMBERS);
+        System.out.println(NEW_LINE + ENTER_WINNING_LOTTO_NUMBERS);
         return Console.readLine();
     }
 

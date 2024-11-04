@@ -7,6 +7,7 @@ import static lotto.MessageContainer.COUNT_OF_LOTTO_NUMBERS_ERROR;
 import static lotto.MessageContainer.DUPLICATE_NUMBER_ERROR;
 import static lotto.MessageContainer.OUT_OF_RANGE_NUMBER_ERROR;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -16,6 +17,7 @@ public class Lotto {
         validateSizeOf(numbers);
         validateNoDuplicatesIn(numbers);
         validateRangeOfNumbersIn(numbers);
+        numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
 
@@ -50,5 +52,10 @@ public class Lotto {
 
     private boolean verifyInLottoNumberRange(Integer number) {
         return (number >= MIN_LOTTO_NUMBER) && (number <= MAX_LOTTO_NUMBER);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

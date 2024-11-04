@@ -29,15 +29,14 @@ public class AppRunner {
         LottoReceipt lottoReceipt = controller.readPurchaseAmount(inputAmount);
 
         outputView.printIssuedLottoQuantity(lottoReceipt.getIssuedLottoQuantity());
+        outputView.printIssuedLottoDetails(lottoReceipt.toString());
 
         String inputNumbers = inputView.requestWinningLottoNumbers();
         inputValidator.validateDigitAndDelimiterOnly(inputNumbers);
-
         String inputBonusNumber = inputView.requestBonusNumber();
-
         WinningLotto winningLotto = controller.readWinningLottoNumbers(inputNumbers, inputBonusNumber);
-        WinningReport winningReport = controller.getReport(lottoReceipt, winningLotto);
 
+        WinningReport winningReport = controller.getReport(lottoReceipt, winningLotto);
         String winningDetails = controller.sendWinningDetails(winningReport.getWinningCounts());
         outputView.printWinningDetails(winningDetails);
 

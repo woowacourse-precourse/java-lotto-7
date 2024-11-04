@@ -12,6 +12,10 @@ public class OutputView {
         System.out.printf(NEW_LINE + NOTICE_ISSUED_LOTTO_QUANTITY + NEW_LINE, lottoQuantity);
     }
 
+    public void printIssuedLottoDetails(String lottoDetails) {
+        System.out.println(lottoDetails);
+    }
+
     public void printWinningDetails(String winningDetails) {
         System.out.println(NEW_LINE + WINNING_STATISTICS);
         System.out.println(winningDetails);
