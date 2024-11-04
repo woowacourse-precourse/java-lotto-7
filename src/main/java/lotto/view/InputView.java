@@ -7,13 +7,13 @@ import java.util.List;
 
 public class InputView {
     //    View는 Model 의존 가능, C의존 불가
-    public int inputPurchaseMoney() {
+    public int purchaseMoney() {
         int money = Integer.parseInt(Console.readLine());
         return money;
     }
 
     //    당첨번호 입력
-    public List<Integer> inputWinningNumbers() {
+    public List<Integer> winningNumbers() {
         String input = Console.readLine();
         List<Integer> winningNumbers = (Arrays.stream(input.split(","))
                 .toList())
@@ -25,7 +25,7 @@ public class InputView {
     }
 
     // 보너스 넘버
-    public int inputBonusNumber() {
+    public int bonusNumber() {
         int bonusNumber = Integer.parseInt(Console.readLine());
         return bonusNumber;
     }
