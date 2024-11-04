@@ -23,39 +23,40 @@ class StatisticsProcessHandlerTest {
     void StatisticsProcessHandler_핸들러_토큰_수익률_계산기_초기화() {
         statisticsCalculator = new StatisticsCalculator();
         statisticsProcessHandler = new StatisticsProcessHandler(statisticsCalculator);
-
         handlerToken = new HandlerToken();
+        HashMap<WinningRank, Integer> rankCounts = getTestRankCounts();
 
-        HashMap<WinningRank, Integer> rankCounts = new HashMap<>();
-        rankCounts.put(WinningRank.FIRST, 0);
-        rankCounts.put(WinningRank.SECOND, 0);
-        rankCounts.put(WinningRank.THIRD, 0);
-        rankCounts.put(WinningRank.FOURTH, 1);
-        rankCounts.put(WinningRank.FIFTH, 1);
         RankCountsDTO rankCountsDTO = RankCountsDTO.create(rankCounts);
-
         PurchaseAmountDTO purchaseAmountDTO = PurchaseAmountDTO.create("5000");
 
         handlerToken.addContent(TokenType.RANK_COUNTS_DTO, rankCountsDTO);
         handlerToken.addContent(TokenType.PURCHASE_AMOUNT_DTO, purchaseAmountDTO);
+        statisticsProcessHandler.process(handlerToken);
     }
 
     @DisplayName("process 시 HandlerToken에 ProfitRateDTO가 포함되어야 함")
     @Test
     void process_시_HandlerToken에_ProfitRateDTO_포함() {
-        statisticsProcessHandler.process(handlerToken);
-
         assertNotNull(handlerToken.getContent(TokenType.PROFIT_RATE_DTO, ProfitRateDTO.class));
     }
 
     @DisplayName("process 시 ProfitRateDTO에 올바른 수익률이 포함되어야 함")
     @Test
     void process_시_ProfitRateDTO_올바른_수익률_포함() {
-        statisticsProcessHandler.process(handlerToken);
-
         ProfitRateDTO profitRateDTO = handlerToken.getContent(TokenType.PROFIT_RATE_DTO, ProfitRateDTO.class);
 
         String expectedProfitRate = "1100.0";
         assertEquals(expectedProfitRate, profitRateDTO.getProfitRate());
+    }
+
+    @DisplayName("테스트용 등수 갯수")
+    private HashMap<WinningRank, Integer> getTestRankCounts() {
+        HashMap<WinningRank, Integer> testRankCounts = new HashMap<>();
+        testRankCounts.put(WinningRank.FIRST, 0);
+        testRankCounts.put(WinningRank.SECOND, 0);
+        testRankCounts.put(WinningRank.THIRD, 0);
+        testRankCounts.put(WinningRank.FOURTH, 1);
+        testRankCounts.put(WinningRank.FIFTH, 1);
+        return testRankCounts;
     }
 }

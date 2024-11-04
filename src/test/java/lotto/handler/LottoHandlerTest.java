@@ -11,6 +11,7 @@ class LottoHandlerTest {
     private TestHandler firstHandler;
     private TestHandler secondHandler;
     private TestHandler thirdHandler;
+    private HandlerToken handlerToken;
 
     @BeforeEach
     void 여러_핸들러_구성_초기화() {
@@ -22,14 +23,14 @@ class LottoHandlerTest {
         secondHandler.setPrevHandler(firstHandler);
         secondHandler.setNextHandler(thirdHandler);
         thirdHandler.setPrevHandler(secondHandler);
+
+        handlerToken = new HandlerToken();
     }
 
     @Test
     @DisplayName("연결된 핸들러들은 handle 시 각 process가 실행되어야 한다.(검증 에러 시 무한루프 확인)")
     void 연결된_핸들러가_실행되었을때_각_핸들러의_process가_실행되야_한다() {
-        HandlerToken token = new HandlerToken();
-
-        firstHandler.handle(token);
+        firstHandler.handle(handlerToken);
 
         assertEquals(1, firstHandler.getProcessCount());
         assertEquals(1, secondHandler.getProcessCount());
@@ -39,12 +40,9 @@ class LottoHandlerTest {
     @Test
     @DisplayName("토큰이 만료되면 다음 핸들러로 진행되지 않아야 한다.")
     void 토큰_만료_시_다음_핸들러로_진행되면_안됨() {
-        HandlerToken token = new HandlerToken();
-
         secondHandler.setExpired(true);
 
-        firstHandler.handle(token);
-
+        firstHandler.handle(handlerToken);
         assertEquals(1, firstHandler.getProcessCount());
         assertEquals(1, secondHandler.getProcessCount());
         assertEquals(0, thirdHandler.getProcessCount());
@@ -68,7 +66,7 @@ class LottoHandlerTest {
         protected HandlerToken process(HandlerToken handlerToken) {
             processCount++;
             if (isExpired) {
-                handlerToken.checkEnd(); // Expire the token
+                handlerToken.checkEnd();
             }
             return handlerToken;
         }

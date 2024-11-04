@@ -14,12 +14,7 @@ class StatisticsCalculatorTest {
 
     @BeforeEach
     void StatisticsCalculator_당첨_등수_구매_금액_초기화() {
-        rankCounts = new HashMap<>();
-        rankCounts.put(WinningRank.FIRST, 0);
-        rankCounts.put(WinningRank.SECOND, 0);
-        rankCounts.put(WinningRank.THIRD, 0);
-        rankCounts.put(WinningRank.FOURTH, 1);
-        rankCounts.put(WinningRank.FIFTH, 1);
+        rankCounts = getTestRankCounts();
         purchaseAmount = 5000;
         statisticsCalculator = new StatisticsCalculator();
     }
@@ -32,5 +27,13 @@ class StatisticsCalculatorTest {
         Assertions.assertEquals(expectedRate, statisticsCalculator.calculate(rankCounts, purchaseAmount));
     }
 
-
+    private HashMap<WinningRank, Integer> getTestRankCounts() {
+        HashMap<WinningRank, Integer> testRankCounts = new HashMap<>();
+        rankCounts.put(WinningRank.FIRST, 0);
+        rankCounts.put(WinningRank.SECOND, 0);
+        rankCounts.put(WinningRank.THIRD, 0);
+        rankCounts.put(WinningRank.FOURTH, 1);
+        rankCounts.put(WinningRank.FIFTH, 1);
+        return testRankCounts;
+    }
 }

@@ -32,20 +32,19 @@ class WinningRankHandlerTest {
         WinningNumberDTO winningNumberDTO = WinningNumberDTO.create("1,2,3,4,5,6", "7");
         handlerToken.addContent(TokenType.LOTTOS_DTO, lottosDTO);
         handlerToken.addContent(TokenType.WINNING_NUMBER_DTO, winningNumberDTO);
+        winningRankHandler.process(handlerToken);
+        winningRankHandler.process(handlerToken);
     }
 
     @DisplayName("당첨 등수 핸들러의 process 시 핸들러 토큰에는 RankCountsDTO가 있어야함")
     @Test
     void 당첨_등수_핸들러_process_시_핸들러_토큰에_RankCountsDTO_존재() {
-        winningRankHandler.process(handlerToken);
         Assertions.assertNotNull(handlerToken.getContent(TokenType.RANK_COUNTS_DTO, RankCountsDTO.class));
     }
 
     @DisplayName("process 시 핸들러 토큰의 RankCountsDTO에는 1등, 2등, 4등이 1개씩 있어야함")
     @Test
     void process_시_핸들러_토큰_RankCountsDTO에는_1_2_3_등_존재() {
-        winningRankHandler.process(handlerToken);
-
         RankCountsDTO rankCountsDTO = handlerToken.getContent(TokenType.RANK_COUNTS_DTO, RankCountsDTO.class);
         HashMap<WinningRank, Integer> rankCounts = rankCountsDTO.getRankCounts();
 
