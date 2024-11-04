@@ -17,6 +17,7 @@ public class Application {
             throw new IllegalArgumentException("천원 단위로 입력해주세요.");
         }
         int cnt = amount / 1000;
+        System.out.println();
 
         System.out.println(cnt + "개를 구매했습니다.");
         List<Lotto> lottos = generateLotto(cnt);
