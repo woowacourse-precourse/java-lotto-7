@@ -5,8 +5,6 @@ import static lotto.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT;
 import static lotto.constants.LottoConstants.LOTTO_PRICE;
 import static lotto.constants.LottoConstants.MAX_LOTTO_PURCHASE_AMOUNT;
 
-import lotto.service.LottoWinningResult;
-
 public class PurchaseAmount {
     private final int amount;
 

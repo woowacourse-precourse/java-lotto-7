@@ -12,7 +12,7 @@ import java.util.List;
 import lotto.domain.WinningPrize;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
-import lotto.service.LottoWinningResult;
+import lotto.domain.LottoWinningResult;
 
 public class OutputHandler {
     private OutputHandler() {

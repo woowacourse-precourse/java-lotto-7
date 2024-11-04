@@ -6,8 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningPrize;
-import lotto.service.LottoWinningCalculator;
-import lotto.service.LottoWinningResult;
+import lotto.domain.LottoWinningResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

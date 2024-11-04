@@ -5,7 +5,6 @@ import static lotto.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import lotto.service.LottoWinningResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
