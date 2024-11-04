@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.config.LottoConfig;
 import lotto.model.domain.Player;
 import lotto.model.service.LottoService;
 import lotto.model.service.WinningNumbersService;
@@ -36,7 +37,7 @@ public class LottoController {
     }
 
     private void setupLotto() {
-        purchaseAmount = 0;
+        purchaseAmount = LottoConfig.ZERO;
         outputView.purchaseLottoAmountMesssage();
         while (true) {
             try {
@@ -96,7 +97,7 @@ public class LottoController {
 
     private void resultLotto() {
         outputView.WinningStatistics();
-        outputView.matchWinningCount(player.checkWinning());
+        outputView.matchWinningCount(player.calculateWinningRanks());
         outputView.promptTotalReturnRate(player.getRateOfReturn(player.getWinningMoney()));
     }
 

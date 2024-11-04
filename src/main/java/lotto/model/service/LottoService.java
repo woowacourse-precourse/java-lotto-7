@@ -3,6 +3,7 @@ package lotto.model.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.config.LottoConfig;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.Player;
 
@@ -15,15 +16,12 @@ public class LottoService {
         return lotto;
     }
 
-    public List<Lotto> generateLottoTickets(Player player) {
+    public void generateLottoTickets(Player player) {
         int ticketCount = calculateTicketCount(player.getPurchaseAmount());
-        List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
             Lotto lotto = generateLotto();
-            tickets.add(lotto);
             player.addLotto(lotto);
         }
-        return tickets;
     }
 
     public int calculateTicketCount(int purchaseAmount) {
@@ -32,7 +30,7 @@ public class LottoService {
 
     private List<Integer> generateRandomNumbers() {
         List<Integer> numbers = new ArrayList<>();
-        numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers = Randoms.pickUniqueNumbersInRange(LottoConfig.MIN_NUMBER, LottoConfig.MAX_NUMBER, LottoConfig.LOTTO_COUNT_NUMBER);
 
         return numbers;
     }

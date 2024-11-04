@@ -3,6 +3,7 @@ package lotto.model.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.config.LottoConfig;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,13 +19,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConfig.LOTTO_COUNT_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
     public int countMatch(List<Integer> winningNumbers) {
-        int count = 0;
+        int count = LottoConfig.ZERO;
         for (int number : numbers) {
             if (winningNumbers.contains(number)) {
                 count++;

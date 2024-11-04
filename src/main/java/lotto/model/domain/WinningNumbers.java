@@ -1,6 +1,7 @@
 package lotto.model.domain;
 
 import java.util.List;
+import lotto.config.LottoConfig;
 
 public class WinningNumbers {
     private List<Integer> winningNumbers;
@@ -23,7 +24,7 @@ public class WinningNumbers {
     }
 
     public int countMatch(List<Integer> numbers) {
-        int count = 0;
+        int count = LottoConfig.ZERO;
         for (int number : numbers) {
             if (winningNumbers.contains(number)) {
                 count += 1;

@@ -3,6 +3,7 @@ package lotto.util;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.config.LottoConfig;
 
 public class Validator {
 
@@ -15,13 +16,13 @@ public class Validator {
     }
 
     public static void validateRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LottoConfig.MIN_NUMBER || number > LottoConfig.MAX_NUMBER) {
             throw new IllegalArgumentException(ValidatorErrorMessage.RANGE_EXCEPTION.getErrorMessage());
         }
     }
 
     public static void validateNumberCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConfig.LOTTO_COUNT_NUMBER) {
             throw new IllegalArgumentException(ValidatorErrorMessage.NUMBER_COUNT_EXCEPTION.getErrorMessage());
         }
     }
@@ -53,7 +54,7 @@ public class Validator {
 
 
     public static void validateMoneyUnit(int money) {
-        if (money % 1000 != 0 || money <= 0) {
+        if (money % LottoConfig.MONEY_UNIT != LottoConfig.ZERO || money <= LottoConfig.ZERO) {
             throw new IllegalArgumentException(ValidatorErrorMessage.MONEY_UNIT_EXCEPTION.getErrorMessage());
         }
     }

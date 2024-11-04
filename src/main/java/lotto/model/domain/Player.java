@@ -3,6 +3,7 @@ package lotto.model.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.config.LottoConfig;
 
 public class Player {
     private final int purchaseAmount;
@@ -10,8 +11,13 @@ public class Player {
     private WinningNumbers winningNumbers; // WinningNumbers 추가
     private int winningMoney;
 
-    public Player(int perchaseAmount) {
-        this.purchaseAmount = perchaseAmount;
+    public Player(int purchaseAmount) {
+        this.purchaseAmount = purchaseAmount;
+        this.lottos = new ArrayList<>();
+    }
+
+    public Player() {
+        this.purchaseAmount = LottoConfig.ZERO;
         this.lottos = new ArrayList<>();
     }
 
@@ -39,8 +45,8 @@ public class Player {
         this.winningNumbers = winningNumbers; // WinningNumbers 설정
     }
 
-    public List<Integer> checkWinning() {
-        List<Integer> winningRank = new ArrayList<>(Collections.nCopies(WinningMatch.values().length, 0));
+    public List<Integer> calculateWinningRanks() {
+        List<Integer> winningRank = new ArrayList<>(Collections.nCopies(WinningMatch.values().length, LottoConfig.ZERO));
         for (Lotto lotto : lottos) {
             int rank = lotto.getResult(winningNumbers);
             if (rank >= WinningMatch.valueOfMaxMatch().getRank() && rank <= WinningMatch.valueOfMinMatch().getRank()) {
