@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,8 @@ public class LottoSeller {
         List<Lotto> lottos = buyLottos(pay);
         LottoBonus lottoBonus = readLottoBonus(readWinnerLotto());
         Map<Place, Integer> winningResult = LottoInspector.checkLottos(lottoBonus, lottos);
+        printLottoResult(winningResult);
+        printSurplusRate(winningResult, pay);
     }
 
     private int readPay() {
@@ -103,5 +106,37 @@ public class LottoSeller {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
         }
+    }
+
+    private void printLottoResult(Map<Place, Integer> lottoResult) {
+        DecimalFormat wonFormat = new DecimalFormat("###,###원");
+        System.out.println("당첨 통계" + "\n" + "---");
+        System.out.println(Place.FIFTH.needHitCount
+                + "개 일치 (" + wonFormat.format(Place.FIFTH.prize) + ") - "
+                + lottoResult.get(Place.FIFTH) + "개");
+        System.out.println(Place.FOURTH.needHitCount
+                + "개 일치 (" + wonFormat.format(Place.FOURTH.prize) + ") - "
+                + lottoResult.get(Place.FOURTH) + "개");
+        System.out.println(Place.THIRD.needHitCount
+                + "개 일치 (" + wonFormat.format(Place.THIRD.prize) + ") - "
+                + lottoResult.get(Place.THIRD) + "개");
+        System.out.println(Place.SECOND.needHitCount
+                + "개 일치, 보너스 볼 일치 (" + wonFormat.format(Place.SECOND.prize) + ") - "
+                + lottoResult.get(Place.SECOND) + "개");
+        System.out.println(Place.FIRST.needHitCount
+                + "개 일치 (" + wonFormat.format(Place.FIRST.prize) + ") - "
+                + lottoResult.get(Place.FIRST) + "개");
+    }
+
+    private void printSurplusRate(Map<Place, Integer> lottoResult, int pay) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", calculateSurplusRate(lottoResult, pay));
+    }
+
+    private float calculateSurplusRate(Map<Place, Integer> lottoResult, int pay) {
+        long totalSurplus = 0;
+        for (Place place : lottoResult.keySet()) {
+            totalSurplus += place.prize * lottoResult.get(place);
+        }
+        return (float) totalSurplus / pay * 100;
     }
 }
