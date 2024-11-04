@@ -1,10 +1,15 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
     public static void main(String[] args) {
             int purchaseAmount = getPurchaseAmount();
+            List<Lotto> purchasedLottos = generateLottos(purchaseAmount / 1000);
     }
 
     // 구입 금액 입력 처리
@@ -17,4 +22,12 @@ public class Application {
         return amount;
     }
 
+    // 로또 발행
+    private static List<Lotto> generateLottos(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return lottos;
+    }
 }
