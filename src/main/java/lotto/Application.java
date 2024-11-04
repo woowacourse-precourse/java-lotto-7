@@ -119,9 +119,7 @@ public class Application {
         int winningCount = 0;
         for (Lotto lotto : lottos) {
             winningCount = 0;
-            for (Integer num : winningLotto) {
-                winningCount += lotto.checkNumber(num);
-            }
+            winningCount += winningLotto.checkLotto(lotto);
 
             Rank rank = Rank.checkRank(winningCount, lotto.checkNumber(bonusNumber));
             rankCounter.put(rank, rankCounter.get(rank) + 1);

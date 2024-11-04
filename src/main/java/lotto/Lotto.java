@@ -56,4 +56,12 @@ public class Lotto {
         }
         return 0;
     }
+
+    public int checkLotto(Lotto lotto) {
+        int match_count = 0;
+        for (Integer e : numbers) {
+            match_count += lotto.checkNumber(e);
+        }
+        return match_count;
+    }
 }
