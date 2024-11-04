@@ -1,13 +1,15 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import common.ErrorMessage;
+import java.util.List;
+import org.junit.jupiter.api.Test;
+import validator.InputValidator;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +54,64 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 음수_테스트() {
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 나눠지지_않은수_테스트() {
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 숫자_범위_테스트() {
+        String winningNumbers = "1,2,3,4,5,6";
+        String overNumbers = "46";
+
+        assertThatThrownBy(() ->
+                InputValidator.validateWinningBonusNumbers(overNumbers, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_SCOPE.getMessage());
+    }
+
+    @Test
+    void 숫자_범위_테스트2() {
+        String winningNumbers = "1,23,214,53,2,5";
+
+        assertThatThrownBy(() ->
+                InputValidator.validateWinningNumbers(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_SCOPE.getMessage());
+    }
+
+    @Test
+    void 중복_테스트() {
+        String winningNumbers = "1,2,3,4,5,6";
+        String bonusNumbers = "6";
+
+        assertThatThrownBy(() ->
+                InputValidator.validateWinningBonusNumbers(bonusNumbers, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_CONTAINS.getMessage());
+    }
+
+    @Test
+    void 개수_테스트() {
+        String winningNumbers = "1,2,3,4,5";
+
+        assertThatThrownBy(() ->
+                InputValidator.validateWinningNumbers(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_COUNT_ERR.getMessage());
     }
 
     @Override
