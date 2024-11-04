@@ -1,11 +1,12 @@
-package lotto.view;
+package lotto.validation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.view.ErrorConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class PurchaseAmountInputValidatorTest {
+class PurchaseAmountValidatorTest {
 
     @DisplayName("구입 금액이 1,000원 단위가 아닐 경우 맞춤형 예외 메시지 반환")
     @Test
@@ -14,7 +15,7 @@ class PurchaseAmountInputValidatorTest {
         String input = "1500";
 
         // When
-        String result = InputView.getValidationError(input);
+        String result = Validator.validatePurchaseAmount(input);
 
         // Then
         assertThat(result).isEqualTo(ErrorConstants.INVALID_PURCHASE_AMOUNT_NOT_IN_THOUSANDS);
@@ -27,7 +28,7 @@ class PurchaseAmountInputValidatorTest {
         String input = "-1000";
 
         // When
-        String result = InputView.getValidationError(input);
+        String result = Validator.validatePurchaseAmount(input);
 
         // Then
         assertThat(result).isEqualTo(ErrorConstants.INVALID_PURCHASE_AMOUNT_NOT_POSITIVE);
@@ -40,7 +41,7 @@ class PurchaseAmountInputValidatorTest {
         String input = "abc";
 
         // When
-        String result = InputView.getValidationError(input);
+        String result = Validator.validatePurchaseAmount(input);
 
         // Then
         assertThat(result).isEqualTo(ErrorConstants.INVALID_PURCHASE_AMOUNT_NOT_A_NUMBER);
@@ -53,7 +54,7 @@ class PurchaseAmountInputValidatorTest {
         String input = "5000";
 
         // When
-        String result = InputView.getValidationError(input);
+        String result = Validator.validatePurchaseAmount(input);
 
         // Then
         assertThat(result).isNull();

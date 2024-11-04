@@ -1,13 +1,14 @@
-package lotto.view;
+package lotto.validation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.view.ErrorConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class WinningBonusNumberInputValidatorTest {
+class WinningBonusNumberValidatorTest {
 
     private static final List<Integer> WINNING_NUMBERS = List.of(1, 2, 3, 4, 5, 6);
 
@@ -18,7 +19,7 @@ class WinningBonusNumberInputValidatorTest {
         String input = "46";
 
         // When & Then
-        assertThatThrownBy(() -> InputView.parseAndValidateBonusNumber(input, WINNING_NUMBERS))
+        assertThatThrownBy(() -> Validator.validateBonusNumber(input, WINNING_NUMBERS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorConstants.INVALID_BONUS_NUMBER_RANGE);
     }
@@ -30,7 +31,7 @@ class WinningBonusNumberInputValidatorTest {
         String input = "3";
 
         // When & Then
-        assertThatThrownBy(() -> InputView.parseAndValidateBonusNumber(input, WINNING_NUMBERS))
+        assertThatThrownBy(() -> Validator.validateBonusNumber(input, WINNING_NUMBERS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorConstants.INVALID_BONUS_NUMBER_DUPLICATE);
     }
@@ -42,7 +43,7 @@ class WinningBonusNumberInputValidatorTest {
         String input = "abc";
 
         // When & Then
-        assertThatThrownBy(() -> InputView.parseAndValidateBonusNumber(input, WINNING_NUMBERS))
+        assertThatThrownBy(() -> Validator.validateBonusNumber(input, WINNING_NUMBERS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorConstants.INVALID_WINNING_NUMBER_FORMAT);
     }
@@ -54,7 +55,7 @@ class WinningBonusNumberInputValidatorTest {
         String input = "7";
 
         // When
-        int result = InputView.parseAndValidateBonusNumber(input, WINNING_NUMBERS);
+        int result = Validator.validateBonusNumber(input, WINNING_NUMBERS);
 
         // Then
         assertThat(result).isEqualTo(7);
