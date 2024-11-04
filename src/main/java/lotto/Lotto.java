@@ -58,7 +58,7 @@ public class Lotto {
 
     // 구매한 로또 번호의 리스트들을 반환
     public static List<List<Integer>> purchaseLottoNumbers(int lottoCount){
-        List<List<Integer>> lottoNumbers = new ArrayList<>(lottoCount);
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = randomPickPurchaseLottoNumbers();
             SortRandomPickPurchaseLottoNumbers(numbers);
@@ -66,4 +66,20 @@ public class Lotto {
         }
         return lottoNumbers;
     }
+
+    // 두 리스트의 공통된 번호가 몇개인지 체크
+    public int commonValueCount(List<Integer> purchaseLottoNumber){
+        return (int) this.numbers.stream()
+                .filter(purchaseLottoNumber::contains)
+                .count();
+    }
+
+    // 구매한 로또 번호와 당첨 번호 비교
+    public static int[] lottoWinningCheck(Lotto lotto, int bonusNumber, List<List<Integer>> purchaseLottoNumbers){
+        int[] checkNumber = new int[5];
+        for(List<Integer> purchaseLottoNumber : purchaseLottoNumbers){
+            int count = lotto.commonValueCount(purchaseLottoNumber);
+        }
+    }
+
 }
