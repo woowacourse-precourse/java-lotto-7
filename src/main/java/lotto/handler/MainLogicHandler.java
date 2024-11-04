@@ -70,30 +70,6 @@ public class MainLogicHandler {
         rateOfReturn = lottoService.getRateOfReturn(totalPrizeMoney, purchaseMoney);
     }
 
-    public int getPurchaseMoney() {
-        return purchaseMoney;
-    }
-
-    public int getLottoCount() {
-        return lottoCount;
-    }
-
-    public Lotto getWinningLotto() {
-        return winningLotto;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
-
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
-    public Map<String, Integer> getMatchCounts() {
-        return matchCounts;
-    }
-
     public String getRateOfReturn() {
         return rateOfReturn;
     }
