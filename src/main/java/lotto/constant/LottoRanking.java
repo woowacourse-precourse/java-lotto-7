@@ -1,16 +1,17 @@
 package lotto.constant;
 
-import java.util.List;
-import lotto.model.Lotto;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum LottoRanking {
 
-    NONE_PRIZE(0, false, 0),
-    FIFTH_PRIZE(3, false, 5000),
-    FOURTH_PRIZE(4, false, 50000),
-    THIRD_PRIZE(5, false, 150000),
-    SECOND_PRIZE(6, true, 30000000),
-    FIRST_PRIZE(6, false, 2000000000);
+    NONE_RANK(0, false, 0),
+    FIFTH_RANK(3, false, 5000),
+    FOURTH_RANK(4, false, 50000),
+    THIRD_RANK(5, false, 150000),
+    SECOND_RANK(6, true, 30000000),
+    FIRST_RANK(6, false, 2000000000);
 
     private final int correctCount;
     private final boolean needBonusNumber;
@@ -22,48 +23,25 @@ public enum LottoRanking {
         this.prize = prize;
     }
 
-    public LottoRanking checkLottoPrize(Lotto lotto, List<Integer> weeklyNumbers, int weeklyBonusNumber) {
-
-        List<Integer> numbers = lotto.getNumbers();
-        boolean hasBonusNumber = false;
-        int count = 0;
-
-        for (int number : numbers) {
-            if (weeklyNumbers.contains(number)) {
-                count++;
-            }
-
-            if(weeklyBonusNumber == number) {
-                count++;
-                hasBonusNumber = true;
+    public static LottoRanking matchingLottoRanking(int correctCount, boolean hasBonusNumber) {
+        for (LottoRanking ranking : values()) {
+            if (ranking.correctCount == correctCount &&
+                    (ranking.needBonusNumber == hasBonusNumber || !ranking.needBonusNumber)) {
+                return ranking;
             }
         }
-
-        checkLottoRanking(count, hasBonusNumber);
+        return NONE_RANK;
     }
 
-    public LottoRanking checkLottoRanking(int correctCount, boolean hasBonusNumber) {
-        if(correctCount == FIFTH_PRIZE.correctCount) {
-            return FIFTH_PRIZE;
+    public static Map<LottoRanking, Integer> getDefaultRankingStates() {
+
+        Map<LottoRanking, Integer> results = new HashMap<>();
+
+        for (LottoRanking ranking : LottoRanking.values()) {
+            results.put(ranking, 0);
         }
 
-        if(correctCount == FOURTH_PRIZE.correctCount) {
-            return FOURTH_PRIZE;
-        }
-
-        if(correctCount == THIRD_PRIZE.correctCount) {
-            return THIRD_PRIZE;
-        }
-
-        if(correctCount == SECOND_PRIZE.correctCount && hasBonusNumber) {
-            return SECOND_PRIZE;
-        }
-
-        if(correctCount == FIRST_PRIZE.correctCount && !hasBonusNumber) {
-            return FIRST_PRIZE;
-        }
-
-        return NONE_PRIZE;
+        return results;
     }
 
     public int getPrize() {

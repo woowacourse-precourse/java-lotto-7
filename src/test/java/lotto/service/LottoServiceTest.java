@@ -13,11 +13,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import store.repository.StoreSingleRepository;
+import store.repository.StoreSingleRepositoryImpl;
+import store.service.StoreService;
 
 class LottoServiceTest {
 
+    private final StoreSingleRepositoryImpl storeRepository = new StoreSingleRepositoryImpl();
+    private final StoreService storeService = new StoreService(storeRepository);
     private final LottoRepositoryImpl lottoRepository = new LottoRepositoryImpl();
-    private final LottoService lottoService = new LottoService(lottoRepository);
+    private final LottoService lottoService = new LottoService(storeService, lottoRepository);
 
     @ParameterizedTest
     @ValueSource(strings = {"2000", "5000", "10000"})
@@ -75,12 +80,5 @@ class LottoServiceTest {
 
         assertThatThrownBy(() -> lottoService.create(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("로또의 당첨 결과를 조회할 수 있다.")
-    void t006() {
-
-        assertThat(lottoService.requestCheckLottoResult()).containsKeys()
     }
 }
