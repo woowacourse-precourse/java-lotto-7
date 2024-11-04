@@ -1,5 +1,6 @@
 package lotto.interaction.output.view;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -20,7 +21,7 @@ public class LottoStringView {
         for (int i = 0 ; i < numberList.size(); i++) {
             sb.append(numberList.get(i));
             if (i != numberList.size() - 1) {
-                sb.append(",");
+                sb.append(", ");
             }
         }
         sb.append("]\n");
@@ -42,6 +43,7 @@ public class LottoStringView {
     }
 
     public static String rateOfReturn(double rate) {
-        return String.format("총 수익률은 %.2f%%입니다.\n", rate);
+        DecimalFormat df = new DecimalFormat("#.##");
+        return String.format("총 수익률은 %s%%입니다.\n", df.format(rate));
     }
 }
