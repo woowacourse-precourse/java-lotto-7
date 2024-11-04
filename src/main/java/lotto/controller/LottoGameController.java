@@ -33,6 +33,7 @@ public class LottoGameController {
             try {
                 inputView.displayLottoPurchaseAmountPrompt();
                 lottoPurchaseAmount = parseNumber(inputView.readLottoPurchaseAmount());
+                validateMultipleOf1000(lottoPurchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.displayErrorMessage(e.getMessage());
@@ -79,7 +80,13 @@ public class LottoGameController {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 정수 형태여야 합니다.");
         }
-        
+
         return parsedNumber;
+    }
+
+    private void validateMultipleOf1000(int lottoPurchaseAmount) {
+        if (lottoPurchaseAmount == 0 || lottoPurchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000의 배수여야 합니다.");
+        }
     }
 }
