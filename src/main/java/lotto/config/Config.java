@@ -1,8 +1,7 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
-import lotto.model.service.LottoResultService;
-import lotto.model.service.MyLottosGenerateService;
+import lotto.model.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.InputViewFactory;
 import lotto.view.LottoPurchasesView;
@@ -14,7 +13,7 @@ public class Config {
     }
 
     public static LottoController createLottoController() {
-        return new LottoController(inputView(), outputView(), lottoGenerateService(), lottoResultService());
+        return new LottoController(inputView(), outputView(), lottoService());
     }
 
     private static OutputView outputView() {
@@ -25,11 +24,7 @@ public class Config {
         return InputViewFactory.createInputViewOf(InputViewFactory.AMOUNT);
     }
 
-    private static MyLottosGenerateService lottoGenerateService() {
-        return new MyLottosGenerateService();
-    }
-
-    private static LottoResultService lottoResultService() {
-        return new LottoResultService();
+    private static LottoService lottoService() {
+        return new LottoService();
     }
 }

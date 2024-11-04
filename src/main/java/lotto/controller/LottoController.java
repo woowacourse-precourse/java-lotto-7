@@ -3,14 +3,11 @@ package lotto.controller;
 import java.util.Arrays;
 import java.util.List;
 import lotto.dto.LottoPurchasesDto;
-import lotto.dto.LottoResultDto;
 import lotto.dto.LottoResultMessageDto;
 import lotto.dto.WinningLottoDto;
 import lotto.model.domain.InputValidator;
 import lotto.model.domain.Lotto;
-import lotto.model.service.GenerateMessageService;
-import lotto.model.service.LottoResultService;
-import lotto.model.service.MyLottosGenerateService;
+import lotto.model.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.InputViewFactory;
 import lotto.view.LottoPurchasesView;
@@ -21,74 +18,73 @@ public class LottoController {
 
     private InputView inputView;
     private OutputView outputView;
-    private final MyLottosGenerateService lottoGenerateService;
-    private final LottoResultService lottoResultService;
+    private final LottoService lottoService;
 
-    public LottoController(InputView inputView, OutputView outputView,
-                           MyLottosGenerateService lottoGenerateService,
-                           LottoResultService lottoResultService) {
+    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoGenerateService = lottoGenerateService;
-        this.lottoResultService = lottoResultService;
+        this.lottoService = lottoService;
     }
 
     public void run() {
-        String input;
         InputValidator inputValidator = new InputValidator();
-        inputView.showRequestMessage();
+        int amount = getAmount(inputValidator);
+        LottoPurchasesDto lottoPurchasesDto = lottoService.purchaseLottos(amount);
+        displayOutputView(new LottoPurchasesView(lottoPurchasesDto));
+        Lotto lotto = getWinningLottoNumbers(inputValidator);
+        WinningLottoDto winningLottoDto = getWinningLottoDto(inputValidator, lotto);
+        LottoResultMessageDto lottoResultMessageDto = lottoService.matchMyLottoWith(winningLottoDto);
+        displayOutputView(new LottoResultView(lottoResultMessageDto));
+    }
+
+    private void displayOutputView(OutputView outputView) {
+        this.outputView = outputView;
+        this.outputView.display();
+    }
+
+    private WinningLottoDto getWinningLottoDto(InputValidator inputValidator, Lotto lotto) {
+        showRequestMessageByTypeOf(InputViewFactory.BONUS_NUMBER);
         while (true) {
             try {
-                input = inputView.getInput();
-                inputValidator.validateInputAmount(input);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        int amount = Integer.parseInt(input);
-        List<Lotto> myLottos = lottoGenerateService.generateLottos(amount);
-        GenerateMessageService generateMessageService = new GenerateMessageService();
-        LottoPurchasesDto lottoPurchasesDto = generateMessageService.generatePurchasesMessage(myLottos);
-
-        outputView = new LottoPurchasesView(lottoPurchasesDto);
-        outputView.display();
-
-        inputView = InputViewFactory.createInputViewOf(InputViewFactory.WINNING_NUMBER);
-        inputView.showRequestMessage();
-        Lotto lotto;
-        while (true) {
-            try {
-                input = inputView.getInput();
-                inputValidator.validateInputWinningNumber(input);
-                List<Integer> winningNumbers = Arrays.stream(input.split(","))
-                        .map(Integer::parseInt).toList();
-                lotto = new Lotto(winningNumbers);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        inputView = InputViewFactory.createInputViewOf(InputViewFactory.BONUS_NUMBER);
-        inputView.showRequestMessage();
-        WinningLottoDto winningLottoDto;
-        while (true) {
-            try {
-                input = inputView.getInput();
+                String input = inputView.getInput();
                 inputValidator.validateInputBonusNumber(input);
                 int bonusNumber = Integer.parseInt(input);
-                winningLottoDto = lotto.generateWinningLotto(bonusNumber);
-                break;
+                return lotto.generateWinningLotto(bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
-        LottoResultDto lottoResultDto = lottoResultService.resultFrom(winningLottoDto, myLottos);
-        LottoResultMessageDto lottoResultMessageDto = generateMessageService.generateResultMessage(lottoResultDto);
-        outputView = new LottoResultView(lottoResultMessageDto);
-        outputView.display();
+    private Lotto getWinningLottoNumbers(InputValidator inputValidator) {
+        showRequestMessageByTypeOf(InputViewFactory.WINNING_NUMBER);
+        while (true) {
+            try {
+                String input = inputView.getInput();
+                inputValidator.validateInputWinningNumber(input);
+                List<Integer> winningNumbers = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getAmount(InputValidator inputValidator) {
+        showRequestMessageByTypeOf(InputViewFactory.AMOUNT);
+        while (true) {
+            try {
+                String input = inputView.getInput();
+                inputValidator.validateInputAmount(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void showRequestMessageByTypeOf(String type) {
+        inputView = InputViewFactory.createInputViewOf(type);
+        inputView.showRequestMessage();
     }
 }
