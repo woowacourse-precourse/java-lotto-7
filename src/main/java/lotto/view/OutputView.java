@@ -22,6 +22,6 @@ public class OutputView {
     }
 
     public static void printTotalProfit(Double profit) {
-        System.out.println("총 수익률은 " + profit * 100 + "%입니다.");
+        System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 }
