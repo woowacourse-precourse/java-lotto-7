@@ -3,10 +3,17 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.InputValidator;
 import lotto.LottoGameInformation;
 import lotto.LottoPrize;
 
 public class InputView {
+    private final InputValidator inputValidator;
+
+    public InputView(InputValidator inputValidator) {
+        this.inputValidator = inputValidator;
+    }
+
     public int inputPurchaseAmount() {
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
@@ -29,7 +36,7 @@ public class InputView {
 
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 String inputBonusNumber = Console.readLine();
-                int bonusNumber = validateAndParseNumber(inputBonusNumber);
+                int bonusNumber = inputValidator.validateAndParseNumber(inputBonusNumber);
 
                 return new LottoPrize(prizeNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
@@ -39,24 +46,11 @@ public class InputView {
     }
 
     private int validateAndParseMoney(String input) {
-        if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액이 공백으로 입력되었습니다.");
-        }
+        inputValidator.validateEmpty(input);
 
-        int money = 0;
+        int money = inputValidator.validateAndParseNumber(input);
+        inputValidator.validatePurchaseAmount(money);
 
-        try {
-            money = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
-        }
-
-        if (money < LottoGameInformation.PURCHASE_PRICE) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + LottoGameInformation.PURCHASE_PRICE + "원 이상이어야 합니다.");
-        }
-        if (money % LottoGameInformation.PURCHASE_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + LottoGameInformation.PURCHASE_PRICE + " 단위로 입력해야 합니다.");
-        }
         return money;
     }
 
@@ -64,24 +58,10 @@ public class InputView {
         try {
             return Arrays.stream(input.split(","))
                     .map(String::trim)
-                    .map(this::validateAndParseNumber)
+                    .map(inputValidator::validateAndParseNumber)
                     .toList();
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
-    }
-
-    private int validateAndParseNumber(String input) {
-        if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 공백으로 입력되었습니다.");
-        }
-
-        int number = 0;
-        try {
-            number = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
-        }
-        return number;
     }
 }
