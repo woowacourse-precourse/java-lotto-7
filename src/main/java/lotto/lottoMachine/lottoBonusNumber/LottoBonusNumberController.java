@@ -16,7 +16,7 @@ public class LottoBonusNumberController {
 
     public int getBonusNumber() {
         while (true) {
-            String bonusNumber = lottoBonusNumberInputter.runAndBringInput();
+            String bonusNumber = lottoBonusNumberInputter.getInput();
             if (lottoBonusNumberValidator.validateAllThing(bonusNumber, lottoWinningNumber)) {
                 return Integer.parseInt(bonusNumber);
             } else {

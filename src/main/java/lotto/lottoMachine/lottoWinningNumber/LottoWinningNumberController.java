@@ -16,8 +16,8 @@ public class LottoWinningNumberController {
 
     public List<Integer> getWinningNumbers() {
         while (true) {
-            String lottoWinningNumber = lottoWinningNumberInputter.runAndBringInput();
-            List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.runAndBringSeperatedLottoWinningNumbers(
+            String lottoWinningNumber = lottoWinningNumberInputter.getInput();
+            List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.getSeperatedLottoWinningNumbers(
                     lottoWinningNumber);
             if (lottoWinningNumberValidator.validateAllThing(seperatedLottoWinningNumbers)) {
                 return lottoWinningNumberValidator.convertToCompareNumbers(seperatedLottoWinningNumbers);

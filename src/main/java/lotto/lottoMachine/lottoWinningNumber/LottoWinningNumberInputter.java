@@ -6,7 +6,7 @@ public class LottoWinningNumberInputter {
     private static final String NOTICE_TO_INPUT_LOTTO_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
-    public String runAndBringInput() {
+    public String getInput() {
         noticeInputLottoWinningNumber();
         String lottoWinningNumber = extractInputLottoWinningNumber();
 

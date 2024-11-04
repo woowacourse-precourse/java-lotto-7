@@ -11,7 +11,7 @@ public class LottoQuantityCalculator {
         this.lottoPurchaseAmount = lottoPurchaseAmount;
     }
 
-    public int runAndBringLottoQuantity() {
+    public int getLottoQuantity() {
         int lottoQuantity = lottoPurchaseAmount / QUANTITY_AMOUNT_ONE_LOTTERY_TICKET;
 
         System.out.println(LINE_SEPARATOR + lottoQuantity + INFORMATION_WITH_LOTTO_QUANTITY);

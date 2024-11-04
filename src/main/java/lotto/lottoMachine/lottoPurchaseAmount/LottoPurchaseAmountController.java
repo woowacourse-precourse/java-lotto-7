@@ -13,7 +13,7 @@ public class LottoPurchaseAmountController {
 
     public int getPurchaseAmount() {
         while (true) {
-            String lottoPurchaseAmount = lottoPurchaseAmountInputter.runAndBringInput();
+            String lottoPurchaseAmount = lottoPurchaseAmountInputter.getInput();
             if (lottoPurchaseAmountValidator.validateAllThing(lottoPurchaseAmount)) {
                 return Integer.parseInt(lottoPurchaseAmount);
             } else {

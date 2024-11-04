@@ -14,12 +14,10 @@ public class LottoTotalReturnCalculator {
         this.lottoPurchaseAmount = lottoPurchaseAmount;
     }
 
-    public String run() {
+    public void run() {
         double totalReturn = (double) totalWinningAmount / lottoPurchaseAmount * NEED_TO_BE_MULTIPLIED_TO_INDEICATE_PERCENTAGE;
         String roundedSecondDecimalPlaceReturn = String.format("%,.1f", totalReturn);
 
         System.out.println(TOTAL_RETURN_RATE_PREFIX + roundedSecondDecimalPlaceReturn + PERCENTAGE_SYMBOL + TOTAL_RETURN_RATE_SUFFIX);
-
-        return roundedSecondDecimalPlaceReturn;
     }
 }

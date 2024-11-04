@@ -6,7 +6,7 @@ import java.util.List;
 public class LottoWinningNumberDelimiter {
     private static final String LOTTO_WINNING_NUMBER_SEPERATOR = ",";
 
-    public List<String> runAndBringSeperatedLottoWinningNumbers(String lottoWinningNumber) {
+    public List<String> getSeperatedLottoWinningNumbers(String lottoWinningNumber) {
         List<String> seperatedLottoWinningNumbers = Arrays.stream(
                         lottoWinningNumber.split(LOTTO_WINNING_NUMBER_SEPERATOR))
                 .map(String::trim)
