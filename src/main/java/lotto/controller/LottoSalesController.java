@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constants.Rank;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Amount;
@@ -7,6 +8,7 @@ import lotto.model.InputWinningNumbers;
 import lotto.model.PurchasedLottos;
 import lotto.model.TicketCount;
 import lotto.service.CheckContainsBonusService;
+import lotto.service.calculateRankProfitService;
 import lotto.service.ParseNumbersService;
 import lotto.service.PickLottoService;
 import lotto.view.InputView;
@@ -29,7 +31,8 @@ public class LottoSalesController {
         Lotto winningLotto = repeatGetWinningNumbersUntilValid();
         BonusNumber bonusNumber = repeatGetBonusNumberUntilValid(winningLotto);
 
-        // 수익률 구하기
+        long profit = getProfit(purchasedLottos, winningLotto, bonusNumber);
+        outputView.printRateOfProfit((double) profit / amount.get() * 100);
     }
 
     private Amount repeatGetAmountUntilValid() {
@@ -77,5 +80,18 @@ public class LottoSalesController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private long getProfit(PurchasedLottos purchasedLottos, Lotto winningLotto, BonusNumber bonusNumber){
+        outputView.printHeaderWinningResult();
+
+        calculateRankProfitService calculateRankProfitService = new calculateRankProfitService();
+        calculateRankProfitService.countRank(purchasedLottos, winningLotto, bonusNumber);
+        for(Rank rank : Rank.values()) {
+            int rankCount = calculateRankProfitService.getRankingCount().get(rank);
+            outputView.printRankResult(rank.getRank(), rankCount);
+        }
+
+        return calculateRankProfitService.getProfit();
     }
 }
