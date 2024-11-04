@@ -18,6 +18,7 @@ public class InputView {
     public List<Integer> inputWinningNumbers() {
         String winningNumbers = Console.readLine();
         validateInput(winningNumbers);
+        InputValidator.validateWinningNumbers(winningNumbers);
         return Converter.toNumbers(winningNumbers);
     }
 
