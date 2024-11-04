@@ -14,7 +14,8 @@ public class User {
     public List<Lotto> createLotto(int count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6).stream().sorted().collect(Collectors.toList())));
+            lottos.add(new Lotto(
+                    Randoms.pickUniqueNumbersInRange(1, 45, 6).stream().sorted().collect(Collectors.toList())));
         }
         return lottos;
     }
