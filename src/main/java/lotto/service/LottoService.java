@@ -11,6 +11,7 @@ import java.util.List;
 
 public class LottoService {
     private final int totalPurchase;
+    private int bonusNumber;
 
     public LottoService(int totalPurchase) {
         this.totalPurchase = totalPurchase;
@@ -35,5 +36,14 @@ public class LottoService {
 
     public Lotto getValidatedLotto(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public int getValidatedBonusNumber(Lotto lotto, int bonusNumber) {
+        lotto.validateAddedNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 }

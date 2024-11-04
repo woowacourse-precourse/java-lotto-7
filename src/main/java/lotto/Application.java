@@ -15,6 +15,7 @@ public class Application {
 
         List<List<Integer>> totalRandomNumbers = lottoService.generateLottoTickets();
         Lotto lotto = getValidatedLottoWithRetry(lottoService, inputHandler);
+        getValidatedBonusNumberWithRetry(lottoService, lotto, inputHandler);
         Console.close();
     }
 
@@ -22,6 +23,18 @@ public class Application {
         while (true) {
             try {
                 return lottoService.getValidatedLotto(inputHandler.getWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void getValidatedBonusNumberWithRetry(LottoService lottoService, Lotto lotto, LottoInputHandler inputHandler) {
+        while (true) {
+            try {
+                int bonusNumber = lottoService.getValidatedBonusNumber(lotto, inputHandler.getBonusNumber());
+                lottoService.setBonusNumber(bonusNumber);
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

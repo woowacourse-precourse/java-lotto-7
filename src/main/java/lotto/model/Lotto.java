@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.constant.LottoConstants;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,5 +36,11 @@ public class Lotto {
                 throw new IllegalArgumentException(String.format("[ERROR] 중복된 로또 번호(%d)를 입력하였습니다.", number));
             }
         }
+    }
+
+    public void validateAddedNumber(int number) {
+        List<Integer> copiedNumbers = new ArrayList<>(numbers);
+        copiedNumbers.add(number);
+        validateRangeAndUniqueness(copiedNumbers);
     }
 }

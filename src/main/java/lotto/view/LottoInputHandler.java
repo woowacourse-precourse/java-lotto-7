@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LottoInputHandler {
     public int getTotalPurchase() {
-        int totalPurchase = retryReadInteger();
+        int totalPurchase = retryReadInteger("\n구입금액을 입력해 주세요.");
 
         if (totalPurchase % LottoConstants.TICKET_PRICE != 0) {
             System.out.printf("[ERROR] 구입금액은 %d원 단위로 입력해 주세요.\n", LottoConstants.TICKET_PRICE);
@@ -17,9 +17,9 @@ public class LottoInputHandler {
         return totalPurchase;
     }
 
-    private int retryReadInteger() {
+    private int retryReadInteger(String prompt) {
         while (true) {
-            System.out.println("\n구입금액을 입력해 주세요.");
+            System.out.println(prompt);
             try {
                 return parseInput(Console.readLine().trim());
             } catch (IllegalArgumentException e) {
@@ -30,6 +30,10 @@ public class LottoInputHandler {
 
     public int parseInput(String input) {
         return Integer.parseInt(input);
+    }
+
+    public int getBonusNumber() {
+        return retryReadInteger("\n보너스 번호를 입력해 주세요.");
     }
 
     public List<Integer> getWinningNumbers() {
