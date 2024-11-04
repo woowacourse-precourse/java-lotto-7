@@ -16,12 +16,10 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-
     private final PurchasePriceValidator purchasePriceValidator;
     private final WinningNumbersValidator winningNumbersValidator;
     private final BonusNumberValidator bonusNumberValidator;
     private final LottoService lottoService;
-
 
     public LottoController(PurchasePriceValidator purchasePriceValidator,
                            WinningNumbersValidator winningNumbersValidator,

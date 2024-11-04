@@ -11,15 +11,12 @@ import lotto.model.ReturnRate;
 import lotto.model.WinningNumbers;
 
 public class LottoResultService {
-
     public LottoResult getLottoResult(List<Lotto> lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         LottoResult lottoResult = LottoResult.initialize();
-
         for (Lotto lotto : lottos) {
             LottoRank rank = calculateLottoRank(lotto, winningNumbers, bonusNumber);
             lottoResult = lottoResult.addResult(rank);
         }
-
         return lottoResult;
     }
 

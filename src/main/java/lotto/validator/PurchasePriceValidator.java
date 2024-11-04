@@ -6,7 +6,6 @@ import static lotto.validator.ValidationMessage.INVALID_PURCHASE_PRICE_FORMAT;
 import lotto.exception.InvalidInputException;
 
 public class PurchasePriceValidator {
-
     public void validate(String inputPurchasePrice) {
         validateNotNull(inputPurchasePrice);
         validateNotEmpty(inputPurchasePrice);

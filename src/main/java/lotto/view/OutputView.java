@@ -18,7 +18,6 @@ import lotto.model.Lotto;
 import lotto.model.LottoResult;
 
 public class OutputView {
-
     private OutputView() {
     }
 

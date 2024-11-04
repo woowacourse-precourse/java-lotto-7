@@ -6,7 +6,6 @@ import static lotto.validator.ValidationMessage.INVALID_WINNING_NUMBERS_FORMAT;
 import lotto.exception.InvalidInputException;
 
 public class WinningNumbersValidator {
-
     public void validate(String inputNumbers) {
         validateNotNull(inputNumbers);
         validateNotEmpty(inputNumbers);

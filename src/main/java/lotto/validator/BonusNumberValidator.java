@@ -8,7 +8,6 @@ import java.util.List;
 import lotto.exception.InvalidInputException;
 
 public class BonusNumberValidator {
-
     public void validate(String inputNumber, List<Integer> winningNumbers) {
         validateNotNull(inputNumber);
         validateNotEmpty(inputNumber);
