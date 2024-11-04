@@ -24,34 +24,41 @@ import lotto.view.OutputView;
 import lotto.view.ViewFacade;
 
 public class Application {
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        ViewFacade viewFacade = createViewFacade();
+        LottoFacade lottoFacade = createLottoFacade();
+        ValidatorFacade validatorFacade = createValidatorFacade();
 
+        LottoController lottoController = new LottoController(viewFacade, lottoFacade, validatorFacade);
+        lottoController.run();
+    }
+
+    private static ViewFacade createViewFacade() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        ViewFacade viewFacade = new ViewFacade(inputView, outputView);
+        return new ViewFacade(inputView, outputView);
+    }
 
+    private static LottoFacade createLottoFacade() {
         LottoNumberGeneratorStrategy lottoNumberGeneratorStrategy = new RandomLottoNumberGenerator();
         LottoIssuingService lottoIssuingService = new LottoIssuingServiceImpl(lottoNumberGeneratorStrategy);
 
         WinningCheckService winningCheckService = new WinningCheckServiceImpl();
-
         TotalPrizeCalculatorService totalPrizeCalculatorService = new TotalPrizeCalculatorServiceImpl(
                 winningCheckService);
-
         WinningStatisticService winningStatisticService = new WinningStatisticServiceImpl(totalPrizeCalculatorService);
 
-        LottoFacade lottoFacade = new LottoFacadeImpl(lottoIssuingService, winningStatisticService);
+        return new LottoFacadeImpl(lottoIssuingService, winningStatisticService);
+    }
 
+    private static ValidatorFacade createValidatorFacade() {
         Validator<String> bonusNumberInputValidator = new BonusNumberInputValidator();
         Validator<String> costInputValidator = new CostInputValidator();
         Validator<Integer> costValidator = new CostValidator();
         Validator<String> numberInputValidator = new NumbersInputValidator();
 
-        ValidatorFacade validatorFacade = new ValidatorFacade(bonusNumberInputValidator, costInputValidator,
-                costValidator, numberInputValidator);
-
-        LottoController lottoController = new LottoController(viewFacade, lottoFacade, validatorFacade);
-        lottoController.run();
+        return new ValidatorFacade(bonusNumberInputValidator, costInputValidator, costValidator, numberInputValidator);
     }
 }
