@@ -43,13 +43,32 @@ public class Display {
     }
 
     public static List<Integer> toLotto(){
+        validate();
         List<Integer> numbers = Arrays.stream(input.split(","))
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .toList();
+        listValidate(numbers);
         return numbers;
     }
 
+    private static void validate(){
+        if(!hasComma()){
+            throw new IllegalArgumentException("[ERROR] 콤마(',')로 구분해 입력해야 합니다.");
+        }
+        if(!isNotNulllOrEmpty()){
+            throw new IllegalArgumentException("[ERROR] 입력 값이 없습니다.");
+        }
+        if(!isValidCount()){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private static void listValidate(List<Integer> numbers){
+        if(!isWithinRange(numbers)){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+        }
+    }
     private static boolean hasComma(){
         return input.contains(",");
     }
@@ -65,4 +84,5 @@ public class Display {
     private static boolean isWithinRange(List<Integer> numbers){
         return numbers.stream().allMatch(number -> number>=1 && number<=45);
     }
+
 }

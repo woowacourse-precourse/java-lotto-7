@@ -28,6 +28,12 @@ public enum Ranking {
     public long Prizes(int score){
         return prize * score;
     }
+
+    /*static Rank getRank(int match, boolean hasBonus){
+        for(Rank rank : values()){
+            if(rank.match == match && rank.hasBonus)==
+        }
+    }*/
 }
 
 

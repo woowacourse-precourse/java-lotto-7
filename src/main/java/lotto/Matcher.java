@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Matcher {
@@ -15,6 +16,7 @@ public class Matcher {
 
     //로또그룹에서 일치값 리스트를 반환
     public List<Integer> matches(List<Lotto> ticket){
+        equalNumbers = new ArrayList<>();
         for(Lotto lotto : ticket){
             int equalNum = match(lotto);
             equalNumbers.add(equalNum);
@@ -23,6 +25,7 @@ public class Matcher {
         return equalNumbers;
     }
     public Matcher(List<Integer> numbers){
+
         this.inputList = numbers;
     }
 

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Collections;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,15 +18,18 @@ public class Application {
 
         Display.requestNumber();
         Display.setInput();
-        System.out.println(Display.get());
-        Display.toLotto();
+        //System.out.println(Display.get());
+        List<Integer> winningNum = Display.toLotto();
+        //Lotto lotto = new Lotto(winningNum);
 
         Display.requestBonus(); //bonus 번호 중복시 validate 구현할것
         Display.setInput();
         System.out.println(Display.get());
 
-        //Matcher matcher = new Matcher(Lotto.getWinningNum());
-        //matcher.matches(Ticket.get());
+        Matcher matcher = new Matcher(winningNum);
+        matcher.matches(Ticket.get());
+
+        Display.showResult();
 
     }
 }
