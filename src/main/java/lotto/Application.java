@@ -34,8 +34,17 @@ public class Application {
     }
 
     public static void readUserInput(){
-        System.out.println("구입금액을 입력해 주세요.");
-        amountToPurchase = readAmountToPurchase();
+        boolean isValidInput = false;
+
+        while(!isValidInput){
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                amountToPurchase = readAmountToPurchase();
+                isValidInput = true;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
         numOfLotto = calcNumOfLottos();
         System.out.println(numOfLotto + "개를 구매했습니다.");
@@ -43,7 +52,7 @@ public class Application {
         lottos = createLottos();
         lottos.forEach(System.out::println);
 
-        boolean isValidInput = false;
+        isValidInput = false;
 
         while(!isValidInput){
             try {
@@ -70,6 +79,13 @@ public class Application {
 
     private static int readAmountToPurchase(){
         String input = Console.readLine();
+
+        try{
+            Integer.parseInt(input);
+        } catch(IllegalArgumentException e){
+            throw new NumberFormatException("[ERROR] 잘못된 로또 구입 입력입니다.");
+        }
+
         return (Integer.parseInt(input) / 1000) * 1000;
     }
 
@@ -81,7 +97,7 @@ public class Application {
         lottos = new ArrayList<>();
 
         for (int i = 0; i < numOfLotto; i++) {
-            List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> uniqueNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(uniqueNumbers);
             lottos.add(new Lotto(uniqueNumbers));
         }
@@ -140,7 +156,7 @@ public class Application {
 
         String result;
         NumberFormat numberFormatter = NumberFormat.getInstance();
-        DecimalFormat decimalFormatter = new DecimalFormat("#");
+        DecimalFormat decimalFormatter = new DecimalFormat("#.#");
 
         for (WinningCount winningCount:WinningCount.values()){
             result = "";
@@ -148,10 +164,10 @@ public class Application {
             result += winningCount.getCountOfWinningNumber() + "개 일치";
 
             if(winningCount.isBonusMatched()){
-                result += ", 보너스 볼 일치 ";
+                result += ", 보너스 볼 일치";
             }
 
-            result += "(" + numberFormatter.format(winningCount.getAmountToWin()) + "원)";
+            result += " (" + numberFormatter.format(winningCount.getAmountToWin()) + "원)";
             result += " - " + lottoCountByWinning.get(winningCount) + "개";
             System.out.println(result);
         }

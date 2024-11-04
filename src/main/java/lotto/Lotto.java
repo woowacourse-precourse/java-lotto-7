@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -15,6 +16,11 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+
+        HashSet<Integer> set = new HashSet<>(numbers);
+        if(set.size() != numbers.size()){
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 값이 있습니다.");
         }
     }
 
@@ -44,6 +50,6 @@ public class Lotto {
     public String toString() {
         return "[" + numbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(",")) + "]";
+                .collect(Collectors.joining(", ")) + "]";
     }
 }
