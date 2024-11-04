@@ -31,12 +31,21 @@ public class WinningChecker {
         }
     }
 
-    public static double calculateReturn(Map<String, Integer> matchingResult, int ticketNumbers) {
-        double sum = 0;
+    public double calculateReturn(Map<String, Integer> matchingResult, int ticketNumbers) {
+        double revenue = calculateRevenue(matchingResult);
+        int payMoney = calculatePayMoney(ticketNumbers);
+        return ((double)(revenue / payMoney)) * 100;
+    }
+
+    public static double calculateRevenue(Map<String, Integer> matchingResult){
+        double revenue = 0;
         for (LottoRank rank : LottoRank.values()) {
-            sum += rank.getPrize() * matchingResult.get(rank.name());
+            revenue += rank.getPrize() * matchingResult.get(rank.name());
         }
-        double result = ((double)(sum / (ticketNumbers * LOTTO_PRICE))) * 100;
-        return result;
+        return revenue;
+    }
+
+    public static int calculatePayMoney(int ticketNumbers){
+        return ticketNumbers * LOTTO_PRICE;
     }
 }
