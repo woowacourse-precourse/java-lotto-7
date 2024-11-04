@@ -2,13 +2,12 @@ package lotto.analytics;
 
 class Analyzer {
 
-    private static final double ROUNDING_CORRECTION_VALUE = 10.0;
+    private static final double PERCENTAGE_VALUE = 100;
 
     public double calculateRate(double payment, double totalPrizeAmount) {
-        double correctingResult = Math.round(totalPrizeAmount * ROUNDING_CORRECTION_VALUE);
-        double divisionResult = (correctingResult / payment);
-        double reCorrectingResult = divisionResult / ROUNDING_CORRECTION_VALUE;
+        double divisionResult = (totalPrizeAmount / payment) * PERCENTAGE_VALUE;
+        String roundingResult = String.format("%.1f", divisionResult);
 
-        return reCorrectingResult * 100;
+        return Double.parseDouble(roundingResult);
     }
 }
