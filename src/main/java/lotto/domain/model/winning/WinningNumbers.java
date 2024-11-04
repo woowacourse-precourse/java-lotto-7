@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class WinningNumbers {
-    private static final int EXPECTED_SIZE = 6;
     private static final String NUMBER_DELIMITER = ",";
     private static final String WHITESPACE_OR_TRAILING_COMMA_REGEX = ".*\\s.*|.*,$";
     private static final String COMMA_SEPARATED_NUMBERS_REGEX = "^(-?\\d+,)*-?\\d+$";
@@ -27,7 +26,7 @@ public class WinningNumbers {
         checkInvalidCharacters(input);
 
         List<Integer> parsedNumbers = parseNumbers(input);
-        validateNumbers(parsedNumbers);
+        validate(parsedNumbers);
         return parsedNumbers;
     }
 
@@ -38,7 +37,7 @@ public class WinningNumbers {
                 .collect(Collectors.toList());
     }
 
-    private void validateNumbers(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         checkSize(numbers);
         checkNotDuplicate(numbers);
         checkRange(numbers);
@@ -63,7 +62,7 @@ public class WinningNumbers {
     }
 
     private void checkSize(List<Integer> numbers) {
-        if (numbers.size() != EXPECTED_SIZE) {
+        if (numbers.size() != GlobalConstants.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(WinningNumbersErrorMessages.INVALID_SIZE.getMessage());
         }
     }

@@ -34,7 +34,7 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
 
     private void checkNotBlank(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_EMPTY.getMessage());
+            throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_EMPTY.getMessage());
         }
     }
 
@@ -84,7 +84,6 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
         for (int i = 0; i < count; i++) {
             lottos.add(generateRandomLotto());
         }
-
         return lottos;
     }
 
@@ -101,7 +100,6 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
                 FOUR_MATCH_COUNT, () -> Rank.FOURTH,
                 THREE_MATCH_COUNT, () -> Rank.FIFTH
         );
-
         return rankMap.getOrDefault(getMatchCount(lotto, context), () -> Rank.NO_WIN).get();
     }
 
@@ -114,5 +112,4 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
     private boolean hasBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber.getNumber());
     }
-
 }

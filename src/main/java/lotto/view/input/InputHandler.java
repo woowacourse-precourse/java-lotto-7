@@ -10,7 +10,6 @@ import lotto.service.LottoApplicationServiceImpl;
 import java.util.function.Supplier;
 
 public class InputHandler {
-
     public static int getValidatedAmount() {
         return handleInput(() -> {
             String input = InputView.getAmount();

@@ -35,7 +35,7 @@ class LottoTest {
         // when, then
         assertThatThrownBy(() -> new Lotto(invalidNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessages.INVALID_LOTTO_SIZE.getMessage());
+                .hasMessage(LottoErrorMessages.INVALID_SIZE.getMessage());
     }
 
     @Test
@@ -47,7 +47,7 @@ class LottoTest {
         // when, then
         assertThatThrownBy(() -> new Lotto(duplicateNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessages.DUPLICATE_LOTTO_NUMBER.getMessage());
+                .hasMessage(LottoErrorMessages.DUPLICATE_NUMBER.getMessage());
     }
 
     @Test
@@ -59,7 +59,7 @@ class LottoTest {
         // when, then
         assertThatThrownBy(() -> new Lotto(invalidNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessages.INVALID_LOTTO_SIZE.getMessage());
+                .hasMessage(LottoErrorMessages.INVALID_SIZE.getMessage());
     }
 
     @Test
@@ -71,7 +71,7 @@ class LottoTest {
         // when, then
         assertThatThrownBy(() -> new Lotto(duplicateNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessages.DUPLICATE_LOTTO_NUMBER.getMessage());
+                .hasMessage(LottoErrorMessages.DUPLICATE_NUMBER.getMessage());
     }
 
     @Test
@@ -83,7 +83,7 @@ class LottoTest {
         // when, then
         assertThatThrownBy(() -> new Lotto(outOfRangeNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessages.OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
+                .hasMessage(LottoErrorMessages.OUT_OF_RANGE_NUMBER.getMessage());
     }
 
     @Test

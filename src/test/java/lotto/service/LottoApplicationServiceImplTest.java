@@ -35,7 +35,7 @@ public class LottoApplicationServiceImplTest {
         // when, then
         assertThatThrownBy(() -> lottoService.validateAmount(invalidAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessages.INVALID_AMOUNT_NON_EMPTY.getMessage());
+                .hasMessage(LottoErrorMessages.INVALID_AMOUNT_EMPTY.getMessage());
     }
 
     @Test
