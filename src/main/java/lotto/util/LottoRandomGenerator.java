@@ -10,7 +10,7 @@ public class LottoRandomGenerator {
     private static final int MAX_RANDOM_NUMBER = 45;
     private static final int RANDOM_COUNT = 6;
 
-    private LottoRandomGenerator() {
+    public LottoRandomGenerator() {
         // 인스턴스화 방지
     }
 
