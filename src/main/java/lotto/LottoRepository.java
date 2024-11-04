@@ -9,7 +9,20 @@ public class LottoRepository {
     private static final int lotto_Price = 1000;
     private List<Lotto> purchasedLottos = new ArrayList<>();
 
+    //실행 메서드 구현
     public void run() {
+        try {
+            int amount = getPurchaseAmount();
+            purchaseLottos(amount);
+            displayPurchasedLottos();
+
+            Lotto winningLotto = getWinningLotto();
+            int bonusNumber = getBonusNumber();
+            LottoResult result = new LottoResult(purchasedLottos, winningLotto, bonusNumber);
+            result.printResult();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
