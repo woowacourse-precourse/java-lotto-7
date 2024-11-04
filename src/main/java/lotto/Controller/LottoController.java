@@ -58,9 +58,9 @@ public class LottoController {
         }
     }
 
-    private double calculateProfitRate(LottoResult result, int purchaseAmount) {
+    private double calculateProfitRate(LottoResult lottoResult, int purchaseAmount) {
         int totalPrize = 0;
-        for (Map.Entry<LottoRank, Integer> entry : result.getResults().entrySet()) {
+        for (Map.Entry<LottoRank, Integer> entry : lottoResult.getResults().entrySet()) {
             int prize = entry.getKey().getPrize();
             int count = entry.getValue();
             totalPrize += prize * count;
