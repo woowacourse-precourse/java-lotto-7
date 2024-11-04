@@ -3,15 +3,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.text.NumberFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoService {
     private List<Lotto> purchasedLottos;
-    private Lotto lotto;
+    private Lotto userlotto;
+    private Map<Prize, Integer> results = new HashMap<>();
     public int validatePurchaseAmount(String input) {
         if(!input.matches("[+-]?\\d*(\\.\\d+)?")) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
@@ -22,7 +21,6 @@ public class LottoService {
         }
         return amount;
     }
-
     public void purchaseLottos(int amount) {
         int count = amount / 1000;
         purchasedLottos = new ArrayList<>();
@@ -32,10 +30,9 @@ public class LottoService {
         }
         System.out.println(count + "개를 구매했습니다.");
     }
-
     public void printLottos() {
         for (Lotto lotto : purchasedLottos) {
-            List<Integer> numbers = lotto.getNumbers();
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers()); // 수정 가능한 리스트로 복사
             Collections.sort(numbers);
             System.out.println(numbers);
         }
@@ -51,8 +48,8 @@ public class LottoService {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
-        lotto = new Lotto(numbers);
-        return lotto;
+        userlotto = new Lotto(numbers);
+        return userlotto;
     }
     public int validateBonusNumber(String input) {
         if(!input.matches("[+-]?\\d*(\\.\\d+)?")) {
@@ -62,9 +59,30 @@ public class LottoService {
         if (bonus < 1 || bonus > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
-        for(int number : lotto.getNumbers()){
+        for(int number : userlotto.getNumbers()){
             if(number == bonus) throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
         return bonus;
     }
+    public void calculateResults(Lotto userlotto, int bonusNumber) {
+        for (Lotto ticket : purchasedLottos) {
+            int matchCount = (int) ticket.getNumbers().stream().filter(userlotto.getNumbers()::contains).count();
+            boolean bonusMatch = ticket.getNumbers().contains(bonusNumber);
+            updateResults(matchCount, bonusMatch);
+        }
+    }
+    public void updateResults(int matchCount, boolean bonusMatch) {
+        if (matchCount == 3) {
+            results.put(Prize.FIRST, results.getOrDefault(Prize.FIRST, 0) + 1);
+        } else if (matchCount == 4) {
+            results.put(Prize.SECOND, results.getOrDefault(Prize.SECOND, 0) + 1);
+        } else if (matchCount == 5) {
+            results.put(Prize.THIRD, results.getOrDefault(Prize.THIRD, 0) + 1);
+        } else if (matchCount == 5 && bonusMatch) {
+            results.put(Prize.FOURTH, results.getOrDefault(Prize.FOURTH, 0) + 1);
+        } else if (matchCount == 6) {
+            results.put(Prize.FIFTH, results.getOrDefault(Prize.FIFTH, 0) + 1);
+        }
+    }
+
 }
