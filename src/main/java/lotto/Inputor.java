@@ -6,16 +6,26 @@ import static lotto.LottoApplication.INCORRECT_MONEY;
 public class Inputor {
     public static int getMoney() {
         System.out.println("구입 금액을 입력해 주세요");
-        int money = Integer.parseInt(readLine());
+        String input = readLine();
+        int money = INCORRECT_MONEY;
 
         try {
+            money = parseMoney(input);
+
             validateMinus(money);
             validatThousandMultiple(money);
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
-            money = INCORRECT_MONEY;
         }
         return money;
+    }
+
+    private static int parseMoney(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 정수로 입력해 주세요.");
+        }
     }
 
     private static void validatThousandMultiple(int money) throws IllegalArgumentException {
