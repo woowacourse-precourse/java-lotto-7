@@ -10,9 +10,11 @@ public class Validation {
 
     public static void validateMoney(String money) {
         if (isNotInteger(money)) {
+            System.out.println("[ERROR] 구입금액은 숫자여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
         }
         if (Integer.parseInt(money) % LOTTO_COST != 0) {
+            System.out.println("[ERROR] 구입금액은 " + LOTTO_COST + " 단위여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 구입금액은 " + LOTTO_COST + " 단위여야 합니다.");
         }
     }
@@ -21,27 +23,38 @@ public class Validation {
         boolean containsNonNumeric = Arrays.stream(winningNumberString)
                 .anyMatch(Validation::isNotInteger);
         if (containsNonNumeric) {
+            System.out.println("[ERROR] 당첨 번호는 숫자여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
         }
 
         boolean containsOutOfRange = Arrays.stream(winningNumberString)
                 .anyMatch(Validation::isNotInRange);
         if (containsOutOfRange) {
+            System.out.println("[ERROR] 당첨 번호는 1~45까지 입력 가능합니다.");
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45까지 입력 가능합니다.");
         }
+
+        List<Integer> winningNumbers = Arrays.stream(winningNumberString)
+                .map(Integer::parseInt)
+                .toList();
+
+        Lotto winningNumber = new Lotto(winningNumbers);
     }
 
     public static void validateBonusNumber(String bonusNumber) {
         if (isNotInteger(bonusNumber)) {
+            System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
         if (isNotInRange(bonusNumber)) {
+            System.out.println("[ERROR] 보너스 번호는 1~45까지 입력 가능합니다.");
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45까지 입력 가능합니다.");
         }
     }
 
     public static void ValidateWinningNumberContainsBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
+            System.out.println("[ERROR] 보너스 번호가 당첨 번호와 중복되면 안됩니다.");
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복되면 안됩니다.");
         }
     }

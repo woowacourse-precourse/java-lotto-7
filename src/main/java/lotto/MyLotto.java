@@ -15,10 +15,8 @@ public class MyLotto {
     }
 
     public void matchNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        Lotto winningNumber = new Lotto(winningNumbers);
-
         myLotto.stream()
-                .forEach(i -> i.matchNumbers(winningNumber, bonusNumber));
+                .forEach(i -> i.matchNumbers(winningNumbers, bonusNumber));
     }
 
     public int getCount() {

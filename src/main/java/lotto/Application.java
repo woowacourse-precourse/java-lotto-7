@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,11 +14,13 @@ public class Application {
         // TODO: 프로그램 구현
         LottoGame lottoGame;
 
+        int money;
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
-                String money = Console.readLine();
-                lottoGame = new LottoGame(money);
+                String moneyString = Console.readLine();
+                lottoGame = new LottoGame(moneyString);
+                money = Integer.parseInt(moneyString);
                 break;
             } catch (IllegalArgumentException e) {
             }
@@ -34,6 +37,7 @@ public class Application {
                 String winningNumber = Console.readLine();
                 winningNumberString = winningNumber.split(",");
                 validateWinningNumber(winningNumberString);
+                System.out.println();
                 break;
             } catch (IllegalArgumentException e) {
             }
@@ -51,11 +55,15 @@ public class Application {
                 validateBonusNumber(bonusNumberString);
                 bonusNumber = Integer.parseInt(bonusNumberString);
                 ValidateWinningNumberContainsBonusNumber(winningNumbers, bonusNumber);
+                System.out.println();
                 break;
             } catch (IllegalArgumentException e) {
             }
         }
 
         lottoGame.matchNumbers(winningNumbers, bonusNumber);
+
+        Winning.printWinningToTal();
+        System.out.println("총 수익률은 " + lottoGame.getRateOfReturn() + "%입니다.");
     }
 }

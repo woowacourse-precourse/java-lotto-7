@@ -1,10 +1,8 @@
 package lotto;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static lotto.Validation.validateMoney;
-import static lotto.Validation.validateWinningNumber;
 
 public class LottoGame {
     private static final int LOTTO_COST = 1000;
@@ -19,6 +17,10 @@ public class LottoGame {
 
     public void matchNumbers(List<Integer> winningNumbers, int bonusNumber) {
         myLotto.matchNumbers(winningNumbers, bonusNumber);
+    }
+
+    public double getRateOfReturn() {
+        return Math.round((double) (Winning.getTotalMoney() * 100) / (myLotto.getCount() * LOTTO_COST) * 10) / 10.0;
     }
 
     public void printMyLotto() {
