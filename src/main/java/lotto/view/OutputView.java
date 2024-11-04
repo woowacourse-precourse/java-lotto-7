@@ -16,6 +16,7 @@ public class OutputView {
     private static final String WINNING_RESULT_MESSAGE = "%d개 일치 (%,d원) - %d개\n";
     private static final String SECOND_RANK_MESSAGE = "5개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
     private static final String PROFIT_RATE_RESULT_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
+    private static final int DEFAULT_VALUE = 0;
 
     public void printPurchasedLottos(PurchasedLottos purchasedLottos) {
         System.out.printf(PURCHASE_COUNT_MESSAGE, purchasedLottos.getPurchasedLottos().size());
@@ -35,7 +36,7 @@ public class OutputView {
     private void printWinningResults(Map<LottoRank, Integer> rankCount) {
         Arrays.stream(LottoRank.values())
                 .filter(rank -> rank != LottoRank.NONE)
-                .forEach(rank -> printRankResult(rank, rankCount.getOrDefault(rank, 0)));
+                .forEach(rank -> printRankResult(rank, rankCount.getOrDefault(rank, DEFAULT_VALUE)));
     }
 
     private void printRankResult(LottoRank rank, int count) {
