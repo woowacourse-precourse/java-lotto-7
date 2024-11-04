@@ -2,7 +2,9 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.Constant;
 import lotto.exception.ErrorMessage;
+import lotto.exception.LottoException;
 import lotto.util.Converter;
 import lotto.util.Splitter;
 import lotto.validator.Validator;
@@ -28,9 +30,25 @@ public class Lotto {
     }
 
     private void validateNumbers(List<Integer> numbers) {
-        Validator.validateNumbersSize(numbers);
-        Validator.validateRange(numbers);
-        Validator.validateDuplicate(numbers);
+        validateNumbersSize(numbers);
+        validateRange(numbers);
+        validateDuplicate(numbers);
+    }
+
+    private void validateNumbersSize(List<Integer> numbers) {
+        if (numbers.size() != Constant.LOTTO_NUMBER_COUNT) {
+            throw new LottoException(ErrorMessage.NOT_LOTTO_NUMBER_COUNT_SIX.getMessage());
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        numbers.forEach(number -> Validator.validateNumberRange(number, ErrorMessage.OUT_RANGE_LOTTO_NUMBER));
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new LottoException(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
+        }
     }
 
     public List<Integer> getNumbers() {
