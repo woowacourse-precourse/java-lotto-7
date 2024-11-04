@@ -18,7 +18,7 @@ public class InputView {
         while (true) {
             try {
                 String purchaseAmount = Console.readLine().trim();
-                return LottoAmountValidator.validatePurchaseAmout(purchaseAmount);
+                return LottoAmountValidator.validatePurchaseAmount(purchaseAmount);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
                 OutputView.printLottoAmountInput();

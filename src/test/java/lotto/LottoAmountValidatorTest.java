@@ -14,7 +14,7 @@ class LottoAmountValidatorTest {
     void validatePurchaseAmountWithNullOrEmpty() {
         String amount = "";
 
-        assertThatThrownBy(() -> LottoAmountValidator.validatePurchaseAmout(amount))
+        assertThatThrownBy(() -> LottoAmountValidator.validatePurchaseAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_NULL_OR_EMPTY.getMessage());
     }
@@ -24,7 +24,7 @@ class LottoAmountValidatorTest {
     void validatePurchaseAmountWithNonNumeric() {
         String amount = "abc";
 
-        assertThatThrownBy(() -> LottoAmountValidator.validatePurchaseAmout(amount))
+        assertThatThrownBy(() -> LottoAmountValidator.validatePurchaseAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.PURCHASE_AMOUNT_NOT_NUMBER.getMessage());
     }
@@ -34,7 +34,7 @@ class LottoAmountValidatorTest {
     void validatePurchaseAmountLessThanMinimum() {
         String amount = "500";
 
-        assertThatThrownBy(() -> LottoAmountValidator.validatePurchaseAmout(amount))
+        assertThatThrownBy(() -> LottoAmountValidator.validatePurchaseAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE_OR_ZERO.getMessage());
     }
@@ -44,7 +44,7 @@ class LottoAmountValidatorTest {
     void validatePurchaseAmountNotDivisibleByThousand() {
         String amount = "2500";
 
-        assertThatThrownBy(() -> LottoAmountValidator.validatePurchaseAmout(amount))
+        assertThatThrownBy(() -> LottoAmountValidator.validatePurchaseAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
     }
@@ -54,7 +54,7 @@ class LottoAmountValidatorTest {
     void validatePurchaseAmountSuccessfully() {
         String amount = "3000";
 
-        int result = LottoAmountValidator.validatePurchaseAmout(amount);
+        int result = LottoAmountValidator.validatePurchaseAmount(amount);
 
         assertThat(result).isEqualTo(3);
     }
@@ -64,7 +64,7 @@ class LottoAmountValidatorTest {
     void validatePurchaseAmountWithBlankSpace() {
         String amount = "1 000";
 
-        assertThatThrownBy(() -> LottoAmountValidator.validatePurchaseAmout(amount))
+        assertThatThrownBy(() -> LottoAmountValidator.validatePurchaseAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_HAS_BLANK.getMessage());
     }
