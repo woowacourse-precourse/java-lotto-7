@@ -1,8 +1,6 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.utils.LottoUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +14,10 @@ public class LottoMachine {
         this.lottos = new ArrayList<>();
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     public List<Lotto> generateLottos() {
         int numberOfTickets = purchaseAmount / 1000;
         for (int i = 0; i < numberOfTickets; i++) {
@@ -25,11 +27,10 @@ public class LottoMachine {
         return lottos;
     }
 
-    public void calculateResults(String winningNumbers, int bonusNumber) {
-        List<Integer> winningNums = LottoUtils.parseNumbers(winningNumbers);
+    public void calculateResults(List<Integer> winningNumbers, int bonusNumber) {
         for (Lotto lotto : lottos) {
             int matchCount = (int) lotto.getNumbers().stream()
-                    .filter(winningNums::contains)
+                    .filter(winningNumbers::contains)
                     .count();
             boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
 
@@ -52,7 +53,6 @@ public class LottoMachine {
         }
         return -1;
     }
-
 
     public String getStatistics() {
         // 실제 통계를 문자열로 포맷팅하여 반환

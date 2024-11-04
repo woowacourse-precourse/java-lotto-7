@@ -1,19 +1,30 @@
 package lotto.controller;
 
 import lotto.domain.LottoMachine;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.Input;
+import lotto.view.Output;
+import lotto.utils.LottoUtils;
+
+import java.util.List;
 
 public class LottoController {
-    public void run() {
-        int purchaseAmount = InputView.getPurchaseAmount();
-        LottoMachine lottoMachine = new LottoMachine(purchaseAmount);
-        OutputView.printLottoTickets(lottoMachine.generateLottos());
+    private final Input input;
+    private final Output output;
 
-        String winningNumbers = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumber();
+    public LottoController(Input input, Output output) {
+        this.input = input;
+        this.output = output;
+    }
+
+    public void run() {
+        int purchaseAmount = input.getPurchaseAmount();
+        LottoMachine lottoMachine = new LottoMachine(purchaseAmount);
+        output.printLottoTickets(lottoMachine.getLottos());
+
+        List<Integer> winningNumbers = LottoUtils.parseNumbers(input.getWinningNumbers());
+        int bonusNumber = input.getBonusNumber();
 
         lottoMachine.calculateResults(winningNumbers, bonusNumber);
-        OutputView.printStatistics(lottoMachine.getStatistics());
+        output.printStatistics(lottoMachine.getStatistics());
     }
 }
