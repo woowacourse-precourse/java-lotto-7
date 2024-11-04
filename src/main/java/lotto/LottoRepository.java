@@ -29,5 +29,17 @@ public class LottoRepository {
             purchasedLottos.add(Lotto.generateRandomNumbers());
         }
     }
+    //당첨 번호 메서드 구현
+    private Lotto getWinningLotto() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        String [] parts = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String part : parts) {
+            int number = Integer.parseInt(part.trim());
+            numbers.add(number);
+        }
+        return new Lotto(numbers);
+    }
 }
 
