@@ -1,6 +1,6 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoFactory {
@@ -22,8 +22,16 @@ public class LottoFactory {
         return new Lotto(numbers);
     }
 
-    public Lotto createLottoByRandom() {
+    private Lotto createRandomLotto() {
         List<Integer> numbers = randomCreator.createRandomNumbers();
         return createLottoByNumbers(numbers);
+    }
+
+    public List<Lotto> createRandomLottos(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 1; i <= count; i++) {
+            lottos.add(createRandomLotto());
+        }
+        return lottos;
     }
 }
