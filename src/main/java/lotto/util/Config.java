@@ -1,6 +1,10 @@
 package lotto.util;
 
 public class Config {
+    public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_NUMBER_START = 1;
+    public static final int LOTTO_NUMBER_END = 45;
+    public static final int LOTTO_NUMBER_COUNT = 6;
     public static final String ERROR_INVALID_MONEY_FORMAT = "[ERROR] 숫자 형식의 금액을 입력해 주세요.";
     public static final String ERROR_INVALID_TICKET_COUNT = "[ERROR] 구입 금액은 1,000원 단위여야 합니다.";
     public static final String ERROR_INVALID_NUMBER_FORMAT = "[ERROR] 숫자 형식의 번호를 입력해 주세요.";
