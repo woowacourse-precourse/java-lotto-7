@@ -91,7 +91,12 @@ public class Application {
 
     public static int getBonusNumber() {
         System.out.println(LOTTO_BONUS_NUMBER_INPUT_MESSAGE);
-        return Integer.parseInt(Console.readLine());
+        String bonusNumber  = Console.readLine();
+
+        if (bonusNumber == "\\d+") {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력이 가능합니다.");
+        }
+        return Integer.parseInt(bonusNumber);
     }
 
     public static int getLottoCount(List<Integer> purchaseAmounts) {
