@@ -15,12 +15,14 @@ public class Application {
         int amount = 0;
         try {
             amount = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException  e) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 금액입니다.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 유효하지 않은 금액입니다.");
+            return;
         }
 
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 천원 단위로 입력해주세요.");
+            System.out.println("[ERROR] 유효하지 않은 금액입니다.");
+            return;
         }
         int cnt = amount / 1000;
         System.out.println();
@@ -58,10 +60,12 @@ public class Application {
         printTotalReturnRate(cntMap, amount);
     }
 
-    private static void validate(int num) {
+    private static boolean validate(int num) {
         if (num < 1 || num > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            return false;
         }
+        return true;
     }
 
     private static EnumMap<LottoRank, Integer> init() {
