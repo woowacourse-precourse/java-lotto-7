@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -11,12 +11,12 @@ import lotto.model.PrizeRank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoGame {
+public class LottoGameController {
     public static final int LOTTO_UNIT_PRICE = 1000;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LottoGame(Config config) {
+    public LottoGameController(Config config) {
         this.inputView = config.getInputView();
         this.outputView = config.getOutputView();
     }
