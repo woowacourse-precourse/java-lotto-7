@@ -1,68 +1,87 @@
 package lotto.view;
 
 import static lotto.constants.LottoConstants.LOTTO_NUMBER_COUNT;
+import static lotto.constants.ErrorMessages.*;
+import static lotto.constants.InputMessages.*;
 import static lotto.validator.LottoNumberValidator.validateRange;
 
 import lotto.validator.PurchaseAmountValidator;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
+
     public static int inputPurchaseAmount() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
+                System.out.println(INPUT_PURCHASE_AMOUNT);
                 String input = Console.readLine();
-                int amount = Integer.parseInt(input);
+                int amount = parsePurchaseAmount(input);
                 PurchaseAmountValidator.validate(amount);
-
                 return amount;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 금액은 숫자로 입력해 주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
+    private static int parsePurchaseAmount(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_PURCHASE_AMOUNT_NUMERIC);
+        }
+    }
+
     public static List<Integer> inputWinningNumbers() {
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println(INPUT_WINNING_NUMBERS);
                 String input = Console.readLine();
-                String[] inputs = input.split(",");
-                if (inputs.length != LOTTO_NUMBER_COUNT) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
-                }
-                List<Integer> winningNumbers = new ArrayList<>();
-                for (String number : inputs) {
-                    int num = Integer.parseInt(number.trim());
-                    validateRange(num);
-                    if (winningNumbers.contains(num)) {
-                        throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력할 수 없습니다.");
-                    }
-                    winningNumbers.add(num);
-                }
-                return winningNumbers;
-            } catch (Exception e) {
+                return parseWinningNumbers(input);
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
+    private static List<Integer> parseWinningNumbers(String input) {
+        String[] inputs = input.split(",");
+        if (inputs.length != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ERROR_WINNING_NUMBER_COUNT);
+        }
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String number : inputs) {
+            int num = parseNumber(number.trim());
+            validateRange(num);
+            if (winningNumbers.contains(num)) {
+                throw new IllegalArgumentException(ERROR_WINNING_NUMBER_DUPLICATE);
+            }
+            winningNumbers.add(num);
+        }
+        return winningNumbers;
+    }
+
     public static int inputBonusNumber() {
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println(INPUT_BONUS_NUMBER);
                 String input = Console.readLine();
-                int bonusNumber = Integer.parseInt(input);
+                int bonusNumber = parseNumber(input);
                 validateRange(bonusNumber);
                 return bonusNumber;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private static int parseNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_NUMBER_NUMERIC);
         }
     }
 }
