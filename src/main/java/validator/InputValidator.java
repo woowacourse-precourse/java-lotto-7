@@ -31,11 +31,14 @@ public class InputValidator {
         }
     }
 
-    public static void validateBonusNumber(int number) {
+    public static void validateBonusNumber(int number, List<Integer> winNumbers) {
         final int MAXIMUM_NUMBER = 45;
         final int MINIMUM_NUMBER = 1;
         if (number > MAXIMUM_NUMBER || number < MINIMUM_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1~45 입니다.");
+        }
+        if(winNumbers.contains(number)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다");
         }
     }
 }
