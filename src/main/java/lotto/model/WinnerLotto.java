@@ -1,66 +1,41 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import lotto.validator.WinnerLottoValidator;
+import lotto.validator.LottoValidator;
 
 public class WinnerLotto {
 
-    private static final WinnerLottoValidator winnerLottoValidator = new WinnerLottoValidator();
-    private static final NumberStringConverter numberStringConverter = new NumberStringConverter();
-
+    private final LottoValidator validator = new LottoValidator();
     private final List<Integer> winningNumbers;
-    private int bonusNumber;
+    private Integer bonusNumber;
 
     private WinnerLotto(List<Integer> winningNumbers) {
+        validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 
-    public static WinnerLotto from(String rawNumbers) {
-        List<Integer> winningNumbers = parseNumbers(rawNumbers);
-
+    public static WinnerLotto from(List<Integer> winningNumbers) {
         return new WinnerLotto(winningNumbers);
     }
 
-    private static List<Integer> parseNumbers(String rawNumbers) {
-        String[] numberStrings = splitNumbers(rawNumbers);
-
-        winnerLottoValidator.numberCount(numberStrings);
-
-        return convertNumbers(numberStrings);
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
+        validator.numberCount(winningNumbers);
+        validator.duplicate(winningNumbers);
+        winningNumbers.forEach(validator::numberRange);
     }
 
-    private static String[] splitNumbers(String rawNumbers) {
-        return rawNumbers.split(",");
-    }
-
-    private static List<Integer> convertNumbers(String[] numberStrings) {
-    List<Integer> processedNumbers = new ArrayList<>();
-    return Stream.of(numberStrings)
-            .map(String::trim)
-            .map(numberStringConverter::convert)
-            .peek(winnerLottoValidator::numberRange)
-            .peek(number -> winnerLottoValidator.checkForDuplicate(processedNumbers, number))
-            .peek(processedNumbers::add)
-            .collect(Collectors.toList());
-}
-
-    public void setBonusNumber(String rawBonusNumber) {
-        int bonusNumber = numberStringConverter.convert(rawBonusNumber);
-
-        winnerLottoValidator.numberRange(bonusNumber);
-        winnerLottoValidator.bonusNumber(winningNumbers, bonusNumber);
-
+    public void setBonusNumber(int bonusNumber) {
+        validator.bonusNumber(winningNumbers, bonusNumber);
+        validator.numberRange(bonusNumber);
+        validator.duplicate(winningNumbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getNumbers() {
-        return winningNumbers;
+    public boolean hasBonus(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
     }
 }
