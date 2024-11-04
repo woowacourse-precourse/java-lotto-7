@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.StringParser;
+
 
 public class InputView {
     private static final String MONEY_INPUT = "구입 금액을 입력해 주세요.";
@@ -18,7 +20,7 @@ public class InputView {
         while (true) {
             String inputMoney = InputView.moneyInput();
             try {
-                return Integer.parseInt(inputMoney);
+                return StringParser.parseStringToInt(inputMoney);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
