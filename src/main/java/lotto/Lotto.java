@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.domain.ExceptionType.ILLEGAL_ARGUMENT;
+import static lotto.domain.ExceptionType.OUT_OF_RANGE;
 import static lotto.domain.MAGIC_NUMBER.SIZE;
 import static lotto.domain.MAGIC_NUMBER.START;
 
@@ -22,6 +23,12 @@ public class Lotto {
         if (numbers.size() != SIZE.getMagicNumber()) {
             throw new IllegalArgumentException(ILLEGAL_ARGUMENT.getMessage());
         }
+//        1. 예외 발생 원인을 명확히 전달하는 유형 사용
+//        2. 예1) 입력 가능 범위를 초과한 경우 OUT_OF_RANGE 예외 처리하며 로또 구매 가능 금액 문구를 출력하고 정상 문구 재입력을 요청
+        if (numbers.size() != START.getMagicNumber()) {
+            throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
+        }
+
     }
 
     // TODO: 추가 기능 구현
