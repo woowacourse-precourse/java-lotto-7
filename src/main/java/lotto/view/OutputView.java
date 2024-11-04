@@ -1,12 +1,21 @@
 package lotto.view;
 
 import lotto.dto.LottoResultResponse;
+import lotto.dto.LottoTicketDto;
 import lotto.model.LottoRanking;
 
 public class OutputView {
 
     public void printMessage(String message) {
         System.out.println(message);
+    }
+
+    public void printPurchaseCount(int count) {
+        System.out.printf("%d개를 구매했습니다.%n", count);
+    }
+
+    public void printLottoNumbers(LottoTicketDto ticket) {
+        System.out.println(ticket.numbers());
     }
 
     public void printLottoResult(LottoResultResponse result) {

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoService {
-    private List<LottoTicketDto> generateLottoTickets(int purchaseAmount) {
+    public List<LottoTicketDto> generateLottoTickets(int purchaseAmount) {
         int purchaseCount = purchaseAmount / AppConstants.LOTTO_TICKET_PRICE;
         List<LottoTicket> tickets = new ArrayList<>();
 
@@ -28,9 +28,14 @@ public class LottoService {
                 .collect(Collectors.toList());
     }
 
-    private LottoResultResponse getLottoResult(LottoRequest request) {
+    public LottoResultResponse getLottoResult(LottoRequest request) {
         LottoResult lottoResult = new LottoResult();
-        for (LottoTicket ticket : request.purchaseTickets()) {
+
+        List<LottoTicket> tickets = request.purchaseTickets().stream()
+                .map(dto -> new LottoTicket(dto.numbers()))
+                .toList();
+
+        for (LottoTicket ticket : tickets) {
             int matchCount = ticket.getMatchCount(request.winningNumbers());
             boolean bonusMatch = ticket.contains(request.bonusNumber());
             LottoRanking ranking = LottoRanking.getRanking(matchCount, bonusMatch);
