@@ -31,5 +31,10 @@ public class LottoController {
         List<Integer> winningNumbers = inputView.getWinningNumbers();
         int bonusNumber = inputView.getBonusNumber();
         lottoService.makeWinningLotto(winningNumbers, bonusNumber);
+        calculateLotto(winningNumbers, bonusNumber);
+    }
+
+    private void calculateLotto(List<Integer> winningNumbers, int bonusNumber) {
+        lottoService.countWonLotto(winningNumbers, bonusNumber);
     }
 }

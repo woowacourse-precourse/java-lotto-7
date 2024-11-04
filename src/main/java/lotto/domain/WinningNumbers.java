@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbers {
@@ -22,11 +23,23 @@ public class WinningNumbers {
         return instance;
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
+    public void matchWinningNumbers() {
+        LottoMachine machine = LottoMachine.getInstance();
+        machine.getLottos().forEach(lotto -> {
+            lotto.setWinningNumberMatch(matchNumberCount(lotto));
+            if(lotto.getWinningNumberMatch() == 5) {
+                isBonusNumberMatch(lotto);
+            }
+        });
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public boolean isBonusNumberMatch(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    public int matchNumberCount(Lotto lotto) {
+       List<Integer> matchNumbers = new ArrayList<>(lotto.getNumbers());
+       matchNumbers.retainAll((winningLotto.getNumbers())); //중복 번호 산출
+       return matchNumbers.size();
     }
 }

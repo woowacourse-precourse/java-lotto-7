@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private int winningNumberMatch = 0;
+    private boolean isBonusMatch = false;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -26,6 +28,18 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public void setBonusMatch(boolean bonusMatch) {
+        isBonusMatch = bonusMatch;
+    }
+
+    public void setWinningNumberMatch(int winningNumberMatch) {
+        this.winningNumberMatch = winningNumberMatch;
+    }
+
+    public int getWinningNumberMatch() {
+        return winningNumberMatch;
     }
 
     public String toString() {
