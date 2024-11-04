@@ -13,7 +13,6 @@ public class LottoNumberParser {
     /**
      * 문자열 당첨 번호를 구분자를 기준으로 정수형 리스트 형식으로 변경해주는 메서드
      * @param numbers 당첨 번호(문자열)
-     * @return
      */
     public static List<Integer> parseLottoNumbers(String numbers){
         try{

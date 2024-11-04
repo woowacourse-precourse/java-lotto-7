@@ -13,7 +13,6 @@ public class LottoResult {
      * 유저가 구매한 로또와 당첨 번호를 계산 해주는 메서드
      * @param purchaseLottos 유저가 구매한 로또 번호
      * @param winningLotto 당첨 번호
-     * @return 당첨 결과
      */
     public LottoResult(List<PurchaseLotto> purchaseLottos, Lotto winningLotto) {
         for (PurchaseLotto lotto : purchaseLottos) {
