@@ -50,6 +50,5 @@ public class Application {
         double revenueRate = LottoResultCalculator.calculateRevenueRate(totalPrize, purchaseAmount);
         OutputView.printRevenueRate(revenueRate);
 
-
     }
 }
