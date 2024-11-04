@@ -6,9 +6,7 @@ import lotto.model.LottoResult;
 import lotto.model.ProfitCalculator;
 import lotto.model.WinningNumbers;
 
-import lotto.service.LottoService;
-import lotto.service.LottoResultService;
-import lotto.service.ProfitCalculatorService;
+import lotto.service.*;
 
 
 import lotto.validation.LottoAmountValidator;
@@ -22,16 +20,18 @@ import java.util.List;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoService lottoService;
+    private final LottoMachineService lottoMachineService;
+    private final LottoBundleService bundleService;
     private final LottoResultService lottoResultService;
     private final ProfitCalculatorService profitCalculatorService;
 
     public LottoController(final InputView inputView, final OutputView outputView,
-                           final LottoService lottoService, final LottoResultService lottoResultService,
+                           final LottoMachineService lottoMachineService, final LottoBundleService bundleService, final LottoResultService lottoResultService,
                            final ProfitCalculatorService profitCalculatorService) {
        this.inputView = inputView;
         this.outputView = outputView;
-       this.lottoService = lottoService;
+       this.lottoMachineService = lottoMachineService;
+       this.bundleService = bundleService;
        this.lottoResultService = lottoResultService;
        this.profitCalculatorService = profitCalculatorService;
     }
@@ -42,8 +42,8 @@ public class LottoController {
         int lottoBonusNumber = inputBonusNumber(lottoNumberList);
 
         WinningNumbers winningNumbers = new WinningNumbers(lottoNumberList, lottoBonusNumber);
-        LottoBundle lottoBundle = new LottoBundle(lottoService.responseLottoTicket(lottoAmount));
-        LottoMachine lottoMachine = new LottoMachine(winningNumbers, lottoBundle);
+        LottoBundle lottoBundle = new LottoBundle(bundleService.generateLottoBundle(lottoAmount));
+        LottoMachine lottoMachine = lottoMachineService.generateLottoMachine(lottoBundle, winningNumbers);
 
         printLottoBundleDetails(lottoAmount,lottoBundle);
 
@@ -62,7 +62,7 @@ public class LottoController {
 
     private void printLottoResult(LottoResult result, int lottoAmount){
         ProfitCalculator profitCalculator = new ProfitCalculator(lottoAmount, result);
-        double profit = profitCalculatorService.resultProfit(result, lottoAmount);
+        double profit = profitCalculatorService.calculateProfitPercentage(result, lottoAmount);
         outputView.printLottoResult(result);
         outputView.printLottoProfit(profit);
     }

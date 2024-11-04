@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.List;
 
-// 사용자가 입력한 로또 당첨 번호와 보너스 번호.
 public class WinningNumbers {
     private final List<Integer> lotteryNumbers;
     private final Integer bonusNumber;
@@ -19,6 +18,4 @@ public class WinningNumbers {
     public Integer getBonusNumber() {
         return bonusNumber;
     }
-
-
 }

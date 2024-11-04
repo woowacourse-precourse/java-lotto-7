@@ -9,19 +9,11 @@ import java.util.List;
 
 public class LottoService {
 
-    public List<Lotto> responseLottoTicket(int amount){
-        List<Lotto> lottos = new ArrayList<>();
-        generateLottoTicket(amount/LottoConstant.LOTTO_PRICE, lottos);
-        return lottos;
+    public Lotto generateLotto() {
+        return new Lotto(generateLottoNumbers());
     }
 
-    private void generateLottoTicket(int count, List<Lotto> lottos){
-        for(int i=0;i<count;i++){
-            lottos.add(new Lotto(generateLottoNumbers()));
-        }
-    }
-
-    private List<Integer> generateLottoNumbers(){
+    private List<Integer> generateLottoNumbers() {
         return LottoNumberGenerator.responseLottoNumbers();
     }
 }

@@ -1,9 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.service.LottoResultService;
-import lotto.service.LottoService;
-import lotto.service.ProfitCalculatorService;
+import lotto.service.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,10 +12,12 @@ public class Application {
         final OutputView outputView = new OutputView();
 
         final LottoService lottoService = new LottoService();
+        final LottoMachineService lottoMachineService = new LottoMachineService();
+        final LottoBundleService bundleService = new LottoBundleService();
         final LottoResultService lottoResultService = new LottoResultService();
         final ProfitCalculatorService profitCalculatorService = new ProfitCalculatorService();
 
-        final LottoController lottoController = new LottoController(inputView, outputView, lottoService, lottoResultService, profitCalculatorService);
+        final LottoController lottoController = new LottoController(inputView, outputView, lottoService, lottoMachineService, bundleService, lottoResultService, profitCalculatorService);
         lottoController.start();
     }
 }

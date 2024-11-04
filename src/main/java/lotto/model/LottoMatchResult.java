@@ -37,5 +37,4 @@ public enum LottoMatchResult {
         }
         return null;
     }
-
 }

@@ -4,7 +4,6 @@ import lotto.constant.LottoConstant;
 import lotto.validation.LottoNumberValidator;
 
 import java.util.List;
-import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;

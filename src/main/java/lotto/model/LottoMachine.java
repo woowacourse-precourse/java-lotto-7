@@ -16,8 +16,4 @@ public class LottoMachine {
     public WinningNumbers getWinningNumbers() {
         return winningNumbers;
     }
-
-
-
-
 }
