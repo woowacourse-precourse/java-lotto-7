@@ -155,6 +155,27 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외상황_처리후_재시도_테스트() {
+        assertSimpleTest(() -> {
+            // 첫 번째 시도: 잘못된 입력
+            runException("1000j");
+            assertThat(output()).contains("[ERROR] 숫자를 입력해 주세요.");
+
+            // 두 번째 시도: 잘못된 당첨 번호 형식
+            runException("1000", "1,2,3,4,5,a", "7");
+            assertThat(output()).contains("[ERROR] 올바른 형식으로 입력해 주세요.");
+
+            // 세 번째 시도: 올바른 입력으로 재시도
+            run("1000", "1,2,3,4,5,6", "7");
+            assertThat(output())
+                    .contains("1개를 구매했습니다.")
+                    .contains("당첨 통계")
+                    .contains("총 수익률은");
+
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
