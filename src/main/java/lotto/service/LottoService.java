@@ -42,8 +42,8 @@ public class LottoService {
         return new Numbers(input);
     }
 
-    public lotto.domain.Number getBonusNumber(Numbers winNumbers, String input) {
-        lotto.domain.Number bonusNumber = new lotto.domain.Number(input);
+    public Number getBonusNumber(Numbers winNumbers, String input) {
+        Number bonusNumber = new Number(input);
         Number.validateBonusNumber(winNumbers, bonusNumber);
         return bonusNumber;
     }
