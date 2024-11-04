@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
 public class LottoGame {
-    private final int Lotto_PRICE = 1000;
     private final LottoMachine lottoMachine = new LottoMachine();
     private List<Lotto> userTickets;
     private Lotto winningTicket;
@@ -115,7 +113,7 @@ public class LottoGame {
     }
 
     private void printMatchResult(int[] matchCounts) {
-        System.out.println("\n당첨 통계\n---");
+        System.out.println("당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + matchCounts[4] + "개");
         System.out.println("4개 일치 (50,000원) - " + matchCounts[3] + "개");
         System.out.println("5개 일치 (1,500,000원) - " + matchCounts[2] + "개");
@@ -124,7 +122,7 @@ public class LottoGame {
     }
 
     private void printProfitRate(int totalPrize) {
-        int totalSpent = userTickets.size() * Lotto_PRICE;
+        int totalSpent = userTickets.size() * 1000;
         double profitRate = (double) totalPrize / totalSpent * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
