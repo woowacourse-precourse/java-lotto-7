@@ -19,7 +19,7 @@ public class LottoInput {
             int price = parsePrice(userInput);
             validatePrice(price);
 
-            return new LottoIssueCountDTO(price);
+            return new LottoIssueCountDTO(price / 1000);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getIssueCount();
@@ -128,12 +128,12 @@ public class LottoInput {
     private static boolean validateNumbersDuplicate(List<Integer> numbers, Integer... args) {
         Set<Integer> testSet = new HashSet<>(numbers);
         int numbersCount = numbers.size();
-        if ( args.length > 0 ) {
+        if (args.length > 0) {
             testSet.addAll(Arrays.asList(args));
             numbersCount += args.length;
         }
 
-        if ( testSet.size() != numbersCount ) {
+        if (testSet.size() != numbersCount) {
             throw new DuplicateLottoNumberException();
         }
 
