@@ -12,7 +12,7 @@ import lotto.validation.Validator;
 
 public class ValidatorFactory {
     public static Validator<Integer> createNumberRangeValidator(int min, int max) {
-        return new NumberRangeValidator(min, max, ErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
+        return new NumberRangeValidator(min, max, ErrorMessages.NUMBER_OUT_OF_RANGE);
     }
 
     public static Validator<List<Integer>> createUniqueNumberValidator() {

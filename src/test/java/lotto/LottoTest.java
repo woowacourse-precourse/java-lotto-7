@@ -28,11 +28,11 @@ class LottoTest {
     void 로또_번호가_1부터_45_사이가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining("로또 게임에서 사용되는 번호는 1부터 45 사이의 숫자여야 합니다");
 
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining("로또 게임에서 사용되는 번호는 1부터 45 사이의 숫자여야 합니다");
     }
 
     @DisplayName("로또 번호를 올바르게 반환한다.")

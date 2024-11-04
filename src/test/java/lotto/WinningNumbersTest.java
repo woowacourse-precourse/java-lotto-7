@@ -21,7 +21,7 @@ public class WinningNumbersTest {
     void 당첨_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new WinningNumbers("1,2,3,4,5,5"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("당첨 번호는 중복되지 않는 숫자여야 합니다.");
+                .hasMessageContaining("로또 게임에서 사용되는 번호는 중복되지 않는 숫자여야 합니다.");
     }
 
     @DisplayName("당첨 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다.")
@@ -29,6 +29,6 @@ public class WinningNumbersTest {
     void 당첨_번호가_1부터_45_사이가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> new WinningNumbers("0,2,3,4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining("로또 게임에서 사용되는 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 }
