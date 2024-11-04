@@ -37,4 +37,5 @@ public class LottoResults {
     public Map<Rank, Integer> getResultMap() {
         return resultMap;
     }
+
 }
