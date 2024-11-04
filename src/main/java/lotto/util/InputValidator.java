@@ -2,10 +2,9 @@ package lotto.util;
 
 import java.util.Arrays;
 import lotto.common.ErrorMessage;
+import lotto.common.LottoConstants;
 
 public class InputValidator {
-
-    private static final String WINNING_NUMBER_DELIMITER = ",";
 
     public static void validateNotBlankAndInteger(String input) {
         InputValidator.validateNotBlank(input);
@@ -24,7 +23,7 @@ public class InputValidator {
     }
 
     private static void validateAllInteger(String input) {
-        String[] elements = input.split(WINNING_NUMBER_DELIMITER);
+        String[] elements = input.split(LottoConstants.WINNING_NUMBER_DELIMITER);
         Arrays.stream(elements).forEach(InputValidator::validateInteger);
     }
 

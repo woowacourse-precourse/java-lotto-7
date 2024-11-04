@@ -3,12 +3,9 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.common.LottoConstants;
 
 public class AutomaticLottoMachine implements LottoMachine {
-
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int LOTTO_SIZE = 6;
 
     @Override
     public LottoTickets generateLottoTickets(int ticketCount) {
@@ -23,6 +20,6 @@ public class AutomaticLottoMachine implements LottoMachine {
     }
 
     private List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE);
+        return Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER, LottoConstants.MAX_NUMBER, LottoConstants.LOTTO_SIZE);
     }
 }

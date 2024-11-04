@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.common.ErrorMessage;
+import lotto.common.LottoConstants;
 
 public class Lotto {
-
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int LOTTO_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -30,7 +27,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LottoConstants.LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_SIZE);
         }
     }
@@ -48,6 +45,6 @@ public class Lotto {
     }
 
     private boolean isOutOfRange(int number) {
-        return number < MIN_NUMBER || number > MAX_NUMBER;
+        return number < LottoConstants.MIN_NUMBER || number > LottoConstants.MAX_NUMBER;
     }
 }

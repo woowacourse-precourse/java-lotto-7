@@ -1,11 +1,9 @@
 package lotto.domain;
 
 import lotto.common.ErrorMessage;
+import lotto.common.LottoConstants;
 
 public class WinningLotto {
-
-    private static final int MIN_BONUS_NUMBER = 1;
-    private static final int MAX_BONUS_NUMBER = 45;
 
     private final Lotto winningNumbers;
     private final int bonusNumber;
@@ -28,7 +26,7 @@ public class WinningLotto {
     }
 
     private void validateRange(int bonusNumber) {
-        if (bonusNumber < MIN_BONUS_NUMBER || bonusNumber > MAX_BONUS_NUMBER) {
+        if (bonusNumber < LottoConstants.MIN_NUMBER || bonusNumber > LottoConstants.MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE);
         }
     }

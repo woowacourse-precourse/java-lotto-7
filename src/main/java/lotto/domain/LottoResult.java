@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class LottoResult {
 
+    private static final int DEFAULT_COUNT = 0;
     private final Map<Rank, Integer> result;
 
     public LottoResult(LottoTickets lottoTickets, WinningLotto winningLotto) {
@@ -17,7 +18,7 @@ public class LottoResult {
     }
 
     public int get(Rank rank) {
-        return result.getOrDefault(rank, 0);
+        return result.getOrDefault(rank, DEFAULT_COUNT);
     }
 
     private long calculateTotalPrize() {
@@ -38,7 +39,7 @@ public class LottoResult {
     private Map<Rank, Integer> initializeResult() {
         Map<Rank, Integer> result = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
-            result.put(rank, 0);
+            result.put(rank, DEFAULT_COUNT);
         }
         return result;
     }

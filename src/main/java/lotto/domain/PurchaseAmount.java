@@ -1,11 +1,10 @@
 package lotto.domain;
 
 import lotto.common.ErrorMessage;
+import lotto.common.LottoConstants;
 
 public class PurchaseAmount {
 
-    private static final int LOTTO_PRICE = 1_000;
-    private static final int ZERO = 0;
     private final int amount;
 
     public PurchaseAmount(int amount) {
@@ -14,7 +13,7 @@ public class PurchaseAmount {
     }
 
     public int calculateLottoCount() {
-        return amount / LOTTO_PRICE;
+        return amount / LottoConstants.LOTTO_PRICE;
     }
 
     public int getAmount() {
@@ -27,13 +26,13 @@ public class PurchaseAmount {
     }
 
     private void validatePositive(int amount) {
-        if (amount <= ZERO) {
+        if (amount <= 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_POSITIVE);
         }
     }
 
     private static void validateThousandUnit(int amount) {
-        if (amount % LOTTO_PRICE != ZERO) {
+        if (amount % LottoConstants.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_THOUSAND_UNIT);
         }
     }
