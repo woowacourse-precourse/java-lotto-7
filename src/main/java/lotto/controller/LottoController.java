@@ -25,6 +25,12 @@ public class LottoController {
         this.outputController = new OutputController(new OutputService(), outputView);
     }
 
+    public LottoController(InputView inputView, OutputView outputView) { // 테스트를 위한 생성자
+        this.inputController = new InputController(inputView);
+        this.lottoService = new LottoService();
+        this.outputController = new OutputController(new OutputService(), outputView);
+    }
+
     public void run() {
         Money money = inputController.getMoney();
         int lottoCount = money.getLottoCount();
