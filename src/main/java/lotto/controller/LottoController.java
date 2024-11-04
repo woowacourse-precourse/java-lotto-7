@@ -1,11 +1,13 @@
 package lotto.controller;
 
+import lotto.domain.Lottos;
 import lotto.dto.PurchaseAmount;
 import lotto.view.InputView;
 
 public class LottoController {
     public void run() {
         PurchaseAmount purchaseAmount = getValidLottoPurchaseAmount();
+        Lottos lottos = new Lottos(purchaseAmount);
     }
 
     public PurchaseAmount getValidLottoPurchaseAmount() {
@@ -14,7 +16,7 @@ public class LottoController {
             return purchaseAmount;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            getValidLottoPurchaseAmount();
+            return getValidLottoPurchaseAmount();
         }
     }
 }
