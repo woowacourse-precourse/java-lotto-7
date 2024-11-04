@@ -59,3 +59,6 @@
   - 숫자 외의 문자를 입력 (음수의 `-`기호 포함)
   - 로또 번호의 범위에 벗어나는 숫자을 입력
   - 로또 당첨 번호 숫자들 중 겹치는 숫자가 있음
+
+## 순서도
+![lotto](https://github.com/user-attachments/assets/10eceb12-d42f-4a3d-964d-cd235f28389e)
