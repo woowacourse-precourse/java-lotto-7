@@ -1,11 +1,11 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -21,5 +21,64 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("6개 전부 일치")
+    @Test
+    void testSixMatches() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        int result = lotto.countMatchingWinningNumbers(winningNumbers, bonusNumber);
+
+        assertThat(result).isEqualTo(6);
+    }
+
+    @DisplayName("5개 일치 + 보너스 번호 일치")
+    @Test
+    void testFiveMatchesWithBonus() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7);
+        int bonusNumber = 6;
+
+        int result = lotto.countMatchingWinningNumbers(winningNumbers, bonusNumber);
+
+        assertThat(result).isEqualTo(-1);
+    }
+
+    @DisplayName("5개 일치, 보너스 번호는 일치하지 않음")
+    @Test
+    void testFiveMatchesWithoutBonus() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 9);
+        int bonusNumber = 6;
+
+        int result = lotto.countMatchingWinningNumbers(winningNumbers, bonusNumber);
+
+        assertThat(result).isEqualTo(5);
+    }
+
+    @DisplayName("4개 일치")
+    @Test
+    void testFourMatches() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 10, 11));
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 7, 8);
+        int bonusNumber = 6;
+
+        int result = lotto.countMatchingWinningNumbers(winningNumbers, bonusNumber);
+
+        assertThat(result).isEqualTo(4);
+    }
+
+    @DisplayName("일치 없음")
+    @Test
+    void testNoMatches() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> winningNumbers = List.of(7, 8, 9, 10, 11, 12);
+        int bonusNumber = 13;
+
+        int result = lotto.countMatchingWinningNumbers(winningNumbers, bonusNumber);
+
+        assertThat(result).isEqualTo(0);
+    }
+
 }
