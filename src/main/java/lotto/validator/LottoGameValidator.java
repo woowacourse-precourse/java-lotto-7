@@ -2,7 +2,7 @@ package lotto.validator;
 
 import java.util.List;
 import lotto.ErrorMessage;
-import lotto.Lotto;
+import lotto.policy.LottoPolicy;
 
 public class LottoGameValidator {
 
@@ -31,7 +31,7 @@ public class LottoGameValidator {
         if (money < 0) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_CAN_NOT_MINUS.getMessage());
         }
-        if (!CommonValidator.isDivided(money, Lotto.LOTTO_PRICE)) {
+        if (!CommonValidator.isDivided(money, LottoPolicy.LOTTO_PRICE)) {
             throw new IllegalArgumentException(ErrorMessage.INSERT_MONEY_NOT_DIVIDED_1000.getMessage());
         }
 
@@ -39,14 +39,14 @@ public class LottoGameValidator {
     }
 
     public static boolean checkWinNumbersValid(List<Integer> winNumbers) {
-        if (winNumbers.size() != Lotto.TOTAL_LOTTO_COUNT) {
+        if (winNumbers.size() != LottoPolicy.TOTAL_LOTTO_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.WIN_NUMBER_SIZE_MUST_6.getMessage());
         }
         if (CommonValidator.hasDuplicateNumber(winNumbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WIN_NUMBERS.getMessage());
         }
         for (int winNum : winNumbers) {
-            if (!CommonValidator.isBetween(Lotto.MIN_LOTTO_NUM, winNum, Lotto.MAX_LOTTO_NUM)) {
+            if (!CommonValidator.isBetween(LottoPolicy.MIN_LOTTO_NUM, winNum, LottoPolicy.MAX_LOTTO_NUM)) {
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_BETWEEN_1_AND_45.getMessage());
             }
         }
@@ -58,7 +58,7 @@ public class LottoGameValidator {
         if (winNumbers.contains(bonus)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE_WIN_NUMBERS.getMessage());
         }
-        if (!CommonValidator.isBetween(Lotto.MIN_LOTTO_NUM, bonus, Lotto.MAX_LOTTO_NUM)) {
+        if (!CommonValidator.isBetween(LottoPolicy.MIN_LOTTO_NUM, bonus, LottoPolicy.MAX_LOTTO_NUM)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_BETWEEN_1_AND_45.getMessage());
         }
 

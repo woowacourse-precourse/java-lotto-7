@@ -2,14 +2,10 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.policy.LottoPolicy;
 import lotto.validator.CommonValidator;
 
 public class Lotto {
-
-    public static final int MIN_LOTTO_NUM = 1;
-    public static final int MAX_LOTTO_NUM = 45;
-    public static final int TOTAL_LOTTO_COUNT = 6;
-    public static final int LOTTO_PRICE = 1000;
 
     private final List<Integer> numbers;
 
@@ -26,7 +22,7 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WIN_NUMBERS.getMessage());
         }
         for (int num : numbers) {
-            if (!CommonValidator.isBetween(MIN_LOTTO_NUM, num, MAX_LOTTO_NUM)) {
+            if (!CommonValidator.isBetween(LottoPolicy.MIN_LOTTO_NUM, num, LottoPolicy.MAX_LOTTO_NUM)) {
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_BETWEEN_1_AND_45.getMessage());
             }
         }
