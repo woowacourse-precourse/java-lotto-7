@@ -21,7 +21,7 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
             }
         }
-        if(numbers.stream().collect(Collectors.toSet()).size() < 6) {
+        if (numbers.stream().collect(Collectors.toSet()).size() < 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
@@ -31,36 +31,37 @@ public class Lotto {
     public int getLottoRank(List<Integer> winningLotto, Integer bonusNumber) {
         int countMatchingNumber = 0;
         boolean hasBonusNumber = false;
-        for(Integer number : numbers) {
-            if(winningLotto.contains(number)) {
-                countMatchingNumber ++;
+        for (Integer number : numbers) {
+            if (winningLotto.contains(number)) {
+                countMatchingNumber++;
             }
         }
-        if(numbers.contains(bonusNumber)) {
+        if (numbers.contains(bonusNumber)) {
             hasBonusNumber = true;
         }
-        if(countMatchingNumber < 3) {
+        if (countMatchingNumber < 3) {
             return LottoRank.NONE.getRank();
         }
         return getRank(countMatchingNumber, hasBonusNumber);
     }
 
     public int getRank(int countMatchingNumber, boolean hasBonusNumber) {
-        if(countMatchingNumber == 6) {
+        if (countMatchingNumber == 6) {
             return LottoRank.FIRST.getRank();
         }
-        if(countMatchingNumber == 5 && hasBonusNumber) {
+        if (countMatchingNumber == 5 && hasBonusNumber) {
             return LottoRank.SECOND.getRank();
         }
-        if(countMatchingNumber == 5) {
+        if (countMatchingNumber == 5) {
             return LottoRank.THIRD.getRank();
         }
-        if(countMatchingNumber == 4) {
+        if (countMatchingNumber == 4) {
             return LottoRank.FOURTH.getRank();
         }
-        if(countMatchingNumber == 3) {
+        if (countMatchingNumber == 3) {
             return LottoRank.FIFTH.getRank();
         }
+        return LottoRank.NONE.getRank();
     }
 
     public List<Integer> getNumbers() {
