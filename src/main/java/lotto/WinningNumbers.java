@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.enums.Delimiter;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoRange;
 
@@ -8,7 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 
 public class WinningNumbers {
-    private final static String DELIMITER = ",";
     private final List<Integer> winningNumbers;
 
     public WinningNumbers(String winningNumbers) {
@@ -36,7 +36,7 @@ public class WinningNumbers {
 
     private List<Integer> splitWinningNumbers(String winningNumbers) {
         List<Integer> parsedNumbers = new ArrayList<>();
-        for (String winningNumber : winningNumbers.split(DELIMITER)) {
+        for (String winningNumber : winningNumbers.split(Delimiter.COMMA.getDelimiter())) {
             try {
                 parsedNumbers.add(Integer.parseInt(winningNumber.trim()));
             } catch (NumberFormatException e) {
