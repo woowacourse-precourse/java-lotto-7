@@ -12,15 +12,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         numbers.sort(Integer::compareTo); // 오름차순 정렬
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ExceptionEnum.LOTTO_NUMBERS_SIZE_SIX.getMessage());
-        }
     }
 
     public void start(OutputView outputView, InputView inputView) {

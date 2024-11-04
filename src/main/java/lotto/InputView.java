@@ -1,8 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import lotto.EnumManagement.InputViewEnum;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -11,6 +9,7 @@ public class InputView {
     private final int lottoCount;
     private List<Integer> lottoNumbers;
     private int bonusNumber;
+    private final Exception exception = new Exception();
     final int LOTTO_PRICE = 1000;
 
     public InputView() {
@@ -19,29 +18,44 @@ public class InputView {
     }
 
     public int lottoPurchase() {
-        System.out.println(InputViewEnum.PURCHASE_AMOUNT.getMessage());
-        String lottoPurchase = Console.readLine();
-        return Integer.parseInt(lottoPurchase);
+        while (true) {
+            System.out.println(InputViewEnum.PURCHASE_AMOUNT.getMessage());
+            String lottoPurchase = Console.readLine();
+            try {
+                return exception.validateLottoPurchase(lottoPurchase);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void bonusNumber() {
-        System.out.println(InputViewEnum.BONUS_NUMBER.getMessage());
-        String bonusNumber = Console.readLine();
-        this.bonusNumber = Integer.parseInt(bonusNumber);
+        while (true) {
+            System.out.println(InputViewEnum.BONUS_NUMBER.getMessage());
+            String bonusNumberInput = Console.readLine();
+            try {
+                this.bonusNumber = exception.validateLottoPurchase(bonusNumberInput);
+                exception.validateBonusNumber(this.bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void lottoNumbers() {
-        System.out.println(InputViewEnum.LOTTO_NUMBER.getMessage());
-        String rawNumbers = Console.readLine();
-        String[] rawNumberSplit = rawNumbers.split(",");
-        List<Integer> lottoNumbers = new ArrayList<>();
+        while (true) {
+            System.out.println(InputViewEnum.LOTTO_NUMBER.getMessage());
+            String rawNumbers = Console.readLine();
 
-        for (String numberInput : rawNumberSplit) {
-            int number = Integer.parseInt(numberInput);
-            lottoNumbers.add(number);
+            try{
+                this.lottoNumbers = exception.parseLottoNumbers(rawNumbers);
+                break;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+
         }
-
-        this.lottoNumbers = lottoNumbers;
     }
 
     public void inputStart(OutputView outputView) {
