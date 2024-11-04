@@ -11,6 +11,7 @@ public class WinningType {
     }
 
     public WinningType(WinningType winningType) {
+        this.sameCount = winningType.sameCount;
         this.prize = winningType.prize;
     }
 
