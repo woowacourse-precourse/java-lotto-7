@@ -1,9 +1,8 @@
 package lotto.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.Rank;
-import lotto.model.WinningResult;
 
 public class OutputView {
 
@@ -16,12 +15,12 @@ public class OutputView {
     }
 
     public void printPurchasePrompt(int number) {
-        System.out.println(number + "개를 구입했습니다.");
+        System.out.println(number + "개를 구매했습니다.");
     }
 
     public void printLottoes(List<Lotto> lottoes) {
         for (Lotto lotto : lottoes) {
-            List<Integer> numbers = lotto.getNumbers();
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
             numbers.sort(Integer::compareTo); // 오름차순 정렬
             System.out.println(numbers); // [ ] 안에 출력되도록 toString 형태로 출력
         }
