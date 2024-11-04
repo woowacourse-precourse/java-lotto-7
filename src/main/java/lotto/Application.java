@@ -12,5 +12,7 @@ public class Application {
 
         lottoController.checkWinningNumbers();
         lottoView.printLottoRanksInfo();
+
+        lottoView.printLottoPrizeInfo();
     }
 }

@@ -86,4 +86,17 @@ public class LottoController {
             LottoRank.setLottoRank(matchCount, bonusMatched);
         }
     }
+
+    public int calculateTotalPrize() {
+        int totalPrize = 0;
+        for (LottoRank lottoRank : LottoRank.VALUES) {
+            totalPrize += lottoRank.getPrizeAmount() * lottoRank.getCount();
+        }
+        return totalPrize;
+    }
+
+    public double calculateProfitRate(int totalPrize) {
+        double profitRate = (totalPrize * 100.0) / purchaseAmount;
+        return Math.round(profitRate * 100) / 100.0;
+    }
 }
