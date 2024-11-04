@@ -13,9 +13,9 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateWinnerNumberRangeAndCount(numbers);
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        this.numbers = sortedNumbers;
+        this.numbers = numbers.stream()
+                .sorted()
+                .toList();
     }
 
     @Override
