@@ -2,6 +2,7 @@ package domain;
 
 import lotto.Lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoResult {
@@ -57,6 +58,6 @@ public class LottoResult {
     }
 
     public void setPurchasedLottos(List<Lotto> purchasedLottos) {
-        this.purchasedLottos = purchasedLottos;
+        this.purchasedLottos = new ArrayList<>(purchasedLottos);
     }
 }
