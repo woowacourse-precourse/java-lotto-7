@@ -10,11 +10,13 @@ public class LottoTickets {
 
     public LottoTickets(int ticket) {
         List<List<Integer>> lottoTickets = new ArrayList<>();
+
         for (int count = 0; count < ticket; count++) {
             List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers);
             lottoTickets.add(numbers);
         }
+
         this.lottoTickets = lottoTickets;
     }
 
@@ -24,8 +26,10 @@ public class LottoTickets {
 
     public int[] createLottoRank(Lotto lotto, int bonus) {
         int[] lottoRank = new int[6];
+
         for (List<Integer> numbers : lottoTickets) {
             int correct = lotto.countCorrect(numbers, bonus);
+
             if (correct == 3) {
                 lottoRank[5]++;
             }
@@ -42,6 +46,7 @@ public class LottoTickets {
                 lottoRank[1]++;
             }
         }
+
         return lottoRank;
     }
 }

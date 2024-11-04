@@ -8,6 +8,7 @@ public class Money {
     public Money(int amount) {
         validateNonZero(amount);
         validateDivisibility(amount);
+
         this.amount = amount;
     }
 
@@ -29,6 +30,7 @@ public class Money {
 
     public double calculateRateOfReturn(int[] lottoRanks) {
         double totalWinnings = 0;
+
         for (int rank = 1; rank <= 5; rank++) {
             if (rank == 1) {
                 totalWinnings += 200000000 * lottoRanks[rank];
@@ -46,6 +48,7 @@ public class Money {
                 totalWinnings += 5000 * lottoRanks[rank];
             }
         }
+
         return (totalWinnings / amount) * 100;
     }
 }

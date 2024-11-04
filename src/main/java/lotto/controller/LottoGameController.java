@@ -21,8 +21,10 @@ public class LottoGameController {
 
     private void gameStart() {
         createMoney();
+
         int ticket = getTicket(money);
         createLottoTickets(ticket);
+
         createCorrectLotto();
         createBonusNumber();
     }
@@ -30,6 +32,7 @@ public class LottoGameController {
     private void gameResult() {
         int[] lottoRank = lottoTickets.createLottoRank(correctLotto, bonus);
         double rateOfReturn = money.calculateRateOfReturn(lottoRank);
+
         outputView.resultMessage(lottoRank, rateOfReturn);
     }
 
@@ -38,6 +41,7 @@ public class LottoGameController {
             try {
                 int temp = inputView.inputBonus();
                 correctLotto.checkBonus(temp);
+
                 bonus = temp;
                 break;
             } catch (IllegalArgumentException e) {
@@ -59,6 +63,7 @@ public class LottoGameController {
 
     private void createLottoTickets(int ticket) {
         lottoTickets = new LottoTickets(ticket);
+
         outputView.printLottoTickets(lottoTickets.getLottoTickets());
     }
 
@@ -75,6 +80,7 @@ public class LottoGameController {
 
     private int getTicket(Money money) {
         int ticket = money.calculateNumberOfTickets();
+
         outputView.moneyInputResultMessage(ticket);
         return ticket;
     }

@@ -30,11 +30,13 @@ public class OutputView {
     public void resultMessage(int[] lottoRank, double rateOfReturn) {
         println();
         println(GAME_RESULT_MESSAGE);
+
         printf(RANK_5_MESSAGE, lottoRank[5]);
         printf(RANK_4_MESSAGE, lottoRank[4]);
         printf(RANK_3_MESSAGE, lottoRank[3]);
         printf(RANK_2_MESSAGE, lottoRank[2]);
         printf(RANK_1_MESSAGE, lottoRank[1]);
+
         printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
 
@@ -60,6 +62,7 @@ public class OutputView {
         for (List<Integer> lotto : lottoTickets) {
             System.out.println(lotto);
         }
+
         println();
     }
 }

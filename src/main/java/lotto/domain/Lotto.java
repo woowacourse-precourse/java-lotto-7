@@ -12,6 +12,7 @@ public class Lotto {
         validateSize(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
+
         this.numbers = numbers;
     }
 
@@ -23,6 +24,7 @@ public class Lotto {
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> setNumbers = new HashSet<>(numbers);
+
         if (setNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(Error.LOTTO_DUPLICATE_ERROR.message());
         }
@@ -44,16 +46,17 @@ public class Lotto {
 
     public int countCorrect(List<Integer> lotto, int bonus) {
         int count = 0;
+
         for (int num : lotto) {
             if (numbers.contains(num)) {
                 count++;
             }
         }
-        if (count == 5) {
-            if (lotto.contains(bonus)) {
-                count = 7;
-            }
+
+        if (count == 5 && lotto.contains(bonus)) {
+            count = 7;
         }
+
         return count;
     }
 }
