@@ -71,9 +71,9 @@ public class LottoModel {
     }
 
     public double calculateRateOfReturn(int LottoPrice ) {
-        int lottoCount = lottoRepository.size();
-        int totalExpense = lottoCount* LottoPrice;
-        int totalReturn = 0;
+        long lottoCount = lottoRepository.size();
+        long totalExpense = lottoCount* LottoPrice;
+        long totalReturn = 0;
         int rate = 100;
 
         Map<PrizeTier,Integer> winningInfo = this.getWinningInfo();
@@ -81,7 +81,8 @@ public class LottoModel {
         PrizeTier[] winningPrizes = PrizeTier.getWinningPrizeTierValues();
 
         for(PrizeTier prize : winningPrizes){
-            totalReturn += prize.getPrizeMoney();
+            int prizeCount = winningInfo.get(prize);
+            totalReturn +=  prizeCount * (long) prize.getPrizeMoney();
         }
 
         return totalReturn/(double) totalExpense * rate;
