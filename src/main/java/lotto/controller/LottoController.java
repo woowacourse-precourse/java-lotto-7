@@ -27,7 +27,7 @@ public class LottoController {
     public void run() {
         // 로또 구입 금액 입력
         outputView.askPurchasePrice();
-        int purchasePrice = getValidPurchasePrice();
+        int purchasePrice = getPurchasePrice();
 
         //로또 번호 구매
         int lottoCount = getLottoCount(purchasePrice);
@@ -54,10 +54,10 @@ public class LottoController {
         outputView.printResult(winningResult, returnResult);
     }
 
-    private int getValidPurchasePrice() {
+    private int getPurchasePrice() {
         while (true) {
             try {
-                String input = inputView.inputPurchasePrice();
+                String input = inputView.purchasePrice();
                 lottoValidation.validateBlank(input);
                 int purchasePrice = lottoValidation.validateParsing(input);
                 lottoValidation.validatePositive(purchasePrice);
@@ -80,7 +80,7 @@ public class LottoController {
     private void getValidWinningNumber() {
         while (true) {
             try {
-                String input = inputView.inputWinningNumber();
+                String input = inputView.winningNumber();
                 lottoValidation.validateBlank(input);
                 List<String> splitNumber = List.of(input.split(COMMA));
                 List<Integer> winningNumbers = lottoValidation.validateParsing(splitNumber);
@@ -95,7 +95,7 @@ public class LottoController {
     private void getValidBonusNumber() {
         while (true) {
             try {
-                String input = inputView.inputBonusNumber();
+                String input = inputView.bonusNumber();
                 lottoValidation.validateBlank(input);
                 int bonusNumber = lottoValidation.validateParsing(input);
                 lottoService.validateBonusNumber(bonusNumber);

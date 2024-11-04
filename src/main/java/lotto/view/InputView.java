@@ -3,15 +3,15 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    public String inputPurchasePrice() {
+    public String purchasePrice() {
         return Console.readLine();
     }
 
-    public String inputWinningNumber(){
+    public String winningNumber() {
         return Console.readLine();
     }
 
-    public String inputBonusNumber(){
+    public String bonusNumber() {
         return Console.readLine();
     }
 }
