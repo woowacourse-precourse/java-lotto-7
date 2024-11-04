@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Prize;
+import lotto.domain.PurchaseAmount;
 import lotto.dto.LottoResponse;
 import lotto.dto.PrizeResponse;
 import lotto.repository.LottoRepository;
@@ -40,6 +41,16 @@ public class LottoService {
         }
 
         return mapToPrizeResponses(winningCounts);
+    }
+
+    public double calculateProfitRate(PurchaseAmount purchaseAmount, List<PrizeResponse> prizeResponses) {
+        int totalProfit = 0;
+        for (PrizeResponse prizeResponse : prizeResponses) {
+            totalProfit += prizeResponse.prizeMoney();
+        }
+        double value = ((double) totalProfit / purchaseAmount.getAmount()) * 100;
+
+        return Math.round(value * 100.0) / 100.0;
     }
 
     private Prize calculatePrize(Lotto winningLotto, boolean containsBonusNumber, List<Integer> numbers) {
