@@ -45,4 +45,20 @@ public class InputView implements Input {
         }
         return str;
     }
+
+    @Override
+    public int requestBonusNumber() {
+        int bonusNumber = 0;
+        while(true) {
+            try {
+                System.out.println(InfoMessage.REQUEST_BONUS_NUMBER);
+                bonusNumber = Integer.parseInt(Console.readLine());
+                exceptionHandler.validateBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessage.INVALID_WINNING_NUMBERS);
+            }
+        }
+        return bonusNumber;
+    }
 }

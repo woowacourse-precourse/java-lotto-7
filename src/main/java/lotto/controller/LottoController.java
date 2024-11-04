@@ -22,11 +22,18 @@ public class LottoController {
     public void run() {
         int purchaseAmount = inputView.requestPurchaseAmount();
         int cnt = lottoService.calculateLottoCount(purchaseAmount);
-        System.out.println(cnt + resultView.responseCntLotto());
+
+        System.out.println("\n" + cnt + resultView.responseCntLotto());
+
         List<List<Integer>> lottoNumbersList = lottoService.lottoNumbers(cnt);
         for (List<Integer> lottoNumber : lottoNumbersList) {
             System.out.println(lottoNumber);
         }
+
+        String str = inputView.requestLottoNumbers();
+        List<Integer> winningNumbers = lottoService.extractWinningNumbersFromString(str);
+
+        int bonusNumber = inputView.requestBonusNumber();
 
     }
 }

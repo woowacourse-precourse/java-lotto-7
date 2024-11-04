@@ -18,4 +18,10 @@ public class ExceptionHandler {
             }
         }
     }
+
+    public void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS.getMessage());
+        }
+    }
 }
