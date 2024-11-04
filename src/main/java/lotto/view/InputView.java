@@ -32,6 +32,7 @@ public class InputView {
         String input = Console.readLine();
         validateInputIsNull(input);
         List<String> inputStrings = StringParser.splitByCommaAndTrim(input);
+        validateInputNumbers(inputStrings);
         return inputStrings.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -40,6 +41,12 @@ public class InputView {
     private static void validateInputIsNull(String input) {
         if (Objects.isNull(input) || input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
+        }
+    }
+
+    private static void validateInputNumbers(List<String> inputStrings) {
+        for (String input : inputStrings) {
+            validateIsNumber(input);
         }
     }
 

@@ -64,4 +64,16 @@ public class InputViewTest {
         // when, then
         assertEquals(List.of(1, 2, 3, 4, 5, 6), InputView.getWinningNumbers());
     }
+
+    @Test
+    void 당첨_번호_숫자_아닌값_입력_에러_발생() {
+        // given
+        String invalidInput = "1,2,three,four,5,six\n";
+        System.setIn(new ByteArrayInputStream(invalidInput.getBytes()));
+
+        // when, then
+        assertThatThrownBy(InputView::getWinningNumbers)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자를 입력해야 합니다.");
+    }
 }
