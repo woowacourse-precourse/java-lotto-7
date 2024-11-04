@@ -8,4 +8,9 @@ public class Validator {
         }
     }
 
+    public void validateAmountUnit(int purchaseAmount) {
+        if (purchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위 입니다.");
+        }
+    }
 }
