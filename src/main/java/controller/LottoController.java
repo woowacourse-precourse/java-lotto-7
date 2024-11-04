@@ -1,8 +1,10 @@
 package controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import model.Lotto;
 import model.LottoResult;
 import service.LottoService;
+import util.Message;
 import view.InputView;
 import view.OutputView;
 
@@ -21,30 +23,37 @@ public class LottoController {
 
 
     public void start() {
-        int purchaseAmount = inputPurchaseAmount();
+        int purchaseAmount = inputPurchaseCost();
         List<Lotto> lottos = issueLottos(purchaseAmount);
 
         List<Integer> winningNumbers = inputWinningNumbers();
-        int bonusNumber = inputBonusNumber();
+        int bonusNumber = inputBonusNumber(winningNumbers);
 
         List<LottoResult> results = checkWinningResults(lottos, winningNumbers, bonusNumber);
         printResultsAndProfitRate(results, purchaseAmount);
     }
 
-    private int inputPurchaseAmount() {
+    private int inputPurchaseCost() {
         while (true) {
+            System.out.println(Message.PURCHASE_COST);
             try {
-                int purchaseAmount = inputView.inputPurchaseCost();
-                outputView.printTicketCount(purchaseAmount / 1000);
-                return purchaseAmount;
+                int purchaseCost = Integer.parseInt(Console.readLine().trim());
+                if (purchaseCost % 1000 != 0) {
+                    throw new IllegalArgumentException("구입 금액은 1,000원 단위여야 합니다.");
+                }
+                return purchaseCost;
+            } catch (NumberFormatException e) {
+                outputView.printError("유효한 숫자를 입력해 주세요.");
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
+
     }
 
     private List<Lotto> issueLottos(int purchaseAmount) {
         int ticketCount = purchaseAmount / 1000;
+        outputView.printTicketCount(ticketCount);
         List<Lotto> lottos = lottoService.issueLottos(ticketCount);
         outputView.printLottos(lottos);
         return lottos;
@@ -62,11 +71,10 @@ public class LottoController {
         }
     }
 
-    private int inputBonusNumber() {
+    private int inputBonusNumber(List<Integer >winningNumbers) {
         while (true) {
             try {
                 int bonusNumber = inputView.inputBonusNumber();
-                List<Integer> winningNumbers = inputWinningNumbers();
                 lottoService.validateBonusNumber(bonusNumber, winningNumbers);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
@@ -76,9 +84,7 @@ public class LottoController {
     }
 
     private List<LottoResult> checkWinningResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        return lottos.stream()
-                .map(lotto -> lottoService.checkWin(lotto, winningNumbers, bonusNumber))
-                .toList();
+        return lottos.stream().map(lotto -> lottoService.checkWin(lotto, winningNumbers, bonusNumber)).toList();
     }
 
     private void printResultsAndProfitRate(List<LottoResult> results, int purchaseAmount) {
