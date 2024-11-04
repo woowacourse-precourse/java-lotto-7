@@ -1,7 +1,6 @@
 package lotto.view.message;
 
 public enum OutputMessage {
-    // TODO: 문장으로 읽히는 enum 이름
     PURCHASE_AMOUNT("%d개를 구매했습니다."),
     WINNING_STATISTICS("당첨 통계"),
     SEPARATOR("---"),
