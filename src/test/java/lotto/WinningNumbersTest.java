@@ -98,4 +98,15 @@ public class WinningNumbersTest {
         });
         assertEquals(INVALID_WINNING_NUMBERS.message(), e.getMessage());
     }
+
+    @Test
+    void 당첨_번호가_한글이라면_예외발생() {
+        // given
+        String winningNumbers = "일,이,삼,사,오,육";
+        // when & then
+        LottoException e = assertThrows(LottoException.class, () -> {
+            WinningNumbersValidator.validate(winningNumbers);
+        });
+        assertEquals(INVALID_WINNING_NUMBERS.message(), e.getMessage());
+    }
 }
