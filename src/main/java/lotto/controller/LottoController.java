@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.Lotto;
 import lotto.model.LottoDrawMachine;
 import lotto.model.LottoPurchaseMachine;
-import lotto.model.LottoWinningStatics;
+import lotto.model.LottoWinningStatistics;
 import lotto.util.parser.InputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -43,7 +43,9 @@ public class LottoController {
         LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(winNumList, bonusNum);
 
         // 당첨 결과 확인 및 출력
-        LottoWinningStatics lottoWinningStatics = new LottoWinningStatics(lottos, lottoDrawMachine, purchaseAmount);
-        outputView.printStatistics(lottoWinningStatics);
+        LottoWinningStatistics lottoWinningStatistics = new LottoWinningStatistics(lottos, lottoDrawMachine,
+                purchaseAmount);
+        outputView.printStatistics(lottoWinningStatistics);
+
     }
 }

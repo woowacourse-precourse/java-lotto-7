@@ -5,20 +5,12 @@ import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
 
-public class LottoWinningStatics {
-    private static final Map<Integer, Long> PRIZE_MONEY = Map.of(
-            3, 5000L,
-            4, 50000L,
-            5, 1500000L,
-            6, 2000000000L
-    );
-
-    private static final long BONUS_PRIZE = 30000000L;
+public class LottoWinningStatistics {
     private List<Lotto> lottos;
     private LottoDrawMachine lottoDrawMachine;
     private int purchaseAmount;
 
-    public LottoWinningStatics(List<Lotto> lottos, LottoDrawMachine lottoDrawMachine, int purchaseAmount) {
+    public LottoWinningStatistics(List<Lotto> lottos, LottoDrawMachine lottoDrawMachine, int purchaseAmount) {
         this.lottos = lottos;
         this.lottoDrawMachine = lottoDrawMachine;
         this.purchaseAmount = purchaseAmount;
@@ -35,7 +27,7 @@ public class LottoWinningStatics {
         for (int i = 3; i <= 6; i++) {
             matchCountMap.put(i, 0);
         }
-        matchCountMap.put(7, 0);
+        matchCountMap.put(7, 0); // For bonus matches
         return matchCountMap;
     }
 
@@ -50,36 +42,36 @@ public class LottoWinningStatics {
 
     private void updateMatchCount(Map<Integer, Integer> matchCountMap, int matchCount, boolean bonusMatch) {
         if (matchCount == 5 && bonusMatch) {
-            matchCountMap.put(7, matchCountMap.get(7) + 1);
+            matchCountMap.put(7, matchCountMap.get(7) + 1); // Bonus match
         } else if (matchCount >= 3) {
             matchCountMap.put(matchCount, matchCountMap.get(matchCount) + 1);
         }
     }
 
     private int countMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
-        int count = 0;
-        for (int num : lottoNumbers) {
-            if (winningNumbers.contains(num)) {
-                count++;
-            }
-        }
-        return count;
+        return (int) lottoNumbers.stream().filter(winningNumbers::contains).count();
     }
 
     public double calculateYield() {
+        double totalWinnings = calculateTotalWinnings();
+
+        if (totalWinnings > purchaseAmount) {
+            return (totalWinnings / purchaseAmount) * 100;
+        }
+        return ((totalWinnings - purchaseAmount) / purchaseAmount) * 100;
+    }
+
+
+    private double calculateTotalWinnings() {
         double totalWinnings = 0.0;
         Map<Integer, Integer> matchCountMap = calculateStatistics();
 
-        for (int i = 3; i <= 6; i++) {
-            totalWinnings += (double) PRIZE_MONEY.get(i) * matchCountMap.get(i);
+        for (Prize prize : Prize.values()) {
+            if (prize.getMatchCount() <= 6) {
+                totalWinnings += (double) prize.getPrizeAmount() * matchCountMap.get(prize.getMatchCount());
+            }
         }
-        totalWinnings += (double) BONUS_PRIZE * matchCountMap.get(7);
-
-        if (totalWinnings < purchaseAmount) {
-            return ((totalWinnings - purchaseAmount) / purchaseAmount) * 100;
-        }
-
-        return (totalWinnings / purchaseAmount) * 100;
+        totalWinnings += (double) Prize.BONUS.getPrizeAmount() * matchCountMap.get(7);
+        return totalWinnings;
     }
-
 }
