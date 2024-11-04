@@ -22,15 +22,8 @@ public class LottoController {
 
     public void run() {
         int price;
-        while (true) {
-            try {
-                outputView.printGuide(GuideMessage.INPUT_PRICE);
-                price = inputView.inputPrice();
-                break;
-            } catch (Exception exception) {
-                outputView.printMessage(exception.getMessage());
-            }
-        }
+        outputView.printGuide(GuideMessage.INPUT_PRICE);
+        price = inputView.inputPrice();
 
         List<Lotto> purchasedLotto = lottoService.getSeveralLotto(
                 price / ConstantValue.LOTTO_PRICE
@@ -42,28 +35,14 @@ public class LottoController {
         outputView.printBlank();
 
         List<Integer> winningNumber;
-        while (true) {
-            try {
-                outputView.printGuide(GuideMessage.INPUT_LOTTO);
-                winningNumber = inputView.inputWinningNumbers();
-                outputView.printBlank();
-                break;
-            } catch (Exception exception) {
-                outputView.printMessage(exception.getMessage());
-            }
-        }
+        outputView.printGuide(GuideMessage.INPUT_LOTTO);
+        winningNumber = inputView.inputWinningNumbers();
+        outputView.printBlank();
 
         int bonusNumber;
-        while (true) {
-            try {
-                outputView.printGuide(GuideMessage.INPUT_BONUS);
-                bonusNumber = inputView.inputBonusNumber(winningNumber);
-                outputView.printBlank();
-                break;
-            } catch (Exception exception) {
-                outputView.printMessage(exception.getMessage());
-            }
-        }
+        outputView.printGuide(GuideMessage.INPUT_BONUS);
+        bonusNumber = inputView.inputBonusNumber(winningNumber);
+        outputView.printBlank();
 
         Map<String, Integer> countPrize = lottoService.countPrize(purchasedLotto, winningNumber, bonusNumber);
         float returnRate = lottoService.getReturnRate(countPrize, price);
