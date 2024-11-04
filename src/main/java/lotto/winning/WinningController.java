@@ -6,15 +6,15 @@ import java.util.Map;
 
 public class WinningController {
 
-    private final DrawService drawService;
+    private final WinningService winningService;
 
-    public WinningController(DrawService drawService) {
-        this.drawService = drawService;
+    public WinningController(WinningService winningService) {
+        this.winningService = winningService;
     }
 
     public void checkResult(WinningLotto winningLotto) {
-        Map<Rank, Integer> result = drawService.checkLotto(winningLotto);
-        drawService.saveStatistics(result);
+        Map<Rank, Integer> result = winningService.checkLotto(winningLotto);
+        winningService.saveStatistics(result);
     }
 
 

@@ -8,14 +8,14 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-public class DrawServiceImpl implements DrawService {
+public class WinningServiceImpl implements WinningService {
 
     private List<Integer> winningLottoNumbers;
     private int bonusNumber;
 
     private final VendingMachineRepository vendingMachineRepository;
 
-    public DrawServiceImpl(VendingMachineRepository vendingMachineRepository) {
+    public WinningServiceImpl(VendingMachineRepository vendingMachineRepository) {
         this.vendingMachineRepository = vendingMachineRepository;
     }
 

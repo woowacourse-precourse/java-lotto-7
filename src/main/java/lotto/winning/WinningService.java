@@ -5,7 +5,7 @@ import lotto.donghang.WinningLotto;
 
 import java.util.Map;
 
-public interface DrawService {
+public interface WinningService {
 
     Map<Rank, Integer> checkLotto(WinningLotto winningLotto);
 
