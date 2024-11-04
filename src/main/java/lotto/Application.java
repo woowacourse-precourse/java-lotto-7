@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class Application {
@@ -15,8 +17,14 @@ public class Application {
         haveLotto(lottoList);
 
         Lotto lotto = new Lotto(prizeNumbers());
-        lotto.addNumber(inputBonus());
-        checkPrize(lottoList, lotto.numbersList());
+        int bonusNum = lotto.bonusNumber(inputBonus());
+
+        Map<Integer, Long> prizeMap = new HashMap<>();
+        for (int i = 0; i <= 7; i++) {
+            prizeMap.put(i, 0L);
+        }
+        checkPrize(prizeMap, lottoList, lotto.numbersList(), bonusNum);
+        printPrize(prizeMap);
     }
 
     public static Long inputMoney() {
@@ -112,10 +120,36 @@ public class Application {
         }
     }
 
-    public static void checkPrize(List<List<Integer>> lottoList, List<Integer> numbersList) {
+    public static void checkPrize(Map<Integer, Long> prizeMap, List<List<Integer>> lottoList, List<Integer> numbersList,
+                                  int bonus) {
         for (List<Integer> lotto : lottoList) {
+            boolean checkBonus = lotto.contains(bonus);
             lotto.retainAll(numbersList);
+
+            if (checkBonus && (lotto.size() == 5)) {
+                amountPrize(prizeMap, 7);
+                continue;
+            }
+
+            amountPrize(prizeMap, lotto.size());
         }
+    }
+
+    public static void amountPrize(Map<Integer, Long> prizeMap, int count) {
+        for (Map.Entry<Integer, Long> entry : prizeMap.entrySet()) {
+            if (entry.getKey() == count) {
+                prizeMap.put(entry.getKey(), entry.getValue() + 1);
+            }
+        }
+
+    }
+
+    public static void printPrize(Map<Integer, Long> prizeMap) {
+        System.out.println("3개 일치 (5,000원) - " + prizeMap.get(3) + "개");
+        System.out.println("4개 일치 (50,000원) - " + prizeMap.get(4) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + prizeMap.get(5) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + prizeMap.get(7) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + prizeMap.get(6) + "개");
     }
 
 }
