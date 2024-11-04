@@ -18,5 +18,14 @@ public class Application {
         List<Lotto> purchasedLottos = LottoGame.buyLottoTickets(amount);
         System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
         purchasedLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = LottoGame.getWinningNumbers(Console.readLine());
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = LottoGame.getBonusNumber(Console.readLine());
+
+        System.out.println("당첨 번호: " + winningNumbers);
+        System.out.println("보너스 번호: " + bonusNumber);
     }
 }

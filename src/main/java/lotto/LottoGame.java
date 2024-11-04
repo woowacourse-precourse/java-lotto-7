@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoGame {
@@ -22,4 +23,18 @@ public class LottoGame {
         }
         return tickets;
     }
+
+        public static List<Integer> getWinningNumbers(String input) {
+            List<String> parts = Arrays.asList(input.split(","));
+            List<Integer> winningNumbers = new ArrayList<>();
+            for (String part : parts) {
+                winningNumbers.add(Integer.parseInt(part.trim()));
+            }
+            return winningNumbers;
+        }
+
+        public static int getBonusNumber(String input) {
+            return Integer.parseInt(input.trim());
+        }
+
 }
