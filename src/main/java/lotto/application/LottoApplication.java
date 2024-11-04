@@ -11,7 +11,7 @@ public class LottoApplication {
     public void run() {
         InputView inputView = new InputViewImpl();
         OutPutView outputView = new OutViewImpl();
-        InputMiddleController inputMiddleController = new InputMiddleController(inputView, outputView);
+        InputMiddleController inputMiddleController = new InputMiddleController(inputView);
         LottoController lottoController = new LottoController(outputView, inputMiddleController);
         lottoController.run();
     }

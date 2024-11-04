@@ -11,15 +11,12 @@ import static lotto.constant.ErrorMessage.PRINT_ERROR_MESSAGE;
 import java.util.List;
 import lotto.WinningLotto;
 import lotto.view.InputView;
-import lotto.view.OutPutView;
 
 public class InputMiddleController {
     private final InputView inputView;
-    private final OutPutView outPutView;
 
-    public InputMiddleController(InputView inputView, OutPutView outPutView) {
+    public InputMiddleController(InputView inputView) {
         this.inputView = inputView;
-        this.outPutView = outPutView;
     }
 
     public int getValidatedBuyingAmount() {
