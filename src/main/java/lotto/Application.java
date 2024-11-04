@@ -1,7 +1,14 @@
 package lotto;
 
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        // 1. 구입 금액 입력
+        int lottoCount = InputUtil.money();
+        // 2. 로또 생성
+        // 3. 당첨 번호 입력
+        // 4. 보너스 번호 입력
+        // 5. 당첨 통계 출력
     }
 }
