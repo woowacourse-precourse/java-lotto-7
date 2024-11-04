@@ -1,45 +1,20 @@
 package lotto.domain;
 
-import java.util.*;
+import lotto.util.Validator;
 
-import static lotto.constants.LottoConstants.MAX_NUMBER;
-import static lotto.constants.LottoConstants.MIN_NUMBER;
-import static lotto.constants.LottoErrorMessage.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        validateInRange(numbers);
-        validateDuplicates(numbers);
+        Validator.validateIntList(numbers);
 
         this.numbers = new ArrayList<>(numbers);
         Collections.sort(this.numbers);
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_NUMBER_SIZE.getMessage());
-        }
-    }
-
-    private void validateInRange(List<Integer> numbers) {
-        numbers.forEach(number -> {
-            if (number < MIN_NUMBER || number > MAX_NUMBER) {
-                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
-            }
-        });
-    }
-
-    private void validateDuplicates(List<Integer> numbers) {
-        Set<Integer> uniqueSet = new HashSet<>();
-        for (Integer i : numbers) {
-            if (!uniqueSet.add(i)) {
-                throw new IllegalArgumentException(DUPLICATE_INPUT_NUMBER.getMessage());
-            }
-        }
     }
 
     @Override
