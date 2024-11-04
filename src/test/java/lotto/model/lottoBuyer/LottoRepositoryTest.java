@@ -1,8 +1,6 @@
-package lotto.model.lottoRepository;
+package lotto.model.lottoBuyer;
 
 import lotto.model.lotto.Lotto;
-import lotto.model.lottoBuyer.InMemoryLottoRepository;
-import lotto.model.lottoBuyer.LottoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
