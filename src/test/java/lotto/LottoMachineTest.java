@@ -38,4 +38,17 @@ class LottoMachineTest {
         assertThat(lottoTickets).hasSize(count);
     }
 
+    @Test
+    void 로또_티켓이_중복_없이_6개로_구성되었는지_확인() {
+        LottoMachine lottoMachine = new LottoMachine();
+        int count = 5;
+        List<List<Integer>> lottoTickets = lottoMachine.generateLottoTickets(count);
+
+        for (List<Integer> ticket : lottoTickets) {
+            assertThat(ticket).hasSize(6);
+            assertThat(ticket).allMatch(num -> num >= 1 && num <= 45);
+            assertThat(ticket).doesNotHaveDuplicates();
+        }
+    }
+
 }
