@@ -6,6 +6,7 @@ import lotto.common.LottoResults;
 
 public class Results {
 
+    private static final BigDecimal HUNDRED = new BigDecimal("100");
     private final List<LottoResults> lottoResults;
 
     public Results(final List<LottoResults> lottoResults) {
@@ -24,7 +25,7 @@ public class Results {
         final BigDecimal sum = this.getSum();
         final BigDecimal payment = lottoPayment.getPayment();
 
-        return sum.divide(payment).multiply(new BigDecimal("100"));
+        return sum.divide(payment).multiply(HUNDRED);
     }
 
     public long getCount(final LottoResults targetResult) {

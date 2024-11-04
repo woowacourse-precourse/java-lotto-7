@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import lotto.exception.LottoArgumentException;
 
 public class LottoPayment {
+    private static final String PURCHASE_AMOUNT_ERROR_MESSAGE_FORMAT = "금액은 %d원 단위로 입력해야 합니다.";
     private static final BigDecimal LOTTO_PRICE = new BigDecimal(1000);
     private final BigDecimal purchaseAmount;
 
@@ -28,7 +29,7 @@ public class LottoPayment {
 
     private void validate(final BigDecimal purchaceAmount) {
         if (purchaceAmount.equals(BigDecimal.ZERO) || !purchaceAmount.remainder(LOTTO_PRICE).equals(BigDecimal.ZERO)) {
-            throw new LottoArgumentException("금액은 " + LOTTO_PRICE + "단위로 입력해야 합니다.");
+            throw new LottoArgumentException(String.format(PURCHASE_AMOUNT_ERROR_MESSAGE_FORMAT, LOTTO_PRICE.intValue()));
         }
     }
 }

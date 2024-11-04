@@ -10,6 +10,15 @@ import lotto.domain.Results;
 import lotto.exception.LottoArgumentException;
 
 public class OutputController {
+    private static final String PURCHASE_AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String LOTTO_COUNT_FORMAT = "%d개를 구매했습니다.";
+    private static final String WINNING_NUMBER_INPUT_MESSAGE = "당첨번호를 입력해주세요.";
+    private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String TOTAL_PROFIT_AMOUNT_FORM = "총 수익률은 %s%%입니다.";
+    private static final String STATISTIC_INFO_MESSAGE = "당첨 통계";
+    private static final String LINE_SEPARATOR = "---";
+    private static final String BLANK = "";
+
     private final OutputUi outputUi;
 
     OutputController(final OutputUi outputUi) {
@@ -17,12 +26,12 @@ public class OutputController {
     }
 
     public void printPurchaseInfo() {
-        outputUi.printWithLineBreak("구입금액을 입력해 주세요.");
+        outputUi.printWithLineBreak(PURCHASE_AMOUNT_INPUT_MESSAGE);
     }
 
     public void printAllLotteries(final LottoContainer lottoContainer) {
         this.nextLine();
-        outputUi.printWithLineBreak(lottoContainer.getSize() + "개를 구매했습니다.");
+        outputUi.printWithLineBreak(String.format(LOTTO_COUNT_FORMAT, lottoContainer.getSize()));
         final List<LottoInfo> infos = lottoContainer.getInfos();
         for (final LottoInfo lottoInfo : infos) {
             outputUi.printWithLineBreak(lottoInfo.lottoNumbers().toString());
@@ -31,18 +40,18 @@ public class OutputController {
 
     public void printToGetWinningNumberInput() {
         this.nextLine();
-        outputUi.printWithLineBreak("당첨번호를 입력해주세요.");
+        outputUi.printWithLineBreak(WINNING_NUMBER_INPUT_MESSAGE);
     }
 
     public void printToGetBonusNumberInput() {
         this.nextLine();
-        outputUi.printWithLineBreak("보너스 번호를 입력해 주세요.");
+        outputUi.printWithLineBreak(BONUS_NUMBER_INPUT_MESSAGE);
     }
 
     public void printStatisticResults(final Results results) {
         this.nextLine();
-        outputUi.printWithLineBreak("당첨 통계");
-        outputUi.printWithLineBreak("---");
+        outputUi.printWithLineBreak(STATISTIC_INFO_MESSAGE);
+        outputUi.printWithLineBreak(LINE_SEPARATOR);
         outputUi.printWithLineBreak(results.getStatistics(LottoResults.FIFTH).toString());
         outputUi.printWithLineBreak(results.getStatistics(LottoResults.FORTH).toString());
         outputUi.printWithLineBreak(results.getStatistics(LottoResults.THIRD).toString());
@@ -51,8 +60,11 @@ public class OutputController {
     }
 
     public void printProfitRatio(final Results results, final LottoPayment lottoPayment) {
-        outputUi.printWithLineBreak(
-                "총 수익률은 " + results.getProfitRatio(lottoPayment).setScale(1, BigDecimal.ROUND_HALF_UP) + "%입니다.");
+        final String ratio = results.getProfitRatio(lottoPayment).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
+        outputUi.printWithLineBreak(String.format(
+                TOTAL_PROFIT_AMOUNT_FORM,
+                ratio)
+        );
     }
 
     public void printErrorMessage(final LottoArgumentException lottoArgumentException) {
@@ -60,6 +72,6 @@ public class OutputController {
     }
 
     private void nextLine() {
-        outputUi.printWithLineBreak("");
+        outputUi.printWithLineBreak(BLANK);
     }
 }

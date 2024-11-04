@@ -10,6 +10,9 @@ import lotto.exception.LottoArgumentException;
 
 public class InputController {
 
+    private static final String BLANK_INPUT_ERROR_MESSAGE = "공백은 허용되지 않습니다.";
+    private static final String ITS_NOT_NUMBER_ERROR_MESSAGE = "숫자가 아닙니다.";
+    private static final String SEPARATOR = ",";
     private final InputUi inputUi;
 
     InputController(final InputUi inputUi) {
@@ -24,7 +27,7 @@ public class InputController {
 
     public Lotto getLotto() {
         final String input = this.readTrimmedInput();
-        final List<String> lottoNumbers = Arrays.stream(input.split(","))
+        final List<String> lottoNumbers = Arrays.stream(input.split(SEPARATOR))
                 .map(number -> number.trim())
                 .collect(Collectors.toList());
         for (final String number : lottoNumbers) {
@@ -51,14 +54,14 @@ public class InputController {
 
     private void isBlank(final String numberInput) {
         if (numberInput.isBlank()) {
-            throw new LottoArgumentException("공백은 허용되지 않습니다.");
+            throw new LottoArgumentException(BLANK_INPUT_ERROR_MESSAGE);
         }
     }
 
     private void isPositiveNumber(final String numberInput) {
         for (int i = 0; i < numberInput.length(); i++) {
             if (!Character.isDigit(numberInput.charAt(i))) {
-                throw new LottoArgumentException("숫자가 아닙니다.");
+                throw new LottoArgumentException(ITS_NOT_NUMBER_ERROR_MESSAGE);
             }
         }
     }

@@ -5,6 +5,7 @@ import lotto.common.LottoResults;
 import lotto.exception.LottoArgumentException;
 
 public class WinningLotto extends Lotto {
+    private static final String BONUS_NUMBER_DUPLICATED_MESSAGE = "보너스 번호가 이미 로또 번호에 포함되어 있습니다.";
     private final LottoNumber bonusNumber;
 
     public WinningLotto(final List<LottoNumber> lottoNumbers, final LottoNumber bonusNumber) {
@@ -44,7 +45,7 @@ public class WinningLotto extends Lotto {
 
     private void validateAlreadyExistsNumber(final LottoNumber bonusNumber) {
         if (super.containsNumber(bonusNumber)) {
-            throw new LottoArgumentException("보너스 번호가 이미 로또 번호에 포함되어 있습니다.");
+            throw new LottoArgumentException(BONUS_NUMBER_DUPLICATED_MESSAGE);
         }
     }
 }

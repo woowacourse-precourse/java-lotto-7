@@ -5,6 +5,8 @@ import lotto.common.LottoNumbers;
 import lotto.exception.LottoArgumentException;
 
 public class LottoNumber {
+    private static final String RANGE_ERROR_FORMAT = "로또 숫자는 %d에서 %d 까지 입니다.";
+    private static final String SIZE_ERROR_MESSAGE = "로또숫자는 세자리 이상이 될 수 없습니다.";
     private final int number;
 
     public LottoNumber(final String number) {
@@ -27,13 +29,14 @@ public class LottoNumber {
         final int number = Integer.parseInt(lottoNumber);
         if (number < LottoNumbers.START.get() || number > LottoNumbers.END.get()) {
             throw new LottoArgumentException(
-                    "로또 숫자는 " + LottoNumbers.START.get() + "에서 " + LottoNumbers.END.get() + " 까지 입니다.");
+                    String.format(RANGE_ERROR_FORMAT, LottoNumbers.START.get(), LottoNumbers.END.get())
+            );
         }
     }
 
     private void validateLength(final String lottoNumber) {
         if (lottoNumber.length() > 2) {
-            throw new LottoArgumentException("로또숫자는 세자리 이상이 될 수 없습니다.");
+            throw new LottoArgumentException(SIZE_ERROR_MESSAGE);
         }
     }
 

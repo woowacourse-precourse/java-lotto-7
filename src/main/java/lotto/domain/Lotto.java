@@ -6,6 +6,8 @@ import lotto.common.LottoNumbers;
 import lotto.exception.LottoArgumentException;
 
 public class Lotto {
+    private final static String LOTTO_NUMBER_COUNT_ERROR_FORMAT = "로또 번호는 %d개여야 합니다.";
+    private final static String LOTTO_NUMBER_DUPLICATED_ERROR_MESSAGE = "로또 번호는 중독되어선 안됩니다.";
     private final List<LottoNumber> numbers;
 
     public Lotto(final List<LottoNumber> lottoNumbers) {
@@ -20,7 +22,7 @@ public class Lotto {
 
     private void validateSize(final List<LottoNumber> numbers) {
         if (numbers.size() != LottoNumbers.SIZE.get()) {
-            throw new LottoArgumentException("로또 번호는 " + LottoNumbers.SIZE.get() + "개여야 합니다.");
+            throw new LottoArgumentException(String.format(LOTTO_NUMBER_COUNT_ERROR_FORMAT, LottoNumbers.SIZE.get()));
         }
     }
 
@@ -29,7 +31,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if (elementCount != numbers.size()) {
-            throw new LottoArgumentException("로또 번호는 중독되어선 안됩니다.");
+            throw new LottoArgumentException(LOTTO_NUMBER_DUPLICATED_ERROR_MESSAGE);
         }
     }
 
