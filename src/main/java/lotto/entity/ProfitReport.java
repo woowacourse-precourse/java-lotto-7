@@ -1,5 +1,6 @@
 package lotto.entity;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,7 @@ public class ProfitReport {
     }
 
     public Map<Prize, Integer> calculateWinningCountsByPrize() {
-        return purchasedLottos.stream()
+        HashMap<Prize, Integer> prizeCount = purchasedLottos.stream()
                 .map(this::calculatePrize)
                 .collect(Collectors.toMap(
                         prize -> prize,
@@ -44,6 +45,10 @@ public class ProfitReport {
                         Integer::sum,
                         HashMap::new
                 ));
+
+        Arrays.stream(Prize.values()).forEach(prize -> prizeCount.putIfAbsent(prize, 0));
+
+        return prizeCount;
     }
 
     public List<Lotto> getPurchasedLottos() {

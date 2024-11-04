@@ -169,7 +169,8 @@ class ProfitReportTest {
                                 Prize.SECOND, 1,
                                 Prize.THIRD, 1,
                                 Prize.FOURTH, 1,
-                                Prize.FIFTH, 0)
+                                Prize.FIFTH, 0,
+                                Prize.NONE, 0)
                 ),
                 Arguments.of(
                         List.of(
