@@ -36,6 +36,6 @@ public class LottoResultService {
 
     public double calculateRateOfReturn(PurchaseAmount purchaseAmount, Map<Winning, Integer> winningResults) {
         long prizeMoney = winningResults.keySet().stream().mapToLong(Winning::prizeMoney).sum();
-        return Math.round((double) prizeMoney / purchaseAmount.amount() * 10) / 10.0;
+        return Math.round((double) prizeMoney / purchaseAmount.amount() * 1000) / 10.0;
     }
 }

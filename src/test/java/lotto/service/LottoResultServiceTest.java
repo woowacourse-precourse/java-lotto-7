@@ -101,6 +101,6 @@ class LottoResultServiceTest {
         double rateOfReturn = lottoResultService.calculateRateOfReturn(PurchaseAmount.from(8000), winningResults);
 
         // then
-        assertEquals(rateOfReturn, 253750.6);
+        assertEquals(25375062.5, rateOfReturn);
     }
 }
