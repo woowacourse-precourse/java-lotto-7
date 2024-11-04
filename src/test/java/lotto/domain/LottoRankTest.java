@@ -73,4 +73,10 @@ class LottoRankTest {
     void 세번째순위상금확인_테스트() {
         assertEquals(1_500_000, LottoRank.THIRD.getPrize());
     }
+
+    @DisplayName("네 번째 순위의 상금 확인")
+    @Test
+    void 네번째순위상금확인_테스트() {
+        assertEquals(50_000, LottoRank.FOURTH.getPrize());
+    }
 }
