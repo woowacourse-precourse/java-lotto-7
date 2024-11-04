@@ -1,9 +1,9 @@
 package lotto.domain;
 
-public class BonusNumber {
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBERS;
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_NOT_NATURAL_NUMBER;
 
-    private static final String BONUS_NUMBER_NOT_NATURAL_NUMBER = "[ERROR] 보너스 번호가 자연수가 아닙니다.";
-    private static final String BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBERS = "[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.";
+public class BonusNumber {
 
     private final int number;
 
