@@ -13,8 +13,7 @@ import java.util.Map;
 public class LottoController {
 
     public void purchaseLotto() {
-        int inputtedCost = inputPurchaseCost();
-        PurchaseCost purchaseCost = new PurchaseCost(inputtedCost);
+        PurchaseCost purchaseCost = inputPurchaseCost();
 
         int purchasedLottoCount = purchaseCost.calculateBuyableLottoCount();
         OutputView.outputPurchasedLottoCount(purchasedLottoCount);
@@ -26,12 +25,18 @@ public class LottoController {
         LottoGame lottoGame = new LottoGame(purchasedLottos, winningNumbers, bonusNumber);
         lottoGame.process();
 
-        outputResult(lottoGame, inputtedCost);
+        outputResult(lottoGame, purchaseCost.getPurchaseCost());
     }
 
-    private int inputPurchaseCost() {
-        String rawPurchaseCost = InputView.inputPurchaseCost();
-        return NumberParser.parseToInteger(rawPurchaseCost);
+    private PurchaseCost inputPurchaseCost() {
+        try {
+            String rawPurchaseCost = InputView.inputPurchaseCost();
+            int parsedCost = NumberParser.parseToInteger(rawPurchaseCost);
+
+            return new PurchaseCost(parsedCost);
+        } catch (IllegalArgumentException exception) {
+            return inputPurchaseCost();
+        }
     }
 
     private List<Lotto> purchaseLotto(int purchaseCount) {
