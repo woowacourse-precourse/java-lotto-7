@@ -3,9 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -22,6 +20,11 @@ public class Application {
             }
         }
         List<Lotto> lottoList = buyLotto(purchaseMoney);
+        List<Integer> bonusNumbers = new ArrayList<Integer>();
+        for(Lotto lotto : lottoList){
+            int bonusNumber = createBonusNumber(lotto);
+            bonusNumbers.add(bonusNumber);
+        }
 
         Lotto winningNumber;
         while(true){
@@ -46,6 +49,17 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+
+        matchLotto(lottoList,bonusNumbers,winningNumber,bonusNumber);
+
+        System.out.println("당첨 통계\n---");
+        for(LottoResult result : LottoResult.values()){
+            System.out.print(result.getMatchCount() + "개 일치");
+            if(result.getMatchBonusNumber()){ System.out.print(", 보너스 볼 일치"); }
+            System.out.print(" (" + String.format("%,d",result.getPrizeMoney()) + "원) - ");
+            System.out.println(result.getPrizeCount() + "개");
+        }
+        System.out.println("총 수익률은 " + String.format("%.2f",LottoResult.returnRate(purchaseMoney)) + "%입니다.");
     }
 
     public static int strToInt(String str){
@@ -78,6 +92,15 @@ public class Application {
         }
         return lottoList;
     }
+    public static int createBonusNumber(Lotto lotto){
+        int bonusNum;
+        Set<Integer> duplicateCheck = new HashSet<Integer>(lotto.getNumbers());
+        do{
+            List<Integer> bonus = Randoms.pickUniqueNumbersInRange(1, 45, 1);
+            bonusNum = bonus.get(0);
+        }while(!duplicateCheck.add(bonusNum));
+        return bonusNum;
+    }
     public static Lotto inputWinningNumber(String[] numbers){
         List<Integer> winningNumbers = new ArrayList<Integer>();
         for(String number : numbers){
@@ -92,6 +115,17 @@ public class Application {
             if(number == bonusNumber){
                 throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨번호와 중복됩니다.");
             }
+        }
+    }
+    public static void matchLotto(List<Lotto> lottoList,List<Integer> bonusNumbers,Lotto winningNumber,int bonusNumber){
+        for(int i=0;i<lottoList.size();i++){
+            lottoList.get(i).getNumbers().retainAll(winningNumber.getNumbers());
+            List<Integer> matchNumber = lottoList.get(i).getNumbers();
+            if(matchNumber.size() == 3) LottoResult.FIFTH_PRIZEl.increaseCount();
+            if(matchNumber.size() == 4) LottoResult.FOURTH_PRIZE.increaseCount();
+            if(matchNumber.size() == 5 && bonusNumbers.get(i) != bonusNumber) LottoResult.THIRD_PRIZE.increaseCount();
+            if(matchNumber.size() == 5 && bonusNumbers.get(i) == bonusNumber) LottoResult.SECOND_PRIZE.increaseCount();
+            if(matchNumber.size() == 6) LottoResult.FIRST_PRIZE.increaseCount();
         }
     }
 }
