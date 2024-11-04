@@ -1,14 +1,14 @@
 package lotto.validator;
 
+import static lotto.util.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.util.LottoConstants.MIN_LOTTO_NUMBER;
+import static lotto.util.LottoConstants.REQUIRED_LOTTO_NUMBER_COUNT;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class LottoValidator {
-
-    private static final int REQUIRED_LOTTO_NUMBER_COUNT = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
 
     public static void validate(List<Integer> numbers) {
         validateSize(numbers);
