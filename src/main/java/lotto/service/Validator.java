@@ -38,7 +38,7 @@ public class Validator {
     }
 
     public void validateEmptyInputInNumbers(String input) {
-        if(input == null) {
+        if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(
                 "[ERROR] 입력되지 않은 번호가 있습니다. 리스트를 다시 입력해주세요."
             );
