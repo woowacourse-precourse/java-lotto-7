@@ -33,15 +33,6 @@ public enum Prize {
         }
         return 0;
     }
-    public Prize getPrize(int index) {
-        for(Prize prize : Prize.values()) {
-            if(prize.getIndex() == index) {
-                return prize;
-            }
-        }
-
-        return Prize.NONE;
-    }
 
     public int getIndex() {
         return index;
