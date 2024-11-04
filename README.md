@@ -104,10 +104,9 @@
 
 -> 에러 발생
 
-# 추가된 프로그래밍 요구 사항
+# 중요한 프로그래밍 요구 사항
 
-* 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    * Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+* indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다
 * 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
 * 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
 * else 예약어를 쓰지 않는다.
