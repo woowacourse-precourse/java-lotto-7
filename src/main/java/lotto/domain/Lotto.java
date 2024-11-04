@@ -14,7 +14,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sort(numbers);
         this.numbers = numbers;
     }
 
@@ -24,17 +23,13 @@ public class Lotto {
 
     public int countDuplication(Lotto lotto) {
         return numbers.stream()
-                .filter(x -> lotto.getLotto().stream()
+                .filter(x -> lotto.getSortedLotto().stream()
                         .anyMatch(Predicate.isEqual(x)))
                 .toList().size();
     }
 
-    public List<Integer> getLotto() {
-        return numbers;
-    }
-
-    private void sort(List<Integer> numbers) {
-        numbers.stream()
+    public List<Integer> getSortedLotto() {
+        return numbers.stream()
                 .sorted()
                 .toList();
     }
