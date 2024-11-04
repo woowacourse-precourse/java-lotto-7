@@ -1,6 +1,10 @@
-package lotto.domain;
+package lotto.domain.result;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.number.WinningNumbers;
 
 public class LottoResult {
     private final WinningStatistics statistics;

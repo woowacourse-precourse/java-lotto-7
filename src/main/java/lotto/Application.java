@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.Controller.LottoController;
+import lotto.controller.LottoController;
 import lotto.view.Input.InputView;
 import lotto.view.Output.OutputView;
-import lotto.Service.LottoService;
+import lotto.service.LottoService;
 import lotto.generator.LottoNumberGenerator;
 import lotto.generator.RandomLottoGenerator;
 

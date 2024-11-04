@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constants.ErrorMessage;
+import lotto.domain.number.BonusNumber;
+import lotto.domain.number.WinningLottoNumbers;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;

@@ -1,15 +1,15 @@
-package lotto;
+package lotto.domain.result;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.domain.BonusNumber;
+import lotto.domain.number.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoResult;
+import lotto.domain.result.LottoResult;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningLottoNumbers;
-import lotto.domain.WinningNumbers;
+import lotto.domain.number.WinningLottoNumbers;
+import lotto.domain.number.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoResult;
+import lotto.domain.result.LottoResult;
 
 public class OutputView {
     private static final String WINNING_STATISTICS_HEADER = "\n당첨 통계\n---";

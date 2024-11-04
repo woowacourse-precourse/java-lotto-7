@@ -1,10 +1,13 @@
-package lotto.domain;
+package lotto.domain.result;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
+import lotto.domain.number.WinningNumbers;
 
 public class WinningStatistics {
     private final Map<LottoRank, Integer> rankCounts;
