@@ -32,4 +32,11 @@ public class LottoCollection {
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
+    public long getTotalPrize(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        return lottoCollection
+                .stream()
+                .mapToInt(lotto -> lotto.getPrize(winningNumbers, bonusNumber))
+                .sum();
+    }
+
 }

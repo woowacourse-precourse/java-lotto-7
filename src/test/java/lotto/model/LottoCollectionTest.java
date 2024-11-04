@@ -60,4 +60,21 @@ class LottoCollectionTest {
         assertThat(result.get(2_000_000_000)).isEqualTo(1);
     }
 
+    @Test
+    void getTotalPrize_총_당첨_상금_확인(){
+        // given
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        LottoCollection lottoCollection = new LottoCollection(List.of(lotto1, lotto2));
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+        BonusNumber bonusNumber = new BonusNumber(winningNumbers, "7");
+
+        // when
+        long result = lottoCollection.getTotalPrize(winningNumbers, bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(2_000_000_000 + 30_000_000);
+    }
+
+
 }

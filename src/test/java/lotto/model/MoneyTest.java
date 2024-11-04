@@ -108,4 +108,16 @@ class MoneyTest {
         assertThat(result).isEqualTo(1_000_000_000);
     }
 
+    @Test
+    void getReturnOfRate_수익률_계산() {
+        // given
+        Money money = new Money("1000");
+
+        // when
+        double result = money.getReturnOfRate(5000L);
+
+        // then
+        assertThat(result).isEqualTo(5.0);
+    }
+
 }

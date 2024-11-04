@@ -25,6 +25,7 @@ public class LottoController {
         WinningNumbers winningNumbers = inputWinningNumbers();
         BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
         outputLottoResult(lottoCollection, winningNumbers, bonusNumber);
+        outputReturnOfRate(lottoCollection, winningNumbers, bonusNumber);
     }
 
     private void inputLottoPurchaseMoney() {
@@ -73,6 +74,12 @@ public class LottoController {
                                    BonusNumber bonusNumber) {
         Map<Integer, Long> lottoWinningResult = lottoCollection.matchWinningNumbers(winningNumbers, bonusNumber);
         OutputView.outputWinningResult(lottoWinningResult);
+    }
+
+    private void outputReturnOfRate(LottoCollection lottoCollection, WinningNumbers winningNumbers,
+                                    BonusNumber bonusNumber){
+        double returnOfRate = money.getReturnOfRate(lottoCollection.getTotalPrize(winningNumbers, bonusNumber));
+        OutputView.outputReturnOfRate(returnOfRate);
     }
 
 }

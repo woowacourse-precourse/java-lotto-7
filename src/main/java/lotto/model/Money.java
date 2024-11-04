@@ -50,4 +50,8 @@ public class Money {
         }
     }
 
+    public double getReturnOfRate(Long totalPrize) {
+        return (double) totalPrize / money;
+    }
+
 }
