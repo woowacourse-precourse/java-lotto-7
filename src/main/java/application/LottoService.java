@@ -34,5 +34,4 @@ public class LottoService {
 
         return LottoPrize.from(matchLottoCount, matchBonusNumber);
     }
-
 }
