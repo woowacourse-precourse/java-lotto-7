@@ -59,7 +59,7 @@ class LottoServiceTest {
         );
 
         double yield = lottoService.calculateYield(1000, results);
-        assertThat(yield).isEqualTo(200000000.0); // 1등 상금이 2,000,000,000원
+        assertThat(yield).isEqualTo(200000000.0);
     }
 }
 
