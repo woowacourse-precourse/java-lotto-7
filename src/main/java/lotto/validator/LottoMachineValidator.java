@@ -1,12 +1,14 @@
 package lotto.validator;
 
 import java.util.List;
+import lotto.exception.ExceptionUtils;
+import lotto.exception.WinningNumbersExceptionMessage;
 
 public class LottoMachineValidator {
 
     public static void validate(int paymentAmount, List<Integer> winningMainNumbers) {
         if (winningMainNumbers == null || winningMainNumbers.isEmpty()) {
-            throw new IllegalArgumentException("당첨 번호가 없습니다.");
+            throw ExceptionUtils.IllegalArgument(WinningNumbersExceptionMessage.NULL_OR_EMPTY_NUMBERS);
         }
         PurchaseValidator.validate(paymentAmount);
     }

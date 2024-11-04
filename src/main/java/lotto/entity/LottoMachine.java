@@ -13,8 +13,8 @@ public class LottoMachine {
     public LottoMachine(int paymentAmount, List<Integer> winningMainNumbers, int winningBonusNumber) {
         LottoMachineValidator.validate(paymentAmount, winningMainNumbers);
         this.winningNumbers = new WinningNumbers(winningMainNumbers, winningBonusNumber);
-        this.purchasedLottos = createLottos();
         this.paymentAmount = paymentAmount;
+        this.purchasedLottos = createLottos(calculateLottoCount(paymentAmount));
     }
 
     public List<Lotto> getPurchasedLottos() {
@@ -25,15 +25,15 @@ public class LottoMachine {
         return winningNumbers;
     }
 
-    private List<Lotto> createLottos() {
+    private List<Lotto> createLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < calculateTicketCount(); i++) {
+        for (int i = 0; i < lottoCount; i++) {
             lottos.add(Lotto.createRandomLotto());
         }
         return lottos;
     }
 
-    private int calculateTicketCount() {
+    private int calculateLottoCount(int paymentAmount) {
         return paymentAmount / LottoConfiguration.LOTTO_PRICE.getValue();
     }
 
