@@ -26,7 +26,8 @@ public class LottoController {
         List<Lotto> lottos = makeLottos(lottoAmount);
         printLottos(lottos);
         List<Integer> winningNumbers = getWinningNumbers();
-        int bounsNumber = getBonusNumber(winningNumbers);
+        int bonusNumber = getBonusNumber(winningNumbers);
+        List<Integer> lottoResults = makeLottoResults(lottos, winningNumbers, bonusNumber);
     }
 
     private int buyLotto(int money) {
@@ -80,5 +81,9 @@ public class LottoController {
             outputView.printErrorMessage(error.getMessage());
         }
         return getBonusNumber(winningNumbers);
+    }
+
+    private List<Integer> makeLottoResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        return service.calculateLottoResult(lottos, winningNumbers, bonusNumber);
     }
 }
