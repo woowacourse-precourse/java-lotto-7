@@ -18,7 +18,6 @@ public class WinningLotto {
 
         WinningLottoValidator.validate(parsedWinningNumbers, parsedBonusNumber);
 
-        Collections.sort(parsedWinningNumbers);
         this.winningNumbers = parsedWinningNumbers;
         this.bonusNumber = parsedBonusNumber;
     }
@@ -30,6 +29,7 @@ public class WinningLotto {
         try {
             return Stream.of(input.split(NUMBER_DELIMITER))
                     .map(Integer::parseInt)
+                    .sorted()
                     .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
