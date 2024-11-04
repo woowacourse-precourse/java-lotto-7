@@ -1,6 +1,10 @@
 package lotto.domain;
 
+import static lotto.global.ErrorMessage.*;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 	private final List<Integer> numbers;
@@ -12,7 +16,12 @@ public class Lotto {
 
 	private void validate(List<Integer> numbers) {
 		if (numbers.size() != 6) {
-			throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
+		}
+
+		Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+		if (uniqueNumbers.size() != numbers.size()) {
+			throw new IllegalArgumentException(NOT_DUPLICATE_LOTTO_NUMBER.getMessage());
 		}
 	}
 
