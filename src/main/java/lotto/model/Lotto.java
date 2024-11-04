@@ -19,7 +19,7 @@ public class Lotto {
     }
 
     public static List<Lotto> buyLottos(int purchaseAmount) {
-        return IntStream.range(0, purchaseAmount / LOTTO_PRICE)
+        return IntStream.range(0, purchaseAmount / LOTTO_PRICE.getValue())
                 .mapToObj(i -> buyLotto())
                 .toList();
     }
@@ -27,9 +27,9 @@ public class Lotto {
     private static Lotto buyLotto() {
         return new Lotto(
                 Randoms.pickUniqueNumbersInRange(
-                        LOTTO_START_NUMBER,
-                        LOTTO_END_NUMBER,
-                        LOTTO_NUMBER_COUNT
+                        LOTTO_START_NUMBER.getValue(),
+                        LOTTO_END_NUMBER.getValue(),
+                        LOTTO_NUMBER_COUNT.getValue()
                 )
                         .stream()
                         .sorted()

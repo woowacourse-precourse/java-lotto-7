@@ -1,12 +1,16 @@
 package lotto.service;
 
+import static lotto.config.LottoConstants.LOTTO_END_NUMBER;
+import static lotto.config.LottoConstants.LOTTO_NUMBER_COUNT;
 import static lotto.config.LottoConstants.LOTTO_PRICE;
+import static lotto.config.LottoConstants.LOTTO_START_NUMBER;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.config.ErrorMessage;
 import lotto.config.LottoRule;
 import lotto.model.Lotto;
 import lotto.repository.LottoRepository;
@@ -82,7 +86,7 @@ public class LottoServiceImpl implements LottoService {
             validateDivisibleByLottoPrice(amount);
             return amount;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("유효하지 않은 입력입니다. 숫자를 입력해주세요.", e);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_NOT_NUMERIC.getMessage(), e);
         }
     }
 
@@ -94,19 +98,21 @@ public class LottoServiceImpl implements LottoService {
 
     private void validateNullInput(String stringInput) {
         if (stringInput == null || stringInput.isEmpty()) {
-            throw new IllegalArgumentException("구입 금액은 null 또는 빈 문자열일 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_PURCHASE_AMOUNT_EMPTY.getMessage());
         }
     }
 
     private void validatePositive(int amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("구입 금액은 1,000원 이상의 양수여야 합니다.");
+        if (amount < LOTTO_PRICE.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_PURCHASE_AMOUNT_LACK.getMessage());
         }
     }
 
     private void validateDivisibleByLottoPrice(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
-                throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
+        if (amount % LOTTO_PRICE.getValue() != 0) {
+                throw new IllegalArgumentException(
+                        ErrorMessage.INVALID_INPUT_PURCHASE_AMOUNT_CANNOT_DIVIDE.getMessage()
+                );
         }
     }
 
@@ -116,14 +122,14 @@ public class LottoServiceImpl implements LottoService {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_LOTTO_COUNT.getMessage());
         }
     }
 
     private void validateLottoNumber(Integer number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이여야 합니다.");
+        if (number < LOTTO_START_NUMBER.getValue() || number > LOTTO_END_NUMBER.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_LOTTO_RANGE.getMessage());
         }
     }
 }
