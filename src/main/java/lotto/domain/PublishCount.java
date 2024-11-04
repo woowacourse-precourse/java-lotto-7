@@ -16,7 +16,7 @@ public class PublishCount {
 
     private void validate(int initialCount) {
         if (initialCount > 30) {
-            OutputView.printError(OVER_PUBLIST_COUNT.getMessage());
+            throw new IllegalArgumentException(OVER_PUBLIST_COUNT.getMessage());
         }
     }
 

@@ -5,6 +5,7 @@ import static lotto.constant.ErrorCode.INVALID_INPUT_FORMAT;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constant.ErrorCode;
 import lotto.view.OutputView;
 
 public class InputHandler {
@@ -13,8 +14,7 @@ public class InputHandler {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            OutputView.printError(INVALID_INPUT_FORMAT.getMessage());
-            return -1;
+            throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage());
         }
     }
 

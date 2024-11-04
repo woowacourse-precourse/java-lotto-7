@@ -20,7 +20,7 @@ public class BonusNumberValidator {
 
     private void validateBonusNumberInLottoNumbers(final int bonusNumber, final Lotto lotto) {
         if (lotto.isContainNumber(bonusNumber)) {
-            OutputView.printError(DUPLICATE_BONNUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(DUPLICATE_BONNUS_NUMBER.getMessage());
         }
     }
 

@@ -25,7 +25,7 @@ public class LottoValidator {
 
     private void validateLottoNumberCount(final List<Integer> numbers) {
         if (numbers.size() != VALID_LOTTO_NUMBER_COUNT) {
-            OutputView.printError(INVALID_WINNIG_NUMBER_COUNT.getMessage());
+            throw new IllegalArgumentException(INVALID_WINNIG_NUMBER_COUNT.getMessage());
         }
     }
 }

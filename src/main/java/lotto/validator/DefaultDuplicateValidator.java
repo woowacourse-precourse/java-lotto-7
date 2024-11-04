@@ -10,7 +10,7 @@ public class DefaultDuplicateValidator implements DuplicateValidator<List<Intege
     @Override
     public void validateDuplicates(final List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            OutputView.printError(DUPLICATE_WINNIG_NUMBER.getMessage());
+            throw new IllegalArgumentException(DUPLICATE_WINNIG_NUMBER.getMessage());
         }
     }
 

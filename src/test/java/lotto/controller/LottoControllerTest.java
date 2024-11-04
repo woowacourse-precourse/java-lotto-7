@@ -115,20 +115,4 @@ public class LottoControllerTest {
             .hasMessage("[ERROR] 입력 형식이 올바르지 않습니다.");
     }
 
-    //PublishLottoservice
-    @Test
-    void 구매_금액에_맞게_로또_발행하는지_확인() {
-        // Given
-        String input = "3000\n1,2,3,4,5,6\n7\n";
-        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-        // when
-        lottoController.setUp();
-        lottoController.publishLottoSetup();
-
-        // then
-        assertEquals(3, lottoController.createPublishCount(3000).getPublishCount());
-    }
-
 }

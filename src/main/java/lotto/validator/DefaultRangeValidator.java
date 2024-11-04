@@ -11,7 +11,7 @@ public class DefaultRangeValidator implements RangeValidator {
     @Override
     public void validateNumberRange(final int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            OutputView.printError(INVALID_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }
 }

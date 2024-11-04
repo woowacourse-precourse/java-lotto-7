@@ -10,7 +10,7 @@ public class CommaValidator {
 
     public static void validate(String input) {
         if (input.contains(COMMAS)) {
-            OutputView.printError(CONTIGIOUS_COMMA.getMessage());
+            throw new IllegalArgumentException(CONTIGIOUS_COMMA.getMessage());
         }
     }
 }

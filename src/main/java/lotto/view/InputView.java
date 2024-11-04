@@ -8,7 +8,7 @@ public class InputView {
     private static String ENTER_WINNING_NUMBER = "\n당첨 번호를 입력해 주세요.";
     private static String ENTER_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
 
-    public String printEnterPurChasePriceMessage() {
+    public String printEnterPurchasePriceMessage() {
         printMessage(ENTER_PURCHASE_PRICE_MESSAGE);
         return Console.readLine();
     }

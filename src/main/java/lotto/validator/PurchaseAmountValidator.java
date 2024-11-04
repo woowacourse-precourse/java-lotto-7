@@ -10,7 +10,7 @@ public class PurchaseAmountValidator {
 
     public static void validate(int purchaseAmount) {
         if (purchaseAmount == 0 || purchaseAmount % TICKET_PRICE != 0) {
-            OutputView.printError(INVALID_PURCHASE_AMOUNT.getMessage());
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
 

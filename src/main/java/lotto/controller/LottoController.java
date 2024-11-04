@@ -22,28 +22,29 @@ import lotto.view.OutputView;
 public class LottoController {
 
     private static final int TICKET_PRICE = 1000;
-    private PublishLottoService publishLottoService;
     private final LottoResultService lottoResultService;
     private final LottoValidator lottoValidator;
     private final BonusNumberValidator bonusNumberValidator;
     private final InputView inputView;
     private final OutputView outputView;
     private final PublishLottoRepository publishLottoRepository;
-
     private PublishCount publishCount;
     private Lotto lotto;
     private BonusNumber bonusNumber;
 
     public LottoController(
-        LottoResultService lottoResultService, LottoValidator lottoValidator,
+        LottoResultService lottoResultService,
+        LottoValidator lottoValidator,
         BonusNumberValidator bonusNumberValidator,
-        InputView inputView, OutputView outputView) {
+        InputView inputView,
+        OutputView outputView
+    ) {
         this.lottoResultService = lottoResultService;
         this.lottoValidator = lottoValidator;
         this.bonusNumberValidator = bonusNumberValidator;
         this.inputView = inputView;
         this.outputView = outputView;
-        publishLottoRepository = PublishLottoRepository.getInstance();
+        this.publishLottoRepository = PublishLottoRepository.getInstance();
     }
 
     public void setUp() {
@@ -53,43 +54,71 @@ public class LottoController {
         bonusNumberSetUp();
     }
 
-    public void publishCountSetUp() {
-        int purchasePrice = getPurchasePrice();
-        PurchaseAmountValidator.validate(purchasePrice);
+    private void publishCountSetUp() {
+        int purchasePrice = promptForPurchasePrice();
         publishCount = createPublishCount(purchasePrice);
         outputView.printPublishCountMessage(publishCount.getPublishCount());
     }
 
-    public PublishCount createPublishCount(final int purchasePrice) {
+    private int promptForPurchasePrice() {
+        while (true) {
+            try {
+                int purchasePrice = getPurchasePrice();
+                PurchaseAmountValidator.validate(purchasePrice);
+                return purchasePrice;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private int getPurchasePrice() {
+        return InputHandler.parseInt(inputView.printEnterPurchasePriceMessage());
+    }
+
+    private PublishCount createPublishCount(int purchasePrice) {
         int countOfPublish = purchasePrice / TICKET_PRICE;
         return PublishCount.getInstance(countOfPublish);
     }
 
-    private int getPurchasePrice() {
-        return InputHandler.parseInt(inputView.printEnterPurChasePriceMessage());
-    }
-
-    public void publishLottoSetup() {
-        publishLottoService = new PublishLottoService(publishCount, lottoValidator);
+    private void publishLottoSetup() {
+        PublishLottoService publishLottoService = new PublishLottoService(publishCount, lottoValidator);
         publishLottoService.publishLotto();
         outputView.printPublishLottos(publishLottoRepository.findAll());
     }
 
-    public void lottoSetUp() {
-        lotto = createLotto();
+    private void lottoSetUp() {
+        lotto = promptForWinningNumbers();
     }
 
-    private Lotto createLotto() {
-        String inputWinningNumbers = inputView.printEnterWinningNumberMessage();
-        CommaValidator.validate(inputWinningNumbers);
+    private Lotto promptForWinningNumbers() {
+        while (true) {
+            try {
+                String inputWinningNumbers = inputView.printEnterWinningNumberMessage();
+                CommaValidator.validate(inputWinningNumbers);
+                List<Integer> winningNumbers = parseWinningNumbers(inputWinningNumbers);
+                return new Lotto(winningNumbers, lottoValidator);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> parseWinningNumbers(String inputWinningNumbers) {
         List<String> splitWinningNumbers = InputHandler.splitByComma(inputWinningNumbers);
-        List<Integer> winningNumbers = InputHandler.stringListToIntList(splitWinningNumbers);
-        return new Lotto(winningNumbers, lottoValidator);
+        return InputHandler.stringListToIntList(splitWinningNumbers);
     }
 
-    public void bonusNumberSetUp() {
-        int parsedBonusNumber = getParsedBonusNumber();
-        bonusNumber = createBonusNumber(parsedBonusNumber);
+    private void bonusNumberSetUp() {
+        while (true) {
+            try {
+                int parsedBonusNumber = getParsedBonusNumber();
+                bonusNumber = createBonusNumber(parsedBonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
     }
 
     private int getParsedBonusNumber() {
@@ -108,7 +137,8 @@ public class LottoController {
 
     private void getProfit(Map<Prize, Integer> winningCounts) {
         BigDecimal profit = ProfitCalculate.calculateProfit(
-            publishCount.getPublishCount() * TICKET_PRICE, winningCounts);
+            publishCount.getPublishCount() * TICKET_PRICE, winningCounts
+        );
         outputView.printProfit(profit);
     }
 
@@ -118,5 +148,4 @@ public class LottoController {
         outputView.printWinningStatMessage(winningCounts);
         return winningCounts;
     }
-
 }
