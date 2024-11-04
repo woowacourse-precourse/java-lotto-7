@@ -21,8 +21,11 @@ public class LottoPurchaseService {
 		this.lottoTicketStore = lottoTicketStore;
 	}
 
-	public List<Lotto> buyLottos() {
-		int purchaseAmount = inputView.getPurchaseAmount();
+	public int purchaseForLottos() {
+		return inputView.getPurchaseAmount();
+	}
+
+	public List<Lotto> buyLottos(int purchaseAmount) {
 		int purchaseCount = purchaseAmount / LOTTO_PRICE.getValue();
 
 		outputView.printPurchaseCountMessage(purchaseCount);
