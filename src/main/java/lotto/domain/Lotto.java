@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.dto.LottoResultDto;
+
 import java.util.List;
 
 public class Lotto {
@@ -16,9 +18,22 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
-
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public LottoResultDto countNumberOfWinnings(WinningNumber winningNumber) {
+        int matchCount = 0;
+        boolean isBonus = false;
+        for (int i = 0; i < this.numbers.size(); i++) {
+            if (winningNumber.getBonusNumber() == this.numbers.get(i)) {
+                isBonus = true;
+                continue;
+            }
+            if (winningNumber.getWinningNumbers()[i] == this.numbers.get(i)) {
+                matchCount++;
+            }
+        }
+        return new LottoResultDto(matchCount, isBonus);
     }
 }
