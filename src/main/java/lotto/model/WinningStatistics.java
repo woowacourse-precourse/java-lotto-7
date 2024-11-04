@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import java.util.Map;
+import lotto.constant.RankConstant;
 import lotto.service.CheckingWinningService;
 
 public class WinningStatistics {
@@ -13,7 +14,7 @@ public class WinningStatistics {
         this.checkingWinningService = checkingWinningService;
     }
 
-    public Map<Integer, Integer> getRanks(List<Integer> winningNumbers, int bonusNumber, List<Lotto> LottoTickets) {
+    public Map<RankConstant, Integer> getRanks(List<Integer> winningNumbers, int bonusNumber, List<Lotto> LottoTickets) {
         List<Integer> numberOfMatches = checkingWinningService.getNumberOfMatches(LottoTickets, winningNumbers);
         checkingWinningService.checkBonusWinning(LottoTickets, numberOfMatches, bonusNumber);
         return checkingWinningService.calculateRanks(numberOfMatches);

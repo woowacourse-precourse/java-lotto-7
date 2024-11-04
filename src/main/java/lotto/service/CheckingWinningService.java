@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.constant.RankConstant;
 import lotto.model.Lotto;
 
 public class CheckingWinningService {
@@ -33,29 +34,28 @@ public class CheckingWinningService {
         return 5;
     }
 
-    public Map<Integer, Integer> calculateRanks(List<Integer> numberOfMatches) {
+    public Map<RankConstant, Integer> calculateRanks(List<Integer> numberOfMatches) {
         int firstRank = Collections.frequency(numberOfMatches, 6);
         int secondRank = Collections.frequency(numberOfMatches, 10);
         int thirdRank = Collections.frequency(numberOfMatches, 5);
         int fourthRank = Collections.frequency(numberOfMatches, 4);
         int fifthRank = Collections.frequency(numberOfMatches, 3);
 
-        Map<Integer, Integer> ranks = new HashMap<>(5);
-        ranks.put(firstRank, 2_000_000_000);
-        ranks.put(secondRank, 3_000_000);
-        ranks.put(thirdRank, 1_500_000);
-        ranks.put(fourthRank, 50_000);
-        ranks.put(fifthRank, 5_000);
+        Map<RankConstant, Integer> ranks = new HashMap<>(5);
+        ranks.put(RankConstant.FIRSTRANK, firstRank);
+        ranks.put(RankConstant.SECONDRANK, secondRank);
+        ranks.put(RankConstant.THIRDRANK, thirdRank);
+        ranks.put(RankConstant.FOURTHRANK, fourthRank);
+        ranks.put(RankConstant.FIFTHRANK, fifthRank);
 
         return ranks;
     }
 
-    public double calculateRateOfReturn(Map<Integer, Integer> ranks, int payment) {
+    public double calculateRateOfReturn(Map<RankConstant, Integer> ranks, int payment) {
         double sum = 0;
-        for (int numberOfWinning : ranks.keySet()) {
-            sum += numberOfWinning * ranks.get(numberOfWinning);
+        for (RankConstant rankConstant : ranks.keySet()) {
+            sum += rankConstant.getAmount() * ranks.get(rankConstant);
         }
-
         sum /= payment;
         sum *= 100;
 

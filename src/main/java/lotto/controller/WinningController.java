@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import lotto.constant.RankConstant;
 import lotto.model.Lotto;
 import lotto.model.WinningNumber;
 import lotto.model.WinningStatistics;
@@ -27,7 +28,7 @@ public class WinningController {
         winningStatistics = new WinningStatistics(checkingWinningService);
     }
 
-    public Map<Integer, Integer> presentWinningLottoTickets() {
+    public Map<RankConstant, Integer> presentWinningLottoTickets() {
         List<Integer> winningNumbers = setWinningNumbers();
         int bonusNumber = setBonusNumber();
         return winningStatistics.getRanks(winningNumbers, bonusNumber, LottoTickets);
