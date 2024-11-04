@@ -22,17 +22,34 @@ public class LottoSimulatorController {
     }
 
     private void issueLotto() {
-        String money = inputView.readMoney();
-        lottoSimulator = new LottoSimulator(money);
+        while (true) {
+            try {
+                String money = inputView.readMoney();
+                lottoSimulator = new LottoSimulator(money);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+
         lottoSimulator.buyRandomLotto();
         outputView.printLottoGroup(lottoSimulator.getPurchasedLotto());
     }
 
     private void drawNumbers() {
-        String winningNumbers = inputView.readWinningNumbers();
-        String bonusNumber = inputView.readBonusNumber();
-        Draw draw = new Draw(winningNumbers, bonusNumber);
-        lottoSimulator.countPrize(draw);
+        while (true) {
+            try {
+                String winningNumbers = inputView.readWinningNumbers();
+                Draw draw = new Draw(winningNumbers);
+
+                String bonusNumber = inputView.readBonusNumber();
+                draw.putBonusNumber(bonusNumber);
+                lottoSimulator.countPrize(draw);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     private void calculatePrize(){
