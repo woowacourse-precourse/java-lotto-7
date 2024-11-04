@@ -26,6 +26,17 @@ class LottoTest {
     void 생성자_로또_번호_6개_아니면_예외() {
         assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+                .hasMessage("로또 번호는 6개여야 합니다.");
+    }
+
+    @Test
+    void 로또_번호가_1부터_45사이의_숫자가_아닐때_예외() {
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 2, 3, 4, 5, 0)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 }
