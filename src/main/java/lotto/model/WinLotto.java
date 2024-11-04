@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.utils.ErrorMessages;
+import lotto.utils.LottoException;
 
 public class WinLotto {
     private final Lotto winNumbers;
@@ -20,10 +22,10 @@ public class WinLotto {
 
     private void validate(Lotto winNumbers, int bonusNumber) {
         if (winNumbers.containsBonusNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new LottoException(ErrorMessages.BONUS_NUMBER_DUPLICATED);
         }
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new LottoException(ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE);
         }
     }
 }

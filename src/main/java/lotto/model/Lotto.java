@@ -3,6 +3,8 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.utils.ErrorMessages;
+import lotto.utils.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -38,19 +40,26 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumberRange(numbers);
         validateSize(numbers);
         validateDuplicate(numbers);
     }
 
+    private void validateNumberRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+            throw new LottoException(ErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
+        }
+    }
+
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new LottoException(ErrorMessages.LOTTO_NUMBER_DUPLICATED);
         }
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new LottoException(ErrorMessages.LOTTO_NUMBER_SIZE);
         }
     }
 

@@ -10,7 +10,7 @@ public class OutputView {
     private static final String PURCHASE_LOTTOS_MESSAGE = "%d개를 구매했습니다.\n";
     private static final String RANK_MESSAGE = "%d개 일치 (%,d원) - %d개\n";
     private static final String RANK_SECOND_MESSAGE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
-    private static final String RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
+    private static final String RETURN_RATE_MESSAGE = "총 수익률은 %,.1f%%입니다.\n";
 
     public void printPurchaseLottos(Lottos lottos) {
         int buyCount = lottos.getCount();

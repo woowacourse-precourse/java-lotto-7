@@ -1,5 +1,8 @@
 package lotto.model;
 
+import lotto.utils.ErrorMessages;
+import lotto.utils.LottoException;
+
 public class PurchaseAmount {
     private static final long MIN_UNIT_PRICE = 1_000;
     private long amount;
@@ -11,10 +14,10 @@ public class PurchaseAmount {
 
     private void validate(long amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 작을 수 없습니다.");
+            throw new LottoException(ErrorMessages.PURCHASE_AMOUNT_LESS_THAN_ZERO);
         }
         if (amount % MIN_UNIT_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
+            throw new LottoException(ErrorMessages.PURCHASE_AMOUNT_NOT_MINIMUM_UNIT);
         }
     }
 
