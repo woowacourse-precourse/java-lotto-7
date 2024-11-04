@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.Map;
 import lotto.controller.LottoController;
+import lotto.dto.LottoResponseDTO;
 import lotto.model.Lotto;
 import lotto.model.LottoResults;
 import lotto.model.Rank;
@@ -48,11 +49,16 @@ public class LottoControllerTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 7))   // 2등
         );
         // 결과 계산
-        LottoResults results = lottoService.calculateResult(userLottos, winningLotto, bonusNumber);
+        LottoResponseDTO responseDTO = lottoService.calculateResult(userLottos, winningLotto, bonusNumber);
+        LottoResults results = responseDTO.getResults();
         // 예상 결과 설정
         Map<Rank, Integer> expectedResults = Map.of(
                 Rank.FIRST, 1,
-                Rank.SECOND, 1
+                Rank.SECOND, 1,
+                Rank.THIRD, 0,
+                Rank.FOURTH, 0,
+                Rank.FIFTH, 0,
+                Rank.MISS, 0
         );
         // 검증
         assertEquals(expectedResults, results.getResultMap());
