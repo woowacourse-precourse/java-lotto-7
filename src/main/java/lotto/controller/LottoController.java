@@ -22,17 +22,8 @@ public class LottoController {
 
     public void run() {
         String purchaseAmount = getValidatedPurchaseAmount();
-        List<Lotto> lottos = lottoService.generateLotto(purchaseAmount);
-
-        OutputView.showLottoNumbers(lottos);
-
-        String winningNumbers = getValidatedWinningNumbers();
-        String bonusNumber = getValidatedBonusNumber(winningNumbers);
-
-        Map<Integer, Integer> matchCounts = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
-        double yield = lottoService.calculateYield(matchCounts, purchaseAmount);
-
-        OutputView.showFinalResult(matchCounts, yield);
+        List<Lotto> lottos = createAndDisplayLottos(purchaseAmount);
+        processAndDisplayResults(lottos, purchaseAmount);
     }
 
     private String getValidatedPurchaseAmount() {
@@ -40,6 +31,23 @@ public class LottoController {
         String purchaseNumber = getValidInput(InputValidator::validatePurchaseAmount);
 
         return  purchaseNumber;
+    }
+
+    private List<Lotto> createAndDisplayLottos(String purchaseAmount) {
+        List<Lotto> lottos = lottoService.generateLotto(purchaseAmount);
+        OutputView.showLottoNumbers(lottos);
+
+        return lottos;
+    }
+
+    private void processAndDisplayResults(List<Lotto> lottos, String purchaseAmount) {
+        String winningNumbers = getValidatedWinningNumbers();
+        String bonusNumber = getValidatedBonusNumber(winningNumbers);
+
+        Map<Integer, Integer> matchCounts = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
+        double yield = lottoService.calculateYield(matchCounts, purchaseAmount);
+
+        OutputView.showFinalResult(matchCounts, yield);
     }
 
     private String getValidatedWinningNumbers() {
