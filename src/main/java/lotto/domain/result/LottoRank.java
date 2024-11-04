@@ -33,15 +33,11 @@ public enum LottoRank {
 
     private static LottoRank findByMatchCount(int matchCount) {
         for (LottoRank rank : values()) {
-            if (rank.isMatch(matchCount) && rank != SECOND) {
+            if (rank.matchCount == matchCount && rank != SECOND) {
                 return rank;
             }
         }
         return NONE;
-    }
-
-    private boolean isMatch(int matchCount) {
-        return this.matchCount == matchCount;
     }
 
     public Money getPrizeMoney() {
