@@ -17,16 +17,19 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
-            throw new IllegalArgumentException(COUNT_ERROR);
+            System.out.println(COUNT_ERROR);
+            throw new IllegalArgumentException();
         }
 
         if (numbers.stream()
                 .anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER)) {
-            throw new IllegalArgumentException(RANGE_ERROR);
+            System.out.println(RANGE_ERROR);
+            throw new IllegalArgumentException();
         }
 
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(DUPLICATE_ERROR);
+            System.out.println(DUPLICATE_ERROR);
+            throw new IllegalArgumentException();
         }
     }
 

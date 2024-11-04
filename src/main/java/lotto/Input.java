@@ -30,7 +30,8 @@ public class Input {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_INVALID_NUMBER);
+            System.out.println(ERROR_INVALID_NUMBER);
+            throw new IllegalArgumentException();
         }
     }
 
