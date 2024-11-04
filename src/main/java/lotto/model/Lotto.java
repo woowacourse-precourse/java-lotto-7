@@ -1,7 +1,5 @@
-package lotto;
+package lotto.model;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -26,13 +24,11 @@ public class Lotto {
         return numbers.contains(otherNumber);
     }
 
-    public List<Integer> getAscendingSortNumbers() {
-        List<Integer> ascendingSortNumbers = new ArrayList<>(numbers);
-        ascendingSortNumbers.sort(Comparator.naturalOrder());
-        return ascendingSortNumbers;
-    }
-
     public List<Integer> getMatchedNumbers(List<Integer> compareNumbers) {
         return numbers.stream().filter(number -> compareNumbers.stream().anyMatch(Predicate.isEqual(number))).toList();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

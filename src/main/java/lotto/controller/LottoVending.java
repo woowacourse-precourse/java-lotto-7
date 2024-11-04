@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.parser.NumberParser;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchaseAmountValidator;
@@ -85,14 +85,9 @@ public class LottoVending {
         Integer bonusNumber = getBonusNumbersUntilValid(winningNumbers);
 
         // 로또 발행
-        List<Lotto> lottos = new ArrayList<>();
-        for (int lottoCount = 0; lottoCount < (purchaseAmount / 1000); lottoCount++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottos.add(new Lotto(randomNumbers));
-        }
-        System.out.println(lottos.size() + "개를 구매했습니다.");
-        lottos.forEach(lotto -> System.out.println(lotto.getAscendingSortNumbers()));
-        System.out.println();
+        int amount = (int) (purchaseAmount / 1000);
+        Lottos lottos = Lottos.create(amount);
+        outputView.printLottos(lottos.getLottos());
 
         // 당첨 통계
         int matchedThree = 0;
@@ -100,7 +95,7 @@ public class LottoVending {
         int matchedFive = 0;
         int matchedFiveAndBonus = 0;
         int matchedSix = 0;
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
             int matchedCount = lotto.getMatchedNumbers(winningNumbers).size();
             if (matchedCount == 3) {
                 matchedThree++;
