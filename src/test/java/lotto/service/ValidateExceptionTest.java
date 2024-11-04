@@ -1,11 +1,11 @@
 package lotto.service;
 
+import lotto.constants.ExceptionMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidateExceptionTest {
     Validate validate;
@@ -20,8 +20,9 @@ public class ValidateExceptionTest {
         String input = "a";
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validatePurchaseAmount(input));
+        assertThatThrownBy(() -> validate.validatePurchaseAmount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.NOT_A_NUMBER);
     }
     @Test
     void 로또_구입_실패_1000원_단위가_아닌_입력() {
@@ -29,8 +30,9 @@ public class ValidateExceptionTest {
         String input = "5001";
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validatePurchaseAmount(input));
+        assertThatThrownBy(() -> validate.validatePurchaseAmount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_PURCHASE_AMOUNT_UNIT);
     }
     @Test
     void 로또_구입_실패_1000원_미만_입력() {
@@ -38,8 +40,9 @@ public class ValidateExceptionTest {
         String input = "500";
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validatePurchaseAmount(input));
+        assertThatThrownBy(() -> validate.validatePurchaseAmount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_PURCHASE_AMOUNT);
     }
 
     @Test
@@ -48,8 +51,9 @@ public class ValidateExceptionTest {
         String input = "a,b,c,d,e, ";
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validateWinningNumbers(input));
+        assertThatThrownBy(() -> validate.validateWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.NOT_A_NUMBER);
     }
     @Test
     void 당첨_번호_입력_실패_6개_미만() {
@@ -57,8 +61,9 @@ public class ValidateExceptionTest {
         String input = "1,2,3,4,5";
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validateWinningNumbers(input));
+        assertThatThrownBy(() -> validate.validateWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT);
     }
     @Test
     void 당첨_번호_입력_실패_6개_초과() {
@@ -66,8 +71,9 @@ public class ValidateExceptionTest {
         String input = "1,2,3,4,5,6,7";
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validateWinningNumbers(input));
+        assertThatThrownBy(() -> validate.validateWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT);
     }
     @Test
     void 당첨_번호_입력_실패_번호_1미만() {
@@ -75,8 +81,9 @@ public class ValidateExceptionTest {
         String input = "1,2,3,4,5,-6";
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validateWinningNumbers(input));
+        assertThatThrownBy(() -> validate.validateWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE);
     }
     @Test
     void 당첨_번호_입력_실패_번호_45초과() {
@@ -84,8 +91,9 @@ public class ValidateExceptionTest {
         String input = "1,2,3,4,5,46";
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validateWinningNumbers(input));
+        assertThatThrownBy(() -> validate.validateWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE);
     }
     @Test
     void 당첨_번호_입력_실패_중복() {
@@ -93,8 +101,9 @@ public class ValidateExceptionTest {
         String input = "1,2,3,4,5,5";
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validateWinningNumbers(input));
+        assertThatThrownBy(() -> validate.validateWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.DUPLICATE_LOTTO_NUMBER);
     }
 
     @Test
@@ -104,8 +113,9 @@ public class ValidateExceptionTest {
         List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validateBonusNumber(input, winningNumbers));
+        assertThatThrownBy(() -> validate.validateBonusNumber(input, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.NOT_A_NUMBER);
     }
     @Test
     void 보너스_번호_입력_실패_번호_1미만() {
@@ -114,8 +124,9 @@ public class ValidateExceptionTest {
         List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validateBonusNumber(input, winningNumbers));
+        assertThatThrownBy(() -> validate.validateBonusNumber(input, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE);
     }
     @Test
     void 보너스_번호_입력_실패_번호_45초과() {
@@ -124,7 +135,8 @@ public class ValidateExceptionTest {
         List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> validate.validateBonusNumber(input, winningNumbers));
+        assertThatThrownBy(() -> validate.validateBonusNumber(input, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE);
     }
 }
