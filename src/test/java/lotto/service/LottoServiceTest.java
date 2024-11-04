@@ -51,4 +51,16 @@ class LottoServiceTest {
                 lottoService.calculateWinningRankCount(myLottoTickets, winningNumbers, bonusNumber);
         assertEquals(winningCount.get(LottoRules.Winning.WINNING_RANK_1), 1);
     }
+
+    @Test
+    @DisplayName("수익률 계산")
+    void calculateYieldRate() {
+        int purchasePrice = 8000;
+        Map<LottoRules.Winning, Integer> winningRankCount = new HashMap<>();
+        winningRankCount.put(LottoRules.Winning.WINNING_RANK_5, 1);
+
+        float yieldRate = lottoService.calculateYieldRate(purchasePrice, winningRankCount);
+
+        assertEquals(yieldRate, 62.5);
+    }
 }
