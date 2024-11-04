@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.model.LottoReport;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -25,6 +26,8 @@ public class LottoContoller {
 
         outputView.printWinningReport(lottoReport.winningReport());
         outputView.printProfitRate(lottoReport.profitRate());
+
+        Console.close();
     }
 
     private String promptPurchaseAmount() {
@@ -33,31 +36,27 @@ public class LottoContoller {
             try {
                 purchaseAmount = inputView.inputPurchaseAmount();
                 lottoService.purchaseLotto(purchaseAmount);
-                break;
-            } catch (Exception e) {
+                return purchaseAmount;
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
-        return purchaseAmount;
     }
 
     private LottoReport promptLottoReport(String purchaseAmount) {
-        LottoReport lottoReport;
         while (true) {
             try {
                 String winningNumbersInput = inputView.inputWinningNumbers();
                 String bonusNumberInput = inputView.inputBonusNumber();
-                lottoReport = lottoService.generateLottoReport(
+                return lottoService.generateLottoReport(
                     purchaseAmount,
                     winningNumbersInput,
                     bonusNumberInput
                 );
-                break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
-        return lottoReport;
     }
 
 }

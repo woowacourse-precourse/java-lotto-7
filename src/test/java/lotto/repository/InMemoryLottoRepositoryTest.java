@@ -17,8 +17,9 @@ class InMemoryLottoRepositoryTest {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     lottoRepository.generateRandomLottos(8000);
-                    int totalPrize = lottoRepository.generatePrizeStreamBy(
+                    int totalPrize = lottoRepository.generatePrizeListBy(
                             List.of(4, 7, 11, 30, 44, 45), 6)
+                            .stream()
                             .map(LottoRule::getPrize)
                             .mapToInt(Integer::intValue)
                             .sum();
