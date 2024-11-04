@@ -36,7 +36,7 @@ class ValidationTest {
     @DisplayName("보너스 번호가 1부터 45 사이의 숫자가 아닌 경우 예외가 발생한다.")
     @Test
     void 보너스_번호가_1부터_45_사이의_숫자가_아닌_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> Validation.validateBonusNumberRange(46))
+        assertThatThrownBy(() -> Validation.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), 46))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getMessage());
     }
@@ -44,7 +44,7 @@ class ValidationTest {
     @DisplayName("보너스 번호가 당첨 번호와 중복된 경우 예외가 발생한다.")
     @Test
     void 보너스_번호가_당첨_번호와_중복된_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> Validation.validateBonusNumberDuplicates(List.of(1, 2, 3, 4, 5, 6), 5))
+        assertThatThrownBy(() -> Validation.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), 5))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
     }
