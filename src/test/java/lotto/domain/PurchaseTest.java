@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
-import lotto.util.enums.ValidateMessage;
+import lotto.util.enums.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,9 +40,9 @@ class PurchaseTest {
     private static Stream<Arguments> provideErrorCases() {
         return Stream.of(
                 Arguments.of(NOT_THOUSAND_MULTIPLE,
-                        new IllegalArgumentException(ValidateMessage.NOT_ONE_THOUSAND_MULTIPLE_ERROR.getMessage())),
+                        new IllegalArgumentException(ErrorMessage.NOT_ONE_THOUSAND_MULTIPLE_ERROR.getMessage())),
                 Arguments.of(MILLION,
-                        new IllegalArgumentException(ValidateMessage.NOT_PURCHASE_MORE_HUNDRED_THOUSAND.getMessage()))
+                        new IllegalArgumentException(ErrorMessage.NOT_PURCHASE_MORE_HUNDRED_THOUSAND.getMessage()))
         );
     }
 }

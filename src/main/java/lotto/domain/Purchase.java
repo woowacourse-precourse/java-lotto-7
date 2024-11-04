@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.util.enums.ValidateMessage;
+import lotto.util.enums.ErrorMessage;
 
 public class Purchase {
     private final int priceAmount;
@@ -23,13 +23,13 @@ public class Purchase {
 
     private void validatePriceAmountThousandMultiple(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException(ValidateMessage.NOT_ONE_THOUSAND_MULTIPLE_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_ONE_THOUSAND_MULTIPLE_ERROR.getMessage());
         }
     }
 
     private void validatePriceAmountUnderHundredThousand(int amount) {
         if (amount > 100000) {
-            throw new IllegalArgumentException(ValidateMessage.NOT_PURCHASE_MORE_HUNDRED_THOUSAND.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_PURCHASE_MORE_HUNDRED_THOUSAND.getMessage());
         }
     }
 }

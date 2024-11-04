@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.util.enums.ValidateMessage;
+import lotto.util.enums.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -31,11 +31,11 @@ class LottoTest {
     private static Stream<Arguments> provideFewConditionedList() {
         return Stream.of(
                 Arguments.of(MORE_THAN_SIX_SIZE_NUMBERS,
-                        new IllegalArgumentException(ValidateMessage.NUMBER_SIZE_ERROR.getMessage())),
+                        new IllegalArgumentException(ErrorMessage.NUMBER_SIZE_ERROR.getMessage())),
                 Arguments.of(DUPLICATE_NUMBERS,
-                        new IllegalArgumentException(ValidateMessage.DUPLICATE_ERROR.getMessage())),
+                        new IllegalArgumentException(ErrorMessage.DUPLICATE_ERROR.getMessage())),
                 Arguments.of(MORE_THAN_FIFTY_FIVE_NUMBERS,
-                        new IllegalArgumentException(ValidateMessage.NUMBER_RANGE_ERROR.getMessage()))
+                        new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_ERROR.getMessage()))
         );
     }
 }

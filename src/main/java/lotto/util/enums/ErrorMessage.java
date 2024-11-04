@@ -1,6 +1,6 @@
 package lotto.util.enums;
 
-public enum ValidateMessage {
+public enum ErrorMessage {
     INPUT_ERROR("소수점이 없는 양수만 입력해주세요.(여려개의 숫자는 쉼표(,)로 구분)"),
 
     NUMBER_SIZE_ERROR("당첨번호의 개수가 6개가 아닙니다."),
@@ -16,7 +16,7 @@ public enum ValidateMessage {
     private static final String PREFIX = "[ERROR] ";
     private final String message;
 
-    ValidateMessage(String message) {
+    ErrorMessage(String message) {
         this.message = message;
     }
 

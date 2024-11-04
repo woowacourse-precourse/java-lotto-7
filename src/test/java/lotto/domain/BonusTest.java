@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
-import lotto.util.enums.ValidateMessage;
+import lotto.util.enums.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,10 +47,10 @@ class BonusTest {
     private static Stream<Arguments> provideFewErrorCase() {
         return Stream.of(
                 Arguments.of(DUPLICATE_WITH_LOTTO_MAP,
-                        new IllegalArgumentException(ValidateMessage.SAME_WITH_LOTTO_NUMBER_ERROR.getMessage())
+                        new IllegalArgumentException(ErrorMessage.SAME_WITH_LOTTO_NUMBER_ERROR.getMessage())
                 ),
                 Arguments.of(OVER_FOTIY_FIVE_MAP,
-                        new IllegalArgumentException(ValidateMessage.NUMBER_RANGE_ERROR.getMessage())
+                        new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_ERROR.getMessage())
                 )
         );
     }
