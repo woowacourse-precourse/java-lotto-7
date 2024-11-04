@@ -1,6 +1,5 @@
 package lotto.service.validator;
 
-import lotto.controller.PurchaseAmountController;
 import lotto.util.ErrorMessage;
 
 public class PurchaseAmountValidator {
@@ -24,11 +23,9 @@ public class PurchaseAmountValidator {
             return true;
         } catch (NumberFormatException err) {
             System.out.println(ErrorMessage.ERROR_NON_INTEGER_PURCHASE_AMOUNT);
-            PurchaseAmountController.restart();
             return false;
         } catch (IllegalArgumentException err) {
             System.out.println(ErrorMessage.ERROR_PURCHASE_AMOUNT_NOT_DIVISIBLE_BY_1000);
-            PurchaseAmountController.restart();
             return false;
         }
     }
