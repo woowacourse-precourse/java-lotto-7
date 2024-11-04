@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.constant.LottoRange;
+import lotto.utils.LottoMatcher;
 
 import java.util.List;
 
@@ -16,6 +17,10 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public Long calculatePrizeMoney(WinningNumber winningNumber, BonusNumber bonusNumber) {
+        return LottoMatcher.match(this, winningNumber, bonusNumber);
     }
 
     private void validate(List<Integer> numbers) {

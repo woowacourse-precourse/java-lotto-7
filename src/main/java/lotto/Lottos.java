@@ -12,4 +12,13 @@ public class Lottos {
     public Integer getQuantity() {
         return lottos.size();
     }
+
+    public Long getTotalPrizeMoney(WinningNumber winningNumber, BonusNumber bonusNumber) {
+        Long totalPrize = 0L;
+        for (Lotto lotto : lottos) {
+            totalPrize += lotto.calculatePrizeMoney(winningNumber, bonusNumber);
+        }
+
+        return totalPrize;
+    }
 }
