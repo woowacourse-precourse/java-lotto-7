@@ -29,7 +29,50 @@
 - 사용자가 잘못된 값을 입력할 경우`IllegalArgumentException`을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
   - `Exception`이 아닌`IllegalArgumentException`,`IllegalStateException`등과 같은 명확한 유형을 처리한다.
 
-## 📂 폴더 구조
+## 📂 패키지 구조
+```
+📂 lotto
+ ├── LottoAppDownloader
+ ├── 📂 app
+ │    └── LottoApp
+ ├── 📂 constants
+ │    ├── 📂 lotto
+ │    │    ├── LottoNumber
+ │    │    └── LottoNumberPrintFormat
+ │    └── 📂 view
+ │         ├── InputViewMessage
+ │         └── OutputViewMessage
+ ├── 📂 controller
+ │    └── LottoAppController
+ ├── 📂 error
+ │    ├── 📂 format
+ │    │   └── ErrorMessageFormat
+ │    ├── DrawNumbersError
+ │    ├── LottoNumberError
+ │    ├── PaymentError
+ │    └── SystemError
+ ├── 📂 model
+ │    ├── 📂 draw_numbers
+ │    │    ├── 📂 builder
+ │    │    │    ├── DrawNumbersBuilder
+ │    │    │    └── DrawNumbersValidator 
+ │    │    └── DrawNumbers
+ │    ├── 📂 lotto
+ │    │    ├── Lotto
+ │    │    ├── LottoChecker
+ │    │    └── LottoPublisher
+ │    ├── 📂 number_generator
+ │    │    ├── NumberGenerator
+ │    │    └── LottoNumberGenerator
+ │    ├── 📂 payment
+ │    │    ├── Payment
+ │    │    └── PaymentValidator
+ │    └──Winning 
+ ├── 📂 view
+ │    ├── InputView
+ │    └── OutputView
+ └── Application
+```
 
 ## ✅ 구현한 기능 목록
 ### 1. 로또 구입 금액 입력
