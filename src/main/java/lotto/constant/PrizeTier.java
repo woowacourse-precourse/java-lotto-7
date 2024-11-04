@@ -33,34 +33,45 @@ public enum PrizeTier  {
 
 
     static public PrizeTier  checkPrizeTier (int matchCount, boolean isBonusMatch){
-        /*TODO
-        * 함수 줄 줄이기
-        * - 방법1) hashMap을 사용하여 맵핑한다.*/
-        if(matchCount== FIRST.matchCount){
-            return PrizeTier .FIRST;
+
+        PrizeTier result = checkPrizeWithoutBonusNumber(matchCount);
+        if(result == PrizeTier.THIRD){
+            result = checkSecondOrThird(matchCount,isBonusMatch);
         }
 
-        if(matchCount== SECOND.matchCount
-        &&isBonusMatch == SECOND.bonusMatchRequire){
-            return PrizeTier .SECOND;
-        }
-
-        if(matchCount== THIRD.matchCount){
-            return PrizeTier .THIRD;
-        }
-
-        if(matchCount== FORTH.matchCount) {
-            return PrizeTier .FORTH;
-        }
-
-        if(matchCount== FIFTH.matchCount){
-            return PrizeTier .FIFTH;
-        }
-
-        return PrizeTier .NONE;
+        return result;
     }
 
     static public PrizeTier[] getWinningPrizeTierValues(){
         return new PrizeTier[]{FIFTH, FORTH, THIRD, SECOND, FIRST};
+    }
+
+    static private PrizeTier checkSecondOrThird(int matchCount, boolean isBonusMatch){
+        if(matchCount== SECOND.matchCount
+                &&isBonusMatch == SECOND.bonusMatchRequire){
+            return PrizeTier.SECOND;
+        }
+
+        if(matchCount== THIRD.matchCount){
+            return PrizeTier.THIRD;
+        }
+
+        return PrizeTier.NONE;
+    }
+
+    static private PrizeTier checkPrizeWithoutBonusNumber(int matchCount){
+        if(matchCount== FIRST.matchCount){
+            return PrizeTier.FIRST;
+        }
+        if(matchCount== THIRD.matchCount){
+            return PrizeTier.THIRD;
+        }
+        if(matchCount== FORTH.matchCount) {
+            return PrizeTier.FORTH;
+        }
+        if(matchCount== FIFTH.matchCount){
+            return PrizeTier.FIFTH;
+        }
+        return PrizeTier.NONE;
     }
 }
