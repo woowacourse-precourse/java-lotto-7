@@ -9,6 +9,8 @@ public class LottoMoney {
 
     private static final BigDecimal LOTTO_MONEY_UNIT = BigDecimal.valueOf(1_000);
     private static final BigDecimal MAX_LOTTO_MONEY = LOTTO_MONEY_UNIT.multiply(BigDecimal.valueOf(Integer.MAX_VALUE));
+    private static final int DIVIDE_SCALE = 4;
+    private static final int FIX_SCALE = 1;
     private final BigDecimal money;
 
     protected LottoMoney(BigDecimal money) {
@@ -23,9 +25,13 @@ public class LottoMoney {
     }
 
     private static void validateLottoMoneyUnit(BigDecimal money) {
-        if (!money.remainder(LOTTO_MONEY_UNIT).equals(BigDecimal.ZERO)) {
+        if (isNotLottoMoneyUnit(money)) {
             throw new MoneyException(LottoMoneyExceptionMessage.INVALID_MONEY_UNIT);
         }
+    }
+
+    private static boolean isNotLottoMoneyUnit(BigDecimal money) {
+        return !money.remainder(LOTTO_MONEY_UNIT).equals(BigDecimal.ZERO);
     }
 
     private static void validateLottoMoneyAmount(BigDecimal money) {
@@ -45,9 +51,9 @@ public class LottoMoney {
     }
 
     public BigDecimal getProfitRate(BigDecimal totalPrize) {
-        return totalPrize.divide(money, 4, RoundingMode.HALF_UP)
-                .multiply(BigDecimal.valueOf(100));
-
+        return totalPrize.divide(money, DIVIDE_SCALE, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(100))
+                .setScale(FIX_SCALE, RoundingMode.HALF_UP);
     }
 
 }

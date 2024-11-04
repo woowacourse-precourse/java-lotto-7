@@ -1,6 +1,5 @@
 package lotto.domain.machine.generator;
 
-import java.util.List;
 import lotto.domain.lotto.Lotto;
 
 public class LottoGenerator {
