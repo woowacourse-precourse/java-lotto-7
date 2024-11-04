@@ -26,7 +26,11 @@ public class Application {
 
     private static void savePurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        purchase = new Purchase(Integer.parseInt(Console.readLine()));
+        try{
+            purchase = new Purchase(Integer.parseInt(Console.readLine()));
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void printPurchaseLottoNumbers() {
@@ -62,8 +66,15 @@ public class Application {
     }
 
     private static void saveBonusNumber() {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
-        bonusNumber = new BonusNumber(Integer.parseInt(Console.readLine()));
+        while(true) {
+            System.out.println();
+            System.out.println("보너스 번호를 입력해 주세요.");
+            try {
+                bonusNumber = new BonusNumber(Console.readLine());
+                return;
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
