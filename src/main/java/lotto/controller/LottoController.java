@@ -5,12 +5,8 @@ import lotto.view.InputView;
 
 public class LottoController {
 
-    private final LottoService lottoService;
-
-    public LottoController(LottoService lottoService) {
-        this.lottoService = lottoService;
-    }
-
+    private LottoService lottoService;
+    
     public void run() {
         String purchaseAmount = InputView.getPurchaseAmount();
         lottoService.calculateNumberOfLotteryTickets(purchaseAmount);
