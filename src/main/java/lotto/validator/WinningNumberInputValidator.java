@@ -10,19 +10,32 @@ public class WinningNumberInputValidator {
 
     public static void validateWinningNumberInput(String input) {
         CommonInputValidator.validateCommonInput(input);
-        validateIsNumericList(input);
+        validateIsIntegerList(input);
     }
 
-    private static void validateIsNumericList(String input) {
+    private static void validateIsIntegerList(String input) {
         String[] splitInput = input.split(COMMA);
         for (String s : splitInput) {
-            if (isNotNumeric(s)) {
-                throw new LottoException(LottoErrorMessage.INVALID_WINNING_NUMBER_FORMAT);
-            }
+            validateIsNumeric(s);
+            validateIsInIntegerRange(s);
+        }
+    }
+
+    private static void validateIsNumeric(String input) {
+        if (isNotNumeric(input)) {
+            throw new LottoException(LottoErrorMessage.INPUT_IS_NOT_NUMERIC);
         }
     }
 
     private static boolean isNotNumeric(String input) {
         return !input.matches(NUMERIC_REGEX);
+    }
+
+    private static void validateIsInIntegerRange(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new LottoException(LottoErrorMessage.INVALID_NUMBER_RANGE);
+        }
     }
 }
