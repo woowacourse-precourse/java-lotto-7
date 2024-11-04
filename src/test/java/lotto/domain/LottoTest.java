@@ -27,6 +27,15 @@ class LottoTest {
                 .hasMessageContaining(ErrorMessages.INVALID_LOTTO_DUPLICATED.getMessage());
     }
 
+    @DisplayName("오름차순으로 정렬된 로또를 반환하는지 확인함.")
+    @Test
+    void 로또_번호_정렬을_확인한다() {
+        List<Integer> testNumbers = List.of(6, 5, 4, 3, 2, 1);
+        String answer = "[1, 2, 3, 4, 5, 6]";
+        Lotto result = new Lotto(testNumbers);
+        assertThat(result.getSortedLotto().toString()).isEqualTo(answer);
+    }
+
     @DisplayName("로또가 특정 번호를 가지고 있는지 확인함.")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
