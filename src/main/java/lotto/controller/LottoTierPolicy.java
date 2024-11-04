@@ -31,4 +31,5 @@ public class LottoTierPolicy implements TierPolicy{
                 ,LottoTier.initWinningTier(THREE_WINNING_MATCH_COUNT,
                         FALSE_NEEDS_BONUS_NUMBER_MATCH,THREE_MATCH_AMOUNT));
     }
+
 }

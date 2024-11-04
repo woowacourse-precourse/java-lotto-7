@@ -39,4 +39,10 @@ public class Lotto implements Lottery {
         long count = numbers.stream().filter(winningNumbers::contains).count();
         return Integer.parseInt(Long.toString(count));
     }
+
+    @Override
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
 }

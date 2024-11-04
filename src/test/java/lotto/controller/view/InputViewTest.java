@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Scanner;
 import lotto.controller.LottoPolicy;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -25,12 +26,12 @@ class InputViewTest {
         Scanner scanner = new Scanner(System.in);
         scanner.next();
         InputView inputView = new InputView(Validator.newInstance(new LottoPolicy()));
-
         //when
         while (scanner.hasNextLine()) {
             int i = inputView.inputAmount();
         }
         //then
+
     }
 
     @ParameterizedTest
