@@ -23,23 +23,47 @@ public class PrizeHistory {
     }
 
     void addSecond() {
-        firstPrize += 1;
+        secondPrize += 1;
     }
 
     void addThird() {
-        firstPrize += 1;
+        thirdPrize += 1;
     }
 
     void addFourth() {
-        firstPrize += 1;
+        fourthPrize += 1;
     }
 
     void addFifth() {
-        firstPrize += 1;
+        fifthPrize += 1;
     }
 
     void addLost() {
         lostPrize += 1;
+    }
+
+    Integer getFirst() {
+        return firstPrize;
+    }
+
+    Integer getSecond() {
+        return secondPrize;
+    }
+
+    Integer getThird() {
+        return thirdPrize;
+    }
+
+    Integer getFourth() {
+        return fourthPrize;
+    }
+
+    Integer getFifth() {
+        return fifthPrize;
+    }
+
+    Integer getLost() {
+        return lostPrize;
     }
 
     PrizeHistory getPrizeHistory() {

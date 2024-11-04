@@ -1,13 +1,14 @@
 package lotto.user;
 
 import java.util.List;
+import lotto.MessageCenter;
 import lotto.committee.WonNumbers;
 import lotto.shop.bandingmachine.DrawnNumbers;
 
 public class Result {
 
-    PrizeHistory prizeHistory;
-    Integer matchCount = 0;
+    PrizeHistory prizeHistory = new PrizeHistory();
+    String prizeResult;
 
     public void getResult(WonNumbers wonNumbers) {
         prizeHistory.clean();
@@ -17,7 +18,53 @@ public class Result {
     }
 
     public void print(PrizeHistory prizeHistory) {
-        
+        prizeHistory.getPrizeHistory();
+        MessageCenter.NEW_LINE.print();
+        MessageCenter.RESULT.print();
+        printPrizes(prizeHistory);
+    }
+
+    private void printPrizes(PrizeHistory prizeHistory) {
+        printFifth(prizeHistory.getFifth());
+        printFourth(prizeHistory.getFourth());
+        printThird(prizeHistory.getThird());
+        printSecond(prizeHistory.getSecond());
+        printFirst(prizeHistory.getFirst());
+    }
+
+    public String getMsgEnd(Integer count) {
+        String msgEnd = "";
+        msgEnd += count;
+        msgEnd += MessageCenter.RESULT_END.get();
+        return msgEnd;
+    }
+
+    private void printFirst(Integer count) {
+        System.out.println(MessageCenter.RESULT_FIRST.get() + getMsgEnd(count));
+    }
+
+    private void printSecond(Integer count) {
+        prizeResult = "";
+        prizeResult = MessageCenter.RESULT_SECOND.get() + getMsgEnd(count);
+        System.out.println(prizeResult);
+    }
+
+    private void printThird(Integer count) {
+        prizeResult = "";
+        prizeResult = MessageCenter.RESULT_THIRD.get() + getMsgEnd(count);
+        System.out.println(prizeResult);
+    }
+
+    private void printFourth(Integer count) {
+        prizeResult = "";
+        prizeResult = MessageCenter.RESULT_FOURTH.get() + getMsgEnd(count);
+        System.out.println(prizeResult);
+    }
+
+    private void printFifth(Integer count) {
+        prizeResult = "";
+        prizeResult = MessageCenter.RESULT_FIFTH.get() + getMsgEnd(count);
+        System.out.println(prizeResult);
     }
 
     private void getPrizes(WonNumbers wonNumbers, List<DrawnNumbers> drawnNumberPacks) {
@@ -33,7 +80,7 @@ public class Result {
         Integer wonBonus = wonNumbers.getBonus();
         Integer drawnBonus = drawnNumberPack.getBonusNumber();
 
-        matchCount = matchMains(wonMains, drawnMains);
+        Integer matchCount = matchMains(wonMains, drawnMains);
         getCount(matchCount, wonBonus, drawnBonus);
     }
 
@@ -89,13 +136,14 @@ public class Result {
     }
 
     private Integer matchMains(List<Integer> wonMains, List<Integer> drawnMains) {
+        Integer matchCount = 0;
         for (Integer drawnMain : drawnMains) {
-             matchCount = checkMatch(wonMains, drawnMain);
+             matchCount = checkMatch(matchCount, wonMains, drawnMain);
         }
         return matchCount;
     }
 
-    private Integer checkMatch(List<Integer> wonMains, Integer drawnMain) {
+    private Integer checkMatch(Integer matchCount, List<Integer> wonMains, Integer drawnMain) {
         if(wonMains.contains(drawnMain)) {
             matchCount += 1;
         }
