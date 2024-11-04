@@ -20,4 +20,10 @@ public class StringUtil {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다. 다시 시도해주세요.");
         }
     }
+
+    public static void checkIfNull(String str) {
+        if (str == null) {
+            throw new IllegalArgumentException("[ERROR] 입력값은 null일 수 없습니다.");
+        }
+    }
 }
