@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.List;
+
 public class WinningLotto {
     private final Lotto winningLotto;
     private final int bonusNumber;
@@ -15,5 +17,8 @@ public class WinningLotto {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+    public boolean hasBonusNumber(List<Integer> LottoNumbers) {
+        return LottoNumbers.contains(bonusNumber);
     }
 }

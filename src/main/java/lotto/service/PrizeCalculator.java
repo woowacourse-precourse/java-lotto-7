@@ -53,7 +53,7 @@ public class PrizeCalculator {
     }
 
     private boolean isNotThirdPrize(Lotto lotto, WinningLotto winningLotto, Prize prize) {
-        return lotto.hasBonusNumber(winningLotto.getBonusNumber()) && prize.equals(Prize.THIRD);
+        return winningLotto.hasBonusNumber(lotto.getNumbers()) && prize.equals(Prize.THIRD);
     }
 
     public double calculateWinningRate(int amountInput) {

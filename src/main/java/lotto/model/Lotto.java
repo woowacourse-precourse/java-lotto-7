@@ -50,9 +50,7 @@ public class Lotto {
         return count;
     }
 
-    public boolean hasBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
-    }
+
 
     private List<Integer> sortNumbers(List<Integer> numbers) {
         return numbers.stream()
