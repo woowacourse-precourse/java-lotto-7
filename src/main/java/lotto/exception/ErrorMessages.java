@@ -2,7 +2,7 @@ package lotto.exception;
 
 public enum ErrorMessages {
 
-    CHECK_INT("입력값은 숫자여야 합니다."),
+    CHECK_INT("입력값은 양수여야 합니다."),
     THOUSAND_UNIT("1000원 단위로 입력해야 합니다."),
     MIN_RANGE("최솟값은 1000입니다."),
     CHECK_SIZE("로또 번호는 6개여야 합니다."),

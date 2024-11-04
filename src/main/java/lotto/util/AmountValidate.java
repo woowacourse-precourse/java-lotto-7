@@ -6,8 +6,8 @@ public class AmountValidate {
 
     public static void validate(String input) {
         checkType(input);
-        checkThousandUnit(input);
         checkMinRange(input);
+        checkThousandUnit(input);
     }
 
     // 입력값 자료형 검사
