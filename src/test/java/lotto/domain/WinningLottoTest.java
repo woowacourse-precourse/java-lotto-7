@@ -96,7 +96,7 @@ class WinningLottoTest {
                 Arguments.of(List.of(1, 2, 3, 4, 14, 15), Optional.of(LottoPrize.FOURTH_PRIZE)),
                 Arguments.of(List.of(1, 2, 3, 4, 5, 15), Optional.of(LottoPrize.THIRD_PRIZE)),
                 Arguments.of(List.of(1, 2, 3, 4, 5, 7), Optional.of(LottoPrize.SECOND_PRIZE)),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), Optional.of(LottoPrize.FRIST_PRIZE))
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), Optional.of(LottoPrize.FIRST_PRIZE))
         );
     }
 }

@@ -2,7 +2,7 @@ package lotto.domain;
 
 import static lotto.domain.lottoPrize.LottoPrize.FIFTH_PRIZE;
 import static lotto.domain.lottoPrize.LottoPrize.FOURTH_PRIZE;
-import static lotto.domain.lottoPrize.LottoPrize.FRIST_PRIZE;
+import static lotto.domain.lottoPrize.LottoPrize.FIRST_PRIZE;
 import static lotto.domain.lottoPrize.LottoPrize.SECOND_PRIZE;
 import static lotto.domain.lottoPrize.LottoPrize.THIRD_PRIZE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -87,7 +87,7 @@ class LottoStaticsTest {
         assertThat(result.get(FOURTH_PRIZE)).isEqualTo(expectedPrizeCount.get(1));
         assertThat(result.get(THIRD_PRIZE)).isEqualTo(expectedPrizeCount.get(2));
         assertThat(result.get(SECOND_PRIZE)).isEqualTo(expectedPrizeCount.get(3));
-        assertThat(result.get(FRIST_PRIZE)).isEqualTo(expectedPrizeCount.get(4));
+        assertThat(result.get(FIRST_PRIZE)).isEqualTo(expectedPrizeCount.get(4));
     }
 
     @ParameterizedTest
@@ -129,7 +129,7 @@ class LottoStaticsTest {
         return Stream.of(
                 Arguments.of(
                         WinningLotto.of(Lotto.from(List.of(1, 2, 3, 4, 5, 6)), 7),
-                        (double) (FRIST_PRIZE.prizeMoney) * 100 / 3000
+                        (double) (FIRST_PRIZE.prizeMoney) * 100 / 3000
                 ),
                 Arguments.of(
                         WinningLotto.of(Lotto.from(List.of(2, 3, 4, 5, 6, 7)), 8),

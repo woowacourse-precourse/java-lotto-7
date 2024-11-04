@@ -46,7 +46,7 @@ class OutputHandlerTest {
         OutputParser outputParser = new OutputParser();
         OutputHandler sut = new OutputHandler(writerFake, outputParser);
         Map<LottoPrize, Long> prizeCount = new HashMap<>();
-        prizeCount.put(LottoPrize.FRIST_PRIZE, 1L);
+        prizeCount.put(LottoPrize.FIRST_PRIZE, 1L);
         prizeCount.put(LottoPrize.THIRD_PRIZE, 2L);
         PrizeStatics prizeStatics = new PrizeStatics(new EnumMap<>(prizeCount));
 

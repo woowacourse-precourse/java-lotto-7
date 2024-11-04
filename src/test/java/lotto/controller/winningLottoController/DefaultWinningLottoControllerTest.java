@@ -44,6 +44,6 @@ class DefaultWinningLottoControllerTest {
 
         //then
         assertThat(result.matchLotto(winningNumbers).isPresent()).isTrue();
-        assertThat(result.matchLotto(winningNumbers).get()).isEqualTo(LottoPrize.FRIST_PRIZE);
+        assertThat(result.matchLotto(winningNumbers).get()).isEqualTo(LottoPrize.FIRST_PRIZE);
     }
 }

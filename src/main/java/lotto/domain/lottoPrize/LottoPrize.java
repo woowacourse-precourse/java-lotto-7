@@ -26,7 +26,7 @@ public enum LottoPrize {
             30_000_000L,
             "5개 일치, 보너스 볼 일치 (30,000,000원)"
     ),
-    FRIST_PRIZE(
+    FIRST_PRIZE(
             new MatchCondition(6, false),
             2_000_000_000L,
             "6개 일치 (2,000,000,000원)"
