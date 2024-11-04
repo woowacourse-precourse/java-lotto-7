@@ -6,6 +6,7 @@ import static lotto.constant.LottoGameConfig.LOTTO_NUMBERS_COUNT;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.util.LottoNumberValidator;
 
 public class Lotto {
 
@@ -14,6 +15,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateUniqueLottoNumbers(numbers);
         validateLottoSize(numbers);
+        validateNumbersInRange(numbers);
         this.numbers = numbers.stream().sorted().toList();
     }
 
@@ -27,6 +29,10 @@ public class Lotto {
         if (numbers.size() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_ERROR);
         }
+    }
+
+    private void validateNumbersInRange(List<Integer> numbers) {
+        numbers.forEach(LottoNumberValidator::validateRange);
     }
 
     public List<Integer> getNumbers() {
