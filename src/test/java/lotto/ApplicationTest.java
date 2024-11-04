@@ -54,6 +54,46 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_금액이_음수일_때() {
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE, "금액은 양수여야 합니다.");
+        });
+    }
+
+    @Test
+    void 예외_테스트_1000원_단위가_아닐_때() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE, "구입 금액은 1000원 단위만 가능합니다.");
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호가_범위를_벗어날_때() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE, "보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호가_당첨번호와_중복될_때() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "5");
+            assertThat(output()).contains(ERROR_MESSAGE, "보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        });
+    }
+
+    @Test
+    void 로또_번호가_범위를_벗어날_때_예외_발생() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,46");
+            assertThat(output()).contains("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
