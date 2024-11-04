@@ -16,8 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Application 테스트")
 class ApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
 
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     static Stream<Arguments> 기능_테스트_케이스() {
         return Stream.of(
