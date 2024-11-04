@@ -35,4 +35,13 @@ public class ValidatorsTest {
         Assertions.assertThatThrownBy(() -> validators.validateSplitNumericInput(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력 숫자 1~45내에 숫자가 아닌경우 예외처리한다.")
+    @Test
+    void 입력_숫자_1_45_범위_아니면_예외처리() {
+        int number = 50;
+
+        Assertions.assertThatThrownBy(() -> validators.validateNumberRange(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
