@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,16 +49,19 @@ public class LottoGameController {
     }
 
     public Map<PrizeRank, Integer> getPrizeRankCounts(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
+        Map<PrizeRank, Integer> prizeRankCounts = initializePrizeRankCounts();
+
+        for (Lotto lotto : lottos) {
+            PrizeRank prizeRank = PrizeRank.getPrizeRank(lotto.getMatchCount(winningNumbers), lotto.isBonusMatch(bonusNumber));
+            prizeRankCounts.put(prizeRank, prizeRankCounts.get(prizeRank) + 1);
+        }
+        return prizeRankCounts;
+    }
+
+    public Map<PrizeRank, Integer> initializePrizeRankCounts() {
         Map<PrizeRank, Integer> prizeRankCounts = new HashMap<>();
         for (PrizeRank prizeRank : PrizeRank.values()) {
             prizeRankCounts.put(prizeRank, 0);
-        }
-
-        for (Lotto lotto : lottos) {
-            int matchCount = lotto.getMatchCount(winningNumbers);
-            boolean isBonusMatch = lotto.isBonusMatch(bonusNumber);
-            PrizeRank prizeRank = PrizeRank.getPrizeRank(matchCount, isBonusMatch);
-            prizeRankCounts.put(prizeRank, prizeRankCounts.get(prizeRank) + 1);
         }
         return prizeRankCounts;
     }
