@@ -10,6 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         hasDuplicate(numbers);
+        isValidNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -18,6 +19,14 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void isValidNumber(List<Integer> numbers){
+        for(int num: numbers){
+            if(num<=0||num>45){
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자이어야 합니다.");
+            }
         }
     }
 
