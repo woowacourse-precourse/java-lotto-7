@@ -2,11 +2,11 @@ package lotto.model.lotto;
 
 public enum LottoRankAward {
 
-    FIRST_RANK(6, 2_000_000_000, false),
-    SECOND_RANK(5, 30_000_000, true),
-    THIRD_RANK(5,  1_500_000,false),
+    FIFTH_RANK(3, 5_000, false),
     FORTH_RANK(4,  50_000, false),
-    FIFTH_RANK(3, 5_000, false);
+    THIRD_RANK(5,  1_500_000,false),
+    SECOND_RANK(5, 30_000_000, true),
+    FIRST_RANK(6, 2_000_000_000, false);
 
     private final int matchedNumberCount;
     private final int prizeAmount;

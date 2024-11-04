@@ -30,7 +30,7 @@ public class LottoBuyer {
 
     public double calculateProfitRate(){
         lottoProfitRate = (totalLottoProfit / lottoPurchaseAmount) * 100;
-        return Math.round(lottoProfitRate * 100.0) / 100.0;
+        return lottoProfitRate;
     }
 
     public Map<LottoRankAward, Integer> calculateLottoResult(LottoWinningNumbers lottoWinningNumbers){

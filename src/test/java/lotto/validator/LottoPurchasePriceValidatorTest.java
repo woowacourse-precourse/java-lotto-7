@@ -23,8 +23,6 @@ public class LottoPurchasePriceValidatorTest {
         );
     }
 
-    //feat(LottoPurchasePriceValidator): Add class to validate price
-    //- Validate purchase price of lotto
     @Test
     @DisplayName("로또 구매 금액이 10만원보다 큰 경우 예외를 발생시키고 관련 예외 메시지를 출력한다")
     void shouldThrowExceptionWhenLottoPurchaseAmountIsMoreThan100_000() {

@@ -2,8 +2,8 @@ package lotto.util;
 
 public class NumberParserFactory {
 
-    public NumberParser createNumberParser() {
-        NumberConverter numberConverter = new DefaultNumberConverter();
+    public NumberParserWithComma createNumberParser() {
+        NumberConverter numberConverter = new NumberConverter();
         return new NumberParserWithComma(numberConverter);
     }
 }
