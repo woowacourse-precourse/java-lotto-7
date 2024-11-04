@@ -27,12 +27,13 @@ public class LottoStatistics {
     public void printStatistics(int totalSpent) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        for (LottoRank rank : LottoRank.values()) {
-            if (rank != LottoRank.MISS) {
-                System.out.printf("%d개 일치 (%d원) - %d개%n",
-                        rank.getMatchedCount(), rank.getPrize(), prizeCount.get(rank));
-            }
-        }
+
+        System.out.printf("3개 일치 (5,000원) - %d개%n", prizeCount.getOrDefault(LottoRank.FIFTH, 0));
+        System.out.printf("4개 일치 (50,000원) - %d개%n", prizeCount.getOrDefault(LottoRank.FOURTH, 0));
+        System.out.printf("5개 일치 (1,500,000원) - %d개%n", prizeCount.getOrDefault(LottoRank.THIRD, 0));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", prizeCount.getOrDefault(LottoRank.SECOND, 0));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", prizeCount.getOrDefault(LottoRank.FIRST, 0));
+
         System.out.printf("총 수익률은 %.1f%%입니다.%n", calculateProfitRate(totalSpent));
     }
 }
