@@ -37,6 +37,12 @@
 ---
 <br>
 
+## 클래스 다이어그램
+![img.png](img.png)
+---
+<br>
+
+
 ## 기능 목록
 
 ### 입력 (예외 상황 시 IllegalArgumentException을 발생시키고 다시 입력)
