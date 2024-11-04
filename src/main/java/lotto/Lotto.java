@@ -23,21 +23,25 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    //각 로또 번호 출력
     public List<Integer> getNumbers() {
-        System.out.print("[");
-        for(int i = 0; i < numbers.size(); i++) {
-            printEachLotto(i);
-        }
-        System.out.println("]");
         return numbers;
     }
 
+    //각 로또 번호 출력
+    public void printLotto() {
+        System.out.print("[");
+        for(int i = 0; i < numbers.size(); i++) {
+            printEachLottoNumber(i);
+        }
+        System.out.println("]");
+    }
+
     //로또 출력 형식을 위한 함수
-    private void printEachLotto(int i) {
+    private void printEachLottoNumber(int i) {
         System.out.print(numbers.get(i));
         if (i != numbers.size() - 1) {
             System.out.print(",");
         }
     }
+
 }

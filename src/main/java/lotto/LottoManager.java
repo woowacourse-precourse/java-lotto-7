@@ -4,9 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.validator.LottoValidator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class LottoManager {
 
@@ -46,6 +44,14 @@ public class LottoManager {
             userInput = Console.readLine().trim();
         }
 
+    }
+
+    public void compareLotto(){
+        for (Lotto lotto : lottoList) {
+            Set<Integer> winLotto = new HashSet<>(winningLotto.getNumbers());
+            Set<Integer> eachLotto = new HashSet<>(lotto.getNumbers());
+            winLotto.retainAll(eachLotto);
+        }
     }
 
     private boolean convertBonusNumToInteger(String userInput) {
@@ -124,7 +130,7 @@ public class LottoManager {
         Collections.sort(lottoNumbers);
         Lotto lotto = new Lotto(lottoNumbers);
         //각 로또의 모든 숫자들 출력
-        lotto.getNumbers();
+        lotto.printLotto();
         lottoList.add(lotto);
     }
 
