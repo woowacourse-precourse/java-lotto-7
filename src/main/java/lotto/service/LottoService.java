@@ -15,7 +15,12 @@ public class LottoService {
         return new WinnerLotto(winnerNumbers, bonus);
     }
 
-    public long calculatePrize(List<Lotto> lottoTickets, WinnerLotto winnerLotto) {
+    public double calculateEarningRage(LottoMachine lottoMachine, WinnerLotto winnerLotto) {
+        long totalprize = totalPrize(lottoMachine.getLottoTickets(), winnerLotto);
+        return totalReturn(lottoMachine, totalprize);
+    }
+
+    private long totalPrize(List<Lotto> lottoTickets, WinnerLotto winnerLotto) {
         long totalPrize = 0;
 
         for (Lotto lotto : lottoTickets) {
@@ -48,7 +53,7 @@ public class LottoService {
         return LottoPrize.getPrizeByRank(matchCount);
     }
 
-    public double totalReturn(LottoMachine lottoMachine, long prize) {
+    private double totalReturn(LottoMachine lottoMachine, long prize) {
         double amount = lottoMachine.totalAmonut();
 
         return Math.round((double) prize / amount * 1000.0) / 10.0;
