@@ -8,12 +8,12 @@ public enum WinningState {
     FIFTH_PRIZE(5000),
     NO_LUCK(0);
 
-    private int amount;
-    WinningState(int amount) {
+    private long amount;
+    WinningState(long amount) {
         this.amount = amount;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 }
