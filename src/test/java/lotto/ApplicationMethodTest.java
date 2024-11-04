@@ -3,9 +3,11 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ApplicationMethodTest extends NsTest {
@@ -63,9 +65,28 @@ class ApplicationMethodTest extends NsTest {
     }
 
     @Test
+    public void testMatchedCheck() {
+        List<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        List<Integer> win_array = new ArrayList<>(Arrays.asList(1, 9, 10, 4, 5, 13));
+        Lotto lotto = new Lotto(win_array);
+        assertEquals(1, Application.matchedCheck(array, lotto, 0));
+        assertEquals(0, Application.matchedCheck(array, lotto, 1));
+        assertEquals(0, Application.matchedCheck(array, lotto, 2));
+        assertEquals(1, Application.matchedCheck(array, lotto, 3));
+        assertEquals(1, Application.matchedCheck(array, lotto, 4));
+        assertEquals(0, Application.matchedCheck(array, lotto, 5));
+    }
+
+    @Test
     public void testFormatPrize() {
         assertEquals("1,000", Application.formatPrize(1000));
         assertEquals("20,000", Application.formatPrize(20000));
+    }
+
+    @Test
+    public void testPrintProfit() {
+        Application.printProfit(30000, 50000000);
+        assertThat(output()).contains("166,666.7%");
     }
 
     @Override
