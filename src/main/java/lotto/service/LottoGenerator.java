@@ -2,8 +2,8 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoGenerator {
     private static final int LOTTO_PRICE = 1000;
@@ -32,7 +32,6 @@ public class LottoGenerator {
     }
 
     private List<Integer> sortLottoNumbers(List<Integer> lotto) {
-        Collections.sort(lotto);
-        return lotto;
+        return lotto.stream().sorted().collect(Collectors.toList());
     }
 }
