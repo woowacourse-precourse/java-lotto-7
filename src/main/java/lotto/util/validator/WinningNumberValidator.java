@@ -13,6 +13,9 @@ public class WinningNumberValidator implements Validator {
     @Override
     public List<Integer> validate(String input) throws IllegalArgumentException {
         List<String> winningNumbers = splitAndValidateInput(input);
+        if (winningNumbers.size() != NUMBER_COUNT) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_LENGTH.getMessage());
+        }
         return validateAndConvertToNumbers(winningNumbers);
     }
 
