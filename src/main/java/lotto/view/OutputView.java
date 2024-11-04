@@ -9,11 +9,14 @@ public class OutputView {
     public static void printLotteryTickets(List<List<Integer>> lotteryTickets) {
         int numberOfTickets = lotteryTickets.size();
 
+        printNewLine();
         System.out.println(numberOfTickets + LOTTERY_TICKETS_SUFFIX);
-        
+
         for (List<Integer> ticket : lotteryTickets) {
             System.out.println(ticket);
         }
+
+        printNewLine();
     }
 
     public static void printNewLine() {
