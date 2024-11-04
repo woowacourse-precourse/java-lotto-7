@@ -7,16 +7,8 @@ public class LottoManagementSystem {
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    public LottoManagementSystem() {
+    public LottoManagementSystem(){
 
-    }
-
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
     }
 
     public void setWinningNumbers(List<Integer> winningNumbers) {

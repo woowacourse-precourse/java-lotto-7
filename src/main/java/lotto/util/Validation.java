@@ -11,6 +11,12 @@ public class Validation {
         }
     }
 
+    public static void validateMoney(int money){
+        if (money < 0){
+            throw new IllegalArgumentException("[ERROR] 금액은 0원 이상이어야 합니다.");
+        }
+    }
+
     public static void validateNumbersBoundary(List<Integer> winnings){
         for (Integer winning : winnings) {
             validateOneNumBoundary(winning);
@@ -19,7 +25,7 @@ public class Validation {
 
     public static void validateInteger(String input) {
         if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 비어있습니다.");
+            throw new IllegalArgumentException("[ERROR] 입력값이 비어 있습니다.");
         }
 
         try {

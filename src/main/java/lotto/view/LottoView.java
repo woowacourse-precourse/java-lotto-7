@@ -28,7 +28,7 @@ public class LottoView {
         return input;
     }
 
-    public String bonusInput(){
+    public String bonusInput() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         System.out.println();
@@ -36,7 +36,7 @@ public class LottoView {
         return input;
     }
 
-    public void printPurchase(List<Lotto> lottos){
+    public void printPurchase(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
 
         for (Lotto lotto : lottos) {
@@ -45,7 +45,7 @@ public class LottoView {
         System.out.println();
     }
 
-    public void printStat(LottoResult result){
+    public void printStat(LottoResult result) {
 
         int[] rankCounts = result.getRankCounts();
 
@@ -58,8 +58,11 @@ public class LottoView {
         System.out.printf("6개 일치 (%,d원) - %d개\n", PrizeAmount.FIRST.getPrizeAmount(), rankCounts[0]); // 6개 일치 => 1등
     }
 
-    public void printYield(float yield){
-        System.out.println("총 수익률은 " + yield + "% 입니다.");
+    public void printYield(float yield) {
+        System.out.println("총 수익률은 " + yield + "%입니다.");
     }
 
+    public void printError(String message) {
+        System.out.println(message + "\n");
+    }
 }
