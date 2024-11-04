@@ -83,7 +83,11 @@ public class Application {
             System.out.println(Constants.MESSAGE_ENTER_WINNING_NUMBERS.getMessageValue());
             String winningNumberInput = Console.readLine();
 
-            return splitWinningNumbersByComma(winningNumberInput);
+            List<Integer> winningNumbers = splitWinningNumbersByComma(winningNumberInput);
+
+            new Lotto(winningNumbers);
+
+            return winningNumbers;
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());
             return getWinningNumbers();
