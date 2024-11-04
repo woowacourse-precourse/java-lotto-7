@@ -22,7 +22,7 @@ public class WinningNumbers {
         for (String numStr : splitNumbers) {
             int number = Integer.parseInt(numStr.trim());
             validateNumberRange(number);
-            if (!numbers.add(number)) {
+            if (isDuplicated(numbers, number)) {
                 throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER);
             }
         }
@@ -39,6 +39,10 @@ public class WinningNumbers {
         if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
         }
+    }
+
+    private static boolean isDuplicated(Set<Integer> numbers, int number) {
+        return !numbers.add(number);
     }
 
     public Set<Integer> getNumbers() {
