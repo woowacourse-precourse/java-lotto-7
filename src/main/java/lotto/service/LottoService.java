@@ -45,7 +45,16 @@ public class LottoService {
         int count = (int) numbers.stream().filter(winningNumbers.getWinningNumber()::contains)
                 .count();
         boolean hasBonus = numbers.contains(winningNumbers.getBonusNumber());
+        return getWinningCountIndex(count, hasBonus);
+    }
 
+    public double getRateOfReturn(List<Integer> winningAmount, WinningCount count) {
+        List<Integer> winningCounts = count.getWinningCount();
+        float size = winningCounts.stream().mapToInt(i -> i).sum();
+        float profit = calculateProfit(winningAmount, winningCounts);
+        return calculateRateOfReturn(size, profit);
+    }
+    private int getWinningCountIndex(int count, boolean hasBonus) {
         if (count == 6) {
             return 5;
         }
@@ -56,13 +65,6 @@ public class LottoService {
             return count - 2;
         }
         return 0;
-    }
-
-    public double getRateOfReturn(List<Integer> winningAmount, WinningCount count) {
-        List<Integer> winningCounts = count.getWinningCount();
-        float size = winningCounts.stream().mapToInt(i -> i).sum();
-        float profit = calculateProfit(winningAmount, winningCounts);
-        return calculateRateOfReturn(size, profit);
     }
 
     public float calculateProfit(List<Integer> winningAmount, List<Integer> winningCounts) {
