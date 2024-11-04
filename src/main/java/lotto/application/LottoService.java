@@ -24,6 +24,7 @@ public class LottoService {
     }
 
     public List<Lotto> buyLottos(int price) {
+        validatePrice(price);
         List<Lotto> lottos = new ArrayList<>();
 
         for(int i = 0; i < price / LOTTO_PRICE; i++) {
@@ -49,5 +50,11 @@ public class LottoService {
                 .mapToInt(Integer::parseInt)
                 .sum();
         return (double) totalPrize / purchaseQuantity;
+    }
+
+    private void validatePrice(int price) {
+        if (price <= 0 || price % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위로 입력해야 합니다.");
+        }
     }
 }
