@@ -5,6 +5,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+
         LottoGenerator lottoGenerator = new LottoGenerator();
         System.out.println(lottoGenerator);
         List<Lotto> lottos = lottoGenerator.getLottos();

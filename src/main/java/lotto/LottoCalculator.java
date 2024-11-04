@@ -107,7 +107,7 @@ public class LottoCalculator {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
-    private int calculateTotalPrize() {
+    public int calculateTotalPrize() {
         int totalPrize = 0;
         totalPrize += resultCounts.get("3개 일치 (5,000원)") * 5000;
         totalPrize += resultCounts.get("4개 일치 (50,000원)") * 50000;
@@ -115,5 +115,13 @@ public class LottoCalculator {
         totalPrize += resultCounts.get("5개 일치, 보너스 볼 일치 (30,000,000원)") * 30000000;
         totalPrize += resultCounts.get("6개 일치 (2,000,000,000원)") * 2000000000;
         return totalPrize;
+    }
+
+    public Map<String, Integer> getResultCounts() {
+        return resultCounts;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 }

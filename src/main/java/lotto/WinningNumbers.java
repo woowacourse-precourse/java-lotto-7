@@ -17,7 +17,17 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
+    public WinningNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
+        validateNumbers(winningNumbers, bonusNumber); // 유효성 검사
+        validateWinningNumbersLength(winningNumbers);
+        validateWinningNumbersDuplicate(winningNumbers);
+
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+    }
+
+
+    public void validateNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
         for(Integer winningNumber : winningNumbers){
             if(winningNumber.equals(bonusNumber)){
                 throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복되지 않는 숫자로 이루어져야합니다.");
@@ -52,13 +62,13 @@ public class WinningNumbers {
         return winningNumbers;
     }
 
-    private void validateWinningNumbersDuplicate(List<Integer> winningNumbers) {
+    public void validateWinningNumbersDuplicate(List<Integer> winningNumbers) {
         if(winningNumbers.size() != winningNumbers.stream().distinct().count()){
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 숫자로 이루어져야합니다.");
         }
     }
 
-    private void validateWinningNumbersLength(List<Integer> winningNumbers) {
+    public void validateWinningNumbersLength(List<Integer> winningNumbers) {
         if(winningNumbers.size() != 6){
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자로 이루어져야합니다.");
         }
@@ -74,9 +84,9 @@ public class WinningNumbers {
         return bonusNumber;
     }
 
-    private Integer validateBonusNumber(String inputBonusNumber){
-        if(inputBonusNumber.length() != 1 && !Character.isDigit(inputBonusNumber.charAt(0))){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1자리 숫자로 이루어져야합니다.");
+    public Integer validateBonusNumber(String inputBonusNumber){
+        if(!Character.isDigit(inputBonusNumber.charAt(0))){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1개의 숫자로 이루어져야합니다.");
         }
         return Integer.parseInt(inputBonusNumber);
     }

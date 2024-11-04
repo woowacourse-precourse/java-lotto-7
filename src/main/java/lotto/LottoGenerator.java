@@ -26,6 +26,23 @@ public class LottoGenerator {
         this.purchaseAmount = amount;
     }
 
+    public LottoGenerator(String inputAmount) { //테스트 용
+        int amount = validateInputAmount(inputAmount);
+        validateAmount(amount);
+
+        int count = calculateLottoCount(amount);
+        List<Lotto> tmpLottoList = new ArrayList<>(count);
+
+        for (int i = 0; i < count; i++) {
+            List<Integer> tmpList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(tmpList);
+
+            tmpLottoList.add(new Lotto(tmpList));
+        }
+        this.Lottos = tmpLottoList;
+        this.purchaseAmount = amount;
+    }
+
     private int inputAmount() {
         System.out.println("구매금액을 입력해 주세요.");
         String inputAmount = Console.readLine();
