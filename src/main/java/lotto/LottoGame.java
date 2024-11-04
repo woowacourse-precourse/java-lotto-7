@@ -70,12 +70,14 @@ public class LottoGame {
     private List<List<Integer>> generateLottoNumbers(int count) {
         List<List<Integer>> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
+            // 불변 리스트를 변경 가능한 리스트로 변환
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT));
             Collections.sort(numbers);
             lottoNumbers.add(numbers);
         }
         return lottoNumbers;
     }
+
 
     private void printLottoNumbers(List<List<Integer>> lottoNumbers) {
         for (List<Integer> numbers : lottoNumbers) {
@@ -86,7 +88,7 @@ public class LottoGame {
     private List<Integer> getValidateWinningNumbers() {
         while (true) {
             try {
-                System.out.println("\n당첨 번호를 입력해 주세요. (쉼표로 구분된 6개의 숫자)");
+                System.out.println("\n당첨 번호를 입력해 주세요.");
                 String input = Console.readLine().trim();
                 List<Integer> winningNumbers = parseWinningNumbers(input);
                 new Lotto(winningNumbers); // Lotto 객체 생성 시 유효성 검사 수행
