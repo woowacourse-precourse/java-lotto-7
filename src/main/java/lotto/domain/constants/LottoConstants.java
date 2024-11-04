@@ -6,5 +6,6 @@ public final class LottoConstants {
     public static final int LOTTO_PRICE = 1000;
     public static final int LOTTO_DEFAULT_COUNT = 6;
 
-    private LottoConstants() {}
+    private LottoConstants() {
+    }
 }
