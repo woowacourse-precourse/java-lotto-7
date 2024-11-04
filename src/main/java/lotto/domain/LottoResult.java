@@ -17,7 +17,7 @@ public class LottoResult {
         return rankCounts;
     }
 
-    public double getTotalReturnRate() {
+    public double getProfitRate() {
         return totalProfitRate;
     }
 

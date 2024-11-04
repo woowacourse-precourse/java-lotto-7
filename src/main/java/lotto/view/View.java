@@ -53,7 +53,7 @@ public class View {
             String prize = String.valueOf(rank.getPrize());
             System.out.printf("%d개 일치 (%s)원 - %d개%n", rank.getMatchCount(), prize, count);
         }
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", result.getTotalReturnRate());
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", result.getProfitRate());
 
     }
 
