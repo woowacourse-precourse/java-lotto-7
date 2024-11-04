@@ -31,6 +31,7 @@ public class InputHandler {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 List<Integer> winnerNumbers = Arrays.stream(input.split(","))
+                        .map(String::trim)
                         .map(Integer::parseInt)
                         .toList();
                 validateNumberInput(winnerNumbers);
