@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.List;
+import java.util.EnumMap;
 
 import static java.lang.String.format;
 
@@ -11,23 +11,23 @@ public class LottoProfitCalculator {
 
     private final String lottoProfitRate;
 
-    private LottoProfitCalculator(List<LottoRankType> lottoRankTypes, final int purchaseAmount) {
-        this.lottoProfitRate = calculateProfitRate(lottoRankTypes, purchaseAmount);
+    private LottoProfitCalculator(EnumMap<LottoRankType, Integer> rankCountMap, final int purchaseAmount) {
+        this.lottoProfitRate = calculateProfitRate(rankCountMap, purchaseAmount);
     }
 
-    public static LottoProfitCalculator from(List<LottoRankType> lottoRankTypes, final int purchaseAmount) {
-        return new LottoProfitCalculator(lottoRankTypes, purchaseAmount);
+    public static LottoProfitCalculator from(EnumMap<LottoRankType, Integer> rankCountMap, final int purchaseAmount) {
+        return new LottoProfitCalculator(rankCountMap, purchaseAmount);
     }
 
     public String getLottoProfitRate() {
         return lottoProfitRate;
     }
 
-    private String calculateProfitRate(List<LottoRankType> lottoRankTypes, final int purchaseAmount) {
-        double profitRate = lottoRankTypes.stream()
-                .mapToDouble(LottoRankType::getPrice)
+    private String calculateProfitRate(EnumMap<LottoRankType, Integer> rankCountMap, final int purchaseAmount) {
+        double totalProfit = rankCountMap.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
-        return format(DECIMAL_FORMAT, (profitRate / purchaseAmount) * PERCENT_CONVERSION_FACTOR);
+        return format(DECIMAL_FORMAT, (totalProfit / purchaseAmount) * PERCENT_CONVERSION_FACTOR);
     }
 
 }

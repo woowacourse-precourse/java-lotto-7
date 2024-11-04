@@ -5,6 +5,7 @@ import lotto.domain.LottoProfitCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.EnumMap;
 import java.util.List;
 
 import static lotto.common.constants.ViewMessage.WINNING_STATISTICS;
@@ -22,21 +23,21 @@ public class LottoController {
 
     private void getWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
         OutputView.printMessage(WINNING_STATISTICS.getText());
-        List<LottoRankType> lottoRankTypes = calculateLottoResults(lottos, winningNumbers, bonusNumber);
-        String profitRate = calculateProfitRate(lottoRankTypes, purchaseAmount);
-        displayStatistics(lottoRankTypes, profitRate);
+        LottoResult lottoResult = calculateLottoResults(lottos, winningNumbers, bonusNumber);
+        String profitRate = calculateProfitRate(lottoResult.getRankCountMap(), purchaseAmount);
+        displayStatistics(lottoResult.getRankCountMap(), profitRate);
     }
 
-    private List<LottoRankType> calculateLottoResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        return LottoResult.of(lottos, winningNumbers, bonusNumber).getLottoRankTypes();
+    private LottoResult calculateLottoResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        return LottoResult.of(lottos, winningNumbers, bonusNumber);
     }
 
-    private String calculateProfitRate(List<LottoRankType> lottoRankTypes, int purchaseAmount) {
-        return LottoProfitCalculator.from(lottoRankTypes, purchaseAmount).getLottoProfitRate();
+    private String calculateProfitRate(EnumMap<LottoRankType, Integer> rankCountMap, int purchaseAmount) {
+        return LottoProfitCalculator.from(rankCountMap, purchaseAmount).getLottoProfitRate();
     }
 
-    private void displayStatistics(List<LottoRankType> lottoRankTypes, String profitRate) {
-        OutputView.printLottoResultPrompt(lottoRankTypes);
+    private void displayStatistics(EnumMap<LottoRankType, Integer> rankCountMap, String profitRate) {
+        OutputView.printLottoResultPrompt(rankCountMap);
         OutputView.printLottoProfitRate(profitRate);
     }
 

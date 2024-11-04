@@ -1,15 +1,16 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class LottoResult {
 
-    private final List<LottoRankType> lottoRankTypes;
+    private static final int DEFAULT_VALUE = 0;
+    private static final int INCREMENT_COUNT = 1;
+
+    private final EnumMap<LottoRankType, Integer> rankCountMap;
 
     private LottoResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        lottoRankTypes = new ArrayList<>();
+        rankCountMap = initializeRankCountMap();
         calculateLottoRanks(lottos, winningNumbers, bonusNumber);
     }
 
@@ -17,8 +18,15 @@ public class LottoResult {
         return new LottoResult(lottos, winningNumbers, bonusNumber);
     }
 
-    public List<LottoRankType> getLottoRankTypes() {
-        return Collections.unmodifiableList(lottoRankTypes);
+    public EnumMap<LottoRankType, Integer> getRankCountMap() {
+        return rankCountMap;
+    }
+
+    private EnumMap<LottoRankType, Integer> initializeRankCountMap() {
+        EnumMap<LottoRankType, Integer> rankCountMap = new EnumMap<>(LottoRankType.class);
+        Arrays.stream(LottoRankType.values())
+                .forEach(rank -> rankCountMap.put(rank, DEFAULT_VALUE));
+        return rankCountMap;
     }
 
     private void calculateLottoRanks(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
@@ -30,7 +38,8 @@ public class LottoResult {
                 .filter(winningNumbers::contains)
                 .count();
         boolean hasBonusNumber = containsBonusNumber(lottoNumbers, bonusNumber);
-        lottoRankTypes.add(LottoRankType.of(matchCount, hasBonusNumber));
+        LottoRankType rank = LottoRankType.of(matchCount, hasBonusNumber);
+        rankCountMap.put(rank, rankCountMap.get(rank) + INCREMENT_COUNT);
     }
 
     private boolean containsBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {

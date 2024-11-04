@@ -18,7 +18,6 @@ public class OutputView {
     private static final String PREFIX = "[";
     private static final String SUFFIX = "]";
     private static final int DEFAULT_VALUE = 0;
-    private static final int INCREMENT_COUNT = 1;
 
     public static void printMessage(String message) {
         System.out.println(message);
@@ -36,21 +35,8 @@ public class OutputView {
         lottos.forEach(lotto -> printMessage(formatLottoNumbers(lotto)));
     }
 
-    public static void printLottoResultPrompt(List<LottoRankType> lottoRankTypes) {
-        EnumMap<LottoRankType, Integer> rankCountMap = initializeRankCountMap();
-        countLottoRanks(lottoRankTypes, rankCountMap);
+    public static void printLottoResultPrompt(EnumMap<LottoRankType, Integer> rankCountMap) {
         printLottoResults(rankCountMap);
-    }
-
-    private static EnumMap<LottoRankType, Integer> initializeRankCountMap() {
-        EnumMap<LottoRankType, Integer> rankCountMap = new EnumMap<>(LottoRankType.class);
-        Arrays.stream(LottoRankType.values())
-                .forEach(rank -> rankCountMap.put(rank, DEFAULT_VALUE));
-        return rankCountMap;
-    }
-
-    private static void countLottoRanks(List<LottoRankType> lottoRankTypes, EnumMap<LottoRankType, Integer> rankCountMap) {
-        lottoRankTypes.forEach(rank -> rankCountMap.put(rank, rankCountMap.get(rank) + INCREMENT_COUNT));
     }
 
     private static void printLottoResults(Map<LottoRankType, Integer> rankCountMap) {
