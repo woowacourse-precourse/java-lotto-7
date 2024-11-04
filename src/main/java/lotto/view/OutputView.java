@@ -23,21 +23,20 @@ public class OutputView {
     }
 
     public void promptLottoNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
     public void promptBonusNumber() {
-        System.out.println("보너스 번호을 입력해 주세요.");
+        System.out.println("\n보너스 번호을 입력해 주세요.");
     }
 
     public void printPurchasableLottoCount(int lottoCount) {
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        System.out.println("\n" + lottoCount + "개를 구매했습니다.");
     }
 
-    public void printFormattedLottoNumbers(LottosResponse lottosResponse) {
-        StringJoiner joiner = new StringJoiner(", ", "[", "]");
-        lottosResponse.lottos()
-                .forEach(lottoResponse -> System.out.println(formatLottoNumbers(lottoResponse, joiner)));
+    public void printFormattedLottoNumbers(List<LottoResponse> lottoResponses) {
+
+        lottoResponses.forEach(lottoResponse -> System.out.println(formatLottoNumbers(lottoResponse)));
     }
 
     public void printWinningResult(List<PrizeResponse> prizeResponses) {
