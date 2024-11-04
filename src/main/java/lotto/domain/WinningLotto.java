@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.LottoException;
+import lotto.exception.LottoExceptionType;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,13 +25,13 @@ public class WinningLotto {
     private void validateDuplicate(List<LottoNumber> numbers) {
         Set<LottoNumber> lottoNumbers = new HashSet<>(numbers);
         if(lottoNumbers.size() != 6){
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 중복됩니다.");
+            throw new LottoException(LottoExceptionType.NOT_MATCH_LOTTONUMBER);
         }
     }
 
     private void validateBonusNumberDuplicate(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호랑 보너스 번호가 중복됩니다.");
+            throw new LottoException(LottoExceptionType.DUPLICATE_BONUS_NUMBER);
         }
     }
 
