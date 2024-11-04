@@ -23,6 +23,7 @@ public class Controller {
 
     public void run() {
         Player player = buyLottoTickets();
+        LottoGroup lottoGroup = generateLotto(player);
     }
 
     private Player buyLottoTickets() {
@@ -31,5 +32,13 @@ public class Controller {
         outputView.printBoughtAmount(quantity);
 
         return new Player(money, quantity);
+    }
+
+    private LottoGroup generateLotto(Player player) {
+        RandomLotteryGenerator randomLotteryGenerator = new RandomLotteryGenerator();
+        LottoGroup lottoGroup = randomLotteryGenerator.generateLottoGroup(player.getTicketQuantity());
+        outputView.printLottoGroup(lottoGroup);
+
+        return lottoGroup;
     }
 }
