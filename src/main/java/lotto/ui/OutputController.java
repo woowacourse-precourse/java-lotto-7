@@ -2,10 +2,10 @@ package lotto.ui;
 
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.LottoContainer;
-import lotto.LottoInfo;
-import lotto.LottoPayment;
-import lotto.Results;
+import lotto.domain.LottoContainer;
+import lotto.domain.LottoInfo;
+import lotto.domain.LottoPayment;
+import lotto.domain.Results;
 import lotto.common.LottoResults;
 import lotto.exception.LottoArgumentException;
 

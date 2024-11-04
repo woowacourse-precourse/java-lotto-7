@@ -1,5 +1,12 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoContainer;
+import lotto.domain.LottoGenerator;
+import lotto.domain.LottoNumber;
+import lotto.domain.LottoPayment;
+import lotto.domain.Results;
+import lotto.domain.WinningLotto;
 import lotto.ui.InputController;
 import lotto.ui.OutputController;
 import lotto.ui.Repeater;

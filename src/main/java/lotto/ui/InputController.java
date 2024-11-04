@@ -3,9 +3,9 @@ package lotto.ui;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.Lotto;
-import lotto.LottoNumber;
-import lotto.LottoPayment;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.LottoPayment;
 import lotto.exception.LottoArgumentException;
 
 public class InputController {

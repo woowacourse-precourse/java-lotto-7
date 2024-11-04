@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class LottoStatisticsInfo {
     private static final String STATISTIC_FORMAT = "%s (%,d원) - %d개";

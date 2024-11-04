@@ -1,7 +1,7 @@
 package lotto.ui;
 
 import java.util.stream.Stream;
-import lotto.LottoNumber;
+import lotto.domain.LottoNumber;
 import lotto.exception.LottoArgumentException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
