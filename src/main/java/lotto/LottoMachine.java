@@ -5,9 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoMachine {
-	private static final int PERCENT_UNIT = 100;
+	private final List<Integer> winningNumbers;
+	private final int bonusNumber;
 
-	public Result informWinningResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber, int money) {
+	public LottoMachine(List<Integer> winningNumbers, int bonusNumber) {
+		this.winningNumbers = winningNumbers;
+		this.bonusNumber = bonusNumber;
+	}
+
+	public Result informWinningResults(List<Lotto> lottos, int money) {
 		Map<Prize, Integer> winningResults = new EnumMap<>(Prize.class);
 
 		initializeResultToZero(winningResults);
@@ -51,6 +57,6 @@ public class LottoMachine {
 				.mapToDouble(entry -> (entry.getKey().getAmount()) * entry.getValue())
 				.sum();
 
-		return (prizeAmount / money) * PERCENT_UNIT;
+		return (prizeAmount / money) * 100;
 	}
 }

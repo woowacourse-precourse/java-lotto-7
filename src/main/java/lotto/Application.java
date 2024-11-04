@@ -19,8 +19,8 @@ public class Application {
         List<Integer> winningNumbers = repeatUntilSuccess(Application::drawWinningNumbers);
         int bonusNumber = repeatUntilSuccess(() -> drawBonus(winningNumbers));
 
-        LottoMachine machine = new LottoMachine();
-        Result result = machine.informWinningResults(lottos, winningNumbers, bonusNumber, money);
+        LottoMachine machine = new LottoMachine(winningNumbers, bonusNumber);
+        Result result = machine.check(lottos, money);
         System.out.println(result.formatted());
     }
 
