@@ -65,8 +65,8 @@ public class InputView {
         return bonusNumber;
     }
 
-    private static void validateInteger(String input) {
-        if (input.matches("[^0-9]")) {
+    private static void validateInteger(String input) throws IllegalArgumentException{
+        if (input.matches(".*[^0-9].*")) {
             throw new IllegalArgumentException("[ERROR] : 숫자를 입력해주세요.");
         }
     }
