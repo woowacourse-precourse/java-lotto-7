@@ -55,7 +55,7 @@ public class Application {
         List<Integer> purchaseAmount = new ArrayList<>();
 
         for (String amount : lottoPurchaseAmount.split(",")) {
-            if (!amount.trim().matches("\\d+")){
+            if (!amount.trim().matches("\\d+")) {
                 throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자로만 입력이 가능합니다.");
             }
 
@@ -103,7 +103,7 @@ public class Application {
 
     public static int getBonusNumber() {
         System.out.println(LOTTO_BONUS_NUMBER_INPUT_MESSAGE);
-        String bonusNumber  = Console.readLine();
+        String bonusNumber = Console.readLine();
         int getValidatedBonusNumber = Integer.parseInt(bonusNumber);
 
         if (!bonusNumber.matches("^\\d+$")) {
@@ -160,6 +160,10 @@ public class Application {
             this.bonusMatch = bonusMatch;
             this.prize = prize;
         }
+
+        public int getPrize() {
+            return prize;
+        }
     }
 
 
@@ -214,23 +218,15 @@ public class Application {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
-    public static double calculateProfitRate(Map<Integer, Integer> matchCounts, int purchaseAmount) {
+    public static double calculateProfitRate(Map<LottoRank, Integer> matchCounts, int purchaseAmount) {
         int totalPrize = 0;
 
-        int threeMatchPrize = 5000;
-        int fourMatchPrize = 50000;
-        int fiveMatchPrize = 1500000;
-        int fiveMatchBonusPrize = 30000000;
-        int sixMatchPrize = 2000000000;
-
-        totalPrize += matchCounts.getOrDefault(3, 0) * threeMatchPrize;
-        totalPrize += matchCounts.getOrDefault(4, 0) * fourMatchPrize;
-        totalPrize += matchCounts.getOrDefault(5, 0) * fiveMatchPrize;
-        totalPrize += matchCounts.getOrDefault(-5, 0) * fiveMatchBonusPrize;
-        totalPrize += matchCounts.getOrDefault(6, 0) * sixMatchPrize;
+        for (LottoRank rank : matchCounts.keySet()) {
+            int count = matchCounts.get(rank);
+            totalPrize += rank.getPrize() * count;
+        }
 
         double profitRate = ((double) totalPrize / purchaseAmount) * 100;
-
         return Math.round(profitRate * 100) / 100.0;
     }
 }
