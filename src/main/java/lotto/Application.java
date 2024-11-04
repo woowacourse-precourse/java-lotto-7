@@ -18,14 +18,14 @@ public class Application {
 
         List<Integer> prizeNum = prizeNumbers();
         Lotto lotto = new Lotto(prizeNum);
-        int bonusNum = lotto.bonusNumber(inputBonus());
+        int bonusNum = inputBonus(prizeNum);
 
         Map<Integer, Long> prizeMap = new HashMap<>();
         for (int i = 0; i <= 7; i++) {
             prizeMap.put(i, 0L);
         }
 
-        checkPrize(prizeMap, lottoList, lotto.numbersList(), bonusNum);
+        checkPrize(prizeMap, lottoList, lotto.getPrizeNumbers(), bonusNum);
         printPrize(prizeMap);
 
         Long income = incomeCalculation(prizeMap);
@@ -63,7 +63,7 @@ public class Application {
         }
     }
 
-    public static List prizeNumbers() {
+    public static List<Integer> prizeNumbers() {
         List<Integer> finalList = new ArrayList<>();
 
         while (true) {
@@ -94,14 +94,24 @@ public class Application {
         return true;
     }
 
-    public static int inputBonus() {
-        System.out.println("보너스 번호를 입력해주세요.");
-        String number = Console.readLine();
+    public static int inputBonus(List<Integer> numberList) {
+        int finalBonus;
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해주세요.");
+                String number = Console.readLine();
+                validateNumber(number);
 
-        if (!validateNumber(number)) {
-            return inputBonus();
+                Lotto lotto = new Lotto(numberList);
+                lotto.bonusNumber(numberList, Integer.parseInt(number));
+
+                finalBonus = Integer.parseInt(number);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return Integer.parseInt(number);
+        return finalBonus;
     }
 
     public static boolean validateNumber(String num) {
@@ -146,18 +156,18 @@ public class Application {
         }
     }
 
-    public static void checkPrize(Map<Integer, Long> prizeMap, List<List<Integer>> lottoList, List<Integer> numbersList,
+    public static void checkPrize(Map<Integer, Long> prizeMap, List<List<Integer>> lottoList, List<Integer> prizeNumbers,
                                   int bonus) {
         for (List<Integer> lotto : lottoList) {
             boolean checkBonus = lotto.contains(bonus);
-            lotto.retainAll(numbersList);
+            Long prizeCount = lotto.stream().filter(num -> prizeNumbers.contains(num)).count();
 
             if (checkBonus && (lotto.size() == 5)) {
                 amountPrize(prizeMap, 7);
                 continue;
             }
 
-            amountPrize(prizeMap, lotto.size());
+            amountPrize(prizeMap, prizeCount.intValue());
         }
     }
 

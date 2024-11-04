@@ -36,12 +36,19 @@ public class Lotto {
         return false;
     }
 
-    public int bonusNumber(int number) {
+    public int bonusNumber(List<Integer> numbers, int number) {
+        validateBonus(numbers, number);
         this.bonusNum = number;
         return bonusNum;
     }
 
-    public List numbersList() {
+    private void validateBonus(List<Integer> numbers, int number) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호와 중복되면 안됩니다.");
+        }
+    }
+
+    public List<Integer> getPrizeNumbers() {
         return numbers;
     }
 
