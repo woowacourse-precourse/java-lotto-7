@@ -15,8 +15,10 @@ class NumberUtilTest {
 
     @Test
     void 제로_입력시_예외발생() {
-        int result = NumberUtil.parsePositiveNumber("0");
-        assertEquals(0, result);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            NumberUtil.parsePositiveNumber("0");
+        });
+        assertEquals("[ERROR] 양수만 입력할 수 있습니다.", exception.getMessage());
     }
 
     @Test
