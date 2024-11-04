@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import lotto.week3.dto.PurchaseRequestDto;
 import lotto.week3.dto.WinningNumberRequestDto;
-import lotto.week3.model.LottoMatching;
+import lotto.week3.domain.LottoMatching;
 import lotto.week3.model.LottoStatistics;
 import org.junit.jupiter.api.Test;
 

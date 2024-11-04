@@ -1,7 +1,8 @@
-package lotto.week3.model;
+package lotto.week3.domain;
 
 import java.util.List;
 import lotto.week3.domain.Lotto;
+import lotto.week3.model.LottoStatistics;
 
 public class LottoMatching {
 
@@ -19,9 +20,7 @@ public class LottoMatching {
             int matchCount = lotto.matchCount(winningNumbers);
             boolean contains = lotto.contains(bonus);
             lottoStatistics.calculatePrize(matchCount, contains);
-
         }
-
     }
 
     public List<Lotto> getLottos() {
