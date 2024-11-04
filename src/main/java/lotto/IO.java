@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class IO {
@@ -33,7 +34,7 @@ public class IO {
         }
     }
 
-    public void printResult(double result) {
+    public void printResult(Map<WinningStandard, Integer> winningResult, double earningsRate) {
         System.out.println("당첨통계\n---");
         // TODO: 당첨 통계 출력 (n개 일치)
         System.out.printf("총 수익률은 %f입니다", result);

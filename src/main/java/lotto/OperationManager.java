@@ -56,12 +56,28 @@ public class OperationManager {
                 }
             }
         }
+
+        io.printResult(winningResult, earningsRateCalculator(winningResult));
     }
 
     // TODO: 수익률 계산 구현
+    public double earningsRateCalculator(Map<WinningStandard, Integer> winningResult) {
+        long payment = lottos.size() * 1000L;
+        long totalPrize = 0;
+
+        for (Map.Entry<WinningStandard, Integer> entry : winningResult.entrySet()) {
+            WinningStandard place = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += place.getPrize() * count;
+        }
+
+        double earningsRate = (totalPrize / payment) * 100;
+
+        return Math.round(earningsRate * 100.0) / 100.0;
+    }
 
     public void result() {
         // TODO: result 전달
-        io.printResult(result);
+//        io.printResult(result);
     }
 }
