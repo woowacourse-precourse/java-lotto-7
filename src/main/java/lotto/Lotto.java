@@ -124,5 +124,13 @@ public class Lotto {
         public void increaseCount() {
             count ++;
         }
+
+        public static int calculateTotalPrize() {
+            int totalPrize = 0;
+            for (MatchType matchType : MatchType.values()) {
+                totalPrize += matchType.getCount() * matchType.getPrize();
+            }
+            return totalPrize;
+        }
     }
 }

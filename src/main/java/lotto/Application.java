@@ -148,7 +148,7 @@ public class Application {
         int matchCount = 0;
 
         for (int number : lotto) {
-            if (winningNumbers.contains(number)) {
+            if (winningNumbers.getNumbers().contains(number)) {
                 matchCount++;
             }
         }
