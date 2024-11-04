@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.EnumSet;
+
 public enum WinningDetails {
 
     NO_WIN(0, false, "0", 0),
@@ -15,20 +17,6 @@ public enum WinningDetails {
 
     private String winningPrize;
     private int matchedLottoCount;
-
-
-    WinningDetails(int sameNumberCount, boolean matchBonusNumber, String winningPrize, int matchedLottoCount) {
-        this.sameNumberCount = sameNumberCount;
-        this.matchBonusNumber = matchBonusNumber;
-        this.winningPrize = winningPrize;
-        this.matchedLottoCount = matchedLottoCount;
-    }
-
-
-    public static void addMatchLottoCount(int sameNumberCount, boolean matchBonusNumber) {
-        WinningDetails rank = getLottoRankByLottoNumbers(sameNumberCount, matchBonusNumber);
-        rank.matchedLottoCount++;
-    }
 
     public int getSameNumberCount() {
         return sameNumberCount;
@@ -46,6 +34,23 @@ public enum WinningDetails {
         return matchBonusNumber;
     }
 
+
+    WinningDetails(int sameNumberCount, boolean matchBonusNumber, String winningPrize, int matchedLottoCount) {
+        this.sameNumberCount = sameNumberCount;
+        this.matchBonusNumber = matchBonusNumber;
+        this.winningPrize = winningPrize;
+        this.matchedLottoCount = matchedLottoCount;
+    }
+
+    public static EnumSet<WinningDetails> getWinningDetails(){
+        EnumSet<WinningDetails> noWin =  EnumSet.of(WinningDetails.NO_WIN);
+        return EnumSet.complementOf(noWin);
+    }
+
+    public static void addMatchLottoCount(int sameNumberCount, boolean matchBonusNumber) {
+        WinningDetails rank = getLottoRankByLottoNumbers(sameNumberCount, matchBonusNumber);
+        rank.matchedLottoCount++;
+    }
 
     private static WinningDetails getLottoRankByLottoNumbers(int sameNumberCount, boolean matchBonusNumber) {
         if (sameNumberCount == 5 && matchBonusNumber) {
