@@ -5,6 +5,7 @@ import lotto.constants.ConstraintConstants;
 import lotto.constants.ErrorViewConstants;
 import lotto.constants.InputViewConstants;
 
+import static lotto.service.ConverterService.stringArrayToIntegerArray;
 import static lotto.service.ValidatorService.*;
 
 public class InputService {
@@ -21,9 +22,12 @@ public class InputService {
         throw new IllegalArgumentException(ErrorViewConstants.INVALID_INPUT_CONSTRAINT);
     }
 
-    public void getWinningNumbers() {
+    public int[] getWinningNumbers() {
         System.out.println(InputViewConstants.WINNING_NUMBER_INSTRUCTION);
         String[] winningNumbers = Console.readLine().split(",");
-        validateWinningNumbersFormat(winningNumbers);
+        if (validateWinningNumbersFormat(winningNumbers)) {
+            return stringArrayToIntegerArray(winningNumbers);
+        }
+        throw new IllegalArgumentException(ErrorViewConstants.INVALID_INPUT_TYPE);
     }
 }
