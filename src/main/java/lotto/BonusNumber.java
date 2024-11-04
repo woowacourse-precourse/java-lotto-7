@@ -16,13 +16,13 @@ public class BonusNumber {
     private static void validateBonusNumberIsInteger(String bonusNumberInput) {
         boolean isInteger = bonusNumberInput.chars().allMatch(Character::isDigit);
         if (!isInteger) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 양의 정수여야 합니다.");
+            throw new IllegalArgumentException("\n[ERROR] 입력값은 양의 정수여야 합니다.");
         }
     }
 
     private static void validateRangeOfBonusNumber(int bonusNumber) {
         if (bonusNumber < Constants.LOTTO_NUMBER_MIN || bonusNumber > Constants.LOTTO_NUMBER_MAX) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("\n[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
