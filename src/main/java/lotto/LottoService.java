@@ -25,18 +25,9 @@ public class LottoService {
             }
         }
 
-        if (countOfMatch == LottoRank.First.getMatchCount()) {
-            return LottoRank.First;
-        } else if (countOfMatch == LottoRank.Second.getMatchCount() && lotto.contains(bonusNumber)) {
-            return LottoRank.Second;
-        } else if (countOfMatch == LottoRank.Third.getMatchCount()) {
-            return LottoRank.Third;
-        } else if (countOfMatch == LottoRank.Fourth.getMatchCount()) {
-            return LottoRank.Fourth;
-        } else if (countOfMatch == LottoRank.Fifth.getMatchCount()) {
-            return LottoRank.Fifth;
-        }
-        return LottoRank.None;
+        if (lotto.contains(bonusNumber)) isMatchBonus = true;
+
+        return LottoRank.valueOf(countOfMatch, isMatchBonus);
     }
 
     public List<List<Integer>> publishLotto(int numberOfLotto) {

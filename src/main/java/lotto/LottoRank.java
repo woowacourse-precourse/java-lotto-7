@@ -29,4 +29,13 @@ public enum LottoRank {
         this.matchBonus = matchBonus;
         this.prize = prize;
     }
+
+    public static LottoRank valueOf(int countOfMatch, boolean isMatchBonus) {
+        for (LottoRank rank : values()) {
+            if (rank.matchCount == countOfMatch && rank.matchBonus == isMatchBonus) {
+                return rank;
+            }
+        }
+        return None;
+    }
 }
