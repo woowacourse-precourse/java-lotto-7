@@ -31,7 +31,6 @@ public class InputView {
         String input = Console.readLine().trim();
         List<String> inputInString = Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
-                .filter(s -> !s.isEmpty())
                 .toList();
 
         try {
