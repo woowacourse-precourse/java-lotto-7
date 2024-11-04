@@ -55,10 +55,9 @@ public class LottoPrize {
 
     private int checkRank(LottoRank lottoRank, int matchNumberCount, boolean isMatchBonus) {
         if (lottoRank.getMatchCount() == matchNumberCount) {
-            if (lottoRank.isConfirmBonus() && lottoRank.isRequiredBonus()== isMatchBonus) {
+            if (!lottoRank.isConfirmBonus() || lottoRank.isRequiredBonus() == isMatchBonus) {
                 return lottoRank.getRank();
             }
-            return lottoRank.getRank();
         }
         return LottoRank.DEFAULT.getRank();
     }
