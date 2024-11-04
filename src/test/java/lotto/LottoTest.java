@@ -40,4 +40,9 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 0, -12, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class); // 예외 메시지 확인
     }
+    @DisplayName("올바른 로또 번호를 입력하면 예외가 발생하지 않는다.")
+    @Test
+    void 올바른_로또_번호를_입력하면_예외가_발생하지_않는다() {
+        new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 예외가 발생하지 않음
+    }
 }
