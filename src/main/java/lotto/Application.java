@@ -12,6 +12,7 @@ public class Application {
             System.out.println(lotto);
         }
         List<Integer> winningNumbers = WinningNumberInput.requestWinningNumbers();
+        int bonusNumber = BonusNumberInput.requestBonusNumber(winningNumbers);
 
     }
 }
