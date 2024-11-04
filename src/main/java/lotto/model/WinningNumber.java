@@ -11,7 +11,6 @@ public class WinningNumber {
 
     private final List<Integer> winningNumbers;
     private final BonusNumber bonusNumber;
-    private final List<Integer> allNumbers;
 
     private static final String WRONG_RANGE_NUMBER = "범위에 맞는 숫자를 입력해주세요.";
     private static final String WRONG_INTEGER_NUMBER = "정수를 입력해주세요.";
@@ -24,7 +23,6 @@ public class WinningNumber {
         checkRange();
         checkSize();
         checkDuplicate();
-        this.allNumbers = result();
     }
 
     private List<Integer> convertWinningNumbers(String winningNumber) {
@@ -59,13 +57,6 @@ public class WinningNumber {
         if (allNumbers.stream().distinct().count() != allNumbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER);
         }
-    }
-
-    private List<Integer> result() {
-        List<Integer> result = new ArrayList<>(winningNumbers);
-        result.add(bonusNumber.getBonusNumber());
-
-        return result;
     }
 
     public int getBonusNumber() {
