@@ -17,5 +17,8 @@ public class InputValidator {
         if (purchaseAmount <= 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 0원 이상이어야 합니다.");
         }
+        if (purchaseAmount < 1000) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 최소 1000원 이상이어야 합니다.");
+        }
     }
 }
