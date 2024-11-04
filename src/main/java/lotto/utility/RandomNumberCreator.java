@@ -7,6 +7,7 @@ import java.util.List;
 
 public class RandomNumberCreator {
     public static List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER, Constants.REQUIRED_LOTTO_LENGTH);
+        return Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER,
+                Constants.MAX_LOTTO_NUMBER, Constants.REQUIRED_LOTTO_LENGTH);
     }
 }
