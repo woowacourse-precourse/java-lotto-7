@@ -6,7 +6,6 @@ import lotto.exception.ErrorMessage;
 
 public class Lotto {
 
-    private static final int LOTTO_NUM_CNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -21,7 +20,7 @@ public class Lotto {
     }
 
     private boolean isDuplicated(List<Integer> numbers) {
-        return numbers.stream().distinct().count() != LOTTO_NUM_CNT;
+        return numbers.stream().distinct().count() != 6;
     }
 
     public boolean contains(int num) {
