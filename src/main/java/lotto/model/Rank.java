@@ -27,7 +27,7 @@ public enum Rank {
         return NONE;
     }
 
-    public long calculate(int count) {
-        return count * prize;
+    public long getPrize() {
+        return prize;
     }
 }
