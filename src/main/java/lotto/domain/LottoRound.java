@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.LottoConstant;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoRound {
@@ -39,10 +38,12 @@ public class LottoRound {
      */
     public List<Integer> getWinHistory() {
         List<Integer> winHistory = new ArrayList<>(6);
+        for (int i = 0; i < 6; i++) winHistory.add(0);
 
         lottos.stream()
                 .map(v -> v.grade(this.gradingNumbers, this.bonusNumbers))
                 .forEach(i -> {
+                    if (i < 0) return;
                     int wonHistoryCount = winHistory.get(i);
                     winHistory.set(i, wonHistoryCount + 1);
                 });
