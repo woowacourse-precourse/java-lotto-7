@@ -9,6 +9,7 @@ public class StringParser {
     private static final int UNIT_AMOUNT = 1000;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
+    private static final int NUMBER_COUNT = 6;
 
     public Integer findLottoCount(String rawAmount) {
         int amount = validateInteger(rawAmount);
@@ -26,20 +27,29 @@ public class StringParser {
         return myNumbers;
     }
 
+    public Integer findBonusNumber(List<Integer> myNumbers, String rawBonusNumber) {
+        Integer bonusNumber = validateInteger(rawBonusNumber);
+        isPositive(bonusNumber);
+        validateRange(bonusNumber);
+        isUnique(myNumbers, bonusNumber);
+        return bonusNumber;
+    }
+
     private List<Integer> validateMyNumbers(List<String> splitNumbers) {
         List<Integer> myNumbers = splitNumbers.stream().map(this::validateInteger)
             .filter(this::isPositive)
             .filter(this::validateRange)
             .toList();
 
+        isUnique(myNumbers);
         validateSize(myNumbers);
 
         return myNumbers;
     }
 
-    private int validateInteger(String rawAmount) {
+    private int validateInteger(String rawNumber) {
         try {
-            return Integer.parseInt(rawAmount);
+            return Integer.parseInt(rawNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INTEGER_ERROR.getMessage());
         }
@@ -67,9 +77,22 @@ public class StringParser {
     }
 
     private void validateSize(List<Integer> myNumbers) {
-        if (myNumbers.size() > 6) {
+        if (myNumbers.size() > NUMBER_COUNT) {
             throw new IllegalArgumentException(NUMBER_COUNT_ERROR.getMessage());
         }
     }
+
+    private void isUnique(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != NUMBER_COUNT) {
+            throw new IllegalArgumentException(REPEAT_ERROR.getMessage());
+        }
+    }
+
+    private void isUnique(List<Integer> numbers, Integer bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(REPEAT_ERROR.getMessage());
+        }
+    }
+
 
 }
