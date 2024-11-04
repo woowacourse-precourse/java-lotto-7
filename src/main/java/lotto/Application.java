@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static java.util.stream.Collectors.toList;
+
 public class Application {
     private static final String DELIMITER = ",";
 
@@ -54,11 +56,13 @@ public class Application {
     private static List<Integer> parseNumbers(String[] splitInputs) {
         return Arrays.stream(splitInputs)
                 .map(String::trim)
-                .map(input -> {
-                    InputValidator.validateNumberInLottoRange(input);
-                    return Integer.parseInt(input);
-                })
+                .map(Application::toInt)
                 .toList();
+    }
+
+    private static int toInt(String input) {
+        InputValidator.validateNumberInLottoRange(input);
+        return Integer.parseInt(input);
     }
 
     private static int drawBonus(List<Integer> winningNumbers) {
