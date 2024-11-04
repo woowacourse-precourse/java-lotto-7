@@ -13,7 +13,7 @@ import lotto.util.common.CommonIo;
 public class Application {
     public static void main(String[] args) {
         CommonIo commonIo = new CommonIo();
-        IoComponent ioComponent = new IoComponent(commonIo);
+        IoComponent ioComponent = IoComponent.of(commonIo);
         LottoComponent lottoComponent = new LottoComponent(
                 new TicketService(),
                 new LottoGenerator(),

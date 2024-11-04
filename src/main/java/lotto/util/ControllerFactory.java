@@ -21,18 +21,18 @@ public class ControllerFactory {
     }
 
     public LottoController createLottoController() {
-        return new LottoController(lottoComponent.getTicketService(), lottoComponent.getLottoGenerator());
+        return new LottoController(lottoComponent.ticketService(), lottoComponent.lottoGenerator());
     }
 
     public PurchaseController createPurchaseController() {
-        return new PurchaseController(lottoComponent.getTicketService(), ioComponent);
+        return new PurchaseController(lottoComponent.ticketService(), ioComponent);
     }
 
     public RankCalculatorController createRankCalculatorController(WinningNumber winningNumber) {
-        return new RankCalculatorController(winningNumber, ioComponent, lottoComponent.getRankCalculator());
+        return new RankCalculatorController(winningNumber, ioComponent, lottoComponent.rankCalculator());
     }
 
     public WinningNumberGenerationController createWinningNumberController() {
-        return new WinningNumberGenerationController(lottoComponent.getWinningNumberGenerator(), ioComponent);
+        return new WinningNumberGenerationController(lottoComponent.winningNumberGenerator(), ioComponent);
     }
 }

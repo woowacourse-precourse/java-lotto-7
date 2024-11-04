@@ -15,17 +15,17 @@ public class PurchaseController {
     }
 
     public void purchaseLottos() {
-        ioComponent.getInputView().printRequestPurchase();
+        ioComponent.inputView().printRequestPurchase();
         repeatCreation();
-        ioComponent.getOutputView().printTicketCount(ticketService.getTicketCount());
+        ioComponent.outputView().printTicketCount(ticketService.getTicketCount());
     }
 
     private void repeatCreation() {
         repeatUntilValid(() -> {
-            String rawAmount = ioComponent.getIoController().inputPurchaseAmount();
-            int amount = ioComponent.getIoController().convertInputToInt(rawAmount);
+            String rawAmount = ioComponent.ioController().inputPurchaseAmount();
+            int amount = ioComponent.ioController().convertInputToInt(rawAmount);
             ticketService.createTicket(amount);
             return null;
-        }, ioComponent.getCommonIo());
+        }, ioComponent.commonIo());
     }
 }

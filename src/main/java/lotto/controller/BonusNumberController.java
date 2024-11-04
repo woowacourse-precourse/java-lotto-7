@@ -13,13 +13,13 @@ public class BonusNumberController {
     }
 
     public BonusNumber createBonusNumber() {
-        ioComponent.getInputView().printRequestBonusNumber();
-        return repeatUntilValid(this::requestBonusNumber, ioComponent.getCommonIo());
+        ioComponent.inputView().printRequestBonusNumber();
+        return repeatUntilValid(this::requestBonusNumber, ioComponent.commonIo());
     }
 
     private BonusNumber requestBonusNumber() {
-        String rawBonusNumber = ioComponent.getIoController().inputBonusNumber();
-        int bonusNumber = ioComponent.getIoController().convertInputToInt(rawBonusNumber);
+        String rawBonusNumber = ioComponent.ioController().inputBonusNumber();
+        int bonusNumber = ioComponent.ioController().convertInputToInt(rawBonusNumber);
         return new BonusNumber(bonusNumber);
     }
 }

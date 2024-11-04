@@ -37,7 +37,7 @@ public class ApplicationController {
 
         LottoController lottoController = controllerFactory.createLottoController();
         List<Lotto> lottos = lottoController.excuteLottos();
-        ioComponent.getIoController().printPurchaseLottoNumbers(lottos);
+        ioComponent.ioController().printPurchaseLottoNumbers(lottos);
 
         return lottos;
     }
@@ -58,15 +58,15 @@ public class ApplicationController {
             Lotto winningNumbers = winningNumberGenerationController.createWinningNumber();
             BonusNumber bonusNumber = bonusNumberController.createBonusNumber();
             return new WinningNumber(winningNumbers, bonusNumber);
-        }, ioComponent.getCommonIo());
+        }, ioComponent.commonIo());
     }
 
     private void printResult(Map<Rank, Integer> result, WinningNumber winningNumber) {
         RankCalculatorController rankCalculatorController = controllerFactory.createRankCalculatorController(winningNumber);
 
         rankCalculatorController.printResult(result);
-        float profit = rankCalculatorController.calculateProfit(result, lottoComponent.getTicketService().getTicketCount());
+        float profit = rankCalculatorController.calculateProfit(result, lottoComponent.ticketService().getTicketCount());
 
-        ioComponent.getOutputView().printProfit(profit);
+        ioComponent.outputView().printProfit(profit);
     }
 }

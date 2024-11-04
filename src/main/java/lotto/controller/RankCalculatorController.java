@@ -30,7 +30,7 @@ public class RankCalculatorController {
     }
 
     public void printResult(Map<Rank, Integer> result) {
-        ioComponent.getOutputView().printStaticsFormat();
+        ioComponent.outputView().printStaticsFormat();
         List<Rank> sortedRanks = sortRanks();
         sortedRanks.forEach(rank -> printSingleResult(rank, result));
     }
@@ -44,7 +44,7 @@ public class RankCalculatorController {
 
     private void printSingleResult(Rank rank, Map<Rank, Integer> result) {
         int rankCount = result.getOrDefault(rank, Limit.DEFAULT.getValue());
-        ioComponent.getOutputView().printWinningResult(rank.getCountOfMatch(), rank.getPrize(), rankCount);
+        ioComponent.outputView().printWinningResult(rank.getCountOfMatch(), rank.getPrize(), rankCount);
 
     }
 
