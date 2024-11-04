@@ -30,16 +30,12 @@ public class Application {
         List<Lotto> lottos = lottoService.purchaseLottos(purchaseAmount);
         outputHandler.printLottos(lottos);
 
-        Lotto successLotto = getWinningLotto();
-        int bonusNum = inputHandler.getBonusNum();
+        List<Integer> winningNums = inputHandler.getWinningNums();
+        int bonusNum = inputHandler.getBonusNum(winningNums);
 
+        Lotto successLotto = lottoService.generateWinningLotto(winningNums);
         List<Score> scores = lottoService.calculateScores(lottos, successLotto, bonusNum);
         displayResult(scores, purchaseAmount);
-    }
-
-    private Lotto getWinningLotto() {
-        List<Integer> winningNums = inputHandler.getWinningNums();
-        return lottoService.generateWinningLotto(winningNums);
     }
 
     private void displayResult(List<Score> scores, int purchaseAmount) {

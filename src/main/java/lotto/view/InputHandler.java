@@ -43,13 +43,14 @@ public class InputHandler {
         }
     }
 
-    public int getBonusNum() {
+    public int getBonusNum(List<Integer> winningNums) {
         while (true) {
             try {
                 System.out.println();
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 int bonusNum = validateAndParseNumInRange(input);
+                inputValidator.checkBonusNotInWinning(bonusNum, winningNums);
                 return bonusNum;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.List;
+
 public class InputValidator {
     public void checkDividedBy1000(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
@@ -19,6 +21,12 @@ public class InputValidator {
         }
         if (purchaseAmount < 1000) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 최소 1000원 이상이어야 합니다.");
+        }
+    }
+
+    public void checkBonusNotInWinning(int bonusNum, List<Integer> winningNums) {
+        if (winningNums.contains(bonusNum)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }
