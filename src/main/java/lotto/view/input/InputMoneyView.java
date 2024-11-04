@@ -1,12 +1,11 @@
 package lotto.view.input;
 
 import java.util.regex.Pattern;
-import lotto.exception.input.NotIntegerException;
+import lotto.exception.MoneyFormatException;
 
 public class InputMoneyView extends InputView {
     private static final String INPUT_MESSAGE = "금액을 입력해주세요";
     private static final Pattern PATTERN = Pattern.compile("\\d+");
-
 
     public Integer getValue() {
         System.out.println(INPUT_MESSAGE);
@@ -18,7 +17,7 @@ public class InputMoneyView extends InputView {
 
     private void validate(String input) {
         if (!PATTERN.matcher(input).matches()) {
-            throw new NotIntegerException();
+            throw new MoneyFormatException();
         }
     }
 }
