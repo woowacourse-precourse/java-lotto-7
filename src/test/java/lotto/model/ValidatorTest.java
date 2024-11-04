@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.util.Validator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
