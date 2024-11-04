@@ -1,10 +1,10 @@
 package lotto;
 
-public class Utils {
-    public Utils() {
+public class LottoUtils {
+    public LottoUtils() {
     }
 
-    public Integer convertInputToCash(String input) {
+    public static Integer convertInputToCash(String input) {
         if (!isNumber(input)) {
             System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
             throw new IllegalArgumentException();
@@ -27,7 +27,7 @@ public class Utils {
         return lottoAmount;
     }
 
-    public Boolean isNumber(String input) {
+    public static Boolean isNumber(String input) {
         try {
             Integer.parseInt(input);
         } catch (Exception e) {
