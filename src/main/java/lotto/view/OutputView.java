@@ -13,17 +13,19 @@ import lotto.domain.Money;
 import lotto.domain.PrizeResult;
 
 public class OutputView {
-    private static final String WINNING_STATISTICS = "\n당첨 통계\n---";
+    private static final String NEWLINE = "\n";
+    private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
+    private static final String DELIMITER = "---";
     private static final String RESULT_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String SECOND_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
 
     public void renderError(String message) {
-        System.out.printf("[ERROR] %s\n", message);
+        System.out.printf("[ERROR] %s" + NEWLINE, message);
     }
 
     public void printTicketAmount(Money money) {
-        System.out.println(String.format("\n%d개를 구매했습니다.", money.calculateLottoTickets()));
+        System.out.println(String.format(NEWLINE + "%d개를 구매했습니다.", money.calculateLottoTickets()));
     }
 
     public void printLotto(LottoTicket lottoTicket) {
@@ -41,7 +43,7 @@ public class OutputView {
     }
 
     private void printHeader() {
-        System.out.println(WINNING_STATISTICS);
+        System.out.println(NEWLINE + WINNING_STATISTICS_MESSAGE + NEWLINE + DELIMITER);
     }
 
     private void printPrizeStatistics(PrizeResult prizeResult) {
@@ -57,7 +59,7 @@ public class OutputView {
     }
 
     private void printRateOfReturn(PrizeResult prizeResult, Money money) {
-        System.out.printf((RATE_OF_RETURN) + "\n", calculateRateOfReturn(prizeResult, money));
+        System.out.printf((RATE_OF_RETURN) + NEWLINE, calculateRateOfReturn(prizeResult, money));
     }
 
 
