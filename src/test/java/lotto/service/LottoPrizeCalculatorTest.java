@@ -81,7 +81,7 @@ public class LottoPrizeCalculatorTest {
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         long prize = calculator.calculateTotalPrize(lottos, winningNumbers, bonusNumber);
-        long purchaseAmount = 2_000;
+        int purchaseAmount = 2_000;
         double yieldRate = calculator.calculateYield(prize, purchaseAmount);
         assertEquals(1_000_000.0, yieldRate, 0.01);
     }

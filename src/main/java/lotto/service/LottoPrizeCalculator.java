@@ -47,7 +47,7 @@ public class LottoPrizeCalculator {
         return matchCount;
     }
 
-    public double calculateYield(long totalPrize, long purchaseAmount) {
+    public double calculateYield(long totalPrize, int purchaseAmount) {
         double yield = ((double) totalPrize / purchaseAmount) * 100;
         return Math.round(yield * 100) / 100.0;
     }

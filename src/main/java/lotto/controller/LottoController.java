@@ -33,7 +33,7 @@ public class LottoController {
     }
 
     public void start() {
-        long purchaseAmount = getPurchaseAmount();
+        int purchaseAmount = getPurchaseAmount();
         Lottos generatedLottos = generateLottos(purchaseAmount);
         Lotto parsedWinningNumbers = getParsedWinningNumbers();
         int parsedWinningBonus = getParsedWinningBonus();
@@ -45,13 +45,13 @@ public class LottoController {
         displayResults(winningCounts, yield);
     }
 
-    private long getPurchaseAmount() {
+    private int getPurchaseAmount() {
         String price = purchasePriceInput.getPurchasePrice();
-        return Long.parseLong(price);
+        return priceCalculator.parsePrice(price);
     }
 
-    private Lottos generateLottos(long purchaseAmount) {
-        int lottoCount = priceCalculator.calculateLotto(String.valueOf(purchaseAmount));
+    private Lottos generateLottos(int purchaseAmount) {
+        int lottoCount = priceCalculator.calculateLotto(purchaseAmount);
         Lottos generatedLottos = lottoNumberGenerator.generateLottoNumbers(lottoCount);
         resultDisplayer.showPurchasedLottos(lottoCount, generatedLottos);
         return generatedLottos;
