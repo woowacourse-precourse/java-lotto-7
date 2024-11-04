@@ -32,4 +32,12 @@ class LottoTest {
         List<Integer> actualNumbers = lotto.getNumbers();
         assertThat(actualNumbers).isEqualTo(numbers);
     }
+
+
+    @DisplayName("로또 번호의 범위가 벗어나면 예외가 발생한다.")
+    @Test
+    void 로또_번호의_범위가_벗어나면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 55)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
