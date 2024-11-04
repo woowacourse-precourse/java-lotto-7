@@ -63,13 +63,12 @@ class HandlerTest {
   void generateWinningTest() throws Exception{
 
     // given : 당첨 번호를 입력하면
-    String expect = "1, 2, 3, 4, 5, 6";
+    String expect = "1,2,3,4,5,6";
     this.input = new Input(expect);
     System.setIn(setReadLine(expect));
 
     // when : 쉼표와 공백 구분자를 정수와 분리한다
     String actualWinning = input.readWinning();
-
 
     // then : 실제 입력된 당첨번호를 조회하여 검증한다
     assertEquals(expect, actualWinning);
