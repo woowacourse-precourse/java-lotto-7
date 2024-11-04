@@ -10,7 +10,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    private void printMessage(InputType inputType) {
+    public void printMessage(InputType inputType) {
         System.out.println(inputType.getMessage());
     }
 }

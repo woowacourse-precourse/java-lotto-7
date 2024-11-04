@@ -16,11 +16,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(RandomNumbersGenerator numbersGenerator) throws IllegalArgumentException {
-        List<Integer> numbers = numbersGenerator.generate();
-        validate(numbers);
-        numbers.sort(Integer::compareTo);
-        this.numbers = numbers;
-        displayLotto();
+        List<Integer> generatedNumbers = numbersGenerator.generate();
+        validate(generatedNumbers);
+        generatedNumbers.sort(Integer::compareTo);
+        this.numbers = generatedNumbers;
     }
 
     public Lotto(List<Integer> numbers) throws IllegalArgumentException {
@@ -63,7 +62,7 @@ public class Lotto {
         }
     }
 
-    private void displayLotto() {
-        System.out.println(this.numbers);
+    public String displayNumbers() {
+        return numbers.toString();
     }
 }

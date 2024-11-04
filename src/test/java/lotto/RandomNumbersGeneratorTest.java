@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RandomNumbersGeneratorTest {
-
     @Test
     @DisplayName("generate를 통해 랜덤 번호 6개를 생성한다")
     void generate() {

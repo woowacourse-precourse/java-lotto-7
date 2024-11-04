@@ -4,35 +4,20 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.model.Lotto;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoTest {
-    private PrintStream standardOut;
-    private OutputStream captor;
-
-    @BeforeEach
-    protected final void init() {
-        standardOut = System.out;
-        captor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(captor));
-    }
-
-    @AfterEach
-    protected final void printOutput() {
-        System.setOut(standardOut);
-        System.out.println(output());
+    private static ArrayList<Integer> convertStringToIntegerList(String input) {
+        return Stream.of(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @ParameterizedTest
@@ -45,14 +30,19 @@ class LottoTest {
     void lottoTest(String numbersInput, String expected) {
         //given
         List<Integer> numbers = convertStringToIntegerList(numbersInput);
-        RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
+        RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator() {
+            @Override
+            public List<Integer> generate() {
+                return numbers;
+            }
+        };
         List<Integer> expectResult = convertStringToIntegerList(expected);
         //when
         //then
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     Lotto lotto = new Lotto(randomNumbersGenerator);
-                    assertThat(output()).contains(expectResult.toString());
+                    assertThat(lotto.displayNumbers()).contains(expectResult.toString());
                 },
                 numbers
         );
@@ -73,15 +63,5 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(numberList))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(expectedMessage);
-    }
-
-    private static ArrayList<Integer> convertStringToIntegerList(String input) {
-        return Stream.of(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    protected final String output() {
-        return captor.toString().trim();
     }
 }

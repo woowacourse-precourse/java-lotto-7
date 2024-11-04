@@ -7,7 +7,6 @@ public enum MatchType {
     FIVE_BONUS(30_000_000),
     SIX_MATCHES(2_000_000_000);
 
-
     private final int prise;
 
     MatchType(int prise) {
