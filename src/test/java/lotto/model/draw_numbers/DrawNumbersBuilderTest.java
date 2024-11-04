@@ -69,30 +69,30 @@ public class DrawNumbersBuilderTest {
 
     static Stream<Arguments> provideDuplicate() {
         return Stream.of(
-                makeArguments("1,2,3,4,5,5",     "6"),   // 당첨 번호 중복
-                makeArguments("1,2,3,4,5,6",     "6")    // 보너스 번호 중복
+                makeArguments("1,2,3,4,5,5", "6"),   // 당첨 번호 중복
+                makeArguments("1,2,3,4,5,6", "6")    // 보너스 번호 중복
         );
     }
 
     static Stream<Arguments> provideExceedRange() {
         return Stream.of(
-                makeArguments("1,2,3,4,5,46",    "6"),   // 당첨 번호 범위 초과
-                makeArguments("-1,2,3,4,5,6",    "7"),   // 당첨 번호 범위 초과
-                makeArguments("1,2,3,4,5,6",     "-1"),  // 보너스 번호 범위 초과
-                makeArguments("1,2,3,4,5,6",     "46")   // 보너스 번호 범위 초과
+                makeArguments("1,2,3,4,5,46", "6"),   // 당첨 번호 범위 초과
+                makeArguments("-1,2,3,4,5,6", "7"),   // 당첨 번호 범위 초과
+                makeArguments("1,2,3,4,5,6", "-1"),  // 보너스 번호 범위 초과
+                makeArguments("1,2,3,4,5,6", "46")   // 보너스 번호 범위 초과
         );
     }
 
     static Stream<Arguments> provideNonNumber() {
         return Stream.of(
-                makeArguments("1,2,3,4,5,n",     "7"),   // 당첨 번호 문자 입력
-                makeArguments("1,2,3,4,5,6",     "n")    // 보너스 번호 문자 입력
+                makeArguments("1,2,3,4,5,n", "7"),   // 당첨 번호 문자 입력
+                makeArguments("1,2,3,4,5,6", "n")    // 보너스 번호 문자 입력
         );
     }
 
     static Stream<Arguments> provideInsufficient() {
         return Stream.of(
-                makeArguments("1,2,3,4,5,",      "6")    // 당첨 번호 개수 부족
+                makeArguments("1,2,3,4,5,", "6")    // 당첨 번호 개수 부족
         );
     }
 
@@ -104,17 +104,17 @@ public class DrawNumbersBuilderTest {
 
     static Stream<Arguments> provideWrongFormat() {
         return Stream.of(
-                makeArguments("1,2,3,4,5,6,",    "7"),     // 당첨 번호 잘못된 형식
-                makeArguments("1,2,3,4,5,  6",    "7"),    // 당첨 번호 잘못된 형식
-                makeArguments("1,2,3,4,5,6",     "7,"),    // 보너스 번호 잘못된 형식
-                makeArguments("1,2,3,4,5,6",     "7   ")   // 보너스 번호 잘못된 형식
+                makeArguments("1,2,3,4,5,6,", "7"),     // 당첨 번호 잘못된 형식
+                makeArguments("1,2,3,4,5,  6", "7"),    // 당첨 번호 잘못된 형식
+                makeArguments("1,2,3,4,5,6", "7,"),    // 보너스 번호 잘못된 형식
+                makeArguments("1,2,3,4,5,6", "7   ")   // 보너스 번호 잘못된 형식
         );
     }
 
     static Stream<Arguments> provideEmpty() {
         return Stream.of(
-                makeArguments("",                "7"),   // 당첨 번호 빈 형식
-                makeArguments("1,2,3,4,5,6",     "")     // 보너스 번호 빈 형식
+                makeArguments("", "7"),   // 당첨 번호 빈 형식
+                makeArguments("1,2,3,4,5,6", "")     // 보너스 번호 빈 형식
         );
     }
 
@@ -122,7 +122,7 @@ public class DrawNumbersBuilderTest {
         DrawNumbersBuilder builder = new DrawNumbersBuilder();
 
         DrawNumbers drawNumbers = builder.winningNumbers(winningNumbers)
-                .bonusNumber( bonusNumber)
+                .bonusNumber(bonusNumber)
                 .build();
     }
 

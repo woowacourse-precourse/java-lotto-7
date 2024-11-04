@@ -13,9 +13,12 @@ public class LottoAppDownloader {
     static LottoApp downLoadLottoApp() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+
         LottoPublisher lottoPublisher = makeLottoPublisher();
         LottoChecker lottoChecker = new LottoChecker();
+
         LottoAppController lottoAppController = new LottoAppController(inputView, outputView, lottoChecker, lottoPublisher);
+
         return new LottoApp(lottoAppController);
     }
 

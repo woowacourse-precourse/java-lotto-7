@@ -6,5 +6,6 @@ public final class LottoNumberPrintFormat {
     public static final String PREFIX = "[";
     public static final String SUFFIX = "]";
 
-    private LottoNumberPrintFormat() {}
+    private LottoNumberPrintFormat() {
+    }
 }

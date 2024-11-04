@@ -5,8 +5,6 @@ import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoChecker;
 import lotto.model.lotto.LottoPublisher;
 import lotto.model.draw_numbers.DrawNumbers;
-import lotto.model.number_generator.LottoNumberGenerator;
-import lotto.model.number_generator.NumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

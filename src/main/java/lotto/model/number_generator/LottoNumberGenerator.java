@@ -5,7 +5,7 @@ import lotto.model.lotto.Lotto;
 
 import java.util.List;
 
-public class LottoNumberGenerator implements NumberGenerator{
+public class LottoNumberGenerator implements NumberGenerator {
 
     private static final int START_NUMBER = 1;
     private static final int END_NUMBER = 45;

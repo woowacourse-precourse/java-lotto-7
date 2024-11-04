@@ -6,4 +6,7 @@ public final class OutputViewMessage {
     public static final String EXCEPT_SECOND_PLACE_RESULT_MESSAGE = "%s개 일치 (%s원) - %d개\n";
     public static final String SECOND_PLACE_RESULT_MESSAGE = "%s개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     public static final String REVENUE_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+
+    private OutputViewMessage() {
+    }
 }
