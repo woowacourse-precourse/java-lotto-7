@@ -14,8 +14,8 @@ public class InputValidator implements Validator{
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int MIN_PURCHASE_AMOUNT = 1000;
-    private static final int MAX_PURCHASE_AMOUNT = 100000;
-    private static final String NEED_NUMBER_IN_RANGE = "구매 금액은 1000이상 100000이하여야 합니다.";
+    private static final int MAX_PURCHASE_AMOUNT = 10000000;
+    private static final String NEED_NUMBER_IN_RANGE = "구매 금액은 1000이상 10000000이하여야 합니다.";
 
 
     @Override
