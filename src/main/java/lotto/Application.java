@@ -20,7 +20,7 @@ public class Application {
         WinningLotto winningLotto = new WinningLotto();
         WinningResult winningResult = new WinningResult();
 
-        LottoService lottoService = new LottoService(soldLotto,winningLotto,winningResult);
+        LottoService lottoService = new LottoService(soldLotto, winningLotto, winningResult);
 
         LottoController lottoController = new LottoController(outputView, inputView, lottoValidation, lottoService);
         lottoController.run();

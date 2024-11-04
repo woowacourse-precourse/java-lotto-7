@@ -89,7 +89,7 @@ public class LottoController {
                 lottoValidation.validateBlank(input);
                 int bonusNumber = lottoValidation.validateParsing(input);
                 lottoService.saveBonusNumber(bonusNumber);
-                break;
+                return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

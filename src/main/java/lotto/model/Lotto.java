@@ -14,7 +14,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getLottoDetails(){
+    public List<Integer> getLottoDetails() {
         return new ArrayList<>(numbers);
     }
 
@@ -24,16 +24,16 @@ public class Lotto {
         }
     }
 
-    private void validateRange(List<Integer> numbers){
-        for (int number : numbers){
-            if (number<1 || number>45){
+    private void validateRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 이어야 합니다.");
             }
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers){
-        if (new HashSet<>(numbers).size() != numbers.size()){
+    private void validateDuplicate(List<Integer> numbers) {
+        if (new HashSet<>(numbers).size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복이 되면 안됩니다.");
         }
     }

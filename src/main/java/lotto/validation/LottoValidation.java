@@ -6,7 +6,7 @@ import java.util.List;
 public class LottoValidation {
     private static final int ZERO = 0;
     private static final int LOTTO_PRICE = 1000;
-    private static final int LOTTO_NUMBER_COUNT = 6;
+
     public void validateBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력 금액에 공백을 입력하면 안됩니다.");
@@ -21,14 +21,14 @@ public class LottoValidation {
         }
     }
 
-    public List<Integer> validateParsing(List<String> input){
-        try{
+    public List<Integer> validateParsing(List<String> input) {
+        try {
             List<Integer> winningNumber = new ArrayList<>();
-            for (String number : input){
+            for (String number : input) {
                 winningNumber.add(Integer.parseInt(number));
             }
             return winningNumber;
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("[ERROR] Integer로 변환이 불가능합니다.");
         }
     }
