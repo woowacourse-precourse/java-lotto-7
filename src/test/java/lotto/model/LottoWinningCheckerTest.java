@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoResultCheckerTest {
+class LottoWinningCheckerTest {
 
     private NumbersGenerator numbersGenerator;
 
@@ -28,8 +28,8 @@ class LottoResultCheckerTest {
         int bonusNumber = 7;
         WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
 
-        LottoResultChecker lottoResultChecker = LottoResultChecker.of(purchasedLottos, winningLotto);
-        Map<LottoRank, Integer> lottoResult = lottoResultChecker.getLottoResult();
+        LottoWinningChecker lottoWinningChecker = LottoWinningChecker.of(purchasedLottos, winningLotto);
+        Map<LottoRank, Integer> lottoResult = lottoWinningChecker.getLottoWinningResult();
 
         Assertions.assertEquals(3, lottoResult.get(LottoRank.FIRST));
     }

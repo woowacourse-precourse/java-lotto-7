@@ -55,6 +55,7 @@
         - [x]  PurchasedLottos
         - [x]  LottoRevenueCalculator
         - [x]  LottoRank
+        - [x]  LottoWinningChecker
     - validator
         - input
             - [x]  CommonInputValidator

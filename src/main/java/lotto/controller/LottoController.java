@@ -4,8 +4,8 @@ import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoConstants;
 import lotto.model.LottoRank;
-import lotto.model.LottoResultChecker;
 import lotto.model.LottoRevenueCalculator;
+import lotto.model.LottoWinningChecker;
 import lotto.model.PurchasedLottos;
 import lotto.model.WinningLotto;
 import lotto.util.NumbersGenerator;
@@ -97,8 +97,8 @@ public class LottoController {
 
     private Map<LottoRank, Integer> getLottoResult(PurchasedLottos purchasedLottos,
                                                    WinningLotto winningLotto) {
-        LottoResultChecker lottoResultChecker = LottoResultChecker.of(purchasedLottos, winningLotto);
-        return lottoResultChecker.getLottoResult();
+        LottoWinningChecker lottoWinningChecker = LottoWinningChecker.of(purchasedLottos, winningLotto);
+        return lottoWinningChecker.getLottoWinningResult();
     }
 
     private double calculateLottoRevenue(Map<LottoRank, Integer> lottoResult, int purchaseMoney) {
