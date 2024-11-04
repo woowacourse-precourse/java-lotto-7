@@ -1,12 +1,13 @@
 package lotto.lotto.providable;
 
+import static lotto.lotto.constant.LottoConstant.MAXIMUM_LOTTO_VALUE;
+import static lotto.lotto.constant.LottoConstant.MINIMUM_LOTTO_VALUE;
+import static lotto.lotto.constant.LottoConstant.NUM_OF_LOTTO_NUMBERS;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class RandomUniqueNumbersProvider implements NumbersProvidable {
-    public static final int MINIMUM_LOTTO_VALUE = 1;
-    public static final int MAXIMUM_LOTTO_VALUE = 45;
-    public static final int NUM_OF_LOTTO_NUMBERS = 6;
 
     @Override
     public List<Integer> provide() {

@@ -1,5 +1,8 @@
 package lotto.lotto;
 
+import static lotto.lotto.constant.LottoConstant.MAXIMUM_LOTTO_VALUE;
+import static lotto.lotto.constant.LottoConstant.NUM_OF_LOTTO_NUMBERS;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,14 +29,19 @@ public class WinningNumbers {
         return new WinningNumbers(numbers);
     }
 
+    public List<MatchingCondition> matchWinningNumbersTo(Lottos lottos, BonusNumber bonusNumber) {
+        return lottos.convertLottosToMatchedConditions(numbers, bonusNumber);
+    }
+
     private void validateNumOfNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUM_OF_LOTTO_NUMBERS) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
 
     private void validateNumbersInRange(List<Integer> numbers) {
-        boolean isOutOfRange = numbers.stream().anyMatch(number -> number < 1 || number > 45);
+        boolean isOutOfRange = numbers.stream().anyMatch(number -> number < MAXIMUM_LOTTO_VALUE ||
+                number > MAXIMUM_LOTTO_VALUE);
 
         if (isOutOfRange) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 정수여야 합니다.");
@@ -48,9 +56,5 @@ public class WinningNumbers {
         if (size != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 서로 중복되면 안 됩니다.");
         }
-    }
-
-    public List<MatchingCondition> matchWinningNumbersTo(Lottos lottos, BonusNumber bonusNumber) {
-        return lottos.convertLottosToMatchedConditions(numbers, bonusNumber);
     }
 }

@@ -1,5 +1,8 @@
 package lotto.lotto;
 
+import static lotto.lotto.constant.LottoConstant.MAXIMUM_LOTTO_VALUE;
+import static lotto.lotto.constant.LottoConstant.MINIMUM_LOTTO_VALUE;
+
 import java.util.Objects;
 
 public class BonusNumber {
@@ -35,8 +38,12 @@ public class BonusNumber {
     }
 
     private void validateNumbersInRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < MINIMUM_LOTTO_VALUE || bonusNumber > MAXIMUM_LOTTO_VALUE) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 정수여야 합니다.");
         }
+    }
+
+    private void validateDuplicated(int bonusNumber) {
+
     }
 }
