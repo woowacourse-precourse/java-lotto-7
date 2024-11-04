@@ -9,8 +9,7 @@ import print.InputRequest;
 public class BuyingLotto {
     InputRequest inputRequest = new InputRequest();
 
-    public List<List<Integer>> buyLotto() {
-        Integer money = inputRequest.moneyRequest();
+    public List<List<Integer>> buyLotto(int money) {
         int lottoCnt = money / 1000;
 
         List<List<Integer>> lottos = new ArrayList<>();
