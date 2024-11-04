@@ -17,12 +17,42 @@ public class Application {
     private static final int[] PRIZES = {0, 2000000000, 30000000, 1500000, 50000, 5000};
 
     public enum Rank {
-        FIRST(6, false, 2_000_000_000),
-        SECOND(5, true, 30_000_000),
-        THIRD(5, false, 1_500_000),
-        FOURTH(4, false, 50_000),
-        FIFTH(3, false, 5_000),
-        NONE(0, false, 0);
+        FIRST(6, false, 2_000_000_000) {
+            @Override
+            public boolean matches(int matchCount, boolean matchBonus) {
+                return matchCount == 6;
+            }
+        },
+        SECOND(5, true, 30_000_000) {
+            @Override
+            public boolean matches(int matchCount, boolean matchBonus) {
+                return matchCount == 5 && matchBonus;
+            }
+        },
+        THIRD(5, false, 1_500_000) {
+            @Override
+            public boolean matches(int matchCount, boolean matchBonus) {
+                return matchCount == 5 && !matchBonus;
+            }
+        },
+        FOURTH(4, false, 50_000) {
+            @Override
+            public boolean matches(int matchCount, boolean matchBonus) {
+                return matchCount == 4;
+            }
+        },
+        FIFTH(3, false, 5_000) {
+            @Override
+            public boolean matches(int matchCount, boolean matchBonus) {
+                return matchCount == 3;
+            }
+        },
+        NONE(0, false, 0) {
+            @Override
+            public boolean matches(int matchCount, boolean matchBonus) {
+                return matchCount < 3;
+            }
+        };
 
         private final int matchCount;
         private final boolean matchBonus;
@@ -34,18 +64,17 @@ public class Application {
             this.prize = prize;
         }
 
+        public abstract boolean matches(int matchCount, boolean matchBonus);
+
         public int getPrize() {
             return prize;
         }
 
         public static Rank valueOf(int matchCount, boolean matchBonus) {
             for (Rank rank : Rank.values()) {
-                if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {
+                if (rank.matches(matchCount, matchBonus)) {
                     return rank;
                 }
-            }
-            if (matchCount >= 3) {
-                return Rank.values()[matchCount - 2];
             }
             return NONE;
         }
