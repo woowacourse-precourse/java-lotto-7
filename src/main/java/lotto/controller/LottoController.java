@@ -18,7 +18,7 @@ public class LottoController {
         LottoTicketService lottoTicketService = new LottoTicketService();
         numberOfLotto = lottoTicketService.purchaseLottoTickets(price);
         lottoTicketService.generateLottoNumbers(numberOfLotto, lottoRepository);
-        outputView.result(lottoTicketService.getLottoNumbers(lottoRepository));
+        outputView.printRandomNumber(lottoTicketService.getLottoNumbers(lottoRepository));
     }
 
     public void createWinningNumber(String[] inputWinningNumber) {
@@ -32,7 +32,7 @@ public class LottoController {
     public void calculateRate() {
         LottoDrawService lottoDrawService = new LottoDrawService();
         Map<String, Integer> resultMap = lottoDrawService.checkWinning(lottoRepository);
-        outputView.printresult(resultMap);
+        outputView.printResult(resultMap);
         outputView.printRate(lottoDrawService.calculateRate(resultMap, numberOfLotto));
     }
 }
