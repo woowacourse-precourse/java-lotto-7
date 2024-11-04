@@ -22,6 +22,12 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않은 6개여야 합니다.");
         }
 
+        for (int a : numbers) {
+            if(a > 45 || a <= 0) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자입니다.");
+            }
+        }
+
     }
 
     public void printLottoNumber() {
