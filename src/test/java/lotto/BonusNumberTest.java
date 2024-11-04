@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class BonusNumberTest {
+class BonusNumberTest {
 
     @DisplayName("문자와 공백 포함한 보너스 번호 입력")
     @ParameterizedTest
