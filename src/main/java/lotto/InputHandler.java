@@ -7,14 +7,14 @@ import java.util.HashSet;
 import java.util.List;
 
 public class InputHandler {
-    public static final String CREDIT = "구입금액을 입력해 주세요.";
+    private static final String CREDIT = "구입금액을 입력해 주세요.";
     private static final String NOT_MULTIPLE_1000 = "[ERROR] 구입 금액은 1,000의 배수여야 합니다.";
     private static final String NOT_A_NUM = "[ERROR] 숫자를 입력하세요.";
     private static final String NOT_SIX = "[ERROR] 당첨 번호는 6개여야 합니다.";
     private static final String SAME_NUMBER = "[ERROR] 당첨 번호에 중복된 숫자가 존재합니다.";
     private static final String SAME_BONUS_NUMBER = "[ERROR] 당첨번호에 보너스 번호와 중복된 숫자가 존재합니다.";
-    public static final String WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
-    public static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static final String WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     public static int getCredit() {
         System.out.println(CREDIT);
@@ -52,7 +52,7 @@ public class InputHandler {
 
     public static List<Integer> getWinningNumbers() {
         System.out.println(WINNING_NUMBER);
-        List<Integer> winningNumbers = new ArrayList<>();
+        List<Integer> winningNumbers;
         try {
             winningNumbers = parseNumbers(readNumbers());
         } catch (IllegalArgumentException e) {
@@ -89,7 +89,7 @@ public class InputHandler {
         return inputNumbers;
     }
 
-    public static void checkSameNumber(List<Integer> winningNumbers) {
+    private static void checkSameNumber(List<Integer> winningNumbers) {
         if(new HashSet<>(winningNumbers).size() != winningNumbers.size()) {
             throw new IllegalArgumentException(SAME_NUMBER);
         }
@@ -113,7 +113,7 @@ public class InputHandler {
         return bonusNumber;
     }
 
-    public static void checkBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+    private static void checkBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if(winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(SAME_BONUS_NUMBER);
         }
