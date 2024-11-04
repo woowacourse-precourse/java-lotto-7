@@ -2,11 +2,14 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.WinNumber;
 import lotto.exception.InputException;
+import lotto.util.ConvertInput;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,6 +19,8 @@ public class LottoGameController {
 
         Lottos lottos = generateLottos(money);
         showLottoNumbers(money, lottos);
+
+        WinNumber winNumber = makeWinNumber();
     }
 
     private Money readMoney() {
@@ -31,6 +36,23 @@ public class LottoGameController {
 
     private void showLottoNumbers(Money money, Lottos lottos) {
         OutputView.printPurchasedResult(money.calculateTicketCount(), lottos.getLottos());
+    }
+
+    private WinNumber makeWinNumber() {
+        Lotto winningNumber = repeatUntilReadValidInput(this::readWinningNumber);
+        BonusNumber bonusNumber = repeatUntilReadValidInput(this::readBonusNumber);
+        return WinNumber.of(winningNumber, bonusNumber);
+    }
+
+    private Lotto readWinningNumber() {
+        OutputView.askWinningNumber();
+        List<Integer> winningNumber = ConvertInput.makeWinningNumberToList(InputView.readInput());
+        return new Lotto(winningNumber);
+    }
+
+    private BonusNumber readBonusNumber() {
+        OutputView.askBonusNumber();
+        return BonusNumber.from(InputView.readInput());
     }
 
     private <T> T repeatUntilReadValidInput(Supplier<T> supplier) {
