@@ -2,7 +2,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
     public static int budget_input() {
@@ -15,9 +14,9 @@ public class Application {
     public static List<Integer> lotto_input() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String userInput = Console.readLine().trim();
-        String[] splittedNumber = userInput.split(",");
+        String[] splitNumbers = userInput.split(",");
         List<Integer> winningNumber = new ArrayList<>();
-        for (String number : splittedNumber) {
+        for (String number : splitNumbers) {
             winningNumber.add(Integer.parseInt(number));
         }
 
@@ -34,7 +33,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int budget = budget_input();
-        List<Integer> winningNumber = new ArrayList<>();
+        List<Integer> winningNumber;
 
         int numToBuy = budget / 1000;
         LottoCollection lottoTickets = new LottoCollection(numToBuy);
@@ -52,5 +51,7 @@ public class Application {
         // check result of lottery
         lottoTickets.checkResult(winningLotto, bonusNumber);
 
+        // print winning results
+        lottoTickets.printResult(budget);
     }
 }
