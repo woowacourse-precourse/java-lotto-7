@@ -37,6 +37,15 @@ public class Lotto {
         }
     }
 
+    private void validateNumbersInRange(List<Integer> numbers) {
+        boolean isOutOfRange = numbers.stream().anyMatch(number -> number < MINIMUM_LOTTO_VALUE ||
+                number > MAXIMUM_LOTTO_VALUE);
+
+        if (isOutOfRange) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 정수여야 합니다.");
+        }
+    }
+
     public int calculateMatchingCount(List<Integer> numbers) {
         return (int) this.numbers.stream()
                 .filter(numbers::contains)
