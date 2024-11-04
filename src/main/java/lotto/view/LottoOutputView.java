@@ -45,7 +45,7 @@ public class LottoOutputView {
 
     private void printRankResult(Map<Integer, Integer> winningResult, Integer rank){
         WinningStandard standard = WinningStandard.WINNING_STANDARDS.stream()
-                        .filter(s -> s.getRank() == rank)
+                        .filter(s -> s.getRank().equals(rank))
                         .findFirst()
                         .get();
 
