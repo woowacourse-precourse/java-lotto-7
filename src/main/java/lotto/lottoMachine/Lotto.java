@@ -1,16 +1,14 @@
-package lotto;
+package lotto.lottoMachine;
 
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import lotto.lottoMachine.LottoResult;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        //Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -32,15 +30,6 @@ public class Lotto {
         return numbers;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        String join = numbers.stream().sorted().map(String::valueOf).collect(Collectors.joining(", "));
-        sb.append("[").append(join).append("]");
-
-        return sb.toString();
-    }
-
     public LottoResult getMatchCount(Lotto winLotto, int bonusNumber) {
         List<Integer> winNumbers = winLotto.getNumbers();
         int size = numbers.stream().filter(o -> winNumbers.stream()
@@ -59,5 +48,14 @@ public class Lotto {
             return LottoResult.FIFTH;
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        String join = numbers.stream().sorted().map(String::valueOf).collect(Collectors.joining(", "));
+        sb.append("[").append(join).append("]");
+
+        return sb.toString();
     }
 }
