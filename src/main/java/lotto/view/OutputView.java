@@ -17,6 +17,9 @@ public class OutputView {
 	private static final String WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---\n";
 	private static final String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.\n";
 	private static final String NEW_LINE = "\n";
+	private static final String DELIMITER = ", ";
+	private static final String PURCHASE_LOTTO_RESULT_PREFIX = "[";
+	private static final String PURCHASE_LOTTO_RESULT_SUFFIX = "]";
 	private static final String DECIMAL_FORMAT = "#,###.#";
 
 	public void printPurchasePriceInputMessage() {
@@ -61,7 +64,7 @@ public class OutputView {
 	}
 
 	private String getPurchaseLottoResult(List<String> lottoResult) {
-		return "[" + String.join(", ", lottoResult) + "]";
+		return PURCHASE_LOTTO_RESULT_PREFIX + String.join(DELIMITER, lottoResult) + PURCHASE_LOTTO_RESULT_SUFFIX;
 	}
 
 	private String getWinningResult(WinningResultDto winningResult) {
