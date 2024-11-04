@@ -1,5 +1,7 @@
 package lotto.dto;
 
+import lotto.utils.LottoUtils;
+
 import static lotto.exception.LottoExceptionStatus.INVALID_BONUS_NUMBER_RANGE;
 import static lotto.properties.LottoProperties.LOTTO_NUMBER_END;
 import static lotto.properties.LottoProperties.LOTTO_NUMBER_START;
@@ -23,6 +25,6 @@ public record BonusNumberDto(
     }
 
     public static BonusNumberDto from(String input) {
-        return new BonusNumberDto(Integer.parseInt(input.trim()));
+        return new BonusNumberDto(LottoUtils.checkBonusNumberFormat(input.trim()));
     }
 }

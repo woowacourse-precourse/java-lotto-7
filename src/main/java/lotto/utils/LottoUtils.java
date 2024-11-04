@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.exception.LottoExceptionStatus.*;
+import static lotto.exception.LottoExceptionStatus.INVALID_BONUS_NUMBER_FORMAT;
 
 public class LottoUtils {
 
@@ -40,6 +41,14 @@ public class LottoUtils {
                     .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_FORMAT.getMessage());
+        }
+    }
+
+    public static int checkBonusNumberFormat(String bonusNumber){
+        try {
+            return Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_FORMAT.getMessage());
         }
     }
 }
