@@ -25,6 +25,7 @@ public class Input {
      */
     private List<Integer> getNumbersSplit(String inputNumber){
         List<Integer> numbers = new ArrayList<>();
+
         try{
             for (String number : inputNumber.split(",")) {
                 numbers.add(Integer.parseInt(number.trim()));

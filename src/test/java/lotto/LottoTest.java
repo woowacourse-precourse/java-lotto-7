@@ -43,7 +43,7 @@ class LottoTest {
         //when && then
         assertThatThrownBy(() -> input.numbers())
                 .isInstanceOf(NumberFormatException.class)
-                .hasMessageContaining(numberCommerForat);
+                .hasMessageContaining("[ERROR] 숫자와 ,만 입력해주세요");
 
     }
 
