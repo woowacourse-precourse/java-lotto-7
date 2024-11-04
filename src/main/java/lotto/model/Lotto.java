@@ -23,12 +23,10 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    // 숫자 하나씩 검증
     private void validateEachNumber(List<Integer> numbers) {
-        System.out.println("개별번호");
         for (Integer number : numbers) {
             if (number < 0 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 정수여야 합니다.");
             }
         }
     }
