@@ -25,4 +25,13 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위만 가능합니다.");
         }
     }
+
+    public int getValidNumber(String input) {
+        try {
+            int number = Integer.parseInt(input);
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 번호는 숫자만 가능합니다.");
+        }
+    }
 }
