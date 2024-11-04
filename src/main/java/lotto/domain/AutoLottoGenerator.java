@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.vo.Number;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -19,9 +18,8 @@ public class AutoLottoGenerator implements LottoGenerator {
     }
 
     private Lotto generateAutoLotto() {
-        List<Number> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER,
-                        LOTTO_NUMBER_COUNT).stream()
-                .map(Number::newInstance)
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER,
+                LOTTO_NUMBER_COUNT).stream()
                 .sorted()
                 .toList();
 
