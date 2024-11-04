@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LottoGeneratorServiceTest {
 
-    private LottoGeneratorService lottoGeneratorService;
+    private LottoPurchaseService lottoGeneratorService;
     private InputView inputView;
 
     @BeforeEach
     void setUp() {
-        lottoGeneratorService = new LottoGeneratorService(inputView);
+        lottoGeneratorService = new LottoPurchaseService(inputView);
     }
 
 
@@ -35,7 +35,7 @@ class LottoGeneratorServiceTest {
     @Test
     void 잘못된_값_입력시_다시_입력요청후_1000반환() {
         TestInputView testInputView = new TestInputView("-10", "0", "abc", "1500", "1000");
-        LottoGeneratorService lottoGeneratorService = new LottoGeneratorService(testInputView);
+        LottoPurchaseService lottoGeneratorService = new LottoPurchaseService(testInputView);
         int result = lottoGeneratorService.repeatPromptPurchaseAmount();
         assertEquals(1000, result);
     }
