@@ -191,7 +191,7 @@
     - [x] 1~45 사이의 숫자가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - [x] 숫자가 1개가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - [x] 양수가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
-    - [ ] 입력이 비어있으면 IllegalArgumentException 발생 (+다시 입력 받음)
+    - [x] 입력이 비어있으면 IllegalArgumentException 발생 (+다시 입력 받음)
     - [ ] 당첨 번호 중 같은 수가 있으면 IllegalArgumentException 발생 (+다시 입력 받음)
 - 출력
   - [x] 진행 멘트 출력

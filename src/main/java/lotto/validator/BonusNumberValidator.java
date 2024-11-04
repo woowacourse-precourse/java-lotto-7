@@ -15,6 +15,11 @@ public class BonusNumberValidator {
     }
 
     private static void validateSingleNumber(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    DEFAULT_ERROR_MESSAGE + ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE.getMessage());
+        }
+
         String[] tokens = input.split("[,\\s]+");
         if (tokens.length != 1) {
             throw new IllegalArgumentException(
