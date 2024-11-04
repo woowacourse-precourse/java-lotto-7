@@ -1,33 +1,26 @@
-package lotto.view.input;
+package lotto.ui.input;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.model.domain.BonusNumber;
+import lotto.model.domain.PurchaseAmount;
 
 public class InputParser {
-    private final String delimiter;
-    private final InputValidator validator;
 
-    public InputParser(String delimiter, InputValidator validator) {
-        this.delimiter = delimiter;
-        this.validator = validator;
+    public PurchaseAmount parsePurchaseAmount(String amount) {
+        int parsedAmount = Integer.parseInt(amount);
+        return new PurchaseAmount(parsedAmount);
     }
 
-    public Integer parsePurchaseAmount(String amount) {
-        Integer parsedAmount = Integer.parseInt(amount);
-        validator.validateAmount(parsedAmount);
-
-        return parsedAmount;
-
-    }
-
-    public List<Integer> parseWinningNumbers(String numbers) {
+    public List<Integer> parseWinningNumbers(String delimiter, String numbers) {
         return Arrays
                 .stream(numbers.split(delimiter))
                 .map(Integer::parseInt)
                 .toList();
     }
 
-    public Integer parseBonusNumber(String number) {
-        return Integer.parseInt(number);
+    public BonusNumber parseBonusNumber(String number) {
+        int parsedNumber = Integer.parseInt(number);
+        return new BonusNumber(parsedNumber);
     }
 }

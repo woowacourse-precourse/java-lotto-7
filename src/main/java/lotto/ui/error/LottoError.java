@@ -1,6 +1,6 @@
-package lotto.exception;
+package lotto.ui.error;
 
-import static lotto.model.domain.LottoConstant.*;
+import static lotto.constant.LottoConstant.*;
 
 public class LottoError {
     public final static String WINNING_NUMBERS_SIZE_ERR = String.format("로또 번호는 %d개여야 합니다.", SIZE);

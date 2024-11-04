@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.ui.error;
 
 public class InputError {
     public static final String IS_NOT_NUMBER = "숫자 형식이 아닙니다.";
