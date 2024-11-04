@@ -1,11 +1,15 @@
 package lotto;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
     @Test
@@ -21,5 +25,56 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    public void 랜덤값_생성() {
+        //when
+        Lotto testLotto = Lotto.generateLottoTicket();
+        List<Integer> lottoNumbers = testLotto.getNumbers();
+
+        //then
+        boolean isWithinRange = lottoNumbers.stream()
+                .allMatch(num -> 1 <= num && num <= 45);
+        assertTrue(isWithinRange);
+
+        assertEquals(6, lottoNumbers.size());
+
+        Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
+        assertEquals(6, uniqueNumbers.size());
+    }
+
+    @Test
+    public void 당첨_번호_일치_개수_확인() {
+    	//given
+        Lotto testLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        List<Integer> testWinningNumber = List.of(1, 2, 3, 4, 5, 6);
+        int testBonusNumber = 7;
+
+        WinningLotto testWinningLotto = WinningLotto.of(testWinningNumber, testBonusNumber);
+
+        int expectedMatchCount = 6;
+        //when
+        int actualMatchCount = testLotto.getMatchCount(testWinningLotto);
+
+        //then
+        assertEquals(expectedMatchCount, actualMatchCount);
+    }
+
+    @Test
+    public void 보너스_번호_일치_여부_확인() {
+    	//given
+        Lotto testLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        List<Integer> testWinningNumber = List.of(1, 2, 3, 4, 5, 6);
+        int testBonusNumber = 7;
+
+        WinningLotto testWinningLotto = WinningLotto.of(testWinningNumber, testBonusNumber);
+
+        int expectedMatchCount = 6;
+    	//when
+        int actualMatchCount = testLotto.getMatchCount(testWinningLotto);
+
+        //then
+        assertEquals(expectedMatchCount, actualMatchCount);
+    }
 }
