@@ -30,6 +30,10 @@ public class Lotto {
         return !numbers.stream().allMatch(number -> number >= 1 && number <= 45);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public List<Integer> getSortedNumbers() {
         return numbers.stream().sorted().toList();
     }
