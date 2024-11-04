@@ -1,7 +1,6 @@
 package lotto.back.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.global.enums.LottoConstant;
@@ -13,13 +12,12 @@ public class LottoIssuer {
         validate(lottoPrice);
         Integer lottoCount = calculateLottoCount(lottoPrice);
         // 구입한 개수만큼 로또를 발행
-        List<Lotto> lottos = new ArrayList<>();
-        IntStream.range(0, lottoCount).forEach(count -> {
+        List<Lotto> lottos = IntStream.range(0, lottoCount).mapToObj(count -> {
             List<Integer> lottoNumbers = generateLottoNumbers().stream().sorted().toList();
-            lottos.add(new Lotto(lottoNumbers));
-        });
+            return new Lotto(lottoNumbers);
+        }).toList();
 
-        return lottos.stream().toList();
+        return lottos;
     }
 
     private void validate(Integer lottoPrice) {
