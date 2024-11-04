@@ -6,7 +6,7 @@
   - 문자열로 입력받아 숫자로 변환 :ballot_box_with_check:
   - 변환 실패 시, `[ERROR] 유효한 정수를 입력해주세요.` 예외 메시지 출력 :ballot_box_with_check:
   - 양수가 아닐 경우, `[ERROR] 양수만 입력할 수 있습니다.` 예외 메시지 출력 :ballot_box_with_check:
-  - **1000원 단위 금액인지 검증**: 
+  - **1000원 단위 금액인지 검증**:
     - 1000원 단위가 아닐 시, `[ERROR] 구입금액은 1000 :ballot_box_with_check:원 단위여야 합니다.` 예외 메시지 출력 :ballot_box_with_check:
   - **올바른 금액 입력 시**까지 반복 요청
 
@@ -21,8 +21,8 @@
 ### 3️⃣ 로또 번호 발행
 - **로또 번호 생성**:
   - 6개의 랜덤 번호 생성(범위는 1~45) :ballot_box_with_check:
-  - 6개의 번호 오름차순 정렬
-  - 구입한 로또 갯수만큼 반복하여 번호 생성
+  - 6개의 번호 오름차순 정렬 :ballot_box_with_check:
+  - 구입한 로또 갯수만큼 반복하여 번호 생성 :ballot_box_with_check:
   - 생성 결과 출력
 
 

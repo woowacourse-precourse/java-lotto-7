@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,6 +39,14 @@ class LottoGeneratorServiceTest {
         list = lottoGeneratorService.sortNumbers(list);
         for(Integer number : list){
             System.out.println(number);
+        }
+    }
+
+    @Test
+    public void 여덟개_로또번호_생성_테스트(){
+        List<Lotto> lotos = lottoGeneratorService.generateLotto(8);
+        for(Lotto lotto : lotos){
+            lotto.printNumbers();
         }
     }
 }
