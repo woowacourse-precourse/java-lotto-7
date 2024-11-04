@@ -1,10 +1,16 @@
 package lotto.view;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.common.Prompts;
 
 public class OutputView {
     public void showPurchaseCount(int count) {
         System.out.println(count + Prompts.OUTPUT_PURCHASE_COUNT_PROMPT);
+    }
+
+    public void showLottoNumbers(String lottoNumbers) {
+        System.out.println(lottoNumbers);
     }
 
     public void showStatistics() {

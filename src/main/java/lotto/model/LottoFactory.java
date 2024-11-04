@@ -6,15 +6,10 @@ import lotto.common.Constants;
 import lotto.dto.LottoPurchaseDTO;
 
 public class LottoFactory {
-    private int lottoCount;
     private final Lottos lottos;
 
     public LottoFactory(Lottos lottos) {
         this.lottos = lottos;
-    }
-
-    private void calculateLottoCount(int price) {
-        lottoCount = price / Constants.LOTTO_PRICE;
     }
 
     private List<Integer> createRandomNumbers() {
@@ -24,12 +19,20 @@ public class LottoFactory {
         return randomNumbers;
     }
 
+    private int calculateLottoCount(int price) {
+        return price / Constants.LOTTO_PRICE;
+    }
+
     public void createLottos(LottoPurchaseDTO lottoPurchaseDTO) {
-        calculateLottoCount(lottoPurchaseDTO.getPrice());
+        int lottoCount = calculateLottoCount(lottoPurchaseDTO.getPrice());
 
         for(int i=0; i<lottoCount; i++) {
             Lotto lotto = new Lotto(createRandomNumbers());
             lottos.addLotto(lotto);
         }
+    }
+
+    public String checkLottos() {
+        return lottos.toString();
     }
 }
