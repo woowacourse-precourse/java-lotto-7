@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.function.Function;
 
-public enum Prize {
+public enum Rank {
     MATCHES_3(count -> count * 5000),
     MATCHES_4(count -> count * 50000),
     MATCHES_5(count -> count * 1500000),
@@ -11,7 +11,7 @@ public enum Prize {
 
     private Function<Integer, Integer> expression;
 
-    Prize(Function<Integer, Integer> expression) {
+    Rank(Function<Integer, Integer> expression) {
         this.expression = expression;
     }
 

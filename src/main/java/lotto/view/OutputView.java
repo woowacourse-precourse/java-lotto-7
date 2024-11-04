@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Prize;
+import lotto.domain.Rank;
 
 public class OutputView {
     private static final String ISSUED_LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
@@ -24,22 +24,22 @@ public class OutputView {
                 .forEach(System.out::println);
     }
 
-    public void displayStatistics(Map<Prize, Integer> prizeCount, double profitRate) {
+    public void displayStatistics(Map<Rank, Integer> prizeCount, double profitRate) {
         String result = System.lineSeparator()
                 + RESULT_TITLE + System.lineSeparator()
                 + DIVIDER + System.lineSeparator()
-                + getPrizeResult(prizeCount)
+                + getRankResult(prizeCount)
                 + getProfitRateResult(profitRate);
         System.out.println(result);
         Console.close();
     }
 
-    private String getPrizeResult(Map<Prize, Integer> prizeCount) {
-        return String.format(THREE_MATCHES_RESULT, prizeCount.get(Prize.MATCHES_3))
-                + String.format(FOUR_MATCHES_RESULT, prizeCount.get(Prize.MATCHES_4))
-                + String.format(FIVE_MATCHES_RESULT, prizeCount.get(Prize.MATCHES_5))
-                + String.format(FIVE_MATCHES_BONUS_MATCH_RESULT, prizeCount.get(Prize.MATCHES_5_BONUS_MATCH))
-                + String.format(SIX_MATCHES_RESULT, prizeCount.get(Prize.MATCHES_6));
+    private String getRankResult(Map<Rank, Integer> prizeCount) {
+        return String.format(THREE_MATCHES_RESULT, prizeCount.get(Rank.MATCHES_3))
+                + String.format(FOUR_MATCHES_RESULT, prizeCount.get(Rank.MATCHES_4))
+                + String.format(FIVE_MATCHES_RESULT, prizeCount.get(Rank.MATCHES_5))
+                + String.format(FIVE_MATCHES_BONUS_MATCH_RESULT, prizeCount.get(Rank.MATCHES_5_BONUS_MATCH))
+                + String.format(SIX_MATCHES_RESULT, prizeCount.get(Rank.MATCHES_6));
     }
 
     private String getProfitRateResult(double profitRate) {

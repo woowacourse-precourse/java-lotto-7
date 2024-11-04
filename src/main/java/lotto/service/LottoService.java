@@ -11,14 +11,14 @@ import lotto.domain.Amount;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Prize;
-import lotto.domain.PrizeCount;
 import lotto.domain.ProfitRate;
+import lotto.domain.Rank;
+import lotto.domain.RankCount;
 
 public class LottoService {
-    private static final int MIN_PRIZE_COUNT = 3;
-    private static final String PRIZE_NAME_PREFIX = "MATCHES_";
-    private static final String PRIZE_BONUS_MATCH_NAME_SUFFIX = "_BONUS_MATCH";
+    private static final int MIN_rank_COUNT = 3;
+    private static final String rank_NAME_PREFIX = "MATCHES_";
+    private static final String rank_BONUS_MATCH_NAME_SUFFIX = "_BONUS_MATCH";
 
     public Lottos issueLottos(Amount amount) {
         return new Lottos(IntStream.range(0, getIssuedCount(amount))
@@ -26,18 +26,18 @@ public class LottoService {
                 .collect(Collectors.toList()));
     }
 
-    public PrizeCount getPrizeCount(Lottos issuedLottos, Lotto winningLotto, Bonus bonusNumber) {
-        PrizeCount prizeCount = new PrizeCount();
+    public RankCount getRankCount(Lottos issuedLottos, Lotto winningLotto, Bonus bonusNumber) {
+        RankCount rankCount = new RankCount();
         for (Lotto issuedLotto : issuedLottos.getLottos()) {
             int matchCount = getMatchCount(issuedLotto, winningLotto);
             boolean isBonusMatch = isBonusMatch(issuedLotto, bonusNumber);
-            calculatePrizeCount(prizeCount, matchCount, isBonusMatch);
+            calculateRankCount(rankCount, matchCount, isBonusMatch);
         }
-        return prizeCount;
+        return rankCount;
     }
 
-    public ProfitRate getProfitRate(Amount amount, PrizeCount prizeCount) {
-        return ProfitRate.of(amount.getAmount(), getTotalPrize(prizeCount.getPrizeCount()));
+    public ProfitRate getProfitRate(Amount amount, RankCount rankCount) {
+        return ProfitRate.of(amount.getAmount(), getTotalProfit(rankCount.getRankCount()));
     }
 
     private int getIssuedCount(Amount amount) {
@@ -61,28 +61,28 @@ public class LottoService {
         return issuedLotto.getNumbers().contains(bonusNumber.getNumber());
     }
 
-    private void calculatePrizeCount(PrizeCount prizeCount, int matchCount, boolean isBonusMatch) {
-        if (matchCount < MIN_PRIZE_COUNT) {
+    private void calculateRankCount(RankCount rankCount, int matchCount, boolean isBonusMatch) {
+        if (matchCount < MIN_rank_COUNT) {
             return;
         }
-        String prizeName = getPrizeName(matchCount, isBonusMatch);
-        prizeCount.increaseCount(Prize.valueOf(prizeName));
+        String rankName = getRankName(matchCount, isBonusMatch);
+        rankCount.increaseCount(Rank.valueOf(rankName));
     }
 
-    private String getPrizeName(int matchCount, boolean isBonusMatch) {
-        String prizeName = PRIZE_NAME_PREFIX + matchCount;
+    private String getRankName(int matchCount, boolean isBonusMatch) {
+        String rankName = rank_NAME_PREFIX + matchCount;
         if (matchCount == 5 && isBonusMatch) {
-            prizeName += PRIZE_BONUS_MATCH_NAME_SUFFIX;
+            rankName += rank_BONUS_MATCH_NAME_SUFFIX;
         }
-        return prizeName;
+        return rankName;
     }
 
-    private int getTotalPrize(Map<Prize, Integer> prizeCount) {
+    private int getTotalProfit(Map<Rank, Integer> rankCount) {
         int totalPrize = 0;
-        for (Entry<Prize, Integer> entry : prizeCount.entrySet()) {
-            Prize prize = entry.getKey();
+        for (Entry<Rank, Integer> entry : rankCount.entrySet()) {
+            Rank rank = entry.getKey();
             Integer count = entry.getValue();
-            totalPrize += prize.calculate(count);
+            totalPrize += rank.calculate(count);
         }
         return totalPrize;
     }
