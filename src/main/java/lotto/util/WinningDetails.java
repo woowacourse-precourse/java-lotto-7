@@ -1,43 +1,33 @@
 package lotto.util;
 
 import java.util.EnumSet;
+import lotto.model.Rank;
 
 public enum WinningDetails {
 
-    NO_WIN(0, false, "0", 0),
-    FIFTH_PRIZE(3, false, "5,000", 0),
-    FOURTH_PRIZE(4, false, "50,000", 0),
-    THIRD_PRIZE(5, false, "1,500,000", 0),
-    SECOND_PRIZE(5, true, "30,000,000", 0),
-    FIRST_PRIZE(6, false, "2,000,000,000", 0);
+    NO_WIN(new Rank(0, false), "0", 0),
+    FIFTH_PRIZE(new Rank(3, false), "5,000", 0),
+    FOURTH_PRIZE(new Rank(4, false), "50,000", 0),
+    THIRD_PRIZE(new Rank(5, false), "1,500,000", 0),
+    SECOND_PRIZE(new Rank(5, true), "30,000,000", 0),
+    FIRST_PRIZE(new Rank(6, false), "2,000,000,000", 0);
 
-
-    private int sameNumberCount;
-    private boolean matchBonusNumber;
-
-    private String winningPrize;
+    private final Rank rank;
+    private final String winningPrize;
     private int matchedLottoCount;
 
-    public int getSameNumberCount() {
-        return sameNumberCount;
+
+    public String getWinningPrize() {
+        return winningPrize;
     }
 
     public int getMatchLottoCount() {
         return matchedLottoCount;
     }
 
-    public String getWinningPrize() {
-        return winningPrize;
-    }
 
-    public boolean getMatchBonusNumber() {
-        return matchBonusNumber;
-    }
-
-
-    WinningDetails(int sameNumberCount, boolean matchBonusNumber, String winningPrize, int matchedLottoCount) {
-        this.sameNumberCount = sameNumberCount;
-        this.matchBonusNumber = matchBonusNumber;
+    WinningDetails(Rank rank, String winningPrize, int matchedLottoCount) {
+        this.rank = rank;
         this.winningPrize = winningPrize;
         this.matchedLottoCount = matchedLottoCount;
     }
@@ -48,18 +38,14 @@ public enum WinningDetails {
     }
 
     public static void addMatchLottoCount(int sameNumberCount, boolean matchBonusNumber) {
-        WinningDetails rank = getLottoRankByLottoNumbers(sameNumberCount, matchBonusNumber);
-        rank.matchedLottoCount++;
+        WinningDetails winningDetails = getLottoRankByLottoNumbers(sameNumberCount, matchBonusNumber);
+        winningDetails.matchedLottoCount++;
     }
 
     private static WinningDetails getLottoRankByLottoNumbers(int sameNumberCount, boolean matchBonusNumber) {
-        if (sameNumberCount == 5 && matchBonusNumber) {
-            return WinningDetails.SECOND_PRIZE;
-        }
-
-        for (WinningDetails rank : WinningDetails.values()) {
-            if (rank.sameNumberCount == sameNumberCount && !rank.matchBonusNumber) {
-                return rank;
+        for (WinningDetails winningDetail : WinningDetails.values()) {
+            if (winningDetail.rank.matches(sameNumberCount, matchBonusNumber)) {
+                return winningDetail;
             }
         }
         return WinningDetails.NO_WIN;
