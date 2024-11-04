@@ -29,7 +29,7 @@ public class LotteryMachine {
 
     public void createLottoByPayment(Money money) {
         int amount = getLottoQuantity(money);
-        IntStream.range(0,amount)
-                .forEach(i->purchaseLotto.add(createLottoTicket()));
+        IntStream.range(0, amount)
+                .forEach(i -> purchaseLotto.add(createLottoTicket()));
     }
 }

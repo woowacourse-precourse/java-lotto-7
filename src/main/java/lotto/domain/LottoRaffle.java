@@ -1,8 +1,5 @@
 package lotto.domain;
 
-import static lotto.ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR;
-import static lotto.ErrorMessage.LOTTO_NUMBER_RANGE_ERROR;
-
 import java.util.List;
 
 public class LottoRaffle {

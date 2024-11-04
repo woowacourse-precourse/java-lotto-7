@@ -58,7 +58,7 @@ class LottoResultCheckerTest {
     }
 
     @Test
-    void 수익률을_계산한다(){
+    void 수익률을_계산한다() {
         lottoResultChecker = new LottoResultChecker(lottoRaffle, lottos);
         lottoResultChecker.findRank();
         Calculator calculator = new Calculator(lottoResultChecker, new Money(8000));

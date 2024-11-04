@@ -11,7 +11,7 @@ public enum ErrorMessage {
     public static final String HEADER = "[ERROR]";
     private final String message;
 
-    ErrorMessage(String body){
+    ErrorMessage(String body) {
         this.message = String.format("%s %s", HEADER, body);
     }
 

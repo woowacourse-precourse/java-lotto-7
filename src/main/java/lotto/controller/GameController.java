@@ -62,14 +62,14 @@ public class GameController {
     public List<Integer> getWinningNumbers() {
         boolean valid = false;
         List<Integer> numbers = new ArrayList<>();
-        while(!valid){
+        while (!valid) {
             try {
                 InputView.requestWinningNumber();
                 String winningNumber = Console.readLine();
                 numbers = validator.validateIsNumeric(winningNumber);
                 validator.validateWinningNumber(new Lotto(numbers));
                 valid = true;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + System.lineSeparator());
             }
         }
@@ -79,14 +79,14 @@ public class GameController {
     public int getBonusBall(List<Integer> winningNumbers) {
         int bonusNumber = 0;
         boolean valid = false;
-        while(!valid){
+        while (!valid) {
             try {
                 InputView.requestBonusNumber();
                 String bonusBall = Console.readLine();
                 bonusNumber = validator.validateConvertToNumber(bonusBall);
-                validator.validateBonusNumber(winningNumbers,bonusNumber);
+                validator.validateBonusNumber(winningNumbers, bonusNumber);
                 valid = true;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + System.lineSeparator());
             }
         }

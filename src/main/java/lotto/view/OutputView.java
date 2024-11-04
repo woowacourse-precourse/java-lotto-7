@@ -32,7 +32,9 @@ public class OutputView {
 
         Arrays.stream(Rank.values()).sorted(Comparator.reverseOrder()).toList().forEach(rank -> {
             Integer matchCount = rankCount.getOrDefault(rank, 0);
-            if (rank.equals(Rank.NONE)) return;
+            if (rank.equals(Rank.NONE)) {
+                return;
+            }
             System.out.printf("%s - %d개\n", rank.getMessage(), matchCount);
         });
     }

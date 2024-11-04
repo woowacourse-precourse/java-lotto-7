@@ -38,8 +38,7 @@ class LottoRaffleTest {
         List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
         assertThatThrownBy(() ->
                 validator.validateBonusNumber(winningNumber, BONUS_NUMBER))
-                .isInstanceOf(IllegalArgumentException.class)
-        ;
+                .isInstanceOf(IllegalArgumentException.class);
 
     }
 
