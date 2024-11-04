@@ -27,6 +27,4 @@ class LotteryCashierTest {
             assertThat(lottos).isNotNull();
         }
     }
-
-
 }
