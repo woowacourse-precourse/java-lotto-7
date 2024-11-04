@@ -1,14 +1,20 @@
 package lotto;
 
+import static lotto.Exception.DUPLICATE_NUMBER_LOTTO;
+
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        isDuplicate(numbers);
+        this.numbers = new ArrayList<>(numbers);
         sort();
     }
 
@@ -31,5 +37,12 @@ public class Lotto {
 
     private void sort() {
         Collections.sort(this.numbers);
+    }
+
+    private void isDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_LOTTO);
+        }
     }
 }

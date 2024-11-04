@@ -8,4 +8,5 @@ public class Exception {
     public static final String DUPLICATE_WINNING_NUMBER = "[ERROR] 중복되지 않게 당첨 번호를 입력하세요.";
     public static final String DUPLICATE_BONUS_WINNING = "[ERROR] 당첨번호와 중복된 숫자가 있습니다";
     public static final String DONT_ENTER_STRING = "[ERROR] 구입 금액을 올바르게 입력하십시오.";
+    public static final String DUPLICATE_NUMBER_LOTTO = "[ERROR] 로또에 중복된 숫자가 있습니다.";
 }
