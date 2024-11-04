@@ -76,4 +76,11 @@ public class WinningLottoTest {
         assertThatThrownBy(() -> bonusNumberValidator.validateBonusNumber("2", "1,2,3,4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_번호가_정수가_아닌_경우() {
+        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
+        assertThatThrownBy(() -> bonusNumberValidator.validateBonusNumber("a", "1,2,3,4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
