@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println("---");
         for (Prize prize : Prize.values()) {
             if (prize == Prize.NONE) continue;
-            System.out.println(prize.getMessage() + " - " + prizeCount.get(prize) + "개");
+            System.out.println(prize.getMessage() + " - " + prizeCount.getOrDefault(prize, 0) + "개");
         }
         System.out.printf("총 수익률은 %.1f%%입니다.", returnRate);
     }
