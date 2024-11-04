@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class LottoGeneratorTest {
 
     @Test
-    @DisplayName("구매금액이 1000원 단위가 아니면 예외가 발생한다.")
+    @DisplayName("구입금액이 1000원 단위가 아니면 예외가 발생한다.")
     void 구매금액_1000원_단위_아니면_예외() {
         assertThatThrownBy(() -> new LottoGenerator("1500"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구매금액은 1,000원 단위로 입력해야 합니다.");
+                .hasMessage("[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.");
     }
 
     @Test
@@ -23,7 +23,7 @@ class LottoGeneratorTest {
     void 구매금액이_숫자가_아니면_예외() {
         assertThatThrownBy(() -> new LottoGenerator("abc"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구매금액은 숫자로 이루어져야 합니다.");
+                .hasMessage("[ERROR] 구입금액은 숫자로 이루어져야 합니다.");
     }
 
     @Test

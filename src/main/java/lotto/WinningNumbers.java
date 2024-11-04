@@ -28,10 +28,8 @@ public class WinningNumbers {
 
 
     public void validateNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
-        for(Integer winningNumber : winningNumbers){
-            if(winningNumber.equals(bonusNumber)){
-                throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복되지 않는 숫자로 이루어져야합니다.");
-            }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복되지 않는 숫자로 이루어져야합니다.");
         }
     }
 
@@ -85,10 +83,11 @@ public class WinningNumbers {
     }
 
     public Integer validateBonusNumber(String inputBonusNumber){
-        if(!Character.isDigit(inputBonusNumber.charAt(0))){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1개의 숫자로 이루어져야합니다.");
+        try {
+            return Integer.parseInt(inputBonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
         }
-        return Integer.parseInt(inputBonusNumber);
     }
 
     public List<Integer> getWinningNumbers() {

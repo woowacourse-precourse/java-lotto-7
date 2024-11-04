@@ -45,29 +45,26 @@ public class LottoGenerator {
 
     private int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        String inputAmount = Console.readLine();
+        String inputAmount = Console.readLine().trim();
         System.out.println();
 
-        int amount;
-        amount = validateInputAmount(inputAmount);
+        int amount = validateInputAmount(inputAmount);
         validateAmount(amount);
 
         return amount;
     }
 
     private int validateInputAmount(String inputAmount) {
-        int amount;
         try {
-            amount = Integer.parseInt(inputAmount.trim());
+            return Integer.parseInt(inputAmount.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구매금액은 숫자로 이루어져야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 이루어져야 합니다.");
         }
-        return amount;
     }
 
     private void validateAmount(int amount) {
         if (amount%1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매금액은 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
 
