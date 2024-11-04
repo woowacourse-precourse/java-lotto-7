@@ -7,7 +7,7 @@ public class Lotto {
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoNumberCount(numbers);
         this.numbers = numbers.stream()
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
@@ -19,7 +19,7 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateLottoNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
