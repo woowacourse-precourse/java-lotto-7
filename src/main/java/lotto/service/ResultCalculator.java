@@ -2,22 +2,20 @@ package lotto.service;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.domain.Lotto;
-import lotto.domain.LottoRank;
-import lotto.domain.Lottos;
+import lotto.domain.*;
 
 public class ResultCalculator {
     private final Map<LottoRank, Integer> result = new HashMap<>();
     private int gain;
 
-    public ResultCalculator(Lottos lottos, Lotto winningLotto, int bonusNumber) {
-        calculateResults(lottos, winningLotto, bonusNumber);
+    public ResultCalculator(Lottos lottos, WinningLotto winningLotto) {
+        calculateResults(lottos, winningLotto);
     }
 
-    private void calculateResults(Lottos lottos, Lotto winLotto, int bonusNumber) {
+    private void calculateResults(Lottos lottos, WinningLotto winningLotto) {
         for (Lotto lotto : lottos.getLottos()) {
-            int matchCount = lotto.countMatchNumber(winLotto);
-            boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
+            int matchCount = lotto.countMatchNumber(winningLotto.getLotto());
+            boolean matchBonus = lotto.getNumbers().contains(winningLotto.getBonusNumber());
 
             LottoRank rank = LottoRank.getRank(matchCount, matchBonus);
             result.put(rank, result.getOrDefault(rank, 0) + 1);

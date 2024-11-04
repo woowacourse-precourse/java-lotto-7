@@ -28,6 +28,7 @@ public class InputView {
     }
 
     public String getBonusNumber() {
+        System.out.println();
         return getInput(BONUS_NUMBER_PROMPT);
     }
 }

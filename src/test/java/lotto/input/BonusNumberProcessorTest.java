@@ -19,7 +19,7 @@ public class BonusNumberProcessorTest {
     @ValueSource(strings = {"  ", "\t", "\n"})
     void testEmptyOrBlank(String input) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> validateAndParse(winNumbers, input))
+                .isThrownBy(() -> validateAndParse(input))
                 .withMessage(EMPTY_INPUT.getMessage());
     }
 
@@ -28,7 +28,7 @@ public class BonusNumberProcessorTest {
     @ValueSource(strings = {"하나", "둘", "셋"})
     void testString(String input) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> validateAndParse(winNumbers, input))
+                .isThrownBy(() -> validateAndParse( input))
                 .withMessage(NON_NUMERIC_INPUT.getMessage());
     }
 
@@ -37,7 +37,7 @@ public class BonusNumberProcessorTest {
     @ValueSource(strings = {"-1", "0", "1.1", "   -  2", "    0   ", "   5.  4"})
     void testInvalidIntInput(String input) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> validateAndParse(winNumbers, input))
+                .isThrownBy(() -> validateAndParse( input))
                 .withMessage(ONLY_POSITIVE_INPUT.getMessage());
     }
 
@@ -46,25 +46,15 @@ public class BonusNumberProcessorTest {
     @ValueSource(strings = {"46", "47", "100"})
     void testOutOfRage(String input) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> validateAndParse(winNumbers, input))
+                .isThrownBy(() -> validateAndParse( input))
                 .withMessage(OUT_OF_RANGE_NUMBER.getMessage());
     }
-
-    @DisplayName("당첨 번호의 숫자와 겹치는 경우 - IllegalArgumentException 반환")
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "6"})
-    void testDuplicate(String input) {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> validateAndParse(winNumbers, input))
-                .withMessage(DUPLICATE_WITH_WINNING_NUMBER.getMessage());
-    }
-
     @DisplayName("유효한 입력 - 보너스 번호 반환")
     @ParameterizedTest
     @CsvSource(value = {"7,7", "10,10", "45,45"})
     void testValid(String input, int expected) {
         // given, then
-        int result = validateAndParse(winNumbers, input);
+        int result = validateAndParse(input);
 
         // then
         assertEquals(expected, result);

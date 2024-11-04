@@ -24,10 +24,10 @@ public class LottoController {
         outputView.printLottoCount(purchaseCount);
         Lottos lottos = lottoService.generateLottos(purchaseCount);
         outputView.printLottoNumbers(lottos);
-        Lotto winningLotto = setWinLotto();
-        int bonusNumber = setBonusNumber(winningLotto);
+        WinningLotto winningLotto = setWinningLotto();
 
-        ResultCalculator resultCalculator = lottoService.calculateResult(lottos, winningLotto, bonusNumber);
+        ResultCalculator resultCalculator = lottoService.calculateResult(lottos, winningLotto);
+
         outputView.printWinningDetails(resultCalculator);
         outputView.printYield(resultCalculator.calculateRate(purchaseCount * 1000));
     }
@@ -37,16 +37,20 @@ public class LottoController {
         return PurchaseAmountProcessor.calculatePurchaseCount(purchaseAmount);
     }
 
-    private Lotto setWinLotto() {
+    private WinningLotto setWinningLotto() {
         String winNumbers = inputView.getWinningNumber();
         List<Integer> winningNumbers = WinningNumberProcessor.processWinningNumbers(winNumbers);
-        return new Lotto(winningNumbers);
+        Lotto lotto = new Lotto(winningNumbers);
+
+        String bonusNumber = inputView.getBonusNumber();
+        int bonusNum = BonusNumberProcessor.validateAndParse(bonusNumber);
+
+        return new WinningLotto(lotto, bonusNum);
     }
 
     private int setBonusNumber(Lotto winLotto) {
-        System.out.println();
         String bonusNumber = inputView.getBonusNumber();
-        return BonusNumberProcessor.validateAndParse(winLotto.getNumbers(), bonusNumber);
+        return BonusNumberProcessor.validateAndParse(bonusNumber);
     }
 
 
