@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.exception.BonusNumberException;
+import lotto.validation.BonusNumberValidator;
 
 import static lotto.common.constant.ErrorMessage.BONUS_NUMBER_FORMAT_ERROR;
 
@@ -24,7 +25,7 @@ public class BonusNumber {
             throw new BonusNumberException(BONUS_NUMBER_FORMAT_ERROR);
         }
 
-
+        BonusNumberValidator.validateBonusNumber(bonusNumber);
         return bonusNumber;
     }
 }
