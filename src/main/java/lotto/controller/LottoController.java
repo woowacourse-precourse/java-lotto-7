@@ -16,22 +16,41 @@ public class LottoController {
     }
 
     public void startLotto() {
-        // to output -> "구입 금액을 입력해주세요."
-        String moneyString = Console.readLine();
-        Long money = changeStringToMoney(moneyString);
-        lottos.buyLottos(money);
+        while (true) {
+            // to output -> "구입 금액을 입력해주세요."
+            try {
+                String moneyString = Console.readLine();
+                Long money = changeStringToMoney(moneyString);
+                lottos.buyLottos(money);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
 
         // to output -> "X개를 구매했습니다. \n~~~  \n~~~"
 
-        // to output -> "당첨 번호를 입력해 주세요."
-        String winningNumbersString = Console.readLine();
-        List<Integer> winningNumbers = changeStringToNumberList(winningNumbersString);
-        lottos.setWinningNumbers(winningNumbers);
+        while (true) {
+            try {
+                // to output -> "당첨 번호를 입력해 주세요."
+                String winningNumbersString = Console.readLine();
+                List<Integer> winningNumbers = changeStringToNumberList(winningNumbersString);
+                lottos.setWinningNumbers(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
 
-        // to output -> "보너스 번호를 입력해 주세요."
-        String bonusNumberString = Console.readLine();
-        Integer bonusNumber = changeStringToNumber(bonusNumberString);
-        lottos.setBonusNumber(bonusNumber);
+        while (true) {
+            try {// to output -> "보너스 번호를 입력해 주세요."
+                String bonusNumberString = Console.readLine();
+                Integer bonusNumber = changeStringToNumber(bonusNumberString);
+                lottos.setBonusNumber(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
 
         // to output -> "당첨 통계 ~~"
     }
