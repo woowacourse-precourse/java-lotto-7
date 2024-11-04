@@ -21,6 +21,7 @@ public class OutputController {
     }
 
     public void printAllLotteries(final LottoContainer lottoContainer) {
+        this.nextLine();
         outputUi.printWithLineBreak(lottoContainer.getSize() + "개를 구매했습니다.");
         final List<LottoInfo> infos = lottoContainer.getInfos();
         for (final LottoInfo lottoInfo : infos) {
@@ -29,14 +30,17 @@ public class OutputController {
     }
 
     public void printToGetWinningNumberInput() {
+        this.nextLine();
         outputUi.printWithLineBreak("당첨번호를 입력해주세요.");
     }
 
     public void printToGetBonusNumberInput() {
+        this.nextLine();
         outputUi.printWithLineBreak("보너스 번호를 입력해 주세요.");
     }
 
     public void printStatisticResults(final Results results) {
+        this.nextLine();
         outputUi.printWithLineBreak("당첨 통계");
         outputUi.printWithLineBreak("---");
         outputUi.printWithLineBreak(results.getStatistics(LottoResult.FIFTH).toString());
@@ -53,5 +57,9 @@ public class OutputController {
 
     public void printErrorMessage(final LottoArgumentException lottoArgumentException) {
         outputUi.printWithLineBreak(lottoArgumentException.getMessage());
+    }
+
+    private void nextLine() {
+        outputUi.printWithLineBreak("");
     }
 }
