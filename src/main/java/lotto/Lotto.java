@@ -23,7 +23,7 @@ public class Lotto {
         List<List<Integer>> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < ticket; i++) {
-            List<Integer> randomNumbers = InputView.random();
+            List<Integer> randomNumbers = new ArrayList<>(InputView.random());
             Collections.sort(randomNumbers);
             lottoTickets.add(randomNumbers);
         }
@@ -54,5 +54,13 @@ public class Lotto {
         }
 
         return matchCount;
+    }
+    public static void validateBonusNumber(int bonusNumber, List<Integer> winNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이여야 합니다.");
+        }
+        if (winNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
     }
 }
