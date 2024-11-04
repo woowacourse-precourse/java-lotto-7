@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,9 +9,15 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validateLottoNumbersWithinRange(numbers);
         validateLottoNumberCount(numbers);
         validateNoDuplicateNumbers(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     public boolean containsNumber(int number) {
@@ -21,6 +28,14 @@ public class Lotto {
         return (int) numbers.stream()
                 .filter(otherLotto::containsNumber)
                 .count();
+    }
+
+    private void validateLottoNumbersWithinRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("로또 번호는 1부터 45까지 입니다.");
+            }
+        }
     }
 
     private void validateLottoNumberCount(List<Integer> numbers) {
