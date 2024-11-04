@@ -3,7 +3,9 @@ package lotto.controller;
 import lotto.exception.ValidateValues;
 import lotto.model.Lotto;
 import lotto.service.LottoGenerator;
+import lotto.service.LottoInputHandler;
 import lotto.service.LottoResultManager;
+import lotto.service.LottoResultPrinter;
 import lotto.view.InputView;
 
 import java.util.List;
@@ -11,11 +13,14 @@ import java.util.List;
 public class LottoController {
 
     private final LottoGenerator lottoGenerator;
-    private final LottoResultManager lottoResultManager;
+    private final LottoInputHandler lottoInputHandler;
+    private final LottoResultPrinter lottoResultPrinter;
 
-    public LottoController(LottoGenerator lottoGenerator, LottoResultManager lottoResultManager) {
+    public LottoController(LottoGenerator lottoGenerator, LottoInputHandler lottoInputHandler,
+                           LottoResultPrinter lottoResultPrinter) {
         this.lottoGenerator = lottoGenerator;
-        this.lottoResultManager = lottoResultManager;
+        this.lottoInputHandler = lottoInputHandler;
+        this.lottoResultPrinter = lottoResultPrinter;
     }
 
     public void startLotto() {
@@ -26,11 +31,11 @@ public class LottoController {
         lottoGenerator.printLottoCount(lottos);
         lottoGenerator.printLottos(lottos);
 
-        Lotto winningLotto = lottoResultManager.getWinningNumbers();
-        int bonusNumber = lottoResultManager.getBonusNumbers();
+        Lotto winningLotto = lottoInputHandler.getWinningNumbers();
+        int bonusNumber = lottoInputHandler.getBonusNumbers();
 
-        lottoResultManager.printResult(lottos, winningLotto, bonusNumber);
-        lottoResultManager.printProfitRate(lottos, winningLotto, bonusNumber, purchaseAmount);
+        lottoResultPrinter.printResult(lottos, winningLotto, bonusNumber);
+        lottoResultPrinter.printProfitRate(lottos, winningLotto, bonusNumber, purchaseAmount);
     }
 
 }
