@@ -17,6 +17,10 @@ public class Cash {
         return amount / DEFAULT_UNIT;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     private void validateDefaultUnit(int amount) {
         if(amount % DEFAULT_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 1장의 가격은 1,000원 입니다.");

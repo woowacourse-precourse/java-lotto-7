@@ -26,6 +26,17 @@ public class StatisticalMachine {
         }
     }
 
+    public double getTotalProfit(Cash cash) {
+        int sum = 0;
+        for (WinningRank winningRank : WinningRank.values()) {
+            sum += winningRank.calculatePrize(statistics.get(winningRank));
+        }
+
+        double profit = ((double) sum / cash.getAmount()) * 100;
+
+        return Math.round(profit * 10) / 10.0;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
