@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.input.ErrorMessage;
-import lotto.input.lottoprice.LottoPriceValidator;
-import lotto.input.bonusnumber.BonusNumberValidator;
-import lotto.input.winningnumbers.WinningNumbersValidator;
+import lotto.model.ErrorMessage;
+import lotto.model.lottoprice.LottoPriceValidator;
+import lotto.model.bonusnumber.BonusNumberValidator;
+import lotto.model.winningnumbers.WinningNumbersValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

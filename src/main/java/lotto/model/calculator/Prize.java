@@ -1,4 +1,4 @@
-package lotto.calculator;
+package lotto.model.calculator;
 
 public enum Prize {
     FIRST(2000000000),

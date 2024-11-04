@@ -1,6 +1,6 @@
-package lotto.input.lottoprice;
+package lotto.model.lottoprice;
 
-import lotto.input.ErrorMessage;
+import lotto.model.ErrorMessage;
 
 public class LottoPriceValidator {
 

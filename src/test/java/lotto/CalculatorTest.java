@@ -1,9 +1,8 @@
 package lotto;
 
-import lotto.calculator.LottoRateCalculator;
-import lotto.calculator.LottoResultCalculator;
-import lotto.lottos.Lotto;
-import org.junit.jupiter.api.BeforeEach;
+import lotto.model.calculator.LottoRateCalculator;
+import lotto.model.calculator.LottoResultCalculator;
+import lotto.model.lottos.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

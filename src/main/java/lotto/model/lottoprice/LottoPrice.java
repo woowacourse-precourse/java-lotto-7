@@ -1,4 +1,4 @@
-package lotto.input.lottoprice;
+package lotto.model.lottoprice;
 
 public class LottoPrice {
 

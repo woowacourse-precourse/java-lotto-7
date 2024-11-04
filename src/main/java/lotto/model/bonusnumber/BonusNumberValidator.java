@@ -1,6 +1,6 @@
-package lotto.input.bonusnumber;
+package lotto.model.bonusnumber;
 
-import lotto.input.ErrorMessage;
+import lotto.model.ErrorMessage;
 
 import java.util.List;
 

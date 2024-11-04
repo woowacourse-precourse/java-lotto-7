@@ -1,6 +1,6 @@
-package lotto.calculator;
+package lotto.model.calculator;
 
-import lotto.lottos.Lotto;
+import lotto.model.lottos.Lotto;
 
 import java.util.*;
 

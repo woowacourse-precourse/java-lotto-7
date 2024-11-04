@@ -1,4 +1,4 @@
-package lotto.calculator;
+package lotto.model.calculator;
 
 import java.util.List;
 

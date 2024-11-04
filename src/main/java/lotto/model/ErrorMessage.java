@@ -1,4 +1,4 @@
-package lotto.input;
+package lotto.model;
 
 public enum ErrorMessage {
 

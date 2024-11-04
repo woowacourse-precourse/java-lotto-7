@@ -1,14 +1,14 @@
 package lotto.controller;
 
-import lotto.input.bonusnumber.BonusNumber;
-import lotto.input.bonusnumber.BonusNumberValidator;
-import lotto.input.lottoprice.LottoPrice;
-import lotto.input.lottoprice.LottoPriceValidator;
-import lotto.input.winningnumbers.WinningNumbers;
-import lotto.input.winningnumbers.WinningNumbersValidator;
-import lotto.lottos.Lottos;
-import lotto.calculator.LottoRateCalculator;
-import lotto.calculator.LottoResultCalculator;
+import lotto.model.bonusnumber.BonusNumber;
+import lotto.model.bonusnumber.BonusNumberValidator;
+import lotto.model.lottoprice.LottoPrice;
+import lotto.model.lottoprice.LottoPriceValidator;
+import lotto.model.winningnumbers.WinningNumbers;
+import lotto.model.winningnumbers.WinningNumbersValidator;
+import lotto.model.lottos.Lottos;
+import lotto.model.calculator.LottoRateCalculator;
+import lotto.model.calculator.LottoResultCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
