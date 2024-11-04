@@ -140,9 +140,10 @@ public class Drow {
         return true;
     }
 
+    /// 보너스 번호가 당첨 번호와 중볻되는지 확인
     public boolean validateDuplicateBonusNumber(List<Integer> checkNumbers, Integer bonusNumber) {
 
-        HashSet<Integer> numbersSet = new HashSet<>(checkNumbers);
+        HashSet<Integer> numbersSet = new HashSet<>(checkNumbers); // HashSet의 빠른 조회 기능을 통해 중복 확인
 
         try {
 
@@ -157,11 +158,12 @@ public class Drow {
         }
     }
 
+    /// 입력받은 값이 숫자로 이루어져있는지 확인
     private boolean validateIsNumber(String inputNumber) {
 
         try {
-            inputNumber = inputNumber.trim();
-            int number = Integer.parseInt(inputNumber);
+            inputNumber = inputNumber.trim(); // 양쪽 여백 제거
+            int number = Integer.parseInt(inputNumber); // 숫자가 아닌 값을 포맷할 경우, NumberFormatException 발생
             return true;
 
         } catch (NumberFormatException e) {
@@ -170,6 +172,7 @@ public class Drow {
         }
     }
 
+    /// 숫자가 1~45 범위 안에 있는지 확인
     private boolean validateNumberRange(int number) {
 
         try {
@@ -188,9 +191,7 @@ public class Drow {
         }
     }
 
-
-    public void drowLotto(List<Lotto> lottos) {
-
+    public void drowLottos(List<Lotto> lottos){
         for (Lotto lotto : lottos) {
             compareNumber(lotto);
         }
@@ -199,28 +200,38 @@ public class Drow {
         printRate(rate);
     }
 
-    private void compareNumber(Lotto lotto) {
+    /// 로또 번호와 당첨 번호를 비교하여 추첨
+    public void compareNumber(Lotto lotto) {
 
         List<Integer> numbers = lotto.getNumbers(); // 로또 별 번호 정보를 받아옴
         Set<Integer> numbersSet = new HashSet<>(numbers); // Set의 contains를 이용하여 일치하는 갯수 확인
-        int validCount = 0;
-        boolean bonus = false;
 
-        for (Integer drowNumber : drowNumbers) {
-
-            if (numbersSet.contains(drowNumber)) {
-                validCount++;
-            }
-
-            if (numbersSet.contains(bonusNumber)) {
-                bonus = true;
-            }
-
-        }
+        int validCount = getValidCount(numbersSet);
+        boolean bonus = getBonus(numbersSet);
 
         getPrize(validCount, bonus);
     }
 
+    /// 일치하는 번호의 갯수 계산
+    private int getValidCount(Set<Integer> numbersSet){
+
+        int count = 0;
+
+        for (int drowNumber : drowNumbers) {
+            if (numbersSet.contains(drowNumber)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    /// 보너스 번호 일치 여부 계산
+    private boolean getBonus(Set<Integer> numbersSet){
+        return numbersSet.contains(bonusNumber);
+    }
+
+    /// 일치하는 번호 갯수와 보너스 번호 여부를 통해 등수 계산
     private void getPrize(int validCount, boolean bonus) {
 
         if (validCount == 6) {
@@ -242,7 +253,7 @@ public class Drow {
     }
 
     /// 등수 별 상금 및 당첨갯수 출력
-    private void printPrize() {
+    public void printPrize() {
 
         Prize.Fifth.printPrizeInfo();
         Prize.Fourth.printPrizeInfo();
@@ -252,19 +263,21 @@ public class Drow {
 
     }
 
-    private double getRate(int inputMoney) {
+    /// 수익률 계산
+    public double getRate(int inputMoney) {
 
-        long prizeMoney = 0;
+        long prizeMoney = 0; //전체 상금
         prizeMoney += Prize.First.getPrizeMoney();
         prizeMoney += Prize.Second.getPrizeMoney();
         prizeMoney += Prize.Third.getPrizeMoney();
         prizeMoney += Prize.Fourth.getPrizeMoney();
         prizeMoney += Prize.Fifth.getPrizeMoney();
 
-        return (double) prizeMoney * 100 / inputMoney;
+        return (double) prizeMoney * 100 / inputMoney; //수익률: (전체 상금 x 100) / 지불한 금액
     }
 
-    private void printRate(double rate) {
+    /// 수익률 출력
+    public void printRate(double rate) {
 
         String rateInfo = "총 수익률은 " + String.format("%.1f", rate) + "%입니다.";
         System.out.println(rateInfo);
