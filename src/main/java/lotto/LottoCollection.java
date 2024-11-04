@@ -46,11 +46,11 @@ public class LottoCollection {
         for (Rank rank : Rank.values()) {
             int count = result.getOrDefault(rank, 0);
             if (rank != Rank.NONE) {
-                System.out.println(rank.getDescription() + " - " + count);
+                System.out.println(rank.getDescription() + " - " + count + "개");
                 totalprize += rank.getPrize() * count;
             }
         }
-        revenueRate = (double) totalprize / budget;
+        revenueRate = (double) totalprize / budget * 100;
 
         // print revenue with formatted type (, 포함)
         DecimalFormat formatter = new DecimalFormat("#,##0.0");
