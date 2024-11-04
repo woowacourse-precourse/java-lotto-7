@@ -36,6 +36,10 @@ public class LottoConfig {
     }
 
     public LottoController lottoController() {
-        return new LottoController(inputView(), outputView(), lottoMachine(), stringToIntConverter(), lottoWinMather());
+        return new LottoController(inputView(),
+                outputView(),
+                lottoMachine(),
+                stringToIntConverter(),
+                lottoWinMather());
     }
 }

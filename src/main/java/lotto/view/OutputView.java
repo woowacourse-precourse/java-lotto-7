@@ -9,9 +9,11 @@ public class OutputView {
 
     private static final String LOTTO_CNT_MSG = "%d개를 구매했습니다.";
     private static final String LOTTO_NUMBERS = "[%s]";
-    public static final String WIN_INSTRUCTIONS = "당첨 통계";
-    public static final String DIVIDING_LINE = "---";
-    public static final String NEW_LINE = System.lineSeparator();
+    private static final String WIN_INSTRUCTIONS = "당첨 통계";
+    private static final String DIVIDING_LINE = "---";
+    private static final String WIN_STATUS = "%s - %d개";
+    private static final String DELIMITER = ", ";
+    private static final String NEW_LINE = System.lineSeparator();
 
     public void showHowManyLotto(PurchasedLottos purchasedLottos) {
         newLine();
@@ -23,22 +25,17 @@ public class OutputView {
         for (Lotto lotto : purchasedLottos.lottos()) {
             showLottoNums(lotto);
         }
-        System.out.println();
+        newLine();
     }
 
     public void showWinStatus(LottoResult lottoResult) {
-        StringBuilder output = new StringBuilder();
         showWinInstructions();
         for (Rank rank : Rank.values()) {
             if (rank != Rank.MISS) {
-                output.append(rank.toString())
-                        .append(" - ")
-                        .append(lottoResult.countOf(rank))
-                        .append("개")
-                        .append(System.lineSeparator());
+                System.out.printf(WIN_STATUS, rank.toString(), lottoResult.countOf(rank));
+                newLine();
             }
         }
-        System.out.printf(output.toString());
     }
 
     private void showWinInstructions() {
@@ -52,13 +49,17 @@ public class OutputView {
     }
 
     private void showLottoNums(Lotto lotto) {
-        String numbers = String.join(", ", lotto.numbers()
+        String numbers = changeNumbersToString(lotto);
+        System.out.printf(LOTTO_NUMBERS, numbers);
+        newLine();
+    }
+
+    private String changeNumbersToString(Lotto lotto) {
+        return String.join(DELIMITER, lotto.numbers()
                 .stream()
                 .sorted()
                 .map(String::valueOf)
                 .toList());
-        System.out.printf(LOTTO_NUMBERS, numbers);
-        newLine();
     }
 
     private void newLine() {
