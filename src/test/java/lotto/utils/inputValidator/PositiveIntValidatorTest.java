@@ -1,6 +1,5 @@
-package lotto.utils;
+package lotto.utils.inputValidator;
 
-import lotto.utils.inputValidator.PositiveIntValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
