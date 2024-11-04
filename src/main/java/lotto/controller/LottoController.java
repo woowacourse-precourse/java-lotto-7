@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoController {
+    private static final int PRICE = 1000;
     private int purchasePrice;
     private int turn;
     private List<Integer> winningNumbers;
@@ -19,7 +20,7 @@ public class LottoController {
 
     public LottoController() {
         this.purchasePrice = InputParser.parsePurchasePrice(LottoView.inputPurchasePrice());
-        this.turn = purchasePrice / 1000;
+        this.turn = purchasePrice / PRICE;
         this.winningNumbers = InputParser.parseWinningNumbers(LottoView.inputWinningNumbers());
         this.bonusNumber = InputParser.parseBonusNumber(LottoView.inputBonusNumber());
         results = new HashMap<>();
@@ -39,6 +40,14 @@ public class LottoController {
             int count = results.get(result);
             results.put(result, ++count);
         }
-        LottoView.printResult(results);
+        LottoView.printResult(results, turn);
+    }
+
+    public void calcROR() {
+        long awards = 0;
+        for (Map.Entry<String, Integer> entry : results.entrySet()) {
+            awards += WinningState.valueOf(entry.getKey()).getAmount() * entry.getValue();
+        }
+        LottoView.printROR((double) awards / (turn * PRICE));
     }
 }

@@ -6,6 +6,8 @@ import lotto.domain.WinningState;
 import java.util.Map;
 
 public class LottoView {
+    private static final int PRICE = 1000;
+
     public static String inputPurchasePrice() {
         System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine().trim();
@@ -29,7 +31,7 @@ public class LottoView {
         System.out.println(result);
     }
 
-    public static void printResult(Map<String, Integer> result) {
+    public static void printResult(Map<String, Integer> result, int turn) {
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (" + String.format("%,d", WinningState.valueOf("FIFTH_PRIZE").getAmount()) + "원) - " + result.get("FIFTH_PRIZE"));
@@ -37,5 +39,10 @@ public class LottoView {
         System.out.println("5개 일치 (" + String.format("%,d", WinningState.valueOf("THIRD_PRIZE").getAmount()) + "원) - " + result.get("THIRD_PRIZE"));
         System.out.println("5개 일치, 보너스 볼 일치 (" + String.format("%,d", WinningState.valueOf("SECOND_PRIZE").getAmount()) + "원) - " + result.get("SECOND_PRIZE"));
         System.out.println("6개 일치 (" + String.format("%,d", WinningState.valueOf("FIRST_PRIZE").getAmount()) + "원) - " + result.get("FIRST_PRIZE"));
+
+    }
+
+    public static void printROR(double result) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", result);
     }
 }
