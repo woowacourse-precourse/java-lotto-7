@@ -15,12 +15,15 @@ public class LottoController {
 
     public void run() {
         Cost cost = requestLottoCost();
+        displayNewLine();
 
         Lottos lottos = createAndDisplayLottos(cost);
 
         WinningNumbers winningNumbers = requestWinningNumbers();
+        displayNewLine();
 
         BonusNumber bonusNumber = requestBonusNumber(winningNumbers);
+        displayNewLine();
 
         WinningResult winningResult = checkAndDisplayWinningResult(lottos, new DrawnNumbers(winningNumbers, bonusNumber));
 
@@ -43,6 +46,7 @@ public class LottoController {
     private Lottos createAndDisplayLottos(Cost cost){
         Lottos lottos = LottoFactory.generateLottos(cost);
         displayLottos(LottosDto.from(lottos));
+        displayNewLine();
         return lottos;
     }
 

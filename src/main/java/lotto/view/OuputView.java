@@ -57,4 +57,8 @@ public class OuputView {
     public static void displayExceptionMessage(String exceptionMessage) {
         System.out.println(exceptionMessage);
     }
+
+    public static void displayNewLine(){
+        System.out.println();
+    }
 }
