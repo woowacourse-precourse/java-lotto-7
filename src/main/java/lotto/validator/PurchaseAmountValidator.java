@@ -11,10 +11,12 @@ public class PurchaseAmountValidator {
 
     private static final String input = "구입 금액";
     private static final String type = "정수";
+    private static final int unit = 1000;
 
-    public static int validatePurchaseAmount(String purchaseAmount) {
-
-        return Integer.parseInt(purchaseAmount);
+    public static int validatePurchaseAmount(String input) {
+        validateBlank(input);
+        int purchaseAmount = validateType(input);
+        return purchaseAmount;
     }
 
     private static void validateBlank(String purchaseAmount) {
@@ -23,15 +25,13 @@ public class PurchaseAmountValidator {
         }
     }
 
-    private static void validateType(String purchaseAmount) {
+    private static int validateType(String purchaseAmount) {
         try {
-            Integer.parseInt(purchaseAmount);
+            return Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
             throw new IllegalTypeException(
                     String.format(INVALID_TYPE_INPUT.getMessage(), input, type)
             );
         }
     }
-
-
 }
