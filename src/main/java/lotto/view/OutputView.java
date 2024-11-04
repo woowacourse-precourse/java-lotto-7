@@ -15,7 +15,6 @@ public class OutputView {
         System.out.println("\n" + count + "개를 구매했습니다.");
     }
 
-
     public static void promptWinningNumbersInput() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
     }

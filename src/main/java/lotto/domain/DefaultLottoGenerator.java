@@ -1,14 +1,15 @@
 package lotto.domain;
 
+import static lotto.config.LottoConfig.LOTTO_PRICE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.config.LottoConfig;
 import lotto.view.ErrorConstants;
 import lotto.view.OutputView;
 
 public class DefaultLottoGenerator implements LottoGenerator {
-
-    private static final int LOTTO_PRICE = 1000;
 
     @Override
     public List<Lotto> generateLottos(int purchaseAmount) {
@@ -34,7 +35,11 @@ public class DefaultLottoGenerator implements LottoGenerator {
     }
 
     protected Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                LottoConfig.LOTTO_MIN_NUMBER,
+                LottoConfig.LOTTO_MAX_NUMBER,
+                LottoConfig.LOTTO_NUMBER_COUNT
+        );
         return new Lotto(numbers);
     }
 }
