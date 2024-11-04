@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.adapters.input.LottoCliInputAdapter;
+import lotto.adapters.input.cli.LottoCliInputAdapter;
 import lotto.infrastructure.config.AppConfig;
 
 public class Application {

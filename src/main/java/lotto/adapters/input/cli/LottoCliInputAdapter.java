@@ -1,4 +1,4 @@
-package lotto.adapters.input;
+package lotto.adapters.input.cli;
 
 import static lotto.infrastructure.constants.AnnounceMessages.*;
 import static lotto.infrastructure.exception.ErrorCode.*;
@@ -9,7 +9,6 @@ import lotto.application.port.output.OutputPort;
 import lotto.application.validation.InputValidator;
 import lotto.domain.amount.PurchaseAmount;
 import lotto.domain.lotto.WinningNumber;
-import lotto.infrastructure.exception.ErrorCode;
 import lotto.infrastructure.util.NumberParser;
 
 public class LottoCliInputAdapter {
@@ -23,11 +22,15 @@ public class LottoCliInputAdapter {
     }
 
     public void run() {
-        getInput();
+        purchaseLotto();
+        getWinningNumber();
     }
 
-    private void getInput() {
+    private void purchaseLotto() {
         PurchaseAmount purchaseAmount = promptPurchaseAmount();
+    }
+
+    private void getWinningNumber() {
         WinningNumber winningNumber = promptWinningNumber();
     }
 

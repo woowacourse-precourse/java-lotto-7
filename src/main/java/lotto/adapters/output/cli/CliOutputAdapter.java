@@ -1,4 +1,4 @@
-package lotto.adapters.output;
+package lotto.adapters.output.cli;
 
 import lotto.application.dto.response.Response;
 import lotto.application.port.output.OutputPort;
