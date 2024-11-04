@@ -21,5 +21,8 @@ public class LottoController {
         String purchaseAmount = inputView.getLottoPurchaseAmount();
         Lottos lottos = store.purchaseLottos(purchaseAmount);
         outputView.printLottos(lottos);
+
+        String winningNumbers = inputView.getWinningNumbers();
+
     }
 }
