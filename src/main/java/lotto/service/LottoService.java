@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import lotto.repository.LottoRepository;
 import lotto.validation.InputValidation;
 import lotto.validation.PurchasePriceValidation;
@@ -38,6 +39,10 @@ public class LottoService {
             lottoRepository.insertNumbers(randomNumbers);
             purchaseAmount--;
         }
+    }
+
+    public Set<List<Integer>> getLottoTickets() {
+        return lottoRepository.getLottoTickets();
     }
 
 }

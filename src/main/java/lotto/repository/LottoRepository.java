@@ -6,10 +6,14 @@ import java.util.Set;
 
 public class LottoRepository {
 
-    private static final Set<List<Integer>> tickets = new HashSet<>();
+    private static final Set<List<Integer>> lottoTickets = new HashSet<>();
 
     public void insertNumbers(List<Integer> randomNumbers) {
-        tickets.add(randomNumbers);
+        lottoTickets.add(randomNumbers);
+    }
+
+    public Set<List<Integer>> getLottoTickets() {
+        return lottoTickets;
     }
 
 }
