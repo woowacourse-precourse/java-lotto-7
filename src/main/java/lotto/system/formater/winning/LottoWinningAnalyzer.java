@@ -3,7 +3,6 @@ package lotto.system.formater.winning;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.system.unit.LottoNumber;
 import lotto.system.unit.LottoTicket;
 import lotto.system.utils.PrizeType;
 
@@ -58,13 +57,13 @@ public class LottoWinningAnalyzer {
         return null;
     }
 
-    private int countMatchingNumbers(LottoTicket issueTicket) {
+    protected int countMatchingNumbers(LottoTicket issueTicket) {
         return (int) issueTicket.getTicket().stream()
                 .filter(number -> winningNumbers.contains(number.getValue()))
                 .count();
     }
 
-    private boolean hasBonusNumberMatch(LottoTicket issueTicket) {
+    protected boolean hasBonusNumberMatch(LottoTicket issueTicket) {
         return issueTicket.getTicket().stream()
                 .anyMatch(number -> number.getValue() == bonusNumber);
     }
