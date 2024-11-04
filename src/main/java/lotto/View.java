@@ -22,7 +22,7 @@ public class View {
     private StringParser stringParser = new StringParser();
 
     public int printAndgetPurchaseAmount() {
-        while(true){
+        while (true) {
             System.out.println(PURCHASE_AMOUNT_PROMPT);
             try {
                 int purchaseAmount = stringParser.convertStringToInt(Console.readLine());
@@ -35,10 +35,10 @@ public class View {
     }
 
     public List<Integer> getLottoNumber() {
-        while(true){
+        while (true) {
             System.out.println(WINNING_NUMBERS_PROMPT);
 
-            try{
+            try {
                 List<Integer> numbers = stringParser.convertStringToIntegerList(Console.readLine());
                 return numbers;
             } catch (IllegalArgumentException e) {
@@ -50,12 +50,12 @@ public class View {
 
     public int getBonusNumber() {
         System.out.println(BONUS_NUMBER_PROMPT);
-        while(true){
-            try{
+        while (true) {
+            try {
                 int bonusNumber = stringParser.convertStringToInt(Console.readLine());
                 System.out.println();
                 return bonusNumber;
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

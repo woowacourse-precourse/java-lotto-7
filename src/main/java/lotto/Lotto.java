@@ -28,12 +28,14 @@ public class Lotto {
     }
 
     private void validateNumberSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+
         if (numbers == null || numbers.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 비어있습니다.");
         }
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+
     }
 
     private void validateNumberRange(List<Integer> numbers) {
