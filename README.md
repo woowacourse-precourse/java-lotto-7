@@ -13,6 +13,7 @@ validate
     - ensure numbers are not duplicate
     - ensure it's delimited by ','
 
+
 * bonus number
     - ensure each numbers are in range(1, 45)
     - ensure it's not in lotto number
