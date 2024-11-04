@@ -3,7 +3,6 @@ package lotto.util.validator;
 import static lotto.util.Constants.LOTTO_MAX_RANGE;
 import static lotto.util.Constants.LOTTO_MIN_RANGE;
 
-import lotto.model.lotto.Lotto;
 import lotto.util.ExceptionMessage;
 
 public class BonusValidator extends AbstractValidator<Integer> {

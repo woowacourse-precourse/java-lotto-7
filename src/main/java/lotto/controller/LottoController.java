@@ -1,17 +1,12 @@
 package lotto.controller;
 
-import lotto.model.draw.Bonus;
-import lotto.model.lotto.Lotto;
+import lotto.dto.LottoTicketDto;
 import lotto.model.lotto.LottoBuyer;
 import lotto.model.lotto.LottoStore;
 import lotto.model.lotto.LottoTickets;
-import lotto.model.result.WinningStatistics;
 import lotto.util.RetryTemplate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.model.draw.LottoDraw;
-
-import java.util.function.Supplier;
 
 public class LottoController {
     private final InputView inputView;
@@ -32,10 +27,10 @@ public class LottoController {
 
     private void buyTickets() {
         int ticketCount = retryTemplate.execute(this::readValidTicketCount);
-        outputView.printTicketNumber(ticketCount);
-
         lottoTickets = LottoTickets.createTickets(ticketCount);
-        outputView.printLottoTickets(lottoTickets);
+
+        LottoTicketDto ticketDto = LottoTicketDto.from(lottoTickets);
+        outputView.printTickets(ticketDto);
     }
 
     private int readValidTicketCount() {

@@ -1,4 +1,5 @@
 package lotto.controller;
+import lotto.dto.WinningResultDto;
 import lotto.model.draw.Bonus;
 import lotto.model.draw.LottoDraw;
 import lotto.model.lotto.Lotto;
@@ -25,7 +26,9 @@ public class WinningController {
 
         LottoDraw lottoDraw = LottoDraw.by(winningNumber, bonusNumber);
         WinningStatistics statistics = WinningStatistics.from(lottoDraw, tickets);
-        outputView.printWinningStatistics(statistics);
+
+        WinningResultDto resultDto = new WinningResultDto(statistics);
+        outputView.printWinningResult(resultDto);
     }
 
     private Lotto readValidWinningNumber() {
