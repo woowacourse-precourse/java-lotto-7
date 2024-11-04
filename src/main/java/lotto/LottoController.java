@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 
 public class LottoController {
 
-    public int parsePurchaseNumber(String input) {
+    public static int parsePurchaseNumber(String input) {
         try {
             int purchaseNumber = Integer.parseInt(input.trim());
             Validator.validatePurchaseNumber(purchaseNumber);
@@ -15,7 +15,7 @@ public class LottoController {
         }
     }
 
-    public List<Integer> parseWinNumber(String input) {
+    public static List<Integer> parseWinNumber(String input) {
         try {
             List<Integer> numbers = Stream.of(input.split(","))
                     .map(String::trim)
@@ -28,7 +28,7 @@ public class LottoController {
         }
     }
 
-    public int parseBonusNumber(String input) {
+    public static int parseBonusNumber(String input) {
         try {
             return Integer.parseInt(input.trim());
         } catch (IllegalArgumentException e) {
