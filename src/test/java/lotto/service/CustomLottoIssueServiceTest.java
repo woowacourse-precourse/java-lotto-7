@@ -2,8 +2,10 @@ package lotto.service;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.exception.BusinessException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -92,5 +94,40 @@ class CustomLottoIssueServiceTest extends NsTest {
     public void runMain() {
         CustomLottoIssueService service = new CustomLottoIssueService();
         System.out.println(service.issue(""));
+    }
+
+    @DisplayName("숫자 문자열을 정수로 변환한다.")
+    @Test
+    void parseLottoNum() {
+        // given
+        CustomLottoIssueService service = new CustomLottoIssueService();
+        String inputNums = "6";
+        // when & then
+        assertThat(service.parseLottoNum(inputNums))
+                .isEqualTo(6);
+    }
+
+    @DisplayName("숫자 문자열을 정수로 변환할 때 문자 입력 시 예외가 발생한다.")
+    @Test
+    void lottoNumParsingException() {
+        // given
+        CustomLottoIssueService service = new CustomLottoIssueService();
+        String inputNums = "a";
+        // when & then
+        assertThatThrownBy(() -> service.parseLottoNum(inputNums))
+                .isInstanceOf(BusinessException.class)
+                .hasMessage("[ERROR] 로또 번호는 정수로 입력해주세요.");
+    }
+
+    @DisplayName("숫자 문자열이 1보다 작거나 45보다 크면 예외가 발생한다.")
+    @Test
+    void over() {
+        // given
+        CustomLottoIssueService service = new CustomLottoIssueService();
+        String inputNums = "46";
+        // when & then
+        assertThatThrownBy(() -> service.parseLottoNum(inputNums))
+                .isInstanceOf(BusinessException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 정수여야 합니다.");
     }
 }
