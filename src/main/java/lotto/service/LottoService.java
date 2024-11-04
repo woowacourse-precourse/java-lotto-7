@@ -14,7 +14,9 @@ public class LottoService {
         List<Integer> lottoNumbers = new ArrayList<>();
         for (String number : input.split(",")) {
             try {
-                lottoNumbers.add(Integer.parseInt(number));
+                // trim()을 사용해 공백을 제거하고 숫자인 경우에만 추가
+                if (!number.trim().isEmpty())
+                    lottoNumbers.add(Integer.parseInt(number.trim()));
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호를 다시 확인해 주세요.");
             }
