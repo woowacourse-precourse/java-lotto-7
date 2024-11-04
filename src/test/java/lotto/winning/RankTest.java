@@ -39,4 +39,11 @@ class RankTest {
         assertThat(profit).isEqualTo(10_000_000_000L);
     }
 
+    @Test
+    @DisplayName("1등 총 수익 최대값 반환 테스트")
+    void 총_수익_1등_최대값_반환_테스트() {
+        long profit = Rank.FIRST.getProfit(Integer.MAX_VALUE);
+        assertThat(profit).isEqualTo(Integer.MAX_VALUE * 2_000_000_000L);
+    }
+
 }
