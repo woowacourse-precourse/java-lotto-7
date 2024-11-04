@@ -8,6 +8,6 @@ public record EarnedLotto(List<Integer> numbers) {
     public static EarnedLotto of(List<Integer> numbers) {
         ArrayList<Integer> copiedNumbers = new ArrayList<>(numbers);
         Collections.sort(copiedNumbers);
-        return new EarnedLotto(numbers);
+        return new EarnedLotto(copiedNumbers);
     }
 }
