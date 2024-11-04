@@ -14,7 +14,6 @@ public enum ErrorMessage {
     BONUS_NUMBER_RANGE_WRONG("보너스 숫자의 범위가 1~45를 벗어납니다."),
     BONUS_NUMBER_DUPLICATED("보너스 숫자가 당첨 번호와 중복됩니다.");
 
-
     private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
 
     private final String errorMessage;

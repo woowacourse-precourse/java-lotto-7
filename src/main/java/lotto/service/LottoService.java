@@ -1,7 +1,8 @@
 package lotto.service;
 
+import java.util.Arrays;
 import java.util.List;
-import lotto.constant.LottoRank;
+import lotto.domain.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLotto;
 import lotto.domain.WinningLotto;
@@ -43,6 +44,12 @@ public class LottoService {
             int matchNumbers = winningLotto.findMatchNumbers(lotto);
             LottoRank.checkLottoPrize(matchNumbers, winningLotto.hasBonusNumber(lotto));
         }
+    }
+
+    public List<String> getResultsOfLotto() {
+        return Arrays.stream(LottoRank.values())
+                .map(LottoRank::toString)
+                .toList();
     }
 
     public double getRateOfReturn() {

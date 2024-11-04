@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import java.util.Arrays;
-import lotto.constant.LottoRank;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -50,9 +48,7 @@ public class LottoController {
 
     private void printResult() {
         outputView.printLottoResultHeader();
-        Arrays.stream(LottoRank.values())
-                .map(LottoRank::toString)
-                .forEach(outputView::printMessage);
+        lottoService.getResultsOfLotto().forEach(outputView::printMessage);
         outputView.printRateOfReturn(lottoService.getRateOfReturn());
     }
 }
