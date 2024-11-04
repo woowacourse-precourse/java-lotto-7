@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constant.LottoConstant.LOTTO_MAX_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_MIN_NUMBER;
 import static lotto.exception.LottoErrorMessage.BONUS_NUMBER_DUPLICATE_WITH_WINNING_NUMBER;
 import static lotto.exception.LottoErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 
@@ -15,6 +17,7 @@ import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
 public class LottoController {
+    public static final String WINNING_NUMBERS_SPLIT_REGEX = ",";
     private final LottoInputView lottoInputView;
     private final LottoOutputView lottoOutputView;
 
@@ -24,26 +27,17 @@ public class LottoController {
     }
 
     public void run() {
-        // 로또 구입 금액 에 알맞은 개수만큼 로또 발행
         LottoMachine lottoMachine = new LottoMachine();
         List<Lotto> lottos = buyLottos(lottoMachine);
 
-        // 발행한 로또 수량 및 번호 출력
         printLottoNumbers(lottos);
 
-        // 당첨 번호 입력 받기
         Lotto winningLotto = inputWinningNumbers();
-
-        // 보너스 번호 입력 받기
         int bonusNumber = inputBonusNumber(winningLotto);
 
-        // 구매한 로또와 당첨 번호 비교
         HashMap<LottoPrice, Integer> prices = lottoMachine.calculateLottoPrice(lottos, winningLotto, bonusNumber);
 
-        // 당첨 내역 출력
         lottoOutputView.printLottoWinPrice(prices);
-
-        // 수익률 출력
         lottoOutputView.printProfitRate(prices, lottos.size());
     }
 
@@ -81,7 +75,7 @@ public class LottoController {
     }
 
     private Lotto parseWinningNumbers(String input) {
-        List<Integer> winningNumbers = Arrays.stream(input.split(","))
+        List<Integer> winningNumbers = Arrays.stream(input.split(WINNING_NUMBERS_SPLIT_REGEX))
                 .mapToInt(Integer::parseInt)
                 .sorted()
                 .boxed()
@@ -91,7 +85,7 @@ public class LottoController {
 
     private int inputBonusNumber(Lotto lottoNumbers) {
         return executeWithRetry(() -> {
-            System.out.println("\n보너스 번호를 입력해 주세요.");
+            lottoOutputView.printBonusNumberMessage();
             int bonusNumber = Integer.parseInt(Console.readLine());
             validateBonusNumber(bonusNumber, lottoNumbers);
             return bonusNumber;
@@ -99,7 +93,7 @@ public class LottoController {
     }
 
     private void validateBonusNumber(int bonusNumber, Lotto lottoNumbers) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE.message);
         }
         if (lottoNumbers.contains(bonusNumber)) {

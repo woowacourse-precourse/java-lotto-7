@@ -2,6 +2,7 @@ package lotto.model;
 
 import static lotto.constant.LottoConstant.LOTTO_MAX_NUMBER;
 import static lotto.constant.LottoConstant.LOTTO_MIN_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.exception.LottoErrorMessage.LOTTO_NUMBER_COUNT_INVALID;
 import static lotto.exception.LottoErrorMessage.LOTTO_NUMBER_DUPLICATE;
 import static lotto.exception.LottoErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
@@ -23,7 +24,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_INVALID.message);
         }
         if (numbers.size() != new HashSet<>(numbers).size()) {

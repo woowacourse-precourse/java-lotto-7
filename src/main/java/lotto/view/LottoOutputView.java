@@ -23,6 +23,10 @@ public class LottoOutputView {
         System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
+    public void printBonusNumberMessage() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
+
     public void printLottoWinPrice(HashMap<LottoPrice, Integer> prices) {
         System.out.println("\n당첨 통계\n---");
         for (LottoPrice lottoPrice : LottoPrice.getValues()) {
