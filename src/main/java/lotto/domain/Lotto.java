@@ -24,6 +24,25 @@ public class Lotto {
         return list.stream().distinct().count() < list.size();
     }
 
+    public WinningResult checkWinningResult(int winningNumberMatchCount, boolean isBonusMatch) {
+        if(winningNumberMatchCount == 6) {
+            return WinningResult.FIRST;
+        }
+        if(winningNumberMatchCount == 5 && (isBonusMatch)) {
+            return WinningResult.SECOND;
+        }
+        if(winningNumberMatchCount == 5 && (!isBonusMatch)) {
+            return WinningResult.THIRD;
+        }
+        if(winningNumberMatchCount == 4) {
+            return WinningResult.FOURTH;
+        }
+        if(winningNumberMatchCount == 3) {
+            return WinningResult.FIFTH;
+        }
+        return WinningResult.NONE;
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

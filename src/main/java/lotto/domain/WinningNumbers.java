@@ -23,14 +23,13 @@ public class WinningNumbers {
         return instance;
     }
 
-    public void matchWinningNumbers() {
+    public List<WinningResult> matchWinningNumbers() {
         LottoMachine machine = LottoMachine.getInstance();
+        List<WinningResult> lottoResult = new ArrayList<>();
         machine.getLottos().forEach(lotto -> {
-            lotto.setWinningNumberMatch(matchNumberCount(lotto));
-            if(lotto.getWinningNumberMatch() == 5) {
-                lotto.setBonusMatch(isBonusNumberMatch(lotto));
-            }
+            lottoResult.add(lotto.checkWinningResult(matchNumberCount(lotto), isBonusNumberMatch(lotto)));
         });
+        return lottoResult;
     }
 
     public boolean isBonusNumberMatch(Lotto lotto) {
