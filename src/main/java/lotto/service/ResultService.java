@@ -48,7 +48,7 @@ public class ResultService {
         HashMap<Integer, Integer> resultMap = result.getResultMap();
 
         for (Lotto lottoNumbers : lottos.getLottos()) {
-            int winningCount = checkWinningNumbersCount(lottoNumbers.getNumber());
+            int winningCount = checkWinningNumbersCount(lottoNumbers);
             resultMap.put(winningCount, resultMap.getOrDefault(resultMap.get(winningCount), 0) + 1);
         }
     }
@@ -64,8 +64,7 @@ public class ResultService {
         return winningCount == 5;
     }
 
-    public int checkWinningNumbersCount(List<Integer> lottoNumbers) {
-        List<Integer> lottoList = new ArrayList<>(lottoNumbers);
-        return 6 - lottoList.size();
+    public static int checkWinningNumbersCount(Lotto lotto) {
+        return 6 - lotto.getSize();
     }
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.message.LottoMessage;
 import lotto.validate.LottoValidate;
@@ -9,7 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
     }
 
     private static void validate(List<Integer> numbers) {

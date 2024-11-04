@@ -2,7 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Iterator;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Winning;
@@ -27,16 +27,20 @@ public class WinningService {
 
     public void findWinningNumber(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
-            containsWinningNumber(lotto.getNumber());
+            containsWinningNumber(lotto);
         }
     }
 
-    public static void containsWinningNumber(List<Integer> lottoNumbers) {
+    public static void containsWinningNumber(Lotto lotto) {
         HashSet<Integer> winningSet = winning.getWinningSet();
 
-        for (int winningNumber : winningSet) {
-            if (lottoNumbers.contains(winningNumber)) {
-                lottoNumbers.remove(winningNumber);
+        Iterator<Integer> iterator = winningSet.iterator();
+
+        while (iterator.hasNext()) {
+            int winningNumber = iterator.next();
+
+            if (lotto.getNumber().contains(winningNumber)) {
+                lotto.removeNumber(winningNumber);
             }
         }
     }

@@ -48,9 +48,10 @@ public class ResultTest {
     @DisplayName("당첨 번호 갯수를 확인한다.")
     public void testWinningNumbersCount() {
         List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+        Lotto lotto = new Lotto(lottoNumbers);
 
-        winningService.containsWinningNumber(lottoNumbers);
-        int winningCount = resultService.checkWinningNumbersCount(lottoNumbers);
+        WinningService.containsWinningNumber(lotto);
+        int winningCount = ResultService.checkWinningNumbersCount(lotto);
 
         assertEquals(3, winningCount);
     }
@@ -59,9 +60,10 @@ public class ResultTest {
     @DisplayName("당첨 번호 갯수가 5개이다.")
     public void testIsWinningNumberFive() {
         List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,7,9);
+        Lotto lotto = new Lotto(lottoNumbers);
 
-        winningService.containsWinningNumber(lottoNumbers);
-        int winningCount = resultService.checkWinningNumbersCount(lottoNumbers);
+        WinningService.containsWinningNumber(lotto);
+        int winningCount = ResultService.checkWinningNumbersCount(lotto);
 
         assertTrue(resultService.isFiveWinningNumber(winningCount));
     }

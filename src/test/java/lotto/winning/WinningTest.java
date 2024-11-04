@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Winning;
 import lotto.service.WinningService;
@@ -143,12 +144,13 @@ public class WinningTest {
         winning.setHashSet(winningSet);
 
         List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,5,6);
-        //Lottos lottos = new Lottos();
-        //WinningService winningService = new WinningService(lottos, winning);
+        Lotto lotto = new Lotto(lottoNumbers);
+        Lottos lottos = new Lottos();
+        WinningService winningService = new WinningService(lottos, winning);
 
-        WinningService.containsWinningNumber(lottoNumbers);
+        WinningService.containsWinningNumber(lotto);
 
-        assertEquals(0, lottoNumbers.size());
+        assertEquals(0, lotto.getSize());
     }
 
     @Test
@@ -159,11 +161,12 @@ public class WinningTest {
         winning.setHashSet(winningSet);
 
         List<Integer> lottoNumbers = Arrays.asList(7,8,9,10,11,12);
+        Lotto lotto = new Lotto(lottoNumbers);
 
         Lottos lottos = new Lottos();
         WinningService winningService = new WinningService(lottos, winning);
 
-        WinningService.containsWinningNumber(lottoNumbers);
+        WinningService.containsWinningNumber(lotto);
 
         assertEquals(6, lottoNumbers.size());
     }
