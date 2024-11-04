@@ -8,7 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
-        validateNumber(numbers);
+        validateRange(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
     }
@@ -19,7 +19,7 @@ public class Lotto {
         }
     }
 
-    public static void validateNumber(List<Integer> numbers) {
+    public static void validateRange(List<Integer> numbers) {
         numbers.forEach(number -> {
                     if (number < 1 || number > 45) {
                         throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");

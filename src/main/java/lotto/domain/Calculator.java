@@ -5,7 +5,7 @@ import lotto.messages.WinningMessage;
 
 public class Calculator {
 
-    public static long calculateWinningAmountSum(Map<WinningMessage, Integer> winningResult) {
+    public static long winningAmountSum(Map<WinningMessage, Integer> winningResult) {
         return winningResult.keySet().stream()
                 .mapToLong(rank -> rank.getWinningAmount(winningResult.get(rank)))
                 .sum();

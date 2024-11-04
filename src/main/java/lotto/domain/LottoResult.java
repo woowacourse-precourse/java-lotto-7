@@ -54,7 +54,7 @@ public class LottoResult {
     }
 
     public double getProfitPercent(LottoPurchase lottoPurchase) {
-        long totalWinningMoney = Calculator.calculateWinningAmountSum(winningResults);
+        long totalWinningMoney = Calculator.winningAmountSum(winningResults);
         int purchaseAmount = lottoPurchase.getPurchaseAmount();
         return Calculator.calculateProfitPercent(totalWinningMoney, purchaseAmount);
     }

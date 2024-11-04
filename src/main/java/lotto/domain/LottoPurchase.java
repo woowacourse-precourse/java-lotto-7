@@ -7,7 +7,7 @@ public class LottoPurchase {
     private final int amount;
 
     public LottoPurchase(int amount) {
-        validatePositive(amount);
+        validateMinAmount(amount);
         validateUnit(amount);
         this.amount = amount;
     }
@@ -18,7 +18,7 @@ public class LottoPurchase {
         }
     }
 
-    private static void validatePositive(int amount) {
+    private static void validateMinAmount(int amount) {
         if (amount < 1000) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 999원 보다 큰 숫자여야 합니다.");
         }
