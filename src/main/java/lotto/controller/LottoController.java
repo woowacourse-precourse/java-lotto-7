@@ -6,6 +6,7 @@ import lotto.dto.LottoDto;
 import lotto.model.Game;
 import lotto.model.WinningNumberConverter;
 import lotto.model.purchase.PurchaseAmountConverter;
+import lotto.utils.converter.BonusNumberConverter;
 import lotto.view.View;
 
 public class LottoController {
@@ -21,6 +22,7 @@ public class LottoController {
         handleLottoPurchase();
         displayIssuedLottos();
         handleInputWinningNumbers();
+        handleInputBonusNumber();
     }
 
     private <T> void executeWithRetry(Runnable action) {
@@ -59,5 +61,15 @@ public class LottoController {
         String input = view.promptWinningNumbers();
         List<Integer> winningNumbers = WinningNumberConverter.convert(input);
         game.setWinningNumber(winningNumbers);
+    }
+
+    private void handleInputBonusNumber() {
+        executeWithRetry(this::inputBonusNumber);
+    }
+
+    private void inputBonusNumber() {
+        String input = view.promptBonusNumber();
+        int bonusNumber = BonusNumberConverter.convert(input);
+        game.setBonusNumber(bonusNumber);
     }
 }

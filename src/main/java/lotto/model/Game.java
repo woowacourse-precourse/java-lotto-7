@@ -26,4 +26,8 @@ public class Game {
     public void setWinningNumber(List<Integer> winningNumbers) {
         winningNumber.setWinningNumbers(new Lotto(winningNumbers));
     }
+
+    public void setBonusNumber(int bonusNumber) {
+        winningNumber.setBonusNumber(new BonusNumber(bonusNumber, winningNumber.getWinningNumbers()));
+    }
 }
