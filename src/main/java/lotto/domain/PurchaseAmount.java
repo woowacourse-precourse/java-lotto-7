@@ -3,7 +3,6 @@ package lotto.domain;
 public class PurchaseAmount {
     private static final int UNIT = 1000;
     private static final int RANGE = 0;
-    // 에러 코드를 하나로 묶는 건?
     private static final String ERROR_OUT_OF_RANGE = String.format("[ERROR] 구입금액은 %d 이상이여야 합니다.", RANGE);
     private static final String ERROR_DIFFERENT_UNIT = String.format("[ERROR] 구입금액은 %d 단위여야 합니다.", UNIT);
 
