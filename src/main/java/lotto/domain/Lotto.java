@@ -1,19 +1,28 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.utils.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateIsDuplicate(numbers);
+        validateInRange(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        Validator.numbersLength(numbers);
+    }
+
+    private void validateIsDuplicate(List<Integer> numbers) {
+        Validator.numberDuplicate(numbers);
+    }
+
+    private void validateInRange(List<Integer> numbers) {
+        numbers.forEach(Validator::numberInRange);
     }
 
     public List<Integer> getNumbers() {

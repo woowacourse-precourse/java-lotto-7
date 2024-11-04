@@ -31,8 +31,8 @@ public class InputView {
                 System.out.println(INPUT_WINNING_NUMBERS);
                 String numbers = read();
 
-                List<String> splitNumbers = splitByCommaAndValidateLength(numbers);
-                List<Integer> parsedNumbers = convertToIntegerAndValidate(splitNumbers);
+                List<String> splitNumbers = splitByComma(numbers);
+                List<Integer> parsedNumbers = convertToInteger(splitNumbers);
 
                 return new Lotto(parsedNumbers);
             } catch (IllegalArgumentException e) {
@@ -64,38 +64,24 @@ public class InputView {
         return parsedBonusNumber;
     }
 
-    private static List<String> splitByCommaAndValidateLength(String numbers) {
+    private static List<String> splitByComma(String numbers) {
         String cleanedNumbers = trimSpaces(numbers);
-        List<String> splitNumbers = splitByComma(cleanedNumbers);
-        Validator.numbersLength(splitNumbers);
 
-        return splitNumbers;
-    }
-
-    private static List<Integer> convertToIntegerAndValidate(List<String> numbers) {
-        List<Integer> parsedNumbers = convertToInteger(numbers);
-        validateInRange(parsedNumbers);
-        Validator.numberDuplicate(parsedNumbers);
-
-        return parsedNumbers;
-    }
-
-    private static void validateInRange(List<Integer> numbers) {
-        numbers.forEach(Validator::numberInRange);
+        return Stream.of(cleanedNumbers.split(","))
+                .collect(Collectors.toList());
     }
 
     private static List<Integer> convertToInteger(List<String> numbers) {
-        for (String number : numbers) {
-            Validator.isNumber(number);
-        }
+        validateIsNumber(numbers);
         return numbers.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    private static List<String> splitByComma(String cleanedNumbers) {
-        return Stream.of(cleanedNumbers.split(","))
-                .collect(Collectors.toList());
+    private static void validateIsNumber(List<String> numbers) {
+        for (String number : numbers) {
+            Validator.isNumber(number);
+        }
     }
 
     private static String trimSpaces(String numbers) {
