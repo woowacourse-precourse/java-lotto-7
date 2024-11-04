@@ -41,4 +41,12 @@ public class LottoNumberValidator {
         validateDuplicateNumber(numbers);
         validateRange(numbers);
     }
+
+    public static void validateBonusNumber(Lotto lotto, int bonusNumber) {
+        validateRange(bonusNumber);
+        if (lotto.hasSameNumber(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없어요.");
+        }
+
+    }
 }

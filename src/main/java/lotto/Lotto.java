@@ -14,5 +14,9 @@ public class Lotto {
         LottoNumberValidator.validateNumbers(numbers);
     }
 
+    public boolean hasSameNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     // TODO: 추가 기능 구현
 }
