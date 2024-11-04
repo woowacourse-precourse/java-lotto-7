@@ -11,8 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoController {
-    private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-    private final ProfitCalculator profitCalculator = new ProfitCalculator();
+    private final LottoNumberGenerator lottoNumberGenerator;
+    private final ProfitCalculator profitCalculator;
+
+    public LottoController(LottoNumberGenerator lottoNumberGenerator, ProfitCalculator profitCalculator) {
+        this.lottoNumberGenerator = lottoNumberGenerator;
+        this.profitCalculator = profitCalculator;
+    }
 
     public void run() {
 
