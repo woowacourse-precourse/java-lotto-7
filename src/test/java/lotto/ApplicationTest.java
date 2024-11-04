@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
 
     @Test
     void 기능_테스트() {
@@ -53,6 +55,63 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    @DisplayName("입력한 당첨 번호와 보너스 번호가 중복되는 경우")
+    void duplicateTest() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 중복되는 경우")
+    void duplicateTest2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,5", "7");
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호를 6개 이하로 입력한 경우")
+    void numberCountTest() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4", "6");
+        });
+    }
+
+    @Test
+    @DisplayName("1에서 45 사이의 숫자가 아닌 경우")
+    void numberRangeTest() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,41,66,87", "6");
+        });
+    }
+
+    @Test
+    @DisplayName("1000원 미만의 돈을 입력한 경우")
+    void moneyRangeTest() {
+        assertSimpleTest(() -> {
+            runException("200", "1,2,3,41,66,87", "6");
+        });
+    }
+
+    @Test
+    @DisplayName("1000원 단위가 아닌 경우")
+    void moneyChangeTest() {
+        assertSimpleTest(() -> {
+            runException("21111", "1,2,3,41,66,87", "6");
+        });
+    }
+
+    @Test
+    @DisplayName("입력 공백")
+    void blankInputTest() {
+        assertSimpleTest(() -> {
+            runException(" ", "1,2,3,41,66,87", "6");
+        });
+    }
+
 
     @Override
     public void runMain() {
