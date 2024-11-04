@@ -18,16 +18,26 @@ public class WinningStatistics {
 
     public static WinningStatistics from(List<Lotto> lottos, WinningNumbers winningNumbers) {
         Map<LottoRank, Integer> rankCounts = initializeRankCounts();
-
-        for (Lotto lotto : lottos) {
-            LottoRank rank = LottoRank.valueOf(
-                    lotto.countMatchNumbers(winningNumbers.getWinningNumbers()),
-                    lotto.matchBonusNumber(winningNumbers.getBonusNumber())
-            );
-            rankCounts.merge(rank, 1, Integer::sum);
-        }
-
+        countWinningResults(lottos, winningNumbers, rankCounts);
         return new WinningStatistics(rankCounts);
+    }
+
+    private static void countWinningResults(List<Lotto> lottos, WinningNumbers winningNumbers,
+                                            Map<LottoRank, Integer> rankCounts) {
+        lottos.forEach(lotto -> updateRankCount(lotto, winningNumbers, rankCounts));
+    }
+
+    private static void updateRankCount(Lotto lotto, WinningNumbers winningNumbers,
+                                        Map<LottoRank, Integer> rankCounts) {
+        LottoRank rank = calculateRank(lotto, winningNumbers);
+        rankCounts.merge(rank, 1, Integer::sum);
+    }
+
+    private static LottoRank calculateRank(Lotto lotto, WinningNumbers winningNumbers) {
+        return LottoRank.valueOf(
+                lotto.countMatchNumbers(winningNumbers.getWinningNumbers()),
+                lotto.matchBonusNumber(winningNumbers.getBonusNumber())
+        );
     }
 
     private static Map<LottoRank, Integer> initializeRankCounts() {
