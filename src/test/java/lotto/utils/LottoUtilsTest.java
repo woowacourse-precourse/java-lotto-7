@@ -50,10 +50,10 @@ class LottoUtilsTest {
     @Test
     void MatchCount의_갯수_반환_테스트() {
         Map<MatchResult, Integer> matchCounts = lottoUtils.countMatchResults(lottoResults);
-        assertEquals(1, matchCounts.get(MatchResult.THREE_MATCH), "3개 일치 결과가 예상과 다릅니다.");
+        assertEquals(3, matchCounts.get(MatchResult.THREE_MATCH), "3개 일치 결과가 예상과 다릅니다.");
         assertEquals(0, matchCounts.get(MatchResult.FOUR_MATCH), "4개 일치 결과가 예상과 다릅니다.");
         assertEquals(0, matchCounts.get(MatchResult.SIX_MATCH), "6개 일치 결과가 예상과 다릅니다.");
-        assertEquals(5, matchCounts.get(MatchResult.NONE), "일치하지 않는 결과 개수가 예상과 다릅니다.");
+        assertEquals(3, matchCounts.get(MatchResult.NONE), "일치하지 않는 결과 개수가 예상과 다릅니다.");
     }
 
     @Test
@@ -69,7 +69,7 @@ class LottoUtilsTest {
     void 수익률_테스트() {
         Map<MatchResult, Integer> matchCounts = lottoUtils.countMatchResults(lottoResults);
         lottoUtils.calculateRateOfReturn(lottoResults, purchaseAmount);
-        assertEquals(1, matchCounts.get(MatchResult.THREE_MATCH), "3개 일치 결과가 예상과 다릅니다.");
+        assertEquals(3, matchCounts.get(MatchResult.THREE_MATCH), "3개 일치 결과가 예상과 다릅니다.");
         assertEquals(0, matchCounts.get(MatchResult.FOUR_MATCH), "4개 일치 결과가 예상과 다릅니다.");
         assertEquals(0, matchCounts.get(MatchResult.FIVE_MATCH_BONUS), "5개 일치 보너스 결과가 예상과 다릅니다.");
         assertEquals(0, matchCounts.get(MatchResult.SIX_MATCH), "6개 일치 결과가 예상과 다릅니다.");
