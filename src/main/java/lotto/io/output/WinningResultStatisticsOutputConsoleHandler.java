@@ -4,9 +4,10 @@ import java.text.DecimalFormat;
 import java.util.Map;
 
 public class WinningResultStatisticsOutputConsoleHandler {
-    private final DecimalFormat df = new DecimalFormat("#.0%");
+    private final DecimalFormat df = new DecimalFormat("#,##0.0%");
 
-    public void showWinningResultStatistics(Map<String, Long> matchingCounts, double revenue) {
+    public void showWinningResultStatistics(Map<String, Long> matchingCounts) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
@@ -21,12 +22,12 @@ public class WinningResultStatisticsOutputConsoleHandler {
                         + "5개 일치 (1,500,000원) - %d개" + System.lineSeparator()
                         + "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개" + System.lineSeparator()
                         + "6개 일치 (2,000,000,000원) - %d개"
-                , nunOfFirst, numOfSecond, numOfThird, numOfFourth, numOfFIFTH
+                , numOfFIFTH, numOfFourth, numOfThird, numOfSecond, nunOfFirst
         );
 
         System.out.println(resultView);
     }
-    
+
     public void showTotalRevenue(double revenue) {
         String revenueFormatted = df.format(revenue);
         System.out.printf(
