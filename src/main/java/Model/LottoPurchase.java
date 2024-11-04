@@ -12,8 +12,7 @@ public class LottoPurchase {
 
     private void validate(int lottoPurchase) {
         if (lottoPurchase % Constants.DIVISOR != 0) {
-            throw new IllegalArgumentException(
-                    "[ERROR] 로또 구입 금액은 1000으로 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_PURCHASE_AMOUNT);
         }
     }
 

@@ -20,29 +20,27 @@ public class Lotto {
 
     private void validate6numbers(List<Integer> numbers) {
         if (numbers.size() != Constants.NUM_COUNT) {
-            throw new IllegalArgumentException(
-                    "[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_COUNT);
         }
     }
 
     // TODO: 추가 기능 구현
     private void validate1to45(List<Integer> numbers) {
-            for (int number : numbers) {
-                if (number < Constants.MIN_NUM || number > Constants.MAX_NUM) {
-                    throw new IllegalArgumentException(
-                            "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                }
+        for (int number : numbers) {
+            if (number < Constants.MIN_NUM || number > Constants.MAX_NUM) {
+                throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
             }
         }
-        private void validateNotEqual (List < Integer > numbers) {
-            Set<Integer> numbersNotSame = new HashSet<>();
-            for (int number : numbers) {
-                if (!numbersNotSame.add(number)) {
-                    throw new IllegalArgumentException(
-                            "[ERROR] 로또 번호는 중복 숫자가 없어야 합니다.");
-                }
+    }
+    private void validateNotEqual(List<Integer> numbers) {
+        Set<Integer> numbersNotSame = new HashSet<>();
+        for (int number : numbers) {
+            if (!numbersNotSame.add(number)) {
+                throw new IllegalArgumentException(ErrorMessages.DUPLICATE_LOTTO_NUMBER);
             }
         }
+    }
+
         public int howManySameNumbers (Lotto lotto){
             long sameNumberCount = numbers.stream()
                     .filter(lotto.numbers::contains)
