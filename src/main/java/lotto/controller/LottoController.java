@@ -24,6 +24,7 @@ public class LottoController {
 		int bonusNumber = getBonusNumber(winningNumbers);
 
 		LottoResult result = calculateResult(purchasedLottos, winningNumbers, bonusNumber);
+		printResult(result, purchaseAmount);
 	}
 
 	private LottoResult calculateResult(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
