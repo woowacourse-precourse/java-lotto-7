@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import lotto.Lotto;
 import lotto.LottoResult;
+import lotto.LottoStatistics;
 import lotto.interaction.output.view.LottoStringView;
 
 public class LottoStandardOutput implements LottoOutput{
@@ -60,18 +61,10 @@ public class LottoStandardOutput implements LottoOutput{
         }
     }
 
-    private List<Entry<LottoResult, Integer>> sortResultMap(Map<LottoResult, Integer> resultMap) {
-        return resultMap.entrySet().stream().sorted((e1, e2) -> {
-            int money1 = e1.getKey().getWinningMoney();
-            int money2 = e2.getKey().getWinningMoney();
-            return money1 - money2;
-        }).toList();
-    }
-
     @Override
     public void printWinningStatistics(Map<LottoResult, Integer> resultMap, double rate) {
         try {
-            List<Entry<LottoResult, Integer>> entries = sortResultMap(resultMap);
+            List<Entry<LottoResult, Integer>> entries = LottoStatistics.sortResultMap(resultMap);
             bw.write("\n당첨 통계\n");
             bw.write("---\n");
             for (Entry<LottoResult, Integer> entry : entries) {

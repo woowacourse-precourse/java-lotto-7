@@ -3,6 +3,7 @@ package lotto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 
 public class LottoStatistics {
@@ -20,10 +21,18 @@ public class LottoStatistics {
         return count;
     }
 
+    public static List<Entry<LottoResult, Integer>> sortResultMap(Map<LottoResult, Integer> resultMap) {
+        return resultMap.entrySet().stream().sorted((e1, e2) -> {
+            int money1 = e1.getKey().getWinningMoney();
+            int money2 = e2.getKey().getWinningMoney();
+            return money1 - money2;
+        }).toList();
+    }
+
     public static double getRateOfReturn(List<Optional<LottoResult>> results) {
         int total = results.stream()
                 .mapToInt(opt-> opt.map(LottoResult::getWinningMoney).orElse(0))
                 .reduce(0, Integer::sum);
-        return (double) total / (results.size() * 1000);
+        return (double) total * 100 / (results.size() * 1000);
     }
 }
