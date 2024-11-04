@@ -8,5 +8,6 @@ public class Application {
         user.buyLotto(randomNumbersGenerator);
 
         Lotto lotto = InputHandler.inputWinningNumbers();
+        LottoMachine lottoMachine = InputHandler.inputBonusNumbers(lotto);
     }
 }
