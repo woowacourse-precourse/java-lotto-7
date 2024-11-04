@@ -82,7 +82,32 @@ public class Application {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
+    // 5. 당첨 번호 및 보너스 번호 입력 처리
+    private static List<Integer> parseLottoNumbers(String line) {
+        String[] lottoNumbers = line.split(",");
+        validateLottoNumbersLength(lottoNumbers);
+        return convertLottoNumbers(lottoNumbers);
+    }
 
+    private static void validateLottoNumbersLength(String[] lottoNumbers) {
+        if (lottoNumbers.length != 6) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "로또 번호는 6개의 숫자로 구성되어야 합니다.");
+        }
+    }
+
+    private static List<Integer> convertLottoNumbers(String[] lottoNumbers) {
+        List<Integer> jackpotNumbers = new ArrayList<>();
+        for (String numStr : lottoNumbers) {
+            try {
+                jackpotNumbers.add(Integer.parseInt(numStr.trim()));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ERROR_MESSAGE + "숫자로 입력해 주세요.");
+            }
+        }
+        return jackpotNumbers;
+    }
+
+    
 
 
  
