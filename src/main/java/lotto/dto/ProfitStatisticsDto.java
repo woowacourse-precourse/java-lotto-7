@@ -1,11 +1,14 @@
 package lotto.dto;
 
 import java.util.List;
+import lotto.exception.DtoExceptionMessage;
+import lotto.exception.ExceptionUtils;
 
 public record ProfitStatisticsDto(List<PrizeCountEntry> prizeCountEntries, double profitRate) {
+
     public ProfitStatisticsDto {
         if (prizeCountEntries == null) {
-            throw new IllegalArgumentException("prizeCountMap cannot be null");
+            throw ExceptionUtils.IllegalArgument(DtoExceptionMessage.NULL_EXCEPTION);
         }
     }
 
