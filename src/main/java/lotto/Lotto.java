@@ -1,5 +1,7 @@
 package lotto;
 
+import static view.message.ExceptionMessage.LOTTO_NUMBERS_COUNT_EXCEPTION_MESSAGE;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -7,13 +9,13 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoNumbersCount(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateLottoNumbersCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBERS_COUNT_EXCEPTION_MESSAGE);
         }
     }
 
