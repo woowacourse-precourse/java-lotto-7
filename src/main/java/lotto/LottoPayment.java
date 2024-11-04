@@ -12,6 +12,12 @@ public class LottoPayment {
         this.purchaseAmount = purchaceAmount;
     }
 
+    public LottoPayment(final String purchaseAmountInput) {
+        final BigDecimal purchaseAmount = new BigDecimal(purchaseAmountInput);
+        validate(purchaseAmount);
+        this.purchaseAmount = purchaseAmount;
+    }
+
     public int getLottoCount() {
         return purchaseAmount.divide(LOTTO_PRICE).intValue();
     }
