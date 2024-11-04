@@ -13,7 +13,7 @@ class LottoMessageParserTest {
 
     private LottoMessageParser lottoMessageConverter = new LottoMessageParser();
 
-    @DisplayName("로또 객체들을 출력형식과 맞게 변환시켜준다")
+    @DisplayName("로또 객체들을 출력형식과 맞게 변환시켜준다.")
     @Test
     void toMessageToMessages() {
       // given
