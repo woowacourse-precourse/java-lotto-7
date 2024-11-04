@@ -3,6 +3,9 @@ package lotto;
 import lotto.collection.Lotto;
 import lotto.collection.WinningNumber;
 import lotto.domain.LottoResult;
+import lotto.domain.user.UserRepository;
+import lotto.util.UserIdGenerator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,6 +19,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
+
+    final UserRepository userRepository = UserRepository.getInstance();
+
+    @BeforeEach
+    void setUp() {
+        UserIdGenerator.init();
+        userRepository.deleteAll();
+    }
 
     @ParameterizedTest
     @MethodSource("provideInvalidLottoNumbers")
