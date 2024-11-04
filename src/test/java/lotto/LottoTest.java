@@ -1,5 +1,6 @@
 package lotto;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -31,8 +32,12 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호와_보너스_번호가_중복되면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)).hasBonusNumber(5))
-                .isInstanceOf(IllegalArgumentException.class);
+    void 모든_숫자가_일치하는_경우_6을_반환한다() {
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        int matchCount = userLotto.getMatchCount(winningLotto);
+
+        Assertions.assertThat(matchCount).isEqualTo(6);
     }
 }
