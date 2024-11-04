@@ -14,7 +14,7 @@ public class BonusNumberValidator {
     }
 
     private static void checkHasBlank(String bonusNumber) {
-        if(bonusNumber.contains(" ")){
+        if (bonusNumber.contains(" ")) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_HAS_BLANK.getMessage());
         }
     }

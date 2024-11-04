@@ -21,7 +21,7 @@ public class WinningNumberValidator {
     }
 
     private static void checkWinningNumberContainsBlank(String winningNumber) {
-        if(winningNumber.contains(" ")){
+        if (winningNumber.contains(" ")) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_HAS_BLANK.getMessage());
         }
     }
