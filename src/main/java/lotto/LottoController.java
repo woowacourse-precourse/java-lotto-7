@@ -24,5 +24,7 @@ public class LottoController {
 
         winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
         lottoResult.checkLottoIsWinner(winningLotto, userLotto);
+
+        outputView.printResultStatistics();
     }
 }

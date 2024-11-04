@@ -9,17 +9,19 @@ public class LottoResult {
         for (Lotto lotto : userLotto.getLotto()) {
             List<Integer> userNumbers = lotto.getNumbers();
             List<Integer> winningNumbers = winningLotto.getLotto().getNumbers();
+            int bonusNumber = winningLotto.getBonusNumber();
 
             // 사용자 번호와 당첨 번호 간의 일치 개수 확인
             long matchingCount = userNumbers.stream()
                     .filter(winningNumbers::contains)
                     .count();
 
-            checkRank(matchingCount);
+            boolean isBonusMatched = userNumbers.contains(bonusNumber);
+            checkRank(matchingCount, isBonusMatched);
         }
     }
 
-    private void checkRank(long matchingCount) {
-        LottoPrizes.checkLottoRank(matchingCount);
+    private void checkRank(long matchingCount, boolean isBonusMatched) {
+        LottoPrizes.checkLottoRank(matchingCount, isBonusMatched);
     }
 }

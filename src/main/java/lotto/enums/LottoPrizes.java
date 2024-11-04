@@ -2,35 +2,62 @@ package lotto.enums;
 
 public enum LottoPrizes {
 
-    FIRST(6, 2000000000),
-    SECOND(5, 30000000),
-    THIRD(4, 1500000),
-    FOURTH(3, 50000),
-    FIFTH(2, 5000),
-    NO_PRIZE(0, 0)
+    FIFTH(3, "5,000", 0),
+    FOURTH(4, "50,000", 0),
+    THIRD(5, "1,500,000", 0),
+    SECOND(5, "30,000,000", 0),
+    FIRST(6, "2,000,000,000", 0),
     ;
 
-    private final int matchNumberCount;
-    private final int prizeMoney;
-    private static int count;
 
-    LottoPrizes(int matchNumberCount, int prizeMoney) {
+    private final int matchNumberCount;
+
+    private final String prizeMoney;
+
+    private  int count;
+    LottoPrizes(int matchNumberCount, String prizeMoney, int count) {
         this.matchNumberCount = matchNumberCount;
         this.prizeMoney = prizeMoney;
-        count = 0;
+        this.count = count;
     }
 
-    public static LottoPrizes checkLottoRank(long matchingCount) {
-        for (LottoPrizes prize : LottoPrizes.values()) {
-            if (prize.matchNumberCount == matchingCount) {
-                prize.count++;
-                return prize;
-            }
+    public static LottoPrizes checkLottoRank(long matchingCount, boolean isBonusMatched) {
+        if (matchingCount == 6) {
+            FIRST.count++;
+            return FIRST;
         }
-        return NO_PRIZE;
+
+        if (matchingCount == 5 && isBonusMatched) {
+            SECOND.count++;
+            return SECOND;
+        }
+
+        if (matchingCount == 5) {
+            THIRD.count++;
+            return THIRD;
+        }
+
+        if (matchingCount == 4) {
+            FOURTH.count++;
+            return FOURTH;
+        }
+
+        if (matchingCount == 3) {
+            FIFTH.count++;
+            return FIFTH;
+        }
+        return null;
     }
 
-    public static int getCount() {
-        return count;
+    public int getMatchNumberCount() {
+        return matchNumberCount;
+    }
+
+    public int getCount() {
+        return this.count;
+    }
+
+    public String  getPrizeMoney() {
+        return prizeMoney;
     }
 }
