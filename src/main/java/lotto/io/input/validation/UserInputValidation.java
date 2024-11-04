@@ -9,11 +9,11 @@ import lotto.domain.LottoInfo;
 
 public class UserInputValidation {
 
-	private static final Pattern purchasePattern = Pattern.compile("^[1-9]\\d*$");
-	private static final Pattern lottoNumberRangePattern = Pattern.compile("^0*([1-9]|[1-3]\\d|4[0-5])$");
+	private static final Pattern PURCHASE_AMOUNT_VALIDATION_PATTERN = Pattern.compile("^[1-9]\\d*$");
+	private static final Pattern LOTTO_NUMBER_RANGE_VALIDATION_PATTERN = Pattern.compile("^0*([1-9]|[1-3]\\d|4[0-5])$");
 
 	public void validatePurchaseAmount(String purchaseAmount) {
-		if (!purchasePattern.matcher(purchaseAmount).matches()) {
+		if (!PURCHASE_AMOUNT_VALIDATION_PATTERN.matcher(purchaseAmount).matches()) {
 			throw new IllegalArgumentException(NOT_NATURAL_NUMBER_PURCHASE_AMOUNT.getComment());
 		}
 	}
@@ -54,7 +54,7 @@ public class UserInputValidation {
 	private void validateWinningNumberRange(String[] splitWinningNumbers) {
 		boolean hasWrongWinningNumber = Arrays.stream(splitWinningNumbers)
 			.map(String::trim)
-			.anyMatch(winningNumber -> !lottoNumberRangePattern.matcher(winningNumber).matches());
+			.anyMatch(winningNumber -> !LOTTO_NUMBER_RANGE_VALIDATION_PATTERN.matcher(winningNumber).matches());
 
 		if (hasWrongWinningNumber) {
 			throw new IllegalArgumentException(OVER_FLOW_WINNING_NUMBER_RANGE.getComment());
@@ -62,7 +62,7 @@ public class UserInputValidation {
 	}
 
 	public void validateBonusNumberRange(String bonusNumber) {
-		if (!lottoNumberRangePattern.matcher(bonusNumber).matches()) {
+		if (!LOTTO_NUMBER_RANGE_VALIDATION_PATTERN.matcher(bonusNumber).matches()) {
 			throw new IllegalArgumentException(OVER_FLOW_BONUS_NUMBER_RANGE.getComment());
 		}
 	}
