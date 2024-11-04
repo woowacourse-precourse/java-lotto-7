@@ -8,7 +8,6 @@ import lotto.domain.PurchasedLottos;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoWinMather;
 import lotto.util.ErrorMessage;
-import lotto.util.NumberGenerate;
 import lotto.domain.BonusBall;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
@@ -22,12 +21,12 @@ public class LottoController {
     private final LottoWinMather lottoWinMather;
     private final StringToIntConverter converter;
 
-    public LottoController(InputView inputView, OutputView outputView, NumberGenerate lottoGenerator) {
+    public LottoController(InputView inputView, OutputView outputView, LottoMachine lottoMachine, StringToIntConverter converter, LottoWinMather lottoWinMather) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoMachine = new LottoMachine(lottoGenerator);
-        this.converter = new StringToIntConverter();
-        this.lottoWinMather = new LottoWinMather();
+        this.lottoMachine = lottoMachine;
+        this.converter = converter;
+        this.lottoWinMather = lottoWinMather;
     }
 
     public void run() {
