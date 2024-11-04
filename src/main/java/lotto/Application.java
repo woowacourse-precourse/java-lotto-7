@@ -95,9 +95,9 @@ public class Application {
         System.out.println("당첨 통계\n---");
         for (PrizeRank rank : PrizeRank.values()) {
             if (rank != PrizeRank.NONE) {
-                System.out.printf("%d개 일치%s (%d원) - %d개%n",
+                System.out.printf("%d개 일치%s (%,d원) - %d개%n",
                         rank.getMatchCount(),
-                        rank.hasBonusMatch() ? ", 보너스 번호 일치" : "",
+                        rank.hasBonusMatch() ? ", 보너스 볼 일치" : "",
                         rank.getPrizeAmount(),
                         resultMap.getOrDefault(rank, 0));
             }
@@ -109,7 +109,7 @@ public class Application {
         double totalPrize = calculateTotalPrize(resultMap);
         double yield = (totalPrize / purchaseAmount) * 100;
 
-        System.out.printf("총 수익률은 %.2f%%입니다.%n", yield);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", yield); // 소수점 한 자리 맞추기
     }
 
     // 총 당첨 금액 계산 메서드
