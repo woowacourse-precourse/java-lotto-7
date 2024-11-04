@@ -8,7 +8,6 @@ import java.util.List;
 public class StatisticsCalculator {
 
     private final Statistics statistics;
-
     public StatisticsCalculator(Statistics statistics) {
         this.statistics = statistics;
     }
