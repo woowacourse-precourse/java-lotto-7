@@ -15,17 +15,30 @@ public class InputView {
 
 	public static int readLottoPurchaseMoney() {
 		OutputView.printMessage("구입금액을 입력해 주세요.");
-		String amount = Console.readLine();
-		validateNumber(amount);
+		int readLottoPurchaseMoney = readAmount();
 
-		OutputView.printMessage("");
-		return Integer.parseInt(amount);
+		OutputView.printNewLine();
+		return readLottoPurchaseMoney;
+	}
+
+	private static int readAmount() {
+		try {
+			String amount = Console.readLine();
+			validateNumber(amount);
+			return Integer.parseInt(amount);
+		} catch (IllegalArgumentException exception) {
+			OutputView.printMessage(exception.getMessage());
+
+			return readAmount();
+		}
 	}
 
 	public static List<Integer> readWinningNumbers() {
 		OutputView.printMessage("당첨 번호를 입력해 주세요.");
 		String[] winningNumbers = Console.readLine().split(LOTTO_NUMBER_SEPARATOR);
 		validateNumbers(winningNumbers);
+
+		OutputView.printNewLine();
 
 		return Arrays.stream(winningNumbers)
 			.map(Integer::parseInt)
@@ -36,6 +49,8 @@ public class InputView {
 		OutputView.printMessage("보너스 번호를 입력해 주세요.");
 		String bonusNumber = Console.readLine();
 		validateNumber(bonusNumber);
+
+		OutputView.printNewLine();
 
 		return Integer.parseInt(bonusNumber);
 	}
