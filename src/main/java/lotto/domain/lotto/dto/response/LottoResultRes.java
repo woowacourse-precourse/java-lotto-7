@@ -28,13 +28,10 @@ public class LottoResultRes {
         if (result == LottoResult.SECOND) {
             return "5개 일치, 보너스 볼 일치";
         }
-        if (result == LottoResult.NONE) {
-            return "미당첨";
-        }
         return String.format("%d개 일치", result.getMatchCount());
     }
 
     public String getResultMessage() {
-        return String.format("%s (%d원) - %d개", description, prize, count);
+        return String.format("%s (%,d원) - %d개", description, prize, count);
     }
 }
