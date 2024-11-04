@@ -3,6 +3,8 @@ package lotto;
 import java.util.List;
 
 public class Executor {
+    public static final int LOTTO_PRICE = 1000;
+
     IOController ioController;
     Validator validator;
     Parser parser;
@@ -16,8 +18,7 @@ public class Executor {
     public void run() {
         int purchaseAmount = getPurchaseAmount();
 
-        // 구입금액만큼 lotto 생성 후 출력
-        int purchaseCount = purchaseAmount / 1000;
+        int purchaseCount = purchaseAmount / LOTTO_PRICE;
         Lottos issuedLottos = Lottos.generateLottosByCount(purchaseCount);
         ioController.printLottos(issuedLottos.getLottos());
 
