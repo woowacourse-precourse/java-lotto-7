@@ -1,18 +1,17 @@
 package Calculator;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 import lotto.Lotto;
 import print.InputRequest;
 
 public class CheckWinning {
     InputRequest inputRequest = new InputRequest();
-    Set<Integer> winningNumbers = new HashSet<>();
 
     //로또 당첨을 확인하는 메서드
-    public List<Integer> checkWinLottoTotal(List<Lotto> myLottos) {
+    public Map<Integer, Integer> checkWinLottoTotal(List<Lotto> myLottos) {
         String userInputWinningNumbers = inputRequest.winningNumbersRequest();
         String userInputBonusNumber = inputRequest.bonusNumberRequest();
 
@@ -23,15 +22,15 @@ public class CheckWinning {
     }
 
     // 보너스 번호 없이 확인하는 경우 1 ~ 5등까지 확인
-    public List<Integer> check(List<Lotto> myLottos, HashSet<Integer> winningNumbers, int bonusNumber) {
-        List<Integer> localResult = new ArrayList<>(8);
-        for (int i = 0; i < 8; i++) {
-            localResult.add(0);
+    public Map<Integer, Integer> check(List<Lotto> myLottos, HashSet<Integer> winningNumbers, int bonusNumber) {
+        Map<Integer, Integer> localResult = new HashMap<>();
+        for (int i = 1; i < 6; i++) {
+            localResult.put(i, 0);
         }
 
         for (Lotto myLotto : myLottos) {
             int rank = checkDetail(myLotto.getNumbers(), winningNumbers, bonusNumber);
-            localResult.set(rank, localResult.get(rank) + 1);
+            localResult.replace(rank, localResult.get(rank) + 1);
         }
 
         return localResult;
@@ -47,8 +46,9 @@ public class CheckWinning {
 
     public int compare(HashSet<Integer> winningNumbers, List<Integer> singleLotto) {
         HashSet<Integer> myLotto = new HashSet<>(singleLotto);
-        myLotto.retainAll(winningNumbers); // 교집합 구하기
-        return 7 - myLotto.size(); // 일치하는 숫자에 따라 순위 반환
+
+        myLotto.retainAll(winningNumbers);
+        return myLotto.size(); // 일치하는 숫자 개수 반환
     }
 
     private HashSet<Integer> strToSet(String str) {
