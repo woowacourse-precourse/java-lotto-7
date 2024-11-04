@@ -113,6 +113,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [x] 일치하는 여러 번호의 수를 반환하는 기능 추가
 - Result
 - [x] 로또 결과를 나타내는 기능 추가
+- [x] 통계를 반환하는 기능 추가
 [View]  
 InputView
 - [x] 금액을 입력받는 기능 추가

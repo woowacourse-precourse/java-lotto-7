@@ -21,7 +21,7 @@ public class OutputView {
         System.out.println(lottos.size() + "개를 구매했습니다.");
     }
 
-    private static void printNumbers(List<Integer> numbers) {
+    public static void printNumbers(List<Integer> numbers) {
         String result = "[" + numbers.stream()
                 .map(String::valueOf).
                 collect(Collectors.joining(", ")) + "]";
