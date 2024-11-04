@@ -142,6 +142,12 @@ public class LottoServiceImpl implements LottoService {
         }
     }
 
+    public void validateLottoNumbers(String inputString) {
+        List<Integer> numericLottoNumbers = parseIntegerList(inputString);
+        validateSize(numericLottoNumbers);
+        numericLottoNumbers.forEach(this::validateLottoNumber);
+    }
+
     private void validateLottoNumbers(List<Integer> numbers) {
         validateSize(numbers);
         numbers.forEach(this::validateLottoNumber);

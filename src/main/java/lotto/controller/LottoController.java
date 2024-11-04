@@ -44,6 +44,7 @@ public class LottoController {
         while (true) {
             try {
                 String winningNumbersInput = inputView.inputWinningNumbers();
+                lottoService.validateLottoNumbers(winningNumbersInput);
                 String bonusNumberInput = inputView.inputBonusNumber();
                 return lottoService.generateLottoReport(
                     purchaseAmount, winningNumbersInput, bonusNumberInput);
