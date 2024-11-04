@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.domain.ExceptionType.ILLEGAL_ARGUMENT;
 import static lotto.domain.MAGIC_NUMBER.SIZE;
 import static lotto.domain.MAGIC_NUMBER.START;
 
@@ -17,7 +18,7 @@ public class Lotto {
     // 예외 처리
     private void validate(List<Integer> numbers) {
         if (numbers.size() != SIZE.getMagicNumber()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ILLEGAL_ARGUMENT.getMessage());
         }
     }
 
