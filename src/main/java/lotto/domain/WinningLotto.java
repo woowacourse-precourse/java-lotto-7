@@ -17,10 +17,20 @@ public class WinningLotto {
     }
 
     public Rank determineRank(Lotto lotto) {
-        int matchCount = lotto.matchCount(winningNumbers);
-        boolean bonusMatch = lotto.matchesBonus(bonusNumber);
+        int matchCount = calculateMatchCount(lotto);
+        boolean bonusMatch = bonusNumberMatch(lotto);
 
         return Rank.valueOf(matchCount, bonusMatch);
+    }
+
+    private int calculateMatchCount(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    private boolean bonusNumberMatch(Lotto lotto) {
+        return lotto.contains(bonusNumber.getNumber());
     }
 
 }
