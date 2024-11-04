@@ -21,6 +21,10 @@ public class Lotto {
         if (numbers.size() != NUM_OF_LOTTO_NUMBERS) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 중복되면 안 됩니다.");
+        }
     }
 
     public int calculateMatchingCount(List<Integer> numbers) {
