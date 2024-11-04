@@ -12,6 +12,10 @@ import java.util.stream.IntStream;
 
 public class LottoService {
     private static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_MIN = 1;
+    private static final int LOTTO_MAX = 45;
+    private static final int LOTTO_COUNT = 6;
+    private static final int LOTTO_BONUS_MATCH = 5;
 
     public LottoResultDto createLottoList(int price) {
         LottoValidator.validateLottoPurchaseAmount(price);
@@ -45,7 +49,7 @@ public class LottoService {
     }
 
     private boolean isBonusMatched(int matchCount, List<Integer> lotto, int bonusNumber) {
-        if (matchCount == 5) {
+        if (matchCount == LOTTO_BONUS_MATCH) {
             return isBonusNumberMatched(lotto, bonusNumber);
         }
         return false;
@@ -77,6 +81,6 @@ public class LottoService {
     }
 
     private List<Integer> getRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT);
     }
 }
