@@ -7,9 +7,10 @@ public class Validator {
     public static final String INVALID_PURCHASE_AMOUNT_DIVISIBILITY_ERROR = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
     public static final String INVALID_LOTTO_NUMBER_COUNT_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
 
-    public static void validatePurchaseAmount(String input) {
+    public static int validateAndParsePurchaseAmount(String input) {
         int purchaseAmount = parsePurchaseAmount(input);
         validateDivisibility(purchaseAmount);
+        return purchaseAmount;
     }
 
     private static int parsePurchaseAmount(String input) {
