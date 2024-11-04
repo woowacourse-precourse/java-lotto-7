@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.util.inputParser.parseInt;
+import static lotto.util.InputParser.parseInt;
 
 public class Number {
     private final int value;

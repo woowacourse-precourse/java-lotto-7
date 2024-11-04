@@ -1,9 +1,8 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lottos {
     private final int ticketCount;
@@ -18,16 +17,9 @@ public class Lottos {
     public List<Lotto> createLottos() {
         List<Lotto> lottosNumber = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            lottosNumber.add(new Lotto(createLottoNumber()));
+            lottosNumber.add(Lotto.createAutoLotto());
         }
         return lottosNumber;
-    }
-
-    public List<Number> createLottoNumber() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return randomNumbers.stream()
-                .map(Number::new)
-                .collect(Collectors.toList());
     }
 
     public String getLottosToString() {
@@ -42,7 +34,7 @@ public class Lottos {
     }
 
     public List<Lotto> getLottos(){
-        return lottos;
+        return Collections.unmodifiableList(lottos);
     }
 
     public int getTicketCount(){

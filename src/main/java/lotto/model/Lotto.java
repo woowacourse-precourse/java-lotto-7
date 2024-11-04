@@ -1,43 +1,49 @@
 package lotto.model;
 
-import static lotto.util.inputParser.convertStringToList;
-
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.util.InputParser;
 
 public class Lotto {
     private final List<Number> numbers;
 
-    public Lotto(List<Number> numbers) {
+    private Lotto(List<Number> numbers) {
         validateLotto(numbers);
         this.numbers = sortLottoNumber(numbers);
     }
 
-    public Lotto(String input) { // winningLotto 생성자
-        validateStringFormat(input);
-        List<Number> parsedNumbers = parseStringInput(input);
-        validateLotto(parsedNumbers);
-        this.numbers = sortLottoNumber(parsedNumbers);
+    private List<Number> sortLottoNumber(List<Number> numbers) {
+        return numbers.stream()
+                .sorted(Comparator.comparing(Number::getValue))
+                .collect(Collectors.toList());
     }
 
-    private List<Number> parseStringInput(String input) {
-        List<Integer> rawWinningLotto = convertStringToList(input);
-        return rawWinningLotto.stream()
+    public static Lotto createAutoLotto() {
+        return new Lotto(createLottoNumber());
+    }
+
+    public static Lotto createManualLotto(String input) {
+        List<Number> parsedNumbers = parseStringInput(input);
+        return new Lotto(parsedNumbers);
+    }
+
+    private static List<Number> createLottoNumber() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return randomNumbers.stream()
                 .map(Number::new)
                 .collect(Collectors.toList());
     }
 
-    private void validateStringFormat(String input){
-        if (hasInvalidInput(input)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)로만 구분되어야 합니다.");
-        }
-    }
-
-    private boolean hasInvalidInput(String input){
-        return !input.matches("[0-9,]+");
+    private static List<Number> parseStringInput(String input) {
+        List<Integer> rawWinningLotto = InputParser.convertStringToList(input);
+        return rawWinningLotto.stream()
+                .map(Number::new)
+                .collect(Collectors.toList());
     }
 
     private void validateLotto(List<Number> numbers) {
@@ -68,12 +74,6 @@ public class Lotto {
         return !uniqueNumbers.add(number.getValue());
     }
 
-    private List<Number> sortLottoNumber(List<Number> numbers) {
-        return numbers.stream()
-                .sorted(Comparator.comparing(Number::getValue))
-                .collect(Collectors.toList());
-    }
-
     @Override
     public String toString() {
         return numbers.stream()
@@ -82,6 +82,6 @@ public class Lotto {
     }
 
     public List<Number> getLottoNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 }

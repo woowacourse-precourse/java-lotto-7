@@ -1,13 +1,12 @@
 package lotto.controller;
 
-import static lotto.util.inputParser.parseInt;
-
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Number;
 import lotto.model.Price;
 import lotto.model.Stastistics;
 import lotto.model.WinningLotto;
+import lotto.util.InputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -41,7 +40,7 @@ public class LottoController {
         while (true) {
             try {
                 String rawPrice = inputView.readPriceInput();
-                return new Price(parseInt(rawPrice));
+                return new Price(InputParser.parseInt(rawPrice));
             } catch (IllegalArgumentException e) {
                 outputView.printResult(e.getMessage());
             }
@@ -58,7 +57,7 @@ public class LottoController {
         while (true) {
             try {
                 String rawWinningLotto = inputView.readWinningLottoNumber();
-                return new Lotto(rawWinningLotto);
+                return Lotto.createManualLotto(rawWinningLotto);
             } catch (IllegalArgumentException e) {
                 outputView.printResult(e.getMessage());
             }
