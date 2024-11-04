@@ -9,21 +9,34 @@ import java.util.StringTokenizer;
 
 public class LottoMachine {
 
+    Lotto winningLotto;
     List<Integer> winningNum;
+    int pay;
+    int prize = 0;
     int bonus;
 
-    public int checkMoney(String str) {
+    public int validateMoney(String str) {
         int length = str.length();
         for (int i = 0; i < length; i++) {
             if(str.charAt(i) < '0' || str.charAt(i) > '9') {
-                System.out.println("[ERROR] 금액은 숫자로 입력해주세요.");
-                return 0;
+                throw new IllegalArgumentException("[ERROR] 금액은 숫자로 입력해주세요.");
             }
         }
         return Integer.parseInt(str);
     }
 
-    public List<Lotto> buyLotto(int pay) {
+    public void enterPay() {
+        try{
+            System.out.println("구입금액을 입력해 주세요.");
+            String str = Console.readLine();
+            pay = validateMoney(str);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            enterPay();
+        }
+    }
+
+    public List<Lotto> buyLotto() {
 
         List<Lotto> lottos = new ArrayList<>();
 
@@ -37,20 +50,31 @@ public class LottoMachine {
     }
 
     public void setWinningNum() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        winningNum = new ArrayList<>();
-        StringTokenizer st = new StringTokenizer(Console.readLine(),",");
-        for (int i = 0; i < 6; i++) {
-            winningNum.add(Integer.parseInt(st.nextToken()));
+
+        try {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            StringTokenizer st = new StringTokenizer(Console.readLine(), ",");
+            winningNum = new ArrayList<>();
+            for (int i = 0; i < 6; i++) {
+                winningNum.add(Integer.parseInt(st.nextToken()));
+            }
+
+            winningLotto = new Lotto(winningNum);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setWinningNum();
         }
+
+    }
+
+    public void setBonusNum() {
         System.out.println("보너스 번호를 입력해 주세요.");
         bonus = Integer.parseInt(Console.readLine());
     }
 
-    public int checkResult(List<Lotto> lottos) {
+    public void checkResult(List<Lotto> lottos) {
 
         int[] result = new int[5];
-        int prize = 0;
         for (Lotto lotto : lottos) {
             Rank rank = lotto.read(winningNum, bonus);
             if (rank != null) {
@@ -59,10 +83,9 @@ public class LottoMachine {
             }
         }
         Rank.print(result);
-        return prize;
     }
 
-    public void printBenefitRate(int pay, int prize) {
+    public void printBenefitRate() {
         double ben = ((double)prize/(double)pay)*100;
 
         System.out.println("총 수익률은 " + String.format("%.1f", ben) + "%입니다.");
