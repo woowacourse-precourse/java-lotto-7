@@ -1,4 +1,6 @@
 # java-lotto-precourse
+# UML
+![](src/main/resources/screenshot.png)
 # 기능 목록
 ## Model
 - 로또 번호 생성기
