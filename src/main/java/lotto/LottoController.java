@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.error.SystemError;
 import lotto.model.payment.Payment;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoChecker;
@@ -14,6 +15,11 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoController {
+
+    public static final String DEFAULT_PAYMENT = "1000";
+    public static final String DEFAULT_WINNING_NUMBERS = "1,2,3,4,5,6";
+    public static final String DEFAULT_BONUS_NUMBER = "7";
+    public static final int LIMIT_REPEAT_COUNT = 1;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -50,27 +56,13 @@ public class LottoController {
 
     private long printLottoCount(Payment payment) {
         long lottoCount = payment.calcLottoCount();
-        System.out.println("\n" + lottoCount + "개를 구매했습니다.");
+        System.out.println(lottoCount + "개를 구매했습니다.");
         return lottoCount;
     }
 
     private void setLottoPublisher() {
         NumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
         lottoPublisher = new LottoPublisher(lottoNumberGenerator);
-    }
-
-    private Payment getPayment() {
-        Payment payment = null;
-        boolean isInvalidInput = true;
-        while (isInvalidInput) {
-            try {
-                payment = inputView.getPayment();
-                isInvalidInput = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return payment;
     }
 
     private DrawNumbers getDrawNumbers() {
@@ -82,31 +74,49 @@ public class LottoController {
         return builder.build();
     }
 
-    private DrawNumbersBuilder buildWinningNumber(DrawNumbersBuilder builder) {
-        boolean isInvalidInput = true;
-        while (isInvalidInput) {
+    private Payment getPayment() {
+        int repeatCount = 0;
+        while (repeatCondition(repeatCount)) {
+            repeatCount += 1;
             try {
-                builder = inputView.getWinningNumbers(builder);
-                isInvalidInput = false;
-                System.out.println();
+                return inputView.getPayment();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return builder;
+        System.out.println(String.format(SystemError.MAX_RETRY_EXCEEDED.getMessage(), DEFAULT_PAYMENT));
+        return new Payment(DEFAULT_PAYMENT);
+    }
+
+    private DrawNumbersBuilder buildWinningNumber(DrawNumbersBuilder builder) {
+        int repeatCount = 0;
+        while (repeatCondition(repeatCount)) {
+            repeatCount += 1;
+            try {
+                return inputView.getWinningNumbers(builder);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println(String.format(SystemError.MAX_RETRY_EXCEEDED.getMessage(), DEFAULT_WINNING_NUMBERS));
+        return builder.winningNumbers(DEFAULT_WINNING_NUMBERS);
     }
 
     private DrawNumbersBuilder buildBonusNumber(DrawNumbersBuilder builder) {
-        boolean isInvalidInput = true;
-        while (isInvalidInput) {
+        int repeatCount = 0;
+        while (repeatCondition(repeatCount)) {
+            repeatCount += 1;
             try {
-                builder = inputView.getBonusNumber(builder);
-                isInvalidInput = false;
-                System.out.println();
+                return inputView.getBonusNumber(builder);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return builder;
+        System.out.println(String.format(SystemError.MAX_RETRY_EXCEEDED.getMessage(), DEFAULT_BONUS_NUMBER));
+        return builder.bonusNumber(DEFAULT_BONUS_NUMBER);
+    }
+
+    private boolean repeatCondition(int repeatCount) {
+        return repeatCount < LIMIT_REPEAT_COUNT;
     }
 }

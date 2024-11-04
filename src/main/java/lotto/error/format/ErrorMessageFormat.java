@@ -1,12 +1,12 @@
-package lotto.error;
+package lotto.error.format;
 
-public enum ErrorMessage {
+public enum ErrorMessageFormat {
 
     PREFIX("[ERROR] ");
 
     private final String message;
 
-    ErrorMessage(String message) {
+    ErrorMessageFormat(String message) {
         this.message = message;
     }
 

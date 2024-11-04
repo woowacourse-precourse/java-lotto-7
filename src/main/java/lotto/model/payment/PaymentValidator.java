@@ -1,6 +1,6 @@
 package lotto.model.payment;
 
-import lotto.error.PaymentErrorMessage;
+import lotto.error.PaymentError;
 import lotto.model.lotto.Lotto;
 import lotto.constants.lotto.LottoNumber;
 
@@ -28,7 +28,7 @@ public class PaymentValidator {
 
     private void validateFormat(String[] splitPayment, String integerPart) {
         if (splitPayment.length > MAX_SPLIT_PAYMENT_LENGTH) {
-            throw new IllegalArgumentException(PaymentErrorMessage.WRONG_PAYMENT_FORMAT.getMessage());
+            throw new IllegalArgumentException(PaymentError.WRONG_PAYMENT_FORMAT.getMessage());
         }
 
         if (hasDecimal(splitPayment)) {
@@ -37,7 +37,7 @@ public class PaymentValidator {
         }
 
         if (!integerPart.matches(LottoNumber.FORMAT)) {
-            throw new IllegalArgumentException(PaymentErrorMessage.WRONG_PAYMENT_FORMAT.getMessage());
+            throw new IllegalArgumentException(PaymentError.WRONG_PAYMENT_FORMAT.getMessage());
         }
     }
 
@@ -46,7 +46,7 @@ public class PaymentValidator {
         BigInteger totalLottoObjectSize = calcTotalLottoObjectSize(integerPart);
 
         if (freeMemory.compareTo(totalLottoObjectSize) < 0) {
-            throw new IllegalArgumentException(PaymentErrorMessage.EXCEED_MAX_PAYMENT.getMessage());
+            throw new IllegalArgumentException(PaymentError.EXCEED_MAX_PAYMENT.getMessage());
         }
     }
 
@@ -63,17 +63,17 @@ public class PaymentValidator {
         long payment = Long.parseLong(integerPart);
 
         if (payment < MIN_PAYMENT) {
-            throw new IllegalArgumentException(PaymentErrorMessage.NEGATIVE_PAYMENT.getMessage());
+            throw new IllegalArgumentException(PaymentError.NEGATIVE_PAYMENT.getMessage());
         }
 
         if (payment % Lotto.PRICE > 0) {
-            throw new IllegalArgumentException(PaymentErrorMessage.NOT_MULTIPLE_OF_THOUSAND_PAYMENT.getMessage());
+            throw new IllegalArgumentException(PaymentError.NOT_MULTIPLE_OF_THOUSAND_PAYMENT.getMessage());
         }
     }
 
     private void validateHasOnlyZero(String decimalPart) {
         if (!hasOnlyZero(decimalPart)) {
-            throw new IllegalArgumentException(PaymentErrorMessage.WRONG_PAYMENT_FORMAT.getMessage());
+            throw new IllegalArgumentException(PaymentError.WRONG_PAYMENT_FORMAT.getMessage());
         }
     }
 

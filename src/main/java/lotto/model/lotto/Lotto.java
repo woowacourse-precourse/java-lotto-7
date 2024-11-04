@@ -1,6 +1,6 @@
 package lotto.model.lotto;
 
-import lotto.error.LottoErrorMessage;
+import lotto.error.LottoNumberError;
 import lotto.model.Winning;
 import lotto.constants.lotto.LottoNumberPrintFormat;
 import lotto.model.draw_numbers.DrawNumbers;
@@ -34,11 +34,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
-            throw new IllegalArgumentException(LottoErrorMessage.INVALID_NUMBERS_COUNT.getMessage());
+            throw new IllegalArgumentException(LottoNumberError.INVALID_NUMBERS_COUNT.getMessage());
         }
 
         if (numbers.stream().distinct().count() < numbers.size()) {
-            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
+            throw new IllegalArgumentException(LottoNumberError.DUPLICATE_LOTTO_NUMBERS.getMessage());
         }
     }
 

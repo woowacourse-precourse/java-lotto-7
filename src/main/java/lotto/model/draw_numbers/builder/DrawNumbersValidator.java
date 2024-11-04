@@ -1,6 +1,6 @@
 package lotto.model.draw_numbers.builder;
 
-import lotto.error.LottoErrorMessage;
+import lotto.error.DrawNumbersError;
 import lotto.model.lotto.Lotto;
 import lotto.constants.lotto.LottoNumber;
 
@@ -34,7 +34,7 @@ public class DrawNumbersValidator {
 
     public void validateAssociateWinningAndBonusNumbers(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_WINNING_AND_BONUS_NUMBERS.getMessage());
+            throw new IllegalArgumentException(DrawNumbersError.DUPLICATE_WINNING_AND_BONUS_NUMBERS.getMessage());
         }
     }
 
@@ -52,25 +52,25 @@ public class DrawNumbersValidator {
 
     private void validateRange(String number) {
         if (Integer.parseInt(number) < LottoNumber.MIN_VALUE || LottoNumber.MAX_VALUE < Integer.parseInt(number)) {
-            throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(DrawNumbersError.LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
     private void validateDuplicateWiningNumbers(List<String> splitWinningNumbers) {
         if (isDuplicateWinningNumbers(splitWinningNumbers)) {
-            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_WINNING_NUMBERS.getMessage());
+            throw new IllegalArgumentException(DrawNumbersError.DUPLICATE_WINNING_NUMBERS.getMessage());
         }
     }
 
     private void validateNoLetters(String number) {
         if (!number.matches(LottoNumber.FORMAT)) {
-            throw new IllegalArgumentException(LottoErrorMessage.LETTERS_IN_NUMBERS.getMessage());
+            throw new IllegalArgumentException(DrawNumbersError.LETTERS_IN_NUMBERS.getMessage());
         }
     }
 
     private void validateCountWinningNumbers(List<String> splitWinningNumbers) {
         if (splitWinningNumbers.size() < Lotto.NUMBER_COUNT) {
-            throw new IllegalArgumentException(LottoErrorMessage.INSUFFICIENT_WINNING_NUMBERS.getMessage());
+            throw new IllegalArgumentException(DrawNumbersError.INSUFFICIENT_WINNING_NUMBERS.getMessage());
         }
 
         if (splitWinningNumbers.size() > Lotto.NUMBER_COUNT) {
@@ -80,13 +80,13 @@ public class DrawNumbersValidator {
 
     private void validateWinningNumbersFormat(String winningNumbers) {
         if (winningNumbers.startsWith(DELIMITER) || winningNumbers.endsWith(DELIMITER)) {
-            throw new IllegalArgumentException(LottoErrorMessage.WRONG_WINNING_NUMBERS_FORMAT.getMessage());
+            throw new IllegalArgumentException(DrawNumbersError.WRONG_WINNING_NUMBERS_FORMAT.getMessage());
         }
     }
 
     private void validateEmpty(String number) {
         if (number.isEmpty()) {
-            throw new IllegalArgumentException(LottoErrorMessage.EMPTY_NUMBERS.getMessage());
+            throw new IllegalArgumentException(DrawNumbersError.EMPTY_NUMBERS.getMessage());
         }
     }
 
