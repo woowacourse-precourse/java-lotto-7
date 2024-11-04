@@ -26,7 +26,7 @@ public class WinningNumberValidator implements Validator {
     }
 
     private void isConsistOfNumberAndComma(){
-        if(!winningNumbers.matches("[0-9|,]+")){
+        if(winningNumbers == null || !winningNumbers.matches("[0-9|,]+")){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자와 쉼표만 입력 할 수 있습니다. (공백 없이 쉼표로만 숫자 구분)");
         }
     }

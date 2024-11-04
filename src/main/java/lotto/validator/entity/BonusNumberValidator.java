@@ -17,7 +17,7 @@ public class BonusNumberValidator implements Validator {
     }
 
     private void isValidatedForm(){
-        if(!bonusNumber.matches("[0-9]+")){
+        if(bonusNumber == null || !bonusNumber.matches("[0-9]+")){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 할 수 있습니다.");
         }
     }
