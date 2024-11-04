@@ -8,7 +8,32 @@
 이 후 최종 결과와 수익률을 알려줍니다.
 
 ## 디렉토리 구조 📁
+```text
+├─main
+│  └─java
+│      └─lotto
+│          ├─constant
+│          ├─controller
+│          │  └─dto
+│          ├─exception
+│          ├─model
+│          │  ├─enums
+│          │  └─lottoInfo
+│          ├─service
+│          ├─ui
+│          ├─util
+│          └─validator
+└─test
+    └─java
+        └─lotto
+            ├─model
+            │  ├─enums
+            │  └─lottoInfo
+            ├─service
+            ├─util
+            └─validator
 
+```
 ## 요구 사항
  - 숫자의 범위는 1~45까지다
  - 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다
@@ -64,3 +89,6 @@
 - 로또 결과를 기반으로 수익률을 계산해 출력한다.
  
 ## 지난 주 피드백 적용 내역
+- 일급 클래스를 이용한 설계
+- 검증 로직 분리
+- 단위 테스트 작성
