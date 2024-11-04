@@ -109,7 +109,7 @@ public class MainController {
     public static void calculateProfit(LottoRanks lottoRanks, Wallet wallet) {
         Double totalReward = Double.valueOf(lottoRanks.getLottoRanks().stream().mapToInt(LottoRank::getReward).sum());
         Double profit = (totalReward / wallet.getMoney()) * 100;
-        String profitArgument = String.format("%.2f", profit);
+        String profitArgument = String.format("%.1f", profit);
         printTotalProfit(profitArgument);
     }
 }
