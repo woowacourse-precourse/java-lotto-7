@@ -123,6 +123,28 @@ class ApplicationTest extends NsTest {
         assertDoesNotThrow(() -> Application.splitWithComma("a,d,b,c,d,e"));
     }
 
+    @Test
+    void 당첨번호_범위를_벗어나면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            assertThrows(Exception.class, () -> {
+                Application.validateInputRange(90);
+            });
+        });
+    }
+
+    @Test
+    void 당첨번호_범위를_벗어나면_예외가_발생하는_예외(){
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.validateInputRange(90))
+                    .isInstanceOf(IllegalArgumentException.class);
+        });
+    }
+
+    @Test
+    void 당첨번호_범위를_벗어나지_않으면_예외가_발생하지_않는다(){
+        assertDoesNotThrow(() -> Application.validateInputRange(40));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
