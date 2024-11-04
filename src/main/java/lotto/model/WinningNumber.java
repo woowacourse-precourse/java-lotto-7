@@ -1,0 +1,22 @@
+package lotto.model;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+public class WinningNumber {
+    private final Set<Integer> numbers;
+    private final BonusNumber bonusNumber;
+
+    public WinningNumber(Set<Integer> numbers, int bonusNumberValue) {
+        this.numbers = new TreeSet<>(numbers);
+        this.bonusNumber = new BonusNumber(bonusNumberValue);
+    }
+
+    public Set<Integer> getNumbers() {
+        return new TreeSet<>(numbers);
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber.getNumber();
+    }
+}
