@@ -7,12 +7,23 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * 사용자로부터 입력을 받고 검증하는 클래스
+ */
 public class LottoInput {
     private static final int LOTTO_PRICE = 1000;
     private static final int LOTTO_SIZE = 6;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 
+
+    /**
+     * 사용자로부터 구매 금액을 입력받고 유효성을 검사
+     *
+     * @return 검증된 구매 금액
+     * @throws NumberFormatException 숫자가 아닌 입력이 들어온 경우
+     * @throws IllegalArgumentException 구매 금액이 1000원 단위가 아닌 경우
+     */
     public int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         while (true) {
@@ -28,6 +39,12 @@ public class LottoInput {
         }
     }
 
+    /**
+     * 사용자로부터 당첨 번호를 입력받고 유효성을 검사
+     *
+     * @return 검증된 당첨 번호 리스트
+     * @throws IllegalArgumentException 유효하지 않은 당첨 번호인 경우
+     */
     public List<Integer> inputWinningNumbers() {
         while (true) {
             try {
@@ -42,6 +59,14 @@ public class LottoInput {
         }
     }
 
+    /**
+     * 사용자로부터 보너스 번호를 입력받고 유효성을 검사
+     *
+     * @param winningNumbers 기존 당첨 번호 리스트 (중복 검사용)
+     * @return 보너스 번호
+     * @throws NumberFormatException 숫자가 아닌 입력이 들어온 경우
+     * @throws IllegalArgumentException 유효하지 않은 보너스 번호인 경우
+     */
     public int inputBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
@@ -57,6 +82,7 @@ public class LottoInput {
         }
     }
 
+    // 구매 금액이 1000원 단위인지 검증
     private void validatePurchaseAmount(int amount) {
         if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");

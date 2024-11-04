@@ -12,12 +12,23 @@ enum Prize {
     private final boolean needBonusMatch;
     private final int prize;
 
+    /**
+     * @param matchCount 일치하는 번호 개수
+     * @param needBonusMatch 보너스 번호 일치 여부
+     * @param prize 당첨금
+     */
     Prize(int matchCount, boolean needBonusMatch, int prize) {
         this.matchCount = matchCount;
         this.needBonusMatch = needBonusMatch;
         this.prize = prize;
     }
 
+
+    /**
+     * @param matchCount 일치하는 번호 개수
+     * @param bonusMatch 보너스 번호 일치 여부
+     * @return 해당하는 당첨 등수
+     */
     public static Prize of(int matchCount, boolean bonusMatch) {
         if (matchCount == 6) return FIRST;
         if (matchCount == 5 && bonusMatch) return SECOND;

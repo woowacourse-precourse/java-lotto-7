@@ -1,5 +1,8 @@
 package lotto;
 
+/**
+ * 전체 당첨 결과를 관리하는 클래스
+ */
 public class WinningResult {
     private final int[] results;
 
@@ -7,12 +10,20 @@ public class WinningResult {
         this.results = new int[Prize.values().length];
     }
 
+    /**
+     * 특정 등수의 당첨 결과를 추가
+     *
+     * @param prize 당첨 등수
+     */
     public void addResult(Prize prize) {
         if (prize != Prize.NONE) {
             results[prize.ordinal()]++;
         }
     }
 
+    /**
+     * @return 총 당첨금
+     */
     public long calculateTotalPrize() {
         long totalPrize = 0;
         for (Prize prize : Prize.values()) {
