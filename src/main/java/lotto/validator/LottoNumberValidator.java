@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import static lotto.constant.Constants.DELIMITER;
 import static lotto.constant.Constants.LOTTO_NUMBER_LENGTH;
 import static lotto.constant.Constants.LOTTO_NUMBER_RANGE_END;
 import static lotto.constant.Constants.LOTTO_NUMBER_RANGE_START;
@@ -7,6 +8,7 @@ import static lotto.constant.Constants.LOTTO_NUMBER_RANGE_START;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 import lotto.exception.InputNumberException;
 
 public class LottoNumberValidator {
@@ -14,6 +16,13 @@ public class LottoNumberValidator {
         validateDuplicates(numbers);
         validateRange(numbers);
         validateLength(numbers);
+    }
+
+    private static List<Integer> parseNumbers(String input) {
+        return Stream.of(input.split(DELIMITER))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private static void validateDuplicates(List<Integer> numbers) {
