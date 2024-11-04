@@ -47,7 +47,7 @@ public class LottoTicketMachine {
 		}
 	}
 
-	private String formattingForPrintLottoResult(Map<LottoPrize, Integer> winningStatus) {
+	private static String formattingForPrintLottoResult(Map<LottoPrize, Integer> winningStatus) {
 		return String.format(OutputInterface.WINNING_STATISTICS.toString(),
 			winningStatus.get(LottoPrize.THREE),
 			winningStatus.get(LottoPrize.FOUR),

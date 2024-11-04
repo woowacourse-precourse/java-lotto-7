@@ -22,7 +22,7 @@ public class LottoService {
 		return bonusNumber;
 	}
 
-	private void validateIsDuplicateByWinningNumber(int bonusNumber, List<Integer> winningNumbers) {
+	private static void validateIsDuplicateByWinningNumber(int bonusNumber, List<Integer> winningNumbers) {
 		if (winningNumbers.contains(bonusNumber)) {
 			throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_IS_DUPLICATED.toString());
 		}
@@ -36,13 +36,13 @@ public class LottoService {
 			.toList();
 	}
 
-	private void validateWinningNumberRegex(String winningNumbers) {
+	private static void validateWinningNumberRegex(String winningNumbers) {
 		if (Pattern.matches(winningNumbers, WINNING_NUMBER_REGEX)) {
 			throw new IllegalArgumentException(ExceptionMessage.MISMATCHED_REGEX.toString());
 		}
 	}
 
-	private void validateNumberSize(int size) {
+	private static void validateNumberSize(int size) {
 		if (size != LottoNumberConstant.LOTTO_NUMBER_SIZE) {
 			throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_SIZE.toString());
 		}
