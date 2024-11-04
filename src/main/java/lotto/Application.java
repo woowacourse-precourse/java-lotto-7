@@ -31,8 +31,10 @@ public class Application {
                     throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
                 }
                 return amount;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자 형식의 금액을 입력해 주세요."); // 숫자 형식이 아닌 경우 처리
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(e.getMessage()); // 1000원 단위가 아닌 경우 처리
             }
         }
     }
