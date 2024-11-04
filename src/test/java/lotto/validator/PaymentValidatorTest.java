@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class PaymentValidatorTest {
 
@@ -20,10 +20,10 @@ class PaymentValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"99999999999999999999999999","1.5^"})
-    void 숫자가_아닌_값을_입력하면_예외_발생(String input){
+    void 오버플로우이거나_문자를_입력하면_예외_발생(String input){
         assertThatThrownBy(() -> PaymentValidator.validateRawPayment(input)).
                 isInstanceOf(IllegalArgumentException.class).
-                hasMessageContaining(ErrorMessage.INVALID_INPUT_TYPE);
+                hasMessageContaining(ErrorMessage.INVALID_PAYMENT_TYPE);
     }
 
 }

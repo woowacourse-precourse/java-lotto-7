@@ -14,7 +14,7 @@ public class PaymentValidator {
         try{
             Long.parseLong(input);
         }catch(IllegalArgumentException e){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_TYPE);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PAYMENT_TYPE);
         }
     }
 

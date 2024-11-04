@@ -12,7 +12,7 @@ public class LottoController {
 
     public void start(){
             //구입금액
-            PaymentInput paymentInput=InputView.enterPaymentInput();
+            PaymentInput paymentInput=InputView.enterPayment();
             //구입한 개수만큼 로또 만들기
             List<Lotto> lottos=createLottos(paymentInput.getLottoCounts());
             //
@@ -30,7 +30,7 @@ public class LottoController {
     }
 
 
-    private List<Lotto> createLottos(int lottoCounts) {
+    private List<Lotto> createLottos(long lottoCounts) {
         List<Lotto> lottos=new ArrayList<>();
 
         for (int lottoCount=0;lottoCount< lottoCounts;lottoCount++){
