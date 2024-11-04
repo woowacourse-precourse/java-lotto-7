@@ -30,11 +30,12 @@ public class LottoController {
         //구입금액을 입력받습니다.
         int money = getMoney();
 
-        //로또를 만듭니다.
+        //구맨 로또를 만들고, 출력합니다.
         Lottos lottos = makeLottos(money);
 
         //당첨번호와 보너스번호를 입력받고 당첨로또를 만듭니다.
-        WinningLotto winningLotto = getWinningLotto();
+        Lotto winningLottoNumbers = getWinningLottoNumbers();
+        WinningLotto winningLotto = getWinningLotto(winningLottoNumbers);
 
         //로또들과 당첨로또를 비교하여 당첨내역을 반환합니다.
         List<LottoRank> lottoRanks = lottoCheckService.checkRanks(winningLotto, lottos);
@@ -56,11 +57,15 @@ public class LottoController {
         });
     }
 
-    public WinningLotto getWinningLotto() {
+    public Lotto getWinningLottoNumbers() {
         return retryOnException(() -> {
             List<Integer> winningNumbers = view.getWinningNumbers();
-            Lotto lotto = lottoCreateService.createLotto(winningNumbers);
+            return lottoCreateService.createLotto(winningNumbers);
+        });
+    }
 
+    public WinningLotto getWinningLotto(Lotto lotto) {
+        return retryOnException(() -> {
             int bonusNumber = view.getBonusNumber();
             return lottoCreateService.createWinningLotto(lotto, bonusNumber);
         });
