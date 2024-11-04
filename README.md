@@ -14,11 +14,17 @@
         - `numbers`: 추첨된 로또 번호들을 저장할 List입니다.
         - `validate`: 번호 6개를 제대로 추첨하였는지 검사하는 메서드 입니다.
         - `sortNumbers`: 로또번호 6개를 오름차순으로 정렬합니다.
-- **LottoWinningNumbers 클래스**
+- **WinningLotto 클래스**
     - 로또 당첨번호 6개와 보너스번호 1개를 저장합니다.
     - 주요 필드:
         - `winningNumbers`: 로또 당첨번호 6개를 저장하는 List입니다.
         - `bonusNumber` :보너스 번호 1개를 저장하는 변수입니다.
+- **Rank 클래스**
+    - 로또의 당첨 등수를 조건에 따라 정의하고 상금 정보를 관리
+    - 주요 필드:
+        - `getMatchCount`: 각 Rank Enum의 일치하는 번호 개수를 반환합니다.
+        - `getPrize` :각 Rank Enum의 상금을 반환합니다.
+        - `valueOf` :일치하는 번호 개수(matchCount)와 보너스 번호 일치 여부(bonusMatch)에 따라 적절한 Rank Enum 값을 반환합니다.
 
 ### 2. View
 
