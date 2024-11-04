@@ -95,7 +95,6 @@ public class LottoService {
     }
 
     private double getLottoRateOfReturn() {
-        return Math.round((double) lottoResultChecker.getPrize() / money.getMoney()) * 100;
+        return (double) lottoResultChecker.getPrize() / money.getMoney() * 100;
     }
-
 }

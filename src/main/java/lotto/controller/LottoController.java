@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -19,7 +20,7 @@ public class LottoController {
         processInputWinningNumber();
         processInputBonusNumber();
 
-        lottoService.getLottoStatistics();
+        getAndPrintLottoStatistics();
     }
 
     private void processInputMoney() {
@@ -65,5 +66,12 @@ public class LottoController {
             outputView.printLotto(lotto.getNumbers());
         }
         outputView.printEmptyLine();
+    }
+
+    private void getAndPrintLottoStatistics() {
+        Map<List<Integer>, Double> lottoStatistics = lottoService.getLottoStatistics();
+        for (Map.Entry<List<Integer>, Double> entry : lottoStatistics.entrySet()) {
+            outputView.printLottoStatistics(entry.getKey(), entry.getValue());
+        }
     }
 }
