@@ -1,11 +1,16 @@
 package lotto;
 
+import java.util.Arrays;
+import lotto.domain.Lotto;
+import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
     @Test
@@ -21,5 +26,35 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+    @DisplayName("입력받은 로또 번호와 일치할 시 매칭된 번호의 갯수를 반환한다.")
+    @Test
+    void 로또_번호와_당첨번호_검수() {
+        //Given
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoNumbers);
+        WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 7, 8, 9), 10);
+
+        //When
+        int matchCount = lotto.matchCount(winningNumbers);
+
+        //Then
+        assertEquals(3, matchCount);
+    }
+
+    @DisplayName("보너스 번호 여부를 판단한다.")
+    @Test
+    void 보너스_번호가_포함이_되었는지_검수() {
+        //Given
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 10);
+        Lotto lotto = new Lotto(lottoNumbers);
+        WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 7, 8, 9), 10);
+
+        //When
+        boolean hasBonus = lotto.hasBonusNumber(winningNumbers);
+
+        //Then
+        assertTrue(hasBonus);
+    }
+
 }
