@@ -28,7 +28,7 @@ public class LottoController {
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
         List<Integer> lottoResults = makeLottoResults(lottos, winningNumbers, bonusNumber);
-        printLottoResults(lottoResults);
+        printLottoResults(money, lottoResults);
     }
 
     private int buyLotto(int money) {
@@ -88,7 +88,8 @@ public class LottoController {
         return service.calculateLottoResult(lottos, winningNumbers, bonusNumber);
     }
 
-    private void printLottoResults(List<Integer> lottoResults) {
-        outputView.printLottoResults(lottoResults);
+    private void printLottoResults(int money, List<Integer> lottoResults) {
+        double rate = service.calculateRate(money, lottoResults);
+        outputView.printLottoResults(rate, lottoResults);
     }
 }
