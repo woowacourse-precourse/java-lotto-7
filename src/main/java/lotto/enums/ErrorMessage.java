@@ -10,6 +10,7 @@ public enum ErrorMessage {
     LOTTO_INVALID_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
     LOTTO_DUPLICATE_NUMBER("로또 번호는 중복될 수 없습니다."),
     LOTTO_NUMBER_OUT_OF_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+    WINNING_NUMBER_INVALID_FORMAT("당첨 번호는 쉼표(,)로 구분된 1~45 사이의 숫자여야 합니다."),
     BONUS_NUMBER_DUPLICATE("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
 
     private final String message;

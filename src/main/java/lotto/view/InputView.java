@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.enums.ErrorMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +12,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch(NumberFormatException e){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 
@@ -22,7 +23,7 @@ public class InputView {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_INVALID_FORMAT.getMessage());
         }
     }
 
@@ -30,7 +31,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch(NumberFormatException e){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 }
