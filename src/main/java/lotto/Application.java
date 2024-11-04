@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static lotto.Validation.validateWinningNumber;
+
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -21,11 +23,23 @@ public class Application {
         lottoGame.printMyLotto();
         System.out.println();
 
+        String[] winningNumberString;
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String winningNumber = Console.readLine();
-                lottoGame.matchNumbers(winningNumber);
+                winningNumberString = winningNumber.split(",");
+                validateWinningNumber(winningNumberString);
+                break;
+            } catch (IllegalArgumentException e) {
+            }
+        }
+
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String bonusNumber = Console.readLine();
+                Validation.validateBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
             }
