@@ -7,7 +7,7 @@ public class NumberValidator {
 	public int parseStringToInt(String input) {
 		try {
 			return Integer.parseInt(input);
-		} catch (InvalidPurchaseAmountException e) {
+		} catch (NumberFormatException e) {
 			throw new InvalidPurchaseAmountException();
 		}
 	}
