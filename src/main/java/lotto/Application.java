@@ -7,24 +7,24 @@ public class Application {
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int LOTTO_MAX_NUMBER = 45;
 
-    private static final Map<Integer, Integer> preizeMoney = Map.of(
-            6, 2_000_000_000, // 1등
-            5, 1_500_000, // 2등
-            4, 50_000, // 3등
-            3, 5_000 // 4등
+    private static final Map<Integer, Integer> prizeMoney = Map.of(
+            6, 2_000_000_000,   // 1등
+            5, 1_500_000,       // 3등
+            4, 50_000,          // 4등
+            3, 5_000            // 5등
     );
 
     public static void main(String[] args) {
         try {
-            int purchaseAmount = getPurchaseAmount();
+            int purchaseAmount = getValidPurchaseAmount();
             int numberOfTickets = purchaseAmount / LOTTO_PRICE;
             System.out.println(numberOfTickets + "개를 구매했습니다.");
 
             List<Set<Integer>> lottoTickets = generateLottoTickets(numberOfTickets);
             printLottoTickets(lottoTickets);
 
-            Set<Integer> winningNumbers = getWinningNumbers();
-            int bonusNumber = getBonusNumber(winningNumbers);
+            Set<Integer> winningNumbers = getValidWinningNumbers();
+            int bonusNumber = getValidBonusNumber(winningNumbers);
 
             System.out.println("당첨 번호: " + winningNumbers);
             System.out.println("보너스 번호: " + bonusNumber);
@@ -35,8 +35,19 @@ public class Application {
             double profitRate = calculateProfitRate(results, purchaseAmount);
             System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
 
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("[ERROR] 예상치 못한 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
+    // 예외 발생 시 반복 입력을 위한 구입 금액 입력
+    private static int getValidPurchaseAmount() {
+        while (true) {
+            try {
+                return getPurchaseAmount();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
         }
     }
 
@@ -50,6 +61,70 @@ public class Application {
             throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
         return amount;
+    }
+
+    // 예외 발생 시 반복 입력을 위한 당첨 번호 입력
+    private static Set<Integer> getValidWinningNumbers() {
+        while (true) {
+            try {
+                return getWinningNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    // 당첨 번호 입력 및 검증
+    private static Set<Integer> getWinningNumbers() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
+        String input = scanner.nextLine();
+        String[] numbers = input.split(",");
+
+        if (numbers.length != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException("당첨 번호는 6개의 숫자여야 합니다.");
+        }
+
+        Set<Integer> winningNumbers = new HashSet<>();
+        for (String number : numbers) {
+            int parsedNumber = Integer.parseInt(number.trim());
+            validateLottoNumber(parsedNumber);
+            if (!winningNumbers.add(parsedNumber)) {
+                throw new IllegalArgumentException("당첨 번호에는 중복된 숫자가 없어야 합니다.");
+            }
+        }
+        return winningNumbers;
+    }
+
+    // 예외 발생 시 반복 입력을 위한 보너스 번호 입력
+    private static int getValidBonusNumber(Set<Integer> winningNumbers) {
+        while (true) {
+            try {
+                return getBonusNumber(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    // 보너스 번호 입력 및 검증
+    private static int getBonusNumber(Set<Integer> winningNumbers) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = scanner.nextInt();
+
+        validateLottoNumber(bonusNumber);
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+        return bonusNumber;
+    }
+
+    // 번호 범위 검증
+    private static void validateLottoNumber(int number) {
+        if (number < 1 || number > LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 
     // 로또 티켓 발행
@@ -77,48 +152,6 @@ public class Application {
     private static void printLottoTickets(List<Set<Integer>> tickets) {
         for (Set<Integer> ticket : tickets) {
             System.out.println(ticket);
-        }
-    }
-
-    // 당첨 번호 입력 및 검증
-    private static Set<Integer> getWinningNumbers() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
-        String input = scanner.nextLine();
-        String[] numbers = input.split(",");
-
-        if (numbers.length != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("당첨 번호는 6개의 숫자여야 합니다.");
-        }
-
-        Set<Integer> winningNumbers = new HashSet<>();
-        for (String number : numbers) {
-            int parsedNumber = Integer.parseInt(number.trim());
-            validateLottoNumber(parsedNumber);
-            if (!winningNumbers.add(parsedNumber)) {
-                throw new IllegalArgumentException("당첨 번호에는 중복된 숫자가 없어야 합니다.");
-            }
-        }
-        return winningNumbers;
-    }
-
-    // 보너스 번호 입력 및 검증
-    private static int getBonusNumber(Set<Integer> winningNumbers) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = scanner.nextInt();
-
-        validateLottoNumber(bonusNumber);
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
-        return bonusNumber;
-    }
-
-    // 번호 범위 검증
-    private static void validateLottoNumber(int number) {
-        if (number < 1 || number > LOTTO_MAX_NUMBER) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
