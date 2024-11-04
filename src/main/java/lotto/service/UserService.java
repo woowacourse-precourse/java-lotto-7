@@ -6,14 +6,12 @@ import lotto.collection.LottoTickets;
 import lotto.domain.user.User;
 import lotto.domain.user.UserRepository;
 import lotto.enums.LottoConstant;
-import lotto.util.ProgramExit;
-import lotto.view.ErrorOutputView;
+import lotto.util.DoLoop;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
 
-import static lotto.enums.LottoConstant.ACCESS_COUNT;
 import static lotto.view.OutputView.ENTER_PURCHASE_PRICE;
 import static lotto.view.OutputView.PURCHASED_LOTTO_COUNT;
 
@@ -40,16 +38,10 @@ public class UserService {
     }
 
     public User inputPurchasePriceForUser() {
-        for (int count = 0; count < ACCESS_COUNT.getValue(); count++) {
-            try {
-                String purchasePrice = inputPurchasePrice();
-                return save(purchasePrice);
-            } catch (IllegalArgumentException e) {
-                ErrorOutputView.printErrorMessage(e.getMessage());
-            }
-        }
-        ProgramExit.run(ACCESS_COUNT.getValue());
-        return null;
+        return DoLoop.run(() -> {
+           String purchasePrice = inputPurchasePrice();
+           return save(purchasePrice);
+        });
     }
 
     private String inputPurchasePrice() {
@@ -92,19 +84,13 @@ public class UserService {
     }
 
     private void saveLotto(User user) {
-        for (int i = 0; i < ACCESS_COUNT.getValue(); i++) {
-            try {
-                user.addLotto(new Lotto(autoCreateLottoNumbers()));
-                return;
-            } catch (IllegalArgumentException e) {
-                ErrorOutputView.printErrorMessage(e.getMessage());
-            }
-        }
-        ProgramExit.run(ACCESS_COUNT.getValue());
+        DoLoop.run(() -> {
+            user.addLotto(new Lotto(autoCreateLottoNumbers()));
+            return null;
+        });
     }
 
     private List<Integer> autoCreateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
-
 }

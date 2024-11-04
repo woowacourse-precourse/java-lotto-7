@@ -2,12 +2,10 @@ package lotto.service;
 
 import lotto.collection.WinningNumber;
 import lotto.domain.LottoResult;
-import lotto.util.ProgramExit;
-import lotto.view.ErrorOutputView;
+import lotto.util.DoLoop;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import static lotto.enums.LottoConstant.ACCESS_COUNT;
 import static lotto.view.OutputView.ENTER_BONUS_NUMBER;
 import static lotto.view.OutputView.ENTER_WINNING_NUMBER;
 
@@ -23,17 +21,10 @@ public class LottoService {
     }
 
     public WinningNumber getWinningNumbers() {
-        for (int i = 0; i < ACCESS_COUNT.getValue(); i++) {
-            try {
-                String[] winningNumber = inputWinningNumbers();
-                return new WinningNumber(winningNumber);
-
-            } catch (IllegalArgumentException e) {
-                ErrorOutputView.printErrorMessage(e.getMessage());
-            }
-        }
-        ProgramExit.run(ACCESS_COUNT.getValue());
-        return null;
+        return DoLoop.run(() -> {
+            String[] winningNumber = inputWinningNumbers();
+            return new WinningNumber(winningNumber);
+        });
     }
 
     private String[] inputWinningNumbers() {
@@ -42,19 +33,11 @@ public class LottoService {
     }
 
     public LottoResult getBonusNumbers(WinningNumber winningNumbers) {
-        for (int i = 0; i < ACCESS_COUNT.getValue(); i++) {
-            try {
-                OutputView.newLine();
-                OutputView.printMessage(ENTER_BONUS_NUMBER.getMessage());
-                String bonusNumber = InputView.readLine();
-                return new LottoResult(winningNumbers, bonusNumber);
-
-            } catch (IllegalArgumentException e) {
-                ErrorOutputView.printErrorMessage(e.getMessage());
-            }
-        }
-        ProgramExit.run(ACCESS_COUNT.getValue());
-        return null;
+        return DoLoop.run(() -> {
+            OutputView.newLine();
+            OutputView.printMessage(ENTER_BONUS_NUMBER.getMessage());
+            String bonusNumber = InputView.readLine();
+            return new LottoResult(winningNumbers, bonusNumber);
+        });
     }
-
 }
