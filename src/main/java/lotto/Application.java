@@ -13,7 +13,7 @@ public class Application {
     }
 
     public static List<Integer> lotto_input() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String userInput = Console.readLine().trim();
         String[] splittedNumber = userInput.split(",");
         List<Integer> winningNumber = new ArrayList<>();
@@ -25,7 +25,7 @@ public class Application {
     }
 
     public static int bonus_input() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String userInput = Console.readLine().trim();
 
         return Integer.parseInt(userInput);
@@ -35,17 +35,22 @@ public class Application {
         // TODO: 프로그램 구현
         int budget = budget_input();
         List<Integer> winningNumber = new ArrayList<>();
+
+        int numToBuy = budget / 1000;
+        LottoCollection lottoTickets = new LottoCollection(numToBuy);
+
+        System.out.println("\n" + numToBuy + "개를 구매했습니다.");
+        for (Lotto lotto : lottoTickets.getTickets()) {
+            lotto.printLottery();
+        }
+
         winningNumber = lotto_input();
         int bonusNumber = bonus_input();
 
         Lotto winningLotto = new Lotto(winningNumber);
 
-        int numToBuy = budget / 1000;
-        LottoCollection lottoTickets = new LottoCollection(numToBuy);
-
-        for (Lotto lotto : lottoTickets.getTickets()) {
-            lotto.printLottery();
-        }
+        // check result of lottery
+        lottoTickets.checkResult(winningLotto, bonusNumber);
 
     }
 }

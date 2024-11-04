@@ -31,4 +31,23 @@ public class Lotto {
     public void printLottery() {
         System.out.println(numbers);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int countMatchingNumbers(Lotto winningLotto) {
+        int matchCount = 0;
+        for (int number: numbers) {
+            if (winningLotto.getNumbers().contains(number)) {
+                matchCount++;
+            }
+        }
+
+        return matchCount;
+    }
+
+    public boolean containBonusNumber(int bonus) {
+        return numbers.contains(bonus);
+    }
 }
