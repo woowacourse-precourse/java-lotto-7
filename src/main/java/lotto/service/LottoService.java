@@ -30,6 +30,11 @@ public class LottoService {
                 numbers.add(randomNumber);
             }
         }
-        return new Lotto(numbers);
+        return new Lotto(sortedLottoNumber(numbers));
+    }
+
+    private List<Integer> sortedLottoNumber(List<Integer> numbers) {
+        numbers.sort(Integer::compareTo);
+        return numbers;
     }
 }
