@@ -31,19 +31,11 @@ public class OutputPrinter {
                 currentWinningNumbers = prizeSummary.get(prize);
                 sum += (long) prize.getPrizeMoney() * currentWinningNumbers;
             }
-            System.out.printf("%d개 일치 (%s원) - %d개", i, decimalFormat.format(prize.getPrizeMoney()) ,currentWinningNumbers);
-            System.out.println("\n");
+
+            System.out.printf("%d개 일치 (%s원) - %d개\n", i, decimalFormat.format(prize.getPrizeMoney()) ,currentWinningNumbers);
 
             if (i == 5) {
-                Float temp = 5.5F;
-                prize = Prize.findByMatchingNumber(temp);
-                currentWinningNumbers =0;
-                if(prizeSummary.get(prize) != null) {
-                    currentWinningNumbers = prizeSummary.get(prize);
-                    sum += (long) prize.getPrizeMoney() * currentWinningNumbers;
-                }
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개", i, decimalFormat.format(prize.getPrizeMoney()) ,currentWinningNumbers);
-                System.out.println("\n");
+                sum = printBonusResult(prizeSummary, currentWinningNumbers, sum, i, decimalFormat);
             }
         }
 
@@ -51,6 +43,21 @@ public class OutputPrinter {
         double roundedProfitRate = Math.round(profitRate * 10.0) / 10.0;
 
         System.out.printf("총 수익률은 %.1f%%입니다.", roundedProfitRate);
+    }
+
+    private static Long printBonusResult(ConcurrentHashMap<Prize, Integer> prizeSummary, Integer currentWinningNumbers,
+                                 Long sum, int i, DecimalFormat decimalFormat) {
+        Prize prize = Prize.findByMatchingNumber(5.5F);
+
+        if(prizeSummary.get(prize) != null) {
+            currentWinningNumbers = prizeSummary.get(prize);
+            sum += (long) prize.getPrizeMoney() * currentWinningNumbers;
+        }
+
+        System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", i, decimalFormat.format(prize.getPrizeMoney()) ,
+                currentWinningNumbers);
+
+        return sum;
     }
 
 }
