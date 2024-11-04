@@ -39,10 +39,14 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     public static LottoNumber toLottoNumber(String textNumber) {
         try {
-            return LottoNumber.from(Integer.parseInt(textNumber));
+            return LottoNumber.from(toInt(textNumber));
         } catch (NumberFormatException numberFormatException) {
             throw new IllegalArgumentException(ErrorMessage.ENTERED_INVALID_NUMBER);
         }
+    }
+
+    private static int toInt(String text) {
+        return Integer.parseInt(text);
     }
 
     @Override

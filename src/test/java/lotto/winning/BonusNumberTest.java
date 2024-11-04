@@ -43,7 +43,7 @@ public class BonusNumberTest {
         List<LottoNumber> numbers = List.of(LottoNumber.from(1), LottoNumber.from(2), LottoNumber.from(3),
                 LottoNumber.from(4), LottoNumber.from(43), LottoNumber.from(44));
 
-        assertThat(bonusNumber1.contains(numbers)).isTrue();
-        assertThat(bonusNumber2.contains(numbers)).isFalse();
+        assertThat(bonusNumber1.contained(numbers)).isTrue();
+        assertThat(bonusNumber2.contained(numbers)).isFalse();
     }
 }

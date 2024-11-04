@@ -7,7 +7,7 @@ public class RevenueCalculator {
 
     private static final int PERCENT = 100;
 
-    public static double calculateRevenue(PurchaseAmount purchaseAmount) {
+    public static double determineRevenue(PurchaseAmount purchaseAmount) {
         return expressDecimal(revenueRate(purchaseAmount));
     }
 

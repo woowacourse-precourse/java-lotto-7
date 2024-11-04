@@ -19,7 +19,7 @@ public class WinningLotto {
     }
 
     public boolean containsBonus(List<LottoNumber> numbers) {
-        return bonusNumber.contains(numbers);
+        return bonusNumber.contained(numbers);
     }
 
     @Override

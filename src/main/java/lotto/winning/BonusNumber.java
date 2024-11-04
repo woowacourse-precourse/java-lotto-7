@@ -14,7 +14,7 @@ public class BonusNumber {
         this.bonus = bonus;
     }
 
-    public boolean contains(List<LottoNumber> numbers) {
+    public boolean contained(List<LottoNumber> numbers) {
         return numbers.contains(bonus);
     }
 

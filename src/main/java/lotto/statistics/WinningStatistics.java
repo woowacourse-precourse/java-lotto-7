@@ -17,15 +17,15 @@ public class WinningStatistics {
     }
 
     private static String selectStatus(WinningRank rank) {
-        String reward = formattingReward(rank);
+        String reward = formalizeReward(rank);
 
         if (isSecond(rank)) {
             return secondStatistics(rank, reward);
         }
-        return statistics(rank, reward);
+        return basicStatistics(rank, reward);
     }
 
-    private static String formattingReward(WinningRank rank) {
+    private static String formalizeReward(WinningRank rank) {
         return Constants.AMOUNT_NOTATION.format(rank.getReward());
     }
 
@@ -37,7 +37,7 @@ public class WinningStatistics {
         return String.format(BONUS_STATISTICS_FORMAT, rank.getRequiredMatch(), reward, rank.getSuccessMatch());
     }
 
-    private static String statistics(WinningRank rank, String reward) {
+    private static String basicStatistics(WinningRank rank, String reward) {
         return String.format(BASIC_STATISTICS_FORMAT, rank.getRequiredMatch(), reward, rank.getSuccessMatch());
     }
 }

@@ -60,6 +60,6 @@ public class LottoController {
     }
 
     private double computeRevenue(PurchaseAmount purchaseAmount) {
-        return RevenueCalculator.calculateRevenue(purchaseAmount);
+        return RevenueCalculator.determineRevenue(purchaseAmount);
     }
 }

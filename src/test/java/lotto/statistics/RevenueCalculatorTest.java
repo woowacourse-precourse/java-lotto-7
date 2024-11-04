@@ -26,6 +26,6 @@ public class RevenueCalculatorTest {
         PurchaseAmount purchaseAmount = new PurchaseAmount("8000");
         WinningRank.match(3, false);
 
-        assertThat(RevenueCalculator.calculateRevenue(purchaseAmount)).isCloseTo(62.50, within(0.01));
+        assertThat(RevenueCalculator.determineRevenue(purchaseAmount)).isCloseTo(62.50, within(0.01));
     }
 }
