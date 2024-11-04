@@ -31,7 +31,7 @@ public class LottoController {
 
     private LottoPurchaseAmount getPurchaseAmountInput() {
         LottoPurchaseAmount purchaseAmount = handlePurchaseAmount();
-        outputView.printPurchasedLottoMessage(purchaseAmount.getAmount());
+        outputView.printPurchasedLottoMessage(purchaseAmount.getPurchaseCount());
         return purchaseAmount;
     }
 
