@@ -5,8 +5,6 @@ import lotto.Lotto;
 import lotto.validator.InputValidator;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static lotto.validator.InputValidator.validatePurchaseAmount;
 
@@ -31,10 +29,7 @@ public class InputView {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String input = Console.readLine();
-                List<Integer> numbers = Stream.of(input.split(","))
-                        .map(String::trim)
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList());
+                List<Integer> numbers = InputValidator.validateWinningNumbersInput(input);
                 new Lotto(numbers);
                 System.out.println();
                 return numbers;
@@ -49,9 +44,8 @@ public class InputView {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
-                int bonusNumber = Integer.parseInt(input);
-                InputValidator.validateBonusNumber(bonusNumber, winningNumbers);
-                return bonusNumber;
+                InputValidator.validateBonusNumber(input, winningNumbers);
+                return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
