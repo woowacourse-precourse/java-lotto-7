@@ -20,7 +20,7 @@ public class WinningResult {
         return new WinningResult(prizes, purchaseAmount);
     }
 
-    private static Prize matchPrize(Lotto lotto, WinningNumbers winningNumbers) {
+    private static Prize matchPrize(final Lotto lotto, final WinningNumbers winningNumbers) {
         int matchCount = lotto.countMatches(winningNumbers.lotto());
         boolean bonusMatch = lotto.contains(winningNumbers.bonusNumber());
         return Prize.of(matchCount, bonusMatch);

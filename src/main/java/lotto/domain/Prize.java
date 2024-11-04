@@ -34,7 +34,7 @@ public enum Prize {
         return this.needBonusMatch;
     }
 
-    public static Prize of(int matchCount, boolean bonusMatch) {
+    public static Prize of(final int matchCount, final boolean bonusMatch) {
         return Arrays.stream(values())
                 .filter(prize -> prize.matchCount == matchCount)
                 .filter(prize -> !prize.needBonusMatch || bonusMatch)
