@@ -87,10 +87,10 @@ InputWinningLottoNumber
 -[x] 0 입력
 
 InputBonusNumber
--[ ] 숫자가 아닌 값 입력
--[ ] 공백 입력
--[ ] 음수 입력
--[ ] 0 입력
+-[x] 숫자가 아닌 값 입력
+-[x] 공백 입력
+-[x] 음수 입력
+-[x] 0 입력
 
 Calculator
 -[ ] 자료형을 넘는 범위 입력
@@ -105,7 +105,7 @@ WinningLottoNumber
 -[ ] 1~45 사이가 아닌 숫자 입력
 
 BonusNumberValidate
--[ ] 1~45 사이가 아닌 숫자 입력
+-[x] 1~45 사이가 아닌 숫자 입력
 
 -- -- --
 ## 다이어그램
