@@ -5,11 +5,18 @@ import lotto.exception.LottoException;
 
 public class CommonInputValidator {
 
+    private static final String NUMERIC_REGEX = "\\d+";
     private static final String WHITE_SPACE = " ";
 
     public static void validateCommonInput(String input) {
         validateIsNotEmptyInput(input);
         validateHasNoWhiteSpace(input);
+    }
+
+    public static void validateIsNumeric(String input) {
+        if (!input.matches(NUMERIC_REGEX)) {
+            throw new LottoException(LottoErrorMessage.INPUT_IS_NOT_NUMERIC);
+        }
     }
 
     public static void validateIsInIntegerRange(String input) {
