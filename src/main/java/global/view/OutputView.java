@@ -9,7 +9,7 @@ import global.exception.ErrorCode;
 import java.util.List;
 import java.util.Map;
 import lotto.constant.LottoInfoMsg;
-import lotto.constant.LottoRanking;
+import lotto.constant.LottoRank;
 import lotto.model.Lotto;
 
 public class OutputView {
@@ -22,7 +22,7 @@ public class OutputView {
         }
     }
 
-    public static void printFinalResult(Map<LottoRanking, Integer> matchedResult, double profitRate) {
+    public static void printFinalResult(Map<LottoRank, Integer> matchedResult, double profitRate) {
         printMatchedResult(matchedResult);
         printProfitRate(profitRate);
     }
@@ -31,12 +31,12 @@ public class OutputView {
         System.out.println(ERROR_MSG_PREFIX + errorCode.getMsg() + " => " + reason);
     }
 
-    private static void printMatchedResult(Map<LottoRanking, Integer> matchedResult) {
+    private static void printMatchedResult(Map<LottoRank, Integer> matchedResult) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(START_PRINT_MATCHED_RESULT.getMsg());
-        for (LottoRanking rank : LottoRanking.values()) {
-            if (rank == LottoRanking.NONE_RANK) {
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank == LottoRank.NONE_RANK) {
                 continue;
             }
             Integer count = matchedResult.get(rank);

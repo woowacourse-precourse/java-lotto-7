@@ -1,11 +1,11 @@
 package global.utils;
 
-import static lotto.constant.LottoStatic.ERROR_MSG_PREFIX;
 import static lotto.constant.LottoStatic.WEEKLY_NUMBER_SEPARATOR;
 
 import global.exception.ErrorCode;
 import global.view.OutputView;
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +30,6 @@ public class StringUtil {
 
         public static List<Integer> parsingWeeklyNumbers(List<String> weeklyNumbers) {
             List<Integer> numbers = new ArrayList<>();
-
             for (String weeklyNumber : weeklyNumbers) {
                 try {
                     numbers.add(Integer.parseInt(weeklyNumber));
@@ -39,7 +38,6 @@ public class StringUtil {
                     throw new NumberFormatException(ErrorCode.INPUT_SHOULD_BE_PARSING.getMsg());
                 }
             }
-
             return numbers;
         }
     }
@@ -52,6 +50,13 @@ public class StringUtil {
                 OutputView.printErrorMsgWithReason(ErrorCode.INPUT_SHOULD_BE_PARSING, input);
                 throw new NumberFormatException(ErrorCode.INPUT_SHOULD_BE_PARSING.getMsg());
             }
+        }
+    }
+
+    public static class Prize {
+        public static String applyPrizeFormat(int prize) {
+            DecimalFormat decimalFormat = new DecimalFormat("#,###");
+            return decimalFormat.format(prize);
         }
     }
 }

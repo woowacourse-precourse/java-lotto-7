@@ -5,7 +5,7 @@ import global.view.InputView;
 import global.view.OutputView;
 import java.math.BigInteger;
 import java.util.Map;
-import lotto.constant.LottoRanking;
+import lotto.constant.LottoRank;
 import lotto.service.LottoService;
 
 public class LottoController {
@@ -23,7 +23,7 @@ public class LottoController {
     }
 
     public void checkLottoResult() {
-        Map<LottoRanking, Integer> matchedResults = lottoService.getMatchedResults();
+        Map<LottoRank, Integer> matchedResults = lottoService.getMatchedResults();
         double profitRate = lottoService.calculateProfitRate(matchedResults);
         OutputView.printFinalResult(matchedResults, profitRate);
     }

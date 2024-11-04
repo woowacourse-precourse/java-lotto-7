@@ -1,11 +1,9 @@
 package lotto.constant;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum LottoRanking {
-
+public enum LottoRank {
     NONE_RANK(0, false, 0),
     FIFTH_RANK(3, false, 5000),
     FOURTH_RANK(4, false, 50000),
@@ -17,14 +15,14 @@ public enum LottoRanking {
     private final boolean needBonusNumber;
     private final int prize;
 
-    LottoRanking(int correctCount, boolean needBonusNumber, int prize) {
+    LottoRank(int correctCount, boolean needBonusNumber, int prize) {
         this.correctCount = correctCount;
         this.needBonusNumber = needBonusNumber;
         this.prize = prize;
     }
 
-    public static LottoRanking matchingLottoRanking(int correctCount, boolean hasBonusNumber) {
-        for (LottoRanking ranking : values()) {
+    public static LottoRank matchingLottoRanking(int correctCount, boolean hasBonusNumber) {
+        for (LottoRank ranking : values()) {
             if (ranking.correctCount == correctCount &&
                     (ranking.needBonusNumber == hasBonusNumber || !ranking.needBonusNumber)) {
                 return ranking;
@@ -33,14 +31,11 @@ public enum LottoRanking {
         return NONE_RANK;
     }
 
-    public static Map<LottoRanking, Integer> getDefaultRankingStates() {
-
-        Map<LottoRanking, Integer> results = new HashMap<>();
-
-        for (LottoRanking ranking : LottoRanking.values()) {
+    public static Map<LottoRank, Integer> getDefaultRankingStates() {
+        Map<LottoRank, Integer> results = new HashMap<>();
+        for (LottoRank ranking : LottoRank.values()) {
             results.put(ranking, 0);
         }
-
         return results;
     }
 

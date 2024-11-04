@@ -12,8 +12,7 @@ import java.math.RoundingMode;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import lotto.constant.LottoRanking;
+import lotto.constant.LottoRank;
 import lotto.model.Lotto;
 import lotto.repository.LottoRepositoryImpl;
 import store.service.StoreService;
@@ -58,12 +57,12 @@ public class LottoService {
         return numbers;
     }
 
-    public Map<LottoRanking, Integer> getMatchedResults() {
+    public Map<LottoRank, Integer> getMatchedResults() {
         List<Lotto> lottos = getAll();
         return storeService.getMatchedResult(lottos);
     }
 
-    public double calculateProfitRate(Map<LottoRanking, Integer> matchedResults) {
+    public double calculateProfitRate(Map<LottoRank, Integer> matchedResults) {
 
         //FIXME: 캐스팅 변환 사용하지 않기
         double purchasedAmount = (double) getAll().size() * PURCHASE_AMOUNT_UNIT;
@@ -76,10 +75,10 @@ public class LottoService {
         return profitRate;
     }
 
-    private int calculateTotalProfit(Map<LottoRanking, Integer> matchedResults) {
+    private int calculateTotalProfit(Map<LottoRank, Integer> matchedResults) {
         int totalProfit = 0;
 
-        for(LottoRanking rank : LottoRanking.values()) {
+        for (LottoRank rank : LottoRank.values()) {
             int count = matchedResults.get(rank);
             totalProfit += rank.getPrize() * count;
         }

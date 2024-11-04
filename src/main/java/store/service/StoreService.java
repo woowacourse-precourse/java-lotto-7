@@ -7,7 +7,7 @@ import static global.utils.Validator.validateWeeklyNumbers;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constant.LottoRanking;
+import lotto.constant.LottoRank;
 import lotto.model.Lotto;
 import store.model.Store;
 import store.repository.StoreRepositoryImpl;
@@ -54,22 +54,22 @@ public class StoreService {
         return storeRepository.findOne().getWeeklyNumbers();
     }
 
-    public Map<LottoRanking, Integer> getMatchedResult(List<Lotto> lottos) {
+    public Map<LottoRank, Integer> getMatchedResult(List<Lotto> lottos) {
         Store store = get();
         List<Integer> weeklyNumbers = store.getWeeklyNumbers();
         Integer bonusNumber = store.getBonusNumber();
-        Map<LottoRanking, Integer> results = LottoRanking.getDefaultRankingStates();
+        Map<LottoRank, Integer> results = LottoRank.getDefaultRankingStates();
 
         for (Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();
-            LottoRanking lottoRanking = getLottoRanking(numbers, weeklyNumbers, bonusNumber);
+            LottoRank lottoRanking = getLottoRanking(numbers, weeklyNumbers, bonusNumber);
             results.put(lottoRanking, results.get(lottoRanking) + 1);
         }
 
         return results;
     }
 
-    private LottoRanking getLottoRanking(List<Integer> numbers, List<Integer> weeklyNumbers, int weeklyBonusNumber) {
+    private LottoRank getLottoRanking(List<Integer> numbers, List<Integer> weeklyNumbers, int weeklyBonusNumber) {
         int count = countWeeklyNumbers(numbers, weeklyNumbers);
         boolean hasBonusNumber = false;
 
@@ -78,7 +78,7 @@ public class StoreService {
             hasBonusNumber = true;
         }
 
-        return LottoRanking.matchingLottoRanking(count, hasBonusNumber);
+        return LottoRank.matchingLottoRanking(count, hasBonusNumber);
     }
 
     private int countWeeklyNumbers(List<Integer> numbers, List<Integer> weeklyNumbers) {
