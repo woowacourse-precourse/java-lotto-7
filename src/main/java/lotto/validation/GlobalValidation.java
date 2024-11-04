@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import java.util.List;
+
 import static lotto.Constants.LOTTO_MAX_NUM;
 import static lotto.Constants.LOTTO_MIN_NUM;
 import static lotto.message.ErrorMessage.*;
@@ -17,5 +19,16 @@ public class GlobalValidation {
         return number < LOTTO_MIN_NUM || number >= LOTTO_MAX_NUM;
     }
 
+    public static <T> boolean hasDuplicate(List<T> items){
+        return items.size() != items.stream().distinct().count();
+    }
+
+    public static void validateLottoNumbersRange(List<Integer> lottoNumbers) {
+        for(int number : lottoNumbers){
+            if (GlobalValidation.isLottoNumberOutOfRange(number)){
+                throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+            }
+        }
+    }
 
 }

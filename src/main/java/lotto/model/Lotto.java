@@ -1,22 +1,31 @@
 package lotto.model;
 
 import lotto.utils.Utils;
+import lotto.validation.GlobalValidation;
 
 import java.util.List;
 
 import static lotto.Constants.*;
-
+import static lotto.message.ErrorMessage.*;
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoNumbersCount(numbers);
+        validateLottoNumbersDuplicated(numbers);
+        GlobalValidation.validateLottoNumbersRange(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateLottoNumbersCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_PICK_NUM) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBERS_NOT_FIT_COUNT.getMessage());
+        }
+    }
+
+    private void validateLottoNumbersDuplicated(List<Integer> numbers){
+        if(GlobalValidation.hasDuplicate(numbers)){
+            throw new IllegalArgumentException(LOTTO_NUMBERS_HAS_DUPLICATE.getMessage());
         }
     }
 

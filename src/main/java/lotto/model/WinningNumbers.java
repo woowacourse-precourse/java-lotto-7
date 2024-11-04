@@ -22,7 +22,7 @@ public class WinningNumbers {
     public void validateWinningNumbers(List<Integer> winningNumbers){
         validateWinningNumbersCount(winningNumbers);
         validateWinningNumbersDuplicated(winningNumbers);
-        validateWinningNumbersRange(winningNumbers);
+        GlobalValidation.validateLottoNumbersRange(winningNumbers);
     }
 
     private void validateWinningNumbersCount(List<Integer> winningNumbers) {
@@ -36,20 +36,9 @@ public class WinningNumbers {
     }
 
     private void validateWinningNumbersDuplicated(List<Integer> winningNumbers) {
-        if(hasDuplicate(winningNumbers)){
+        if(GlobalValidation.hasDuplicate(winningNumbers)){
             throw new IllegalArgumentException(WINNING_NUMBERS_HAS_DUPLICATE.getMessage());
         }
     }
 
-    private <T> boolean hasDuplicate(List<T> items){
-        return items.size() != items.stream().distinct().count();
-    }
-
-    private void validateWinningNumbersRange(List<Integer> winningNumbers) {
-        for(int number : winningNumbers){
-            if (GlobalValidation.isLottoNumberOutOfRange(number)){
-                throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
-            }
-        }
-    }
 }
