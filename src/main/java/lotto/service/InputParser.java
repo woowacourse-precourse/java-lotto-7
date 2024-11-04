@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.common.ConstantData;
 import lotto.common.utils.ValidationUtils;
 
 import java.util.ArrayList;
@@ -9,20 +10,17 @@ import java.util.Collections;
 public class InputParser {
 
     public int calculatePapers(int money){
-        ValidationUtils.validateNULL(money);
+        ValidationUtils.validateNotUsedNumber(money);
         ValidationUtils.validateUnit(money);
 
-        return money / 1000;
+        return money / ConstantData.MONEY_UNIT;
     }
 
     public int strToInt(String str){
-        int number;
-
-        ValidationUtils.validateNULL(str);
+        ValidationUtils.validateNull(str);
         ValidationUtils.validateInt(str);
 
-        number = Integer.parseInt(str);
-        return number;
+        return Integer.parseInt(str);
 
     }
 
@@ -41,8 +39,8 @@ public class InputParser {
 
     public List<Integer> sortArray(List<Integer> lottoPaper){
         Collections.sort(lottoPaper);
-        return lottoPaper;
 
+        return lottoPaper;
     }
 
 
