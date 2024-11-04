@@ -2,6 +2,12 @@ package lotto.domain;
 
 public enum Rank {
 
+    FIRST(6, 2000000000),
+    SECOND(5, 30000000, true),
+    THIRD(5, 1500000),
+    FOURTH(4, 50000),
+    FIFTH(3, 5000),
+    NONE(0, 0);
 
     private final int matchingCount;
     private final int prize;
@@ -38,4 +44,6 @@ public enum Rank {
         // 조건에 맞는 랭크가 없을 경우 예외를 던짐
         throw new IllegalArgumentException("로또 번호에 매칭결과와 다른 예외적인 상황이 발생했습니다.");
     }
+
+
 }
