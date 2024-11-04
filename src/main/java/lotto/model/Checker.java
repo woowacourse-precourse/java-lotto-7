@@ -17,9 +17,16 @@ public class Checker {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
+
     public LottoResult check(Lotto lotto) {
         int winningCount = calculateWinningCount(lotto);
         int bonusCount = calculateBonusCount(lotto);
+
+        if (!isGetWinnigsMoney(winningCount)) {
+            return new LottoResult("0", NO_WINNINGS_MONEY);
+        }
+
+        String winningRank = getWinningRank(winningCount, bonusCount);
     }
 
     private int calculateWinningCount(Lotto lotto) {
@@ -34,5 +41,30 @@ public class Checker {
                 .count();
     }
 
+    private boolean isGetWinnigsMoney(int winningCount) {
+        return winningCount >= MIN_GET_WINNINGS_COUNT;
+    }
+
+    private String getWinningRank(int winningCount, int bonusCount) {
+        if (winningCount + bonusCount == MAX_GET_WINNINGS_COUNT) {
+            return getHighRank(bonusCount);
+        }
+        if (winningCount > MIN_GET_WINNINGS_COUNT) {
+            if (winningCount == 5) {
+                return "3";
+            }
+            if (winningCount == 4) {
+                return "4";
+            }
+        }
+        return "5";
+    }
+
+    private String getHighRank(int bonusCount) {
+        if (bonusCount != 1) {
+            return "1";
+        }
+        return "2";
+    }
 
 }
