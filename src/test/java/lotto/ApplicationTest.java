@@ -3,9 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -76,7 +73,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 최소금액_미만_입력_예외_테스트() {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> Application.validatePurchaseAmount(-1))
+            assertThatThrownBy(() -> Application.validatePurchaseCost(-1))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ERROR_MESSAGE + " 로또 구입 금액은 최소 1000원 이상이어야 합니다");
         });
@@ -85,7 +82,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 구매금액_단위_미만_입력_예외_테스트() {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> Application.validatePurchaseAmount(10500))
+            assertThatThrownBy(() -> Application.validatePurchaseCost(10500))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ERROR_MESSAGE + " 로또 구입 금액은 1000원 단위로 입력해야 합니다");
         });

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.*;
 
 public class Application {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final int PURCHASE_UNIT = 1000;
 
     public static void main(String[] args) {
 
@@ -17,10 +18,10 @@ public class Application {
                 String input = Console.readLine();
 
                 validateInput(input);
-                int purchaseAmount = validatePurchaseAmountInput(input);
-                validatePurchaseAmount(purchaseAmount);
+                int purchaseCost = validatePurchaseCostInput(input);
+                validatePurchaseCost(purchaseCost);
 
-                return Integer.parseInt(input); // 입력이 유효하면 변환 후 반환
+                return purchaseCost / PURCHASE_UNIT; // 입력이 유효하면 변환 후 반환
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage()); // 에러 메시지 출력 후 루프 반복하여 재입력 요청
             }
@@ -38,7 +39,7 @@ public class Application {
         }
     }
 
-    public static int validatePurchaseAmountInput(String input) {
+    public static int validatePurchaseCostInput(String input) {
 
         if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 입력값이 숫자가 아닙니다. 다시 입력해 주세요.");
@@ -47,13 +48,13 @@ public class Application {
         return Integer.parseInt(input);
     }
 
-    public static void validatePurchaseAmount(int purchaseAmount) {
+    public static void validatePurchaseCost(int purchaseCost) {
 
-        if (purchaseAmount < 1000) {
+        if (purchaseCost < PURCHASE_UNIT) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 구입 금액은 최소 1000원 이상이어야 합니다.");
         }
 
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseCost % PURCHASE_UNIT != 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 구입 금액은 1000원 단위로 입력해야 합니다.");
         }
     }
