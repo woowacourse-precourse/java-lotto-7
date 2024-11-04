@@ -4,10 +4,13 @@ import static lotto.constant.NumberType.LOTTO_COUNT;
 import static lotto.constant.NumberType.LOTTO_MAX_NUMBER;
 import static lotto.constant.NumberType.LOTTO_MIN_NUMBER;
 import static lotto.constant.NumberType.LOTTO_PRICE_UNIT;
+import static lotto.constant.NumberType.MIN_PURCHASE_COUNT;
+import static lotto.exception.ErrorMessage.INVALID_PURCHASE_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.exception.LottoException;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -19,6 +22,9 @@ public class Lottos {
     }
 
     public static Lottos from(int count) {
+        if (count < MIN_PURCHASE_COUNT.getNumber()) {
+            throw new LottoException(INVALID_PURCHASE_COUNT);
+        }
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> integers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER.getNumber(),
