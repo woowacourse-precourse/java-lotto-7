@@ -1,4 +1,3 @@
-// Application.java (당첨 결과 계산 추가)
 package lotto;
 
 import lotto.InputView;
