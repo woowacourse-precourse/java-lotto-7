@@ -39,5 +39,11 @@ public class LottoTicket {
         return  lotteries;
     }
 
+    public List<Lotto> getLotteries() {
+        return lotteries;
+    }
 
+    public int getPurchase() {
+        return purchase;
+    }
 }
