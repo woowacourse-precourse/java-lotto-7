@@ -47,12 +47,12 @@ public class LottoModel {
 
     }
 
-    public Lotto readWinLotto(){
+    public Lotto getWinLotto(){
 
         return new Lotto(this.winLotto.getNumbers());
     }
 
-    public int readBonusNumber(){
+    public int getBonusNumber(){
         return this.bonusNumber;
     }
 

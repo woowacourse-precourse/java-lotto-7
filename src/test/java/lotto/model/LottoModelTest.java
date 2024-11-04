@@ -40,8 +40,8 @@ public class LottoModelTest {
 
         lottoModel.setWinLottoWithBonusNumber(winLottoNumber,bonusNumber);
 
-        assertThat(lottoModel.readWinLotto().getNumbers()).isEqualTo(winLottoNumber);
-        assertThat(lottoModel.readBonusNumber()).isEqualTo(bonusNumber);
+        assertThat(lottoModel.getWinLotto().getNumbers()).isEqualTo(winLottoNumber);
+        assertThat(lottoModel.getBonusNumber()).isEqualTo(bonusNumber);
     }
 
     @DisplayName("The winning Info should return number of each prize tier")
