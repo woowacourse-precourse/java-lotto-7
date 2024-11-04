@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.utils;
 
 public enum ExceptionType {
     LIST_OVER_MAX_LENGTH("list is over mat length."),

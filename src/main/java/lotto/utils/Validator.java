@@ -1,8 +1,6 @@
 package lotto.utils;
 
 import java.math.BigInteger;
-import lotto.constant.ExceptionFactory;
-import lotto.constant.ExceptionType;
 
 public class Validator {
 

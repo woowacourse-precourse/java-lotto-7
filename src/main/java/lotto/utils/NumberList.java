@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.constant.ExceptionFactory;
-import lotto.constant.ExceptionType;
 
 
 public class NumberList extends ArrayList<Integer> {
