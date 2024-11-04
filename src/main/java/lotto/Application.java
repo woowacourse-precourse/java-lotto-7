@@ -17,7 +17,6 @@ public class Application {
         // 당첨번호 6개 입력받기
         System.out.print("당첨번호 6개를 입력하세요(,키로 구분됩니다)");
         String inputNumbers = Console.readLine();
-        // 입력된 문자열을 공백으로 나누어 List<Integer>로 변환
         List<Integer> winningNumbers = Arrays.stream(inputNumbers.split(","))
                 .map(Integer::parseInt)
                 .toList();
@@ -31,6 +30,8 @@ public class Application {
         LottoPublish lottoPublish = new LottoPublish(price); // 금액 기반으로 구매한 로또 개수반환
         Lotto lotto = new Lotto(winningNumbers, bonusNumber); // 당첨금 반환
 
-        System.out.println("당첨금액은: " + lottoPublish.getCount()*lotto.getReward());
+        int reward = lottoPublish.getCount()*lotto.getReward();
+        System.out.println("당첨금액은: " + reward);
+        System.out.println("수익률은: " + ( (reward-price)/price  )*100 + "%");
     }
 }
