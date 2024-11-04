@@ -28,15 +28,18 @@ public class LottoController {
         Lottos lottos = issueLottos(purchaseAmount);
         WinningNumbers winningNumbers = inputWinningNumbers();
         BonusNumber bonusNumber = inputBonusNumber();
-        LottosResultCalculator lottosResultCalculator = calculateLottosResult(lottos, winningNumbers, bonusNumber);
+        LottosResult lottosResult = calculateLottosResult(lottos, winningNumbers, bonusNumber);
+        showLottosResult(lottosResult);
     }
 
-    private LottosResultCalculator calculateLottosResult(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    private LottosResult calculateLottosResult(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         LottosResultCalculator lottosResultCalculator = LottosResultCalculator.of(lottos, winningNumbers, bonusNumber);
         lottosResultCalculator.calculateLottosResult();
-        LottosResult lottosResult = lottosResultCalculator.getLottosResult();
+        return lottosResultCalculator.getLottosResult();
+    }
+
+    private void showLottosResult(LottosResult lottosResult) {
         outputView.showLottosResult(lottosResult);
-        return lottosResultCalculator;
     }
 
     private PurchaseAmount inputPurchaseAmount() {
