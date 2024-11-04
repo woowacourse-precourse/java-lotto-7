@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Prize;
+import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 
 public class LottoGameService {
@@ -14,14 +15,18 @@ public class LottoGameService {
 		this.inputView = inputView;
 	}
 
-	public LottoResult playLottoGame(List<Lotto> lottos) {
+	public WinningNumber setWinningNumber() {
 		List<Integer> winningNumbers = inputView.getWinningNumbers();
 		int bonusNumber = inputView.getBonusNumber(winningNumbers);
+		return new WinningNumber(winningNumbers, bonusNumber);
+	}
+
+	public LottoResult playLottoGame(List<Lotto> lottos, WinningNumber winningNumber) {
 
 		LottoResult lottoResult = new LottoResult();
 
 		for (Lotto lotto : lottos) {
-			Prize prize = getPrize(lotto, winningNumbers, bonusNumber);
+			Prize prize = getPrize(lotto, winningNumber.getWinningNumbers(), winningNumber.getBonusNumber());
 			lottoResult.addPrize(prize);
 		}
 
