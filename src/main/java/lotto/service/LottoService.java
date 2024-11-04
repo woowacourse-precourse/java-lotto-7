@@ -29,12 +29,7 @@ public class LottoService {
 
     public Lotto generateLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, 6);
-        return new Lotto(sortedLottoNumber(numbers));
-    }
-
-    private List<Integer> sortedLottoNumber(List<Integer> numbers) {
-        numbers.sort(Integer::compareTo);
-        return numbers;
+        return new Lotto(numbers);
     }
 
     public HashMap<LottoRank, Integer> getWinningResults(List<Lotto> lotto, Lotto winningLotto,
@@ -86,6 +81,6 @@ public class LottoService {
             int count = results.get(lottoRank);
             sum += (long) lottoRank.getPrize() * count;
         }
-        return sum / (double) purchaseAmount.getMoney();
+        return (sum / (double) purchaseAmount.getMoney()) * 100;
     }
 }
