@@ -1,6 +1,7 @@
-package lotto.model.lotto;
+package lotto;
 
 import lotto.exception.LottoException;
+import lotto.model.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
