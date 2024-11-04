@@ -17,7 +17,6 @@ public class LottoGameDisplay {
         while (true) {
             try {
                 int money = inputNumber();
-
                 LottoGameValidator.checkMoneyValid(money);
 
                 return money;
@@ -57,7 +56,6 @@ public class LottoGameDisplay {
                 printErrorMessage(e);
             }
         }
-
     }
 
     private int inputNumber() {
