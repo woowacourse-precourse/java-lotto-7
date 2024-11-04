@@ -8,10 +8,8 @@ import static global.utils.GlobalUtil.WeeklyNumberUtil.parsingWeeklyNumbers;
 import static global.utils.GlobalUtil.WeeklyNumberUtil.splitWeeklyNumberWithSeparator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import global.exception.ErrorCode;
-import global.utils.GlobalUtil.PurchaseAmountUtil;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -105,5 +103,4 @@ class GlobalUtilTest {
 
         assertThat(result).isEqualTo(expectedValue);
     }
-
 }

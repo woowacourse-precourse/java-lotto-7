@@ -70,7 +70,7 @@ public class LottoService {
         return halfUpRate.doubleValue();
     }
 
-    private double calculateTotalProfit(Map<LottoRank, Integer> matchedResults) {
+    public double calculateTotalProfit(Map<LottoRank, Integer> matchedResults) {
         double totalProfit = 0.0;
 
         for (LottoRank rank : LottoRank.values()) {
