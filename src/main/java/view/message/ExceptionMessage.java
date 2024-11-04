@@ -18,4 +18,5 @@ public class ExceptionMessage {
     public static final String FORMAT_EXCEPTION_MESSAGE = "로또 번호는 쉼표(,)로 구분된 숫자 형식이어야 합니다.";
     public static final String DUPLICATE_NUMBER_EXCEPTION_MESSAGE = "로또 번호는 중복될 수 없습니다. 중복된 번호: ";
     public static final String DUPLICATE_BONUS_NUMBER_EXCEPTION_MESSAGE = "보너스 번호는 당첨 번호와 중복될 수 없습니다.";
+    public static final String PREFIX_EXCEPTION_MESSAGE = "[ERROR] ";
 }

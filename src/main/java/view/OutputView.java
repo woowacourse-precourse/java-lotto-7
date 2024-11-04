@@ -1,5 +1,6 @@
 package view;
 
+import static view.message.ExceptionMessage.PREFIX_EXCEPTION_MESSAGE;
 import static view.message.ViewMessage.*;
 
 import java.math.BigDecimal;
@@ -50,5 +51,9 @@ public class OutputView {
 
     public static void printReturnOnInvestment(BigDecimal returnOnInvestment) {
         System.out.printf(RETURN_ON_INVESTMENT_MESSAGE, returnOnInvestment);
+    }
+
+    public static void printExceptionMessage(Exception exception) {
+        System.out.printf("%s%s%n%n", PREFIX_EXCEPTION_MESSAGE, exception.getMessage());
     }
 }
