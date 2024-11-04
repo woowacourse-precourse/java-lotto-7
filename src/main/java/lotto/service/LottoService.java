@@ -18,13 +18,13 @@ public class LottoService {
         return new LottoGame(lottos, winningLotto, bonusNumber);
     }
 
-    private static List<Lotto> generateLottoGroup(int lottoQuantity) {
+    private List<Lotto> generateLottoGroup(int lottoQuantity) {
         return IntStream.range(0, lottoQuantity)
                 .mapToObj(i -> createLotto())
                 .toList();
     }
 
-    private static Lotto createLotto() {
+    private Lotto createLotto() {
         List<Integer> numbers = LottoNumbersGenerator.generate();
         return new Lotto(numbers);
     }

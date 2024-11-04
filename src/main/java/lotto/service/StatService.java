@@ -34,13 +34,13 @@ public class StatService {
         return new Revenue(purchaseAmount, totalAmount);
     }
 
-    private static int getTotalAmount(List<WinningStat> winningStats) {
+    private int getTotalAmount(List<WinningStat> winningStats) {
         return winningStats.stream()
                 .mapToInt(winningStat -> winningStat.prizeAmount() * winningStat.prizeCount())
                 .sum();
     }
 
-    private static Map<WinningPrize, Integer> getPrizeCountMap(LottoGame lottoGame) {
+    private Map<WinningPrize, Integer> getPrizeCountMap(LottoGame lottoGame) {
         Map<WinningPrize, Integer> prizeCountMap = initializeMap();
 
         Lottos lottos = lottoGame.getLottos();
@@ -53,7 +53,7 @@ public class StatService {
         return prizeCountMap;
     }
 
-    private static Map<WinningPrize, Integer> initializeMap() {
+    private Map<WinningPrize, Integer> initializeMap() {
         Map<WinningPrize, Integer> prizeCountMap = new EnumMap<>(WinningPrize.class);
 
         for (WinningPrize prize : WinningPrize.values()) {
@@ -63,34 +63,24 @@ public class StatService {
         return prizeCountMap;
     }
 
-    private static WinningPrize getWinningPrize(Lotto pickedLotto, Lotto winningLotto, BonusNumber bonusNumber) {
+    private WinningPrize getWinningPrize(Lotto pickedLotto, Lotto winningLotto, BonusNumber bonusNumber) {
         int matchingCount = getMatchingCount(pickedLotto.getNumbers(), winningLotto.getNumbers());
         boolean bonusMatch = isBonusMatch(pickedLotto.getNumbers(), bonusNumber.getNumber());
 
         return findRank(matchingCount, bonusMatch);
     }
 
-    private static WinningPrize findRank(int matchingCount, boolean bonusMatch) {
-        if (matchingCount == FIRST_PRIZE.getMatchingCount()) {
-            return FIRST_PRIZE;
-        }
-        if (matchingCount == SECOND_PRIZE.getMatchingCount() && bonusMatch) {
-            return SECOND_PRIZE;
-        }
-        if (matchingCount == THIRD_PRIZE.getMatchingCount()) {
-            return THIRD_PRIZE;
-        }
-        if (matchingCount == FOURTH_PRIZE.getMatchingCount()) {
-            return FOURTH_PRIZE;
-        }
-        if (matchingCount == FIFTH_PRIZE.getMatchingCount()) {
-            return FIFTH_PRIZE;
-        }
+    private WinningPrize findRank(int matchingCount, boolean bonusMatch) {
+        if (matchingCount == FIRST_PRIZE.getMatchingCount()) return FIRST_PRIZE;
+        if (matchingCount == SECOND_PRIZE.getMatchingCount() && bonusMatch) return SECOND_PRIZE;
+        if (matchingCount == THIRD_PRIZE.getMatchingCount()) return THIRD_PRIZE;
+        if (matchingCount == FOURTH_PRIZE.getMatchingCount()) return FOURTH_PRIZE;
+        if (matchingCount == FIFTH_PRIZE.getMatchingCount()) return FIFTH_PRIZE;
 
         return NONE;
     }
 
-    private static List<WinningStat> createWinningStats(Map<WinningPrize, Integer> prizeCountMap) {
+    private List<WinningStat> createWinningStats(Map<WinningPrize, Integer> prizeCountMap) {
         List<WinningStat> winningStats = new ArrayList<>();
 
         for (WinningPrize prize : WinningPrize.values()) {
@@ -107,13 +97,13 @@ public class StatService {
         return winningStats;
     }
 
-    private static int getMatchingCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+    private int getMatchingCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         return (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
     }
 
-    private static boolean isBonusMatch(List<Integer> lottoNumbers, int bonusNumber) {
+    private boolean isBonusMatch(List<Integer> lottoNumbers, int bonusNumber) {
         return lottoNumbers.contains(bonusNumber);
     }
 }
