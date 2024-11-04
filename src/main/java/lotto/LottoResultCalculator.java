@@ -1,7 +1,8 @@
 package lotto;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoResultCalculator {
 
@@ -15,15 +16,35 @@ public class LottoResultCalculator {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<LottoResult> calculateResults() {
-        List<LottoResult> results = new ArrayList<>();
+    public Map<Rank, Integer> calculateStatistics() {
+        Map<Rank, Integer> statistics = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            statistics.put(rank, 0);
+        }
         for (Lotto lotto : userLottos) {
             int matchCount = calculateMatchCount(lotto);
             boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
             Rank rank = Rank.getRank(matchCount, hasBonus);
-            results.add(new LottoResult(rank, matchCount, hasBonus));
+            statistics.put(rank, statistics.get(rank) + 1);
         }
-        return results;
+        return statistics;
+    }
+
+    public int calculateTotalPrize(Map<Rank, Integer> statistics) {
+        int totalPrize = 0;
+        for (Map.Entry<Rank, Integer> entry : statistics.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += rank.getPrize() * count;
+        }
+        return totalPrize;
+    }
+
+    public double calculateROI(int totalPrize, int purchaseAmount) {
+        if (purchaseAmount == 0) {
+            return 0;
+        }
+        return (double) totalPrize / purchaseAmount * 100;
     }
 
     private int calculateMatchCount(Lotto lotto) {
