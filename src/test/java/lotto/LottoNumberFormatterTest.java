@@ -98,4 +98,19 @@ public class LottoNumberFormatterTest {
                 Arguments.of((Object) new String[]{"1", "2", "3", "4", "5", "6", "7"})
         );
     }
+
+    @DisplayName("당첨 번호와 보너스 번호가 겹칠 경우")
+    @ParameterizedTest
+    @MethodSource("hasDuplicateNumException")
+    void hasDuplicateNumExceptionTest(List<Integer> winningNums, int bonusNum) {
+        assertThatThrownBy(() -> lottoNumberFormatter.hasDuplicateNum(winningNums, bonusNum)).isInstanceOf(
+                IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+    }
+
+    public static Stream<Arguments> hasDuplicateNumException() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6),
+                Arguments.of(List.of(1, 1, 2, 3, 4, 5), 7)
+        );
+    }
 }
