@@ -1,10 +1,8 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import enums.Prize;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
