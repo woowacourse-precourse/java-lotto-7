@@ -8,10 +8,11 @@ import java.util.TreeMap;
 public class Statistic {
 
     private final Map<Rank, Integer> statistics;
+    private final Money profit;
 
     public Statistic(List<Rank> ranks) {
         this.statistics = createStatistics(ranks);
-
+        this.profit = sumProfitsOf(ranks);
     }
 
     private Map<Rank, Integer> createStatistics(List<Rank> ranks) {
@@ -25,6 +26,13 @@ public class Statistic {
 
     private int countRankFrequency(List<Rank> ranks, Rank objectiveRank) {
         return Collections.frequency(ranks, objectiveRank);
+    }
+
+    private Money sumProfitsOf(List<Rank> ranks) {
+        return ranks.stream()
+                .map(Rank::getPrize)
+                .reduce(Money::add)
+                .orElse(new Money(0));
     }
 
     public int getFrequencyOf(Rank rank) {
