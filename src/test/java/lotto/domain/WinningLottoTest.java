@@ -13,10 +13,10 @@ class WinningLottoTest {
     void 보너스번호가_당첨번호와_중복되면_예외가_발생한다() {
         // given
         Lotto winningLottoNum = LottoFactory.createManualLotto("1,2,3,4,5,6");
-        LottoNumber bonusNum = new LottoNumber(3); // 중복된 번호
+        String bonusNum = "3"; // 중복된 번호
 
         // when & then
-        assertThatThrownBy(() -> new WinningLotto(winningLottoNum, bonusNum))
+        assertThatThrownBy(() -> new WinningLotto(winningLottoNum,bonusNum))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

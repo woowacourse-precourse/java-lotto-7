@@ -3,10 +3,9 @@ package lotto.controller;
 import lotto.domain.Lotto.Lotto;
 import lotto.domain.Lotto.LottoFactory;
 import lotto.domain.Lotto.Lottos;
-import lotto.domain.Lotto.LottoNumber;
-import lotto.domain.TicketPrice;
-import lotto.domain.Stastistics;
 import lotto.domain.Lotto.WinningLotto;
+import lotto.domain.Stastistics;
+import lotto.domain.TicketPrice;
 import lotto.dto.LottosDto;
 import lotto.dto.StatisticsDto;
 import lotto.util.InputParser;
@@ -72,7 +71,7 @@ public class LottoController {
         while (true) {
             try {
                 String rawBonusNum = inputView.readBonusNumber();
-                return new WinningLotto(WinningLottoNum, new LottoNumber(rawBonusNum));
+                return new WinningLotto(WinningLottoNum, rawBonusNum);
             } catch (IllegalArgumentException e) {
                 outputView.printResult(e.getMessage());
             }

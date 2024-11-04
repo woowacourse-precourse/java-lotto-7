@@ -1,18 +1,16 @@
 package lotto.domain.Lotto;
 
 import java.util.List;
-import lotto.domain.Lotto.Lotto;
-import lotto.domain.Lotto.LottoNumber;
 
 public class WinningLotto {
     private static final String INVALID_DUPLICATED_NUMBER_ERROR_MESSAGE = "[ERROR] 당첨 번호와 중복된 번호를 입력할 수 없습니다.";
     private final Lotto winningLottoNum;
     private final LottoNumber bonusNum;
 
-    public WinningLotto(Lotto winningLottoNum, LottoNumber bonusNum) {
-        validateDuplicate(winningLottoNum, bonusNum);
+    public WinningLotto(Lotto winningLottoNum, String rawBonusNum) {
+        validateDuplicate(winningLottoNum, new LottoNumber(rawBonusNum));
         this.winningLottoNum = winningLottoNum;
-        this.bonusNum = bonusNum;
+        this.bonusNum = new LottoNumber(rawBonusNum);
     }
 
     private void validateDuplicate(Lotto winningLottoNum, LottoNumber bonusNum) {
