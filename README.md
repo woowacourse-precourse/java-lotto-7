@@ -2,12 +2,40 @@
 
 ## 프로젝트 구조
 
-이 프로젝트는 MVC 패턴을 기반으로 설계되었으며, 각 모듈의 책임을 명확히 분리하여 유지보수성과 확장성을 높였습니다.
+```
+├── Application.java
+├── controller
+│   └── LottoController.java
+├── dto
+│   ├── BonusNumberDto.java
+│   ├── PurchaseAmountDto.java
+│   └── WinningLotteryDto.java
+├── exception
+│   └── LottoExceptionStatus.java
+├── model
+│   ├── Lotto.java
+│   ├── MyLottoInfo.java
+│   ├── Purchase.java
+│   ├── Rank.java
+│   ├── Revenue.java
+│   └── WinningLotto.java
+├── properties
+│   └── LottoProperties.java
+├── utils
+│   └── LottoUtils.java
+└── view
+    ├── InputView.java
+    └── OutputView.java
+
+```
 
 - View: 사용자로부터 입력을 받고 출력을 담당합니다. InputView와 OutputView를 통해 입력값을 받아 DTO(Data Transfer Object)로 변환한 후 Controller에 전달합니다.
 - DTO (Data Transfer Object): View에서 전달받은 입력값을 구조화하여 Controller에 전달하는 역할을 합니다. 이를 통해 데이터의 일관성을 유지하고 유효성 검사를 포함하여 입력값의 무결성을 보장합니다.
 - Controller: DTO를 받아 Model과 상호작용하며 비즈니스 로직을 실행합니다. 로직 수행 후 결과를 View에 전달하여 사용자에게 출력합니다.
 - Model: 로또 번호 생성, 당첨 확인, 수익률 계산 등 핵심 비즈니스 로직을 처리합니다. Controller와 상호작용하며 데이터와 로직을 관리합니다.
+- Utils :  로또 번호와 관련된 다양한 검증 및 처리 로직을 포함하여, 프로젝트 내에서 반복적으로 사용되는 기능을 재사용 가능하게 모듈화했습니다.
+- Properties : 로또와 관련된 상수 변수들을 하나의 클래스로 관리합니다.
+- Exception : 모든 예외 상태들을 관리합니다.
 
 
 ## 기능 요구 사항
