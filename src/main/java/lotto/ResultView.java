@@ -15,13 +15,14 @@ public class ResultView {
         System.out.println();
     }
 
-	public static void printYield(double yield) {
+    public static void printYield(double yield) {
         System.out.println("총 수익률은 " + yield + "%입니다.");
     }
 
-	public static void printStatistics(Map<Rank, Integer> results) {
+    public static void printStatistics(Map<Rank, Integer> results) {
         System.out.println("당첨 통계\n---");
-        for (Rank rank : Rank.values()) {
+        Rank[] ranks = {Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST};
+        for (Rank rank : ranks) {
             if (rank == Rank.NONE) {
                 continue;
             }
@@ -37,5 +38,4 @@ public class ResultView {
     private static String formatPrize(int prize) {
         return String.format("%,d원", prize);
     }
-
 }
