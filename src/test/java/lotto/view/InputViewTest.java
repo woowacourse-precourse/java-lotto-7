@@ -86,4 +86,16 @@ public class InputViewTest {
         // when, then
         assertEquals(9, InputView.getBonusNumber());
     }
+
+    @Test
+    void 보너스_숫자_문자_입력_에러_발생() {
+        // given
+        String invalidInput = "nine\n";
+        System.setIn(new ByteArrayInputStream(invalidInput.getBytes()));
+
+        // when, then
+        assertThatThrownBy(InputView::getBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자를 입력해야 합니다.");
+    }
 }
