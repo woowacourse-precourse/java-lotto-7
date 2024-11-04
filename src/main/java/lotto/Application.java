@@ -9,19 +9,14 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class Application {
 
     static Input input = new Input();
+    static Output output = new Output();
 
     public static void main(String[] args) {
 
         int money = input.askPurchaseAmount();
-
-        //로뚜 구매   => LottoMachine
         LottoMachine lottoMachine = new LottoMachine();
         List<Lotto> lottos = lottoMachine.purchaseLotto(money);
-
-        System.out.printf("\n%d개를 구매했습니다.\n", lottos.size());
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
+        output.printPurchaseLotto(lottos);
 
         //당첨 번호 입력
         System.out.println("\n당첨 번호를 입력해 주세요.");
