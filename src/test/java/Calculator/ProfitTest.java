@@ -2,7 +2,7 @@ package Calculator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 class ProfitTest {
@@ -11,13 +11,13 @@ class ProfitTest {
     public void testCalculate() {
         // given
         int money = 1000;
-        List<Integer> tempResult = List.of(0, 0, 0, 0, 0, 0, 1);
+        Map<Integer, Integer> tempResult = Map.of(1, 0, 2, 0, 3, 0, 4, 0, 5, 1);
 
         // when
         Profit profit = new Profit();
         double result = profit.calculate(tempResult, money);
 
         // then
-        assertEquals(0, result);
+        assertEquals(500.0, result);
     }
 }
