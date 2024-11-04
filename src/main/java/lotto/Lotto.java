@@ -1,12 +1,15 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateUserLottoDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +19,23 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public static List<Integer> create() {
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        return randomNumberGenerator.generateUnique().stream()
+                .sorted()
+                .toList();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    private void validateUserLottoDuplication(final List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!uniqueNumbers.add(number)) {
+                throw new IllegalArgumentException(Message.INPUT_NUMBER_DUPLICATION_ERROR.getMessage());
+            }
+        }
+    }
 }
