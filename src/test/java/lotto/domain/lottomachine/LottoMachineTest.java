@@ -57,7 +57,7 @@ class LottoMachineTest {
                 new Lotto(List.of(1, 20, 3, 4, 14, 45)) //FIFTH
         );
         PurchasedLottos purchasedLottos = PurchasedLottos.from(lottos);
-        WinningNumbers winningNumbers = WinningNumbers.from(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
+        WinningNumbers winningNumbers = WinningNumbers.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
         //when
         EnumMap<Ranking, Integer> statistics = lottoMachine.draw(purchasedLottos, winningNumbers);
         //then

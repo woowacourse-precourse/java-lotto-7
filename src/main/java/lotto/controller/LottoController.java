@@ -45,7 +45,7 @@ public class LottoController {
         Lotto winningNumber = retryOnInvalidInput(inputProcessor::processWinningNumber);
         WinningNumbers winningNumbers = retryOnInvalidInput(() -> {
             Integer bonusNumber = inputProcessor.processBonusNumber();
-            return WinningNumbers.from(winningNumber, bonusNumber);
+            return WinningNumbers.of(winningNumber, bonusNumber);
         });
         return lottoService.drawResult(purchasedLottos, winningNumbers);
     }

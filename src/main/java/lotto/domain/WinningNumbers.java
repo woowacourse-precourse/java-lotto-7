@@ -17,7 +17,7 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningNumbers from(Lotto winningLotto, Integer bonusNumber) {
+    public static WinningNumbers of(Lotto winningLotto, Integer bonusNumber) {
         return new WinningNumbers(winningLotto, bonusNumber);
     }
 

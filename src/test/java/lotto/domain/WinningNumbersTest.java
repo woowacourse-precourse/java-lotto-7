@@ -17,7 +17,7 @@ class WinningNumbersTest {
         Integer bonusNumber = 1;
         //when
         //then
-        assertThatThrownBy(() -> WinningNumbers.from(lotto, bonusNumber))
+        assertThatThrownBy(() -> WinningNumbers.of(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
     }
@@ -29,7 +29,7 @@ class WinningNumbersTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         //when
         //then
-        assertThatThrownBy(() -> WinningNumbers.from(lotto, bonusNumber))
+        assertThatThrownBy(() -> WinningNumbers.of(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 숫자 범위는 최소 1부터 최대 45까지 가능합니다.");
     }
