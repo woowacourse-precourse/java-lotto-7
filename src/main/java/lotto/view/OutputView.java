@@ -47,7 +47,8 @@ public class OutputView {
     private void printPrizeStatistics(PrizeResult prizeResult) {
         Arrays.stream(LottoRank.values())
                 .filter(this::isWinningRank)
-                .sorted(Comparator.comparingInt(LottoRank::getMatchCount))
+                .sorted(Comparator.comparingInt(LottoRank::getMatchCount)
+                        .thenComparingInt(LottoRank::getPrize))
                 .forEach(prize -> System.out.println(getPrintResultPrize(prize, prizeResult)));
     }
 
