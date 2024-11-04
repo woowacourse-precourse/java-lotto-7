@@ -16,4 +16,8 @@ public record PrizeResponse(
                 winningCount
         );
     }
+
+    public int getProfit() {
+        return prizeMoney * winningCount;
+    }
 }
