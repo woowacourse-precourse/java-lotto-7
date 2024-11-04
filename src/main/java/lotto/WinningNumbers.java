@@ -8,7 +8,9 @@ import static lotto.LottoMachine.LOTTO_NUMBER_COUNT;
 import static lotto.LottoMachine.MAX_LOTTO_NUMBER_RANGE;
 import static lotto.LottoMachine.MIN_LOTTO_NUMBER_RANGE;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WinningNumbers {
     private final List<Integer> winningNumbers;
@@ -35,11 +37,8 @@ public class WinningNumbers {
     }
 
     private static void validateUniqueWinningNumber(final List<Integer> winningNumbers) {
-        long distinctCount = winningNumbers.stream()
-                .distinct()
-                .count();
-
-        if (distinctCount != LOTTO_NUMBER_COUNT) {
+        Set<Integer> distinctNumbers = new HashSet<>(winningNumbers);
+        if (distinctNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(NOT_UNIQUE_WINNING_NUMBER.getMessage());
         }
     }
