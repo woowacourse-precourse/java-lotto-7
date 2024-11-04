@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
     @Test
@@ -23,4 +25,17 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+    @DisplayName("로또 번호는 불변성을 가지므로 get 메서드는 복사본을 호출함.")
+    @Test
+    void 로또_번호_호출() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertEquals(lotto.getNumbersValue(), List.of(1, 2, 3, 4, 5, 6));
+
+        List<Integer> numbers = lotto.getNumbersValue();
+        numbers.set(0, 100);
+
+        assertEquals(lotto.getNumbersValue(), List.of(1, 2, 3, 4, 5, 6));
+    }
+
 }
