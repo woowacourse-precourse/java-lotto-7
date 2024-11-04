@@ -1,7 +1,5 @@
 package lotto.view;
 
-import lotto.model.Lotto;
-
 import java.util.List;
 
 public class Output {
@@ -15,9 +13,14 @@ public class Output {
     public static void requestLottoNumbers(List<Integer> numbers){
         System.out.println(numbers.toString());
     }
-    public static void requestWinningNumber(){
+    public static void requestWinningNumbers(){
         System.out.println(" ");
         System.out.println("당첨 번호를 입력해 주세요.");
+    }
+    public static void requestBonusNumber(){
+        System.out.println(" ");
+        System.out.println("보너스 번호를 입력해 주세요.");
+
     }
 
 

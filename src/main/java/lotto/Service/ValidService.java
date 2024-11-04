@@ -1,5 +1,7 @@
 package lotto.Service;
 
+import java.util.List;
+
 public class ValidService {
 
     public void checkBig(String money) {
@@ -37,6 +39,14 @@ public class ValidService {
             tryValid(part);
         }
     }
+    public void checkBonusNumber(String stringBonusNumber){
+        tryValid(stringBonusNumber);
+    }
+    public void checkBonusNumberDuplicate(int bonusNumber ,List<Integer> winningNumbers){
+        for (Integer winningNumber : winningNumbers) {
+            if (winningNumber==bonusNumber) throw new IllegalArgumentException("보너스 번호에 중복된 숫자가 들어갈 수 없습니다");
+        }
+    }
 
     private void tryValid(String part){
         try{
@@ -45,7 +55,7 @@ public class ValidService {
                 throw new IllegalArgumentException("1부터45까지의 숫자만 입력해주세요");
             }
 
-        } catch (IllegalArgumentException e){
+        } catch (NumberFormatException e){
             throw new IllegalArgumentException("숫자만 입력해주세요");
         }
     }

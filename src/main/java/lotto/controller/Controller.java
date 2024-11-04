@@ -17,26 +17,13 @@ public class Controller {
 
 
     public void start() {
-        getMoney();
+        setMoney();
         buyLotto(parsingService.getMoney(),user1); //현재 문제상황
         displayLottos(user1);
-        while (true){
-            Output.requestWinningNumber();
-            String winningNumbers=Input.getInput();
-            try{
-                validService.checkLottoNumbers(winningNumbers);
-                break;
-            }
-            catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-
-            }
-        }
-
-
+        setWinningLotto();
     }
 
-    private void getMoney(){
+    private void setMoney(){
         while (true) {
             String money = promptMoney();
             try {
@@ -76,6 +63,49 @@ public class Controller {
         }
     }
 
+    private void getWinningLottoNumbers(){
+        while (true){
+            String winningNumbers=promptWinningNumber();
+            try{
+                validService.checkLottoNumbers(winningNumbers);
+                parsingService.parseNumbers(winningNumbers);
+                break;
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+
+            }
+        }
+    }
+    private String promptWinningNumber(){
+        Output.requestWinningNumbers();
+        return Input.getInput();
+    }
+
+    private void setBonusNumber(){
+        while(true){
+            String stringBonusNumber=promptBonusNumber();
+            try{
+                validService.checkBonusNumber(stringBonusNumber);
+                parsingService.parseBonusNumbers(stringBonusNumber);
+                validService.checkBonusNumberDuplicate(parsingService.getBonusNumber(),parsingService.getNumbers());
+                winningLotto= new WinningLotto(parsingService.getBonusNumber(),parsingService.getNumbers());
+                break;
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    private String promptBonusNumber(){
+        Output.requestBonusNumber();
+        return Input.getInput();
+    }
+
+    private void setWinningLotto(){
+        getWinningLottoNumbers();
+        setBonusNumber();
+    }
 
 
 

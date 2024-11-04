@@ -6,6 +6,7 @@ import java.util.List;
 public class ParsingService {
     private int money;
     private List<Integer> numbers = new ArrayList<>();
+    private int bonusNumber;
 
     public void setMoney(String money) {
         this.money = Integer.parseInt(money);
@@ -15,15 +16,22 @@ public class ParsingService {
         return money;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public void parseNumbers(String stringNumbers) {
         String[] parts = stringNumbers.split(",");
         for (String part : parts) {
-            try {
-                numbers.add(Integer.parseInt(part));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException();
-            }
+           numbers.add(Integer.parseInt(part));
         }
+    }
+    public void parseBonusNumbers(String stringBonusNumber){
+        this.bonusNumber=Integer.parseInt(stringBonusNumber);
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
 
