@@ -32,9 +32,10 @@ public class LottoResult {
     private long calculateTotalPrize() {
         long total = 0;
         for (Rank rank : Rank.values()) {
-            total += rank.getPrize() * rankCounts.get(rank);
+            total += (long) rank.getPrize() * rankCounts.get(rank);
         }
         return total;
     }
+
 }
 

@@ -47,9 +47,9 @@ public class OutputView {
 
     private static void printProfitRate(double profitRate) {
         if (profitRate >= 100.0) {
-            System.out.println(String.format(TOTAL_PROFIT_RATE_MESSAGE, profitRate));
+            System.out.printf((TOTAL_PROFIT_RATE_MESSAGE) + "%n", profitRate);
         } else {
-            System.out.println(String.format(TOTAL_PROFIT_RATE_MESSAGE, profitRate));
+            System.out.printf((TOTAL_PROFIT_RATE_MESSAGE) + "%n", profitRate);
         }
     }
 
