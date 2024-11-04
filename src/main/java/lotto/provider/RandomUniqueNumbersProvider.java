@@ -12,4 +12,5 @@ public class RandomUniqueNumbersProvider implements NumbersProvider {
     public List<Integer> getNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_NUMBER_OF_RANGE.value(), MAX_NUMBER_OF_RANGE.value(), TOTAL_ELEMENT_COUNT.value());
     }
+
 }

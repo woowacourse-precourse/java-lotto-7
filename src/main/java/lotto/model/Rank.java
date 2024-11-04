@@ -125,4 +125,5 @@ public enum Rank implements RankProvider {
     public String getMessage() {
         return message;
     }
+
 }

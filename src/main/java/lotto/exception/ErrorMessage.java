@@ -12,7 +12,6 @@ public enum ErrorMessage {
     NOT_ENOUGH_MONEY("구매 금액이 부족합니다. 최소 %d원 이상 입력해주세요.".formatted(SALE_PRICE.value())),
     INVALID_MONEY_UNIT("로또 구입 금액은 %d원 단위로 입력해야 합니다.".formatted(SALE_PRICE.value()));
 
-
     private final String text;
 
     ErrorMessage(String text) {
@@ -22,4 +21,5 @@ public enum ErrorMessage {
     public String getText() {
         return text;
     }
+
 }

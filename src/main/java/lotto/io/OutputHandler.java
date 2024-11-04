@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class OutputHandler {
 
     public static final String LOTTO_NUMBER_DELIMITER = ", ";
-    public static final String LOTTO_NOTATATION_PREFIX = "[";
+    public static final String LOTTO_NOTATION_PREFIX = "[";
     public static final String LOTTO_NOTATION_SUFFIX = "]";
 
     public void showPurchaseAmountInstruction() {
@@ -61,7 +61,7 @@ public class OutputHandler {
     private String convertLottoNotation(List<Integer> numbers) {
         return numbers.stream()
             .map(String::valueOf)
-            .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER, LOTTO_NOTATATION_PREFIX, LOTTO_NOTATION_SUFFIX));
+            .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER, LOTTO_NOTATION_PREFIX, LOTTO_NOTATION_SUFFIX));
     }
 
 }
