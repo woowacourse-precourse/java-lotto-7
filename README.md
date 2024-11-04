@@ -62,3 +62,159 @@
       총 수익률은 62.5%입니다.<br>
 - [X] 예외 메시지 출력
   - 주의 사항: "[ERROR]"으로 시작.
+
+## 클래스 다이어그램
+
+```mermaid
+classDiagram
+    class Application {
+        -LottoController controller
+        +void main(String[] args)
+    }
+
+    class LottoController {
+        -LottoPrice lottoPrice
+        -LottoTickets lottoTickets
+        -WinningLotto winningLotto
+        +void runLotto()
+        +LottoPrice getLottoPurchaseAmount()
+        +LottoTickets generateLottoTickets()
+        +WinningLotto inputWinningLotto()
+    }
+
+    class LottoPrice {
+        -BigDecimal price
+        +LottoPrice(BigDecimal price)
+        +BigDecimal getPrice()
+        +void validate()
+    }
+
+    class LottoPrize {
+        <<enumeration>>
+        +int matchCount
+        +BigDecimal prizeAmount
+        +boolean requiresBonus
+        +static LottoPrize of(int matchCount, boolean bonusMatch)
+    }
+
+    class Lotto {
+        -List~Number~ numbers
+        +Lotto(List~Number~ numbers)
+        +int countMatches(Lotto other)
+        +boolean containsNumber(Number number)
+    }
+
+    class LottoTickets {
+        -List~Lotto~ tickets
+        +LottoTickets(List~Lotto~ tickets)
+        +Map~LottoPrize, Integer~ getLottoPrizesMap(WinningLotto winningLotto)
+    }
+
+    class Number {
+        -int value
+        +Number(int value)
+        +int getValue()
+        +void validate()
+    }
+
+    class WinningLotto {
+        -Lotto winningLotto
+        -Number bonusNumber
+        +WinningLotto(Lotto winningLotto, Number bonusNumber)
+        +LottoPrize getLottoPrize(Lotto ticket)
+    }
+
+    class LottoPrizesRecord {
+        -Map~LottoPrize, Integer~ prizeRecord
+        +LottoPrizesRecord(Map~LottoPrize, Integer~ prizeRecord)
+        +BigDecimal getTotalPrize()
+        +BigDecimal getRateOfReturn(LottoPrice purchaseAmount)
+    }
+
+    class InputView {
+        +BigDecimal inputPurchaseAmount()
+        +List~Number~ inputLottoNumbers()
+        +Number inputBonusNumber()
+    }
+
+    class LottoExceptionUtils {
+        +static ~T~ repeatInputUntilValid(Supplier~T~ inputSupplier)
+    }
+
+    class LottoGenerator {
+        +static Lotto generateRandomLotto()
+    }
+
+    class LottoException {
+        -String message
+        +LottoException(ErrorCode code)
+    }
+
+    class ErrorCode {
+        <<enumeration>>
+        +INVALID_PRICE
+        +INVALID_LOTTO_NUMBERS
+        +INVALID_BONUS_NUMBER
+    }
+
+    Application --> LottoController
+    LottoController --> LottoPrice
+    LottoController --> LottoTickets
+    LottoController --> WinningLotto
+    LottoTickets --> Lotto : contains
+    LottoTickets --> LottoPrizesRecord : uses
+    WinningLotto --> Lotto : contains
+    WinningLotto --> Number : bonus number
+    Lotto --> Number : contains
+    LottoPrizesRecord --> LottoPrize : contains
+    InputView --> LottoPrice : input
+    InputView --> Lotto : input numbers
+    InputView --> Number : input bonus
+    LottoGenerator --> Lotto : generates
+    LottoException --> ErrorCode : uses
+```
+
+## 로또 시퀀스 다이어그램
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant InputView
+    participant LottoController
+    participant LottoPrice
+    participant LottoTickets
+    participant WinningLotto
+    participant LottoPrizesRecord
+    participant OutputView
+
+    User->>InputView: 구입금액을 입력해 주세요
+    InputView->>LottoPrice: inputPurchaseAmount()
+    LottoPrice->>LottoPrice: validate()  // 1000원 단위 유효성 검사
+    LottoPrice-->>LottoController: LottoPrice 객체 반환
+
+    LottoController->>LottoTickets: generateLottoTickets()
+    LottoTickets->>LottoGenerator: 랜덤 로또 생성 반복
+
+    LottoGenerator-->>LottoTickets: 로또 번호 리스트 반환
+    LottoTickets-->>LottoController: LottoTickets 객체 반환
+    LottoController-->>OutputView: 발행한 로또 수량 및 번호 출력
+
+    User->>InputView: 당첨 번호를 입력해 주세요
+    InputView->>WinningLotto: inputLottoNumbers()
+    WinningLotto->>WinningLotto: 로또 번호 유효성 검사
+    WinningLotto-->>LottoController: WinningLotto 객체 반환
+
+    User->>InputView: 보너스 번호를 입력해 주세요
+    InputView->>WinningLotto: inputBonusNumber()
+    WinningLotto->>WinningLotto: 보너스 번호 유효성 검사
+    WinningLotto-->>LottoController: 보너스 번호 설정 완료
+
+    LottoController->>LottoTickets: getLottoPrizesMap(WinningLotto)
+    LottoTickets->>Lotto: 구매한 로또 번호와 당첨 번호 비교
+
+    Lotto-->>LottoPrizesRecord: 당첨 내역 저장
+    LottoTickets-->>LottoController: LottoPrizesRecord 객체 반환
+
+    LottoController->>OutputView: 당첨 통계 출력
+    LottoController->>LottoPrizesRecord: 수익률 계산
+    LottoPrizesRecord-->>OutputView: 총 수익률 출력
