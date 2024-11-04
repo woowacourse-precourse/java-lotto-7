@@ -23,7 +23,7 @@ public class PurchaseService {
         int totalPrize = 0;
         for(WinningResult result : results) {
             totalPrize += result.getPrize();
-        };
+        }
         return totalPrize;
     }
 
