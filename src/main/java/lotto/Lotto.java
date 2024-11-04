@@ -12,6 +12,14 @@ public class Lotto {
         this.numbers.sort(Comparator.naturalOrder());
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public boolean isContainingNumber(int number) {
+        return numbers.contains(number);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();
