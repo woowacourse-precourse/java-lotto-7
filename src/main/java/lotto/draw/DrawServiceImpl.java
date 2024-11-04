@@ -7,8 +7,6 @@ import lotto.vendingmachine.VendingMachineRepository;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class DrawServiceImpl implements DrawService {
 
@@ -104,7 +102,7 @@ public class DrawServiceImpl implements DrawService {
             totalEarning += entry.getKey().getProfit(entry.getValue());
         }
 
-        double earningRate = Math.round((totalEarning / totalAmount) * 10) / 10.0;
+        double earningRate = Math.round((totalEarning / totalAmount) * 1000) / 10.0;
 
         return earningRate;
     }
