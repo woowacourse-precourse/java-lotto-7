@@ -7,8 +7,9 @@ import java.util.List;
 
 public class OutputView {
 
-    public static void printLottoNumbers(List<LottoDTO> lottoDTOs) {
-        System.out.println(Message.PURCHASED_NUMBERS.getMessage());
+    public static void printLottoNumbers(List<LottoDTO> lottoDTOs, int budget) {
+        int LottoCount = budget / 1000;
+        System.out.printf("Message.PURCHASED_NUMBERS.getMessage()", LottoCount);
         for (LottoDTO lottoDTO : lottoDTOs) {
             System.out.println(lottoDTO.getNumbers());
         }

@@ -8,7 +8,8 @@ public enum Message {
     INVALID_DUPLICATE_WINNING_NUMBERS("보너스 번호는 당첨 번호와 중복될 수 없습니다."),
     INVALID_1000_MULTIPLE("구매 금액은 1000 단위로 입력해야 합니다."),
     INVALID_INPUT_TYPE("잘못된 입력 형식입니다."),
-    INVALID_DELIMITER("잘못된 구분자 입니다.");
+    INVALID_DELIMITER("잘못된 구분자 입니다."),
+    REGEX_MATCH_PATTERN("^(?:(?:[1-9]|[1-3][0-9]|4[0-5]),){5}(?:[1-9]|[1-3][0-9]|4[0-5])$");
 
     private String message;
 

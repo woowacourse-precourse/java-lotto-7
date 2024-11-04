@@ -8,6 +8,7 @@ import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.utils.InputConverter;
+import lotto.utils.InputLottoNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,6 +20,8 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
 
+    private static final String DELIMITER = ",";
+
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
         this.inputView = inputView;
@@ -26,16 +29,20 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = InputConverter.convertInputNumber(inputView.getBudget());
-        Lottos userLottos = purchaseLottos(purchaseAmount);
+        InputLottoNumbersValidator validator = new InputLottoNumbersValidator();
 
-        outputView.printLottoNumbers(userLottos.toDtoList());
+        String input = inputView.getBudget();
+        validator.validateBudget(input);
+        int budget = InputConverter.convertInputNumber(input);
+        Lottos userLottos = purchaseLottos(budget);
+
+        outputView.printLottoNumbers(userLottos.toDtoList(), budget);
 
         WinningLotto winningLotto = inputWinningLotto();
         LottoResultDTO resultDTO = lottoService.checkWinnings(userLottos, winningLotto);
         outputView.printWinningResults(resultDTO);
 
-        LottoStatisticsDTO statisticsDTO = lottoService.calculateProfitRate(purchaseAmount, resultDTO.getTotalPrize());
+        LottoStatisticsDTO statisticsDTO = lottoService.calculateProfitRate(budget, resultDTO.getTotalPrize());
         outputView.printProfitRate(statisticsDTO);
     }
 
@@ -49,7 +56,10 @@ public class LottoController {
     }
 
     private WinningLotto inputWinningLotto() {
-        String[] winningNumbers = inputView.getLottoNumbers().split(",");
+        InputLottoNumbersValidator validator = new InputLottoNumbersValidator();
+        String winningLotto = inputView.getLottoNumbers();
+        validator.validateSplitDelimiter(winningLotto);
+        String[] winningNumbers = winningLotto.split(DELIMITER);
         List<Integer> winningNumbersList = new ArrayList<>();
         for (String number : winningNumbers) {
             winningNumbersList.add(Integer.parseInt(number.trim()));

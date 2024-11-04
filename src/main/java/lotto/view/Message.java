@@ -1,7 +1,10 @@
 package lotto.view;
 
 public enum Message {
-    PURCHASED_NUMBERS("8개를 구매했습니다."),
+    INPUT_BUDGET("구입금액을 입력해주세요."),
+    INPUT_LOTTO_NUMBERS("당첨 번호를 입력해 주세요."),
+    INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
+    PURCHASED_NUMBERS("%s개를 구매했습니다."),
     WINNING_STATISTICS("당첨 통계"),
     PIECES("개"),
     WON("원"),
