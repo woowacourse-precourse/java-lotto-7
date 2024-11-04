@@ -11,8 +11,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
 	private static final Pattern NUMBER_FORMAT = Pattern.compile("\\d+");
-	private static final String LOTTO_NUMBER_SEPARATOR = ",";
-
+	
 	public static int readLottoPurchaseMoney() {
 		OutputView.printMessage("구입금액을 입력해 주세요.");
 		String amount = Console.readLine();
