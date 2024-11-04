@@ -35,9 +35,11 @@ class MoneyTest {
     }
 
     @Test
-    @DisplayName("0 이상의 숫자인 금액 입력에 대해 정상적으로 Money 객체가 생성되는지 확인")
+    @DisplayName("0 이상의 숫자인 금액 입력에 대해 예외 발생 테스트")
     void testNonNegativeMoneyCreation() {
-        Money money = new Money("0");
-        assertEquals(0, money.getAmount());
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                new Money("0")
+        );
+        assertEquals(ErrorCode.PRICE_DIVIDABLE_BY_UNIT.getErrorMessage(), exception.getMessage());
     }
 }
