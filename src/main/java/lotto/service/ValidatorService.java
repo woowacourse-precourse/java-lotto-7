@@ -2,6 +2,9 @@ package lotto.service;
 
 import lotto.constants.ErrorViewConstants;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static lotto.constants.ConstraintConstants.*;
 
 public class ValidatorService {
@@ -28,5 +31,16 @@ public class ValidatorService {
 
     public static boolean isValidNumber(int number) {
         return number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER;
+    }
+
+    public static boolean isUniqueNumber(int[] numbers) {
+        Set<Integer> numberSet = new HashSet<>();
+        for (int number : numbers) {
+            if (numberSet.contains(number)) {
+                return false;
+            }
+            numberSet.add(number);
+        }
+        return numberSet.size() == numbers.length;
     }
 }

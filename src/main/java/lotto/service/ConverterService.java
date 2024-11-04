@@ -8,7 +8,7 @@ import java.math.RoundingMode;
 import java.math.BigDecimal;
 
 import static lotto.constants.ErrorViewConstants.*;
-import static lotto.service.ValidatorService.validatePurchaseAmount;
+import static lotto.service.ValidatorService.*;
 
 public class ConverterService {
     public static int convertPurchasePrice(String enteredPurchasePrice) {
@@ -33,12 +33,21 @@ public class ConverterService {
     }
 
     public static int[] convertWinningNumber(String[] enteredWinningNumber) {
+        if (!validateWinningNumbersFormat(enteredWinningNumber)) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS);
+        }
+
         int[] result = new int[enteredWinningNumber.length];
         for (int i = 0; i < enteredWinningNumber.length; i++) {
+
             result[i] = Integer.parseInt(enteredWinningNumber[i]);
+
             if (!ValidatorService.isValidNumber(result[i])) {
                 throw new IllegalArgumentException(INVALID_WINNING_NUMBERS);
             }
+        }
+        if (!ValidatorService.isUniqueNumber(result)) {
+            throw new IllegalArgumentException(DUPLICATED_NUMBERS);
         }
         return result;
     }
