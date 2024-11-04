@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import lotto.model.LottoResult;
 import org.junit.jupiter.api.BeforeEach;

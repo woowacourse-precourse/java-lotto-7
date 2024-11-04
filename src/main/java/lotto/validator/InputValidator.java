@@ -95,7 +95,7 @@ public class InputValidator {
             if (Integer.parseInt(str) > 45) {
                 throw new IllegalArgumentException();
             }
-            if (Integer.parseInt(str) < 0) {
+            if (Integer.parseInt(str) < 1) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
