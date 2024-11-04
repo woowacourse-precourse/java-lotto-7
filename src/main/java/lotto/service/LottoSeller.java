@@ -20,7 +20,7 @@ public class LottoSeller {
 
     private UserLottos generateUserLottos(int inputPrice) {
         int sellLottoCount = convertToCount(inputPrice);
-        UserLottos userLottos = new UserLottos(sellLottoCount, sellLottoCount);
+        UserLottos userLottos = new UserLottos(sellLottoCount, inputPrice);
         return userLottos;
     }
 

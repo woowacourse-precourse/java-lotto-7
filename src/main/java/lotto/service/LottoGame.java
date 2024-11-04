@@ -28,8 +28,7 @@ public class LottoGame {
     public WinningLotto generateWinningLotto() {
         List<Integer> inputNums = numberProvider.getNumbers();
         int inputNum = RetryHandler.retryUntilSuccess(() -> InputView.getBonusNum());
-        WinningLotto winningLotto = new WinningLotto(inputNums, inputNum);
-        return winningLotto;
+        return new WinningLotto(inputNums, inputNum);
     }
 
     public void announceResult(UserLottos userLottos, WinningLotto winningLotto) {
@@ -39,55 +38,58 @@ public class LottoGame {
 
     public LottoResultDto calculateResult(UserLottos userLottos, WinningLotto winningLotto) {
         LottoResultDto resultDto = new LottoResultDto();
-        CalculateResultDto calculateResultDto = new CalculateResultDto();
+        int totalRewardAmount = 0;
+
         for (Lotto userLotto : userLottos.getLottos()) {
+            CalculateResultDto calculateResultDto = new CalculateResultDto();
             checkUserLotto(userLotto.getNumbers(), winningLotto, calculateResultDto);
+            totalRewardAmount += calculateMatchAmount(resultDto, calculateResultDto);
         }
-        int rewardAmount = calculateMatchCount(resultDto, calculateResultDto, userLottos.getLottoCount());
-        double profitRate = calculateProfitRate(rewardAmount, userLottos.getTotalPrice());
-        System.out.println("test: "+profitRate);
+
+        double profitRate = calculateProfitRate(totalRewardAmount, userLottos.getTotalPrice());
         resultDto.setProfitRate(profitRate);
         return resultDto;
     }
 
-    public double calculateProfitRate(int rewordAmount, int purchasePrice) {
-        return Math.round(((double) rewordAmount / purchasePrice) * 100) / 100.0;
+    private int calculateMatchAmount(LottoResultDto resultDto, CalculateResultDto calculateResultDto) {
+        int matchCount = calculateResultDto.getWinningNumberMatchCount();
+        int bonusMatch = calculateResultDto.getBonusNumberMatchCount();
+
+        if (matchCount == 3) {
+            resultDto.plusThreeMatchCount();
+            return THREE_MATCH_REWARD_AMOUNT;
+        }
+        if (matchCount == 4) {
+            resultDto.plusFourMatchCount();
+            return FOUR_MATCH_REWARD_AMOUNT;
+        }
+        if (matchCount == 5 && bonusMatch == 1) {
+            resultDto.plusFiveAndBonusMatchCount();
+            return FIVE_AND_BONUS_MATCH_REWARD_AMOUNT;
+        }
+        if (matchCount == 5 && bonusMatch == 0) {
+            resultDto.plusFiveMatchCount();
+            return FIVE_MATCH_REWARD_AMOUNT;
+        }
+        if (matchCount == 6) {
+            resultDto.plusSixMatchCount();
+            return SIX_MATCH_REWARD_AMOUNT;
+        }
+        return 0;
     }
 
-    public int calculateMatchCount(LottoResultDto resultDto, CalculateResultDto calculateResultDto, Integer lottoCount) {
-        int rewordAmount = 0;
-
-        for (int i = 0; i < lottoCount; i++) {
-            if (calculateResultDto.getWinningNumberMatchCount() == 3) {
-                rewordAmount += THREE_MATCH_REWARD_AMOUNT;
-                resultDto.plusThreeMatchCount();
-            }
-            if (calculateResultDto.getWinningNumberMatchCount() == 4) {
-                rewordAmount += FOUR_MATCH_REWARD_AMOUNT;
-                resultDto.plusFourMatchCount();
-            }
-            if (calculateResultDto.getWinningNumberMatchCount() == 5 && calculateResultDto.getBonusNumberMatchCount() == 1) {
-                rewordAmount += FIVE_AND_BONUS_MATCH_REWARD_AMOUNT;
-                resultDto.plusFiveAndBonusMatchCount();
-            }
-            if (calculateResultDto.getWinningNumberMatchCount() == 5 && calculateResultDto.getBonusNumberMatchCount() == 0) {
-                rewordAmount += FIVE_MATCH_REWARD_AMOUNT;
-                resultDto.plusFiveMatchCount();
-            }
-            if (calculateResultDto.getWinningNumberMatchCount() == 6) {
-                rewordAmount += SIX_MATCH_REWARD_AMOUNT;
-                resultDto.plusSixMatchCount();
-            }
-        }
-
-        return rewordAmount;
+    public double calculateProfitRate(int rewordAmount, int purchasePrice) {
+        return Math.round(((double) rewordAmount * 100 / purchasePrice) * 10) / 10.0;
     }
 
     public void checkUserLotto(List<Integer> nums, WinningLotto winningLotto, CalculateResultDto calculateResultDto) {
-        for (int i = 0; i < nums.size(); i++) {
-            List<Integer> winningNumbers = winningLotto.getWinningNums().getNumbers();
-            if (winningNumbers.contains(nums.get(i))) calculateResultDto.plusWinningNumberMatchCount();
-            if (winningLotto.getBonusNum() == nums.get(i)) calculateResultDto.plusBonusNumberMatchCount();
+        for (Integer num : nums) {
+            if (winningLotto.getWinningNums().getNumbers().contains(num)) {
+                calculateResultDto.plusWinningNumberMatchCount();
+            }
+            if (winningLotto.getBonusNum() == num) {
+                calculateResultDto.plusBonusNumberMatchCount();
+            }
         }
     }
 }
