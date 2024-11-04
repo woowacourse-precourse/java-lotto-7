@@ -10,6 +10,9 @@ public class LottoTransactionView {
     final String MATCH_DESCRIPTION_FORMAT = "%d개 일치";
     final String PRIZE_FORMAT = " (%,d원) - %d개";
     final String BONUS_MATCH_SUFFIX = ", 보너스 볼 일치";
+    final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    final String PURHCASE_MESSAGE = "%d개를 구매했습니다.";
+
 
     public void printWinningLottoStatistics(EnumMap<PrizeRank, Integer> rankCounts) {
         System.out.println(STATISTICS_HEADER);
@@ -29,14 +32,12 @@ public class LottoTransactionView {
 
 
     public void printRateOfReturn(double rateOfReturn) {
-        final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
         System.out.println(String.format(RATE_OF_RETURN_MESSAGE, rateOfReturn));
     }
 
     public void printPurchasedLottoNumbers(List<Lotto> lottos) {
-        String message = "%d개를 구매했습니다.";
 
-        System.out.println(String.format(message, lottos.size()));
+        System.out.println(String.format(PURHCASE_MESSAGE, lottos.size()));
 
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
