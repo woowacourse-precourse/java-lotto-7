@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("로또 발행 검증")
+@DisplayName("로또 발행 테스트")
 class LottoMachineTest {
     @Test
     @DisplayName("구입 개수만큼 로또가 발행되는지")

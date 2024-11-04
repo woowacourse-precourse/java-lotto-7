@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@DisplayName("구입 금액 검증")
+@DisplayName("구입 금액 테스트")
 class MoneyTest {
     @ParameterizedTest
     @ValueSource(ints = {1_000, 100_000})
@@ -26,7 +26,7 @@ class MoneyTest {
 
     @ParameterizedTest(name = "{index} : {3}")
     @MethodSource("generateExceptionData")
-    @DisplayName("예외 검증")
+    @DisplayName("예외 테스트")
     void invalidMoney(int inputMoney, Class expectedExceptionClass, String errorMessage, String message) {
         assertThatThrownBy(() -> {
             Money.from(inputMoney);

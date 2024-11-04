@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@DisplayName("당첨 번호 검증")
+@DisplayName("당첨 번호 테스트")
 class WinningLottoTest {
     @Test
     @DisplayName("1~45 사이의 중복되지 않는 6개의 숫자일 때")
@@ -26,7 +26,7 @@ class WinningLottoTest {
 
     @ParameterizedTest(name = "{index} : {3}")
     @MethodSource("generateExceptionData")
-    @DisplayName("예외 검증")
+    @DisplayName("예외 테스트")
     void invalidWinningLotto(List<Integer> inputWinningLotto, Class expectedExceptionClass,
                              String errerMessage, String message) {
         assertThatThrownBy(() -> {

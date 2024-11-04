@@ -15,7 +15,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@DisplayName("입력값 검증")
+@DisplayName("입력값 테스트")
 class InputViewTest extends NsTest {
     private InputView inputView;
 

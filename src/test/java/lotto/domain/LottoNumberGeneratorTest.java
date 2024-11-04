@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("로또 발행 검증")
+@DisplayName("로또 발행 테스트")
 class LottoNumberGeneratorTest {
     @Test
     @DisplayName("발행된 로또 번호가 1~45 사이인지")
