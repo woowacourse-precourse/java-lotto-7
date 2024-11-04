@@ -31,10 +31,13 @@ public class LottoManager {
 
         Map<WinningRank, Integer> rankCount = calculateWinningStatistic(winningNumbers, bonusNumber,
                 purchasePrice);
-        printWinningStatistic(rankCount);
+        int totalPrize = printWinningStatistic(rankCount);
+        double rate = Math.round(((double) totalPrize / purchasePrice * 10000)) / 100.0;
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 
-    private Map<WinningRank, Integer> calculateWinningStatistic(List<Integer> winningNumbers, int bonusNumber, int purchasePrice) {
+    private Map<WinningRank, Integer> calculateWinningStatistic(List<Integer> winningNumbers, int bonusNumber,
+                                                                int purchasePrice) {
         outputView.printWinningStatisticHead();
         List<Lotto> lottos = lottoRepository.findAll();
 
@@ -46,15 +49,19 @@ public class LottoManager {
         for (Lotto lotto : lottos) {
             calculateRank(winningNumbers, bonusNumber, lotto, rankCountMap);
         }
+
         return rankCountMap;
     }
 
-    private void printWinningStatistic(Map<WinningRank, Integer> rankCountMap) {
+    private int printWinningStatistic(Map<WinningRank, Integer> rankCountMap) {
+        int totalPrize = 0;
         for (Map.Entry<WinningRank, Integer> entry : rankCountMap.entrySet()) {
             if (entry.getKey() != WinningRank.ZERO) {
                 outputView.printWinningStatisticBody(entry);
+                totalPrize += entry.getKey().getPrize() * entry.getValue();
             }
         }
+        return totalPrize;
     }
 
     private void calculateRank(List<Integer> winningNumbers, int bonusNumber, Lotto lotto,

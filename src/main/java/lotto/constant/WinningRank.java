@@ -42,4 +42,11 @@ public enum WinningRank {
         return message;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
 }

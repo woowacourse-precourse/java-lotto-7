@@ -13,6 +13,9 @@ public class InputValidator {
     public void validatePurchasePrice(String purchasePrice) {
         if (purchasePrice.isEmpty())
             throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
+        if (!purchasePrice.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException(INVALID_PURCHASE_PRICE.getMessage());
+        }
         if (purchasePrice.matches("[-+]?\\\\d*\\\\.?\\\\d+"))
             throw new IllegalArgumentException(INVALID_PURCHASE_PRICE.getMessage());
         int validatedPurchasePrice = inputParser.parsePurchasePrice(purchasePrice);
