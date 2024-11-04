@@ -1,9 +1,11 @@
+// Application.java (당첨 결과 계산 추가)
 package lotto;
 
 import lotto.InputView;
 import lotto.ResultView;
 import lotto.Lotto;
 import lotto.LottoGenerator;
+import lotto.LottoResult;
 import lotto.Validator;
 import java.util.List;
 
@@ -18,6 +20,9 @@ public class Application {
             List<Integer> winningNumbers = InputView.readWinningNumbers();
             int bonusNumber = InputView.readBonusNumber();
             Validator.validateBonusNumberDuplication(bonusNumber, winningNumbers);
+
+            Lotto winningLotto = new Lotto(winningNumbers);
+            LottoResult lottoResult = new LottoResult(lottos, winningLotto, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
