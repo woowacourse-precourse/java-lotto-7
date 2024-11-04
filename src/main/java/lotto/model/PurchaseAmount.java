@@ -47,7 +47,7 @@ public class PurchaseAmount {
         try {
             return Integer.parseInt(amount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌값은 입력할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_AMOUNT.formatMessage(amount));
         }
     }
 
