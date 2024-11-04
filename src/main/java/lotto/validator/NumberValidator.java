@@ -31,6 +31,12 @@ public class NumberValidator {
         }
     }
 
+    public void checkInRange(List<Integer> number) {
+        for (Integer i : number) {
+            checkInRange(i);
+        }
+    }
+
     public void isDuplicateNumber(List<Integer> number) {
         if(number.size() != number.stream().distinct().count())
             throw new IllegalArgumentException(DUPLICATE.getMessage());
