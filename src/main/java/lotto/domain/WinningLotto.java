@@ -8,9 +8,9 @@ public class WinningLotto {
     private final List<Integer> numbers;
     private final int bonusNumber;
 
-    public WinningLotto(String winningNumbersInput, String bonusNumberInput) {
-        this.numbers = Validator.validateAndParseWinningNumbers(winningNumbersInput);
-        this.bonusNumber = Validator.validateAndParseBonusNumber(bonusNumberInput, numbers);
+    public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        this.numbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getNumbers() {
