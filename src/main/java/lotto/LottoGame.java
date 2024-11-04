@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 public class LottoGame {
@@ -85,7 +84,7 @@ public class LottoGame {
                 System.out.println("당첨 번호를 입력해 주세요. (쉼표로 구분된 6개의 숫자)");
                 String input = Console.readLine().trim();
                 List<Integer> winningNumbers = parseWinningNumbers(input);
-                validateWinningNumbers(winningNumbers);
+                new Lotto(winningNumbers); // Lotto 객체 생성 시 유효성 검사 수행
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -97,11 +96,9 @@ public class LottoGame {
         if (!input.contains(",")) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)를 기준으로 구분합니다.");
         }
-        String[] splitInput = input.split(",");
-        if (splitInput.length != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
 
+
+        String[] splitInput = input.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
         for (String numStr : splitInput) {
             try {
@@ -112,16 +109,6 @@ public class LottoGame {
             }
         }
         return winningNumbers;
-    }
-    private void validateWinningNumbers(List<Integer> numbers) {
-        if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
-        }
-        for (int num : numbers) {
-            if (num < LOTTO_MIN_NUMBER || num > LOTTO_MAX_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-        }
     }
 }
 
