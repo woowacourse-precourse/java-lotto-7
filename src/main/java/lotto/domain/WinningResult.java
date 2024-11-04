@@ -20,7 +20,17 @@ public class WinningResult {
         return lottoScore.get(rank);
     }
 
-    public void increaseRankScore(LottoRank rank) {
+    public void matchLottosAndWinningLotto(List<Lotto> lottos, WinningLotto winningLotto) {
+        for (Lotto lotto : lottos) {
+            int matchCount = winningLotto.calculateMatchCount(lotto);
+            boolean isbonusMatch = winningLotto.isBonusMatch(lotto);
+            LottoRank lottoRank = LottoRank.findRank(matchCount, isbonusMatch);
+
+            increaseRankScore(lottoRank);
+        }
+    }
+
+    private void increaseRankScore(LottoRank rank) {
         lottoScore.put(rank, getRankScore(rank) + 1);
     }
 
@@ -34,20 +44,6 @@ public class WinningResult {
 
     public double calculateRateOfReturn(int purchaseAmount) {
         return (sumTotalReward() / (double) purchaseAmount) * 100;
-    }
-
-    public WinningResult matchLottosAndWinningLotto(List<Lotto> lottos, WinningLotto winningLotto) {
-        WinningResult winningResult = new WinningResult();
-
-        for (Lotto lotto : lottos) {
-            int matchCount = winningLotto.calculateMatchCount(lotto);
-            boolean isbonusMatch = winningLotto.isBonusMatch(lotto);
-            LottoRank lottoRank = LottoRank.findRank(matchCount, isbonusMatch);
-
-            winningResult.increaseRankScore(lottoRank);
-        }
-
-        return winningResult;
     }
 
     @Override
