@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final LottoView lottoView;
@@ -14,6 +15,12 @@ public class LottoController {
     public void start() {
         int purchaseAmount = lottoView.requestPurchaseAmount();
         generateLottos(purchaseAmount);
+
+        lottoView.displayPurchaseLottos(lottos);
+
+        List<Integer> winningNumbers = lottoView.requestWinningNumbers();
+        int bonusNumber = lottoView.requestBonusNumber();
+
     }
 
     private void generateLottos(int purchaseAmount) {
