@@ -22,12 +22,23 @@ public class InputValidatorTest {
 
     @DisplayName("입력 된 돈이 로또 가격보다 작은 경우 예외 발생.")
     @Test
-    void validMoneyTest() {
+    void validMoneyTest_lottoMinPrice() {
         // given
         Long money = 900L;
         // when // then
         assertThatThrownBy(() -> inputValidator.validMoney(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorCode.LOTTO_MIN_PRICE_ERROR.getMessage());
+    }
+
+    @DisplayName("입력 된 돈이 천원 단위가 아닌 경우 예외 발생.")
+    @Test
+    void validMoneyTest_lottoPriceUnit() {
+        // given
+        Long money = 1001L;
+        // when // then
+        assertThatThrownBy(() -> inputValidator.validMoney(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.LOTTO_PRICE_ERROR.getMessage());
     }
 }
