@@ -15,6 +15,7 @@ public enum ErrorBase {
 
     BONUS_NUMBER_BLANK("[ERROR] 보너스 번호를 입력해주세요."),
     BONUS_NUMBER_NON_NUMERIC("[ERROR] 보너스 번호는 숫자여야 합니다."),
+    BONUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호는 당첨번호와 중복된 숫자가 있을 수 없습니다."),
 
     LOTTO_NUMBERS_INVALID_SIZE("[ERROR] 로또 번호는 6개여야 합니다."),
     LOTTO_NUMBERS_DUPLICATE("[ERROR] 로또 번호에는 중복된 숫자가 있을 수 없습니다."),

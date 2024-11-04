@@ -16,45 +16,54 @@ public class LottoController {
     }
 
     public void run() {
-        Long purchaseAmount = getValidatedPurchaseAmount();
-        LottoStore lottoStore = new LottoStore(purchaseAmount);
-        view.printRottos(lottoStore.getLottos());
+        try {
+            Long purchaseAmount = getValidatedPurchaseAmount();
+            LottoStore lottoStore = new LottoStore(purchaseAmount);
+            view.printRottos(lottoStore.getLottos());
 
-        List<Integer> winningLottos = getValidateWinNumbers();
-        Integer bonusNumber = getValidatedBonusNumber(winningLottos);
+            List<Integer> winningNumbers = getValidatedWinningNumbers();
+            Integer bonusNumber = getValidatedBonusNumber(winningNumbers);
 
-        LottoPrizeCalculator lottoPrizeCalculator = new LottoPrizeCalculator(lottoStore.getLottos(), new Lotto(winningLottos), bonusNumber);
-        Map<LottoPrizeInfo, Integer> prizeCounts = lottoPrizeCalculator.getPrizeCounts();
-        Double rate = lottoPrizeCalculator.calculateProfitRate(purchaseAmount);
+            LottoPrizeCalculator lottoPrizeCalculator = new LottoPrizeCalculator(lottoStore.getLottos(), new Lotto(winningNumbers), bonusNumber);
 
-        view.printStatistics(prizeCounts, rate);
+            Map<LottoPrizeInfo, Integer> prizeCounts = lottoPrizeCalculator.getPrizeCounts();
+            Double rate = lottoPrizeCalculator.calculateProfitRate(purchaseAmount);
+
+            view.printStatistics(prizeCounts, rate);
+        } catch (IllegalArgumentException e) {
+            view.printError(e.getMessage());
+            run();
+        }
     }
 
     private Long getValidatedPurchaseAmount() {
         while (true) {
             try {
-                return InputValidator.validatePurchaseAmount(view.inputPurchaseAmount());
+                String input = view.inputPurchaseAmount();
+                return InputValidator.validatePurchaseAmount(input);
             } catch (IllegalArgumentException e) {
                 view.printError(e.getMessage());
             }
         }
     }
 
-    private List<Integer> getValidateWinNumbers() {
+    private List<Integer> getValidatedWinningNumbers() {
         while (true) {
             try {
-                return InputValidator.validateWinningLottos(view.inputWinningLottos());
+                String input = view.inputWinningLottos();
+                return InputValidator.validateWinningLottos(input);
             } catch (IllegalArgumentException e) {
                 view.printError(e.getMessage());
             }
         }
     }
 
-    private Integer getValidatedBonusNumber(List<Integer> winNumbers) {
+    private Integer getValidatedBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                return InputValidator.validateBonusNumber(view.inputBonusNumber());
-            } catch (Exception e) {
+                String input = view.inputBonusNumber();
+                return InputValidator.validateBonusNumber(input, winningNumbers);
+            } catch (IllegalArgumentException e) {
                 view.printError(e.getMessage());
             }
         }

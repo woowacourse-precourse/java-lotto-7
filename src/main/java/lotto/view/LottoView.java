@@ -20,6 +20,14 @@ public class LottoView {
     private static final String WINNING_STATISTICS_SEPARATOR = "---";
     private static final String YIELD = "총 수익률은 %.1f%%입니다.";
 
+    private static final List<LottoPrizeInfo> PRIZE_ORDER = List.of(
+            LottoPrizeInfo.FIFTH_PRIZE,
+            LottoPrizeInfo.FOURTH_PRIZE,
+            LottoPrizeInfo.THIRD_PRIZE,
+            LottoPrizeInfo.SECOND_PRIZE,
+            LottoPrizeInfo.FIRST_PRIZE
+    );
+
     private Supplier<String> inputSupplier;
     private Consumer<String> outputConsumer;
 
@@ -53,15 +61,7 @@ public class LottoView {
         outputConsumer.accept(WINNING_STATISTICS_TITLE);
         outputConsumer.accept(WINNING_STATISTICS_SEPARATOR);
 
-        List<LottoPrizeInfo> prizeOrder = List.of(
-                LottoPrizeInfo.FIFTH_PRIZE,
-                LottoPrizeInfo.FOURTH_PRIZE,
-                LottoPrizeInfo.THIRD_PRIZE,
-                LottoPrizeInfo.SECOND_PRIZE,
-                LottoPrizeInfo.FIRST_PRIZE
-        );
-
-        prizeOrder.forEach(prizeInfo -> printPrizeInfo(prizeInfo, prizeCounts.getOrDefault(prizeInfo, 0)));
+        PRIZE_ORDER.forEach(prizeInfo -> printPrizeInfo(prizeInfo, prizeCounts.getOrDefault(prizeInfo, 0)));
 
         outputConsumer.accept("");
         outputConsumer.accept(String.format(YIELD, rate));

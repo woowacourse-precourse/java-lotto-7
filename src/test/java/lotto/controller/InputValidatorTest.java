@@ -54,19 +54,22 @@ class InputValidatorTest {
 
     @Test
     public void 유효한_보너스번호를_입력한다() {
-        assertThat(InputValidator.validateBonusNumber("7")).isEqualTo(7);
+        List<Integer> winningsNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThat(InputValidator.validateBonusNumber("7", winningsNumbers)).isEqualTo(7);
     }
 
     @Test
     public void 보너스번호가_빈_문자열이면_예외가_발생한다() {
-        assertThatThrownBy(() -> InputValidator.validateBonusNumber("   "))
+        List<Integer> winningsNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> InputValidator.validateBonusNumber("   ", winningsNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BONUS_NUMBER_BLANK.getMessage());
     }
 
     @Test
     public void 보너스번호가_숫자가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> InputValidator.validateBonusNumber("abc"))
+        List<Integer> winningsNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> InputValidator.validateBonusNumber("abc", winningsNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BONUS_NUMBER_NON_NUMERIC.getMessage()  );
     }
