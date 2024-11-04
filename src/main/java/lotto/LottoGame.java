@@ -10,7 +10,7 @@ import lotto.domain.LottoTicket;
 import lotto.domain.NumbersGenerator;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
-import lotto.domain.WinningLotto;
+import lotto.domain.WinningCombination;
 import lotto.external.RandomNumbersGenerator;
 import lotto.view.Input;
 import lotto.view.Output;
@@ -38,7 +38,6 @@ public class LottoGame {
         NumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
 
         LottoDrawer lottoDrawer = new LottoDrawer(purchaseAmount, randomNumbersGenerator);
-
         LottoTicket lottoTicket = lottoDrawer.generateLottos();
 
         output.printLottoTicket(lottoTicket);
@@ -47,17 +46,19 @@ public class LottoGame {
     }
 
     public void result(LottoTicket lottoTicket) {
-        List<Integer> winningNumbers = input.readWinningLotto();
-        Lotto winningLottoTemp = new Lotto(winningNumbers);
+        Lotto winningLotto = retryUntilValid(() -> {
+            List<Integer> winningNumbers = input.readWinningLotto();
+            return new Lotto(winningNumbers);
+        });
 
-        String rawBonusNumber = input.readBonusNumber();
-        Bonus bonus = new Bonus(rawBonusNumber);
+        Bonus bonus = retryUntilValid(() -> {
+            String rawBonusNumber = input.readBonusNumber();
+            return new Bonus(rawBonusNumber);
+        });
 
-        WinningLotto winningLotto = new WinningLotto(
-                winningLottoTemp, bonus
-        );
+        WinningCombination winningCombination = new WinningCombination(winningLotto, bonus);
 
-        Map<Rank, Integer> lottoResult = winningLotto.lottoWinningResult(lottoTicket);
+        Map<Rank, Integer> lottoResult = winningCombination.lottoWinningResult(lottoTicket);
     }
 
     private <T> T retryUntilValid(Supplier<T> supplier) {

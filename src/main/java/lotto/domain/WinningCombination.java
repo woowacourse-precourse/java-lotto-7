@@ -3,12 +3,12 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WinningLotto {
+public class WinningCombination {
 
     private final Lotto winningLotto;
     private final Bonus bonus;
 
-    public WinningLotto(Lotto winningLotto, Bonus bonus) {
+    public WinningCombination(Lotto winningLotto, Bonus bonus) {
         this.winningLotto = winningLotto;
         this.bonus = bonus;
     }

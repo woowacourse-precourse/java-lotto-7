@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class WinningLottoTest {
+class WinningCombinationTest {
 
     @DisplayName("로또의 당첨 결과 개수를 확인한다.")
     @ParameterizedTest
@@ -18,11 +18,11 @@ class WinningLottoTest {
     void lottoWinningResultTest(List<Lotto> lottoList, Map<Rank, Integer> expectedResults) {
         LottoTicket lottoTicket = new LottoTicket(lottoList);
         Bonus bonus = new Bonus("7");
-        WinningLotto winningLotto = new WinningLotto(
+        WinningCombination winningCombination = new WinningCombination(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)), bonus
         );
 
-        Map<Rank, Integer> result = winningLotto.lottoWinningResult(lottoTicket);
+        Map<Rank, Integer> result = winningCombination.lottoWinningResult(lottoTicket);
 
         assertThat(result).isEqualTo(expectedResults);
     }
