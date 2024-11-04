@@ -1,11 +1,13 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import lotto.model.Lotto;
+import lotto.model.LottoRank;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -21,5 +23,79 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호가_1부터_45사이의_숫자가_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 45)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 45)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_6개_일치하면_1등이다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+
+        LottoRank rank = lotto.getRank(winNumbers, bonusNumber);
+
+        assertThat(rank).isEqualTo(LottoRank.FIRST);
+    }
+
+    @Test
+    void 로또_번호가_5개_일치하고_보너스_번호가_일치하면_2등이다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        int bonusNumber = 6;
+
+        LottoRank rank = lotto.getRank(winNumbers, bonusNumber);
+
+        assertThat(rank).isEqualTo(LottoRank.SECOND);
+    }
+
+    @Test
+    void 로또_번호가_5개_일치하면_3등이다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        int bonusNumber = 8;
+
+        LottoRank rank = lotto.getRank(winNumbers, bonusNumber);
+
+        assertThat(rank).isEqualTo(LottoRank.THIRD);
+    }
+
+    @Test
+    void 로또_번호가_4개_일치하면_4등이다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winNumbers = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+        int bonusNumber = 9;
+
+        LottoRank rank = lotto.getRank(winNumbers, bonusNumber);
+
+        assertThat(rank).isEqualTo(LottoRank.FOURTH);
+    }
+
+    @Test
+    void 로또_번호가_3개_일치하면_5등이다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winNumbers = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        int bonusNumber = 10;
+
+        LottoRank rank = lotto.getRank(winNumbers, bonusNumber);
+
+        assertThat(rank).isEqualTo(LottoRank.FIFTH);
+    }
+
+    @Test
+    void 로또_번호가_2개_이하로_일치하면_꽝이다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winNumbers = new Lotto(List.of(1, 2, 7, 8, 9, 10));
+        int bonusNumber = 11;
+
+        LottoRank rank = lotto.getRank(winNumbers, bonusNumber);
+
+        assertThat(rank).isEqualTo(LottoRank.NONE);
+    }
 }
