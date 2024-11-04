@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,11 +41,12 @@ public class LottoMachine {
      * @return 선택된 6개의 숫자 리스트
      */
     private static List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(
+        // 변경 후
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(
                 MIN_LOTTO_NUMBER,
                 MAX_LOTTO_NUMBER,
                 LOTTO_NUMBER_SIZE
-        );
+        ));
     }
 
     /**
