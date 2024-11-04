@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.validator.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
