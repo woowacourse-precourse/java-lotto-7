@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 public class Price {
     private final int value;
@@ -24,7 +24,7 @@ public class Price {
     }
 
     private void validatePriceUnit(final int value) {
-        if (isNotUnitPrice(value)) { // TODO: 조건문의 부정..? 어떻게 고치는 게 좋을까..
+        if (isNotUnitPrice(value)) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위어야 합니다.");
         }
     }

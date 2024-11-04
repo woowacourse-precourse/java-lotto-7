@@ -1,6 +1,7 @@
-package lotto.model;
+package lotto.domain;
 
 import java.util.List;
+import lotto.domain.Lotto.Lotto;
 
 public class WinningLotto {
     private final Lotto winningLottoNum;

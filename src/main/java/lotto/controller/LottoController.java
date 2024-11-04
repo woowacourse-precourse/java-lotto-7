@@ -1,11 +1,12 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.Lottos;
-import lotto.model.Number;
-import lotto.model.Price;
-import lotto.model.Stastistics;
-import lotto.model.WinningLotto;
+import lotto.domain.Lotto.Lotto;
+import lotto.domain.Lotto.LottoFactory;
+import lotto.domain.Lottos;
+import lotto.domain.Number;
+import lotto.domain.Price;
+import lotto.domain.Stastistics;
+import lotto.domain.WinningLotto;
 import lotto.util.InputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -57,7 +58,7 @@ public class LottoController {
         while (true) {
             try {
                 String rawWinningLotto = inputView.readWinningLottoNumber();
-                return Lotto.createManualLotto(rawWinningLotto);
+                return LottoFactory.createManualLotto(rawWinningLotto);
             } catch (IllegalArgumentException e) {
                 outputView.printResult(e.getMessage());
             }

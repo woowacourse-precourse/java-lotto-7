@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import static lotto.util.InputParser.parseInt;
 
@@ -10,7 +10,7 @@ public class Number {
         this.value = value;
     }
 
-    public Number(final String input){
+    public Number(final String input) {
         validate(parseInt(input));
         this.value = parseInt(input);
     }
@@ -31,8 +31,12 @@ public class Number {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Number number = (Number) obj;
         return value == number.value;
     }

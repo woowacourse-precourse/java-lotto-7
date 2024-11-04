@@ -1,8 +1,10 @@
-package lotto.model;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.Lotto.Lotto;
+import lotto.domain.Lotto.LottoFactory;
 
 public class Lottos {
     private final int ticketCount;
@@ -17,7 +19,7 @@ public class Lottos {
     public List<Lotto> createLottos() {
         List<Lotto> lottosNumber = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            lottosNumber.add(Lotto.createAutoLotto());
+            lottosNumber.add(LottoFactory.createAutoLotto());
         }
         return lottosNumber;
     }
@@ -33,11 +35,11 @@ public class Lottos {
         return result.toString();
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
     }
 
-    public int getTicketCount(){
+    public int getTicketCount() {
         return ticketCount;
     }
 }
