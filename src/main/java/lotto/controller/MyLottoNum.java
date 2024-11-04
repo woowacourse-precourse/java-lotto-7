@@ -14,7 +14,7 @@ public class MyLottoNum {
     public MyLottoNum() {
     }
 
-    public List<Lotto> getLottoList(Integer times) {
+    public List<Lotto> getLottoList() {
         return lottoList;
     }
 

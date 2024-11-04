@@ -24,7 +24,7 @@ public class MyLottoNumTest {
         int times = 5;
         myLottoNum.makeMyLotto(times);
 
-        List<Lotto> lottoList = myLottoNum.getLottoList(times);
+        List<Lotto> lottoList = myLottoNum.getLottoList();
         assertEquals(times, lottoList.size());
 
         for (Lotto lotto : lottoList) {
