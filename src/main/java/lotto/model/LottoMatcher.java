@@ -15,8 +15,10 @@ public class LottoMatcher {
         this.bonusNumber = bonusNumber;
     }
 
-    public static void matchingLotto(List<List<Integer>> lottoLists, List<Integer> winningNumbers, int bonusNumber) {
+    public static void matchingLotto(int purchase, List<List<Integer>> lottoLists, List<Integer> winningNumbers, int bonusNumber) {
         Map<Integer, Integer> winningResults = winningResults();
+        Map<Integer, String> winningDetails = winningDetails();
+
         for (List<Integer> lottoList : lottoLists) {
             int matchCount = 0;
             boolean bonusMatch = false;
@@ -36,17 +38,35 @@ public class LottoMatcher {
                 }
                 winningResults.put(matchCount, winningResults.get(matchCount) + 1);
             }
-
-
         }
 
         for (int key : winningResults.keySet()) {
             if (key == 6) {
-                System.out.println(key + "개 일치, 보너스 볼 일치 (" + winningDetails().get(key) + ") - " + winningResults.get(key) + "개");
+                System.out.println(key-1 + "개 일치, 보너스 볼 일치 (" + winningDetails().get(key) + "원) - " + winningResults.get(key) + "개");
                 continue;
             }
-            System.out.println(key + "개 일치 (" + winningDetails().get(key) + ") - " + winningResults.get(key) + "개");
+            if (key == 7) {
+                System.out.println(key-1 + "개 일치 (" + winningDetails().get(key) + "원) - " + winningResults.get(key) + "개");
+                continue;
+            }
+            System.out.println(key + "개 일치 (" + winningDetails().get(key) + "원) - " + winningResults.get(key) + "개");
         }
+
+        totalWinningRate(purchase, winningResults, winningDetails);
+    }
+
+    public static void totalWinningRate(int purchase, Map<Integer, Integer> winningResults, Map<Integer, String> winningDetails) {
+        long totalPrice = 0;
+        float winningRate;
+
+        for(int key : winningResults.keySet()) {
+            if (winningResults.get(key) != 0) {
+                totalPrice += Long.parseLong(winningDetails().get(key).replace(",", ""));
+            }
+        }
+
+        winningRate = (float) totalPrice / purchase * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", winningRate);
     }
 
     public static Map<Integer, Integer> winningResults() {
@@ -70,5 +90,4 @@ public class LottoMatcher {
 
         return winningDetails;
     }
-
 }
