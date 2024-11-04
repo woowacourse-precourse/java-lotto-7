@@ -9,7 +9,9 @@ public class ProfitCalculator {
     public static long calculateTotalProfit(List<MatchCountMessage> winningResults) {
         long totalProfit = 0;
         for (MatchCountMessage result : winningResults) {
-            totalProfit += result.getPrize();
+            if (result != null) {
+                totalProfit += result.getPrize();
+            }
         }
         return totalProfit;
     }
