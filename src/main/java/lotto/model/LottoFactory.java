@@ -7,7 +7,6 @@ import lotto.dto.LottoPurchaseDTO;
 
 public class LottoFactory {
     private final Lottos lottos;
-    private WinningLotto winningLotto;
 
     public LottoFactory(Lottos lottos) {
         this.lottos = lottos;
@@ -29,8 +28,9 @@ public class LottoFactory {
         }
     }
 
-    public void createWinningLotto(LottoPurchaseDTO lottoPurchaseDTO) {
-        winningLotto = new WinningLotto(lottoPurchaseDTO.getLottoNumbers(), lottoPurchaseDTO.getBonusNumber());
+    public WinningLotto createWinningLotto(LottoPurchaseDTO lottoPurchaseDTO) {
+        WinningLotto winningLotto = new WinningLotto(lottoPurchaseDTO.getLottoNumbers(), lottoPurchaseDTO.getBonusNumber());
+        return winningLotto;
     }
 
     public String checkLottos() {
