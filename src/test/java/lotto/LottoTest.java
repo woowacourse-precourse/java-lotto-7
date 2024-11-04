@@ -22,4 +22,14 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 지정된 1~45 범위를 넘어간 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void 로또_번호가_지정된_1_45_범위를_넘어간_숫자가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 55)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
