@@ -14,8 +14,8 @@ public class LottoGenerator {
     List<Lotto> lottoList = new ArrayList<>();
     Boolean keepGetLottoList = true;
 
-    void getTicketCount(String input) throws Exception{
-        if (input == null) throw new IllegalStateException("[ERROR] 입금액이 입력되지 않았습니다.");
+    void getTicketCount(String input) throws IllegalArgumentException{
+        if (input == null) throw new IllegalArgumentException("[ERROR] 입금액이 입력되지 않았습니다.");
 
         try {
             money = Integer.parseInt((input));
@@ -39,13 +39,14 @@ public class LottoGenerator {
         return lottoList;
     }
 
-    List<Lotto> getLottoList(String input) throws Exception {
+    List<Lotto> getLottoList(String input) throws IllegalArgumentException{
         try{
             this.getTicketCount(input);
             keepGetLottoList = false;
-        }catch(Exception e){
+        }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
-            throw new Exception();
+            //throw new IllegalArgumentException();
+            throw e;
         }
         return this.generateLotto(this.lottoCount);
     }
@@ -55,7 +56,8 @@ public class LottoGenerator {
             try{
                 String money = getMoney();
                 getLottoList(money);
-            } catch(Exception e){
+            } catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
                 System.out.println();
             }
         }
