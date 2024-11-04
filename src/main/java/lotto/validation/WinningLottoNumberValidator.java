@@ -13,6 +13,12 @@ public class WinningLottoNumberValidator {
         throwExceptionIfNumberIsNotValid(winningNumbers);
     }
 
+    public static void throwExceptionPrefixOrSuffixIsComma(String userInputWinningNumbers){
+        if(userInputWinningNumbers.startsWith(",") || userInputWinningNumbers.endsWith(",")){
+            throw new WinningLottoNumberException(WINNING_LOTTO_MUST_NOT_START_END_WITH_COMMA);
+        }
+    }
+
     private static void throwExceptionIfDuplicateNumber(List<Integer> winningNumbers){
         if(winningNumbers.size() != new HashSet<>(winningNumbers).size()){
             throw new WinningLottoNumberException(THERE_IS_DUPLICATE_NUMBER_IN_WINNING_LOTTO);

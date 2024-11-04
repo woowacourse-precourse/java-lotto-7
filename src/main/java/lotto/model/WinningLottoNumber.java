@@ -16,6 +16,7 @@ public class WinningLottoNumber {
     }
 
     public static WinningLottoNumber of(String userInputWinningLottoNumber){
+        WinningLottoNumberValidator.throwExceptionPrefixOrSuffixIsComma(userInputWinningLottoNumber);
         return new WinningLottoNumber(userInputWinningLottoNumber);
     }
 
