@@ -49,7 +49,7 @@ public class LottoService {
         }
     }
 
-    private BigDecimal calculateTotalPrize() {
+    public BigDecimal calculateTotalPrize() {
         BigDecimal totalPrize = BigDecimal.ZERO;
         for (LottoRank rank : LottoRank.values()) {
             BigDecimal prize = BigDecimal.valueOf(rank.getPrize());
