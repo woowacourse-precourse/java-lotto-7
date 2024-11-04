@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoMachine;
 import lotto.domain.Lottos;
+import lotto.domain.vo.Count;
 import lotto.dto.PurchaseAmountRequest;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -19,11 +20,16 @@ public class LottoController {
 
     public void run() {
         PurchaseAmountRequest purchaseAmountRequest = inputView.readPurchaseAmount();
-        int lottoCount = lottoMachine.calculateLottoCount(purchaseAmountRequest.getAmount());
-        outputView.printPurchasedLottoCount(lottoCount);
 
-        Lottos lottos = lottoMachine.issueLottoTickets(lottoCount);
+        Count count = calculateLottoCount(purchaseAmountRequest.getAmount());
+        outputView.printPurchasedLottoCount(count.lottoCount());
 
+        Lottos lottos = lottoMachine.issueLottoTickets(count.lottoCount());
         outputView.printLottoTickets(lottos);
+    }
+
+    private Count calculateLottoCount(int purchaseAmount) {
+        int lottoCountValue = lottoMachine.calculateLottoCount(purchaseAmount);
+        return Count.newInstance(lottoCountValue);
     }
 }
