@@ -31,6 +31,11 @@ public class LottoDraw {
                 throw new IllegalArgumentException("당첨 번호는 공백이 될 수 없습니다.");
             }
 
+            if(inputNumbers.length > 6)
+            {
+                throw new IllegalArgumentException("당첨 번호가 6개 이상이 될 수 없습니다.");
+            }
+
             int number = Integer.parseInt(inputNumbers[idx]);
 
 
