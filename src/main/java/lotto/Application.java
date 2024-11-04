@@ -1,7 +1,14 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+import lotto.config.ApplicationConfiguration;
+import lotto.controller.LottoController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        ApplicationConfiguration applicationConfiguration = new ApplicationConfiguration();
+        LottoController lottoController = applicationConfiguration.lottoController();
+        lottoController.lottoProcess();
+        Console.close();
     }
 }
