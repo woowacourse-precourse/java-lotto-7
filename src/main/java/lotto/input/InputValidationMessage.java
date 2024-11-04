@@ -13,17 +13,17 @@ public enum InputValidationMessage {
     MESSAGE_NUMBER_CANNOT_DUPLICATE("[ERROR] : 로또 번호는 중복될 수 없습니다."),
 
     MESSAGE_BONUS_NUMBER_CANNOT_DUPLICATE("[ERROR] 보너스 번호는 기존 번호와 중복될 수 없습니다."),
-    MESSAGE_NUMBER_CANNOT_NULL ("[ERROR] 로또 번호 목록과 당첨 번호는 비어 있을 수 없습니다.");
+    MESSAGE_NUMBER_CANNOT_NULL("[ERROR] 로또 번호 목록과 당첨 번호는 비어 있을 수 없습니다.");
 
 
     private final String message;
 
-    InputValidationMessage(String message){
+    InputValidationMessage(String message) {
         this.message = message;
 
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return message;
     }
 

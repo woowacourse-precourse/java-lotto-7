@@ -13,7 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-       // getBonusNum(numbers);
+        // getBonusNum(numbers);
         this.numbers = numbers;
     }
 
@@ -28,7 +28,7 @@ public class Lotto {
 
     }
 
-    private void checkDuplicate(List<Integer> numbers){
+    private void checkDuplicate(List<Integer> numbers) {
 
         Set<Integer> uniqueNumbers = new HashSet<>(numbers); // 중복을 제거하여 Set에 추가
         if (uniqueNumbers.size() != numbers.size()) {

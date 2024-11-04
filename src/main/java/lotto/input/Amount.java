@@ -14,7 +14,7 @@ public class Amount {
         isNumber(input);
         int num = Integer.parseInt(input);
 
-        return  num/1000;
+        return num / 1000;
     }
 
     private static void isNumber(String input) {
@@ -42,7 +42,6 @@ public class Amount {
         return price % 1000 == 0 && price >= 1000;
 
     }
-
 
 
 }

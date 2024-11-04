@@ -29,7 +29,7 @@ public class JudgeWinLotto {
 
         System.out.println("당첨 통계");
         System.out.println("---");
-        
+
         printStatistics(matchCountMap);
 
         printRateOfReturn(purchaseAmount, totalPrize);
@@ -49,10 +49,14 @@ public class JudgeWinLotto {
         if (matchCount == 6) {
             totalPrize += FIRST_PRIZE;
             matchCountMap.put(6, matchCountMap.getOrDefault(6, 0) + 1);
-        } else if (matchCount == 5 && bonusMatch) {
+        }
+
+        if (matchCount == 5 && bonusMatch) {
             totalPrize += SECOND_PRIZE;
             matchCountMap.put(55, matchCountMap.getOrDefault(55, 0) + 1);
-        } else if (PRIZE_MAP.containsKey(matchCount)) {
+        }
+
+        if (PRIZE_MAP.containsKey(matchCount)) {
             int prize = PRIZE_MAP.get(matchCount);
             totalPrize += prize;
             matchCountMap.put(matchCount, matchCountMap.getOrDefault(matchCount, 0) + 1);
@@ -91,7 +95,9 @@ public class JudgeWinLotto {
     }
 
     private static double calculateYield(int totalPrize, int purchaseAmount) {
-        if (purchaseAmount == 0) return 0;
-        return (double) totalPrize / purchaseAmount /10;
+        if (purchaseAmount == 0) {
+            return 0;
+        }
+        return (double) totalPrize / (purchaseAmount) * 100;
     }
 }
