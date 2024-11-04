@@ -12,6 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoService {
+    private static final int RANK_STAGE = 5;
+    private static final int RANK_PIVOT = 3;
+    private static final int SIX_MATCH = 6;
+    private static final int FIVE_MATCH = 5;
+    private static final int FIRST_PRIZE_INDEX = 0;
+    private static final int SECOND_PRIZE_INDEX = 1;
+    private static final int CONVERSION_CONSTANT = 7;
     public Payment takePayment() {
         while (true) {
             try {
@@ -61,13 +68,13 @@ public class LottoService {
     }
 
     private int[] countRank(List<Ticket> tickets, List<Integer> mainValue, int bonusValue) {
-        int[] rankCount = new int[5];
+        int[] rankCount = new int[RANK_STAGE];
         for (Ticket ticket : tickets) {
             int match = countSame(ticket, mainValue);
             boolean hasBonus = hasBonusNumber(ticket, bonusValue);
             int index = findIndex(match, hasBonus);
 
-            if (match >= 3) {
+            if (match >= RANK_PIVOT) {
                 rankCount[index]++;
             }
         }
@@ -85,8 +92,8 @@ public class LottoService {
     }
 
     private int findIndex(int matchCount, boolean hasBonus) {
-        if (matchCount == 6) { return 0; }
-        if (matchCount == 5 && hasBonus) { return 1; }
-        return 7 - matchCount;
+        if (matchCount == SIX_MATCH) { return FIRST_PRIZE_INDEX; }
+        if (matchCount == FIVE_MATCH && hasBonus) { return SECOND_PRIZE_INDEX; }
+        return CONVERSION_CONSTANT - matchCount;
     }
 }

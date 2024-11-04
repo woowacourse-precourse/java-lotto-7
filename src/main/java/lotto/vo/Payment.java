@@ -4,10 +4,9 @@ import lotto.util.Parser;
 import lotto.util.Validator;
 
 import static lotto.common.ErrorMessage.*;
-import static lotto.common.Constants.UNIT;
+import static lotto.common.Constants.*;
 
 public class Payment {
-    private static final int ZERO = 0;
     private final int money;
 
     public Payment(final String inputValue) {

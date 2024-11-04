@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.common.Constants.UNIT;
+import static lotto.common.Constants.*;
 
 public class TicketManager {
     private final Payment payment;
@@ -26,7 +26,7 @@ public class TicketManager {
     }
 
     private List<Ticket> issueTickets(int ticketAmount) {
-        return IntStream.range(0, ticketAmount)
+        return IntStream.range(START_INDEX, ticketAmount)
                 .mapToObj(amount -> new Ticket())
                 .collect(Collectors.toList());
     }

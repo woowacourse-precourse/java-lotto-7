@@ -5,7 +5,7 @@ import lotto.vo.Payment;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static lotto.common.Constants.START_INDEX;
+import static lotto.common.Constants.*;
 
 public class Prize {
     private static final int FIRST_PRIZE = 2000000000;
@@ -15,6 +15,7 @@ public class Prize {
     private static final int FIFTH_PRIZE = 5000;
     private static final List<Integer> prizes = List.of(FIRST_PRIZE,
             SECOND_PRIZE, THIRD_PRIZE, FOURTH_PRIZE, FIFTH_PRIZE);
+    private static final int PERCENTAGE_UNIT = 100;
     private final List<Integer> rankCount;
     private final int profit;
     private final double profitRate;
@@ -34,10 +35,10 @@ public class Prize {
     }
 
     private double calculateProfitRate(int investment, int profit) {
-        if (investment == 0) {
-            return 0;
+        if (investment == ZERO) {
+            return ZERO;
         }
-        return (double) profit / investment * 100;
+        return (double) profit / investment * PERCENTAGE_UNIT;
     }
 
     public double getProfitRate() {

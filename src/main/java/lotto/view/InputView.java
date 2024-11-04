@@ -29,7 +29,7 @@ public class InputView {
         return inputValue;
     }
 
-    private static void validate(String inputValue) throws IllegalArgumentException { // TODO: 적절한 Exception로 수정
+    private static void validate(String inputValue) throws IllegalArgumentException {
         if (inputValue == null || inputValue.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
         }

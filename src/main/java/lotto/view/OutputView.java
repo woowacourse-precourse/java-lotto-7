@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 
 import static lotto.view.message.OutputMessage.*;
 public class OutputView {
+    private static final String PREFIX = ", ";
+    private static final String SUFFIX = ", ";
+    private static final String SEPARTOR = ", ";
     public static void printTicketAmount(int ticketAmount) {
         System.out.println();
         formatAndPrint(PURCHASE_AMOUNT, ticketAmount);
@@ -15,12 +18,12 @@ public class OutputView {
 
     public static void printTickets(List<Ticket> tickets) {
         for (Ticket ticket : tickets) {
-            System.out.print("[");
+            System.out.print(PREFIX);
             System.out.print(ticket.getTicket()
                     .stream()
                     .map(String::valueOf)
-                    .collect(Collectors.joining(", ")));
-            System.out.println("]");
+                    .collect(Collectors.joining(SEPARTOR)));
+            System.out.println(SUFFIX);
         }
     }
 

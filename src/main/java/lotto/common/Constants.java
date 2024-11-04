@@ -6,4 +6,5 @@ public class Constants {
     public static final int UNIT = 1000;
     public static final int START_INDEX = 0;
     public static final int MAIN_NUMBER_SIZE = 6;
+    public static final int ZERO = 0;
 }
