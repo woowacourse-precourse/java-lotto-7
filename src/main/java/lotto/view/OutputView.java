@@ -7,13 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-
     private static final String PURCHASED_MESSAGE = "%d개를 구매했습니다.";
     private static final String RESULT_HEADER = "당첨 통계";
     private static final String DIVIDER = "---";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
-    private static final String MATCH_COUNT_MESSAGE = "%d개 일치 (%d원) - %d개";
-    private static final String SECOND_MATCH_MESSAGE = "5개 일치, 보너스 볼 일치 (%d원) - %d개";
+    private static final String MATCH_COUNT_MESSAGE = "%d개 일치 (%s원) - %d개";
+    private static final String SECOND_MATCH_MESSAGE = "5개 일치, 보너스 볼 일치 (%s원) - %d개";
 
     public static void printPurchasedLottos(List<Lotto> lottos) {
         System.out.println();
@@ -38,9 +37,13 @@ public class OutputView {
     private static void printRankResult(Map<Rank, Integer> results, Rank rank) {
         int count = results.getOrDefault(rank, 0);
         if (rank == Rank.SECOND) {
-            System.out.println(String.format(SECOND_MATCH_MESSAGE, rank.getPrize(), count));
+            System.out.println(String.format(SECOND_MATCH_MESSAGE, formatPrize(rank.getPrize()), count));
             return;
         }
-        System.out.println(String.format(MATCH_COUNT_MESSAGE, rank.getMatchCount(), rank.getPrize(), count));
+        System.out.println(String.format(MATCH_COUNT_MESSAGE, rank.getMatchCount(), formatPrize(rank.getPrize()), count));
+    }
+
+    private static String formatPrize(int prize) {
+        return String.format("%,d", prize);
     }
 }
