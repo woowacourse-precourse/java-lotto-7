@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class ProfitCalculator {
 
-    public Map<Ranking, Integer> getWinningInfo(Lottos lottos, WinningBonus winningBonus) {
+    public static Map<Ranking, Integer> getWinningInfo(Lottos lottos, WinningBonus winningBonus) {
         Map<Ranking, Integer> winningInfo = generateWinningInfo();
         for (Lotto lotto : lottos.getLottos()) {
             int matchingCount = matchLottoAndWinning(lotto, winningBonus);
@@ -18,13 +18,13 @@ public class ProfitCalculator {
         return winningInfo;
     }
 
-    private Map<Ranking, Integer> generateWinningInfo() {
+    private static Map<Ranking, Integer> generateWinningInfo() {
         Map<Ranking, Integer> winningInfo = new EnumMap<>(Ranking.class);
         Arrays.stream(Ranking.values()).forEach(ranking -> winningInfo.put(ranking, 0));
         return winningInfo;
     }
 
-    private int matchLottoAndWinning(Lotto lotto, WinningBonus winningBonus) {
+    private static int matchLottoAndWinning(Lotto lotto, WinningBonus winningBonus) {
         List<Integer> numbers = lotto.getNumbers();
         List<Integer> winningNumbers = winningBonus.getWinningNumbers();
         return (int)numbers.stream()
@@ -32,7 +32,7 @@ public class ProfitCalculator {
                 .count();
     }
 
-    private boolean checkBonusNumber(Lotto lotto, WinningBonus winningBonus, int matchingCount) {
+    private static boolean checkBonusNumber(Lotto lotto, WinningBonus winningBonus, int matchingCount) {
         if (matchingCount != 5) {
             return false;
         }
@@ -41,13 +41,13 @@ public class ProfitCalculator {
         return numbers.contains(bonusNumber);
     }
 
-    public int getWinningAmount(Map<Ranking, Integer> winningInfo) {
+    public static int getWinningAmount(Map<Ranking, Integer> winningInfo) {
         return winningInfo.entrySet().stream()
                 .mapToInt(entry -> (int) entry.getKey().getWinningPrice() * entry.getValue())
                 .sum();
     }
 
-    public float getLottoProfit(int winningAmount, int money) {
+    public static float getLottoProfit(int winningAmount, int money) {
         float lottoProfit = (float) (winningAmount - money) / money * 100 + 100;
         return Math.round(lottoProfit * 100) / 100.0f;
     }
