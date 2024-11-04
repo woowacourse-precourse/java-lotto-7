@@ -22,7 +22,9 @@ public class LottoController {
             int amount = Integer.parseInt(inputAmount);
             return lottoService.purchaseLottos(amount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
+            //throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다."); 예외를 던지지 말고 시스템상 말로만...
+            return List.of();
         }
     }
 
