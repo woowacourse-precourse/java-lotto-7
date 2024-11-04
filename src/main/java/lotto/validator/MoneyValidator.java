@@ -4,10 +4,9 @@ import lotto.Exception.MoneyException;
 
 import static lotto.Exception.MoneyExceptionType.*;
 import static lotto.utils.LottoRules.LOTTO_PRICE;
+import static lotto.utils.TextUtils.*;
 
 public class MoneyValidator implements Validator {
-    private static final String NUMBER_PATTERN = "-?\\d+(\\.\\d+)?";
-
     @Override
     public void validate(String text) throws MoneyException {
         validateText(text);
@@ -37,14 +36,6 @@ public class MoneyValidator implements Validator {
         if (!isValidUnit(price)) {
             throw new MoneyException(MONEY_UNIT_ERROR);
         }
-    }
-
-    private boolean isNullOrEmpty(String text) {
-        return text == null || text.isEmpty();
-    }
-
-    private boolean isNumber(String text) {
-        return text.matches(NUMBER_PATTERN);
     }
 
     private boolean isValidRange(int price) {

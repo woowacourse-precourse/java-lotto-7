@@ -1,18 +1,16 @@
 package lotto.validator;
 
-import lotto.Exception.LottoExceptionType;
 import lotto.Exception.WinningNumberException;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static lotto.Exception.LottoExceptionType.*;
 import static lotto.utils.LottoRules.*;
+import static lotto.utils.TextUtils.*;
 
 public class WinningNumberValidator implements Validator {
     private static final String COMMA_REGEX = ",";
-    private static final String NUMBER_PATTERN = "-?\\d+(\\.\\d+)?";
 
     @Override
     public void validate(String text) throws WinningNumberException {
@@ -62,14 +60,6 @@ public class WinningNumberValidator implements Validator {
         if (!isValidCountNumbers(splitNumbers)) {
             throw new WinningNumberException(LOTTO_NUMBER_COUNT_ERROR);
         }
-    }
-
-    private boolean isNullOrEmpty(String text) {
-        return text == null || text.isEmpty();
-    }
-
-    private boolean isNumber(String text) {
-        return text.matches(NUMBER_PATTERN);
     }
 
     private boolean isValidRange(Integer number) {
