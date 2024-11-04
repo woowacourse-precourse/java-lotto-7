@@ -23,7 +23,7 @@ public class InputView {
         return convertStringToList(winningLottoNumber);
     }
     public int inputBonusNumber(){
-        pirntBonusNumberMessage();
+        printBonusNumberMessage();
         String bonusNumber = Console.readLine();
         validateBonusNumber(bonusNumber);
         return Integer.parseInt(bonusNumber);
@@ -56,7 +56,7 @@ public class InputView {
     private void printPaymentMessage(){
         System.out.println("구입금액을 입력해 주세요.");
     }
-    private void pirntBonusNumberMessage(){
+    private void printBonusNumberMessage(){
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
     private List<Integer> convertStringToList(String input){
