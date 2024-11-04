@@ -1,5 +1,10 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.service.LottoInput;
+import lotto.service.LottoShop;
+import lotto.service.LottoWinning;
+
 import java.util.List;
 
 public class Facade {

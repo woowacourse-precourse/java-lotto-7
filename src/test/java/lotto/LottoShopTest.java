@@ -1,12 +1,11 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.service.LottoShop;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoShopTest {
 

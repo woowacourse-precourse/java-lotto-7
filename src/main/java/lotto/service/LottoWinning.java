@@ -1,5 +1,6 @@
-package lotto;
+package lotto.service;
 
+import lotto.domain.Lotto;
 import lotto.staticenum.WinningAmountEnum;
 
 import java.math.BigDecimal;
