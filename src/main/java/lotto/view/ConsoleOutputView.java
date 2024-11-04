@@ -1,9 +1,9 @@
 package lotto.view;
 
+import lotto.constant.LottoConstants;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.Rank;
-
 import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
@@ -14,27 +14,36 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printLottos(List<Lotto> lottos) {
-        lottos.forEach(lotto -> System.out.println(lotto.toString()));
+        lottos.forEach(System.out::println);
     }
 
     @Override
     public void printResult(LottoResult result) {
         System.out.println("\n당첨 통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + result.getCountByRank(Rank.FIFTH) + "개");
-        System.out.println("4개 일치 (50,000원) - " + result.getCountByRank(Rank.FOURTH) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + result.getCountByRank(Rank.THIRD) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " +
-                result.getCountByRank(Rank.SECOND) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + result.getCountByRank(Rank.FIRST) + "개");
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                printRankResult(rank, result.getCountByRank(rank));
+            }
+        }
+    }
+
+    private void printRankResult(Rank rank, int count) {
+        if (rank == Rank.SECOND) {
+            System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개%n",
+                    rank.getPrize(), count);
+            return;
+        }
+        System.out.printf("%d개 일치 (%,d원) - %d개%n",
+                rank.getMatchCount(), rank.getPrize(), count);
     }
 
     @Override
     public void printProfit(double profit) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", profit);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profit);
     }
 
     @Override
     public void printError(String message) {
-        System.out.println("[ERROR] " + message);
+        System.out.println(LottoConstants.ERROR_PREFIX + message);
     }
 }
