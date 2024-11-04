@@ -54,6 +54,40 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 금액이_1천원_단위가_아닐_때_예외() {
+        assertSimpleTest(() -> {
+            runException("500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 수익률이_100퍼센트일_때() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("5000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains("총 수익률은 100.0%입니다.");
+                },
+                List.of(1, 2, 3, 7, 8, 9),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12)
+        );
+    }
+
+    @Test
+    void 수익률이_0퍼센트일_때() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains("총 수익률은 0.0%입니다.");
+                },
+                List.of(8, 9, 10, 11, 12, 13)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
