@@ -1,7 +1,14 @@
 package lotto.validator;
 
-public class InputValidator {
 
+public class InputValidator {
+    public void validateWinLottoNumbers(String input) {
+        validateNotEmpty(input);
+    }
+
+    public void validateWinBonusNumber(String input) {
+        validateNotEmpty(input);
+    }
 
     public void validatePayMoney(String input) {
         validateNotEmpty(input);
@@ -9,7 +16,8 @@ public class InputValidator {
         validatePurchaseAmount(input);
     }
 
-    private void validateNotEmpty(String input) {
+
+    public void validateNotEmpty(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력 값이 null이거나 빈 문자열입니다.");
         }
@@ -27,7 +35,7 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력 값이 유효한 정수가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 입력 값이 유효한 정수가 아닙니다.");
         }
     }
 }
