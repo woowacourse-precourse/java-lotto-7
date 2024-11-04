@@ -10,4 +10,10 @@ public class BonusNumberTest {
         assertThatThrownBy(() -> BonusNumber.from("프리코스"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_번호가_범위를_벗어나면_예외가_발생한다() {
+        assertThatThrownBy(() -> BonusNumber.from("46"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
