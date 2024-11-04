@@ -51,5 +51,19 @@ class LottoGameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 1보다 작거나 45보다 크면 예외가 발생한다.")
+    @Test
+    void 보너스_번호가_1보다_작거나_45보다_크면_예외가_발생한다() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> validator.validateBonusNumber(0, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
+    @DisplayName("보너스 번호가 당첨 번호와 겹치면 예외가 발생한다.")
+    @Test
+    void 보너스_번호가_당첨_번호와_겹치면_예외가_발생한다() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> validator.validateBonusNumber(1, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
