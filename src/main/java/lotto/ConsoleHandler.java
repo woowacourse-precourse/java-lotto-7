@@ -2,10 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.text.NumberFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ConsoleHandler {
@@ -27,12 +25,13 @@ public class ConsoleHandler {
 
     private void printLotto(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
-        sortLottoNumbers(numbers);
-        System.out.println(numbers);
+        System.out.println(sortLottoNumbers(numbers));
     }
 
-    private void sortLottoNumbers(List<Integer> numbers) {
-        numbers.sort(Integer::compareTo);
+    private List<Integer> sortLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public List<Integer> inputWinningLottoNumbers() {
@@ -64,12 +63,17 @@ public class ConsoleHandler {
         if (prizeInfo.isMatchBonus()) {
             System.out.print(", 보너스 볼 일치");
         }
-        System.out.print(" (" + prizeInfo.getPrize() + "원) - ");
+        System.out.print(" (" + formatWithComma(prizeInfo.getPrize()) + "원) - ");
         System.out.println(winningCount + "개");
     }
 
+    private String formatWithComma(int number) {
+        NumberFormat formatter = NumberFormat.getNumberInstance(Locale.KOREA);
+        return formatter.format(number);
+    }
+
     public void printProfitRate(double profitRate) {
-        System.out.print("총 수익률은 " + profitRate + "% 입니다.");
+        System.out.print("총 수익률은 " + profitRate + "%입니다.");
     }
 
     private int readValidNumber() {
