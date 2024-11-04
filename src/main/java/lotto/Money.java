@@ -31,6 +31,10 @@ public class Money {
         return new Money(amount + money.amount);
     }
 
+    public double calculateProfitRateOf(Money profit) {
+        return (double) profit.amount / amount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
