@@ -7,6 +7,12 @@ public class InputValidator {
         }
     }
 
+    public static void validateWhitespace(String value) {
+        if (value.contains(" ")) {
+            throw new IllegalArgumentException("[ERROR] 입력은 공백이 포함되지 않은 입력이어야 합니다.");
+        }
+    }
+
     private static boolean isBlank(String value) {
         return value == null || value.isBlank();
     }
