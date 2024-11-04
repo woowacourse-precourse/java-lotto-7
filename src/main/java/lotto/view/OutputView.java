@@ -27,18 +27,18 @@ public class OutputView {
     }
 
     public void printRankingResult(Map<WinningRanking, Integer> rankingResult) {
-
         for (WinningRanking ranking : WinningRanking.values()) {
             Integer count = rankingResult.getOrDefault(ranking, 0);
 
             if (ranking == WinningRanking.FIVE_MATCH_BONUS) {
                 System.out.println(
-                        ranking.getMatchCount() + "개 일치, 보너스 볼 일치 (" + ranking.getPrize() + "원) - " + count + "개");
+                        ranking.getMatchCount() + "개 일치, 보너스 볼 일치 (" + ranking.getKoreaFormatPrize() + "원) - " + count
+                                + "개");
                 continue;
             }
 
-            System.out.println(ranking.getMatchCount() + "개 일치 (" + ranking.getPrize() + "원) - " + count + "개");
+            System.out.println(
+                    ranking.getMatchCount() + "개 일치 (" + ranking.getKoreaFormatPrize() + "원) - " + count + "개");
         }
     }
-
 }
