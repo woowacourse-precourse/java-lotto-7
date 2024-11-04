@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import java.util.List;
 
@@ -50,6 +51,33 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호에 숫자가 아닌 값이 있다.")
+    @Test
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호와 당첨 번호가 중복이 있다")
+    @Test
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 6자리가 아니다")
+    @Test
+    void 예외_테스트4() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
