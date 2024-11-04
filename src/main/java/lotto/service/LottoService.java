@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import lotto.Lotto;
 import lotto.domain.LotteryBuyer;
-import lotto.domain.Lotto;
 import lotto.domain.PrizeTier;
 
 public class LottoService {
@@ -49,5 +49,4 @@ public class LottoService {
                 .sum();
         return ((double) totalWinnings / totalPurchaseAmount) * 100;
     }
-
 }

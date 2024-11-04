@@ -5,9 +5,9 @@ import java.util.ResourceBundle;
 
 public class MessageSource {
 
-    private static final ResourceBundle messages = ResourceBundle.getBundle("messages", Locale.getDefault());
+    private static final ResourceBundle messages = ResourceBundle.getBundle("messages", Locale.KOREA);
 
-    public static String getMessage(String key) {
-        return messages.getString(key);
+    public static String getMessage(String code) {
+        return messages.getString(code);
     }
 }
