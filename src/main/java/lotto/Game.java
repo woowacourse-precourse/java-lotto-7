@@ -5,10 +5,11 @@ import static lotto.view.input.Input.addtionBonusNumber;
 import static lotto.view.input.Input.getWinNumbers;
 import static lotto.view.input.Input.purchaseAmountConsole;
 
-import java.util.DuplicateFormatFlagsException;
+import java.util.HashMap;
 import java.util.List;
 import lotto.service.Lotto;
 import lotto.service.Purchase;
+import lotto.service.Winner;
 import lotto.view.input.Input;
 import lotto.view.output.Output;
 
@@ -19,12 +20,20 @@ public class Game {
 
     public void gameStart(){
         Purchase purchase = getPurchase();
+        //사용자가 뽑은 로또 갯수의 번호
+        HashMap<Integer, List<Integer>> getLottoNumbers = outputGetLottoNumbers(purchase.getPurchaseAccount());
 
-        outputGetLottoNumbers(purchase.getPurchaseAccount());
-
+        //로또 6개 번호
         List<Integer> getInputWinNumbers = getInputWinNumbers();
 
+        //보너스 번호
         int bonusNumber = getBonusNumber(getInputWinNumbers);
+
+        Winner winner = new Winner(getInputWinNumbers, bonusNumber, getLottoNumbers);
+
+        output.printStatistics(winner.getWinningsStats());
+        output.printCalculateWinningsRate(winner.getCalculateReturnRate());
+
 
 
     }
@@ -43,9 +52,9 @@ public class Game {
         }
     }
 
-    private void outputGetLottoNumbers(int getPurchaseAccount){
+    private HashMap<Integer, List<Integer>> outputGetLottoNumbers(int getPurchaseAccount){
         System.out.println("");
-        output.getLottoNumbers(getPurchaseAccount);
+        return output.getLottoNumbers(getPurchaseAccount);
     }
 
     private List<Integer> getInputWinNumbers(){
