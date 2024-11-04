@@ -5,10 +5,10 @@ import lotto.constant.WinningRank;
 
 public class CalculateProfitRateService {
     public static double calculateProfitRate(Map<WinningRank, Integer> results, int totalPurchaseAmount) {
-        int totalPrize = results.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+        double totalPrize = results.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
-
-        return ((double) totalPrize / totalPurchaseAmount) * 100;
+        
+        return ((totalPrize / 1000) / totalPurchaseAmount) * 100;
     }
 }
