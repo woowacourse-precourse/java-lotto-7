@@ -19,4 +19,12 @@ public class WinningStatics {
     public int getWinningCount(Rank rank) {
         return winningCount.get(rank);
     }
+
+    public long getPrizeAmount() {
+        long totalPrizeAmount = 0;
+        for (Rank rank : Rank.values()) {
+            totalPrizeAmount += rank.getPrize() * winningCount.get(rank);
+        }
+        return totalPrizeAmount;
+    }
 }
