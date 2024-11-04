@@ -18,18 +18,18 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public void validateDuplicateByBonusNumber(int bonusNumber) {
+        if(!numbers.isEmpty() && numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 포함되어 있는 숫자입니다.");
+        }
+    }
+
     public boolean containNumber(int number) {
         return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
-    }
-
-    public void validateDuplicateByBonusNumber(int bonusNumber) {
-        if(!numbers.isEmpty() && numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에 포함되어 있는 숫자입니다.");
-        }
     }
 
     private void validateNumberCount(List<Integer> numbers) {
