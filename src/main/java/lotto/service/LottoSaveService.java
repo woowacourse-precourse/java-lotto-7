@@ -63,7 +63,12 @@ public class LottoSaveService {
     }
 
     public void saveBonusNumber(String bonusNumber) {
-        lottoBonusNumber = LottoBonusNumber.getInstance(Integer.parseInt(bonusNumber));
+        int bonusNumberInteger = Integer.parseInt(bonusNumber);
+        List<Integer> winningNumbers = lottoWinningNumber.getLottoWinningNumbers();
+        if (winningNumbers.contains(bonusNumberInteger)) {
+            throw new IllegalArgumentException("[Error] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+        lottoBonusNumber = LottoBonusNumber.getInstance(bonusNumberInteger);
     }
 
 
