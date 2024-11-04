@@ -8,7 +8,7 @@ import java.util.Set;
 public class Lotto {
     private static final int SIZE = 6;
     private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUM = 45;
+    private static final int MAX_NUMBER = 45;
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     private final List<Integer> numbers;
@@ -29,7 +29,7 @@ public class Lotto {
         }
 
         for (int value : numbers) {
-            if (value < MIN_NUMBER || value > MAX_NUM) {
+            if (value < MIN_NUMBER || value > MAX_NUMBER) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 1과 45사이여야 합니다.");
             }
         }
