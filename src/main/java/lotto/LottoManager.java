@@ -26,8 +26,9 @@ public class LottoManager {
     public LottoManager() {
         this.lottos=new ArrayList<>();
         this.hit=new LinkedHashMap<>();
-        for (Rank rank : Rank.values()) {
-            hit.put(rank, 0);
+        Rank[] ranks = Rank.values();
+        for (int i = ranks.length - 1; i >= 0; i--) {
+            hit.put(ranks[i], 0);
         }
     }
 
@@ -58,6 +59,8 @@ public class LottoManager {
     }
 
     public void setBonus(int num) {
+        if(winningLotto.contains(num)) throw new IllegalArgumentException("[ERROR] 당첨번호와 중복된 값은 허용되지 않습니다.");
+        if(num<1||num>45) throw new IllegalArgumentException("[ERROR] 1~45사이의 값만 입력 가능합니다.");
         this.BonusNumber=num;
     }
 
