@@ -44,17 +44,26 @@ public class LottoResult {
     }
 
     private int getRank(int matchCount, boolean hasBonusNumber) {
-        if (matchCount == RANK_1_THRESHOLD.value())
-            return RANK_1.value();
-        if (matchCount == RANK_3_THRESHOLD.value() && hasBonusNumber)
-            return RANK_2.value();
-        if (matchCount == RANK_3_THRESHOLD.value())
-            return RANK_3.value();
-        if (matchCount == RANK_4_THRESHOLD.value())
-            return RANK_4.value();
-        if (matchCount == RANK_5_THRESHOLD.value())
+        if (matchCount < RANK_5_THRESHOLD.value()) {
+            return UNRANKED.value();
+        }
+        if (matchCount < RANK_4_THRESHOLD.value()) {
             return RANK_5.value();
-        return UNRANKED.value();
+        }
+        if (matchCount < RANK_3_THRESHOLD.value()) {
+            return RANK_4.value();
+        }
+        if (matchCount >= RANK_1_THRESHOLD.value()) {
+            return RANK_1.value();
+        }
+        return getRankTwoOrThree(hasBonusNumber);
+    }
+
+    private int getRankTwoOrThree(boolean hasBonusNumber) {
+        if (hasBonusNumber) {
+            return RANK_2.value();
+        }
+        return RANK_3.value();
     }
 
     public void print() {
