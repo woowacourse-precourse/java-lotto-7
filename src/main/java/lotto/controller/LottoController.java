@@ -17,6 +17,9 @@ public class LottoController {
 
         outputView.printOfBuyLotto(lottoGame);
         Lotto winningLotto = inputView.inputWinningNumber();
-        lottoGame.match(winningLotto, inputView.inputBonusNumber(winningLotto));
+        final List<Rank> ranks = lottoGame.match(winningLotto, inputView.inputBonusNumber(winningLotto));
+
+        outputView.printWinningResult(LottoResult.matchResult(ranks));
+        outputView.printProfit(lottoGame.calculateProfit(ranks));
     }
 }

@@ -5,6 +5,8 @@ public class Money {
     private static final String ERROR_MESSAGE = "[ERROR] ";
     private static final String BUY_LOTTO_ERROR_MESSAGE = ERROR_MESSAGE + "%d원 단위로 입력해주세요.";
     public static final int ZERO = 0;
+    private static final int PERCENT = 100;
+
     private int money;
 
     private Money(int money) {
@@ -36,5 +38,9 @@ public class Money {
 
     public int getMoney() {
         return money;
+    }
+
+    public double calculateProfitRatio(Money totalPrize) {
+        return (double) totalPrize.money / this.money * PERCENT;
     }
 }

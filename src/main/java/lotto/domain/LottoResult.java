@@ -21,4 +21,20 @@ public class LottoResult {
     private static LottoResult of(Rank rank, List<Rank> lottoRanks) {
         return new LottoResult(rank, rank.countSameMatch(lottoRanks));
     }
+
+    public boolean isSecond() {
+        return rank.isSecond();
+    }
+
+    public int getMatchCount() {
+        return this.rank.getMatchCount();
+    }
+
+    public Money getPrize() {
+        return this.rank.getPrize();
+    }
+
+    public int countWinningLotto() {
+        return this.matchCount;
+    }
 }

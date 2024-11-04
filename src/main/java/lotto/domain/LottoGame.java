@@ -28,4 +28,12 @@ public class LottoGame {
     public List<Lotto> getAllLotto() {
         return this.userLottos.getAllLotto();
     }
+
+    public double calculateProfit(List<Rank> ranks) {
+        Money totalPrize = Money.from(0);
+        for (Rank rank : ranks) {
+            totalPrize = totalPrize.plus(rank.getPrize());
+        }
+        return this.amount.calculateProfitRatio(totalPrize);
+    }
 }
