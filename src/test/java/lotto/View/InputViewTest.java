@@ -23,12 +23,12 @@ class InputViewTest {
                 .hasMessage(ErrorMessage.INVALID_PURCHASE_UNIT.getMessage());
     }
 
-    @DisplayName("구입 금액이 Integer 범위를 벗어날 경우에는 IllegalArgumentException 예외를 발생시킨다.")
+    @DisplayName("구입 금액이 Integer 범위를 벗어날 경우에는 NumberFormatException 예외를 발생시킨다.")
     @Test
     void 구입_금액이_Integer_범위를_벗어날_경우_예외가_발생한다() {
         String invalidInput = "9999999999999999";
         assertThatThrownBy(() -> inputNumberValidator.validatePaymentPriceValue(invalidInput))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(NumberFormatException.class)
                 .hasMessage(ErrorMessage.PURCHASE_LIMIT_REACHED.getMessage());
     }
 
