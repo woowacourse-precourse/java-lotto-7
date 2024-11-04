@@ -1,7 +1,6 @@
 package lotto.model;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +31,9 @@ public class Lotto {
         }
     }
 
-    private void checkForDuplicates(List<Integer> numbers){
-        for (int index=1; index<numbers.size(); index++){
-            if (numbers.get(index).equals(numbers.get(index-1))){
+    private void checkForDuplicates(List<Integer> numbers) {
+        for (int index = 1; index < numbers.size(); index++) {
+            if (numbers.get(index).equals(numbers.get(index - 1))) {
                 throw new IllegalArgumentException("[ERROR] 로또에 중복된 번호가 들어갈 수는 없습니다.");
             }
         }

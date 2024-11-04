@@ -14,7 +14,7 @@ public class Controller {
     private final User user1 = new User();
     private WinningLotto winningLotto;
     private final WinningPrizeService winningPrizeService = new WinningPrizeService();
-    private final CalculatingWinningMoneyService calculatingWinningMoneyService=new CalculatingWinningMoneyService();
+    private final CalculatingWinningMoneyService calculatingWinningMoneyService = new CalculatingWinningMoneyService();
 
 
     public void start() {
@@ -22,10 +22,7 @@ public class Controller {
         buyLotto(parsingService.getMoney(), user1); //현재 문제상황
         displayLottos(user1);
         setWinningLotto();
-        winningPrizeService.matchAllLotos(user1.getLottos(),winningLotto.getWinningLotto(),winningLotto.getBonusNumber());
-        Output.requestWinningResult(winningPrizeService.getWinningPrizes(),winningPrizeService.getFive_bonus());
-        calculatingWinningMoneyService.calculateTotalMoney(winningPrizeService.getWinningPrizes(),winningPrizeService.getFive_bonus(),parsingService.getMoney());
-        Output.requestProfitAbility(calculatingWinningMoneyService.getProfitAbility());
+        displayCalculateResult();
     }
 
     private void setMoney() {
@@ -110,6 +107,13 @@ public class Controller {
     private void setWinningLotto() {
         getWinningLottoNumbers();
         setBonusNumber();
+        winningPrizeService.matchAllLotos(user1.getLottos(), winningLotto.getWinningLotto(), winningLotto.getBonusNumber());
+    }
+
+    private void displayCalculateResult() {
+        Output.requestWinningResult(winningPrizeService.getWinningPrizes(), winningPrizeService.getFive_bonus());
+        calculatingWinningMoneyService.calculateTotalMoney(winningPrizeService.getWinningPrizes(), winningPrizeService.getFive_bonus(), parsingService.getMoney());
+        Output.requestProfitAbility(calculatingWinningMoneyService.getProfitAbility());
     }
 
 

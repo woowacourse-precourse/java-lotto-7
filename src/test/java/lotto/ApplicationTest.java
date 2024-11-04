@@ -46,6 +46,53 @@ class ApplicationTest extends NsTest {
         );
     }
 
+
+
+    @Test
+    void 기능_테스트2() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("10000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "10개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 7]",
+                            "[3, 5, 11, 16, 32, 38]",
+                            "[7, 11, 16, 35, 36, 44]",
+                            "[1, 8, 11, 31, 41, 42]",
+                            "[13, 14, 16, 38, 42, 45]",
+                            "[7, 11, 30, 40, 42, 43]",
+                            "[2, 13, 22, 32, 38, 45]",
+                            "[1, 3, 12, 14, 22, 45]",
+                            "[1, 3, 8, 14, 22, 45]",
+                            "[1, 3, 11, 14, 22, 45]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 300000.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42),
+                List.of(13, 14, 16, 38, 42, 45),
+                List.of(7, 11, 30, 40, 42, 43),
+                List.of(2, 13, 22, 32, 38, 45),
+                List.of(1, 3, 12, 14, 22, 45),
+                List.of(1, 3, 8, 14, 22, 45),
+                List.of(1, 3, 11, 14, 22, 45)
+        );
+    }
+
+
+
+
+
+
+
+
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
@@ -53,6 +100,103 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    void 너무_큰_금액막기() {
+        assertSimpleTest(() -> {
+            runException("100000000000000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또번호7개받기() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또번호45넘는거받기() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또번호음수받기() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,-1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    @Test
+    void 로또번호중복받기() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또번호문자받기() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또번호다른구분자로받기() {
+        assertSimpleTest(() -> {
+            runException("1000","1:2:3:4:5:6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    @Test
+    void 보너스번호중복받기() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6","6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    @Test
+    void 보너스번호45넘는거받기() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6","46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 보너스번호음수받기() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6","-1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호문자받기() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6","a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+
+
+
+
+
 
     @Override
     public void runMain() {
