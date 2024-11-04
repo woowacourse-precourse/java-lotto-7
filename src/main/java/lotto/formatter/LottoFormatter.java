@@ -44,7 +44,6 @@ public class LottoFormatter {
         return formatResults;
     }
 
-
     public String formatPrize(long prize) {
         NumberFormat formatter = NumberFormat.getInstance();
         return formatter.format(prize);
