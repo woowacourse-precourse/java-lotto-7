@@ -17,14 +17,17 @@ public class LottoController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final CreateLottoService createLottoService = new CreateLottoService();
 
 
     public void start() {
         outputView.askBuyingPriceView();
-        BuyingPrice buyingPrice = new BuyingPrice(inputView.inputBuyingPriceView());
+        int price = inputView.inputBuyingPriceView();
+        BuyingPrice buyingPrice = new BuyingPrice(price);
         int lottoNum = BuyingPriceService.returnNumberOfLotto(buyingPrice);
         outputView.responseBuyingQuantity(lottoNum);
-        List<Lotto> lottos = CreateLottoService.createRandomLottos(lottoNum);
+        List<Lotto> lottos = createLottoService.createRandomLottos(lottoNum);
+        outputView.printLottos(lottos);
         outputView.askWinningLotto();
         String winningLottoNumber = inputView.inputLottoNumbersView();
         outputView.askBonusNumber();

@@ -10,7 +10,7 @@ import java.util.List;
 public class CreateLottoService {
     private static final int LOTTO_SIZE = 6;
 
-    public static List<Lotto> createRandomLottos(int numberOfLottos) {
+    public List<Lotto> createRandomLottos(int numberOfLottos) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < numberOfLottos; i++) {
             lottos.add(createSingleLotto());
@@ -18,8 +18,9 @@ public class CreateLottoService {
         return lottos;
     }
 
-    private static Lotto createSingleLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_SIZE);
+    private Lotto createSingleLotto() {
+        // 불변 리스트를 새로운 ArrayList로 변환하여 정렬 가능하게 만듦
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_SIZE));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
