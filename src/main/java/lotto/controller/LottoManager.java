@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoRepository;
@@ -22,6 +23,24 @@ public class LottoManager {
         int purchasePrice = getPurchasePrice();
         creatLottos(purchasePrice);
 
+        List<Integer> winningNumbers = getWinningNumbers();
+
+
+    }
+
+    private List<Integer> getWinningNumbers() {
+        List<Integer> winningNumberList = new ArrayList<>();
+        while (true) {
+            try {
+                String winningNumbers = inputView.getWinningNumbers();
+                inputValidator.validateWinningNumbers(winningNumbers);
+                inputParser.parseWinningNumbers(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return winningNumberList;
     }
 
     private void creatLottos(int purchasePrice) {
