@@ -60,4 +60,13 @@ class WinningNumbersTest {
         WinningNumbers winningNumbers = new WinningNumbers(input);
         assertThat(winningNumbers.getNumbers()).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
     }
+
+    @Test
+    @DisplayName("당첨 번호에 음수가 포함된 경우 예외가 발생한다.")
+    void winningNumbersContainNegative() {
+        String input = "1,2,3,4,5,-6";
+        assertThatThrownBy(() -> new WinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
+    }
 }
