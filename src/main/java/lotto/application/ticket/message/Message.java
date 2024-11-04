@@ -19,5 +19,6 @@ public class Message {
     public static final String NUMBER_DELIMITER = ", ";
     public static final String EMPTY_STRING = "";
 
-
+    private Message() {
+    }
 }

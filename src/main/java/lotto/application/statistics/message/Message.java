@@ -13,4 +13,6 @@ public class Message {
     public static final String TITLE = "당첨 통계";
     public static final String PROFIT_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
 
+    private Message() {
+    }
 }
