@@ -1,20 +1,31 @@
 package lotto.Domain;
 
-public class User {
-    private final int payment;  // 지불한 금액
-    private final int lottoNumbers; // 로또의 개수
-    final int WON = 1000;
+import java.util.List;
 
-    public User(int payment) {
+public class User {
+    private final long payment;  // 지불한 금액
+    private final long lottoNumbers; // 로또의 개수
+    private final List<Lotto> lottoPapers;
+    final long WON = 1000L;
+
+    public User(long payment) {
+        validateWonUnit(payment);
         this.payment = payment;
         this.lottoNumbers = calculateLottoNumbers(payment);
+        this.lottoPapers = LottoStore.saleLotto(lottoNumbers);
     }
+    private void validateWonUnit(long money) {
+        String WON_UNIT_ERROR_MESSAGE = "[ERROR] 구입 금액은 1,000원 단위만 가능합니다.";
 
-    private int calculateLottoNumbers(int payment) {
+        if (money % WON != 0 || money == 0) {
+            throw new IllegalArgumentException(WON_UNIT_ERROR_MESSAGE);
+        }
+    }
+    private long calculateLottoNumbers(long payment) {
         return payment / WON;
     }
 
-    public int getLottoNumbers() {
+    public long getLottoNumbers() {
         return lottoNumbers;
     }
 }

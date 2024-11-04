@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class OutputVIew {
     public void printLottoQuantityMessage(long lottoCount) {
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        System.out.printf( "\n%d개를 구매했습니다.",lottoCount);
         ;
     }
 
@@ -16,7 +16,7 @@ public class OutputVIew {
     }
 
     public void printStatisticsMessage() {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
     }
 
     public void printWinningLottoQuantity(Map<LottoRank, Integer> rankCount) {
