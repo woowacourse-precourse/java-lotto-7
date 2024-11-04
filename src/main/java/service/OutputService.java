@@ -9,6 +9,7 @@ public class OutputService {
 
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계\n---";
 
+    private static final String RETURN_RATE_MESSAGE = "총 수익률은 %.2f%%입니다.";
     public OutputService(){}
 
     public void printPurchaseCountMessage(int purchaseCount){
@@ -28,5 +29,9 @@ public class OutputService {
 
     public void printWinningStatics(String lottoRankMessage, int winningCount){
         System.out.println(lottoRankMessage + winningCount);
+    }
+
+    public void printReturnRate(Double returnRate){
+        System.out.format(RETURN_RATE_MESSAGE, returnRate);
     }
 }

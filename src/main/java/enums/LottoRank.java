@@ -45,6 +45,9 @@ public enum LottoRank {
         return hitCount;
     }
 
+    public Long getPrize(){
+        return (long)prize;
+    }
     public String getMessage(){
         return message;
     }
