@@ -9,12 +9,12 @@ public class PriceToBuyLottoValidator {
     private static Integer priceMaxLimit = 2000000000;
 
     public static void validatePriceToBuyLotto(Integer priceToBuyLotto) {
-        thowExceptionIfPriceIsNull(priceToBuyLotto);
+        throwExceptionIfPriceIsNull(priceToBuyLotto);
         throwExceptionIfNotDivideBy1000(priceToBuyLotto);
         throwExceptionIfPriceIsOverThanMax(priceToBuyLotto);
     }
 
-    private static void thowExceptionIfPriceIsNull(Integer priceToBuyLotto){
+    private static void throwExceptionIfPriceIsNull(Integer priceToBuyLotto){
         if(priceToBuyLotto == null){
             throw new PriceToBuyLottoException(PRICE_MUST_NOT_BE_NULL);
         }
