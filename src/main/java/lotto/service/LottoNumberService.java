@@ -16,10 +16,8 @@ public class LottoNumberService {
         return inputHandler.splitLottoNumbers(inputWinningNumbers);
     }
 
-    public Number createBonusNumber(String inputBonusNumber, String inputWinningNumbers) {
+    public Number createBonusNumber(String inputBonusNumber, Numbers winningNumbers) {
         int bonusNumber = inputHandler.stringToNumber(inputBonusNumber);
-        Numbers winningNumbers = inputHandler.splitLottoNumbers(inputWinningNumbers);
-
         return NumberFactory.createBonusNumber(bonusNumber, winningNumbers);
     }
 

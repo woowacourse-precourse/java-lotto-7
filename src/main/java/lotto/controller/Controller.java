@@ -33,22 +33,41 @@ public class Controller {
     }
 
     private Buyer purchaseLotto() {
-        String inputMoney = inputView.inputMoney();
-        Buyer buyer = lottoService.createBuyer(inputMoney);
+        Buyer buyer = inputBuyerWithRepeat();
         System.out.println(buyer.getBuyerLottos().toString());
         return buyer;
     }
 
     private WinningInfo inputWinningNumbers() {
-        String inputWinningNumbers = inputView.inputWinningNumbers();
-        Numbers winningNumbers = lottoNumberService.createWinningNumbers(inputWinningNumbers);
-
-        Number bonus = inputBonusNumber(inputWinningNumbers);
+        Numbers winningNumbers = inputWinningNumbersWithRepeat();
+        Number bonus = inputBonusNumberWithRepeat(winningNumbers);
 
         return WinningInfo.of(winningNumbers, bonus);
     }
 
-    private Number inputBonusNumber(String inputWinningNumbers) {
+    private Buyer inputBuyerWithRepeat() {
+        while (true) {
+            try {
+                String inputMoney = inputView.inputMoney();
+                return lottoService.createBuyer(inputMoney);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Numbers inputWinningNumbersWithRepeat() {
+        while (true) {
+            try {
+                String inputWinningNumbers = inputView.inputWinningNumbers();
+                return lottoNumberService.createWinningNumbers(inputWinningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Number inputBonusNumberWithRepeat(final Numbers inputWinningNumbers) {
         while (true) {
             try {
                 String inputBonusNumber = inputView.inputBonusNumber();
