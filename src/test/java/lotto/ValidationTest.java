@@ -58,6 +58,15 @@ class ValidationTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("[ERROR] 유효한 숫자를 입력해 주세요.");
         }
+
+        @Test
+        @DisplayName("구입 금액이 최대 한도인 100,000원을 초과할 때 예외 발생")
+        void validatePurchaseAmount_exceedsMaxLimit() {
+            String input = "101000";
+            assertThatThrownBy(() -> Validation.validatePurchaseAmount(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("[ERROR] 구입 금액은 최대 100,000원까지 입력 가능합니다.");
+        }
     }
 
     @Nested
