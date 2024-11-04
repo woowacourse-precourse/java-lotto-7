@@ -11,13 +11,13 @@ public class Money {
 
     private void validateMinimumPrice(int money) {
         if (money < 1000) {
-            throw new IllegalArgumentException("로또 구입 금액은 최소 1000원 입니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 최소 1000원 입니다.");
         }
     }
 
     private void validateBuyRegulation(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("로또는 1000원 단위로 구입할 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 구입할 수 있습니다.");
         }
     }
 }
