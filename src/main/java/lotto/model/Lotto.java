@@ -28,4 +28,14 @@ public class Lotto {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(randomNumbers);
     }
+
+    public int countMatches(List<Integer> winningNumbers){
+        return (int)numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean contains(int number){
+        return numbers.contains(number);
+    }
 }

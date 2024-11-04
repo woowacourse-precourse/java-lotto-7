@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.WinningRank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,6 +18,12 @@ public class LottoController {
 
         List<Integer> winningNumbers = InputView.inputWinningNumbers();
         int bonusNumber = InputView.inputBonusNumber(winningNumbers);
+
+        List<WinningRank> results = calculateStatistics(purchasedLottos, winningNumbers, bonusNumber);
+        OutputView.printStatistics(results);
+
+        double profitRate = calculateProfitRate(results, purchaseAmount);
+        OutputView.printProfitRate(profitRate);
     }
 
     private List<Lotto> purchaseLottos(int count) {
@@ -29,5 +36,23 @@ public class LottoController {
         return lottos.stream()
                 .map(Lotto::getNumbers)
                 .collect(Collectors.toList());
+    }
+
+    private List<WinningRank> calculateStatistics(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
+        return purchasedLottos.stream()
+                .map(lotto -> {
+                    int matchCount = lotto.countMatches(winningNumbers);
+                    boolean matchBonus = lotto.contains(bonusNumber);
+                    return WinningRank.valueOf(matchCount, matchBonus);
+                })
+                .collect(Collectors.toList());
+    }
+
+    private double calculateProfitRate(List<WinningRank> results, int purchaseAmount) {
+        int totalPrize = results.stream()
+                .mapToInt(WinningRank::getPrize)
+                .sum();
+
+        return ((double) totalPrize / purchaseAmount * 100);
     }
 }

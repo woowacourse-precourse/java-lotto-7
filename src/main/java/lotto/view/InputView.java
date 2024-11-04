@@ -21,6 +21,7 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNumbers() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         while (true) {
             String input = Console.readLine().trim();
@@ -33,6 +34,7 @@ public class InputView {
     }
 
     public static int inputBonusNumber(List<Integer> winningNumbers) {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         while (true) {
             String input = Console.readLine().trim();
