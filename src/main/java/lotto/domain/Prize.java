@@ -16,6 +16,18 @@ public enum Prize {
     private final int matchNumbers;
     private final boolean isMatchedBonus;
 
+    public int getRank() {
+        return rank;
+    }
+
+    public int getMatchNumbers() {
+        return matchNumbers;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
     Prize(boolean isMatchedBonus, int matchNumbers, Long price, int rank) {
         this.isMatchedBonus = isMatchedBonus;
         this.matchNumbers = matchNumbers;
@@ -31,9 +43,15 @@ public enum Prize {
     }
 
     public static Prize of(int matchedCount, boolean isMatchedBonus) {
-        return Arrays.stream(values()).filter(prize ->
-                        prize.matchNumbers == matchedCount && prize.isMatchedBonus == isMatchedBonus
-                ).findAny()
+        return Arrays.stream(values())
+                .filter(prize -> prize.matchNumbers == matchedCount)
+                .filter(prize -> {
+                    if (prize == SECOND) {
+                        return isMatchedBonus;
+                    }
+                    return true;
+                })
+                .findFirst()
                 .orElse(MISS_MATCH);
     }
 }

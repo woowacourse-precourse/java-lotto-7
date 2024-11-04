@@ -6,7 +6,8 @@ public class Messages {
     public final static String QUANTITY_OF_LOTTO= "개를 구매했습니다.";
     public final static String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     public final static String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-
+    public final static String STATISTICS_INFO = "당첨 통계 \n---";
+    public final static String YIELD_RESULT = "총 수익률은 %.1f%%입니다.%n";
 
     // 예외 메시지
     public static final String INVALID_INPUT = "[ERROR] 숫자를 입력해야 합니다.";
