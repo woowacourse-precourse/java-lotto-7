@@ -7,7 +7,7 @@ public class LottoNumbersInputParser {
     private static final String DELIMITER = ",";
 
     public List<Integer> parse(String input) {
-        String[] lottoNumbers = input.split(",");
+        String[] lottoNumbers = input.split(DELIMITER);
 
         return mapInteger(lottoNumbers);
     }
