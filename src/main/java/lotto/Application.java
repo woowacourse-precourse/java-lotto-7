@@ -29,19 +29,21 @@ public class Application {
         }
     }
 
-    private static List<List<Integer>> buyLotto() {
-        int amount, price = 1000;
-        List<List<Integer>> lotto_numbers = new ArrayList<>(List.of());
-
+    private static int getPurchaseAmount() {
         System.out.println("구입 금액을 입력해 주세요.");
 
         try {
-            amount = Integer.parseInt(Console.readLine());
+            return Integer.parseInt(Console.readLine());
         } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 잘못된 형식의 구입 금액이 입력되었습니다.");
         }
+    }
 
-        int count = amount / price;
+    private static List<List<Integer>> buyLotto() {
+        List<List<Integer>> lotto_numbers = new ArrayList<>(List.of());
+        int price = 1000;
+
+        int count = getPurchaseAmount() / price;
         for (int i = 0; i < count; i++) {
             List<Integer> buffer = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lotto_numbers.add(buffer);
