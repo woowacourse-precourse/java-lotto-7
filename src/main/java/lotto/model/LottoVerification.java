@@ -15,6 +15,10 @@ public class LottoVerification {
         this.bonusNumber = bonusNumber;
     }
 
+    public Map<Rank, Integer> getRankCounts() {
+        return rankCounts;
+    }
+
     public void calculateRank(List<Lotto> lottos) {
         for(Lotto lotto : lottos) {
             Rank rank = Rank.decideRank(getMatchNumberCount(lotto), getMatchBonusNumber(lotto));
@@ -33,9 +37,5 @@ public class LottoVerification {
 
     private boolean getMatchBonusNumber(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
-    }
-
-    public Map<Rank, Integer> getRankCounts() {
-        return rankCounts;
     }
 }
