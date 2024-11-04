@@ -1,4 +1,4 @@
-package io;
+package lotto.io;
 
 public class Output {
 

@@ -1,9 +1,7 @@
-package domain.lotto;
+package lotto;
 
-import domain.consumer.Consumer;
-import domain.rank.MatchCount;
-import io.Output;
-import java.util.Map;
+import lotto.domain.consumer.Consumer;
+import lotto.io.Output;
 
 public class WoowahanLottoCompany {
     private final LottoMachin lottoMachin;

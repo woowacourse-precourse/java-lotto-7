@@ -1,18 +1,18 @@
-package domain.lotto;
+package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import domain.consumer.Consumer;
-import domain.rank.MatchCount;
-import io.Input;
-import io.InputMessage;
-import io.Output;
-import io.OutputMessage;
+import lotto.domain.consumer.Consumer;
+import lotto.domain.rank.MatchCount;
+import lotto.io.Input;
+import lotto.io.InputMessage;
+import lotto.io.Output;
+import lotto.io.OutputMessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import strategy.LottoMatchCounter;
-import strategy.LottoMatchCounterImpl;
+import lotto.strategy.LottoMatchCounter;
+import lotto.strategy.LottoMatchCounterImpl;
 
 public class LottoMachin {
 

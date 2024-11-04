@@ -1,6 +1,6 @@
-package domain.rank;
+package lotto.domain.rank;
 
-import domain.error.ErrorMessage;
+import lotto.domain.error.ErrorMessage;
 
 public enum MatchCount {
     THREE_MATCH(3, "3개 일치 (5,000원)", 5000L),

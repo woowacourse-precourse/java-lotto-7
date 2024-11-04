@@ -1,5 +1,6 @@
 import camp.nextstep.edu.missionutils.test.NsTest;
-import domain.error.InputErrorMessage;
+import lotto.domain.error.InputErrorMessage;
+import lotto.Application;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

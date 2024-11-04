@@ -1,6 +1,6 @@
-package strategy;
+package lotto.strategy;
 
-import domain.lotto.Lotto;
+import lotto.Lotto;
 
 public interface LottoMatchCounter {
     int count(Lotto purchasedLottos,

@@ -1,4 +1,4 @@
-package domain.lotto;
+package lotto;
 
 public enum LottoPrice {
     LOTTO_PRICE(1000);

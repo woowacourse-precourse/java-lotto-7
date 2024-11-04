@@ -1,5 +1,6 @@
-import domain.consumer.Consumer;
-import domain.lotto.WoowahanLottoCompany;
+package lotto;
+
+import lotto.domain.consumer.Consumer;
 
 public class Application {
     public static void main(String[] args) {

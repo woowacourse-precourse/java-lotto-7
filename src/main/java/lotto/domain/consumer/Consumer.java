@@ -1,12 +1,12 @@
-package domain.consumer;
+package lotto.domain.consumer;
 
-import domain.error.InputErrorMessage;
-import domain.lotto.Lotto;
-import domain.lotto.LottoMachin;
-import domain.lotto.LottoPrice;
-import domain.rank.MatchCount;
-import domain.rank.MatchCountCondition;
-import io.Output;
+import lotto.domain.error.InputErrorMessage;
+import lotto.Lotto;
+import lotto.LottoMachin;
+import lotto.LottoPrice;
+import lotto.domain.rank.MatchCount;
+import lotto.domain.rank.MatchCountCondition;
+import lotto.io.Output;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

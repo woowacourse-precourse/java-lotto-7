@@ -1,4 +1,4 @@
-package domain.rank;
+package lotto.domain.rank;
 
 public enum MatchCountCondition {
     START_MATCH_COUNT_CONDITION(3),

@@ -4,10 +4,10 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import domain.error.InputErrorMessage;
-import domain.lotto.Lotto;
-import domain.lotto.LottoMachin;
-import io.Input;
+import lotto.domain.consumer.Consumer;
+import lotto.domain.error.InputErrorMessage;
+import lotto.Lotto;
+import lotto.io.Input;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Arrays;

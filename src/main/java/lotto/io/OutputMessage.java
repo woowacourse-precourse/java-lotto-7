@@ -1,4 +1,4 @@
-package io;
+package lotto.io;
 
 public enum OutputMessage {
     ENTER_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),

@@ -1,4 +1,4 @@
-package domain.lotto;
+package lotto;
 
 public enum LottoCondition {
     START_INCLUSIVE(1),

@@ -1,4 +1,4 @@
-package domain.error;
+package lotto.domain.error;
 
 public enum LottoErrorMessage {
     DUPLICATE_LOTTO_NUMBER("로또 번호는 중복되지 않는 6개의 숫자여야 합니다."),

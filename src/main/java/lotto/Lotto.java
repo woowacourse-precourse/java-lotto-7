@@ -1,7 +1,7 @@
-package domain.lotto;
+package lotto;
 
-import domain.error.InputErrorMessage;
-import domain.error.LottoErrorMessage;
+import lotto.domain.error.InputErrorMessage;
+import lotto.domain.error.LottoErrorMessage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
