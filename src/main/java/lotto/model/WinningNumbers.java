@@ -11,8 +11,15 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> numbers) {
         validateSize(numbers);
+        validateDuplicate(numbers);
         numbers.forEach(this::validateRange);
         this.numbers = numbers;
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != MAX_SIZE) {
+            throw new IllegalArgumentException("중복된 번호가 존재합니다.");
+        }
     }
 
     public boolean contains(int number) {
