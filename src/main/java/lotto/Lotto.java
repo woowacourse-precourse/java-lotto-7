@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -7,6 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        duplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -17,4 +19,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    private void duplicate(List<Integer> numbers) {
+        HashSet<Integer> set = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!set.add(number)) {
+                throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 입력해야 합니다.");
+            }
+        }
+    }
 }
