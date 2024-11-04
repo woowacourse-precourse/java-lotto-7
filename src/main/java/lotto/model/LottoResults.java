@@ -63,6 +63,6 @@ public class LottoResults {
             totalPrizeAmount += rank.getPrizeAmount() * count;
         }
         double profitRate = (double) totalPrizeAmount / purchaseAmount;
-        totalProfitRate = Math.round(profitRate * 100.0 * 100.0) / 100.0;
+        totalProfitRate = Math.round(profitRate * 100.0 * 10.0) / 10.0;
     }
 }

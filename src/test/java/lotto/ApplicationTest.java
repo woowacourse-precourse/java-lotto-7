@@ -96,21 +96,27 @@ class ApplicationTest extends NsTest {
     @Test
     void 수익률_계산_테스트() {
         assertSimpleTest(() -> {
-            long purchaseAmount = 6000;
+            long purchaseAmount = 12000;
             List<Lotto> lottos = List.of(
                     new Lotto(List.of(1,2,3,41,15,6)),
                     new Lotto(List.of(11,21,31,41,25,26)),
                     new Lotto(List.of(11,21,31,41,25,26)),
                     new Lotto(List.of(11,21,31,41,25,26)),
                     new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
                     new Lotto(List.of(11,21,31,41,25,26))
-
             );
             List<Integer> winningNumbers = List.of(1,2,3,4,5,34);
             int bonusNumber = 7;
             LottoResults lottoResults = new LottoResults(purchaseAmount, lottos, winningNumbers, bonusNumber);
             lottoResults.calResults();
-            double expectedValue = 83.33;
+            double expectedValue = 41.7;
             double result = lottoResults.getTotalProfitRate();
             assertThat(result).isEqualTo(expectedValue);
         });
