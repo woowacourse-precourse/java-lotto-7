@@ -17,8 +17,8 @@ public class LottoController {
     private final LottoResult lottoResult;
 
 
-    public LottoController(LottoView lottoView, YieldCalculator yieldCalculator) {
-        this.lottoView = lottoView;
+    public LottoController(){
+        this.lottoView = new LottoView();
         this.lottoResult = new LottoResult();
         this.myWallet = new MyWallet();
         this.lottoManagementSystem = new LottoManagementSystem();
