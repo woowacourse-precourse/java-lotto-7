@@ -30,6 +30,10 @@ public class Consumer {
         return this.secondPlace;
     }
 
+    public List<Lotto> getLottoTicket() {
+        return this.lottoTicket;
+    }
+
     private List<Integer> getNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 CompareInteger.LOTTO_NUMBER_MINIMUM.getNumber(),
@@ -37,14 +41,13 @@ public class Consumer {
                 CompareInteger.LOTTO_NUMBER_COUNT.getNumber());
     }
 
-    public List<Lotto> getLottoTicket() {
-        return this.lottoTicket;
-    }
-
     public void setLottoResult(WinningNumber winningNumber) {
         for (Lotto lotto : lottoTicket) {
+            // 한 로또(6개의 숫자)에서 당첨 번호와 일치하는 숫자의 개수를 lottoResult의 idx 값으로 취급하여 업데이트
             int count = lotto.getMatchingCount(winningNumber.getNumbers());
             lottoResult[count]++;
+
+            // 5개이면 보너스 번호 일치 여부 확인하여 secondPlace++
             if (count == CompareInteger.LOTTO_MATCHING_COUNT_SECOND_PLACE.getNumber() && lotto.isMatchBonus(winningNumber.getBonus())) {
                 secondPlace++;
             }
