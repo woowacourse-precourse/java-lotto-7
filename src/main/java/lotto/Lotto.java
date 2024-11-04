@@ -41,6 +41,15 @@ public class Lotto {
         }
     }
 
+    // 로또 번호가 숫자가 맞는지 체크
+    private void typeCheck(List<Integer> numbers) {
+        for (Object number : numbers) {
+            if (!(number instanceof Integer)) {
+                throw new IllegalArgumentException("[ERROR] 리스트에는 정수형 숫자만 포함되어야 합니다.");
+            }
+        }
+    }
+
     // 구매한 로또의 개수 반환
     public static int lottoCount(int lottoPurchaseAmount){
         return lottoPurchaseAmount / 1000;
