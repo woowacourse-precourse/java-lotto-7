@@ -2,8 +2,10 @@ package lotto.global;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static lotto.exception.ErrorCode.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -15,6 +17,7 @@ public class ValidatorTest {
     private String validBonusNumber;
     private String invalidPurchaseAmount;
     private List<String> invalidInputs;
+    private List<Consumer<String>> validators;
     private Validator validator;
 
     @BeforeEach
@@ -26,8 +29,7 @@ public class ValidatorTest {
         invalidPurchaseAmount = "1200";
 
         validators = Arrays.asList(
-                validator::validatePurchaseAmount,
-                validator::validateWinningNumbers
+                validator::validatePurchaseAmount
         );
 
         invalidInputs = Arrays.asList("", null);

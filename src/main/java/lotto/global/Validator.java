@@ -1,6 +1,6 @@
 package lotto.global;
 
-
+import static lotto.exception.ErrorCode.*;
 public class Validator {
     private static final Validator instance = new Validator();
 
