@@ -36,7 +36,7 @@ public enum WinningType {
             return FIVE_MATCH_WITH_BONUS;
         }
         for (WinningType type : values()) {
-            if (type.matchCount == matchCount && (type != FIVE_MATCH_WITH_BONUS)) {
+            if (type.matchCount == matchCount) {
                 return type;
             }
         }
