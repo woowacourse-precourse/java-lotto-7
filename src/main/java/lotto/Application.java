@@ -62,7 +62,7 @@ public class Application {
         List<Integer> winningNumbers = inputWinningNumbers();
         int bonusNumber = inputBonusNumber();
 
-        Map<Integer, Integer> results = calculateResults(lottos, winningNumbers, bonusNumber);
+        Map<Rank, Integer> results = calculateResults(lottos, winningNumbers, bonusNumber);
         printResults(results, purchaseAmount);
     }
 
@@ -178,26 +178,7 @@ public class Application {
         return count;
     }
 
-    public static int getRank(int matchCount, boolean bonusMatch) {
-        if (matchCount == 6) {
-            return 1;
-        }
-        if (matchCount == 5 && bonusMatch) {
-            return 2;
-        }
-        if (matchCount == 5) {
-            return 3;
-        }
-        if (matchCount == 4) {
-            return 4;
-        }
-        if (matchCount == 3) {
-            return 5;
-        }
-        return 0;
-    }
-
-    public static void printResults(Map<Integer, Integer> results, int purchaseAmount) {
+    public static void printResults(Map<Rank, Integer> results, int purchaseAmount) {
         System.out.println("당첨 통계\n---");
         int totalPrize = 0;
 
