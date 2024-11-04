@@ -1,11 +1,12 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
 
-    private List<Lotto> lottos;
+    private List<Lotto> lottos = new ArrayList<>();
 
     private Lottos(int count) {
         for (int i = 0; i < count; i++) {
@@ -20,5 +21,9 @@ public class Lottos {
 
     public int getSize() {
         return lottos.size();
+    }
+
+    public List<Lotto> getLottos() {
+        return new ArrayList<>(lottos);
     }
 }
