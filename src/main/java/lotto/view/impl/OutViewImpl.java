@@ -1,5 +1,6 @@
 package lotto.view.impl;
 
+import static lotto.constant.GameMessage.BONUS_LOTTO_MESSAGE;
 import static lotto.constant.GameMessage.PRINT_BOUGHT_LOTTO_MESSAGE;
 import static lotto.constant.GameMessage.PRINT_HOW_MANY_WINNING_MESSAGE;
 import static lotto.constant.GameMessage.PRINT_PROFIT_RATE_MESSAGE;
@@ -32,7 +33,7 @@ public class OutViewImpl implements OutPutView {
             String bonusMessage = "";
 
             if (rank.requiresBonus()) {
-                bonusMessage = ", 보너스 볼 일치";
+                bonusMessage = BONUS_LOTTO_MESSAGE.getMessage();
             }
 
             int count = results.getOrDefault(rank, 0);
