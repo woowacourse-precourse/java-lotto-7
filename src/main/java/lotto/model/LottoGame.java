@@ -2,12 +2,14 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
 
     private final LottoPrice lottoPrice;
     private List<Lotto> lottos;
     private int totalPrice;
+    private Map<LottoPrize, Integer> prizeCounts;
 
     public LottoGame(LottoPrice lottoPrice) {
         this.lottoPrice = lottoPrice;
@@ -27,8 +29,14 @@ public class LottoGame {
     }
 
     public void checkWinningLotto(WinningLotto winningLotto) {
+        resetPrizeCounts();
         totalPrice = lottos.stream()
-                .mapToInt(lotto -> calculatePrizeAmount(lotto, winningLotto))
+                .mapToInt(lotto -> {
+                    int prizeAmount = calculatePrizeAmount(lotto, winningLotto);
+                    LottoPrize prize = getPrize(lotto, winningLotto);
+                    prizeCounts.put(prize, prizeCounts.getOrDefault(prize, 0) + 1);
+                    return prizeAmount;
+                })
                 .sum();
     }
 
@@ -36,6 +44,15 @@ public class LottoGame {
         LottoMatching lottoMatching = new LottoMatching(lotto, winningLotto);
         LottoPrize prize = lottoMatching.getLottoPrize();
         return prize.getPrizeAmount();
+    }
+
+    private LottoPrize getPrize(Lotto lotto, WinningLotto winningLotto) {
+        LottoMatching lottoMatching = new LottoMatching(lotto, winningLotto);
+        return lottoMatching.getLottoPrize();
+    }
+
+    private void resetPrizeCounts() {
+        prizeCounts.clear();
     }
 
     public double calculateProfit() {
@@ -49,5 +66,9 @@ public class LottoGame {
 
     public int getTotalPrice() {
         return totalPrice;
+    }
+
+    public Map<LottoPrize, Integer> getPrizeCounts() {
+        return prizeCounts;
     }
 }

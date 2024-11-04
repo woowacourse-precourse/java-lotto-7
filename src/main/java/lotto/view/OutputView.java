@@ -1,0 +1,49 @@
+package lotto.view;
+
+import lotto.common.ViewConstant;
+import lotto.model.Lotto;
+import lotto.model.LottoPrize;
+
+import java.util.List;
+import java.util.Map;
+
+public class OutputView {
+
+    public void printLottos(List<Lotto> lottos, int lottoCount) {
+        System.out.printf(ViewConstant.OUTPUT_LOTTO_COUNT_MESSAGE, lottoCount);
+        System.out.println();
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+
+    public void printWinningStatistics(Map<LottoPrize, Integer> prizeCounts) {
+        System.out.println(ViewConstant.OUTPUT_WINNING_STATISTICS_MESSAGE);
+        System.out.println(ViewConstant.THREE_DASH);
+
+        prizeCounts.keySet().stream()
+                .filter(prize -> prize.getPrizeAmount() > 0)
+                .sorted()
+                .forEach(prize -> printRankMessage(prize, prizeCounts.getOrDefault(prize, 0)));
+    }
+
+    private void printRankMessage(LottoPrize prize, int count) {
+        StringBuilder matchMessage = new StringBuilder();
+        matchMessage.append(prize.getMatchCount()).append(ViewConstant.OUTPUT_MATCHING_NUMBERS_MESSAGE);
+        if (prize.hasBonus()) {
+            matchMessage.append(ViewConstant.OUTPUT_MATCHING_BONUS_MESSAGE);
+        }
+        matchMessage.append(ViewConstant.OPEN_PARENTHESES)
+                .append(String.format("%,d", prize.getPrizeAmount()))
+                .append(ViewConstant.OUTPUT_MONEY_UNIT)
+                .append(ViewConstant.CLOSE_PARENTHESES)
+                .append(ViewConstant.DASH)
+                .append(count)
+                .append(ViewConstant.OUTPUT_NUMBER_UNIT);
+
+        System.out.println(matchMessage);
+    }
+
+
+    public void printProfit(double profit) {
+        System.out.printf(ViewConstant.OUTPUT_PROFIT_RATE_MESSAGE, profit);
+    }
+}
