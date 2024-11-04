@@ -27,7 +27,8 @@ public class LottoGame {
 
     private void generateWinningLotto() {
         List<Integer> validWiningNumbers = getValidWinningNumbers();
-        int bonusNumber = getValidBonusNumber(validWiningNumbers);
+        int validBonusNumber = getValidBonusNumber(validWiningNumbers);
+        lottoGameService.generateWinningLotto(validWiningNumbers, validBonusNumber);
     }
 
     private int getValidBonusNumber(List<Integer> winningNumbers) {

@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 
 public class LottoGameService {
+    private WinningLotto winningLotto;
 
     public List<Lotto> generatePurchaserLottos(int purchaseCount) {
         List<Lotto> lottos = new ArrayList<>();
@@ -26,5 +28,9 @@ public class LottoGameService {
 
     private void sortNumbersAscending(List<Integer> randomNumbers) {
         Collections.sort(randomNumbers);
+    }
+
+    public void generateWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
 }
