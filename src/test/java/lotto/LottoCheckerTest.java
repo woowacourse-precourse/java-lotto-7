@@ -116,4 +116,17 @@ public class LottoCheckerTest {
     void calculateNoRankFromCountTest(int rank) {
         assertEquals(0, lottoChecker.calculateRankFromCount(rank));
     }
+
+    @DisplayName("당첨 번호와 로또 번호를 비교하는 메서드")
+    @ParameterizedTest
+    @MethodSource("determineRank")
+    void determineRankTest(Lotto lotto) {
+        assertTrue(lottoChecker.determineRank(lotto) >= 0);
+    }
+
+    public static Stream<Arguments> determineRank() {
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+        );
+    }
 }
