@@ -43,4 +43,4 @@ public class WinningLotto {
         return LottoPrizeRank.MISS;
     }
 }
-}
+
