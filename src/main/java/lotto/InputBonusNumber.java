@@ -8,7 +8,7 @@ public class InputBonusNumber {
     private final int bonusNumber;
 
     public InputBonusNumber(String input, List<Integer> winningNumbers) {
-        System.out.println("구입금액을 입력해주세요");
+        System.out.println("보너스 번호를 입력해주세요");
         String bonusMoneyString = Console.readLine();
         int bonusNumber = Integer.parseInt(bonusMoneyString);
         if (bonusNumber < 1 || bonusNumber > 45) {
