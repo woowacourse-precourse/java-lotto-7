@@ -1,0 +1,61 @@
+package lotto.validator;
+
+import java.util.List;
+import lotto.info.LottoInfo;
+import lotto.message.ErrorMessage;
+
+public class BonusNumberValidator {
+    private static final String DEFAULT_ERROR_MESSAGE = "[ERROR] ";
+
+    public static int validateBonusNumber(String input, List<Integer> winningNumbers) {
+        validateSingleNumber(input);
+        int bonusNumber = parseAndValidateInteger(input);
+        validatePositive(bonusNumber);
+        validateRange(bonusNumber);
+        validateNoDuplicate(bonusNumber, winningNumbers);
+        return bonusNumber;
+    }
+
+    private static void validateNoDuplicate(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(
+                    DEFAULT_ERROR_MESSAGE + ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE.getMessage());
+        }
+    }
+
+    private static void validateSingleNumber(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    DEFAULT_ERROR_MESSAGE + ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE.getMessage());
+        }
+
+        String[] tokens = input.split("[,\\s]+");
+        if (tokens.length != 1) {
+            throw new IllegalArgumentException(
+                    DEFAULT_ERROR_MESSAGE + ErrorMessage.SINGLE_NUMBER_ERROR_MESSAGE.getMessage());
+        }
+    }
+
+    private static int parseAndValidateInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    DEFAULT_ERROR_MESSAGE + ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.getMessage(), e);
+        }
+    }
+
+    private static void validatePositive(int number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException(
+                    DEFAULT_ERROR_MESSAGE + ErrorMessage.NOT_POSITIVE_ERROR_MESSAGE.getMessage());
+        }
+    }
+
+    private static void validateRange(int number) {
+        if (number < LottoInfo.MIN_NUMBER.getNumber() || number > LottoInfo.MAX_NUMBER.getNumber()) {
+            throw new IllegalArgumentException(
+                    DEFAULT_ERROR_MESSAGE + ErrorMessage.OUT_OF_RANGE_ERROR_MESSAGE.getMessage());
+        }
+    }
+}
