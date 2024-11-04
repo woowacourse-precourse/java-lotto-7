@@ -1,11 +1,11 @@
-package lotto.lottoMachine.lottoRank;
+package lotto.lottoMachine.lottoTotalResult;
 
-import lotto.LottoRankStore;
+import lotto.LottoResultStore;
 import lotto.lottoMachine.calculateManager.LottoPrizeManager;
 
-public class LottoRankResultManager {
-    private final LottoRankStore rankStore = new LottoRankStore();
-    private final LottoRankStatisticsPrinter statisticsPrinter = new LottoRankStatisticsPrinter();
+public class LottoTotalResultManager {
+    private final LottoResultStore rankStore = new LottoResultStore();
+    private final LottoTotalResultStatisticsPrinter statisticsPrinter = new LottoTotalResultStatisticsPrinter();
 
     public void store(int lottoNumberMatch, boolean isMatchBonusNumber) {
         rankStore.store(lottoNumberMatch, isMatchBonusNumber);

@@ -4,27 +4,28 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
-import lotto.lottoMachine.lottoRank.LottoRankStructure;
+import lotto.lottoMachine.utils.LottoResultStructure;
 
-public class LottoRankStore {
-    private final Map<LottoRankStructure, Integer> winningResults = new EnumMap<>(LottoRankStructure.class);
+public class LottoResultStore {
     private static final int INITIAL_RANK_VALUE = 0;
 
-    public LottoRankStore() {
+    private final Map<LottoResultStructure, Integer> winningResults = new EnumMap<>(LottoResultStructure.class);
+
+    public LottoResultStore() {
         initializeResults();
     }
 
     private void initializeResults() {
-        Arrays.stream(LottoRankStructure.values())
+        Arrays.stream(LottoResultStructure.values())
                 .forEach(rank -> winningResults.put(rank, INITIAL_RANK_VALUE));
     }
 
     public void store(int lottoNumberMatch, boolean isMatchBonusNumber) {
-        LottoRankStructure rank = LottoRankStructure.valueOf(lottoNumberMatch, isMatchBonusNumber);
+        LottoResultStructure rank = LottoResultStructure.valueOf(lottoNumberMatch, isMatchBonusNumber);
         winningResults.put(rank, winningResults.get(rank) + 1);
     }
 
-    public Map<LottoRankStructure, Integer> getResults() {
+    public Map<LottoResultStructure, Integer> getResults() {
         return Collections.unmodifiableMap(winningResults);
     }
 }

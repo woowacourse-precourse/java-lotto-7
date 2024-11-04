@@ -1,35 +1,37 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 
-// 리스트로 로또를 갖고온다음 진행해야될듯?
 public class Lotto {
-    // validator를 지난 numbers 이어야 한다.
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = List.copyOf(numbers);
     }
 
     private void validate(List<Integer> numbers) {
+        if (numbers == null) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호 리스트는 null일 수 없습니다.");
+        }
+
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
     }
 
-    // TODO: 추가 기능 구현
-    public int calculateAmountNumbersThatMatchWinningNumbers(List<Integer> lottoWinningNumber) {
-        // 변경할 수 없는 객체를 변경가능하도록 변경 -> 왜 변경가능하지가 않지?
-        List<Integer> numbersThatMatchLotteryWinningNumbers = new ArrayList<>(lottoWinningNumber);
-
-        numbersThatMatchLotteryWinningNumbers.retainAll(numbers);
-
-        return numbersThatMatchLotteryWinningNumbers.size();
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 
-    public boolean isMatchBonusNumber(int lottoBonusNumber) {
-        return numbers.contains(lottoBonusNumber);
+    public boolean matchesBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 }
+
