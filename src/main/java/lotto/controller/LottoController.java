@@ -1,64 +1,43 @@
 package lotto.controller;
 
-import static lotto.utils.Constant.ERROR_MESSAGE_PREFIX;
-
-import java.util.function.Supplier;
 import lotto.domain.InputMoney;
 import lotto.domain.LottoResult;
 import lotto.service.LottoService;
 import lotto.domain.Lottos;
 import lotto.domain.BonusNumber;
 import lotto.domain.WinningNumbers;
-import lotto.view.InputView;
+import lotto.utils.InputHandler;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoService lottoService;
-    private final InputView inputView;
+    private final InputHandler inputHandler;
     private final OutputView outputView;
 
-    public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
+    public LottoController(LottoService lottoService, InputHandler inputHandler, OutputView outputView) {
         this.lottoService = lottoService;
-        this.inputView = inputView;
+        this.inputHandler = inputHandler;
         this.outputView = outputView;
     }
 
     public void start() {
-        InputMoney inputMoney = getInputMoney();
+        // Step 1: 구입 금액 입력
+        InputMoney inputMoney = inputHandler.getInputMoney();
+
+        // Step 2 : 주어진 금액으로 로또 구매
         Lottos lottos = lottoService.buyLottos(inputMoney);
+
+        // Step 3: 구매한 로또 출력
         outputView.displayBuyLottos(lottos);
 
-        WinningNumbers winningNumbers = getWinningNumbers();
-        BonusNumber bonusNumber = getBonusNumber();
-        LottoResult lottoResult = lottoService.findAnswer(lottos, winningNumbers, bonusNumber,inputMoney);
+        // Step 4: 당첨 번호 및 보너스 번호 입력
+        WinningNumbers winningNumbers = inputHandler.getWinningNumbers();
+        BonusNumber bonusNumber = inputHandler.getBonusNumber();
+
+        // Step 5: 로또 결과 계산
+        LottoResult lottoResult = lottos.getLottoResult(winningNumbers, bonusNumber,inputMoney);
+
+        // Step 6: 결과 출력
         outputView.displayWinningResult(lottoResult);
-    }
-
-    private InputMoney getInputMoney() {
-        return retryInput(() ->
-                new InputMoney(inputView.getUserInputMoney())
-        );
-    }
-
-    private WinningNumbers getWinningNumbers() {
-        return retryInput(() ->
-                new WinningNumbers(inputView.getWinningNumbers())
-        );
-    }
-
-    private BonusNumber getBonusNumber() {
-        return retryInput(() ->
-                new BonusNumber(inputView.getBonusNumber())
-        );
-    }
-
-    private <T> T retryInput(Supplier<T> inputSupplier) {
-        while (true) {
-            try {
-                return inputSupplier.get();  // 입력 받기 시도
-            } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());  // 에러 메시지 출력
-            }
-        }
     }
 }
