@@ -15,6 +15,16 @@ public record Lotto(List<Integer> numbers) {
         validateNumbers(numbers);
     }
 
+    public int getMatchingCountWith(Lotto otherLotto) {
+        return (int) numbers.stream()
+                .filter(otherLotto.numbers::contains)
+                .count();
+    }
+
+    public boolean containsBonusNumber(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.bonusNumber());
+    }
+
     private void validateNumbers(List<Integer> numbers) {
         validateCount(numbers);
         validateDuplicated(numbers);
