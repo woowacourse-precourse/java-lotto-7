@@ -1,13 +1,13 @@
 package lotto.view;
 
-import lotto.model.domain.Lotto;
 import lotto.model.domain.Lottos;
-
-import java.util.List;
+import lotto.model.domain.Rate;
 
 public interface LottoViewInterface {
 
     void printTotalLottoCount(int LottoCount);
     void printCreatedLotto(Lottos lottos);
-    String printWinningStatus();
+    void printRateStatus(Rate rate);
+
+    void printRateReturn(double returnPrize);
 }
