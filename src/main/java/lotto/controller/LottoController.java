@@ -14,30 +14,54 @@ public class LottoController {
     }
 
     public void run() {
-        try {
-            // 1. 구입 금액 입력
-            int money = Inputview.inputMoney();
+        int money = getPurchaseAmount();
+        lottoService.issueLottoTickets(money / 1000);
+        Outputview.printLottoTickets(lottoService.getLottoTickets());
 
-            // 2. 로또 티켓 발행
-            lottoService.issueLottoTickets(money / 1000);
-            Outputview.printLottoTickets(lottoService.getLottoTickets());
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
 
-            // 3. 당첨 번호와 보너스 번호 입력
-            String winningNumbers = Inputview.inputWinningNumbers();
-            int bonusNumber = Inputview.inputBonusNumber();
-            lottoService.setWinningNumbers(winningNumbers, bonusNumber);
+        lottoService.setWinningNumbers(winningNumbers, bonusNumber);
 
-            // 4. 당첨 결과 계산 및 출력
-            List<Rank> results = lottoService.calculateResults();
-            Outputview.printResults(results);
+        List<Rank> results = lottoService.calculateResults();
+        Outputview.printResults(results);
 
-            // 5. 수익률 계산 및 출력
-            double yield = lottoService.calculateYield(money);
-            Outputview.printYield(yield);
+        double yield = lottoService.calculateYield(money);
+        Outputview.printYield(yield);
+    }
 
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            run(); // 잘못된 입력 발생 시 재시도
+    private int getPurchaseAmount() {
+        while (true) {
+            try {
+                return Inputview.inputMoney();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> getWinningNumbers() {
+        while (true) {
+            try {
+                String winningNumbers = Inputview.inputWinningNumbers();
+                return lottoService.parseWinningNumbers(winningNumbers); // 유효성 검사 및 파싱
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                int bonusNumber = Inputview.inputBonusNumber();
+                if (winningNumbers.contains(bonusNumber)) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                }
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
