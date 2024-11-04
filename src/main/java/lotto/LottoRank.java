@@ -23,6 +23,10 @@ public enum LottoRank{
         return prize;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public String getRank() {
         return rank;
     }

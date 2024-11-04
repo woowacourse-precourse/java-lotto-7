@@ -1,8 +1,6 @@
 package lotto;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoOutputView {
     public static void printPurchasedLottoCount(List<Lotto> lottos) {
@@ -16,8 +14,12 @@ public class LottoOutputView {
 
     public static void printResult(Map<LottoRank, Integer> result) {
         System.out.println("당첨 통계");
-        System.out.println("---------");
-        for (LottoRank rank : LottoRank.values()) {
+        System.out.println("---");
+
+        List<LottoRank> sortedRanks = Arrays.asList(LottoRank.values());
+        sortedRanks.sort(Comparator.comparingInt(LottoRank::getMatchCount));
+
+        for (LottoRank rank : sortedRanks) {
             int count = result.getOrDefault(rank, 0);
             System.out.printf("%s (%d원) - %d개%n", rank.getRank(), rank.getPrize(), count);
         }
