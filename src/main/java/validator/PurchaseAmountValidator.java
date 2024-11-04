@@ -2,11 +2,14 @@ package validator;
 
 public class PurchaseAmountValidator {
 
+    private static final int LOTTO_PRICE = 1000;
+
     public static int validate(String input) {
         int amount = parsePurchaseAmount(input);
         validatePositiveAmount(amount);
         validateNonZeroAmount(amount);
         validateThousandUnitAmount(amount);
+        validateMinimumAmount(amount);
         return amount;
     }
 
@@ -33,6 +36,12 @@ public class PurchaseAmountValidator {
     private static void validateThousandUnitAmount(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위여야 합니다.");
+        }
+    }
+
+    private static void validateMinimumAmount(int amount) {
+        if (amount < LOTTO_PRICE) {
+            throw new IllegalArgumentException("[ERROR] 최소 구입 금액은 1,000원입니다.");
         }
     }
 }
