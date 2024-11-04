@@ -27,7 +27,7 @@ public class InputValidator {
         }
         Set<String> notDuplication = new HashSet<>();
         for (String str : splitPrizeNumbers) {
-            if(!separateChar(notDuplication,str)){
+            if (!separateChar(notDuplication, str)) {
                 return false;
             }
         }
@@ -57,11 +57,11 @@ public class InputValidator {
         return true;
     }
 
-    public boolean separateChar(Set<String> notDuplication,String str) {
+    public boolean separateChar(Set<String> notDuplication, String str) {
         if (!common(str)) {
             return false;
         }
-        if(!sameNumberInPrize(notDuplication,str)){
+        if (!sameNumberInPrize(notDuplication, str)) {
             return false;
         }
         return true;
@@ -141,9 +141,9 @@ public class InputValidator {
         return true;
     }
 
-    public boolean sameNumberInPrize( Set<String> notDuplication, String str) {
+    public boolean sameNumberInPrize(Set<String> notDuplication, String str) {
         try {
-            if(!notDuplication.add(str)){
+            if (!notDuplication.add(str)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
