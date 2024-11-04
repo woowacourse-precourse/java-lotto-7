@@ -22,9 +22,7 @@ public class LottoCreator {
 	}
 
 	private List<Integer> getRandomNumbers() {
-		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
-		numbers.sort(Integer::compareTo);
-		return numbers;
+		return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
 	}
 
 	private List<LottoNumber> getLottoNumbers(List<Integer> numbers) {
