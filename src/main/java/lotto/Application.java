@@ -79,7 +79,7 @@ class MainController {
 
 		for (int i = 0; i < purchaseCount; i++) {
 			Lotto newPrintedLotto = new Lotto(
-					camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6));
+					camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 20, 6));
 			Collections.sort(newPrintedLotto.getLottoNumber());
 			userLottoPackage.add(new PurchaseLotto(newPrintedLotto));
 		}
@@ -111,7 +111,7 @@ class MainController {
 		}
 
 		if (lottoNumber > 45) {
-			throw new IllegalArgumentException("[Error] 45를 초과하는 수는 입력할 수 없습니다.");
+			throw new IllegalArgumentException("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
 		}
 	}
 
