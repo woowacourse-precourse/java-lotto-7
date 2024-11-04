@@ -82,7 +82,7 @@ public class LottoService {
         for (Entry<Rank, Integer> entry : rankCount.entrySet()) {
             Rank rank = entry.getKey();
             Integer count = entry.getValue();
-            totalPrize += rank.calculate(count);
+            totalPrize += rank.calculatePrize(count);
         }
         return totalPrize;
     }

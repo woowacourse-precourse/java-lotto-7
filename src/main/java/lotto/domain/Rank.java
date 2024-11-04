@@ -16,7 +16,7 @@ public enum Rank {
         this.expression = expression;
     }
 
-    public int calculate(int count) {
+    public int calculatePrize(int count) {
         return expression.apply(count);
     }
 }
