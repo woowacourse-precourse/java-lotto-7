@@ -1,17 +1,17 @@
 package lotto.domain;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto.Lotto;
+import lotto.dto.StatisticsDto;
 
 public class Stastistics {
     private final EnumMap<Rank, Integer> rankStatistics;
+    private final float profitRate;
 
-    public Stastistics(Lottos randomLottos, WinningLotto winningLotto) {
+    public Stastistics(Lottos randomLottos, WinningLotto winningLotto, int ticketCount) {
         this.rankStatistics = progressStatistics(randomLottos, winningLotto);
+        this.profitRate = calculateProfitRate(ticketCount);
     }
 
     private EnumMap<Rank, Integer> progressStatistics(Lottos randomLottos, WinningLotto winningLotto) {
@@ -51,11 +51,7 @@ public class Stastistics {
         return ((float) totalPrize / (ticketCount * 1000) * 100);
     }
 
-    public String getStatisticsString() {
-        return Arrays.stream(Rank.values())
-                .filter(rank -> rank != Rank.NONE)
-                .sorted(Comparator.comparingInt(Rank::getMatchNumber))
-                .map(rank -> String.format("%s - %d개", rank, rankStatistics.getOrDefault(rank, 0)))
-                .collect(Collectors.joining("\n"));
+    public StatisticsDto toDto() {
+        return StatisticsDto.of(rankStatistics, profitRate);
     }
 }

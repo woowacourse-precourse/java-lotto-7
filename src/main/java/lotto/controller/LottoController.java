@@ -7,6 +7,8 @@ import lotto.domain.Number;
 import lotto.domain.Price;
 import lotto.domain.Stastistics;
 import lotto.domain.WinningLotto;
+import lotto.dto.LottosDto;
+import lotto.dto.StatisticsDto;
 import lotto.util.InputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -23,16 +25,18 @@ public class LottoController {
     public void run() {
         Price price = inputBuyLotto();
 
-        Lottos lottos = new Lottos(price);
-        outputRandomLottoNumber(lottos);
+        Lottos randomLottos = new Lottos(price);
+        LottosDto lottosDto = LottosDto.of(randomLottos.getLottos(), randomLottos.getTicketCount());
+        outputRandomLottoNumber(lottosDto);
 
         Lotto WinningLottoNum = inputWinningLotto();
 
         WinningLotto winningLotto = inputBonusNumber(WinningLottoNum);
 
         outputView.printWinningStatistics();
-        Stastistics stastistics = new Stastistics(lottos, winningLotto);
-        outputResultStatistics(stastistics, lottos);
+        Stastistics stastistics = new Stastistics(randomLottos, winningLotto, lottosDto.ticketCount());
+        StatisticsDto statisticsDto = stastistics.toDto();
+        outputResultStatistics(statisticsDto);
 
         inputView.closeConsole();
     }
@@ -48,10 +52,9 @@ public class LottoController {
         }
     }
 
-    private void outputRandomLottoNumber(Lottos lottos) {
-        outputView.printLottoTicket(lottos.getTicketCount());
-        String lottosNumber = lottos.getLottosToString();
-        outputView.printResult(lottosNumber);
+    private void outputRandomLottoNumber(LottosDto lottosDto) {
+        outputView.printLottoTicket(lottosDto.getTicketCount());
+        outputView.printResult(lottosDto.getLottosAsString());
     }
 
     private Lotto inputWinningLotto() {
@@ -76,10 +79,8 @@ public class LottoController {
         }
     }
 
-    private void outputResultStatistics(Stastistics stastistics, Lottos lottos) {
-        String rankStastistics = stastistics.getStatisticsString();
-        float profitRate = stastistics.calculateProfitRate(lottos.getTicketCount());
-        outputView.printResult(rankStastistics);
-        outputView.printProfitRate(profitRate);
+    private void outputResultStatistics(StatisticsDto statisticsDto) {
+        outputView.printResult(statisticsDto.getStatisticsAsString());
+        outputView.printProfitRate(statisticsDto.getProfitRate());
     }
 }
