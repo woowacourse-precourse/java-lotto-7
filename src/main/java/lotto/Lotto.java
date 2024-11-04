@@ -12,14 +12,25 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSixNumbers(numbers);
+        validateDuplicate(numbers);
+        validateRangeNum(numbers);
+    }
+
+    private void validateSixNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 6개의 숫자를 뽑아야 합니다.");
         }
+    }
 
+    private void validateRangeNum(List<Integer> numbers) {
         // 1부터 45 사이의 숫자 검사
         for (int number : numbers) {
             if (number < 1 || number > 45) {
@@ -28,7 +39,7 @@ public class Lotto {
         }
     }
 
-    private void ascendingSort(List<Integer> numbers){
+    private void ascendingSort(List<Integer> numbers) {
         numbers.sort(Integer::compareTo);   // 오름차순 정렬
     }
 
@@ -41,7 +52,7 @@ public class Lotto {
         return numbers;
     }
 
-    public int cntMatchingNumbers(Lotto other){
+    public int cntMatchingNumbers(Lotto other) {
         Set<Integer> commonNumbers = new HashSet<>(this.numbers);
         commonNumbers.retainAll(other.numbers);
         return commonNumbers.size();
