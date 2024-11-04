@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoResultCalculator;
 import lotto.domain.Rank;
+import lotto.validation.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,32 +21,37 @@ public class LottoController {
 
     public void run() {
         // Step 1: 구입 금액 입력 및 로또 티켓 생성
-        int purchaseAmount = InputView.requestPurchaseAmount();
-
-        // Step 2: 티켓 개수에 맞게 로또 생성
-        List<Lotto> lottos;
-        try {
-            lottos = lottoGenerator.generateLottos(purchaseAmount);
-            OutputView.printPurchaseCount(lottos.size());
-            OutputView.printLottoNumbers(lottos);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+        OutputView.promptPurchaseAmount();
+        String purchaseAmountInput = InputView.requestPurchaseAmount();
+        String validationError = Validator.validatePurchaseAmount(purchaseAmountInput);
+        if (validationError != null) {
+            OutputView.printErrorMessage(validationError);
             return;
         }
+        int purchaseAmount = Integer.parseInt(purchaseAmountInput);
+
+        // Step 2: 티켓 개수에 맞게 로또 생성
+        List<Lotto> lottos = lottoGenerator.generateLottos(purchaseAmount);
+        OutputView.printPurchaseCount(lottos.size());
+        OutputView.printLottoNumbers(lottos);
 
         // Step 3: 당첨 번호 입력
+        OutputView.promptWinningNumbersInput();
+        String winningNumbersInput = InputView.requestWinningNumbers();
         List<Integer> winningNumbers;
         try {
-            winningNumbers = InputView.requestWinningNumbers();
+            winningNumbers = Validator.validateWinningNumbers(winningNumbersInput);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return;
         }
 
         // Step 4: 보너스 번호 입력
+        OutputView.promptBonusNumberInput();
+        String bonusNumberInput = InputView.requestBonusNumber();
         int bonusNumber;
         try {
-            bonusNumber = InputView.requestBonusNumber(winningNumbers);
+            bonusNumber = Validator.validateBonusNumber(bonusNumberInput, winningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return;
