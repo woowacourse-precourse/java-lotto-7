@@ -1,4 +1,4 @@
-package lotto.vo;
+package lotto.model;
 
 import lotto.util.Parser;
 import lotto.util.Validator;
