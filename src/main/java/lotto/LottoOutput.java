@@ -1,19 +1,17 @@
 package lotto;
 
+import lotto.enums.OutputMessage;
+import lotto.enums.Rank;
+
 import java.util.List;
 
 public class LottoOutput {
-    private final static String PURCHASE_AMOUNT_PROMPT_MESSAGE = "구입금액을 입력해 주세요.";
-    private final static String PURCHASED_LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
-    private final static String WINNING_NUMBERS_PROMPT_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private final static String BONUS_NUMBER_PROMPT_MESSAGE = "보너스 번호를 입력해 주세요.";
-
     public void displayPurchaseAmountPrompt() {
-        System.out.println(PURCHASE_AMOUNT_PROMPT_MESSAGE);
+        System.out.println(OutputMessage.PURCHASE_AMOUNT_PROMPT.getText());
     }
 
     public void displayPurchasedLottoCount(long purchasedLottoCount) {
-        System.out.println(purchasedLottoCount + PURCHASED_LOTTO_COUNT_MESSAGE);
+        System.out.println(purchasedLottoCount + OutputMessage.PURCHASED_LOTTO_COUNT.getText());
     }
 
     public void displayLottoNumbers(List<Lotto> lottoTickets) {
@@ -23,10 +21,17 @@ public class LottoOutput {
     }
 
     public void displayWinningNumbersPrompt() {
-        System.out.println(WINNING_NUMBERS_PROMPT_MESSAGE);
+        System.out.println(OutputMessage.WINNING_NUMBERS_PROMPT_MESSAGE.getText());
     }
 
     public void displayBonusNumberPrompt() {
-        System.out.println(BONUS_NUMBER_PROMPT_MESSAGE);
+        System.out.println(OutputMessage.BONUS_NUMBER_PROMPT_MESSAGE.getText());
+    }
+
+    public void displayPlaceResult(List<Integer> placeCount) {
+        for (Rank rank : Rank.values()) {
+            int count = placeCount.get(rank.getIndex());
+            System.out.println(rank.getMessage(count));
+        }
     }
 }
