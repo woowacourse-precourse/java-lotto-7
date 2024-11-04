@@ -4,7 +4,7 @@ public class Money {
     private static final long MINIMUM_AMOUNT = 0L;
     private static final long LOTTO_PRICE_UNIT = 1000L;
 
-    private long money;
+    private final long money;
 
     public Money(long money) {
         validateAmount(money);
