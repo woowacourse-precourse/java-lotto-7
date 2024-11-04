@@ -1,6 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.Collections;
+import java.util.List;
 
 public class Application {
     // 값이 있는지, 값이 숫자만 있는지, 숫자가 천원단위인지,
@@ -9,9 +13,9 @@ public class Application {
             throw new IllegalArgumentException("로또 구매금액을 입력하세요.");
         }
     }
-    public static void checkNumberTypeException(String lottoAmountInput) {
+    public static int checkNumberTypeException(String lottoAmountInput) {
         try {
-            parseLottoAmount(lottoAmountInput);
+            return Integer.parseInt(lottoAmountInput);
         } catch (NumberFormatException e) {
             throw new NumberFormatException("구매 금액은 숫자만 입력 가능합니다.");
         }
@@ -27,7 +31,7 @@ public class Application {
     }
 
     public static int parseLottoAmount(String lottoAmountInput) {
-        return Integer.parseInt(lottoAmountInput);
+        return checkNumberTypeException(lottoAmountInput);
     }
 
     public static String getLottoAmount() {
@@ -36,14 +40,15 @@ public class Application {
 
     public static int processLottoPurchase() {
         String lottoAmountInput;
+        int lottoAmount;
         do {
             printInstructionAboutLottoAmount();
             lottoAmountInput = getLottoAmount();
             try {
                 checkInputEmptyException(lottoAmountInput);
-                checkNumberTypeException(lottoAmountInput);
-                checkThousandUnitException(parseLottoAmount(lottoAmountInput));
-                return parseLottoAmount(lottoAmountInput);
+                lottoAmount = parseLottoAmount(lottoAmountInput);
+                checkThousandUnitException(lottoAmount);
+                return lottoAmount / 1000; // 로또 구입 개수
             }
             catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -51,7 +56,23 @@ public class Application {
         } while (true);
     }
 
+    public static void printPurchaseLottoInformation(int lottoTicketNumber) {
+        printLottoTicketNumber(lottoTicketNumber);
+        printLottoNumbers(lottoTicketNumber);
+    }
+    public static void printLottoTicketNumber(int lottoTicketNumber) {
+        System.out.println(lottoTicketNumber + "개를 구매했습니다.");
+    }
+    public static void printLottoNumbers(int lottoTicketNumber) {
+        for (int index = 0; index < lottoTicketNumber; index++) {
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(lottoNumbers); // 오름차순 정렬
+            System.out.println(lottoNumbers);
+        }
+
+    }
     public static void main(String[] args) {
-        processLottoPurchase();
+        int lottoTicketNumber = processLottoPurchase();
+        printPurchaseLottoInformation(lottoTicketNumber);
     }
 }
