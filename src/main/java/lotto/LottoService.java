@@ -1,70 +1,106 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoService {
-    public LottoService() {
+    private static final Integer MINIMUM_CASH_UNIT = 1000;
+
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public LottoService(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
-    public Integer convertInputToCash(String input) {
-        return Integer.parseInt(input);
-    }
-
-    public Integer convertInputToLottoAmount(String input) {
-        Integer lottoAmount  = 0;
+    public Integer parseInputToCash(String input) {
+        Integer cash = 0;
 
         while (true) {
             try {
-            /*if (!LottoUtils.isNumber(input)) {
-                System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
-                throw new IllegalArgumentException();
-            }*/
-
-                Integer cash = Integer.parseInt(input);
-
-                if (cash % 1000 != 0) {
-                    System.out.println(ErrorMessage.INVALID_CASH_MESSAGE.getMessage());
+                if (!LottoUtils.isNumber(input)) {
+                    outputView.printError(ErrorMessage.INVALID_INPUT_MESSAGE);
                     throw new IllegalArgumentException();
                 }
 
-                if (cash <= 0) {
-                    System.out.println(ErrorMessage.NO_CASH_MESSAGE.getMessage());
+                cash = Integer.parseInt(input);
+
+                if (cash < MINIMUM_CASH_UNIT) {
+                    outputView.printError(ErrorMessage.INVALID_INPUT_MESSAGE);
                     throw new IllegalArgumentException();
                 }
 
-                lottoAmount = cash / 1000;
+                if (cash % MINIMUM_CASH_UNIT != 0) {
+                    outputView.printError(ErrorMessage.INVALID_CASH_MESSAGE);
+                    throw new IllegalArgumentException();
+                }
+
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.INVALID_INPUT_MESSAGE.getMessage());
-                input = Console.readLine();
+                input = inputView.inputCash();
             }
         }
 
-        return lottoAmount;
+        return cash;
+    }
+
+    public Integer parseCashToLottoAmount(Integer cash) {
+        return cash / MINIMUM_CASH_UNIT;
     }
 
     public Lotto parseWinningNumber(String input) {
+        Lotto winningLotto;
         List<Integer> winningNumbers = new ArrayList<>();
 
-        String[] numbers = input.split(",");
-        for (String number : numbers) {
-            winningNumbers.add(Integer.parseInt(number));
-        }
+        while (true) {
+            try {
+                String[] numbers = input.split(",");
 
-        Lotto winningLotto = new Lotto(winningNumbers);
+                winningNumbers.clear();
+
+                for (String number : numbers) {
+                    winningNumbers.add(Integer.parseInt(number));
+                }
+
+                winningLotto = new Lotto(winningNumbers);
+
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(ErrorMessage.INVALID_WINNING_NUMBER);
+                input = inputView.inputWinningNumber();
+            }
+        }
 
         return winningLotto;
     }
 
-    public Integer parseBonusNumber(String input) {
-        if (!LottoUtils.isNumber(input)) {
-            throw new IllegalArgumentException();
+    public Integer parseBonusNumber(Lotto winningLotto, String bonusNumberInput) {
+        Integer bonusNumber = 0;
+
+        while (true) {
+            try {
+                bonusNumber = Integer.parseInt(bonusNumberInput);
+
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException();
+                }
+
+                if (haveBonusNumber(winningLotto.getNumbers(), bonusNumber)) {
+                    throw new IllegalArgumentException();
+                }
+
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(ErrorMessage.INVALID_BONUS_NUMBER);
+                bonusNumberInput = inputView.inputBonusNumber();
+            }
         }
 
-        return Integer.parseInt(input);
+        return bonusNumber;
     }
 
     public List<Lotto> getLotto(Integer lottoAmount) {
