@@ -1,11 +1,8 @@
 package lotto.model;
 
 import lotto.common.constant.WinningInfo;
-import lotto.exception.BonusNumberException;
 
 import java.util.List;
-
-import static lotto.common.constant.ErrorMessage.WINNING_NUMBER_CONTAINS_BONUS_NUMBER;
 
 public class WinningLotto {
     private final WinningLottoNumber winningLottoNumber;
