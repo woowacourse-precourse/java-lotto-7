@@ -8,9 +8,6 @@ import lotto.model.domain.LottoResult;
 
 public class OutputView {
 
-    private OutputView() {
-    }
-
     public static void printPurchaseCount(int count) {
         System.out.printf("\n%d개를 구매했습니다.\n", count);
     }

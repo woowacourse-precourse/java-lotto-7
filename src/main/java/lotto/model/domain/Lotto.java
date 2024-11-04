@@ -18,8 +18,6 @@ public class Lotto {
     }
 
     // Lotto의 규격에 맞는지 검증하는 메소드
-    //사용자가 입력한 당첨 번호와 참가자가 입력한 당첨 번호가 형식에 맞는지 확인 하는 메소드
-    //들어온 숫자가 1~45인지 확인, 숫자가 6개 들어왔는지 확인, 중복된 수가 있는지 확인
     public static void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());

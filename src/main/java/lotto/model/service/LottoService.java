@@ -15,7 +15,8 @@ import lotto.model.domain.LottoResult;
 import lotto.model.domain.WinningLotto;
 
 public class LottoService {
-    public List<Lotto> purchaseLottos(int amount){ //로또를 몇개 구매했는지 확인하는 메소드
+    public List<Lotto> purchaseLottos(int amount){
+        //로또를 몇개 구매했는지 확인하는 메소드
         return generateLottos(amount / PRICE);
     }
 
