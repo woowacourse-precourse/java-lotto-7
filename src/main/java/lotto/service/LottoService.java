@@ -1,7 +1,9 @@
 package lotto.service;
 
+import lotto.Lotto;
 import lotto.model.IssuedLotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
@@ -20,5 +22,16 @@ public class LottoService {
 
     public List<List<Integer>> lottoIssues(int numberOfLottoes) {
         return issuedLotto.lottoIssues(numberOfLottoes);
+    }
+
+    public void winningNumber(String winningNum) {
+        List<Integer> number = new ArrayList<>();
+        List<String> numString = List.of(winningNum.split(","));
+
+        for (String num : numString) {
+            number.add(Integer.parseInt(num.trim()));
+        }
+
+        Lotto lotto = new Lotto(number);
     }
 }

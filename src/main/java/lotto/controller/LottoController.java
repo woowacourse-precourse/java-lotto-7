@@ -26,5 +26,7 @@ public class LottoController {
         List<List<Integer>> issuedLottoNumbers = lottoService.lottoIssues(numberOfLottoes);
         outputService.printIssuedLottoesMessage(numberOfLottoes, issuedLottoNumbers);
 
+        outputService.printWinningNumberMessage();
+        lottoService.winningNumber(Console.readLine());
     }
 }
