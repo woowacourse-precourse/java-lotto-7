@@ -29,7 +29,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 
 # 구현할 기능 목록
 
-- [ ] 로또 번호 입력 및 검증
+- [x] 로또 번호 입력 및 검증
   - 로또 번호는 중복되지 않고 6개여야 함.
 - [ ] 로또 구입 및 검증
   - 구입 금액 1,000원 단위여야 함.
@@ -44,4 +44,3 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
   - 5등부터 1등 순서로 출력.
 - [ ] 수익률 출력
   - 소수점 둘째 자리에서 반올림.
-- 
