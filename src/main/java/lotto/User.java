@@ -26,8 +26,10 @@ public class User {
     }
 
     public void buyLotto(RandomIntegersGenerator randomGenerator) {
+        OutputHandler.printLottoCount(this.lottoCount);
         for (int i = 0; i < this.lottoCount; i++) {
             lottos.add(LottoMachine.releaseLotto(randomGenerator));
+            OutputHandler.printLotto(lottos.get(i));
         }
     }
 
