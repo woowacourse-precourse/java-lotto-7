@@ -5,7 +5,7 @@ import lotto.domain.PurchaseAmount;
 import lotto.domain.WinnerLotto;
 import lotto.error.ErrorCode;
 
-public class InputView {
+public class InputView implements AutoCloseable {
 
     private static final Reader DEFAULT_READER = new ConsoleReader();
     private final Reader reader;
@@ -36,42 +36,33 @@ public class InputView {
         }
     }
 
-    public PurchaseAmount inputPurchaseAmount(){
-        System.out.println("구입금액을 입력해 주세요.");
-        while(true){
-            try{
-                String inputPurchaseAmount = readLine();
+    private <T> T retryInput(String prompt, Supplier<T> inputSupplier) {
+        System.out.println(prompt);
+        while (true) {
+            try {
+                T result = inputSupplier.get();
                 System.out.println();
-                return new PurchaseAmount(inputPurchaseAmount);
-            } catch (IllegalArgumentException ex){
+                return result;
+            } catch (IllegalArgumentException ex) {
                 printReInput(ex);
             }
         }
     }
 
-    public WinnerLotto inputWinningNumbers(){
-        System.out.println("당첨 번호를 입력해 주세요.");
-        while(true){
-            try{
-                String inputWinningNumbers = readLine();
-                System.out.println();
-                return WinnerLotto.from(inputWinningNumbers);
-            } catch (IllegalArgumentException ex){
-                printReInput(ex);
-            }
-        }
+    public PurchaseAmount inputPurchaseAmount() {
+        return retryInput("구입금액을 입력해 주세요.", () -> new PurchaseAmount(readLine()));
     }
 
-    public WinnerLotto inputBonusNumbers(WinnerLotto winnerLotto){
-        System.out.println("보너스 번호를 입력해 주세요.");
-        while(true){
-            try{
-                String bonusNumber = readLine();
-                System.out.println();
-                return winnerLotto.addBonusNumber(bonusNumber);
-            } catch (IllegalArgumentException ex){
-                printReInput(ex);
-            }
-        }
+    public WinnerLotto inputWinningNumbers() {
+        return retryInput("당첨 번호를 입력해 주세요.", () -> WinnerLotto.from(readLine()));
+    }
+
+    public WinnerLotto inputBonusNumbers(WinnerLotto winnerLotto) {
+        return retryInput("보너스 번호를 입력해 주세요.", () -> winnerLotto.addBonusNumber(readLine()));
+    }
+
+    @Override
+    public void close() {
+        reader.close();
     }
 }
