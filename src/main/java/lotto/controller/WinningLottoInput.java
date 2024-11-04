@@ -26,16 +26,17 @@ public class WinningLottoInput {
         try {
             String input = Console.readLine().trim();
 
-            int number = Integer.parseInt(input);
+            int bonusNumber = Integer.parseInt(input);
 
-            if (MIN_NUMBER <= number && number <= MAX_NUMBER) {
+            if (MIN_NUMBER <= bonusNumber && bonusNumber <= MAX_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 1~45의 숫자를 하나 입력해야 합니다");
             }
-            return number;
+            if (winningNumbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+            return bonusNumber;
         } catch (NumberFormatException e) {
             throw new NumberFormatException("[ERROR] 숫자 형식만 입력 가능합니다");
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 1~45의 숫자를 하나만 입력해주세요");
         }
     }
 
