@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +24,6 @@ public class WinningResult {
         lottoScore.put(rank, getRankScore(rank) + 1);
     }
 
-
     public long sumTotalReward() {
         long sum = 0L;
         for (LottoRank lottoRank : lottoScore.keySet()) {
@@ -38,10 +36,24 @@ public class WinningResult {
         return (sumTotalReward() / (double) purchaseAmount) * 100;
     }
 
+    public WinningResult matchLottosAndWinningLotto(List<Lotto> lottos, WinningLotto winningLotto) {
+        WinningResult winningResult = new WinningResult();
+
+        for (Lotto lotto : lottos) {
+            int matchCount = winningLotto.calculateMatchCount(lotto);
+            boolean isbonusMatch = winningLotto.isBonusMatch(lotto);
+            LottoRank lottoRank = LottoRank.findRank(matchCount, isbonusMatch);
+
+            winningResult.increaseRankScore(lottoRank);
+        }
+
+        return winningResult;
+    }
+
     @Override
     public String toString() {
         return lottoScore.keySet().stream()
-                .filter(lottoRank -> !lottoRank.equals(LottoRank.NONE)) // 낙첨은 제외
+                .filter(lottoRank -> !lottoRank.equals(LottoRank.NONE))
                 .map(lottoRank -> String.format(
                         "%s (%,d원) - %d개",
                         lottoRank.getDescription(),
