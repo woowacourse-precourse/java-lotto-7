@@ -44,6 +44,10 @@ public class OutputView {
         nextLine();
     }
 
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public void nextLine() {
         System.out.println();
     }

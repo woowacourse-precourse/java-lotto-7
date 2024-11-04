@@ -24,9 +24,9 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = inputPurchaseAmount();
+        PurchaseAmount purchaseAmount = tryInputPurchaseAmount();
         Lottos lottos = issueLottos(purchaseAmount);
-        WinningNumbers winningNumbers = inputWinningNumbers();
+        WinningNumbers winningNumbers = tryInputWinningNumbers();
         BonusNumber bonusNumber = inputBonusNumber();
         LottosResult lottosResult = calculateLottosResult(lottos, winningNumbers, bonusNumber);
         showLottosResult(lottosResult);
@@ -42,11 +42,17 @@ public class LottoController {
         outputView.showLottosResult(lottosResult);
     }
 
-    private PurchaseAmount inputPurchaseAmount() {
-        outputView.printPurchaseAmountMessage();
-        int purchaseAmount = inputView.inputPurchaseAmount();
-        outputView.nextLine();
-        return PurchaseAmount.from(purchaseAmount);
+    private PurchaseAmount tryInputPurchaseAmount() {
+        while (true) {
+            outputView.printPurchaseAmountMessage();
+            try {
+                int purchaseAmount = inputView.inputPurchaseAmount();
+                outputView.nextLine();
+                return PurchaseAmount.from(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private Lottos issueLottos(PurchaseAmount purchaseAmount) {
@@ -58,17 +64,29 @@ public class LottoController {
         return lottos;
     }
 
-    private WinningNumbers inputWinningNumbers() {
-        outputView.printWinningNumbersMessage();
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
-        outputView.nextLine();
-        return WinningNumbers.from(winningNumbers);
+    private WinningNumbers tryInputWinningNumbers() {
+        while (true) {
+            outputView.printWinningNumbersMessage();
+            try {
+                List<Integer> winningNumbers = inputView.inputWinningNumbers();
+                outputView.nextLine();
+                return WinningNumbers.from(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private BonusNumber inputBonusNumber() {
-        outputView.printBonusNumberMessage();
-        int bonusNumber = inputView.inputBonusNumber();
-        outputView.nextLine();
-        return BonusNumber.from(bonusNumber);
+        while (true) {
+            outputView.printBonusNumberMessage();
+            try {
+                int bonusNumber = inputView.inputBonusNumber();
+                outputView.nextLine();
+                return BonusNumber.from(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
