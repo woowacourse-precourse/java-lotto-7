@@ -42,4 +42,14 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 숫자로 입력해야 합니다.");
     }
+
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void 당첨_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+        // given & when
+        assertThatThrownBy(() -> Validator.validateAndParseWinningNumbers("1,2,3,3,5,6"))
+        // then
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
+    }
 }
