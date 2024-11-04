@@ -52,7 +52,8 @@ public class Application {
 
             if (bonusNumber < 1 || bonusNumber > 45) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-            } else if (winningNumbers.contain(bonusNumber)) {
+            }
+            if (winningNumbers.contain(bonusNumber)) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
             }
             return bonusNumber;
@@ -62,5 +63,19 @@ public class Application {
             return numbers.stream().allMatch(num -> num >= 1 && num <= 45) &&
                     numbers.stream().distinct().count() == numbers.size();
         }
+
+        private static Map<Rank, Integer> calculateResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+            Map<Rank, Integer> result = new EnumMap<>(Rank.class);
+
+            for(Lotto lotto : lottos) {
+                int matchCount = (int) lotto.getNumbers().stram().filter(winningNumbers::contains).count();
+                boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+                Rank rank = Rank.valueOf(matchCount, bonusMatch);
+                result.put(rank, result.getOrDefault(rank, 0) + 1);
+            }
+            return result;
+        }
+
     }
 }
+
