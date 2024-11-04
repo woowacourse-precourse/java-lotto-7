@@ -91,4 +91,19 @@ class LottoResultTest {
 
         assertEquals(0, yield);
     }
+
+    @DisplayName("로또 당첨 결과 추가 시 동일한 등급이 누적되는지 확인")
+    @Test
+    void 로또_당첨_결과_추가_동일등급_누적검증() {
+        LottoResult lottoResult = new LottoResult();
+
+        lottoResult.addResult(LottoRank.FIRST);
+        lottoResult.addResult(LottoRank.FIRST);
+        lottoResult.addResult(LottoRank.SECOND);
+
+        Map<LottoRank, Integer> results = lottoResult.getResults();
+
+        assertEquals(2, results.get(LottoRank.FIRST));
+        assertEquals(1, results.get(LottoRank.SECOND));
+    }
 }
