@@ -54,7 +54,7 @@ public class Input {
             System.out.println("\n" + ENTER_BONUS_NUMBER.getPrompt());
 
             try {
-                return new Bonus(lotto, Integer.parseInt(Console.readLine()));
+                return new Bonus(lotto, Integer.parseInt(Console.readLine().replaceAll(" ", "")));
             } catch (NumberFormatException e) {
                 System.out.println(INPUT_MUST_BE_NUMBER.getMessage());
             } catch (IllegalArgumentException e) {
