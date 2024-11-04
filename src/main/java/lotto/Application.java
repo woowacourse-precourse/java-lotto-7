@@ -32,16 +32,34 @@ public class Application {
     }
 
     public static Long inputMoney() {
-        System.out.println("구입금액을 입력해주세요.");
-        Long money = Long.parseLong(Console.readLine());
-        if (validateMoney(money)) {
-            return money;
+        Long money;
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해주세요.");
+                String inputNum = Console.readLine();
+                validateMoney(inputNum);
+                money = Long.parseLong(inputNum);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
         }
-        return inputMoney();
+        return money;
     }
 
-    public static boolean validateMoney(Long money) {
-        return money % 1000 == 0;
+    public static void validateMoney(String money) {
+        if (money.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액이 입력되지 않았습니다.");
+        }
+
+        if (!Pattern.matches("^[0-9]*$", money)) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자로 입력해야 합니다.");
+        }
+
+        if (Long.parseLong(money) % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위이어야 합니다.");
+        }
     }
 
     public static List prizeNumbers() {
