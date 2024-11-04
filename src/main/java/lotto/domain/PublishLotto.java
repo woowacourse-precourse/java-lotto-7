@@ -22,7 +22,7 @@ public class PublishLotto {
     }
 
     public PublishLotto(List<Integer> numbers, LottoValidator validator) {
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
         sortNumbers();
         validator.validate(this.numbers);
     }

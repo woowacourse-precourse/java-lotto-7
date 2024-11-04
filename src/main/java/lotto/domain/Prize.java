@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public enum Prize {
-    
+
     FIRST(6, false, 2_000_000_000, "6개 일치"),
     SECOND(5, true, 30_000_000, "5개 일치, 보너스 볼 일치"),
     THIRD(5, false, 1_500_000, "5개 일치"),

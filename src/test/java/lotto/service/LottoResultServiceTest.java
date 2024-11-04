@@ -1,7 +1,12 @@
 package lotto.service;
 
-import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import lotto.domain.Prize;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PublishLotto;
@@ -30,22 +35,21 @@ public class LottoResultServiceTest {
 
     @Test
     void 로또_결과를_정확히_계산한다() {
-        // 당첨 로또 번호와 보너스 번호
+        // given
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6), lottoValidator);
-        BonusNumber bonusLotto = BonusNumber.getInstance(7, winningLotto, bonusNumberValidator) // 보너스 번호
+        BonusNumber bonusLotto = BonusNumber.getInstance(7, winningLotto, bonusNumberValidator);
 
-        // 사용자가 선택한 로또 번호
-        List<PublishLotto> publishLottoList = new ArrayList<>();
+        Set<PublishLotto> publishLottoList = new HashSet<>();
         publishLottoList.add(new PublishLotto(List.of(1, 2, 3, 8, 9, 10), lottoValidator));
         publishLottoList.add(new PublishLotto(List.of(4, 5, 6, 11, 12, 13), lottoValidator));
         publishLottoList.add(new PublishLotto(List.of(1, 2, 3, 4, 5, 6), lottoValidator));
 
+        // when
+        Map<Prize, Integer> calculatePrize = lottoResultService.calculatePrize(winningLotto,
+            bonusLotto, publishLottoList);
 
-        // 결과 계산
-        lottoResultService.calculatePrize(winningLotto, bonusLotto, publishLottoList);
-
-        // 결과 확인
-        assertEquals(1, lottoResultService.getFirstPrizeCount());
+        // then
+        assertEquals(calculatePrize.get(Prize.FIRST), 1);
     }
 
 }
