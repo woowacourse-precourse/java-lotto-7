@@ -7,6 +7,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBonus;
 import lotto.domain.LottoBuyer;
+import lotto.domain.LottoResult;
 import lotto.validation.LotteryValidator;
 import lotto.view.OutputView;
 
@@ -16,6 +17,7 @@ public class LotteryService {
     private final LottoBuyer lottoBuyer;
     private final Lotto winningLottery;
     private final LottoBonus lottoBonus;
+    private final LottoResult lottoResult;
 
     public LotteryService() {
         this.outputView = new OutputView();
@@ -23,6 +25,7 @@ public class LotteryService {
         this.lottoBuyer = new LottoBuyer();
         this.winningLottery = new Lotto();
         this.lottoBonus = new LottoBonus();
+        this.lottoResult = new LottoResult();
     }
 
     public void purchaseLotto() {
@@ -81,8 +84,11 @@ public class LotteryService {
             if (ticketNumbers.contains(bonusNumber)) {
                 isBonus = true;
             }
+            lottoResult.updateLottoResult(matchingCount, isBonus);
             lottoBuyer.addMoney(matchingCount, isBonus);
         }
+
+        lottoResult.printLottoWinningStatistics();
 
         final int totalWinningAmount = lottoBuyer.getLottoWinningAmount();
         final int purchaseAmount = lottoBuyer.getLottoPurchaseAmount() * 1000;
