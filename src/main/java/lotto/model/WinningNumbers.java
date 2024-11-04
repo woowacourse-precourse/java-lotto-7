@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constants.Constants;
 import lotto.enumerate.ExceptionEnum;
 import lotto.utility.ExceptionThrower;
 
@@ -8,8 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningNumbers {
-    private static final int REQUIRED_NUMBERS_LENGTH = 6;
-    private static final int MAX_LOTTO_NUMBER = 45;
     private List<Integer> winningNumbers;
 
     public WinningNumbers(List<Integer> winningNumbers) {
@@ -27,13 +26,13 @@ public class WinningNumbers {
     }
 
     private static void validateLength(List<Integer> parsedNumbers) {
-        if (parsedNumbers.size() != REQUIRED_NUMBERS_LENGTH) {
+        if (parsedNumbers.size() != Constants.REQUIRED_LOTTO_LENGTH) {
             ExceptionThrower.throwing(ExceptionEnum.MUST_SIX);
         }
     }
 
     private void validateOverFourtySix(List<Integer> parsedNumbers) {
-        if (parsedNumbers.stream().anyMatch(number -> number > MAX_LOTTO_NUMBER)) {
+        if (parsedNumbers.stream().anyMatch(number -> number > Constants.MAX_LOTTO_NUMBER)) {
             ExceptionThrower.throwing(ExceptionEnum.CANNOT_OVER_FOURTY_SIX);
         }
     }

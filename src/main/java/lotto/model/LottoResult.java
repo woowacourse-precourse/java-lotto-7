@@ -1,41 +1,37 @@
 package lotto.model;
 
+import lotto.constants.Constants;
 import lotto.enumerate.MatchedCountKeyEnum;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResult {
-    private static final int INITIAL_MATCHED_COUNT = 0;
-    private static final int THREE = 3;
-    private static final int FOUR = 4;
-    private static final int FIVE = 5;
-    private static final int SIX = 6;
     private Map<String, Integer> matchedCount;
 
     public LottoResult() {
         this.matchedCount = new HashMap<>();
-        matchedCount.put(MatchedCountKeyEnum.THREE_MATCHED.getMessage(), INITIAL_MATCHED_COUNT);
-        matchedCount.put(MatchedCountKeyEnum.FOUR_MATCHED.getMessage(), INITIAL_MATCHED_COUNT);
-        matchedCount.put(MatchedCountKeyEnum.FIVE_MATCHED.getMessage(), INITIAL_MATCHED_COUNT);
-        matchedCount.put(MatchedCountKeyEnum.FIVE_WITH_BONUS_MATCHED.getMessage(), INITIAL_MATCHED_COUNT);
-        matchedCount.put(MatchedCountKeyEnum.SIX_MATCHED.getMessage(), INITIAL_MATCHED_COUNT);
+        matchedCount.put(MatchedCountKeyEnum.THREE_MATCHED.getMessage(), Constants.INITIAL_MATCHED_COUNT);
+        matchedCount.put(MatchedCountKeyEnum.FOUR_MATCHED.getMessage(), Constants.INITIAL_MATCHED_COUNT);
+        matchedCount.put(MatchedCountKeyEnum.FIVE_MATCHED.getMessage(), Constants.INITIAL_MATCHED_COUNT);
+        matchedCount.put(MatchedCountKeyEnum.FIVE_WITH_BONUS_MATCHED.getMessage(), Constants.INITIAL_MATCHED_COUNT);
+        matchedCount.put(MatchedCountKeyEnum.SIX_MATCHED.getMessage(), Constants.INITIAL_MATCHED_COUNT);
     }
 
     public void increaseCountByNumberMatchedAndBonusMatched(int numberMatchedCount, boolean isBonusMatched) {
-        if (numberMatchedCount == THREE) {
+        if (numberMatchedCount == 3) {
             increaseThree();
             return;
         }
-        if (numberMatchedCount == FOUR) {
+        if (numberMatchedCount == 4) {
             increaseFour();
             return;
         }
-        if (numberMatchedCount == FIVE) {
+        if (numberMatchedCount == 5) {
             increaseFive(isBonusMatched);
             return;
         }
-        if (numberMatchedCount == SIX) {
+        if (numberMatchedCount == 6) {
             increaseSix();
             return;
         }
