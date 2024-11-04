@@ -30,7 +30,7 @@ public class Lotto {
 
     private void checkRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (!(number > ZERO && number <= MAX_LOTTO_NUM)) {
+            if (!(number > Integer.valueOf(0) && number <= MAX_LOTTO_NUM)) {
                 throw new IllegalArgumentException(WRONG_RANGE);
             }
         }

@@ -38,7 +38,7 @@ public class WinningNumber {
 
     private void checkRange() {
         for (int number : winningNumbers) {
-            if (!(number > ZERO && number <= MAX_LOTTO_NUM)) {
+            if (!(number > Integer.valueOf(0) && number <= MAX_LOTTO_NUM)) {
                 throw new IllegalArgumentException(WRONG_RANGE_NUMBER);
             }
         }

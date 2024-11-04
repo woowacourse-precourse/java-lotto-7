@@ -1,7 +1,6 @@
 package lotto.model;
 
 import static lotto.util.Constant.LOTTO_PRICE;
-import static lotto.util.Constant.ZERO;
 
 public class Money {
 
@@ -32,7 +31,7 @@ public class Money {
     }
 
     private void checkPositiveNumber(int money) {
-        if (money < ZERO) {
+        if (money < Integer.valueOf(0)) {
             throw new IllegalArgumentException(NEGATIVE_NUMBER);
         }
     }

@@ -4,8 +4,6 @@ public final class Constant {
 
     private Constant() {}
 
-    public static final int ZERO = 0;
-
     public static final int MIN_LOTTO_NUM = 1;
 
     public static final int MAX_LOTTO_NUM = 45;

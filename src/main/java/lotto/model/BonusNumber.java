@@ -1,7 +1,6 @@
 package lotto.model;
 
 import static lotto.util.Constant.MAX_LOTTO_NUM;
-import static lotto.util.Constant.ZERO;
 
 public class BonusNumber {
 
@@ -32,13 +31,13 @@ public class BonusNumber {
     }
 
     private void checkPositiveNumber(int bonusNumber) {
-        if (ZERO >= bonusNumber) {
+        if (Integer.valueOf(0) >= bonusNumber) {
             throw new IllegalArgumentException(NEGATIVE_NUMBER);
         }
     }
 
     private void checkRange(int bonusNumber) {
-        if (!(bonusNumber > ZERO && bonusNumber <= MAX_LOTTO_NUM)) {
+        if (!(bonusNumber > Integer.valueOf(0) && bonusNumber <= MAX_LOTTO_NUM)) {
             throw new IllegalArgumentException(WRONG_RANGE);
         }
     }
