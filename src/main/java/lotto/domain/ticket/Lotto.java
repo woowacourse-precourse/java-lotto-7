@@ -3,6 +3,7 @@ package lotto.domain.ticket;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.number.LottoNumber;
 import lotto.validator.LottoNumberValidator;
 
 public class Lotto {
@@ -18,7 +19,7 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
-    public boolean contains(int number) {
+    public boolean contains(LottoNumber number) {
         return numbers.contains(number);
     }
 

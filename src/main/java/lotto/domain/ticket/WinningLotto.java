@@ -3,6 +3,7 @@ package lotto.domain.ticket;
 import lotto.domain.number.BonusNumber;
 import lotto.domain.number.LottoNumber;
 import lotto.domain.result.LottoRank;
+import lotto.validator.BonusNumberValidator;
 
 public class WinningLotto {
     private final Lotto winningNumbers;
@@ -10,6 +11,7 @@ public class WinningLotto {
 
     public WinningLotto(Lotto winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
+        BonusNumberValidator.validate(bonusNumber, winningNumbers);
         this.bonusNumber = BonusNumber.of(LottoNumber.of(bonusNumber), winningNumbers);
     }
 
