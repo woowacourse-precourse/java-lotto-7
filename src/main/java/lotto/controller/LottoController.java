@@ -6,6 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoHandler;
 import lotto.model.RankingHandler;
 import lotto.utils.LottoPurchaseValidation;
+import lotto.utils.WinningNumberValidation;
 import lotto.view.InputMessage;
 import lotto.view.OutputMessage;
 

@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.constants.Ranking;
 import lotto.utils.BonusNumberValidation;
+import lotto.utils.WinningNumberValidation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,15 +34,13 @@ public class LottoHandler {
 
     public void inputWinningLottoNumbers(String rawWinningNumbers) {
         List<Integer> winningNumbers = Arrays.stream(rawWinningNumbers.split(","))
-                .map(Integer::parseInt)
+                .map(String::trim)
+                .map(WinningNumberValidation::validateNumberFormat)
                 .collect(Collectors.toList());
 
+        WinningNumberValidation.validateNumberRange(winningNumbers);
+
         winningLottoNumbers = new Lotto(winningNumbers);
-    }
-
-
-    public Lotto getWinningLottoNumbers() {
-        return winningLottoNumbers;
     }
 
     public void setBonusNumber(int rawBonusNumber) {

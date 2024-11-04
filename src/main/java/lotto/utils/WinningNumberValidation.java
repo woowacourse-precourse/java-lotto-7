@@ -6,15 +6,11 @@ import java.util.List;
 
 public class WinningNumberValidation {
 
-    public static void validateNumberCount(List<Integer> winningNumbers) {
-        if(winningNumbers.size() != 6) {
-            throw new IllegalArgumentException(WinningNumberErrorType.INVALID_WINNING_NUMBERS_COUNT.getMessage());
-        }
-    }
-
-    public static void validateNumberRange(int winningNumber) {
-        if(winningNumber < 1 || winningNumber > 45) {
-            throw new IllegalArgumentException(WinningNumberErrorType.INVALID_WINNING_NUMBER_RANGE.getMessage());
+    public static void validateNumberRange(List<Integer> winningNumbers) {
+        for(int winningNumber : winningNumbers) {
+            if (winningNumber < 1 || winningNumber > 45) {
+                throw new IllegalArgumentException(WinningNumberErrorType.INVALID_WINNING_NUMBER_RANGE.getMessage());
+            }
         }
     }
 
