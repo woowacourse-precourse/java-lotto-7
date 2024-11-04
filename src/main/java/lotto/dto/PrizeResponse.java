@@ -2,8 +2,18 @@ package lotto.dto;
 
 import lotto.domain.Prize;
 
-public record PrizeResponse(int matchingNumberCount, boolean containsBonusNumber, int prizeMoney) {
-    public PrizeResponse(Prize prize, boolean containsBonusNumber) {
-        this(prize.getMatchingNumberCount(), containsBonusNumber, prize.getPrizeMoney());
+public record PrizeResponse(
+        int matchingNumberCount,
+        int prizeMoney,
+        String bonusNumberStatus,
+        int winningCount
+) {
+    public PrizeResponse(Prize prize, int winningCount) {
+        this(
+                prize.getMatchingNumberCount(),
+                prize.getPrizeMoney(),
+                prize.getBonusNumberStatus().name(),
+                winningCount
+        );
     }
 }
