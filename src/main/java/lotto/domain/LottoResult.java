@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
+
     private final Map<WinningType, Integer> lottoResult = new HashMap<>();
 
     /**
@@ -33,8 +34,8 @@ public class LottoResult {
      */
     private int calculateMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         int count = 0;
-        for (int number : lottoNumbers) {
-            if (winningNumbers.contains(number)) {
+        for(int i=0; i<Lotto.BONUS_NUMBER_INDEX; i++){
+            if(lottoNumbers.contains(winningNumbers.get(i))){
                 count++;
             }
         }
