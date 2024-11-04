@@ -34,7 +34,7 @@ public class LottoGameController {
 
         showRandomLotties(publishedLottiesDTO);
 
-        UserLottoDTO userLottoDTO = getUserLottoSelection();
+        UserLottoDTO userLottoDTO = readUserLottoSelection();
 
         ResultMarginDTO resultMarginDTO = calculateResult(publishedLottiesDTO, userLottoDTO, userMoneyDTO);
 
@@ -56,7 +56,7 @@ public class LottoGameController {
         return ResultMarginDTO.from(lottoResult, margin);
     }
 
-    private UserLottoDTO getUserLottoSelection() {
+    private UserLottoDTO readUserLottoSelection() {
         UserSixNumberDTO userSixNumberDTO = readUserSixNumber();
         return readUserLotto(userSixNumberDTO.getUserSixNumber());
     }
