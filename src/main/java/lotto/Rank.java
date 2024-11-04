@@ -24,7 +24,7 @@ public enum Rank {
 
     public static Rank getRank(WinningResult result) {
         for (Rank rank : Rank.values()) {
-            if (rank.matchCount == result.getMatchCount() && rank.bonusMatchCount >= result.getBonusMatchCount()) {
+            if (rank.matchCount == result.getMatchCount() && rank.bonusMatchCount <= result.getBonusMatchCount()) {
                 return rank;
             }
         }
