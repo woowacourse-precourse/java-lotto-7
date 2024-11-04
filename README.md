@@ -1,5 +1,9 @@
 # java-lotto-precourse
 
+## 구현 구조도
+
+![img.png](img.png)
+
 ## 기능 요구 사항
 
 ### 간단한 로또 발매기를 구현한다.
