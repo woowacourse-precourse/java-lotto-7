@@ -1,7 +1,9 @@
 package lotto;
 
 import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.stream.Collectors;
 
 public class StatisticalMachine {
 
@@ -40,34 +42,29 @@ public class StatisticalMachine {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
         NumberFormat numberFormat = NumberFormat.getInstance();
 
-        for (WinningRank winningRank : WinningRank.values()) {
-            if (winningRank.equals(WinningRank.NOTHING)) {
-                continue;
-            }
-
-            sb.append(resultFormat(winningRank, numberFormat));
-        }
-
-        return sb.toString();
+        return Arrays.stream(WinningRank.values())
+            .filter(rank -> !rank.equals(WinningRank.NOTHING))
+            .map(rank -> resultFormat(rank, numberFormat))
+            .collect(Collectors.joining());
     }
 
     private String resultFormat(WinningRank winningRank, NumberFormat numberFormat) {
-        if (winningRank.equals(WinningRank.SECOND)) {
-            return String.format("%s개 일치, 보너스 볼 일치 (%s원) - %s개\n",
-                winningRank.getMatchCount(),
-                numberFormat.format(winningRank.getPrizeAmount()),
-                statistics.get(winningRank)
-            );
-        }
-
-        return String.format("%s개 일치 (%s원) - %s개\n",
+        return String.format("%d%s (%s원) - %d개\n",
             winningRank.getMatchCount(),
+            getMatchText(winningRank),
             numberFormat.format(winningRank.getPrizeAmount()),
             statistics.get(winningRank)
         );
+    }
+
+    private String getMatchText(WinningRank winningRank) {
+        if (winningRank.equals(WinningRank.SECOND)) {
+            return "개 일치, 보너스 볼 일치";
+        }
+
+        return "개 일치";
     }
 
 }
