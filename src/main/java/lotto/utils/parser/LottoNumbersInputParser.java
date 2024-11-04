@@ -63,7 +63,7 @@ public class LottoNumbersInputParser {
         try {
             Integer.parseInt(part);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(INVALID_VALUE_INPUT.getMessage());
+            throw new IllegalArgumentException(INVALID_VALUE_INPUT.getMessage());
         }
     }
 

@@ -12,7 +12,7 @@ public class PurchaseTotalPriceParser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(NOT_INTEGER.getMessage());
+            throw new IllegalArgumentException(NOT_INTEGER.getMessage());
         }
     }
 }

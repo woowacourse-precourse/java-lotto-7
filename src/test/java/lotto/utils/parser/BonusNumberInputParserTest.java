@@ -48,7 +48,7 @@ public class BonusNumberInputParserTest {
         @ValueSource(strings = {"abc", "", "12a", "@#$%", "12.34"})
         @DisplayName("정수가 아닌 문자열이나 특수문자가 주어질 경우 예외를 발생시킨다.")
         public void 숫자가_아닌_입력(String input) {
-            assertThatExceptionOfType(NumberFormatException.class)
+            assertThatExceptionOfType(IllegalArgumentException.class)
                     .isThrownBy(() -> BonusNumberInputParser.parse(input))
                     .withMessage(NOT_INTEGER.getMessage());
         }
