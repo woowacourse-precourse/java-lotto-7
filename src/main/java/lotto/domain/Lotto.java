@@ -2,12 +2,14 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.Objects;
+import validator.LottoNumbersValidator;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        LottoNumbersValidator.validateLottoNumbers(numbers);
         this.numbers = numbers;
     }
 
