@@ -25,19 +25,13 @@ public class LottoController {
     public void run() {
         Integer price = getPriceFromUser();
         LottoManager lottoManager = new LottoManager(price);
+
         Integer purchasedLottoTotal = lottoManager.purchaseLotto();
         LottoMember lottoMember = createLottoMember(lottoManager);
 
         displayPurchaseInformation(purchasedLottoTotal, lottoMember);
 
-        List<Integer> lottoNumbers = getWinningNumbersFromManager();
-        Integer bonusNumber = getBonusNumberFromManager();
-        while (!lottoManager.validateLotto(lottoNumbers, bonusNumber)) {
-            lottoNumbers = getWinningNumbersFromManager();
-            bonusNumber = getBonusNumberFromManager();
-        }
-
-        List<LottoPrize> resultPrize = lottoManager.isLottoResult(lottoNumbers, bonusNumber, lottoMember.getPurchasedLotto());
+        List<LottoPrize> resultPrize = requestStatisticsProfitAnalysis(lottoManager, lottoMember);
         displayResults(resultPrize, lottoManager, lottoMember);
     }
 
@@ -59,6 +53,18 @@ public class LottoController {
         outputView.printLottoPurchaseList(lottoMember.getPurchasedLotto());
     }
 
+    public List<LottoPrize> requestStatisticsProfitAnalysis(LottoManager lottoManager, LottoMember lottoMember) {
+        List<Integer> lottoNumbers = getWinningNumbersFromManager();
+        Integer bonusNumber = getBonusNumberFromManager();
+
+        while (!lottoManager.validateLotto(lottoNumbers, bonusNumber)) {
+            lottoNumbers = getWinningNumbersFromManager();
+            bonusNumber = getBonusNumberFromManager();
+        }
+
+        return lottoManager.isLottoResult(lottoNumbers, bonusNumber, lottoMember.getPurchasedLotto());
+    }
+
     private List<Integer> getWinningNumbersFromManager() {
         outputView.printLottoNumber();
         return managerInputView.getLottoNumbers();
@@ -68,7 +74,6 @@ public class LottoController {
         outputView.printLottoBonusNumber();
         return managerInputView.getLottoBonusNumber();
     }
-
 
     private void displayResults(List<LottoPrize> resultPrize, LottoManager lottoManager, LottoMember lottoMember) {
         lottoMember.setLottoResult(resultPrize);
