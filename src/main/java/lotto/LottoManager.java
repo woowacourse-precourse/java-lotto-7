@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.LottoPrize;
 import lotto.validator.LottoValidator;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class LottoManager {
@@ -25,6 +26,7 @@ public class LottoManager {
         setBonusNumber();
         compareLottoList();
         printResult();
+        printProfit();
     }
 
     public void setPurchaseAmount(){
@@ -76,6 +78,10 @@ public class LottoManager {
             String formatPrice = String.format("%,d", prize.getPrizeMoney());
             System.out.println(prize.getDescription() +" (" + formatPrice + "원) - " + prize.getEachMatchCount() + "개");
         }
+    }
+
+    public void printProfit(){
+        System.out.println("총 수익률은 " + calculateProfit() +"%입니다.");
     }
 
     private boolean convertBonusNumToInteger(String userInput) {
@@ -151,7 +157,7 @@ public class LottoManager {
     }
 
     private void putRandomLotto(){
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(lottoNumbers);
         Lotto lotto = new Lotto(lottoNumbers);
         //각 로또의 모든 숫자들 출력
@@ -164,6 +170,14 @@ public class LottoManager {
         if(prize != null){
             prize.increaseEachMatchCount();
         }
+    }
+
+    double calculateProfit(){
+        if(purchaseAmount == 0){
+            throw new IllegalArgumentException("[Error] 구매 금액은 0이 될 수 없습니다.");
+        }
+        double profitRate = (totalEarningSum / purchaseAmount) * 100;
+        return Math.round(profitRate) / 1000.0;
     }
 
     //테스트를 위한 설정 메서드
