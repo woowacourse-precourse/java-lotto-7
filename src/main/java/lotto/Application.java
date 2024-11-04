@@ -74,8 +74,13 @@ public class Application {
 
     public static List<Integer> getWinningNumber() {
         System.out.println(LOTTO_WINNING_NUMBER_INPUT_MESSAGE);
-        List<String> winningNumbers = new ArrayList<>(List.of(Console.readLine().split(",")));
+        String inputWinningNumber = Console.readLine();
 
+        if (!inputWinningNumber.matches("^[\\d,]+$")) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표로 구분된 숫자로만 입력해 주세요.");
+        }
+
+        List<String> winningNumbers = new ArrayList<>(List.of(inputWinningNumber.split(",")));
         List<Integer> integerList = new ArrayList<>();
 
         for (int i = 0; i < winningNumbers.size(); i++) {
@@ -93,7 +98,7 @@ public class Application {
         System.out.println(LOTTO_BONUS_NUMBER_INPUT_MESSAGE);
         String bonusNumber  = Console.readLine();
 
-        if (bonusNumber == "\\d+") {
+        if (bonusNumber.equals("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력이 가능합니다.");
         }
         return Integer.parseInt(bonusNumber);
