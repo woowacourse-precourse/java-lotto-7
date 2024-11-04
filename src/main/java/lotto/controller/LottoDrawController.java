@@ -7,6 +7,7 @@ import lotto.model.LottoBundle;
 import lotto.model.LottoCreator;
 import lotto.model.Winning;
 import lotto.model.WinningLotto;
+import lotto.model.WinningResultsDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -50,5 +51,6 @@ public class LottoDrawController {
 	private void drawLottoBundle(WinningLotto winningLotto, LottoBundle lottoBundle) {
 		Map<Winning, Integer> winningResult = winningLotto.drawLottoBundle(lottoBundle);
 		double profitRate = lottoBundle.getProfitRate(winningResult);
+		WinningResultsDto winningResultsDto = WinningResultsDto.from(winningResult, profitRate);
 	}
 }
