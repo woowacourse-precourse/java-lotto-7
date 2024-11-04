@@ -34,7 +34,7 @@ public class Validator {
     }
 
     private static void isNullInputValue(String number) {
-        if(number.isEmpty() || number == null){
+        if(number == null || number.isEmpty()){
             throw new IllegalArgumentException(EMPTY_INPUT_VALUE_ERROR.getErrorMessage());
         }
     }
