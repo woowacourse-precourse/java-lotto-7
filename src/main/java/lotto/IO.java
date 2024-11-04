@@ -29,9 +29,8 @@ public class IO {
         String input = camp.nextstep.edu.missionutils.Console.readLine();
 
         String[] tmp = input.split(",");
-        List<Integer> numbers;
         try {
-            numbers = StringToIntegerList(tmp);
+            List<Integer> numbers = StringToIntegerList(tmp);
             validate(numbers);
             return numbers;
         } catch (IllegalArgumentException e) {
@@ -46,6 +45,7 @@ public class IO {
         try {
             for (int i = 0; i < tmp.length; i++) {
                 int num = Integer.parseInt(tmp[i]);
+                numbers.add(num);
             }
             return numbers;
         } catch (NumberFormatException e) {
@@ -59,9 +59,14 @@ public class IO {
                 throw new IllegalArgumentException("[ERROR] 로또는 1~45의 정수여야 합니다.");
             }
         }
+        if(numbers.size() != 6) {
+            System.out.println(numbers.size());
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자여야 합니다.");
+        }
         Set<Integer> set = new HashSet<>(numbers);
-        if (numbers.size() != 6 || set.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력 중복되지 않는 6개의 숫자여야 합니다.");
+        if (set.size() != numbers.size()) {
+            System.out.println("set : "+set.size());
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");
         }
     }
 

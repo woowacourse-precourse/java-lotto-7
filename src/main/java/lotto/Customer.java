@@ -15,4 +15,15 @@ public class Customer {
     public void addLotto(Lotto lotto){
         this.lottos.add(lotto);
     }
+
+    public void printCustomerLotto(){
+        System.out.println(lottos.size()+"개를 구매했습니다.");
+        for(int i=0; i<lottos.size(); i++){
+            for(int t=0; t<6; t++){
+                System.out.print(lottos.get(i).getNumbers().get(t) + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 }
