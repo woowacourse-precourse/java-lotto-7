@@ -10,7 +10,9 @@ public class Lotto {
     private final List<Ball> numbers;
 
     public static Lotto with(List<Integer> numbers) {
-        List<Ball> balls = numbers.stream().map(Ball::valueOf).toList();
+        List<Ball> balls = numbers.stream()
+                .map(Ball::valueOf)
+                .toList();
         return new Lotto(balls);
     }
 

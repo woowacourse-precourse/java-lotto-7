@@ -10,10 +10,14 @@ public class ConsoleInput {
     public BigDecimal readPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String amount = Console.readLine();
-        if (!amount.matches("^[1-9]\\d*$")) {
+        if (isNotNumberFormat(amount)) {
             throw new NumberFormatException("[ERROR] 구입 금액은 양수이어야 합니다.");
         }
         return new BigDecimal(amount);
+    }
+
+    private boolean isNotNumberFormat(String amount) {
+        return !amount.matches("^[1-9]\\d*$");
     }
 
     public List<Integer> readWinningNumbers() {
