@@ -1,12 +1,13 @@
 package lotto.console;
 
+import static lotto.common.Messages.PURCHASE_AMOUNT_PROMPT;
+import static lotto.common.Messages.WINNING_NUMBER_PROMPT;
+
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.view.Output;
 
 public class ConsoleOutput implements Output {
-
-    private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";
 
     @Override
     public void printPurchaseAmountPrompt() {
@@ -19,5 +20,10 @@ public class ConsoleOutput implements Output {
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.getNumbers());
         }
+    }
+
+    @Override
+    public void printWinningLottoPrompt() {
+        System.out.println("\n" + WINNING_NUMBER_PROMPT);
     }
 }

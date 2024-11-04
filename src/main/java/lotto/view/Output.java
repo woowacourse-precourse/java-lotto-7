@@ -8,4 +8,5 @@ public interface Output {
 
     void printLottos(Lottos lottos);
 
+    void printWinningLottoPrompt();
 }

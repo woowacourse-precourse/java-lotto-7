@@ -9,4 +9,9 @@ public class ConsoleInput implements Input {
     public String getPurchaseAmount() {
         return Console.readLine();
     }
+
+    @Override
+    public String getWinningLotto() {
+        return Console.readLine();
+    }
 }
