@@ -12,7 +12,7 @@ public class InputView {
     }
 
     private void printPurchaseAmountMessage() {
-        System.out.println(INPUT_PURCHASE_AMOUNT);
+        System.out.println(INPUT_PURCHASE_AMOUNT.getMessage());
     }
 
 
