@@ -18,4 +18,12 @@ public class ValidatorsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력 문자가 숫자가 아닌경우 예외처리한다.")
+    @Test
+    void 입력_문자_숫자_아니면_예외처리() {
+        String number = "java1000";
+
+        Assertions.assertThatThrownBy(() -> validators.validateNumericInput(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
