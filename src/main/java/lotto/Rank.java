@@ -14,6 +14,8 @@ public enum Rank {
     FIFTH(3, false, 5000),
     NONE(0, false, 0);
 
+	public static final List<Rank> SORTED_RANKS = List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
+	
     private static final Map<List<Object>, Rank> RANK_MAP;
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,###");
 

@@ -17,12 +17,8 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        List<Rank> sortedRanks = List.of(
-                Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST
-        );
-
         Map<Rank, Integer> rankCounts = result.getRankCounts();
-        for (Rank rank : sortedRanks) {
+        for (Rank rank : Rank.SORTED_RANKS) {
             int count = rankCounts.getOrDefault(rank, 0);
             System.out.printf("%d개 일치", rank.getMatchCount());
             if (rank.isMatchBonus()) {
