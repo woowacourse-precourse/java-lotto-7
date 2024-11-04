@@ -2,35 +2,38 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.validation.InputValidation;
 import lotto.validation.LottoNumberValidation;
-import lotto.validation.MoneyValidation;
 
 public class InputHandler {
-    private final MoneyValidation moneyValidation;
+    private final InputValidation inputValidation;
     private final LottoNumberValidation lottoNumberValidation;
     private final InputUtils inputUtils;
 
-    public InputHandler(MoneyValidation moneyValidation, LottoNumberValidation lottoNumberValidation,
+    public InputHandler(InputValidation inputValidation, LottoNumberValidation lottoNumberValidation,
                         InputUtils inputUtils) {
-        this.moneyValidation = moneyValidation;
+        this.inputValidation = inputValidation;
         this.lottoNumberValidation = lottoNumberValidation;
         this.inputUtils = inputUtils;
     }
 
     public long inputMoney() {
         String stringMoney = Console.readLine();
-        moneyValidation.isNumber(stringMoney);
+        inputValidation.moneyValidation(stringMoney);
         return Long.parseLong(stringMoney);
     }
 
     public int inputBonusNumber() {
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        lottoNumberValidation.isNumber(input);
+        return Integer.parseInt(input);
     }
 
     public List<Integer> inputWinningNumbers() {
-        List<String> splitInput = inputUtils.splitByComma(Console.readLine());
+        String input = Console.readLine();
+        List<String> splitInput = inputUtils.splitByComma(input);
         List<Integer> intSplitInput = inputUtils.toIntegerList(splitInput);
-        lottoNumberValidation.duplicateValid(intSplitInput);
+        lottoNumberValidation.validate(intSplitInput);
         return intSplitInput;
     }
 }

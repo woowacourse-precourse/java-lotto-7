@@ -36,7 +36,7 @@ public class OutputHandler {
     public void printReturnRate(double rate) {
         rate = rate * 100;
         rate = Math.round(rate * 100) / 100.0;
-        System.out.printf("총 수익률은 " + rate + "%%입니다.", rate);
+        System.out.printf("총 수익률은 " + String.format("%.2f", rate) + "%%입니다.", rate);
     }
 
     public void printLineBreak() {
