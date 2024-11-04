@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.validate.Validator.isNumeric;
+import static lotto.validate.Validator.*;
 
 public class ConsoleManager {
     public static void printf(String input, Object... args){
@@ -26,6 +26,7 @@ public class ConsoleManager {
 
     public static Integer toNumeric(String input) {
         isNumeric(input);
+        isBlank(input);
         return Integer.parseInt(input);
     }
 }

@@ -7,17 +7,16 @@ import lotto.model.Number;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Validator{
     public static void validateAmount(Integer input){
-        isBlank(input);
         isMinus(input);
     }
 
     public static void validateNumber(Integer input){
-        isBlank(input);
         isOutOfRange(input);
     }
 
@@ -28,8 +27,8 @@ public class Validator{
         }
     }
 
-    private static void isBlank(Integer input){
-        if(input == null){
+    public static void isBlank(String input){
+        if(Objects.equals(input, "")){
             throw new InputException(ExceptionMessage.BLANK_INPUT_ERROR);
         }
     }
