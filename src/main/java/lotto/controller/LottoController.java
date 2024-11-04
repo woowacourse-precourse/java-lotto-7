@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.repository.Lotto;
+import lotto.service.LottoInputDrawNumberService;
 import lotto.service.LottoPublishService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -9,6 +10,7 @@ import lotto.view.OutputView;
 public class LottoController {
     private InputView inputView;
     private OutputView outputView;
+    LottoInputDrawNumberService lottoInputDrawNumberService = LottoInputDrawNumberService.getInstance();
     LottoPublishService lottoPublishService = LottoPublishService.getInstance();
 
     public LottoController() {
@@ -19,6 +21,16 @@ public class LottoController {
     public void startLottoGame() {
         this.buyLotto();
         this.lottoPublish();
+        this.saveDrawNumbers();
+    }
+
+    private void saveDrawNumbers() {
+        try {
+            lottoInputDrawNumberService.saveDrawNumber(inputView.requestInputDrawNumbers());
+        } catch (IllegalArgumentException e) {
+            inputView.printMessage(e.getMessage());
+            this.saveDrawNumbers();
+        }
     }
 
     private void buyLotto() {

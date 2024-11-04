@@ -11,12 +11,12 @@ public class LottoBonusService {
     private LottoBonusService() {
     }
 
-    private static class LottoBonusServiceHolder {
-        private static final LottoBonusService LOTTO_BONUS_SERVICE = new LottoBonusService();
+    private static class InnerLottoBonusService {
+        private static final LottoBonusService INSTANCE = new LottoBonusService();
     }
 
     public static LottoBonusService getInstance(){
-        return LottoBonusServiceHolder.LOTTO_BONUS_SERVICE;
+        return InnerLottoBonusService.INSTANCE;
     }
 
     public Integer getLottoBonusNumber() {

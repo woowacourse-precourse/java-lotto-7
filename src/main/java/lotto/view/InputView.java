@@ -13,4 +13,9 @@ public class InputView {
     public void printMessage(String message) {
         System.out.println(message);
     }
+
+    public String requestInputDrawNumbers() {
+        System.out.println(UserInterfaceMessage.REQUEST_INPUT_WINNING_NUMBER.getValue());
+        return readLine();
+    }
 }
