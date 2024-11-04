@@ -15,7 +15,7 @@ public class Utils {
                 .collect(Collectors.toList());
     }
 
-    public static int parseToInt(String number){
+    public static int parseToInt(String number) {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
