@@ -5,7 +5,7 @@ import lotto.util.NumberParserFactory;
 import lotto.util.NumberParserWithComma;
 import lotto.validator.WinningLottoNumberValidator;
 import lotto.view.InputProvider;
-import lotto.view.RepeatInput;
+import lotto.view.InputCycleManager;
 
 import java.util.Set;
 
@@ -24,7 +24,7 @@ public class WinningLottoInputView {
 
     public Set<Integer> inputWinningLottoNumbers(){
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        return RepeatInput.getValidInput(() -> {
+        return InputCycleManager.getValidInput(() -> {
             String input = inputProvider.getInput();
             Set<Integer> winningNumbers = numberParser.parseNumbers(input);
             new WinningLottoNumberValidator(winningNumbers).validateAll(); // 유효성 검사
@@ -34,7 +34,7 @@ public class WinningLottoInputView {
 
     public int inputBonusNumbers(Set<Integer> winningLottoNumbers){
         System.out.println("보너스 번호를 입력해 주세요.");
-        return RepeatInput.getValidInput(() -> {
+        return InputCycleManager.getValidInput(() -> {
             String input = inputProvider.getInput();
             int bonusNumber = numberConverter.convertNumber(input);
             WinningLottoNumberValidator validator = new WinningLottoNumberValidator(winningLottoNumbers);
