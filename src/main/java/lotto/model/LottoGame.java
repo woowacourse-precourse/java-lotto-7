@@ -29,6 +29,9 @@ public class LottoGame {
     public void playLottoGame() {
         List<Integer> winningNumbers =  winningLottoNumbers.getWinningNumber();
         winningLottoNumbers.validatePositiveInteger(winningNumbers);
+        outputView.promptBonusNumber();
+        int BonusNumber = winningLottoNumbers.getBonusNumber(winningNumbers);
+
     }
 
 

@@ -28,4 +28,8 @@ public class OutputView {
     public void promptWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
+
+    public void promptBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
 }

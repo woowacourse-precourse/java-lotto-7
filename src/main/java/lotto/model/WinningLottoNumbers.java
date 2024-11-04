@@ -24,14 +24,44 @@ public class WinningLottoNumbers {
 
     public List<Integer> getWinningNumber() {
         while (true) {
-            String input = getStrInput();
+            String WinningNumber = getStrInput();
 
             try {
-                return splitWinningNumbers(input);
+                return splitWinningNumbers(WinningNumber);
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            String bonusNumber = getStrInput();
+
+            try {
+                return validateBonusNumber(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    public int validateBonusNumber(List<Integer> winningNumbers, String strBonusNumber) {
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(strBonusNumber.trim());
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException(ErrorCode.INVALID_NEGATIVE_BONUS_NUMBER.getMessage());
+            }
+
+            if (winningNumbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException(ErrorCode.DUPLICATE_LOTTO_NUMBER.getMessage());
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_BONUS_NUMBER.getMessage());
+        }
+
+        return bonusNumber;
     }
 
     public List<Integer> splitWinningNumbers(String input) {
@@ -65,7 +95,7 @@ public class WinningLottoNumbers {
         }
     }
 
-    private void validateLottoNumber(List<Integer> winningNumber){
+    private void validateLottoNumber(List<Integer> winningNumber) {
         for (int number : winningNumber) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER.getMessage());
