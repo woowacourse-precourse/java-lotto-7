@@ -45,6 +45,6 @@ public class Application {
         double roi = calculator.calculateROI(totalPrize, purchaseAmount);
 
         // Step 6: 로또 결과 출력
-        OutputView.printLottoResults(statistics, totalPrize, roi);
+        OutputView.printLottoResults(statistics, roi);
     }
 }
