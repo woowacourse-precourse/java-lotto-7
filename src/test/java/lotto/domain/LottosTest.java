@@ -22,10 +22,4 @@ public class LottosTest {
 
         assertThat(lottos.getLottos().size()).isEqualTo(expectedLottoCount);
     }
-
-    @Test
-    @DisplayName("")
-    void a() {
-
-    }
 }
