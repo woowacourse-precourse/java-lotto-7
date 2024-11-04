@@ -7,6 +7,7 @@ import lotto.service.LottoResult;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.WinningLotto;
+import lotto.util.ErrorMessage;
 import lotto.util.NumberGenerate;
 import lotto.domain.BonusBall;
 import lotto.service.LottoMachine;
@@ -43,13 +44,13 @@ public class LottoController {
 
     private WinningLotto createWinningLotto() {
         Lotto lotto = inputLottoNumbers();
-
+        System.out.printf(System.lineSeparator());
         while (true) {
             try {
                 BonusBall bonusBall = inputBonusNumber();
                 return new WinningLotto(lotto, bonusBall);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                ErrorMessage.showErrorMsg(e.getMessage());
             }
         }
     }
@@ -61,7 +62,7 @@ public class LottoController {
                 int bonusNumber = converter.convert(rawNumber);
                 return new BonusBall(bonusNumber);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                ErrorMessage.showErrorMsg(e.getMessage());
             }
         }
     }
@@ -76,7 +77,7 @@ public class LottoController {
                         .toList();
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                ErrorMessage.showErrorMsg(e.getMessage());
             }
         }
     }
@@ -88,7 +89,7 @@ public class LottoController {
                 int money = converter.convert(rawMoney);
                 return lottoMachine.issueLotto(money);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                ErrorMessage.showErrorMsg(e.getMessage());
             }
         }
     }

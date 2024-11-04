@@ -26,6 +26,10 @@ public enum ErrorMessage {
         return msg;
     }
 
+    public static void showErrorMsg(String msg) {
+        System.out.println(msg);
+    }
+
     private static class Constants {
         public static final int LOTTO_RANGE_START = 1;
         public static final int LOTTO_RANGE_END = 45;
