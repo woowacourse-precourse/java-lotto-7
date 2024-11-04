@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class Application {
@@ -18,26 +18,29 @@ public class Application {
     }
 
     private static void run() {
-        getMoney();
-        purchaseLottos(0);
-        getWinningLotto();
-        getBonusNumber();
-        checkResults(null, null, 0, 0);
-        displayResults(null);
-        displayProfit(null, 0);
+        System.out.println("구매금액을 입력해 주세요.");
+        int money = getMoney();
+        int ticketCount = money / 1000;
+        System.out.printf("%d개를 구매했습니다.%n", ticketCount);
+        List<Lotto> purchasedLottos = purchaseLottos(ticketCount);
+        displayPurchasedLottos(purchasedLottos);
+
+        Lotto winningLotto = getWinningLotto();
+        int bonusNumber = getBonusNumber();
+
+        checkResults(purchasedLottos, winningLotto, bonusNumber, money);
     }
 
     private static int getMoney() {
-        System.out.println("구매금액을 입력해 주세요.");
         String input = Console.readLine();
         try {
             int money = Integer.parseInt(input);
             if (money < 1000 || money % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+                throw new IllegalArgumentException(ERROR_MESSAGE);
             }
             return money;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 형식의 금액을 입력하였습니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
@@ -64,11 +67,7 @@ public class Application {
 
     private static int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-        return bonusNumber;
+        return Integer.parseInt(Console.readLine());
     }
 
     private static List<Integer> parseInputNumbers(String input) {
@@ -110,4 +109,6 @@ public class Application {
         double profitRate = (double) totalProfit / moneySpent * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
+
+    private static final String ERROR_MESSAGE = "[ERROR]";
 }
