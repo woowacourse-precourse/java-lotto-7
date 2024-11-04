@@ -35,6 +35,21 @@ public class LottoController {
         outputView.printYield(lottoPrizeCalculator.calculateYield(lottos.getTotalPrice()));
     }
 
+    private <T> T retryUntilValid(Supplier<T> action) {
+        while (true) {
+            try {
+                return action.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private PurchaseAmount readPurchaseAmount() {
+        String lottoBudgetInput = inputView.readPurchaseAmount();
+        return new PurchaseAmount(lottoBudgetInput);
+    }
+
     private Lottos createLottos(PurchaseAmount purchaseAmount) {
         int lottoCountNumber = Integer.parseInt(purchaseAmount.calculatePurchaseLottoCount());
         return Lottos.fromCount(lottoCountNumber);
@@ -46,28 +61,13 @@ public class LottoController {
         return retryUntilValid(() -> assembleWinningNumbers(mainNumbers));
     }
 
-    private WinningNumbers assembleWinningNumbers(Lotto mainNumbers) {
-        String bonusNumber = inputView.readBonusNumber();
-        return new WinningNumbers(mainNumbers, bonusNumber);
-    }
-
     private Lotto readMainNumbers() {
         String winningNumbersInput = inputView.readWinningNumbers();
         return Lotto.of(winningNumbersInput);
     }
 
-    private PurchaseAmount readPurchaseAmount() {
-        String lottoBudgetInput = inputView.readPurchaseAmount();
-        return new PurchaseAmount(lottoBudgetInput);
-    }
-
-    private <T> T retryUntilValid(Supplier<T> action) {
-        while (true) {
-            try {
-                return action.get();
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
+    private WinningNumbers assembleWinningNumbers(Lotto mainNumbers) {
+        String bonusNumber = inputView.readBonusNumber();
+        return new WinningNumbers(mainNumbers, bonusNumber);
     }
 }
