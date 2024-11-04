@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,6 +32,8 @@ public class StringParser {
             .filter(this::validateRange)
             .toList();
 
+        validateSize(myNumbers);
+
         return myNumbers;
     }
 
@@ -63,6 +64,12 @@ public class StringParser {
             return true;
         }
         throw new IllegalArgumentException(RANGE_ERROR.getMessage());
+    }
+
+    private void validateSize(List<Integer> myNumbers) {
+        if (myNumbers.size() > 6) {
+            throw new IllegalArgumentException(NUMBER_COUNT_ERROR.getMessage());
+        }
     }
 
 }
