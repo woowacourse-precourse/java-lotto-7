@@ -45,14 +45,9 @@ public class Input {
 	}
 
 	private static List<Integer> parseLottoNumbers(String input) {
-		try {
 			return Arrays.stream(input.split(","))
-				.map(String::trim)
-				.map(Integer::parseInt)
+				.map((number) -> validateLottoPurchaseAmountFormat(number))
 				.collect(Collectors.toList());
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 당첨 번호는 올바른 숫자 형식이어야 합니다.");
-		}
 	}
 
 	private static void validateLottoNumber(int number) {
