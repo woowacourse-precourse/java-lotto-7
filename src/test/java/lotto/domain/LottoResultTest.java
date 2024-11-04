@@ -29,7 +29,7 @@ class LottoResultTest {
 
     @Test
     @DisplayName("당첨 금액 계산 테스트")
-    void calculateWinningPrizeTest() {
+    void 당첨_금액_계산_테스트() {
         LottoResult lottoResult = new LottoResult(lottoShop, winningLotto, bonusNumber);
 
         long expectedPrize = Rank.FIRST_PLACE.getPrize() * 1 +
