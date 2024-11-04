@@ -1,11 +1,12 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.domain.DefaultLottoGenerator;
-import lotto.domain.DefaultRankCalculationStrategy;
-import lotto.domain.LottoGenerator;
 import lotto.domain.LottoResultCalculator;
-import lotto.domain.RankCalculator;
+import lotto.domain.generator.DefaultLottoGenerator;
+import lotto.domain.generator.LottoGenerator;
+import lotto.domain.strategy.DefaultRankCalculationStrategy;
+import lotto.domain.strategy.RankCalculator;
+import lotto.service.LottoService;
 
 public class Application {
 
@@ -14,7 +15,9 @@ public class Application {
         RankCalculator rankCalculator = new RankCalculator(new DefaultRankCalculationStrategy());
         LottoResultCalculator resultCalculator = new LottoResultCalculator(rankCalculator);
 
-        LottoController controller = new LottoController(lottoGenerator, resultCalculator);
+        LottoService lottoService = new LottoService(lottoGenerator, resultCalculator);
+
+        LottoController controller = new LottoController(lottoService);
 
         controller.run();
     }

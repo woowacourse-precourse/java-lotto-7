@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.generator;
 
 import static lotto.config.LottoConfig.LOTTO_PRICE;
 
@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.config.LottoConfig;
+import lotto.domain.model.Lotto;
 import lotto.view.ErrorConstants;
 import lotto.view.OutputView;
 

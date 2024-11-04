@@ -2,64 +2,61 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.domain.Lotto;
-import lotto.domain.LottoGenerator;
-import lotto.domain.LottoResultCalculator;
-import lotto.domain.Rank;
-import lotto.validation.Validator;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.Rank;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private final LottoGenerator lottoGenerator;
-    private final LottoResultCalculator resultCalculator;
+    private final LottoService lottoService;
 
-    public LottoController(LottoGenerator lottoGenerator, LottoResultCalculator resultCalculator) {
-        this.lottoGenerator = lottoGenerator;
-        this.resultCalculator = resultCalculator;
+    public LottoController(LottoService lottoService) {
+        this.lottoService = lottoService;
     }
 
     public void run() {
-        // Step 1: 구입 금액 입력 및 로또 티켓 생성
+        // Step 1: 구입 금액 입력 및 검증
         OutputView.promptPurchaseAmount();
         String purchaseAmountInput = InputView.requestPurchaseAmount();
-        String validationError = Validator.validatePurchaseAmount(purchaseAmountInput);
-        if (validationError != null) {
-            OutputView.printErrorMessage(validationError);
-            return;
-        }
-        int purchaseAmount = Integer.parseInt(purchaseAmountInput);
-
-        // Step 2: 티켓 개수에 맞게 로또 생성
-        List<Lotto> lottos = lottoGenerator.generateLottos(purchaseAmount);
-        OutputView.printPurchaseCount(lottos.size());
-        OutputView.printLottoNumbers(lottos);
-
-        // Step 3: 당첨 번호 입력
-        OutputView.promptWinningNumbersInput();
-        String winningNumbersInput = InputView.requestWinningNumbers();
-        List<Integer> winningNumbers;
+        int purchaseAmount;
         try {
-            winningNumbers = Validator.validateWinningNumbers(winningNumbersInput);
+            purchaseAmount = lottoService.validateAndParsePurchaseAmount(purchaseAmountInput);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return;
         }
 
-        // Step 4: 보너스 번호 입력
+        // Step 2: 티켓 개수에 맞게 로또 생성
+        List<Lotto> lottos = lottoService.generateLottos(purchaseAmount);
+        OutputView.printPurchaseCount(lottos.size());
+        OutputView.printLottoNumbers(lottos);
+
+        // Step 3: 당첨 번호 입력 및 검증
+        OutputView.promptWinningNumbersInput();
+        String winningNumbersInput = InputView.requestWinningNumbers();
+        List<Integer> winningNumbers;
+        try {
+            winningNumbers = lottoService.validateAndParseWinningNumbers(winningNumbersInput);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return;
+        }
+
+        // Step 4: 보너스 번호 입력 및 검증
         OutputView.promptBonusNumberInput();
         String bonusNumberInput = InputView.requestBonusNumber();
         int bonusNumber;
         try {
-            bonusNumber = Validator.validateBonusNumber(bonusNumberInput, winningNumbers);
+            bonusNumber = lottoService.validateAndParseBonusNumber(bonusNumberInput, winningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return;
         }
 
         // Step 5: 로또 결과 계산
-        Map<Rank, Integer> statistics = resultCalculator.calculateStatistics(lottos, winningNumbers, bonusNumber);
-        double roi = resultCalculator.calculateROI(statistics, purchaseAmount);
+        Map<Rank, Integer> statistics = lottoService.calculateStatistics(lottos, winningNumbers, bonusNumber);
+        double roi = lottoService.calculateROI(statistics, purchaseAmount);
 
         // Step 6: 로또 결과 출력
         OutputView.printLottoResults(statistics, roi);

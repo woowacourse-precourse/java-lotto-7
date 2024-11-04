@@ -8,7 +8,7 @@ import lotto.view.ErrorConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class WinningBonusNumberValidatorTest {
+class WinningBonusNumberLottoInputValidatorTest {
 
     private static final List<Integer> WINNING_NUMBERS = List.of(1, 2, 3, 4, 5, 6);
 
@@ -19,7 +19,7 @@ class WinningBonusNumberValidatorTest {
         String input = "46";
 
         // When & Then
-        assertThatThrownBy(() -> Validator.validateBonusNumber(input, WINNING_NUMBERS))
+        assertThatThrownBy(() -> LottoInputValidator.validateBonusNumber(input, WINNING_NUMBERS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorConstants.INVALID_BONUS_NUMBER_RANGE);
     }
@@ -31,7 +31,7 @@ class WinningBonusNumberValidatorTest {
         String input = "3";
 
         // When & Then
-        assertThatThrownBy(() -> Validator.validateBonusNumber(input, WINNING_NUMBERS))
+        assertThatThrownBy(() -> LottoInputValidator.validateBonusNumber(input, WINNING_NUMBERS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorConstants.INVALID_BONUS_NUMBER_DUPLICATE);
     }
@@ -43,7 +43,7 @@ class WinningBonusNumberValidatorTest {
         String input = "abc";
 
         // When & Then
-        assertThatThrownBy(() -> Validator.validateBonusNumber(input, WINNING_NUMBERS))
+        assertThatThrownBy(() -> LottoInputValidator.validateBonusNumber(input, WINNING_NUMBERS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorConstants.INVALID_WINNING_NUMBER_FORMAT);
     }
@@ -55,7 +55,7 @@ class WinningBonusNumberValidatorTest {
         String input = "7";
 
         // When
-        int result = Validator.validateBonusNumber(input, WINNING_NUMBERS);
+        int result = LottoInputValidator.validateBonusNumber(input, WINNING_NUMBERS);
 
         // Then
         assertThat(result).isEqualTo(7);

@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.domain.strategy;
+
+import lotto.domain.model.Rank;
 
 public class DefaultRankCalculationStrategy implements RankCalculationStrategy {
 

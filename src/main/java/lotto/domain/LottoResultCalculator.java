@@ -3,6 +3,9 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.Rank;
+import lotto.domain.strategy.RankCalculator;
 
 public class LottoResultCalculator {
     private final RankCalculator rankCalculator;

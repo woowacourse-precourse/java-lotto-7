@@ -8,7 +8,7 @@ import lotto.view.ErrorConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class WinningNumbersValidatorTest {
+class WinningNumbersLottoInputValidatorTest {
 
     @DisplayName("정확히 6개의 숫자가 입력되지 않으면 예외가 발생한다")
     @Test
@@ -17,7 +17,7 @@ class WinningNumbersValidatorTest {
         String input = "1,2,3,4,5";
 
         // When & Then
-        assertThatThrownBy(() -> Validator.validateWinningNumbers(input))
+        assertThatThrownBy(() -> LottoInputValidator.validateWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorConstants.INVALID_WINNING_NUMBERS_COUNT);
     }
@@ -29,7 +29,7 @@ class WinningNumbersValidatorTest {
         String input = "0,2,3,4,5,6";
 
         // When & Then
-        assertThatThrownBy(() -> Validator.validateWinningNumbers(input))
+        assertThatThrownBy(() -> LottoInputValidator.validateWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorConstants.INVALID_WINNING_NUMBER_RANGE);
     }
@@ -41,7 +41,7 @@ class WinningNumbersValidatorTest {
         String input = "1,2,3,4,5,5";
 
         // When & Then
-        assertThatThrownBy(() -> Validator.validateWinningNumbers(input))
+        assertThatThrownBy(() -> LottoInputValidator.validateWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorConstants.INVALID_WINNING_NUMBER_DUPLICATE);
     }
@@ -53,7 +53,7 @@ class WinningNumbersValidatorTest {
         String input = "1,2,3,4,5,abc";
 
         // When & Then
-        assertThatThrownBy(() -> Validator.validateWinningNumbers(input))
+        assertThatThrownBy(() -> LottoInputValidator.validateWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorConstants.INVALID_WINNING_NUMBER_FORMAT);
     }
@@ -65,7 +65,7 @@ class WinningNumbersValidatorTest {
         String input = "1,2,3,4,5,6";
 
         // When
-        List<Integer> result = Validator.validateWinningNumbers(input);
+        List<Integer> result = LottoInputValidator.validateWinningNumbers(input);
 
         // Then
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);

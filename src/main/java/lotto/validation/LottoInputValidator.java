@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import lotto.view.ErrorConstants;
 
-public class Validator {
+public class LottoInputValidator {
 
     private static final String WINNING_NUMBER_DELIMITER = ",";
 
