@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
 import lotto.domain.LotteryBuyer;
+import lotto.domain.Lotto;
 import lotto.domain.PrizeTier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
