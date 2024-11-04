@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public enum NumberConstants {
+public enum ConditionConstants {
 
     FIFTH_PLACE(3, 0, 5_000),
     FOURTH_PLACE(4, 0, 50_000),
@@ -12,7 +12,7 @@ public enum NumberConstants {
     private final int bonusMatch;
     private final int prize;
 
-    NumberConstants(int matchingNumbers, int bonusMatch, int prize) {
+    ConditionConstants(int matchingNumbers, int bonusMatch, int prize) {
         this.matchingNumbers = matchingNumbers;
         this.bonusMatch = bonusMatch;
         this.prize = prize;
