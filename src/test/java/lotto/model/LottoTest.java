@@ -1,5 +1,6 @@
-package lotto;
+package lotto.model;
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,9 @@ class LottoTest {
     @DisplayName("로또 번호가 성공적으로 생성")
     @Test
     void 로또_번호_생성_성공() {
+        //given
         Lotto lotto = new Lotto(List.of(5, 3, 1, 6, 4, 2));
+        //when & then
         assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 }
