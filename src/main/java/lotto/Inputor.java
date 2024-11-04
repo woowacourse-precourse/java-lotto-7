@@ -1,23 +1,23 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.LottoApplication.INCORRECT_MONEY;
+import static lotto.LottoApplication.INCORRECT_LOTTO_DRAW_COUNT;
 
 public class Inputor {
-    public static int getMoney() {
+    private static final int LOTTO_PRICE = 1000;
+    public static int getLottoDrawCount() {
         System.out.println("구입 금액을 입력해 주세요");
         String input = readLine();
-        int money = INCORRECT_MONEY;
 
         try {
-            money = parseMoney(input);
-
+            int money = parseMoney(input);
             validateMinus(money);
             validatThousandMultiple(money);
+            return money / LOTTO_PRICE;
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
+            return INCORRECT_LOTTO_DRAW_COUNT;
         }
-        return money;
     }
 
     private static int parseMoney(String input) {

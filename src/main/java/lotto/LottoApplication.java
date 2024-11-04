@@ -1,16 +1,23 @@
 package lotto;
 
-import static lotto.Inputor.getMoney;
+import static lotto.Inputor.getLottoDrawCount;
+import static lotto.LottoGenerator.generateLottos;
+
+import java.util.List;
 
 public class LottoApplication {
-    public static final int INCORRECT_MONEY = -1;
+    public static final int INCORRECT_LOTTO_DRAW_COUNT = -1;
     public void start(){
 
-        int money = INCORRECT_MONEY;
+        int lottoDrawCount = INCORRECT_LOTTO_DRAW_COUNT;
 
-        while(money == INCORRECT_MONEY) {
-            money = getMoney();
+        while(lottoDrawCount == INCORRECT_LOTTO_DRAW_COUNT) {
+            lottoDrawCount = getLottoDrawCount();
         }
 
+        List<Lotto> lottos = generateLottos(lottoDrawCount);
+
     }
+
+
 }
