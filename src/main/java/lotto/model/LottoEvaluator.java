@@ -56,7 +56,6 @@ public class LottoEvaluator {
     private int countMatchingWinningNumbers(LottoNumbers lottoNumbers) {
         List<Integer> winningLottoNumbers = winningNumbers.getLottoNumbers();
         List<Integer> userLottoNumbers = lottoNumbers.getLottoNumbers();
-
         int count = 0;
 
         for (Integer number : userLottoNumbers) {
@@ -64,7 +63,6 @@ public class LottoEvaluator {
                 count++;
             }
         }
-
         return count;
     }
 
@@ -78,12 +76,7 @@ public class LottoEvaluator {
     }
 
     private LottoPrize checkPrize(int winningCount, int bonusCount) {
-        for (LottoPrize prize : LottoPrize.values()) {
-            if (winningCount == prize.getMatchingWinningCount() && bonusCount == prize.getMatchingBonusCount()) {
-                return prize;
-            }
-        }
-        return LottoPrize.FAIL;
+        return LottoPrize.matchPrize(winningCount, bonusCount);
     }
 
     private void updatePrizeStatus(HashMap<LottoPrize, Integer> prizeStatus, LottoPrize prize) {
