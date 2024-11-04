@@ -16,7 +16,7 @@ public class LottoMachine {
         return issueLottoes(totalLottoCount);
     }
 
-    private static List<Lotto> issueLottoes(int totalLottoCount) {
+    private static List<Lotto> issueLottoes(final int totalLottoCount) {
         List<Lotto> lottoes = new ArrayList<>();
         for (int i = 0; i < totalLottoCount; i++) {
             lottoes.add(new Lotto(generateLottoNumbers()));
