@@ -44,9 +44,9 @@ public class LottoGame {
     }
 
     public void creatBonusNumber(String input) throws IllegalArgumentException {
-        bonusNumber = tryParseInt(input);
-        winingLotto.validate(bonusNumber);
-        this.bonusNumber = bonusNumber;
+        int number = tryParseInt(input);
+        winingLotto.validate(number);
+        this.bonusNumber = number;
     }
 
     private List<Integer> trySplitParse(String input) throws IllegalArgumentException {

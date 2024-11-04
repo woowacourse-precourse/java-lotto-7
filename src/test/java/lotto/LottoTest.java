@@ -26,7 +26,7 @@ class LottoTest {
             "'6,5,4,3,2,1', '1,2,3,4,5,6'",
             "'10,9,8,30,44,21','8,9,10,21,30,44'"
     })
-    @DisplayName("생성자에 randomNumbersGenerator를 주입하면 랜덤 로또가 생성된다")
+    @DisplayName("생성자에 randomNumbersGenerator를 주입하면 오름차순 랜덤 로또가 생성된다")
     void lottoTest(String numbersInput, String expected) {
         //given
         List<Integer> numbers = convertStringToIntegerList(numbersInput);

@@ -11,9 +11,9 @@ class LottoGameTest {
     @ParameterizedTest
     @CsvSource({
             "-1000, '[ERROR] 구입금액은 음수가 될수 없습니다.'",
-            "그냥문자열, '[ERROR] 구입금액 입력이 숫자가 아닙니다.'",
+            "그냥문자열, '[ERROR] 숫자 입력 형식이 잘못되었습니다.'",
             "1234, '[ERROR] 구입금액은 1000원 단위로 입력되어야 합니다.'",
-            "1000.1, '[ERROR] 구입금액 입력이 숫자가 아닙니다.'"
+            "1000.1, '[ERROR] 숫자 입력 형식이 잘못되었습니다.'"
     })
     @DisplayName("유효하지 않은 구입금액이 입력되면 예외가 발생한다.")
     void validateInvalidPurchaseAmountTest(String input, String expectedMessage) {
