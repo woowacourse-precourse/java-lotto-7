@@ -1,7 +1,8 @@
 package lotto.model;
 
 public class LottoPurchasePrice {
-    int LOTTO_PRICE = 1000;
+    private final int LOTTO_PRICE = 1000;
+    private final int ZERO = 0;
     private final int lottoPurchasePrice;
 
     public LottoPurchasePrice(int lottoPurchasePrice) {
@@ -10,7 +11,7 @@ public class LottoPurchasePrice {
     }
 
     public void validateLottoPurchasePrice(int lottoPurchasePrice) {
-        if (lottoPurchasePrice % LOTTO_PRICE != 0) {
+        if (lottoPurchasePrice % LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException("[Error] 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }

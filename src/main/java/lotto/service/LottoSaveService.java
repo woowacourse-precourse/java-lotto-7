@@ -7,6 +7,16 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoSaveService {
+    private final String THREE_MATCH = "3";
+    private final String FOUR_MATCH = "4";
+    private final String FIVE_MATCH = "5";
+    private final String FIVE_BONUS_MATCH = "5B";
+    private final String SIX_MATCH = "6";
+    private final int ZERO = 0;
+    private final int THREE = 3;
+    private final int FOUR = 4;
+    private final int FIVE = 5;
+    private final int SIX = 6;
     private Map<String, Integer> lottoMatchCount = new HashMap<>();
     private static final String COMMA_DELIMITER = ",";
     LottoWinningNumber lottoWinningNumber;
@@ -58,11 +68,12 @@ public class LottoSaveService {
 
 
     public void makeDataForReturn() {
-        lottoMatchCount.put("3", 0);
-        lottoMatchCount.put("4", 0);
-        lottoMatchCount.put("5", 0);
-        lottoMatchCount.put("5B", 0);
-        lottoMatchCount.put("6", 0);
+
+        lottoMatchCount.put(THREE_MATCH, ZERO);
+        lottoMatchCount.put(FOUR_MATCH, ZERO);
+        lottoMatchCount.put(FIVE_MATCH, ZERO);
+        lottoMatchCount.put(FIVE_BONUS_MATCH, ZERO);
+        lottoMatchCount.put(SIX_MATCH, ZERO);
     }
 
     public Map<String, Integer> matchLotto() {
@@ -77,18 +88,18 @@ public class LottoSaveService {
                     matchedCount++;
                 }
             }
-            if (matchedCount == 3) {
-                lottoMatchCount.put("3", lottoMatchCount.get("3") + 1);
-            } else if (matchedCount == 4) {
-                lottoMatchCount.put("4", lottoMatchCount.get("4") + 1);
-            } else if (matchedCount == 5) {
+            if (matchedCount == THREE) {
+                lottoMatchCount.put(THREE_MATCH, lottoMatchCount.get(THREE_MATCH) + 1);
+            } else if (matchedCount == FOUR) {
+                lottoMatchCount.put(FOUR_MATCH, lottoMatchCount.get(FOUR_MATCH) + 1);
+            } else if (matchedCount == FIVE) {
                 if (numbers.contains(bonusNumber)) {
-                    lottoMatchCount.put("5B", lottoMatchCount.get("5B") + 1);
+                    lottoMatchCount.put(FIVE_BONUS_MATCH, lottoMatchCount.get(FIVE_BONUS_MATCH) + 1);
                 } else {
-                    lottoMatchCount.put("5", lottoMatchCount.get("5") + 1);
+                    lottoMatchCount.put(FIVE_MATCH, lottoMatchCount.get(FIVE_MATCH) + 1);
                 }
-            } else if (matchedCount == 6) {
-                lottoMatchCount.put("6", lottoMatchCount.get("6") + 1);
+            } else if (matchedCount == SIX) {
+                lottoMatchCount.put(SIX_MATCH, lottoMatchCount.get(SIX_MATCH) + 1);
             }
         }
         return lottoMatchCount;
