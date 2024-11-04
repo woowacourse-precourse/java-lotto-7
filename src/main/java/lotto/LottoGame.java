@@ -29,7 +29,11 @@ public class LottoGame {
         try {
             amount = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위의 양수로 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 금액은 숫자로 입력해 주세요.");
+        }
+
+        if (amount <= 0 || amount % 1000 != 0) {
+            throw new IllegalArgumentException("[Error] 금액은 1,000원 단위의 양수로 입력해 주세요.");
         }
 
         return amount;
