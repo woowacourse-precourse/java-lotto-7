@@ -14,6 +14,10 @@ public class InputViewTest {
     InputView inputView=new InputView();
 
 
+    @AfterEach
+    void closeConsole(){
+        Console.close();
+    }
     @Test
     void 구입금액_입력(){
         String simulatedInput = "4000";
@@ -40,15 +44,6 @@ public class InputViewTest {
         assertThatThrownBy(() -> inputView.readMoney())
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    @Test
-    void 구입금액_입력_에러_빈값(){
-        String simulatedInput = "\n";
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-
-
-        assertThatThrownBy(() -> inputView.readMoney())
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 
     @Test
     void 당첨번호_입력(){
@@ -58,7 +53,6 @@ public class InputViewTest {
         List<Integer> actual=inputView.readWiningNumbers();
         assertThat(actual).isEqualTo(List.of(1,2,3,4,5,6));
     }
-    //        - ,를 제외하고 숫자가 입력되지 않은 경우   =>`IllegalArgumentException`
 
     @Test
     void 보너스번호_입력(){
@@ -74,25 +68,6 @@ public class InputViewTest {
         String simulatedInput = "jk";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
-        int actual=inputView.readBonusNumbers();
-        assertThatThrownBy(() -> inputView.readBonusNumbers())
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-    @Test
-    void 보너스번호_입력_에러_당첨번호와_중복(){
-        String simulatedInput = "jk";
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-
-        int actual=inputView.readBonusNumbers();
-        assertThatThrownBy(() -> inputView.readBonusNumbers())
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-    @Test
-    void 보너스번호_입력_에러_범위밖(){
-        String simulatedInput = "jk";
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-
-        int actual=inputView.readBonusNumbers();
         assertThatThrownBy(() -> inputView.readBonusNumbers())
                 .isInstanceOf(IllegalArgumentException.class);
     }

@@ -1,6 +1,8 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -26,15 +28,10 @@ class LottoManagerTest {
         lottoManager.setWinningLotto(winningNumbers);
         lottoManager.setBonus(7);
     }
-    private InputStream originalIn;
-    @BeforeEach
-    public void setUp() {
-        originalIn = System.in;
-    }
 
     @AfterEach
     public void tearDown() {
-        System.setIn(originalIn);
+        Console.close();
     }
 
     @Test
@@ -96,7 +93,7 @@ class LottoManagerTest {
         assertThatThrownBy(() -> lottoManager.setWinningLotto(inputView.readWiningNumbers()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    //        - 공백,`null`=>`IllegalArgumentException`
+
     @Test
     void 당첨번호_입력_에러_공백만입력(){
         String simulatedInput = " ";
@@ -105,7 +102,7 @@ class LottoManagerTest {
         assertThatThrownBy(() -> lottoManager.setWinningLotto(inputView.readWiningNumbers()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    //        - 번호 개수가 6개가 아닌경우=>`IllegalArgumentException`
+
     @Test
     void 당첨번호_입력_에러_6개가아닐경우(){
         String simulatedInput = "1,2,3,4,5,6,7";
@@ -114,13 +111,21 @@ class LottoManagerTest {
         assertThatThrownBy(() -> lottoManager.setWinningLotto(inputView.readWiningNumbers()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    //        - 각 숫자가 1~45 범위를 벗어나는 경우=>`IllegalArgumentException`
+
     @Test
     void 당첨번호_입력_에러_범위밖(){
         String simulatedInput = "55,56,56,37,84,60";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         assertThatThrownBy(() -> lottoManager.setWinningLotto(inputView.readWiningNumbers()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void 보너스번호_입력_에러_범위밖(){
+        String simulatedInput = "65";
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
+
+        assertThatThrownBy(() -> lottoManager.setBonus(inputView.readBonusNumbers()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
