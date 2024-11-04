@@ -5,10 +5,11 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Set;
 
 import static lotto.converter.StringToIntegerSetConverter.convertToTreeSet;
-import static lotto.validator.BonusWinningNumberValidator.validateBonusWinningNumber;
+import static lotto.validator.InputBonusWinningNumberValidator.validateBonusWinningNumber;
+import static lotto.validator.InputBonusWinningNumberValidator.validateDuplicateBonusWinningNumber;
 import static lotto.validator.InputMoneyValidator.validatePurchaseMoney;
-import static lotto.validator.WinningNumbersValidator.validateDuplicateWinningNumbers;
-import static lotto.validator.WinningNumbersValidator.validateWinningNumbers;
+import static lotto.validator.InputWinningNumbersValidator.validateDuplicateWinningNumbers;
+import static lotto.validator.InputWinningNumbersValidator.validateWinningNumbers;
 
 public class InputView {
 
@@ -33,8 +34,8 @@ public class InputView {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String winningNumbersInput = Console.readLine().trim();
-                validateWinningNumbers(winningNumbersInput);
                 Set<Integer> winningNumbers = convertToTreeSet(winningNumbersInput);
+                validateWinningNumbers(winningNumbersInput);
                 validateDuplicateWinningNumbers(winningNumbers);
                 System.out.println();
                 return winningNumbers;
@@ -44,13 +45,14 @@ public class InputView {
         }
     }
 
-    public static int inputBonusWinningNumber() {
+    public static int inputBonusWinningNumber(Set<Integer> winningNumbers) {
 
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String inputBonusNumber = Console.readLine().trim();
                 validateBonusWinningNumber(inputBonusNumber);
+                validateDuplicateBonusWinningNumber(inputBonusNumber,winningNumbers);
                 System.out.println();
                 return Integer.parseInt(inputBonusNumber);
             } catch (IllegalArgumentException e) {

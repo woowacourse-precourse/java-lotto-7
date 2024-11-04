@@ -2,7 +2,7 @@ package lotto.validator;
 
 import java.util.Set;
 
-public class WinningNumbersValidator {
+public class InputWinningNumbersValidator {
 
     public static void validateWinningNumbers(String winningNumbersInput) {
 
