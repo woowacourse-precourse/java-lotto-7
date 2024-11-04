@@ -36,4 +36,12 @@ class UserTest {
         User user = new User("14000");
         assertThat(user.getLottoCount()).isEqualTo(14);
     }
+
+    @Test
+    void 로또_개수만큼_로또를_발행받는다() {
+        User user = new User("8000");
+        RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
+        user.buyLotto(randomNumbersGenerator);
+        assertThat(user.getLottos().size()).isEqualTo(user.getLottoCount());
+    }
 }
