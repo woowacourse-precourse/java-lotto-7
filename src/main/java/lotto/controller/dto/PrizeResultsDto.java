@@ -8,4 +8,9 @@ public record PrizeResultsDto(
     public PrizeResultsDto(List<PrizeResultInfo> results) {
         this.results = results;
     }
+
+    @Override
+    public List<PrizeResultInfo> results() {
+        return results;
+    }
 }

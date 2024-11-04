@@ -7,4 +7,5 @@ public class ViewConstant {
     public static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     public static final String LOTTO_RESULT_MESSAGE = "당첨 통계";
     public static final String CONTOUR = "---";
+    public static final String PRIZE_RESULT_FORMAT = "%s (%s) - %d개";
 }

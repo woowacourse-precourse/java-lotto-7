@@ -3,9 +3,11 @@ package lotto.ui;
 import static lotto.constant.ViewConstant.BUY_LOTTO_MESSAGE_FORMAT;
 import static lotto.constant.ViewConstant.CONTOUR;
 import static lotto.constant.ViewConstant.LOTTO_RESULT_MESSAGE;
+import static lotto.constant.ViewConstant.PRIZE_RESULT_FORMAT;
 
 import java.util.List;
-import lotto.controller.dto.LottoResult;
+import lotto.controller.dto.PrizeResultInfo;
+import lotto.controller.dto.PrizeResultsDto;
 import lotto.model.Lotto;
 
 public class OutputView {
@@ -20,9 +22,20 @@ public class OutputView {
         purchaseHistory.forEach(System.out::println);
     }
 
-    public void printLottoResult(LottoResult lottoResult) {
+    public void printLottoResult(PrizeResultsDto prizeResultsDto) {
         System.out.println(LOTTO_RESULT_MESSAGE);
         System.out.println(CONTOUR);
-        System.out.println(lottoResult);
+        printPrizeResult(prizeResultsDto.results());
+    }
+
+    private void printPrizeResult(List<PrizeResultInfo> results) {
+        System.out.println(results.stream()
+                .map(result -> String.format(PRIZE_RESULT_FORMAT,
+                        result.condition(),
+                        result.prize(),
+                        result.count()
+                ))
+                .reduce((result1, result2) -> result1 + "\n" + result2)
+                .orElse(""));
     }
 }
