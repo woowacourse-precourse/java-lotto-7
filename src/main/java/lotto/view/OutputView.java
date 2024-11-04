@@ -32,7 +32,7 @@ public class OutputView {
         double rate = (double) totalPrize / amount;
 
         // 수익률을 소수점 둘째 자리까지 반올림하여 출력
-        DecimalFormat df = new DecimalFormat("###,###.##");
+        DecimalFormat df = new DecimalFormat("###,###.0");
         System.out.println("총 수익률은 " + df.format(rate * 100) + "%입니다.");
     }
 
