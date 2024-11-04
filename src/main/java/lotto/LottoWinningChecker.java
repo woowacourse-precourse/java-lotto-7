@@ -29,8 +29,9 @@ public class LottoWinningChecker {
 
     private void matchTicketsWithWinningNumbers() {
         for (Lotto ticket : tickets) {
+            boolean isBonusIncluded = checkBonusIncluded(ticket);
             ticket.getNumbers().retainAll(winningNumbers);
-            checkRank(ticket.getNumbers().size(), checkBonusIncluded(ticket));
+            checkRank(ticket.getNumbers().size(), isBonusIncluded);
         }
     }
 
