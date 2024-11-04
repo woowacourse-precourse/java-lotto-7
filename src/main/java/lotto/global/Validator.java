@@ -1,6 +1,14 @@
 package lotto.global;
 
 import static lotto.exception.ErrorCode.*;
+import static lotto.exception.ErrorCode.DUPLICATE_WINNING_NUMBER;
+import static lotto.exception.ErrorCode.INVALID_NUMBER_RANGE;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import lotto.model.Lotto;
+
 public class Validator {
     private static final Validator instance = new Validator();
 
@@ -17,6 +25,42 @@ public class Validator {
         validateMultipleOfThousand(purchaseAmount);
     }
 
+    public void validateWinningNumbers(String winningNumbers) {
+        validateNotEmpty(winningNumbers);
+        List<Integer> parsedWinningNumbers = parseWinningNumbers(winningNumbers);
+
+        validateUniqueNumbers(parsedWinningNumbers); // 중복 검사 메소드 호출
+        new Lotto(parsedWinningNumbers);
+    }
+
+    private List<Integer> parseWinningNumbers(String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(COMMA.getValue()))
+                .map(String::trim)
+                .map(this::parseNumber)
+                .toList();
+    }
+
+    private int parseNumber(String number) {
+        try {
+            int parsedNumber = Integer.parseInt(number);
+            validateNumberInRange(parsedNumber);
+            return parsedNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_NUMBER_INPUT.getMessage());
+        }
+    }
+
+    private void validateNumberInRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void validateUniqueNumbers(List<Integer> numbers) {
+        if (numbers.size() != new HashSet<>(numbers).size()) {
+            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER.getMessage());
+        }
+    }
 
     private void validateNotEmpty(String input) {
         if (input == null || input.isEmpty()) {
