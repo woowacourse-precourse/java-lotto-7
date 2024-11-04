@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.enums.LottoConfig;
+import lotto.exception.LottoExceptionMessage;
+
 import java.util.List;
 
 public class Lotto {
@@ -11,10 +14,33 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        int start = LottoConfig.LOTTO_START_NUM.getValue();
+        int end = LottoConfig.LOTTO_END_NUM.getValue();
+        int length = LottoConfig.LOTTO_NUM_LENGTH.getValue();
+
+        if (numbers.size() != length) {
+            throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUM_LENGTH_NOT_SATISFIED.getMessage());
+        }
+
+        if (numbers.stream().anyMatch(number -> (number < start) || (number > end))){
+            throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUM_OUT_OF_RANGE.getMessage());
+        }
+
+        if(numbers.stream().distinct().count() != numbers.size()){
+            throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUM_DUPLICATED.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+
+    public int getBonusNumber() {
+        return getNumbers().getLast();
+    }
+
+    @Override
+    public String toString() {
+        return getNumbers().toString();
+    }
 }
