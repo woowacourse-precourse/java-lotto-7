@@ -58,7 +58,7 @@ public class ConsumerTest {
                 break;
             }
         }
-        WinningNumber winningNumber = new WinningNumber(lottoNumbers, 7);
+        WinningNumber winningNumber = new WinningNumber(lottoNumbers, bonusNumber);
 
         //when
         consumer.setLottoResult(winningNumber);
