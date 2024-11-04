@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import lotto.answer.Answer;
 import lotto.answer.LottoRank;
@@ -28,5 +29,14 @@ public class Application {
         }
         user.calculateRateOfReturns();
         user.printResult();
+
+    }
+
+    private <T> T attempt(Supplier <T> inputSupplier) {
+        try {
+            return inputSupplier.get();
+        } catch (IllegalArgumentException e) {
+            return attempt(inputSupplier);
+        }
     }
 }
