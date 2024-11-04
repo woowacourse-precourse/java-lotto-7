@@ -12,7 +12,7 @@ public class WinningNumbersInput{
             try {
                 System.out.println("\n당첨 번호를 입력해 주세요.");
                 String numberSet = Console.readLine();
-                numbers = splitNumbers(numberSet); // 입력 받고 나누기 & 숫자로 변환
+                numbers = splitNumbers(numberSet);
                 return new Lotto(numbers);
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
@@ -26,7 +26,7 @@ public class WinningNumbersInput{
         List<Integer> tempNumbers = new ArrayList<>();
         String[] numbersArray = numberSet.split(",");
         for (String number : numbersArray) {
-            tempNumbers.add(Integer.parseInt(number.trim()));  // 공백 제거 후 숫자 변환해주기
+            tempNumbers.add(Integer.parseInt(number.trim()));
         }
         return tempNumbers;
     }

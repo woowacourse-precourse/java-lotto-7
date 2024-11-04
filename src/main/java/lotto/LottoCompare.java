@@ -9,7 +9,7 @@ public class LottoCompare {
 
         for (List<Integer> lotto : lottoNumbers) {
             List<Integer> tempNumbers = new ArrayList<>(numbers);
-            tempNumbers.retainAll(lotto);  // 메인 당첨 번호 일치
+            tempNumbers.retainAll(lotto);
 
             if (tempNumbers.size() > 2) {
                 result.add(compareBonusNumber(lotto, tempNumbers, bonusNumber));

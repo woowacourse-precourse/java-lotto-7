@@ -15,7 +15,7 @@ public class WinningDetailsDisplay {
         }
     }
 
-    public void printRate (int price, Map<WinningType, Integer> result) {  // 수익률 출력
+    public void printRate (int price, Map<WinningType, Integer> result) {
         int sum = 0;
         for (ResultType type : ResultType.values()) {
             WinningType winningType = WinningType.fromCount(type.getCount());
