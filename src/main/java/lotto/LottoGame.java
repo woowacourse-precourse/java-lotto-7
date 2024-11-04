@@ -23,7 +23,8 @@ public class LottoGame {
         printLottoNumbers(lottoNumbers);
 
         List<Integer> winningNumbers = getValidateWinningNumbers();
-        System.out.println("당첨 번호: " + winningNumbers);
+
+        getValidateBonusNumber(winningNumbers);
     }
 
     private int getValidatePurchaseAmount() {
@@ -59,7 +60,7 @@ public class LottoGame {
     }
 
     private void printLottoCount(int count) {
-        System.out.printf("%d개를 구매했습니다.%n", count);
+        System.out.printf("\n%d개를 구매했습니다.%n", count);
     }
 
     private List<List<Integer>> generateLottoNumbers(int count) {
@@ -81,7 +82,7 @@ public class LottoGame {
     private List<Integer> getValidateWinningNumbers() {
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요. (쉼표로 구분된 6개의 숫자)");
+                System.out.println("\n당첨 번호를 입력해 주세요. (쉼표로 구분된 6개의 숫자)");
                 String input = Console.readLine().trim();
                 List<Integer> winningNumbers = parseWinningNumbers(input);
                 new Lotto(winningNumbers); // Lotto 객체 생성 시 유효성 검사 수행
@@ -110,5 +111,48 @@ public class LottoGame {
         }
         return winningNumbers;
     }
+    public int getValidateBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String input = getInputBonusNumber();
+                int bonusNumber = parseAndValidateBonusNumber(input, winningNumbers);
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private String getInputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        return Console.readLine().trim();
+    }
+
+    private int parseAndValidateBonusNumber(String input, List<Integer> winningNumbers) {
+        if (input.isEmpty() || input.contains(" ")) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1개만 입력해 주세요.");
+        }
+
+        // 입력된 보너스 번호가 쉼표로 구분된 여러 개의 값인 경우
+        if (input.split(",").length > 1) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 1개만 입력해 주세요.");
+        }
+
+        int bonusNumber = Integer.parseInt(input);
+        validateBonusNumber(bonusNumber, winningNumbers);
+        return bonusNumber;
+    }
+
+    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자 1개입니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+        }
+    }
+
 }
 
