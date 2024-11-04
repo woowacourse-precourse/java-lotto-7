@@ -1,17 +1,10 @@
-package lotto.view.input;
+package lotto.view.output;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashMap;
 import java.util.List;
 
-public class Input {
-
-    public String purchaseAmount(){
-        System.out.println("구입금액을 입력해 주세요.");
-        return Console.readLine();
-    }
-
+public class Output {
 
     public HashMap<Integer, List<Integer>> getLottoNumbers(int getPurchaseAccount) {
         System.out.println(getPurchaseAccount + "개를 구매했습니다.");
@@ -23,8 +16,6 @@ public class Input {
             System.out.println(getLottoNumbers.get(i));
         }
 
-
         return getLottoNumbers;
     }
-
 }
