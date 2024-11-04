@@ -34,7 +34,7 @@ public class LottoController {
 
     private List<Lotto> publishLottos(BuyingPrice buyingPrice) {
         int numberOfLotto = buyingPriceService.returnNumberOfLotto(buyingPrice);
-        outputView.responseBuyingQuantity(numberOfLotto);
+        outputView.responseNumberOfLotto(numberOfLotto);
 
         List<Lotto> lottos = createLottoService.createRandomLottos(numberOfLotto);
         outputView.printLottos(lottos);
