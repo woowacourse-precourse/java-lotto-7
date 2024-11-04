@@ -1,14 +1,14 @@
 package lotto;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers.sort(Integer::compareTo);
         this.numbers = numbers;
     }
 
@@ -28,6 +28,12 @@ public class Lotto {
         if (nonDuplicateNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.");
         }
+    }
+
+    public List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public List<Integer> getNumbers() {
