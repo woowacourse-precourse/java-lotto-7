@@ -25,7 +25,5 @@ public class WinningNumberTest {
                 new Object[]{List.of(1, 2, 3, 4, 5, 6), 0},
                 new Object[]{List.of(1, 2, 3, 4, 5, 6), 46}
         );
-
-
     }
 }
