@@ -6,6 +6,10 @@ import java.util.List;
 
 public class LottoMaker {
 
+    private final static int START_INCLUSIVE = 1;
+    private final static int END_INCLUSIVE = 45;
+    private final static int COUNT = 6;
+
     private List<Lotto> lottos;
 
     public void makeLottos(int lottoCount) {
@@ -22,7 +26,7 @@ public class LottoMaker {
     }
 
     private List<Integer> getRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
     }
 
 }

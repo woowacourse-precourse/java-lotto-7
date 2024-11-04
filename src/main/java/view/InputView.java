@@ -15,7 +15,6 @@ public class InputView {
 
     private List<Integer> inputNumber;
 
-    // TODO: 구조가 비슷한 함수 있음, 합치기 고려
     public int getInputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String money = readLine();
