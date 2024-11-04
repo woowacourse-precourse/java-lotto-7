@@ -40,4 +40,8 @@ public class OutputView {
     public void printYield(double yield) {
         System.out.printf("총 수익률은 %.1f%%입니다.%n", yield);
     }
+
+    public void printExceptionMessage(String exceptionMessage){
+        System.out.println(exceptionMessage);
+    }
 }

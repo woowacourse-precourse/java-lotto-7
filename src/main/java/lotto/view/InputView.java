@@ -12,11 +12,7 @@ public class InputView {
 
     private static String getInput(String prompt) {
         System.out.println(prompt);
-        try {
-            return Console.readLine().trim();
-        } catch (NoSuchElementException e) {
-            return "";
-        }
+        return Console.readLine().trim();
     }
 
     public String getPurchaseAmount() {
