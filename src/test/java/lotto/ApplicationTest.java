@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -49,6 +50,24 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("잘못된 입력 값(-1000)에 대해 예외가 발생해야 한다.")
+    @Test
+    void shouldThrowExceptionWhenInputIsNegative() {
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("입력 값이 null일 때 예외가 발생해야 한다.")
+    @Test
+    void shouldThrowExceptionWhenInputIsNull() {
+        assertSimpleTest(() -> {
+            runException((String) null);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

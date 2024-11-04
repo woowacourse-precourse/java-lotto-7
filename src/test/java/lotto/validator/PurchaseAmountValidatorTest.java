@@ -30,6 +30,14 @@ public class PurchaseAmountValidatorTest {
                 .hasMessage("[ERROR] 구입 금액을 입력해 주세요.");
     }
 
+    @Test
+    @DisplayName("빈 문자열 입력 시 예외가 발생해야 한다")
+    void shouldThrowExceptionWhenInputIsEmptyString() {
+        assertThatThrownBy(() -> validator.validate(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구입 금액을 입력해 주세요.");
+    }
+
     @ParameterizedTest
     @CsvSource({"0", "-10"})
     @DisplayName("입력값이 양의 정수가 아니면 예외가 발생해야 한다")

@@ -14,24 +14,23 @@ public class ResultAnalyzerTest {
     void shouldReturn5thPlaceWhen3NumbersMatch() {
         ResultAnalyzer resultAnalyzer = new ResultAnalyzer();
         Lotto userTicket = new Lotto(List.of(1, 2, 3, 7, 8, 9));
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(List.of(userTicket), winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(List.of(userTicket), winningNumbers);
 
         assertThat(rankCount.get(LottoRank.FIFTH)).isEqualTo(1);
         assertThat(LottoRank.FIFTH.getPrize()).isEqualTo(5_000);
     }
+
 
     @DisplayName("4개 번호 일치할 때 4등 50,000원")
     @Test
     void shouldReturn4thPlaceWhen4NumbersMatch() {
         ResultAnalyzer resultAnalyzer = new ResultAnalyzer();
         Lotto userTicket = new Lotto(List.of(1, 2, 3, 4, 7, 8));
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(List.of(userTicket), winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(List.of(userTicket), winningNumbers);
 
         assertThat(rankCount.get(LottoRank.FOURTH)).isEqualTo(1);
         assertThat(LottoRank.FOURTH.getPrize()).isEqualTo(50_000);
@@ -42,10 +41,9 @@ public class ResultAnalyzerTest {
     void shouldReturn3rdPlaceWhen5NumbersMatch() {
         ResultAnalyzer resultAnalyzer = new ResultAnalyzer();
         Lotto userTicket = new Lotto(List.of(1, 2, 3, 4, 5, 8));
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(List.of(userTicket), winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(List.of(userTicket), winningNumbers);
 
         assertThat(rankCount.get(LottoRank.THIRD)).isEqualTo(1);
         assertThat(LottoRank.THIRD.getPrize()).isEqualTo(1_500_000);
@@ -56,10 +54,9 @@ public class ResultAnalyzerTest {
     void shouldReturn2ndPlaceWhen5NumbersPlusBonusMatch() {
         ResultAnalyzer resultAnalyzer = new ResultAnalyzer();
         Lotto userTicket = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(List.of(userTicket), winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(List.of(userTicket), winningNumbers);
 
         assertThat(rankCount.get(LottoRank.SECOND)).isEqualTo(1);
         assertThat(LottoRank.SECOND.getPrize()).isEqualTo(30_000_000);
@@ -70,10 +67,9 @@ public class ResultAnalyzerTest {
     void shouldReturn1stPlaceWhenAllNumbersMatch() {
         ResultAnalyzer resultAnalyzer = new ResultAnalyzer();
         Lotto userTicket = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(List.of(userTicket), winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(List.of(userTicket), winningNumbers);
 
         assertThat(rankCount.get(LottoRank.FIRST)).isEqualTo(1);
         assertThat(LottoRank.FIRST.getPrize()).isEqualTo(2_000_000_000);
@@ -93,10 +89,9 @@ public class ResultAnalyzerTest {
                 new Lotto(List.of(1, 7, 8, 9, 10, 11)),
                 new Lotto(List.of(7, 8, 9, 10, 11, 12))
         );
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(tickets, winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> rankCount = resultAnalyzer.getRankCounts(tickets, winningNumbers);
 
         assertThat(rankCount.get(LottoRank.FIRST)).isEqualTo(1);
         assertThat(rankCount.get(LottoRank.SECOND)).isEqualTo(1);

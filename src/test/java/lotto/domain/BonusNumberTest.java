@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -40,5 +41,11 @@ public class BonusNumberTest {
         assertThat(winningTicket.getBonusNumber()).isEqualTo(7);
     }
 
-
+    @DisplayName("중복 없이 유효한 보너스 번호와 당첨 번호로 WinningNumbers 객체가 정상적으로 생성된다.")
+    @Test
+    void shouldCreateWinningNumbersWhenValidBonusAndWinningNumbersAreProvided() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        assertThatNoException().isThrownBy(() -> new WinningNumbers(winningNumbers, bonusNumber));
+    }
 }
