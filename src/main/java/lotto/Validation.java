@@ -8,8 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validation {
-    private final int PRICE_PER_LOTTO = 1000;
+    private final int PRICE_PER_LOTTO;
 
+    Validation(int price_per_lotto){
+        this.PRICE_PER_LOTTO = price_per_lotto;
+    }
     public void validateLottoPrice(String lottoPrice) {
         int totalPrice = validateNumberFormatException(lottoPrice);
         validateIsPositiveNumber(totalPrice);
@@ -20,19 +23,19 @@ public class Validation {
         try {
             return Integer.parseInt(lottoPrice);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("구입 금액을 숫자로 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액을 숫자로 입력해 주세요.");
         }
     }
 
     private void validateIsPositiveNumber(int totalPrice) {
         if (totalPrice < 0) {
-            throw new IllegalArgumentException("구입 금액을 양수로 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액을 양수로 입력해 주세요.");
         }
     }
 
     private void validateIsDividedByPricePerLotto(int totalPrice) {
         if (totalPrice % PRICE_PER_LOTTO != 0) {
-            throw new IllegalArgumentException("구입 금액은 " + PRICE_PER_LOTTO + "로 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 " + PRICE_PER_LOTTO + "로 나누어 떨어져야 합니다.");
         }
     }
 
@@ -46,7 +49,7 @@ public class Validation {
         Pattern pattern = Pattern.compile("\\d{1,3}(,\\d{1,3}){5}");
         Matcher matcher = pattern.matcher(lottoNumber);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("당첨 입력 형식이 올바르지 않습니다. 콤마(,)로 구분되는 1이상 45 이하 숫자 6개를 입력해 주세요");
+            throw new IllegalArgumentException("[ERROR] 당첨 입력 형식이 올바르지 않습니다. 콤마(,)로 구분되는 1이상 45 이하 숫자 6개를 입력해 주세요");
         }
     }
 
@@ -55,7 +58,7 @@ public class Validation {
         for (String num : split) {
             int number = Integer.parseInt(num);
             if (number <= 0 || number >= 46)
-                throw new IllegalArgumentException("당첨 번호는 1이상 45이하 숫자로 입력해 주세요.");
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1이상 45이하 숫자로 입력해 주세요.");
         }
     }
 
@@ -64,7 +67,7 @@ public class Validation {
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(split));
         HashSet<String> hashSet = new HashSet<>(Arrays.asList(split));
         if (arrayList.size() != hashSet.size())
-            throw new IllegalArgumentException("서로 다른 당첨 번호 6개를 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 서로 다른 당첨 번호 6개를 입력해 주세요.");
     }
 
     public void validateBonusNumber(Lotto winningLotto, String bonusNumber) {
@@ -73,13 +76,13 @@ public class Validation {
             validateNumberOutOfRange(bonusNumber);
             validateHasDuplicatesToWinningNumbers(winningLotto, bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("보너스 번호를 숫자로 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 숫자로 입력해 주세요.");
         }
     }
 
     private void validateHasDuplicatesToWinningNumbers(Lotto winningLotto, String bonusNumber) {
         List<Integer> winningNumbers = winningLotto.getNumbers();
         if (winningNumbers.contains(Integer.parseInt(bonusNumber)))
-            throw new IllegalArgumentException("보너스 번호는 당첨번호와 달라야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 달라야 합니다.");
     }
 }
