@@ -11,8 +11,13 @@ import java.util.Map;
 public class Application {
     private static final int LOTTO_PRICE = 1000;
     private static final int PERCENT = 100;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_MUST_BE_NUMBER = " 구입 금액은 숫자여야 합니다.";
+    private static final String ERROR_MUST_BE_LOTTO_RANGE = " 번호는 1과 45사이여야 합니다.";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+
 
     public static void main(String[] args) {
         int lottoPieces;
@@ -25,7 +30,7 @@ public class Application {
                 System.out.printf("\n%d개를 구매했습니다.\n", lottoPieces);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println(ERROR_MESSAGE + " 구입 금액은 숫자여야 합니다.");
+                System.out.println(ERROR_MESSAGE + ERROR_MUST_BE_NUMBER);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -38,15 +43,25 @@ public class Application {
         String winningNumber = Console.readLine();
         Lotto winningLotto = new Lotto(parseWinningNumber(winningNumber));
 
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        String rawBonusNumber = Console.readLine();
-        int bonusNumber = parseBonusNumber(rawBonusNumber);
+        int bonusNumber;
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                String rawBonusNumber = Console.readLine();
+                bonusNumber = parseBonusNumber(rawBonusNumber);
+                break;
+            } catch (NumberFormatException e){
+                System.out.println(ERROR_MESSAGE + ERROR_MUST_BE_NUMBER);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         Map<String, Integer> lottoResult = drawLotto(lottos, winningLotto, bonusNumber);
         viewWinningLotto(lottoResult);
 
-        double porfitRate = calProfitRate(lottoResult, lottoPieces);
-        System.out.printf(PROFIT_RATE_MESSAGE, porfitRate);
+        double profitRate = calProfitRate(lottoResult, lottoPieces);
+        System.out.printf(PROFIT_RATE_MESSAGE, profitRate);
     }
 
     public static int buyLotto(final String input) {
@@ -57,7 +72,7 @@ public class Application {
 
     public static void validateBuyLotto(final int payment) {
         if (payment % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
 
@@ -94,7 +109,15 @@ public class Application {
 
     // 예외 처리 필요
     public static int parseBonusNumber(String input) {
-        return Integer.parseInt(input);
+        int bonusNumber = Integer.parseInt(input);
+        validateParseBonusNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    public static void validateParseBonusNumber(int bonusNumber) {
+        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + ERROR_MUST_BE_LOTTO_RANGE);
+        }
     }
 
     public static Map<String, Integer> drawLotto(final List<Lotto> lottos, final Lotto winningLotto, final int bonusNumber) {
