@@ -13,6 +13,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateNumberSize(numbers);
         validateDuplication(numbers);
+        CommonValidation.validateNumbersRange(numbers);
     }
 
     private static void validateNumberSize(List<Integer> numbers) {
