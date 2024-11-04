@@ -37,7 +37,7 @@ public class InputValidator {
 
 
     public static void validateWinningNumbers(String message) {
-        if (hasEdgeSeparator(message)) {
+        if (hasEdgeSeparator(message) || hasDuplicatedSeparator(message)) {
             throw new IllegalArgumentException("올바르지 않은 구분자 입력입니다.");
         }
     }
@@ -50,5 +50,9 @@ public class InputValidator {
     }
     private static boolean endsWithSeparator(String message) {
         return message.endsWith(SEPARATOR);
+    }
+
+    private static boolean hasDuplicatedSeparator(String message) {
+        return message.contains(SEPARATOR.repeat(2));
     }
 }
