@@ -1,7 +1,5 @@
 # LottoService 테스트
 
-이 문서에서는 `LottoService` 클래스의 주요 테스트 케이스와 각 테스트의 목적, 기대 결과를 설명합니다. `LottoService` 클래스는 로또 발행, 당첨 통계 계산, 수익률 계산 등의 기능을 제공합니다.
-
 ---
 
 ## 테스트 목적
@@ -17,7 +15,7 @@
 ### 1. 로또 발행 수량 확인
 
 - **목적**: `PurchaseRequestDto`의 구매 수량만큼 로또가 발행되는지 확인합니다.
-- **입력 값**: `PurchaseRequestDto` 객체에 구매 수량으로 `8`을 입력합니다.
+- **입력 값**: `PurchaseRequestDto` 객체에 구매로 `8000`을 입력합니다.
 - **기대 결과**: 발행된 `Lotto` 리스트의 크기가 `8`이어야 합니다.
 - **테스트 메서드**: `로또_발행_수량_확인`
 
@@ -25,7 +23,7 @@
 
 - **목적**: `WinningNumberRequestDto`로 전달된 당첨 번호와 보너스 번호가 `LottoMatching`을 통해 정확하게 매칭되고 통계가 생성되는지 확인합니다.
 - **입력 값**:
-  - `PurchaseRequestDto`로 구매 수량 `5` 설정
+  - `PurchaseRequestDto`로 구매  `5000` 설정
   - `WinningNumberRequestDto`로 당첨 번호 `[1, 2, 3, 4, 5, 6]` 및 보너스 번호 `7` 설정
 - **기대 결과**: `LottoMatching` 객체 내에서 생성된 `LottoStatistics`가 올바르게 계산되어 당첨 통계가 생성됩니다.
 - **테스트 메서드**: `당첨_번호와_보너스_번호_매칭_통계_확인`
