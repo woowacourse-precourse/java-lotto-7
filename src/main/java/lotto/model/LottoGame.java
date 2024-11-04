@@ -1,20 +1,22 @@
 package lotto.model;
 
+import static lotto.view.InputView.getStrInput;
+import static lotto.view.OutputView.printErrorMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.ErrorCode;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoGame {
     private static final int LOTTO_PRICE = 1000;
     private final OutputView outputView;
-    private final InputView inputView;
+    private final WinningLottoNumbers winningLottoNumbers;
 
-    public LottoGame(OutputView outputView, InputView inputView) {
+    public LottoGame(OutputView outputView, WinningLottoNumbers winningNumbers) {
         this.outputView = outputView;
-        this.inputView = inputView;
+        this.winningLottoNumbers = winningNumbers;
     }
 
     public List<Lotto> purchase() {
@@ -24,14 +26,20 @@ public class LottoGame {
         return generateLottoes(lottoCount);
     }
 
+    public void playLottoGame() {
+        List<Integer> winningNumbers =  winningLottoNumbers.getWinningNumber();
+        winningLottoNumbers.validatePositiveInteger(winningNumbers);
+    }
+
+
     public int getValidatedPrice() {
         while (true) {
-            String priceInput = inputView.getStrInput();
+            String priceInput = getStrInput();
 
             try {
                 return validatePrice(priceInput);
             } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
+                printErrorMessage(e.getMessage());
             }
         }
     }
