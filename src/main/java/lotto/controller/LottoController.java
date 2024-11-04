@@ -20,15 +20,16 @@ public class LottoController {
     }
 
     public void run() {
-
         PurchaseAmount purchaseAmount = InputHandler.readUntilValid(this::readPurchaseAmount);
         printPurchaseCount(purchaseAmount);
         LottoTicket lottoTicket = LottoTicket.of(lottoNumberGenerator, purchaseAmount);
         List<Lotto> ticket = lottoTicket.getTicket();
+
         displayPurchasedLottoNumbers(ticket);
         System.out.println();
 
         List<MatchResult> matchResults = getMatchResults(lottoTicket);
+        printWinningStatistics(matchResults);
 
         double profitRate = getProfitRate(matchResults, purchaseAmount.getPurchaseAmount());
         OutputView.printTotalProfitRate(profitRate);
@@ -55,10 +56,12 @@ public class LottoController {
     private List<MatchResult> getMatchResults(LottoTicket lottoTicket) {
         WinningNumber winningNumber = readWinningNumbers();
         BonusNumber bonusNumber = readBonusNumber(winningNumber);
-        List<MatchResult> matchResults = lottoTicket.gatherMatchResult(winningNumber, bonusNumber);
+        return lottoTicket.gatherMatchResult(winningNumber, bonusNumber);
+    }
+
+    private void printWinningStatistics(List<MatchResult> matchResults) {
         Map<LottoRank, Integer> lottoRankCount = produceStatistics(matchResults);
         OutputView.printWinningStatistics(lottoRankCount);
-        return matchResults;
     }
 
     private WinningNumber readWinningNumbers() {
