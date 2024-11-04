@@ -12,7 +12,9 @@ public class InputView {
     }
 
     public static String getUserLotto() {
-        return Console.readLine();
+        String userSixNumber = Console.readLine();
+        validateBlank(userSixNumber);
+        return userSixNumber;
     }
 
     public static String getUserBonus() {
