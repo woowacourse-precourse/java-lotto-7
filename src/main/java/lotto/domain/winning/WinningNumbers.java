@@ -28,7 +28,8 @@ public class WinningNumbers {
     }
 
     private static List<Integer> convertStringToIntList(String input) {
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.replaceAll("\\s+","")
+                        .split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
