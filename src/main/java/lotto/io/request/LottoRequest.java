@@ -13,7 +13,7 @@ public record LottoRequest(String winningNumbers) {
     public LottoRequest {
         validateEmpty(winningNumbers);
         validateDelimiter(winningNumbers);
-        validateLotto(winningNumbers);
+        //validateLotto(winningNumbers);
     }
 
     private void validateEmpty(String winningNumbers) {
