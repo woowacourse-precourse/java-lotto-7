@@ -2,24 +2,24 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
-import lotto.util.Validator;
+import lotto.model.LottoResult;
 
 import java.util.List;
 
 public class LottoView {
     public int getPurchasePrice(){
         System.out.println("구입금액을 입력해 주세요.");
-        return getValidatedInput(Validator::validatePurchasePrice);
+        return getValidatedInput(lotto.util.InputValidator::validatePurchasePrice);
     }
 
     public List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        return getValidatedInput(Validator::validateWinningNumbers);
+        return getValidatedInput(lotto.util.InputValidator::validateWinningNumbers);
     }
 
     public int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return getValidatedInput(Validator::validateBonusNumber);
+        return getValidatedInput(lotto.util.InputValidator::validateBonusNumber);
     }
 
     private <T> T getValidatedInput(InputValidator<T> validator) {
@@ -45,6 +45,7 @@ public class LottoView {
         }
     }
 
-    public void displayResult() {
+    public void displayResult(LottoResult result) {
+        System.out.println(result);
     }
 }
