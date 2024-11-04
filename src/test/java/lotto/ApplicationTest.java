@@ -98,6 +98,65 @@ class ApplicationTest extends NsTest {
         }
     }
 
+    @Nested
+    @DisplayName("로또 당첨 번호 예외 처리")
+    class WinningNumberErrorTest {
+
+        @DisplayName("로또 당첨 번호가 중복")
+        @Test
+        void duplicationOfInput() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,1,2,3,4,5");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("로또 당첨 번호가 너무 큰 값")
+        @Test
+        void inputIsTooBig() {
+            assertSimpleTest(() -> {
+                runException("1000", "10000000000,1,2,3,4,5");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("로또 당첨 번호에 알파벳")
+        @Test
+        void invalidInput1() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,a,3,4,5");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("로또 당첨 번호에 특수문자")
+        @Test
+        void invalidInput2() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,(,3,4,5");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("로또 당첨 번호에 공백")
+        @Test
+        void invalidInput3() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,,3,4,5");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("로또 당첨 번호에 공백")
+        @Test
+        void invalidInput4() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,7,3,4,");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
