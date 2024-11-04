@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.utils.ErrorMessage.INVALID_LOTTO;
 import static lotto.utils.ErrorMessage.BONUS_NUMBER_DUPLICATION;
+import static lotto.utils.ErrorMessage.INVALID_NUMBER;
 import static lotto.utils.ErrorMessage.INVALID_RANGE;
 
 import java.util.ArrayList;
@@ -39,8 +40,9 @@ public class LottoController {
     private LottoMachine inputPrice() {
         while (true) {
             try {
-                int amount = inputView.inputPrice();
-                return lottoService.createLottoMachine(amount);
+                String inputPrice = inputView.inputPrice();
+                int price = parseNumber(inputPrice);
+                return lottoService.createLottoMachine(price);
             } catch (IllegalArgumentException e) {
                 inputView.errorPrint(e.getMessage());
             }
@@ -82,12 +84,20 @@ public class LottoController {
     private int inputBonus(Lotto winnerLotto) {
         while (true) {
             try {
-                int bonus = inputView.inputBonus();
+                String inputBonus = inputView.inputBonus();
+                int bonus = parseNumber(inputBonus);
                 return validateBonus(winnerLotto, bonus);
             } catch (IllegalArgumentException e) {
                 inputView.errorPrint(e.getMessage());
             }
         }
+    }
+
+    private int parseNumber(String input) {
+        if (!(input.matches("\\d+"))) {
+            throw new NumberFormatException(INVALID_NUMBER);
+        }
+        return Integer.parseInt(input);
     }
 
     private int validateBonus(Lotto winnerLotto, int bonus) {

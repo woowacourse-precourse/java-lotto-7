@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.utils.ErrorMessage.*;
+import static lotto.utils.ErrorMessage.ERROR;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -16,30 +16,19 @@ public class InputView {
         System.out.println(errorMessage);
     }
 
-    public int inputPrice() {
-        while (true) {
-            try {
-                System.out.println(INPUT_PRICE_MESSAGE);
-                return Integer.parseInt(Console.readLine());
-            } catch (NumberFormatException e) {
-                errorPrint(INVALID_PRICE);
-            }
-        }
+    public String inputPrice() {
+        System.out.println(INPUT_PRICE_MESSAGE);
+        return Console.readLine();
     }
+
 
     public List<String> inputNumbers() {
         System.out.println(INPUT_WINNER_LOTTO_MESSAGE);
         return List.of(Console.readLine().split(","));
     }
 
-    public int inputBonus() {
-        while (true) {
-            try {
-                System.out.println(INPUT_BONUS_MESSAGE);
-                return Integer.parseInt(Console.readLine());
-            } catch (NumberFormatException e) {
-                errorPrint(INVALID_BOUNS_NUMBER);
-            }
-        }
+    public String  inputBonus() {
+        System.out.println(INPUT_BONUS_MESSAGE);
+        return Console.readLine();
     }
 }
