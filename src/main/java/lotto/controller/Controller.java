@@ -1,13 +1,6 @@
 package lotto.controller;
 
-import java.util.List;
-import lotto.model.Analyst;
-import lotto.model.Calculator;
-import lotto.model.Issuer;
-import lotto.model.Lotties;
-import lotto.model.Lotto;
-import lotto.model.LottoResult;
-import lotto.model.LottoResults;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,7 +9,8 @@ public class Controller {
     private final OutputView outputView;
     private final Calculator calculator;
     private final Issuer issuer;
-    private Lotties lotties;
+    private Lottos lottos;
+    private WinningNumbers winningNumbers;
     private LottoResults lottoResults;
 
     public Controller(InputView inputView, OutputView outputView) {
@@ -27,43 +21,80 @@ public class Controller {
     }
 
     public void runLottoTicketMachine() {
-        int lottoCount = prepareLottoRelease();
-        issueLotties(lottoCount);
+        int lottoTicketCount = prepareLottoRelease();
+        issueLottos(lottoTicketCount);
         createLottoResults();
         printLottoResults();
     }
 
     private int prepareLottoRelease() {
-        outputView.printInputMoneyPrompt();
-        String cost = inputView.inputCost();
-        return calculator.getLottoCount(cost);
+        while (true) {
+            try {
+                outputView.printInputTicketCountPrompt();
+                String purchaseAmount = inputView.inputPurchaseAmount();
+                return calculator.getLottoCount(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
-    private void issueLotties(int lottoCount) {
-        this.lotties = issuer.issueLotties(lottoCount);
-        outputView.printBoughtLottoCounts(lottoCount);
-        outputView.printBoughtLottoNumbers(lotties);
+    private void issueLottos(int lottoTicketCount) {
+        while (true) {
+            try {
+                this.lottos = issuer.issueLottos(lottoTicketCount);
+                outputView.printBoughtLottoTicketCount(lottoTicketCount);
+                outputView.printBoughtLottos(lottos);
+                return;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                lottoTicketCount = prepareLottoRelease();
+            }
+        }
     }
 
     private void createLottoResults() {
-        Lotto winningLotto = inputWinningLottoNumbers();
-        int bonusNumber = inputBonusNumber();
-        this.lottoResults = new LottoResults(winningLotto, bonusNumber);
+        Lotto winningLotto;
+        int bonusNumber;
+        while (true) {
+            winningLotto = getInputWinningLottoNumbers();
+            bonusNumber = getInputBonusNumber();
+            try {
+                winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
+                this.lottoResults = new LottoResults(winningNumbers);
+                return;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
-    private Lotto inputWinningLottoNumbers() {
-        outputView.printInputWinningNumbersPrompt();
-        return inputView.inputWinningLottoNumbers();
+    private Lotto getInputWinningLottoNumbers() {
+        while (true) {
+            try {
+                outputView.printInputWinningNumbersPrompt();
+                return inputView.inputWinningLottoNumbers();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
-    private int inputBonusNumber() {
-        outputView.printInputBonusNumbersPrompt();
-        return inputView.bonusWinningLottoNumber();
+    private int getInputBonusNumber() {
+        while (true) {
+            try {
+                outputView.printInputBonusNumberPrompt();
+                return inputView.bonusWinningLottoNumber();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private void printLottoResults() {
-        List<LottoResult> lottoResultsList = lottoResults.getLottoResults(lotties);
-        Analyst analyst = new Analyst(lottoResultsList, lotties.getCost());
-        outputView.printWinningStatics(analyst);
+        lottoResults.initLottoResults(lottos);
+        Analyst analyst = new Analyst();
+        outputView.printLottoResults(analyst.calculateWinLottoCount(lottoResults.getLottoResults()));
+        outputView.printLottoStatics(analyst.calculateYield(lottoResults.getLottoResults()));
     }
 }
