@@ -77,7 +77,7 @@ public class LottoConsole {
   private int inputBonusAfterChecking(List<Integer> winningNumbers) {
     try {
       int bonus = inputView.inputBonusNumber();
-      Lotto lotto = new Lotto(winningNumbers, bonus);
+      new Lotto(winningNumbers, bonus);
       return bonus;
     } catch (IllegalArgumentException e) {
       System.out.print(e.getMessage());
