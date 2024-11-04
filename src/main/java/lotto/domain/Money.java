@@ -28,4 +28,8 @@ public class Money {
             throw new InvalidInputMoneyDivideException();
         }
     }
+
+    public Integer getBuyLottoCount() {
+        return money / 1000;
+    }
 }
