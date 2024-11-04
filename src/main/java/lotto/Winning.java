@@ -20,8 +20,10 @@ public class Winning {
     }
 
     private void validateBonus(int[] winningNumbers, int bonusNumber){
-        if(bonusNumber<1||bonusNumber>45||containsDuplicate(winningNumbers,bonusNumber)){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1~45 사이의 숫자입니다.");
+        for(int i : winningNumbers) {
+            if (i == bonusNumber) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            }
         }
     }
 
@@ -39,19 +41,6 @@ public class Winning {
             }
         }
         return count;
-    }
-
-    private boolean containsDuplicate(int[] numbers, int target) {
-        int count = 0;
-        for (int number : numbers) {
-            if (number == target) {
-                count++;
-                if (count > 1) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     private boolean contains(int[] numbers, int target) {
