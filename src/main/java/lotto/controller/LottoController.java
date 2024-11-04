@@ -54,7 +54,7 @@ public class LottoController {
     private BonusNumber getBonusNumber(Lotto winningNumbers) {
         while (true) {
             try {
-                return new BonusNumber(InputView.readBonusNumber(), winningNumbers.getNumbers());
+                return new BonusNumber(InputView.readBonusNumber(), winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
