@@ -2,8 +2,10 @@ package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ValidatorTest {
@@ -52,21 +54,25 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {
-            "1,2,3,4,5,6 | 7"},
-            delimiter = '|')
-    void 당첨_번호_중복_검증_성공_테스트(String lottoNumbers, String bonusNumber) {
-        Validator.checkDuplicateLottoNumbers(lottoNumbers, bonusNumber);
+    @Test
+    void 당첨_번호_중복_검증_성공_테스트() {
+        List<Integer> lottoNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+        Validator.checkDuplicateBonusNumbers(lottoNumbers, bonusNumber);
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {
-            "1,2,3,4,5,6 | 1",
-            "1,2,3,4,5,1 | 7"},
-            delimiter = '|')
-    void 당첨_번호_중복_검증_실패_테스트(String lottoNumbers, String bonusNumber) {
-        assertThatThrownBy(() -> Validator.checkDuplicateLottoNumbers(lottoNumbers, bonusNumber))
+    @Test
+    void 당첨_번호_중복_검증_실패_테스트() {
+        List<Integer> lottoNumbers = new ArrayList<>(List.of(1, 1, 2, 3, 4, 5));
+        assertThatThrownBy(() -> Validator.checkDuplicateLottoNumbers(lottoNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스_번호_중복_검증_실패_테스트() {
+        List<Integer> lottoNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 1;
+        assertThatThrownBy(() -> Validator.checkDuplicateBonusNumbers(lottoNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
