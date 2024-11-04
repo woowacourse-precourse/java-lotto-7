@@ -1,7 +1,6 @@
 package lotto.view;
 
-import static lotto.constant.ErrorMessage.INVALID_NON_NUMERIC_INPUT;
-import static lotto.constant.ErrorMessage.INVALID_NULL_OR_BLANK;
+import static lotto.constant.ErrorMessage.*;
 
 import java.util.Arrays;
 
