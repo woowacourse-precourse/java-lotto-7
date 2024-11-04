@@ -22,7 +22,7 @@ public class WinningNumber {
     }
 
     private void validateDuplication(Lotto winningNumber, BonusNumber bonusNumber) {
-        if (winningNumber.getNumbers().contains(bonusNumber.getBonusNumber())) {
+        if (winningNumber.getNumbers().contains(bonusNumber.bonusNumber())) {
             throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
                     + ErrorMessage.UNIQUE_BONUS_NUMBER.getError());
         }

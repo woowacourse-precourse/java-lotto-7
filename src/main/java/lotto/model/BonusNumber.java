@@ -4,16 +4,9 @@ import lotto.util.common.ErrorMessage;
 import lotto.util.common.Limit;
 import lotto.util.common.Message;
 
-public class BonusNumber {
-    private final int bonusNumber;
-
-    public BonusNumber(int bonusNumber) {
+public record BonusNumber(int bonusNumber) {
+    public BonusNumber {
         validate(bonusNumber);
-        this.bonusNumber = bonusNumber;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
     }
 
     private void validate(int bonusNumber) {

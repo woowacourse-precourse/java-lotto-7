@@ -17,7 +17,7 @@ public class RankCalculator {
     }
 
     public boolean checkBonusNumber(Lotto userLotto, WinningNumber winningNumber) {
-        return userLotto.getNumbers().contains(winningNumber.getBonusNumber().getBonusNumber());
+        return userLotto.getNumbers().contains(winningNumber.getBonusNumber().bonusNumber());
     }
 
     private int compareSingleLotto(Lotto userLotto, WinningNumber winningNumber) {
