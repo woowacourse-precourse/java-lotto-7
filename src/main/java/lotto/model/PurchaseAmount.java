@@ -1,6 +1,7 @@
 package lotto.model;
 
-public class LottoBudget {
+import lotto.exception.ErrorCode;
+
 public class PurchaseAmount {
     private final int value;
 
@@ -18,17 +19,17 @@ public class PurchaseAmount {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_NOT_A_NUMBER.getMessage());
         }
     }
 
     private void validateValue(int value) {
         if (value % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_NOT_IN_UNITS_OF_THOUSAND.getMessage());
         }
 
         if (value < 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 음수가 될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_NEGATIVE.getMessage());
         }
     }
 

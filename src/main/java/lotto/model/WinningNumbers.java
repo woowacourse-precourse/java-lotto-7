@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.HashSet;
+import lotto.exception.ErrorCode;
 
 public class WinningNumbers {
     private final Lotto mainNumbers;
@@ -17,9 +18,9 @@ public class WinningNumbers {
         HashSet<Integer> lottoNumbers = new HashSet<>(lotto.getNumbers());
         HashSet<Integer> winningNumbers = new HashSet<>(mainNumbers.getNumbers());
 
-        return (int) lottoNumbers.stream()
+        return Math.toIntExact(lottoNumbers.stream()
                 .filter(winningNumbers::contains)
-                .count();
+                .count());
     }
 
     public boolean containsNumber(Lotto lotto) {
@@ -29,9 +30,8 @@ public class WinningNumbers {
     private int parseToInt(String number) {
         try {
             return Integer.parseInt(number);
-        }
-        catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야합니다.");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBERS_NOT_A_NUMBER.getMessage());
         }
     }
 
@@ -42,13 +42,13 @@ public class WinningNumbers {
 
     private void validateBonusNumberDuplicate(Lotto mainNumbers, int bonusNumber) {
         if (mainNumbers.containsNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBERS_DUPLICATED.getMessage());
         }
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }
 }
