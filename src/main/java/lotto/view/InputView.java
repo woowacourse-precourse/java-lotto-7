@@ -32,6 +32,14 @@ public class InputView {
 			.toList();
 	}
 
+	public static int readBonusNumber() {
+		OutputView.printMessage("보너스 번호를 입력해 주세요.");
+		String bonusNumber = Console.readLine();
+		validateNumber(bonusNumber);
+
+		return Integer.parseInt(bonusNumber);
+	}
+
 	private static void validateNumbers(String[] inputs) {
 		for (String input : inputs) {
 			validateNumber(input);
