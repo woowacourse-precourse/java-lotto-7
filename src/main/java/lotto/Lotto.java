@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,10 +12,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+       LottoValidator.validateLottoNumber(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public LottoRank checkRank(List<Integer> winningNumber, int bonusNumber) {
+        int matchCount = (int) numbers.stream()
+                .filter(winningNumber::contains)
+                .count();
+        boolean matchBonus = numbers.contains(bonusNumber);
+        return LottoRank.valueOf(matchCount, matchBonus);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
