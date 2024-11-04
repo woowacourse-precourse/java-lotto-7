@@ -1,4 +1,4 @@
-package lotto;
+package lotto.app;
 
 import lotto.controller.LottoAppController;
 import lotto.model.draw_numbers.DrawNumbers;

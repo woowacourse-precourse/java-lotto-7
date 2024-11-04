@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.app.LottoApp;
 import lotto.controller.LottoAppController;
 import lotto.model.lotto.LottoChecker;
 import lotto.model.lotto.LottoPublisher;
