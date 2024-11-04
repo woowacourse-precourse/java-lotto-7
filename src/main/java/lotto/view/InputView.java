@@ -17,6 +17,7 @@ public class InputView {
     }
 
     public static String inputBonusNumber() {
+        System.out.println();
         System.out.println(REQUIRE_BONUS_NUMBER);
         return readLine();
     }

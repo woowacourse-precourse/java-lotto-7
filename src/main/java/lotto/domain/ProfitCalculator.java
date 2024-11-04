@@ -7,7 +7,7 @@ public class ProfitCalculator {
 
     public double calculateProfit(WinningResult winningResult, PurchaseAmount purchaseAmount) {
         int purchasePrice = purchaseAmount.getPurchasePrice();
-        returnOnInvestment = ((winningResult.calculateProfit() - purchasePrice) * 100.0 / purchasePrice);
+        returnOnInvestment = (double) winningResult.calculateProfit() / purchasePrice * 100;
         return returnOnInvestment;
     }
 }

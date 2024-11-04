@@ -6,6 +6,7 @@ import lotto.domain.WinningNumbersCombinations;
 import lotto.domain.WinningResult;
 import lotto.dto.BonusNumber;
 import lotto.dto.LottoDraw;
+import lotto.dto.LottoResult;
 import lotto.dto.PurchaseAmount;
 import lotto.dto.WinningNumbers;
 import lotto.view.InputView;
@@ -23,7 +24,8 @@ public class LottoController {
         WinningResult winningResult = new WinningResult(lottos, winningCombinations);
         ProfitCalculator profitCalculator = new ProfitCalculator();
         double returnOnInvestment = profitCalculator.calculateProfit(winningResult, purchaseAmount);
-
+        LottoResult lottoResult = new LottoResult(returnOnInvestment, winningResult.displayWinningResult());
+        OutputView.printLottoResult(lottoResult);
     }
 
     public PurchaseAmount getValidLottoPurchaseAmount() {
@@ -40,7 +42,7 @@ public class LottoController {
         LottoDraw lottoResult = new LottoDraw(
                 purchaseAmount.getPurchaseAmount(),
                 lottos.displayLottos());
-        OutputView.printLottoResult(lottoResult);
+        OutputView.printLottoDraw(lottoResult);
     }
 
     public WinningNumbers getWinningNumbers() {
