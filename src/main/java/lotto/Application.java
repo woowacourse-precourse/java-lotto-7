@@ -37,7 +37,7 @@ public class Application {
             severalLottos.add(new Lotto());
         }
 
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        System.out.println("\n" + lottoCount + "개를 구매했습니다.");
         for (int i = 0; i < lottoCount; i++) {
             System.out.println(severalLottos.get(i).getNumbers());
         }
