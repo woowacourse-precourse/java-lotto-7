@@ -1,7 +1,5 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +9,11 @@ import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
 
 public class LottoService {
+    private final LottoNumberGenerator numberGenerator;
+
+    public LottoService() {
+        this.numberGenerator = new LottoNumberGenerator();
+    }
 
     public LottoTicket generateLottos(int purchaseAmount) {
         LottoTicket lottoTicket = new LottoTicket();
@@ -23,7 +26,7 @@ public class LottoService {
     }
 
     private Lotto generateSingleLotto() {
-        Lotto lotto = new Lotto(pickLottoNumber());
+        Lotto lotto = new Lotto(numberGenerator.generate());
         lotto.sortAscendingInteger();
         return lotto;
     }
@@ -68,11 +71,5 @@ public class LottoService {
             }
         }
         return matchCount;
-    }
-
-    private List<Integer> pickLottoNumber() {
-        return new ArrayList<>(
-                Randoms.pickUniqueNumbersInRange(LottoConstants.LOTTO_NUMBER_MIN, LottoConstants.LOTTO_NUMBER_MAX,
-                        LottoConstants.LOTTO_NUMBER_COUNT));
     }
 }
