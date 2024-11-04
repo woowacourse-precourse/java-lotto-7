@@ -9,8 +9,15 @@ public class WinningCombination {
     private final Bonus bonus;
 
     public WinningCombination(Lotto winningLotto, Bonus bonus) {
+        validateBonusNotInWinningNumbers(winningLotto, bonus);
         this.winningLotto = winningLotto;
         this.bonus = bonus;
+    }
+
+    private void validateBonusNotInWinningNumbers(Lotto winningLotto, Bonus bonus) {
+        if (winningLotto.getNumbers().contains(bonus.getNumber())) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 포함될 수 없습니다.");
+        }
     }
 
     public Map<Rank, Integer> lottoWinningResult(LottoTicket lottoTicket) {
