@@ -16,6 +16,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR] 보너스 번호는 숫자여야 합니다.";
 
+    @AfterEach
+    void tearDown() {
+        Console.close();
+    }
+
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
