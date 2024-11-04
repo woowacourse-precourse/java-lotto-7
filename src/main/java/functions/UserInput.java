@@ -3,13 +3,10 @@ package functions;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.Lotto;
-import lotto.LottoService;
 
 public class UserInput {
 
-    LottoService lottoService = new LottoService();
     InputValidation validation = new InputValidation();
-
 
     public int purchaseToNumberOfTickets() {
         while (true) {

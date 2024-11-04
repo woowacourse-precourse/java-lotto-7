@@ -2,7 +2,6 @@ package lotto;
 
 import enums.Prize;
 import functions.UserInput;
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +26,7 @@ public class Application {
         System.out.println();
 
         HashMap<String, Integer> lottoResult = lottoService.assessLottoOutcome(
-                lottoService.getInitialLottoResult(), tickets, winningNumber.getNumbers(),
+                lottoService.getInitialLottoResult(), tickets, winningNumber,
                 bonusNumber);
 
         System.out.println("당첨 통계");

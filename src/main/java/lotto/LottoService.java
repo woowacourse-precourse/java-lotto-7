@@ -30,47 +30,11 @@ public class LottoService {
         return lottoResult;
     }
 
-    public int getNumberOfMatch(List<Integer> ticket, List<Integer> winningNumber) {
-        int count = 0;
-        for (int number : ticket) {
-            if (winningNumber.contains(number)) {
-                count++;
-            }
-        }
-
-        return count;
-    }
-
-    public Prize getLottoRank(int NumberOfMatch, boolean hasBonusNumber) {
-        if (NumberOfMatch == 6) {
-            return Prize.FIRST;
-        }
-
-        if (NumberOfMatch == 5 && hasBonusNumber) {
-            return Prize.SECOND;
-        }
-
-        if (NumberOfMatch == 5) {
-            return Prize.THIRD;
-        }
-
-        if (NumberOfMatch == 4) {
-            return Prize.FOURTH;
-        }
-
-        if (NumberOfMatch == 3) {
-            return Prize.FIFTH;
-        }
-
-        return null;
-    }
-
     public HashMap<String, Integer> assessLottoOutcome(HashMap<String, Integer> lottoResult,
-            List<List<Integer>> tickets, List<Integer> winningNumber, int bonusNumber) {
+            List<List<Integer>> tickets, Lotto winningNumber, int bonusNumber) {
         for (List<Integer> ticket : tickets) {
-            int NumberOfMatch = getNumberOfMatch(ticket, winningNumber);
             boolean hasBonusNumber = ticket.contains(bonusNumber);
-            Prize lottoRank = getLottoRank(NumberOfMatch, hasBonusNumber);
+            Prize lottoRank = winningNumber.getLottoRank(ticket, hasBonusNumber);
 
             if (lottoRank != null) {
                 lottoResult.put(lottoRank.name(), lottoResult.get(lottoRank.name()) + 1);

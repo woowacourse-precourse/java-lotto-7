@@ -2,7 +2,6 @@ package lotto;
 
 import enums.Prize;
 import functions.InputValidation;
-import functions.UserInput;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -97,18 +96,22 @@ class LottoTest {
 
     @Test
     void 일치하는_숫자의_개수를_반환() {
-        assertThat(new LottoService().getNumberOfMatch(List.of(1, 2, 3, 4, 5, 6),
-                List.of(2, 3, 4, 5, 6, 7))).isEqualTo(5);
-        assertThat(new LottoService().getNumberOfMatch(List.of(10, 11, 12, 13, 14, 15),
-                List.of(2, 3, 4, 5, 6, 7))).isEqualTo(0);
+        Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(winningNumber.getNumberOfMatch(List.of(2, 3, 4, 5, 6, 7))).isEqualTo(5);
+        assertThat(winningNumber.getNumberOfMatch(List.of(10, 11, 12, 13, 14, 15))).isEqualTo(0);
     }
 
     @Test
     void 일치하는_숫자의_개수와_보너스번호_일치여부에_따라_알맞은_등수를_반환() {
-        assertThat(new LottoService().getLottoRank(6, true)).isEqualTo(Prize.FIRST);
-        assertThat(new LottoService().getLottoRank(6, false)).isEqualTo(Prize.FIRST);
-        assertThat(new LottoService().getLottoRank(5, true)).isEqualTo(Prize.SECOND);
-        assertThat(new LottoService().getLottoRank(5, false)).isEqualTo(Prize.THIRD);
+        Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // bonusNumber = 7
+
+        assertThat(winningNumber.getLottoRank(List.of(1, 2, 3, 4, 5, 6), true)).isEqualTo(
+                Prize.FIRST);
+        assertThat(winningNumber.getLottoRank(List.of(2, 3, 4, 5, 6, 7), true)).isEqualTo(
+                Prize.SECOND);
+        assertThat(winningNumber.getLottoRank(List.of(2, 3, 4, 5, 6, 8), false)).isEqualTo(
+                Prize.THIRD);
     }
 
     @Test
@@ -118,7 +121,8 @@ class LottoTest {
                         List.of(3, 4, 5, 6, 7, 8), List.of(4, 5, 6, 7, 8, 9),
                         List.of(5, 6, 7, 8, 9, 10), List.of(1, 2, 3, 9, 10, 11),
                         List.of(1, 2, 3, 10, 11, 12), List.of(2, 3, 4, 5, 6, 8)),
-                List.of(1, 2, 3, 4, 5, 6), 7)).containsEntry("FIRST", 1).containsEntry("SECOND", 1)
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7)).containsEntry("FIRST", 1)
+                .containsEntry("SECOND", 1)
                 .containsEntry("THIRD", 1).containsEntry("FOURTH", 1).containsEntry("FIFTH", 3);
     }
 
