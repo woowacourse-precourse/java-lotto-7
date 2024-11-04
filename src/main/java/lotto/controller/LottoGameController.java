@@ -62,7 +62,7 @@ public class LottoGameController {
     }
 
     private PublishedLottiesDTO generateLottoTicket(UserMoneyDTO userMoneyDTO) {
-        Ticket ticket = Ticket.from(userMoneyDTO.getUserMoney());
+        Ticket ticket = Ticket.of(userMoneyDTO.getUserMoney());
         LottoBowl lottoBowl = LottoBowl.from(ticket);
 
         return PublishedLottiesDTO.from(lottoBowl.publishLotties(), ticket);
@@ -102,7 +102,7 @@ public class LottoGameController {
                 OutputView.printEnter();
                 Money userMoney = new Money(Integer.parseInt(rawUserMoney));
 
-                return new UserMoneyDTO(userMoney);
+                return UserMoneyDTO.of(userMoney);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -123,7 +123,7 @@ public class LottoGameController {
                         .map(Integer::parseInt)
                         .toList());
 
-                return new UserSixNumberDTO(userSixNumber);
+                return UserSixNumberDTO.of(userSixNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -139,7 +139,7 @@ public class LottoGameController {
 
                 UserLotto userLotto = new UserLotto(userSixNumber, Integer.parseInt(rawBonus));
 
-                return new UserLottoDTO(userLotto);
+                return UserLottoDTO.of(userLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

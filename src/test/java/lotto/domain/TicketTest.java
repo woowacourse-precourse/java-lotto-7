@@ -14,7 +14,7 @@ public class TicketTest {
     @ValueSource(ints = {1000, 3000, 5000, 10000, 99000})
     void 올바른_티켓_갯수를_반환한다(int target) {
         Money money = new Money(target);
-        Ticket ticket = Ticket.from(money);
+        Ticket ticket = Ticket.of(money);
         assertThat(ticket.getTicket()).isEqualTo(target / 1_000);
     }
 }

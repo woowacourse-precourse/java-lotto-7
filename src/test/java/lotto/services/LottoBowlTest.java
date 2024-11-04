@@ -16,7 +16,7 @@ public class LottoBowlTest {
     @Test
     void 로또_갯수_테스트() {
         Money testMoney = new Money(6000);
-        Ticket testTicket = Ticket.from(testMoney);
+        Ticket testTicket = Ticket.of(testMoney);
 
         LottoBowl testLottoBowl = LottoBowl.from(testTicket);
         List<Lotto> testLotties = testLottoBowl.publishLotties().getLotties();
