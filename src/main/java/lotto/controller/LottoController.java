@@ -62,30 +62,30 @@ public class LottoController {
     }
 
     private WinningLotto inputWinningLotto() {
-        List<Integer> winningNumbersList = inputWinningNumbers();
-        int bonusNumber = inputBonusNumber(winningNumbersList);
+        List<Integer> winningNumbersList = inputWinningNumbers(); // 당첨 번호 입력
+        int bonusNumber = inputBonusNumber(winningNumbersList); // 보너스 번호 입력
 
         // WinningLotto 생성 시 발생할 수 있는 예외를 처리
-        try {
-            return new WinningLotto(winningNumbersList, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());  // 예외 메시지 출력
-            return inputWinningLotto();  // 재입력 요청
-        }
+        return new WinningLotto(winningNumbersList, bonusNumber);
     }
 
     private List<Integer> inputWinningNumbers() {
         InputLottoNumbersValidator validator = new InputLottoNumbersValidator();
-        return Retry.retryOnException(() -> {
-            String winningLotto = inputView.getLottoNumbers();
-            validator.validateSplitDelimiter(winningLotto);
-            String[] winningNumbers = winningLotto.split(DELIMITER);
-            List<Integer> numbersList = new ArrayList<>();
-            for (String number : winningNumbers) {
-                numbersList.add(Integer.parseInt(number.trim()));
+        while (true) {
+            try {
+                String winningLotto = inputView.getLottoNumbers();
+                validator.validateSplitDelimiter(winningLotto);
+                String[] winningNumbers = winningLotto.split(DELIMITER);
+                List<Integer> numbersList = new ArrayList<>();
+                for (String number : winningNumbers) {
+                    numbersList.add(Integer.parseInt(number.trim()));
+                }
+                return numbersList;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());  // 예외 메시지 출력
+                System.out.println("당첨 번호를 다시 입력하세요.");
             }
-            return numbersList;
-        });
+        }
     }
 
     private int inputBonusNumber(List<Integer> winningNumbersList) {
