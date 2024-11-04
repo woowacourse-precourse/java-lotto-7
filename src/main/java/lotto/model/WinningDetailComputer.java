@@ -55,11 +55,12 @@ public class WinningDetailComputer {
         }
     }
 
-    public long getReturnPercent(int money) {
-        long totalPrice = 0;
+    public long getReturnPercent(double money) {
+        double totalPrice = 0;
         for (WinningPriceStore store : getWinningDetailList()) {
             totalPrice += store.getTotalPrice();
         }
-        return Math.round((float) totalPrice / money);
+        long returnPercent = Math.round(((double) (totalPrice - money) / money) * 100);
+        return returnPercent;
     }
 }

@@ -13,7 +13,7 @@ public class OutputMessageConstants {
     public static final String LINE = "---";
 
     public static final String GET_MESSAGE = "개 일치 ";
-    public static final String GET_BONUS_MESSAGE = "개 일치, 보너스 볼 일치";
+    public static final String GET_BONUS_MESSAGE = "개 일치, 보너스 볼 일치 ";
     public static final String LOTTO_UNIT = "개";
     public static final String MIDDLE_BAR = " - ";
     public static final String OPEN_BRACKET = "(";
