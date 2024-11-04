@@ -23,7 +23,7 @@ public class InputTest {
         String input = "13000";
 
         int expectedAmount = 13000;
-        int actualAmount = inputParser.purchaseAmountToInt(input);
+        int actualAmount = inputParser.convertPurchaseAmountToInt(input);
 
         assertEquals(expectedAmount, actualAmount, "입력 금액이 제대로 변환되지 않았습니다.");
     }
@@ -34,7 +34,7 @@ public class InputTest {
         String input = "1,2,3,4,5,6";
 
         List<Integer> expectedWinningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        List<Integer> actualWinningNumbers = inputParser.winNumList(input);
+        List<Integer> actualWinningNumbers = inputParser.getWinNumList(input);
 
         assertEquals(expectedWinningNumbers, actualWinningNumbers, "당첨 번호가 제대로 변환되지 않았습니다.");
     }
@@ -45,7 +45,7 @@ public class InputTest {
         String bonusNum = "5";
         int expectedBonusNumber = 5;
 
-        int actualBonusNumber = inputParser.inputWinningBonusNumber(bonusNum);
+        int actualBonusNumber = inputParser.convertWinningBonusNumber(bonusNum);
 
         assertEquals(expectedBonusNumber, actualBonusNumber, "보너스 번호가 제대로 변환되지 않았습니다.");
     }
