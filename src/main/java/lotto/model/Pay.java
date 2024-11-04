@@ -8,12 +8,14 @@ public class Pay {
     private Pay(String input) {
         try {
             this.money = Integer.parseInt(input);
-            if (this.money > 1000 || this.money < 0) {
-                throw new NumberFormatException();
+경            if (this.money < 1000) {
+                throw new IllegalArgumentException();
             }
-            this.amount = money % 1000;
-            this.change = money / 1000;
+            this.amount = money / 1000;
+            this.change = money % 1000;
         } catch (NumberFormatException e) {
+            throw e;
+        } catch (IllegalArgumentException e) {
             throw e;
         }
     }
