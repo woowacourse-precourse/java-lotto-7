@@ -23,3 +23,7 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+// UTF-8 인코딩 설정 추가
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

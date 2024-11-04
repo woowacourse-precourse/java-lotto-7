@@ -26,7 +26,7 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45의 숫자여야 합니다.");
             }
         }
-        Collections.sort(numbers); // 리스트 정렬
+        Collections.sort(numbers);
         for (int i = 0; i < numbers.size() - 1; i++) {
             if (numbers.get(i).equals(numbers.get(i + 1))) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 불가능합니다.");
@@ -65,11 +65,16 @@ public class Lotto {
         for (String num : input.split(",")) {
             numbers.add(Integer.parseInt(num.trim()));
         }
-        new Lotto(numbers);
+        try {
+            Lotto lotto = new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNum = 0;
         try {
-            int bonusNum = parseInt(Console.readLine());
+            bonusNum = parseInt(Console.readLine());
             if (bonusNum < 1 || bonusNum > 45) {
                 throw new IllegalArgumentException();
             }
@@ -77,11 +82,9 @@ public class Lotto {
             System.out.println("보너스번호는 1~45의 정수 입니다.");
         }
 
-        //당첨확인 메소드
         LottoChecker lottoChecker = new LottoChecker();
-        lottoChecker.lottoChecker(randomTickets);
+        lottoChecker.lottoChecker(numbers, randomTickets, bonusNum);
 
-//        수익률계산 메소드
         ProfitCalc profit = new ProfitCalc();
         float profit_ = profit.profitCalc(price);
 
@@ -90,7 +93,7 @@ public class Lotto {
         System.out.println("---");
 
 
-        System.out.println("총 수익률은 "+String.format(".1f",profit_)+"% 입니다.");
+        System.out.println("총 수익률은 " + String.format(".1f", profit_) + "% 입니다.");
 
     }
 
