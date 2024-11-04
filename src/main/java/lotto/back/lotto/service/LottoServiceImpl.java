@@ -1,7 +1,7 @@
 package lotto.back.lotto.service;
 
-import java.util.UUID;
 import lotto.back.global.annotation.Service;
+import lotto.back.lotto.config.LottoConfig;
 import lotto.back.lotto.domain.Lotto;
 import lotto.back.lotto.domain.Lottos;
 import lotto.back.lotto.domain.result.LottoResults;
@@ -31,12 +31,25 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public PurchasedLottoResponseDTOs purchase(PurchaseLottoRequestDTO purchaseLottoRequestDTO) {
-        UUID uuid = UUID.randomUUID();
-        Lottos lottos = Lottos.purchase(uuid, purchaseLottoRequestDTO.price());
+        validatePrice(purchaseLottoRequestDTO.price());
+        Integer lottoCount = getLottoCount(purchaseLottoRequestDTO.price());
 
+        Lottos lottos = Lottos.generateRandomLottos(lottoCount);
         purchasedLottosRepository.save(lottos);
 
         return PurchasedLottoResponseDTOs.from(lottos);
+    }
+
+    private void validatePrice(Integer price) {
+        if ((price <= 0) || (price % LottoConfig.PRICE.get() != 0)) {
+            throw new CustomIllegalArgumentException(
+                    String.format("로또 가격은 개당 %d원입니다.", LottoConfig.PRICE.get())
+            );
+        }
+    }
+
+    private Integer getLottoCount(Integer price) {
+        return price / LottoConfig.PRICE.get();
     }
 
     @Override

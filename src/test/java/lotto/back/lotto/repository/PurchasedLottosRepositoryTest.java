@@ -1,6 +1,5 @@
 package lotto.back.lotto.repository;
 
-import java.util.UUID;
 import lotto.back.lotto.domain.Lottos;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,12 +11,11 @@ class PurchasedLottosRepositoryTest {
     @Test
     void 기본_동작_테스트() {
         // given
-        UUID uuid = UUID.randomUUID();
-        Lottos lottos = Lottos.purchase(uuid, 1000);
+        Lottos lottos = Lottos.generateRandomLottos(1000);
 
         // when
         purchasedLottosRepository.save(lottos);
-        Lottos savedLottos = purchasedLottosRepository.findById(uuid);
+        Lottos savedLottos = purchasedLottosRepository.findById(lottos.getUuid());
 
         // then
         Assertions.assertThat(savedLottos).isEqualTo(lottos);
