@@ -64,6 +64,8 @@ public class LottoGame {
 
     private void match(LottoTicket lottoTicket, WinningCombination winningCombination) {
         Map<Rank, Integer> lottoResult = winningCombination.lottoWinningResult(lottoTicket);
+
+        output.printLottoStatistics(lottoResult);
     }
 
     private <T> T retryUntilValid(Supplier<T> supplier) {
