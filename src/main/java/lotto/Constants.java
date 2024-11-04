@@ -9,4 +9,6 @@ public class Constants {
     public static final Integer MIN_NUMBER = 1;
     public static final Integer MAX_NUMBER = 45;
     public static final Integer PICK_NUMBER = 6;
+
+    public static final int LOTTO_UNIT = 1000;
 }
