@@ -1,6 +1,6 @@
-package lotto.temp;
+package lotto.util;
 
-import lotto.util.CommonIo;
+import lotto.util.common.CommonIo;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

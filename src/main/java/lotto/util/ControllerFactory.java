@@ -1,4 +1,4 @@
-package lotto.temp;
+package lotto.util;
 
 import lotto.controller.BonusNumberController;
 import lotto.controller.LottoController;

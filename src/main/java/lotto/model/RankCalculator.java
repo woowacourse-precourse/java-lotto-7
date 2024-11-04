@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.util.Limit;
+import lotto.util.common.Limit;
 
 import java.util.HashMap;
 import java.util.List;

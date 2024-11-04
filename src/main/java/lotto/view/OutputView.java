@@ -1,8 +1,8 @@
 package lotto.view;
 
 import lotto.model.Rank;
-import lotto.util.CommonIo;
-import lotto.util.Message;
+import lotto.util.common.CommonIo;
+import lotto.util.common.Message;
 
 import java.text.NumberFormat;
 

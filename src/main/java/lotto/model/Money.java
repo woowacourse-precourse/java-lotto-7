@@ -1,8 +1,8 @@
 package lotto.model;
 
-import lotto.util.ErrorMessage;
-import lotto.util.Limit;
-import lotto.util.Message;
+import lotto.util.common.ErrorMessage;
+import lotto.util.common.Limit;
+import lotto.util.common.Message;
 
 public class Money {
     private final int amount;

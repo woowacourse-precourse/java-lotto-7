@@ -1,7 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.util.Limit;
+import lotto.util.common.Limit;
 
 import java.util.ArrayList;
 import java.util.Comparator;

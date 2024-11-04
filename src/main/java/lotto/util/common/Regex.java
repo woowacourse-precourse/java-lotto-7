@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.common;
 
 public enum Regex {
     ONLY_DIGIT("^[0-9]*$"),

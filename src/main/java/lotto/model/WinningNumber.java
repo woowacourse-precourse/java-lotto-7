@@ -1,7 +1,7 @@
 package lotto.model;
 
-import lotto.util.ErrorMessage;
-import lotto.util.Message;
+import lotto.util.common.ErrorMessage;
+import lotto.util.common.Message;
 
 public class WinningNumber {
     private final Lotto winningNumber;

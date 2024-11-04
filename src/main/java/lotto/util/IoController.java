@@ -1,9 +1,9 @@
-package lotto.temp;
+package lotto.util;
 
 import lotto.model.Lotto;
-import lotto.util.CommonIo;
-import lotto.util.ErrorMessage;
-import lotto.util.Message;
+import lotto.util.common.CommonIo;
+import lotto.util.common.ErrorMessage;
+import lotto.util.common.Message;
 
 import java.util.List;
 

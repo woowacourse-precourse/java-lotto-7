@@ -1,6 +1,6 @@
-package lotto.temp;
+package lotto.model;
 
-import lotto.util.Limit;
+import lotto.util.common.Limit;
 
 public class Statics {
     private static final float FLOAT_FORMAT = 10.0f;

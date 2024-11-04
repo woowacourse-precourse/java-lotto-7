@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import lotto.service.TicketService;
-import lotto.temp.IoComponent;
+import lotto.util.IoComponent;
 
-import static lotto.util.RepeatInput.repeatUntilValid;
+import static lotto.util.common.RepeatInput.repeatUntilValid;
 
 public class PurchaseController {
     private final TicketService ticketService;

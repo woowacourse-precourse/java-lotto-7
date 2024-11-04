@@ -1,6 +1,5 @@
-package lotto.temp;
+package lotto.model;
 
-import lotto.model.WinningNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

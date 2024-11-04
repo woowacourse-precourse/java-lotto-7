@@ -2,9 +2,9 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.WinningNumberGenerator;
-import lotto.temp.IoComponent;
+import lotto.util.IoComponent;
 
-import static lotto.util.RepeatInput.repeatUntilValid;
+import static lotto.util.common.RepeatInput.repeatUntilValid;
 
 public class WinningNumberGenerationController {
     private final WinningNumberGenerator winningNumberGenerator;

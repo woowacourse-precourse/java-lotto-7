@@ -13,15 +13,15 @@ import lotto.model.RankCalculator;
 import lotto.model.WinningNumber;
 import lotto.model.WinningNumberGenerator;
 import lotto.service.TicketService;
-import lotto.temp.ControllerFactory;
-import lotto.temp.IoComponent;
-import lotto.temp.LottoComponent;
-import lotto.util.CommonIo;
+import lotto.util.ControllerFactory;
+import lotto.util.IoComponent;
+import lotto.util.LottoComponent;
+import lotto.util.common.CommonIo;
 
 import java.util.List;
 import java.util.Map;
 
-import static lotto.util.RepeatInput.repeatUntilValid;
+import static lotto.util.common.RepeatInput.repeatUntilValid;
 
 public class Application {
     public static void main(String[] args) {

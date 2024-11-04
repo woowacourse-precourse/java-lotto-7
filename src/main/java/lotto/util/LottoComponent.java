@@ -1,4 +1,4 @@
-package lotto.temp;
+package lotto.util;
 
 import lotto.model.LottoGenerator;
 import lotto.model.RankCalculator;

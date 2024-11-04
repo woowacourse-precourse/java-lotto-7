@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.common;
 
 import java.util.function.Supplier;
 

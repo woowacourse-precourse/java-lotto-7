@@ -1,8 +1,8 @@
 package lotto.model;
 
-import lotto.util.ErrorMessage;
-import lotto.util.Message;
-import lotto.util.Regex;
+import lotto.util.common.ErrorMessage;
+import lotto.util.common.Message;
+import lotto.util.common.Regex;
 
 import java.util.Arrays;
 import java.util.List;

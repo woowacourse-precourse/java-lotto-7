@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.common;
 
 public enum Limit {
     DEFAULT(0),

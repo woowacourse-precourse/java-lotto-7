@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.util.CommonIo;
-import lotto.util.Message;
+import lotto.util.common.CommonIo;
+import lotto.util.common.Message;
 
 public class InputView {
     private final CommonIo io;

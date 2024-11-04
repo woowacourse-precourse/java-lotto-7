@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.common;
 
 public enum Message {
     ERROR_TAG("[ERROR]"),

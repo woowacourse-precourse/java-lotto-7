@@ -4,11 +4,9 @@ import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.RankCalculator;
 import lotto.model.WinningNumber;
-import lotto.temp.IoComponent;
-import lotto.temp.Statics;
-import lotto.util.CommonIo;
-import lotto.util.Limit;
-import lotto.view.OutputView;
+import lotto.util.IoComponent;
+import lotto.model.Statics;
+import lotto.util.common.Limit;
 
 import java.util.Arrays;
 import java.util.Comparator;
