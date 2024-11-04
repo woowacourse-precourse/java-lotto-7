@@ -5,6 +5,7 @@ public final class ErrorMessages {
     public static final String INVALID_LOTTO_NUMBER_LENGTH = "로또 번호는 6개여야 합니다.";
     public static final String INVALID_LOTTO_NUMBER_RANGE = "로또 번호는 1이상 45이하여야 합니다.";
     public static final String DUPLICATE_LOTTO_NUMBER = "로또 번호는 중복되면 안됩니다.";
+    public static final String NON_INTEGER_LOTTO_NUMBER = "로또 번호는 정수여야 합니다.";
 
     // 구매 금액 관련 에러 메시지
     public static final String NON_POSITIVE_PURCHASE_AMOUNT = "구매 금액은 양수여야 합니다.";
