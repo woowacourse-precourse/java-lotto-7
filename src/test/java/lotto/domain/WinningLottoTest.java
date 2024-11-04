@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.exception.lotto.LottoNumberDuplicateException;
 import lotto.exception.lotto.LottoNumberRangeException;
+import lotto.exception.lotto.LottoNumberSizeException;
 import lotto.util.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("당첨 번호 검증")
 class WinningLottoTest {
     @Test
-    @DisplayName("1~45 사이의 중복되지 않는 숫자일 때")
+    @DisplayName("1~45 사이의 중복되지 않는 6개의 숫자일 때")
     void validateWinningLotto() {
         assertThat(WinningLotto.from(List.of(1, 2, 3, 4, 5, 45))).isInstanceOf(WinningLotto.class);
     }
@@ -40,6 +41,10 @@ class WinningLottoTest {
                         ErrorMessage.LOTTO_NUMBER_RANGE, "1~45 사이가 아닐 때"),
                 Arguments.of(List.of(0, 2, 3, 4, 5, 45), LottoNumberRangeException.class,
                         ErrorMessage.LOTTO_NUMBER_RANGE, "1~45 사이가 아닐 때"),
+                Arguments.of(List.of(1, 2, 3, 4, 5), LottoNumberSizeException.class,
+                        ErrorMessage.LOTTO_NUMBER_SIZE, "6개의 숫자가 아닐 때"),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7), LottoNumberSizeException.class,
+                        ErrorMessage.LOTTO_NUMBER_SIZE, "6개의 숫자가 아닐 때"),
                 Arguments.of(List.of(1, 2, 3, 4, 5, 5), LottoNumberDuplicateException.class,
                         ErrorMessage.LOTTO_NUMBER_DUPLICATE, "숫자가 중복될 때")
         );
