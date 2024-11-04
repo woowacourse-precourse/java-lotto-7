@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.LottoErrorConstant.ERROR_BONUS_NUMBER_NO_DUPLICATES;
+import static lotto.constant.LottoErrorConstant.ERROR_BONUS_NUMBER_RANGE;
+
 import java.util.List;
 
 public class Bonus {
@@ -11,8 +14,6 @@ public class Bonus {
         validate(lotto);
     }
 
-    //숫자가 1 ~ 45 사이인지
-    //숫자가 당첨번호랑 겹치지 않는지
     private void validate(Lotto lotto) {
         rangeValidate();
         hasDuplicated(lotto);
@@ -20,13 +21,13 @@ public class Bonus {
 
     private void rangeValidate() {
         if (!(bonusNumber >= 1 && bonusNumber <= 45)) {
-            throw new IllegalArgumentException("보너스 번호는 1~45 사이여야 합니다.");
+            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_RANGE);
         }
     }
 
     private void hasDuplicated(Lotto lotto) {
         if (lotto.hasDuplicatedBonusNumber(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복 될수 없습니다.");
+            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_NO_DUPLICATES);
         }
     }
 
