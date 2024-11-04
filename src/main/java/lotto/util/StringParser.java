@@ -16,13 +16,9 @@ public abstract class StringParser {
     }
 
     public static List<Integer> toIntList(String input) {
-        try {
-            return Arrays.stream(input.split(","))
-                    .map(String::trim)
-                    .map(StringParser::toInt)
-                    .toList();
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
-        }
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(StringParser::toInt)
+                .toList();
     }
 }
