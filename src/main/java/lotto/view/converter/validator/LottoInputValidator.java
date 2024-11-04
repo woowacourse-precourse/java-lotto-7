@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.view.converter.validator;
 
 public class LottoInputValidator {
 

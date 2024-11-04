@@ -1,7 +1,8 @@
-package lotto.service;
+package lotto.view.converter;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.view.converter.validator.LottoInputValidator;
 
 public class LottoInputConverter {
 
