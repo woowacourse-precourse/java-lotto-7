@@ -24,6 +24,13 @@ public class Lotto {
 		if (uniqueNumbers.size() != numbers.size()) {
 			throw new IllegalArgumentException(NOT_DUPLICATE_LOTTO_NUMBER.getMessage());
 		}
+
+		boolean hasOutOfRangeNumber = numbers.stream()
+			.anyMatch(number -> number < LOTTO_MINIMUM_NUMBER || number > LOTTO_MAXIMUM_NUMBER);
+
+		if(hasOutOfRangeNumber){
+			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
+		}
 	}
 
 	public List<Integer> getNumbers(){
