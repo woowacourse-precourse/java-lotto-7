@@ -3,6 +3,7 @@ package lotto.view;
 import static lotto.common.ConsoleMessage.*;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.domain.LottoRank;
 import lotto.view.dto.WinningInfo;
@@ -40,13 +41,13 @@ public class ApplicationConsoleView implements ApplicationView {
         println(LINE_SEPARATOR + WIN_HEADER);
         for (LottoRank rank : LottoRank.values()) {
             int matchCount = rank.getMatchedCount();
-            String prize = rank.getPrize();
+            BigDecimal prize = rank.getPrize();
             int winCount = winningInfo.getValue(rank.name());
             if (rank.equals(LottoRank.SECOND)) {
-                System.out.printf(FIVE_AND_BONUS_MATCH_RESULT, matchCount, prize, winCount);
+                System.out.printf(FIVE_AND_BONUS_MATCH_RESULT, matchCount, prize.longValue(), winCount);
                 continue;
             }
-            System.out.printf(DEFAULT_MATCH_RESULT, matchCount, prize, winCount);
+            System.out.printf(DEFAULT_MATCH_RESULT, matchCount, prize.longValue(), winCount);
         }
     }
 

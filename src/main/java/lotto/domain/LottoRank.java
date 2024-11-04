@@ -1,20 +1,21 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import lotto.application.service.vo.MatchingInfo;
 
 public enum LottoRank {
-    FIFTH(3, false, "5,000"),
-    FOURTH(4, false, "50,000"),
-    THIRD(5, false, "1,500,000"),
-    SECOND(5, true, "30,000,000"),
-    FIRST(6, false, "2,000,000,000");
+    FIFTH(3, false, BigDecimal.valueOf(5000)),
+    FOURTH(4, false, BigDecimal.valueOf(50000)),
+    THIRD(5, false, BigDecimal.valueOf(1500000)),
+    SECOND(5, true, BigDecimal.valueOf(30000000)),
+    FIRST(6, false, BigDecimal.valueOf(2000000000));
 
     private int matchedCount;
     private boolean requireBonusNumber;
-    private String prize;
+    private BigDecimal prize;
 
-    LottoRank(int matchedCount, boolean requireBonusNumber, String prize) {
+    LottoRank(int matchedCount, boolean requireBonusNumber, BigDecimal prize) {
         this.matchedCount = matchedCount;
         this.requireBonusNumber = requireBonusNumber;
         this.prize = prize;
@@ -28,7 +29,7 @@ public enum LottoRank {
         return requireBonusNumber;
     }
 
-    public String getPrize() {
+    public BigDecimal getPrize() {
         return prize;
     }
 
