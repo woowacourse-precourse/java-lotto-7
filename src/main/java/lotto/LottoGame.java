@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static lotto.io.request.WinningNumberRequest.SPLIT_DELIMITER;
+
 public class LottoGame {
 
     private final LottoIOHandler ioHandler = new LottoIOHandler();
@@ -22,8 +24,10 @@ public class LottoGame {
     public void run() {
         List<Lotto> lottos = purchaseLotto();
         ioHandler.showPurchasedLottos(lottos);
+
         Lotto normalNumbersOfLotto = createWinningNumbers();
         WinningLotto winningLotto = createBonusNumber(normalNumbersOfLotto);
+
         WinningResult winningResult = calculateResult(lottos, winningLotto);
         showResult(winningResult);
     }
@@ -50,9 +54,10 @@ public class LottoGame {
     }
 
     private Lotto convertLottoFrom(String candidateWinningNumbers) {
-        List<Integer> winningNumbers = Arrays.stream(candidateWinningNumbers.split(","))
+        List<Integer> winningNumbers = Arrays.stream(candidateWinningNumbers.split(SPLIT_DELIMITER))
             .map(Integer::parseInt)
             .toList();
+
         return new Lotto(winningNumbers);
     }
 
@@ -67,14 +72,18 @@ public class LottoGame {
     }
 
     private WinningResult calculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
-        Map<Rank, Integer> resultMap = Arrays.stream(Rank.values())
-            .collect(Collectors.toMap(rank -> rank, rank -> 0));
+        Map<Rank, Integer> resultMap = generateDefaultWinningResult();
 
         lottos.stream()
             .map(winningLotto::calculateRank)
             .forEach(rank -> resultMap.put(rank, resultMap.get(rank) + 1));
 
         return new WinningResult(resultMap);
+    }
+
+    private Map<Rank, Integer> generateDefaultWinningResult() {
+        return Arrays.stream(Rank.values())
+            .collect(Collectors.toMap(rank -> rank, rank -> 0));
     }
 
     private void showResult(WinningResult result) {

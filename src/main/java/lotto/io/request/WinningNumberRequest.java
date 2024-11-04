@@ -9,7 +9,8 @@ public record WinningNumberRequest(
     String value
 ) {
 
-    private static final Pattern WINNING_NUMBER_PATTERN = Pattern.compile("^[0-9]+(,[0-9]+)*$");
+    public static final String SPLIT_DELIMITER = ",";
+    private static final Pattern WINNING_NUMBER_PATTERN = Pattern.compile("^[0-9]+(" + SPLIT_DELIMITER + "[0-9]+)*$");
 
     public WinningNumberRequest {
         validate(value);
