@@ -21,6 +21,8 @@ public class LottoGame {
         List<Integer> winningNumbers = Arrays.stream(winningNumberString)
                 .map(Integer::parseInt)
                 .toList();
+
+        myLotto.matchNumbers(winningNumbers);
     }
 
     public void printMyLotto() {

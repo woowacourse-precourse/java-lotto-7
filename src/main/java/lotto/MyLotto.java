@@ -14,6 +14,13 @@ public class MyLotto {
                 .toList();
     }
 
+    public void matchNumbers(List<Integer> winningNumbers) {
+        Lotto winningNumber = new Lotto(winningNumbers);
+
+        myLotto.stream()
+                .forEach(i -> i.matchNumbers(winningNumber));
+    }
+
     public int getCount() {
         return myLotto.size();
     }
