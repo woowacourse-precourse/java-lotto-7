@@ -24,6 +24,9 @@ public class Lottos {
         if (budgets % 1000 != 0) {
             throw new IllegalArgumentException(ExceptionMessages.BUDGETS_NOT_DIVISIBLE_BY_THOUSAND.getMessage());
         }
+        if (budgets > 100000000 || budgets < 1000) {
+            throw new IllegalArgumentException(ExceptionMessages.EXTEND_MAXIMUM_BUDGETS.getMessage());
+        }
     }
 
     private int setAmounts(int budgets) {
