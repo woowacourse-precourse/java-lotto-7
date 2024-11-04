@@ -1,13 +1,12 @@
 package lotto.controller;
 
-import java.util.List;
 import java.util.function.Supplier;
-import lotto.model.lotto.Lotto;
 import lotto.model.LottoPrizeCalculator;
-import lotto.model.lottoprize.LottoPrizes;
-import lotto.model.lotto.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.Lottos;
+import lotto.model.lottoprize.LottoPrizes;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,33 +22,29 @@ public class LottoController {
 
     public void run() {
         PurchaseAmount purchaseAmount = retryUntilValid(this::readPurchaseAmount);
+        outputView.printLottoCount(purchaseAmount.calculatePurchaseLottoCount());
 
-        String lottoCount = purchaseAmount.calculatePurchaseLottoCount();
-        outputView.printLottoCount(lottoCount);
+        Lottos lottos = createLottos(purchaseAmount);
+        outputView.printLottoNumbers(lottos.getLottoNumbers());
 
-        Lottos lottos = generateLottos(lottoCount);
-        List<String> lottoNumbers = lottos.getLottoNumbers();
-        outputView.printLottoNumbers(lottoNumbers);
+        WinningNumbers winningNumbers = readWinningNumbers();
+        LottoPrizes lottoPrizes = new LottoPrizes(lottos, winningNumbers);
+        LottoPrizeCalculator lottoPrizeCalculator = new LottoPrizeCalculator(lottoPrizes);
 
+        outputView.printMatchStatistics(lottoPrizeCalculator.generateMatchStatistics());
+        outputView.printYield(lottoPrizeCalculator.calculateYield(lottos.getTotalPrice()));
+    }
+
+    private static Lottos createLottos(PurchaseAmount purchaseAmount) {
+        int lottoCountNumber = Integer.parseInt(purchaseAmount.calculatePurchaseLottoCount());
+        return Lottos.fromCount(lottoCountNumber);
+    }
+
+    private WinningNumbers readWinningNumbers() {
         String winningNumbersInput = inputView.readWinningNumbers();
         Lotto mainNumbers = retryUntilValid(() -> Lotto.of(winningNumbersInput));
         String bonusNumber = inputView.readBonusNumber();
-        WinningNumbers winningNumbers = retryUntilValid(() -> new WinningNumbers(mainNumbers, bonusNumber));
-
-        LottoPrizes lottoPrizes = new LottoPrizes(lottos, winningNumbers);
-
-        LottoPrizeCalculator lottoPrizeCalculator = new LottoPrizeCalculator(lottoPrizes);
-
-        List<String> matchStatistics = lottoPrizeCalculator.generateMatchStatistics();
-        outputView.printMatchStatistics(matchStatistics);
-
-        String yield = lottoPrizeCalculator.calculateYield(lottos.getTotalPrice());
-        outputView.printYield(yield);
-    }
-
-    private static Lottos generateLottos(String lottoCount) {
-        int lottoCountNumber = Integer.parseInt(lottoCount);
-        return Lottos.fromCount(lottoCountNumber);
+        return retryUntilValid(() -> new WinningNumbers(mainNumbers, bonusNumber));
     }
 
     private PurchaseAmount readPurchaseAmount() {
