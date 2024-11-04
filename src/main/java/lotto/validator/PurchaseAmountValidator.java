@@ -2,11 +2,9 @@ package lotto.validator;
 
 import lotto.view.OutputView;
 
+import static lotto.model.constants.PurchaseAmountValidatorConstants.*;
+
 public class PurchaseAmountValidator {
-    private static final String PURCHASE_AMOUNT_NOT_NUMERIC_MESSAGE = "구입 금액에는 숫자만 입력할 수 있습니다.";
-    private static final String PURCHASE_AMOUNT_NOT_IN_RANGE_MESSAGE = "1000만원 이상은 구매가 불가능합니다.";
-    private static final String PURCHASE_AMOUNT_NOT_POSITIVE_MESSAGE = "구입 금액은 양수여야 합니다.";
-    private static final String PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND_MESSAGE = "구입 금액은 1,000원 단위여야 합니다.";
 
     public static boolean checkValidPurchaseAmount(String inputAmount) throws IllegalArgumentException {
         try {
@@ -23,27 +21,27 @@ public class PurchaseAmountValidator {
 
     private static void isNumeric(String inputAmount) throws IllegalArgumentException {
         if (!inputAmount.matches("^[0-9]+$")) {
-            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_NUMERIC_MESSAGE);
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_NUMERIC_MESSAGE.getMessage());
         }
     }
 
     private static void isAmountInRange(String inputAmount) throws IllegalArgumentException {
         if (inputAmount.length() > 7) {
-            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_IN_RANGE_MESSAGE);
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_IN_RANGE_MESSAGE.getMessage());
         }
     }
 
     private static void amountIsPositive(String inputAmount) throws IllegalArgumentException {
         long amount = Long.parseLong(inputAmount);
         if (amount <= 0) {
-            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_POSITIVE_MESSAGE);
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_POSITIVE_MESSAGE.getMessage());
         }
     }
 
     private static void isMultipleOfThousand(String inputAmount) throws IllegalArgumentException {
         long amount = Long.parseLong(inputAmount);
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND_MESSAGE);
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND_MESSAGE.getMessage());
         }
     }
 }
