@@ -16,6 +16,6 @@ public class ExceptionView {
             return;
         }
 
-        System.out.println(UNKNOWN);
+        System.err.println(UNKNOWN);
     }
 }
