@@ -1,11 +1,10 @@
 package lotto.lottoMachine.lottoRank;
 
-import lotto.calculate.LottoPrizeCalculator;
+import lotto.calculateManager.LottoPrizeManager;
 
 public class LottoRankResultProcessor {
     private final LottoRankStore rankStore = new LottoRankStore();
     private final LottoRankStatisticsPrinter statisticsPrinter = new LottoRankStatisticsPrinter();
-    private final LottoPrizeCalculator prizeCalculator = new LottoPrizeCalculator();
 
     public void store(int lottoNumberMatch, boolean isMatchBonusNumber) {
         rankStore.store(lottoNumberMatch, isMatchBonusNumber);
@@ -16,6 +15,8 @@ public class LottoRankResultProcessor {
     }
 
     public long calculateTotalPrize() {
-        return prizeCalculator.calculateTotalPrize(rankStore.getResults());
+        LottoPrizeManager lottoPrizeManager = new LottoPrizeManager(rankStore.getResults());
+
+        return lottoPrizeManager.getTotalPrize();
     }
 }

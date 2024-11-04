@@ -1,13 +1,13 @@
-package lotto.calculate;
+package lotto.calculateManager;
 
-public class LottoQuantityCalculator {
+public class LottoQuantityManager {
     private static final int QUANTITY_AMOUNT_ONE_LOTTERY_TICKET = 1000;
     private static final String INFORMATION_WITH_LOTTO_QUANTITY = "개를 구매했습니다.";
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     private final int lottoPurchaseAmount;
 
-    public LottoQuantityCalculator(int lottoPurchaseAmount) {
+    public LottoQuantityManager(int lottoPurchaseAmount) {
         this.lottoPurchaseAmount = lottoPurchaseAmount;
     }
 

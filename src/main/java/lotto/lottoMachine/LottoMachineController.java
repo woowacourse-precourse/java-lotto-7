@@ -1,14 +1,14 @@
 package lotto.lottoMachine;
 
-import lotto.calculate.LotteryResultCalculator;
-import lotto.calculate.LottoTotalReturnCalculator;
+import lotto.calculateManager.LotteryResultManager;
+import lotto.calculateManager.LottoTotalReturnManager;
 import java.util.List;
 import lotto.Lotties;
 import lotto.lottoMachine.lottoBonusNumber.LottoBonusNumberController;
 import lotto.lottoMachine.lottoPurchaseAmount.LottoPurchaseAmountController;
 import lotto.lottoMachine.lottoRank.LottoRankResultProcessor;
 import lotto.lottoMachine.lottoWinningNumber.LottoWinningNumberController;
-import lotto.calculate.LottoQuantityCalculator;
+import lotto.calculateManager.LottoQuantityManager;
 
 public class LottoMachineController {
     private final LottoPurchaseAmountController lottoPurchaseAmountController;
@@ -39,8 +39,8 @@ public class LottoMachineController {
     }
 
     private void issueLottoTickets(int lottoPurchaseAmount) {
-        LottoQuantityCalculator lottoQuantityCalculator = new LottoQuantityCalculator(lottoPurchaseAmount);
-        int lottoQuantity = lottoQuantityCalculator.runAndBringLottoQuantity();
+        LottoQuantityManager lottoQuantityManager = new LottoQuantityManager(lottoPurchaseAmount);
+        int lottoQuantity = lottoQuantityManager.getLottoQuantity();
 
         processLottoTickets(lottoQuantity);
     }
@@ -56,16 +56,16 @@ public class LottoMachineController {
     }
 
     private void issueLotteryResult(int lottoPurchaseAmount, List<Integer> lottoWinningNumber, int lottoBonusNumber) {
-        LotteryResultCalculator lotteryResultCalculater = new LotteryResultCalculator(lottoWinningNumber,
+        LotteryResultManager lotteryResultManager = new LotteryResultManager(lottoWinningNumber,
                 lottoBonusNumber, lottoRankResultProcessor, lotties);
-        lotteryResultCalculater.calculateLotteryResult();
+        lotteryResultManager.manageLotteryResults();
 
         lottoRankResultProcessor.printStatistics();
 
         long totalWinningAmount = lottoRankResultProcessor.calculateTotalPrize();
 
-        LottoTotalReturnCalculator lottoTotalReturnCalculator = new LottoTotalReturnCalculator(totalWinningAmount,
+        LottoTotalReturnManager lottoTotalReturnManager = new LottoTotalReturnManager(totalWinningAmount,
                 lottoPurchaseAmount);
-        lottoTotalReturnCalculator.run();
+        lottoTotalReturnManager.calculate();
     }
 }
