@@ -9,11 +9,9 @@ import static lotto.model.LottoRank.getLottoRank;
 
 public class LottoManager {
     public Lotto generateLottoNumbers() {
-        List<Integer> lottoNumbers = new ArrayList<>(pickUniqueNumbersInRange(1, 45, 6)); // 가변 리스트로 변환
-        Collections.sort(lottoNumbers); // 오름차순으로 정렬
+        List<Integer> lottoNumbers = new ArrayList<>(pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
-
-
     }
 
     public Lotto parseWinningNumbersToLotto(String winningNumbers) {
@@ -29,17 +27,15 @@ public class LottoManager {
         for (Lotto currentLottoNumbers : lottoSets) {
             boolean hasBonusNumber = false;
             int hitCount = countHitCount(currentLottoNumbers.getLotto(), winningNumbers.getLotto());
-            if (hitCount == 5 && checkHasBonusNumber(currentLottoNumbers.getLotto(), bonusNumber)) {
-                hasBonusNumber = true;
-            }
+            hasBonusNumber = checkHasBonusNumber(hitCount,currentLottoNumbers.getLotto(),bonusNumber);
             lottoRankResults.add(getLottoRank(hitCount, hasBonusNumber));
         }
         return lottoRankResults.stream()
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
     }
 
-    private boolean checkHasBonusNumber(List<Integer> lotto, int bonusNumber) {
-        return lotto.contains(bonusNumber);
+    private boolean checkHasBonusNumber(int hitCount, List<Integer> lotto, int bonusNumber) {
+        return hitCount == 5 && lotto.contains(bonusNumber);
     }
 
 
