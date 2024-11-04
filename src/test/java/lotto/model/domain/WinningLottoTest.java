@@ -28,14 +28,14 @@ class WinningLottoTest {
         WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
         BonusNumber bonusNumber = new BonusNumber("1");
 
-        assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> WinningLotto.of(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @CsvSource({
             "1, 2, 3, 4, 5, 6, FIRST",
-            "1, 2, 3, 4, 7, 16, SECOND",
+            "1, 2, 3, 4, 5, 7, SECOND",
             "1, 2, 3, 4, 5, 16, THIRD",
             "1, 2, 3, 4, 15, 16, FOURTH",
             "1, 2, 3, 14, 15, 16, FIFTH",
