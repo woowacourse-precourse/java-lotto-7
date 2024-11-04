@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.LottoResult;
+import lotto.domain.user.User;
 import lotto.service.UserService;
 import lotto.service.UserWinningResultService;
 
@@ -17,16 +18,16 @@ public class UserController {
         return instance;
     }
 
-    public int getUserIdByInputPurchasePrice() {
+    public User getUserIdByInputPurchasePrice() {
         return userService.inputPurchasePriceForUser();
     }
 
-    public void getPurchaseLottoTickets(int userId) {
-        userService.getLottoTickets(userId);
-        userService.displayPurchaseLottoTickets(userId);
+    public void getPurchaseLottoTickets(User user) {
+        userService.getLottoTickets(user);
+        userService.displayPurchaseLottoTickets(user);
     }
 
-    public void getWinningResult(LottoResult lottoResult, int userId) {
-        userWinningResultService.getWinningResult(lottoResult,userId);
+    public void getWinningResult(LottoResult lottoResult, User user) {
+        userWinningResultService.getWinningResult(lottoResult, user);
     }
 }

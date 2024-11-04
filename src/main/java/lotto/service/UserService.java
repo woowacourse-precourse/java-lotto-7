@@ -12,7 +12,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static lotto.enums.LottoConstant.ACCESS_COUNT;
 import static lotto.view.OutputView.ENTER_PURCHASE_PRICE;
@@ -31,26 +30,26 @@ public class UserService {
         return instance;
     }
 
-    public int save(String purchasePrice) {
+    public User save(String purchasePrice) {
         User user = new User(purchasePrice);
-        return userRepository.save(user).getId();
+        return userRepository.save(user);
     }
 
     public User findById(int id) {
         return userRepository.findById(id);
     }
 
-    public int inputPurchasePriceForUser() {
+    public User inputPurchasePriceForUser() {
         for (int count = 0; count < ACCESS_COUNT.getValue(); count++) {
-            String purchasePrice = inputPurchasePrice();
             try {
+                String purchasePrice = inputPurchasePrice();
                 return save(purchasePrice);
             } catch (IllegalArgumentException e) {
                 ErrorOutputView.printErrorMessage(e.getMessage());
             }
         }
         ProgramExit.run(ACCESS_COUNT.getValue());
-        return -1;
+        return null;
     }
 
     private String inputPurchasePrice() {
@@ -58,15 +57,14 @@ public class UserService {
         return InputView.readLine();
     }
 
-    public void displayPurchaseLottoTickets(int userId) {
-        LottoTickets lottoTickets = getLottoTicketsByUserId(userId);
+    public void displayPurchaseLottoTickets(User user) {
+        LottoTickets lottoTickets = getLottoTicketsByUserId(user);
         OutputView.newLine();
         OutputView.printMessage(lottoTickets.size() + PURCHASED_LOTTO_COUNT.getMessage());
         OutputView.printMessage(getLottoList(lottoTickets));
     }
 
-    private LottoTickets getLottoTicketsByUserId(int userId) {
-        User user = userRepository.findById(userId);
+    private LottoTickets getLottoTicketsByUserId(User user) {
         return user.getLottoTickets();
     }
 
@@ -78,8 +76,7 @@ public class UserService {
         return sb.toString();
     }
 
-    public void getLottoTickets(int userId) {
-        User user = userRepository.findById(userId);
+    public void getLottoTickets(User user) {
         int lottoTicketCount = getLottoTicketCount(user.getPurchasePrice());
         saveLottoTickets(user, lottoTicketCount);
     }

@@ -52,20 +52,19 @@ public class UserServiceTest extends NsTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1000,2000","3000,4000"})
+    @CsvSource(value = {"1000,2000", "3000,4000"})
     void 사용자_조회_테스트(String firstValue, String secondValue) {
         // given
-        int firstUserId = userService.save(firstValue);
-        int secondUserId = userService.save(secondValue);
+        User firstUser = userService.save(firstValue);
+        User secondUser = userService.save(secondValue);
 
         // when
-        User findFirstUser = userService.findById(firstUserId);
-        User findSecondUser = userService.findById(secondUserId);
-
+        String firstUserPurchasePrice = String.valueOf(firstUser.getPurchasePrice());
+        String secondUserPurchasePrice = String.valueOf(secondUser.getPurchasePrice());
 
         // then
-        assertThat(findFirstUser).isEqualTo(userRepository.findById(0));
-        assertThat(findSecondUser).isEqualTo(userRepository.findById(1));
+        assertThat(firstUserPurchasePrice).isEqualTo(firstValue);
+        assertThat(secondUserPurchasePrice).isEqualTo(secondValue);
     }
 
     @DisplayName("유효한 구입 금액으로 사용자가 생성된다.")
@@ -73,14 +72,11 @@ public class UserServiceTest extends NsTest {
     @ValueSource(strings = {"1000", "2000", "5000"})
     void 유효한_구입_금액으로_사용자_생성(String validPurchasePrice) {
         // given
-        int userId = userService.save(validPurchasePrice);
-
-        // when
-        User findUser = userService.findById(userId);
+        User user = userService.save(validPurchasePrice);
 
         // then
-        assertThat(findUser).isNotNull();
-        assertThat(findUser.getPurchasePrice()).isEqualTo(Integer.parseInt(validPurchasePrice));
+        assertThat(user).isNotNull();
+        assertThat(user.getPurchasePrice()).isEqualTo(Integer.parseInt(validPurchasePrice));
     }
 
     @DisplayName("로또 티켓을 구매하면 사용자 로또 티켓 수가 증가한다.")
@@ -93,7 +89,7 @@ public class UserServiceTest extends NsTest {
 
         // when
         User findUser = userService.findById(user.getId());
-        userService.getLottoTickets(findUser.getId());
+        userService.getLottoTickets(findUser);
 
         int expectedTicketCount = user.getPurchasePrice() / LottoConstant.PRICE.getValue();
         assertThat(user.getLottoTickets().size()).isEqualTo(expectedTicketCount);

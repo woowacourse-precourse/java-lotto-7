@@ -14,7 +14,6 @@ import static lotto.view.OutputView.WINNING_STATISTICS;
 public class UserWinningResultService {
     // 싱글톤 패턴
     private static final UserWinningResultService instance = new UserWinningResultService();
-    private final UserService userService = UserService.getInstance();
 
     private UserWinningResultService() {
 
@@ -24,9 +23,7 @@ public class UserWinningResultService {
         return instance;
     }
 
-    public void getWinningResult(LottoResult lottoResult, int userId) {
-        User user = userService.findById(userId);
-
+    public void getWinningResult(LottoResult lottoResult, User user) {
         OutputView.newLine();
         OutputView.printMessage(WINNING_STATISTICS);
         double rateOfRevenue = generateStatistics(lottoResult, user);

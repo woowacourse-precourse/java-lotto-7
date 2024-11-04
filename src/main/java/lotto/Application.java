@@ -4,6 +4,7 @@ import lotto.collection.WinningNumber;
 import lotto.controller.LottoController;
 import lotto.controller.UserController;
 import lotto.domain.LottoResult;
+import lotto.domain.user.User;
 
 public class Application {
     public static void main(String[] args) {
@@ -11,10 +12,10 @@ public class Application {
         final LottoController lottoController = LottoController.getInstance();
 
         // 구입 금액 입력
-        int userId = userController.getUserIdByInputPurchasePrice();
+        User user = userController.getUserIdByInputPurchasePrice();
 
         // 로또 구매
-        userController.getPurchaseLottoTickets(userId);
+        userController.getPurchaseLottoTickets(user);
 
         // 당첨 번호 입력
         WinningNumber winningNumber = lottoController.getWinningNumbers();
@@ -23,7 +24,7 @@ public class Application {
         LottoResult lottoResult = lottoController.getBonusNumbers(winningNumber);
 
         // 당첨 통계 출력
-        userController.getWinningResult(lottoResult, userId);
+        userController.getWinningResult(lottoResult, user);
 
     }
 }
