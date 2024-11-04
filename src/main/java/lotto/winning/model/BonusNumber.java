@@ -15,6 +15,7 @@ public class BonusNumber {
     }
 
     public int getBonusNumber(String inputBonusNumber) {
+        inputBonusNumber = inputBonusNumber.trim();
         validator.validateCastingToNumber(inputBonusNumber);
         bonusNumber = Integer.parseInt(inputBonusNumber);
         validator.validateInRange(bonusNumber);

@@ -12,14 +12,10 @@ import lotto.winning.view.*;
 public class WinningController {
     private final InputWinningNumberView inputWinningNumberView;
     private final OutputWinningResultView outputwinningResultView;
-    private final WinningNumbers winningNumbers;
-    private final BonusNumber bonusNumber;
 
     public WinningController() {
         this.inputWinningNumberView = new InputWinningNumberView();
         this.outputwinningResultView = new OutputWinningResultView();
-        this.winningNumbers = new WinningNumbers();
-        this.bonusNumber = new BonusNumber();
     }
 
     public void presentRanksAndRates() {
@@ -30,6 +26,8 @@ public class WinningController {
     }
 
     private void receiveWinningNumbers() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+
         try {
             String inputWinningNumbers = inputWinningNumberView.getInputWinningNumbers();
             List<Integer> validWinningNumbers = winningNumbers.getWinningNumbers(inputWinningNumbers);
@@ -42,6 +40,8 @@ public class WinningController {
     }
 
     private void receiveBonusNumbers() {
+        BonusNumber bonusNumber = new BonusNumber();
+
         try {
             String inputBonusNumber = inputWinningNumberView.getInputBonusNumber();
             int validBonusNumber = bonusNumber.getBonusNumber(inputBonusNumber);

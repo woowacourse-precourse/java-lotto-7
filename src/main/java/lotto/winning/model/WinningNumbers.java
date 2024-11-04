@@ -23,6 +23,7 @@ public class WinningNumbers {
     private void splitIntoNumbers(String inputWinningNumbers) {
         winningNumbers = new ArrayList<>();
         for (String splitedNumber : inputWinningNumbers.split(WINNING_NUMBER_DELIMITER)) {
+            splitedNumber = splitedNumber.trim();
             validator.validateCastingToNumber(splitedNumber);
             int number = Integer.parseInt(splitedNumber);
 

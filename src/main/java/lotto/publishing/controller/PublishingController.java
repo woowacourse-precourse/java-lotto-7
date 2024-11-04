@@ -28,5 +28,6 @@ public class PublishingController {
             List<Integer> numbers = LottoTicket.getNumbers();
             outputPublishedTicketsView.printLottoNumbers(numbers);
         }
+        System.out.println();
     }
 }

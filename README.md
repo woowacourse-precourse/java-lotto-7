@@ -65,7 +65,7 @@
   
 **기능**
 
-- [ ] 구매자 로또 번호 발행
+- [x] 구매자 로또 번호 발행
     - [x] 오름차순 정렬
     - [x] 1 ~ 45의 숫자에서 중복 없이 6개 출력
       - [x] `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
@@ -100,7 +100,52 @@
 - - -
 
 # 패키지 구조
-
+```
+lotto
+ ┣ common
+ ┃ ┣ constant
+ ┃ ┃ ┣ LottoConstant.java
+ ┃ ┃ ┗ RankConstant.java
+ ┃ ┗ model
+ ┃ ┃ ┗ Lotto.java
+ ┣ config
+ ┃ ┗ LottoFactory.java
+ ┣ dto
+ ┃ ┣ BonusNumberDto.java
+ ┃ ┣ LottoTicketsDto.java
+ ┃ ┣ NumberOfMatchingDto.java
+ ┃ ┣ NumberOfTicketsDto.java
+ ┃ ┗ WinningNumberDto.java
+ ┣ publishing
+ ┃ ┣ controller
+ ┃ ┃ ┗ PublishingController.java
+ ┃ ┣ model
+ ┃ ┃ ┗ Publishing.java
+ ┃ ┗ view
+ ┃ ┃ ┗ OutputPublishedTicketsView.java
+ ┣ purchasing
+ ┃ ┣ controller
+ ┃ ┃ ┗ PurchasingController.java
+ ┃ ┣ model
+ ┃ ┃ ┗ Payment.java
+ ┃ ┗ view
+ ┃ ┃ ┣ PurchasingInputView.java
+ ┃ ┃ ┗ PurchasingOutputView.java
+ ┣ winning
+ ┃ ┣ controller
+ ┃ ┃ ┗ WinningController.java
+ ┃ ┣ model
+ ┃ ┃ ┣ BonusNumber.java
+ ┃ ┃ ┣ MatchingBetweenWinningAndTickets.java
+ ┃ ┃ ┣ WinningNumbers.java
+ ┃ ┃ ┗ WinningStatistics.java
+ ┃ ┣ validator
+ ┃ ┃ ┗ ValidatorOfWinningNumber.java
+ ┃ ┗ view
+ ┃ ┃ ┣ InputWinningNumberView.java
+ ┃ ┃ ┗ OutputWinningResultView.java
+ ┗ Application.java
+```
 - - -
 
 # 기능 요구 사항

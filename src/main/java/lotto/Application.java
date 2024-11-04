@@ -7,11 +7,4 @@ public class Application {
         LottoFactory lottoFactory = new LottoFactory();
         lottoFactory.create();
     }
-
-
-
-
-
-
-
 }

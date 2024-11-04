@@ -2,6 +2,7 @@ package lotto.publishing.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.common.model.Lotto;
 
@@ -23,6 +24,7 @@ public class Publishing {
 
     private Lotto makeRandomlyLotto() {
         List<Integer> publishedTicket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(publishedTicket);
         return new Lotto(publishedTicket);
     }
 
