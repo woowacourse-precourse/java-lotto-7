@@ -7,6 +7,7 @@ import java.util.List;
 
 public class LottoInput {
     public static String inputCost() {
+        System.out.println();
         System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine();
     }
