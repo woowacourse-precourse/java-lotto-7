@@ -8,27 +8,27 @@ import java.util.List;
 import java.util.Set;
 
 public class PickRandomLotto {
-    private int lottoAmount;
-    private List<List<Integer>> lottos;
+    private int numberOfLottos;
+    private List<List<Integer>> generatedLottos;
 
     public PickRandomLotto(int lottoAmount) {
-        this.lottoAmount = lottoAmount;
-        this.lottos = new ArrayList<>();
-        pickRandomLotto();
+        this.numberOfLottos = numberOfLottos;
+        this.generatedLottos = new ArrayList<>();
+        generatedLottos();
     }
 
-    private void pickRandomLotto() {
-        for (int i = 0; i < lottoAmount; i++) {
+    private void generatedLottos() {
+        for (int i = 0; i < numberOfLottos; i++) {
             Set<Integer> lottoNumbers = new HashSet<>();
 
             while (lottoNumbers.size() < 6) {
-                int randomLotto = Randoms.pickNumberInRange(1, 45);
-                lottoNumbers.add(randomLotto);
+                int randomNumber = Randoms.pickNumberInRange(1, 45);
+                lottoNumbers.add(randomNumber);
             }
-            lottos.add(new ArrayList<>(lottoNumbers));
+            generatedLottos.add(new ArrayList<>(lottoNumbers));
         }
     }
-    public List<List<Integer>> getLottos() {
-        return lottos;
+    public List<List<Integer>> getGeneratedLottos() {
+        return generatedLottos;
     }
 }
