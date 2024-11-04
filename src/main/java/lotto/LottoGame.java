@@ -8,29 +8,31 @@ import java.util.Map;
 public class LottoGame {
 
     private final LottoStore lottoStore;
-    private final LottoGameDisplay lottoGameDisplay;
+    private final LottoGameInputDisplay inputDisplay;
+    private final LottoGameOutputDisplay outputDisplay;
 
     public LottoGame() {
         this.lottoStore = new LottoStore();
-        this.lottoGameDisplay = new LottoGameDisplay();
+        this.outputDisplay = new LottoGameOutputDisplay();
+        this.inputDisplay = new LottoGameInputDisplay(outputDisplay);
     }
 
     public void run() {
         // 로또 구매
-        int money = lottoGameDisplay.inputMoney();
+        int money = inputDisplay.inputMoney();
         List<Lotto> lottos = lottoStore.purchase(money);
-        lottoGameDisplay.printPurchaseBreakdown(lottos);
+        outputDisplay.printPurchaseBreakdown(lottos);
 
         // 당첨 번호 설정
-        List<Integer> winnerNumbers = lottoGameDisplay.inputWinnerNumbers();
-        int bonusNumber = lottoGameDisplay.inputBonusNumber(winnerNumbers);
+        List<Integer> winnerNumbers = inputDisplay.inputWinnerNumbers();
+        int bonusNumber = inputDisplay.inputBonusNumber(winnerNumbers);
         // 당첨 확인
         List<LottoRank> lottoRanks = checkLottosRank(lottos, winnerNumbers, bonusNumber);
 
         // 당첨 통계 계산
         double rateOfResult = LottoStatistics.calcRateOfReturn(money, lottoRanks);
         Map<LottoRank, Integer> rankMap = LottoStatistics.calcRankStatistics(lottoRanks);
-        lottoGameDisplay.printWinStatistics(rankMap, rateOfResult);
+        outputDisplay.printWinStatistics(rankMap, rateOfResult);
     }
 
     private List<LottoRank> checkLottosRank(List<Lotto> lottos, List<Integer> winnerNumbers, int bonus) {
