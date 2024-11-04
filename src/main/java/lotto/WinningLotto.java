@@ -10,8 +10,19 @@ public class WinningLotto {
     private int bonusNumber;
 
     public WinningLotto(Lotto winningLotto, int bonusNumber) {
+        validate(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validate(Lotto winningLotto, int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber >= 45) {
+            throw new IllegalArgumentException("1부터 45 사이의 숫자를 입력해야 합니다");
+        }
+
+        if (winningLotto.hasNumber(bonusNumber)) {
+            throw new IllegalArgumentException("당첨번호와 중복됩니다.");
+        }
     }
 
     public Map<String, Integer> getWinningResult(List<Lotto> playerLottos) {
