@@ -46,4 +46,12 @@ public class LottoGenerator {
         randomNumbers.sort(Comparator.naturalOrder());
         return new Lotto(randomNumbers);
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public int getLottoQuantity() {
+        return lottoQuantity;
+    }
 }
