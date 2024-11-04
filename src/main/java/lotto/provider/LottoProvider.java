@@ -57,8 +57,5 @@ public class LottoProvider {
 	public List<Lotto> getPickedLottos() {
 		return pickedLottos;
 	}
-
-	public int getLottoPurchaseAmount() {
-		return lottoPurchaseAmount;
-	}
+	
 }
