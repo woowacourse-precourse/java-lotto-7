@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Lottos {
 
+    private final static int MATCH_NUM_EDGE_CASE = 5;
+
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
@@ -47,7 +49,7 @@ public class Lottos {
         int calculateResult = singleLotto.calculateDrawResult(winningLotto);
         boolean hasBonusNum = false;
 
-        if (calculateResult == 5 && singleLotto.hasBonusNum(bonusNum)) {
+        if (calculateResult == MATCH_NUM_EDGE_CASE && singleLotto.hasBonusNum(bonusNum)) {
             calculateResult++;
             hasBonusNum = true;
         }

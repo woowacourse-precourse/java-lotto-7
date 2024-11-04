@@ -17,14 +17,15 @@ import lotto.view.OutputView;
 
 public class LottoGameController {
 
+    private final static int LOTTO_PRICE = 1000;
+    private final static int MATCH_NUM_EDGE_CASE = 5;
+
     private LottoGame lottoGame;
 
     private final InputView inputView;
     private final OutputView outputView;
     private final PurchasePriceValidator purchasePriceValidator;
     private final WinningNumValidator winningNumValidator;
-
-    private final static int LOTTO_PRICE = 1000;
 
     public LottoGameController(InputView inputView, OutputView outputView,
                                PurchasePriceValidator purchasePriceValidator, WinningNumValidator winningNumValidator) {
@@ -154,7 +155,7 @@ public class LottoGameController {
         try {
             matchNum = Integer.parseInt(drawType.getValue());
         } catch (NumberFormatException e) {
-            matchNum = 5;
+            matchNum = MATCH_NUM_EDGE_CASE;
         }
         return matchNum;
     }

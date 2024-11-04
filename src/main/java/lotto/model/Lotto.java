@@ -12,11 +12,11 @@ import java.util.Set;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
-
-    private final static int RANGE_START = 1;
-    private final static int RANGE_END = 45;
+    private final static int MIN_LOTTO_NUM = 1;
+    private final static int MAX_LOTTO_NUM = 45;
     private final static int LOTTO_SIZE = 6;
+
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -37,7 +37,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < MIN_LOTTO_NUM || number > MAX_LOTTO_NUM) {
                 throw new IllegalArgumentException(INVALID_LOTTO_RANGE.getMessage());
             }
         }
@@ -51,7 +51,7 @@ public class Lotto {
     }
 
     public static Lotto randomCreate() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(RANGE_START, RANGE_END, LOTTO_SIZE);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_SIZE);
         return new Lotto(randomNumbers);
     }
 
