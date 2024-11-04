@@ -23,4 +23,11 @@ public class LottoServiceTest {
 
         assertThat(lottos.size()).isEqualTo(8);
     }
+
+    @Test
+    void 로또_수량_구하기_테스트() {
+        int lottoQuantity = lottoService.getLottoQuantity(8000);
+
+        assertThat(lottoQuantity).isEqualTo(8);
+    }
 }
