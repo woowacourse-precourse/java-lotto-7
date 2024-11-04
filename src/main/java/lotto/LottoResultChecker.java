@@ -13,7 +13,7 @@ public class LottoResultChecker {
         put(3, 5_000);           // 5등
     }};
 
-    public static void checkLottoResults(List<Lotto> userLottos, List<Integer> winningNumbers, int bonusNumber) {
+    public static Map<Integer, Integer> checkLottoResults(List<Lotto> userLottos, List<Integer> winningNumbers, int bonusNumber) {
         int firstPrizeCount = 0;
         int secondPrizeCount = 0;
         Map<Integer, Integer> resultCounts = new HashMap<>();
@@ -39,6 +39,11 @@ public class LottoResultChecker {
 
         // 결과 출력
         printResults(resultCounts, firstPrizeCount, secondPrizeCount);
+
+        // 수익률 계산에 필요한 당첨 결과 반환
+        resultCounts.put(6, firstPrizeCount);
+        resultCounts.put(5, resultCounts.get(5) + secondPrizeCount); // 2등은 5등과 별도로 구분
+        return resultCounts;
     }
 
     public static int calculateMatchCount(List<Integer> userNumbers, List<Integer> winningNumbers) {
@@ -52,7 +57,7 @@ public class LottoResultChecker {
     }
 
     private static void printResults(Map<Integer, Integer> resultCounts, int firstPrizeCount, int secondPrizeCount) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         System.out.printf("3개 일치 (5,000원) - %d개\n", resultCounts.getOrDefault(3, 0));
         System.out.printf("4개 일치 (50,000원) - %d개\n", resultCounts.getOrDefault(4, 0));
