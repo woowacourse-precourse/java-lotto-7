@@ -76,7 +76,7 @@ public class LottoManager {
         System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", lottoResultList.stream()
                 .filter(item -> item.equals(LottoResult.SIX))
                 .count()));
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profitRate));
+        System.out.println(String.format("총 수익률은 %,.1f%%입니다.", profitRate));
 
     }
 }
