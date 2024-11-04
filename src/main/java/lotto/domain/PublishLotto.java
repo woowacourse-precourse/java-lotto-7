@@ -5,6 +5,7 @@ import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
 import static lotto.constant.LottoConstant.VALID_LOTTO_NUMBER_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -18,6 +19,12 @@ public class PublishLotto {
         numbers = getRandomNumbers();
         sortNumbers();
         validate(numbers, validator);
+    }
+
+    public PublishLotto(List<Integer> numbers, LottoValidator validator) {
+        this.numbers = numbers;
+        sortNumbers();
+        validator.validate(this.numbers);
     }
 
     public static PublishLotto from(LottoValidator validator) {
