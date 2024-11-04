@@ -216,7 +216,7 @@ class ApplicationTest extends NsTest {
     @DisplayName("메인 숫자가 6개가 아닐 때 예외 메시지 출력")
     void displayErrorMessageWhenMainNumbersCountIsInvalid() {
         assertSimpleTest(() -> {
-            runException("5000", "1,2,3,4,5", "7");
+            runException("5000", "1,2,3,4,5");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
@@ -225,7 +225,7 @@ class ApplicationTest extends NsTest {
     @DisplayName("메인 숫자에 중복된 값이 있을 때 예외 메시지 출력")
     void displayErrorMessageWhenMainNumbersHaveDuplicates() {
         assertSimpleTest(() -> {
-            runException("5000", "1,2,3,3,4,5", "7");
+            runException("5000", "1,2,3,4,5,5");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
@@ -234,7 +234,7 @@ class ApplicationTest extends NsTest {
     @DisplayName("메인 숫자가 범위를 벗어날 때 예외 메시지 출력")
     void displayErrorMessageWhenMainNumbersOutOfRange() {
         assertSimpleTest(() -> {
-            runException("5000", "1,2,3,4,5,50", "7");
+            runException("5000", "1,2,3,4,5,46");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
@@ -252,7 +252,7 @@ class ApplicationTest extends NsTest {
     @DisplayName("보너스 번호가 범위를 벗어날 때 예외 메시지 출력")
     void displayErrorMessageWhenBonusNumberOutOfRange() {
         assertSimpleTest(() -> {
-            runException("5000", "1,2,3,4,5,6", "50");
+            runException("5000", "1,2,3,4,5,6", "46");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
