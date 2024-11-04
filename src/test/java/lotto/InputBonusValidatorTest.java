@@ -14,10 +14,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputBonusValidatorTest {
 
+    private List<Integer> winningnumbers = Arrays.asList(1,2,3,4,5,6);
+
     @DisplayName("당첨 번호와 보너스 번호 중복 에러 테스트")
     @Test
-    void tt() {
-        List<Integer> winningnumbers = Arrays.asList(1,2,3,4,5,6);
+    void checkSameNumberInWinningNumberTest() {
         String bonusNumber = "6";
 
         assertThatThrownBy(() -> new InputBonusValidator(bonusNumber)
@@ -27,9 +28,11 @@ class InputBonusValidatorTest {
     
     @DisplayName("보너스 번호 범위 테스트")
     @ParameterizedTest
-    @ValueSource()
-    void bonusNumberRangeTest() {
-
+    @ValueSource(strings = "100")
+    void bonusNumberRangeTest(String number) {
+        assertThatThrownBy(() -> new InputBonusValidator(number)
+                .getBonusNumber(winningnumbers))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }
