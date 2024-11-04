@@ -33,13 +33,14 @@ public class InputValidator {
     }
 
     private void validateAmount(int amount) {
-        if (amount < LottoConstants.LOTTO_PRICE) {
-            throw new IllegalArgumentException(
-                    String.format("구입 금액은 %d원 이상이어야 합니다.", LottoConstants.LOTTO_PRICE));
-        }
         if (amount % LottoConstants.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(
                     String.format("구입 금액은 %d원 단위여야 합니다.", LottoConstants.LOTTO_PRICE));
+        }
+
+        if (amount < LottoConstants.LOTTO_PRICE) {
+            throw new IllegalArgumentException(
+                    String.format("구입 금액은 %d원 이상이어야 합니다.", LottoConstants.LOTTO_PRICE));
         }
     }
 
