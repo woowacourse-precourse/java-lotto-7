@@ -16,7 +16,7 @@ public class LottoMachineManager {
     private final Lotties lotties;
     private final LottoWinningNumberManager lottoWinningNumberManager;
     private final LottoNumberPrinter LottoNumberPrinter;
-    private final LottoTotalResultManager lottoRankResultManager;
+    private final LottoTotalResultManager LottoTotalResultManager;
 
     public LottoMachineManager() {
         lottoPurchaseAmountManager = new LottoPurchaseAmountManager();
@@ -24,7 +24,7 @@ public class LottoMachineManager {
         lotties = new Lotties();
         lottoWinningNumberManager = new LottoWinningNumberManager();
         LottoNumberPrinter = new LottoNumberPrinter();
-        lottoRankResultManager = new LottoTotalResultManager();
+        LottoTotalResultManager = new LottoTotalResultManager();
     }
 
     public void run() {
@@ -57,12 +57,12 @@ public class LottoMachineManager {
 
     private void issueLotteryResult(int lottoPurchaseAmount, List<Integer> lottoWinningNumber, int lottoBonusNumber) {
         LotteryResultManager lotteryResultManager = new LotteryResultManager(lottoWinningNumber,
-                lottoBonusNumber, lottoRankResultManager, lotties);
+                lottoBonusNumber, LottoTotalResultManager, lotties);
         lotteryResultManager.manageLotteryResults();
 
-        lottoRankResultManager.printStatistics();
+        LottoTotalResultManager.printStatistics();
 
-        long totalWinningAmount = lottoRankResultManager.calculateTotalPrize();
+        long totalWinningAmount = LottoTotalResultManager.calculateTotalPrize();
 
         LottoTotalReturnManager lottoTotalReturnManager = new LottoTotalReturnManager(totalWinningAmount,
                 lottoPurchaseAmount);

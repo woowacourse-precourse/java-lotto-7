@@ -17,12 +17,12 @@ public class LottoResultStore {
 
     private void initializeResults() {
         Arrays.stream(LottoResultStructure.values())
-                .forEach(rank -> winningResults.put(rank, INITIAL_RANK_VALUE));
+                .forEach(lottoWinningRank -> winningResults.put(lottoWinningRank, INITIAL_RANK_VALUE));
     }
 
     public void store(int lottoNumberMatch, boolean isMatchBonusNumber) {
-        LottoResultStructure rank = LottoResultStructure.valueOf(lottoNumberMatch, isMatchBonusNumber);
-        winningResults.put(rank, winningResults.get(rank) + 1);
+        LottoResultStructure lottoWinningRank = LottoResultStructure.valueOf(lottoNumberMatch, isMatchBonusNumber);
+        winningResults.put(lottoWinningRank, winningResults.get(lottoWinningRank) + 1);
     }
 
     public Map<LottoResultStructure, Integer> getResults() {

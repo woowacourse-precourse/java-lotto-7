@@ -11,14 +11,14 @@ public class LotteryResultManager {
 
     private final List<Integer> lottoWinningNumber;
     private final int lottoBonusNumber;
-    private LottoTotalResultManager lottoRankResultManager;
+    private LottoTotalResultManager lottoTotalResultManager;
     private Lotties lotties;
 
     public LotteryResultManager(List<Integer> lottoWinningNumber, int lottoBonusNumber,
-                                LottoTotalResultManager lottoRankResultProcessor, Lotties lotties) {
+                                LottoTotalResultManager lottoTotalResultManager, Lotties lotties) {
         this.lottoWinningNumber = lottoWinningNumber;
         this.lottoBonusNumber = lottoBonusNumber;
-        this.lottoRankResultManager = lottoRankResultProcessor;
+        this.lottoTotalResultManager = lottoTotalResultManager;
         this.lotties = lotties;
     }
 
@@ -45,6 +45,6 @@ public class LotteryResultManager {
         int amountOfLottoNumberMatch = lottoResult.getMatchingCount();
         boolean isMatchBonusNumber = lottoResult.isMatchBonus();
 
-        lottoRankResultManager.store(amountOfLottoNumberMatch, isMatchBonusNumber);
+        lottoTotalResultManager.store(amountOfLottoNumberMatch, isMatchBonusNumber);
     }
 }

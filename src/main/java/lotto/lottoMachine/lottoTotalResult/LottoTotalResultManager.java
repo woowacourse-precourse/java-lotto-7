@@ -4,19 +4,19 @@ import lotto.LottoResultStore;
 import lotto.lottoMachine.calculateManager.LottoPrizeManager;
 
 public class LottoTotalResultManager {
-    private final LottoResultStore rankStore = new LottoResultStore();
+    private final LottoResultStore resultStore = new LottoResultStore();
     private final LottoTotalResultStatisticsPrinter statisticsPrinter = new LottoTotalResultStatisticsPrinter();
 
     public void store(int lottoNumberMatch, boolean isMatchBonusNumber) {
-        rankStore.store(lottoNumberMatch, isMatchBonusNumber);
+        resultStore.store(lottoNumberMatch, isMatchBonusNumber);
     }
 
     public void printStatistics() {
-        statisticsPrinter.print(rankStore.getResults());
+        statisticsPrinter.print(resultStore.getResults());
     }
 
     public long calculateTotalPrize() {
-        LottoPrizeManager lottoPrizeManager = new LottoPrizeManager(rankStore.getResults());
+        LottoPrizeManager lottoPrizeManager = new LottoPrizeManager(resultStore.getResults());
 
         return lottoPrizeManager.getTotalPrize();
     }
