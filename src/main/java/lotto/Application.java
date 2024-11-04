@@ -19,7 +19,7 @@ public class Application {
         WinningLotto winningLotto = createWinningLotto();
         Map<String, Integer> winningResult = winningLotto.getWinningResult(playerLottos);
         LottoStatistics lottoStatistics = new LottoStatistics();
-        output.printWinningResult(winningResult, lottoStatistics.calculateYield(money, winningResult));
+        output.printWinningResult(winningResult, lottoStatistics.calculateYield(lottoMoney.getMoney(), winningResult));
     }
 
     private static LottoMoney createLottoMoney() {
