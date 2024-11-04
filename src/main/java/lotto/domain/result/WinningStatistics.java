@@ -17,20 +17,16 @@ public class WinningStatistics {
     }
 
     public Money calculateTotalPrize() {
-        int totalAmount = calculatePrizeAmount();
-        return Money.from(totalAmount);
-    }
-
-    private int calculatePrizeAmount() {
-        int total = 0;
+        Money totalPrize = Money.from(0);
         for (Map.Entry<LottoRank, Integer> entry : rankCounts.entrySet()) {
-            total += calculatePrizeForRank(entry.getKey(), entry.getValue());
+            Money rankPrize = calculatePrizeForRank(entry.getKey(), entry.getValue());
+            totalPrize = Money.sum(totalPrize, rankPrize);
         }
-        return total;
+        return totalPrize;
     }
 
-    private int calculatePrizeForRank(LottoRank rank, int count) {
-        return rank.getPrizeMoney() * count;
+    private Money calculatePrizeForRank(LottoRank rank, int count) {
+        return Money.multiply(rank.getPrizeMoney(), count);
     }
 
     public int getWinningCount(LottoRank rank) {
