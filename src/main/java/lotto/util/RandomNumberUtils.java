@@ -2,6 +2,7 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import static lotto.constants.LottoNumbers.*;
 
 public class RandomNumberUtils {
     public static List<Integer> getRandomNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+        ArrayList<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT));
         setAscendingNumbers(numbers);
         return numbers;
     }
