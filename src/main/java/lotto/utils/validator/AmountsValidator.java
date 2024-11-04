@@ -6,7 +6,7 @@ public class AmountsValidator {
 
     public static void validateLottoAmount(String amounts) {
         checkEmptyAmounts(amounts);
-        checkNonNumeric(amounts);
+        checkNonNumericAmounts(amounts);
     }
 
     private static void checkEmptyAmounts(String amounts) {
@@ -15,11 +15,11 @@ public class AmountsValidator {
         }
     }
 
-    private static void checkNonNumeric(String amounts) {
-        try {
-            Integer.parseInt(amounts);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NON_NUMERIC.getMessage());
+    private static void checkNonNumericAmounts(String amounts) {
+        for (int i = 0; i < amounts.length(); i++) {
+            if (!Character.isDigit(amounts.charAt(i))) {
+                throw new IllegalArgumentException(ONLY_DIGITS_ALLOWED_AMOUNTS.getMessage());
+            }
         }
     }
 }
