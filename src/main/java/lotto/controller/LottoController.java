@@ -31,8 +31,8 @@ public class LottoController {
 
     public void calculateRate() {
         LottoDrawService lottoDrawService = new LottoDrawService();
-        Map<String, Integer> resultMap = lottoDrawService.checkWinning(lottoRepository);
-        outputView.printResult(resultMap);
-        outputView.printRate(lottoDrawService.calculateRate(resultMap, numberOfLotto));
+        Map<String, Integer> resultWinning = lottoDrawService.checkWinning(lottoRepository);
+        outputView.printResult(resultWinning);
+        outputView.printRate(lottoDrawService.calculateRate(resultWinning, numberOfLotto));
     }
 }
