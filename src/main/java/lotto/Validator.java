@@ -13,10 +13,6 @@ public class Validator {
     private static final String AMOUNT_UNIT_ERROR_MESSAGE = "입력은 1000단위어야 합니다.";
     private static final String LOTTERY_NUMBER_COUNT_ERROR = "로또 번호는 총 6개여야 합니다.";
 
-    private static final int LOTTERY_NUM_RANGE_FIRST = 1;
-    private static final int LOTTERY_NUM_RANGE_LAST = 45;
-    private static final int LOTTERY_NUMBER_COUNT = 6;
-
     private static final String WINNING_NUMBER_OPERATOR = ",";
     private static final String DUPLICATE_NUMBER_ERROR = "중복된 숫자는 입력할 수 없습니다.";
     private static final String EMPTY_INPUT_ERROR_MESSAGE = "입력은 비어있을 수 없습니다.";
@@ -37,7 +33,7 @@ public class Validator {
     }
 
     private void checkIsLotteryRange(int num) {
-        if (num < LOTTERY_NUM_RANGE_FIRST || LOTTERY_NUM_RANGE_LAST < num) {
+        if (num < LottoConstants.LOTTERY_NUM_RANGE_FIRST || LottoConstants.LOTTERY_NUM_RANGE_LAST < num) {
             throw new IllegalArgumentException(LOTTERY_RANGE_ERROR_MESSAGE);
         }
     }
@@ -74,7 +70,7 @@ public class Validator {
                 }
                 winningDigits.add(parseInt);
             }
-            if (winningDigits.size() != LOTTERY_NUMBER_COUNT) {
+            if (winningDigits.size() != LottoConstants.LOTTERY_NUMBER_COUNT) {
                 throw new IllegalArgumentException(LOTTERY_NUMBER_COUNT_ERROR);
             }
 
