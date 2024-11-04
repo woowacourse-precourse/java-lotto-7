@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.constants.Constants.*;
+import static lotto.constants.Constants.LOTTO_COUNT;
+import static lotto.constants.Constants.LOTTO_STARTING_RANGE;
+import static lotto.constants.Constants.LOTTO_END_RANGE;
 import static org.assertj.core.api.Assertions.*;
 
 class LottoNumberGeneratorTest {
