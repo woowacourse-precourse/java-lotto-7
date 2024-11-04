@@ -99,7 +99,7 @@ public class LottoController {
 
     public int calculateTotalPrize() {
         int totalPrize = 0;
-        for (LottoRank lottoRank : LottoRank.VALUES) {
+        for (LottoRank lottoRank : LottoRank.valuesList()) {
             totalPrize += lottoRank.getPrizeAmount() * lottoRank.getCount();
         }
         return totalPrize;

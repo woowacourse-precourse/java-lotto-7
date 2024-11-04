@@ -58,7 +58,7 @@ public class LottoView {
     public void printLottoRanksInfo() {
         System.out.println("당첨 통계");
         System.out.println("---");
-        for(LottoRank lottoRank : LottoRank.VALUES) {
+        for(LottoRank lottoRank : LottoRank.valuesList()) {
             if(!lottoRank.getBonusMatched()) {
                 System.out.println(lottoRank.getMatchCount() + "개 일치 (" + String.format("%,d", lottoRank.getPrizeAmount()) + "원) - " + lottoRank.getCount() + "개");
                 continue;
