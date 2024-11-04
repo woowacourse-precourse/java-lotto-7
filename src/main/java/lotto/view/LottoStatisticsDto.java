@@ -41,7 +41,6 @@ public class LottoStatisticsDto {
         List<LottoPrize> sorted = Arrays.stream(LottoPrize.values())
                 .sorted(Comparator.comparing(LottoPrize::getMoney))
                 .toList();
-
         StringBuilder sb = new StringBuilder();
         for (LottoPrize lottoPrize : sorted) {
             if (lottoPrize == LottoPrize.NOTHING) {
@@ -53,5 +52,4 @@ public class LottoStatisticsDto {
         sb.append(String.format("총 수익률은 %s%%입니다.", rateOfReturnToPrintFormat(rateOfReturn)));
         return sb.toString();
     }
-
 }
