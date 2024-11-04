@@ -29,7 +29,7 @@ public class LottoService {
                 .collect(Collectors.toList());
     }
 
-    public LottoResult calculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
+    public static LottoResult calculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
         //결과를 계산하는 메소드
         LottoResult result = new LottoResult();
         lottos.forEach(lotto -> {
@@ -39,7 +39,7 @@ public class LottoService {
         return result;
     }
 
-    private LottoRank checkRank(Lotto lotto, WinningLotto winningLotto) {
+    private static LottoRank checkRank(Lotto lotto, WinningLotto winningLotto) {
         //당첨번호와 생성한 번호가 일치하는지 확인하는 메소드
         int matchCount = lotto.getMatchCount(winningLotto.getLotto());
         boolean matchBonus = lotto.contains(winningLotto.getBonusNumber());
