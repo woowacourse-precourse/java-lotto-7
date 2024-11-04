@@ -5,6 +5,7 @@ import static lotto.enums.ViewMessage.OUTPUT_RESULT;
 import static lotto.enums.ViewMessage.OUTPUT_YIELD;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -34,7 +35,7 @@ public class OutputView {
 
     private void printLotto(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
-        Collections.sort(numbers);
+        Collections.sort(new ArrayList<>(numbers));
         System.out.println(numbers);
     }
 
@@ -65,7 +66,7 @@ public class OutputView {
     }
 
     private void printYield(double yield) {
-        System.out.printf(OUTPUT_YIELD.getMessage() + "%.1f%%\n", yield);
+        System.out.printf(OUTPUT_YIELD.getMessage() + "%.1f%%입니다.\n", yield);
     }
 
 }
