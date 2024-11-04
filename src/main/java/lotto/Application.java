@@ -60,7 +60,11 @@ public class Application {
                 .map(Integer::parseInt) // Integer로 변환
                 .forEach(winNumbers::add); // List에 추가
 
-        
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        bonusNumber = Integer.parseInt(Console.readLine());
+
+
 
 
 
