@@ -2,7 +2,7 @@ package lotto.dto;
 
 import java.math.BigDecimal;
 import java.util.Map.Entry;
-import lotto.domain.LottoRank;
+import lotto.domain.winning.LottoRank;
 
 public record WinningRecipe(
         int rank,

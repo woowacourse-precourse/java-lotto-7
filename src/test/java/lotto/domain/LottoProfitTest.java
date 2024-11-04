@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.Map;
+import lotto.domain.purchase.Money;
+import lotto.domain.winning.LottoProfit;
+import lotto.domain.winning.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,8 +1,10 @@
-package lotto.domain;
+package lotto.domain.purchase;
 
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.constant.LottoRule;
+import lotto.domain.number.Lotto;
+import lotto.domain.generator.LottoGenerator;
 
 public class LottoStore {
 

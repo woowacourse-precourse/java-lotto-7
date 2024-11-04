@@ -1,9 +1,11 @@
-package lotto.domain;
+package lotto.domain.winning;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.number.Lotto;
+import lotto.domain.number.WinningNumbers;
 
 public class WinningResult {
 

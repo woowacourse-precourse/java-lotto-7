@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.Map;
+import lotto.domain.winning.LottoRank;
+import lotto.domain.winning.WinningResult;
+import lotto.domain.number.Lotto;
+import lotto.domain.number.BonusNumber;
+import lotto.domain.number.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

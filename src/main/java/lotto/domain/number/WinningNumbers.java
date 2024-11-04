@@ -1,6 +1,7 @@
-package lotto.domain;
+package lotto.domain.number;
 
 import java.util.List;
+import lotto.domain.winning.LottoRank;
 import lotto.util.NumberValidator;
 
 public class WinningNumbers {

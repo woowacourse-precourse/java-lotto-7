@@ -1,8 +1,9 @@
-package lotto.domain;
+package lotto.domain.winning;
 
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.domain.purchase.Money;
 
 public class LottoProfit {
 

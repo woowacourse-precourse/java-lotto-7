@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.domain.generator;
+
+import lotto.domain.number.Lotto;
 
 @FunctionalInterface
 public interface LottoGenerator {
