@@ -19,6 +19,7 @@ public class InputBonusNumber {
             try {
                 bonusNumber = parseBonusNumber(input);
                 validateBonusNumber(bonusNumber, lottoNumbers);
+                System.out.println();
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());

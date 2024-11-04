@@ -27,13 +27,21 @@ public class LottoResult {
 
             if (matchCount == 3) {
                 plusCount(LottoRank.FIFTH);
-            } else if (matchCount == 4) {
+            }
+
+            if (matchCount == 4) {
                 plusCount(LottoRank.FOURTH);
-            } else if (matchCount == 5) {
+            }
+
+            if (matchCount == 5 && !(lotto.contains(bonusNumber))) {
                 plusCount(LottoRank.THIRD);
-            } else if (matchCount == 5 && lotto.contains(bonusNumber)) {
+            }
+
+            if (matchCount == 5 && lotto.contains(bonusNumber)) {
                 plusCount(LottoRank.SECOND);
-            } else if (matchCount == 6) {
+            }
+
+            if (matchCount == 6) {
                 plusCount(LottoRank.FIRST);
             }
         }

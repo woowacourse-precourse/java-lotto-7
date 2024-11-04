@@ -31,6 +31,6 @@ public class Application {
         lottoResult.calculateResults(lottos, winningLotto, bonusNumber);
 
         // 7. 결과 출력
-        printLottoResult.printWinningResult(lottoResult);
+        printLottoResult.printResults(lottoResult);
     }
 }
