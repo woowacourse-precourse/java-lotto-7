@@ -1,10 +1,15 @@
 package lotto.domain.ticket;
 
+import lotto.domain.number.LottoNumber;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
+    private static final String ERROR_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
+    private static final String ERROR_DUPLICATE = "[ERROR] 로또 번호에 중복된 숫자가 있습니다.";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -14,24 +19,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        validateSize(numbers);
         validateDuplicate(numbers);
-        validateNumberRange(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(ERROR_SIZE);
+        }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
-        }
-    }
-
-    private void validateNumberRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
+            throw new IllegalArgumentException(ERROR_DUPLICATE);
         }
     }
 
@@ -44,13 +44,9 @@ public class Lotto {
     }
 
     public int countMatch(Lotto other) {
-        int count = 0;
-        for (int number : numbers) {
-            if (other.contains(number)) {
-                count++;
-            }
-        }
-        return count;
+        return (int) numbers.stream()
+                .filter(other.numbers::contains)
+                .count();
     }
 
     @Override
