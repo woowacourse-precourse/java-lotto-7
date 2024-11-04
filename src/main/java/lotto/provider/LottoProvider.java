@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
+import lotto.user.User;
 
 public class LottoProvider {
 	private static final int THOUSAND = 1000;
@@ -21,9 +22,12 @@ public class LottoProvider {
 
 	private List<Lotto> pickedLottos = new ArrayList<>();
 
-	public LottoProvider(String lottoPurchaseAmount) {
+	private User user;
+
+	public LottoProvider(String lottoPurchaseAmount, User user) {
 		int lottoPurchaseAmountNum = Integer.parseInt(lottoPurchaseAmount);
 		validateLottoPurchaseAmount(lottoPurchaseAmountNum);
+		this.user = user; 
 		this.lottoPurchaseAmount = lottoPurchaseAmountNum;
 		this.numberOfLottos = lottoPurchaseAmountNum / THOUSAND;
 	}
