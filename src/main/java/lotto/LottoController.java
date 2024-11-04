@@ -29,7 +29,7 @@ public class LottoController {
 
         outputView.printInputBonusNumberMessage();
         String bonusNumberInput = inputView.inputBonusNumber();
-        Integer bonusNumber = lottoService.parseBonusNumber(bonusNumberInput);
+        Integer bonusNumber = lottoService.parseBonusNumber(winningLotto, bonusNumberInput);
 
         Integer price = 0;
         Integer count1st = 0;

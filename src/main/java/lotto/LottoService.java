@@ -76,17 +76,25 @@ public class LottoService {
         return winningLotto;
     }
 
-    public Integer parseBonusNumber(String input) {
+    public Integer parseBonusNumber(Lotto winningLotto, String bonusNumberInput) {
         Integer bonusNumber = 0;
 
         while (true) {
             try {
-                bonusNumber = Integer.parseInt(input);
+                bonusNumber = Integer.parseInt(bonusNumberInput);
+
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException();
+                }
+
+                if (haveBonusNumber(winningLotto.getNumbers(), bonusNumber)) {
+                    throw new IllegalArgumentException();
+                }
 
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printError(ErrorMessage.INVALID_BONUS_NUMBER);
-                input = inputView.inputBonusNumber();
+                bonusNumberInput = inputView.inputBonusNumber();
             }
         }
 
