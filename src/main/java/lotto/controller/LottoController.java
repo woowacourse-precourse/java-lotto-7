@@ -12,14 +12,19 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
 
     public void run() {
-        PurchasedPrice purchasedPrice = getPurchasedPrice();
-        Lottos purchasedLottos = generate(purchasedPrice);
-        OutputView.printPurchasedLottos(purchasedLottos);
+        try {
+            PurchasedPrice purchasedPrice = getPurchasedPrice();
+            Lottos purchasedLottos = generate(purchasedPrice);
+            OutputView.printPurchasedLottos(purchasedLottos);
 
-        Lotto winningNumbers = getWinningNumbers();
-        BonusNumber bonusNumber = getBonusNumber(winningNumbers);
+            Lotto winningNumbers = getWinningNumbers();
+            BonusNumber bonusNumber = getBonusNumber(winningNumbers);
 
-        printWinningResult(purchasedLottos, winningNumbers, bonusNumber, purchasedPrice);
+            printWinningResult(purchasedLottos, winningNumbers, bonusNumber, purchasedPrice);
+        } catch (Exception e) { //예상하지 못한 예외가 발생하는 경우 stack trace 를 출력하고 종료합니다.
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     private PurchasedPrice getPurchasedPrice() {
