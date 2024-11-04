@@ -143,13 +143,13 @@ View
             <td>✅ `WinningLottoUserInput`를 `WinningLotto`로 변환</td> </tr><tr> 
     <td rowspan="4">보너스 번호 입력</td>
         <td rowspan="1"><b><em>BonusCommand</em></b></td>
-            <td>⬜ `Bonus` 보너스 번호 유효성 검증</td> 
-                <td rowspan="4"></td></tr><tr>         
+            <td>✅ `Bonus` 보너스 번호 유효성 검증</td> 
+                <td rowspan="4">feat/lotto-bonus-input</td></tr><tr>         
         <td rowspan="2">View</td>
-            <td>⬜ `Bonus` 보너스 번호 사용자 입력 처리 </td> </tr><tr> 
-            <td>⬜ `Bonus` 반환</td> </tr><tr>
+            <td>✅ `Bonus` 보너스 번호 사용자 입력 처리 </td> </tr><tr> 
+            <td>✅ `Bonus` 반환</td> </tr><tr>
         <td rowspan="1">LottoService</td>
-            <td>⬜ `WinningLotto`에 보너스 번호 추가</td> </tr><tr> 
+            <td>✅ `WinningLotto`에 보너스 번호 추가</td> </tr><tr> 
      <td rowspan="4">로또 당첨 조회</td>
         <td rowspan="1">LottoService</td>
             <td>⬜ `WinningLotto`와 `PurchasedLottos` 매칭 여부</td> 

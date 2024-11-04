@@ -3,7 +3,10 @@ package lotto.service.lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.command.validate.BonusCommand;
 import lotto.command.validate.LottoCommand;
+import lotto.command.validate.ValidateCommand;
+import lotto.dto.BonusUserInput;
 import lotto.dto.WinningLottoUserInput;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.PurchasedLottos;
@@ -16,9 +19,13 @@ import lotto.service.lotto.constant.LottoConstant;
  */
 public class LottoService {
   private LottoCommand lottoCommand;
+  private BonusCommand bonusCommand;
 
-  public LottoService (LottoCommand lottoCommand) {
+  public LottoService (LottoCommand lottoCommand,
+      BonusCommand bonusCommand
+      ) {
     this.lottoCommand = lottoCommand;
+    this.bonusCommand = bonusCommand;
   }
 
   public int getPrice() {
@@ -51,5 +58,13 @@ public class LottoService {
 
   public WinningLotto createWinningLotto (WinningLottoUserInput userInput) {
     return WinningLotto.from(userInput);
+  }
+
+  public WinningLotto addBonusNumber (WinningLotto winningLotto, BonusUserInput userInput) {
+    return winningLotto.addBonus(userInput);
+  }
+
+  public BonusCommand getBonusCommand() {
+    return this.bonusCommand;
   }
 }
