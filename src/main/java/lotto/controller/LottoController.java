@@ -11,7 +11,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private final LottoService service = new LottoService();
+    private final LottoService service;
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -20,6 +20,7 @@ public class LottoController {
     private int bonusNumber = 0;
 
     public LottoController() {
+        this.service = new LottoService();
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
