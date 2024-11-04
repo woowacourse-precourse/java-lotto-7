@@ -1,12 +1,15 @@
 package lotto;
 
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.domain.WinningNumber;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 class LottosTest {

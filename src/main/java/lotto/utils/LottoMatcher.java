@@ -1,8 +1,8 @@
 package lotto.utils;
 
-import lotto.BonusNumber;
-import lotto.Lotto;
-import lotto.WinningNumber;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.WinningNumber;
 
 import java.util.List;
 

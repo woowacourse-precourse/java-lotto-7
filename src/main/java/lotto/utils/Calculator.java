@@ -1,4 +1,6 @@
-package lotto;
+package lotto.utils;
+
+import lotto.domain.Money;
 
 public class Calculator {
 

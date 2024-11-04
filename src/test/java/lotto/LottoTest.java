@@ -1,7 +1,8 @@
 package lotto;
 
-import lotto.constant.ErrorMessage;
-import lotto.constant.PrizeMoney;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

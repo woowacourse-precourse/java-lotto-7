@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import lotto.constant.LottoRange;
 import lotto.utils.Parser;
