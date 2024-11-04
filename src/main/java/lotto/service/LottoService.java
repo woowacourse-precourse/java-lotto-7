@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.dto.LottoStatisticsDTO;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoRankEvaluator;

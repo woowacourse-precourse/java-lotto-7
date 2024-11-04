@@ -1,10 +1,6 @@
 package lotto.model;
 
-import static lotto.constant.LottoConstants.LOTTO_PRICE;
-import static lotto.constant.LottoConstants.MAX_NUMBER;
-import static lotto.constant.LottoConstants.MIN_NUMBER;
-import static lotto.constant.LottoConstants.NUMBER_COUNT;
-import static lotto.constant.LottoConstants.ZERO;
+import static lotto.constant.LottoConstants.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.stream.IntStream;
