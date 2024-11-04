@@ -20,8 +20,20 @@ public class Lotto {
         }
     }
 
-    public void start(OutputView outputView,int bonusNumber){
-        lottoNumberCheck(outputView.getBoughtLottoNumbers(),bonusNumber);
+    public void start(OutputView outputView,InputView inputView){
+        List<Integer> lottoMatchTable = lottoNumberCheck(outputView.getBoughtLottoNumbers(), inputView.getBonusNumber());
+        outputView.lottoWinOutput(lottoMatchTable);
+        double lottoReturnRate = calLottoReturnRate(lottoMatchTable,inputView.getLottoPurchase());
+    }
+
+    public double calLottoReturnRate(List<Integer> lottoMatchTable, int lottoPurchase) {
+        double returnRate = 0;
+        int totalLottoWinPrice = 0;
+        List<Integer> lottoWinPrice = Arrays.asList(5000,50000,1500000,30000000,2000000000);
+        for(int i = 0 ; i < lottoMatchTable.size() ; i++){
+            totalLottoWinPrice += lottoMatchTable.get(i) * lottoWinPrice.get(i) ;
+        }
+        return returnRate = (double) (totalLottoWinPrice - lottoPurchase) / lottoPurchase * 100;
     }
 
     public List<Integer> pushNumberTable(List<Integer> equalNumberTable,int equalNumberCount, boolean bonusNumber){
