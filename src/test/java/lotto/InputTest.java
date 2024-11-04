@@ -28,9 +28,16 @@ public class InputTest {
 	}
 
 	@Test
-	@DisplayName("당첨번호가 1-45까지의 입력인지 확인하는 함수")
-	void 당첨번호가_1부터_45까지의_입력인지_확인하는_함수() {
+	@DisplayName("당첨번호가 1-45까지의 입력 검증 테스트")
+	void 당첨번호가_1부터_45까지의_입력인지_검증하는_테스트() {
 		String numbers = "0,2,3,4,5,45";
 		assertThrows(IllegalArgumentException.class, () -> input.validateLuckyNumberRange(numbers));
+	}
+
+	@Test
+	@DisplayName("당첨번호 입력 6개 검증 테스트")
+	void 당첨번호_입력이_6개인지_검증하는_테스트() {
+		String numbers = "1,2,3,4,5,6,7";
+		assertThrows(IllegalArgumentException.class, () -> input.validateNumberCount(numbers));
 	}
 }
