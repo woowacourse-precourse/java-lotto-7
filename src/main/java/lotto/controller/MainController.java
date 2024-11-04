@@ -30,6 +30,10 @@ public class MainController {
 
         // 당첨 번호 입력
         List<Integer> winningLotto = inputView.scanWinningLotto();
-        System.out.print(winningLotto);
+        System.out.println(winningLotto);
+
+        // 보너스 번호 입력
+        Integer bonusNumber = inputView.scanBonusNumber();
+        System.out.println(bonusNumber);
     }
 }

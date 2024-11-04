@@ -16,6 +16,7 @@ public class InputView {
                 .toList();
     }
 
+    // 구입금액 입력
     public Integer scanPrice() {
         return (Integer) RetryUtil.retryUntilSuccess(() -> {
             System.out.print("구입금액을 입력해 주세요." + LINE_SEPARATOR);
@@ -45,13 +46,14 @@ public class InputView {
         }
     }
 
+    // 당청 번호 입력
     public List<Integer> scanWinningLotto() {
         return (List<Integer>) RetryUtil.retryUntilSuccess(() -> {
             System.out.print("당첨 번호를 입력해 주세요." + LINE_SEPARATOR);
             String input = Console.readLine();
             validateWinningLotto(input);
-            return parseWithDelimiter(input, COMMA)
-                    .stream().mapToInt(Integer::parseInt)
+            return parseWithDelimiter(input, COMMA).stream()
+                    .mapToInt(Integer::parseInt)
                     .boxed()
                     .toList();
         });
@@ -61,10 +63,26 @@ public class InputView {
         List<String> parsed = parseWithDelimiter(input, COMMA);
         validateSize(parsed);
         validateInteger(parsed);
+        validateRange(parsed.stream()
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .toList());
+    }
+
+    private void validateRange(List<Integer> parsed) {
+        for (Integer i : parsed) {
+            validateRange(i);
+        }
+    }
+
+    private void validateRange(Integer target) {
+        if (!(1 <= target && target <= 45)) {
+            throw new IllegalArgumentException("로또 번호의 범위는 1~45여야 합니다.");
+        }
     }
 
     private void validateSize(List<String> target) {
-        if (target.size() != InputView.LOTTO_SIZE) {
+        if (target.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("당첨 번호의 개수는 6개여야 합니다.");
         }
     }
@@ -79,5 +97,18 @@ public class InputView {
         }
     }
 
+    // 보너스 번호 입력
+    public Integer scanBonusNumber() {
+        return (Integer) RetryUtil.retryUntilSuccess(() -> {
+            System.out.print("보너스 번호를 입력해 주세요." + LINE_SEPARATOR);
+            String input = Console.readLine();
+            validateBonusNumber(input);
+            return Integer.parseInt(input);
+        });
+    }
 
+    private void validateBonusNumber(String target) {
+        validateInteger(target);
+        validateRange(Integer.parseInt(target));
+    }
 }
