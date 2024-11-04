@@ -26,6 +26,7 @@ public class LottoController {
         lottoGenerator = new LottoGenerator(purchaseAmount / 1000);
         List<Lotto> lottos = lottoGenerator.generateLottos();
         outputView.displayLottoCount(lottoGenerator.getLottoCnt());
+        outputView.displayLottos(lottos);
     }
 
     public int validatePurchaseAmount() {
