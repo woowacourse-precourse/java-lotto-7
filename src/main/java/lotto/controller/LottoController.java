@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,7 +19,6 @@ public class LottoController {
         List<Lotto> createLottos = createLotto(lottoCount);
 
         printLottos(createLottos, lottoCount);
-
 
     }
 
@@ -65,12 +65,17 @@ public class LottoController {
 
     private Integer getUserPurchaseCost() {
         OutputView.getInstance().printPurchaseInput();
+        return toInt(InputView.getInstance().readUserInput());
+    }
+
+    private Integer toInt(String string){
         try{
-            return Integer.parseInt(InputView.getInstance().readUserInput());
+            return Integer.parseInt(string);
         } catch (NumberFormatException e){
             throw new IllegalArgumentException(INPUT_NUMBER_ERROR_MESSAGE);
         }
     }
+
 
 
 }
