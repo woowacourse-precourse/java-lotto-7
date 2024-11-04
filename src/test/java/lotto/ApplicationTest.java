@@ -46,6 +46,7 @@ class ApplicationTest extends NsTest {
         );
     }
 
+
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
@@ -53,6 +54,11 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+
+
+
+
 
     @Override
     public void runMain() {
