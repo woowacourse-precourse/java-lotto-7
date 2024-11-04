@@ -20,6 +20,7 @@ public class OutputView {
     }
 
     public static void printWinningHistory(Map<LottoRanking, Integer> map) {
+        System.out.println();
         System.out.println("당첨 통게");
         System.out.println("---");
         for (LottoRanking ranking : map.keySet()) {

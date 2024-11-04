@@ -4,7 +4,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRanking;
 import lotto.domain.User;
 import lotto.domain.UserLotto;
-import lotto.view.OutputView;
 
 import java.util.*;
 
@@ -23,14 +22,13 @@ public class LottoCalculatorService {
         }
     }
 
-    public void calculateWinningResult(User user, Lotto WinningLotto) {
+    public Map<LottoRanking, Integer> calculateWinningResult(User user, Lotto WinningLotto) {
         for (UserLotto userLotto : user.getUserLotto()) {
             int duplicateNumber = getDuplicateNumber(userLotto, WinningLotto);
 
             duplicateLottoNumberCalculate(userLotto, duplicateNumber, WinningLotto);
         }
-
-        OutputView.printWinningHistory(winningCount);
+        return winningCount;
     }
 
     private int getDuplicateNumber(UserLotto userLotto, Lotto winningLotto) {
@@ -55,12 +53,11 @@ public class LottoCalculatorService {
         }
     }
 
-    public void profitCalculate(User user) {
+    public String profitCalculate(User user) {
         for (LottoRanking lottoRanking : winningCount.keySet()) {
             addWinningPrice(user, lottoRanking);
         }
-
-        OutputView.printProfit(user.getProfit());
+        return user.getProfit();
     }
 
     private void addWinningPrice(User user, LottoRanking lottoRanking) {

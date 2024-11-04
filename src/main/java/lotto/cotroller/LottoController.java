@@ -1,9 +1,13 @@
 package lotto.cotroller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoRanking;
 import lotto.domain.User;
 import lotto.service.InputService;
 import lotto.service.LottoCalculatorService;
+import lotto.view.OutputView;
+
+import java.util.Map;
 
 public class LottoController {
 
@@ -14,16 +18,8 @@ public class LottoController {
         User user = setUser();
         Lotto lotto = setWinningLotto();
 
-        getCalculateResult(user, lotto);
-        getProfit(user);
-    }
-
-    private void getProfit(User user) {
-        lottoCalculatorService.profitCalculate(user);
-    }
-
-    private void getCalculateResult(User user, Lotto lotto) {
-        lottoCalculatorService.calculateWinningResult(user, lotto);
+        OutputView.printWinningHistory(getCalculateResult(user, lotto));
+        OutputView.printProfit(getProfit(user));
     }
 
     private User setUser() {
@@ -32,5 +28,13 @@ public class LottoController {
 
     private Lotto setWinningLotto() {
         return inputService.setWinningLotto();
+    }
+
+    private String getProfit(User user) {
+        return lottoCalculatorService.profitCalculate(user);
+    }
+
+    private Map<LottoRanking, Integer> getCalculateResult(User user, Lotto lotto) {
+        return lottoCalculatorService.calculateWinningResult(user, lotto);
     }
 }
