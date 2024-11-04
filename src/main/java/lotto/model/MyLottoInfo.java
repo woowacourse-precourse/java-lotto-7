@@ -9,29 +9,21 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.properties.LottoProperties.LOTTO_PRICE;
-import static lotto.properties.LottoProperties.LOTTO_REVENUE_RATE;
 
 public class MyLottoInfo {
 
-    private final List<Lotto> myLotteries;
     private final int purchaseAmount;
     private final int purchaseLottoCount;
+    private final Revenue revenue;
+    private final List<Lotto> myLotteries;
     private final Map<Rank, Integer> myResult;
-    private int revenue;
-    private double revenuePercentage;
 
     private MyLottoInfo(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
+        this.revenue = Revenue.init(purchaseAmount);
         this.purchaseLottoCount = calculateQuantities();
         this.myLotteries = generateLotto();
         this.myResult = initResult();
-        this.revenue = 0;
-    }
-
-    public static MyLottoInfo from(PurchaseAmountDto dto){
-        return new MyLottoInfo(
-                dto.purchaseAmount()
-        );
     }
 
     private Map<Rank, Integer> initResult(){
@@ -46,12 +38,19 @@ public class MyLottoInfo {
     }
 
     public void getResultPerLotto(WinningLotto winningLotto) {
-        myLotteries.forEach(lotto ->
-                lottoResult(
-                        CheckLotto.countEqualLottoNumbers(lotto, winningLotto.getWinningLotto().getNumbers()),
-                        CheckLotto.checkContainsBonusNumber(lotto, winningLotto.getBonusNumber())
-                )
+        myLotteries.forEach(lotto -> {
+                    Rank rank = Rank.findRank(
+                            CheckLotto.countEqualLottoNumbers(lotto, winningLotto.getWinningLotto().getNumbers()),
+                            CheckLotto.checkContainsBonusNumber(lotto, winningLotto.getBonusNumber())
+                    );
+                    updateResult(rank);
+                    revenue.updateRevenue(rank);
+                }
         );
+    }
+
+    public void calculateRevenueRate(){
+        revenue.updateRevenueRate();
     }
 
     private int calculateQuantities(){
@@ -66,20 +65,6 @@ public class MyLottoInfo {
         return lottos;
     }
 
-    private void lottoResult(int count, boolean isBonusNumberMatch) {
-        Rank rank = determineRank(count, isBonusNumberMatch);
-        updateRevenue(rank);
-        updateResult(rank);
-    }
-
-    private Rank determineRank(int count, boolean isBonusNumberMatch) {
-        return Rank.findRank(count, isBonusNumberMatch);
-    }
-
-    private void updateRevenue(Rank rank) {
-        revenue += rank.getWinningPrice();
-    }
-
     private void updateResult(Rank rank) {
         myResult.put(rank, myResult.get(rank) + 1);
     }
@@ -88,15 +73,21 @@ public class MyLottoInfo {
         return myLotteries;
     }
 
+    public Revenue getRevenue() {
+        return revenue;
+    }
+
     public int getPurchaseLottoCount() {
         return purchaseLottoCount;
-    }
-    public double getRevenuePercentage() {
-        revenuePercentage = ((double) revenue / (double) purchaseAmount) * LOTTO_REVENUE_RATE;
-        return revenuePercentage;
     }
 
     public Map<Rank, Integer> getMyResult() {
         return myResult;
+    }
+
+    public static MyLottoInfo from(PurchaseAmountDto dto){
+        return new MyLottoInfo(
+                dto.purchaseAmount()
+        );
     }
 }

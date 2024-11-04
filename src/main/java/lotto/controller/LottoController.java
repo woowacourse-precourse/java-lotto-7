@@ -27,6 +27,7 @@ public class LottoController {
 
     public void result(){
         myLottoInfo.getResultPerLotto(winningLotto);
+        myLottoInfo.calculateRevenueRate();
         outputLottoResult();
     }
 
@@ -37,6 +38,6 @@ public class LottoController {
 
     private void outputLottoResult(){
         OutputView.outputLottoResult(myLottoInfo.getMyResult());
-        OutputView.outputRevenue(myLottoInfo.getRevenuePercentage());
+        OutputView.outputRevenue(myLottoInfo.getRevenue().getRevenueRate());
     }
 }
