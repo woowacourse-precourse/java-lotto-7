@@ -11,7 +11,8 @@ import static org.assertj.core.api.Assertions.*;
 
 class ValidatorTest {
     // 금액 입력 테스트
-    private void assertMoneyInputValidation(String moneyInput, boolean isExceptionExpected) {
+    private void assertMoneyInputValidation(
+            String moneyInput, boolean isExceptionExpected) {
         if (isExceptionExpected) {
             assertThatThrownBy(() -> Validator.validateMoneyInput(moneyInput))
                     .isInstanceOf(IllegalArgumentException.class);
@@ -72,12 +73,13 @@ class ValidatorTest {
     }
 
     // 당첨 번호 입력 테스트
-    private void assertWinningNumberValidation(String number, boolean isExceptionExpected) {
+    private void assertWinningNumberValidation(
+            String number, boolean isExceptionExpected) {
         if (isExceptionExpected) {
-            assertThatThrownBy(() -> Validator.validateLottoNumber(number))
+            assertThatThrownBy(() -> Validator.validateIndividualLottoNumber(number))
                     .isInstanceOf(IllegalArgumentException.class);
         } else {
-            assertThatCode(() -> Validator.validateLottoNumber(number))
+            assertThatCode(() -> Validator.validateIndividualLottoNumber(number))
                     .doesNotThrowAnyException();
         }
     }
@@ -89,7 +91,8 @@ class ValidatorTest {
             "'   ' : true",
             "1 : false"
     }, delimiter = ':')
-    void validateLottoNumber_빈_값_입력_테스트(String number, boolean isExceptionTriggerValue) {
+    void validateIndividualLottoNumber_빈_값_입력_테스트(
+            String number, boolean isExceptionTriggerValue) {
         assertWinningNumberValidation(number, isExceptionTriggerValue);
     }
 
@@ -101,7 +104,8 @@ class ValidatorTest {
             "- : true",
             "1 : false"
     }, delimiter = ':')
-    void validateLottoNumber_숫자가_아닌_문자_입력_테스트(String number, boolean isExceptionTriggerValue) {
+    void validateIndividualLottoNumber_숫자가_아닌_문자_입력_테스트(
+            String number, boolean isExceptionTriggerValue) {
         assertWinningNumberValidation(number, isExceptionTriggerValue);
     }
 
@@ -112,54 +116,62 @@ class ValidatorTest {
             "0 : true",
             "1 : false"
     }, delimiter = ':')
-    void validateLottoNumber_양수가_아닌_숫자_입력_테스트(String number, boolean isExceptionTriggerValue) {
+    void validateIndividualLottoNumber_양수가_아닌_숫자_입력_테스트(
+            String number, boolean isExceptionTriggerValue) {
         assertWinningNumberValidation(number, isExceptionTriggerValue);
     }
 
     @DisplayName("당첨 번호 입력에 1~45 범위를 벗어나는 숫자가 들어올 경우 예외가 발생한다.")
     @Test
     void validateWinningNumbers_범위를_벗어나는_숫자_테스트() {
-        assertThatThrownBy(() -> Validator.validateWinningNumbers(List.of(46,1,2,3,4,5)))
+        assertThatThrownBy(() -> Validator.validateWinningNumbers(
+                List.of(46,1,2,3,4,5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호 입력에 1~45 범위를 벗어나지 않는 숫자가 들어올 경우 예외가 발생하지 않는다.")
     @Test
     void validateWinningNumbers_범위를_벗어나지_않는_숫자_테스트() {
-        assertThatCode(() -> Validator.validateWinningNumbers(List.of(1,2,3,4,5,45)))
+        assertThatCode(() -> Validator.validateWinningNumbers(
+                List.of(1,2,3,4,5,45)))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("당첨 번호가 5개인 경우 예외가 발생한다.")
     @Test
     void validateWinningNumbers_5개의_숫자가_입력된_경우_테스트() {
-        assertThatThrownBy(() -> Validator.validateWinningNumbers(List.of(1,2,3,4,5)))
+        assertThatThrownBy(() -> Validator.validateWinningNumbers(
+                List.of(1,2,3,4,5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호가 6개인 경우 예외가 발생하지 않는다.")
     @Test
     void validateWinningNumbers_6개의_숫자가_입력된_경우_테스트() {
-        assertThatCode(() -> Validator.validateWinningNumbers(List.of(1,2,3,4,5,6)))
+        assertThatCode(() -> Validator.validateWinningNumbers(
+                List.of(1,2,3,4,5,6)))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("당첨 번호가 7개인 경우 예외가 발생한다.")
     @Test
     void validateWinningNumbers_7개의_숫자가_입력된_경우_테스트() {
-        assertThatThrownBy(() -> Validator.validateWinningNumbers(List.of(1,2,3,4,5,6,7)))
+        assertThatThrownBy(() -> Validator.validateWinningNumbers(
+                List.of(1,2,3,4,5,6,7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호에 중복이 있을 경우 예외가 발생한다.")
     @Test
     void validateWinningNumbers_숫자에_중복이_있는_경우_테스트() {
-        assertThatThrownBy(() -> Validator.validateWinningNumbers(List.of(1,1,2,3,4,5)))
+        assertThatThrownBy(() -> Validator.validateWinningNumbers(
+                List.of(1,1,2,3,4,5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     // 보너스 번호 입력 테스트
-    private void assertBonusNumberValidation(String bonusNumber, boolean isExceptionExpected) {
+    private void assertBonusNumberValidation(
+            String bonusNumber, boolean isExceptionExpected) {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         int number = Integer.parseInt(bonusNumber);
 
@@ -179,7 +191,8 @@ class ValidatorTest {
             "46 : true",
             "7 : false"
     }, delimiter = ':')
-    void validateBonusNumber_범위를_벗어나는_숫자_입력_테스트(String bonusNumber, boolean isExceptionTriggerValue) {
+    void validateBonusNumber_범위를_벗어나는_숫자_입력_테스트(
+            String bonusNumber, boolean isExceptionTriggerValue) {
         assertBonusNumberValidation(bonusNumber, isExceptionTriggerValue);
     }
 
@@ -191,7 +204,8 @@ class ValidatorTest {
             "6 : true",
             "7 : false",
     }, delimiter = ':')
-    void validateBonusNumber_당첨_번호와_중복되는_숫자_입력_테스트(String bonusNumber, boolean isExceptionTriggerValue) {
+    void validateBonusNumber_당첨_번호와_중복되는_숫자_입력_테스트(
+            String bonusNumber, boolean isExceptionTriggerValue) {
         assertBonusNumberValidation(bonusNumber, isExceptionTriggerValue);
     }
 }
