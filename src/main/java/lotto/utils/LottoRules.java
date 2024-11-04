@@ -25,13 +25,13 @@ public class LottoRules {
         WINNING_RANK_5(5_000),
         NO_RANK(0);
 
-        private final long money;
+        private final int money;
 
-        Winning(long money) {
+        Winning(int money) {
             this.money = money;
         }
 
-        public long getMoney() {
+        public int getMoney() {
             return money;
         }
     }

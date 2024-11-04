@@ -80,4 +80,26 @@ public class LottoService {
         return (int) numbers.stream().filter(targetNumbers::contains).count();
     }
 
+
+    public float calculateYieldRate(int purchasePrice, Map<Winning, Integer> winningRankCount) {
+        if (purchasePrice == 0) {
+            return 0;
+        }
+
+        int yield = calculateTotalWinningMoney(winningRankCount);
+
+        float yieldRate = (float) yield / purchasePrice * 100;
+
+        return yieldRate;
+    }
+
+    private int calculateTotalWinningMoney(Map<Winning, Integer> winningRankCount) {
+        int output = 0;
+        for (Map.Entry<Winning, Integer> entry : winningRankCount.entrySet()) {
+            Winning winning = entry.getKey();
+            int count = entry.getValue();
+            output += winning.getMoney() * count;
+        }
+        return output;
+    }
 }
