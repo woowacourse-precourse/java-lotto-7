@@ -39,6 +39,7 @@ public class LottoGenerator {
         for(Lotto lotto : Lottos) {
             System.out.println(lotto);
         }
+        System.out.println();
     }
 
 }

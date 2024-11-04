@@ -10,5 +10,8 @@ public class Application {
         System.out.println();
         LottoGenerator lg = new LottoGenerator(Integer.parseInt(inputAmount));
         lg.getLottos();
+
+        WinningNumbers wn = new WinningNumbers();
+        System.out.println(wn);
     }
 }
