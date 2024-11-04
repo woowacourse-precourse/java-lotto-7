@@ -2,7 +2,7 @@ package lotto.domain.quantity;
 
 import java.math.BigDecimal;
 import java.util.Objects;
-import lotto.exception.quantity.InvalidQuantityException;
+import lotto.exception.argument.quantity.InvalidQuantityException;
 
 public class Quantity {
 

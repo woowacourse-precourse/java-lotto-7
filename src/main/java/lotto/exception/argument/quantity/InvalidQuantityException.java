@@ -1,6 +1,6 @@
-package lotto.exception.quantity;
+package lotto.exception.argument.quantity;
 
-import lotto.exception.CustomIllegalArgumentException;
+import lotto.exception.base.CustomIllegalArgumentException;
 
 public class InvalidQuantityException extends CustomIllegalArgumentException {
 

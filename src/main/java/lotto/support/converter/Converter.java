@@ -2,7 +2,7 @@ package lotto.support.converter;
 
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.exception.converter.InvalidConvertException;
+import lotto.exception.argument.converter.InvalidConvertException;
 import lotto.support.validator.InputValidator;
 
 public class Converter {

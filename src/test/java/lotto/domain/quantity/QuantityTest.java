@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.math.BigDecimal;
 import java.util.stream.Stream;
-import lotto.exception.quantity.InvalidQuantityException;
+import lotto.exception.argument.quantity.InvalidQuantityException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import lotto.domain.quantity.Quantity;
 import lotto.dto.LottoNumberDto;
-import lotto.exception.lotto.InvalidLottoException;
+import lotto.exception.argument.lotto.InvalidLottoException;
 
 public class Lotto {
 
@@ -52,7 +52,7 @@ public class Lotto {
 
     private void validateUnique(final List<Integer> numbers) {
         if (countUniqueFrom(numbers) != LOTTO_SIZE) {
-            throw new InvalidLottoException("로또 번호는 중복되지 않은 6개의 숫자여야 합니다.");
+            throw new InvalidLottoException("로또는 중복되지 않은 6개의 숫자여야 합니다.");
         }
     }
 

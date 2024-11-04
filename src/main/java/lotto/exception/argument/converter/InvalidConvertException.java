@@ -1,6 +1,6 @@
-package lotto.exception.converter;
+package lotto.exception.argument.converter;
 
-import lotto.exception.CustomIllegalArgumentException;
+import lotto.exception.base.CustomIllegalArgumentException;
 
 public class InvalidConvertException extends CustomIllegalArgumentException {
 

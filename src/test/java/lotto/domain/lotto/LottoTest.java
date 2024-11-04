@@ -1,14 +1,14 @@
 package lotto.domain.lotto;
 
+import static lotto.support.utils.CustomExceptionAssertions.assertCustomIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.quantity.Quantity;
-import lotto.exception.lotto.InvalidLottoException;
+import lotto.exception.argument.lotto.InvalidLottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -55,11 +55,9 @@ class LottoTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> new Lotto(numbers))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(() -> new Lotto(numbers))
                     .isExactlyInstanceOf(InvalidLottoException.class)
-                    .hasMessageStartingWith("[ERROR] ")
-                    .hasMessageContaining("로또 번호는 중복되지 않은 6개의 숫자여야 합니다.");
+                    .hasMessageContaining("로또는 중복되지 않은 6개의 숫자여야 합니다.");
         }
 
         private static Stream<Arguments> 실패_수동생성_6개X() {
@@ -75,11 +73,9 @@ class LottoTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                     .isExactlyInstanceOf(InvalidLottoException.class)
-                    .hasMessageStartingWith("[ERROR] ")
-                    .hasMessageContaining("로또 번호는 중복되지 않은 6개의 숫자여야 합니다.");
+                    .hasMessageContaining("로또는 중복되지 않은 6개의 숫자여야 합니다.");
         }
     }
 

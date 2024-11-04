@@ -3,7 +3,7 @@ package lotto.domain.lotto;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
-import lotto.exception.lotto.InvalidLottoNumberException;
+import lotto.exception.argument.lotto.InvalidLottoNumberException;
 
 public class LottoNumber {
 

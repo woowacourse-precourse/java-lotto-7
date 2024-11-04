@@ -1,13 +1,16 @@
 package lotto.domain.lotto;
 
 import static lotto.support.utils.CustomExceptionAssertions.assertCustomIllegalArgumentException;
+import static lotto.support.utils.CustomExceptionAssertions.assertCustomIllegalStateException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
-import lotto.exception.lotto.InvalidLottoNumberException;
+import lotto.exception.state.InvalidStateException;
+import lotto.exception.argument.lotto.InvalidLottoNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -35,7 +38,7 @@ public class LotteryTest {
 
         @Test
         @DisplayName("보너스 번호가 발행한 로또에 포함되면 예외가 발생한다.")
-        void 실패_생성() {
+        void 실패_생성_포함() {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             LottoNumber bonusNumber = LottoNumber.valueOf(1);
@@ -93,6 +96,21 @@ public class LotteryTest {
 
             // Then
             assertThat(profitRate).isEqualTo(new BigDecimal("101500000.0"));
+        }
+
+        @Test
+        @DisplayName("구매한 로또가 없을 경우 예외가 발생한다.")
+        void 실패_계산_구매로또X() {
+            // Given
+            Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+            LottoNumber bonusNumber = LottoNumber.valueOf(10);
+            List<Lotto> lottos = Collections.emptyList();
+            Lottery lottery = new Lottery(winningLotto, bonusNumber, lottos);
+
+            // When & Then
+            assertCustomIllegalStateException(lottery::calculateProfitRate)
+                    .isExactlyInstanceOf(InvalidStateException.class)
+                    .hasMessageContaining("구매한 로또가 없습니다.");
         }
     }
 }

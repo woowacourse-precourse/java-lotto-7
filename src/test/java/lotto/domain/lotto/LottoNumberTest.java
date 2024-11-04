@@ -3,7 +3,7 @@ package lotto.domain.lotto;
 import static lotto.support.utils.CustomExceptionAssertions.assertCustomIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-import lotto.exception.lotto.InvalidLottoNumberException;
+import lotto.exception.argument.lotto.InvalidLottoNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

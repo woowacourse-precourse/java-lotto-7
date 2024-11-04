@@ -3,7 +3,7 @@ package lotto.support.validator;
 import static lotto.support.utils.CustomExceptionAssertions.assertCustomIllegalArgumentException;
 
 import java.util.Collections;
-import lotto.exception.validator.InvalidInputException;
+import lotto.exception.argument.validator.InvalidInputException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

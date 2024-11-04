@@ -1,6 +1,6 @@
-package lotto.exception.validator;
+package lotto.exception.argument.validator;
 
-import lotto.exception.CustomIllegalArgumentException;
+import lotto.exception.base.CustomIllegalArgumentException;
 
 public class InvalidInputException extends CustomIllegalArgumentException {
 

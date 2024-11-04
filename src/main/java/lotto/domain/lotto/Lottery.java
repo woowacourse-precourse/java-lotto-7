@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
-import lotto.exception.lotto.InvalidLottoNumberException;
+import lotto.exception.state.InvalidStateException;
+import lotto.exception.argument.lotto.InvalidLottoNumberException;
 
 public class Lottery {
 
@@ -30,6 +31,9 @@ public class Lottery {
     }
 
     public BigDecimal calculateProfitRate() {
+        if (lottos.isEmpty()) {
+            throw new InvalidStateException("구매한 로또가 없습니다.");
+        }
         BigDecimal profit = calculateProfit();
         BigDecimal purchaseAmount = LOTTO_UNIT_PRICE.multiply(BigDecimal.valueOf(lottos.size()));
         return profit.divide(purchaseAmount)
