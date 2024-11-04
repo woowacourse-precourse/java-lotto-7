@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.enums.ErrorMessage;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
     }
 
     private void validate(List<Integer> numbers) {
