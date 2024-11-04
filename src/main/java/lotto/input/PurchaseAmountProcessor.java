@@ -1,16 +1,11 @@
 package lotto.input;
 
+import static lotto.constant.LottoConstants.*;
 import static lotto.exception.ExceptionMessage.*;
 
 import lotto.util.InputUtil;
 
 public class PurchaseAmountProcessor {
-
-    private static final int PURCHASE_UNIT = 1000;
-    private static final int ZERO = 0;
-    private static final long MAX_PURCHASE_AMOUNT = 1_000_000_000L;
-    private static final String POSITIVE_SIGN = "+";
-
     private PurchaseAmountProcessor() {
     }
 

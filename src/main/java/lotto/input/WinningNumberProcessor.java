@@ -1,5 +1,6 @@
 package lotto.input;
 
+import static lotto.constant.LottoConstants.NUMBER_SEPARATOR;
 import static lotto.exception.ExceptionMessage.*;
 
 import java.util.List;
@@ -7,8 +8,6 @@ import java.util.stream.Stream;
 import lotto.util.InputUtil;
 
 public class WinningNumberProcessor {
-
-    private static final String NUMBER_SEPARATOR = ",";
 
     private WinningNumberProcessor() {
     }

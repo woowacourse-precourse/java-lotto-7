@@ -1,5 +1,6 @@
 package lotto.input;
 
+import static lotto.constant.LottoConstants.MAX_PURCHASE_AMOUNT;
 import static lotto.exception.ExceptionMessage.*;
 import static lotto.input.PurchaseAmountProcessor.calculatePurchaseCount;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -59,7 +60,7 @@ public class PurchaseAmountProcessorTest {
         // when & then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> calculatePurchaseCount(input))
-                .withMessage(EXCEEDS_MAX_AMOUNT.getMessageWithMaxAmount(1000000000));
+                .withMessage(EXCEEDS_MAX_AMOUNT.getMessageWithMaxAmount(MAX_PURCHASE_AMOUNT));
     }
 
     @DisplayName("1,000원 단위로 나누어 떨어지지 않는 경우 - IllegalArgumentException 반환")

@@ -1,12 +1,8 @@
 package lotto.util;
 
+import static lotto.constant.LottoConstants.*;
 import static lotto.exception.ExceptionMessage.*;
 public class InputUtil {
-
-    private static final String DECIMAL_POINT = ".";
-    private static final String ZERO = "0";
-    private static final String NEGATIVE_SIGN = "-";
-    private static final String NUMERIC_REGEX = "\\d+";
 
     public static void validateEmptyInput(String input) {
         if (input == null || input.isBlank()) {
@@ -17,7 +13,7 @@ public class InputUtil {
     public static void validatePositiveInteger(String input){
         String trimmedInput = input.trim();
 
-        if (trimmedInput.startsWith(NEGATIVE_SIGN) || ZERO.equals(trimmedInput) || trimmedInput.contains(DECIMAL_POINT)) {
+        if (trimmedInput.startsWith(NEGATIVE_SIGN) || STRING_ZERO.equals(trimmedInput) || trimmedInput.contains(DECIMAL_POINT)) {
             throw new IllegalArgumentException(ONLY_POSITIVE_INPUT.getMessage());
         }
         if (!trimmedInput.matches(NUMERIC_REGEX)) {

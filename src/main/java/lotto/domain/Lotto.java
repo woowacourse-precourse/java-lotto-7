@@ -1,12 +1,12 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstants.REQUIRED_NUMBER_COUNT;
 import static lotto.exception.ExceptionMessage.*;
 
 import java.util.*;
 import lotto.util.LottoUtils;
 
 public class Lotto {
-    private static final int REQUIRED_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

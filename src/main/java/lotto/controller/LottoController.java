@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constant.LottoConstants.PURCHASE_UNIT;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.*;
@@ -31,7 +33,7 @@ public class LottoController {
         ResultCalculator resultCalculator = lottoService.calculateResult(lottos, winningLotto);
 
         output.printWinningDetails(resultCalculator);
-        output.printYield(resultCalculator.calculateRate(purchaseCount * 1000));
+        output.printYield(resultCalculator.calculateRate(purchaseCount * PURCHASE_UNIT));
     }
 
     private int setPurchaseCount() {
