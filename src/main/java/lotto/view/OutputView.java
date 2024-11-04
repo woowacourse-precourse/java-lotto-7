@@ -34,10 +34,6 @@ public class OutputView {
         printRevenue(lottoResult);
     }
 
-    public void printLottoResult(Map<Ranking, Integer> lottoResults, Ranking ranking) {
-        printLottoResultInfo(ranking, lottoResults.getOrDefault(ranking, 0));
-    }
-
     public void printErrorMessage(Exception exception) {
         System.out.printf(ERROR_MESSAGE_FORMAT, exception.getMessage());
     }
@@ -71,10 +67,14 @@ public class OutputView {
         Arrays.stream(Ranking.values())
                 .filter(ranking -> ranking != Ranking.MISS)
                 .sorted(Comparator.comparingInt(Ranking::getGrade).reversed())
-                .forEach(ranking -> printLottoResult(lottoResult.getResults(), ranking));
+                .forEach(ranking -> printLottoResultInfo(lottoResult.getResults(), ranking));
     }
 
-    private static void printLottoResultInfo(Ranking ranking, int count) {
+    private void printLottoResultInfo(Map<Ranking, Integer> lottoResults, Ranking ranking) {
+        printLottoResultInfo(ranking, lottoResults.getOrDefault(ranking, 0));
+    }
+
+    private void printLottoResultInfo(Ranking ranking, int count) {
         if (ranking.isRequireMatchBonus()) {
             System.out.printf(LOTTO_INFO_WITH_BONUS_FORMAT, ranking.getMatchCount(), ranking.getPrize(), count);
             return;
