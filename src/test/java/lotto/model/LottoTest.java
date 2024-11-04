@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import lotto.model.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -22,5 +22,5 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
 }
