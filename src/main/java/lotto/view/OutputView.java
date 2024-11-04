@@ -13,6 +13,7 @@ public class OutputView {
     private static final String NUMBERS_MESSAGE_FORMAT = "[%s]\n";
     private static final String RATE_OF_RETURN_MESSAGE_FORMAT = "총 수익률은 %s%%입니다.\n";
     private static final String STATISTIC_MESSAGE_FORMAT = "%d개 일치%s (%s원) - %d개\n";
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s\n";
 
     private static final String DEFAULT_BONUS_NUMBER_MESSAGE = "";
     private static final String BONUS_NUMBER_NEEDED_MESSAGE = ", 보너스 볼 일치";
@@ -53,6 +54,10 @@ public class OutputView {
 
     public void displayRateOfReturn(Double rateOfReturn) {
         System.out.printf(RATE_OF_RETURN_MESSAGE_FORMAT, rateOfReturn);
+    }
+    
+    public void displayError(String message) {
+        System.out.printf(ERROR_MESSAGE_FORMAT, message);
     }
 
     private void displayPurchaseCount(Integer count) {
