@@ -7,6 +7,11 @@ public class InputView {
         return readConsoleInput();
     }
 
+    public String inputWinningNumbers(){
+        return  readConsoleInput();
+    }
+
+
     private String readConsoleInput() {
         return Console.readLine();
     }
