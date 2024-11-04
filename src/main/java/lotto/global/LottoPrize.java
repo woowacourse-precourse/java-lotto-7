@@ -35,4 +35,11 @@ public enum LottoPrize {
         }
         return NONE;
     }
+
+    public String getMatchDescription() {
+        if (matchBonusNumber) {
+            return matchNumberCount + "개 일치, 보너스 볼 일치";
+        }
+        return matchNumberCount + "개 일치";
+    }
 }

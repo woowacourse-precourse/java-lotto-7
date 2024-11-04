@@ -3,6 +3,8 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.global.LottoPrize;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class OutputView {
@@ -13,11 +15,14 @@ public class OutputView {
     }
 
     public static void printResult(List<LottoPrize> results) {
-        for (LottoPrize prize : LottoPrize.values()) {
-            if (prize == LottoPrize.NONE) continue;
-            long count = results.stream().filter(prize::equals).count();
-            System.out.println(prize.getMatchNumberCount() + "개 일치 " + "(" + prize.getPrizeMoney() + "원) - " + count + "개");
-        }
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        Arrays.stream(LottoPrize.values())
+                .filter(prize -> prize != LottoPrize.NONE)
+                .forEach(prize -> {
+                    long count = results.stream().filter(prize::equals).count();
+                    System.out.println(prize.getMatchDescription() + " (" + prize.getPrizeMoney() + "원) - " + count + "개");
+                });
     }
 
     public static void printProfit(double profit) {
