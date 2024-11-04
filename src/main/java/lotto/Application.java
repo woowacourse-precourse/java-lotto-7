@@ -1,6 +1,11 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000; // 로또 한 장 가격 정의
@@ -8,6 +13,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             int amount = inputAmount(); // 구입 금액 입력받기
+            List<Lotto> purchasedLottos = purchaseLottos(amount / LOTTO_PRICE); // 구매한 로또 수량만큼 로또 생성
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage()); // 예외 발생 시 에러 메시지 출력
         }
@@ -28,4 +34,22 @@ public class Application {
             }
         }
     }
+
+     // 로또 구매 및 로또 번호 생성
+    private static List<Lotto> purchaseLottos(int count) {
+        System.out.println(count + "개를 구매했습니다.");
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            lottos.add(new Lotto(generateLottoNumbers())); // count 수만큼 로또 생성하여 리스트에 추가
+        }
+        return lottos;
+    }
+
+    private static List<Integer> generateLottoNumbers() {
+        // 1부터 45 사이의 중복되지 않는 랜덤 숫자 6개를 생성하여 정렬 후 반환
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(numbers);
+        return numbers;
+    }
+
 }
