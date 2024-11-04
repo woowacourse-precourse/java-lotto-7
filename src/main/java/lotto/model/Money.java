@@ -28,11 +28,14 @@ public class Money {
 
     @VisibleForTesting
     void validateRange(long amount) {
-        if (amount < Constants.MIN_MONEY.getNumber()
-                || amount > Constants.MAX_MONEY.getLong()) {
+        if (isOutOfRange(amount)) {
             throw new IllegalArgumentException(
                     MessageParser.getErrorMessage(Errors.NOT_IN_MONEY_RANGE.getMessage()));
         }
+    }
+
+    private boolean isOutOfRange(long number) {
+        return number < Constants.MIN_MONEY.getNumber() || number > Constants.MAX_MONEY.getLong();
     }
 
     @VisibleForTesting

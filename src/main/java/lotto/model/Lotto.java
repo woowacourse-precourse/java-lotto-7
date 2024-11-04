@@ -46,11 +46,13 @@ public class Lotto {
 
     @VisibleForTesting
     void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number ->
-                number < Constants.MIN_LOTTO_NUMBER.getNumber()
-                        || number > Constants.MAX_LOTTO_NUMBER.getNumber())) {
+        if (numbers.stream().anyMatch(this::isOutOfRange)) {
             throw new IllegalArgumentException(
                     MessageParser.getErrorMessage(Errors.NOT_IN_LOTTO_RANGE.getMessage()));
         }
+    }
+
+    private boolean isOutOfRange(int number) {
+        return number < Constants.MIN_LOTTO_NUMBER.getNumber() || number > Constants.MAX_LOTTO_NUMBER.getNumber();
     }
 }
