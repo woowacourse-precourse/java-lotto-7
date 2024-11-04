@@ -20,21 +20,16 @@ public class LottoResultService {
 
         boolean matchBonus = lotto.getLotto().contains(guess.getBonusNumber());
 
-        if (matchCount == 6) {
-            return Rank.FIRST;
-        }
-        if (matchCount == 5 && matchBonus) {
-            return Rank.SECOND;
-        }
-        if (matchCount == 5) {
-            return Rank.THIRD;
-        }
-        if (matchCount == 4) {
-            return Rank.FOURTH;
-        }
-        if (matchCount == 3) {
-            return Rank.FIFTH;
-        }
+        if (matchCount == 6) return Rank.FIRST;
+
+        if (matchCount == 5 && matchBonus) return Rank.SECOND;
+
+        if (matchCount == 5) return Rank.THIRD;
+
+        if (matchCount == 4) return Rank.FOURTH;
+
+        if (matchCount == 3) return Rank.FIFTH;
+
         return Rank.NONE;
     }
 }
