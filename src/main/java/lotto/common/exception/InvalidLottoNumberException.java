@@ -18,4 +18,3 @@ public class InvalidLottoNumberException extends LottoException{
         super(ErrorMessage.LOTTO_NUMBER_MUST_BE_NUMBER.getMessage() + "(입력값: " + input + ")", e);
     }
 }
-

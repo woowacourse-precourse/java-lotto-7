@@ -10,7 +10,7 @@ class LottoMoneyTest {
 
     @DisplayName("로또 가격 테스트")
     @Test
-    void lottoMoneyTest() {
+    void lottoMoney_create_test() {
         LottoMoney lottoMoney = new LottoMoney(50000);
         assertAll(() -> assertThat(lottoMoney.getPurchasedAmount()).isEqualTo(50000),
                 () -> assertThat(lottoMoney.getLottoCount()).isEqualTo(50)

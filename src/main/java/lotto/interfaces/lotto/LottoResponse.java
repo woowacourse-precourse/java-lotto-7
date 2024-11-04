@@ -15,6 +15,7 @@ public record LottoResponse(
                         .toList()
         );
     }
+
     @Override
     public String toString() {
         return lotto.toString();

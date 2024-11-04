@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
+    void lottoSize_outOfRange_throwException() {
         List<LottoNumber> lottoNumbers = IntStream.rangeClosed(1, 7)
                 .mapToObj(LottoNumber::new)
                 .toList();
@@ -20,7 +20,7 @@ class LottoTest {
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+    void lottoNumber_duplicate_throwException() {
         List<LottoNumber> lottoNumbers = IntStream.rangeClosed(1, 5)
                 .mapToObj(LottoNumber::new)
                 .toList();

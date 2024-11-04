@@ -12,7 +12,7 @@ class RevenueTest {
 
     @DisplayName("로또 결과를 통해 수익률을 반환하는 테스트")
     @Test
-    void revenueTest() {
+    void revenue_lottoResult_returnRevenue() {
         LottoResult lottoResult = new LottoResult();
         lottoResult.addLottoResult(LottoPrize.SECOND_PRIZE);
         lottoResult.addLottoResult(LottoPrize.THIRD_PRIZE);

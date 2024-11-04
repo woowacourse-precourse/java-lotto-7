@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import lotto.domain.lotto.LottoNumber;
 
 public class DuplicateLottoNumberException extends LottoException {
+
     public DuplicateLottoNumberException(List<LottoNumber> lottoNumbers) {
         super(ErrorMessage.LOTTO_NUMBER_DUPLICATE.getMessage() + "(로또 번호: " +
                 lottoNumbers.stream()

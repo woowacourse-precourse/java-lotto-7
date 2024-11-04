@@ -30,5 +30,4 @@ public class LottoConfig {
         LottoCreator lottoCreator = new LottoCreator();
         return new RandomLottoGenerator(lottoCreator);
     }
-
 }
