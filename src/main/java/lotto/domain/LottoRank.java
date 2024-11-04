@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
 import java.util.Map;
 
 public enum LottoRank {
@@ -21,11 +20,12 @@ public enum LottoRank {
         this.isBonusNumber = isBonusNumber;
     }
 
-    public static LottoRank matchNumbers(Lotto lotto, List<Integer> winNumbers, int bonusNumber) {
-        Integer matchingCount = lotto.getMatchNumberCount(winNumbers);
+    public static LottoRank matchNumbers(Lotto lotto, WinLotto winLotto) {
+        Integer matchingCount = lotto.getMatchNumberCount(winLotto.getNumbers());
 
         if (matchingCount.equals(SIX.matchedCount)) return SIX;
-        if (matchingCount.equals(FIVE_BONUS.matchedCount) && lotto.hasNumber(bonusNumber)) return FIVE_BONUS;
+        if (matchingCount.equals(FIVE_BONUS.matchedCount) && lotto.hasNumber(winLotto.getBonusNumber()))
+            return FIVE_BONUS;
         if (matchingCount.equals(FIVE.matchedCount)) return FIVE;
         if (matchingCount.equals(FOUR.matchedCount)) return FOUR;
         if (matchingCount.equals(THREE.matchedCount)) return THREE;

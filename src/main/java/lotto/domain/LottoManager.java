@@ -29,7 +29,7 @@ public enum LottoManager {
         Map<LottoRank, Integer> result = new HashMap<>();
         lottos.forEach(lotto ->
                 result.merge(
-                        LottoRank.matchNumbers(lotto, winLotto.getNumbers(), winLotto.getBonusNumber()), 1, Integer::sum
+                        LottoRank.matchNumbers(lotto, winLotto), 1, Integer::sum
                 )
         );
 
