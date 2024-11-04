@@ -1,7 +1,10 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
+import lotto.enums.Rank;
 import lotto.model.Lotto;
+import lotto.model.UserLotto;
 import lotto.service.LottoService;
 import lotto.service.UserLottoService;
 import lotto.view.InputView;
@@ -53,7 +56,21 @@ public class UserLottoController {
         }
     }
 
-//    public int getEachResult(UserLotto userLotto) {
-//
-//    }
+    public void printWinningStatistics(UserLotto userLotto) {
+        Map<Rank, Integer> statistics = userLottoService.calculateWinningStatistics(
+            userLotto.getLottos(),
+            userLotto.getDefaultLottoNumbers(),
+            userLotto.getBonusNumber()
+        );
+
+        int totalPrize = userLottoService.calculateTotalPrize(statistics);
+        double rateOfReturn = calculateRateOfReturn(totalPrize, userLotto.getLottos().size());
+
+        OutputView.printWinningStatistics(statistics);
+        OutputView.printRateOfReturn(rateOfReturn);
+    }
+
+    private double calculateRateOfReturn(int totalPrize, int totalLottos) {
+        return (totalPrize * 100.0) / (totalLottos * 1000);
+    }
 }
