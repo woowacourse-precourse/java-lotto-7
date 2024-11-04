@@ -47,7 +47,6 @@ public class LottoServiceController {
             winningSummary.add(getWinningCount
                     (userLotto.getLottoNumbers()));
         }
-        System.out.println(winningSummary);
         return winningSummary;
     }
 
