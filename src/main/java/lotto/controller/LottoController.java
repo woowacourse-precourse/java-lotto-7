@@ -26,7 +26,6 @@ public class LottoController {
     }
 
     public void playLotto() {
-        outputView.showMoneyInputMessage();
         int money = untilValidPurchaseMoney();
         int ticket = LottoExchanger.divideByThousand(money);
 
@@ -34,9 +33,7 @@ public class LottoController {
         List<List<Integer>> lottoNumbers = LottoMachine.generateLottoNumbers(ticket);
         outputView.printLotto(lottoNumbers);
 
-        outputView.showWinningNumberInputMessage();
         Lotto winningNumbers = untilValidWinningNumber();
-        outputView.showBonusBallInputMessage();
         BonusBall bonus = untilValidBonusBall(winningNumbers);
 
         int[] results = calculateResult.calculateStatistics(winningNumbers.getNumbers(), bonus.getBonusNumber(), lottoNumbers);
@@ -45,19 +42,19 @@ public class LottoController {
 
     private int untilValidPurchaseMoney() {
         return inputHandler.handleInput(() ->
-                InputMoneyValidator.afterParseValidate(Parser.parseNumber(InputView.readInputLine()))
+                InputMoneyValidator.afterParseValidate(Parser.parseNumber(InputView.readPurchaseMoney()))
         );
     }
 
     private Lotto untilValidWinningNumber() {
         return inputHandler.handleInput(() ->
-                new Lotto(Splitter.splitWinningNumbers(InputView.readInputLine()))
+                new Lotto(Splitter.splitWinningNumbers(InputView.readWinningNumbers()))
         );
     }
 
     private BonusBall untilValidBonusBall(Lotto winningNumbers) {
         return inputHandler.handleInput(() ->
-                new BonusBall(Parser.parseNumber(InputView.readInputLine()), winningNumbers.getNumbers())
+                new BonusBall(Parser.parseNumber(InputView.readBonusBall()), winningNumbers.getNumbers())
         );
     }
 }
