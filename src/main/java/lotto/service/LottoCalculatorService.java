@@ -63,10 +63,9 @@ public class LottoCalculatorService {
     }
 
     private void addWinningCount(LottoRanking ranking) {
-        if (ranking == null) {
-            return;
+        if (ranking != null) {
+            winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
         }
-        winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
     }
 
     public void profitCalculate(User user) {
