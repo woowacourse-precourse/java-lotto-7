@@ -1,6 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -46,5 +47,11 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto winning = new Lotto(List.of(1, 2, 3, 11, 22, 33));
         assertThat(lotto.countMatchNumbers(winning)).isEqualTo(3);
+    }
+
+    @Test
+    void 유효한_로또번호_객체_생성() {
+        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatNoException().isThrownBy(() -> new Lotto(validNumbers));
     }
 }
