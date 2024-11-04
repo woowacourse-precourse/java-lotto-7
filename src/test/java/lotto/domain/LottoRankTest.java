@@ -85,4 +85,10 @@ class LottoRankTest {
     void 다섯번째순위상금확인_테스트() {
         assertEquals(5_000, LottoRank.FIFTH.getPrize());
     }
+
+    @DisplayName("일치하지 않는 경우의 상금 확인")
+    @Test
+    void 일치하지않는경우상금확인_테스트() {
+        assertEquals(0, LottoRank.NONE.getPrize());
+    }
 }
