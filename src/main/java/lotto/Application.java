@@ -14,7 +14,10 @@ public class Application {
         List<List<Integer>> lottoLists = LottoMachine.generateLotto(purchase);
         OutputView.printLottoNumbers(lottoLists);
         String inputWinningNumbers = InputView.inputWinningNumbers();
-        List<Integer> winnnigNumbers = InputController.parseIntegerList(inputWinningNumbers);
+        List<Integer> winningNumbers = InputController.parseIntegerList(inputWinningNumbers);
+        int inputBonusNumber = InputView.inputBonusNumber();
+        int bonusNumber = InputController.validateBonusNumber(inputBonusNumber);
+
 
     }
 }

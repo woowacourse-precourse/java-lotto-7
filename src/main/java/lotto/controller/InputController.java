@@ -20,4 +20,11 @@ public class InputController {
         }
         return result;
     }
+
+    public static int validateBonusNumber(int inputBonusNumber) {
+        if (inputBonusNumber > 45 | inputBonusNumber < 1) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이 값이어야 합니다.");
+        }
+        return inputBonusNumber;
+    }
 }

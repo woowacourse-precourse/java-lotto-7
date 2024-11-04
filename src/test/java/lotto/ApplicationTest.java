@@ -93,6 +93,22 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_보너스번호_숫자아님() {
+        assertSimpleTest(() -> {
+            runException("1000" ,"1,2,3,4,5,6", "$");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호_범위초과() {
+        assertSimpleTest(() -> {
+            runException("1000" ,"1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
