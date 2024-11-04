@@ -32,4 +32,22 @@ class LottoMachineTest {
 
         assertThat(tickets).hasSize(3);
     }
+
+    @DisplayName("로또 게임의 결과를 올바르게 계산한다.")
+    @Test
+    void 로또_결과를_계산한다() {
+        List<Lotto> tickets = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 8, 9, 10)),
+                new Lotto(List.of(8, 9, 10, 11, 12, 13))
+        );
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        LottoResult result = lottoMachine.calculateResult(tickets, winningNumbers, bonusNumber);
+
+        assertThat(result.getResults().get(LottoRank.FIRST)).isEqualTo(1); // 6개 일치
+        assertThat(result.getResults().get(LottoRank.FIFTH)).isEqualTo(1); // 3개 일치
+        assertThat(result.getResults().get(LottoRank.NONE)).isEqualTo(1);  // 0개 일치
+    }
 }
