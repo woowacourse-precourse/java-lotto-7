@@ -30,7 +30,7 @@ public class Application {
         printProfit(buy_price, total_money);
     }
 
-    private static int getPrice() {
+    static int getPrice() {
         System.out.println("구입금액을 입력해 주세요.");
         String input_price = Console.readLine();
         try {
@@ -43,16 +43,16 @@ public class Application {
         }
     }
 
-    private static void validateInputLength(String input_price) {
+    static void validateInputLength(String input_price) {
         if (input_price.length() >= STRING_MAX_LENGTH) {
             throw new IllegalArgumentException("[ERROR] Buying price should be less than or equal 2 billions won.");
         }
     }
 
-    private static int validatePrice(String input) {
+    static int validatePrice(String input) {
         try {
             int price = Integer.parseInt(input);
-            if (price < MIN_BUY_PRICE || price >= MAX_BUY_PRICE) {
+            if (price < MIN_BUY_PRICE || price > MAX_BUY_PRICE) {
                 throw new IllegalArgumentException("[ERROR] Lotto prices should be between 1000 and 2 billions.");
             }
             if (price % UNIT_OF_LOTTO != 0) {
@@ -64,7 +64,7 @@ public class Application {
         }
     }
 
-    private static void issueLotto(int num_lotto, Lotto[] lottos) {
+    static void issueLotto(int num_lotto, Lotto[] lottos) {
         System.out.println("\n" + num_lotto + "개를 구매했습니다.");
         for (int i = 0; i < num_lotto; i++) {
             lottos[i] = createLotto();
@@ -73,13 +73,13 @@ public class Application {
         System.out.println();
     }
 
-    private static Lotto createLotto() {
+    static Lotto createLotto() {
         List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         numbers.sort(Comparator.naturalOrder());
         return new Lotto(numbers);
     }
 
-    private static List<Integer> getWinningNumber() {
+    static List<Integer> getWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         try {
@@ -92,7 +92,7 @@ public class Application {
         }
     }
 
-    private static List<Integer> validateWinningNumber(String input) {
+    static List<Integer> validateWinningNumber(String input) {
         List<Integer> winning_numbers = new ArrayList<>();
         if (input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] Please enter the winning numbers");
@@ -107,7 +107,7 @@ public class Application {
         }
     }
 
-    private static List<Integer> checkNumber(String[] win_numbers, List<Integer> winning_numbers) {
+    static List<Integer> checkNumber(String[] win_numbers, List<Integer> winning_numbers) {
         if (win_numbers.length != LOTTO_NUMBER_LENGTH) {
             throw new IllegalArgumentException("[ERROR] The winning numbers should be 6.");
         }
@@ -124,19 +124,19 @@ public class Application {
         }
     }
 
-    private static void checkPositive(int num) {
+    static void checkPositive(int num) {
         if (num <= 0) {
             throw new IllegalArgumentException("[ERROR] The numbers should be positive.");
         }
     }
 
-    private static void checkDuplicate(List<Integer> winning_numbers, int num_element) {
+    static void checkDuplicate(List<Integer> winning_numbers, int num_element) {
         if (winning_numbers.contains(num_element)) {
             throw new IllegalArgumentException("[ERROR] The numbers shouldn't be duplicated.");
         }
     }
 
-    private static int getBonus(List<Integer> winning_numbers) {
+    static int getBonus(List<Integer> winning_numbers) {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         try {
@@ -148,7 +148,7 @@ public class Application {
         }
     }
 
-    private static int validateBonus(List<Integer> winning_numbers, String bonus_input) {
+    static int validateBonus(List<Integer> winning_numbers, String bonus_input) {
         try {
             int bonus = Integer.parseInt(bonus_input);
             checkPositive(bonus);
@@ -159,7 +159,7 @@ public class Application {
         }
     }
 
-    private static int printWin(Lotto[] lottos, Lotto winning_lotto, int bonus) {
+    static int printWin(Lotto[] lottos, Lotto winning_lotto, int bonus) {
         int total = 0;
         for (Prize prize : Prize.values()) {
             int matched_count = prize.getMatchedCount();
@@ -176,7 +176,7 @@ public class Application {
         throw new IllegalArgumentException("[ERROR] Some error in statistics is occurred");
     }
 
-    private static int printSecondPrize(Lotto[] lottos, int bonus, int i, int count, Lotto winlotto) {
+    static int printSecondPrize(Lotto[] lottos, int bonus, int i, int count, Lotto winlotto) {
         int second = 0;
         if (count == 0) {
             System.out.println(i - 1 + "개 일치, 보너스 볼 일치 (" + formatPrize(Prize.SECOND.getPrize()) + "원) - 0개");
@@ -192,7 +192,7 @@ public class Application {
         return second;
     }
 
-    private static boolean isItFirst(List<Integer> numbers, Lotto win_lotto) {
+    static boolean isItFirst(List<Integer> numbers, Lotto win_lotto) {
         for (int i = 0; i < LOTTO_NUMBER_LENGTH; i++) {
             if (numbers.contains(win_lotto.getNumbers().get(i))) {
                 return true;
@@ -201,14 +201,14 @@ public class Application {
         return false;
     }
 
-    private static int isBonusMatched(List<Integer> numbers, int bonus) {
+    static int isBonusMatched(List<Integer> numbers, int bonus) {
         if (numbers.contains(bonus)) {
             return 1;
         }
         return 0;
     }
 
-    private static int howMatched(Lotto[] lottos, Lotto winning_lotto, int bonus, int i) {
+    static int howMatched(Lotto[] lottos, Lotto winning_lotto, int bonus, int i) {
         int count = 0;
         for (int j = 0; j < lottos.length; j++) {
             List<Integer> numbers = lottos[j].getNumbers();
@@ -224,18 +224,18 @@ public class Application {
         return count;
     }
 
-    private static int matchedCheck(List<Integer> numbers, Lotto winning_lotto, int k) {
+    static int matchedCheck(List<Integer> numbers, Lotto winning_lotto, int k) {
         if (numbers.contains(winning_lotto.getNumbers().get(k))) {
             return 1;
         }
         return 0;
     }
 
-    private static String formatPrize(int prize) {
+    static String formatPrize(int prize) {
         return String.format("%,d", prize);
     }
 
-    private static void printProfit(int buy_price, int total) {
+    static void printProfit(int buy_price, int total) {
         double profit = ((double) total / buy_price) * 100;
 
         System.out.printf("총 수익률은 %,.1f%%입니다.", profit);
