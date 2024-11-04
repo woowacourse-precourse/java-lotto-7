@@ -20,7 +20,7 @@ public class Application {
         printTickets(tickets);
 
         Lotto winningLotto = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = getBonusNumber(winningLotto);
         LottoResult result = calculateResult(tickets, winningLotto, bonusNumber);
         result.printResult(purchaseAmount);
     }
@@ -92,18 +92,18 @@ public class Application {
         }
     }
 
-    private static int getBonusNumber() {
+    private static int getBonusNumber(Lotto winningLotto) {
         try {
             System.out.println("보너스 번호를 입력해 주세요.");
             int bonusNumber = Integer.parseInt(Console.readLine());
-            LottoValidator.validateBonusNumber(bonusNumber);
+            LottoValidator.validateBonusNumber(bonusNumber, winningLotto.getNumbers());
             return bonusNumber;
         } catch (NumberFormatException e) {
             printErrorMessage("[ERROR] 보너스 번호는 숫자여야 합니다.");
-            return getBonusNumber();
+            return getBonusNumber(winningLotto);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(winningLotto);
         }
     }
 
