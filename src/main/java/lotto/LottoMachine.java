@@ -1,11 +1,13 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.List;
-
-import static lotto.LottoData.*;
 
 public class LottoMachine {
+
+    static final int START_NUM = 1;
+    static final int END_NUM = 45;
+    static final int BALLS = 6;
+
 
     public void action(int count, MyLotto myLotto) {
         int index = 0;
@@ -15,6 +17,8 @@ public class LottoMachine {
     }
 
     private Lotto randomLottoNumbers() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(START_NUM.getNum(), END_NUM.getNum(), BALLS.getNum()));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, BALLS));
     }
+
+
 }

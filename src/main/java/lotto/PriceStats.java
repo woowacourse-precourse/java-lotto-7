@@ -15,4 +15,12 @@ public class PriceStats {
     public void add(int index) {
         status.set(index, status.get(index) + 1);
     }
+
+    public List<Integer> getStatus() {
+        return status;
+    }
+
+    public Integer get(int i) {
+        return status.get(i);
+    }
 }

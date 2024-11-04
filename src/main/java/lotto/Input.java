@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Input {
 
+    private static final String BUY_RESULT = "개를 구매했습니다.";
     private int money;
     public int useMoney() {
         try {
@@ -19,7 +20,7 @@ public class Input {
         } catch (IllegalArgumentException e) {
             useMoney();
         }
-
+        System.out.println(money / 1000 + BUY_RESULT);
         return money;
     }
 

@@ -6,6 +6,7 @@ import java.util.List;
 import static lotto.LottoPrice.*;
 
 public class MyLotto {
+
     private final List<Lotto> lottos;
     private final Lotto winPrice;
     private final int bonus;
@@ -28,6 +29,10 @@ public class MyLotto {
             isMatchLottoNumbers(lotto);
         }
         return priceStats;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     private void isMatchLottoNumbers(Lotto lotto) {
