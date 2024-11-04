@@ -7,6 +7,7 @@ import lotto.input.Cost;
 import lotto.input.Input;
 import lotto.input.WinningNumber;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class LottoExecutor {
     private WinningNumber winningNumber;
     private BonusNumber bonusNumber;
     private List<Lotto> lottoList;
+    private WinningStatus winningStatus;
 
     public LottoExecutor() {
         this.cost = new Cost();
@@ -25,14 +27,42 @@ public class LottoExecutor {
 
     public void run() {
         inputValues();
+        printStatus();
     }
 
     private void inputValues() {
+        System.out.println("구입금액을 입력해 주세요.");
         validateInput(cost);
+        System.out.println("\n" + (cost.getCost() / 1000) + "개를 구매했습니다.");
         publishLotto(cost.getCost(), lottoList);
+
+        System.out.println("당첨 번호를 입력해 주세요.");
         validateInput(winningNumber);
+
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         bonusNumber = new BonusNumber(winningNumber.getLotto().getNumbers());
         validateInput(bonusNumber);
+    }
+
+    private void printStatus() {
+        StringBuilder sb = new StringBuilder();
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        int sum = 0;
+
+        winningStatus = new WinningStatus(winningNumber, bonusNumber, lottoList);
+        winningStatus.matchLotto(lottoList);
+        sb.append("\n당첨 통계\n---\n");
+
+        for (Match match : Match.values()) {
+            sb.append(match.matchToString(formatter)).append("\n");
+            sum += (match.getValue() * match.getCount());
+        }
+        sb.append("총 수익률은 ").append(String.format("%.1f%%입니다.", calculateRate(sum)));
+        System.out.println(sb);
+    }
+
+    private double calculateRate(int sum) {
+        return (double) sum / cost.getCost() * 100;
     }
 
     private void publishLotto(int cost, List<Lotto> lottoList) {
