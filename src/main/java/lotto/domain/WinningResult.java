@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.constant.LottoMessage.COUNT_MESSAGE;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,12 +12,12 @@ public class WinningResult {
     private static final String TENTH_PLACE_VALUE = "%.1f";
     private static final int COUNT_INITIALIZE = 0;
 
-    private final Map<WinningRank, Integer> winningCount;
+    private final EnumMap<WinningRank, Integer> winningCount;
     private long prizeMoney;
     private final WinningRank[] winningRanks = WinningRank.values();
 
     public WinningResult() {
-        this.winningCount = new HashMap<>();
+        this.winningCount = new EnumMap<>(WinningRank.class);
 
         for (int i = 1; i < winningRanks.length; i++) {
             winningCount.put(winningRanks[i], COUNT_INITIALIZE);
@@ -24,7 +25,7 @@ public class WinningResult {
     }
 
     public void checkPurchaseLotto(PurchaseLotto purchaseLotto, WinningLotto winningLotto) {
-        List<Integer> winningNumbers = winningLotto.getWinningLotto().getNumbers();
+        List<Integer> winningNumbers = winningLotto.getWinningNumbers().getNumbers();
         int bonusNumber = winningLotto.getBonusNumber();
 
         for (Lotto lotto : purchaseLotto.getPurchaseLotto()) {
