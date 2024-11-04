@@ -27,6 +27,4 @@ public class Lotto {
                 .sorted()
                 .collect(Collectors.toList());
     }
-
-    // TODO: 추가 기능 구현
 }
