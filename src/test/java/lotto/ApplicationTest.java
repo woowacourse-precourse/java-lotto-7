@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -46,24 +48,30 @@ class ApplicationTest extends NsTest {
         );
     }
 
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 천원_단위가_아닌_값_입력_검증() {
-        assertSimpleTest(() -> {
-            runException("1500");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
     @Override
     public void runMain() {
         Application.main(new String[]{});
     }
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1000j", "37500abc", "99999999999999venus"})
+    void 예외_테스트(String purchasedAmount) {
+        assertSimpleTest(() -> {
+            runException(purchasedAmount);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"27500", "37500", "999999"})
+    void 천원_단위가_아닌_값_입력_검증(String purchasedAmount) {
+        assertSimpleTest(() -> {
+            runException(purchasedAmount);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 }
+
+
+
