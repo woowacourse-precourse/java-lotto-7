@@ -131,8 +131,9 @@ public class Drow {
         for(Lotto lotto : lottos){
             compareNumber(lotto);
         }
-
-
+        printPrize();
+        double rate = getRate(lottos.size()*1000); // 로또 1 장에 1000원이라는점을 이용하여 구매비용을 구함
+        printRate(rate);
     }
 
     private void compareNumber(Lotto lotto){
@@ -169,11 +170,41 @@ public class Drow {
             Prize.Third.increaseCount();
         }
         if(validCount == 4){
-            Prize.Fourth.increaseCount();
+            Prize.Fourth .increaseCount();
         }
         if(validCount == 3){
             Prize.Fifth.increaseCount();
         }
+
+    }
+
+    /// 등수 별 상금 및 당첨갯수 출력
+    private void printPrize(){
+
+        Prize.First.printPrizeInfo();
+        Prize.Second.printPrizeInfo();
+        Prize.Third.printPrizeInfo();
+        Prize.Fourth.printPrizeInfo();
+        Prize.Fifth.printPrizeInfo();
+
+    }
+
+    private double getRate (int inputMoney){
+
+        long prizeMoney = 0;
+        prizeMoney += Prize.First.getPrizeMoney();
+        prizeMoney += Prize.Second.getPrizeMoney();
+        prizeMoney += Prize.Third.getPrizeMoney();
+        prizeMoney += Prize.Fourth.getPrizeMoney();
+        prizeMoney += Prize.Fifth.getPrizeMoney();
+
+        return (double) prizeMoney /inputMoney;
+    }
+
+    private void printRate(double rate){
+
+        String rateInfo = "총 수익률은 " + String.format("%.1f", rate) + "% 입니다.";
+        System.out.println(rateInfo);
 
     }
 

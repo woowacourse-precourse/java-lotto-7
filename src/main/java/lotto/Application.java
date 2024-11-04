@@ -13,7 +13,7 @@ public class Application {
         Drow drow = new Drow();
         drow.inputDrowNumbers();
         drow.inputBonusNumber();
-
+        drow.drowLotto(lottos);
 
     }
 }
