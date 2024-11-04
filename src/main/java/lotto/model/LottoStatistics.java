@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.Map;
-import lotto.model.WinningRank;
 
 public class LottoStatistics {
 
