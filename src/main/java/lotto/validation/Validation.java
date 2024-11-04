@@ -5,22 +5,16 @@ import lotto.error.ErrorMessage;
 
 public class Validation {
 
-    public static void validateWinningLottoSize(List<Integer> winningNumbers) {
+    public static void validateWinningLotto(List<Integer> winningNumbers) {
+        long uniqueCount = winningNumbers.stream().distinct().count();
+        boolean isOutOfRange = winningNumbers.stream()
+                .anyMatch(number -> number < 1 || number > 45);
         if (winningNumbers == null || winningNumbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_LOTTO_NUMBER_COUNT.getMessage());
         }
-    }
-
-    public static void validateWinningLottoDuplicates(List<Integer> winningNumbers) {
-        long uniqueCount = winningNumbers.stream().distinct().count();
         if (uniqueCount != 6) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_LOTTO_NUMBER.getMessage());
         }
-    }
-
-    public static void validateWinningLottoRange(List<Integer> winningNumbers) {
-        boolean isOutOfRange = winningNumbers.stream()
-                .anyMatch(number -> number < 1 || number > 45);
         if (isOutOfRange) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_LOTTO_NUMBER_RANGE.getMessage());
         }
