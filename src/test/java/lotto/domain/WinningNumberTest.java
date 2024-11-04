@@ -1,14 +1,10 @@
 package lotto.domain;
 
-import lotto.util.Parser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.SequencedSet;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class WinningNumberTest {
 
