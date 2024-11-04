@@ -12,7 +12,7 @@ public class Input {
     private static final String BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String SPLIT_DELIMITER = ",";
 
-    public int getPurchaseAmount() {
+    public static int getPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
         String input = readInput();
         notEmpty(input);
@@ -20,7 +20,7 @@ public class Input {
         return Parser.toInt(input);
     }
 
-    public List<Integer> getWinningNumbers() {
+    public static List<Integer> getWinningNumbers() {
         System.out.println(WINNING_NUMBERS_MESSAGE);
         String input = readInput();
         notEmpty(input);
@@ -29,7 +29,7 @@ public class Input {
         return Parser.toInts(splitNumbers);
     }
 
-    public int getBonusNumber() {
+    public static int getBonusNumber() {
         System.out.println(BONUS_NUMBER_MESSAGE);
         String input = readInput();
         notEmpty(input);
@@ -37,11 +37,11 @@ public class Input {
         return Parser.toInt(input);
     }
 
-    private String readInput() {
+    private static String readInput() {
         return Console.readLine();
     }
 
-    private String[] split(String input) {
+    private static String[] split(String input) {
         return input.split(SPLIT_DELIMITER);
     }
 
