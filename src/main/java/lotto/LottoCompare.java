@@ -12,33 +12,33 @@ public class LottoCompare {
             tempNumbers.retainAll(lotto);
 
             if (tempNumbers.size() > 2) {
-                result.add(compareBonusNumber(lotto, tempNumbers, bonusNumber));
+                result.add(tempNumbers.size());
             }
         }
 
         return result;
     }
 
-    public int compareBonusNumber(List<Integer> lotto, List<Integer> tempNumbers, int bonusNumber) {
-        if (lotto.contains(bonusNumber) && tempNumbers.size() == 5) {
-            return tempNumbers.size() + 2;
-        }
-        return tempNumbers.size();
+    public boolean isBonusMatched(List<Integer> lotto, int bonusNumber) {
+        return lotto.contains(bonusNumber);
     }
 
-    public Map<WinningType, Integer> storeNumbers(List<Integer> result) {
+    public Map<WinningType, Integer> storeNumbers(List<Integer> matchCounts, List<List<Integer>> lottoNumbers, int bonusNumber) {
         Map<WinningType, Integer> counts = new EnumMap<>(WinningType.class);
         for (WinningType type : WinningType.values()) {
             counts.put(type, 0);
         }
-
-        for (int count : result) {
+        for (int i = 0; i < matchCounts.size(); i++) {
+            int count = matchCounts.get(i);
+            List<Integer> lotto = lottoNumbers.get(i);
+            if (count == 5 && isBonusMatched(lotto, bonusNumber)) {
+                count += 2;
+            }
             WinningType type = WinningType.fromCount(count);
             if (type != null) {
                 counts.put(type, counts.get(type) + 1);
             }
         }
-
         return counts;
     }
 }

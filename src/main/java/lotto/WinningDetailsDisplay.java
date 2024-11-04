@@ -15,7 +15,7 @@ public class WinningDetailsDisplay {
         }
     }
 
-    public void printRate (int price, Map<WinningType, Integer> result) {
+    public double calculateRate (int price, Map<WinningType, Integer> result) {
         int sum = 0;
         for (ResultType type : ResultType.values()) {
             WinningType winningType = WinningType.fromCount(type.getCount());
@@ -24,7 +24,11 @@ public class WinningDetailsDisplay {
         }
 
         double rate = (double)sum/price * 100;
-        double roundedRate = Math.round(rate * 10) / 10.0;
-        System.out.println("총 수익률은 " + roundedRate + "%입니다.");
+        return Math.round(rate * 10) / 10.0;
+    }
+
+    public void printRate(int price, Map<WinningType, Integer> result) {
+        double rate = calculateRate(price, result);
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 }
