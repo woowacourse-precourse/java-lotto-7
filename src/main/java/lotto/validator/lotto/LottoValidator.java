@@ -47,14 +47,14 @@ public class LottoValidator {
         try {
             numbersOfText = numbers.split(",");
         } catch (Exception e) {
-            throw new IllegalArgumentException(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
+            throw new IllegalArgumentException(LottoErrorMessage.INPUT_DATA_IS_NOT_POSITIVE_OR_DELIMITER);
         }
 
         Set<Integer> winningNumbers = new HashSet<>();
         for (String numberOfText : numbersOfText) {
             int lottoNumber = Integer.parseInt(numberOfText);
             if (winningNumbers.contains(lottoNumber)) {
-                throw new IllegalArgumentException(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
+                throw new IllegalArgumentException(LottoErrorMessage.DUPLICATED_LOTTO_NUMBERS);
             }
             winningNumbers.add(lottoNumber);
         }
@@ -63,14 +63,14 @@ public class LottoValidator {
 
     private void validateWinningNumbersCount(Set<Integer> winningNumbers) {
         if (winningNumbers.size() != LottoConstant.LOTTO_WINNING_NUMBER_COUNT) {
-            throw new IllegalArgumentException(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
+            throw new IllegalArgumentException(LottoErrorMessage.INVALID_NUMBER_OF_WINNING_NUMBERS);
         }
     }
 
     private void validateWinningNumbersRange(Set<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
             if (isInvalidNumberRange(winningNumber)) {
-                throw new IllegalArgumentException(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
+                throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_RANGE);
             }
         }
     }
@@ -92,14 +92,14 @@ public class LottoValidator {
     private void validateBonusNumberRange(String inputBonusNumber) {
         int bonusNumber = Integer.parseInt(inputBonusNumber);
         if (isInvalidNumberRange(bonusNumber)) {
-            throw new IllegalArgumentException(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
+            throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_RANGE);
         }
     }
 
     private void validateBonusNumberDuplicated(Set<Integer> winningNumbers, String inputBonusNumber) {
         int bonusNumber = Integer.parseInt(inputBonusNumber);
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATED_LOTTO_NUMBERS);
         }
     }
 
