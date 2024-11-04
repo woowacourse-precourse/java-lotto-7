@@ -3,13 +3,14 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
     static final int priceOfLottery = 1000;
     static int amountForLottery;
     static Lotto[] purchasedLotteries;
-    static int[] lotteryWinningNumbers;
+    static List<Integer> lotteryWinningNumbers;
     static int lotteryBonusNumber;
 
     public static void main(String[] args) {
@@ -49,15 +50,16 @@ public class Application {
             // 쉼표로 구분된 6개의 문자열이 주어지지 않은 경우
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 쉼표로 구분된 6개의 정수여야 합니다.");
         }
-        lotteryWinningNumbers = new int[6];
+        lotteryWinningNumbers = new ArrayList<Integer>();
         for(int i=0; i<6; i++) {
             try{
-                lotteryWinningNumbers[i] = Integer.parseInt(inputNumbers[i]);
-                validateLotteryNumber(lotteryWinningNumbers[i]);
+                lotteryWinningNumbers.add(Integer.parseInt(inputNumbers[i]));
+                validateLotteryNumber(lotteryWinningNumbers.get(i));
             } catch (NumberFormatException e){
                 throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 정수여야 합니다.");
             }
         }
+        lotteryWinningNumbers.sort(Integer::compare);
 
         System.out.println("보너스 번호를 입력해 주세요.");
         int input;
