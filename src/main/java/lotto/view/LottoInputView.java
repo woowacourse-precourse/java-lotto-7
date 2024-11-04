@@ -40,31 +40,31 @@ public class LottoInputView {
 
     private void validatePurchaseAmount(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 비어 있을 수 없습니다.");
+            throw new IllegalArgumentException("입력 값은 비어 있을 수 없습니다.");
         }
         if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 포함되어야 하며, 공백이 포함될 수 없습니다.");
+            throw new IllegalArgumentException("구입 금액은 숫자만 포함되어야 하며, 공백이 포함될 수 없습니다.");
         }
     }
 
     private void validateWinningNumbersInput(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 비어 있을 수 없습니다.");
+            throw new IllegalArgumentException("입력 값은 비어 있을 수 없습니다.");
         }
         if (!input.matches("[\\d,\\s]*")) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 숫자와 쉼표로만 이루어져야 합니다.");
+            throw new IllegalArgumentException("입력 값은 숫자와 쉼표로만 이루어져야 합니다.");
         }
         if (input.contains(",,") || input.startsWith(",") || input.endsWith(",")) {
-            throw new IllegalArgumentException("[ERROR] 입력 형식이 잘못되었습니다. 예) 1, 2, 3, 4, 5, 6");
+            throw new IllegalArgumentException("입력 형식이 잘못되었습니다. 예) 1, 2, 3, 4, 5, 6");
         }
     }
 
     private void validateBonusSingleNumberInput(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 비어 있을 수 없습니다.");
+            throw new IllegalArgumentException("입력 값은 비어 있을 수 없습니다.");
         }
         if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 포함되어야 합니다.");
+            throw new IllegalArgumentException("보너스 번호는 숫자만 포함되어야 합니다.");
         }
     }
 }
