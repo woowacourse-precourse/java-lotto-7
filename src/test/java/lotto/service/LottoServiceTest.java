@@ -142,7 +142,7 @@ class LottoServiceTest {
     @DisplayName("createWinnerLotto - 로또 범위 밖에 숫자가 존재하면 예외가 발생한다.")
     void failCreateWinnerLottoWithInvalidRange() {
         // given
-        List<Integer> numbers = List.of(1, 2, 2, 3, 4, 5);
+        List<Integer> numbers = List.of(1, 47, 2, 3, 4, 5);
         // when & then
         assertThatThrownBy(() -> lottoService.createWinnerLotto(numbers))
                 .isInstanceOf(LottoException.class)
