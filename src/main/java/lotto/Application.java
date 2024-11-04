@@ -1,25 +1,18 @@
 package lotto;
 
-import java.util.Arrays;
-import java.util.List;
 import lotto.controller.LottoController;
 import lotto.service.LottoFacade;
 import lotto.service.LottoFacadeImpl;
 import lotto.service.issuing.LottoIssuingService;
 import lotto.service.issuing.LottoIssuingServiceImpl;
-import lotto.service.statistic.StatisticService;
-import lotto.service.statistic.StatisticServiceImpl;
-import lotto.service.statistic.prize.PrizeCalculatorService;
-import lotto.service.statistic.prize.PrizeCalculatorServiceImpl;
+import lotto.service.prize.TotalPrizeCalculatorService;
+import lotto.service.prize.TotalPrizeCalculatorServiceImpl;
+import lotto.service.winningCheck.WinningCheckService;
+import lotto.service.winningCheck.WinningCheckServiceImpl;
+import lotto.service.winningStatistic.WinningStatisticService;
+import lotto.service.winningStatistic.WinningStatisticServiceImpl;
 import lotto.strategy.number.LottoNumberGeneratorStrategy;
 import lotto.strategy.number.RandomLottoNumberGenerator;
-import lotto.strategy.prize.FifthPrizeStrategy;
-import lotto.strategy.prize.FirstPrizeStrategy;
-import lotto.strategy.prize.FourthPrizeStrategy;
-import lotto.strategy.prize.PrizeFacade;
-import lotto.strategy.prize.PrizeStrategy;
-import lotto.strategy.prize.SecondPrizeStrategy;
-import lotto.strategy.prize.ThirdPrizeStrategy;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.ViewFacade;
@@ -35,26 +28,14 @@ public class Application {
         LottoNumberGeneratorStrategy lottoNumberGeneratorStrategy = new RandomLottoNumberGenerator();
         LottoIssuingService lottoIssuingService = new LottoIssuingServiceImpl(lottoNumberGeneratorStrategy);
 
-        PrizeStrategy fifthPrizeStrategy = new FifthPrizeStrategy();
-        PrizeStrategy fourthPrizeStrategy = new FourthPrizeStrategy();
-        PrizeStrategy thirdPrizeStrategy = new ThirdPrizeStrategy();
-        PrizeStrategy secondPrizeStrategy = new SecondPrizeStrategy();
-        PrizeStrategy firstPrizeStrategy = new FirstPrizeStrategy();
+        WinningCheckService winningCheckService = new WinningCheckServiceImpl();
 
-        List<PrizeStrategy> prizeStrategies = Arrays.asList(
-                fifthPrizeStrategy,
-                fourthPrizeStrategy,
-                thirdPrizeStrategy,
-                secondPrizeStrategy,
-                firstPrizeStrategy
-        );
+        TotalPrizeCalculatorService totalPrizeCalculatorService = new TotalPrizeCalculatorServiceImpl(
+                winningCheckService);
 
-        PrizeFacade prizeFacade = new PrizeFacade(prizeStrategies);
-        PrizeCalculatorService prizeCalculatorService = new PrizeCalculatorServiceImpl(prizeFacade);
+        WinningStatisticService winningStatisticService = new WinningStatisticServiceImpl(totalPrizeCalculatorService);
 
-        StatisticService statisticService = new StatisticServiceImpl(prizeCalculatorService);
-
-        LottoFacade lottoFacade = new LottoFacadeImpl(lottoIssuingService, statisticService);
+        LottoFacade lottoFacade = new LottoFacadeImpl(lottoIssuingService, winningStatisticService);
 
         LottoController lottoController = new LottoController(viewFacade, lottoFacade);
         lottoController.run();

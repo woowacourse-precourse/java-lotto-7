@@ -1,7 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.factory.LottoFactory;
+import lotto.factory.WinningNumbersFactory;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.WinningNumbers;
 import lotto.model.WinningStatistic;
 import lotto.service.LottoFacade;
 import lotto.util.Parser;
@@ -25,13 +29,17 @@ public class LottoController {
         viewFacade.showLottos(purchaseAmount, lottos);
 
         String winningNumbersInput = viewFacade.getWinningNumbers();
-        List<Integer> winningNumbers = Parser.parseWinningNumbers(winningNumbersInput);
+        List<Integer> numbers = Parser.parseWinningNumbers(winningNumbersInput);
+
+        Lotto winningLotto = LottoFactory.creatLotto(numbers);
+        WinningNumbers winningNumbers = WinningNumbersFactory.createWinningNumbers(winningLotto);
 
         String bonusNumberInput = viewFacade.getBonusNumber();
         int bonusNumber = Parser.parseToInt(bonusNumberInput);
 
-        WinningStatistic winningStatistic = lottoFacade.getStatistic(purchaseAmount, cost, winningNumbers,
-                bonusNumber, lottos);
+        winningNumbers = winningNumbers.createWithBonusNumber(winningNumbers, bonusNumber);
+
+        WinningStatistic winningStatistic = lottoFacade.getStatistic(cost, lottos, winningNumbers);
 
         viewFacade.showWinningStatistics(winningStatistic);
     }
