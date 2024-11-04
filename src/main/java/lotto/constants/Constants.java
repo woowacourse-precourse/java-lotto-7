@@ -11,4 +11,6 @@ public class Constants {
     public static final int DIVISOR = 1000;
 
     public static final String WINNING_NUMBER_DELIMITER = ",";
+
+    public static final int MINIMUM_COUNT_TO_WIN = 3;
 }

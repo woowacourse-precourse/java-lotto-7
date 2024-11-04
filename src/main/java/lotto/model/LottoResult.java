@@ -19,22 +19,20 @@ public class LottoResult {
     }
 
     public void increaseCountByNumberMatchedAndBonusMatched(int numberMatchedCount, boolean isBonusMatched) {
-        if (numberMatchedCount == 3) {
-            increaseThree();
-            return;
+        Runnable[] increaseMethod = {
+                this::increaseThree,
+                this::increaseFour,
+                () -> increaseFive(isBonusMatched),
+                this::increaseSix,
+        };
+
+        if (checkWin(numberMatchedCount)) {
+            increaseMethod[numberMatchedCount - Constants.MINIMUM_COUNT_TO_WIN].run();
         }
-        if (numberMatchedCount == 4) {
-            increaseFour();
-            return;
-        }
-        if (numberMatchedCount == 5) {
-            increaseFive(isBonusMatched);
-            return;
-        }
-        if (numberMatchedCount == 6) {
-            increaseSix();
-            return;
-        }
+    }
+
+    private boolean checkWin(int numberMatchedCount) {
+        return numberMatchedCount >= Constants.MINIMUM_COUNT_TO_WIN;
     }
 
     private void increaseThree() {
