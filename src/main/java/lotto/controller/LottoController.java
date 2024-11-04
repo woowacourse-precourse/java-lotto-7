@@ -65,10 +65,17 @@ public class LottoController {
     }
 
     private List<Integer> changeStringToNumberList(String numbersString) throws IllegalArgumentException {
+        List<Integer> numbers = new ArrayList<>();
 
+        for (String numberString : numbersString.split(",", -1)) {
+            numbers.add(Integer.parseInt(numberString));
+        }
+
+        return numbers;
     }
 
     private Integer changeStringToNumber(String numberString) throws IllegalArgumentException {
+        return Integer.parseInt(numberString);
     }
 
     private void validateLottoNumbersString(String numberString) throws IllegalArgumentException {
