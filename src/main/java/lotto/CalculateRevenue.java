@@ -7,6 +7,7 @@ public class CalculateRevenue {
     private final int totalSpent;
     private final int percentage = 100;
 
+
     public CalculateRevenue(Map<Float, Integer> rateOfReturn, int totalSpent) {
         this.rateOfReturn = rateOfReturn;
         this.totalSpent = totalSpent;
@@ -20,7 +21,7 @@ public class CalculateRevenue {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", revenue);
     }
 
-    private float calculateTotalWinnings() {
+    public float calculateTotalWinnings() {
         float totalWinnings = 0;
         for (Map.Entry<Float, Integer> entry : rateOfReturn.entrySet()) {
             float prize = entry.getKey();
@@ -30,7 +31,7 @@ public class CalculateRevenue {
         return totalWinnings;
     }
 
-    private float calculateRevenue(float totalWinnings) {
+    public float calculateRevenue(float totalWinnings) {
         return (totalWinnings / totalSpent) * percentage;
     }
 }

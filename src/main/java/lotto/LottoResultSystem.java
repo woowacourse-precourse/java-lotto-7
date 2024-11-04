@@ -21,7 +21,7 @@ public class LottoResultSystem {
         lottoTV.printResults(money);
     }
 
-    private Map<Integer, Integer> calculateMatchResults(List<Lotto> purchasedLottos) {
+    public Map<Integer, Integer> calculateMatchResults(List<Lotto> purchasedLottos) {
         for (Lotto lotto : purchasedLottos) {
             updateMatchResults(lotto);
         }
@@ -36,11 +36,11 @@ public class LottoResultSystem {
         results.put(matchCount, results.getOrDefault(matchCount, 0) + 1);
     }
 
-    private boolean isBonusMatch(int matchCount, Lotto lotto) {
+    public boolean isBonusMatch(int matchCount, Lotto lotto) {
         return ((matchCount == 5) && (lotto.containsBonusNumber(bonusNumber)));
     }
 
-    private int calculateBonusMatches(List<Lotto> purchasedLottos) {
+    public int calculateBonusMatches(List<Lotto> purchasedLottos) {
         int bonusMatchCount = 0;
         for (Lotto lotto : purchasedLottos) {
             if (isBonusMatch(lotto.countMatches(winningNumbers), lotto)) {
