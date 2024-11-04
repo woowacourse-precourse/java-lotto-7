@@ -33,6 +33,6 @@ public class LottoStatistics {
         int total = results.stream()
                 .mapToInt(opt-> opt.map(LottoResult::getWinningMoney).orElse(0))
                 .reduce(0, Integer::sum);
-        return (double) total * 100 / (results.size() * 1000);
+        return (double) total * 100 / (results.size() * LottoConfig.LOTTO_PRICE);
     }
 }

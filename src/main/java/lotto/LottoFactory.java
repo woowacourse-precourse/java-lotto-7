@@ -22,10 +22,12 @@ public class LottoFactory {
     }
 
     public List<Lotto> buyLotto(int amountOfMoney) {
-        int lottoNums = amountOfMoney / 1000;
+        int lottoNums = amountOfMoney / LottoConfig.LOTTO_PRICE;
         List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0 ; i < lottoNums ; i++) {
-            List<Integer> numbers = generator.generateUniqueNumbers(1, 45, 6);
+            List<Integer> numbers = generator.generateUniqueNumbers(
+                    LottoConfig.LOTTO_START, LottoConfig.LOTTO_END, LottoConfig.LOTTO_NUMBER
+            );
             lottoList.add(new Lotto(numbers));
         }
         return lottoList;
