@@ -15,7 +15,7 @@ public abstract class Output {
     private static final String PRINT_PROFIT_RATE_MESSAGE = "총 수익률은 %s%%입니다.%n";
 
     public static void lottos(List<Lotto> lottos) {
-        System.out.println(lottos.size()  + OUTPUT_TICKET_AMOUNT_MESSAGE);
+        System.out.println(lottos.size() + OUTPUT_TICKET_AMOUNT_MESSAGE);
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
@@ -29,12 +29,10 @@ public abstract class Output {
             if (prize == Prize.SECOND) {
                 System.out.printf(PRINT_MATCH_BONUS_NUMBER_MESSAGE, prize.matchCount, prize.prizeMoney, integer);
             }
-
             if (prize != Prize.NONE && prize != Prize.SECOND) {
                 System.out.printf(PRINT_MATCH_MASSAGE, prize.matchCount, prize.prizeMoney, integer);
             }
         });
-
         DecimalFormat formatter = new DecimalFormat("###,##0.0");
         System.out.printf(PRINT_PROFIT_RATE_MESSAGE, formatter.format(ticket.getEarningRate()));
     }

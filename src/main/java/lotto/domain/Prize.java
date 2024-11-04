@@ -22,11 +22,9 @@ public enum Prize {
     public static Prize getPrize(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {
         int matchCount = lotto.matchNumbers(winningNumber);
         boolean isMatchBonusNumber = lotto.matchBonusNumber(bonusNumber);
-
         if (matchCount == 5 && isMatchBonusNumber) {
             return Prize.SECOND;
         }
-
         return Arrays.stream(Prize.values())
                 .filter(prize -> prize.matchCount == matchCount)
                 .findFirst()

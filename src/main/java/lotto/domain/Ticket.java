@@ -27,7 +27,6 @@ public class Ticket {
         int totalPrize = result.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().prizeMoney * entry.getValue())
                 .sum();
-
         double earningRate = (double) totalPrize / price;
         return Math.round(earningRate * 1000) / 10.0;
     }
@@ -35,12 +34,10 @@ public class Ticket {
     private EnumMap<Prize, Integer> makeResult() {
         EnumMap<Prize, Integer> result = new EnumMap<>(Prize.class);
         Arrays.stream(Prize.values()).forEach(prize -> result.put(prize, 0));
-
         lottos.forEach(lotto -> {
             Prize prize = Prize.getPrize(lotto, winningNumbers, bonusNumber);
             result.put(prize, result.getOrDefault(prize, 0) + 1);
         });
-
         return result;
     }
 }
