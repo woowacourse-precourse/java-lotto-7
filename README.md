@@ -19,7 +19,7 @@
 > 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.   
 > Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
-<br>
+<br><br>
 
 # 파일구조
 
@@ -63,7 +63,7 @@ src/
 
 ```
 
-<br>  
+<br><br>
 
 # 기능
 
@@ -74,7 +74,7 @@ src/
 - 금액 단위 확인
 - 당첨번호 입력 패턴 확인
 - 숫자 중복 확인
-- 문자열 당첨번호 컬렉션 변환
+- 문자열 당첨번호 컬렉션 변환  
   <br>
 
 ### :point_right: 로또
@@ -82,21 +82,21 @@ src/
   - 발행한 로또 당첨번호와 일치하는지 확인하기
   - 당첨 순위 확인하기
   - 총 금액 구하기
-- 수익률 구하기
-<br>
+- 수익률 구하기  
+  <br>
 
 ### :point_right: 출력
   - 구매 개수 구하기
   - 구매한 로또 출력
   - 당첨된 로또 순위와 개수, 금액 출력
-- 수익률 출력
+- 수익률 출력  
   <br>
 
 ### :point_right: status
 
 - 로또에서 공통으로 사용되는 상수 모아두기 (interface)
 - 로또 금액과 필요한 문자열 (enum)
-- 에러메세지 만들기 (enum)
+- 에러메세지 만들기 (enum)   
   <br>
 
 ### :point_right: util
@@ -104,26 +104,29 @@ src/
 - 자주 쓰이는 정규식 만들기
 - 예외처리 후 입력 재요청
 
-<br>
+<br><br>
 
 # 이슈
 
 ### :star: 예외처리 후 요청을 다시 받아 올떄
 
-> #### :heavy_multiplication_x: ~~콘솔 바로 실행~~
-> #### :heavy_check_mark: 요구 문장을 다시 출력후 콘솔 실행
+#### :heavy_multiplication_x: ~~콘솔 바로 실행~~
+
+#### :heavy_check_mark: 요구 문장을 다시 출력후 콘솔 실행
 <br>
 
 ### :star: 구매 금액 얼마까지 가능하게 할까?
 
-> #### :heavy_multiplication_x: ~~엄청 많은 금액도 되게할까?~~
-> #### :heavy_check_mark: 실제 1인당 로또 구매 가능 비용으로 할까?
+#### :heavy_multiplication_x: ~~엄청 많은 금액도 되게할까?~~
+
+#### :heavy_check_mark: 실제 1인당 로또 구매 가능 비용으로 할까?
 <br>
 
 ### :star: 로또 당첨번호 입력 콤마 처리는?
 
-> #### :heavy_multiplication_x: ~~콤마가 연속으로 여러개 들어오면 예외처리?~~
-> #### :heavy_check_mark: 콩마가 연속으로 들어와도 허용후 빈값은 제거
+#### :heavy_multiplication_x: ~~콤마가 연속으로 여러개 들어오면 예외처리?~~
+
+#### :heavy_check_mark: 콩마가 연속으로 들어와도 허용후 빈값은 제거
 
 
 
