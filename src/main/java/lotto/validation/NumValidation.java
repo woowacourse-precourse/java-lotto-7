@@ -20,7 +20,25 @@ public class NumValidation {
         return true;
     }
 
-    static void isValidToLotto(String winNums) throws IllegalArgumentException {
+    public static boolean checkBonusNum(String bonusNum, List<Integer> winNums) throws IllegalArgumentException {
+        try {
+            numberIsNumeric(bonusNum);
+            isNotWinningNumber(bonusNum, winNums);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    private static void isNotWinningNumber(String inputBonusNum, List<Integer> winNums) throws IllegalArgumentException {
+        int bonusNum = Integer.parseInt(inputBonusNum);
+        if (winNums.contains(bonusNum)) {
+            throw new IllegalArgumentException(CHECK_BONUS_NUM);
+        }
+    }
+
+    private static void isValidToLotto(String winNums) throws IllegalArgumentException {
         List<Integer> winNumList = Stream.of(winNums.split(","))
                 .map(Integer::parseInt)
                 .toList();
