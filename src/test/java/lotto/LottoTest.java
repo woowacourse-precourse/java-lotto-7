@@ -3,10 +3,7 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.FieldSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.List;
 
@@ -17,6 +14,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LottoTest {
 
     static final Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    static final List<Lotto> lottos = List.of(
+            new Lotto(List.of(40, 41, 42, 43, 44, 45)),
+            new Lotto(List.of(1, 41, 42, 43, 44, 45)),
+            new Lotto(List.of(1, 2, 42, 43, 44, 45)),
+            new Lotto(List.of(1, 2, 3, 43, 44, 45)),
+            new Lotto(List.of(1, 2, 3, 4, 44, 45)),
+            new Lotto(List.of(1, 2, 3, 4, 5, 45)),
+            new Lotto(List.of(1, 2, 3, 4, 5, 6))
+    );
+    static final List<Integer> containsCount = List.of(1, 2, 3, 4, 5, 6);
     static final List<List<Integer>> rangeExceptionNumbers = List.of(
             List.of(1, 2, 3, 4, 5, Lotto.NUMBER_MAX + 1),
             List.of(1, 2, 3, 4, 5, Lotto.NUMBER_MIN - 1)
@@ -60,18 +67,16 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("lottoAndMatchCount")
     void 로또_당첨_개수(Lotto lotto, int count) {
-        assertThat(lotto.contains(winner)).isEqualTo(count);
+        assertThat(lotto.containsCount(winner)).isEqualTo(count);
     }
 
     private static List<Arguments> lottoAndMatchCount() {
-        return List.of(
-                Arguments.of(new Lotto(List.of(1, 41, 42, 43, 44, 45)), 1),
-                Arguments.of(new Lotto(List.of(1, 2, 42, 43, 44, 45)), 2),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 43, 44, 45)), 3),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 44, 45)), 4),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 45)), 5),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6)
-        );
+        List<Arguments> arguments = new java.util.ArrayList<>(List.of());
+
+        for (int i = 0; i < lottos.size(); i++) {
+            arguments.add((Arguments.of(lottos.get(i), i)));
+        }
+        return arguments;
     }
 
     @Test

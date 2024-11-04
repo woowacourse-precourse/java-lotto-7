@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGroup {
@@ -27,11 +28,16 @@ public class LottoGroup {
                 .map(Lotto::toString).toList();
     }
 
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
+    }
+
     // TODO
     //  ### 로또그룹
-    //  - [ ] 일급 컬렉션으로 구현한다.
+    //  - [x] 일급 컬렉션으로 구현한다.
     //  - [x] N개 만큼 로또 생성
     //  - [x] 로또에서 받은 번호를 N개 출력한다
+    //  책임 이전 to LottoGroup
     //  - [ ] 로또 등수를 이용하여 통계를 출력한다.
     //  - [ ] 로또 등수를 이용하여 수익율을 계산한다.
     //  - [ ] 로또 수익율 출력한다.
