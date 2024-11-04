@@ -15,17 +15,25 @@ import lotto.view.OutputView;
 
 public class Controller {
 
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public Controller(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
+
     public void run() {
         Money money = generateUntilSuccess(this::toMoney);
         Lottos lottos = generateUntilSuccess(() -> toLottos(money));
-        OutputView.printPurchaseInfo(OutputHandler.getCount(lottos), OutputHandler.formatLottos(lottos));
+        outputView.printPurchaseInfo(OutputHandler.getCount(lottos), OutputHandler.formatLottos(lottos));
         WinningLotto winningLotto = generateUntilSuccess(this::toWinningLotto);
         Result result = new Result(money, lottos, winningLotto);
-        OutputView.printResult(OutputHandler.formatStatistics(result), OutputHandler.getRateOfReturn(result));
+        outputView.printResult(OutputHandler.formatStatistics(result), OutputHandler.getRateOfReturn(result));
     }
 
     private Money toMoney() {
-        return new Money(InputHandler.toMoneyValue(InputView.readMoney()));
+        return new Money(InputHandler.toMoneyValue(inputView.readMoney()));
     }
 
     private Lottos toLottos(Money money) {
@@ -39,11 +47,11 @@ public class Controller {
     }
 
     private Lotto toWinningNumbers() {
-        return new Lotto(InputHandler.toWinningNumbersValue(InputView.readWinningNumbers()));
+        return new Lotto(InputHandler.toWinningNumbersValue(inputView.readWinningNumbers()));
     }
 
     private BonusNumber toBonusNumber() {
-        return new BonusNumber(InputHandler.toBonusNumberValue(InputView.readBonusNumber()));
+        return new BonusNumber(InputHandler.toBonusNumberValue(inputView.readBonusNumber()));
     }
 
     private <T> T generateUntilSuccess(Supplier<T> supplier) {
@@ -51,7 +59,7 @@ public class Controller {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
-                OutputView.printExceptionMessage(e);
+                outputView.printExceptionMessage(e);
             }
         }
     }
