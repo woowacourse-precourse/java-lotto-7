@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println(INPUT_CASH_MESSAGE);
     }
 
-    public void printLottoAmount(Integer lottoAmount) {
+    public void printLottoAmountMessage(Integer lottoAmount) {
         System.out.println(lottoAmount + LOTTO_AMOUNT_MESSAGE);
     }
 
@@ -26,11 +26,11 @@ public class OutputView {
         }
     }
 
-    public void printInputWinningNumber() {
+    public void printInputWinningNumberMessage() {
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
     }
 
-    public void printInputBonusNumber() {
+    public void printInputBonusNumberMessage() {
         System.out.println(INPUT_BONUS_NUMBER);
     }
 }
