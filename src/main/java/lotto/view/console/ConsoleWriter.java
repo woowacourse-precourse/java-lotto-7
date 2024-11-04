@@ -1,5 +1,7 @@
 package lotto.view.console;
 
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.view.OutputView;
 
 public class ConsoleWriter implements OutputView {
@@ -7,6 +9,14 @@ public class ConsoleWriter implements OutputView {
 
     @Override
     public void printPurchasedLottoCount(int count) {
+        System.out.println();
         System.out.printf(PURCHASED_LOTTO_COUNT_MESSAGE + "%n", count);
+    }
+
+    @Override
+    public void printLottoTickets(Lottos lottos) {
+        for (Lotto lotto : lottos.getTickets()) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 }
