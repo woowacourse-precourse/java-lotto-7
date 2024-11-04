@@ -40,11 +40,11 @@ class LottoTest {
 
 
     //    입력 수가 6개가 넘어가는 경우 : OutOfRangeException -> IllegalArgumentException 기존 고객 요구에 맞춰 예외명 개선
-    @DisplayName("중복된 숫자가 포함된 경우 : IllegalArgumentException")
+    @DisplayName("입력 수가 6개가 넘어가는 경우 IllegalArgumentException")
     @Test
     void IllegalArgumentExceptionTest_되도_않는_영어이름_테스트_5() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-            .isInstanceOf(NumberFormatException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }
 
