@@ -4,6 +4,7 @@ import lotto.utility.MatchedCountNameEnum;
 import lotto.utility.MatchedNumberEnum;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,9 @@ public class OutputView {
     }
 
     public static void outputPurchaseOneLottoResult(List<Integer> purchasedLottoNumbers) {
-        Collections.sort(purchasedLottoNumbers);
-        System.out.println(purchasedLottoNumbers);
+        List<Integer> mutableList = new ArrayList<>(purchasedLottoNumbers);
+        Collections.sort(mutableList);
+        System.out.println(mutableList);
     }
 
     public static void outputMatchedCount(Map<String, Integer> matchedCount) {
