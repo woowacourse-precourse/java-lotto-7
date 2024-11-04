@@ -1,9 +1,9 @@
 package lotto.dto;
 
-public class WinningNumbersStatics {
+public class WinningStaticsPerConditions {
     private final int matchNumbers;
 
-    public WinningNumbersStatics(int inputMatchNumbers) {
+    public WinningStaticsPerConditions(int inputMatchNumbers) {
         matchNumbers = inputMatchNumbers;
     }
     public int getMatchNumbers() {
