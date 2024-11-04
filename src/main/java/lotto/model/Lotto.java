@@ -25,16 +25,13 @@ public class Lotto {
     }
 
     private static Lotto buyLotto() {
-        return new Lotto(
-                Randoms.pickUniqueNumbersInRange(
-                        LOTTO_START_NUMBER.getValue(),
+        return new Lotto(Randoms.pickUniqueNumbersInRange(
+                LOTTO_START_NUMBER.getValue(),
                         LOTTO_END_NUMBER.getValue(),
-                        LOTTO_NUMBER_COUNT.getValue()
-                )
-                        .stream()
-                        .sorted()
-                        .toList()
-        );
+                        LOTTO_NUMBER_COUNT.getValue())
+                .stream()
+                .sorted()
+                .toList());
     }
 
     public boolean hasBonus(int bonusNumber) {

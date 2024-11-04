@@ -43,19 +43,12 @@ public class LottoServiceImpl implements LottoService {
     public LottoReport generateLottoReport(String purchaseAmount, String winningNumbers, String bonusNumber) {
         List<Integer> numericWinningNumbers = parseIntegerList(winningNumbers);
         int numericBonusNumber = Integer.parseInt(bonusNumber);
-
         validateLottoNumbers(numericWinningNumbers);
         validateLottoNumber(numericBonusNumber);
 
-        List<LottoRule> lottoRuleList = lottoRepository.generatePrizeListBy(
-                numericWinningNumbers, numericBonusNumber
-        );
-
+        List<LottoRule> lottoRuleList = lottoRepository.generatePrizeListBy(numericWinningNumbers, numericBonusNumber);
         List<String> winningReport = generateWinningReport(lottoRuleList);
-        double profitRate = computeProfitRate(
-                lottoRuleList,
-                safeParsePurchaseAmount(purchaseAmount)
-        );
+        double profitRate = computeProfitRate(lottoRuleList, safeParsePurchaseAmount(purchaseAmount));
 
         return new LottoReport(winningReport, profitRate);
     }

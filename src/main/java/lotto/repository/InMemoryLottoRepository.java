@@ -19,12 +19,7 @@ public class InMemoryLottoRepository implements LottoRepository {
 
     public List<LottoRule> generatePrizeListBy(List<Integer> winningNumbers, int bonusNumber) {
         return lottoStore.stream()
-                .map(i -> LottoRule
-                        .findByMatch(
-                                i.countMatchNumber(winningNumbers),
-                                i.hasBonus(bonusNumber)
-                        )
-                )
+                .map(i -> LottoRule.findByMatch(i.countMatchNumber(winningNumbers), i.hasBonus(bonusNumber)))
                 .toList();
     }
 
