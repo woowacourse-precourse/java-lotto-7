@@ -41,8 +41,7 @@ public class LottoGameController {
     private int getPaidMoney() {
         while (true) {
             try {
-                int paidMoney = inputView.purchaseLotto();
-                return paidMoney;
+                return inputView.purchaseLotto();
             } catch (NumberFormatException e) {
                 System.out.println(WRONG_INPUT_STRING);
             } catch (IllegalArgumentException e) {

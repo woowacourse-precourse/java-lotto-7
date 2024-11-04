@@ -12,6 +12,7 @@ public class InputView {
     private static final String REQUEST_BONUS_NUM = "\n보너스 번호를 입력해 주세요.";
     private static final String INPUT_NUMBER_OUT_OF_BOUND = "[ERROR] 1에서 45까지의 숫자만 입력해 주세요.";
     private static final String ARRAY_OUT_OF_BOUND = "[ERROR] 로또번호는 6개 입력해 주세요.";
+    private static final String BONUS_SAME_WITH_WINNING_NUM = "[ERROR] 중복이 아닌 보너스 번호를 다시 입력해 주세요.";
     private int paidMoney;
 
     public int purchaseLotto() {
@@ -46,12 +47,16 @@ public class InputView {
         }
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println(REQUEST_BONUS_NUM);
         int bonusNumber = Integer.parseInt(Console.readLine());
 
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(INPUT_NUMBER_OUT_OF_BOUND);
+        }
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_SAME_WITH_WINNING_NUM);
         }
 
         return bonusNumber;
