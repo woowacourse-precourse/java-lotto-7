@@ -10,6 +10,8 @@ import static lotto.staticenum.LottoStatic.LOTTO_PRICE;
 
 public class LottoInput {
 
+    List<Integer> winningNumbers;
+
     public int inputMoneyLoop() {
         while (true) {
             try {
@@ -61,7 +63,7 @@ public class LottoInput {
         System.out.println("당첨 번호를 입력해주세요");
         String[] split = Console.readLine().split(",");
         if (split.length != 6) throw new IllegalArgumentException(WINNING_NUMBER_SIZE_ERROR);
-        ArrayList<Integer> winningNumbers = new ArrayList<>(6);
+        winningNumbers = new ArrayList<>(6);
         for (String number : split) {
             winningNumbers.add(numberParse(number));
         }
@@ -71,7 +73,9 @@ public class LottoInput {
     private int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해주세요");
         String bonusNumber = Console.readLine();
-        return numberParse(bonusNumber);
+        int bonus = numberParse(bonusNumber);
+        if (winningNumbers.contains(bonus)) throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR);
+        return bonus;
     }
 
     public int numberParse(String number) {
