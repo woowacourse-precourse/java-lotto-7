@@ -25,4 +25,12 @@ public class Buyer {
     public void printPurchasedLottos() {
         ResultView.printPurchasedLottos(purchasedLottos);
     }
+
+    public void printResult(LottoGame lottoGame) {
+        ResultView.printResult(this, lottoGame);
+    }
+
+    public double getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

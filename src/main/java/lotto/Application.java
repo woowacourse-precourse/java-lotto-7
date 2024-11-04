@@ -20,5 +20,8 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = InputView.inputBonusNumber();
         LottoGame lottoGame = new LottoGame(winningNumber, bonusNumber);
+
+        // 당첨 결과 출력
+        buyer.printResult(lottoGame);
     }
 }
