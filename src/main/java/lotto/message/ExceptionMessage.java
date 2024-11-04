@@ -13,6 +13,7 @@ public class ExceptionMessage {
             "로또 번호의 숫자 범위는 " + LottoOption.MIN_LOTTO_NUMBER + "~" + LottoOption.MAX_LOTTO_NUMBER + "까지입니다.";
     public static final String DUPLICATE_LOTTO_NUMBERS = "중복된 로또 번호가 존재합니다.";
     public static final String INVALID_NUMBERS_FORMAT = "잘못된 당첨번호 입력 형식입니다.";
+    public static final String DUPLICATE_BONUS_NUMBER = "로또 당첨 번호와 중복된 보너스 번호가 존재합니다.";
     private ExceptionMessage() {
 
     }

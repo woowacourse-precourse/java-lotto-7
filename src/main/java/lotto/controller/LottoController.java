@@ -24,7 +24,9 @@ public class LottoController {
                 OutputviewFormatter.formatLottoNumbers(lottos));
 
         final Lotto lotto = requestWinningLottoNumbers();
-        final BonusNumber bonusNumber = requstBonusNumber();
+        final WinningLotto winningLotto = requestBonusNumber(lotto);
+
+
     }
 
     private static Money requestPurchaseMoneyAmount() {
@@ -50,14 +52,14 @@ public class LottoController {
         }
     }
 
-    private static BonusNumber requstBonusNumber() {
+    private static WinningLotto requestBonusNumber(Lotto lotto) {
         try {
             OutputView.printRequestBonusNumber();
             int number = InputView.readNumber();
-            return new BonusNumber(number);
+            return new WinningLotto(lotto, new BonusNumber(number));
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            return requstBonusNumber();
+            return requestBonusNumber(lotto);
         }
     }
 }
