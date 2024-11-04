@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 
 public class LottoNumbersValidatorTest {
 
-    private List<Integer> lottoNumbers;
+    private List<Integer> validLottoNumbers;
 
     @BeforeEach
     void setUp() {
-        lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        validLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
     }
 
     @Test
     @DisplayName("로또 번호의 개수가 6개일 때 예외가 발생하지 않는다.")
     void 로또_번호_개수가_6개여서_예외가_발생하지_않는다() {
         // when, then
-        assertThatCode(() -> LottoNumbersValidator.validateLottoNumbers(lottoNumbers))
+        assertThatCode(() -> LottoNumbersValidator.validateLottoNumbers(validLottoNumbers))
                 .doesNotThrowAnyException();
     }
 
@@ -40,7 +40,7 @@ public class LottoNumbersValidatorTest {
     @DisplayName("로또 번호가 1 이상 45 이하일 때 예외가 발생하지 않는다.")
     void 로또_번호가_허용된_범위_내에_있어서_예외가_발생하지_않는다() {
         // when, then
-        assertThatCode(() -> LottoNumbersValidator.validateLottoNumbers(lottoNumbers))
+        assertThatCode(() -> LottoNumbersValidator.validateLottoNumbers(validLottoNumbers))
                 .doesNotThrowAnyException();
     }
 
@@ -60,6 +60,25 @@ public class LottoNumbersValidatorTest {
     void 로또_번호가_45를_초과해서_예외가_발생한다() {
         // given
         List<Integer> invalidLottoNumbers = List.of(1, 2, 3, 4, 5, 46); // 46이 포함됨
+
+        // when, then
+        assertThatThrownBy(() -> LottoNumbersValidator.validateLottoNumbers(invalidLottoNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 번호에 중복이 없을 때 예외가 발생하지 않는다.")
+    void 로또_번호에_중복이_없어서_예외가_발생하지_않는다() {
+        // when, then
+        assertThatCode(() -> LottoNumbersValidator.validateLottoNumbers(validLottoNumbers))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("로또 번호에 중복이 있을 때 예외가 발생한다.")
+    void 로또_번호에_중복이_있어서_예외가_발생한다() {
+        // given
+        List<Integer> invalidLottoNumbers = List.of(1, 2, 3, 4, 5, 5); // 5가 중복됨
 
         // when, then
         assertThatThrownBy(() -> LottoNumbersValidator.validateLottoNumbers(invalidLottoNumbers))
