@@ -11,6 +11,7 @@ import java.util.Map;
 public class Application {
     private static final String error_message = "[ERROR]";
     private static final Map<Object, Integer> prizeMoney = new HashMap<>();
+    private static final int tickPrice = 1000;
 
     static {
         prizeMoney.put(3, 5000);           // 3개 일치 (5,000원)
@@ -31,20 +32,39 @@ public class Application {
             Lotto lotto = new Lotto(lottoNumbers);
             Map<Object, Integer> result = lotto.checkLottoWin(numbers, bonusNumber);
 
-            statistics(result);
+            int totalAmount = statistics(result);
+            calculateReturnRate(purchaseAmount, totalAmount);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static void statistics(Map<Object, Integer> result) {
+    private static void calculateReturnRate(int purchaseAmount, int totalAmount) {
+        // 총 투자 금액 계산
+        int purchaseMoney = purchaseAmount * tickPrice;
+
+        // 수익률 계산
+        double returnRate = 0; // 초기화
+        if (purchaseMoney != 0) { // 구매 금액이 0이 아닌 경우에만 수익률 계산
+            returnRate = ((double) totalAmount / purchaseMoney) * 100;
+        }
+
+        // 수익률 출력
+        System.out.printf("총 수익률은 %.2f%%입니다.%n", returnRate);
+    }
+
+    private static int statistics(Map<Object, Integer> result) {
+        int totalAmount = 0;
         System.out.println("당첨 통계");
         System.out.println("---");
 
         for (Map.Entry<Object, Integer> entry : result.entrySet()) {
             resultStatistics(entry.getKey(), entry.getValue());
+            totalAmount += (prizeMoney.get(entry.getKey()) * entry.getValue());
         }
+
+        return totalAmount;
     }
 
     private static void resultStatistics(Object key, int count) {
