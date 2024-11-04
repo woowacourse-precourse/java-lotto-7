@@ -2,7 +2,6 @@ package lotto.validation;
 
 import static lotto.util.LottoConstants.LOTTO_LENGTH;
 import static lotto.util.LottoConstants.ZERO_THRESHOLD;
-import static lotto.validation.CommonLottoNumberValidator.validateCommonLottoInput;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,18 +11,18 @@ import lotto.view.input.InvalidInputException;
 public class LottoNumbersValidator {
     private final static String COMMA = ",";
 
-    public static void validateAboutComma(String input) {
+    public static void validateLottoNumberFormat(String input) {
+        CommonLottoNumberValidator.validateNotNullOrEmpty(input);
         validateHasComma(input);
         validateCommaSeparator(input);
-
+        validateIsNumber(input);
     }
 
     public static void validateLottoNumbers(List<Integer> input) {
         validateLottoLength(input);
         validateDuplicate(input);
-
         for (Integer number : input) {
-            validateCommonLottoInput(String.valueOf(number));
+            CommonLottoNumberValidator.validateLottoRange(number);
         }
     }
 
@@ -47,6 +46,17 @@ public class LottoNumbersValidator {
         if (count > ZERO_THRESHOLD.getValue()) {
             throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
         }
+    }
+
+    private static void validateIsNumber(String input) {
+        Arrays.stream(input.split(COMMA))
+                .forEach(number -> {
+                    try {
+                        Integer.parseInt(number);
+                    } catch (NumberFormatException e) {
+                        throw new InvalidInputException(InputErrorMessage.INTEGER_REQUIRED);
+                    }
+                });
     }
 
     private static void validateDuplicate(List<Integer> numbers) {
