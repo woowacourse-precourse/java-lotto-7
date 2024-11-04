@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.util.LottoValidator.validateLottoNumbers;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.util.Ranking;
@@ -11,12 +12,13 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateLottoNumbers(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return Collections.unmodifiableList(sortedNumbers);
     }
 
     public Ranking calculateRank(List<Integer> winningNumbers, Integer bonusNumber) {
