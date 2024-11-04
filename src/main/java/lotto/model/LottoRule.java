@@ -5,7 +5,7 @@ public enum LottoRule {
     SIX_MATCH(6, "6개 일치 (2,000,000,000원)", 2_000_000_000),
     FIVE_MATCH_BONUS(5, "5개 일치, 보너스 볼 일치 (30,000,000원)", 30_000_000, true),
     FIVE_MATCH(5, "5개 일치 (1,500,000원)", 1_500_000),
-    FOUE_MATCH(4, "4개 일치 (50,000원)", 50_000),
+    FOUR_MATCH(4, "4개 일치 (50,000원)", 50_000),
     THREE_MATCH(3, "3개 일치 (5,000원)", 5_000);
 
     private final int matchCount;
@@ -41,10 +41,20 @@ public enum LottoRule {
     }
 
     public static LottoRule getWinInfo(int matchCount, boolean bonusMatch) {
-        for (LottoRule value : LottoRule.values()) {
-            if (value.matchCount == matchCount && value.bonusMatch == bonusMatch) {
-                return value;
-            }
+        if (matchCount == 6) {
+            return SIX_MATCH;
+        }
+        if (matchCount == 5 && bonusMatch) {
+            return FIVE_MATCH_BONUS;
+        }
+        if (matchCount == 5) {
+            return FIVE_MATCH;
+        }
+        if (matchCount == 4) {
+            return FOUR_MATCH;
+        }
+        if (matchCount == 3) {
+            return THREE_MATCH;
         }
         return null;
     }
