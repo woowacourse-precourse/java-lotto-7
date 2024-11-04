@@ -13,7 +13,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RankingTest {
-    Ranking ranking = new Ranking();
 
     @Test
     void 등수_체크_테스트() {
@@ -28,7 +27,7 @@ public class RankingTest {
         ticket.addLottoTicket(new Lotto(List.of(1, 2, 8, 9, 10, 11))); //LOSE
 
 
-        ranking.matchLotto(ticket, winningLotto);
+        Ranking.matchLotto(ticket, winningLotto);
         HashMap<Rank, Integer> results = ticket.getResult();
 
 

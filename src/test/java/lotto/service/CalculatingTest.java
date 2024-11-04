@@ -10,8 +10,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalculatingTest {
-    Ranking ranking = new Ranking();
-    Calculating calculating = new Calculating();
     @Test
     void 수익금_계산(){
         LottoTicket ticket = new LottoTicket(3000);
@@ -21,9 +19,9 @@ public class CalculatingTest {
         ticket.addLottoTicket(new Lotto(List.of(4, 5, 6,7 , 9, 10))); //5000
         ticket.addLottoTicket(new Lotto(List.of(1, 2, 3, 4, 9, 10))); //50000
 
-        ranking.matchLotto(ticket, winningLotto);
+        Ranking.matchLotto(ticket, winningLotto);
 
-        double result = calculating.earningRate(ticket);
+        double result = Calculating.earningRate(ticket);
 
         assertEquals(result,2000.0);
 
