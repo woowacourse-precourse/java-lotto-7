@@ -27,7 +27,7 @@ class LottoEvaluatorTest {
         bonusNumber = 7;
     }
 
-    @DisplayName("로또 티켓의 당첨 상태를 올바르게 확인한다.")
+    @DisplayName("로또 티켓의 당첨 상태를 올바른지 확인한다.")
     @Test
     void Given_LottoTicket_When_GetEvaluatedStatus_Then_ReturnCorrectPrizeStatus() {
         LottoEvaluator lottoEvaluator = new LottoEvaluator(lottoTicket, winningNumbers, bonusNumber);
