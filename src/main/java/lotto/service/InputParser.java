@@ -38,7 +38,7 @@ public class InputParser {
             convertedLottoNumbers.add(Integer.parseInt(lottoNumber));
         }
 
-        validator.isLottoNumberDuplicated(convertedLottoNumbers);
+        validator.isLottoNumbersValid(convertedLottoNumbers);
         return convertedLottoNumbers;
     }
 
