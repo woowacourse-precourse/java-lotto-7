@@ -1,10 +1,8 @@
 package lotto.service;
 
-import static lotto.constants.LottoConstants.NUMBER_COUNT;
 
 import java.util.EnumMap;
 import java.util.List;
-import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.PurchasedLotto;
