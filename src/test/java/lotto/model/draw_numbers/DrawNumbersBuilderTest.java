@@ -2,6 +2,7 @@ package lotto.model.draw_numbers;
 
 import lotto.model.draw_numbers.builder.DrawNumbersBuilder;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,6 +11,7 @@ import java.util.stream.Stream;
 
 public class DrawNumbersBuilderTest {
 
+    @DisplayName("추첨 번호가 중복되는 경우를 검증하지 못하면 예외가 발생합니다.")
     @ParameterizedTest
     @MethodSource("provideDuplicate")
     void duplicateNumberTest(String winningNumbers, String bonusNumber) {
@@ -17,6 +19,7 @@ public class DrawNumbersBuilderTest {
                 buildLottoResult(winningNumbers, bonusNumber));
     }
 
+    @DisplayName("범위를 벗어난 추천 번호를 검증하지 못하면 예외가 발생합니다.")
     @ParameterizedTest
     @MethodSource("provideExceedRange")
     void ExceedRangeNumberTest(String winningNumbers, String bonusNumber) {
@@ -24,6 +27,7 @@ public class DrawNumbersBuilderTest {
                 buildLottoResult(winningNumbers, bonusNumber));
     }
 
+    @DisplayName("문자를 검증하지 못하면 예외가 발생합니다.")
     @ParameterizedTest
     @MethodSource("provideNonNumber")
     void NonNumberTest(String winningNumbers, String bonusNumber) {
@@ -31,6 +35,7 @@ public class DrawNumbersBuilderTest {
                 buildLottoResult(winningNumbers, bonusNumber));
     }
 
+    @DisplayName("추첨 번호가 부족한 경우를 검증하지 못하면 예외가 발생합니다.")
     @ParameterizedTest
     @MethodSource("provideInsufficient")
     void InsufficientNumberTest(String winningNumbers, String bonusNumber) {
@@ -38,6 +43,7 @@ public class DrawNumbersBuilderTest {
                 buildLottoResult(winningNumbers, bonusNumber));
     }
 
+    @DisplayName("추첨 번호가 개수가 초과된 경우를 검증하지 못하면 예외가 발생합니다.")
     @ParameterizedTest
     @MethodSource("provideExcess")
     void ExcessNumberCountTest(String winningNumbers, String bonusNumber) {
@@ -45,6 +51,7 @@ public class DrawNumbersBuilderTest {
                 buildLottoResult(winningNumbers, bonusNumber));
     }
 
+    @DisplayName("추첨 번호 입력 포맷이 잘못된 경우를 검증하지 못하면 예외가 발생합니다.")
     @ParameterizedTest
     @MethodSource("provideWrongFormat")
     void WrongFormatNumberTest(String winningNumbers, String bonusNumber) {
@@ -52,6 +59,7 @@ public class DrawNumbersBuilderTest {
                 buildLottoResult(winningNumbers, bonusNumber));
     }
 
+    @DisplayName("추첨 번호를 입력하지 않은 경우를 검증하지 못하면 예외가 발생합니다.")
     @ParameterizedTest
     @MethodSource("provideEmpty")
     void EmptyNumberTest(String winningNumbers, String bonusNumber) {

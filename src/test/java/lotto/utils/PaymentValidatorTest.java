@@ -9,7 +9,7 @@ public class PaymentValidatorTest {
 
     PaymentValidator paymentValidator = new PaymentValidator();
 
-    @DisplayName("올바른 구입 금액을 검증한다")
+    @DisplayName("올바른 구입 금액을 검증하지 못하면 예외가 발생합니다.")
     @ParameterizedTest
     @ValueSource(strings = {
             "1000",
@@ -22,7 +22,7 @@ public class PaymentValidatorTest {
         Assertions.assertTrue(paymentValidator.validate(paymentInput));
     }
 
-    @DisplayName("잘못된 구입 금액을 검증한다")
+    @DisplayName("잘못된 구입 금액을 검증하지 못하면 예외가 발생합니다.")
     @ParameterizedTest
     @ValueSource(strings = {
             "100",

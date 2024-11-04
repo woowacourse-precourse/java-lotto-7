@@ -27,7 +27,7 @@ public class WinningTest {
         this.lottoPublisher = new LottoPublisher(testNumberGenerator);
     }
 
-    @DisplayName("1등 당첨을 판단하지 못한 경우 예외가 발생합니다")
+    @DisplayName("1등 당첨을 판단하지 못한 경우 예외가 발생합니다.")
     @Test
     void firstPlaceTest() {
         List<Lotto> lottos = lottoPublisher.publishLotto(LOTTO_COUNT);
@@ -37,7 +37,7 @@ public class WinningTest {
         Assertions.assertEquals(lotto.checkWinner(testDrawNumbers), Winning.FIRST_PLACE);
     }
 
-    @DisplayName("2등 당첨을 판단하지 못한 경우 예외가 발생합니다")
+    @DisplayName("2등 당첨을 판단하지 못한 경우 예외가 발생합니다.")
     @Test
     void secondPlaceTest() {
         List<Lotto> lottos = lottoPublisher.publishLotto(LOTTO_COUNT);
@@ -47,7 +47,7 @@ public class WinningTest {
         Assertions.assertEquals(lotto.checkWinner(testDrawNumbers), Winning.SECOND_PLACE);
     }
 
-    @DisplayName("3등 당첨을 판단하지 못한 경우 예외가 발생합니다")
+    @DisplayName("3등 당첨을 판단하지 못한 경우 예외가 발생합니다.")
     @Test
     void thirdPlaceTest() {
         List<Lotto> lottos = lottoPublisher.publishLotto(LOTTO_COUNT);
@@ -57,7 +57,7 @@ public class WinningTest {
         Assertions.assertEquals(lotto.checkWinner(testDrawNumbers), Winning.THIRD_PLACE);
     }
 
-    @DisplayName("4등 당첨을 판단하지 못한 경우 예외가 발생합니다")
+    @DisplayName("4등 당첨을 판단하지 못한 경우 예외가 발생합니다.")
     @Test
     void fourthPlaceTest() {
         List<Lotto> lottos = lottoPublisher.publishLotto(LOTTO_COUNT);
@@ -67,7 +67,7 @@ public class WinningTest {
         Assertions.assertEquals(lotto.checkWinner(testDrawNumbers), Winning.FOURTH_PLACE);
     }
 
-    @DisplayName("5등 당첨을 판단하지 못한 경우 예외가 발생합니다")
+    @DisplayName("5등 당첨을 판단하지 못한 경우 예외가 발생합니다.")
     @Test
     void fifthPlaceTest() {
         List<Lotto> lottos = lottoPublisher.publishLotto(LOTTO_COUNT);

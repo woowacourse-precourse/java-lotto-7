@@ -35,6 +35,7 @@ public class OutputViewTest {
                 .forEach(Winning::clear);
     }
 
+    @DisplayName("구매한 로또의 출력이 잘못되면 예외가 발생한다.")
     @Test
     void printLottoNumbersTest() {
         LottoPublisher lottoPublisher = makeLottoPublisher();
@@ -47,6 +48,7 @@ public class OutputViewTest {
         Assertions.assertEquals(lotto.numbersToString(), expect);
     }
 
+    @DisplayName("당첨 개수가 잘못 계싼되면 예외가 발생한다.")
     @Test
     void winningCountTest() {
         LottoPublisher lottoPublisher = makeLottoPublisher();
@@ -57,6 +59,7 @@ public class OutputViewTest {
         Assertions.assertEquals(LOTTO_COUNT, Winning.THIRD_PLACE.getCount());
     }
 
+    @DisplayName("당첨 통계 출력이 잘못되면 예외가 발생한다.")
     @Test
     void resultToStringTest() {
         OutputView outputView = new OutputView();
