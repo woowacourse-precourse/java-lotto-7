@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.helper.LottoHelper;
+import lotto.model.rank.RankCondition;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,14 +30,15 @@ class LottoTest {
     void comparingLottoNumbersCase1() {
         // given
         Lotto myLotto = LottoHelper.mock(1, 2, 3, 4, 5, 6);
-        Lotto drawResult = LottoHelper.mock(1, 2, 3, 10, 15, 16);
+        Lotto drawResult = LottoHelper.mock(1, 2, 3, 14, 15, 16);
+        Integer bonusNumber = 30;
 
         // when
-        int actual = myLotto.countMatchedNumbersFrom(drawResult);
+        RankCondition actual = myLotto.rankWith(drawResult, bonusNumber);
 
         // then
-        int expected = 3;
-        assertThat(actual).isEqualTo(expected);
+        RankCondition expected = RankCondition.FIFTH;
+        assertThat(actual == expected).isTrue();
     }
 
     @Test
@@ -45,13 +47,14 @@ class LottoTest {
         // given
         Lotto myLotto = LottoHelper.mock(1, 2, 3, 4, 5, 6);
         Lotto drawResult = LottoHelper.mock(11, 12, 13, 14, 15, 16);
+        Integer bonusNumber = 30;
 
         // when
-        int actual = myLotto.countMatchedNumbersFrom(drawResult);
+        RankCondition actual = myLotto.rankWith(drawResult, bonusNumber);
 
         // then
-        int expected = 0;
-        assertThat(actual).isEqualTo(expected);
+        RankCondition expected = RankCondition.NONE;
+        assertThat(actual == expected).isTrue();
     }
 
     @Test
@@ -59,14 +62,15 @@ class LottoTest {
     void comparingBonusBallCase1() {
         // given
         Lotto myLotto = LottoHelper.mock(1, 2, 3, 4, 5, 6);
-        Integer bonusBall = 5;
+        Lotto drawResult = LottoHelper.mock(1, 2, 3, 4, 5, 7);
+        Integer bonusNumber = 6;
 
         // when
-        boolean actual = myLotto.has(bonusBall);
+        RankCondition actual = myLotto.rankWith(drawResult, bonusNumber);
 
         // then
-        boolean expected = true;
-        assertThat(actual).isEqualTo(expected);
+        RankCondition expected = RankCondition.SECOND;
+        assertThat(actual == expected).isTrue();
     }
 
     @Test

@@ -200,10 +200,11 @@
 
 ### Lotto
 
-| Method                  | Parameter | Return Type | Implementation |
-|-------------------------|-----------|-------------|----------------|
-| countMatchedNumbersFrom | Lotto     | int         | ✅              |
-| has                     | Integer   | boolean     | ✅              |              
+| Method                  | Parameter      | Return Type   | Implementation |
+|-------------------------|----------------|---------------|----------------|
+| countMatchedNumbersFrom | Lotto          | int           | ✅              |
+| has                     | Integer        | boolean       | ✅              |              
+| rankWith                | Lotto, Integer | RankCondition | ✅              |              
 
 <br>
 
@@ -250,11 +251,10 @@
 
 ### LottoService
 
-| Access  | Method        | Parameter              | Return Type        | Implementation |
-|---------|---------------|------------------------|--------------------|----------------|
-| public  | offerLottos   | Money                  | Lottos             | ✅              |
-| public  | rankMyLottos  | Lottos, Lotto, Integer | LottoDrawRankTable | ✅              |
-| private | rankEachLotto | Lottos, Lotto, Integer | RankCondition      | ✅              |
+| Access | Method       | Parameter              | Return Type        | Implementation |
+|--------|--------------|------------------------|--------------------|----------------|
+| public | offerLottos  | Money                  | Lottos             | ✅              |
+| public | rankMyLottos | Lottos, Lotto, Integer | LottoDrawRankTable | ✅              |
 
 <br>
 

@@ -4,11 +4,13 @@ import static java.util.Objects.isNull;
 import static lotto.exception.DuplicatedNumberException.duplicatedLottoNumber;
 import static lotto.exception.ShouldNotBeNullException.nullArgument;
 import static lotto.io.error.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.model.rank.RankCondition.hasEnoughCountToBeSecondRank;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.exception.InvalidRangeException;
+import lotto.model.rank.RankCondition;
 
 public class Lotto {
 
@@ -29,7 +31,7 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    public int countMatchedNumbersFrom(final Lotto lotto) {
+    private int countMatchedNumbersFrom(final Lotto lotto) {
         return (int) numbers.stream()
                 .filter(lotto::has)
                 .count();
@@ -38,6 +40,17 @@ public class Lotto {
     public boolean has(final Integer number) {
         validateIsNull(number);
         return this.numbers.contains(number);
+    }
+
+    public RankCondition rankWith(final Lotto drawResult, final Integer bonusNumber) {
+        int matchedCount = this.countMatchedNumbersFrom(drawResult);
+        boolean hasBonusNumber = false;
+
+        if (hasEnoughCountToBeSecondRank(matchedCount)) {
+            hasBonusNumber = this.has(bonusNumber);
+        }
+
+        return RankCondition.getRankBy(matchedCount, hasBonusNumber);
     }
 
     @Override
