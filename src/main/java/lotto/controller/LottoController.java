@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.global.string.ErrorConstants;
 import lotto.global.string.QuestionConstants;
 import lotto.service.LottoService;
 
@@ -13,9 +14,12 @@ public class LottoController {
     public void getAmount() {
         System.out.println(QuestionConstants.INPUT_MONEY);
         String inputText = Console.readLine().trim();
-        int money = Integer.parseInt(inputText);
-
-        lottoService.getAmount(money);
+        try {
+            int money = Integer.parseInt(inputText);
+            lottoService.getAmount(money);
+        } catch (NumberFormatException e) {
+            System.out.println(ErrorConstants.CHECK_STRING_TO_INT);
+        }
     }
 
     public void generateLottoNumbers() {
