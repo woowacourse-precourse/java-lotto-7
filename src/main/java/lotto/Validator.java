@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
     public void validatePurchaseAmount(int purchaseAmount) {
@@ -15,6 +16,9 @@ public class Validator {
     public void validateWinningNum(List<Integer> winningNums) {
         if (winningNums.size() != Constant.LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException("[ERROR] 당첨번호는 6개 입력해야 합니다.");
+        }
+        if (Set.copyOf(winningNums).size() != Constant.LOTTO_NUM_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호에 중복값을 입력해서는 안됩니다.");
         }
         for (int winningNum : winningNums) {
             if (winningNum < 0) {

@@ -1,6 +1,9 @@
 package lotto.model;
 
+import lotto.Constant;
+
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,8 +14,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constant.LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+        if (Set.copyOf(numbers).size() != Constant.LOTTO_NUM_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호에 중복값을 입력해서는 안됩니다.");
         }
     }
 
