@@ -3,8 +3,6 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -15,17 +13,13 @@ public class OutputView {
     private static final String SEPARATOR = "---";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-
     public static void displayPurchasedLottos(List<Lotto> lottos) {
-        System.out.printf(PURCHASED_MESSAGE + "%n", lottos.size());
+        System.out.printf((PURCHASED_MESSAGE) + "%n", lottos.size());
         for (Lotto lotto : lottos) {
-            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
-            Collections.sort(sortedNumbers);
-            System.out.println(sortedNumbers);
+            System.out.println(lotto.getNumbers());
         }
         System.out.println();
     }
-
 
     public static void displayResults(Map<Rank, Integer> rankResults) {
         System.out.println(STATISTICS_HEADER);
@@ -44,6 +38,4 @@ public class OutputView {
     public static void displayProfitRate(double profitRate) {
         System.out.printf(PROFIT_RATE_MESSAGE, Math.round(profitRate * 10) / 10.0);
     }
-
 }
-

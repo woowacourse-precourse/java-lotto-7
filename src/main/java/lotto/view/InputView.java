@@ -42,6 +42,7 @@ public class InputView {
         return bonusNumber;
     }
 
+
     private static int readValidatedIntegerInput() {
         String input = Console.readLine().trim();
         try {
@@ -51,6 +52,8 @@ public class InputView {
         }
     }
 
+
+    // 당첨 번호 파싱 및 검증 메서드
     private static List<Integer> parseWinningNumbers(String input) {
         String[] numberStrings = input.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
@@ -58,7 +61,7 @@ public class InputView {
             try {
                 winningNumbers.add(Integer.parseInt(numberString.trim()));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(WINNING_NUMBER_PARSE_ERROR);
+                throw new IllegalArgumentException(WINNING_NUMBER_PARSE_ERROR, e);
             }
         }
         System.out.println();
