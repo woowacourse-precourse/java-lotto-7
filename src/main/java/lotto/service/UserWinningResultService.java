@@ -8,6 +8,7 @@ import lotto.enums.LottoConstant;
 import lotto.util.LottoWinningPriceList;
 import lotto.view.OutputView;
 
+import static lotto.enums.LottoConstant.*;
 import static lotto.view.OutputView.WINNING_STATISTICS;
 
 public class UserWinningResultService {
@@ -42,20 +43,20 @@ public class UserWinningResultService {
     }
 
     private int[][] countMatchWinningNumber(LottoResult lottoResult, User user) {
-        int[][] resultTable = new int[LottoConstant.COUNT.getValue() + 1][2];
+        int[][] priceResultTable = new int[LottoConstant.COUNT.getValue() + 1][2];
         LottoTickets lottoTickets = user.getLottoTickets();
 
         for (Lotto lotto : lottoTickets.getTickets()) {
             int matchCount = lotto.countMatchNumberWithWinningNumber(lottoResult.getWinningNumbers());
-            if (matchCount == 5 && lotto.isBonusNumberIncludeInWinningNumbers(lottoResult.getBonusNumber())) {
-                resultTable[matchCount][1]++;
+            if (matchCount == BONUS_MATCH_COUNT.getValue() && lotto.isBonusNumberIncludeInWinningNumbers(lottoResult.getBonusNumber())) {
+                priceResultTable[matchCount][BONUS_NUMBER_INCLUDED.getValue()]++;
                 user.addRevenue(LottoWinningPriceList.getIncludeBonus);
                 continue;
             }
-            resultTable[matchCount][0]++;
+            priceResultTable[matchCount][BONUS_NUMBER_NOT_INCLUDED.getValue()]++;
             user.addRevenue(LottoWinningPriceList.get[matchCount]);
         }
-        return resultTable;
+        return priceResultTable;
     }
 
 }
