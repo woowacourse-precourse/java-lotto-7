@@ -71,4 +71,15 @@ public class Application {
 
         return totalAmount / 1000;
     }
+
+    public static List<Lotto> getLottoNumbers(int lottoCount) {
+        List<Lotto> lottoNumbers = new ArrayList<>();
+
+        for (int i = 0; i < lottoCount; i++) {
+            Lotto lotto = new Lotto(Lotto.pickRandomNumber());
+            lottoNumbers.add(lotto);
+        }
+
+        return lottoNumbers;
+    }
 }
