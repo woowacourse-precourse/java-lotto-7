@@ -6,6 +6,7 @@ import enums.Prize;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoService {
 
@@ -112,5 +113,15 @@ public class LottoService {
         }
 
         return lottoResult;
+    }
+
+    public double getRateOfReturn(Map<String, Integer> lottoResult, int numberOfTickets) {
+        int totalPrize = 0;
+        for (Prize prize : Prize.values()) {
+            totalPrize += prize.getMoney() * lottoResult.get(prize.name());
+        }
+        double rateOfReturn = totalPrize / (numberOfTickets * 1000.0) * 100;
+
+        return Math.round(rateOfReturn * 100.0) / 100.0;
     }
 }

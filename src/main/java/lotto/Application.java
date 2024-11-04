@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import enums.Prize;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,10 +30,16 @@ public class Application {
                 winningNumber.getNumbers());
         System.out.println();
 
-        Map<String, Integer> lottoResult = lottoService.assessLottoOutcome(
+        HashMap<String, Integer> lottoResult = lottoService.assessLottoOutcome(
                 lottoService.getInitialLottoResult(), tickets, winningNumber.getNumbers(),
                 bonusNumber);
 
-        // 추가 예정
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (Prize rank : Prize.values()) {
+            System.out.println(rank.getDescription() + lottoResult.get(rank.name()) + "개");
+        }
+        double rateOfReturn = lottoService.getRateOfReturn(lottoResult, numberOfTickets);
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 }

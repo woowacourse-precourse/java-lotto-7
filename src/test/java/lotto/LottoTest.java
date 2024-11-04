@@ -1,6 +1,7 @@
 package lotto;
 
 import enums.Prize;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -120,5 +121,13 @@ class LottoTest {
                         List.of(1, 2, 3, 10, 11, 12), List.of(2, 3, 4, 5, 6, 8)),
                 List.of(1, 2, 3, 4, 5, 6), 7)).containsEntry("FIRST", 1).containsEntry("SECOND", 1)
                 .containsEntry("THIRD", 1).containsEntry("FOURTH", 1).containsEntry("FIFTH", 3);
+    }
+
+    @Test
+    void 수익률을_소수점_둘째_자리에서_반올림하여_반환() {
+        Map<String, Integer> map = Map.of("FIRST", 0, "SECOND", 0,
+                "THIRD", 0, "FOURTH", 0, "FIFTH", 1);
+
+        assertThat(new LottoService().getRateOfReturn(map, 8)).isEqualTo(62.5);
     }
 }
