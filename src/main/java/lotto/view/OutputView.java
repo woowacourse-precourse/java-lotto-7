@@ -38,6 +38,7 @@ public class OutputView {
     }
 
     public void printRequestBonusNumbers() {
+        System.out.println();
         System.out.println(INPUT_BONUS_NUMBER);
     }
 
