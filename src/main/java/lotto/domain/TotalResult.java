@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
-import lotto.constant.Reward;
 
 public class TotalResult {
 

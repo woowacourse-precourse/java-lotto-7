@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.constant.GlobalConstant;
-import lotto.constant.Reward;
 
 public class Tickets {
 

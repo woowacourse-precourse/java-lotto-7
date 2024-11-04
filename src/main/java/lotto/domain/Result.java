@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.EnumMap;
-import lotto.constant.Reward;
 
 public class Result {
 
