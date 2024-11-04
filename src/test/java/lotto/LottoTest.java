@@ -106,6 +106,6 @@ class LottoTest {
     void 수익률_계산_테스트() {
         User user = new User(1000);
         user.addWinningPrice(30000);
-        assertThat(user.getProfit()).isEqualTo("3,000.0");
+        assertThat(user.getProfitPercent()).isEqualTo("3,000.0");
     }
 }

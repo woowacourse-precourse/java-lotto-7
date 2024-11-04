@@ -19,7 +19,7 @@ public class LottoController {
         Lotto lotto = setWinningLotto();
 
         OutputView.printWinningHistory(getCalculateResult(user, lotto));
-        OutputView.printProfit(getProfit(user));
+        OutputView.printProfitPercent(getProfitPercent(user));
     }
 
     private User setUser() {
@@ -30,8 +30,8 @@ public class LottoController {
         return inputService.setWinningLotto();
     }
 
-    private String getProfit(User user) {
-        return lottoCalculatorService.profitCalculate(user);
+    private String getProfitPercent(User user) {
+        return lottoCalculatorService.profitPercentCalculate(user);
     }
 
     private Map<LottoRanking, Integer> getCalculateResult(User user, Lotto lotto) {

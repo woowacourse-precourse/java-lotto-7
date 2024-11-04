@@ -53,11 +53,11 @@ public class LottoCalculatorService {
         winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
     }
 
-    public String profitCalculate(User user) {
+    public String profitPercentCalculate(User user) {
         for (LottoRanking lottoRanking : winningCount.keySet()) {
             addWinningPrice(user, lottoRanking);
         }
-        return user.getProfit();
+        return user.getProfitPercent();
     }
 
     private void addWinningPrice(User user, LottoRanking lottoRanking) {
