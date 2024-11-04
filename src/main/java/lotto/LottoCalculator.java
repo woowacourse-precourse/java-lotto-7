@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoCalculator {
-    static List<Integer> getAutoLottoOneSet() {
+    static Lotto getAutoLottoOneSet() {
         List<Integer> aLottoSet = new ArrayList<>();
         Integer randomNumber;
         while (aLottoSet.size() < 6) {
@@ -15,25 +15,26 @@ public class LottoCalculator {
                 aLottoSet.add(randomNumber);
             }
         }
-        return aLottoSet;
+        Lotto lotto = new Lotto(aLottoSet);
+        return lotto;
     }
 
-    static List<List<Integer>> getLottoSetsAsInputAmount(Integer input) {
-        List<List<Integer>> lottoFullSets = new ArrayList<>();
+    static List<Lotto> getLottoSetsAsInputAmount(Integer input) {
+        List<Lotto> lottoFullSets = new ArrayList<>();
         for (int i = 0; i < input; i++) {
             lottoFullSets.add(getAutoLottoOneSet());
         }
         return lottoFullSets;
     }
 
-    static List<LottoWinner> getFullLottoResult(List<List<Integer>> boughtLottoSet, List<Integer> winLottoSet,
+    static List<LottoWinner> getFullLottoResult(List<Lotto> boughtLottoSet, Lotto winLottoSet,
                                                 Integer bonusNumber) {
         List<Integer> amountCreiteriaList = Arrays.asList(3, 4, 5, 5, 6);
         List<Integer> winPrizeList = Arrays.asList(5000, 50000, 1500000, 30000000, 2000000000);
         List<Boolean> hasBonusBallList = Arrays.asList(false, false, false, true, false);
         List<LottoWinner> lottoWinnerList = new ArrayList<>();
         getLottoSetContainBonusNumber(winLottoSet, bonusNumber);
-        List<Integer> processedWinLottoSet = new ArrayList<>();
+        Lotto processedWinLottoSet;
         for (int i = 0; i < 5; i++) {
             processedWinLottoSet = getProcessedWinLottoSet(winLottoSet, bonusNumber, hasBonusBallList, i);
             lottoWinnerList.add(
@@ -43,10 +44,10 @@ public class LottoCalculator {
         return lottoWinnerList;
     }
 
-    private static List<Integer> getProcessedWinLottoSet(List<Integer> winLottoSet, Integer bonusNumber,
+    private static Lotto getProcessedWinLottoSet(Lotto winLottoSet, Integer bonusNumber,
                                                          List<Boolean> hasBonusBallList,
                                                          int i) {
-        List<Integer> winLottoSetProcessed = winLottoSet;
+        Lotto winLottoSetProcessed = new Lotto(winLottoSet.getNumbers());
         if (hasBonusBallList.get(i)) //보너스로 진행하게
         {
             winLottoSetProcessed = getLottoSetContainBonusNumber(winLottoSet, bonusNumber);
@@ -54,14 +55,14 @@ public class LottoCalculator {
         return winLottoSetProcessed;
     }
 
-    private static List<Integer> getLottoSetContainBonusNumber(List<Integer> winLottoSet, Integer bonusNumber) {
-        List<Integer> winLottoSetContainBonus = winLottoSet;
-        winLottoSetContainBonus.add(bonusNumber);
+    private static Lotto getLottoSetContainBonusNumber(Lotto winLottoSet, Integer bonusNumber) {
+        Lotto winLottoSetContainBonus = winLottoSet;
+        winLottoSetContainBonus.getNumbers().add(bonusNumber);
         return winLottoSetContainBonus;
     }
 
     static LottoWinner getASetLottoWinner(Integer amountCriteria, Integer winPrize, Boolean hasBonusBall,
-                                          List<List<Integer>> boughtLottoSet, List<Integer> winLottoSet) {
+                                          List<Lotto> boughtLottoSet, Lotto winLottoSet) {
         LottoWinner lottoWinnerData = new LottoWinner();
         lottoWinnerData.setAmountCriteria(amountCriteria);
         lottoWinnerData.setWinPrize(winPrize);
@@ -70,7 +71,7 @@ public class LottoCalculator {
             lottoWinnerData.setBonusBallMent(lottoWinnerData.getBonusBallMent() + ", 보너스 볼 일치");
         }
 
-        for (List<Integer> lottoSet : boughtLottoSet) {
+        for (Lotto lottoSet : boughtLottoSet) {
             if (getALottoSetResult(lottoSet, winLottoSet) == amountCriteria) {
                 winAmount++;
             }
@@ -81,10 +82,10 @@ public class LottoCalculator {
     }
 
     //1개의 로또의 당첨 갯수를 리턴하는 함수
-    private static Integer getALottoSetResult(List<Integer> boughtLottoASet, List<Integer> winLottoSet) {
+    private static Integer getALottoSetResult(Lotto boughtLottoASet, Lotto winLottoSet) {
         Integer matchNumberAmount = 0;
-        for (Integer lottoNumber : boughtLottoASet) {
-            if (winLottoSet.contains(lottoNumber)) {
+        for (Integer lottoNumber : boughtLottoASet.getNumbers()) {
+            if (winLottoSet.getNumbers().contains(lottoNumber)) {
                 matchNumberAmount++;
             }
         }

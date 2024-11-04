@@ -28,13 +28,13 @@ public class Validate {
         }
     }
 
-    public static void checkWinNumbersValidate(List<Integer> winNumbers) {
-        Set<Integer> set = new HashSet<Integer>(winNumbers);
+    public static void checkWinNumbersValidate(Lotto winNumbers) {
+        Set<Integer> set = new HashSet<Integer>(winNumbers.getNumbers());
         if (set.size() != 6) {
             ErrorException.runError("중복 없이 6개의 숫자를 입력해야 합니다.");
         }
 
-        for (Integer winNumber : winNumbers) {
+        for (Integer winNumber : winNumbers.getNumbers()) {
             checkALottoNumberValidate(winNumber);
         }
     }
@@ -42,5 +42,10 @@ public class Validate {
     public static void checkALottoNumberValidate(Integer winNumber) {
         checkIntegerPositive(winNumber, "당첨 번호는 양수여야 합니다.");
         checkNumberInLottoRange(winNumber);
+    }
+
+    public static void checkBonusNumberAlreadySelected(Integer bonusNumber, Lotto winNumbers){
+        if(winNumbers.getNumbers().contains(bonusNumber))
+            ErrorException.runError("기존에 당첨 번호와 보너스 번호가 중복될 수 없습니다.");
     }
 }

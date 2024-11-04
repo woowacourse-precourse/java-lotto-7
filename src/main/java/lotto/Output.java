@@ -8,9 +8,9 @@ public class Output {
         System.out.println(printMessage);
     }
 
-    public static void printLottoSets(List<List<Integer>> lottoFullSets, Integer lottoSetNumber){
+    public static void printLottoSets(List<Lotto> lottoFullSets, Integer lottoSetNumber){
         for (int i = 0; i < lottoSetNumber; i++) {
-            System.out.println(lottoFullSets.get(i));
+            System.out.println(lottoFullSets.get(i).getNumbers());
         }
     }
 }
