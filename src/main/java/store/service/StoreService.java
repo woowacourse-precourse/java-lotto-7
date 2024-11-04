@@ -1,7 +1,7 @@
 package store.service;
 
-import static global.utils.StringUtil.WeeklyNumber.parsingWeeklyNumbers;
-import static global.utils.StringUtil.WeeklyNumber.splitWeeklyNumberWithSeparator;
+import static global.utils.GlobalUtil.WeeklyNumber.parsingWeeklyNumbers;
+import static global.utils.GlobalUtil.WeeklyNumber.splitWeeklyNumberWithSeparator;
 import static global.utils.Validator.validateBonusNumber;
 import static global.utils.Validator.validateWeeklyNumbers;
 

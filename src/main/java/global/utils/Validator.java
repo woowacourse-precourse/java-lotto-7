@@ -1,9 +1,9 @@
 package global.utils;
 
-import static global.utils.StringUtil.BonusNumber.parsingBonusNumber;
-import static global.utils.StringUtil.PurchaseAmount.parsingPurchaseAmount;
-import static global.utils.StringUtil.WeeklyNumber.parsingWeeklyNumbers;
-import static global.utils.StringUtil.WeeklyNumber.splitWeeklyNumberWithSeparator;
+import static global.utils.GlobalUtil.BonusNumber.parsingBonusNumber;
+import static global.utils.GlobalUtil.PurchaseAmount.parsingPurchaseAmount;
+import static global.utils.GlobalUtil.WeeklyNumber.parsingWeeklyNumbers;
+import static global.utils.GlobalUtil.WeeklyNumber.splitWeeklyNumberWithSeparator;
 
 import global.exception.ErrorCode;
 import global.view.OutputView;

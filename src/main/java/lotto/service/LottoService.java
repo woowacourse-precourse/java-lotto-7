@@ -4,12 +4,14 @@ import static global.constant.GlobalStatic.LOTTO_END_NUMBER;
 import static global.constant.GlobalStatic.LOTTO_NUMBER_COUNTS;
 import static global.constant.GlobalStatic.LOTTO_START_NUMBER;
 import static global.constant.GlobalStatic.PURCHASE_AMOUNT_UNIT;
+import static global.utils.GlobalUtil.Lotto.sortingNumbers;
+import static global.utils.GlobalUtil.PurchaseAmount.parsingPurchaseAmount;
+import static global.utils.Validator.validatePurchaseAmount;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import lotto.constant.LottoRank;
@@ -27,19 +29,21 @@ public class LottoService {
         this.lottoRepository = lottoRepository;
     }
 
-    public void generateByPurchaseAmount(BigInteger purchaseAmount) {
-        BigInteger count = purchaseAmount.divide(BigInteger.valueOf(PURCHASE_AMOUNT_UNIT));
+    public void tryGenerateByPurchaseAmount(String inputPurchaseAmount) {
+        validatePurchaseAmount(inputPurchaseAmount);
+        BigInteger purchaseAmount = parsingPurchaseAmount(inputPurchaseAmount);
 
+        BigInteger count = purchaseAmount.divide(BigInteger.valueOf(PURCHASE_AMOUNT_UNIT));
         for (BigInteger i = BigInteger.ZERO; i.compareTo(count) < 0; i = i.add(BigInteger.ONE)) {
-            create(sortingNumbers(generateRandomNumbers()));
+            generate(sortingNumbers(generateRandomNumbers()));
         }
     }
 
-    public void create(List<Integer> numbers) {
+    private void generate(List<Integer> numbers) {
         lottoRepository.save(new Lotto(numbers));
     }
 
-    public BigInteger count() {
+    public int count() {
         return lottoRepository.count();
     }
 
@@ -51,32 +55,23 @@ public class LottoService {
         return lottoRepository.findAll();
     }
 
-    //TODO: 1. 정렬하는거 까지 여기에 둬야하나? 2. 생성과 정렬을 같이 하면 별로일까? => TREE SET
-    private List<Integer> sortingNumbers(List<Integer> numbers) {
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
-    }
-
     public Map<LottoRank, Integer> getMatchedResults() {
         List<Lotto> lottos = getAll();
         return storeService.getMatchedResult(lottos);
     }
 
     public double calculateProfitRate(Map<LottoRank, Integer> matchedResults) {
+        long purchasedAmount = getAll().size() * PURCHASE_AMOUNT_UNIT;
+        double totalProfit = calculateTotalProfit(matchedResults);
 
-        //FIXME: 캐스팅 변환 사용하지 않기
-        double purchasedAmount = (double) getAll().size() * PURCHASE_AMOUNT_UNIT;
-        double totalProfit = (double) calculateTotalProfit(matchedResults);
+        double profitRate = (totalProfit / purchasedAmount) * 100.00;
+        BigDecimal halfUpRate = new BigDecimal(profitRate).setScale(1, RoundingMode.HALF_UP);
 
-        double profitRate = (totalProfit / purchasedAmount) * 100.0;
-        BigDecimal halfUpRate = new BigDecimal(profitRate).setScale(2, RoundingMode.HALF_UP);
-//        profitRate = Math.round(profitRate * 100) / 100.0;
-
-        return profitRate;
+        return halfUpRate.doubleValue();
     }
 
-    private int calculateTotalProfit(Map<LottoRank, Integer> matchedResults) {
-        int totalProfit = 0;
+    private double calculateTotalProfit(Map<LottoRank, Integer> matchedResults) {
+        double totalProfit = 0.0;
 
         for (LottoRank rank : LottoRank.values()) {
             int count = matchedResults.get(rank);

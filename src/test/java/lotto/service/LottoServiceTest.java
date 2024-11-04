@@ -31,10 +31,10 @@ class LottoServiceTest {
         BigInteger purchaseAmount = new BigInteger(input);
 
         //when
-        lottoService.generateByPurchaseAmount(purchaseAmount);
+        lottoService.generateByPurchaseAmount(input);
 
         //then
-        BigInteger count = lottoService.count();
+        BigInteger count = BigInteger.valueOf(lottoService.count());
         BigInteger expectedCount = purchaseAmount.divide(BigInteger.valueOf(PURCHASE_AMOUNT_UNIT));
         assertThat(count).isEqualTo(expectedCount);
     }
@@ -56,8 +56,8 @@ class LottoServiceTest {
         List<Integer> randomNumbers = lottoService.generateRandomNumbers();
 
         while (!randomNumbers.isEmpty()) {
-            int num = randomNumbers.get(0);
-            randomNumbers.remove(0);
+            int num = randomNumbers.getFirst();
+            randomNumbers.removeFirst();
             assertThat(randomNumbers).doesNotContain(num);
         }
     }

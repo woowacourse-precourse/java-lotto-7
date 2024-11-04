@@ -7,9 +7,10 @@ import global.view.OutputView;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-public class StringUtil {
+public class GlobalUtil {
 
     public static class PurchaseAmount {
         public static BigInteger parsingPurchaseAmount(String input) {
@@ -19,6 +20,13 @@ public class StringUtil {
                 OutputView.printErrorMsgWithReason(ErrorCode.INPUT_SHOULD_BE_PARSING, input);
                 throw new NumberFormatException(ErrorCode.INPUT_SHOULD_BE_PARSING.getMsg());
             }
+        }
+    }
+
+    public static class Lotto {
+        public static List<Integer> sortingNumbers(List<Integer> numbers) {
+            numbers.sort(Comparator.naturalOrder());
+            return numbers;
         }
     }
 
