@@ -40,4 +40,20 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public Rank match(WinningLotto winningLotto) {
+        int matchCount = countMatchingNumbers(winningLotto.getWinningNumbers());
+        boolean matchBonus = numbers.contains(winningLotto.getBonusNumber());
+        return Rank.valueOf(matchCount, matchBonus);
+    }
+
+    private int countMatchingNumbers(List<Integer> winningNumbers) {
+        int count = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

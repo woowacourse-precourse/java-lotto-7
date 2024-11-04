@@ -2,6 +2,8 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.util.InputValidator;
 import lotto.view.InputView;
@@ -12,7 +14,17 @@ public class LottoController {
         int purchaseAmount = inputPurchaseAmount();
         List<Lotto> purchasedLottos = purchaseLottos(purchaseAmount);
         WinningLotto winningLotto = inputWinningLotto();
+        LottoResult lottoResult = calculateResult(purchasedLottos, winningLotto);
         // 추후 기능 추가 예정
+    }
+
+    private LottoResult calculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
+        LottoResult lottoResult = new LottoResult();
+        for (Lotto lotto : lottos) {
+            Rank rank = lotto.match(winningLotto);
+            lottoResult.addRank(rank);
+        }
+        return lottoResult;
     }
 
     private WinningLotto inputWinningLotto() {
