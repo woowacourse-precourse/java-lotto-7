@@ -6,6 +6,7 @@ import lotto.status.LottoConstants;
 import lotto.util.RegexUtils;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public abstract class Validator implements LottoConstants {
@@ -35,7 +36,7 @@ public abstract class Validator implements LottoConstants {
         throw new RetryInputException(viewMessage, ErrorMessages.NON_POSITIVE_NUMERIC.getMessage());
     }
 
-    public Boolean hasNoDuplicates(String viewMessage, Set<Integer> winningNumbers) {
+    public Boolean hasNoDuplicates(String viewMessage, List<Integer> winningNumbers) {
         Set<Integer> numbers = new HashSet<>(winningNumbers);
 
         if (numbers.size() == winningNumbers.size()) {

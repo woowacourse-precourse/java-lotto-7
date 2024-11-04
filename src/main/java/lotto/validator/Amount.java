@@ -2,26 +2,26 @@ package lotto.validator;
 
 import lotto.exception.RetryInputException;
 import lotto.status.ErrorMessages;
-import lotto.status.LottoConstants;
 import lotto.util.InputUtils;
 import lotto.view.Input;
 
-public class Amount extends Validator implements LottoConstants {
+public class Amount extends Validator {
     private int amount;
-
 
     public int getAmount() {
         return amount;
     }
 
-    public void processSetAmount() {
+    public Amount processSetAmount() {
         String request = InputUtils.retryRequest(Input.request(Input.PURCHASE_AMOUNT_PROMPT), this::validate);
-
         this.amount = Integer.parseInt(request);
+
+        return this;
     }
 
     @Override
     protected Boolean validate(String request) {
+
         return nonEmpty(Input.PURCHASE_AMOUNT_PROMPT, request) &&
                isNumeric(Input.PURCHASE_AMOUNT_PROMPT, request) &&
                isPositiveNumeric(Input.PURCHASE_AMOUNT_PROMPT, request) &&
@@ -29,7 +29,6 @@ public class Amount extends Validator implements LottoConstants {
                isAmountUnderLimit(request);
     }
 
-    ;
 
     private Boolean isThousandUnit(String input) {
         if (Integer.parseInt(input) % LOTTO_UNIT_PRICE == 0) {

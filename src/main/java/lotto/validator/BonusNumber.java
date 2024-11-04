@@ -1,33 +1,34 @@
 package lotto.validator;
 
-import lotto.status.LottoConstants;
 import lotto.util.InputUtils;
 import lotto.view.Input;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class BonusNumber extends Validator implements LottoConstants {
-    WinningNumbers winningNumbers;
+public class BonusNumber extends Validator {
+    private final List<Integer> luckyNumbers;
     private int bonusNumber;
 
-    public BonusNumber(WinningNumbers winningNumbers) {
-        this.winningNumbers = winningNumbers;
+    public BonusNumber(List<Integer> luckyNumbers) {
+        this.luckyNumbers = luckyNumbers;
     }
 
     public int getBonusNumber() {
         return bonusNumber;
     }
 
-    public void processSetBonusNumber() {
+    public BonusNumber processSetBonusNumber() {
         String request = InputUtils.retryRequest(Input.request(Input.BONUS_NUMBER_PROMPT), this::validate);
-
         this.bonusNumber = Integer.parseInt(request);
+
+        return this;
     }
 
     @Override
     protected Boolean validate(String request) {
-        Set<Integer> numbers = winningNumbers.getWinningNumbers();
+        List<Integer> numbers = new ArrayList<>(luckyNumbers);
         int bonus;
 
         if (nonEmpty(Input.BONUS_NUMBER_PROMPT, request) &&
