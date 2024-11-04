@@ -12,17 +12,16 @@ import java.math.RoundingMode;
 import java.util.*;
 
 public class LottoServiceController {
-    private final PurchaseAmount purchaseAmount;
-    private final WinningLotto winningLotto;
     private final List<Lotto> userLottos;
-    private final WinRecord winRecord;
     private final ResultOutput resultOutput = new ResultOutput();
+    private PurchaseAmount purchaseAmount;
+    private WinningLotto winningLotto;
+    private WinRecord winRecord;
+
 
     public LottoServiceController() {
         purchaseAmount = PurchaseAmount.getPurchaseAmount();
-        winningLotto = WinningLotto.getWinningLotto();
         userLottos = createUserLottos(purchaseAmount.getPurchaseCount());
-        winRecord = WinRecord.getWinRecord(getWinningSummary());
     }
 
 
@@ -52,7 +51,7 @@ public class LottoServiceController {
         return checkDuplication.size();
     }
 
-    private double getTotalYield(){
+    private double getTotalYield() {
         BigDecimal totalPurchaseAmount = new BigDecimal(purchaseAmount.getPurchaseAmountValue());
         BigDecimal totalWinningPrize = new BigDecimal(winRecord.getTotalWinningPrize());
         BigDecimal result = totalWinningPrize.divide(totalPurchaseAmount, 3, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
@@ -60,18 +59,20 @@ public class LottoServiceController {
     }
 
 
-    public void displayUserLottos(){
+    public void displayUserLottos() {
         resultOutput.displayPurchaseCount(purchaseAmount.getPurchaseCount());
-        for(Lotto userLotto : userLottos){
+        for (Lotto userLotto : userLottos) {
             resultOutput.displayUserLotto(userLotto.getLottoNumbers());
         }
     }
 
-    public void displayWinRecord(){
+    public void displayWinRecord() {
+        winningLotto = WinningLotto.getWinningLotto();
+        winRecord = WinRecord.getWinRecord(getWinningSummary());
         resultOutput.displayWinRecord(winRecord.getWinRecordCounts());
     }
 
-    public void displayTotalYield(){
+    public void displayTotalYield() {
         resultOutput.displayTotalYield(getTotalYield());
     }
 }
