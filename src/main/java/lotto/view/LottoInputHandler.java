@@ -10,8 +10,13 @@ public class LottoInputHandler {
     public int getTotalPurchase() {
         int totalPurchase = retryReadInteger("\n구입금액을 입력해 주세요.");
 
+        if (totalPurchase > LottoConstants.LOTTO_MAX_PURCHASE_LIMIT) {
+            System.out.printf("[ERROR] 동일인이 한 회차에 %,d원을 초과하여 구매할 수 없습니다. 다시 입력해 주세요.\n",
+                    LottoConstants.LOTTO_MAX_PURCHASE_LIMIT);
+            return getTotalPurchase();
+        }
         if (totalPurchase % LottoConstants.TICKET_PRICE != 0) {
-            System.out.printf("[ERROR] 구입금액은 %d원 단위로 입력해 주세요.\n", LottoConstants.TICKET_PRICE);
+            System.out.printf("[ERROR] 구입금액은 %,d원 단위로 입력해 주세요.\n", LottoConstants.TICKET_PRICE);
             return getTotalPurchase();
         }
         return totalPurchase;
