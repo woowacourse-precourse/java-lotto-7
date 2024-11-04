@@ -24,17 +24,6 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printStatistics(int[] results, int moneySpent) {
-        int totalPrize = 0;
-        showResultMessage();
-        for (PrizeType prizeType : PrizeType.values()) {
-            int count = results[prizeType.ordinal()];
-            int prizeAmount = prizeType.getPrizeMoney();
-            totalPrize += count * prizeAmount;
-            System.out.printf(PRIZE_FORMAT, prizeType.getMatching(), prizeType.getPrize(), count);
-        }
-    }
-
     public void printStatistics(int[] results) {
         showResultMessage();
         Arrays.stream(PrizeType.values())
