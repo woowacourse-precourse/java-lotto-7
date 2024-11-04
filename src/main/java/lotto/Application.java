@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.service.Lotto;
 import lotto.service.Purchase;
 import lotto.view.input.Input;
 import lotto.view.output.Output;
@@ -14,6 +15,8 @@ public class Application {
         Purchase purchase = new Purchase(input.purchaseAmount());
 
         output.getLottoNumbers(purchase.getPurchaseAccount());
+
+        Lotto lotto = new Lotto(input.numbers());
 
 
     }

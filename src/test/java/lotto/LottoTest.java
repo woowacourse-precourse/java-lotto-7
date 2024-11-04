@@ -1,12 +1,17 @@
 package lotto;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import lotto.service.Lotto;
 import lotto.service.Purchase;
+import lotto.view.input.Input;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.view.exception.ErrorMessage.numberCommerForat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,5 +29,22 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+
+    @DisplayName("로또 번호 입력 시 숫자와 콤마 이외가 들어갈 경우 예외가 발생한다.")
+    @Test
+    void 로또_번호_입력_시_숫자와_콤마_이외가_들어갈_경우_예외가_발생한다() {
+        //given
+        Input input = new Input();
+        String mockInput = "1,2,a,4,5,6\n";
+        InputStream in = new ByteArrayInputStream(mockInput.getBytes());
+        System.setIn(in);
+
+        //when && then
+        assertThatThrownBy(() -> input.numbers())
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessageContaining(numberCommerForat);
+
+    }
 
 }

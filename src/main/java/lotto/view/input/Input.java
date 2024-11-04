@@ -1,8 +1,9 @@
 package lotto.view.input;
 
+import static lotto.view.exception.ErrorMessage.numberCommerForat;
+
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Input {
@@ -12,19 +13,28 @@ public class Input {
         return Console.readLine();
     }
 
+    public List<Integer> numbers(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String inputNumber = Console.readLine();
 
-    public HashMap<Integer, List<Integer>> getLottoNumbers(int getPurchaseAccount) {
-        System.out.println(getPurchaseAccount + "개를 구매했습니다.");
+        return getNumbersSplit(inputNumber);
+    }
 
-        HashMap<Integer, List<Integer>> getLottoNumbers = new HashMap<>();
-
-        for(int i = 0 ; i< getPurchaseAccount; i++){
-            getLottoNumbers.put(i, Randoms.pickUniqueNumbersInRange(1, 45, 6).stream().sorted().toList());
-            System.out.println(getLottoNumbers.get(i));
+    /*
+     * 당첨 번호의 숫자를 입력 받은 후 ,로 나눠주는 메서드
+     */
+    private List<Integer> getNumbersSplit(String inputNumber){
+        List<Integer> numbers = new ArrayList<>();
+        try{
+            for (String number : inputNumber.split(",")) {
+                numbers.add(Integer.parseInt(number.trim()));
+            }
+        }catch (NumberFormatException n){
+            throw new NumberFormatException(numberCommerForat);
         }
 
-
-        return getLottoNumbers;
+        return numbers;
     }
+
 
 }
