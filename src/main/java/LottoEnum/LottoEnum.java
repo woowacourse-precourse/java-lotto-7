@@ -13,8 +13,7 @@ public enum LottoEnum {
                     "4개 일치 (%,d원) - %%d개\n" +
                     "5개 일치 (%,d원) - %%d개\n" +
                     "5개 일치, 보너스 볼 일치 (%,d원) - %%d개\n" +
-                    "6개 일치 (%,d원) - %%d개\n" +
-                    "총 수익률은 %%f입니다.";
+                    "6개 일치 (%,d원) - %%d개";
 
     LottoEnum( int price) {
         this.lottoPrice = price;

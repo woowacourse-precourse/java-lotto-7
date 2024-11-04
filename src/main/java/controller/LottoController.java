@@ -5,26 +5,20 @@ import lotto.Lotto;
 import lotto.LottoResult;
 import util.LottoParsing;
 import validate.LottoValidate;
-import view.InputView;
-import view.OutputView;
 
 import java.util.ArrayList;
 
 public class LottoController {
-    private static final String ILLEGAL_PURCHASE_ERR = "ILLEGAL_PURCHASE_ERR";
+    private static final String ILLEGAL_PURCHASE_ERR = "[ERROR] ILLEGAL_PURCHASE_ERR";
 
     private static final String REGEX_ONLY_NUMBER = "[0-9]";
     private static final String REGEX_COMMA = "[,]";
 
-    private static final String TOTAL_PROFIT ="수익률은 : ";
+    private static final String TOTAL_PROFIT_FORMAT ="총 수익률은 %.1f%%입니다.";
 
-    private InputView inputView;
-    private OutputView outputView;
     private LottoParsing lottoParsing;
 
     public LottoController(){
-        inputView = new InputView();
-        outputView = new OutputView();
         lottoParsing = new LottoParsing();
     }
 
@@ -53,8 +47,8 @@ public class LottoController {
         for(String str : winningNumberStrs){
             int number = Integer.parseInt(str);
             LottoValidate.validateLottoIntRange(number);
+            winningNumbers.add(number);
         }
-
         return winningNumbers;
     }
 
@@ -72,9 +66,8 @@ public class LottoController {
     }
 
     public String getTotalWinnings(int lottoCount, LottoResult lottoResult){
-        Float winnginsFloat = lottoCount*1000 / (float)lottoResult.getTotalWinnings() * 100;
-        String winnings = winnginsFloat.toString();
-
-        return TOTAL_PROFIT+winnings+lottoResult.toString();
+        Float winnginsFloat = (float)lottoResult.getTotalWinnings() / (lottoCount * 1000) * 100;
+        //총 당첨금 / 구매금액 * 100
+        return String.format(TOTAL_PROFIT_FORMAT, winnginsFloat);
     }
 }

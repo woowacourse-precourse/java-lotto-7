@@ -1,14 +1,21 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final ArrayList<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
         validate(numbers);
-        numbers.sort((a,b)->{if(a>b)return 1; else return -1;});
+        this.numbers.sort(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
+            }
+        });
     }
 
     private void validate(List<Integer> numbers) {
@@ -17,13 +24,18 @@ public class Lotto {
         }
     }
 
+    @Override
+    public String toString(){
+        return numbers.toString();
+    }
+
     // 투포인터 알고리즘
     public int checkWinCountWithWinNumbers(List<Integer> winNumbers){
         int count = 0;
         int lottoNumbersIterator = 0;
         int winNumbersIterator = 0;
 
-        while(lottoNumbersIterator<=numbers.size() && winNumbersIterator <= winNumbers.size()){
+        while(lottoNumbersIterator<numbers.size() && winNumbersIterator < winNumbers.size()){
             int lottoNumber = numbers.get(lottoNumbersIterator);
             int winNumber = winNumbers.get(winNumbersIterator);
 
@@ -31,6 +43,7 @@ public class Lotto {
                 winNumbersIterator++; continue; }
             if(lottoNumber < winNumber){
                 lottoNumbersIterator++; continue; }
+
             count++;
             lottoNumbersIterator++;
             winNumbersIterator++;
