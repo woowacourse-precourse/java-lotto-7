@@ -1,8 +1,7 @@
-package lotto.domain;
+package lotto.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.List;
