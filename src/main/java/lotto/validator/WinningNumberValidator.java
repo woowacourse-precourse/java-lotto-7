@@ -2,16 +2,17 @@ package lotto.validator;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.ErrorMessage;
+import lotto.constant.GlobalConstant;
 
 public class WinningNumberValidator {
-    private final String SEPARATOR = ",";
     private String inputWinningNumbers;
     private String[] winningNumbers;
     private List<Integer> duplicateCheckNumbers;
 
     private void setValue(String inputWinningNumbers) {
         this.inputWinningNumbers = inputWinningNumbers;
-        this.winningNumbers = inputWinningNumbers.split(SEPARATOR);
+        this.winningNumbers = inputWinningNumbers.split(GlobalConstant.SEPARATOR.value());
         this.duplicateCheckNumbers = new ArrayList<>();
     }
 
@@ -24,20 +25,20 @@ public class WinningNumberValidator {
     }
 
     private void validateSeparator() {
-        if (!inputWinningNumbers.contains(",")) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호의 구분자는 쉼표여야 합니다.");
+        if (!inputWinningNumbers.contains(GlobalConstant.SEPARATOR.value())) {
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_SEPARATOR_ERROR.toString());
         }
     }
 
     private void validateBlank() {
         if (inputWinningNumbers.isBlank() || inputWinningNumbers.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 비어있을 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_BLANK_ERROR.toString());
         }
     }
 
     private void validateSize() {
         if (winningNumbers.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_SIZE_ERROR.toString());
         }
     }
 
@@ -52,20 +53,20 @@ public class WinningNumberValidator {
     }
 
     private void validateNumeric(String number) {
-        if (!number.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 정수여야 합니다.");
+        if (!number.matches(GlobalConstant.NUMBER_REGEX.value())) {
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_NON_INTEGER_ERROR.toString());
         }
     }
 
     private void validateOutOfRange(int parseNumber) {
         if (parseNumber < 1 || parseNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 1이상 45이하여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_OUT_OF_RANGE_ERROR.toString());
         }
     }
 
     private void isDuplicate(int parseNumber) {
         if (duplicateCheckNumbers.contains(parseNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 서로 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_DUPLICATE_ERROR.toString());
         }
     }
 }

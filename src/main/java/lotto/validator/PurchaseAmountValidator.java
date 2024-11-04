@@ -1,17 +1,31 @@
 package lotto.validator;
 
+import lotto.constant.ErrorMessage;
+import lotto.constant.GlobalConstant;
+
 public class PurchaseAmountValidator {
-    private final int LIMIT_AMOUNT = 1000;
 
     public void validate(String amount) {
-        if (!amount.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 정수여야 합니다.");
+        validatePositiveInteger(amount);
+        validateUnit(amount);
+        validateLimit(amount);
+    }
+
+    private void validatePositiveInteger(String amount) {
+        if (!amount.matches(GlobalConstant.NUMBER_REGEX.value())) {
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_NON_INTEGER_ERROR.toString());
         }
-        if (Integer.parseInt(amount) < LIMIT_AMOUNT) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
+    }
+
+    private void validateLimit(String amount) {
+        if (!(Integer.parseInt(amount) % GlobalConstant.UNIT.intValue() == 0)) {
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_NOT_MULTIPLE_OF_LIMIT_ERROR.toString());
         }
-        if (!(Integer.parseInt(amount) % LIMIT_AMOUNT == 0)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위어야 합니다.");
+    }
+
+    private void validateUnit(String amount) {
+        if (Integer.parseInt(amount) < GlobalConstant.UNIT.intValue()) {
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_BELOW_MINIMUM_ERROR.toString());
         }
     }
 }

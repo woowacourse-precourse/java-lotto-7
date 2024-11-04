@@ -1,6 +1,8 @@
 package lotto.validator;
 
 import java.util.List;
+import lotto.constant.ErrorMessage;
+import lotto.constant.GlobalConstant;
 
 public class BonusNumberValidator {
     private String inputBonusNumber;
@@ -18,19 +20,19 @@ public class BonusNumberValidator {
 
     private void validateBlank() {
         if (inputBonusNumber.isEmpty() || inputBonusNumber.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 빈칸일 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_BLANK_ERROR.toString());
         }
     }
 
     private void validatePositiveInteger() {
-        if (!inputBonusNumber.trim().matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
+        if (!inputBonusNumber.trim().matches(GlobalConstant.NUMBER_REGEX.value())) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_NON_INTEGER_ERROR.toString());
         }
     }
 
     private void validateDuplicateWithWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.contains(Integer.parseInt(inputBonusNumber))) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 같을 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR.toString());
         }
     }
 }
