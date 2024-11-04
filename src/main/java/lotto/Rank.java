@@ -1,7 +1,7 @@
 package lotto;
 
 public enum Rank {
-    FIRST(6, 2000000_000),
+    FIRST(6, 2000000000),
     SECOND(5, 30000000, true),
     THIRD(5, 1500000),
     FOURTH(4, 50000),
@@ -30,6 +30,10 @@ public enum Rank {
         }
 
         return NONE;
+    }
+
+    public int getMatchingCount() {
+        return matchingCount;
     }
 
     public int getPrize() {
