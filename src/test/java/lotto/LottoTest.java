@@ -1,12 +1,14 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
 import lotto.model.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
     @Test
@@ -22,5 +24,47 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호에 음수를 입력하면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, -39, -44})
+    void negativeLottoTest(int lotto) {
+        // given
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> new Lotto(List.of(lotto, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 음수를 입력할 수 없습니다.");
+    }
+
+    @DisplayName("1~45 사이의 로또 번호를 입력하지 않으면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46, 3000, 200})
+    void lottoInRangeTest(int lotto) {
+        // given
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> new Lotto(List.of(lotto, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1~45 사이의 숫자를 입력해주세요.");
+    }
+
+    @DisplayName("올바른 로또 번호를 입력하면 로또 번호를 저장한다.")
+    @Test
+    void createLottoTest() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> result;
+        // when
+        result = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> numbers = lotto.getNumbers();
+
+        // then
+        assertThat(numbers).isEqualTo(result);
+
+    }
+
 }
