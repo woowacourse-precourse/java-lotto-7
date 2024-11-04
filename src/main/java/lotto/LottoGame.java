@@ -21,6 +21,7 @@ public class LottoGame {
         Player player = createPlayer();
         WinningLotto winningLotto = createWinningLotto();
         updateWinningStatics(player, winningLotto);
+        printResult(player);
     }
 
     private Player createPlayer() {
@@ -42,5 +43,11 @@ public class LottoGame {
             Rank rank = Rank.getRank(result);
             winningStatics.addWinning(rank);
         }
+    }
+
+    private void printResult(Player player) {
+        double prizeRatio = player.calculatePrizeRatio(winningStatics.getPrizeAmount());
+        outputHandler.printWinningStatics(winningStatics);
+        outputHandler.printPrizeRatio(prizeRatio);
     }
 }
