@@ -3,8 +3,6 @@ package lotto.controller;
 import java.util.Arrays;
 import java.util.List;
 import lotto.dto.DtoConverter;
-import lotto.dto.LotteriesResponse;
-import lotto.dto.WinningResultResponse;
 import lotto.enums.DelimiterConstants;
 import lotto.manager.LottoManager;
 import lotto.domain.UserLotto;

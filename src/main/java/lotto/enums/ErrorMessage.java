@@ -5,6 +5,7 @@ public enum ErrorMessage {
 
     // 구매 금액 검증
     INVALID_NUMBER_FORM("숫자만 입력할 수 있습니다."),
+    OVER_MAX_PURCHASE_AMOUNT("구매 금액은 최대 21억까지 가능합니다."),
     NOT_DIVISIBLE_BY_THOUSAND("1000으로 나눌 수 있는 1000 이상의 숫자만 입력할 수 있습니다."),
 
     // 로또 번호 검증
