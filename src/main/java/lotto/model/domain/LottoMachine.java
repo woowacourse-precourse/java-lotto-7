@@ -3,6 +3,7 @@ package lotto.model.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.ErrorMessage;
 
 public class LottoMachine {
     private int money;
@@ -36,13 +37,13 @@ public class LottoMachine {
 
     private void isPaymentOverMaxLimitValidator(int money){
         if (money > 100_000) {
-            throw new IllegalArgumentException("[ERROR] 로또는 최대 10만원까지 구매 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.IS_PAYMENT_OVER_MAX_LIMIT_VALIDATOR.getMessage());
         }
     }
 
     private void isPaymentDivisionByThousandValidator(int money) {
         if (money <= 0 || money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또를 구매하기 위해서 1000원 단위로 돈을 넣어 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.IS_PAYMENT_DIVISION_BY_THOUSAND_VALIDATOR.getMessage());
         }
     }
 

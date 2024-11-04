@@ -1,8 +1,8 @@
 package lotto.model.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.constant.ErrorMessage;
 import lotto.model.domain.BonusNumber;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoMachine;
@@ -14,7 +14,7 @@ public class LottoService {
 
     public int moneyValidator(String inputMoney) {
         moneyNotNullValidator(inputMoney);
-        return moneyNumberValidator(inputMoney);
+        return moneyNumericValidator(inputMoney);
     }
 
     public List<Lotto> activateLottoMachine(int money) {
@@ -28,18 +28,11 @@ public class LottoService {
     }
 
     public BonusNumber bonusNumberGenerator(String bonusNumber) {
-        bonusNumbersNotNullValidator(bonusNumber);
+        bonusNumberNotNullValidator(bonusNumber);
         int bonusNumericNumber = bonusNumberNumericValidator(bonusNumber);
         return new BonusNumber(bonusNumericNumber);
     }
 
-    private int bonusNumberNumericValidator(String inputBonusNumber) {
-        try {
-            return Integer.parseInt(inputBonusNumber);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야합니다.");
-        }
-    }
 
     public void calculateReward(LottoWinningNumbers lottoWinningNumbers, Pocket pocket, LottoPrize lottoPrize) {
         for (Lotto lotto : pocket.getLottos()) {
@@ -67,34 +60,43 @@ public class LottoService {
         return isMatchBonus;
     }
 
-    private void bonusNumbersNotNullValidator(String bonusNumber) {
+    private int bonusNumberNumericValidator(String inputBonusNumber) {
+        try {
+            return Integer.parseInt(inputBonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_NUMERIC_VALIDATOR.getMessage());
+        }
+    }
+
+
+    private void bonusNumberNotNullValidator(String bonusNumber) {
         if (bonusNumber == null || bonusNumber.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 입력되지 않았습니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_NOT_NULL_VALIDATOR.getMessage());
         }
     }
 
     private void moneyNotNullValidator(String inputMoney) {
         if (inputMoney == null || inputMoney.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 로또를 구매하려는 금액을 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_NOT_NULL_VALIDATOR.getMessage());
         }
     }
 
-    private int moneyNumberValidator(String inputMoney) {
+    private int moneyNumericValidator(String inputMoney) {
         try {
             return Integer.parseInt(inputMoney);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또를 구매하려는 금액을 숫자로 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_NUMERIC_VALIDATOR.getMessage());
         }
     }
 
     private void winningNumbersNotNullValidator(String inputWinningNumbers) {
         if (inputWinningNumbers == null || inputWinningNumbers.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 입력되지 않았습니다.");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_NOT_NULL_VALIDATOR.getMessage());
         }
     }
 
     private List<Integer> winningNumbersParser(String inputWinningNumbers) {
-        return Arrays.stream(inputWinningNumbers.split(",",-1))
+        return Arrays.stream(inputWinningNumbers.split(",", -1))
                 .map(String::trim)
                 .map(this::winningNumbersNumericValidator)
                 .toList();
@@ -104,7 +106,7 @@ public class LottoService {
         try {
             return Integer.parseInt(inputWinningNumbers);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야합니다.");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_NUMERIC_VALIDATOR.getMessage());
         }
     }
 
