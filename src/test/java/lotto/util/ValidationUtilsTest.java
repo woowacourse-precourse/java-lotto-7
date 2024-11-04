@@ -1,0 +1,159 @@
+package lotto.util;
+
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static lotto.util.ValidationUtils.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class ValidationUtilsTest {
+    @Test
+    public void testValidateNotEmpty_ValidInput() {
+        assertDoesNotThrow(() -> validateNotEmpty("1000"));
+    }
+
+    @Test
+    @DisplayName("구입금액에 공백이면 예외를 던진다.")
+    public void testValidateNotEmpty_EmptyInput() {
+        assertThrows(IllegalArgumentException.class, () -> validateNotEmpty(""));
+    }
+
+    @Test
+    public void testValidateIsNumber_ValidNumber() {
+        assertDoesNotThrow(() -> validateIsNumber("1000"));
+    }
+
+    @Test
+    @DisplayName("구입금액으로 숫자가 아닌 입력이 들어오면 예외를 던진다.")
+    public void testValidateIsNumber_InvalidNumber() {
+        assertThrows(IllegalArgumentException.class, () -> validateIsNumber("abc"));
+    }
+
+    @Test
+    public void testValidatePositive_PositiveValue() {
+        assertDoesNotThrow(() -> validateIsNumber("3000"));
+    }
+
+    @Test
+    @DisplayName("구입금액으로 0원이 입력되면 예외를 던진다.")
+    public void testValidatePositive_ZeroValue() {
+        assertThrows(IllegalArgumentException.class, () -> validateIsZero(0));
+    }
+
+    @Test
+    @DisplayName("구입금액으로 음수가 입력되면 예외를 던진다.")
+    public void testValidatePositive_NegativeValue() {
+        assertThrows(IllegalArgumentException.class, () -> validateIsNumber("-1000"));
+    }
+
+    @Test
+    public void testValidateThousandUnit_ValidUnit() {
+        assertDoesNotThrow(() -> validateThousandUnit(1000));
+    }
+
+    @Test
+    @DisplayName("구입금액이 1000으로 나누어 떨어지지 않으면 예외를 던진다.")
+    public void testValidateThousandUnit_InvalidUnit() {
+        assertThrows(IllegalArgumentException.class, () -> validateThousandUnit(1500));
+    }
+
+    @Test
+    @DisplayName("아주 큰 숫자 (long 범위를 초과하는 값)")
+    public void testParseLong_InputExceedsLongMaxValue() {
+        String largeNumber = "9223372036854775808"; // Long.MAX_VALUE + 1
+
+        assertThrows(NumberFormatException.class, () -> Long.parseLong(largeNumber));
+    }
+
+    @Test
+    public void testValidateWinningNumbers_ValidNumbers() {
+        List<Integer> validNumbers = Arrays.asList(1, 15, 23, 34, 42, 45);
+        assertDoesNotThrow(() -> validateWinningNumbers(validNumbers));
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 6개가 아니면 예외를 던진다.")
+    public void testValidateWinningNumbers_SizeNotSix() {
+        List<Integer> numbersWithFive = Arrays.asList(1, 15, 23, 34, 42);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validateWinningNumbers(numbersWithFive);
+        });
+        assertEquals("[ERROR] 당첨 번호는 6개여야 합니다.", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("당첨 번호에 중복이 있으면 예외를 던진다.")
+    public void testValidateWinningNumbers_DuplicateNumbers() {
+        List<Integer> duplicateNumbers = Arrays.asList(1, 15, 15, 34, 42, 45);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validateWinningNumbers(duplicateNumbers);
+        });
+        assertEquals("[ERROR] 당첨 번호는 중복될 수 없습니다.", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("당첨번호에 1~45 범위를 벗어나는 숫자가 포함된 경우 예외를 던진다.")
+    public void testValidateWinningNumbers_OutOfRangeNumbers() {
+        List<Integer> outOfRangeNumbers = Arrays.asList(1, 15, 23, 34, 46, 45);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validateWinningNumbers(outOfRangeNumbers);
+        });
+        assertEquals("[ERROR] 당첨 번호는 1~45 사이여야 합니다.", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 유효할 때 정상작동하는지 테스트")
+    public void testValidateBonusNumber_ValidBonusNumber() {
+        List<Integer> winningNumbers = Arrays.asList(1, 15, 23, 34, 42, 45);
+        int validBonusNumber = 10;
+
+        assertDoesNotThrow(() -> validateBonusNumber(validBonusNumber, winningNumbers));
+    }
+
+    @Test
+    @DisplayName("보너스 번호는 1~45 사이여야 한다")
+    public void testValidateBonusNumber_OutOfRange() {
+        List<Integer> winningNumbers = Arrays.asList(1, 15, 23, 34, 42, 45);
+        int outOfRangeBonusNumber = 46;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validateBonusNumber(outOfRangeBonusNumber, winningNumbers);
+        });
+        assertEquals("[ERROR] 보너스 번호는 1~45 사이여야 합니다.", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호는 당첨 번호와 중복될 수 없다")
+    public void testValidateBonusNumber_DuplicateWithWinningNumbers() {
+        List<Integer> winningNumbers = Arrays.asList(1, 15, 23, 34, 42, 45);
+        int duplicateBonusNumber = 15;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validateBonusNumber(duplicateBonusNumber, winningNumbers);
+        });
+        assertEquals("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 최소 경계값 (1)인 경우")
+    public void testValidateBonusNumber_MinBoundary() {
+        List<Integer> winningNumbers = Arrays.asList(5, 10, 15, 20, 25, 30);
+        int minBoundaryBonusNumber = 1;
+
+        assertDoesNotThrow(() -> validateBonusNumber(minBoundaryBonusNumber, winningNumbers));
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 최대 경계값 (45)인 경우")
+    public void testValidateBonusNumber_MaxBoundary() {
+        List<Integer> winningNumbers = Arrays.asList(5, 10, 15, 20, 25, 30);
+        int maxBoundaryBonusNumber = 45;
+
+        assertDoesNotThrow(() -> validateBonusNumber(maxBoundaryBonusNumber, winningNumbers));
+    }
+
+}
