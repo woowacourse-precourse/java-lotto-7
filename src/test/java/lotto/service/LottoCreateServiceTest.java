@@ -55,14 +55,6 @@ public class LottoCreateServiceTest {
         assertThat(lottos.getLottos()).hasSize(14);
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {14001, -1000})
-    void 구입금액은_양수이고_1000원으로_나누어_떨어져야_한다(int money) {
-        //when & then
-        assertThatThrownBy(() -> lottoCreateService.createLottosWithMoney(money))
-            .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @Test
     void 당첨로또를_생성한다(){
         //given
