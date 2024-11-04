@@ -11,6 +11,12 @@ public class Output {
         System.out.println(lottoQuantity + PRINT_LOTTO_QUANTITY);
     }
 
+    public void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
+    }
+
     private void printNewLine() {
         System.out.println();
     }
