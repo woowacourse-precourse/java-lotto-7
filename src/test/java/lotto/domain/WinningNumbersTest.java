@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static lotto.constant.LottoValues.LOTTO_SIZE;
+import static lotto.constant.LottoValues.SIZE;
 import static lotto.message.ErrorMessage.*;
 
 public class WinningNumbersTest {
@@ -52,7 +52,7 @@ public class WinningNumbersTest {
         // when & then
         Assertions.assertThatThrownBy(() -> WinningNumbers.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LOTTO_SIZE_ERROR.formatValue(LOTTO_SIZE.value()));
+                .hasMessageContaining(LOTTO_SIZE_ERROR.formatValue(SIZE.value()));
     }
 
     @DisplayName("당첨 번호 중에서 중복이 발생하는 경우 예외가 발생한다")
@@ -64,7 +64,7 @@ public class WinningNumbersTest {
         // when & then
         Assertions.assertThatThrownBy(() -> WinningNumbers.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LOTTO_NUMBERS_DUPLICATE.formatValue(LOTTO_SIZE.value()));
+                .hasMessageContaining(LOTTO_NUMBERS_DUPLICATE.formatValue(SIZE.value()));
     }
 
 }

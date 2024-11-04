@@ -32,7 +32,7 @@ public class Lottos {
         for (Lotto lotto : lottos) {
             int matchingNumber = lotto.getMatchingNumbers(winningNumbers);
             boolean bonus = lotto.hasBonusNumber(bonusNumber);
-            Result.update(matchingNumber, bonus);
+            Result.updateResult(matchingNumber, bonus);
         }
     }
 

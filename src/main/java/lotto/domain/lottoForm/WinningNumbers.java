@@ -6,7 +6,7 @@ import lotto.domain.number.Number;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.constant.LottoValues.LOTTO_SIZE;
+import static lotto.constant.LottoValues.SIZE;
 import static lotto.message.ErrorMessage.BONUS_NUMBER_DUPLICATE;
 import static lotto.message.ErrorMessage.NON_INTEGER_LOTTO;
 
@@ -39,7 +39,7 @@ public class WinningNumbers extends LottoForm {
                 .filter(lottoNumber -> lottoNumber.isSame(bonusNumber))
                 .findAny()
                 .ifPresent(foundLottoNumber -> {
-                    throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.formatValue(LOTTO_SIZE.value()));
+                    throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.formatValue(SIZE.value()));
                 });
     }
 

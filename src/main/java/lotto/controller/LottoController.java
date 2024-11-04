@@ -31,6 +31,6 @@ public class LottoController {
         lottos.compare(winningNumbers, bonusNumber);
 
         showResult();
-        showProfitRate(lottoCount, Result.getProfitSum());
+        showProfitRate(lottoCount, Result.calculateProfitSum());
     }
 }

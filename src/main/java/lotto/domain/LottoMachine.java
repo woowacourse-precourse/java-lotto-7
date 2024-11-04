@@ -21,9 +21,9 @@ public class LottoMachine {
 
     public List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(
-                LOTTO_NUMBER_MIN.value(),
-                LOTTO_NUMBER_MAX.value(),
-                LOTTO_SIZE.value()
+                NUMBER_MIN.value(),
+                NUMBER_MAX.value(),
+                SIZE.value()
         );
     }
 }

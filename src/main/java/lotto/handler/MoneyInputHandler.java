@@ -28,21 +28,21 @@ public class MoneyInputHandler {
     long validateMoney(long rawMoney) {
         validateMoneyScope(rawMoney);
         validateMoneyUnit(rawMoney);
-        return rawMoney / LOTTO_PRICE.value();
+        return rawMoney / PRICE.value();
     }
 
     private void validateMoneyScope(long rawMoney) {
-        if (rawMoney < LOTTO_MONEY_MIN_LIMIT.value()) {
-            throw new IllegalArgumentException(NEGATIVE_PURCHASE_AMOUNT.formatValue(LOTTO_MONEY_MIN_LIMIT.value()));
+        if (rawMoney < MONEY_MIN_LIMIT.value()) {
+            throw new IllegalArgumentException(NEGATIVE_PURCHASE_AMOUNT.formatValue(MONEY_MIN_LIMIT.value()));
         }
-        if (rawMoney > LOTTO_MONEY_MAX_LIMIT.value()){
-            throw new IllegalArgumentException(OVERFLOW_PURCHASE_AMOUNT.formatValue(LOTTO_MONEY_MAX_LIMIT.value()));
+        if (rawMoney > MONEY_MAX_LIMIT.value()){
+            throw new IllegalArgumentException(OVERFLOW_PURCHASE_AMOUNT.formatValue(MONEY_MAX_LIMIT.value()));
         }
     }
 
     private void validateMoneyUnit(long rawMoney) {
-        if (rawMoney % LOTTO_PRICE.value() != 0) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT.formatValue(LOTTO_PRICE.value()));
+        if (rawMoney % PRICE.value() != 0) {
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT.formatValue(PRICE.value()));
         }
     }
 }

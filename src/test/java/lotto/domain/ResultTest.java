@@ -16,13 +16,13 @@ public class ResultTest {
         // given
         int matchingNumber = 5;
         boolean bonus = true;
-        int before = getResult(matchingNumber, bonus);
+        int before = getResultCount(matchingNumber, bonus);
 
         // when
-        update(matchingNumber, bonus);
+        updateResult(matchingNumber, bonus);
 
         // then
-        int after = getResult(matchingNumber, bonus);
+        int after = getResultCount(matchingNumber, bonus);
         assertThat(after).isEqualTo(before + 1);
     }
 
@@ -32,13 +32,13 @@ public class ResultTest {
         // given
         int matchingNumber = 6;
         boolean bonus = false;
-        int before = getResult(matchingNumber, bonus);
+        int before = getResultCount(matchingNumber, bonus);
 
         // when
-        update(matchingNumber, bonus);
+        updateResult(matchingNumber, bonus);
 
         // then
-        int after = getResult(matchingNumber, bonus);
+        int after = getResultCount(matchingNumber, bonus);
         assertThat(after).isEqualTo(before + 1);
     }
 
@@ -56,7 +56,7 @@ public class ResultTest {
     })
     void matchingSuccessTest(int matchingNumber, boolean bonus, Result expected) {
         // when
-        Result result = matches(matchingNumber, bonus);
+        Result result = find(matchingNumber, bonus);
 
         // then
         assertThat(result).isEqualTo(expected);
@@ -71,7 +71,7 @@ public class ResultTest {
     })
     void invalidInputTest(int matchingNumber, boolean bonus) {
         // when
-        Result result = matches(matchingNumber, bonus);
+        Result result = find(matchingNumber, bonus);
 
         // then
         assertThat(result).isEqualTo(NO_PROFIT);

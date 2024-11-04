@@ -5,7 +5,7 @@ import lotto.domain.Result;
 
 import java.util.Arrays;
 
-import static lotto.constant.LottoValues.LOTTO_PRICE;
+import static lotto.constant.LottoValues.PRICE;
 import static lotto.constant.LottoValues.PERCENT_MULTIPLIER;
 import static lotto.message.InfoMessage.*;
 
@@ -20,12 +20,12 @@ public class OutputView {
         System.out.println(WINNING_STATS_LABEL.getMessage());
         Arrays.stream(Result.values())
                 .filter(result -> result.print)
-                .map(Result::getMessage)
+                .map(Result::formattedMessage)
                 .forEach(System.out::println);
     }
 
     public static void showProfitRate(long lottoCount, long profitSum) {
-        double lottoCost = (double) lottoCount * LOTTO_PRICE.value();
+        double lottoCost = (double) lottoCount * PRICE.value();
         double profitRate = profitSum / lottoCost * PERCENT_MULTIPLIER.value();
         System.out.println(PROFIT_RATE_INFO.formatProfit(profitRate));
     }

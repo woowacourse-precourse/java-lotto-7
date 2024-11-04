@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.constant.LottoValues.LOTTO_SIZE;
+import static lotto.constant.LottoValues.SIZE;
 import static lotto.message.ErrorMessage.LOTTO_NUMBERS_DUPLICATE;
 import static lotto.message.ErrorMessage.LOTTO_SIZE_ERROR;
 import static org.assertj.core.api.Assertions.*;
@@ -42,7 +42,7 @@ public class LottoTest {
         // when & then
         assertThatCode(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_SIZE_ERROR.formatValue(LOTTO_SIZE.value()));
+                .hasMessage(LOTTO_SIZE_ERROR.formatValue(SIZE.value()));
 
     }
 
@@ -55,7 +55,7 @@ public class LottoTest {
         // when & then
         assertThatCode(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBERS_DUPLICATE.formatValue(LOTTO_SIZE.value()));
+                .hasMessage(LOTTO_NUMBERS_DUPLICATE.formatValue(SIZE.value()));
     }
 
     @DisplayName("로또에 저장되는 6개의 숫자는 오름차순으로 저장된다.")
@@ -70,7 +70,7 @@ public class LottoTest {
         System.out.println(lottoLottoNumbers);
 
         // then
-        for (int i = 0; i < LOTTO_SIZE.value() - 1; i++) {
+        for (int i = 0; i < SIZE.value() - 1; i++) {
             assertThat(lottoLottoNumbers.get(i).getNumber()).isLessThan(lottoLottoNumbers.get(i + 1).getNumber());
         }
     }

@@ -1,13 +1,13 @@
 package lotto.constant;
 
 public enum LottoValues {
-    LOTTO_MONEY_MIN_LIMIT(0),
-    LOTTO_MONEY_MAX_LIMIT(2_000_000_000),
+    MONEY_MIN_LIMIT(0),
+    MONEY_MAX_LIMIT(2_000_000_000),
     PERCENT_MULTIPLIER(100),
-    LOTTO_PRICE(1_000),
-    LOTTO_NUMBER_MIN(1),
-    LOTTO_NUMBER_MAX(45),
-    LOTTO_SIZE(6),
+    PRICE(1_000),
+    NUMBER_MIN(1),
+    NUMBER_MAX(45),
+    SIZE(6),
     THREE(3),
     FOUR(4),
     FIVE(5),
@@ -19,7 +19,15 @@ public enum LottoValues {
         this.value = value;
     }
 
-    public int value(){
+    public int value() {
         return value;
+    }
+
+    public boolean isEqualTo(int value) {
+        return this.value == value;
+    }
+
+    public boolean isGreaterThan(int value) {
+        return value < this.value;
     }
 }

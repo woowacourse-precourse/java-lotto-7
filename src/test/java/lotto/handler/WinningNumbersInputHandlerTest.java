@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static lotto.constant.LottoValues.LOTTO_SIZE;
+import static lotto.constant.LottoValues.SIZE;
 import static lotto.message.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
@@ -61,6 +61,6 @@ public class WinningNumbersInputHandlerTest {
         // when & then
         assertThatCode(() -> new BonusNumber(bonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(BONUS_NUMBER_DUPLICATE.formatValue(LOTTO_SIZE.value()));
+                .hasMessageContaining(BONUS_NUMBER_DUPLICATE.formatValue(SIZE.value()));
     }
 }

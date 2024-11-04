@@ -13,71 +13,71 @@ import static lotto.message.InfoMessage.*;
 public enum Result {
 
     NO_PROFIT(false, null, NO_REWARD,
-            (match, bonus) -> match < THREE.value()),
+            (match, bonus) -> THREE.isGreaterThan(match)),
 
     THREE_RESULT(true, THREE_NUMBERS_MATCH, THREE_REWARD,
-            (match, bonus) -> match == THREE.value()),
+            (match, bonus) -> THREE.isEqualTo(match)),
 
     FOUR_RESULT(true, FOUR_NUMBERS_MATCH, FOUR_REWARD,
-            (match, bonus) -> match == FOUR.value()),
+            (match, bonus) -> FOUR.isEqualTo(match)),
 
     FIVE_RESULT(true, FIVE_NUMBERS_MATCH, FIVE_REWARD,
-            (match, bonus) -> match == FIVE.value() && !bonus),
+            (match, bonus) -> FIVE.isEqualTo(match) && !bonus),
 
     FIVE_WITH_BONUS_RESULT(true, FIVE_NUMBERS_MATCH_WITH_BONUS, FIVE_WITH_BONUS_REWARD,
-            (match, bonus) -> match == FIVE.value() && bonus),
+            (match, bonus) -> FIVE.isEqualTo(match) && bonus),
 
     SIX_RESULT(true, SIX_NUMBERS_MATCH, SIX_REWARD,
-            (match, bonus) -> match == SIX.value());
+            (match, bonus) -> SIX.isEqualTo(match));
 
-    public boolean print;
-    private InfoMessage infoMessage;
-    private int result;
-    private Reward reward;
-    private BiPredicate<Integer, Boolean> predicate;
+    public final boolean print;
+    private final InfoMessage infoMessage;
+    private int resultCount;
+    private final Reward reward;
+    private final BiPredicate<Integer, Boolean> predicate;
 
     Result(boolean print, InfoMessage infoMessage, Reward reward, BiPredicate<Integer, Boolean> predicate) {
         this.print = print;
         this.infoMessage = infoMessage;
-        this.result = 0;
+        this.resultCount = 0;
         this.reward = reward;
         this.predicate = predicate;
     }
 
     private void increment() {
-        result++;
+        resultCount++;
     }
 
     private boolean equals(int matchingNumber, boolean bonus){
         return predicate.test(matchingNumber, bonus);
     }
 
-    public static Result matches(int matchingNumber, boolean bonus) {
+    public static Result find(int matchingNumber, boolean bonus) {
         return Arrays.stream(Result.values())
                 .filter(result -> result.equals(matchingNumber, bonus))
                 .findAny()
                 .orElse(NO_PROFIT);
     }
 
-    public static void update(int matchingNumber, boolean bonus) {
-        matches(matchingNumber, bonus).increment();
+    public static void updateResult(int matchingNumber, boolean bonus) {
+        find(matchingNumber, bonus).increment();
     }
 
-    public static int getResult(int matchingNumber, boolean bonus) {
-        return matches(matchingNumber, bonus).result;
-    }
-
-    public String getMessage(){
-        return infoMessage.formatNumber(result);
-    }
-
-    public static long getProfitSum() {
+    public static long calculateProfitSum() {
         return Arrays.stream(Result.values())
                 .mapToLong(Result::calculateProfit)
                 .sum();
     }
 
     private long calculateProfit(){
-        return result * reward.value();
+        return resultCount * reward.value();
+    }
+
+    public static int getResultCount(int matchingNumber, boolean bonus) {
+        return find(matchingNumber, bonus).resultCount;
+    }
+
+    public String formattedMessage(){
+        return infoMessage.formatNumber(resultCount);
     }
 }

@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static lotto.constant.LottoValues.LOTTO_MONEY_MIN_LIMIT;
-import static lotto.constant.LottoValues.LOTTO_PRICE;
+import static lotto.constant.LottoValues.MONEY_MIN_LIMIT;
+import static lotto.constant.LottoValues.PRICE;
 import static lotto.message.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -62,7 +62,7 @@ public class MoneyInputHandlerTest {
         // when & then
         assertThatCode(() -> moneyInputHandler.validateMoney(negativeLong))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NEGATIVE_PURCHASE_AMOUNT.formatValue(LOTTO_MONEY_MIN_LIMIT.value()));
+                .hasMessageContaining(NEGATIVE_PURCHASE_AMOUNT.formatValue(MONEY_MIN_LIMIT.value()));
     }
 
 
@@ -75,7 +75,7 @@ public class MoneyInputHandlerTest {
         // when & then
         assertThatCode(() -> moneyInputHandler.validateMoney(inputNum))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(INVALID_PURCHASE_AMOUNT_UNIT.formatValue(LOTTO_PRICE.value()));
+                .hasMessageContaining(INVALID_PURCHASE_AMOUNT_UNIT.formatValue(PRICE.value()));
     }
 
 }
