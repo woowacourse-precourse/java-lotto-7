@@ -32,4 +32,8 @@ public enum Prize {
     public String formatDescription(Prize prize, Integer count) {
         return prize.text + String.format(" - %d개\n", count);
     }
+
+    public void sumReward(Yield yield, Integer count) {
+        yield.addReward(reward * count);
+    }
 }

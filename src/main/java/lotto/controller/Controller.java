@@ -1,7 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Lotteries;
-import lotto.model.Prizes;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -10,22 +9,55 @@ import java.util.List;
 public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
-    private final Lotteries lotteries;
 
-    public Controller(InputView inputView, OutputView outputView, Lotteries lotteries) {
+    public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lotteries = lotteries;
 
-        Integer amount = inputView.inputAmount();
-        lotteries.buyLotteries(amount);
-        OutputView.printOutput(lotteries.formatOutput());
+        Integer totalMoney;
+        Lotteries lotteries;
 
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        while (true) {
+            try {
+                totalMoney = inputView.inputTotalMoney();
+                lotteries = new Lotteries(totalMoney);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printOutput(e.getMessage());
+            }
+        }
 
-        Integer bonusNumber = inputView.inputBonusNUmber();
+        outputView.printOutput(lotteries.formatOutput());
 
-        Prizes prizes = lotteries.getPrizes(winningNumbers, bonusNumber);
-        OutputView.printOutput(prizes.formatDescriptions());
+        Lotto lotto;
+
+        while (true) {
+            try {
+                List<Integer> winningNumbers = inputView.inputWinningNumbers();
+                lotto = new Lotto(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printOutput(e.getMessage());
+            }
+        }
+
+        WinningLotto winningLotto;
+        Integer bonusNumber;
+
+        while (true) {
+            try {
+                bonusNumber = inputView.inputBonusNumber();
+                winningLotto = new WinningLotto(lotto, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printOutput(e.getMessage());
+            }
+        }
+
+        Prizes prizes = lotteries.getPrizes(winningLotto);
+        outputView.printOutput(prizes.formatDescriptions());
+        Yield yield = new Yield(totalMoney);
+        prizes.sumRewards(yield);
+        outputView.printOutput(prizes.formatYieldRatio(yield));
     }
 }
