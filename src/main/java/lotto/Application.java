@@ -7,7 +7,14 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         int lottoCount = 0;
         try {
-            lottoCount = Integer.parseInt(Console.readLine()) / 1000;
+            int money = Integer.parseInt(Console.readLine());
+            if (money <= 0) {
+                throw new IllegalArgumentException("[ERROR] 구입금액은 양수여야 합니다.");
+            }
+            if (money < 1000 || money % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 합니다.");
+            }
+            lottoCount = money / 1000;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해야 합니다.");
         }
