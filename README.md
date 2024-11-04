@@ -120,7 +120,7 @@
 
 - InputParser: 사용자의 입력 값에 대한 검증 및 파싱
 - LottoNumberGenerator: 랜덤으로 숫자 리스트를 생성하여 오름차순으로 정렬
-- PriceFormatter: int(당첨 금액) 또는 double(수익률) 형식의 값을 한국 돈 출력 방식의 String 형식으로 변경
+- PriceFormatter: int(당첨 금액) 또는 float(수익률) 형식의 값을 한국 돈 출력 방식의 String 형식으로 변경
 - WinningSummaryGenerator: 계산된 통계 정보를 출력할 수 있는 String 형식으로 만들어 주는 유틸리티 클래스
 
 ### view
