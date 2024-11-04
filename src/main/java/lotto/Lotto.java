@@ -1,6 +1,8 @@
-package lotto.model;
+package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,10 +16,26 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
     }
 
     // TODO: 추가 기능 구현
-    public List<Integer> getNumbers() {
-        return numbers;
+    public int getMatchCount(List<Integer> winningNumbers) {
+        Set<Integer> matchNumber = new HashSet<>(numbers);
+        matchNumber.retainAll(winningNumbers);
+        return matchNumber.size();
+    }
+
+    public boolean containsBonus(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
