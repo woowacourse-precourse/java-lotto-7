@@ -34,6 +34,7 @@ public class InputHandler {
                 String input = Console.readLine();
                 String[] splitInput = input.trim().split(",");
                 List<Integer> nums = Arrays.stream(splitInput)
+                        .map(String::trim)
                         .map(this::validateAndParseNumInRange).toList();
                 return nums;
             } catch (IllegalArgumentException e) {
