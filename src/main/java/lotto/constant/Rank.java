@@ -16,15 +16,20 @@ public enum Rank {
         this.winnings = winnings;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public long getWinnings() {
+        return winnings;
+    }
+
     public static Rank getRank(int matchCount, boolean hasBonus) {
         if (matchCount == SIX_MATCH.getMatchCount()) {
             return SIX_MATCH;
         }
-        if (matchCount == FIVE_MATCH_BONUS.getMatchCount() && hasBonus) {
-            return FIVE_MATCH_BONUS;
-        }
         if (matchCount == FIVE_MATCH.getMatchCount()) {
-            return FIVE_MATCH;
+            return getRankForFiveMatches(hasBonus);
         }
         if (matchCount == FOUR_MATCH.getMatchCount()) {
             return FOUR_MATCH;
@@ -35,11 +40,10 @@ public enum Rank {
         return NO_MATCH;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public long getWinnings() {
-        return winnings;
+    private static Rank getRankForFiveMatches(boolean hasBonus) {
+        if (hasBonus) {
+            return FIVE_MATCH_BONUS;
+        }
+        return FIVE_MATCH;
     }
 }
