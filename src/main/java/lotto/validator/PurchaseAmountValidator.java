@@ -46,10 +46,6 @@ public class PurchaseAmountValidator {
     }
 
     private static boolean isMaxPurchaseAmountExceeded(String purchaseAmount) {
-        return parsePurchaseAmountToInt(purchaseAmount) > MAX_AMOUNT;
-    }
-
-    private static int parsePurchaseAmountToInt(String amountStr) {
-        return Integer.parseInt(amountStr);
+        return Integer.parseInt(purchaseAmount) > MAX_AMOUNT;
     }
 }
