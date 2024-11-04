@@ -2,8 +2,10 @@ package lotto.ui;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.LottoContainer;
+import lotto.LottoNum;
 import lotto.Results;
 import lotto.common.LottoResult;
 import org.assertj.core.api.Assertions;
@@ -28,7 +30,12 @@ class OutputControllerTest {
     void 발행_목록_출력_테스트() {
         final OutputController outputController = new OutputController(outputUi);
         final LottoContainer lottoContainer = new LottoContainer(
-                List.of(new Lotto(List.of(1,2,3,4,5,6)), new Lotto(List.of(2,3,4,5,6,7))));
+                List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6).stream()
+                                .map(LottoNum::new).collect(Collectors.toList())),
+                        new Lotto(List.of(2, 3, 4, 5, 6, 7).stream()
+                                .map(LottoNum::new).collect(Collectors.toList()))
+                )
+        );
 
         outputController.printAllLotteries(lottoContainer);
 

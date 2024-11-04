@@ -9,7 +9,7 @@ public class LottoInfo {
         this.lotto = lotto;
     }
 
-    public List<Integer> lottoNumbers() {
+    public List<LottoNum> lottoNumbers() {
         return lotto.getNumbers();
     }
 }

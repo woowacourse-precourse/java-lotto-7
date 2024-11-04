@@ -2,8 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import lotto.common.LottoNumber;
 import java.util.List;
+import java.util.stream.Collectors;
+import lotto.common.LottoNumber;
 
 public class LottoGenerator {
 
@@ -13,7 +14,8 @@ public class LottoGenerator {
                 LottoNumber.END.getNumber(),
                 LottoNumber.SIZE.getNumber()
         );
-        return new Lotto(numbers);
+        final List<LottoNum> lottoNums = this.mapToLottoNumbers(numbers);
+        return new Lotto(lottoNums);
     }
 
     public LottoContainer generate(final LottoPayment lottoPayment) {
@@ -22,5 +24,11 @@ public class LottoGenerator {
             lotteries.add(random());
         }
         return new LottoContainer(lotteries);
+    }
+
+    private List<LottoNum> mapToLottoNumbers(final List<Integer> numbers) {
+        return numbers.stream()
+                .map(number -> new LottoNum(number))
+                .collect(Collectors.toList());
     }
 }

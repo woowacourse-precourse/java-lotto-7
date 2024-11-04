@@ -2,30 +2,30 @@ package lotto;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.common.LottoNumber;
 import lotto.exception.LottoArgumentException;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNum> numbers;
 
-    public Lotto(final List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+    public Lotto(final List<LottoNum> lottoNumbers) {
+        validate(lottoNumbers);
+        this.numbers = lottoNumbers;
     }
 
-    private void validate(final List<Integer> numbers) {
+    private void validate(final List<LottoNum> numbers) {
         validateSize(numbers);
         validateDuplicatedNumbers(numbers);
-        validateNumberRange(numbers);
     }
 
-    private void validateSize(final List<Integer> numbers) {
+    private void validateSize(final List<LottoNum> numbers) {
         if (numbers.size() != LottoNumber.SIZE.getNumber()) {
             throw new LottoArgumentException("로또 번호는 " + LottoNumber.SIZE.getNumber() + "개여야 합니다.");
         }
     }
 
-    private void validateDuplicatedNumbers(final List<Integer> numbers) {
+    private void validateDuplicatedNumbers(final List<LottoNum> numbers) {
         final Long elementCount = numbers.stream()
                 .distinct()
                 .count();
@@ -34,19 +34,11 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(final List<Integer> range) {
-        final boolean outOfRange = range.stream()
-                .anyMatch(number -> number < LottoNumber.START.getNumber() || number > LottoNumber.END.getNumber());
-        if (outOfRange) {
-            throw new LottoArgumentException("로또 숫자 범위를 벗어났습니다.");
-        }
-    }
-
-    public boolean containsNumber(final int number) {
+    public boolean containsNumber(final LottoNum number) {
         return this.numbers.contains(number);
     }
 
-    protected List<Integer> getNumbers() {
+    protected List<LottoNum> getNumbers() {
         return Collections.unmodifiableList(this.numbers);
     }
 }

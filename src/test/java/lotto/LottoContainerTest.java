@@ -2,6 +2,7 @@ package lotto;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.common.LottoResult;
 import org.junit.jupiter.api.Assertions;
@@ -13,12 +14,15 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoContainerTest {
 
-    private final WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+    private final WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6).stream()
+            .map(LottoNum::new).collect(Collectors.toList()), new LottoNum(7));
 
     @DisplayName("발행된 로또 저장 테스트")
     @Test
     void 발행된_로또_저장_테스트() {
-        final List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        final List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6).stream()
+                .map(LottoNum::new)
+                .collect(Collectors.toList())));
         final LottoContainer container = new LottoContainer(lottos);
 
         Assertions.assertEquals(container.getSize(), lottos.size());
@@ -37,15 +41,19 @@ class LottoContainerTest {
         return Stream.of(
                 Arguments.of(
                         List.of(
-                                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                                new Lotto(List.of(1, 2, 3, 4, 5, 7))
+                                new Lotto(List.of(1, 2, 3, 4, 5, 6).stream()
+                                        .map(LottoNum::new).collect(Collectors.toList())),
+                                new Lotto(List.of(1, 2, 3, 4, 5, 7).stream()
+                                        .map(LottoNum::new).collect(Collectors.toList()))
                         ),
                         LottoResult.FIRST.getWinningAmount().add(LottoResult.SECOND.getWinningAmount())
                 ),
                 Arguments.of(
                         List.of(
-                                new Lotto(List.of(11, 12, 13, 14, 15, 16)),
-                                new Lotto(List.of(5, 6, 7, 8, 9, 10))
+                                new Lotto(List.of(11, 12, 13, 14, 15, 16).stream()
+                                        .map(LottoNum::new).collect(Collectors.toList())),
+                                new Lotto(List.of(5, 6, 7, 8, 9, 10).stream()
+                                        .map(LottoNum::new).collect(Collectors.toList()))
                         ),
                         BigDecimal.ZERO
                 )
