@@ -41,7 +41,7 @@ public class InputNumberValidator {
         return false;
     }
 
-    public static boolean isMatchedLottoSize(String winNumbers) {
+    public static boolean isNotMatchedLottoSize(String winNumbers) {
         List<Integer> winningNumbers = InputSplitter.splitByDelimiter(winNumbers);
 
         if (winningNumbers.size() != REQUIRED_SIZE) {
@@ -95,7 +95,7 @@ public class InputNumberValidator {
         if (isOutOfLottoRange(winningNumberInput)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
-        if (isMatchedLottoSize(winningNumberInput)) {
+        if (isNotMatchedLottoSize(winningNumberInput)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage());
         }
         if (isDuplicated(winningNumberInput)) {
