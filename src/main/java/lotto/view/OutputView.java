@@ -18,15 +18,24 @@ public class OutputView {
         System.out.println("---");
         for (LottoResult lottoResult : LottoResult.values()) {
             if (lottoResult == LottoResult.FIVE_BONUS) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n",
-                        lottoResult.getMatchCount(), lottoResult.getPrizeMoney(),
-                        lottoResultCount.getOrDefault(lottoResult, 0));
+                printBonusStatistics(lottoResult, lottoResultCount);
                 continue;
             }
-            System.out.printf("%d개 일치 (%,d원) - %d개%n", lottoResult.getMatchCount(),
-                    lottoResult.getPrizeMoney(), lottoResultCount.getOrDefault(lottoResult, 0));
+            printRegularStatistics(lottoResult, lottoResultCount);
         }
     }
+
+    private static void printBonusStatistics(LottoResult lottoResult, Map<LottoResult, Integer> lottoResultCount) {
+        System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n",
+                lottoResult.getMatchCount(), lottoResult.getPrizeMoney(),
+                lottoResultCount.getOrDefault(lottoResult, 0));
+    }
+
+    private static void printRegularStatistics(LottoResult lottoResult, Map<LottoResult, Integer> lottoResultCount) {
+        System.out.printf("%d개 일치 (%,d원) - %d개%n", lottoResult.getMatchCount(),
+                lottoResult.getPrizeMoney(), lottoResultCount.getOrDefault(lottoResult, 0));
+    }
+
 
     public static void printRateEarning(double rateEarning) {
         System.out.printf("총 수익률은 %.1f%%입니다.", rateEarning);
