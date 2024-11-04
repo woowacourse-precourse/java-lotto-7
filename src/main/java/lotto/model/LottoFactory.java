@@ -11,7 +11,7 @@ public class LottoFactory {
     private static final int LOTTO_MAX_NUMBER = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    public Lottos generateLottos(Cost cost){
+    public static Lottos generateLottos(Cost cost){
         int lottoCount = calculateLottoCount(cost);
         List<Lotto> lottos = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class LottoFactory {
         return new Lottos(lottos);
     }
 
-    private int calculateLottoCount(Cost cost){
+    private static int calculateLottoCount(Cost cost){
         return cost.getValue() / LOTTO_PRICE;
     }
 }
