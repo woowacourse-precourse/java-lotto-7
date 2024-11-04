@@ -1,8 +1,8 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
@@ -48,10 +48,9 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+        assertThatThrownBy(() -> runException("1000j"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.MONEY_IS_NOT_INTEGER); // then
     }
 
     @Override
