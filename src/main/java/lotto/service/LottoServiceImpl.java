@@ -1,0 +1,189 @@
+package lotto.service;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
+import lotto.common.LottoConstants;
+import lotto.common.LottoRank;
+import lotto.common.LottoValidateUtil;
+import lotto.domain.bonus.Bonus;
+import lotto.domain.bonus.BonusDto;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoDto;
+import lotto.domain.purchase.Purchase;
+import lotto.domain.purchase.PurchaseDto;
+
+public class LottoServiceImpl implements LottoService {
+    private Purchase purchase;
+    private Lotto winningLotto;
+    private Bonus bonus;
+
+    @Override
+    public void buyLotto(String amount) {
+        int convertedAmount = convertStringToInt(amount);
+        purchase = new Purchase(convertedAmount);
+        List<Lotto> lottos = makeRandomLottos(purchase.getAmount());
+        purchase.setLottos(lottos);
+    }
+
+    @Override
+    public void assignWinningLotto(String numbers) {
+        List<Integer> splitNumbers = splitStringToIntegerList(numbers);
+        winningLotto = new Lotto(splitNumbers);
+    }
+
+    @Override
+    public void assignBonus(String number) {
+        int convertedNumber = convertStringToInt(number);
+        if (winningLotto != null) {
+            LottoValidateUtil.validateNumberExists(winningLotto.getNumbers(), convertedNumber);
+        }
+        bonus = new Bonus(convertedNumber);
+    }
+
+    @Override
+    public LottoDto getWinningLottoDto() {
+        return new LottoDto(winningLotto.getNumbers());
+    }
+
+    @Override
+    public BonusDto getBonusDto() {
+        return new BonusDto(bonus.getNumber());
+    }
+
+    @Override
+    public List<LottoRank> calculateLottoRank() {
+        List<Lotto> purchaseLottos = purchase.getLottos();
+        List<LottoRank> lottoRanks = new ArrayList<>();
+
+        for (Lotto purchaseLotto : purchaseLottos) {
+            int matchCount = countMatchNumber(winningLotto, purchaseLotto);
+            if (matchCount >= LottoRank.FIFTH.getMatchCount()) {
+                lottoRanks.add(determineRank(matchCount));
+            }
+        }
+
+        return lottoRanks;
+    }
+
+    @Override
+    public double calculateProfitRate(List<LottoRank> lottoRanks) {
+        int totalWinning = calculateTotalWinnings(lottoRanks);
+
+        if (totalWinning == 0) {
+            return 0;
+        } else {
+            double profitRate = ((double) totalWinning / purchase.getAmount()) * 100; // 수익률 계산
+            return Math.round(profitRate * 100.0) / 100.0;
+        }
+
+    }
+
+    @Override
+    public PurchaseDto getPurchaseDto() {
+        List<LottoDto> lottoDtos = convertLottosToLottoDtos(purchase.getLottos());
+        return new PurchaseDto(purchase.getAmount(), lottoDtos);
+    }
+
+    private List<Lotto> makeRandomLottos(int amount) {
+        List<Lotto> purchasedLottos = new ArrayList<>();
+
+        int count = amount / LottoConstants.PRICE;
+        for (int i = 0; i < count; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                    LottoConstants.MIN_NUMBER, LottoConstants.MAX_NUMBER, LottoConstants.NUMBERS_COUNT);
+            purchasedLottos.add(new Lotto(numbers));
+        }
+
+        return purchasedLottos;
+    }
+
+    private List<LottoDto> convertLottosToLottoDtos(List<Lotto> lottos) {
+        List<LottoDto> lottoDtos = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            lottoDtos.add(new LottoDto(lotto.getNumbers()));
+        }
+
+        return lottoDtos;
+    }
+
+    private List<Integer> splitStringToIntegerList(String numbers) {
+        List<Integer> splitNumbers = new ArrayList<>();
+
+        for (String number : numbers.split(",")) {
+            String cleanNumber = cleanString(number);
+            if (cleanNumber.isBlank()) {
+                continue;
+            }
+            Integer parsedNumber = safeParseInteger(cleanNumber);
+            LottoValidateUtil.validateNumberExists(splitNumbers, parsedNumber);
+            splitNumbers.add(parsedNumber);
+        }
+
+        return splitNumbers;
+    }
+
+    private int convertStringToInt(String number) {
+        String cleanNumber = cleanString(number);
+        return safeParseInteger(cleanNumber);
+    }
+
+    //문자열의 공백을 없애주는 로직
+    private String cleanString(String text) {
+        if (text == null || text.isBlank()) {
+            text = "";
+        }
+        String cleanText = text.replace(" ", "");
+
+        return cleanText;
+    }
+
+    private Integer safeParseInteger(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
+        }
+    }
+
+    private int countMatchNumber(Lotto winningLotto, Lotto purchaseLotto) {
+        int count = 0;
+
+        for (Integer winningNumber : winningLotto.getNumbers()) {
+            List<Integer> purchaseLottoNumbers = purchaseLotto.getNumbers();
+            if (purchaseLottoNumbers.contains(winningNumber)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    private LottoRank determineRank(int matchCount) {
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+
+        if (matchCount == LottoRank.FIRST.getMatchCount()) {
+            return LottoRank.FIRST;
+        }
+        if (matchCount == LottoRank.SECOND.getMatchCount() && winningNumbers.contains(bonus.getNumber())) {
+            return LottoRank.SECOND;
+        }
+        if (matchCount == LottoRank.THIRD.getMatchCount()) {
+            return LottoRank.THIRD;
+        }
+        if (matchCount == LottoRank.FOURTH.getMatchCount()) {
+            return LottoRank.FOURTH;
+        }
+        return LottoRank.FIFTH;
+    }
+
+    private int calculateTotalWinnings(List<LottoRank> lottoRanks) {
+        int totalWinnings = 0;
+
+        for (LottoRank rank : lottoRanks) {
+            totalWinnings += rank.getPrize();
+        }
+
+        return totalWinnings;
+    }
+}
