@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -52,5 +53,15 @@ public class InputViewTest {
         assertThatThrownBy(InputView::getPurchaseAmount)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자를 입력해야 합니다.");
+    }
+
+    @Test
+    void 당첨_번호_입력_정상_동작() {
+        // given
+        String validInput = "1,2,3,4,5,6";
+        System.setIn(new ByteArrayInputStream(validInput.getBytes()));
+
+        // when, then
+        assertEquals(List.of(1, 2, 3, 4, 5, 6), InputView.getWinningNumbers());
     }
 }

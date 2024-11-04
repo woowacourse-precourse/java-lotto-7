@@ -1,8 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
+import lotto.util.StringParser;
 
 public class InputView {
 
@@ -23,6 +25,11 @@ public class InputView {
 
     public static void printWinningNumbersInputMessage() {
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
+    }
+
+    public static List<Integer> getWinningNumbers() {
+        String input = Console.readLine();
+        return StringParser.parseWinningNumbers(input);
     }
 
     private static void validateInputIsNull(String input) {
