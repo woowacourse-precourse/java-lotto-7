@@ -12,6 +12,11 @@ import java.math.RoundingMode;
 import java.util.*;
 
 public class LottoServiceController {
+    private static final int MATCH_3_RANK = 5;
+    private static final int MATCH_4_RANK = 4;
+    private static final int MATCH_5_RANK = 3;
+    private static final int MATCH_5_BONUS_RANK = 2;
+    private static final int MATCH_6_RANK = 1;
     private final List<Lotto> userLottos;
     private final ResultOutput resultOutput = new ResultOutput();
     private PurchaseAmount purchaseAmount;
@@ -42,13 +47,29 @@ public class LottoServiceController {
             winningSummary.add(getWinningCount
                     (userLotto.getLottoNumbers()));
         }
+        System.out.println(winningSummary);
         return winningSummary;
     }
 
     private int getWinningCount(List<Integer> userLotto) {
         List<Integer> checkDuplication = new ArrayList<>(userLotto);
         checkDuplication.retainAll(winningLotto.getLottoNumbers());
-        return checkDuplication.size();
+        if(checkDuplication.size() == 3){
+            return MATCH_3_RANK;
+        }
+        if(checkDuplication.size() == 4){
+            return MATCH_4_RANK;
+        }
+        if(checkDuplication.size() == 5){
+            if(userLotto.contains(winningLotto.getBonusNumber())){
+                return MATCH_5_BONUS_RANK;
+            }
+            return MATCH_5_RANK;
+        }
+        if(checkDuplication.size() == 6){
+            return MATCH_6_RANK;
+        }
+        return 0;
     }
 
     private double getTotalYield() {
