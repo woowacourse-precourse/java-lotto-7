@@ -10,7 +10,7 @@ public class LottoMatcher {
     private final WinningLotto winningLotto;
 
     public LottoMatcher(WinningLotto winningLotto) {
-        winningCount = new HashMap<WinningInfo, Integer>(5);
+        winningCount = new HashMap<WinningInfo, Integer>(WinningInfo.values().length);
         this.winningLotto = winningLotto;
     }
 

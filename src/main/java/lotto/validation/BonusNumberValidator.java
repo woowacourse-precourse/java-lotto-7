@@ -3,6 +3,7 @@ package lotto.validation;
 import lotto.exception.BonusNumberException;
 
 import static lotto.common.constant.ErrorMessage.*;
+import static lotto.common.constant.LottoInfo.DEFAULT_LOTTO;
 
 public class BonusNumberValidator {
 
@@ -18,7 +19,7 @@ public class BonusNumberValidator {
     }
 
     private static void throwExceptionIfNumberIsNotValid(Integer bonusNumber) {
-        if(bonusNumber < 1 || bonusNumber > 45){
+        if(bonusNumber < DEFAULT_LOTTO.getLowBoundOfLottoNumber() || bonusNumber > DEFAULT_LOTTO.getHighBoundOfLottoNumber()){
             throw new BonusNumberException(THERE_IS_INVALID_NUMBER_IN_BONUS_NUMBER);
         }
     }

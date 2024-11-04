@@ -10,6 +10,7 @@ import static lotto.common.constant.ErrorMessage.WINNING_LOTTO_NUMBER_FORMAT_ERR
 
 public class WinningLottoNumber {
     private final List<Integer> winningNumbers;
+    private final String delimiter = ",";
 
     private WinningLottoNumber(String userInputWinningLottoNumber){
         this.winningNumbers = parseUserInputWinningLottoNumber(userInputWinningLottoNumber);
@@ -23,7 +24,7 @@ public class WinningLottoNumber {
     private List<Integer> parseUserInputWinningLottoNumber(String userInputWinningLottoNumber){
         List<Integer> parsedWinningNumbers;
         try{
-            parsedWinningNumbers = Arrays.stream(userInputWinningLottoNumber.split(","))
+            parsedWinningNumbers = Arrays.stream(userInputWinningLottoNumber.split(delimiter))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();

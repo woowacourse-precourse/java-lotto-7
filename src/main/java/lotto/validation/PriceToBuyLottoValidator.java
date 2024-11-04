@@ -3,6 +3,7 @@ package lotto.validation;
 import lotto.exception.PriceToBuyLottoException;
 
 import static lotto.common.constant.ErrorMessage.*;
+import static lotto.common.constant.LottoInfo.DEFAULT_LOTTO;
 
 public class PriceToBuyLottoValidator {
 
@@ -21,7 +22,7 @@ public class PriceToBuyLottoValidator {
     }
 
     private static void throwExceptionIfNotDivideBy1000(Integer priceToBuyLotto) {
-        if (priceToBuyLotto % 1000 != 0) {
+        if (priceToBuyLotto % DEFAULT_LOTTO.getPriceOfOneLotto() != 0) {
             throw new PriceToBuyLottoException(PRICE_SHOULD_BE_DIVIDED_BY_1000);
         }
     }
