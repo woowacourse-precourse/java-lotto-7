@@ -6,7 +6,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class RankCount {
-    private Map<Rank, Integer> rankCount;
+    private final Map<Rank, Integer> rankCount;
 
     public RankCount() {
         this.rankCount = new EnumMap<>(Rank.class);
