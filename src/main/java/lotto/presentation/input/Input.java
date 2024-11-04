@@ -1,7 +1,13 @@
-package lotto;
+package lotto.presentation.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.presentation.view.View;
+import lotto.common.util.StringParser;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.LottoPurchase;
+import lotto.model.WinningNumbers;
 
 public class Input {
     private static final String INPUT_AMOUNT_GUIDE = "구입금액을 입력해 주세요.";

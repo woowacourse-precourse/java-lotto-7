@@ -3,6 +3,9 @@ package lotto;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.WinningNumbers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

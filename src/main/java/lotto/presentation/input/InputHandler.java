@@ -1,6 +1,9 @@
-package lotto;
+package lotto.presentation.input;
 
 import java.util.function.Supplier;
+import lotto.model.Lotto;
+import lotto.model.LottoPurchase;
+import lotto.model.WinningNumbers;
 
 public class InputHandler {
     private final Input input;

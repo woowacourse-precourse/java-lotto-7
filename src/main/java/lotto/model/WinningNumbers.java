@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model;
 
-import static lotto.ExceptionMessages.ERROR_BONUS_NUMBER_SAME;
+import static lotto.common.constants.ExceptionMessages.ERROR_BONUS_NUMBER_SAME;
 
 import java.util.List;
 import java.util.Objects;

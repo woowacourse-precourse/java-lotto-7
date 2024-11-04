@@ -1,6 +1,6 @@
-package lotto;
+package lotto.common.util;
 
-import static lotto.ExceptionMessages.INVALID_INPUT;
+import static lotto.common.constants.ExceptionMessages.INVALID_INPUT;
 
 import java.util.Arrays;
 import java.util.List;

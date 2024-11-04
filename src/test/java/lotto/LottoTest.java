@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

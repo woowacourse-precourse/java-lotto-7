@@ -1,4 +1,4 @@
-package lotto;
+package lotto.common.constants;
 
 public enum ExceptionMessages {
     INVALID_INPUT("[ERROR] 올바른 형식의 입력이 아닙니다."),

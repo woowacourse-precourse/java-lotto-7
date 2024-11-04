@@ -1,4 +1,13 @@
-package lotto;
+package lotto.presentation.controller;
+
+import lotto.presentation.input.InputHandler;
+import lotto.dto.LottoResults;
+import lotto.presentation.view.View;
+import lotto.model.Lotto;
+import lotto.model.LottoPurchase;
+import lotto.model.Lottos;
+import lotto.model.WinningNumbers;
+import lotto.service.LottoService;
 
 public class LottoController {
     private final InputHandler inputHandler;

@@ -1,8 +1,8 @@
-package lotto;
+package lotto.model;
 
-import static lotto.ExceptionMessages.ERROR_LOTTO_NUMBER_COUNT;
-import static lotto.ExceptionMessages.ERROR_LOTTO_NUMBER_DUPLICATED;
-import static lotto.ExceptionMessages.ERROR_LOTTO_NUMBER_RANGE;
+import static lotto.common.constants.ExceptionMessages.ERROR_LOTTO_NUMBER_COUNT;
+import static lotto.common.constants.ExceptionMessages.ERROR_LOTTO_NUMBER_DUPLICATED;
+import static lotto.common.constants.ExceptionMessages.ERROR_LOTTO_NUMBER_RANGE;
 
 import java.util.HashSet;
 import java.util.List;

@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.model.Rank;
+import lotto.model.WinningNumbers;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 

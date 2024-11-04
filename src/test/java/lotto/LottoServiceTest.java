@@ -2,6 +2,11 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.model.Lottos;
+import lotto.service.LottoGenerator;
+import lotto.service.LottoService;
+import lotto.service.RevenueCalculator;
+import lotto.service.strategy.RandomStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

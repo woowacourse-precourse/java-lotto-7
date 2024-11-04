@@ -1,6 +1,8 @@
 package lotto;
 
 import java.util.List;
+import lotto.model.Rank;
+import lotto.service.RevenueCalculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,9 +1,12 @@
-package lotto;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.service.strategy.DrawStrategy;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
 
 public class LottoGenerator {
     private final DrawStrategy drawStrategy;

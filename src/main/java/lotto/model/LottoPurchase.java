@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model;
 
-import static lotto.ExceptionMessages.INVALID_INPUT;
+import static lotto.common.constants.ExceptionMessages.INVALID_INPUT;
 
 public class LottoPurchase {
     private final Integer amount;

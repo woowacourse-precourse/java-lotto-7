@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model;
 
-import static lotto.ExceptionMessages.ERROR_LOTTO_NUMBER_RANGE;
+import static lotto.common.constants.ExceptionMessages.ERROR_LOTTO_NUMBER_RANGE;
 
 public class Bonus {
     private final Integer number;

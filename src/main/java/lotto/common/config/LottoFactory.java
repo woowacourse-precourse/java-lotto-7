@@ -1,4 +1,14 @@
-package lotto;
+package lotto.common.config;
+
+import lotto.presentation.input.Input;
+import lotto.presentation.input.InputHandler;
+import lotto.presentation.controller.LottoController;
+import lotto.presentation.view.View;
+import lotto.service.LottoGenerator;
+import lotto.service.LottoService;
+import lotto.service.RevenueCalculator;
+import lotto.service.strategy.DrawStrategy;
+import lotto.service.strategy.RandomStrategy;
 
 public class LottoFactory {
 

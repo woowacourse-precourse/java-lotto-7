@@ -1,6 +1,7 @@
-package lotto;
+package lotto.dto;
 
 import java.util.Map;
+import lotto.model.Rank;
 
 public class LottoResults {
     private final Map<Rank, Integer> rankFrequency;

@@ -1,7 +1,10 @@
-package lotto;
+package lotto.presentation.view;
 
 import java.util.Arrays;
 import java.util.Map;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.model.Rank;
 
 public class View {
     public void printGuide(String message) {

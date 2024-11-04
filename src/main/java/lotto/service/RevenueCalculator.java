@@ -1,6 +1,7 @@
-package lotto;
+package lotto.service;
 
 import java.util.List;
+import lotto.model.Rank;
 
 public class RevenueCalculator {
     public double calculate(List<Rank> ranks, Integer count) {
