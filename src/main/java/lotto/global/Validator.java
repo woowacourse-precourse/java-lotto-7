@@ -1,5 +1,6 @@
 package lotto.global;
 
+import static lotto.enums.Symbol.COMMA;
 import static lotto.exception.ErrorCode.*;
 import static lotto.exception.ErrorCode.DUPLICATE_WINNING_NUMBER;
 import static lotto.exception.ErrorCode.INVALID_NUMBER_RANGE;
