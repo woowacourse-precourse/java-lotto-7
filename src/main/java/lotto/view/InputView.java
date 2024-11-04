@@ -1,5 +1,11 @@
 package lotto.view;
 
+import static lotto.constant.LottoPrintConstant.ERROR;
+import static lotto.constant.LottoPrintConstant.ERROR_WINNINGNUMBER_EMPTY;
+import static lotto.constant.LottoPrintConstant.INPUT_BONUS;
+import static lotto.constant.LottoPrintConstant.INPUT_PRICE;
+import static lotto.constant.LottoPrintConstant.INPUT_WINNING;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.function.Consumer;
 import lotto.controller.LottoController;
@@ -14,16 +20,15 @@ public class InputView {
         controller = new LottoController();
     }
 
-    // 공통 입력 처리 메서드
     private void inputWithRetry(String message, Consumer<String> consumer) {
         while (true) {
             System.out.println(message);
             try {
                 String input = Console.readLine().trim();
-                consumer.accept(input);  // 입력값을 Consumer로 처리
-                break; // 성공적으로 처리된 경우 반복 종료
+                consumer.accept(input);
+                break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(ERROR + e.getMessage());
                 System.out.println("");
             }
         }
@@ -31,7 +36,7 @@ public class InputView {
     }
 
     public void inputPrice() {
-        inputWithRetry("구입금액을 입력해 주세요.", input -> {
+        inputWithRetry(INPUT_PRICE, input -> {
             PriceValuate.isValidNumber(input);
             int price = Integer.parseInt(input);
             controller.createLottoNumber(price);
@@ -39,13 +44,16 @@ public class InputView {
     }
 
     public void inputNumber() {
-        inputWithRetry("당첨 번호를 입력해 주세요.", input -> {
+        inputWithRetry(INPUT_WINNING, input -> {
+            if(input.split(" ").length > 1){
+                throw new IllegalArgumentException(ERROR_WINNINGNUMBER_EMPTY);
+            }
             controller.createWinningNumber(input.split(","));
         });
     }
 
     public void inputBonusNumber() {
-        inputWithRetry("보너스 번호를 입력해 주세요.", input -> {
+        inputWithRetry(INPUT_BONUS, input -> {
             BonusNumberValuate.isValidNumber(input);
             int price = Integer.parseInt(input);
             controller.createBonusNumber(price);
