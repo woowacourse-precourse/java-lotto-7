@@ -78,4 +78,12 @@ public class InputTest {
 		String s = "";
 		assertThrows(IllegalArgumentException.class, () -> input.validateEmpty(s));
 	}
+
+	@Test
+	@DisplayName("입력에 공백이 존재하는지 검증 테스트")
+	void 입력에_공백이_존재하는지_검증하는_테스트() {
+		String numbers = "140 00";
+		// String numbers = "1,2,3,4,5 ,6";
+		assertThrows(IllegalArgumentException.class, () -> input.validateBlank(numbers));
+	}
 }
