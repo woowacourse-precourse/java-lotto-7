@@ -1,0 +1,24 @@
+package lotto.vendingmachine;
+
+import java.util.List;
+
+public class VendingMachineController {
+
+    private final VendingMachineService vendingMachineService;
+
+    public VendingMachineController(VendingMachineService vendingMachineService) {
+        this.vendingMachineService = vendingMachineService;
+    }
+
+    public void generateLottoTickets(int amount) {
+        List<Lotto> lottos = vendingMachineService.generate(amount);
+        vendingMachineService.recordLottos(lottos);
+    }
+
+    public List<Lotto> getIssuedLottoTickets() {
+        List<Lotto> lottos = vendingMachineService.getIssuedLottoTickets();
+
+        return lottos;
+    }
+
+}
