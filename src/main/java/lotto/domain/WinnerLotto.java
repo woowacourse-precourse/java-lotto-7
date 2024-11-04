@@ -11,27 +11,27 @@ public class WinnerLotto {
     private static final String COMMA = ",";
 
     private final Lotto winLotto;
-    private LottoNum bonusNum;
+    private LottoNumber bonusNumber;
 
     protected WinnerLotto(String input) {
         valid(input);
         this.winLotto = parseToLotto(input);
-        this.bonusNum = null;
+        this.bonusNumber = null;
     }
 
     public static WinnerLotto create(String input) {
         return new WinnerLotto(input);
     }
 
-    public boolean hasBonusNum() {
-        return this.bonusNum != null;
+    public boolean hasBonusNumber() {
+        return this.bonusNumber != null;
     }
 
-    public WinnerCount countWinnerMatch(Lotto compareLotto) {
+    public CountResult countWinnerMatch(Lotto compareLotto) {
         int matchedCount = compareLotto.matchCount(this.winLotto);
-        boolean hasBonusNum = compareLotto.hasNumber(this.bonusNum);
+        boolean hasBonusNumber = compareLotto.hasNumber(this.bonusNumber);
 
-        return WinnerCount.of(matchedCount, hasBonusNum);
+        return CountResult.of(matchedCount, hasBonusNumber);
     }
 
 
@@ -50,16 +50,16 @@ public class WinnerLotto {
 
     private Lotto parseToLotto(String input) {
         String[] splitNums = input.split(COMMA);
-        List<LottoNum> winnerNums = Arrays.stream(splitNums)
-                .map(LottoNum::new)
+        List<LottoNumber> winnerNums = Arrays.stream(splitNums)
+                .map(LottoNumber::new)
                 .toList();
 
         return Lotto.create(winnerNums);
     }
 
-    public void addBonusNum(LottoNum bonusNumber) {
+    public void addBonusNumber(LottoNumber bonusNumber) {
         winLotto.validBonusNum(bonusNumber);
-        this.bonusNum = bonusNumber;
+        this.bonusNumber = bonusNumber;
     }
 
     @Override
@@ -71,11 +71,11 @@ public class WinnerLotto {
             return false;
         }
         WinnerLotto that = (WinnerLotto) o;
-        return Objects.equals(winLotto, that.winLotto) && Objects.equals(bonusNum, that.bonusNum);
+        return Objects.equals(winLotto, that.winLotto) && Objects.equals(bonusNumber, that.bonusNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(winLotto, bonusNum);
+        return Objects.hash(winLotto, bonusNumber);
     }
 }

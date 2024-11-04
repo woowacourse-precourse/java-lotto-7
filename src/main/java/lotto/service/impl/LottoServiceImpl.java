@@ -2,7 +2,7 @@ package lotto.service.impl;
 
 import static lotto.utils.ErrorMessage.NOT_SAVE_MONEY;
 
-import lotto.domain.LottoList;
+import lotto.domain.LottoTickets;
 import lotto.domain.Money;
 import lotto.dto.LottoListDto;
 import lotto.dto.MoneyDto;
@@ -13,12 +13,12 @@ import lotto.service.LottoService;
 public class LottoServiceImpl implements LottoService {
 
     private final SingleRepository<Money> moneyRepository;
-    private final SingleRepository<LottoList> lottoListRepository;
+    private final SingleRepository<LottoTickets> lottoTicketsRepository;
 
     public LottoServiceImpl(SingleRepository<Money> moneyRepository,
-                            SingleRepository<LottoList> lottoListRepository) {
+                            SingleRepository<LottoTickets> lottoTicketsRepository) {
         this.moneyRepository = moneyRepository;
-        this.lottoListRepository = lottoListRepository;
+        this.lottoTicketsRepository = lottoTicketsRepository;
     }
 
     @Override
@@ -34,9 +34,9 @@ public class LottoServiceImpl implements LottoService {
         Money money = moneyRepository.get()
                 .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_MONEY.getMessage()));
 
-        LottoList lottoList = LottoList.generate(money);
+        LottoTickets lottoTickets = LottoTickets.generate(money);
 
-        return lottoListRepository.save(lottoList)
+        return lottoTicketsRepository.save(lottoTickets)
                 .toDto();
     }
 }

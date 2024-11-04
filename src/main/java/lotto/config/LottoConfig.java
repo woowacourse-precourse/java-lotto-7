@@ -4,12 +4,12 @@ import lotto.controller.LottoController;
 import lotto.controller.ProfitRateController;
 import lotto.controller.StatusController;
 import lotto.controller.WinnerLottoController;
-import lotto.domain.LottoList;
+import lotto.domain.LottoTickets;
 import lotto.domain.Money;
 import lotto.domain.WinnerLotto;
 import lotto.domain.WinnerStatus;
 import lotto.repository.SingleRepository;
-import lotto.repository.impl.LottoListRepository;
+import lotto.repository.impl.LottoTicketsRepository;
 import lotto.repository.impl.MoneyRepository;
 import lotto.repository.impl.WinnerLottoRepository;
 import lotto.repository.impl.WinnerStatusRepository;
@@ -29,7 +29,7 @@ public class LottoConfig {
     private static final Viewer VIEWER = new ViewerImpl();
 
     private static final SingleRepository<Money> MONEY_REPOSITORY = new MoneyRepository();
-    private static final SingleRepository<LottoList> LOTTO_LIST_REPOSITORY = new LottoListRepository();
+    private static final SingleRepository<LottoTickets> LOTTO_LIST_REPOSITORY = new LottoTicketsRepository();
     private static final SingleRepository<WinnerStatus> WINNER_STATUS_REPOSITORY = new WinnerStatusRepository();
     private static final SingleRepository<WinnerLotto> WINNER_LOTTO_REPOSITORY = new WinnerLottoRepository();
 

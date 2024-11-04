@@ -2,7 +2,7 @@ package lotto.service.impl;
 
 import static lotto.utils.ErrorMessage.NOT_SAVE_WINNER_LOTTO;
 
-import lotto.domain.LottoNum;
+import lotto.domain.LottoNumber;
 import lotto.domain.WinnerLotto;
 import lotto.exception.EntityNotFoundException;
 import lotto.repository.SingleRepository;
@@ -25,15 +25,13 @@ public class WinnerLottoServiceImpl implements WinnerLottoService {
 
     @Override
     public void addBonusNumber(String bonusNumber) {
-        LottoNum lottoBonusNum = LottoNum.create(bonusNumber);
+        LottoNumber lottoBonusNum = LottoNumber.create(bonusNumber);
 
         WinnerLotto winnerLotto = winnerLottoRepository.get()
                 .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_WINNER_LOTTO.getMessage()));
 
-        winnerLotto.addBonusNum(lottoBonusNum);
+        winnerLotto.addBonusNumber(lottoBonusNum);
 
         winnerLottoRepository.save(winnerLotto);
     }
-
-
 }

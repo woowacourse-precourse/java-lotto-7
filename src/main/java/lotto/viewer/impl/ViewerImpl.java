@@ -5,7 +5,6 @@ import lotto.viewer.Viewer;
 
 public class ViewerImpl implements Viewer {
 
-
     public String getInput() {
         return Console.readLine();
     }

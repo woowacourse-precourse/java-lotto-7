@@ -40,18 +40,15 @@ class MoneyTest {
                 .hasMessage(INVALID_MONEY_INPUT.getMessage());
     }
 
-
     @Test
     @DisplayName("최대값 테스트")
     void test5() {
-        // 최대값을 1000원 단위로 분할하자
         Long maxValue = Long.MAX_VALUE / 1000 * 1000;
 
         String maxMoney = String.valueOf(maxValue);
         Money money = new Money(maxMoney);
 
         assertThat(money.toString()).hasToString(maxMoney);
-
     }
 
     @ParameterizedTest
@@ -63,10 +60,10 @@ class MoneyTest {
                 .hasMessage(INVALID_MONEY_INPUT.getMessage());
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("lotto try 테스트")
-    void test7() {
-        Long longValue = 10000L;
+    @ValueSource(longs = {1000, 2000, 5000, 10000000, 10000})
+    void test7(Long longValue) {
         Long expectedCnt = longValue / 1000;
         Money money = new Money(String.valueOf(longValue));
 

@@ -21,13 +21,13 @@ public class WinnerStatus {
     private final Map<Integer, Integer> rewardMap;
     private final Map<Integer, String> rewardMessage;
 
-    public WinnerStatus(WinnerCountList winnerCountList) {
-        this.rewardMap = winnerCountList.calculateAllReward();
+    public WinnerStatus(CountResults countResults) {
+        this.rewardMap = countResults.calculateAllReward();
         this.rewardMessage = initMessage();
     }
 
-    public static WinnerStatus create(WinnerCountList winnerCountList) {
-        return new WinnerStatus(winnerCountList);
+    public static WinnerStatus create(CountResults countResults) {
+        return new WinnerStatus(countResults);
     }
 
     public WinnerStatusDto toDto() {

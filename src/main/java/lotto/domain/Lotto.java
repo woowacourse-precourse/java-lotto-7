@@ -18,30 +18,30 @@ public class Lotto {
     private static final String OPEN_BRACKET = "[";
     private static final String CLOSE_BRACKET = "]";
 
-    private final List<LottoNum> numbers;
+    private final List<LottoNumber> numbers;
 
-    protected Lotto(List<LottoNum> numbers) {
+    protected Lotto(List<LottoNumber> numbers) {
         validate(numbers);
         this.numbers = sorted(numbers);
     }
 
     public static Lotto generate() {
-        List<LottoNum> numbers = Lotto.generateRandomLottoNumbers();
+        List<LottoNumber> numbers = Lotto.generateRandomLottoNumbers();
         return new Lotto(numbers);
     }
 
-    protected static List<LottoNum> convertToLottoNums(List<Integer> numbers) {
-        return numbers.stream()
-                .map(LottoNum::new)
-                .toList();
-    }
-
-    public static Lotto create(List<LottoNum> numbers) {
+    public static Lotto create(List<LottoNumber> numbers) {
         return new Lotto(numbers);
     }
 
-    private static List<LottoNum> generateRandomLottoNumbers() {
+    private static List<LottoNumber> generateRandomLottoNumbers() {
         return convertToLottoNums(generateUniqueRandomNumbers());
+    }
+
+    private static List<LottoNumber> convertToLottoNums(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
     }
 
     private static List<Integer> generateUniqueRandomNumbers() {
@@ -54,11 +54,11 @@ public class Lotto {
                 .count();
     }
 
-    protected boolean hasNumber(LottoNum number) {
+    protected boolean hasNumber(LottoNumber number) {
         return numbers.contains(number);
     }
 
-    protected void validBonusNum(LottoNum bonusNum) {
+    protected void validBonusNum(LottoNumber bonusNum) {
         numbers.forEach(num -> {
             if (num.equals(bonusNum)) {
                 throw new IllegalArgumentException(INVALID_BONUS_NUM.getMessage());
@@ -66,18 +66,18 @@ public class Lotto {
         });
     }
 
-    private List<LottoNum> sorted(List<LottoNum> numbers) {
+    private List<LottoNumber> sorted(List<LottoNumber> numbers) {
         return numbers.stream()
                 .sorted()
                 .toList();
     }
 
-    private void validate(List<LottoNum> numbers) {
+    private void validate(List<LottoNumber> numbers) {
         if (numbers == null || numbers.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
 
-        Set<LottoNum> numSet = new HashSet<>(numbers);
+        Set<LottoNumber> numSet = new HashSet<>(numbers);
         if (numSet.size() != numbers.size()) {
             throw new IllegalArgumentException("중복된 로또 번호는 허용하지 않습니다.");
         }
@@ -103,7 +103,7 @@ public class Lotto {
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner(SEPARATOR);
-        for (LottoNum num : numbers) {
+        for (LottoNumber num : numbers) {
             joiner.add(num.toString());
         }
 

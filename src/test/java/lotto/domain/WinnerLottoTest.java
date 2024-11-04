@@ -27,10 +27,10 @@ class WinnerLottoTest {
     @DisplayName("입력 순서가 달라도 숫자가 같으면 똑같이 반환한다.")
     void test2() {
         WinnerLotto winnerLotto1 = new WinnerLotto("1,2,3,4,5,6");
-        winnerLotto1.addBonusNum(new LottoNum("7"));
+        winnerLotto1.addBonusNumber(new LottoNumber("7"));
 
         WinnerLotto winnerLotto2 = new WinnerLotto("6,5,4,3,2,1");
-        winnerLotto2.addBonusNum(new LottoNum("7"));
+        winnerLotto2.addBonusNumber(new LottoNumber("7"));
 
         assertThat(winnerLotto1).isEqualTo(winnerLotto2);
     }
@@ -84,7 +84,7 @@ class WinnerLottoTest {
     void test8(String winnerNums, String bonusNum) {
         WinnerLotto winnerLotto = new WinnerLotto(winnerNums);
 
-        winnerLotto.addBonusNum(new LottoNum(bonusNum));
+        winnerLotto.addBonusNumber(new LottoNumber(bonusNum));
 
         assertThat(winnerLotto).isNotNull();
     }
@@ -99,8 +99,8 @@ class WinnerLottoTest {
     void test9(String winnerNums, String bonusNum) {
         WinnerLotto winnerLotto = new WinnerLotto(winnerNums);
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            LottoNum lottoNum = new LottoNum(bonusNum);
-            winnerLotto.addBonusNum(lottoNum);
+            LottoNumber lottoNumber = new LottoNumber(bonusNum);
+            winnerLotto.addBonusNumber(lottoNumber);
         });
 
         assertThat(exception.getMessage()).isEqualTo(INVALID_LOTTO_NUM.toString());
@@ -114,10 +114,10 @@ class WinnerLottoTest {
     }, delimiter = ':')
     void test10(String winnerNums, String bonusNum) {
         WinnerLotto winnerLotto = new WinnerLotto(winnerNums);
-        LottoNum lottoNum = new LottoNum(bonusNum);
+        LottoNumber lottoNumber = new LottoNumber(bonusNum);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            winnerLotto.addBonusNum(lottoNum);
+            winnerLotto.addBonusNumber(lottoNumber);
         });
 
         assertThat(exception.getMessage()).isEqualTo(INVALID_BONUS_NUM.toString());
@@ -127,9 +127,9 @@ class WinnerLottoTest {
     @DisplayName("보너스 넘버 존재 테스트")
     void test11() {
         WinnerLotto winnerLotto = new WinnerLotto("1,2,3,4,5,6");
-        assertThat(winnerLotto.hasBonusNum()).isFalse();
+        assertThat(winnerLotto.hasBonusNumber()).isFalse();
 
-        winnerLotto.addBonusNum(new LottoNum("7"));
-        assertThat(winnerLotto.hasBonusNum()).isTrue();
+        winnerLotto.addBonusNumber(new LottoNumber("7"));
+        assertThat(winnerLotto.hasBonusNumber()).isTrue();
     }
 }

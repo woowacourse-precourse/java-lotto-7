@@ -3,7 +3,7 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.domain.WinnerLotto;
-import lotto.repository.impl.LottoListRepository;
+import lotto.repository.impl.LottoTicketsRepository;
 import lotto.repository.impl.WinnerStatusRepository;
 import lotto.repository.mock.MockWinnerLottoRepository;
 import lotto.service.impl.StatusServiceImpl;
@@ -17,10 +17,10 @@ class StatusServiceTest {
     void test1() {
         WinnerLotto winnerLotto = WinnerLotto.create("1,2,3,4,5,6");
         MockWinnerLottoRepository mockWinnerLottoRepository = new MockWinnerLottoRepository(winnerLotto);
-        LottoListRepository mockLottoListRepository = new LottoListRepository();
+        LottoTicketsRepository mockLottoTicketsRepository = new LottoTicketsRepository();
         WinnerStatusRepository mockWinnerStatusRepository = new WinnerStatusRepository();
 
-        StatusService statusService = new StatusServiceImpl(mockWinnerLottoRepository, mockLottoListRepository,
+        StatusService statusService = new StatusServiceImpl(mockWinnerLottoRepository, mockLottoTicketsRepository,
                 mockWinnerStatusRepository);
 
         assertThatThrownBy(statusService::calculateStatus).isInstanceOf(IllegalStateException.class);

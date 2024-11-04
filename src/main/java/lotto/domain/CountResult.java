@@ -2,18 +2,18 @@ package lotto.domain;
 
 import lotto.utils.Reward;
 
-public class WinnerCount {
+public class CountResult {
 
     private final int matchedCount;
     private final boolean hasBonus;
 
-    protected WinnerCount(int matchedCount, boolean hasBonus) {
+    protected CountResult(int matchedCount, boolean hasBonus) {
         this.matchedCount = matchedCount;
         this.hasBonus = hasBonus;
     }
 
-    public static WinnerCount of(int winnerCount, boolean hasBonus) {
-        return new WinnerCount(winnerCount, hasBonus);
+    public static CountResult of(int winnerCount, boolean hasBonus) {
+        return new CountResult(winnerCount, hasBonus);
     }
 
     protected Integer calculateReward() {

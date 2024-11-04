@@ -4,8 +4,8 @@ import static lotto.utils.ErrorMessage.NOT_HAVE_BONUS_NUM;
 import static lotto.utils.ErrorMessage.NOT_SAVE_LOTTO_LIST;
 import static lotto.utils.ErrorMessage.NOT_SAVE_WINNER_LOTTO;
 
-import lotto.domain.LottoList;
-import lotto.domain.WinnerCountList;
+import lotto.domain.LottoTickets;
+import lotto.domain.CountResults;
 import lotto.domain.WinnerLotto;
 import lotto.domain.WinnerStatus;
 import lotto.dto.WinnerStatusDto;
@@ -16,11 +16,11 @@ import lotto.service.StatusService;
 public class StatusServiceImpl implements StatusService {
 
     private final SingleRepository<WinnerLotto> winnerLottoRepository;
-    private final SingleRepository<LottoList> lottoListRepository;
+    private final SingleRepository<LottoTickets> lottoListRepository;
     private final SingleRepository<WinnerStatus> winnerStatusRepository;
 
     public StatusServiceImpl(SingleRepository<WinnerLotto> winnerLottoRepository,
-                             SingleRepository<LottoList> lottoListRepository,
+                             SingleRepository<LottoTickets> lottoListRepository,
                              SingleRepository<WinnerStatus> winnerStatusRepository) {
         this.winnerLottoRepository = winnerLottoRepository;
         this.lottoListRepository = lottoListRepository;
@@ -32,20 +32,20 @@ public class StatusServiceImpl implements StatusService {
         WinnerLotto winnerLotto = winnerLottoRepository.get()
                 .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_WINNER_LOTTO.getMessage()));
 
-        validHasBonusNum(winnerLotto);
+        validHasBonusNumber(winnerLotto);
 
-        LottoList lottoList = lottoListRepository.get()
+        LottoTickets lottoTickets = lottoListRepository.get()
                 .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_LOTTO_LIST.getMessage()));
 
-        WinnerCountList winnerCountList = WinnerCountList.of(lottoList, winnerLotto);
-        WinnerStatus winnerStatus = WinnerStatus.create(winnerCountList);
+        CountResults countResults = CountResults.of(lottoTickets, winnerLotto);
+        WinnerStatus winnerStatus = WinnerStatus.create(countResults);
 
         return winnerStatusRepository.save(winnerStatus)
                 .toDto();
     }
 
-    private void validHasBonusNum(WinnerLotto winnerLotto) {
-        if (!winnerLotto.hasBonusNum()) {
+    private void validHasBonusNumber(WinnerLotto winnerLotto) {
+        if (!winnerLotto.hasBonusNumber()) {
             throw new IllegalStateException(NOT_HAVE_BONUS_NUM.getMessage());
         }
     }

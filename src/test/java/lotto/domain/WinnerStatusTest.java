@@ -19,8 +19,8 @@ class WinnerStatusTest {
     @DisplayName("엄청 큰 수익률 발생시 에러 확인 테스트")
     void test1() {
         // given
-        List<LottoNum> lottoNums = LottoTest.toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto = new Lotto(lottoNums);
+        List<LottoNumber> lottoNumbers = LottoTest.toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(lottoNumbers);
         int expected = 10000;
         List<Lotto> lottoArrayList = new ArrayList<>();
 
@@ -28,13 +28,13 @@ class WinnerStatusTest {
             lottoArrayList.add(lotto);
         }
 
-        LottoList lottoList = new LottoList(lottoArrayList);
+        LottoTickets lottoTickets = new LottoTickets(lottoArrayList);
         WinnerLotto winnerLotto = new WinnerLotto("1,2,3,4,5,6");
-        winnerLotto.addBonusNum(new LottoNum(7));
+        winnerLotto.addBonusNumber(new LottoNumber(7));
 
-        WinnerCountList winnerCountList = WinnerCountList.of(lottoList, winnerLotto);
+        CountResults countResults = CountResults.of(lottoTickets, winnerLotto);
 
-        BigDecimal sum = WinnerStatus.create(winnerCountList).sum();
+        BigDecimal sum = WinnerStatus.create(countResults).sum();
 
         assertThat(sum).isGreaterThan(BigDecimal.valueOf(expected));
     }
@@ -42,8 +42,8 @@ class WinnerStatusTest {
     @Test
     @DisplayName("값 확인 테스트")
     void test2() {
-        List<LottoNum> lottoNums = LottoTest.toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto = new Lotto(lottoNums);
+        List<LottoNumber> lottoNumbers = LottoTest.toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(lottoNumbers);
         int cnt = 100;
         List<Lotto> lottoArrayList = new ArrayList<>();
 
@@ -51,13 +51,13 @@ class WinnerStatusTest {
             lottoArrayList.add(lotto);
         }
 
-        LottoList lottoList = new LottoList(lottoArrayList);
+        LottoTickets lottoTickets = new LottoTickets(lottoArrayList);
         WinnerLotto winnerLotto = new WinnerLotto("1,2,3,4,5,8");
-        winnerLotto.addBonusNum(new LottoNum(7));
+        winnerLotto.addBonusNumber(new LottoNumber(7));
 
-        WinnerCountList winnerCountList = WinnerCountList.of(lottoList, winnerLotto);
+        CountResults countResults = CountResults.of(lottoTickets, winnerLotto);
 
-        BigDecimal result = WinnerStatus.create(winnerCountList).sum();
+        BigDecimal result = WinnerStatus.create(countResults).sum();
 
         assertThat(result).isEqualTo(BigDecimal.valueOf(cnt).multiply(BigDecimal.valueOf(THIRD.getPrize())));
     }
@@ -65,8 +65,8 @@ class WinnerStatusTest {
     @Test
     @DisplayName("미당첨 0 반환 테스트")
     void test3() {
-        List<LottoNum> lottoNums = LottoTest.toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto = new Lotto(lottoNums);
+        List<LottoNumber> lottoNumbers = LottoTest.toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(lottoNumbers);
         int cnt = 1000000;
         List<Lotto> lottoArrayList = new ArrayList<>();
 
@@ -74,13 +74,13 @@ class WinnerStatusTest {
             lottoArrayList.add(lotto);
         }
 
-        LottoList lottoList = new LottoList(lottoArrayList);
+        LottoTickets lottoTickets = new LottoTickets(lottoArrayList);
         WinnerLotto winnerLotto = new WinnerLotto("20,21,22,23,24,25");
-        winnerLotto.addBonusNum(new LottoNum(7));
+        winnerLotto.addBonusNumber(new LottoNumber(7));
 
-        WinnerCountList winnerCountList = WinnerCountList.of(lottoList, winnerLotto);
+        CountResults countResults = CountResults.of(lottoTickets, winnerLotto);
 
-        BigDecimal result = WinnerStatus.create(winnerCountList).sum();
+        BigDecimal result = WinnerStatus.create(countResults).sum();
 
         assertThat(result).isEqualTo(BigDecimal.ZERO);
     }

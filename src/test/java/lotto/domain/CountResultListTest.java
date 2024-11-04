@@ -8,14 +8,14 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class WinnerCountListTest {
+class CountResultListTest {
 
     @Test
     @DisplayName("개수 확인 테스트")
     void test1() {
         // given
-        List<LottoNum> lottoNums = LottoTest.toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto = new Lotto(lottoNums);
+        List<LottoNumber> lottoNumbers = LottoTest.toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(lottoNumbers);
         int expected = 50;
         List<Lotto> lottoArrayList = new ArrayList<>();
 
@@ -23,12 +23,12 @@ class WinnerCountListTest {
             lottoArrayList.add(lotto);
         }
 
-        LottoList lottoList = new LottoList(lottoArrayList);
+        LottoTickets lottoTickets = new LottoTickets(lottoArrayList);
         WinnerLotto winnerLotto = new WinnerLotto("1,3,4,5,6,7");
-        winnerLotto.addBonusNum(new LottoNum(2));
+        winnerLotto.addBonusNumber(new LottoNumber(2));
 
         // when
-        Integer result = WinnerCountList.of(lottoList, winnerLotto)
+        Integer result = CountResults.of(lottoTickets, winnerLotto)
                 .calculateAllReward()
                 .get(SECOND.getPrize());
 

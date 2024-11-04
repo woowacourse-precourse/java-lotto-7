@@ -1,27 +1,27 @@
 package lotto.repository.mock;
 
 import java.util.Optional;
-import lotto.domain.LottoList;
+import lotto.domain.LottoTickets;
 import lotto.repository.SingleRepository;
 
-public class MockLottoListRepository implements SingleRepository<LottoList> {
+public class MockLottoListRepository implements SingleRepository<LottoTickets> {
 
-    private LottoList lottoList;
+    private LottoTickets lottoTickets;
 
-    public MockLottoListRepository(LottoList lottoList) {
-        this.lottoList = lottoList;
+    public MockLottoListRepository(LottoTickets lottoTickets) {
+        this.lottoTickets = lottoTickets;
     }
 
     public MockLottoListRepository() {
     }
 
     @Override
-    public LottoList save(LottoList object) {
+    public LottoTickets save(LottoTickets object) {
         return object;
     }
 
     @Override
-    public Optional<LottoList> get() {
-        return Optional.ofNullable(lottoList);
+    public Optional<LottoTickets> get() {
+        return Optional.ofNullable(lottoTickets);
     }
 }

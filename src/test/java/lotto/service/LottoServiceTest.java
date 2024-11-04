@@ -7,7 +7,7 @@ import lotto.domain.Money;
 import lotto.dto.LottoListDto;
 import lotto.dto.MoneyDto;
 import lotto.exception.EntityNotFoundException;
-import lotto.repository.impl.LottoListRepository;
+import lotto.repository.impl.LottoTicketsRepository;
 import lotto.repository.mock.MockMoneyRepository;
 import lotto.service.impl.LottoServiceImpl;
 import org.junit.jupiter.api.DisplayName;
@@ -24,8 +24,8 @@ class LottoServiceTest {
         // given
         Money money = Money.create(input);
         MockMoneyRepository moneyRepository = new MockMoneyRepository(money);
-        LottoListRepository lottoListRepository = new LottoListRepository();
-        LottoService service = new LottoServiceImpl(moneyRepository, lottoListRepository);
+        LottoTicketsRepository lottoTicketsRepository = new LottoTicketsRepository();
+        LottoService service = new LottoServiceImpl(moneyRepository, lottoTicketsRepository);
         MoneyDto expect = money.toDto();
 
         // then
@@ -39,9 +39,9 @@ class LottoServiceTest {
     @DisplayName("null 을 넣으면 예외 반환")
     void test2() {
         MockMoneyRepository mockNullRepository = new MockMoneyRepository(null);
-        LottoListRepository lottoListRepository = new LottoListRepository();
+        LottoTicketsRepository lottoTicketsRepository = new LottoTicketsRepository();
 
-        LottoService service = new LottoServiceImpl(mockNullRepository, lottoListRepository);
+        LottoService service = new LottoServiceImpl(mockNullRepository, lottoTicketsRepository);
 
         assertThatThrownBy(service::generateLottoList).isInstanceOf(EntityNotFoundException.class);
     }
@@ -52,8 +52,8 @@ class LottoServiceTest {
         // given
         Money money = Money.create("10000");
         MockMoneyRepository moneyRepository = new MockMoneyRepository(money);
-        LottoListRepository lottoListRepository = new LottoListRepository();
-        LottoService service = new LottoServiceImpl(moneyRepository, lottoListRepository);
+        LottoTicketsRepository lottoTicketsRepository = new LottoTicketsRepository();
+        LottoService service = new LottoServiceImpl(moneyRepository, lottoTicketsRepository);
 
         // when
         LottoListDto result = service.generateLottoList();

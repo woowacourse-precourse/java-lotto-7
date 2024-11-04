@@ -10,15 +10,15 @@ import java.util.function.Consumer;
 import lotto.dto.LottoListDto;
 import lotto.utils.DtoMapper;
 
-public class LottoList {
+public class LottoTickets {
 
     private final List<Lotto> lottoCollection;
 
-    public LottoList(List<Lotto> lottoCollection) {
+    public LottoTickets(List<Lotto> lottoCollection) {
         this.lottoCollection = lottoCollection;
     }
 
-    public static LottoList generate(Money money) {
+    public static LottoTickets generate(Money money) {
         List<Lotto> lottoCollection = new ArrayList<>();
 
         while (money.lottoTry()) {
@@ -26,7 +26,7 @@ public class LottoList {
             lottoCollection.add(lotto);
         }
 
-        return new LottoList(lottoCollection);
+        return new LottoTickets(lottoCollection);
     }
 
     public LottoListDto toDto() {
@@ -61,8 +61,8 @@ public class LottoList {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        LottoList lottoList = (LottoList) o;
-        return Objects.equals(lottoCollection, lottoList.lottoCollection);
+        LottoTickets lottoTickets = (LottoTickets) o;
+        return Objects.equals(lottoCollection, lottoTickets.lottoCollection);
     }
 
     @Override

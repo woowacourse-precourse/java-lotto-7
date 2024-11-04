@@ -6,21 +6,21 @@ import static lotto.utils.ErrorMessage.INVALID_LOTTO_NUM;
 
 import java.util.Objects;
 
-public class LottoNum implements Comparable<LottoNum> {
+public class LottoNumber implements Comparable<LottoNumber> {
 
-    private final Integer num;
+    private final Integer number;
 
-    protected LottoNum(Integer num) {
-        this.num = validateNum(num);
+    protected LottoNumber(Integer number) {
+        this.number = validateNumber(number);
     }
 
-    protected LottoNum(String input) {
+    protected LottoNumber(String input) {
         Integer parsedNum = parsedInt(input);
-        this.num = validateNum(parsedNum);
+        this.number = validateNumber(parsedNum);
     }
 
-    public static LottoNum create(String input) {
-        return new LottoNum(input);
+    public static LottoNumber create(String input) {
+        return new LottoNumber(input);
     }
 
     public Integer parsedInt(String num) {
@@ -31,16 +31,16 @@ public class LottoNum implements Comparable<LottoNum> {
         }
     }
 
-    public Integer validateNum(Integer num) {
-        if (num == null || num < START_NUM || num > END_NUM) {
+    public Integer validateNumber(Integer number) {
+        if (number == null || number < START_NUM || number > END_NUM) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUM.getMessage());
         }
-        return num;
+        return number;
     }
 
     @Override
     public String toString() {
-        return num.toString();
+        return number.toString();
     }
 
     @Override
@@ -51,18 +51,18 @@ public class LottoNum implements Comparable<LottoNum> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        LottoNum lottoNum = (LottoNum) o;
-        return Objects.equals(num, lottoNum.num);
+        LottoNumber lottoNumber = (LottoNumber) o;
+        return Objects.equals(number, lottoNumber.number);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(num);
+        return Objects.hashCode(number);
     }
 
 
     @Override
-    public int compareTo(LottoNum o) {
-        return Integer.compare(this.num, o.num);
+    public int compareTo(LottoNumber o) {
+        return Integer.compare(this.number, o.number);
     }
 }

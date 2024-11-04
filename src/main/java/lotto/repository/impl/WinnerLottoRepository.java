@@ -11,7 +11,7 @@ public class WinnerLottoRepository implements SingleRepository<WinnerLotto> {
     @Override
     public WinnerLotto save(WinnerLotto winnerLotto) {
         this.winnerLotto = winnerLotto;
-        return winnerLotto;
+        return this.winnerLotto;
     }
 
     @Override

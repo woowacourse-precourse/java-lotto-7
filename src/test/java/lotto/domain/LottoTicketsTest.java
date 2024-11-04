@@ -8,16 +8,16 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoListTest {
+class LottoTicketsTest {
 
     @Test
     @DisplayName("돈을 입력받고 개수 확인")
     void test1() {
         Money money = new Money("10000");
 
-        LottoList lottoList = LottoList.generate(money);
+        LottoTickets lottoTickets = LottoTickets.generate(money);
 
-        assertThat(lottoList.size()).isEqualTo(10);
+        assertThat(lottoTickets.size()).isEqualTo(10);
     }
 
     @Test
@@ -25,8 +25,8 @@ class LottoListTest {
     void test2(){
         assertRandomUniqueNumbersInRangeTest(() ->{
             Money money = new Money("8000");
-            LottoList lottoList = LottoList.generate(money);
-            assertThat(lottoList.toString()).contains( "[8, 21, 23, 41, 42, 43]",
+            LottoTickets lottoTickets = LottoTickets.generate(money);
+            assertThat(lottoTickets.toString()).contains( "[8, 21, 23, 41, 42, 43]",
                     "[3, 5, 11, 16, 32, 38]",
                     "[7, 11, 16, 35, 36, 44]",
                     "[1, 8, 11, 31, 41, 42]",

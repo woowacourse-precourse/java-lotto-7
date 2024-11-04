@@ -12,29 +12,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class WinnerCountList {
-    private final List<WinnerCount> winnerCounts;
+public class CountResults {
+    private final List<CountResult> results;
     private final Map<Integer, Integer> rewardMap;
 
-    private WinnerCountList(List<WinnerCount> winnerCounts) {
-        this.winnerCounts = winnerCounts;
+    private CountResults(List<CountResult> results) {
+        this.results = results;
         this.rewardMap = initializeRewardMap();
     }
 
-    public static WinnerCountList of(LottoList lottoList, WinnerLotto winnerLotto) {
-        List<WinnerCount> counts = calculateWinnerCounts(lottoList, winnerLotto);
-        return new WinnerCountList(counts);
+    public static CountResults of(LottoTickets lottoTickets, WinnerLotto winnerLotto) {
+        List<CountResult> counts = calculateWinnerCounts(lottoTickets, winnerLotto);
+        return new CountResults(counts);
     }
 
-    private static List<WinnerCount> calculateWinnerCounts(LottoList lottoList, WinnerLotto winnerLotto) {
-        List<WinnerCount> counts = new ArrayList<>();
-        lottoList.forEach(lotto -> counts.add(winnerLotto.countWinnerMatch(lotto)));
+    private static List<CountResult> calculateWinnerCounts(LottoTickets lottoTickets, WinnerLotto winnerLotto) {
+        List<CountResult> counts = new ArrayList<>();
+        lottoTickets.forEach(lotto -> counts.add(winnerLotto.countWinnerMatch(lotto)));
         return counts;
     }
 
     protected Map<Integer, Integer> calculateAllReward() {
-        for (WinnerCount winnerCount : winnerCounts) {
-            Integer reward = winnerCount.calculateReward();
+        for (CountResult countResult : this.results) {
+            Integer reward = countResult.calculateReward();
 
             rewardMap.computeIfPresent(reward, (key, value) -> value + 1);
         }

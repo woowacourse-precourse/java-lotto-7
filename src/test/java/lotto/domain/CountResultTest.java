@@ -14,7 +14,7 @@ import lotto.utils.Reward;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class WinnerCountTest {
+class CountResultTest {
 
     @Test
     @DisplayName("상금 반환 테스트 + 보너스 미당첨")
@@ -25,10 +25,10 @@ class WinnerCountTest {
         List<Integer> prizeList = List.of(FIRST.getPrize(), THIRD.getPrize(), FOURTH.getPrize(), FIFTH.getPrize());
 
         for (int i = 0; i < prizeList.size(); i++) {
-            WinnerCount winnerCount = new WinnerCount(allCorrectCnt - i, false);
+            CountResult countResult = new CountResult(allCorrectCnt - i, false);
 
             // when
-            Integer reward = winnerCount.calculateReward();
+            Integer reward = countResult.calculateReward();
 
             // then
             Integer expected = prizeList.get(i);
