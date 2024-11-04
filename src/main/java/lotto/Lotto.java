@@ -27,16 +27,16 @@ public class Lotto {
             }
         }
         boolean isBonusInLotto = containsBonus(bonus);
-        if ((count == 2 && isBonusInLotto) || count == 3)
-            return Optional.of(EnumLottoPrice.MATCH_3);
-        if ((count == 3 && isBonusInLotto) || count == 4)
-            return Optional.of(EnumLottoPrice.MATCH_4);
-        if ((count == 4 && isBonusInLotto) || count == 5)
-            return Optional.of(EnumLottoPrice.MATCH_5);
-        if (count == 5 && !isBonusInLotto)
-            return Optional.ofNullable(EnumLottoPrice.MATCH_5_EXCEPT_BONUS);
         if ((count == 5 && isBonusInLotto) || count == 6)
             return Optional.of(EnumLottoPrice.MATCH_6);
+        if (count == 5 && !isBonusInLotto)
+            return Optional.ofNullable(EnumLottoPrice.MATCH_5_EXCEPT_BONUS);
+        if ((count == 4 && isBonusInLotto) || count == 5)
+            return Optional.of(EnumLottoPrice.MATCH_5);
+        if ((count == 3 && isBonusInLotto) || count == 4)
+            return Optional.of(EnumLottoPrice.MATCH_4);
+        if ((count == 2 && isBonusInLotto) || count == 3)
+            return Optional.of(EnumLottoPrice.MATCH_3);
 
         return Optional.empty();
     }

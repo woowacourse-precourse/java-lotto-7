@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,16 +10,20 @@ public class LottoData {
 
     private final List<Lotto> generatedLottos;
     private final List<Integer> userPickedNumbers;
+
     private final Integer bonusNumber;
-
     private final List<EnumLottoPrice> matches;
-    private Long winningAmount = 0L;
 
+    private Long winningAmount = 0L;
     public LottoData(List<Lotto> generatedLottos, List<Integer> userPickedNumbers, Integer bonusNumber) {
         this.generatedLottos = generatedLottos;
         this.userPickedNumbers = userPickedNumbers;
         this.bonusNumber = bonusNumber;
         this.matches = new ArrayList<>();
+    }
+
+    public List<EnumLottoPrice> getMatches() {
+        return Collections.unmodifiableList(matches);
     }
 
     public void produceStatistics() {
