@@ -10,6 +10,7 @@ public class Input {
         String input = Console.readLine();
         int price = parseInt(input.trim());
         validatePrice(price);
+        System.out.println();
         return price;
     }
 
@@ -21,6 +22,7 @@ public class Input {
             winningNumbers.add(Integer.parseInt(number.trim()));
         }
         validateWinningNumbers(winningNumbers);
+        System.out.println();
         return winningNumbers;
     }
 
@@ -29,6 +31,7 @@ public class Input {
         String input = Console.readLine();
         int number = parseInt(input.trim());
         validateNumberRange(number);
+        System.out.println();
         return number;
     }
 
