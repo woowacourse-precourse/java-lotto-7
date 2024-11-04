@@ -28,13 +28,6 @@ class LottoTest {
     }
 
     @Test
-    void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
-    }
-
-    @Test
     void 로또_번호가_1부터_45_사이의_숫자가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 100)))
                 .isInstanceOf(IllegalArgumentException.class)

@@ -156,6 +156,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        });
+    }
+
+    @Test
     void 예외상황_처리후_재시도_테스트() {
         assertSimpleTest(() -> {
             // 첫 번째 시도: 잘못된 입력
