@@ -16,7 +16,7 @@ class LottosTest {
     @DisplayName("로또 번호의 당첨 결과를 확인한다.")
     @ParameterizedTest
     @CsvSource({"1등, 1","2등, 1","3등, 2","4등, 1","5등, 2"})
-    void 로또_번호의_당첨_결과를_확인한다(String rank, Integer count) {
+    void 로또_번호의_당첨_결과를_확인_테스트(String rank, Integer count) {
         //given
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 30;
@@ -55,9 +55,9 @@ class LottosTest {
         Assertions.assertThat(totalPrizeMoney).isEqualTo(30000000+1500000);
     }
 
-    @DisplayName("총 수익률을 계산 테스트")
+    @DisplayName("수익률을 계산 테스트")
     @Test
-    void 총_수익률_계산_결과를_확인한다() {
+    void 수익률_계산_결과_테스트() {
         //given
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonunsNumber = 10;
