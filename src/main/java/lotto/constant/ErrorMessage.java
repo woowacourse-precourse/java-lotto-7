@@ -8,7 +8,7 @@ public enum ErrorMessage {
     NOT_INPUT_INTEGER("정수를 입력해주세요."),
     DUPLICATION_LOTTO_NUMBER("로또 번호는 중복되면 안됩니다."),
     INVALID_LOTTO_SIZE("로또 번호는 6개여야 합니다."),
-    INVALID_LOTTO_RANGE("로또 번호는 1~45 사이여야 합니다."),
+    INVALID_LOTTO_RANGE("로또 번호는 1~45 사이여야 합니다.");
 
 
 
