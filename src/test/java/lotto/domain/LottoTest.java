@@ -1,11 +1,12 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @Test
@@ -21,5 +22,38 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("로또 번호는 6개의 숫자여야 한다.")
+    void lottoNumbersShouldBeSix() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("로또 번호는 중복될 수 없다.")
+    void lottoNumbersShouldNotBeDuplicated() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 5);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    }
+
+    @Test
+    @DisplayName("로또 번호는 1부터 45 사이의 숫자여야 한다.")
+    void lottoNumbersShouldBeBetween1And45() {
+        List<Integer> numbers = Arrays.asList(0, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("로또 생성 시 번호가 유효하면 예외가 발생하지 않는다.")
+    void validLottoNumbersDoesNotThrowException() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        assertThatCode(() -> new Lotto(numbers))
+                .doesNotThrowAnyException();
+    }
 }
