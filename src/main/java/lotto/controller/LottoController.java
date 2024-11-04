@@ -34,7 +34,7 @@ public class LottoController {
     }
 
     public void run() {
-        String input = "";
+        String input;
         InputValidator inputValidator = new InputValidator();
         inputView.showRequestMessage();
         while (true) {

@@ -17,10 +17,9 @@ public class LottoResultView implements OutputView {
     }
 
     @Override
-    public String display() {
+    public void display() {
         showHeadLine();
         System.out.printf(lottoResultMessageDtoDto.getResultMessage());
         System.out.printf(LOTTO_WINNING_RATE_OUTPUT_HEADLINE, lottoResultMessageDtoDto.getWinningRate());
-        return "";
     }
 }

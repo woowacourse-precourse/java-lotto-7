@@ -29,8 +29,8 @@ class GenerateMessageServiceTest {
                 Arguments.of(
                         List.of(new Lotto(List.of(10, 2, 3, 4, 5, 6)),
                                 new Lotto(List.of(10, 2, 13, 4, 5, 6))),
-                        List.of(2, 3, 4, 5, 6, 10).toString() + "%n"
-                                + List.of(2, 4, 5, 6, 10, 13).toString() + "%n")
+                        List.of(2, 3, 4, 5, 6, 10) + "%n"
+                                + List.of(2, 4, 5, 6, 10, 13) + "%n")
         );
     }
 

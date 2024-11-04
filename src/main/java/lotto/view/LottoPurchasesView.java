@@ -16,9 +16,8 @@ public class LottoPurchasesView implements OutputView {
     }
 
     @Override
-    public String display() {
+    public void display() {
         showHeadLine();
         System.out.printf(lottoPurchasesDto.getPurchasesMessage() + "%n");
-        return null;
     }
 }
