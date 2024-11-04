@@ -8,7 +8,6 @@ import static lotto.model.Winning.SECOND;
 import static lotto.model.Winning.THIRD;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
