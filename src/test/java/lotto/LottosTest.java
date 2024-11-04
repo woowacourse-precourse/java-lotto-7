@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottosTest {
-
     @ParameterizedTest
     @MethodSource("winningParameters")
     void 당첨번호와_구매한_로또가_일치하는지_확인한다(List<Lotto> lottoList, WinningNumbers winningNumbers, List<Rank> expectedRanks) {

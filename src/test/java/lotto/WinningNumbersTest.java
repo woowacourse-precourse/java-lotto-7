@@ -7,7 +7,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class WinningNumbersTest {
-
     @Test
     void 당첨번호와_보너스번호를_생성한다() {
         // given

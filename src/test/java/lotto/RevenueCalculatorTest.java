@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class RevenueCalculatorTest {
-
     @Test
     void 당첨된_내역을_기준으로_수익률을_계산한다() {
         // given

@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class StringParserTest {
-
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3", "10,40,30"})
     void 구분자를_기준으로_자르게된다면_결과_리스트의_크기는_3이다(String inputValue) {
