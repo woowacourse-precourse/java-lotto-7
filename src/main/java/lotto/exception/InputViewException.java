@@ -9,11 +9,11 @@ import lotto.constants.ExceptionsMessageConstants;
 public class InputViewException {
 
     public void validateInputMoney(String inputMoney) {
+        validateIfInputContainsWhitespace(inputMoney);
         validateMoneyFormat(inputMoney);
         validateIfMoneyPositive(inputMoney);
         validateIfMoneyMultipleOfThousand(inputMoney);
         validateIfMoneyStartsWithZero(inputMoney);
-        validateIfInputContainsWhitespace(inputMoney);
     }
 
     private void validateMoneyFormat(String inputMoney) {
