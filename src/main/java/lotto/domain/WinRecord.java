@@ -5,11 +5,16 @@ import java.util.*;
 public class WinRecord {
     public static final List<Integer> WINNING_PRIZES = Collections.unmodifiableList(Arrays.asList(0, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000));
     private static WinRecord winRecordInstance;
-    private final List<Integer> winRecord = new ArrayList<>(Collections.nCopies(ValidatorWinRecord.MIN_WIN_RANK + 1, 0));
+    private final List<Integer> winRecord = new ArrayList<>(Collections.nCopies(ValidatorWinRecord.MAX_WIN_RANK + 1, 0));
 
     private WinRecord(List<Integer> winRecordInput) {
         new ValidatorWinRecord(winRecordInput);
         setWinRecord(winRecordInput);
+    }
+
+    public static WinRecord getWinRecord(){
+        if(winRecordInstance == null) throw new IllegalArgumentException("[ERROR] 싱글톤 객체가 생성되기 전에 불렀습니다.");
+        return winRecordInstance;
     }
 
     public static WinRecord getWinRecord(List<Integer> winRecordInput) {

@@ -49,7 +49,7 @@ public class PurchaseAmountTest {
         PurchaseAmount.resetInstance();
         PurchaseAmount purchaseAmount = PurchaseAmount.getPurchaseAmount(test);
 
-        assertEquals(purchaseAmount.getPurchaseAmount(), test);
+        assertEquals(purchaseAmount.getPurchaseAmountValue(), test);
     }
 
     @ParameterizedTest

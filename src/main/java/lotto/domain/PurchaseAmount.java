@@ -9,6 +9,11 @@ public class PurchaseAmount {
         purchaseAmount = purchaseInput;
     }
 
+    public static PurchaseAmount getPurchaseAmount(){
+        if(purchaseAmountInstance == null) throw new IllegalArgumentException("[ERROR] 싱글톤 객체가 생성되기 전에 불렀습니다.");
+        return purchaseAmountInstance;
+    }
+
     public static PurchaseAmount getPurchaseAmount(int purchaseInput) {
         if (purchaseAmountInstance == null) purchaseAmountInstance = new PurchaseAmount(purchaseInput);
         return purchaseAmountInstance;
@@ -21,7 +26,7 @@ public class PurchaseAmount {
     }
 
 
-    public int getPurchaseAmount() {
+    public int getPurchaseAmountValue() {
         return purchaseAmount;
     }
 
