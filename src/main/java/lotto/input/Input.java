@@ -30,7 +30,7 @@ public class Input {
             System.out.println("\n" + ENTER_WINNING_NUMBERS.getPrompt());
 
             try {
-                List<String> winningNumbersInput = List.of(Console.readLine().split(","));
+                List<String> winningNumbersInput = List.of(Console.readLine().replaceAll(" ", "").split(","));
                 List<Integer> winningNumbers = covertStringToInteger(winningNumbersInput);
                 return new Lotto(winningNumbers);
             } catch (NumberFormatException e) {
