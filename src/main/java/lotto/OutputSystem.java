@@ -16,7 +16,7 @@ public class OutputSystem {
     }
 
     public static void printMessageForLottoNumber() {
-        System.out.println("\n당첨 번호를 입력해주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
     public static void printMessageForBonusNumber(){
@@ -30,7 +30,7 @@ public class OutputSystem {
             gain += checkNumber[i] * LottoWinning.values()[i].getPrize();
         }
 
-        return (double) gain / lottoAmount * 100;
+        return ((double) gain / lottoAmount) * 100;
     }
 
     public static void printMessageForWinningStatistics(int[] checkNumber,int lottoAmount){
@@ -38,14 +38,14 @@ public class OutputSystem {
         for (LottoWinning winning : LottoWinning.values()) {
             int count = checkNumber[winning.ordinal()]; // Enum의 인덱스를 사용하여 개수 가져오기
             if (winning == LottoWinning.FIVE_BONUS_MATCH) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개\n",
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n",
                         winning.getMatchCount(), winning.getPrize(), count);
                 continue;
             }
-            System.out.printf("%d개 일치 (%d원) - %d개\n",
+            System.out.printf("%d개 일치 (%,d원) - %d개\n",
                     winning.getMatchCount(), winning.getPrize(), count);
         }
         double lottoLateNumber = lottoLate(checkNumber,lottoAmount);
-        System.out.printf("총 수익률은 %.1f%%입니다.", lottoLateNumber);
+        System.out.printf("총 수익률은 %,.1f%%입니다.\n", lottoLateNumber);
     }
 }
