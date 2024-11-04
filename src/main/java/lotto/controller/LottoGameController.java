@@ -61,7 +61,7 @@ public class LottoGameController {
         OutputView.printLottoCount(publishedLottiesDTO.getPublishedTicket());
         OutputView.printEnter();
         for (Lotto lotto : publishedLottiesDTO.getRandomLotties()) {
-            OutputView.printLotto(lotto.getLotto());
+            OutputView.printLotto(lotto.getSortedLotto());
         }
         OutputView.printEnter();
     }
