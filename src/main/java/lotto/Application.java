@@ -25,7 +25,7 @@ public class Application {
         System.out.println();
         List<Integer> winningNumbers = InputHandler.getWinningNumbers();
         System.out.println();
-        int bonusNumber = InputHandler.getBonusNumber();
+        int bonusNumber = InputHandler.getBonusNumber(winningNumbers);
         lottoDraw.setWinningNumbers(winningNumbers, bonusNumber);
 
         // 당첨 결과 출력
