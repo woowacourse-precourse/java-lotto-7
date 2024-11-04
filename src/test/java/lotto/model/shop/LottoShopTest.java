@@ -38,6 +38,7 @@ public class LottoShopTest {
     @Test
     @DisplayName("로또 구매 금액이 로또 가격보다 작을 경우 예외를 던진다.")
     void purchaseRandomLottos_LottoMoneyTooSmall_ExceptionThrown() {
+
         // given
         int money = LOTTO_PRICE - 1;
 
