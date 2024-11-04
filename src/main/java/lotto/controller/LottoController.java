@@ -26,5 +26,7 @@ public class LottoController {
         outputView.quantityPrint(lottoQuantity);
         List<Lotto> lottos = service.issueLottos(lottoQuantity);
         outputView.lottosPrint(lottos);
+        outputView.winningNumberPrint();
+        String winningNumberInput = inputView.winningNumberInput();
     }
 }

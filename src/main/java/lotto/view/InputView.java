@@ -5,4 +5,8 @@ public class InputView {
     public String purchaseInput(){
         return Console.readLine();
     }
+
+    public String winningNumberInput(){
+        return Console.readLine();
+    }
 }
