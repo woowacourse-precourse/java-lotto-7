@@ -21,7 +21,7 @@ public class LottoGameDisplay {
                 LottoGameValidator.checkMoneyValid(money);
 
                 return money;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 printErrorMessage(e);
             }
         }
@@ -37,7 +37,7 @@ public class LottoGameDisplay {
                 LottoGameValidator.checkWinNumbersValid(winNumbers);
 
                 return winNumbers;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 printErrorMessage(e);
             }
         }
@@ -53,7 +53,7 @@ public class LottoGameDisplay {
                 LottoGameValidator.checkBonusValid(bonus, winnerNumbers);
 
                 return bonus;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 printErrorMessage(e);
             }
         }
