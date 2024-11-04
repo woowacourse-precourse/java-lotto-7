@@ -36,7 +36,7 @@ public class InputWinningNumbers {
         return Objects.hash(inputWinningNumbers);
     }
 
-    public String getInputWinningNumbers() {
+    public String get() {
         return inputWinningNumbers;
     }
 }
