@@ -6,6 +6,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class LottoResult {
+    private static final int DEFAULT_RANK_COUNT = 0;
 
     private final Map<LottoRank, Integer> results;
 
@@ -14,7 +15,7 @@ public class LottoResult {
     }
 
     public int getRankCount(LottoRank rank) {
-        return results.getOrDefault(rank, 0);
+        return results.getOrDefault(rank, DEFAULT_RANK_COUNT);
     }
 
     public Map<LottoRank, Integer> getResults() {

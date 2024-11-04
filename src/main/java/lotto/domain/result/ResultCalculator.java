@@ -10,11 +10,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultCalculator {
+    private static final int INITIAL_COUNT = 0;
+    private static final int INCREMENT_COUNT = 1;
 
     public Map<LottoRank, Integer> calculateResults(LottoTickets lottoTickets, WinningLotto winningLotto) {
         Map<LottoRank, Integer> results = new EnumMap<>(LottoRank.class);
         for (LottoRank rank : LottoRank.values()) {
-            results.put(rank, 0);
+            results.put(rank, INITIAL_COUNT);
         }
 
         List<LottoRank> matches = lottoTickets.getTickets().stream()
@@ -22,7 +24,7 @@ public class ResultCalculator {
                 .collect(Collectors.toList());
 
         for (LottoRank rank : matches) {
-            results.put(rank, results.get(rank) + 1);
+            results.put(rank, results.get(rank) + INCREMENT_COUNT);
         }
         return results;
     }
