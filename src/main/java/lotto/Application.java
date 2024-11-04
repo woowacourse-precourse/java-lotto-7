@@ -10,12 +10,11 @@ public class Application {
 
     public static void main(String[] args) {
         LottoService lottoService = new LottoService();
+        UserInput userInput = new UserInput();
 
-        System.out.println("구입금액을 입력해 주세요.");
-        String purchase = Console.readLine();
+        int numberOfTickets = userInput.numberOfTickets();
         System.out.println();
 
-        int numberOfTickets = lottoService.getNumberOfTickets(purchase);
         System.out.println(numberOfTickets + "개를 구매했습니다.");
         List<List<Integer>> tickets = lottoService.getTickets(numberOfTickets);
         System.out.println();
