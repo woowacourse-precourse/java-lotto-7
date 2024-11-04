@@ -49,6 +49,6 @@ class MoneyTest {
         Money money = new Money(5000);
         money.take(5000);
         money.receiveWinningAmount(7333);
-        assertEquals(money.getRateOfReturn(), 1.5);
+        assertEquals(money.getRateOfReturn(), 146.7);
     }
 }

@@ -104,7 +104,6 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [x] 사용한 금액을 반환하는 기능 추가
 - [x] 당첨금을 저장하는 기능 추가
 - [x] 수익률을 반환하는 기능 추가
-- [ ] 가져가는 돈에 대한 예외처리 기능 추가
 - Store
 - [x] 로또 번호를 발행하는 기능 추가
 - [x] 로또를 판매하는 기능 추가
