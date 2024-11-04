@@ -39,6 +39,9 @@ public class WinningNumbers {
     }
 
     public List<Integer> getWinningNumbers() {
+        if (winningNumbers == null) {
+            throw new IllegalStateException("[ERROR] 당첨 번호가 비어있습니다.");
+        }
         return winningNumbers;
     }
 }

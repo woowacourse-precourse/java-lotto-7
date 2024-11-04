@@ -46,7 +46,7 @@ public class PurchaseAmount {
     private int convertToValidType(String amount) {
         try {
             return Integer.parseInt(amount);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌값은 입력할 수 없습니다.");
         }
     }

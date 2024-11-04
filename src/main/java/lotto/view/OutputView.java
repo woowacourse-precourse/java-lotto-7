@@ -29,4 +29,8 @@ public class OutputView {
     public static void printWinningNumberInputMessage() {
         printMessage("당첨 번호를 입력해 주세요.");
     }
+
+    public static void printBonusNumberInputMessage() {
+        printMessage("보너스 번호를 입력해 주세요.");
+    }
 }

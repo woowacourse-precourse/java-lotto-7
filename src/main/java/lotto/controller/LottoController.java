@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 import lotto.dto.LottosDto;
+import lotto.model.BonusNumber;
 import lotto.model.LottoMachine;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
@@ -21,6 +22,9 @@ public class LottoController {
                 new RandomLottoNumberGenerationStrategy());
         OutputView.printPurchasedLottos(LottosDto.from(lottoMachine.getLottos()));
         WinningNumbers winningNumber = getInput(OutputView::printWinningNumberInputMessage, WinningNumbers::from);
+        BonusNumber bonusNumber = getInput(OutputView::printBonusNumberInputMessage,
+                input -> BonusNumber.from(input, winningNumber.getWinningNumbers()));
+        
     }
 
     private <T> T getInput(Runnable outputMessage, Function<String, T> parser) {
