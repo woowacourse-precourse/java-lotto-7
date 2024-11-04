@@ -53,4 +53,15 @@ public class LottoMachine {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
+    private LottoResult determineResults(Lottos lottos, WinningLotto winningLotto) {
+        LottoResult lottoResult = new LottoResult();
+
+        for (Lotto lotto : lottos.getLottos()) {
+            Rank rank = winningLotto.match(lotto);
+            lottoResult.addMatching(rank);
+        }
+
+        return lottoResult;
+    }
+
 }
