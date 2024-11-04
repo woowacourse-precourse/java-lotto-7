@@ -62,6 +62,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 로또_번호의_형식이_올바르지_않으면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5", "7"); // 6개가 아닌 경우
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

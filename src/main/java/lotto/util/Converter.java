@@ -14,6 +14,7 @@ public class Converter {
                 .toList();
 
         Validator.validateNoDuplicates(numbers);
+        Validator.validateLottoSize(numbers);
 
         return numbers;
     }
