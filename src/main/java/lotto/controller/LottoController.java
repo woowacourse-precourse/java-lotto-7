@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
+import lotto.constant.Rank;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.LottoNumber;
@@ -10,7 +11,6 @@ import lotto.model.Money;
 import lotto.model.Statistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.constant.Rank;
 import lotto.view.StatisticsView;
 
 public class LottoController {
@@ -29,7 +29,7 @@ public class LottoController {
         Money capital = attempt(() -> new Money(inputView.readPurchaseAmount()));
         List<Lotto> lottos = issueLottosWith(capital);
 
-        List<Rank> ranks = drawLotto().match(lottos);
+        List<Rank> ranks = attempt(() -> drawLotto().match(lottos));
 
         statisticsView.printStatistics(new Statistics(ranks), capital);
     }
