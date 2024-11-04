@@ -3,6 +3,7 @@ package lotto.utils;
 import java.util.List;
 import lotto.validation.NumberCountValidator;
 import lotto.validation.NumberRangeValidator;
+import lotto.validation.StringValidator;
 import lotto.validation.UniqueNumberValidator;
 import lotto.validation.Validator;
 
@@ -17,6 +18,10 @@ public class ValidatorFactory {
 
     public static Validator<List<Integer>> createNumberCountValidator(int count, String errorMessage) {
         return new NumberCountValidator(count, errorMessage);
+    }
+
+    public static Validator<String> createStringValidator(String errorMessage) {
+        return new StringValidator(errorMessage);
     }
 
 }
