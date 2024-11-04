@@ -6,10 +6,10 @@ import lotto.domain.LottoRankType;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.util.stream.Collectors.joining;
 import static lotto.common.constants.ViewMessage.*;
-import static lotto.domain.LottoRankType.*;
 
 public class OutputView {
 
@@ -53,14 +53,17 @@ public class OutputView {
         lottoRankTypes.forEach(rank -> rankCountMap.put(rank, rankCountMap.get(rank) + INCREMENT_COUNT));
     }
 
-    private static void printLottoResults(EnumMap<LottoRankType, Integer> rankCountMap) {
-        List.of(
-                formatResult(FIFTH.getMatchCount(), FIFTH.getPrice(), rankCountMap.getOrDefault(FIFTH, DEFAULT_VALUE)),
-                formatResult(FOURTH.getMatchCount(), FOURTH.getPrice(), rankCountMap.getOrDefault(FOURTH, DEFAULT_VALUE)),
-                formatResult(THIRD.getMatchCount(), THIRD.getPrice(), rankCountMap.getOrDefault(LottoRankType.THIRD, DEFAULT_VALUE)),
-                formatBonusResult(SECOND.getMatchCount(), SECOND.getPrice(), rankCountMap.getOrDefault(SECOND, DEFAULT_VALUE)),
-                formatResult(FIRST.getMatchCount(), FIRST.getPrice(), rankCountMap.getOrDefault(FIRST, DEFAULT_VALUE))
-        ).forEach(OutputView::printMessage);
+    private static void printLottoResults(Map<LottoRankType, Integer> rankCountMap) {
+        Arrays.stream(LottoRankType.values())
+                .filter(lottoRankType -> LottoRankType.valueOf(lottoRankType.name()) != LottoRankType.NONE)
+                .forEach(lottoRankType -> printMessage(formatLottoRankResult(lottoRankType, rankCountMap)));
+    }
+
+    private static String formatLottoRankResult(LottoRankType lottoRankType, Map<LottoRankType, Integer> rankCountMap) {
+        if (lottoRankType.isHasBonusNumber()) {
+            return formatBonusResult(lottoRankType.getMatchCount(), lottoRankType.getPrice(), rankCountMap.getOrDefault(lottoRankType, DEFAULT_VALUE));
+        }
+        return formatResult(lottoRankType.getMatchCount(), lottoRankType.getPrice(), rankCountMap.getOrDefault(lottoRankType, DEFAULT_VALUE));
     }
 
     private static String formatResult(final int matchCount, final int price, final int count) {
