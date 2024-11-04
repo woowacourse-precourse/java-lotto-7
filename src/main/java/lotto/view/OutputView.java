@@ -8,7 +8,7 @@ import lotto.model.Rank;
 public class OutputView {
     private static OutputView instance;
     private static final String PURCHASE_SIZE_INFO = "\n%d개를 구매했습니다.\n";
-    private static final String WINNING_STATISTIC = "당첨 통계";
+    private static final String WINNING_STATISTIC = "\n당첨 통계";
     private static final String DASH_BAR = "---";
     private static final String THREE_MATCH_MESSAGE = "3개 일치 (5,000원) - %d개%n";
     private static final String FOUR_MATCH_MESSAGE = "4개 일치 (50,000원) - %d개%n";
