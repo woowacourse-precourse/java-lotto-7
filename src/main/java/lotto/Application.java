@@ -45,8 +45,7 @@ public class Application {
 
     // 발행된 로또 출력
     private static void printPurchasedLottos(List<Lotto> lottos) {
-        System.out.println("");
-        System.out.println(lottos.size() + "개를 구매했습니다.");
+        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
@@ -54,8 +53,7 @@ public class Application {
 
     // 당첨 번호 입력
     private static List<Integer> getWinningNumbers() {
-        System.out.println("");
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String[] inputs = Console.readLine().split(",");
         if (inputs.length != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
@@ -76,8 +74,7 @@ public class Application {
 
     // 보너스 번호 입력
     private static int getBonusNumber() {
-        System.out.println("");
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine().trim());
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이여야 합니다.");
@@ -85,42 +82,29 @@ public class Application {
         return bonusNumber;
     }
 
-    // [기능] 당첨 통계 계산 및 출력
+    // 당첨 통계 계산 및 출력
     private static void printStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        int[] prizeCount = new int[5]; // 3등 ~ 1등
         int totalPrize = 0;
+        int[] prizeCount = new int[LottoRank.values().length];
 
         for (Lotto lotto : lottos) {
-            int matchCount = lotto.getMatchCount(winningNumbers);
-            boolean bonusMatch = lotto.containsNumber(bonusNumber);
-
-            if (matchCount == 6) {
-                prizeCount[4]++; // 1등
-                totalPrize += 2_000_000_000;
-            } else if (matchCount == 5 && bonusMatch) {
-                prizeCount[3]++; // 2등
-                totalPrize += 30_000_000;
-            } else if (matchCount == 5) {
-                prizeCount[2]++; // 3등
-                totalPrize += 1_500_000;
-            } else if (matchCount == 4) {
-                prizeCount[1]++; // 4등
-                totalPrize += 50_000;
-            } else if (matchCount == 3) {
-                prizeCount[0]++; // 5등
-                totalPrize += 5_000;
+            LottoRank rank = LottoRank.valueOf(lotto.getMatchCount(winningNumbers), lotto.containsNumber(bonusNumber));
+            if (rank != null) {
+                prizeCount[rank.ordinal()]++;
+                totalPrize += rank.getPrize();
             }
         }
 
-        System.out.println("");
-        System.out.println("당첨 통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + prizeCount[0] + "개");
-        System.out.println("4개 일치 (50,000원) - " + prizeCount[1] + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + prizeCount[2] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + prizeCount[3] + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + prizeCount[4] + "개");
-        
-        double yield = (double) totalPrize / (lottos.size() * 1000) * 100;
+        System.out.println("\n당첨 통계\n---");
+        for (LottoRank rank : LottoRank.values()) {
+            System.out.printf("%s - %d개\n", rank.getDescription(), prizeCount[rank.ordinal()]);
+        }
+
+        double yield = calculateYield(totalPrize, lottos.size() * 1000);
         System.out.printf("총 수익률은 %.1f%%입니다.%n", yield);
+    }
+
+    private static double calculateYield(int totalPrize, int totalAmount) {
+        return (double) totalPrize / totalAmount * 100;
     }
 }
