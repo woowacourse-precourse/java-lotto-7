@@ -27,6 +27,14 @@ public class Lottos {
         this.lottos = generatedLotto;
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public Map<Rank, Integer> getWinningStatistics() {
+        return winningStatistics;
+    }
+
     public void calculateWinningStatistics(WinningLotto winningLotto) {
         winningStatistics = lottos.stream()
                 .collect(groupingBy(
