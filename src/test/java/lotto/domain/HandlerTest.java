@@ -85,21 +85,9 @@ class HandlerTest {
     // 구매 금액 만큼의 로또 수 조회
     String readAmount = "8000";
     System.setIn(setReadLine(readAmount));
+    this.input = new Input(given);
 
-    //when
-    int amount = input.readAmount();
-    int lottoCounts = input.getLottoCounts(amount);
-    // 로또 수 만큼 로또 발행 후 전달
-    List<Integer> generated = handler.generateLotto();
-    // 당첨 번호와 보너스 번호 조회
-    List<Integer> winning = handler.getWinning();
-    int bonus = handler.getBonus();
-    // 실제 일치성 횟수 계산 결과 조회
-    String actualResult = handler.compareNumbersResult(generated, winning, bonus);
-    // 예시와 실제값 일치 여부 검증
-
-
-    assertEquals(given, actualResult); //org.opentest4j.AssertionFailedError at HandlerTest.java:118
+//    new Lo
 
   }
 
@@ -120,7 +108,7 @@ class HandlerTest {
         "6개 일치 (2,000,000,000원) - 0개";
 
     // 수익률 계산
-    double revenue = handler.calculateRevenue(resultExam, input.readAmount());
+    double revenue = handler.valueationRevenue(resultExam, input.readAmount());
     // 수익률 계산 결과 조회
     String actual = handler.getResult(revenue);
     // 검증

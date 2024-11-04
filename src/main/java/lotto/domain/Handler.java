@@ -55,7 +55,12 @@ public class Handler {
   // 전달된 로또 결과 조회
 
   // 당첨 번호 조회
-  public List<Integer> getWinning(){
+  public List<Integer> getWinning(String winningNumbers){
+    List<Integer> winning = new ArrayList<>();
+    for (int i = 0; i < winningNumbers.length(); i++) {
+      char winningNumber = winningNumbers.charAt(i);
+      winning.add((int)winningNumber);
+    }
     return List.of(1,2,3,4,5,6);
   }
   // 보너스 번호 조회
@@ -63,49 +68,52 @@ public class Handler {
     return 0;
   }
   // 5. 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다
-  public String compareNumbersResult(List<Integer> actualLotto, List<Integer> winningNumbers, int bonus) {
+  public String compareNumbersResult(List<List<Integer>> lotto, List<Integer> winningNumbers, int bonus) {
     String result = "";
     int equals = 0;
     boolean containsBonus = false;
-    // 실제 로또값에 당첨번호가 포함된 경우 일치수 증가
-    for (Integer winning : winningNumbers) {
-      if (actualLotto.contains(winning)) {
-        equals++;
+    // 각 로또 당첨번호 일치성 검사
+
+    for (List<Integer> lottoNumbers : lotto) {
+      // 실제 로또값에 당첨번호가 포함된 경우 일치수 증가
+      for (Integer winning : winningNumbers) {
+        if (lotto.contains(winning)) {
+          equals++;
+        }
+      }
+      // 실제 로또값에 보너스번호가 포함된 경우
+      boolean hasBonus = lotto.contains(bonus);
+
+      // 6개 일치
+      if(equals == 6) {
+        // 어떻게 비교할 것인가 -> 반복문 vs 스트림
+        result = FIRST.getMessage();
+      }
+      // 5개 일치, 보너스 볼 일치
+      if(equals == 5 && containsBonus) {
+        result = SECOND.getMessage();
+      }
+      // 5개 일치
+      if(equals == 5) {
+        result = THIRD.getMessage();
+      }
+      // 4개 일치
+      if(equals == 4) {
+        result = FOURTH.getMessage();
+      }
+      // 3개 일치
+      if(equals == 3) {
+        result = FIFTH.getMessage();
       }
     }
-    // 실제 로또값에 보너스번호가 포함된 경우
-    boolean hasBonus = actualLotto.contains(bonus);
 
-    // 6개 일치
-    if(equals == 6) {
-
-
-      // 어떻게 비교할 것인가 -> 반복문 vs 스트림
-      result = FIRST.getMessage();
-    }
-    // 5개 일치, 보너스 볼 일치
-    if(equals == 5 && containsBonus) {
-      result = SECOND.getMessage();
-    }
-    // 5개 일치
-    if(equals == 5) {
-      result = THIRD.getMessage();
-    }
-    // 4개 일치
-    if(equals == 4) {
-      result = FOURTH.getMessage();
-    }
-    // 3개 일치
-    if(equals == 3) {
-      result = FIFTH.getMessage();
-    }
     return result;
   }
 
 
 
   // 6. 비교한 결과를 토대로 총 수익률 계산한다
-  public double calculateRevenue(String result, int amount) {
+  public double valueationRevenue(String result, int amount) {
     double revenue = 0;
     // 수익률 = 당첨 금액 / 투입 금액 * 100
     // 결과 문자열에서 당첨 금액 추출
