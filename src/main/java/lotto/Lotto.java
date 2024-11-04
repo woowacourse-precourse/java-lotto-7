@@ -3,6 +3,9 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 
+import static lotto.exception.ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.exception.ExceptionMessage.INVALID_LOTTO_AMOUNT;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -14,14 +17,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_AMOUNT.getMessage());
         }
     }
 
     private void validateDuplicateLotto(List<Integer> lottoNumbers) {
         HashSet<Integer> nonDuplicateLottoNumbers = new HashSet<>(lottoNumbers);
         if (nonDuplicateLottoNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복을 허용하지 않습니다.");
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
