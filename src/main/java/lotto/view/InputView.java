@@ -13,55 +13,36 @@ public class InputView {
     private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     public static int purchaseAmount() {
-        while (true) {
-            try {
-                System.out.println(INPUT_PURCHASE_AMOUNT);
-                String amount = read();
-                return parseAndValidateAmount(amount);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
-            }
-        }
+        System.out.println(INPUT_PURCHASE_AMOUNT);
+        String amount = read();
+
+        return parseAndValidateAmount(amount);
     }
 
     public static Lotto winningLotto() {
-        while (true) {
-            try {
-                System.out.println();
-                System.out.println(INPUT_WINNING_NUMBERS);
-                String numbers = read();
+        System.out.println();
+        System.out.println(INPUT_WINNING_NUMBERS);
+        String numbers = read();
 
-                List<String> splitNumbers = splitByComma(numbers);
-                List<Integer> parsedNumbers = convertToInteger(splitNumbers);
+        List<String> splitNumbers = splitByComma(numbers);
+        List<Integer> parsedNumbers = convertToInteger(splitNumbers);
 
-                return new Lotto(parsedNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return new Lotto(parsedNumbers);
     }
 
-    public static int bonusNumber(List<Integer> winningNumbers) {
-        while (true) {
-            try {
-                System.out.println();
-                System.out.println(INPUT_BONUS_NUMBER);
-                String bonusNumber = read();
+    public static int bonusNumber() {
+        System.out.println();
+        System.out.println(INPUT_BONUS_NUMBER);
+        String bonusNumber = read();
 
-                return parseAndValidateDuplication(winningNumbers, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return parseNumber(bonusNumber);
     }
 
-    private static int parseAndValidateDuplication(List<Integer> winningNumbers, String bonusNumber) {
+    private static int parseNumber(String bonusNumber) {
         String cleanedNumber = trimSpaces(bonusNumber);
         Validator.isNumber(cleanedNumber);
-        int parsedBonusNumber = Integer.parseInt(cleanedNumber);
 
-        Validator.numberIsUnique(winningNumbers, parsedBonusNumber);
-        return parsedBonusNumber;
+        return Integer.parseInt(cleanedNumber);
     }
 
     private static List<String> splitByComma(String numbers) {
