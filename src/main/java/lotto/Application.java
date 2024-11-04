@@ -11,5 +11,6 @@ public class Application {
         List<Integer> numbers = ioManager.numbersInput();
         Lotto lotto = new Lotto(numbers);
         int bonusNumber = ioManager.bonusInput();
+
     }
 }

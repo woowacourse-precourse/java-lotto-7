@@ -7,7 +7,7 @@ import java.util.List;
 
 public class RandomLotto {
     private static RandomLotto instance;
-    private List<List<Integer>> randomLottos;
+    private final List<List<Integer>> randomLottos;
     IOManager ioManager;
 
     private RandomLotto() {
@@ -21,12 +21,12 @@ public class RandomLotto {
         return instance;
     }
 
-    public int countCalculator(int money) {
+    public void countCalculator(int money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원으로 나누어 떨어져야 합니다.");
         }
 
-        return money / 1000;
+        newLottos(money / 1000);
     }
 
     public List<Integer> pickNewLotto() {

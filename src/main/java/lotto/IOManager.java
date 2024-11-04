@@ -34,6 +34,9 @@ public class IOManager {
     }
 
     public void printNewLotto(int cnt, List<List<Integer>> lottos) {
+        if (cnt != lottos.size()) {
+            throw new IllegalArgumentException("[ERROR] 구매한 로또의 갯수와 생성된 로또의 갯수가 다릅니다.");
+        }
         printL(cnt + "개를 구매했습니다.");
         for (List<Integer> lotto : lottos) {
             printLottoLine(lotto);
