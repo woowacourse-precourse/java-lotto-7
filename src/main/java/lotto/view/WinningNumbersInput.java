@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.common.exception.EmptyInputException;
 import lotto.common.exception.InvalidInputException;
+import lotto.common.validator.InputValidator;
 import lotto.domain.Lotto;
 
 public class WinningNumbersInput implements Input<Lotto, String[]> {

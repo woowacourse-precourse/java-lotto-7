@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.common.validator;
 
 import static lotto.common.config.Constants.MAX_NUMBER;
 import static lotto.common.config.Constants.MIN_NUMBER;

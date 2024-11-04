@@ -8,6 +8,7 @@ import static lotto.common.exception.ExceptionMessages.OUT_OF_INTEGER_RANGE;
 
 import lotto.common.exception.EmptyInputException;
 import lotto.common.exception.InvalidInputException;
+import lotto.common.validator.InputValidator;
 
 public class PurchaseAmountInput implements Input<Integer, String> {
     private InputValidator inputValidator = new InputValidator(); // TODO

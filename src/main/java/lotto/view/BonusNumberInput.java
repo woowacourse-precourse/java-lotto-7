@@ -10,6 +10,7 @@ import static lotto.common.exception.ExceptionMessages.OUT_OF_LOTTO_NUMBER_RANGE
 import lotto.common.exception.EmptyInputException;
 import lotto.common.exception.InvalidInputException;
 import lotto.common.exception.InvalidStateException;
+import lotto.common.validator.InputValidator;
 import lotto.domain.Lotto;
 
 public class BonusNumberInput implements Input<Integer, String> {

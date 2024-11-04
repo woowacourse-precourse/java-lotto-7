@@ -9,7 +9,7 @@ import lotto.view.Output;
 import lotto.view.PurchaseAmountInput;
 import lotto.view.WinningNumbersInput;
 
-public class LottoConfig {
+public class AppConfig {
     public LottoController getLottoController() {
         PurchaseAmountInput purchaseAmountInput = new PurchaseAmountInput();
         WinningNumbersInput winningNumbersInput = new WinningNumbersInput();
