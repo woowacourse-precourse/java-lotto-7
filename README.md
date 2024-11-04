@@ -68,6 +68,18 @@
 - [ ] public void printStatistics()
   - 당첨 통계 출력
 
+## LottoGame.class
+- [ ] public void start()
+  - 게임 진행의 전체 흐름 관리
+- [ ] private Person createPerson()
+  - 구매자 생성 및 금액 입력 처리
+- [ ] private WinningLotto createWinningLotto()
+  - 당첨 번호와 보너스 번호 입력 처리
+- [ ] private void validateNumeric(String input)
+  - 입력값이 숫자인지 검증
+- [ ] private List<Integer> parseNumbers(String input)
+  - 쉼표로 구분된 문자열을 숫자 리스트로 변환
+
 ## 입출력 요구 사항
 
 ### 입력
