@@ -18,12 +18,12 @@ public class LottoStatistics {
         return new LottoStatisticsDto(lottoStatistics.getPrizeCount(), lottoStatistics.getRateOfReturn());
     }
 
-    public static LottoStatistics calcStatistics(List<Lotto> purchasedLottos, Lotto WinningLotto, Integer bonusNumber) {
+    public static LottoStatistics calcStatistics(List<Lotto> purchasedLottos, Lotto winningLotto, Integer bonusNumber) {
         Map<LottoPrize, Integer> prizeCount = new HashMap<>();
         initPrizeCount(prizeCount);
         long sumOfPrizeMoney = 0;
         for (Lotto purchasedLotto : purchasedLottos) {
-            int matchCount = calcMatchCount(purchasedLotto, WinningLotto);
+            int matchCount = calcMatchCount(purchasedLotto, winningLotto);
             boolean isBonusNumberMatched = purchasedLotto.contains(bonusNumber);
             LottoPrize prize = LottoPrize.valueOf(matchCount, isBonusNumberMatched);
             addPrize(prizeCount, prize);
