@@ -2,9 +2,13 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+
 public class InputReader {
-    public void readLottoPrice(){
+
+    Validation validation = new Validation();
+    public int readLottoPrice(){
         String lottoPrice = Console.readLine();
-        validateLottoPrice(lottoPrice);
+        validation.validateLottoPrice(lottoPrice);
+        return Integer.parseInt(lottoPrice);
     }
 }
