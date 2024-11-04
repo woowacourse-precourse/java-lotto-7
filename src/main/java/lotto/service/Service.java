@@ -6,6 +6,7 @@ import lotto.utils.Utils;
 import lotto.validation.Validation;
 import lotto.view.InputMessage;
 import java.util.List;
+import java.util.Arrays;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Service {
@@ -49,4 +50,16 @@ public class Service {
         Utils.sortListNaturalOrder(numbers);
         return new Lotto(numbers);
     }
+
+    public List<Integer> getInputWinningNumbers() {
+        InputMessage.inputWinningNumbers();
+        String userInput = readLine().trim();
+        Validation.validateListStringToInteger(Arrays.asList(userInput.split(",")));
+        List<Integer> winningNumbers = Utils.stringToIntegerList(userInput);
+        Validation.validateLengthOfList(winningNumbers, LOTTO_LENGTH);
+        Validation.validateDuplicationList(winningNumbers);
+        Validation.validateListNumberInRange(winningNumbers, LOTTO_START_NUMBER, LOTTO_LAST_NUMBER);
+        return winningNumbers;
+    }
+
 }
