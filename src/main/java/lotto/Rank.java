@@ -14,7 +14,8 @@ public enum Rank {
     SECOND(5,30_000_000,true),
     THIRD(5,1_500_000,false),
     FOURTH(4,50_000,false),
-    FIFTH(3,5000,false);
+    FIFTH(3,5000,false),
+    NORANK(0,0,false);
 
     private final int matchNumbers;
     private final int winningPrice;
@@ -44,6 +45,7 @@ public enum Rank {
                 return rank;
             }
         }
-        throw new IllegalArgumentException("일치하는 등수가 없습니다");
+
+        return NORANK;
     }
 }
