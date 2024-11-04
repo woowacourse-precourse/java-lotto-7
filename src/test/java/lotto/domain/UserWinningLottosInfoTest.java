@@ -7,27 +7,27 @@ import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WinningLottosTest {
+public class UserWinningLottosInfoTest {
 
     @DisplayName("getWinningCountByLottoRank_메서드_테스트_01")
     @Test
     void 로또_등수에_따라_당첨개수를_반환한다(){
-        WinningLottos winningLottos = new WinningLottos(Arrays.asList(FIRST,FIRST,SECOND,THIRD,THIRD,THIRD),120000);
+        UserWinningLottosInfo userWinningLottosInfo = new UserWinningLottosInfo(Arrays.asList(FIRST,FIRST,SECOND,THIRD,THIRD,THIRD),120000);
 
-        assertThat(winningLottos.getWinningCountByLottoRank(THIRD))
+        assertThat(userWinningLottosInfo.getWinningCountByLottoRank(THIRD))
                 .isEqualTo(3);
-        assertThat(winningLottos.getWinningCountByLottoRank(SECOND))
+        assertThat(userWinningLottosInfo.getWinningCountByLottoRank(SECOND))
                 .isEqualTo(1);
-        assertThat(winningLottos.getWinningCountByLottoRank(FIRST))
+        assertThat(userWinningLottosInfo.getWinningCountByLottoRank(FIRST))
                 .isEqualTo(2);
     }
 
     @DisplayName("getProfitRate_메서드_테스트_01")
     @Test
     void 수익률을_계산한다() {
-        WinningLottos winningLottos = new WinningLottos(Arrays.asList(FIFTH,FOURTH),120000);
+        UserWinningLottosInfo userWinningLottosInfo = new UserWinningLottosInfo(Arrays.asList(FIFTH,FOURTH),120000);
 
-        assertThat(winningLottos.getProfitRate())
+        assertThat(userWinningLottosInfo.getProfitRate())
                 .isEqualTo(45.8);
     }
 }

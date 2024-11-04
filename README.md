@@ -1,5 +1,8 @@
 # java-lotto-precourse
-- - - 
+- #### 금액을 입력 받아 해당 금액에 맞는 로또 번호를 생성한다.
+- #### 당첨 번호와 보너스 번호를 비교하여 당첨 결과와 수익률을 계산하여 제공한다.
+- - -
+
 ## 👷기능 요구사항 👷
 ### Utils
 - [x] `Validator`
@@ -32,7 +35,7 @@
   - [x] `checkWinningStatus` : 매칭 숫자 + 보너스 넘버를 비교하여 당첨 형태를 return 한다.
 - [x] `Lottos`
   - [x] `getWinningLottos` : `List<Lotto>`를 순회하며 `List<Winning>`을 반환한다.
-- [x] `WinningLottos` : `List<Winning>`와 사용자가 입력한 가격을 인스턴스 변수로 가진다.
+- [x] `UserLottosInfo` : `List<Winning>`와 사용자가 입력한 가격을 인스턴스 변수로 가진다.
   - [x] `getWinningCountByLottoRank` : `LottoRank`에 따라 당첨된 로또의 개수를 반환한다.
   - [x] `getProfitRate` : 수익률을 계산하여 반환한다.
 ###### getter 는 생략

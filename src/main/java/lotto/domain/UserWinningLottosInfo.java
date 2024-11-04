@@ -3,11 +3,11 @@ package lotto.domain;
 import java.util.List;
 import lotto.global.LottoRank;
 
-public class WinningLottos {
+public class UserWinningLottosInfo {
     private final List<LottoRank> ranks;
     private final int price;
 
-    public WinningLottos(List<LottoRank> ranks, int price) {
+    public UserWinningLottosInfo(List<LottoRank> ranks, int price) {
         this.price = price;
         this.ranks = ranks;
     }
