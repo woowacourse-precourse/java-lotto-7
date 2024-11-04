@@ -24,6 +24,14 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    public Integer lottoNumberInput(String message, Lotto lotto) {
+        String input = "";
+        do {
+            input = input(message);
+        } while (!validator.validateBonusNumber(input, lotto));
+        return Integer.parseInt(input);
+    }
+
     public List<Integer> lottoInput(String message) {
         String input = "";
         do {
