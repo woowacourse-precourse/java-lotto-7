@@ -7,21 +7,19 @@ import java.util.Arrays;
 
 public enum Winning {
 
-    NO_WIN      (0, "0", false, 0),
-    FIRST_PLACE (1, "6", false, 2000000000),
-    SECOND_PLACE(2, "5", true, 30000000),
-    THIRD_PLACE (3, "5", false, 1500000),
-    FOURTH_PLACE(4, "4", false, 50000),
-    FIFTH_PLACE (5, "3", false, 5000);
+    NO_WIN      ("0", false, 0),
+    FIRST_PLACE ("6", false, 2000000000),
+    SECOND_PLACE("5", true, 30000000),
+    THIRD_PLACE ("5", false, 1500000),
+    FOURTH_PLACE("4", false, 50000),
+    FIFTH_PLACE ("3", false, 5000);
 
-    private final int rank;
     private final String winningNumberMatch;
     private final boolean isMatchBonusNumber;
     private final long prizeMoney;
     private long count = 0;
 
-    Winning(int rank, String winningNumberMatch, boolean isMatchBonusNumber, long prizeMoney) {
-        this.rank = rank;
+    Winning(String winningNumberMatch, boolean isMatchBonusNumber, long prizeMoney) {
         this.winningNumberMatch = winningNumberMatch;
         this.isMatchBonusNumber = isMatchBonusNumber;
         this.prizeMoney = prizeMoney;
