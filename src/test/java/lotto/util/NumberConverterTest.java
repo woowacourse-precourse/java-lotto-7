@@ -9,7 +9,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class NumberConverterTest {
 
-    private final DefaultNumberConverter converter = new DefaultNumberConverter();
+    private final NumberConverter converter = new NumberConverter();
 
     @Test
     @DisplayName("유효한 숫자 문자열 입력 시 해당 숫자로 변환된다")

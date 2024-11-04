@@ -9,8 +9,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class NumberParserTest {
 
-    private final DefaultNumberConverter numberConverter = new DefaultNumberConverter();
-    private final NumberParser numberParser = new DefaultNumberParser(numberConverter);
+    private final NumberConverter numberConverter = new NumberConverter();
+    private final NumberParserWithComma numberParser = new NumberParserWithComma(numberConverter);
 
     @Test
     @DisplayName("입력받은 숫자 문자열을 콤마 단위로 잘라 set으로 저장한다")

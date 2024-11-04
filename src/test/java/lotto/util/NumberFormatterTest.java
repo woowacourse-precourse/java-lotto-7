@@ -7,7 +7,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class NumberFormatterTest {
 
-    NumberFormatter numberFormatter = new NumberFormatter();
+    NumberFormatterWithComma numberFormatter = new NumberFormatterWithComma();
 
     @Test
     @DisplayName("입력받은 숫자를 천 단위로 콤마 포맷하여 문자열로 반환한다")
