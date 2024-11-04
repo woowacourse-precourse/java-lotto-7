@@ -1,5 +1,9 @@
+// Lotto.java
+
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -14,7 +18,30 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        InputValidator.validateNumbersRange(numbers);
+        InputValidator.validateNoDuplicates(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public Rank getRank(List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = countMatches(winningNumbers);
+        boolean bonusMatch = numbers.contains(bonusNumber);
+        return Rank.valueOf(matchCount, bonusMatch);
+    }
+
+    private int countMatches(List<Integer> winningNumbers) {
+        int count = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public String toString() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers.toString();
+    }
 }
