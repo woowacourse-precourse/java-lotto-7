@@ -11,7 +11,11 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public Lottos from(int numOfLottos, NumbersProvidable numbersProvidable) {
+    public static Lottos from(List<Lotto> lottos) {
+        return new Lottos(lottos);
+    }
+
+    public static Lottos of(int numOfLottos, NumbersProvidable numbersProvidable) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < numOfLottos; i++) {
@@ -19,5 +23,20 @@ public class Lottos {
         }
 
         return new Lottos(lottos);
+    }
+
+    public List<MatchingCondition> convertLottosToMatchedConditions(List<Integer> numbers, int bonusNumber) {
+        List<MatchingCondition> conditions = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            int matchingCount = lotto.calculateMatchingCount(numbers);
+            boolean doesBonusMatched = lotto.hasNumber(bonusNumber);
+            MatchingCondition matchingCondition = MatchingCondition.findByMatchingResult(matchingCount,
+                    doesBonusMatched);
+
+            conditions.add(matchingCondition);
+        }
+
+        return conditions;
     }
 }

@@ -30,4 +30,14 @@ public class Lotto {
 
         return view.toString();
     }
+
+    public int calculateMatchingCount(List<Integer> numbers) {
+        return (int) numbers.stream()
+                .filter(this::hasNumber)
+                .count();
+    }
+
+    public boolean hasNumber(int number) {
+        return this.numbers.contains(number);
+    }
 }
