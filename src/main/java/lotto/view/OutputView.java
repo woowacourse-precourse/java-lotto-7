@@ -1,16 +1,12 @@
 package lotto.view;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.constant.Rank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 
 public class OutputView {
     private static final String LOTTO_BUY_COUNT_MESSAGE = "%d개를 구매했습니다.";
-    private static final String OUTPUT_DELIMITER = ", ";
-    private static final String PREFIX = "[";
-    private static final String SUFFIX = "]";
     private static final String RESULT_MESSAGE = "당첨 통계\n---";
     private static final String MATCH_COUNT_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String MATCH_COUNT_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
@@ -24,7 +20,7 @@ public class OutputView {
     public static void printLottos(List<Lotto> lottos) {
         printLottoBuyCount(lottos.size());
         for (Lotto lotto : lottos) {
-            System.out.println(convertLottoToString(lotto));
+            System.out.println(lotto.getNumbers());
         }
     }
 
@@ -43,14 +39,6 @@ public class OutputView {
 
     public static void printProfitRate(LottoResult result) {
         System.out.printf(PROFIT_RATE_MESSAGE, result.getProfitRate());
-    }
-
-    private static String convertLottoToString(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
-
-        return numbers.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(OUTPUT_DELIMITER, PREFIX, SUFFIX));
     }
 
     private static void printLottoBuyCount(int count) {
