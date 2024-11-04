@@ -14,15 +14,15 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DrawServiceImplTest {
+class WinningServiceImplTest {
 
     VendingMachineRepository vendingMachineRepository;
-    DrawService drawService;
+    WinningService winningService;
 
     @BeforeEach
     void beforeEach() {
         AppConfig appConfig = new AppConfig();
-        drawService = appConfig.drawService();
+        winningService = appConfig.winningService();
         vendingMachineRepository = appConfig.vendingMachineRepository();
     }
 
@@ -32,7 +32,7 @@ class DrawServiceImplTest {
         List<Lotto> lottos = new ArrayList<>(List.of(new Lotto(List.of(1,2,3,4,5,6)), new Lotto(List.of(1,2,3,4,5,7))));
         vendingMachineRepository.save(lottos);
 
-        Map<Rank, Integer> result = drawService.checkLotto(new WinningLotto(new Lotto(List.of(1,2,3,4,5,6)), 7));
+        Map<Rank, Integer> result = winningService.checkLotto(new WinningLotto(new Lotto(List.of(1,2,3,4,5,6)), 7));
 
         assertEquals(Integer.valueOf(1), result.get(Rank.FIRST));
         assertEquals(Integer.valueOf(1), result.get(Rank.SECOND));
@@ -47,7 +47,7 @@ class DrawServiceImplTest {
         List<Lotto> lottos = new ArrayList<>(List.of(new Lotto(List.of(1,2,3,4,5,6)), new Lotto(List.of(4,5,6,7,8,9))));
         vendingMachineRepository.save(lottos);
 
-        Map<Rank, Integer> result = drawService.checkLotto(new WinningLotto(new Lotto(List.of(1,2,3,43,44,45)), 27));
+        Map<Rank, Integer> result = winningService.checkLotto(new WinningLotto(new Lotto(List.of(1,2,3,43,44,45)), 27));
 
         assertEquals(Integer.valueOf(0), result.get(Rank.FIRST));
         assertEquals(Integer.valueOf(0), result.get(Rank.SECOND));
@@ -62,7 +62,7 @@ class DrawServiceImplTest {
         List<Lotto> lottos = new ArrayList<>(List.of(new Lotto(List.of(1,2,3,4,5,27)), new Lotto(List.of(1,2,3,43,44,45))));
         vendingMachineRepository.save(lottos);
 
-        Map<Rank, Integer> result = drawService.checkLotto(new WinningLotto(new Lotto(List.of(1,2,3,43,44,45)), 27));
+        Map<Rank, Integer> result = winningService.checkLotto(new WinningLotto(new Lotto(List.of(1,2,3,43,44,45)), 27));
 
         assertEquals(Integer.valueOf(1), result.get(Rank.FIRST));
         assertEquals(Integer.valueOf(0), result.get(Rank.SECOND));
