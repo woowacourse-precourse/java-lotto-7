@@ -33,8 +33,8 @@ public class ParseNumbersServiceTest {
 
     @DisplayName("쉼표로 자른 후 문자가 포함되면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource (strings = {"1,-1,3", "1,2.3,4", "1,a,b,c"})
-    public void ThrowExceptionIfHasCharacter(String inputNumbers){
+    @ValueSource(strings = {"1,-1,3", "1,2.3,4", "1,a,b,c"})
+    public void ThrowExceptionIfHasCharacter(String inputNumbers) {
         // given
         InputWinningNumbers inputWinningNumbers = new InputWinningNumbers(inputNumbers);
         ParseNumbersService parseNumbersService = new ParseNumbersService();
@@ -48,6 +48,4 @@ public class ParseNumbersServiceTest {
         assertThat(thrown).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_CAN_NOT_HAVE_CHARACTER.get());
     }
-
-
 }
