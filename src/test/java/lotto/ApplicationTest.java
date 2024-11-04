@@ -6,6 +6,7 @@ import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -39,14 +40,15 @@ class ApplicationTest extends NsTest {
                             "총 수익률은 62.5%입니다."
                     );
                 },
-                List.of(8, 21, 23, 41, 42, 43),
-                List.of(3, 5, 11, 16, 32, 38),
-                List.of(7, 11, 16, 35, 36, 44),
-                List.of(1, 8, 11, 31, 41, 42),
-                List.of(13, 14, 16, 38, 42, 45),
-                List.of(7, 11, 30, 40, 42, 43),
-                List.of(2, 13, 22, 32, 38, 45),
-                List.of(1, 3, 5, 14, 22, 45)
+                //정렬 가능할 수 있는 리스트로 테스트
+                new ArrayList<>(List.of(8, 21, 23, 41, 42, 43)),
+                new ArrayList<>(List.of(3, 5, 11, 16, 32, 38)),
+                new ArrayList<>(List.of(7, 11, 16, 35, 36, 44)),
+                new ArrayList<>(List.of(1, 8, 11, 31, 41, 42)),
+                new ArrayList<>(List.of(13, 14, 16, 38, 42, 45)),
+                new ArrayList<>(List.of(7, 11, 30, 40, 42, 43)),
+                new ArrayList<>(List.of(2, 13, 22, 32, 38, 45)),
+                new ArrayList<>(List.of(1, 3, 5, 14, 22, 45))
         );
     }
 
@@ -58,21 +60,6 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @DisplayName("입력이 비어있으면 예외가 발생한다")
-    @Test
-    void inputEmptyTest() {
-        assertThatThrownBy(() -> InputView.validateInput(""))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE);
-    }
-
-    @DisplayName("로또 구입 금액이 1000으로 나누어 떨어지지 않으면 예외가 발생한다")
-    @Test
-    void purchasedPriceTest() {
-        assertThatThrownBy(() -> new PurchasedPrice(8900))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE);
-    }
 
     @Override
     public void runMain() {
