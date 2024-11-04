@@ -180,31 +180,23 @@ public class Application {
     }
 
 
-    public static Map<Integer, Integer> calculateAllLineMatches(List<Integer> winningNumbers, List<Lotto> lottoNumbers, int bonusNumber) {
-        Map<Integer, Integer> matchCounts = new HashMap<>();
-        matchCounts.put(3, 0);
-        matchCounts.put(4, 0);
-        matchCounts.put(5, 0);
-        matchCounts.put(6, 0);
+    public static Map<LottoRank, Integer> calculateAllLineMatches(List<Integer> winningNumbers, List<Lotto> lottoNumbers, int bonusNumber) {
+        Map<LottoRank, Integer> matchCounts = new HashMap<>();
 
-        int bonusMatchCount = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            matchCounts.put(rank, 0);
+        }
 
         for (Lotto lotto : lottoNumbers) {
             int matchCount = countLineMatch(winningNumbers, lotto.getNumbers());
+            boolean bonusMatch = (matchCount == 5) && lotto.getNumbers().contains(bonusNumber);
 
-            if (matchCount >= 3 && matchCount <= 6) {
-                matchCounts.put(matchCount, matchCounts.get(matchCount) + 1);
-            }
+            LottoRank rank = LottoRank.findRank(matchCount, bonusMatch);
 
-            if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
-                bonusMatchCount++;
+            if (rank != null) {
+                matchCounts.put(rank, matchCounts.get(rank) + 1);
             }
         }
-
-        // 보너스 매치 여부
-        matchCounts.put(5, matchCounts.get(5) - bonusMatchCount);
-        matchCounts.put(-5, bonusMatchCount);
-
         return matchCounts;
     }
 
