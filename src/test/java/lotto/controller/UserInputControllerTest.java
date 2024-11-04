@@ -27,8 +27,9 @@ public class UserInputControllerTest {
     @ValueSource(strings = {"0.1000", "천원", "one"})
     void checkInputNotIntegerPurchaseError(String test) {
         setByteArrayInputStream(test);
+        UserInputController userInputController = new UserInputController();
 
-        assertThatThrownBy(() -> new UserInputController())
+        assertThatThrownBy(() -> userInputController.purchaseAmountInput())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 정수값이 아닌 값이 들어왔습니다.");
     }
@@ -38,8 +39,9 @@ public class UserInputControllerTest {
     @ValueSource(strings = {"1000\n1,2,3.3,4,5,6\n", "1000\n1,2,,4,5,6\n", "1000\n1,2,삼,4,5,6\n"})
     void checkInputNotIntegerWinningNumberError(String test) {
         setByteArrayInputStream(test);
+        UserInputController userInputController = new UserInputController();
 
-        assertThatThrownBy(() -> new UserInputController())
+        assertThatThrownBy(() -> userInputController.winningLottoInput())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 정수값이 아닌 값이 들어왔습니다.");
     }
@@ -49,8 +51,9 @@ public class UserInputControllerTest {
     @ValueSource(strings = {"1000\n1,2,3,4,5,6\n3.3\n", "1000\n1,2,3,4,5,6\n칠\n", "1000\n1,2,3,4,5,6\nhi\n"})
     void checkInputNotIntegerBonusNumberError(String test) {
         setByteArrayInputStream(test);
+        UserInputController userInputController = new UserInputController();
 
-        assertThatThrownBy(() -> new UserInputController())
+        assertThatThrownBy(() -> userInputController.winningLottoInput())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 정수값이 아닌 값이 들어왔습니다.");
     }
@@ -60,7 +63,11 @@ public class UserInputControllerTest {
     @ValueSource(strings = {"1000\n1,2,3,4,5,6\n7\n", "10000\n1,2,3,4,5,6\n9\n", "1000\n1,10,16,18,30,40\n7\n"})
     void checkInputController(String test) {
         setByteArrayInputStream(test);
+        UserInputController userInputController = new UserInputController();
 
-        assertDoesNotThrow(() -> new UserInputController());
+        assertDoesNotThrow(() -> {
+            userInputController.purchaseAmountInput();
+            userInputController.winningLottoInput();
+        });
     }
 }

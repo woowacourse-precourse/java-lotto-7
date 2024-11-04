@@ -12,14 +12,6 @@ import java.util.stream.Collectors;
 public class UserInputController {
     private final UserInput userInput = new UserInput();
 
-    public UserInputController() {
-        PurchaseAmount.getPurchaseAmount
-                (checkCanInteger(userInput.promptPurchaseAmountInput()));
-        WinningLotto.getWinningLotto
-                (checkWinningNumber(userInput.promptWinningNumberInput()),
-                checkCanInteger(userInput.promptBonusNumberInput()));
-    }
-
     private int checkCanInteger(String input) {
         int num = 0;
         try {
@@ -43,5 +35,17 @@ public class UserInputController {
                         .collect(Collectors.toList()));
 
         return winningNumbers;
+    }
+
+
+    public void purchaseAmountInput(){
+        PurchaseAmount.getPurchaseAmount
+                (checkCanInteger(userInput.promptPurchaseAmountInput()));
+    }
+
+    public void winningLottoInput(){
+        WinningLotto.getWinningLotto
+                (checkWinningNumber(userInput.promptWinningNumberInput()),
+                        checkCanInteger(userInput.promptBonusNumberInput()));
     }
 }
