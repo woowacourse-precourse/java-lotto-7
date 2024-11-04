@@ -6,8 +6,8 @@ import static lotto.constant.LottoConstants.MIN_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.lotto.Lotto;
 import lotto.lotto.LottoNumberPicker;
+import lotto.lotto.object.MyLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,10 +19,10 @@ public class LottoNumberPickerTest {
         LottoNumberPicker lottoNumberPicker = new LottoNumberPicker();
 
         // when
-        Lotto lotto = new Lotto(lottoNumberPicker.createRandomNumbers());
+        MyLotto lotto = new MyLotto(lottoNumberPicker.createRandomNumbers());
 
         // then
-        List<Integer> lottoNumbers = lotto.getNumbersList();
+        List<Integer> lottoNumbers = lotto.getNumbers();
 
         assertThat(lottoNumbers.size()).isEqualTo(LOTTO_SIZE);
         assertThat(

@@ -1,4 +1,4 @@
-package lotto.lotto;
+package lotto.lotto.object;
 
 import java.util.List;
 
@@ -16,12 +16,7 @@ public class Lotto {
         }
     }
 
-
-    public List<Integer> getNumbersList() {
+    public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    public int getBonusNumber() {
-        return numbers.getLast();
     }
 }
