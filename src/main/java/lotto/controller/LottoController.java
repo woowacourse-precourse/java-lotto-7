@@ -37,7 +37,7 @@ public class LottoController {
             OutputView.requestInputPurchaseAmount();
             int purchaseAmount = InputView.inputLottoPurchaseAmount();
             return purchaseAmount;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return makeLottoPurchaseAmountRecursion();
         }
@@ -48,7 +48,7 @@ public class LottoController {
             OutputView.requestInputWinningNumbers();
             Lotto winningNumbers = InputView.inputLottoWinningNumbers();
             return winningNumbers;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return makeWinningNumbersRecursion();
         }
@@ -59,7 +59,7 @@ public class LottoController {
             OutputView.requestInputBounusNumber();
             Integer inputBonusNumber = InputView.inputBonusNumber();
             return new WinningLotto(winningNumbers, inputBonusNumber);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return addBonusNumbersToWinningNumbersRecursion(winningNumbers);
         }
