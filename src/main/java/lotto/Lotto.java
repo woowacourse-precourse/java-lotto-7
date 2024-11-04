@@ -16,5 +16,8 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    // numbers 리스트를 반환하는 getNumbers 메서드 추가
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

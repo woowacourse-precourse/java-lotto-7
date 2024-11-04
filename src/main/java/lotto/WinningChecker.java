@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.List;
 import java.util.Set;
 
 public class WinningChecker {
@@ -12,12 +11,13 @@ public class WinningChecker {
         this.bonusNumber = bonusNumber;
     }
 
-    public int checkWinning(List<Integer> ticketNumbers) {
-        long matchCount = ticketNumbers.stream()
+    // Lotto 객체의 번호 리스트를 가져와 일치 여부를 체크
+    public int checkWinning(Lotto ticket) {
+        long matchCount = ticket.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
 
-        boolean bonusMatch = ticketNumbers.contains(bonusNumber);
+        boolean bonusMatch = ticket.getNumbers().contains(bonusNumber);
 
         if (matchCount == 6) return 6; // 6개 일치
         if (matchCount == 5 && bonusMatch) return 5; // 5개 + 보너스 일치
