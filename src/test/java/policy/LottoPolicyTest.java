@@ -2,6 +2,8 @@ package policy;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.policy.LottoPolicy;
+import lotto.policy.LottoPolicyImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

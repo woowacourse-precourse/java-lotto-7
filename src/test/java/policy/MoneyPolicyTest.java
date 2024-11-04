@@ -1,5 +1,7 @@
 package policy;
 
+import lotto.policy.MoneyPolicy;
+import lotto.policy.MoneyPolicyImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

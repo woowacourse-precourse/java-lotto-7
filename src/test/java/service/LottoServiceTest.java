@@ -1,15 +1,17 @@
 package service;
 
-import dto.LottoWinningNumbers;
-import dto.lottoWinningResultDto.LottoWinningResult;
 import java.util.ArrayList;
 import java.util.List;
-import model.Lotto;
-import model.Money;
+import lotto.dto.LottoWinningNumbers;
+import lotto.dto.lottoWinningResultDto.LottoWinningResult;
+import lotto.model.Lotto;
+import lotto.model.Money;
+import lotto.service.LottoService;
+import lotto.service.LottoServiceImpl;
+import lotto.view.InputView;
+import lotto.view.InputViewImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import view.InputView;
-import view.InputViewImpl;
 
 class LottoServiceTest {
     private final InputView inputView = new InputViewImpl();
@@ -80,7 +82,7 @@ class LottoServiceTest {
         // 로또 당첨 결과
         LottoWinningResult lottoWinningResult = new LottoWinningResult(1, 0, 0, 0, 0);
         int lottoCount = 2000000;
-        
+
         // when
         double lottoRateOfReturn = lottoService.analyzeLottoRateOfReturn(lottoWinningResult, lottoCount);
         double expected = 100;
