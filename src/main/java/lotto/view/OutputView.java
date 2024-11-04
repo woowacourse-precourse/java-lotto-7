@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import lotto.constant.ViewMessages;
 import lotto.model.domain.LottoRank;
 import lotto.model.domain.Pocket;
 
@@ -13,20 +14,20 @@ public class OutputView {
     }
 
     public static void printRequestMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(ViewMessages.PRINT_REQUEST_MONEY.getMessage());
     }
 
     public static void printRequestLottoWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(ViewMessages.PRINT_REQUEST_LOTTO_WINNING_NUMBERS.getMessage());
     }
 
     public static void printRequestLottoBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(ViewMessages.PRINT_REQUEST_LOTTO_BONUS_NUMBERS.getMessage());
     }
 
     public static void printPurchasedLottoCount(Pocket pocket) {
         int sizeOfLottos = pocket.getLottos().size();
-        System.out.println(sizeOfLottos + "개를 구매했습니다.");
+        System.out.println(sizeOfLottos + ViewMessages.PRINT_PURCHASED_LOTTO_COUNT.getMessage());
         for (int i = 0; i < sizeOfLottos; i++) {
             List<Integer> numbers = new ArrayList<>(
                     pocket.getLottos().get(i).getNumbers());
@@ -68,19 +69,22 @@ public class OutputView {
         float profitRatio = getProfitRatio((float) reward, money);
         float profitRateAtSecondDecimals = getProfitRateAtSecondDecimals(profitRatio);
 
-        System.out.println("총 수익률은 " + numberFormat.format(profitRateAtSecondDecimals) + "%입니다.");
+        System.out.println(
+                ViewMessages.PRINT_PROFIT.getMessage() + numberFormat.format(profitRateAtSecondDecimals) + "%입니다.");
     }
 
     private static void printSecondRewardStatistic(int matchNumberCount, String prize, int count) {
-        System.out.println(matchNumberCount + "개 일치, 보너스 볼 일치 (" +
-                prize + "원) - " +
-                count + "개");
+        System.out.println(matchNumberCount +
+                ViewMessages.PRINT_REWARD_SECOND_RANK_STATISTIC_FIRST.getMessage() +
+                prize + ViewMessages.PRINT_REWARD_STATISTIC_SECOND +
+                count + ViewMessages.PRINT_REWARD_STATISTIC_LAST);
     }
 
     private static void printDefaultRewardStatistic(int matchNumberCount, String prize, int count) {
-        System.out.println(matchNumberCount + "개 일치 (" +
-                prize + "원) - " +
-                count + "개");
+        System.out.println(matchNumberCount +
+                ViewMessages.PRINT_REWARD_STATISTIC_FIRST.getMessage() +
+                prize + ViewMessages.PRINT_REWARD_STATISTIC_SECOND +
+                count + ViewMessages.PRINT_REWARD_STATISTIC_LAST);
     }
 
     private static float getProfitRateAtSecondDecimals(float profitRatio) {
