@@ -27,6 +27,9 @@ public class Lotto {
     }
 
     public void addBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.toString());
+        }
         this.numbers.add(bonusNumber);
         if (numbers.size() != new HashSet<>(numbers).size()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_BONUS_NUMBER_DUPLICATE_ERROR.toString());
