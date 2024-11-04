@@ -23,11 +23,10 @@ public class WinningCalculateService {
         int matchCount = 0;
         boolean hasBonusMatch = false;
 
-        List<Integer> lottoNumbers = lotto.getNumbers();         // 구매한 로또 번호
-        List<Integer> winningNumbers = winningLotto.getNumbers(); // 당첨 번호들
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        List<Integer> winningNumbers = winningLotto.getNumbers();
         int bonusNumber = winningLotto.getBonusNumber();
 
-        // 일반 번호 매칭과 보너스 번호 매칭 확인
         for (int lottoNumber : lottoNumbers) {
             if (winningNumbers.contains(lottoNumber)) {
                 matchCount++;
@@ -36,8 +35,6 @@ public class WinningCalculateService {
                 hasBonusMatch = true;
             }
         }
-
-        // 당첨 결과 반환
         return determineWinningResult(matchCount, hasBonusMatch);
     }
 
@@ -57,6 +54,6 @@ public class WinningCalculateService {
         if (matchCount == 3) {
             return new LottoResult(Winning.FIFTH);
         }
-        return new LottoResult(Winning.NONE); // 당첨되지 않은 경우
+        return new LottoResult(Winning.NONE);
     }
 }
