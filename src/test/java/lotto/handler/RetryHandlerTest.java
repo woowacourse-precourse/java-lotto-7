@@ -21,7 +21,7 @@ public class RetryHandlerTest {
         MockCounter mockLogic = new MockCounter(expectedRetryCount);
 
         // when
-        retryHandler.retry(mockLogic::getCount);
+        retryHandler.retryUntilNoException(mockLogic::getCount);
 
         // then
         assertThat(mockLogic.getCount()).isEqualTo(expectedRetryCount);
@@ -36,7 +36,7 @@ public class RetryHandlerTest {
         MockCounter mockLogic = new MockCounter(expectedRetryCount);
 
         // when
-        retryHandler.retry(mockLogic::getCount, garbage);
+        retryHandler.retryUntilNoException(mockLogic::getCount, garbage);
 
         // then
         assertThat(mockLogic.getCount()).isEqualTo(expectedRetryCount);

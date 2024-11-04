@@ -4,31 +4,23 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class RetryHandler {
-    public <T> T retry(Supplier<T> logic) {
-        boolean retryFlag = true;
-        T result = null;
-        while (retryFlag) {
+    public <T> T retryUntilNoException(Supplier<T> logic) {
+        while (true) {
             try {
-                result = logic.get();
-                retryFlag = false;
+                return logic.get();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return result;
     }
 
-    public <T, R> R retry(Function<T, R> logic, T data) {
-        boolean retryFlag = true;
-        R result = null;
-        while (retryFlag) {
+    public <T, R> R retryUntilNoException(Function<T, R> logic, T data) {
+        while (true) {
             try {
-                result = logic.apply(data);
-                retryFlag = false;
+                return logic.apply(data);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return result;
     }
 }

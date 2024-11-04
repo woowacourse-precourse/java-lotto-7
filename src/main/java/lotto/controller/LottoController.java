@@ -37,12 +37,12 @@ public class LottoController {
     }
 
     public void run() {
-        LottoPurchasePrice lottoPurchasePrice = retryHandler.retry(this::requestLottoPurchasePrice);
+        LottoPurchasePrice lottoPurchasePrice = retryHandler.retryUntilNoException(this::requestLottoPurchasePrice);
         LottoBundle lottoBundle = issueLottoBundle(lottoPurchasePrice);
         lottoOutputView.printLottoBundle(createLottoBundleDTO(lottoBundle));
 
-        WinningLotto winningLotto = retryHandler.retry(this::requestLottoWinningNumbers);
-        BonusNumber bonusNumber = retryHandler.retry(this::requestLottoBonusNumber, winningLotto);
+        WinningLotto winningLotto = retryHandler.retryUntilNoException(this::requestLottoWinningNumbers);
+        BonusNumber bonusNumber = retryHandler.retryUntilNoException(this::requestLottoBonusNumber, winningLotto);
         LottoResult lottoResult = lottoBundle.makeLottoResult(winningLotto, bonusNumber);
         lottoOutputView.printLottoResult(createLottoResultDTO(lottoResult));
     }
