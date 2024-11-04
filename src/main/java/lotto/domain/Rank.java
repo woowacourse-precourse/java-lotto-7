@@ -1,20 +1,19 @@
 package lotto.domain;
 
 public enum Rank {
-    FIRST(2_000_000_000, 6, false),
-    SECOND(30_000_000, 5, true),
+    LOSE(0, 0, false),
+    FIFTH(5_000, 3, false),
     THIRD(1_500_000, 5, false),
     FOURTH(50_000, 4, false),
-    FIFTH(5_000, 3, false),
-    LOSE(0, 0, false);
+    SECOND(30_000_000, 5, true),
+    FIRST(2_000_000_000, 6, false);
+
     private final int prize;
     private final int matchLotto;
-    private final boolean matchBonus;
 
     Rank(int prize, int matchLotto, boolean matchBonus) {
         this.prize = prize;
         this.matchLotto = matchLotto;
-        this.matchBonus = matchBonus;
     }
     public int getMatchLotto(){
         return matchLotto;
