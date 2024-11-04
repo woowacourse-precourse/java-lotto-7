@@ -3,10 +3,6 @@ package lotto.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import static lotto.constants.LottoConstants.ZERO;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoWinningTierManagerTest {
@@ -22,7 +18,7 @@ class LottoWinningTierManagerTest {
         lottoWinningTierManager.getLottoWinningTiers().put(LottoWinningTier.MATCH_SIX, 1);
     }
     @Test
-    void calculateTotalPrize() {
+    void 당첨_금액_합을_리턴() {
         // given
         // when
         long sumResult = lottoWinningTierManager.calculateTotalPrize();
@@ -32,7 +28,7 @@ class LottoWinningTierManagerTest {
     }
 
     @Test
-    void increaseLottoWinningTier() {
+    void 로또_당첨_개수_증가() {
         // given
         // when
         lottoWinningTierManager.increaseLottoWinningTier(
