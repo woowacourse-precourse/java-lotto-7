@@ -20,4 +20,16 @@ public class WinningLotto {
 
         return count;
     }
+
+    public boolean matchBonus(int matchCount, Lotto lotto) {
+        if (matchCount != 5) return false;
+
+        for (int num : lotto.getNumbers()) {
+            if (bonusNumber.equalNumber(num)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoTickets {
@@ -8,6 +9,10 @@ public class LottoTickets {
 
     public LottoTickets(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public List<Lotto> getLottos() {
+        return new ArrayList<>(lottos);
     }
 
     public int getTicketCount() {
