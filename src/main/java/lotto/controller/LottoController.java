@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.config.LottoConfig;
 import lotto.model.domain.Player;
 import lotto.model.service.LottoService;
 import lotto.model.service.WinningNumbersService;
@@ -18,11 +17,8 @@ public class LottoController {
     private int purchaseAmount;
     private List<Integer> winningNumbers;
 
-    public LottoController(InputView inputView,
-                           OutputView outputView,
-                           LottoService lottoService,
-                           WinningNumbersService winningNumbersService
-    ) {
+    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService,
+                           WinningNumbersService winningNumbersService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoService = lottoService;

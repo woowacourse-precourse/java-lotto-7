@@ -30,7 +30,10 @@ public class LottoService {
 
     private List<Integer> generateRandomNumbers() {
         List<Integer> numbers = new ArrayList<>();
-        numbers = Randoms.pickUniqueNumbersInRange(LottoConfig.MIN_NUMBER, LottoConfig.MAX_NUMBER, LottoConfig.LOTTO_COUNT_NUMBER);
+        numbers = Randoms.pickUniqueNumbersInRange(LottoConfig.MIN_NUMBER,
+                LottoConfig.MAX_NUMBER,
+                LottoConfig.LOTTO_COUNT_NUMBER
+        );
 
         return numbers;
     }

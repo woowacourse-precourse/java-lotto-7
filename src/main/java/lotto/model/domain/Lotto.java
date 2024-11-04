@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.config.LottoConfig;
+import lotto.util.ValidatorErrorMessage;
 
 public class Lotto {
     private final static String PREFIX = "[";
@@ -13,7 +14,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = new ArrayList<>(numbers);;
+        this.numbers = new ArrayList<>(numbers);
         sortNumbers();
     }
 
@@ -23,7 +24,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoConfig.LOTTO_COUNT_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ValidatorErrorMessage.NUMBER_COUNT_EXCEPTION.getErrorMessage());
         }
     }
 

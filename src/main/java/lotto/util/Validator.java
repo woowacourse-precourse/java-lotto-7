@@ -27,8 +27,16 @@ public class Validator {
         }
     }
 
+    public static void validateBonusNumber(String bonusNumber) {
+        try {
+            Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ValidatorErrorMessage.BONUS_NUMERIC_EXCEPTION.getErrorMessage());
+        }
+    }
+
     public static void validateCommaSeparated(String input) {
-        if (!input.matches("^(\\d+)(,(\\d+))*$")) { // 숫자와 쉼표 패턴 검증
+        if (!input.matches("^(\\d+)(,(\\d+))*$")) {
             throw new IllegalArgumentException(ValidatorErrorMessage.SEPARATER_EXCEPTION.getErrorMessage());
         }
     }

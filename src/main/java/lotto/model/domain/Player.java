@@ -42,7 +42,8 @@ public class Player {
     }
 
     public List<Integer> calculateWinningRanks() {
-        List<Integer> winningRank = new ArrayList<>(Collections.nCopies(WinningMatch.values().length, LottoConfig.ZERO));
+        List<Integer> winningRank = new ArrayList<>(
+                Collections.nCopies(WinningMatch.values().length, LottoConfig.ZERO));
         for (Lotto lotto : lottos) {
             int rank = lotto.getResult(winningNumbers);
             if (rank >= WinningMatch.valueOfMaxMatch().getRank() && rank <= WinningMatch.valueOfMinMatch().getRank()) {
