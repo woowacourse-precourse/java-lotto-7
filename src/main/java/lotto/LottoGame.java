@@ -17,22 +17,30 @@ public class LottoGame {
 
     public void run() {
         int purchaseAmount = requestPurchaseAmount();
-        List<Lotto> lottos = buyLottos(purchaseAmount);
-        println();
-
-        OutputView.printLottos(lottos);
-        println();
+        List<Lotto> lottos = purchaseAndDisplayLottos(purchaseAmount);
 
         List<Integer> winningNumbers = requestWinningNumbers();
         println();
-
-        int bonusNumber = requestBonusNumber(winningNumbers);
+        int bonusNumber = requestBonusNumberAndPrint(winningNumbers);
         println();
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         LottoStatistics statistics = calculateStatistics(lottos, winningLotto);
         printStatistics(statistics, purchaseAmount);
+    }
+
+    private List<Lotto> purchaseAndDisplayLottos(int purchaseAmount) {
+        List<Lotto> lottos = buyLottos(purchaseAmount);
+        println();
+        OutputView.printLottos(lottos);
+        println();
+        return lottos;
+    }
+
+    private int requestBonusNumberAndPrint(List<Integer> winningNumbers) {
+        int bonusNumber = requestBonusNumber(winningNumbers);
+        return bonusNumber;
     }
 
     public int requestPurchaseAmount() {
