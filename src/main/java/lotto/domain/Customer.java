@@ -52,6 +52,35 @@ public class Customer {
         return lottos;
     }
 
+    public EnumMap<Rank, Integer> result(WinningLotto winningLotto) {
+        EnumMap<Rank, Integer> result = initRankMap();
+
+        for (Lotto lotto : lottos.getValues()) {
+            int matchCount = lotto.getMatchCount(winningLotto);
+            boolean isBonusNumberMatched = lotto.containsBonusNumber(winningLotto.getBonusNumber());
+
+            Rank rank = MISS;
+            if (matchCount == FIRST.getWinningCount()) {
+                rank = FIRST;
+            }
+            if (matchCount == THIRD.getWinningCount()) {
+                rank = THIRD;
+            }
+            if (matchCount == SECOND.getWinningCount() && isBonusNumberMatched) {
+                rank = SECOND;
+            }
+            if (matchCount == FOURTH.getWinningCount()) {
+                rank = FOURTH;
+            }
+            if (matchCount == FIFTH.getWinningCount()) {
+                rank = FIFTH;
+            }
+
+            result.put(rank, result.get(rank) + 1);
+        }
+        return result;
+    }
+
     private EnumMap<Rank, Integer> initRankMap() {
         EnumMap<Rank, Integer> rankMap = new EnumMap<>(Rank.class);
         Arrays.stream(values()).forEach(rank -> rankMap.put(rank, 0));
