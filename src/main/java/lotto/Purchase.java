@@ -56,7 +56,7 @@ public class Purchase {
         try{
             Integer.parseInt(purchaseAmount);
         } catch(NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
         }
     }
 
