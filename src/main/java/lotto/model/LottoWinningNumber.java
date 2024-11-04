@@ -17,7 +17,7 @@ public class LottoWinningNumber {
     }
 
     public static LottoWinningNumber getInstance(List<Integer> lottoWinningNumbers) {
-        if(instance==null){
+        if (instance == null) {
             instance = new LottoWinningNumber(lottoWinningNumbers);
         }
         return instance;
@@ -26,6 +26,4 @@ public class LottoWinningNumber {
     public static List<Integer> getLottoWinningNumbers() {
         return instance.lottoWinningNumbers;
     }
-
-
 }

@@ -7,15 +7,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class OutputView implements UserOutput{
+public class OutputView implements UserOutput {
     @Override
     public void outputLottoCount(int lottoCount) {
-        System.out.println(String.format("%d개를 구매했습니다.",lottoCount));
+        System.out.println(String.format("%d개를 구매했습니다.", lottoCount));
     }
 
     @Override
     public void outputStatistics(List<List<Integer>> lottoNumbers) {
-        for(List<Integer> lottoNumber : lottoNumbers){
+        for (List<Integer> lottoNumber : lottoNumbers) {
             Collections.sort(lottoNumber);
             System.out.println(lottoNumber.toString());
         }
@@ -35,6 +35,6 @@ public class OutputView implements UserOutput{
 
     @Override
     public void outputProfitRate(double profitRate) {
-        System.out.println(String.format("총 수익률은 %.2f%%입니다.",profitRate));
+        System.out.println(String.format("총 수익률은 %.2f%%입니다.", profitRate));
     }
 }

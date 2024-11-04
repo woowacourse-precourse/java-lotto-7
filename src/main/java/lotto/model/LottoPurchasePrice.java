@@ -11,12 +11,12 @@ public class LottoPurchasePrice {
 
     public void validateLottoPurchasePrice(int lottoPurchasePrice) {
         if (lottoPurchasePrice % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException("[Error] 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
 
     public int getPurchaseCount() {
-        return lottoPurchasePrice/LOTTO_PRICE;
+        return lottoPurchasePrice / LOTTO_PRICE;
     }
 
     public int getPurchasePrice() {

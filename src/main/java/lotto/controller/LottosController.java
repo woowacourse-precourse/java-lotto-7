@@ -38,17 +38,15 @@ public class LottosController {
         matchLotto();
     }
 
-    public void matchLotto(){
+    public void matchLotto() {
         lottoService.makeDataForReturn();
-        Map<String,Integer> lottoMatchCount = lottoService.matchLotto();
+        Map<String, Integer> lottoMatchCount = lottoService.matchLotto();
         outputView.outputMatchResult(lottoMatchCount);
         calculate(lottoMatchCount);
     }
 
-    public void calculate(Map<String,Integer> lottoMatchCount) {
+    public void calculate(Map<String, Integer> lottoMatchCount) {
         double profitRate = lottoCalculateService.calculateProfitRate(lottoMatchCount, lottoService.getPurchasePrice());
         outputView.outputProfitRate(profitRate);
     }
-
-
 }

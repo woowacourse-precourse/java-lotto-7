@@ -20,7 +20,7 @@ public class Lottos {
     }
 
     public void validateLottoNumber(int numberOfLottos) {
-        if(lottos.size() != numberOfLottos) {
+        if (lottos.size() != numberOfLottos) {
             throw new IllegalArgumentException(String.format("[Error] 로또의 개수는 %d개여야 합니다.", numberOfLottos));
         }
     }
@@ -30,11 +30,9 @@ public class Lottos {
     }
 
     public static Lottos getInstance(List<List<Integer>> numbers, int numberOfLottos) {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Lottos(numbers, numberOfLottos);
         }
         return instance;
     }
-
-
 }

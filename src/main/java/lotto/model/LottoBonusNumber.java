@@ -15,7 +15,7 @@ public class LottoBonusNumber {
     }
 
     public static LottoBonusNumber getInstance(int bonusNumber) {
-        if(instance==null){
+        if (instance == null) {
             instance = new LottoBonusNumber(bonusNumber);
         }
         return instance;
@@ -24,8 +24,6 @@ public class LottoBonusNumber {
     public int getBonusNumber() {
         return bonusNumber;
     }
-
-
 
 
 }
