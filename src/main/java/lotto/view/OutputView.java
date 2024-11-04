@@ -38,7 +38,7 @@ public class OutputView {
 
     public static void printWinningResult(int count, String prizeMoney, int hit, String bonus) {
         System.out.printf(OutputMessages.WIN_RESULT_FORMAT, count, bonus, prizeMoney, hit);
-        System.out.println();
+        printEnter();
     }
 
     public static void printEnter() {
