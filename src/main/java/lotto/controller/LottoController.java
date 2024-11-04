@@ -23,6 +23,7 @@ public class LottoController {
 
         WinningResult winningResult = new WinningResult(lottos, winningCombinations);
         ProfitCalculator profitCalculator = new ProfitCalculator();
+        ;
         double returnOnInvestment = profitCalculator.calculateProfit(winningResult, purchaseAmount);
         LottoResult lottoResult = new LottoResult(returnOnInvestment, winningResult.displayWinningResult());
         OutputView.printLottoResult(lottoResult);

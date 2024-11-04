@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -8,11 +9,17 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        validateNoDuplicates(numbers);
-        validateLottoNumberRange(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        // 가변 리스트로 복사
+        List<Integer> mutableNumbers = new ArrayList<>(numbers);
+
+        // 검증 작업 수행
+        validate(mutableNumbers);
+        validateNoDuplicates(mutableNumbers);
+        validateLottoNumberRange(mutableNumbers);
+
+        // 정렬 후 불변 리스트로 설정
+        Collections.sort(mutableNumbers);
+        this.numbers = Collections.unmodifiableList(mutableNumbers);
     }
 
     private void validate(List<Integer> numbers) {
