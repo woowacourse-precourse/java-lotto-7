@@ -1,14 +1,12 @@
 package lotto.controller;
 
-import static lotto.constant.ErrorMessage.DUPLICATE_WINNING_AND_BONUS_NUMBER;
-import static lotto.constant.ErrorMessage.DUPLICATE_WINNING_NUMBERS;
-import static lotto.constant.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.constant.ErrorMessage.INVALID_NUMERIC_INPUT;
 import static lotto.constant.ErrorMessage.INVALID_PURCHASE_AMOUNT;
-import static lotto.constant.ErrorMessage.INVALID_WINNING_NUMBER_COUNT;
 import static lotto.constant.ErrorMessage.PRINT_ERROR_MESSAGE;
 
 import java.util.List;
+import lotto.Bonus;
+import lotto.Lotto;
 import lotto.WinningLotto;
 import lotto.view.InputView;
 
@@ -42,53 +40,55 @@ public class InputMiddleController {
     }
 
     public WinningLotto getValidatedWinningLotto() {
-        List<Integer> winningNumbers = getValidatedWinningNumbers();
-        int bonusNumber = getValidatedBonusNumber(winningNumbers);
-        return new WinningLotto(winningNumbers, bonusNumber);
+        Lotto validatedWinningNumbers = getValidatedWinningNumbers();
+        Bonus validatedBonusNumber = getValidatedBonusNumber(validatedWinningNumbers);
+        return getValidatedWinningLotto(validatedWinningNumbers, validatedBonusNumber);
     }
 
-    private List<Integer> getValidatedWinningNumbers() {
+    private Lotto getValidatedWinningNumbers() {
         while (true) {
             try {
                 List<Integer> numbers = inputView.readWinningNumbers();
-                validateWinningNumbers(numbers);
-                return numbers;
+                return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(PRINT_ERROR_MESSAGE.getMessage() + e.getMessage());
             }
         }
     }
 
-    private void validateWinningNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_COUNT.getMessage());
-        }
-        if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBERS.getMessage());
-        }
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
-        }
-    }
+//    private void validateWinningNumbers(List<Integer> numbers) {
+//        if (numbers.size() != 6) {
+//            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_COUNT.getMessage());
+//        }
+//        if (numbers.stream().distinct().count() != numbers.size()) {
+//            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBERS.getMessage());
+//        }
+//        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+//            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
+//        }
+//    }
 
-    private int getValidatedBonusNumber(List<Integer> winningNumbers) {
+    private Bonus getValidatedBonusNumber(Lotto lotto) {
         while (true) {
             try {
                 int bonusNumber = Integer.parseInt(inputView.readBonusNumber());
-                validateBonusNumber(bonusNumber, winningNumbers);
-                return bonusNumber;
+                return new Bonus(bonusNumber, lotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(PRINT_ERROR_MESSAGE.getMessage() + e.getMessage());
             }
         }
     }
 
-    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(DUPLICATE_WINNING_AND_BONUS_NUMBER.getMessage());
-        }
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
-        }
+//    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+//        if (winningNumbers.contains(bonusNumber)) {
+//            throw new IllegalArgumentException(DUPLICATE_WINNING_AND_BONUS_NUMBER.getMessage());
+//        }
+//        if (bonusNumber < 1 || bonusNumber > 45) {
+//            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
+//        }
+//    }
+
+    public WinningLotto getValidatedWinningLotto(Lotto lotto, Bonus bonus) {
+        return new WinningLotto(lotto, bonus);
     }
 }
