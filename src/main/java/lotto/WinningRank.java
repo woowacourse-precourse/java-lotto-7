@@ -28,13 +28,6 @@ public enum WinningRank {
             .orElse(NOTHING);
     }
 
-    private static Predicate<WinningRank> isWinning(
-        int matchCount,
-        boolean matchBonus
-    ) {
-        return rank -> rank.matchCount == matchCount && rank.matchBonus == matchBonus;
-    }
-
     public int calculatePrize(int count) {
         return prizeAmount * count;
     }
@@ -45,5 +38,12 @@ public enum WinningRank {
 
     public int getPrizeAmount() {
         return prizeAmount;
+    }
+
+    private static Predicate<WinningRank> isWinning(
+        int matchCount,
+        boolean matchBonus
+    ) {
+        return rank -> rank.matchCount == matchCount && rank.matchBonus == matchBonus;
     }
 }
