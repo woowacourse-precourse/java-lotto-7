@@ -5,7 +5,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
+import lotto.dto.LottoPurchasesDto;
 import lotto.dto.LottoResultDto;
+import lotto.dto.LottoResultMessageDto;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoPrize;
 import org.junit.jupiter.api.DisplayName;
@@ -21,16 +23,17 @@ class GenerateMessageServiceTest {
     @ParameterizedTest
     @MethodSource("generatePurchasesCase")
     void generatePurchasesMessageTest(List<Lotto> lottos, String expected) {
-        assertThat(generateMessageService.generatePurchasesMessage(lottos).getPurchasesMessage()).isEqualTo(expected);
+        LottoPurchasesDto lottoPurchasesDto = generateMessageService.generatePurchasesMessage(lottos);
+        assertThat(lottoPurchasesDto.getPurchasesMessage()).isEqualTo(expected);
     }
 
     static Stream<Arguments> generatePurchasesCase() {
+        List<Lotto> lottos = List.of(new Lotto(List.of(10, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(10, 2, 13, 4, 5, 6)));
+        String expected = List.of(2, 3, 4, 5, 6, 10) + "%n"
+                + List.of(2, 4, 5, 6, 10, 13) + "%n";
         return Stream.of(
-                Arguments.of(
-                        List.of(new Lotto(List.of(10, 2, 3, 4, 5, 6)),
-                                new Lotto(List.of(10, 2, 13, 4, 5, 6))),
-                        List.of(2, 3, 4, 5, 6, 10) + "%n"
-                                + List.of(2, 4, 5, 6, 10, 13) + "%n")
+                Arguments.of(lottos, expected)
         );
     }
 
@@ -38,7 +41,8 @@ class GenerateMessageServiceTest {
     @ParameterizedTest
     @MethodSource("generateResultCase")
     void generatePurchasesMessageTest(LottoResultDto lottoResultDto, String expected) {
-        assertThat(generateMessageService.generateResultMessage(lottoResultDto).getResultMessage()).isEqualTo(expected);
+        LottoResultMessageDto lottoResultMessageDto = generateMessageService.generateResultMessage(lottoResultDto);
+        assertThat(lottoResultMessageDto.getResultMessage()).isEqualTo(expected);
     }
 
     static Stream<Arguments> generateResultCase() {

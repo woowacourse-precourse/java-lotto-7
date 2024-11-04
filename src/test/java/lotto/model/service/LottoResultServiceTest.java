@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
+import lotto.dto.LottoResultDto;
 import lotto.dto.WinningLottoDto;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoPrize;
@@ -42,10 +43,9 @@ class LottoResultServiceTest {
     @DisplayName("사용자의 수익률 계산을 테스트 합니다.")
     @ParameterizedTest
     @MethodSource("generateWinningRateCase")
-    void resultFromWinningRateTest(WinningLottoDto winningLottoDto, List<Lotto> lottos,
-                                   String expectedWinningRate) {
-        assertThat(lottoResultService.resultFrom(winningLottoDto, lottos).getWinningRate()).isEqualTo(
-                expectedWinningRate);
+    void resultFromWinningRateTest(WinningLottoDto winningLottoDto, List<Lotto> lottos, String expectedWinningRate) {
+        LottoResultDto lottoResultDto = lottoResultService.resultFrom(winningLottoDto, lottos);
+        assertThat(lottoResultDto.getWinningRate()).isEqualTo(expectedWinningRate);
     }
 
     static Stream<Arguments> generateWinningRateCase() {

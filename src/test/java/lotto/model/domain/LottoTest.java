@@ -72,8 +72,9 @@ class LottoTest {
     }
 
     static Stream<Arguments> generateDuplicationCaseOfBonusNumbers() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         return Stream.of(
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6)
+                Arguments.of(lotto, 6)
         );
     }
 
@@ -87,8 +88,9 @@ class LottoTest {
     }
 
     static Stream<Arguments> generateInvalidAreaCaseOfBonusNumbers() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         return Stream.of(
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 46)
+                Arguments.of(lotto, 46)
         );
     }
 
@@ -100,8 +102,9 @@ class LottoTest {
     }
 
     static Stream<Arguments> generateWinningLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         return Stream.of(
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7)
+                Arguments.of(lotto, 7)
         );
     }
 
@@ -136,8 +139,10 @@ class LottoTest {
     }
 
     static Stream<Arguments> generateShowLottoCase() {
+        Lotto inputLotto = new Lotto(List.of(10, 2, 3, 4, 5, 6));
+        String expected = List.of(2, 3, 4, 5, 6, 10).toString();
         return Stream.of(
-                Arguments.of(new Lotto(List.of(10, 2, 3, 4, 5, 6)), List.of(2, 3, 4, 5, 6, 10).toString())
+                Arguments.of(inputLotto, expected)
         );
     }
 }
