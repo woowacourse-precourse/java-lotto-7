@@ -3,8 +3,11 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +24,48 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void getMatchCount_test() {
+        // given
+        Lotto lotto1 = new Lotto(List.of(11, 12, 13, 14, 15, 16));
+        Lotto lotto2 = new Lotto(List.of(11, 12, 13, 14, 15, 6));
+        Lotto lotto3 = new Lotto(List.of(11, 12, 13, 14, 5, 6));
+        Lotto lotto4 = new Lotto(List.of(11, 12, 13, 4, 5, 6));
+        Lotto lotto5 = new Lotto(List.of(11, 12, 3, 4, 5, 6));
+        Lotto lotto6 = new Lotto(List.of(11, 2, 3, 4, 5, 6));
+        Lotto lotto7 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        ArrayList<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        // then
+        assertThat(lotto1.getMatchCount(winningNumbers)).isEqualTo(0);
+        assertThat(lotto2.getMatchCount(winningNumbers)).isEqualTo(1);
+        assertThat(lotto3.getMatchCount(winningNumbers)).isEqualTo(2);
+        assertThat(lotto4.getMatchCount(winningNumbers)).isEqualTo(3);
+        assertThat(lotto5.getMatchCount(winningNumbers)).isEqualTo(4);
+        assertThat(lotto6.getMatchCount(winningNumbers)).isEqualTo(5);
+        assertThat(lotto7.getMatchCount(winningNumbers)).isEqualTo(6);
+    }
+
+    @Test
+    void hasBonusNumber_test() {
+        // given
+        Lotto lotto1 = new Lotto(List.of(11, 12, 13, 14, 15, 16));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 13;
+
+        // then
+        assertThat(lotto1.hasBonusNumber(bonusNumber)).isEqualTo(true);
+        assertThat(lotto2.hasBonusNumber(bonusNumber)).isEqualTo(false);
+    }
+
+    @Test
+    void toString_test() {
+        // given
+        Lotto lotto1 = new Lotto(List.of(11, 12, 13, 14, 15, 16));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // then
+        assertThat(lotto1.toString()).isEqualTo("[11, 12, 13, 14, 15, 16]");
+        assertThat(lotto2.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }
