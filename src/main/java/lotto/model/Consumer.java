@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.CompareInteger;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Consumer {
@@ -21,6 +20,14 @@ public class Consumer {
     private void setLotto() {
         Lotto lotto = new Lotto(getNumbers());
         this.lottoTicket.add(lotto);
+    }
+
+    public int[] getLottoResult() {
+        return this.lottoResult;
+    }
+
+    public int getSecondPlace() {
+        return this.secondPlace;
     }
 
     private List<Integer> getNumbers() {
@@ -42,13 +49,5 @@ public class Consumer {
                 secondPlace++;
             }
         }
-    }
-
-    public int[] getLottoResult() {
-        return this.lottoResult;
-    }
-
-    public int getSecondPlace() {
-        return this.secondPlace;
     }
 }

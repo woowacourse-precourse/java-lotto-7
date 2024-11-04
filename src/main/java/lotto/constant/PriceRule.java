@@ -8,7 +8,7 @@ public enum PriceRule {
 
     private final String message;
 
-    private PriceRule(String message){
+    PriceRule(String message){
         this.message = message;
     }
 
