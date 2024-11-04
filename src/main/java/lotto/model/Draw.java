@@ -18,6 +18,8 @@ public class Draw {
                 .collect(Collectors.toList());
         DrawValidation.validateWinningNumbersCount(numberGroup);
         DrawValidation.validateDuplicatedNumber(numberGroup, Integer.parseInt(bonusNumber));
+        DrawValidation.validateWinningNumberRange(numberGroup);
+        DrawValidation.validateBonusNumberRange(Integer.parseInt(bonusNumber));
 
         this.winningNumbers = numberGroup;
         this.bonusNumber = Integer.parseInt(bonusNumber);
