@@ -74,4 +74,15 @@ public class ValidatorTest {
         Validator.validateListSize(list,listSize);
     }
 
+    @Test
+    void testValidateDuplicatedList(){
+        List<Integer> list = List.of(1,2,3,4,5,1);
+
+        assertThatThrownBy(()->Validator.validateDuplicate(list)).isInstanceOf(IllegalArgumentException.class);
+
+        List<Integer> validList = List.of(1,2,3,4);
+
+        Validator.validateDuplicate(validList);
+    }
+
 }
