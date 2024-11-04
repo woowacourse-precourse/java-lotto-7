@@ -1,7 +1,5 @@
 package lotto.input;
 
-import lotto.enums.ErrorMessages;
-
 import java.util.*;
 
 import static lotto.enums.ErrorMessages.*;
@@ -42,7 +40,7 @@ public class WinningNumbersValidator implements InputValidator<List<Integer>, Vo
     }
 
     private void validateWinningNumberSize(List<Integer> winningNumber) {
-        if (winningNumber.size() != LOTTO_WINNING_NUMBER_SIZE.getValue()) {
+        if (winningNumber.size() != WINNING_NUMBER_SIZE.getValue()) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_SIZE.getMessage());
         }
     }

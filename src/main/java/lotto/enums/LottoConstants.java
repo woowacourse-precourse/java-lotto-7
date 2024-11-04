@@ -1,7 +1,7 @@
 package lotto.enums;
 
 public enum LottoConstants {
-    LOTTO_WINNING_NUMBER_SIZE(6),
+    WINNING_NUMBER_SIZE(6),
     MIN_LOTTO_NUMBER(1),
     MAX_LOTTO_NUMBER(45);
 
