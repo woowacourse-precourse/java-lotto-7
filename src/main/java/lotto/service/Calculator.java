@@ -8,7 +8,7 @@ import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
 import lotto.domain.WinningPrize;
 
-public class Calculate {
+public class Calculator {
 
     public int matchCount(Lotto issuedLotto) {
         List<Integer> issuedNumbers = issuedLotto.getNumbers();
