@@ -1,21 +1,14 @@
 package lotto.service;
 
-import lotto.view.InputView;
+import static lotto.exception.ErrorMessage.INVALID_PURCHASE_MONEY;
 
 public class LottoService {
 
-    private final InputView inputView;
+    private static final int LOTTO_PRICE = 1000;
 
-    public LottoService() {
-        this.inputView = new InputView();
-    }
-
-    public void run() {
-        int amount = purchaseLotto();
-    }
-
-    private int purchaseLotto() {
-        int amount = inputView.readPurchaseAmount();
-        return amount;
+    public void validatePurchaseMoney(int money) {
+        if (money % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(INVALID_PURCHASE_MONEY.getMessage());
+        }
     }
 }
