@@ -3,7 +3,9 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.controller.LottoController;
+import java.util.Map;
+import lotto.model.enums.WinningType;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -62,4 +64,23 @@ class LottosTest {
                 .hasMessageContaining("[ERROR]");
     }
 
+    @DisplayName("로또 번호 결과 테스트")
+    @Test
+    void 로또_번호_결과_테스트(){
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 45);
+        Integer bonusNumber = 6;
+
+        List<Lotto> testLottos = new ArrayList<>();
+        Lotto lotto = new Lotto(lottoNumbers);
+        testLottos.add(lotto);
+
+        Lottos lottos = new Lottos(testLottos, winningNumbers, bonusNumber);
+        Map<WinningType, Integer> winningResult = lottos.getWinningResult();
+
+
+        Assertions.assertThat(winningResult.get(WinningType.FIVE_BONUS)).isEqualTo(1);
+
+
+    }
 }

@@ -26,9 +26,29 @@ public class Lottos {
         validateBonusNumber(winningNumbers, bonusNumber);
         validateWinningNumbersRange(winningNumbers);
 
+        initWinningResult();
+
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    private void initWinningResult() {
+        for (WinningType winningType : WinningType.values()) {
+            winningResult.put(winningType, 0);
+        }
+    }
+
+    public Map<WinningType, Integer> getWinningResult() {
+        checkWinningResult();
+        return winningResult;
+    }
+
+    private void checkWinningResult() {
+        for (Lotto lotto : lottos) {
+            WinningType winningType = lotto.checkWinningNumbers(winningNumbers, bonusNumber);
+            winningResult.put(winningType, winningResult.getOrDefault(winningType, 0) + 1);
+        }
     }
 
     private void validateWinningNumbersDuplicate(final List<Integer> winningNumbers) {
