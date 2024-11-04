@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class LottoResultCalculator {
 
@@ -29,20 +30,12 @@ public class LottoResultCalculator {
             this(matchingNumbers, prize, false, description);
         }
 
-        public int getMatchingNumbers() {
-            return matchingNumbers;
-        }
-
         public int getPrize() {
             return prize;
         }
 
         public String getFormattedPrize() {
             return String.format("%,d원", getPrize());
-        }
-
-        public boolean isBonus() {
-            return bonus;
         }
 
         public String getDescription() {
@@ -67,10 +60,10 @@ public class LottoResultCalculator {
         return matches;
     }
 
-    public void calculateWinnings(ArrayList<Lotto> myLotto, Lotto winningLotto, int bonusNumber, int price) {
+    public void calculateWinnings(ArrayList<Lotto> myLotto, List<Integer> winningNumberList, int bonusNumber, int price) {
         HashMap<WinningLevel, Integer> matches = prepareResultStorage();
         for (Lotto singleLotto : myLotto) {
-            int matchCount = singleLotto.countMatches(winningLotto);
+            int matchCount = singleLotto.countMatches(winningNumberList);
             boolean hasBonus = singleLotto.getNumbers().contains(bonusNumber);
             WinningLevel level = WinningLevel.findLevel(matchCount, hasBonus);
             matches.put(level, matches.get(level) + 1);
@@ -85,7 +78,7 @@ public class LottoResultCalculator {
             if (level != WinningLevel.NONE) {
                 int count = matches.getOrDefault(level, 0);
                 System.out.println(level.getDescription() + " (" + level.getFormattedPrize() + ") - "
-                        + matches.get(level) + "개");
+                        + count + "개");
             }
         }
         printProfitRate(matches, price);
