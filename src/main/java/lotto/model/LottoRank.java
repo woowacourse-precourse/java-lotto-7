@@ -40,11 +40,6 @@ public enum LottoRank {
     public String getMessage() {
         return message;
     }
-
-    public int getHitCount() {
-        return hitCount;
-    }
-
     public int getPrizeMoney() {
         return prizeMoney;
     }
