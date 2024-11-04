@@ -15,6 +15,9 @@ public class InputView {
                 return MoneyValidator.validateMoneyToBuy(input);
             } catch (Exception e) {
                 OutputView.printErrorMessage(e.getMessage());
+                if ("true".equals(System.getProperty("TEST_MODE"))) {  // TEST_MODE 확인
+                    throw e;
+                }
             }
         }
     }

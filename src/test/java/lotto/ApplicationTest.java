@@ -1,16 +1,22 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import lotto.message.ErrorMessage;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
+    @BeforeAll
+    static void setUp() {
+        System.setProperty("TEST_MODE", "true");  // 테스트 모드 설정
+    }
 
     @Test
     void 기능_테스트() {
@@ -49,9 +55,15 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
-            runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThatThrownBy(() -> runException("1000j"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.getMessage());
         });
+    }
+
+    @AfterAll
+    static void tearDown() {
+        System.clearProperty("TEST_MODE");  // 테스트 후 속성 제거
     }
 
     @Override
