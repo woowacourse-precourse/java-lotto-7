@@ -69,6 +69,7 @@ public class LottoController {
     }
 
     private Integer changeStringToNumber(String numberString) throws IllegalArgumentException {
+    }
 
     private void validateLottoNumbersString(String numberString) throws IllegalArgumentException {
     }
