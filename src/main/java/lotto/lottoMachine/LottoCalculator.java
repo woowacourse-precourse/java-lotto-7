@@ -19,7 +19,7 @@ public class LottoCalculator {
         Map<LottoRank, Integer> resultMap = initResultMap();
 
         for (Lotto userLotto : userLottos) {
-            LottoRank lottoRank = userLotto.getMatchCount(winningLotto, bonusNumber);
+            LottoRank lottoRank = calculateMatchCount(userLotto, winningLotto, bonusNumber);
             if (lottoRank != null) {
                 resultMap.put(lottoRank, resultMap.get(lottoRank) + 1);
             }
@@ -28,13 +28,33 @@ public class LottoCalculator {
         return resultMap;
     }
 
-    private static Map<LottoRank, Integer> initResultMap() {
+    protected Map<LottoRank, Integer> initResultMap() {
         Map<LottoRank, Integer> resultMap = new EnumMap<>(LottoRank.class);
         for(LottoRank rank : LottoRank.values()) {
             resultMap.put(rank, 0);
         }
 
         return resultMap;
+    }
+
+    protected LottoRank calculateMatchCount(Lotto userLotto, Lotto winningLotto, int bonusNumber) {
+        List<Integer> numbers = userLotto.getNumbers();
+        int count = (int) numbers.stream()
+                .filter(winningLotto.getNumbers()::contains)
+                .count();
+
+        if(count == 6) {
+            return LottoRank.FIRST;
+        } else if(count == 5 && numbers.contains(bonusNumber)) {
+            return LottoRank.SECOND;
+        } else if(count == 5) {
+            return LottoRank.THIRD;
+        } else if(count == 4) {
+            return LottoRank.FOURTH;
+        } else if(count == 3) {
+            return LottoRank.FIFTH;
+        }
+        return null;
     }
 
     protected Double calculateTotalProfit(Map<LottoRank, Integer> resultMap) {

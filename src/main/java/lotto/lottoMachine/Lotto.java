@@ -32,25 +32,6 @@ public class Lotto {
         return numbers;
     }
 
-    public LottoRank getMatchCount(Lotto winLotto, int bonusNumber) {
-        int count = (int) numbers.stream()
-                .filter(winLotto.getNumbers()::contains)
-                .count();
-
-        if(count == 6) {
-            return LottoRank.FIRST;
-        } else if(count == 5 && numbers.contains(bonusNumber)) {
-            return LottoRank.SECOND;
-        } else if(count == 5) {
-            return LottoRank.THIRD;
-        } else if(count == 4) {
-            return LottoRank.FOURTH;
-        } else if(count == 3) {
-            return LottoRank.FIFTH;
-        }
-        return null;
-    }
-
     @Override
     public String toString() {
         return "[" + numbers.stream()
