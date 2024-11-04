@@ -8,6 +8,7 @@ public class WinningNumbers {
 
     private WinningNumbers(List<Integer> numbers) {
         validateNumOfNumbers(numbers);
+        validateNumbersInRange(numbers);
         this.numbers = numbers;
     }
 
@@ -24,9 +25,17 @@ public class WinningNumbers {
         return new WinningNumbers(numbers);
     }
 
-    private static void validateNumOfNumbers(List<Integer> numbers) {
+    private void validateNumOfNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void validateNumbersInRange(List<Integer> numbers) {
+        boolean isOutOfRange = numbers.stream().anyMatch(number -> number < 1 || number > 45);
+
+        if (isOutOfRange) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 정수여야 합니다.");
         }
     }
 
