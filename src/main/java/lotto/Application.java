@@ -50,7 +50,7 @@ public class Application {
     public static List<Lotto> generateLottos(int count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
@@ -72,7 +72,7 @@ public class Application {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 String[] inputs = input.split(",");
-                if (inputs.length != 6) {
+                if (inputs.length != LOTTO_NUMBER_COUNT) {
                     throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
                 }
                 List<Integer> winningNumbers = new ArrayList<>();
@@ -167,11 +167,10 @@ public class Application {
         System.out.println("당첨 통계");
         System.out.println("---");
         int totalPrize = 0;
-        int[] prizes = {0, 2000000000, 30000000, 1500000, 50000, 5000};
 
         for (int i = 1; i <= 5; i++) {
             int count = results.getOrDefault(i, 0);
-            totalPrize += count * prizes[i];
+            totalPrize += count * PRIZES[i];
             printRankResult(i, count);
         }
 
