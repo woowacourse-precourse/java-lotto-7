@@ -1,4 +1,4 @@
-package lotto.application.prize.exception;
+package lotto.application.prize.message;
 
 public class Message {
     public static final String BONUS_SHOULD_BETWEEN_ONE_FOURTYFIVE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";

@@ -2,8 +2,8 @@ package lotto.application.common.ThousandWons;
 
 import static lotto.application.common.constants.Constants.THOUSAND;
 import static lotto.application.common.constants.Constants.ZERO;
-import static lotto.application.common.exception.Message.SHOULD_MORE_THAN_ZERO;
-import static lotto.application.common.exception.Message.SHOULD_THOUSAND_UNIT;
+import static lotto.application.common.message.Message.SHOULD_MORE_THAN_ZERO;
+import static lotto.application.common.message.Message.SHOULD_THOUSAND_UNIT;
 import static lotto.application.util.StringConverter.toInt;
 
 public class ThousandWons {

@@ -1,4 +1,4 @@
-package lotto.application.common.exception;
+package lotto.application.common.message;
 
 public class Message {
     public static final String SHOULD_MORE_THAN_ZERO = "[ERROR] 0보다 큰 금액이어야 합니다.";

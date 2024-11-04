@@ -5,15 +5,14 @@ import static lotto.application.statistics.domain.Rank.FIRST;
 import static lotto.application.statistics.domain.Rank.FOURTH;
 import static lotto.application.statistics.domain.Rank.SECOND;
 import static lotto.application.statistics.domain.Rank.THIRD;
+import static lotto.application.statistics.message.Message.DIVISION_LINE;
+import static lotto.application.statistics.message.Message.PROFIT_RATE_FORMAT;
+import static lotto.application.statistics.message.Message.TITLE;
 
 import lotto.application.common.OutputPrinter;
 import lotto.application.statistics.dto.StatisticsResponse;
 
 public class StatisticsOutputView {
-    private static final String DIVISION_LINE = "---";
-    private static final String TITLE = "당첨 통계";
-    private static final String PROFIT_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
-
     private final OutputPrinter printer;
 
     public StatisticsOutputView() {

@@ -1,7 +1,7 @@
 package lotto.application.prize.domain;
 
-import static lotto.application.prize.exception.Message.BONUS_SHOULD_BETWEEN_ONE_FOURTYFIVE;
-import static lotto.application.prize.exception.Message.BONUS_SHOULD_DIFFERENT_FROM_WINNUMBER;
+import static lotto.application.prize.message.Message.BONUS_SHOULD_BETWEEN_ONE_FOURTYFIVE;
+import static lotto.application.prize.message.Message.BONUS_SHOULD_DIFFERENT_FROM_WINNUMBER;
 import static lotto.application.ticket.domain.ticket.LottoNumberRule.END_INCLUSIVE;
 import static lotto.application.ticket.domain.ticket.LottoNumberRule.START_INCLUSIVE;
 

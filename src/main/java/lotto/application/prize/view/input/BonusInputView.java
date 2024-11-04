@@ -1,7 +1,7 @@
 package lotto.application.prize.view.input;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.application.prize.exception.Message.INPUT_BONUS_NUMBER;
+import static lotto.application.prize.message.Message.INPUT_BONUS_NUMBER;
 import static lotto.application.util.StringConverter.toInt;
 import static lotto.application.util.StringConverter.trim;
 

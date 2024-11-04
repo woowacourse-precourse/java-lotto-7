@@ -1,7 +1,8 @@
 package lotto.application.statistics.domain;
 
+import static lotto.application.statistics.constants.Constants.PERCENTAGE;
+
 public class StatisticsResult {
-    public static final double PERCENTAGE = 100.0;
     private final RankCounter rankCounter;
 
     private StatisticsResult(RankCounter rankCounter) {

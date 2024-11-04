@@ -1,42 +1,61 @@
 package lotto.application.statistics.domain;
 
+import static lotto.application.statistics.constants.Constants.FIFTH_MATCH_COUNT;
+import static lotto.application.statistics.constants.Constants.FIFTH_PRIZE;
+import static lotto.application.statistics.constants.Constants.FIRST_MATCH_COUNT;
+import static lotto.application.statistics.constants.Constants.FIRST_PRIZE;
+import static lotto.application.statistics.constants.Constants.FOURTH_MATCH_COUNT;
+import static lotto.application.statistics.constants.Constants.FOURTH_PRIZE;
+import static lotto.application.statistics.constants.Constants.MIN_WINNING_MATCH_COUNT;
+import static lotto.application.statistics.constants.Constants.NO_PRIZE;
+import static lotto.application.statistics.constants.Constants.SECOND_PRIZE;
+import static lotto.application.statistics.constants.Constants.SECOND_THIRD_MATCH_COUNT;
+import static lotto.application.statistics.constants.Constants.THIRD_PRIZE;
+import static lotto.application.statistics.message.Message.FIFTH_RANK_DESC;
+import static lotto.application.statistics.message.Message.FIRST_RANK_DESC;
+import static lotto.application.statistics.message.Message.FOURTH_RANK_DESC;
+import static lotto.application.statistics.message.Message.NO_PRIZE_DESC;
+import static lotto.application.statistics.message.Message.RESULT_FORMAT;
+import static lotto.application.statistics.message.Message.SECOND_RANK_DESC;
+import static lotto.application.statistics.message.Message.THIRD_RANK_DESC;
+
 import java.util.stream.Stream;
 
 public enum Rank {
-    FIRST(6, 2_000_000_000, "6개 일치") {
+    FIRST(FIRST_MATCH_COUNT, FIRST_PRIZE, FIRST_RANK_DESC) {
         @Override
         public boolean matches(int matchCount, boolean matchBonus) {
-            return matchCount == 6;
+            return matchCount == FIRST_MATCH_COUNT;
         }
     },
-    SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치") {
+    SECOND(SECOND_THIRD_MATCH_COUNT, SECOND_PRIZE, SECOND_RANK_DESC) {
         @Override
         public boolean matches(int matchCount, boolean matchBonus) {
-            return matchCount == 5 && matchBonus;
+            return matchCount == SECOND_THIRD_MATCH_COUNT && matchBonus;
         }
     },
-    THIRD(5, 1_500_000, "5개 일치") {
+    THIRD(SECOND_THIRD_MATCH_COUNT, THIRD_PRIZE, THIRD_RANK_DESC) {
         @Override
         public boolean matches(int matchCount, boolean matchBonus) {
-            return matchCount == 5 && !matchBonus;
+            return matchCount == SECOND_THIRD_MATCH_COUNT && !matchBonus;
         }
     },
-    FOURTH(4, 50_000, "4개 일치") {
+    FOURTH(FOURTH_MATCH_COUNT, FOURTH_PRIZE, FOURTH_RANK_DESC) {
         @Override
         public boolean matches(int matchCount, boolean matchBonus) {
-            return matchCount == 4;
+            return matchCount == FOURTH_MATCH_COUNT;
         }
     },
-    FIFTH(3, 5_000, "3개 일치") {
+    FIFTH(FIFTH_MATCH_COUNT, FIFTH_PRIZE, FIFTH_RANK_DESC) {
         @Override
         public boolean matches(int matchCount, boolean matchBonus) {
-            return matchCount == 3;
+            return matchCount == FIFTH_MATCH_COUNT;
         }
     },
-    NONE(0, 0, "미당첨") {
+    NONE(NO_PRIZE, NO_PRIZE, NO_PRIZE_DESC) {
         @Override
         public boolean matches(int matchCount, boolean matchBonus) {
-            return matchCount < 3;
+            return matchCount < MIN_WINNING_MATCH_COUNT;
         }
     };
 
@@ -56,20 +75,12 @@ public enum Rank {
         return findMatchedRank(matchCount, matchBonus);
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public int getPrize() {
         return prize;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public String toFormattedString(long count) {
-        return String.format("%s (%,d원) - %d개", description, prize, count);
+        return String.format(RESULT_FORMAT, description, prize, count);
     }
 
     private static Rank findMatchedRank(int matchCount, boolean matchBonus) {
