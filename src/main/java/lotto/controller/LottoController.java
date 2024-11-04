@@ -3,8 +3,8 @@ package lotto.controller;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import lotto.domain.rank.LottoPrice;
-import lotto.domain.mapper.LottoMapper;
+import lotto.domain.LottoPrice;
+import lotto.mapper.LottoMapper;
 import lotto.domain.util.LottoNumberParser;
 import lotto.domain.rank.LottoRanks;
 import lotto.domain.Number;
@@ -19,6 +19,8 @@ import lotto.view.OutputView;
 import lotto.view.dto.LottoCountResponse;
 import lotto.view.dto.LottoErrorResponse;
 import lotto.view.dto.LottoRankResponse;
+import lotto.view.dto.LottoResponse;
+import lotto.view.dto.ReturnRateResponse;
 
 public class LottoController {
 
@@ -49,8 +51,10 @@ public class LottoController {
     }
 
     private void showReturnRate(Money money, double sumLottoPrice) {
-        double returnRate = LottoStatistics.calculateReturnRate(sumLottoPrice, money.getMoney());
-        outputView.showReturnRate(returnRate);
+        ReturnRateResponse response = LottoMapper.toReturnRateResponse(
+                LottoStatistics.calculateReturnRate(sumLottoPrice, money.getMoney())
+        );
+        outputView.showReturnRate(response.returnRate());
     }
 
     private void showLottoRanks(Map<LottoPrice, Integer> statistics) {
@@ -62,7 +66,8 @@ public class LottoController {
                     response.lottoCount(),
                     response.lottoRankPrice(),
                     response.lottoRankCounts(),
-                    response.bonus());
+                    response.bonus()
+            );
         }
     }
 
@@ -79,11 +84,8 @@ public class LottoController {
         Lottos lottos = new Lottos(createRandomNumbers, lottoCount);
 
         for (Lotto lotto : lottos.displayLottos()) {
-            List<Integer> lottoNumber = lotto.displayLotto()
-                    .stream()
-                    .map(Number::getNumber)
-                    .toList();
-            outputView.displayLotto(lottoNumber);
+            LottoResponse lottoResponse = LottoMapper.toLottoResponse(lotto);
+            outputView.displayLotto(lottoResponse.lottoNumber());
         }
 
         return lottos;
