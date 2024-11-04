@@ -18,7 +18,7 @@ public class LottoView {
     }
 
     public void displayPurchasedLotto(final List<Lotto> lottoTickets) {
-        System.out.println(lottoTickets.size() + "개를 구매하셨습니다.");
+        System.out.println(lottoTickets.size() + "개를 구매했습니다.");
         lottoTickets.forEach(lotto ->
                 System.out.println(lotto.getNumbers()));
     }
@@ -39,9 +39,18 @@ public class LottoView {
         System.out.println("당첨 통계");
         System.out.println("-------");
         for (Entry<LottoPrizeRankType, Long> rank : rankLotto.entrySet()) {
-            System.out.printf("%d개 일치 (%,d원) - %d개 %n",
+            String message = getLottoRankMessage(rank);
+            System.out.println(message);
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
+    }
+
+    private String getLottoRankMessage(final Entry<LottoPrizeRankType, Long> rank) {
+        if (rank.getKey().getBonusMatch() && rank.getKey().getMatchCount() == 5) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개",
                     rank.getKey().getMatchCount(), rank.getKey().getPrizeMoney(), rank.getValue());
         }
-        System.out.printf("총 수익률은 %.1f%%", rateOfReturn);
+        return String.format("%d개 일치 (%,d원) - %d개",
+                rank.getKey().getMatchCount(), rank.getKey().getPrizeMoney(), rank.getValue());
     }
 }

@@ -46,6 +46,10 @@ public enum LottoPrizeRankType {
         return this.matchCount;
     }
 
+    public boolean getBonusMatch() {
+        return this.bonusMatch;
+    }
+
     public Long getPrizeMoney() {
         return this.prizeMoney;
     }
