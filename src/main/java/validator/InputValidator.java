@@ -16,7 +16,8 @@ public class InputValidator {
 
     public static void validateWinNumbers(String numbers) {
         final int NUMBERS_COUNT = 6;
-        final int NUMBER_LIMIT = 45;
+        final int NUMBER_MAX_LIMIT = 45;
+        final int NUMBER_MIN_LIMIT = 1;
         List<Integer> winNumbers = new ArrayList<>();
         for (String number : numbers.split(",")) {
             winNumbers.add(Integer.parseInt(number));
@@ -25,8 +26,8 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 숫자는 6개 입니다.");
         }
         for (Integer number : winNumbers) {
-            if (number > NUMBER_LIMIT) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호가 45를 넘어가면 안됩니다.");
+            if (number > NUMBER_MAX_LIMIT || number < NUMBER_MIN_LIMIT) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호의 범위는 1~45입니다.");
             }
         }
     }
