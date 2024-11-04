@@ -20,7 +20,7 @@ public class Print {
   // 발행한 로또를 조회하여 출력
   public void printGenerated(List<List<Integer>> lotto) {
     int lottoCounts = lotto.size();
-    String format = String.format("%d개를 구매했습니다.\n", lottoCounts);
+    String format = String.format("%d개를 구매했습니다.", lottoCounts);
     System.out.println(format);
     for(List<Integer> eachLotto : lotto) {
       System.out.println(eachLotto.toString());

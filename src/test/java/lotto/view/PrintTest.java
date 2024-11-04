@@ -45,7 +45,7 @@ class PrintTest {
     this.request = input.getLottoCounts(amount);
     this.handler = new Handler(request);
     // 출력값 예시
-    String expect = "[8, 21, 23, 41, 42, 43]\n" +
+    String expect = "8개를 구매했습니다.\n" + "[8, 21, 23, 41, 42, 43]\n" +
     "[3, 5, 11, 16, 32, 38\n" +
         "[7, 11, 16, 35, 36, 44]\n" +
         "[1, 8, 11, 31, 41, 42]\n" +
