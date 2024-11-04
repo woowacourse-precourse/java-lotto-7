@@ -1,14 +1,16 @@
 package lotto.io;
 
 
+import static lotto.vo.ErrorMessage.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-import lotto.domain.Bonus;
-import lotto.domain.Winning;
+import lotto.vo.ErrorMessage;
 
 public class Input implements AutoCloseable {
+
 
     public static int readMoney() {
         String money = Console.readLine();
@@ -16,7 +18,7 @@ public class Input implements AutoCloseable {
         validateNumber(money);
 
         if (Integer.parseInt(money) % 1000 != 0) {
-            throw new IllegalArgumentException("1000단위만 입력이 가능합니다.");
+            throw new IllegalArgumentException(INVALID_AMOUNT.getMessage());
         }
 
         return Integer.parseInt(money);
@@ -26,21 +28,24 @@ public class Input implements AutoCloseable {
         String winningNumber = Console.readLine();
 
         if (!Pattern.matches("^[1-9|,]+$", winningNumber)) {
-            throw new IllegalArgumentException("입력은 숫자와 컴마만 가능합니다.");
+            throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage());
         }
 
         if (winningNumber.startsWith(",") && winningNumber.endsWith(",")) {
-            throw new IllegalArgumentException("입력값이 올바르지 않습니다.");
+            throw new IllegalArgumentException(INVALID_INPUT.getMessage());
         }
 
         List<Integer> numbers = Arrays
                 .stream(winningNumber.trim().split(","))
-                .map(Integer::valueOf)
+                .map(number -> {
+                    validateLottoNumberLimit(Integer.parseInt(number));
+                    return Integer.parseInt(number);
+                })
                 .distinct()
                 .toList();
 
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호 6글자를 입력해주세요. (중복은 허용되지 않습니다.)");
+            throw new IllegalArgumentException(LOTTO_NUMBER_VALIDATION.getMessage());
         }
 
         return numbers;
@@ -51,9 +56,7 @@ public class Input implements AutoCloseable {
         validateNumber(strBonusNumber);
 
         int bonusNumber = Integer.parseInt(strBonusNumber);
-        if (bonusNumber > 45) {
-            throw new IllegalArgumentException("45 이상을 입력할 수 없습니다.");
-        }
+        validateLottoNumberLimit(bonusNumber);
 
         return bonusNumber;
     }
@@ -61,7 +64,13 @@ public class Input implements AutoCloseable {
     private static void validateNumber(String input) {
         boolean isNotNumber = !Pattern.matches("[0-9]+", input);
         if (isNotNumber) {
-            throw new IllegalArgumentException("숫자만 입력이 가능합니다.");
+            throw new IllegalArgumentException(INVALID_INPUT_NUMBERS.getMessage());
+        }
+    }
+
+    private static void validateLottoNumberLimit(int bonusNumber) {
+        if (bonusNumber > 45) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_LIMIT.getMessage());
         }
     }
 
