@@ -32,5 +32,9 @@ public class ViewFacade {
         outputView.showWinningStatistics(winningStatistic);
     }
 
+    public void showErrorMessage(String message) {
+        outputView.showErrorMessage(message);
+    }
+
 
 }

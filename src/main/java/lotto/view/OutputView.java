@@ -17,4 +17,8 @@ public class OutputView {
         System.out.println("\n" + WINNING_STATISTICS_HEADER);
         System.out.println(winningStatistic);
     }
+
+    public void showErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
