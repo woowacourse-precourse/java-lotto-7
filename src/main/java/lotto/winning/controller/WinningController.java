@@ -3,25 +3,21 @@ package lotto.winning.controller;
 import java.util.List;
 import java.util.Map;
 import lotto.common.constant.*;
-import lotto.common.model.Lotto;
 import lotto.dto.BonusNumberDto;
-import lotto.dto.LottoTicketsDto;
 import lotto.dto.NumberOfMatchingDto;
 import lotto.dto.WinningNumberDto;
 import lotto.winning.model.*;
 import lotto.winning.view.*;
 
 public class WinningController {
-    private final List<Lotto> LottoTickets;
     private final InputWinningNumberView inputWinningNumberView;
-    private final OutputwinningResultView outputwinningResultView;
+    private final OutputWinningResultView outputwinningResultView;
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
 
     public WinningController() {
-        this.LottoTickets = LottoTicketsDto.getLottoTicketsDto().LottoTickets();
         this.inputWinningNumberView = new InputWinningNumberView();
-        this.outputwinningResultView = new OutputwinningResultView();
+        this.outputwinningResultView = new OutputWinningResultView();
         this.winningNumbers = new WinningNumbers();
         this.bonusNumber = new BonusNumber();
     }
@@ -30,12 +26,7 @@ public class WinningController {
         receiveWinningNumbers();
         receiveBonusNumbers();
         calculateMatching();
-
-        Map<RankConstant, Integer> ranks = getRanksOfLottoTickets();
-        outputwinningResultView.printRanks(ranks);
-        int payment = LottoTickets.size() * 1_000;
-        double rateOfReturn = winningStatistics.getRateOfWinning(ranks, payment);
-        outputwinningResultView.printRateOfWinning(rateOfReturn);
+        generateWinningStatics();
     }
 
     private void receiveWinningNumbers() {
@@ -68,9 +59,12 @@ public class WinningController {
         new NumberOfMatchingDto(numberOfMatching);
     }
 
-    private Map<RankConstant, Integer> getRanksOfLottoTickets() {
-        List<Integer> winningNumbers = setWinningNumbers();
-        int bonusNumber = setBonusNumber();
-        return winningStatistics.getRanks(winningNumbers, bonusNumber, LottoTickets);
+    private void generateWinningStatics() {
+        WinningStatistics winningStatistics = new WinningStatistics();
+        Map<RankConstant, Integer> ranks = winningStatistics.getRanksOfLottoTickets();
+        double rateOfReturn = winningStatistics.getRateOfReturn();
+
+        outputwinningResultView.printRanksOfLottoTickets(ranks);
+        outputwinningResultView.printRateOfReturn(rateOfReturn);
     }
 }

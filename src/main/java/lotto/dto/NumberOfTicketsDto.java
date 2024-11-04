@@ -11,4 +11,7 @@ public record NumberOfTicketsDto(int numberOfTickets) {
         return numberOfTicketsDto;
     }
 
+    public int getPayment() {
+        return numberOfTickets * 1_000;
+    }
 }

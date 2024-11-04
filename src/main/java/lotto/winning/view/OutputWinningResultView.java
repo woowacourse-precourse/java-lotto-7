@@ -3,11 +3,8 @@ package lotto.winning.view;
 import java.util.Map;
 import lotto.common.constant.RankConstant;
 
-public class OutputwinningResultView {
-    public void printRanks(Map<RankConstant, Integer> ranks) {
-
-        //Map: key를 등수 - value를 해당 개수로 설정하자. 그리고 등수에 따른 금액
-        //아냐. Map의 key를 enum으로 넣자
+public class OutputWinningResultView {
+    public void printRanksOfLottoTickets(Map<RankConstant, Integer> ranks) {
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + ranks.get(RankConstant.FIFTHRANK) + "개");
@@ -18,7 +15,7 @@ public class OutputwinningResultView {
         System.out.println();
     }
 
-    public void printRateOfWinning(double rateOfReturn) {
+    public void printRateOfReturn(double rateOfReturn) {
         System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 }
