@@ -44,7 +44,7 @@ class LottoCalculatorTest {
         double finalRate = LottoCalculator.calculateFinalRate(winnerResult, 14000000);
 
         //then
-        assertEquals(10.79, finalRate);
+        assertEquals(10.8, finalRate);
     }
 
 }

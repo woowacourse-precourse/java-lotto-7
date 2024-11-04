@@ -20,7 +20,7 @@ public class LottoCalculator {
             return 0;
         }
         double rate = ((double) totalAmount / money) * 100;
-        BigDecimal roundedRate = new BigDecimal(rate).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedRate = new BigDecimal(rate).setScale(1, RoundingMode.HALF_UP);
         return roundedRate.doubleValue();
     }
 }
