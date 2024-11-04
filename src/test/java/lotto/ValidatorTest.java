@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class ValidatorTest {
 
     @Test
-    void 유효한_금액_예외_발생_x(){
+    void 유효한_금액_예외_발생_없음(){
         int purchaseAmount = 8000;
         assertThatCode(() -> Validator.validatePurchaseAmount(purchaseAmount))
                 .doesNotThrowAnyException();
@@ -47,5 +47,13 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateNumberRange(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @Test
+    void validateBonusDuplicate_보너스번호가_당첨번호와_중복되지_않으면_예외_발생_없음() {
+        List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        assertThatCode(() -> Validator.validateBonusDuplicate(winNumbers, bonusNumber))
+                .doesNotThrowAnyException();
     }
 }
