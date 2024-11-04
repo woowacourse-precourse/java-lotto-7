@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Exception.DONT_ENTER_STRING;
 import static lotto.Exception.DONT_NOT_ZERO;
 import static lotto.Exception.DUPLICATE_BONUS_WINNING;
 import static lotto.Exception.DUPLICATE_WINNING_NUMBER;
@@ -19,10 +20,17 @@ public class Consumer {
     }
 
     public static int enterPurchaseAmount() {
-        int purchaseAmount = Integer.parseInt(input());
-        isNotZero(purchaseAmount);
-        validRange(purchaseAmount);
-        return purchaseAmount;
+        String input = input();
+        try {
+            validateInput(input);
+            int purchaseAmount = Integer.parseInt(input);
+            isNotZero(purchaseAmount);
+            validRange(purchaseAmount);
+            return purchaseAmount;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return enterPurchaseAmount();
+        }
     }
 
     public static void validRange(int purchaseAmount) {
@@ -94,6 +102,12 @@ public class Consumer {
     public static void duplicateWithWinnging(List<Integer> winningNumbers, int number) {
         if (winningNumbers.contains(number)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS_WINNING);
+        }
+    }
+
+    public static void validateInput(String input) {
+        if (!input.matches("\\d+")) { // 입력이 숫자가 아닐 경우
+            throw new IllegalArgumentException(DONT_ENTER_STRING);
         }
     }
 }
