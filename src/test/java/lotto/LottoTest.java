@@ -43,5 +43,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 번호의 범위가 1 이상 45 이하가 아니면 예외가 발생한다.")
+    @Test
+    void 당첨_번호_범위_예외_테스트() {
+        assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 47)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 
