@@ -14,6 +14,14 @@ public class Output {
     private static final String STATISTICS_BONUS = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
     private static final String STATISTICS = "%d개 일치 (%,d원) - %d개\n";
 
+    public static void printMessage(String message) {
+        System.out.println(message);
+    }
+
+    private static void printFormat(String format, Object... args) {
+        System.out.printf(format, args);
+    }
+
     public void printLottoNumbers(List<Lotto> lottoNumbers) {
         System.out.printf(NUMBER_OF_PURCHASE, lottoNumbers.size());
         for (Lotto lottoNumber : lottoNumbers) {
@@ -35,13 +43,5 @@ public class Output {
             return;
         }
         printFormat(STATISTICS, rank.getMatchCount(), rank.getPrize(), rankCount);
-    }
-
-    public static void printMessage(String message) {
-        System.out.println(message);
-    }
-
-    private static void printFormat(String format, Object... args) {
-        System.out.printf(format, args);
     }
 }

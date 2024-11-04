@@ -13,8 +13,8 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchasedLottos;
 
 public class LottoGenerator {
-    private int numberOfLottos;
     private PurchasedLottos purchasedLottos;
+    private int numberOfLottos;
 
     public LottoGenerator() {
         this.purchasedLottos = new PurchasedLottos(); // TODO

@@ -30,6 +30,10 @@ public class WinningStatistics {
         rankCounts.put(rank, newCount);
     }
 
+    public int getRankCount(LottoRank rank) {
+        return rankCounts.getOrDefault(rank, 0);
+    }
+
     public double calculateProfitRate(int purchaseAmount) {
         calculateTotalPrize();
         return (double) totalPrize / purchaseAmount * 100;
@@ -39,9 +43,5 @@ public class WinningStatistics {
         for (Entry<LottoRank, Integer> entry : rankCounts.entrySet()) {
             totalPrize += entry.getKey().getPrize() * entry.getValue();
         }
-    }
-
-    public int getRankCount(LottoRank rank) {
-        return rankCounts.getOrDefault(rank, 0);
     }
 }
