@@ -1,5 +1,6 @@
 package lotto.Service;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Util.Lotto;
 
 import javax.swing.*;
@@ -17,14 +18,6 @@ public class LottoService {
 
     String input = readLine();
 
-    public Lotto WinningNumberSplit() {
-        List<Integer> numbers = Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-
-        lotto = new Lotto(numbers);
-        return lotto;
-    }
 
     public int buyLotto(int money) {
         int remainder = money % LOTTO_PRICE;
@@ -37,8 +30,18 @@ public class LottoService {
         return amount;
     }
 
-    /*public List<Integer> drawLotto(List<Integer> numbers) {
+    public Lotto WinningNumberSplit() {
+        List<Integer> numbers = Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
 
-    }*/
+        lotto = new Lotto(numbers);
+        return lotto;
+    }
+
+    public Lotto generateLotto() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+        return new Lotto(lottoNumbers);
+    }
 
 }
