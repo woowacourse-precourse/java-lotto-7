@@ -40,14 +40,16 @@ public class Lottos {
 
     public String printLottos() {
         StringBuilder stringBuilder = new StringBuilder();
+
         for (Lotto lotto : lottos) {
             stringBuilder.append(printLottoNumber(lotto));
             stringBuilder.append(System.lineSeparator());
         }
+
         return stringBuilder.toString();
     }
 
-    private String printLottoNumber(Lotto lotto) {
+    private String printLottoNumber(final Lotto lotto) {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(PREFIX);
@@ -60,5 +62,4 @@ public class Lottos {
 
         return stringBuilder.toString();
     }
-
 }
