@@ -8,8 +8,8 @@ import static java.lang.Integer.parseInt;
 public enum InputTypeWithValidation {
 
     MONEY("구입금액을 입력해 주세요"),
-    WINNING_NUMS("당첨 번호를 입력해 주세요."),
-    BONUS_NUM("보너스 번호를 입력해 주세요.");
+    WINNING_NUMS("\n당첨 번호를 입력해 주세요."),
+    BONUS_NUM("\n보너스 번호를 입력해 주세요.");
 
     private final String message;
 
@@ -96,7 +96,6 @@ public enum InputTypeWithValidation {
 
     private void checkParsing(String s) {
         try {
-            System.out.println("s = " + s);
             parseInt(s);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 문자열이 아닌 숫자를 입력해주세요.");
