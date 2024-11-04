@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
+import lotto.domain.ProfitCalculator;
 import lotto.domain.WinningNumbersCombinations;
 import lotto.domain.WinningResult;
 import lotto.dto.BonusNumber;
@@ -20,7 +21,9 @@ public class LottoController {
         WinningNumbersCombinations winningCombinations = getBonusNumber(winningLotto);
 
         WinningResult winningResult = new WinningResult(lottos, winningCombinations);
-        
+        ProfitCalculator profitCalculator = new ProfitCalculator();
+        double returnOnInvestment = profitCalculator.calculateProfit(winningResult, purchaseAmount);
+
     }
 
     public PurchaseAmount getValidLottoPurchaseAmount() {
