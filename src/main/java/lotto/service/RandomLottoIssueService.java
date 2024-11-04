@@ -22,7 +22,8 @@ public class RandomLottoIssueService implements LottoIssueService {
 
     @Override
     public Lotto issue(String prompt) {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(
+                Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_NUM_SIZE));
     }
 }
 

@@ -65,7 +65,7 @@ public class CustomLottoIssueService implements LottoIssueService {
     }
 
     protected void validateLottoNumRange(int num) {
-        if (num < 1 || num > 45) {
+        if (num < MIN_LOTTO_NUM || num > MAX_LOTTO_NUM) {
             throw new BusinessException(ErrorMessage.INVALID_LOTTO_NUM_RANGE);
         }
     }
