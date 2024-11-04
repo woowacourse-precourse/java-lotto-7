@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.global.ErrorMessage.*;
+import static lotto.global.LottoConstant.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +12,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
 	private static final Pattern NUMBER_FORMAT = Pattern.compile("\\d+");
-	
+
 	public static int readLottoPurchaseMoney() {
 		OutputView.printMessage("구입금액을 입력해 주세요.");
 		String amount = Console.readLine();
