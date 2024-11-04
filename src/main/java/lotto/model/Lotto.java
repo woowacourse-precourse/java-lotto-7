@@ -2,6 +2,10 @@ package lotto.model;
 
 import java.util.List;
 
+import static lotto.model.LottoConstants.LOTTO_LAST_NUMBER;
+import static lotto.model.LottoConstants.LOTTO_START_NUMBER;
+import static lotto.validation.Validation.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -11,9 +15,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        validateNumbersInRange(numbers, LOTTO_START_NUMBER, LOTTO_LAST_NUMBER);
+        validateListSize(numbers);
+        validateDuplicate(numbers);
     }
 
     // TODO: 추가 기능 구현

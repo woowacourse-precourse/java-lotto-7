@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
-    private List<Integer> golden_numbers;
+    private Lotto golden_numbers;
     private Integer bonus_number;
 
-    public LottoGame(List<Integer> golden_numbers, Integer bonus_number) {
+    public LottoGame(Lotto golden_numbers, Integer bonus_number) {
         this.golden_numbers = golden_numbers;
         this.bonus_number = bonus_number;
     }
@@ -17,7 +17,7 @@ public class LottoGame {
         List<Integer> match_count = new ArrayList<>(Collections.nCopies(7,0));
         Integer bonus_match = 0;
         for (Lotto lotto: all_lottos) {
-            Integer match = (int) golden_numbers.stream()
+            Integer match = (int) golden_numbers.getNumbers().stream()
                     .filter(lotto.getNumbers()::contains)
                     .count();
             match_count.set(match, match_count.get(match) + 1);
