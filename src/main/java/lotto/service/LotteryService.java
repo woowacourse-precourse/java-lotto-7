@@ -48,43 +48,44 @@ public class LotteryService {
         System.out.println();
     }
 
+    // 로또 당첨 통계를 조회한다.
     public void getLottoWinningStatistics() {
         outputView.printWinningStatistics();
-
-        // 개수 일치 여부 판단 필요
         final List<Lotto> lottos = lottoBuyer.getLottos();
         final List<Integer> winningNumbers = winningLottery.getNumbers();
         final int bonusNumber = lottoBonus.getBonusNumber();
-        boolean isBonus = false;
-
-        for (Lotto lotto : lottos) {
-            List<Integer> ticketNumbers = lotto.getNumbers();
-            int matchingCount = 0;
-            for (Integer number : ticketNumbers) {
-                if (winningNumbers.contains(number)) {
-                    matchingCount++;
-                }
-            }
-
-            if (ticketNumbers.contains(bonusNumber)) {
-                isBonus = true;
-            }
-            lottoResult.updateLottoResult(matchingCount, isBonus);
-            lottoBuyer.addMoney(matchingCount, isBonus);
-        }
-
+        lottos.forEach(lotto -> processLottoResult(lotto, winningNumbers, bonusNumber));
         lottoResult.printLottoWinningStatistics();
+        printLotteryResult(lottoBuyer);
+    }
 
+    // 사용자가 발행한 로또에 대해 당첨 내역 처리를 진행한다.
+    private void processLottoResult(final Lotto lotto, final List<Integer> winningNumbers, final int bonusNumber) {
+        int matchingCount = getMatchingCount(lotto.getNumbers(), winningNumbers);
+        boolean isBonus = lotto.getNumbers().contains(bonusNumber);
+        lottoResult.updateLottoResult(matchingCount, isBonus);
+        lottoBuyer.addMoney(matchingCount, isBonus);
+    }
+
+    // 사용자가 발행한 로또와 당첨 숫자 간의 일치 개수를 판단한다.
+    private int getMatchingCount(final List<Integer> ticketNumbers, final List<Integer> winningNumbers) {
+        return (int) ticketNumbers.stream().filter(winningNumbers::contains).count();
+    }
+
+    // 로또 결과를 출력한다.
+    private void printLotteryResult(final LottoBuyer lottoBuyer) {
         final int totalWinningAmount = lottoBuyer.getLottoWinningAmount();
         final int purchaseAmount = lottoBuyer.getLottoPurchaseAmount() * 1000;
         getLotteryYield(purchaseAmount, totalWinningAmount);
     }
 
+    // 로또 수익률을 계산한다.
     public void getLotteryYield(final int purchaseAmount, final int totalWinningAmount) {
         final double lotteryYield = lottoBuyer.calculateLotteryYield(purchaseAmount, totalWinningAmount);
         System.out.println("총 수익률은 " + lotteryYield + "%입니다.");
     }
 
+    // 해당 로또 구매자는 로또 개수만큼 로또 티켓을 발행한다.
     private void issueLottoTickets(final LottoBuyer lottoBuyer, final int lottoIssueNumber) {
         for (int i = 0; i < lottoIssueNumber; i++) {
             List<Integer> ticketNumbers = getTicketNumbers();
@@ -95,6 +96,7 @@ public class LotteryService {
         System.out.println();
     }
 
+    // 1부터 45 사이의 숫자에서 티켓 숫자를 출력한다.
     private List<Integer> getTicketNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
