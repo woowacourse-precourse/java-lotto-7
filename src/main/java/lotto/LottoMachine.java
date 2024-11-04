@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,20 +10,24 @@ import java.util.List;
  * - 로또 결과를 생성한다.
  */
 public class LottoMachine {
-    List<Lotto> lottos;
+    List<Lotto> lottos = new ArrayList<>();
 
-    public void generateLottos(int lottoCount) {
+    public List<Lotto> getLottos() {return this.lottos;}
+
+    public void generateLottos(int money) {
+        int lottoCount = money / 1000;
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(new Lotto(LottoNumberGenerator.getNumbers()));
         }
     }
 
-    public LottoResult generateResult (List<Integer> winningNumbers, Integer bonusNumber) {
+    public LottoResult generateResult (int money, List<Integer> winningNumbers, Integer bonusNumber) {
         LottoResult result = new LottoResult();
         for (Lotto lotto : lottos) {
             int matchCount = lotto.countMatchNumber(winningNumbers);
             result.addMatchCount(matchCount, lotto.hasBonus(bonusNumber));
         }
+        result.calculate(money);
         return result;
     }
 }

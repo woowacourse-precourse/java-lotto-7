@@ -1,18 +1,30 @@
 package lotto;
 
+import java.util.HashMap;
+import java.util.Map.Entry;
+
 public class LottoResult {
-    int[] matchCount;
-    float revenueRatio;
+    HashMap<MatchStatus, Integer> matchCount;
+    double revenueRatio;
 
     public LottoResult() {
-        this.matchCount = new int[8];
+        matchCount = new HashMap<> ();
+        for (MatchStatus status : MatchStatus.values()){
+            matchCount.put(status, 0);
+        }
     }
 
     public void addMatchCount(int matchNumberCount, boolean hasBonus) {
-        // 5개 일치 + 보너스 => idx 6
-        // 6개 일치 => idx 7
-        if ((hasBonus && matchNumberCount == 5) || matchNumberCount == 6) matchNumberCount++;
-        matchCount[matchNumberCount]++;
+        MatchStatus status = MatchStatus.getMatch(matchNumberCount, hasBonus);
+        matchCount.put(status, matchCount.get(status) + 1);
     }
 
+    public void calculate(int money) {
+        long totalRevenue = 0;
+        for (Entry<MatchStatus, Integer> type : matchCount.entrySet()) {
+            totalRevenue += (long) type.getValue() * MatchStatus.getRevenue(type.getKey());
+        }
+        double ratio = ((double) totalRevenue / money) * 100;
+        this.revenueRatio = Math.round(ratio * 100) / 100.0;
+    }
 }
