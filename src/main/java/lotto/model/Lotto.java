@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 
@@ -16,5 +16,12 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    // 생성된 로또 번호 출력
+    public void printLottoNumbers() {
+        System.out.println(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
