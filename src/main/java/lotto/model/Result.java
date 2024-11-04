@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +13,7 @@ public class Result {
     private final static int SIX_MATCHING_INDEX = 4;
 
     private final List<Integer> results;
-    private double rate;
+    private String rate;
 
     public Result() {
         results = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
@@ -45,11 +46,13 @@ public class Result {
     }
 
     public void calculateRate(UserLottos userLottos) {
-        rate = roundOff((getProfit() / (double) getInvestmentCost(userLottos)) * 100);
+        Double value = (getProfit() / (double) getInvestmentCost(userLottos)) * 100;
+        DecimalFormat(value);
     }
 
-    private double roundOff(double number) {
-        return Math.round(number * 10) / 10.0;
+    private void DecimalFormat(double value) {
+        DecimalFormat df = new DecimalFormat("#,###.0");
+        rate = df.format(value);
     }
 
     private long getInvestmentCost(UserLottos userLottos) {
@@ -60,7 +63,7 @@ public class Result {
         return 5000L * results.get(THREE_MATCHING_INDEX) + 50000L * results.get(FOUR_MATCHING_INDEX) + 1500000L * results.get(FIVE_MATCHING_INDEX) + 30000000L * results.get(BONUS_MATCHING_INDEX) + 2000000000L * results.get(SIX_MATCHING_INDEX);
     }
 
-    public double getRate() {
+    public String getRate() {
         return rate;
     }
 

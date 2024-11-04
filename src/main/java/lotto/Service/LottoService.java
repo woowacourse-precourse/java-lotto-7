@@ -30,7 +30,7 @@ public class LottoService {
         return result.getResult();
     }
 
-    public double getRate() {
+    public String getRate() {
         return result.getRate();
     }
 

@@ -13,7 +13,7 @@ public class OutputView {
         }
     }
 
-    public void printResult(List<Integer> results, double rate) {
+    public void printResult(List<Integer> results, String rate) {
         System.out.println("\n당첨 통계\n" + "---");
         System.out.println("3개 일치 (5,000원) - " + results.get(0) + "개");
         System.out.println("4개 일치 (50,000원) - " + results.get(1) + "개");

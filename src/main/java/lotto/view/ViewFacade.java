@@ -29,7 +29,7 @@ public class ViewFacade {
         outputView.printUserLotto(userLottos);
     }
 
-    public void printResult(List<Integer> results, double rate) {
+    public void printResult(List<Integer> results, String rate) {
         outputView.printResult(results, rate);
     }
 }
