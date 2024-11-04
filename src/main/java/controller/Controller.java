@@ -1,15 +1,23 @@
 package controller;
 
+import domain.LottoGenerator;
 import domain.User;
+import java.util.ArrayList;
+import java.util.List;
 import view.InputView;
 import view.OutputView;
 
 public class Controller {
     User user;
+    LottoGenerator generator = new LottoGenerator();
+    List<List<Integer>> lottoLists = new ArrayList<>();//로또 발행 번호
+
+
 
     public void run() {
         buying();
         quantity();
+        generator();
     }
 
     private void buying() {
@@ -27,6 +35,14 @@ public class Controller {
 
     private void quantity() {
         OutputView.outBuyingQuantityView(user.getBuyingQuantity());
+    }
+
+    private void generator() {
+        for (int i = 0; i < user.getBuyingQuantity(); i++) {
+            List<Integer> lottoNumbers = generator.generate();
+            lottoLists.add(lottoNumbers);
+            OutputView.outGenerateNumbersView(lottoNumbers);
+        }
     }
 
 
