@@ -1,8 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import org.assertj.core.internal.Integers;
@@ -24,8 +22,8 @@ public class LottoNumberProducer {
     }
 
     public void displayLottoNumbers() {
-        //오름차순으로 보여줘야함
         for (int i = 0; i < lottoNum; i++) {
+            Collections.sort(lottoNumbers.get(i));
             System.out.println(lottoNumbers.get(i));
         }
     }
