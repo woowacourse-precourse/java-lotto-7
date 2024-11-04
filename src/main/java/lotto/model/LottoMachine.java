@@ -7,18 +7,11 @@ import lotto.utils.LottoNumberGenerator;
 import lotto.utils.LottoNumberGeneratorStrategy;
 
 public class LottoMachine {
-    private final Lottos lottos;
+    private static final int LOTTO_PRICE = 1000;
 
-    private LottoMachine(int amount, LottoNumberGeneratorStrategy strategy) {
-        this.lottos = generateLottos(amount / 1000, strategy);
-    }
-
-    public static LottoMachine initializeWith(int amount, LottoNumberGeneratorStrategy strategy) {
-        return new LottoMachine(amount, strategy);
-    }
-
-    private Lottos generateLottos(int count, LottoNumberGeneratorStrategy strategy) {
+    public Lottos generateLottos(int purchaseAmount, LottoNumberGeneratorStrategy strategy) {
         List<Lotto> lottoBox = new ArrayList<>();
+        int count = calculateLottoTicketCount(purchaseAmount);
 
         while (lottoBox.size() < count) {
             List<Integer> lottoNumbers = LottoNumberGenerator.from(strategy).generate();
@@ -27,7 +20,7 @@ public class LottoMachine {
         return Lottos.from(lottoBox);
     }
 
-    public Lottos getLottos() {
-        return lottos;
+    private int calculateLottoTicketCount(int purchaseAmount) {
+        return purchaseAmount / LOTTO_PRICE;
     }
 }

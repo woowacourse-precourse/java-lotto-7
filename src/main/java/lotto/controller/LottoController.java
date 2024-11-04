@@ -7,6 +7,7 @@ import lotto.dto.LottosDto;
 import lotto.model.BonusNumber;
 import lotto.model.LottoMachine;
 import lotto.model.LottoStatistics;
+import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
 import lotto.utils.RandomLottoNumberGenerationStrategy;
@@ -18,12 +19,12 @@ public class LottoController {
     public void run() {
         try {
             PurchaseAmount purchaseAmount = getInput(OutputView::printPurchaseAmountInputMessage, PurchaseAmount::from);
-            LottoMachine lottoMachine = initializeLottoMachine(purchaseAmount);
-            OutputView.printPurchasedLottos(LottosDto.from(lottoMachine.getLottos()));
+            Lottos lottoTickets = purchaseLottoTickets(purchaseAmount);
+            OutputView.printPurchasedLottos(LottosDto.from(lottoTickets));
 
             WinningNumbers winningNumbers = getInput(OutputView::printWinningNumberInputMessage, WinningNumbers::from);
             BonusNumber bonusNumber = getBonusNumber(winningNumbers);
-            LottoStatistics calculate = calculate(lottoMachine, winningNumbers, bonusNumber, purchaseAmount);
+            LottoStatistics calculate = calculate(lottoTickets, winningNumbers, bonusNumber, purchaseAmount);
             OutputView.printStatistics(LottoStatisticsDto.from(calculate));
         } catch (NoSuchElementException e) {
             OutputView.printErrorMessage("[ERROR] 실제로 불가능한 상황에서 의미없는 반복 실행을 방지하기 위해 종료됩니다.");
@@ -44,8 +45,10 @@ public class LottoController {
         }
     }
 
-    private LottoMachine initializeLottoMachine(PurchaseAmount purchaseAmount) {
-        return LottoMachine.initializeWith(purchaseAmount.getAmount(), new RandomLottoNumberGenerationStrategy());
+    private Lottos purchaseLottoTickets(PurchaseAmount purchaseAmount) {
+        LottoMachine lottoMachine = new LottoMachine();
+
+        return lottoMachine.generateLottos(purchaseAmount.getAmount(), new RandomLottoNumberGenerationStrategy());
     }
 
     private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
@@ -53,9 +56,9 @@ public class LottoController {
                 input -> BonusNumber.from(input, winningNumbers.getWinningNumbers()));
     }
 
-    private static LottoStatistics calculate(LottoMachine lottoMachine, WinningNumbers winningNumbers,
+    private static LottoStatistics calculate(Lottos lottoTickets, WinningNumbers winningNumbers,
                                              BonusNumber bonusNumber, PurchaseAmount purchaseAmount) {
-        return new LottoStatistics(lottoMachine.getLottos(), winningNumbers, bonusNumber,
+        return new LottoStatistics(lottoTickets, winningNumbers, bonusNumber,
                 purchaseAmount.getAmount());
     }
 }
