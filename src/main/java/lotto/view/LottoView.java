@@ -12,7 +12,8 @@ public class LottoView {
     public BigDecimal inputLottoPrice() {
         System.out.println("구입금액을 입력해 주세요.");
         String str = Console.readLine();
-        return new BigDecimal(convertStringToInt(str));
+        validateToInt(str);
+        return new BigDecimal(str);
     }
 
     private int convertStringToInt(String str) {
