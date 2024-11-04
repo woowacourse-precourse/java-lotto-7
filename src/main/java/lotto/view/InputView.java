@@ -3,19 +3,19 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    public String inputLottoCost() {
+    public static String inputLottoCost() {
         return readConsoleInput();
     }
 
-    public String inputWinningNumbers(){
+    public static String inputWinningNumbers(){
         return  readConsoleInput();
     }
 
-    public String inputBonusNumbers(){
+    public static String inputBonusNumber(){
         return readConsoleInput();
     }
 
-    private String readConsoleInput() {
+    private static String readConsoleInput() {
         return Console.readLine();
     }
 }
