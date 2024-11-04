@@ -7,13 +7,19 @@ import lotto.constants.ErrorMessages;
 import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class WinningNumbersTest {
 
-    @Test
-    @DisplayName("당첨 번호가 6개가 아닌 경우 예외가 발생한다.")
-    void winningNumbersSizeNotSix() {
-        String input = "1,2,3,4,5";
+    @ParameterizedTest
+    @CsvSource({
+            "1,2,3,4,5",
+            "1,2,3,4,5,6,7",
+            "1,2,3,4"
+    })
+    @DisplayName("입력된 당첨 번호의 개수가 6개가 아닌 경우 예외가 발생한다.")
+    void winningNumbersCount(String input) {
         assertThatThrownBy(() -> new WinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_WINNING_NUMBER_COUNT);
@@ -26,15 +32,6 @@ class WinningNumbersTest {
         assertThatThrownBy(() -> new WinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.DUPLICATE_WINNING_NUMBER);
-    }
-
-    @Test
-    @DisplayName("당첨 번호가 1~45 범위를 벗어나는 경우 예외가 발생한다.")
-    void winningNumbersOutOfRange() {
-        String input = "0,2,3,4,5,6";
-        assertThatThrownBy(() -> new WinningNumbers(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
     }
 
     @Test
@@ -61,10 +58,14 @@ class WinningNumbersTest {
         assertThat(winningNumbers.getNumbers()).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
     }
 
-    @Test
-    @DisplayName("당첨 번호에 음수가 포함된 경우 예외가 발생한다.")
-    void winningNumbersContainNegative() {
-        String input = "1,2,3,4,5,-6";
+    @ParameterizedTest
+    @CsvSource({
+            "0,2,3,4,5,6",
+            "46,2,3,4,5,6",
+            "-1,2,3,4,5,6"
+    })
+    @DisplayName("당첨 번호에 범위를 벗어나는 숫자가 포함된 경우 예외가 발생한다.")
+    void winningNumbersOutOfRange(String input) {
         assertThatThrownBy(() -> new WinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
