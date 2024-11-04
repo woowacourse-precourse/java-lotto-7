@@ -5,35 +5,35 @@
 ### 기능 구현 목록
 
 - ##### Lotto
-    - [ ] 제약 사항
+    - [x] 제약 사항
         - 제공된 Lotto 클래스를 사용하여 구현
         - numbers 이외의 필드를 추가할 수 없다.
         - numbers의 접근 제어자 private은 변경할 수 없다.
     - 
     - 예외 처리 관련
         - [x] Lotto 번호 개수 확인 (6개가 맞게 입력되었는지) - Lotto 클래스에 제공되어 있음
-        - [x] Lotto 숫자들의 범위 확인 (1~45 사이) - pickUniqueNumbersInRange()에 보장되어 있음
-        - [x] Lotto 숫자들이 중복되지 않는지 확인 - pickUniqueNumbersInRange()에 보장되어 있음
+        - [x] Lotto 숫자들의 범위 확인 (1~45 사이)
+        - [x] Lotto 숫자들이 중복되지 않는지 확인
 
 
 - ##### lotto.domain.LottoFactory
     - 필드
-        - [ ] List\<Lotto\> lottos : 로또를 관리하는 리스트
+        - [x] List\<Lotto\> lottoList : 로또를 관리하는 리스트
 
     - 메서드
-        - [ ] publishLotto() : 로또를 발행하는 기능
+        - [x] createLotto() : 로또를 발행하는 기능
         - [ ] validate() : 로또의 개수가 맞게 발행되었는지 확인하는 기능
 
 
 - ##### LottoManager
-    - [ ] purchaseLotto() : 구입 금액에 해당하는 만큼의 로또를 발행하는 기능
-    - [ ] setWinningNumber() : 당첨 번호를 설정하는 기능
-    - [ ] setBonusNumber() : 보너스 번호를 설정하는 기능
-    - [ ] compareWinningNumber() : 당첨 번호와 로또를 비교하는 기능
-    - [ ] compareBonusNumber() : 보너스 번호와 로또의 숫자를 비교하는 기능
+    - [x] purchaseLotto() : 구입 금액에 해당하는 만큼의 로또를 발행하는 기능
+    - [x] setWinningNumber() : 당첨 번호를 설정하는 기능
+    - [x] setBonusNumber() : 보너스 번호를 설정하는 기능
+    - [x] compareWinningNumber() : 당첨 번호와 로또를 비교하는 기능
+    - [x] compareBonusNumber() : 보너스 번호와 로또의 숫자를 비교하는 기능
         - (5개 이상 일치하는 경우)
-    - [ ] lottoResult() : 로또의 당첨 내역을 계산하는 기능
-    - [ ] profitRate() : 로또의 수익률을 계산하는 기능
+    - [x] lottoResult() : 로또의 당첨 내역을 계산하는 기능
+    - [x] profitRate() : 로또의 수익률을 계산하는 기능
         - 수익률은 소수점 둘째 자리에서 반올림
     - [ ] validation : 로또 진행 과정에서의 유효성 검증
         - [ ] validateBuyingLotto() : 구매 금액이 유효한지에 대한 검증

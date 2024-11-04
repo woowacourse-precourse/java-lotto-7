@@ -8,11 +8,11 @@ public class LottoDomainService {
     private LottoFactory lottoFactory = new LottoFactory();
     private List<Lotto> lottoList = new ArrayList<>();
 
-    int hit6 = 0;
-    int hit5WithBonus = 0;
-    int hit5 = 0;
-    int hit4 = 0;
-    int hit3 = 0;
+    private int hit6 = 0;
+    private int hit5WithBonus = 0;
+    private int hit5 = 0;
+    private int hit4 = 0;
+    private int hit3 = 0;
 
     int hit6Money = 2_000_000_000;
     int hit5WithBonusMoney = 30_000_000;
