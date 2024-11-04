@@ -1,8 +1,8 @@
 package lotto.purchasing.model;
 
 public class Payment {
-    private static int PAYMENT_OF_UNIT = 1_000;
-    private int numberOfTickets;
+    private static final int PAYMENT_OF_UNIT = 1_000;
+    private final int numberOfTickets;
 
     public Payment(String inputPayment) {
         numberOfTickets = purchasingLottoTickets(inputPayment);

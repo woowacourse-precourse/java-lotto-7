@@ -13,9 +13,8 @@ public class LottoFactory {
         purchasingController.purchaseLottoTickets();
 
         PublishingController publishingController = new PublishingController();
-        List<Lotto> LottoTickets = publishingController.publishLottoTickets();
-
-        WinningController winningController = new WinningController(LottoTickets);
+        publishingController.publishLottoTickets();
+        WinningController winningController = new WinningController();
         winningController.presentRanksAndRates();
     }
 }

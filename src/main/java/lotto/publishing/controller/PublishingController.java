@@ -2,8 +2,9 @@ package lotto.publishing.controller;
 
 import java.util.List;
 import lotto.common.model.Lotto;
+import lotto.dto.LottoTicketsDto;
 import lotto.dto.NumberOfTicketsDto;
-import lotto.publishing.PublishingService;
+import lotto.publishing.model.Publishing;
 import lotto.publishing.view.OutputPublishedTicketsView;
 
 public class PublishingController {
@@ -13,14 +14,14 @@ public class PublishingController {
     public PublishingController() {
         this.outputPublishedTicketsView = new OutputPublishedTicketsView();
         NumberOfTicketsDto numberOfTicketsDto = NumberOfTicketsDto.getNumberOfTicketsDto();
-        this.numberOfTickets =numberOfTicketsDto.numberOfTickets();
+        this.numberOfTickets = numberOfTicketsDto.numberOfTickets();
     }
 
-    public List<Lotto> publishLottoTickets() {
-        PublishingService publishingService = PublishingService.getPublishingService();
-        List<Lotto> LottoTickets = publishingService.publishByNumberOfTickets(numberOfTickets);
+    public void publishLottoTickets() {
+        Publishing publishing = new Publishing(numberOfTickets);
+        List<Lotto> LottoTickets = publishing.getLottoTickets();
         printLottoTickets(LottoTickets);
-        return LottoTickets;
+        new LottoTicketsDto(LottoTickets);
     }
 
     private void printLottoTickets(List<Lotto> LottoTickets) {
