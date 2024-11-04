@@ -25,12 +25,11 @@ public class LottoProvider {
 
 	private User user;
 
-	public LottoProvider(String lottoPurchaseAmount, User user) {
-		int lottoPurchaseAmountNum = Integer.parseInt(lottoPurchaseAmount);
-		validateLottoPurchaseAmount(lottoPurchaseAmountNum);
+	public LottoProvider(int lottoPurchaseAmount, User user) {
+		validateLottoPurchaseAmount(lottoPurchaseAmount);
 		this.user = user;
-		user.setLottoPurchaseAmount(lottoPurchaseAmountNum);
-		this.numberOfLottos = lottoPurchaseAmountNum / THOUSAND;
+		user.setLottoPurchaseAmount(lottoPurchaseAmount);
+		this.numberOfLottos = lottoPurchaseAmount / THOUSAND;
 	}
 
 	private void validateLottoPurchaseAmount(int lottoPurchaseAmount) {
