@@ -18,10 +18,14 @@ public class LottoService {
         return lottoGenerator.generateLotto(amount);
     }
 
-    public List<Rank> checkWinningLottos(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
+    public List<Rank> determineWinningRanks(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
         return purchasedLottos.stream()
-                .map(lotto -> Rank.determineRank(lotto.getMatchingCount(winningLotto.winningNumbers()),
-                        lotto.hasBonusNumber(winningLotto.winningNumbers(), winningLotto.bonusNumber())))
+                .map(lotto -> determineRank(lotto, winningLotto))
                 .toList();
+    }
+
+    private Rank determineRank(Lotto lotto, WinningLotto winningLotto) {
+        return Rank.determineRank(lotto.getMatchingCount(winningLotto.winningNumbers()),
+                lotto.hasBonusNumber(winningLotto.winningNumbers(), winningLotto.bonusNumber()));
     }
 }

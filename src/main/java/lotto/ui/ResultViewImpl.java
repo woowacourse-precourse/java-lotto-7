@@ -8,21 +8,22 @@ import lotto.model.Rank;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.validation.ValidatorImpl.ZERO;
+import static lotto.constants.LottoConstants.ZERO;
+import static lotto.constants.RankConstants.*;
+import static lotto.constants.ResultConstants.*;
 
 public class ResultViewImpl implements ResultView {
     @Override
     public void displayLottos(List<Lotto> lottos) {
-        System.out.println(lottos.size() + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
+        System.out.printf(LOTTO_PURCHASE_MESSAGE, lottos.size());
+        System.out.println();
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
     @Override
     public void printResult(LottoGame lottoGame) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(LOTTO_WINNING_STATISTICS);
+        System.out.println(LOTTO_STATISTICS_DIVIDER);
         printLottoResult(lottoGame.getLottoResult());
         printReturnRate(lottoGame);
     }
@@ -30,22 +31,21 @@ public class ResultViewImpl implements ResultView {
     private void printLottoResult(LottoResult lottoResult) {
         StringBuilder result = new StringBuilder();
         Map<Rank, Integer> rankCount = lottoResult.getRankCount();
-        appendRank(result, rankCount, Rank.FIFTH, "3개 일치 (5,000원)");
-        appendRank(result, rankCount, Rank.FOURTH, "4개 일치 (50,000원)");
-        appendRank(result, rankCount, Rank.THIRD, "5개 일치 (1,500,000원)");
-        appendRank(result, rankCount, Rank.SECOND, "5개 일치, 보너스 볼 일치 (30,000,000원)");
-        appendRank(result, rankCount, Rank.FIRST, "6개 일치 (2,000,000,000원)");
+        appendRank(result, rankCount, Rank.FIFTH, FIFTH_RANK_MESSAGE);
+        appendRank(result, rankCount, Rank.FOURTH, FOURTH_RANK_MESSAGE);
+        appendRank(result, rankCount, Rank.THIRD, THIRD_RANK_MESSAGE);
+        appendRank(result, rankCount, Rank.SECOND, SECOND_RANK_MESSAGE);
+        appendRank(result, rankCount, Rank.FIRST, FIRST_RANK_MESSAGE);
         System.out.println(result.toString());
     }
 
+
     private void appendRank(StringBuilder result, Map<Rank, Integer> rankCount, Rank rank, String description) {
-        result.append(description)
-                .append(" - ")
-                .append(rankCount.getOrDefault(rank, ZERO))
-                .append("개\n");
+        result.append(String.format(LOTTO_RESULT_FORMAT, description, rankCount.getOrDefault(rank, ZERO)));
     }
 
     private void printReturnRate(LottoGame lottoGame) {
-        System.out.println("총 수익률은 " + lottoGame.calculateReturnRate() + "%입니다.");
+        System.out.printf(RETURN_RATE_MESSAGE, lottoGame.calculateRate());
+        System.out.println();
     }
 }

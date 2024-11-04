@@ -3,18 +3,16 @@ package lotto.model;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import static lotto.validation.ValidatorImpl.ZERO;
+import static lotto.constants.LottoConstants.*;
 
 public class LottoGame {
-    public static final int ONE_HUNDRED = 100;
-    public static final int TWO = 2;
 
     private final LottoResult lottoResult;
     private final int purchaseAmount;
 
-    public LottoGame(int totalPurchaseAmount) {
+    public LottoGame(int purchaseAmount) {
         this.lottoResult = new LottoResult();
-        this.purchaseAmount = totalPurchaseAmount;
+        this.purchaseAmount = purchaseAmount;
     }
 
     public void addResult(Rank rank) {
@@ -25,18 +23,20 @@ public class LottoGame {
         return lottoResult;
     }
 
-    public double calculateReturnRate() {
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
+    public double calculateRate() {
         int totalPrizeMoney = lottoResult.calculateTotalPrizeMoney();
         if (purchaseAmount == ZERO) {
             return ZERO;
         }
-        double returnRate = ((double) totalPrizeMoney / purchaseAmount) * ONE_HUNDRED;
-        return round(returnRate, TWO);
+        return round(((double) totalPrizeMoney / purchaseAmount) * HUNDRED, TWO);
     }
 
     private double round(double value, int places) {
-        BigDecimal bd = BigDecimal.valueOf(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
+        BigDecimal roundedValue = BigDecimal.valueOf(value);
+        return roundedValue.setScale(places, RoundingMode.HALF_UP).doubleValue();
     }
 }

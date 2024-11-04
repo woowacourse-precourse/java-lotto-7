@@ -16,7 +16,6 @@ public class LottoController {
     private final ResultView resultView;
     private final Validator validator;
     private final LottoService lottoService;
-    private LottoGame lottoGame;
 
     public LottoController(InputView inputView, ResultView resultView,
                            Validator validator, LottoService lottoService) {
@@ -29,16 +28,7 @@ public class LottoController {
     public void executeLottoPurchase() {
         while (true) {
             try {
-                int purchaseAmount = purchaseAmount();
-                lottoGame = new LottoGame(purchaseAmount);
-                List<Lotto> purchasedLottos = lottoService.generateLottos(purchaseAmount);
-                resultView.displayLottos(purchasedLottos);
-                WinningLotto winningLotto = createWinningLotto();
-                List<Rank> ranks = lottoService.checkWinningLottos(purchasedLottos, winningLotto);
-                for (Rank rank : ranks) {
-                    lottoGame.addResult(rank);
-                }
-                resultView.printResult(lottoGame);
+                processLottoResults(createLottoGame());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -46,21 +36,70 @@ public class LottoController {
         }
     }
 
+    private void processLottoResults(LottoGame lottoGame) {
+        updateLottoGameResults(lottoGame, generateAndDisplayLottos(lottoGame), createWinningLotto());
+        resultView.printResult(lottoGame);
+    }
+
+    private LottoGame createLottoGame() {
+        return new LottoGame(purchaseAmount());
+    }
+
     private int purchaseAmount() {
-        return validator.validate(inputView.userInput());
+        while (true) {
+            try {
+                return validator.validate(inputView.userInput());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Lotto> generateAndDisplayLottos(LottoGame lottoGame) {
+        List<Lotto> purchasedLottos = lottoService.generateLottos(lottoGame.getPurchaseAmount());
+        resultView.displayLottos(purchasedLottos);
+        return purchasedLottos;
+    }
+
+    private void updateLottoGameResults(LottoGame lottoGame, List<Lotto> purchasedLottos, WinningLotto winningLotto) {
+        List<Rank> ranks = determineRanks(purchasedLottos, winningLotto);
+        addRanksToGame(lottoGame, ranks);
+    }
+
+    private List<Rank> determineRanks(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
+        return lottoService.determineWinningRanks(purchasedLottos, winningLotto);
+    }
+
+    private void addRanksToGame(LottoGame lottoGame, List<Rank> ranks) {
+        ranks.forEach(lottoGame::addResult);
     }
 
     private WinningLotto createWinningLotto() {
-        return new WinningLotto(winningNumbers(), bonusNumber());
+        List<Integer> winningNumbers = winningNumbers();
+        return new WinningLotto(winningNumbers, bonusNumberFromInput(winningNumbers));
     }
 
     private List<Integer> winningNumbers() {
-        List<Integer> winningNumbers = inputView.lottoWinningNumbers();
-        validator.winningNumbers(winningNumbers);
-        return winningNumbers;
+        while (true) {
+            try {
+                List<Integer> winningNumbers = inputView.lottoWinningNumbers();
+                validator.winningNumbers(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private int bonusNumber() {
-        return validator.parseInput(inputView.bonusNumber());
+    private int  bonusNumberFromInput(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                int bonus = validator.parseInput(inputView.bonusNumber());
+                validator.validateBonusNumber(bonus, winningNumbers);
+                return bonus;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

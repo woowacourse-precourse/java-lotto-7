@@ -23,6 +23,6 @@ class LottoGameTest {
     void 수익률_계산() {
         lottoGame.addResult(Rank.FIRST);
         lottoGame.addResult(Rank.SECOND);
-        assertEquals(2030000000.0 / 10000 * 100, lottoGame.calculateReturnRate(), 0.01);
+        assertEquals(2030000000.0 / 10000 * 100, lottoGame.calculateRate(), 0.01);
     }
 }

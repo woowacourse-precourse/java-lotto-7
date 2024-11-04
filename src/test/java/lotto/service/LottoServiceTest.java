@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.generator.LottoGenerator.END_INCLUSIVE;
-import static lotto.generator.LottoGenerator.START_INCLUSIVE;
+import static lotto.constants.LottoConstants.END_INCLUSIVE;
+import static lotto.constants.LottoConstants.START_INCLUSIVE;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoServiceTest {

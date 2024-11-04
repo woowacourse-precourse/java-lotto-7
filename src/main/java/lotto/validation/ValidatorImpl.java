@@ -3,12 +3,9 @@ package lotto.validation;
 import java.util.List;
 
 import static lotto.constants.ErrorMessage.*;
+import static lotto.constants.LottoConstants.*;
 
 public class ValidatorImpl implements Validator {
-    public static final int LOTTO_TICKET_PRICE = 1000;
-    public static final int ZERO = 0;
-    public static final int START_INCLUSIVE = 1;
-    public static final int END_INCLUSIVE = 45;
 
     @Override
     public int validate(String input) {
@@ -42,7 +39,7 @@ public class ValidatorImpl implements Validator {
         if (amount <= ZERO) {
             throw new IllegalArgumentException(ERROR_NON_POSITIVE_AMOUNT);
         }
-        if (amount % LOTTO_TICKET_PRICE != 0) {
+        if (amount % LOTTO_TICKET_PRICE != ZERO) {
             throw new IllegalArgumentException(ERROR_INVALID_AMOUNT);
         }
     }

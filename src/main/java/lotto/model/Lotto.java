@@ -5,7 +5,8 @@ import java.util.List;
 
 import static lotto.constants.ErrorMessage.ERROR_DUPLICATE_NUMBERS;
 import static lotto.constants.ErrorMessage.ERROR_NUMBER_SIZE;
-import static lotto.generator.LottoGenerator.COUNT;
+import static lotto.constants.LottoConstants.COUNT;
+import static lotto.constants.LottoConstants.FIVE;
 
 public class Lotto {
 
@@ -37,6 +38,6 @@ public class Lotto {
 
     public boolean hasBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         int matchingCount = getMatchingCount(winningNumbers);
-        return matchingCount == 5 && numbers.contains(bonusNumber);
+        return matchingCount == FIVE && numbers.contains(bonusNumber);
     }
 }

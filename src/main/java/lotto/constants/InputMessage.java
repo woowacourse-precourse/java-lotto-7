@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public class InputMessage {
+public final class InputMessage {
     public static final String DELIMITER = ",";
     public static final String PURCHASE_AMOUNT_PROMPT = "구매 금액을 입력하세요: ";
     public static final String WINNING_NUMBERS_PROMPT = "당첨 번호를 입력해 주세요.";

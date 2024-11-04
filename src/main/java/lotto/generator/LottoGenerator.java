@@ -9,12 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static lotto.validation.ValidatorImpl.LOTTO_TICKET_PRICE;
+import static lotto.constants.LottoConstants.*;
 
 public class LottoGenerator {
-    public static final int START_INCLUSIVE = 1;
-    public static final int END_INCLUSIVE = 45;
-    public static final int COUNT = 6;
 
     public List<Lotto> generateLotto(int amount) {
         int ticketCount = calculate(amount);

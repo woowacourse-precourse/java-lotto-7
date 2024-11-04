@@ -1,12 +1,14 @@
 package lotto.model;
 
+import static lotto.constants.RankConstants.*;
+
 public enum Rank {
-    FIRST(6, 2000000000),
-    SECOND(5, 30000000),
-    THIRD(5, 1500000),
-    FOURTH(4, 50000),
-    FIFTH(3, 5000),
-    NONE(0, 0);
+    FIRST(FIRST_MATCH_COUNT, FIRST_PRIZE_AMOUNT),
+    SECOND(SECOND_MATCH_COUNT, SECOND_PRIZE_AMOUNT),
+    THIRD(THIRD_MATCH_COUNT, THIRD_PRIZE_AMOUNT),
+    FOURTH(FOURTH_MATCH_COUNT, FOURTH_PRIZE_AMOUNT),
+    FIFTH(FIFTH_MATCH_COUNT, FIFTH_PRIZE_AMOUNT),
+    NONE(NONE_MATCH_COUNT, NONE_PRIZE_AMOUNT);
 
     private final int matchingCount;
     private final int prize;
@@ -32,5 +34,4 @@ public enum Rank {
         if (matchingCount == FIFTH.matchingCount) return FIFTH;
         return NONE;
     }
-
 }

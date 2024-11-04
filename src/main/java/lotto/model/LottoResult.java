@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static lotto.validation.ValidatorImpl.ZERO;
+import static lotto.constants.LottoConstants.ONE;
+import static lotto.constants.LottoConstants.ZERO;
 
 public class LottoResult {
-    public static final int ONE = 1;
 
     private final Map<Rank, Integer> rankCount;
 
