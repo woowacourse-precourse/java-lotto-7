@@ -10,6 +10,12 @@ public class Application { // 클래스 정의
         Scanner scanner = new Scanner(System.in);
         System.out.print("구입금액을 입력해 주세요: ");
         int purchaseAmount = scanner.nextInt();
+
+        if (purchaseAmount < 1000) { // 1000원 미만 입력 시 오류 처리
+            System.out.println("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
+            return; // 프로그램 종료
+        }
+
         int ticketCount = purchaseAmount / 1000; // 1000원 당 1개의 로또
 
         System.out.printf("%d개를 구매했습니다.%n", ticketCount);
@@ -129,7 +135,7 @@ public class Application { // 클래스 정의
         }
 
         // Set을 List로 변환하여 반환
-        List<Integer> lottoList = List.copyOf(lottoNumbers);
+        List<Integer> lottoList = new ArrayList<>(lottoNumbers);
         Collections.sort(lottoList); // 번호를 정렬하여 반환
         return lottoList;
     }
