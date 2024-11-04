@@ -5,11 +5,11 @@ import lotto.error.ErrorCode;
 
 public class Lotto {
 
-    private static final int LOTTO_SIZE = 6;
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
+    protected static final int LOTTO_SIZE = 6;
+    protected static final int LOTTO_MIN_NUMBER = 1;
+    protected static final int LOTTO_MAX_NUMBER = 45;
 
-    private final List<Integer> numbers;
+    protected final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

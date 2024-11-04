@@ -59,4 +59,17 @@ public class InputView {
             }
         }
     }
+
+    public WinnerLotto inputBonusNumbers(WinnerLotto winnerLotto){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        while(true){
+            try{
+                String bonusNumber = readLine();
+                System.out.println();
+                return winnerLotto.addBonusNumber(bonusNumber);
+            } catch (IllegalArgumentException ex){
+                printReInput(ex);
+            }
+        }
+    }
 }
