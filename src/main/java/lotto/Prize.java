@@ -35,5 +35,4 @@ public enum Prize {
                 .findFirst()
                 .orElse(NO_MATCH);
     }
-
 }
