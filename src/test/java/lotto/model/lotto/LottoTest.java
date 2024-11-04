@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class LottoTest {
     @Test
@@ -46,6 +48,14 @@ class LottoTest {
     @Test
     void 로또_번호_문자열이_공백일_경우_예외가_발생한다() {
         assertThatThrownBy(() -> Lotto.of("   "))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호 문자열이 빈 값일 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void 로또_번호_문자열이_빈_값일_경우_예외가_발생한다(String input) {
+        assertThatThrownBy(() -> Lotto.of(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

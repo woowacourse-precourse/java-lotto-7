@@ -6,12 +6,23 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import lotto.exception.ErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class PurchaseAmountTest {
 
-    @DisplayName("구매 금액이 숫자가 아닐 경우 예외가 발생한다.")
+    @DisplayName("구매 금액이 빈 값일 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void 구매_금액이_빈_값일_경우_예외가_발생한다(String input) {
+        assertThatThrownBy(() -> new PurchaseAmount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorCode.PURCHASE_AMOUNT_NOT_A_NUMBER.getMessage());
+    }
+
+    @DisplayName("구매 금액이 숫자가 아닌 문자일 경우 예외가 발생한다.")
     @Test
-    void 구매_금액이_숫자가_아닐_경우_예외가_발생한다() {
+    void 구매_금액이_숫자가_아닌_문자일_경우_예외가_발생한다() {
         assertThatThrownBy(() -> new PurchaseAmount("abc"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorCode.PURCHASE_AMOUNT_NOT_A_NUMBER.getMessage());

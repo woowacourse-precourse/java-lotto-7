@@ -21,8 +21,8 @@ public class Lotto {
     }
 
     public static Lotto of(String rawNumbers) {
-        String[] winningNumberStrings = rawNumbers.split(LOTTO_DELIMITER);
         try {
+            String[] winningNumberStrings = rawNumbers.split(LOTTO_DELIMITER);
             List<Integer> winningNumbers = Arrays.stream(winningNumberStrings)
                     .map(Integer::parseInt)
                     .toList();
@@ -30,6 +30,8 @@ public class Lotto {
             return new Lotto(winningNumbers);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBERS_NOT_A_NUMBER.getMessage());
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException(e);
         }
     }
 

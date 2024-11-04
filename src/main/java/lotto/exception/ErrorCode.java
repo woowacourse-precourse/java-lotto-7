@@ -1,6 +1,7 @@
 package lotto.exception;
 
 public enum ErrorCode {
+    LOTTO_NUMBERS_NOT_NULL("로또 번호는 빈 값일 수 없습니다."),
     LOTTO_NUMBERS_NOT_A_NUMBER("로또 번호는 숫자여야합니다."),
     LOTTO_NUMBERS_DUPLICATED("로또 번호는 중복되지 않아야 합니다."),
     LOTTO_NUMBERS_OUT_OF_RANGE("로또 번호는 1~45 사이의 숫자여야 합니다."),
