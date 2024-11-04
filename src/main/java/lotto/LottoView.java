@@ -20,6 +20,31 @@ public class LottoView {
             }
         }
     }
+    public void lottoWinningNumbersInput() {
+        while(true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String[] inputLottoWinningNumbers = Console.readLine().split(",");
+                lottoController.parseLottoWinningNumbers(inputLottoWinningNumbers);
+                System.out.println();
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    public void lottoBonusInput() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                lottoController.setLottoBonusNumber(Console.readLine());
+                System.out.println();
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
     public void printPurchasedLottosInfo() {
         purchasedLottos = lottoController.getPurchasedLottos();
