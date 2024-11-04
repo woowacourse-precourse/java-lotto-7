@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.message.ErrorMessage;
 import lotto.util.ParserToInt;
 import lotto.validation.AmountValidator;
 

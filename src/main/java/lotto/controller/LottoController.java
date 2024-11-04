@@ -22,12 +22,12 @@ public class LottoController {
 
     public void run() {
         int lottoTickets = userService.inputAmount();
-        User user = createUserWithLottos(lottoTickets);
+        User user = createUser(lottoTickets);
         Lotto winningLotto = createWinningLotto();
         winningResultView(user, winningLotto);
     }
 
-    private User createUserWithLottos(int lottoTickets) {
+    private User createUser(int lottoTickets) {
         return userService.priceLotto(lottoTickets);
     }
 

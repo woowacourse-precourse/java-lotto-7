@@ -2,13 +2,10 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
-import lotto.domain.PurchaseLotto;
 import lotto.domain.User;
 import lotto.util.LottoNumberParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.List;
 
 public class LottoService {
 
