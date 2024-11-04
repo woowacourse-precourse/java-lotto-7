@@ -57,4 +57,9 @@ public class InputValidator {
     private static boolean hasDuplicatedSeparator(String message) {
         return message.contains(SEPARATOR.repeat(2));
     }
+
+    public static String validateBonusNumber(String message) {
+        validateNumber(message);
+        return message;
+    }
 }
