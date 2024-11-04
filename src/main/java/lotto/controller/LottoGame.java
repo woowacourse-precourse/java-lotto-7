@@ -34,6 +34,12 @@ public class LottoGame {
         Lottos lottos = new Lottos(purchasedLottos);
         return lottos.calculateRank(winningLotto, bonusNumber);
     }
+
+    public double calculateTotalProfit(Map<LottoRank, Integer> result) {
+        return result.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
 }
 
 
