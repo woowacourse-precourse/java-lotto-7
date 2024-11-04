@@ -32,6 +32,6 @@ public class LottoMachineTest {
     void 유효한_금액일_경우_예외_없이_로또를_발행한다() {
         Money money = Money.from("1000");
         LottoMachine lottoMachine = LottoMachine.from(money);
-        assertDoesNotThrow(() -> lottoMachine.publishLotto());
+        assertDoesNotThrow(lottoMachine::publishLotto);
     }
 }
