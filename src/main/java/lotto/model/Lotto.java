@@ -17,13 +17,7 @@ public class Lotto {
         validateSize(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
-        this.numbers = sort(numbers);
-    }
-
-    private List<Integer> sort(final List<Integer> numbers) {
-        final List<Integer> modifiableList = new ArrayList<>(numbers);
-        Collections.sort(modifiableList);
-        return modifiableList;
+        this.numbers = sortNumbers(numbers);
     }
 
     public static Lotto fromStringList(final List<String> numbers) {
@@ -59,6 +53,12 @@ public class Lotto {
                 throw new IllegalArgumentException(ErrorType.OUT_OF_RANGE.getMessage());
             }
         });
+    }
+
+    private List<Integer> sortNumbers(final List<Integer> numbers) {
+        final List<Integer> modifiableList = new ArrayList<>(numbers);
+        Collections.sort(modifiableList);
+        return modifiableList;
     }
 
     public List<Integer> getNumbers() {
