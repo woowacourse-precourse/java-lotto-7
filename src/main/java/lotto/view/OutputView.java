@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-
     private static final String TICKET_NUMBER_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---";
     private static final String RANK_RESULT_MESSAGE = "%s - %d개\n";
@@ -27,12 +26,9 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS_MESSAGE);
     }
 
-    public OutputView() {
-    }
-
     public void printResult(Map<Rank, Long> rankCount) {
         for (Rank rank : Rank.values()) {
-            if (rank == Rank.NONE) {  // NONE 등급은 제외
+            if (rank == Rank.NONE) {
                 continue;
             }
 
