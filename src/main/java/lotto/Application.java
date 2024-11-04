@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class Application {
-    public static int lottoPrice = 1000;
+    private static final int LOTTO_PRICE = 1000;
 
     public static void main(String[] args) {
         int lottoPieces;
@@ -49,11 +49,11 @@ public class Application {
     public static int buyLotto(final String input) {
         int payment = Integer.parseInt(input);
         validateBuyLotto(payment);
-        return payment / lottoPrice;
+        return payment / LOTTO_PRICE;
     }
 
     public static void validateBuyLotto(final int payment) {
-        if (payment % lottoPrice != 0) {
+        if (payment % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
@@ -157,7 +157,7 @@ public class Application {
     }
 
     public static double calProfitRate(final Map<String, Integer> lottoResult, final int lottoPieces) {
-        int totalBuyingLotto = lottoPieces * 1000;
+        int totalBuyingLotto = lottoPieces * LOTTO_PRICE;
         int totalPrize = 0;
 
         for (Map.Entry<String, Integer> entry : lottoResult.entrySet()) {
