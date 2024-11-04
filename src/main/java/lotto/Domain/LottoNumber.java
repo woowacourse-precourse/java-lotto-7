@@ -1,5 +1,6 @@
 package lotto.Domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -7,9 +8,12 @@ import lotto.Enum.LottoRange;
 
 public class LottoNumber {
     private final List<Integer> numbers;
+    private final int bonusNumber;
 
     public LottoNumber() {
-        this.numbers = generateNumbers();
+        List<Integer> generatedNumbers = generateNumbers();
+        this.numbers = new ArrayList<>(generatedNumbers.subList(0, 6));
+        this.bonusNumber = generatedNumbers.get(6);
     }
 
     private List<Integer> generateNumbers() {
@@ -26,6 +30,9 @@ public class LottoNumber {
     public List<Integer> getNumbers() {
         return numbers;
     }
-}
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+}
 
