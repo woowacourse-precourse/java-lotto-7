@@ -3,8 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -108,6 +106,37 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(
                     ERROR_MESSAGE,
                     "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."
+            );
+        });
+    }
+
+    @Test
+    void 수익률_계산_테스트() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "7"); // 입력 시나리오
+            assertThat(output()).contains(
+                    "총 수익률은"
+            );
+        });
+    }
+
+    @Test
+    void 통합_테스트() {
+        assertSimpleTest(() -> {
+            run("14000", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(
+                    "구입금액을 입력해주세요.",
+                    "14개를 구매했습니다.",
+                    "당첨 번호를 입력해 주세요.",
+                    "보너스 번호를 입력해 주세요.",
+                    "당첨 통계",
+                    "---",
+                    "3개 일치 (5,000원) - ",
+                    "4개 일치 (50,000원) - ",
+                    "5개 일치 (1,500,000원) - ",
+                    "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+                    "6개 일치 (2,000,000,000원) - ",
+                    "총 수익률은"
             );
         });
     }
