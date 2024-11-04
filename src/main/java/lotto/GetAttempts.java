@@ -9,16 +9,16 @@ import java.util.List;
 public class GetAttempts {
     public static int validateBetAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
+        String input = Console.readLine().trim();
         if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 숫자를 입력했습니다.");
+            throw new IllegalArgumentException("[ERROR] 공백 혹은 잘못된 값이 입력되었습니다");
         }
         int betAmount = Integer.parseInt(input);
         if (betAmount < 1000) {
             throw new IllegalArgumentException("[ERROR] 베팅 금액이 1000원 미만입니다");
         }
         if (betAmount % 1000 != 0) {
-            throw new IllegalArgumentException("베팅 금액이 1000원 단위가 아닙니다");
+            throw new IllegalArgumentException("[ERROR] 베팅 금액이 1000원 단위가 아닙니다");
         }
         return betAmount;
     }

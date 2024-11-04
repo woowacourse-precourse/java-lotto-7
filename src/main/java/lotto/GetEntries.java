@@ -6,13 +6,24 @@ import java.util.Comparator;
 import java.util.List;
 
 public class GetEntries {
-    public static List<Integer> enterLottoNumbers() {
-        List<Integer> lottoNumbers = new ArrayList<>();
+    public static String[] splitInput() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
+        String input = Console.readLine().trim();
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 아무것도 입력되지 않았습니다.");
+        }
         String[] splitInput = input.split(",");
+        return splitInput;
+    }
+
+    public static List<Integer> enterLottoNumbers(String[] splitInput) {
+        List<Integer> lottoNumbers = new ArrayList<>();
         for (String number : splitInput) {
-            lottoNumbers.add(Integer.parseInt(number));
+            try {
+                lottoNumbers.add(Integer.parseInt(number));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+            }
         }
         lottoNumbers.sort(Comparator.naturalOrder());
         Lotto lotto = new Lotto(lottoNumbers);
@@ -20,15 +31,18 @@ public class GetEntries {
     }
 
     public static int enterBonusNumber(List<Integer> enterLottoNumbers) {
+        int bonusNumber = 0;
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        boolean containNumber = enterLottoNumbers.contains(bonusNumber);
-        if (containNumber) {
-            throw new IllegalArgumentException("당첨 번호와 중복된 숫자입니다");
+        String bonusNumberInput = Console.readLine().trim();
+        if (bonusNumberInput.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 아무것도 입력되지 않았습니다.");
         }
-        if (bonusNumber > 45 || bonusNumber < 1) {
-            throw new IllegalArgumentException("보너스 숫자는 1 이상, 45 이하입니다.");
+        try {
+            bonusNumber += Integer.parseInt(bonusNumberInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 값을 입력하셨습니다");
         }
+        BonusNumber bonusNumberValidate = new BonusNumber(bonusNumber, enterLottoNumbers);
         return bonusNumber;
     }
 }

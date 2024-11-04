@@ -10,7 +10,8 @@ public class Application {
             int betAmount = GetAttempts.validateBetAmount();
             int attempts = GetAttempts.getAttempts(betAmount);
             List<List<Integer>> entryLists = GetAttempts.printEntries(attempts);
-            List<Integer> lottoNumbers = GetEntries.enterLottoNumbers();
+            String[] splitInput = GetEntries.splitInput();
+            List<Integer> lottoNumbers = GetEntries.enterLottoNumbers(splitInput);
             int bonusNumber = GetEntries.enterBonusNumber(lottoNumbers);
             EnumMap<LottoResults, Integer> calculator = LottoResults.resetEnumMap();
             GetResults.printResults(entryLists, lottoNumbers, bonusNumber, attempts, calculator);
