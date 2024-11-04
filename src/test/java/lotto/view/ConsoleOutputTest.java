@@ -47,7 +47,7 @@ public class ConsoleOutputTest {
                           "5개 일치 (1,500,000원) - 3개\n" +
                           "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개\n" +
                           "6개 일치 (2,000,000,000원) - 1개\n" +
-                          String.format("총 수익률은 %.1f%%입니다.", dto.getProfitRate());
+                          String.format("총 수익률은 %.1f%%입니다.", dto.profitRate());
         Assertions.assertEquals(expected, capturedOutput);
 
         System.setOut(originalOut);

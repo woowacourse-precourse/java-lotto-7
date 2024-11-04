@@ -3,23 +3,29 @@ package lotto.dto;
 import java.util.Map;
 import lotto.configuration.Prize;
 
-public class ProfitStatisticsDto {
-    private final Map<Prize, Integer> prizeCountMap;
-    private final double profitRate;
-
-    public ProfitStatisticsDto(Map<Prize, Integer> prizeCountMap, double profitRate) {
+public record ProfitStatisticsDto(Map<Prize, Integer> prizeCountMap, double profitRate) {
+    public ProfitStatisticsDto {
         if (prizeCountMap == null) {
             throw new IllegalArgumentException("prizeCountMap cannot be null");
         }
-        this.prizeCountMap = prizeCountMap;
-        this.profitRate = profitRate;
     }
 
-    public Map<Prize, Integer> getPrizeCountMap() {
-        return prizeCountMap;
-    }
+    public static class Builder {
+        Map<Prize, Integer> prizeCountMap;
+        double profitRate;
 
-    public double getProfitRate() {
-        return profitRate;
+        public Builder prizeCountMap(Map<Prize, Integer> prizeCountMap) {
+            this.prizeCountMap = prizeCountMap;
+            return this;
+        }
+
+        public Builder profitRate(double profitRate) {
+            this.profitRate = profitRate;
+            return this;
+        }
+
+        public ProfitStatisticsDto build() {
+            return new ProfitStatisticsDto(prizeCountMap, profitRate);
+        }
     }
 }

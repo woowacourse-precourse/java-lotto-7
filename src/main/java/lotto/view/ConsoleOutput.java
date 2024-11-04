@@ -20,7 +20,7 @@ public class ConsoleOutput {
 
         Map<Prize, Integer> completePrizeMap = getCompletePrizeMap(input);
         printPrizeStatistics(completePrizeMap);
-        printProfitRate(input.getProfitRate());
+        printProfitRate(input.profitRate());
     }
 
     public void printPurchasedLottos(List<Lotto> lottos) {
@@ -38,7 +38,7 @@ public class ConsoleOutput {
 
     private Map<Prize, Integer> getCompletePrizeMap(ProfitStatisticsDto input) {
         return Arrays.stream(Prize.values())
-                .collect(Collectors.toMap(prize -> prize, prize -> input.getPrizeCountMap().getOrDefault(prize, 0)));
+                .collect(Collectors.toMap(prize -> prize, prize -> input.prizeCountMap().getOrDefault(prize, 0)));
     }
 
     private void printPrizeStatistics(Map<Prize, Integer> completePrizeMap) {
