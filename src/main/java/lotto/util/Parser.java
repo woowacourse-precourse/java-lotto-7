@@ -1,4 +1,4 @@
-package lotto;
+package lotto.util.model;
 
 public interface Parser<T, R> {
     static <T, R> Parser<T, R> select(Class<? extends Parser<T, R>> parserClass) {
