@@ -1,18 +1,16 @@
-package lotto.vo;
+package lotto.model;
 
 import lotto.util.Parser;
 import lotto.util.Validator;
-
-import java.util.List;
 
 import static lotto.common.ErrorMessage.NOT_NUMBER_OR_RANGE_EXCESS;
 
 public class BonusNumber {
     private final int number;
 
-    public BonusNumber(final String inputValue) {
+    public BonusNumber(final String inputValue, final MainNumber mainNumber) {
         int number = parseToInt(inputValue);
-        validate(number);
+        validate(number, mainNumber);
         this.number = number;
     }
 
@@ -24,8 +22,9 @@ public class BonusNumber {
         }
     }
 
-    private void validate(int number) throws IllegalArgumentException {
+    private void validate(int number, MainNumber mainNumber) throws IllegalArgumentException {
         Validator.checkWinningNumberRange(number);
+        Validator.checkBonusNumberDuplicate(mainNumber.getNumbers(), number);
     }
 
     public int getNumber() {
