@@ -58,6 +58,10 @@ public class Lotto {
         return new ArrayList<>(numbers);
     }
 
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

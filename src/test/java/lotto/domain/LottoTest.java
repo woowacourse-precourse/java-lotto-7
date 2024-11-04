@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
@@ -57,7 +57,7 @@ class LottoTest {
     private boolean isSorted(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         for (int i = 1; i < numbers.size(); i++) {
-            if (numbers.get(i-1).compareTo(numbers.get(i)) > 0) {
+            if (numbers.get(i - 1).compareTo(numbers.get(i)) > 0) {
                 return false;
             }
         }
@@ -70,7 +70,24 @@ class LottoTest {
         Lotto lotto = Lotto.quickPick();
         assertTrue(lotto.toString().matches("\\[\\d+, \\d+, \\d+, \\d+, \\d+, \\d+\\]"),
                 "toString() 결과가 '[숫자, 숫자, 숫자, 숫자, 숫자, 숫자]' 형식이어야 합니다.");
-        ;
+    }
+
+    @DisplayName("로또 번호에 입력이 존재하면 true를 반환한다.")
+    @Test
+    void 로또_번호에_입력이_존재하면_true를_반환한다() {
+        Lotto lotto = new Lotto(List.of(
+                1, 2, 3, 4, 5, 6
+        ));
+        assertTrue(lotto.contains(1));
+    }
+
+    @DisplayName("로또 번호에 입력이 존재하지 않으면 false를 반환한다.")
+    @Test
+    void 로또_번호에_입력이_존재하지_않으면_false를_반환한다() {
+        Lotto lotto = new Lotto(List.of(
+                1, 2, 3, 4, 5, 6
+        ));
+        assertFalse(lotto.contains(7));
     }
 
 }
