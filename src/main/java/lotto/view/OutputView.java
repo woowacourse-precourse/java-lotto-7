@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,5 +70,10 @@ public class OutputView {
 			return matchingMessage + ", 보너스 볼 일치";
 		}
 		return matchingMessage;
+	}
+
+	private String getProfitRateMessage(double profitRate) {
+		DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
+		return "총 수익률은 " + decimalFormat.format(profitRate) + "%입니다.";
 	}
 }
