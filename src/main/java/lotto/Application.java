@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.LottoGenerator;
+import lotto.domain.LottoMatcher;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,5 +19,7 @@ public class Application {
         int bonusNumber = InputView.getBonusNumber();
 
         WinningNumbers winningLotto = new WinningNumbers(winningNumbers, bonusNumber);
+
+        LottoMatcher matchLotto = new LottoMatcher(lottoGenerator.getLottos(), winningLotto);
     }
 }
