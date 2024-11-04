@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.io.ByteArrayInputStream;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -58,4 +60,30 @@ class ApplicationTest extends NsTest {
     public void runMain() {
         Application.main(new String[]{});
     }
+
+    @Test
+    @DisplayName("입력된 가격에 맞게 생성되는 랜덤 로또의 갯수")
+    void generatedLotto() {
+        String input = "10000\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        assertThat(Application.buyLottos().size()).isEqualTo(10);
+    }
+
+    @Test
+    @DisplayName("입력한 당첨 로또 번호가 리스트에 담기고 출력됨")
+    void inputLottoNumberPrint() {
+        String input = "1,2,3,4,5,6\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        List<Integer> testList = List.of(1,2,3,4,5,6);
+        List<Integer> numbersList = Application.inputTargetLottoNumber().getNumbers();
+        for (int i = 0; i < 6; i++){
+            assertThat(testList.get(i).equals(numbersList.get(i)));
+        }
+        assertThat(output().contains(input));
+    }
+
+//    @Test
+//    @DisplayName("")
 }
