@@ -13,7 +13,7 @@ import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import org.junit.jupiter.api.Test;
 
-public class LottoServiceTest {
+class LottoServiceTest {
 
     private final LottoService lottoService = new LottoService();
 
@@ -50,7 +50,7 @@ public class LottoServiceTest {
                     new BonusNumber(7)
             );
             LottoResult result = lottoService.getStatistics(winningLotto, lottos);
-            assertThat(result.computeProfit(lottos.getAmount())).isEqualTo(500.0);
+            assertThat(result.computeProfit(lottos.amount())).isEqualTo(500.0);
         });
     }
 }

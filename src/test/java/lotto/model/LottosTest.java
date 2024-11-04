@@ -14,7 +14,7 @@ class LottosTest {
                     new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                     new Lotto(List.of(1, 2, 3, 4, 5, 6))
             ));
-            assertThat(lottos.getLottosCount()).isEqualTo(2);
+            assertThat(lottos.size()).isEqualTo(2);
         });
     }
 
@@ -25,7 +25,7 @@ class LottosTest {
                     new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                     new Lotto(List.of(1, 2, 3, 4, 5, 6))
             ));
-            assertThat(lottos.getAmount()).isEqualTo(2000);
+            assertThat(lottos.amount()).isEqualTo(2000);
         });
     }
 }

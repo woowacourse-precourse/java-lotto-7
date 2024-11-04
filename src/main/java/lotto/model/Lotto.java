@@ -35,12 +35,12 @@ public final class Lotto {
     }
 
     private void validateDuplicateLottoNumber() {
-        if (getNumberCount() != NUMBER_COUNT) {
+        if (size() != NUMBER_COUNT) {
             throw new DuplicateLottoNumberException();
         }
     }
 
-    private int getNumberCount() {
+    private int size() {
         return this.numbers.size();
     }
 }

@@ -11,12 +11,12 @@ public final class Lottos {
         this.lottos = lottos;
     }
 
-    public int getLottosCount() {
+    public int size() {
         return lottos.size();
     }
 
-    public int getAmount() {
-        return getLottosCount() * LOTTO_PRICE;
+    public int amount() {
+        return size() * LOTTO_PRICE;
     }
 
     public List<Lotto> getLottos() {

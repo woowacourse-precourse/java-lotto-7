@@ -27,7 +27,7 @@ public class LottoController {
         printBoughtLottoInfo(LottosDTO.from(lottos));
         WinningLotto winningLotto = inputWinningLotto();
         LottoResult lottoStatistics = lottoService.getStatistics(winningLotto, lottos);
-        outputView.printStatistics(LottoStatisticsDTO.from(lottoStatistics, lottos.getAmount()));
+        outputView.printStatistics(LottoStatisticsDTO.from(lottoStatistics, lottos.amount()));
     }
 
     private WinningLotto inputWinningLotto() {

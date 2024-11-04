@@ -12,7 +12,7 @@ class LottoShopTest {
         assertRandomUniqueNumbersInRangeTest(() -> {
                     LottoShop lottoShop = new LottoShop();
                     Lottos lottos = lottoShop.buy(4_000);
-                    assertThat(lottos.getLottosCount()).isEqualTo(4);
+                    assertThat(lottos.size()).isEqualTo(4);
                 },
                 List.of(1, 2, 3, 4, 5, 6),
                 List.of(6, 7, 8, 9, 10, 11),
