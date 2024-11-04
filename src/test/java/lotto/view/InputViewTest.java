@@ -12,10 +12,10 @@ class InputViewTest extends NsTest {
     private final InputView inputView = new InputView();
 
     @Test
-    void getPurchaseAmount() {
+    void getMoney() {
         run(BLANK);
 
-        assertThatThrownBy(inputView::getPurchaseAmount)
+        assertThatThrownBy(inputView::getMoney)
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR_MESSAGE);
     }
@@ -39,5 +39,6 @@ class InputViewTest extends NsTest {
     }
 
     @Override
-    protected void runMain() {}
+    protected void runMain() {
+    }
 }

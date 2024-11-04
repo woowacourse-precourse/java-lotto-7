@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.PurchaseAmount;
 import lotto.parser.NumberParser;
 import lotto.validator.BonusNumberValidator;
-import lotto.validator.PurchaseAmountValidator;
 import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -14,22 +14,19 @@ import lotto.view.OutputView;
 public class LottoVending {
     private final InputView inputView;
     private final OutputView outputView;
-    private Validator validator;
 
     public LottoVending(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    private Long getPurchaseAmountUntilValid() {
+    private PurchaseAmount getPurchaseAmountUntilValid() {
         while (true) {
             try {
-                String purchaseAmountInput = inputView.getPurchaseAmount();
+                String moneyInput = inputView.getMoney();
 
-                Long purchaseAmount = NumberParser.parseLong(purchaseAmountInput);
-                validator = new PurchaseAmountValidator(purchaseAmount);
-                validator.validate();
-                return purchaseAmount;
+                Long money = NumberParser.parseLong(moneyInput);
+                return PurchaseAmount.of(money);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
@@ -59,7 +56,7 @@ public class LottoVending {
             try {
                 String bonusNumberInput = inputView.getBonusNumber();
                 Integer bonusNumber = NumberParser.parseInteger(bonusNumberInput);
-                validator = new BonusNumberValidator(winningNumbers, bonusNumber);
+                Validator validator = new BonusNumberValidator(winningNumbers, bonusNumber);
                 validator.validate();
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
@@ -71,7 +68,7 @@ public class LottoVending {
     public void take() {
         // 구입 금액 입력, 검증 및 파싱
         outputView.printPurchaseAmountMessage();
-        Long purchaseAmount = getPurchaseAmountUntilValid();
+        PurchaseAmount amount = getPurchaseAmountUntilValid();
 
         // 당첨 번호 입력, 검증 및 파싱
         outputView.printWinningNumbersMessage();
@@ -82,8 +79,7 @@ public class LottoVending {
         Integer bonusNumber = getBonusNumbersUntilValid(winningNumbers);
 
         // 로또 발행
-        long amount = purchaseAmount / 1000;
-        Lottos lottos = Lottos.create(amount);
+        Lottos lottos = Lottos.create(amount.get());
         outputView.printLottos(lottos.getLottos());
 
         // 당첨 통계
@@ -120,7 +116,7 @@ public class LottoVending {
         int totalEarnings =
             5000 * matchedThree + 50000 * matchedFour + 1500000 * matchedFive + 30000000 * matchedFiveAndBonus
                 + 2000000000 * matchedSix;
-        float totalEarningsRate = (float) totalEarnings / purchaseAmount * 100;
+        float totalEarningsRate = (float) totalEarnings / (amount.get() * 1000) * 100;
         System.out.println("총 수익률은 " + String.format("%.1f", totalEarningsRate) + "%입니다.");
     }
 }

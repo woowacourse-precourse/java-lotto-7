@@ -6,7 +6,7 @@ import lotto.validator.InputValidator;
 public class InputView {
     private InputValidator validator;
 
-    public String getPurchaseAmount() {
+    public String getMoney() {
         String input = Console.readLine();
         validator = new InputValidator(input);
         validator.validate();
