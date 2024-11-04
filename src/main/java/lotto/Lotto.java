@@ -6,6 +6,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        arrangeInAscendingOrder(numbers);
         validate(numbers);
         this.numbers = numbers;
     }
@@ -14,7 +15,36 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if (numbers.getLast() > 45 || numbers.getFirst() < 1) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1이상 45이하입니다.");
+        }
     }
 
     // TODO: 추가 기능 구현
+    private void arrangeInAscendingOrder(List<Integer> numbers) {
+        numbers.sort(Integer::compareTo);
+    }
+
+    @Override
+    public String toString() {
+        return this.numbers.toString();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public int compare(Lotto winningLotto) {
+        return this.numbers.stream()
+                .filter(winningLotto::contains)
+                .toList()
+                .size();
+    }
+
+    public int compare(int bonusNumber) {
+        if (contains(bonusNumber)) {
+            return 1;
+        }
+        return 0;
+    }
 }
