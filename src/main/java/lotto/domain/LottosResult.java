@@ -3,6 +3,9 @@ package lotto.domain;
 import java.util.Map;
 
 public class LottosResult {
+    public static final String PURCHASE_AMOUNT = "구매금액";
+    public static final String TOTAL_PRIZE = "총상금";
+
     private final Map<String, Integer> lottosResult;
 
     public LottosResult(Map<String, Integer> lottosResult) {
@@ -10,8 +13,8 @@ public class LottosResult {
     }
 
     public double calculateReturns() {
-        int usingMoney = lottosResult.get("구매금액");
-        double value = lottosResult.get("총상금") / (double) usingMoney * 100;
+        int usingMoney = lottosResult.get(PURCHASE_AMOUNT);
+        double value = lottosResult.get(TOTAL_PRIZE) / (double) usingMoney * 100;
 
         return Math.round(value*10)/10.0;
     }

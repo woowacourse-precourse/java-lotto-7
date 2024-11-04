@@ -1,19 +1,19 @@
 package lotto.domain;
 
+import static lotto.domain.LottosResult.*;
+import static lotto.domain.Rank.FIFTH;
+import static lotto.domain.Rank.FIRST;
+import static lotto.domain.Rank.FOURTH;
+import static lotto.domain.Rank.NO_RANK;
+import static lotto.domain.Rank.SECOND;
+import static lotto.domain.Rank.THIRD;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public final class Lottos {
-    public static final int FIRST_PRIZE_AMOUNT = 2000000000;
-    public static final int SECOND_PRIZE_AMOUNT = 30000000;
-    public static final int THIRD_PRIZE_AMOUNT = 1500000;
-    public static final int FOURTH_PRIZE_AMOUNT = 50000;
-    public static final int FIFTH_PRIZE_AMOUNT = 5000;
-    public static final int LOTTO_PRICE = 1000;
-
-
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
@@ -25,49 +25,50 @@ public final class Lottos {
     }
 
     public LottosResult getResult(Lotto winningLotto, int bonusNumber) {
-        Map<String, Integer> lottosResult = new HashMap<>(Map.of(
-                "1등",0,"2등",0,"3등",0,"4등",0,"5등",0 ,"꽝",0, "총상금",0,"구매금액",0));
+        Map<String, Integer> resultRepository = new HashMap<>(Map.of(
+                FIRST.getName(), 0, SECOND.getName(),0, THIRD.getName(), 0,
+                FOURTH.getName(),0, FIFTH.getName(),0 , NO_RANK.getName(), 0,
+                TOTAL_PRIZE,0,PURCHASE_AMOUNT,0));
 
         for (Lotto lotto : lottos) {
             int matchCount = lotto.countMatchingNumbers(winningLotto);
             boolean isMatchBonus = lotto.isContain(bonusNumber);
-            String rank = determineLottoRank(matchCount,isMatchBonus);
+            Rank rank = determineLottoRank(matchCount,isMatchBonus);
 
-            lottosResult.computeIfPresent(rank, (key,value)-> value+1);
+            resultRepository.computeIfPresent(rank.getName(), (key,value)-> value+1);
         }
+        resultRepository.put(TOTAL_PRIZE, getTotalPrizeMoney(resultRepository));
+        resultRepository.put(PURCHASE_AMOUNT, lottos.size() * Lotto.LOTTO_PRICE);
 
-        lottosResult.put("총상금", getTotalPrizeMoney(lottosResult));
-        lottosResult.put("구매금액", lottos.size()*LOTTO_PRICE);
-
-        return new LottosResult(lottosResult);
+        return new LottosResult(resultRepository);
     }
 
-    private String determineLottoRank(int matchCount, boolean isMatchBonus) {
+    private Rank determineLottoRank(int matchCount, boolean isMatchBonus) {
         if (matchCount == 6) {
-            return "1등";
+            return FIRST;
         }
         if (matchCount == 5 && isMatchBonus) {
-            return "2등";
+            return SECOND;
         }
         if (matchCount == 5) {
-            return "3등";
+            return THIRD;
         }
         if (matchCount == 4) {
-            return "4등";
+            return FOURTH;
         }
         if (matchCount == 3) {
-            return "5등";
+            return FIFTH;
         }
-        return "꽝";
+        return NO_RANK;
     }
 
-    private int getTotalPrizeMoney(Map<String, Integer> lottoResult) {
+    private int getTotalPrizeMoney(Map<String, Integer> resultRepository) {
         int totalPrize = 0;
-        totalPrize += lottoResult.get("1등") * FIRST_PRIZE_AMOUNT;
-        totalPrize += lottoResult.get("2등") * SECOND_PRIZE_AMOUNT;
-        totalPrize += lottoResult.get("3등") * THIRD_PRIZE_AMOUNT;
-        totalPrize += lottoResult.get("4등") * FOURTH_PRIZE_AMOUNT;
-        totalPrize += lottoResult.get("5등") * FIFTH_PRIZE_AMOUNT;
+        totalPrize += resultRepository.get(FIRST.getName()) * FIRST.getPrizeMoney();
+        totalPrize += resultRepository.get(SECOND.getName()) * SECOND.getPrizeMoney();
+        totalPrize += resultRepository.get(THIRD.getName()) * THIRD.getPrizeMoney();
+        totalPrize += resultRepository.get(FOURTH.getName()) * FOURTH.getPrizeMoney();
+        totalPrize += resultRepository.get(FIFTH.getName()) * FIFTH.getPrizeMoney();
 
         return totalPrize;
     }

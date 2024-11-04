@@ -7,6 +7,7 @@ import lotto.message.ExceptionMessage;
 
 public class Lotto {
     public static final int LOTTO_NUMBER_COUNT = 6;
+    public static final int LOTTO_PRICE = 1000;
 
     private final List<Integer> numbers;
 
@@ -23,7 +24,7 @@ public class Lotto {
     public static Lottos buyAsMoney(int money) {
         List<Lotto> boughtLottos = new ArrayList<>();
         validateThousandUnitAmount(money);
-        for (int i = 0; i < money / 1000; i++) {
+        for (int i = 0; i < money / LOTTO_PRICE; i++) {
             boughtLottos.add(createLotto());
         }
         return new Lottos(boughtLottos);
@@ -55,7 +56,7 @@ public class Lotto {
     }
 
     private static void validateThousandUnitAmount(int money) {
-        if (money % 1000 != 0) {
+        if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ExceptionMessage.AMOUNT_NOT_IN_THOUSANDS.getMessage());
         }
     }

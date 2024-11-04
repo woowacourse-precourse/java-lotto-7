@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.LottosResult;
@@ -15,7 +14,7 @@ public class LottoController {
         OutputView.printLottosInfo(lottos);
 
         //당첨번호 설정
-        Lotto winningLotto = new Lotto(InputView.readAndSplitNumber());
+        Lotto winningLotto = new Lotto(InputView.readNumbers());
         int bonusNumber = InputView.readBonusNumber(winningLotto);
 
         //로또 결과

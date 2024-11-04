@@ -1,17 +1,18 @@
 package lotto.view;
 
-import static lotto.domain.Lotto.*;
+import static lotto.domain.Lotto.LOTTO_NUMBER_COUNT;
 import static lotto.message.ExceptionMessage.DUPLICATED_NUMBER;
 import static lotto.message.ExceptionMessage.DUPLICATED_WITH_WINNING_NUMBERS;
 import static lotto.message.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
-import static lotto.message.ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER;
 import static lotto.message.ExceptionMessage.NOT_NUMBER_FORMAT;
+import static lotto.message.ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER;
 import static lotto.message.ViewMessage.INPUT_BONUS_NUMBER;
 import static lotto.message.ViewMessage.INPUT_PURCHASE_AMOUNT;
 import static lotto.message.ViewMessage.INPUT_WINNING_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -28,11 +29,11 @@ public class InputView {
         }
     }
 
-    public static List<Integer> readAndSplitNumber() {
+    public static List<Integer> readNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS.getMessage());
         List<Integer> numbers = new ArrayList<>();
         try {
-            for (String splitString : Console.readLine().split(LOTTO_NUMBER_SEPARATOR)) {
+            for (String splitString : splitInputStirngByComma(Console.readLine())) {
                 int number = Integer.parseInt(splitString.trim());
                 validateOutOfLottoNumberRange(number);
                 checkAlreadyExistNumber(numbers, number);
@@ -41,7 +42,7 @@ public class InputView {
             validateExactlySixNumber(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readAndSplitNumber();
+            return readNumbers();
         }
         return Collections.unmodifiableList(numbers);
     }
@@ -60,6 +61,9 @@ public class InputView {
         return bonusNumber;
     }
 
+    private static List<String> splitInputStirngByComma(String input) {
+        return Arrays.asList(input.split(LOTTO_NUMBER_SEPARATOR));
+    }
     private static void validateExactlySixNumber(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());

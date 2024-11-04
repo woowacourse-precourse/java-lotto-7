@@ -1,8 +1,9 @@
 package lotto.view;
 
+import static lotto.domain.LottosResult.*;
+import static lotto.domain.Rank.*;
 import static lotto.message.ViewMessage.*;
 
-import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -15,15 +16,15 @@ public class OutputView {
 
     public static void printLottosResult(LottosResult lottoResult) {
         System.out.println(OUTPUT_RESULT_TITLE.getMessage());
-        System.out.println(MATCH_3_COUNT.format(lottoResult.get("5등")));
-        System.out.println(MATCH_4_COUNT.format(lottoResult.get("4등")));
-        System.out.println(MATCH_5_COUNT.format(lottoResult.get("3등")));
-        System.out.println(MATCH_5_AND_BONUS_COUNT.format(lottoResult.get("2등")));
-        System.out.println(MATCH_6_COUNT.format(lottoResult.get("1등")));
+        System.out.println(FIFTH.format(lottoResult.get(FIFTH.getName())));
+        System.out.println(FOURTH.format(lottoResult.get(FOURTH.getName())));
+        System.out.println(THIRD.format(lottoResult.get(THIRD.getName())));
+        System.out.println(SECOND.format(lottoResult.get(SECOND.getName())));
+        System.out.println(FIRST.format(lottoResult.get(FIRST.getName())));
     }
 
     public static void printLottosReturns(double returnsByLottos) {
-        System.out.printf(OUTPUT_LOTTOS_RETURNS.getMessage(),returnsByLottos);
+        System.out.printf(OUTPUT_LOTTOS_RETURNS.getMessage(), returnsByLottos);
     }
     public static void printLottosInfo(Lottos lottos) {
         System.out.println(OUTPUT_LOTTOS_COUNT.format(lottos.getLotto().size()));
