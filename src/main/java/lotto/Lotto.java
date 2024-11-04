@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.provider.LottoProvider.*;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +14,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicateLotto(numbers);
+        validateLottoNumberRange(numbers);
         this.numbers = numbers;
     }
 
@@ -25,6 +28,15 @@ public class Lotto {
         HashSet<Integer> nonDuplicateLottoNumbers = new HashSet<>(lottoNumbers);
         if (nonDuplicateLottoNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복을 허용하지 않습니다.");
+        }
+    }
+
+    private void validateLottoNumberRange(List<Integer> lottoNumbers) {
+        boolean isInRange = lottoNumbers.stream()
+            .allMatch(number -> number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER);
+
+        if (!isInRange) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 " + MIN_LOTTO_NUMBER + "에서 " + MAX_LOTTO_NUMBER + " 사이여야 합니다.");
         }
     }
     public void printLottoNumbers() {
