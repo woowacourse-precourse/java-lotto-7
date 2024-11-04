@@ -3,6 +3,7 @@ package lotto.validator;
 import java.util.regex.Pattern;
 import lotto.util.Errors;
 import lotto.util.MessageParser;
+import lotto.util.Regex;
 import org.assertj.core.util.VisibleForTesting;
 
 public class Validator {
@@ -38,7 +39,7 @@ public class Validator {
 
     @VisibleForTesting
     void validateWholeNumber() {
-        if (!Pattern.matches("-?\\d+", input)) {
+        if (!Pattern.matches(Regex.INTEGER.getValue(), input)) {
             throw new IllegalArgumentException(
                     MessageParser.getErrorMessage(Errors.NOT_A_WHOLE_NUMBER.getMessage()));
         }

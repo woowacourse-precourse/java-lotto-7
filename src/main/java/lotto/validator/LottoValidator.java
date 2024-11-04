@@ -9,7 +9,7 @@ import lotto.util.Regex;
 import org.assertj.core.util.VisibleForTesting;
 
 public class LottoValidator extends Validator {
-    
+
     public LottoValidator(String input) {
         super(input);
     }
@@ -24,7 +24,7 @@ public class LottoValidator extends Validator {
     @Override
     void validateWholeNumber() {
         if (Arrays.stream(super.input.split(Regex.COMMA.getValue()))
-                .anyMatch(number -> !Pattern.matches("-?\\d+", number))) {
+                .anyMatch(number -> !Pattern.matches(Regex.INTEGER.getValue(), number))) {
             throw new IllegalArgumentException(
                     MessageParser.getErrorMessage(Errors.NOT_A_WHOLE_NUMBER.getMessage()));
         }

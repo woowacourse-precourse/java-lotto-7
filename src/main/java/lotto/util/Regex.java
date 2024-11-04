@@ -2,7 +2,8 @@ package lotto.util;
 
 public enum Regex {
 
-    COMMA(",");
+    COMMA(","),
+    INTEGER("-?\\d+");
 
     private final String value;
 
