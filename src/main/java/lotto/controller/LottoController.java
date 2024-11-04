@@ -11,9 +11,9 @@ public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final LottoService lottoService = new LottoService();
+    private final PurchaseService purchaseService = new PurchaseService();
 
     public void purchaseLotto() {
-        PurchaseService purchaseService = new PurchaseService();
         int price = inputView.getPrice();
         int lottoCount = purchaseService.buyLotto(price);
 
@@ -39,5 +39,8 @@ public class LottoController {
         List<WinningResult> results = lottoService.countLottoMatchNumbers(winningNumbers, bonusNumber);
         String resultToString = lottoService.toStringResult(results);
         outputView.printLottoResult(resultToString);
+
+        double percent = purchaseService.calculateWinningPercent(results);
+        outputView.printWinningPercent(percent);
     }
 }

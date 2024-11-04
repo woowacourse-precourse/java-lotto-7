@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
+
 public class OutputView {
     public void printPurchaseResult(int lottoCount) {
         System.out.println(lottoCount + "개를 구매했습니다.");
@@ -12,6 +14,7 @@ public class OutputView {
     }
 
     public void printWinningPercent(double percent) {
-        System.out.println("총 수익률은 " + percent + "%입니다.");
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+        System.out.println("총 수익률은 " + decimalFormat.format(percent) + "%입니다.");
     }
 }
