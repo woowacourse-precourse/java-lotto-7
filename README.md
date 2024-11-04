@@ -71,8 +71,8 @@
 - #### 출력
     - [x] 발행한 로또 수량 및 번호 출력
         - [x] 로또 번호는 오름차순으로 정렬
-    - [ ] 당첨 내역 출력
-    - [ ] 수익률은 소수점 둘째 자리에서 반올림 (ex. 100.0%, 51.5%, 1,000,000.0%)
+    - [x] 당첨 내역 출력
+    - [x] 수익률은 소수점 둘째 자리에서 반올림 (ex. 100.0%, 51.5%, 1,000,000.0%)
     - [x] 예외 상황 시 에러 문구 출력
         - [x] 에러 문구는 "[ERROR]"로 시작해야 함
 
@@ -81,10 +81,10 @@
     - [x] 로또 수량 만큼 로또 번호 6개씩 생성 (1부터 45 사이의 무작위 숫자, 중복 없음)
 
 - #### 일치하는 로또 번호 확인
-    - [ ] 생성된 로또 번호에서 일치하는 번호 개수 세기
-    - [ ] 5개 일치할 경우, 남은 번호를 보너스 번호와 비교
-    - [ ] 당첨 금액 합산
-    - [ ] 총 수익률 구하기 (문제 예시를 봤을 땐 (당첨금액합 / 구입금액))
+    - [x] 생성된 로또 번호에서 일치하는 번호 개수 세기
+    - [x] 5개 일치할 경우, 남은 번호를 보너스 번호와 비교
+    - [x] 당첨 금액 합산
+    - [x] 총 수익률 구하기 (문제 예시를 봤을 땐 (당첨금액합 / 구입금액 * 100))
 
 ### 2. 세부 조건
 
@@ -109,18 +109,18 @@
   힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메서드)를 분리하면 된다.
 - [x] 3항 연산자를 쓰지 않는다.
 - [x] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
-- [ ] JUnit 5와 AssertJ를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
+- [x] JUnit 5와 AssertJ를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
 
 ### 4. 프로그래밍 요구 사항 2
 
-- [ ] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-    - [ ] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
-- [ ] else 예약어를 쓰지 않는다.
-    - [ ] else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.  
+- [x] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+    - [x] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
+- [x] else 예약어를 쓰지 않는다.
+    - [x] else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.  
       힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
 - [x] Java Enum을 적용하여 프로그램을 구현한다.
-- [ ] 구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
-    - [ ] 단위 테스트 작성이 익숙하지 않다면 LottoTest를 참고하여 학습한 후 테스트를 작성한다.
+- [x] 구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+    - [x] 단위 테스트 작성이 익숙하지 않다면 LottoTest를 참고하여 학습한 후 테스트를 작성한다.
 
 #### 라이브러리
 
@@ -135,15 +135,34 @@
 - [x] `numbers`의 접근 제어자인 `private`은 변경할 수 없다.
 - [x] `Lotto`의 패키지를 변경할 수 있다.
 
-## 플로우차트
-
-## 시퀀스 다이어그램
-
 ## 클래스 다이어그램
+
+![classdiagram](https://github.com/user-attachments/assets/fb90e220-b96e-420d-b3fb-86cd6a9d9645)
 
 ## 클래스 설명
 
-| Package | Class | Description |
-|:-------:|:-----:|-------------|
-|         |       |             |
-
+|     Package      |         Class         | Description            |
+|:----------------:|:---------------------:|------------------------|
+|  common.config   |       Constants       | 로또 관련 상수 enum          |
+|                  |  InstructionMessages  | 안내 메시지 enum            |
+|                  |       LottoRank       | 로또 등수별 정보 enum         |
+|                  |       AppConfig       | 의존성 주입 class           |
+| common.exception |  EmptyInputException  | 빈 입력 exception         |
+|                  | InvalidInputException | 잘못된 입력 exception       |
+|                  | InvalidStateException | 잘못된 상태 exception       |
+|                  |   ExceptionMessages   | 예외 메시지 enum            |
+| common.validator |    InputValidator     | 입력값 기준에 따라 판별 class    |
+|    controller    |    LottoController    | 로또 동작 처리 class         |
+|       view       |         Input         | 입력값 처리 interface       |
+|                  |  PurchaseAmountInput  | 구입 금액 입력 class         |
+|                  |  WinningNumbersInput  | 당첨 번호 입력 class         |
+|                  |   BonusNumberInput    | 보너스 번호 입력 class        |
+|                  |        Output         | 출력 처리 class            |
+|     service      |    LottoGenerator     | 구입 로또 번호 생성 class      |
+|                  |     LottoChecker      | 로또 번호 일치 검사 class      |
+|                  |     WinningResult     | 당첨 결과 처리 class         |
+|      domain      |         Lotto         | 로또 번호 한 세트 class       |
+|                  |      MatchResult      | 로또 번호 한 세트 당첨 결과 class |
+|                  |    PurchasedLottos    | 구입 로또 리스트 class        |
+|                  |    WinningNumbers     | 당첨 번호 class            |
+|                  |   WinningStatistics   | 당첨 통계 계산 class         |
