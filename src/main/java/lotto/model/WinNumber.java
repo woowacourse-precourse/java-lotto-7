@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static lotto.enumerate.ErrorPrint.INPUT_HAS_WRONG_PATTERN;
+
 public class WinNumber {
 
     private final List<Integer> numbers;
@@ -38,7 +40,7 @@ public class WinNumber {
     private static void validateFormat(String string) {
         final Pattern PATTERN = Pattern.compile("\\d+");
         if (!PATTERN.matcher(string).matches()) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 다른 입력값이 들어왔습니다.");
+            throw new IllegalArgumentException(INPUT_HAS_WRONG_PATTERN.getMsg());
         }
     }
 

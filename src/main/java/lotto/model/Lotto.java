@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.enumerate.ErrorPrint.LOTTO_DOES_NOT_ALLOW_DUPLICATE_NUMBER;
+import static lotto.enumerate.ErrorPrint.LOTTO_DOES_NOT_HAVE_CORRECT_SIZE;
 import static lotto.enumerate.Rank.*;
 import static lotto.enumerate.Rank.NONE;
 
@@ -19,11 +21,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_DOES_NOT_HAVE_CORRECT_SIZE.getMsg());
         }
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복된 숫자가 존재하지 않아야합니다.");
+            throw new IllegalArgumentException(LOTTO_DOES_NOT_ALLOW_DUPLICATE_NUMBER.getMsg());
         }
     }
 

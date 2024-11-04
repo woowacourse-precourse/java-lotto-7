@@ -2,9 +2,11 @@ package lotto.model;
 
 import java.util.regex.Pattern;
 
-import static lotto.enumerate.ErrorPrint.PURCHASE_MONEY_MUST_1000_UNIT;
+import static lotto.enumerate.ErrorPrint.INPUT_HAS_WRONG_PATTERN;
+import static lotto.enumerate.ErrorPrint.PURCHASE_MONEY_MUST_UNIT;
 
 public class Money {
+    private static final Pattern PATTERN = Pattern.compile("\\d+");
     private final Long price;
 
     public Money(String price) {
@@ -25,10 +27,8 @@ public class Money {
     }
 
     private void validateFormat(String inputValue) {
-        Pattern PATTERN = Pattern.compile("\\d+");
-
         if (!PATTERN.matcher(inputValue).matches()) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 다른 입력값이 들어왔습니다.");
+            throw new IllegalArgumentException(INPUT_HAS_WRONG_PATTERN.getMsg());
         }
     }
 
@@ -39,7 +39,7 @@ public class Money {
 
     private void isPriceDividedByUnit(long unit) {
         if (price % unit != 0) {
-            throw new IllegalArgumentException(PURCHASE_MONEY_MUST_1000_UNIT.getMsg());
+            throw new IllegalArgumentException(PURCHASE_MONEY_MUST_UNIT.getMsg());
         }
     }
 }
