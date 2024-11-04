@@ -4,6 +4,8 @@ import lotto.Lotto;
 import user.User;
 import lotto.type.WinType;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,7 +56,7 @@ public class OutPutLottoHandler {
     }
 
     public void showProfitRate(int price, long profit) {
-        double profitRate = getProfitRate(price, profit);
+        String profitRate = getProfitRate(price, profit);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("총 수익률은 ")
                 .append(profitRate).append("%")
@@ -62,8 +64,9 @@ public class OutPutLottoHandler {
         System.out.println(stringBuilder);
     }
 
-    public double getProfitRate(int price, long profit) {
+    public String getProfitRate(int price, long profit) {
         double num = (double) profit / price * 100.0;
-        return Math.round(num * 100) / 100.0;
+
+        return new BigDecimal(num).setScale(1, RoundingMode.HALF_UP).toString();
     }
 }
