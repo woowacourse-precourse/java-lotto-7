@@ -21,7 +21,7 @@ public enum Ranking {
         this.winningPrice = winningPrice;
     }
 
-    public Ranking findRanking(int matchingCount, boolean containBonusNumber) {
+    public static Ranking findRanking(int matchingCount, boolean containBonusNumber) {
         return Arrays.stream(values())
                 .filter(ranking -> ranking.matchingCount == matchingCount)
                 .filter(ranking -> ranking.containBonusNumber == containBonusNumber)

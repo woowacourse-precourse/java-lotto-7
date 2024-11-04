@@ -12,7 +12,10 @@ public class ProfitCalculator {
         for (Lotto lotto : lottos.getLottos()) {
             int matchingCount = matchLottoAndWinning(lotto, winningBonus);
             boolean containsBonusNumber = checkBonusNumber(lotto, winningBonus, matchingCount);
+            Ranking ranking = Ranking.findRanking(matchingCount, containsBonusNumber);
+            winningInfo.replace(ranking, winningInfo.get(winningInfo) + 1);
         }
+        return winningInfo;
     }
 
     private Map<Ranking, Integer> generateWinningInfo() {
