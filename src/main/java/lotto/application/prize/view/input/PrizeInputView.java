@@ -27,17 +27,29 @@ public class PrizeInputView {
     }
 
     private List<Integer> inputPrizeNumber() {
-        printer.appendWithLine(INPUT_PRIZE_NUMBER);
-        printer.execute();
-
-        return toInts(split(trim(readLine())));
+        while (true) {
+            try {
+                printer.appendWithLine(INPUT_PRIZE_NUMBER);
+                printer.execute();
+                return toInts(split(trim(readLine())));
+            } catch (IllegalArgumentException e) {
+                printer.appendWithLine(e.getMessage());
+                printer.execute();
+            }
+        }
     }
 
     private int inputBonusNumber() {
-        printer.appendWithLine(INPUT_BONUS_NUMBER);
-        printer.execute();
-
-        return toInt(trim(readLine()));
+        while (true) {
+            try {
+                printer.appendWithLine(INPUT_BONUS_NUMBER);
+                printer.execute();
+                return toInt(trim(readLine()));
+            } catch (IllegalArgumentException e) {
+                printer.appendWithLine(e.getMessage());
+                printer.execute();
+            }
+        }
     }
 
 }
