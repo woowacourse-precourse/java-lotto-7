@@ -103,6 +103,13 @@ public class Application {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + statics.get(3) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + statics.get(4) + "개");
 
+        // 수익률 계산 및 출력
+        int profits = statics.get(0)*5000 + statics.get(1)*50000 + statics.get(2)*1500000 + statics.get(3)*30000000 + statics.get(4)*2000000000;
+        double rateOfReturn = (profits / (double)(purchasesCount * LOTTO_BASIC_PRICE)) * 100;
+        double roundedRateOfReturn = Math.round(rateOfReturn * 100) / 100.0;
+        System.out.println("총 수익률은 " + roundedRateOfReturn + "%입니다.");
+
+
     }
 
 }
