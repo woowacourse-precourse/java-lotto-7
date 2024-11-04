@@ -25,12 +25,11 @@ public class InputController {
 
 //    public String readUserInput() {
 //        InputTask.userInput();
-//        while (true) {
+//        while(true) {
 //            Message message = inputMessageQueue.poll();
-//            if (message != null) {
-//                return message.getContent();
-//            }
+//            if(message!=null) return message.getContent();
 //        }
+//
 //    }
 
     public Integer getMoney() {
