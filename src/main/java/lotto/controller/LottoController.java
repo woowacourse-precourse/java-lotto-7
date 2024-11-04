@@ -140,8 +140,13 @@ public class LottoController {
 
 
     private Integer buyLotto() {
-        Integer totalCost = getUserPurchaseCost();
-        return getLottoAmount(totalCost);
+        try {
+            Integer totalCost = getUserPurchaseCost();
+            return getLottoAmount(totalCost);
+        } catch (IllegalArgumentException e) {
+            OutputView.getInstance().println(e.getMessage());
+            return buyLotto();
+        }
     }
 
     private Integer getLottoAmount(Integer cost) {
@@ -153,13 +158,8 @@ public class LottoController {
     }
 
     private Integer getUserPurchaseCost() {
-        try {
-            OutputView.getInstance().printPurchaseInput();
-            return toInt(InputView.getInstance().readUserInput());
-        } catch (IllegalArgumentException e) {
-            OutputView.getInstance().println(e.getMessage());
-            return getUserPurchaseCost();
-        }
+        OutputView.getInstance().printPurchaseInput();
+        return toInt(InputView.getInstance().readUserInput());
     }
 
     private Integer toInt(String string) {
