@@ -1,7 +1,5 @@
 package lotto.validation;
 
-import lotto.enums.Message;
-
 import java.util.HashSet;
 import java.util.List;
 
