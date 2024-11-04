@@ -12,4 +12,9 @@ public class ResultView {
         }
         System.out.println();
     }
+
+	public static void printYield(double yield) {
+        System.out.println("총 수익률은 " + yield + "%입니다.");
+    }
+
 }

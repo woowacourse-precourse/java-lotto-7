@@ -1,3 +1,4 @@
+// Application.java (수익률 계산 및 출력 추가)
 package lotto;
 
 import lotto.InputView;
@@ -22,6 +23,11 @@ public class Application {
 
             Lotto winningLotto = new Lotto(winningNumbers);
             LottoResult lottoResult = new LottoResult(lottos, winningLotto, bonusNumber);
+
+            int totalPrize = lottoResult.getTotalPrize();
+            double yield = (double) totalPrize / purchaseAmount * 100;
+            yield = Math.round(yield * 100) / 100.0; // 소수점 둘째 자리에서 반올림
+            ResultView.printYield(yield);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
