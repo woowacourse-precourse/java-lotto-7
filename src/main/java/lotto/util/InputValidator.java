@@ -25,4 +25,10 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 주문할 수 있습니다.");
         }
     }
+
+    public static void isValidNumber(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
 }

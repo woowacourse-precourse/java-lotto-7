@@ -1,5 +1,9 @@
 package lotto.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import lotto.Lotto;
 import lotto.util.InputValidator;
 
 public class UserInputService {
@@ -16,15 +20,38 @@ public class UserInputService {
         return purchaseAmount;
     }
 
+    public Lotto getWinningLotto(String inputNumber) {
+        InputValidator.isNotNull(inputNumber);
+        inputNumber = removeBlank(inputNumber);
+        InputValidator.isNotEmpty(inputNumber);
+
+        List<String> numbersInput = splitInput(inputNumber);
+        List<Integer> numbers = new ArrayList<>();
+
+        for(String number : numbersInput) {
+            int num = parseInteger(number);
+            InputValidator.isValidNumber(num);
+            numbers.add(num);
+        }
+
+        return new Lotto(numbers);
+    }
+
     private int parseInteger(String input) {
         try {
             return Integer.parseInt(input);
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
+            throw new IllegalArgumentException("[ERROR] 잘못된 문자가 들어가 있습니다");
         }
     }
 
     private String removeBlank(String input) {
         return input.replaceAll(" ", "");
     }
+
+    private List<String> splitInput(String input) {
+        return Arrays.stream(input.split(",")).toList();
+    }
+
+
 }

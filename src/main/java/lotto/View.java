@@ -17,4 +17,11 @@ public class View {
             System.out.println(lotto.toString());
         }
     }
+
+    public static String winningNumberView() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
+
 }

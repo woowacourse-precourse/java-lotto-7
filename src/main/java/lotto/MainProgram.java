@@ -13,8 +13,11 @@ public class MainProgram {
         int count = amount / 1000;
         List<Lotto> purchasedLotto = lottoService.getPurchasedLotto(count);
         View.showLottoNumbers(count, purchasedLotto);
-        Lotto WinningNumber = getWinningNumber();
+        Lotto winningNumber = getWinningNumber();
+
     }
+
+
 
     public int getAmount() {
         while(true) {
@@ -29,6 +32,16 @@ public class MainProgram {
     }
 
     public Lotto getWinningNumber() {
-
+        while(true) {
+            try {
+                String inputNumber = View.winningNumberView();
+                return userInputService.getWinningLotto(inputNumber);
+            } catch (Exception e) {
+                String message = e.getMessage();
+                System.out.println(message);
+            }
+        }
     }
+
+
 }
