@@ -1,10 +1,13 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +24,26 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("두 로또 번호를 비교하여 공통 번호 수를 알 수 있다.")
+    @Test
+    void common_num_count() throws Exception{
+        //given
+        Lotto lotto1 = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
+        Lotto lotto2 = new Lotto(new ArrayList<>(List.of(4, 5, 6, 7, 8, 9)));
+        //when
+        int commonCount = lotto1.countMatching(lotto2);
+        //then
+        assertThat(commonCount).isEqualTo(3);
+     }
+
+     @DisplayName("로또 번호에서 특정번호의 포함여부를 알 수 있다.")
+     @Test
+     void contains_one_number() throws Exception{
+         //given
+         Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
+         //when
+         boolean contains = lotto.contains(1);
+         //then
+         assertThat(contains).isTrue();
+      }
 }
