@@ -90,7 +90,6 @@ public class LottoGameController {
                     lottoResult.getResult().get(prize.name()),
                     prize.getComment());
         }
-
         OutputView.printTotalProfit(convertUnit(resultMarginDTO.getMargin()));
     }
 
@@ -117,11 +116,7 @@ public class LottoGameController {
                 OutputView.printEnter();
                 List<String> splittedRawInput = StringSplitter.splitByDelimiter(rawUserLotto, DELIMITER);
                 splittedRawInput.forEach(NumberValidator::validateInt);
-
-                Lotto userSixNumber = new Lotto(splittedRawInput
-                        .stream()
-                        .map(Integer::parseInt)
-                        .toList());
+                Lotto userSixNumber = new Lotto(splittedRawInput.stream().map(Integer::parseInt).toList());
 
                 return UserSixNumberDTO.of(userSixNumber);
             } catch (IllegalArgumentException e) {
