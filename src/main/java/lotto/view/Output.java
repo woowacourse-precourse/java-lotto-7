@@ -27,4 +27,5 @@ public class Output {
     public static void printTotalPrizeRate(double totalPrizeRate) {
         System.out.printf("총 수익률은 %.1f%%입니다.", totalPrizeRate);
     }
+    
 }
