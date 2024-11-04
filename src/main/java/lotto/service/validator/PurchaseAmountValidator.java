@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.service.validator;
 
 import lotto.controller.PurchaseAmountController;
 import lotto.util.ErrorMessage;

@@ -1,6 +1,6 @@
-package lotto.handler;
+package lotto.service.handler;
 
-import lotto.validator.WinningNumbersValidator;
+import lotto.service.validator.WinningNumbersValidator;
 
 import java.util.Arrays;
 import java.util.List;

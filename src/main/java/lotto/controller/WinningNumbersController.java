@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.dto.WinningNumbersRequestDto;
-import lotto.handler.WinningNumbersHandler;
+import lotto.service.handler.WinningNumbersHandler;
 import lotto.view.InputView;
 
 import java.util.ArrayList;

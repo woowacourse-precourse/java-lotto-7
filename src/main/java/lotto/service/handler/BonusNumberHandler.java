@@ -1,7 +1,7 @@
-package lotto.handler;
+package lotto.service.handler;
 
 
-import lotto.validator.BonusNumberValidator;
+import lotto.service.validator.BonusNumberValidator;
 
 public class BonusNumberHandler {
     public static boolean handle(String purchaseAmount) {

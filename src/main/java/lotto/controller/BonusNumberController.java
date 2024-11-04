@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.dto.BonusNumberRequestDto;
-import lotto.handler.BonusNumberHandler;
+import lotto.service.handler.BonusNumberHandler;
 import lotto.view.InputView;
 
 public class BonusNumberController {

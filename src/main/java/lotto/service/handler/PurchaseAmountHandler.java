@@ -1,6 +1,6 @@
-package lotto.handler;
+package lotto.service.handler;
 
-import lotto.validator.PurchaseAmountValidator;
+import lotto.service.validator.PurchaseAmountValidator;
 
 public class PurchaseAmountHandler {
     public static void handle(String purchaseAmount) {

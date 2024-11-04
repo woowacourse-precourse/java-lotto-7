@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.dto.PurchaseAmountRequestDto;
-import lotto.handler.PurchaseAmountHandler;
+import lotto.service.handler.PurchaseAmountHandler;
 import lotto.view.InputView;
 
 public class PurchaseAmountController {
