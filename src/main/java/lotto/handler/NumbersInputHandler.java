@@ -8,7 +8,7 @@ import static lotto.view.RequestView.getBonusInput;
 import static lotto.view.RequestView.getInputNumbers;
 
 
-public class WinningNumbersInputHandler {
+public class NumbersInputHandler {
     public WinningNumbers getWinningNumbers() {
         while (true) {
             try {

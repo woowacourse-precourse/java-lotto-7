@@ -6,19 +6,19 @@ import lotto.domain.Result;
 import lotto.domain.lottoForm.WinningNumbers;
 import lotto.domain.number.BonusNumber;
 import lotto.handler.MoneyInputHandler;
-import lotto.handler.WinningNumbersInputHandler;
+import lotto.handler.NumbersInputHandler;
 
 import static lotto.view.OutputView.*;
 
 public class LottoController {
     private final MoneyInputHandler moneyInputHandler;
     private final LottoMachine lottoMachine;
-    private final WinningNumbersInputHandler numbersInputHandler;
+    private final NumbersInputHandler numbersInputHandler;
 
     public LottoController() {
         moneyInputHandler = new MoneyInputHandler();
         lottoMachine = new LottoMachine();
-        numbersInputHandler = new WinningNumbersInputHandler();
+        numbersInputHandler = new NumbersInputHandler();
     }
 
     public void run() {

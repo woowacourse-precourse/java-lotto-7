@@ -12,9 +12,9 @@ import static lotto.constant.LottoValues.SIZE;
 import static lotto.message.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-public class WinningNumbersInputHandlerTest {
+public class NumbersInputHandlerTest {
 
-    private final WinningNumbersInputHandler numbersInputHandler = new WinningNumbersInputHandler();
+    private final NumbersInputHandler numbersInputHandler = new NumbersInputHandler();
 
     @DisplayName("당첨 번호와 중복되지 않는 보너스 번호가 정상적으로 입력된 경우")
     @Test
