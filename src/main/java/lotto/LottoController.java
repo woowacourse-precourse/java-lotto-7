@@ -1,23 +1,27 @@
 package lotto;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class LottoController {
     private LottoModel model;
     private LottoView view;
+
     private int purchasePrice;
     private int numberOfPurchases;
+
     private List<Lotto> lottoNumbers;
     private List<Integer> winningNumbers;
     private List<Integer> countMatched = new LinkedList<>();
+
     private int bonusNumber;
     private int countHasBonusNumber;
+
+    private double statistic;
 
     public LottoController(LottoModel model, LottoView view){
         this.model = model;
         this.view = view;
+        this.statistic = 0;
         lottoNumbers = new LinkedList<>();
     }
     public void startLotto(){
@@ -28,9 +32,9 @@ public class LottoController {
         matchNumbers();
 
         // 당첨 결과 출력 및 수익률 계산
-        double statistic = view.printMatchedResult(countMatched, countHasBonusNumber);
-        statistic = (statistic / purchasePrice) * 100;
+        calculateStatistic();
 
+        // 최종 결과
         view.finalResult(statistic);
     }
     public void setLottoInfo(){
@@ -110,5 +114,22 @@ public class LottoController {
             }
             countMatched.add(count);
         }
+    }
+    public void calculateStatistic(){
+        HashMap<Integer, Integer> matchedResult = new HashMap<>();
+        List<PrizeInfo> prizeList = List.of(
+                PrizeInfo.THREE,
+                PrizeInfo.FOUR,
+                PrizeInfo.FIVE,
+                PrizeInfo.SIX);
+
+        for (PrizeInfo i : prizeList) {
+            matchedResult.put(i.getCount(), Collections.frequency(countMatched, i.getCount()));
+            statistic += matchedResult.get(i.getCount()) * i.getPrize();
+        }
+        statistic += countHasBonusNumber * PrizeInfo.FIVE_BONUS.getPrize();
+        statistic = (statistic / purchasePrice) * 100;
+
+        view.printMatchedResult(matchedResult, countHasBonusNumber);
     }
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -34,33 +35,15 @@ public class LottoView {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         return Integer.parseInt(readLine());
     }
-    public double printMatchedResult(List<Integer> countMatched, int countHasBonusNumber){
-        int count;
-        double statistics = 0;
+    public void printMatchedResult(HashMap<Integer, Integer> matchedResult, int countHasBonusNumber){
         System.out.println("\n당첨 통계\n---");
-
-        count = Collections.frequency(countMatched, 3);
-        statistics += count * 5000;
-        System.out.println("3개 일치 (5,000원) - " + count + "개");
-
-        count = Collections.frequency(countMatched, 4);
-        statistics += count * 50000;
-        System.out.println("4개 일치 (50,000원) - " + count + "개");
-
-        count = Collections.frequency(countMatched, 5);
-        statistics += count * 1500000;
-        System.out.println("5개 일치 (1,500,000원) - " + count + "개");
-
-        statistics += countHasBonusNumber * 30000000;
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + countHasBonusNumber + "개");
-
-        count = Collections.frequency(countMatched, 6);
-        statistics += count * 2000000000;
-        System.out.println("6개 일치 (2,000,000,000원) - " + count + "개");
-
-        return statistics;
+        System.out.println(PrizeInfo.THREE.getDescription() + " - " + matchedResult.get(3) + "개");
+        System.out.println(PrizeInfo.FOUR.getDescription() + " - " + matchedResult.get(4) + "개");
+        System.out.println(PrizeInfo.FIVE.getDescription() + " - " + matchedResult.get(5) + "개");
+        System.out.println(PrizeInfo.FIVE_BONUS.getDescription() + " - " + countHasBonusNumber + "개");
+        System.out.println(PrizeInfo.SIX.getDescription() + " - " + matchedResult.get(6) + "개");
     }
-    public void finalResult(double statistics){
-        System.out.println("총 수익률은 " + statistics + "%입니다.");
+    public void finalResult(double statistic){
+        System.out.println("총 수익률은 " + Math.round(statistic * 10) / 10.0 + "%입니다.");
     }
 }
