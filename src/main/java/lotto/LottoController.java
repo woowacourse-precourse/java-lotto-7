@@ -1,6 +1,10 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.LottoResult;
+import lotto.domain.Lottos;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     public void run() {

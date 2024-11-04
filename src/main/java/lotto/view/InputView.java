@@ -1,15 +1,17 @@
-package lotto;
+package lotto.view;
 
-import static lotto.NumberType.LOTTO_MAX_NUMBER;
-import static lotto.NumberType.LOTTO_MIN_NUMBER;
-import static lotto.NumberType.LOTTO_NUMBER_COUNT;
-import static lotto.NumberType.PURCHASE_UNIT;
-import static lotto.NumberType.ZERO;
+import static lotto.constants.NumberType.LOTTO_MAX_NUMBER;
+import static lotto.constants.NumberType.LOTTO_MIN_NUMBER;
+import static lotto.constants.NumberType.LOTTO_NUMBER_COUNT;
+import static lotto.constants.NumberType.PURCHASE_UNIT;
+import static lotto.constants.NumberType.ZERO;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.Utils;
+import lotto.constants.ExceptionMessage;
 
 public class InputView {
     private static final String POSITIVE_NUMBER_PATTERN = "\\d+";

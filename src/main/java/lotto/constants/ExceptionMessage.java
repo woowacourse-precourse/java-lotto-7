@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constants;
 
 public class ExceptionMessage {
     public static final String ERROR_EMPTY_INPUT = "[ERROR] 빈 값이 입력되었습니다.";

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.Lottos;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ class LottosTest {
 
         // when
         lottos.issueByAmount(purchaseAmount);
-        
+
         // then
         int expectedQuantity = purchaseAmount / PURCHASE_UNIT;
         Assertions.assertThat(lottos.size()).isEqualTo(expectedQuantity);

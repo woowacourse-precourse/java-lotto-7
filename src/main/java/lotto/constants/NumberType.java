@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constants;
 
 public class NumberType {
     public static final int ZERO = 0;

@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.domain.LottoRanking;
+import lotto.domain.LottoResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

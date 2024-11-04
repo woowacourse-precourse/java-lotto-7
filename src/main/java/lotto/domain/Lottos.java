@@ -1,11 +1,12 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.NumberType.PURCHASE_UNIT;
+import static lotto.constants.NumberType.PURCHASE_UNIT;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.Utils;
 
 public class Lottos {
     private List<Lotto> lottos;

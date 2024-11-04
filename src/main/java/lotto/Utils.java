@@ -1,14 +1,15 @@
 package lotto;
 
-import static lotto.NumberType.LOTTO_MAX_NUMBER;
-import static lotto.NumberType.LOTTO_MIN_NUMBER;
-import static lotto.NumberType.LOTTO_NUMBER_COUNT;
+import static lotto.constants.NumberType.LOTTO_MAX_NUMBER;
+import static lotto.constants.NumberType.LOTTO_MIN_NUMBER;
+import static lotto.constants.NumberType.LOTTO_NUMBER_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lotto.constants.ExceptionMessage;
 
 public class Utils {
     private static final String DELIMITER = ",";
