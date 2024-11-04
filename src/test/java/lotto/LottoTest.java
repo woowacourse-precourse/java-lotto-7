@@ -71,4 +71,12 @@ class LottoTest {
 
         assertThat(checker.getPlaceCount()).isEqualTo(expectedPlaceCount);
     }
+
+    @DisplayName("수익률은 소수점 둘째 자리에서 반올림한다.")
+    @Test
+    void 수익률_테스트() {
+        EarningsRateCalculator earningsRateCalculator = new EarningsRateCalculator(List.of(0, 0, 0, 1, 1), 3000);
+
+        assertThat(earningsRateCalculator.getEarningsRate()).isEqualTo(1833.3);
+    }
 }
