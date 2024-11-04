@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.validation.EnterWinningNumberValidation;
 import lotto.validation.PurchaseAmountValidation;
 import lotto.view.InputMessageView;
 
@@ -10,9 +11,12 @@ public class InputMessageService {
 
   private final InputMessageView inputMessageView;
   private final PurchaseAmountValidation purchaseAmountValidation;
-  public InputMessageService(InputMessageView inputMessageView, PurchaseAmountValidation purchaseAmountValidation) {
+  private final EnterWinningNumberValidation enterWinningNumberValidation;
+  public InputMessageService(InputMessageView inputMessageView, PurchaseAmountValidation purchaseAmountValidation,
+      EnterWinningNumberValidation enterWinningNumberValidation) {
     this.inputMessageView=inputMessageView;
     this.purchaseAmountValidation=purchaseAmountValidation;
+    this.enterWinningNumberValidation=enterWinningNumberValidation;
   }
 
   public Long enterPurchaseAmountAndValidation(){
@@ -28,11 +32,15 @@ public class InputMessageService {
 
 
   public Lotto enterWinningNumberAndValidation() {
-    List<Integer> enterNumbers=new ArrayList<>();
-    String[] splitREsult=inputMessageView.enterWinningNumber().split(",");
-    for(int i=0;i<splitREsult.length;i++){
-      enterNumbers.add(Integer.parseInt(splitREsult[i]));
+    boolean isValid = false;
+    while(!isValid){
+      List<Integer> enterNumbers=new ArrayList<>();
+      String[] splitResult=inputMessageView.enterWinningNumber().split(",");
+    for(int i=0;i<splitResult.length;i++){
+      enterNumbers.add(Integer.parseInt(splitResult[i]));
     }
-    return new Lotto(enterNumbers);
+      isValid=enterWinningNumberValidation.validateEnterWinningNumber(enterNumbers);
+    }
+    return null;
   }
 }
