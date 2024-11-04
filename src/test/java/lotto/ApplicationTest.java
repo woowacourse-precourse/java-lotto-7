@@ -1,13 +1,13 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -19,7 +19,7 @@ class ApplicationTest extends NsTest {
                     run("8000", "1,2,3,4,5,6", "7");
                     assertThat(output()).contains(
                             "8개를 구매했습니다.",
-                            "[8, 21, 23, 41, 42, 43]",
+                              "[8, 21, 23, 41, 42, 43]",
                             "[3, 5, 11, 16, 32, 38]",
                             "[7, 11, 16, 35, 36, 44]",
                             "[1, 8, 11, 31, 41, 42]",
@@ -50,6 +50,61 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    @DisplayName("로또 1000원 미만 구매 금액 입력")
+    @Test
+    void 로또_구입_금액_부족() {
+        assertSimpleTest(() -> {
+            runException("999");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 1000원 단위가 아닌 구매 금액 입력")
+    @Test
+    void 로또_금액_단위_오류() {
+        assertSimpleTest(() -> {
+            runException("1234");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("중복된 당첨 번호 입력")
+    @Test
+    void 당첨_번호_중복_에러() {
+        assertSimpleTest(() -> {
+            runException("1234", "1,2,3,4,5,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("잘못된 형식의 당첨 번호 입력")
+    @Test
+    void 당첨_번호_형식_에러() {
+        assertSimpleTest(() -> {
+            runException("1234", "1,2,3,4,5,a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("중복된 보너스 번호 입력")
+    @Test
+    void 보너스_번호_중복_에러() {
+        assertSimpleTest(() -> {
+            runException("1234", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("잘못된 형식의 보너스 번호 입력")
+    @Test
+    void 보너스_번호_형식_에러() {
+        assertSimpleTest(() -> {
+            runException("1234", "1,2,3,4,5,6", "a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
