@@ -32,4 +32,10 @@ public class LottoValidator {
             }
         }
     }
+
+    public static void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 정수여야 합니다.");
+        }
+    }
 }

@@ -96,9 +96,13 @@ public class Application {
         try {
             System.out.println("보너스 번호를 입력해 주세요.");
             int bonusNumber = Integer.parseInt(Console.readLine());
+            LottoValidator.validateBonusNumber(bonusNumber);
             return bonusNumber;
         } catch (NumberFormatException e) {
             printErrorMessage("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            return getBonusNumber();
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
             return getBonusNumber();
         }
     }
