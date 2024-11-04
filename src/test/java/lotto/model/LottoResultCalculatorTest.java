@@ -4,9 +4,10 @@ import lotto.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -73,5 +74,16 @@ class LottoResultCalculatorTest {
         assertThat(results.getOrDefault(LottoRank.THIRD, 0)).isEqualTo(1);
         assertThat(results.getOrDefault(LottoRank.FOURTH, 0)).isEqualTo(1);
         assertThat(results.getOrDefault(LottoRank.FIFTH, 0)).isEqualTo(1);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {7, 8, 45})
+    @DisplayName("보너스 번호가 당첨 번호와 중복되지 않으면 정상적으로 LottoResultCalculator가 생성된다")
+    void 보너스_번호가_당첨_번호와_중복되지_않으면_정상적으로_생성된다(int bonusNumber) {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        LottoResultCalculator calculator = new LottoResultCalculator(winningNumbers, bonusNumber);
+
+        assertThat(calculator).isNotNull();
     }
 }

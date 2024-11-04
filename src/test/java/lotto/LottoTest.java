@@ -2,8 +2,9 @@ package lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -52,5 +53,13 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(5, 3, 2, 1, 4, 6));
 
         assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46})
+    void 로또_번호가_1에서_45_사이가_아니면_예외가_발생한다(int invalidNumber) {
+        assertThatThrownBy(() -> new Lotto(List.of(invalidNumber, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
     }
 }

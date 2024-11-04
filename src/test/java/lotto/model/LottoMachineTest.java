@@ -6,6 +6,8 @@ import lotto.model.strategy.FixedNumberGeneration;
 import lotto.model.strategy.RandomNumberGeneration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -81,5 +83,23 @@ public class LottoMachineTest {
         assertThatThrownBy(() -> lottoMachine.issueLottoTickets(-1000))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "6, false, FIRST",
+            "5, true, SECOND",
+            "5, false, THIRD",
+            "4, false, FOURTH",
+            "3, false, FIFTH",
+            "2, false, NONE",
+            "0, false, NONE"
+    })
+    void 당첨_번호와_보너스에_따른_등수_확인(
+            int matchCount,
+            boolean matchBonus,
+            LottoRank expectedRank
+    ) {
+        assertThat(LottoRank.valueOf(matchCount, matchBonus)).isEqualTo(expectedRank);
     }
 }

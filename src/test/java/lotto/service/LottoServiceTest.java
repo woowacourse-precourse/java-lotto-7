@@ -3,10 +3,10 @@ package lotto.service;
 import lotto.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.LottoRank;
+import lotto.model.strategy.FixedNumberGeneration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +18,7 @@ class LottoServiceTest {
 
     @BeforeEach
     void setUp() {
-        lottoService = new LottoService(new LottoMachine(new MockNumberGenerationStrategy()));
+        lottoService = new LottoService(new LottoMachine(new FixedNumberGeneration()));
     }
 
     @Test
@@ -61,11 +61,33 @@ class LottoServiceTest {
         double yield = lottoService.calculateYield(1000, results);
         assertThat(yield).isEqualTo(200000000.0);
     }
-}
 
-class MockNumberGenerationStrategy implements lotto.model.strategy.NumberGenerationStrategy {
-    @Override
-    public List<Integer> generateNumbers() {
-        return List.of(1, 2, 3, 4, 5, 6);
+    @Test
+    @DisplayName("모든 로또 티켓이 하나도 당첨되지 않았을 때 NONE이 반환된다")
+    void testCalculateYieldNone() {
+        List<Lotto> tickets = List.of(
+                new Lotto(List.of(8, 9, 10, 11, 12, 13)),
+                new Lotto(List.of(14, 15, 16, 17, 18, 19))
+        );
+        Map<LottoRank, Integer> results = lottoService.calculateResults(tickets, List.of(1, 2, 3, 4, 5, 6), 7);
+
+        assertThat(results.getOrDefault(LottoRank.NONE, 0)).isEqualTo(2);
+        assertThat(results.values().stream().filter(count -> count > 0).count()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("다양한 당첨 티켓의 수익률이 올바르게 계산된다")
+    void testCalculateYieldExactly() {
+        List<Lotto> tickets = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 8)),
+                new Lotto(List.of(1, 2, 3, 4, 10, 11)),
+                new Lotto(List.of(1, 2, 3, 12, 13, 14))
+        );
+        Map<LottoRank, Integer> results = lottoService.calculateResults(tickets, List.of(1, 2, 3, 4, 5, 6), 7);
+        double yield = lottoService.calculateYield(5000, results);
+
+        assertThat(yield).isGreaterThan(0);
     }
 }
