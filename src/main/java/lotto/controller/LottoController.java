@@ -33,6 +33,7 @@ public class LottoController {
         LottoNumber bonusNumber = readBonusNumber();
 
         List<PrizeResponse> winningResult = lottoService.findWinningResult(winningLotto, bonusNumber);
+        outputView.printWinningResult(winningResult);
     }
 
 
