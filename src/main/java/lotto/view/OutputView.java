@@ -16,7 +16,7 @@ public class OutputView {
     }
 
     public void displayResults(Map<LottoRank, Integer> results) {
-        System.out.print(PrintMessage.RESULT_STATISTICS_HEADER.getMessage());
+        System.out.printf(PrintMessage.RESULT_STATISTICS_HEADER.getMessage());
 
         for (LottoRank rank : LottoRank.values()) {
             if (rank == LottoRank.NONE) {
@@ -27,9 +27,11 @@ public class OutputView {
         }
     }
 
-
     public void displayProfitRate(double profitRate) {
         System.out.printf(PrintMessage.PROFIT_RATE_MESSAGE.getMessage(), profitRate);
     }
 
+    public void printErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }
