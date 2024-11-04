@@ -16,6 +16,10 @@ public class Money {
         }
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     public int getCount() {
         return money / PRICE;
     }

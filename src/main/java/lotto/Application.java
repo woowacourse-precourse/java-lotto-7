@@ -32,8 +32,16 @@ public class Application {
 
         // 6. 로또가 당첨되었는지 확인
         for (List<Integer> lotto : lottos) {
-            Rate info = Rate.getRank(Result.matchLotto(lotto, winningNumbers.getNumbers()),
-                    Result.matchBonus(lotto, bonusNumber.getNumber()));
+            int matchCount = Result.matchLotto(lotto, winningNumbers.getNumbers());
+            boolean matchBonus = Result.matchBonus(lotto, bonusNumber.getNumber());
+
+            Rate info = Rate.getRank(matchCount, matchBonus);
+            Result.addRankCount(info);
+            Result.addEarnings(Rate.getPrize(info));
         }
+
+        Result.calculateEarningsRate(money.getMoney());
+
+
     }
 }

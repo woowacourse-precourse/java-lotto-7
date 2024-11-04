@@ -1,5 +1,8 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Rate {
     FIRST(2000000000, 6, false, "", "2,000,000,000"),
     SECOND(30000000, 5, true, "보너스 볼 일치", "30,000,000"),
@@ -38,5 +41,9 @@ public enum Rate {
             return FIFTH;
         }
         return null;
+    }
+
+    public static int getPrize(Rate rate) {
+        return rate.prize;
     }
 }
