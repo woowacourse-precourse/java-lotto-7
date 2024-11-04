@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.utility.ExceptionEnum;
+import lotto.utility.ExceptionThrower;
 
 import java.util.List;
 
@@ -18,8 +19,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            System.out.println(ExceptionEnum.LOTTO_MUST_BE_SIX.getMessage());
-            throw new IllegalArgumentException(ExceptionEnum.LOTTO_MUST_BE_SIX.getMessage());
+            ExceptionThrower.throwing(ExceptionEnum.LOTTO_MUST_BE_SIX);
         }
     }
 
@@ -27,15 +27,13 @@ public class Lotto {
         boolean hasZero = numbers.stream()
                 .anyMatch(num -> num < MIN_NUMBER);
         if (hasZero) {
-            System.out.println(ExceptionEnum.CANNOT_INCLUDE_ZERO.getMessage());
-            throw new IllegalArgumentException(ExceptionEnum.CANNOT_INCLUDE_ZERO.getMessage());
+            ExceptionThrower.throwing(ExceptionEnum.CANNOT_INCLUDE_ZERO);
         }
 
         boolean overFourtyFive = numbers.stream()
                 .anyMatch(num -> num > MAX_LOTTO_NUMBER);
         if (overFourtyFive) {
-            System.out.println(ExceptionEnum.CANNOT_OVER_FOURTY_SIX.getMessage());
-            throw new IllegalArgumentException(ExceptionEnum.CANNOT_OVER_FOURTY_SIX.getMessage());
+            ExceptionThrower.throwing(ExceptionEnum.CANNOT_OVER_FOURTY_SIX);
         }
     }
 
@@ -45,8 +43,7 @@ public class Lotto {
                 .count();
 
         if (uniqueCount != numbers.size()) {
-            System.out.println(ExceptionEnum.CANNOT_DRAW_DUPLICATE_NUMBER.getMessage());
-            throw new IllegalArgumentException(ExceptionEnum.CANNOT_DRAW_DUPLICATE_NUMBER.getMessage());
+            ExceptionThrower.throwing(ExceptionEnum.CANNOT_DRAW_DUPLICATE_NUMBER);
         }
     }
 

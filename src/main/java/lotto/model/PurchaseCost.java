@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.utility.ExceptionEnum;
+import lotto.utility.ExceptionThrower;
 
 public class PurchaseCost {
     private static final int MIN_PURCHASE_COST = 0;
@@ -15,15 +16,13 @@ public class PurchaseCost {
 
     private void validateUnderZero(int inputtedCost) {
         if (inputtedCost < MIN_PURCHASE_COST) {
-            System.out.println(ExceptionEnum.CANNOT_UNDER_ZERO.getMessage());
-            throw new IllegalArgumentException(ExceptionEnum.CANNOT_UNDER_ZERO.getMessage());
+            ExceptionThrower.throwing(ExceptionEnum.CANNOT_UNDER_ZERO);
         }
     }
 
     private void validateCanDivideBy1000(int inputtedCost) {
         if (inputtedCost % DIVISOR != 0) {
-            System.out.println(ExceptionEnum.UNDIVIDABLE_BY_THOUSAND.getMessage());
-            throw new IllegalArgumentException(ExceptionEnum.UNDIVIDABLE_BY_THOUSAND.getMessage());
+            ExceptionThrower.throwing(ExceptionEnum.UNDIVIDABLE_BY_THOUSAND);
         }
     }
 

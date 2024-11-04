@@ -7,10 +7,10 @@ import java.util.Map;
 
 public class LottoResult {
     private static final int INITIAL_MATCHED_COUNT = 0;
-    private static final int MATCH_3 = 3;
-    private static final int MATCH_4 = 4;
-    private static final int MATCH_5 = 5;
-    private static final int MATCH_6 = 6;
+    private static final int THREE = 3;
+    private static final int FOUR = 4;
+    private static final int FIVE = 5;
+    private static final int SIX = 6;
     private Map<String, Integer> matchedCount;
 
     public LottoResult() {
@@ -23,19 +23,19 @@ public class LottoResult {
     }
 
     public void increaseCountByNumberMatchedAndBonusMatched(int numberMatchedCount, boolean isBonusMatched) {
-        if (numberMatchedCount == MATCH_3) {
+        if (numberMatchedCount == THREE) {
             increaseThree();
             return;
         }
-        if (numberMatchedCount == MATCH_4) {
+        if (numberMatchedCount == FOUR) {
             increaseFour();
             return;
         }
-        if (numberMatchedCount == MATCH_5) {
+        if (numberMatchedCount == FIVE) {
             increaseFive(isBonusMatched);
             return;
         }
-        if (numberMatchedCount == MATCH_6) {
+        if (numberMatchedCount == SIX) {
             increaseSix();
             return;
         }

@@ -8,15 +8,13 @@ public class NumberParser {
             validateNumber(number);
             return number;
         } catch (NumberFormatException exception) {
-            System.out.println(ExceptionEnum.INVALID_NUMBER.getMessage());
-            throw new IllegalArgumentException(ExceptionEnum.INVALID_NUMBER.getMessage());
+            ExceptionThrower.throwing(ExceptionEnum.INVALID_NUMBER);
         }
     }
 
     private static void validateNumber(int number) {
         if (number <= 0) {
-            System.out.println(ExceptionEnum.CANNOT_UNDER_ZERO.getMessage());
-            throw new IllegalArgumentException(ExceptionEnum.CANNOT_UNDER_ZERO.getMessage());
+            ExceptionThrower.throwing(ExceptionEnum.CANNOT_UNDER_ZERO);
         }
     }
 }
