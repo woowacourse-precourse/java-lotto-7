@@ -28,7 +28,7 @@ public class RankResult {
                 .stream()
                 .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
                 .sum();
-        return Money.from(totalPrizeValue);
+        return Money.of(totalPrizeValue);
     }
 
     public Integer getCountByRank(Rank rank) {

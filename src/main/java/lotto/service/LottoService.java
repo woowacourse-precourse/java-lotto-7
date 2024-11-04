@@ -13,10 +13,11 @@ public class LottoService {
     private static final int MAX_RANGE = 45;
     private static final int COUNT = 6;
 
-    public LottoService() { }
+    public LottoService() {
+    }
 
     public Lottos generate(final int lottoCount) {
-        return Lottos.from(
+        return Lottos.of(
                 IntStream.range(0, lottoCount)
                         .mapToObj(i -> generateSingleLotto())
                         .toList()

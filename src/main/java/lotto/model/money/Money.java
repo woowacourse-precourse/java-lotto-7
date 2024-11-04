@@ -2,7 +2,7 @@ package lotto.model.money;
 
 public class Money {
 
-    private static final Money LOTTO_PRICE = Money.from(1000L);
+    private static final Money LOTTO_PRICE = Money.of(1000L);
 
     private final long value;
 
@@ -10,7 +10,7 @@ public class Money {
         this.value = value;
     }
 
-    public static Money from(long value) {
+    public static Money of(long value) {
         return new Money(value);
     }
 

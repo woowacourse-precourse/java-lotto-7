@@ -9,7 +9,7 @@ public class PreProcessor {
 
     public static Money stringToMoney(String input) {
         long purchaseAmount = Long.parseLong(input);
-        return Money.from(purchaseAmount);
+        return Money.of(purchaseAmount);
     }
 
     public static Lotto stringToLotto(String input) {

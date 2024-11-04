@@ -11,7 +11,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos from(final List<Lotto> lottos) {
+    public static Lottos of(final List<Lotto> lottos) {
         return new Lottos(lottos);
     }
 
