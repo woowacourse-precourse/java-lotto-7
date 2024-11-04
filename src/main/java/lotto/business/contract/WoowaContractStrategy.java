@@ -14,11 +14,11 @@ import lotto.io.IOManager;
 import lotto.lotto.Lotto;
 import lotto.lotto.LottoResult;
 
-public class ManualContractStrategy implements ContractStrategy {
+public class WoowaContractStrategy implements ContractStrategy {
     private final IOManager ioManager;
     private final Money lottoPrice;
 
-    public ManualContractStrategy(IOManager ioManager, Money lottoPrice) {
+    public WoowaContractStrategy(IOManager ioManager, Money lottoPrice) {
         this.ioManager = ioManager;
         this.lottoPrice = lottoPrice;
     }
