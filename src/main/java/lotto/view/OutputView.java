@@ -57,9 +57,15 @@ public class OutputView {
         if (rank == LottoRank.NONE) {
             return;
         }
+
+        String bonusMatchText = "";
+        if (rank.isMatchBonus()) {
+            bonusMatchText = BONUS_MATCH_TEXT;
+        }
+
         System.out.printf(MESSAGE_MATCH_COUNT,
                 rank.getMatchCount(),
-                rank.isMatchBonus() ? BONUS_MATCH_TEXT : "",
+                bonusMatchText,
                 numberFormat.format(rank.getPrize()),
                 statistics.getOrDefault(rank, DEFAULT_COUNT));
     }
