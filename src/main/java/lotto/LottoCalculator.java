@@ -49,6 +49,6 @@ public class LottoCalculator {
         priceTotal = priceTotal + match5_bonus_count * Grade.MATCH5_BONUS.getPrice();
         priceTotal = priceTotal + match6_count * Grade.MATCH6.getPrice();
         double result = (double) (priceTotal-price) / price;
-        return Math.round(result * 100) / 100.0;
+        return Math.round(result * 10) / 10.0;
     }
 }
