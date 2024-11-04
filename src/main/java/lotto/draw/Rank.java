@@ -33,10 +33,11 @@ public enum Rank {
     }
 
     public static Rank getWinningRank(int matchingCount, boolean bonus) {
-        if (bonus) {
-            return SECOND;
-        } else if (matchingCount == 0 || matchingCount == 1 || matchingCount == 2) {
-            return LOSING_TICKET;
+        if (!bonus) {
+            if (matchingCount == 0 || matchingCount == 1 || matchingCount == 2) {
+                return LOSING_TICKET;
+            }
+
         }
 
         return Arrays.stream(values())
@@ -44,4 +45,6 @@ public enum Rank {
                 .findFirst()
                 .orElseThrow(IllegalArgumentException :: new);
     }
+
+
 }
