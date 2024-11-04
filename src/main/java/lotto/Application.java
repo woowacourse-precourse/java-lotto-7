@@ -10,6 +10,12 @@ import java.util.Map;
 
 public class Application {
 
+    private static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int[] PRIZES = {0, 2000000000, 30000000, 1500000, 50000, 5000};
+
     public static void main(String[] args) {
 
         int purchaseAmount = inputPurchaseAmount();
@@ -21,11 +27,8 @@ public class Application {
         int bonusNumber = inputBonusNumber();
 
         Map<Integer, Integer> results = calculateResults(lottos, winningNumbers, bonusNumber);
-
-        Map<Integer, Integer> results = calculateResults(lottos, winningNumbers, bonusNumber);
         printResults(results, purchaseAmount);
     }
-
 
     public static int inputPurchaseAmount() {
         while (true) {
@@ -33,13 +36,7 @@ public class Application {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
                 int amount = Integer.parseInt(input);
-
-                if (amount < 1000) {
-                    throw new IllegalArgumentException("[ERROR] 구입 금액은 최소 1,000원 이상이어야 합니다.");
-                }
-                if (amount % 1000 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
-                }
+                validatePurchaseAmount(amount);
 
                 return amount;
             } catch (NumberFormatException e) {
@@ -108,13 +105,23 @@ public class Application {
         }
     }
 
+    public static void validatePurchaseAmount(int amount) {
+        if (amount < LOTTO_PRICE) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 최소 1,000원 이상이어야 합니다.");
+        }
+        if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        }
+    }
+
     public static void validateNumber(int number) {
-        if (number < 1 || number > 45) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
-    public static Map<Integer, Integer> calculateResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public static Map<Integer, Integer> calculateResults(List<Lotto> lottos, List<Integer> winningNumbers,
+            int bonusNumber) {
         Map<Integer, Integer> resultMap = new HashMap<>();
         for (Lotto lotto : lottos) {
             int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers);
