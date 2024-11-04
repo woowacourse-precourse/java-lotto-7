@@ -2,9 +2,12 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.enums.WinningType;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,7 +24,6 @@ public class LottoController {
         printLottos(createLottos, lottoCount);
 
         List<Integer> winningNumbers = inputWinningNumbers();
-
         Integer bonusNumber = inputBonusNumber();
 
     }
@@ -46,6 +48,8 @@ public class LottoController {
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(Lotto.LOTTO_MIN_NUMBER,
                     Lotto.LOTTO_MAX_NUMBER, Lotto.LOTTO_NUMBER_COUNT);
+
+            Collections.sort(lottoNumbers);
 
             Lotto lotto = new Lotto(lottoNumbers);
             lottos.add(lotto);
