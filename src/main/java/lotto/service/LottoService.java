@@ -4,12 +4,12 @@ import static lotto.common.ErrorMessage.*;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.data.LottoResult;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRepository;
 import lotto.utils.StringUtils;
@@ -49,6 +49,17 @@ public class LottoService {
 		return lottoRepository.findAll();
 	}
 
+	public LottoResult spinning() {
+		LottoResult lottoResult = new LottoResult();
+		List<Lotto> lotto = lottoRepository.findAll();
+		lotto.forEach(nowLotto -> {
+			int winningNumbersCount = nowLotto.getWinningNumbersCount(winningNumbers);
+			boolean hasBonusNumber = nowLotto.hasBonusNumber(bonusNumber);
+			lottoResult.addResult(winningNumbersCount, hasBonusNumber);
+		});
+		return lottoResult;
+	}
+
 	private void validateAmount(int amount) {
 		if (amount % 1_000 != 0) {
 			throw new IllegalArgumentException(INVALID_AMOUNT.getMessage());
@@ -58,8 +69,7 @@ public class LottoService {
 	private List<Integer> generateNumbers() {
 		List<Integer> numbers
 			= Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_COUNT);
-		Collections.sort(numbers);
-		return numbers;
+		return numbers.stream().sorted().toList();
 	}
 
 	public void saveWinningNumbers(String input) {

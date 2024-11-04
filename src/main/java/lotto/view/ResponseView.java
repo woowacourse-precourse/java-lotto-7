@@ -3,6 +3,7 @@ package lotto.view;
 import java.text.MessageFormat;
 import java.util.List;
 
+import lotto.data.LottoResult;
 import lotto.domain.Lotto;
 
 public class ResponseView {
@@ -23,5 +24,9 @@ public class ResponseView {
 		message.append(MessageFormat.format(LOTTO_QUANTITY_MESSAGE_FORMAT, lotto.size())).append("\n");
 		lotto.forEach(l -> message.append(l.toString()).append("\n"));
 		System.out.println(message.toString().trim());
+	}
+
+	public void printResult(LottoResult lottoResult, int amount) {
+		System.out.println(lottoResult.print(amount));
 	}
 }

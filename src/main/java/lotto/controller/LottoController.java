@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import static lotto.common.RequestMessage.*;
+
 import java.util.List;
 
-import lotto.common.RequestMessage;
+import lotto.data.LottoResult;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.utils.StringUtils;
@@ -28,15 +30,16 @@ public class LottoController {
 	}
 
 	public void run() {
-		int amount = StringUtils.toNumber(
-			requestView.inputWithMessage(RequestMessage.LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage()));
+		int amount = StringUtils.toNumber(requestView.inputWithMessage(LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage()));
 		List<Lotto> boughtLotto = lottoService.buy(amount);
 		responseView.printBoughtLotto(boughtLotto);
 
-		// TODO: 당첨 번호 입력
+		String winningNumbers = requestView.inputWithMessage(LOTTO_WINNING_NUMBERS_MESSAGE.getMessage());
+		lottoService.saveWinningNumbers(winningNumbers);
+		String bonusNumber = requestView.inputWithMessage(LOTTO_BONUS_NUMBER_MESSAGE.getMessage());
+		lottoService.saveBonusNumber(bonusNumber);
 
-		// TODO: 보너스 번호 입력
-
-		// TODO: 당첨 통계
+		LottoResult lottoResult = lottoService.spinning();
+		responseView.printResult(lottoResult, amount);
 	}
 }
