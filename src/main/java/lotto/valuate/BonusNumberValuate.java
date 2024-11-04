@@ -1,12 +1,14 @@
 package lotto.valuate;
 
-public class BonusNumberValuate extends Valuate {
+import static lotto.constant.LottoErrorConstant.ERROR_BONUS_NUMBER_ONLY_ONE;
 
-    public static void isValidNumber(String s) {
+public class BonusNumberValuate{
+
+    public static void isValidNumber(String bonus) {
         try {
-            Valuate.isNum(s);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("보너스 번호는 숫자 하나만 허용됩니다. ex) 5");
+            Integer.parseInt(bonus);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_ONLY_ONE);
         }
     }
 }

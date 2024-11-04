@@ -1,19 +1,34 @@
 package lotto.valuate;
 
-public class PriceValuate extends Valuate {
-    public static void isValidNumber(String s) {
+import static lotto.constant.LottoErrorConstant.ERROR_EXCEED_PRICE;
+import static lotto.constant.LottoErrorConstant.ERROR_PRICE_MULTIPLE_OF_PRICE;
+import static lotto.constant.LottoErrorConstant.ERROR_PRICE_NUMBER_FORMAT;
+import static lotto.constant.LottoValueConstant.LOTTO_PRICE;
+import static lotto.constant.LottoValueConstant.MAX_PRICE;
+
+public class PriceValuate{
+    public static void isValidNumber(String price) {
         try {
-            Valuate.isNum(s);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("금액은 숫자 형식으로 입력해주세요. ex) 5000");
+            Integer.parseInt(price);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_PRICE_NUMBER_FORMAT);
         }
     }
 
-
-
     public static void isValidPrice(int price) {
-        if (price / 1000 < 1 || price % 1000 != 0) {
-            throw new IllegalArgumentException("금액은 1000원 단위로 입력해 주세요.");
+        isExceedMax(price);
+        isNonUnit(price);
+    }
+
+    public static void isExceedMax(int price){
+        if(price > MAX_PRICE){
+            throw new IllegalArgumentException(ERROR_EXCEED_PRICE);
+        }
+    }
+
+    public static void isNonUnit(int price){
+        if (price / LOTTO_PRICE < 1 || price % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ERROR_PRICE_MULTIPLE_OF_PRICE);
         }
     }
 }

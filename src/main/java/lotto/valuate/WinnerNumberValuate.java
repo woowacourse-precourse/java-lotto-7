@@ -1,15 +1,22 @@
 package lotto.valuate;
 
-public class WinnerNumberValuate extends Valuate {
+import static lotto.constant.LottoErrorConstant.ERROR_WINNING_NUMBER_NO_WHITESPACE;
+import static lotto.constant.LottoErrorConstant.ERROR_WINNING_NUMBER_ONLY_NUMBERS;
 
-    public static void isValidNumber(String s) {
-        if (s == "") {
-            throw new IllegalArgumentException("당첨 번호에 공백을 포함할 수 없습니다.");
-        }
+public class WinnerNumberValuate{
+
+    public static void isValidNumber(String winningNumber) {
+        isEmpty(winningNumber);
         try {
-            isNum(s);
+            Integer.parseInt(winningNumber);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("당첨 번호는 숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ERROR_WINNING_NUMBER_ONLY_NUMBERS);
+        }
+    }
+
+    public static void isEmpty(String winningNumber){
+        if (winningNumber == "") {
+            throw new IllegalArgumentException(ERROR_WINNING_NUMBER_NO_WHITESPACE);
         }
     }
 
