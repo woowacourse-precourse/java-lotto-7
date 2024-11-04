@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,5 +20,11 @@ public class Result {
             sb.append(String.format("%s - %d개\n", rank, ranks.get(rank)));
         }
         return sb.toString();
+    }
+
+    public int getTotalPrize() {
+        return Arrays.stream(Rank.values())
+                .mapToInt(rank -> rank.getPrize() * ranks.getOrDefault(rank, 0))
+                .sum();
     }
 }
