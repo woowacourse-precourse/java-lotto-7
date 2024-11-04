@@ -40,7 +40,7 @@ public class Application {
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            }
+        }
     }
 
     // 구입 금액 검증: 1,000원 단위 확인

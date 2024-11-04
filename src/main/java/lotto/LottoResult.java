@@ -7,47 +7,22 @@ public class LottoResult {
     private final Map<Integer, Integer> prizeCount = new HashMap<>();
     private int totalPrize = 0;
 
-    private static final Map<Integer, Integer> PRIZE_MONEY = Map.of(
-            3, 5000,
-            4, 50000,
-            5, 1500000,
-            6, 2000000000
-    );
-
-    private static final int SECOND_PRIZE_BONUS = 30000000;
-
     public LottoResult() {
         for (int i = 3; i <= 6; i++) {
             prizeCount.put(i, 0);
         }
-        prizeCount.put(-1, 0); // 2등(보너스 포함) 카운트
+        prizeCount.put(-1, 0); // For bonus match count
     }
 
     public void addResult(int matchingCount, boolean bonusMatch) {
-        if (matchingCount == 6) {
-            prizeCount.put(6, prizeCount.get(6) + 1);
-            totalPrize += PRIZE_MONEY.get(6);
-            return;
-        }
-        if (matchingCount == 5 && bonusMatch) {
-            prizeCount.put(-1, prizeCount.get(-1) + 1); // 2등
-            totalPrize += SECOND_PRIZE_BONUS;
-            return;
-        }
-        if (matchingCount == 5) {
-            prizeCount.put(5, prizeCount.get(5) + 1);
-            totalPrize += PRIZE_MONEY.get(5);
-            return;
-        }
-        if (matchingCount == 4) {
-            prizeCount.put(4, prizeCount.get(4) + 1);
-            totalPrize += PRIZE_MONEY.get(4);
-            return;
-        }
-        if (matchingCount == 3) {
-            prizeCount.put(3, prizeCount.get(3) + 1);
-            totalPrize += PRIZE_MONEY.get(3);
-        }
+        if (matchingCount < 3 || matchingCount > 6) return;
+
+        int prizeKey = (matchingCount == 5 && bonusMatch) ? -1 : matchingCount;
+        prizeCount.put(prizeKey, prizeCount.get(prizeKey) + 1);
+
+        totalPrize += (prizeKey == -1)
+                ? Prize.SECOND_PRIZE_BONUS.getPrizeMoney()
+                : Prize.getPrizeMoneyByCount(prizeKey);
     }
 
 
