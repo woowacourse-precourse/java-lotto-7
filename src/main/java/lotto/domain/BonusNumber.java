@@ -8,14 +8,14 @@ public class BonusNumber {
     private final int bonusNumber;
     private final BonusNumberValidator validator;
 
-    // private 생성자
-    private BonusNumber(int bonusNumber,Lotto lotto, BonusNumberValidator validator) {
+    private BonusNumber(int bonusNumber, Lotto lotto, BonusNumberValidator validator) {
         this.validator = validator;
         validator.validate(bonusNumber, lotto);
         this.bonusNumber = bonusNumber;
     }
 
-    public static BonusNumber getInstance(int bonusNumber, Lotto lotto, BonusNumberValidator validator) {
+    public static BonusNumber getInstance(int bonusNumber, Lotto lotto,
+        BonusNumberValidator validator) {
         if (instance == null) {
             instance = new BonusNumber(bonusNumber, lotto, validator);
         }

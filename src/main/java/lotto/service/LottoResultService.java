@@ -10,8 +10,8 @@ import lotto.domain.PublishLotto;
 
 public class LottoResultService {
 
-    public Map<Prize, Integer> calculatePrize(Lotto winningLotto, BonusNumber bonusNumber,
-        List<PublishLotto> publishLottos) {
+    public Map<Prize, Integer> calculatePrize(final Lotto winningLotto,final BonusNumber bonusNumber,
+        final List<PublishLotto> publishLottos) {
         Map<Prize, Integer> prizeCounts = initializePrizeCounts();
 
         for (PublishLotto publishLotto : publishLottos) {
@@ -32,14 +32,14 @@ public class LottoResultService {
         return prizeCounts;
     }
 
-    private Prize getPrizeForLotto(Lotto winningLotto, BonusNumber bonusNumber,
-        PublishLotto publishLotto) {
+    private Prize getPrizeForLotto(final Lotto winningLotto,final BonusNumber bonusNumber,
+        final PublishLotto publishLotto) {
         int matchCount = getMatchCount(winningLotto, publishLotto);
         boolean bonusMatch = isBonusMatched(bonusNumber, publishLotto);
         return Prize.getPrize(matchCount, bonusMatch);
     }
 
-    private int getMatchCount(Lotto winningLotto, PublishLotto publishLotto) {
+    private int getMatchCount(final Lotto winningLotto,final PublishLotto publishLotto) {
         int matchCount = 0;
         for (int number : publishLotto.getPublishLottoNumbers()) {
             if (winningLotto.getNumbers().contains(number)) {
@@ -49,7 +49,7 @@ public class LottoResultService {
         return matchCount;
     }
 
-    private boolean isBonusMatched(BonusNumber bonusNumber, PublishLotto publishLotto) {
+    private boolean isBonusMatched(final BonusNumber bonusNumber,final PublishLotto publishLotto) {
         return publishLotto.getPublishLottoNumbers().contains(bonusNumber.getBonusNumber());
     }
 

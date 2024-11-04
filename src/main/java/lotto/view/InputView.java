@@ -23,7 +23,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    private void printMessage(String message) {
+    private void printMessage(final String message) {
         System.out.println(message);
     }
 }

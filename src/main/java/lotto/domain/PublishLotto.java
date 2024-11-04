@@ -15,28 +15,29 @@ public class PublishLotto {
 
     private final List<Integer> numbers;
 
-    private PublishLotto(LottoValidator validator) {
+    private PublishLotto(final LottoValidator validator) {
         numbers = getRandomNumbers();
         sortNumbers();
         validate(numbers, validator);
     }
 
-    public PublishLotto(List<Integer> numbers, LottoValidator validator) {
+    public PublishLotto(final List<Integer> numbers,final LottoValidator validator) {
         this.numbers = new ArrayList<>(numbers);
         sortNumbers();
         validator.validate(this.numbers);
     }
 
-    public static PublishLotto from(LottoValidator validator) {
+    public static PublishLotto from(final LottoValidator validator) {
         return new PublishLotto(validator);
     }
 
-    private void validate(List<Integer> numbers, LottoValidator validator) {
+    private void validate(final List<Integer> numbers,final LottoValidator validator) {
         validator.validate(numbers);
     }
 
     private List<Integer> getRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, VALID_LOTTO_NUMBER_COUNT);
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
+            VALID_LOTTO_NUMBER_COUNT);
     }
 
     private void sortNumbers() {
@@ -49,8 +50,12 @@ public class PublishLotto {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof PublishLotto)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof PublishLotto)) {
+            return false;
+        }
         PublishLotto other = (PublishLotto) obj;
         return this.numbers.equals(other.numbers);
     }

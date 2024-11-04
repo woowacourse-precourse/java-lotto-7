@@ -7,7 +7,6 @@ public class PublishCount {
     private static PublishCount instance;
     private int publishCount;
 
-    // private 생성자
     private PublishCount(int initialCount) {
         validate(initialCount);
         this.publishCount = initialCount;
