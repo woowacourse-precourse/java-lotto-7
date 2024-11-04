@@ -62,10 +62,8 @@ public class UserLottoController {
             userLotto.getDefaultLottoNumbers(),
             userLotto.getBonusNumber()
         );
-
         int totalPrize = userLottoService.calculateTotalPrize(statistics);
         double rateOfReturn = calculateRateOfReturn(totalPrize, userLotto.getLottos().size());
-
         OutputView.printWinningStatistics(statistics);
         OutputView.printRateOfReturn(rateOfReturn);
     }

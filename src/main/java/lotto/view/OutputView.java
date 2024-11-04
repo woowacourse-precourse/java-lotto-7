@@ -7,6 +7,10 @@ import lotto.enums.Rank;
 
 public class OutputView {
 
+    private static final String DELIMITER = ", ";
+    private static final String PREFIX = "[";
+    private static final String SUFFIX = "]";
+
     public static void printInitialMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
@@ -19,7 +23,7 @@ public class OutputView {
         System.out.println(
             lottoNumbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(", ", "[", "]"))
+                .collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX))
         );
     }
 
@@ -44,14 +48,7 @@ public class OutputView {
 
     private static void printStatistic(Map<Rank, Integer> statistics, Rank rank) {
         int count = statistics.getOrDefault(rank, 0);
-        String message = switch (rank) {
-            case THREE -> "3개 일치";
-            case FOUR -> "4개 일치";
-            case FIVE -> "5개 일치";
-            case FIVE_AND_BONUS -> "5개 일치, 보너스 볼 일치";
-            case SIX -> "6개 일치";
-        };
-        System.out.printf("%s (%,d원) - %d개%n", message, rank.getPrize(), count);
+        System.out.printf("%s (%,d원) - %d개%n", rank.getMessage(), rank.getPrize(), count);
     }
 
     public static void printRateOfReturn(double rateOfReturn) {
