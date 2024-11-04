@@ -1,17 +1,17 @@
 package lotto.domain;
 
 public enum LottoRank {
-    NOTHING(0,"0원"),
-    FIFTH(3, "5,000원"),
-    FOURTH(4, "50,000원"),
-    THIRD(5, "1,500,000원"),
-    SECOND(5, "30,000,00원"),
-    FIRST(6, "2,000,000,000원");
+    NOTHING(0,0),
+    FIFTH(3, 5000),
+    FOURTH(4, 50000),
+    THIRD(5, 1500000),
+    SECOND(5, 3000000),
+    FIRST(6, 2000000000);
 
     private final Integer matchNumber;
-    private final String reward;
+    private final Integer reward;
 
-    LottoRank(Integer matchNumber, String reward){
+    LottoRank(Integer matchNumber, Integer reward){
         this.matchNumber = matchNumber;
         this.reward = reward;
     }
@@ -20,7 +20,7 @@ public enum LottoRank {
         return matchNumber;
     }
 
-    public String getReward() {
+    public Integer getReward() {
         return reward;
     }
 
