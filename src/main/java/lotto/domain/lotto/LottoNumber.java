@@ -16,6 +16,10 @@ public class LottoNumber {
 	}
 
 	private void validate(int number) {
+		validateRange(number);
+	}
+
+	private void validateRange(int number) {
 		if (isNumberOutOfRange(number)) {
 			throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
 		}
