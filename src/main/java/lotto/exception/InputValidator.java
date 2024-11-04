@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import lotto.model.WinningNumbers;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -53,6 +55,12 @@ public class InputValidator {
     public static void validateBonusNumber(String bonusNumber) {
         if (!BONUS_NUMBER_PATTERN.matcher(bonusNumber).matches()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getErrorMessage());
+        }
+    }
+
+    public static void validateUniqueBonusNumber(int bonusNumber, WinningNumbers winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.getErrorMessage());
         }
     }
 }

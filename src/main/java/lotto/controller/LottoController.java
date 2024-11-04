@@ -28,7 +28,7 @@ public class LottoController {
         PurchaseAmount purchaseAmount = tryInputPurchaseAmount();
         Lottos lottos = issueLottos(purchaseAmount);
         WinningNumbers winningNumbers = tryInputWinningNumbers();
-        BonusNumber bonusNumber = tryInputBonusNumber();
+        BonusNumber bonusNumber = tryInputBonusNumber(winningNumbers);
         LottosResult lottosResult = calculateLottosResult(lottos, winningNumbers, bonusNumber);
         showLottosResult(lottosResult);
     }
@@ -80,11 +80,12 @@ public class LottoController {
         }
     }
 
-    private BonusNumber tryInputBonusNumber() {
+    private BonusNumber tryInputBonusNumber(WinningNumbers winningNumbers) {
         while (true) {
             outputView.printBonusNumberMessage();
             try {
                 int bonusNumber = inputView.inputBonusNumber();
+                InputValidator.validateUniqueBonusNumber(bonusNumber, winningNumbers);
                 outputView.nextLine();
                 return BonusNumber.from(bonusNumber);
             } catch (IllegalArgumentException e) {

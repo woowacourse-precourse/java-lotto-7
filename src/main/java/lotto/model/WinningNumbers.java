@@ -20,4 +20,8 @@ public class WinningNumbers {
     public Integer get(int idx) {
         return winningNumbers.get(idx);
     }
+
+    public boolean contains(Integer number) {
+        return winningNumbers.contains(number);
+    }
 }
