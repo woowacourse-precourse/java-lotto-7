@@ -1,6 +1,8 @@
 package lotto.validation;
 
 import static lotto.constant.LotteryConstant.DEFAULT_ERROR_MESSAGE;
+import static lotto.constant.LotteryConstant.DEFAULT_LOTTO_PRICE;
+import static lotto.constant.LotteryConstant.MAX_LOTTO_PRICE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +37,7 @@ public class LotteryValidator {
     // 사용자가 입력한 금액의 단위가 1,000원 단위인지 판단한다.
     public void allowUnitMoney(final int inputPurchaseAmount) {
         try {
-            if (inputPurchaseAmount % 1000 != 0) {
+            if (inputPurchaseAmount % DEFAULT_LOTTO_PRICE != 0) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -46,7 +48,7 @@ public class LotteryValidator {
     // 1천원 이하 구매, 10만원 이상 구매를 금지한다.
     public void checkPurchaseAmountRange(final int inputPurchaseAmount) {
         try {
-            if (inputPurchaseAmount < 1000 || inputPurchaseAmount > 100000) {
+            if (inputPurchaseAmount < DEFAULT_LOTTO_PRICE || inputPurchaseAmount > MAX_LOTTO_PRICE) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -80,6 +82,7 @@ public class LotteryValidator {
         return true;
     }
 
+    // 로또 보너스 숫자 입력을 정수로 변환할 수 있는지 판단한다.
     public void allowParseIntLottoBonusNumber(final String inputLottoBonusNumber) {
         try {
             Integer.parseInt(inputLottoBonusNumber);
@@ -89,6 +92,7 @@ public class LotteryValidator {
         }
     }
 
+    // 로또 보너스 숫자의 숫자 범위를 확인한다.
     public void checkLottoBonusRange(final int lottoBonusNumber) {
         try {
             if (lottoBonusNumber < 1 || lottoBonusNumber > 45) {

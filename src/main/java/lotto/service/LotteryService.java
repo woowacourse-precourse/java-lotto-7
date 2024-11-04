@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.constant.LotteryConstant.DEFAULT_LOTTO_PRICE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -29,7 +31,7 @@ public class LotteryService {
     public void purchaseLotto() {
         outputView.printRequirePurchaseAmount();
         final int purchaseAmount = inputView.readPurchaseAmount();
-        int lottoPurchaseAmount = purchaseAmount / 1000;
+        int lottoPurchaseAmount = purchaseAmount / DEFAULT_LOTTO_PRICE;
         lottoBuyer.setLottoPurchaseAmount(lottoPurchaseAmount);
         outputView.printLottoPurchaseAmount(lottoPurchaseAmount);
         issueLottoTickets(lottoBuyer, lottoPurchaseAmount);
@@ -75,7 +77,7 @@ public class LotteryService {
     // 로또 결과를 출력한다.
     private void printLotteryResult(final LottoBuyer lottoBuyer) {
         final int totalWinningAmount = lottoBuyer.getLottoWinningAmount();
-        final int purchaseAmount = lottoBuyer.getLottoPurchaseAmount() * 1000;
+        final int purchaseAmount = lottoBuyer.getLottoPurchaseAmount() * DEFAULT_LOTTO_PRICE;
         getLotteryYield(purchaseAmount, totalWinningAmount);
     }
 
