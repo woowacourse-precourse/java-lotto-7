@@ -13,6 +13,13 @@ public class LottoTickets {
     private static final int LOTTO_PRICE = 1000;
     ArrayList<Lotto> lottoTickets;
 
+    public LottoTickets() {}
+
+    // 테스트용 코드
+    public LottoTickets(ArrayList<Lotto> lottoTickets) {
+        this.lottoTickets = lottoTickets;
+    }
+
     public void issue() {
         generateLottoTickets(getPurchaseAmount());
     }

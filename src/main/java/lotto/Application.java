@@ -10,6 +10,7 @@ public class Application {
         lottoNumbers.init();
 
         LottoResult lottoResult = new LottoResult(lottoTickets, lottoNumbers);
+        lottoResult.checkResult();
         lottoResult.print();
     }
 }

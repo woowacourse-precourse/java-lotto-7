@@ -13,15 +13,13 @@ public class LottoResult {
     private Map<Integer, Integer> rankCount;
     private final LottoTickets lottoTickets;
     private final LottoNumbers lottoNumbers;
-
     public LottoResult(LottoTickets lottoTickets, LottoNumbers lottoNumbers) {
         this.lottoTickets = lottoTickets;
         this.lottoNumbers = lottoNumbers;
         initRankCount();
-        checkResult();
     }
 
-    private void initRankCount() {
+    public void initRankCount() {
         rankCount = new HashMap<>();
         for (int rank = RANK_1.value(); rank <= RANK_5.value(); rank++) {
             rankCount.put(rank, 0);
@@ -37,13 +35,13 @@ public class LottoResult {
     }
 
     public void update(int matchCount, boolean hasBonusNumber) {
-        int rank = getRank(matchCount, hasBonusNumber);
+        int rank = calculateRank(matchCount, hasBonusNumber);
         if (rank != UNRANKED.value()) {
             rankCount.put(rank, rankCount.get(rank) + 1);
         }
     }
 
-    private int getRank(int matchCount, boolean hasBonusNumber) {
+    public int calculateRank(int matchCount, boolean hasBonusNumber) {
         if (matchCount < RANK_5_THRESHOLD.value()) {
             return UNRANKED.value();
         }
@@ -56,10 +54,10 @@ public class LottoResult {
         if (matchCount >= RANK_1_THRESHOLD.value()) {
             return RANK_1.value();
         }
-        return getRankTwoOrThree(hasBonusNumber);
+        return calculateRankTwoOrThree(hasBonusNumber);
     }
 
-    private int getRankTwoOrThree(boolean hasBonusNumber) {
+    public int calculateRankTwoOrThree(boolean hasBonusNumber) {
         if (hasBonusNumber) {
             return RANK_2.value();
         }
@@ -88,7 +86,7 @@ public class LottoResult {
         return roundToOneDecimal(earningRate);
     }
 
-    private static double roundToOneDecimal(double value) {
+    public double roundToOneDecimal(double value) {
         return Math.round(value * 10) / 10.0;
     }
 
@@ -100,5 +98,10 @@ public class LottoResult {
         earning += PRIZE_RANK_2.value() * rankCount.get(RANK_2.value());
         earning += PRIZE_RANK_1.value() * rankCount.get(RANK_1.value());
         return earning;
+    }
+
+    // 테스트용 코드
+    public int getCountOfRank(int rank) {
+        return rankCount.get(rank);
     }
 }

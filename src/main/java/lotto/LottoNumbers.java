@@ -12,6 +12,14 @@ public class LottoNumbers {
     private ArrayList<Integer> winningNumbers;
     private int bonusNumber;
 
+    public LottoNumbers() {}
+
+    // 테스트용 코드
+    public LottoNumbers(ArrayList<Integer> winningNumbers, int bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+    }
+
     public void init() {
         winningNumbers = initWinningNumbers();
         bonusNumber = initBonusNumber(winningNumbers);
