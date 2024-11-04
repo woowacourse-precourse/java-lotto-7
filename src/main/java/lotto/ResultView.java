@@ -1,4 +1,3 @@
-// ResultView.java
 package lotto;
 
 import lotto.Lotto;

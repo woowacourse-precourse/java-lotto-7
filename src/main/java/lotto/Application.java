@@ -1,4 +1,3 @@
-// Application.java (보너스 번호 입력 추가)
 package lotto;
 
 import lotto.InputView;
