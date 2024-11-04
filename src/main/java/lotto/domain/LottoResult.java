@@ -20,7 +20,15 @@ public class LottoResult {
         this.count = count;
     }
 
+    public LottoResult(final Map<Integer, Integer> prizeMatchResults, final int count) {
+        this.prizeMatchResults = prizeMatchResults;
+        this.count = count;
+    }
+
     public void updateLottoResult(int matchCount, boolean isBonusMatched) {
+        if (matchCount < 3) {
+            return;
+        }
         if (isBonusMatched) {
             matchCount++;
         }
