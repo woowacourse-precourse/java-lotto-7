@@ -31,8 +31,7 @@ public class LottoGame {
 		WinningLotto winningLotto = new WinningLotto(InputView.readWinningNumbers());
 		BonusNumber bonusNumber = new BonusNumber(InputView.readBonusNumber());
 
-		GameResults gameResults = new GameResults();
-		gameResults.calculateGameResult(lottos, winningLotto, bonusNumber);
+		GameResults gameResults = new GameResults(lottos, winningLotto, bonusNumber);
 
 		OutputView.printGameResult(gameResults, lottos);
 	}
