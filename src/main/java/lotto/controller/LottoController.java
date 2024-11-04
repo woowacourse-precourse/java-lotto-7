@@ -7,6 +7,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+
+    static final int ROUND_NUMBER = 1; // 로또 회차
+
     public static void run() {
 
         LottoRound lottoRound = initializeLottoRound();
@@ -19,13 +22,14 @@ public class LottoController {
     }
 
     private static LottoRound initializeLottoRound() {
-        final int roundNumber = 1; // 로또 회차
-        return new LottoRound(roundNumber);
+        return new LottoRound(ROUND_NUMBER);
     }
 
     private static Order createUserOrder(LottoRound lottoRound) {
         int orderCount = inputOrderCount();
-        return new Order(lottoRound, orderCount);
+        Order order = new Order(lottoRound, orderCount);
+        order.generateOrderedLotto(orderCount);
+        return order;
     }
 
     private static void setupWinningNumbers(LottoRound lottoRound) {

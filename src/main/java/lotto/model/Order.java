@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Order {
+    static final int LOTTO_PRICE = 1000;
     private static final int BONUS_MATCH_INDEX = 7;
     private static final int REQUIRED_MATCH_WITH_BONUS = 5;
 
@@ -20,18 +21,16 @@ public class Order {
     public Order(LottoRound lottoRound, int orderCount) {
         this.lottoRound = lottoRound;
         this.orderCount = orderCount;
-        this.orderedLottos = generateOrderedLotto(orderCount);
+        this.orderedLottos = new ArrayList<>();
         this.matchCounts = new ArrayList<>(Collections.nCopies(8, 0));
     }
 
-    private List<Lotto> generateOrderedLotto(int orderCount) {
-        List<Lotto> orderedLottos = new ArrayList<>();
+    public void generateOrderedLotto(int orderCount) {
         for (int i = 0; i < orderCount; i++) {
             Lotto lotto = createRandomLotto();
             System.out.println(lotto);
-            orderedLottos.add(lotto);
+            this.orderedLottos.add(lotto);
         }
-        return orderedLottos;
     }
 
     private Lotto createRandomLotto() {
@@ -61,7 +60,7 @@ public class Order {
 
     public double calculateTotalProfit() {
         double winAmount = calculateWinAmount();
-        return (winAmount / (orderCount * 1000)) * 100;
+        return (winAmount / (orderCount * LOTTO_PRICE)) * 100;
     }
 
     private double calculateWinAmount() {
