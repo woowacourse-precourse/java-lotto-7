@@ -2,6 +2,9 @@ package lotto.model;
 
 import static lotto.constants.ErrorMessage.INPUT_CAN_NOT_BE_BLANK;
 import static lotto.constants.ErrorMessage.LOTTO_CAN_NOT_HAVE_CHARACTER;
+import static lotto.constants.ErrorMessage.LOTTO_NUMBER_MUST_BE_ONE_TO_FORTY_FIVE;
+import static lotto.constants.LottoCondition.MIN_LOTTO_NUMBER;
+import static lotto.constants.LottoCondition.MAX_LOTTO_NUMBER;
 
 import java.util.regex.Pattern;
 
@@ -19,6 +22,7 @@ public class BonusNumber {
     private void validate(String bonusNumber) {
         validateIsBlank(bonusNumber);
         validateHasCharacter(bonusNumber);
+        validateIsRangeOneToFortyFive(bonusNumber);
     }
 
     private void validateIsBlank(String bonusNumber) {
@@ -32,4 +36,12 @@ public class BonusNumber {
             throw new IllegalArgumentException(LOTTO_CAN_NOT_HAVE_CHARACTER.get());
         }
     }
+
+    private void validateIsRangeOneToFortyFive(String bonusNumber) {
+        int number = Integer.parseInt(bonusNumber);
+        if (number < MIN_LOTTO_NUMBER.get() || number > MAX_LOTTO_NUMBER.get()) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_MUST_BE_ONE_TO_FORTY_FIVE.get());
+        }
+    }
+
 }
