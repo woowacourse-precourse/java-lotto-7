@@ -34,7 +34,7 @@ public class LottoService {
         return ranks;
     }
 
-    private int countMatchingNumbers(Lotto lotto, Lotto winningNumbers) {
+    public int countMatchingNumbers(Lotto lotto, Lotto winningNumbers) {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumbers.getNumbers()::contains)
                 .count();
