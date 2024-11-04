@@ -8,22 +8,29 @@ public class InputUtil {
 
     public static int insertMoney() {
         String inputMoney = Console.readLine();
-        // TODO: 숫자가 맞는지 검증 필요
-        return Integer.parseInt(inputMoney) / 1000;
+        validateNumber(inputMoney);
+        return Integer.parseInt(inputMoney);
     }
 
     public static List<Integer> insertWinningNumbers() {
         String[] inputNumbers = Console.readLine().split(",");
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number : inputNumbers) {
-            // TODO: 중복된 숫자 방지
+            validateNumber(number);
             winningNumbers.add(Integer.parseInt(number));
         }
         return winningNumbers;
     }
 
     public static Integer insertBonusNumber() {
-        // TODO: 숫자가 맞는지 검증 필요
-        return Integer.parseInt(Console.readLine());
+        String inputNumber = Console.readLine();
+        validateNumber(inputNumber);
+        return Integer.parseInt(inputNumber);
+    }
+
+    private static void validateNumber(String input) {
+        if (!input.matches("\\d+")) {
+            throw new IllegalArgumentException("[ERROR] 금액은 숫자만 입력할 수 있습니다.");
+        }
     }
 }
