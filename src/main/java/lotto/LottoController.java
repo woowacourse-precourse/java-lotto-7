@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 public class LottoController {
 
     public static void validatePurchaseNumber(int amount) {
-        if (amount < 0 || amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000단위로 입력가능합니다.");
+        if (amount <= 0 || amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원단위로 입력가능합니다.");
         }
     }
 
@@ -15,7 +15,7 @@ public class LottoController {
         try {
             int purchaseNumber = Integer.parseInt(input.trim());
             validatePurchaseNumber(purchaseNumber);
-            return purchaseNumber;
+            return purchaseNumber / 1000;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 잘못된 형식의 구입금액 입니다.");
         }
