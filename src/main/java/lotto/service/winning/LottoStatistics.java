@@ -1,20 +1,20 @@
 package lotto.service.winning;
 
-import java.util.Map;
+import java.util.List;
 import lotto.domain.Rank;
 
 public class LottoStatistics {
 
-    private final Map<Rank, Integer> rankCounts;
+    private final List<Rank> ranks;
     private final double profitRate;
 
-    public LottoStatistics(Map<Rank, Integer> rankCounts, double profitRate) {
-        this.rankCounts = rankCounts;
+    public LottoStatistics(List<Rank> ranks, double profitRate) {
+        this.ranks = ranks;
         this.profitRate = profitRate;
     }
 
-    public Map<Rank, Integer> getRankCounts() {
-        return rankCounts;
+    public List<Rank> getRanks() {
+        return ranks;
     }
 
     public double getProfitRate() {

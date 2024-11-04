@@ -2,46 +2,40 @@ package lotto.service.winning;
 
 import static lotto.constant.LottoConstant.PRICE;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.Rank;
-import lotto.domain.Winning;
+import lotto.domain.winning.BonusNumber;
+import lotto.domain.winning.Winning;
+import lotto.domain.winning.WinningNumbers;
 
 public class WinningServiceImpl implements WinningService {
 
     @Override
-    public Winning createWinning(List<Integer> numbers, int bonusNumber) {
-        return new Winning(numbers, bonusNumber);
+    public Winning createWinning(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        return null;
     }
 
     @Override
-    public LottoStatistics getStatistics(LottoPurchase purchase, Winning winning) {
-        Map<Lotto, Rank> lottoRanks = purchase.rankLottos(winning);
+    public LottoStatistics estimate(LottoPurchase purchase, Winning winning) {
+        List<Rank> ranks = purchase.getLottos()
+            .stream()
+            .map(winning::rank)
+            .sorted()
+            .toList();
 
-        Map<Rank, Integer> rankCounts = createRankCountsMap(lottoRanks);
-        double profitRate = calculateProfitRate(purchase, lottoRanks);
+        double profitRate = calculateProfitRate(ranks);
 
-        return new LottoStatistics(rankCounts, profitRate);
+        return new LottoStatistics(ranks, profitRate);
     }
 
-    private static double calculateProfitRate(LottoPurchase purchase, Map<Lotto, Rank> lottoRanks) {
-        long totalPrize = lottoRanks.values().stream()
-            .mapToLong(Rank::getPrize).sum();
-        long totalCost = (long) purchase.count() * PRICE;
+    private static double calculateProfitRate(List<Rank> ranks) {
+        long totalPrize = ranks.stream()
+            .mapToInt(Rank::getPrize)
+            .sum();
+
+        long totalCost = (long) ranks.size() * PRICE;
 
         return (double) totalPrize / totalCost * 100.0;
-    }
-
-    private static Map<Rank, Integer> createRankCountsMap(Map<Lotto, Rank> lottoRanks) {
-        Map<Rank, Integer> rankCounts = new HashMap<>();
-        Arrays.stream(Rank.values()).forEach(rank -> rankCounts.put(rank, 0));
-
-        lottoRanks.values()
-            .forEach(rank -> rankCounts.put(rank, rankCounts.get(rank) + 1));
-        return rankCounts;
     }
 }

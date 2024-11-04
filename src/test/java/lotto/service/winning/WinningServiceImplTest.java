@@ -9,35 +9,43 @@ import static lotto.domain.Rank.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.Rank;
-import lotto.domain.Winning;
+import lotto.domain.winning.BonusNumber;
+import lotto.domain.winning.Winning;
+import lotto.domain.winning.WinningNumbers;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class WinningServiceImplTest {
 
+    private final WinningService winningService = new WinningServiceImpl();
+    private Winning winning;
+
+    @BeforeEach
+    void initializeWinning() {
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 9, 18, 27, 36, 45));
+        BonusNumber bonusNumber = new BonusNumber(7);
+        this.winning = new Winning(winningNumbers, bonusNumber);
+    }
+
+    @DisplayName("당첨 통계 테스트케이스 A")
     @ParameterizedTest
     @MethodSource("provideLottosCaseA")
-    void 당첨_결과_테스트케이스_A(List<Lotto> lottos) throws Exception {
-        WinningService winningService = new WinningServiceImpl();
-        Winning winning = new Winning(List.of(1, 9, 18, 27, 36, 45), 7);
+    void 당첨_통계_테스트케이스_A(List<Lotto> lottos) throws Exception {
         LottoPurchase purchase = LottoPurchase.purchase(lottos);
 
-        LottoStatistics statistics = winningService.getStatistics(purchase, winning);
-        Map<Rank, Integer> rankCounts = statistics.getRankCounts();
+        LottoStatistics statistics = winningService.estimate(purchase, winning);
+        List<Rank> ranks = statistics.getRanks();
+        double profitRate = statistics.getProfitRate();
 
-        assertThat(statistics.getProfitRate()).isEqualTo(33_859_250.0);
-        assertThat(rankCounts.get(FIRST)).isEqualTo(1);
-        assertThat(rankCounts.get(SECOND)).isEqualTo(1);
-        assertThat(rankCounts.get(THIRD)).isEqualTo(1);
-        assertThat(rankCounts.get(FOURTH)).isEqualTo(1);
-        assertThat(rankCounts.get(FIFTH)).isEqualTo(1);
-        assertThat(rankCounts.get(DRAW)).isEqualTo(1);
+        assertThat(profitRate).isEqualTo(33_859_250.0);
+        assertThat(ranks).containsSequence(FIRST, SECOND, THIRD, FOURTH, FIFTH, DRAW);
     }
 
     private static Stream<Arguments> provideLottosCaseA() {
@@ -55,23 +63,19 @@ class WinningServiceImplTest {
         ));
     }
 
+    @DisplayName("당첨 통계 테스트케이스 B")
     @ParameterizedTest
     @MethodSource("provideLottosCaseB")
-    void 당첨_결과_테스트케이스_B(List<Lotto> lottos) throws Exception {
-        WinningService winningService = new WinningServiceImpl();
-        Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6), 7);
+    void 당첨_통계_테스트케이스_B(List<Lotto> lottos) throws Exception {
         LottoPurchase purchase = LottoPurchase.purchase(lottos);
 
-        LottoStatistics statistics = winningService.getStatistics(purchase, winning);
-        Map<Rank, Integer> rankCounts = statistics.getRankCounts();
+        LottoStatistics statistics = winningService.estimate(purchase, winning);
+        List<Rank> ranks = statistics.getRanks();
+        double profitRate = statistics.getProfitRate();
 
-        assertThat(statistics.getProfitRate()).isEqualTo(62.5);
-        assertThat(rankCounts.get(FIRST)).isEqualTo(0);
-        assertThat(rankCounts.get(SECOND)).isEqualTo(0);
-        assertThat(rankCounts.get(THIRD)).isEqualTo(0);
-        assertThat(rankCounts.get(FOURTH)).isEqualTo(0);
-        assertThat(rankCounts.get(FIFTH)).isEqualTo(1);
-        assertThat(rankCounts.get(DRAW)).isEqualTo(7);
+        assertThat(profitRate).isEqualTo(62.5);
+        assertThat(ranks).doesNotContain(FIRST, SECOND, THIRD, FOURTH);
+        assertThat(ranks).containsSequence(FIFTH, DRAW);
     }
 
     private static Stream<Arguments> provideLottosCaseB() {
@@ -83,7 +87,7 @@ class WinningServiceImplTest {
                 new Lotto(List.of(13, 14, 16, 38, 42, 45)), // 꽝 0원
                 new Lotto(List.of(7, 11, 30, 40, 42, 43)), // 꽝 0원
                 new Lotto(List.of(2, 13, 22, 32, 38, 45)), // 꽝 0원
-                new Lotto(List.of(1, 3, 5, 14, 22, 45))) // 5등 5천원
+                new Lotto(List.of(1, 9, 18, 7, 22, 44))) // 5등 5천원
             // -- 기대값 --
             // 순이익 5천원
             // 투자 비용 8천원

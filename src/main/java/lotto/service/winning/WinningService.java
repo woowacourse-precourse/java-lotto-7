@@ -1,12 +1,13 @@
 package lotto.service.winning;
 
-import java.util.List;
 import lotto.domain.LottoPurchase;
-import lotto.domain.Winning;
+import lotto.domain.winning.BonusNumber;
+import lotto.domain.winning.Winning;
+import lotto.domain.winning.WinningNumbers;
 
 public interface WinningService {
 
-    Winning createWinning(List<Integer> numbers, int bonusNumber);
+    Winning createWinning(WinningNumbers winningNumbers, BonusNumber bonusNumber);
 
-    LottoStatistics getStatistics(LottoPurchase purchase, Winning winning);
+    LottoStatistics estimate(LottoPurchase purchase, Winning winning);
 }
