@@ -22,6 +22,12 @@ public class Answer {
 			.collect(Collectors.toList()); 
 	}
 
+	public int checkLottoResult(Lotto pickedLotto) {
+		List<Integer> numbers = answerLotto.getNumbers();
+		numbers.retainAll(pickedLotto.getNumbers());
+		return numbers.size();
+	}
+
 	public Lotto getAnswerLotto() {
 		return answerLotto;
 	}
