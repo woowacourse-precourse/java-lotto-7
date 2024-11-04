@@ -87,6 +87,6 @@ public class LottoService {
         }
         double rateOfReturn = totalPrize / (numberOfTickets * 1000.0) * 100;
 
-        return Math.round(rateOfReturn * 100.0) / 100.0;
+        return Math.round(rateOfReturn * 10.0) / 10.0;
     }
 }
