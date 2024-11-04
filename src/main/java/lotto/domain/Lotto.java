@@ -1,6 +1,9 @@
 package lotto.domain;
 
 import static lotto.global.error.LottoErrorMessages.*;
+import static lotto.utils.Validator.BONUS_MATCH_THRESHOLD;
+import static lotto.utils.Validator.MINIMAL_WINNING_NUMBER;
+import static lotto.utils.Validator.TOTAL_LOTTO_NUMBERS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,10 +12,6 @@ import java.util.Set;
 import lotto.global.LottoRank;
 
 public class Lotto {
-    public static final int MINIMAL_WINNING_NUMBER = 3;
-    public static final int TOTAL_LOTTO_NUMBERS = 6;
-    public static final int BONUS_MATCH_THRESHOLD = 5;
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,6 +25,7 @@ public class Lotto {
         }
 
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(INVALID_LOTTO_RANGE.getMessage());
         }
@@ -33,7 +33,7 @@ public class Lotto {
 
     public LottoRank checkWinningStatus(List<Integer> winningNumbers, int bonusNumber) {
 
-        int matchCount = (int) winningNumbers.stream().filter(numbers::contains).count();
+        int matchCount = getMatchCount(winningNumbers);
 
         if (matchCount < MINIMAL_WINNING_NUMBER) {
             return null;
@@ -48,6 +48,10 @@ public class Lotto {
         }
 
         return LottoRank.THIRD;
+    }
+
+    private int getMatchCount(List<Integer> winningNumbers) {
+        return (int) winningNumbers.stream().filter(numbers::contains).count();
     }
 
     public List<Integer> getNumbers() {
