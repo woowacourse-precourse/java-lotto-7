@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,9 @@ public class OutputView {
     public void showPublicedLottos(List<Lotto> lottos){
         System.out.printf(SHOW_PUBLICED_LOTTO_NUM, lottos.size());
         for(Lotto lotto : lottos){
-            System.out.println(lotto.getNumbers());
+            List<Integer> sortedNumbers = lotto.getNumbers();
+            Collections.sort(sortedNumbers); // 번호를 오름차순으로 정렬
+            System.out.println(sortedNumbers);
         }
     }
 
@@ -53,6 +56,6 @@ public class OutputView {
     }
 
     public void showProfitRate(double profitRate){
-        System.out.printf(SHOW_LOTTO_PROFIT_RATE, String.format("%.2f", profitRate));
+        System.out.printf(SHOW_LOTTO_PROFIT_RATE, String.format("%.1f", profitRate));
     }
 }
