@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,6 +53,15 @@ public class Application {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    //보너스 번호 입력
+    private static int inputBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
+    }
+
+
+
 
 
 }

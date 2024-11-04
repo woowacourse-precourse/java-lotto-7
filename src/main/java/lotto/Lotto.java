@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Collections;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,6 +18,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers(){
+        Collections.sort(numbers);
         return numbers;
     }
 }
