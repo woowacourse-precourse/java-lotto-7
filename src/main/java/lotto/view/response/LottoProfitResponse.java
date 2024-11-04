@@ -13,7 +13,11 @@ public class LottoProfitResponse {
     }
 
     public static LottoProfitResponse of(List<Score> scores, int purchaseMoney) {
-        double profitRate = (double) scores.stream().mapToInt(Score::getPrize).sum() / purchaseMoney * 100;
+        double profitRate = (double) scores
+                .stream()
+                .mapToInt(Score::getPrize)
+                .sum() / purchaseMoney * 100;
+
         return new LottoProfitResponse(profitRate);
     }
 

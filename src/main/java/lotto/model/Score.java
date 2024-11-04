@@ -38,13 +38,16 @@ public enum Score {
     public static Map<Score, Integer> aggregate(List<Score> scores) {
         Map<Score, Integer> scoreCounts = new LinkedHashMap<>();
 
-        for (Score score : values()) {
-            scoreCounts.put(score, (int) scores.stream()
-                    .filter(s -> s == score)
-                    .count());
-        }
+        Arrays.stream(values())
+                .forEach(score -> scoreCounts.put(score, countScores(scores, score)));
 
         return scoreCounts;
+    }
+
+    private static int countScores(List<Score> scores, Score score) {
+        return (int) scores.stream()
+                .filter(score::equals)
+                .count();
     }
 
     public int getMatchCount() {

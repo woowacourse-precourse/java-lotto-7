@@ -19,11 +19,17 @@ public class LottoNumbers {
 
     public static LottoNumbers generate(int size, RandomNumberGenerator randomNumberGenerator) {
         validateSize(size);
-        List<Integer> numbers = randomNumberGenerator.pickUniqueNumbersInRange(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER, size);
+
+        List<Integer> numbers = randomNumberGenerator.pickUniqueNumbersInRange(
+                LottoNumber.MIN_NUMBER,
+                LottoNumber.MAX_NUMBER,
+                size
+        );
 
         return new LottoNumbers(numbers.stream()
                 .map(LottoNumber::from)
-                .toList());
+                .toList()
+        );
     }
 
     private static void validateSize(int size) {

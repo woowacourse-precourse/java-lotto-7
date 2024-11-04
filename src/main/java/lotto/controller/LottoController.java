@@ -54,7 +54,8 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto() {
-        List<LottoNumber> winningNumbers = inputView.inputWinningNumbers().stream()
+        List<LottoNumber> winningNumbers = inputView.inputWinningNumbers()
+                .stream()
                 .map(LottoNumber::from)
                 .toList();
 

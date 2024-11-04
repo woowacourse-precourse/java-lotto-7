@@ -16,7 +16,10 @@ public class PurchaseLottoResponse {
 
     public static PurchaseLottoResponse from(Lottos lottos) {
         return new PurchaseLottoResponse(
-                lottos.getAllLottoNumbers().stream().map(LottoNumberResponse::from).toList(),
+                lottos.getAllLottoNumbers()
+                        .stream()
+                        .map(LottoNumberResponse::from)
+                        .toList(),
                 lottos.getAllLottoNumbers().size()
         );
     }

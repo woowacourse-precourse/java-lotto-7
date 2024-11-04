@@ -17,7 +17,9 @@ public class ConsoleInputView implements InputView {
         System.out.println(PURCHASE_MONEY_MESSAGE);
 
         try {
-            return Integer.parseInt(Console.readLine());
+            String input = Console.readLine();
+
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw InvalidInputException.invalidNumber();
         }
@@ -28,7 +30,9 @@ public class ConsoleInputView implements InputView {
         System.out.println(WINNING_NUMBER_MESSAGE);
 
         try {
-            return Arrays.stream(Console.readLine().split(","))
+            String input = Console.readLine();
+
+            return Arrays.stream(input.split(","))
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
@@ -41,7 +45,9 @@ public class ConsoleInputView implements InputView {
         System.out.println(BONUS_NUMBER_MESSAGE);
 
         try {
-            return Integer.parseInt(Console.readLine());
+            String input = Console.readLine();
+
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw InvalidInputException.invalidNumber();
         }

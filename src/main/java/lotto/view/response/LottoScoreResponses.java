@@ -15,7 +15,9 @@ public class LottoScoreResponses {
 
     public static LottoScoreResponses from(Map<Score, Integer> scores) {
         Map<LottoScoreResponse, Integer> lottoScoreResponses = new LinkedHashMap<>();
-        scores.forEach((score, count) -> lottoScoreResponses.put(LottoScoreResponse.from(score), count));
+        scores.forEach(
+                (score, count) -> lottoScoreResponses.put(LottoScoreResponse.from(score), count)
+        );
 
         return new LottoScoreResponses(lottoScoreResponses);
     }
