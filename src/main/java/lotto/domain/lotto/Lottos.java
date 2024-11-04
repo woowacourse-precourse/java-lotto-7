@@ -1,5 +1,7 @@
 package lotto.domain.lotto;
 
+import static lotto.resources.Messages.PURCHASE_MESSAGE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,6 +34,9 @@ public class Lottos {
     @Override
     public String toString() {
         StringBuilder buyLottos = new StringBuilder();
+
+        buyLottos.append("\n")
+                .append(lottos.size()).append(PURCHASE_MESSAGE.getMessage());
 
         for (Lotto lotto : lottos) {
             buyLottos.append(lotto.toString());

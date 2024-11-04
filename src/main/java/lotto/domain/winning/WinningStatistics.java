@@ -3,6 +3,7 @@ package lotto.domain.winning;
 import static lotto.domain.winning.Rank.NOTHING;
 import static lotto.domain.winning.Rank.SECOND;
 import static lotto.resources.Constants.THOUSAND_UNIT;
+import static lotto.resources.Messages.RESULT_MESSAGE;
 
 import java.util.Comparator;
 import java.util.List;
@@ -99,6 +100,7 @@ public class WinningStatistics {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append(RESULT_MESSAGE.getMessage());
 
         List<Entry<Rank, Integer>> sortedStatistics = getSortedStatistics();
 
