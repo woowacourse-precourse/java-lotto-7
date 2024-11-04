@@ -23,8 +23,16 @@ public class LottoController {
     }
 
     public Purchase purchaseLotto() {
-        int purchaseInput = InputView.getPurchaseAmount();
-        return purchaseService.purchaseLotto(purchaseInput);
+        Purchase purchase = null;
+        while (purchase == null) {
+            try {
+                int purchaseAmountNumber = InputView.getPurchaseAmount();
+                purchase = purchaseService.purchaseLotto(purchaseAmountNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return purchase;
     }
 
     public List<DrawNumbers> drawPurchaseLotto(Purchase purchase) {
