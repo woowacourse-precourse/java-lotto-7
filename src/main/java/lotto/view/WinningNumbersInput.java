@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.common.config.InstructionMessages.INPUT_WINNING_NUMBERS;
 import static lotto.common.exception.ExceptionMessages.INVALID_WINNING_NUMBER_FORMAT;
+import static lotto.common.exception.ExceptionMessages.NONE_NUMERIC_INPUT;
 import static lotto.common.exception.ExceptionMessages.WINNING_NUMBERS_CONTAINS_WHITESPACE;
 
 import java.util.Arrays;
@@ -37,8 +38,10 @@ public class WinningNumbersInput implements Input<Lotto, String[]> {
             if (inputValidator.containsWhiteSpace(oneNumber)) {
                 throw new InvalidInputException(WINNING_NUMBERS_CONTAINS_WHITESPACE.getMessage());
             }
+            if (!inputValidator.isNumeric(oneNumber)) {
+                throw new InvalidInputException(NONE_NUMERIC_INPUT.getMessage());
+            }
         }
-
     }
 
     private String[] splitWinningNumbers(String input) {
