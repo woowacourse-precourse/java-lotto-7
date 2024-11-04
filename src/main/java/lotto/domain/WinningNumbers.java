@@ -7,20 +7,10 @@ import java.util.stream.Collectors;
 public class WinningNumbers {
     private static final int RANDOM_COUNT = 6;
     private final List<WinningNumber> winningNumbers;
-    private final BonusNumber bonusNumber;
-
 
     public WinningNumbers(List<WinningNumber> winningNumbers) {
         validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
-        this.bonusNumber = null;
-    }
-
-    public WinningNumbers(List<WinningNumber> winningNumbers, BonusNumber bonusNumber) {
-        validateWinningNumbers(winningNumbers);
-        validateBonusNumber(winningNumbers,bonusNumber);
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
     }
 
     private void validateWinningNumbers(List<WinningNumber> winningNumbers) {
@@ -40,9 +30,7 @@ public class WinningNumbers {
         }
     }
 
-    private void validateBonusNumber(List<WinningNumber> winningNumbers, BonusNumber bonusNumber) {
-        if (winningNumbers.stream().anyMatch(num -> num.winningNumber() == bonusNumber.bonusNumber())) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
+    public List<WinningNumber> getWinningNumbers() {
+        return winningNumbers;
     }
 }
