@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoPrizes {
+    private static final int YIELD_SCALE = 1;
+    private static final int DIVISION_SCALE = 3;
+    private static final BigDecimal HUNDRED = BigDecimal.valueOf(100);
+    private static final String PRIZE_STATISTICS_FORMAT = "%s%d개";
 
     private final List<LottoPrize> lottoPrizes;
     private final WinningNumbers winningNumbers;
@@ -30,26 +34,37 @@ public class LottoPrizes {
         return LottoPrize.getLottoPrize(matchCount, containsBonusNumber);
     }
 
-    public String calculateYield(int lottoBudget) {
-        int totalPrizeAmount = lottoPrizes.stream().mapToInt(LottoPrize::getPrizeAmount).sum();
+    public String calculateYield(int purchaseAmount) {
+        int totalPrizeAmount = lottoPrizes.stream()
+                .mapToInt(LottoPrize::getPrizeAmount)
+                .sum();
 
-        BigDecimal yield = BigDecimal.valueOf(totalPrizeAmount)
-                .divide(BigDecimal.valueOf(lottoBudget), 3, RoundingMode.HALF_UP)
-                .multiply(BigDecimal.valueOf(100))
-                .setScale(1, RoundingMode.HALF_UP);
-
+        BigDecimal yield = calculateYield(totalPrizeAmount, purchaseAmount);
         return yield.toString();
+    }
+
+    private BigDecimal calculateYield(int totalPrizeAmount, int lottoBudget) {
+        return BigDecimal.valueOf(totalPrizeAmount)
+                .divide(BigDecimal.valueOf(lottoBudget), DIVISION_SCALE, RoundingMode.HALF_UP)
+                .multiply(HUNDRED)
+                .setScale(YIELD_SCALE, RoundingMode.HALF_UP);
     }
 
     public List<String> calculateMatchStatistics() {
         return Arrays.stream(LottoPrize.values())
                 .filter(prize -> prize != LottoPrize.NO_PRIZE)
-                .map(prize -> {
-                    long count = lottoPrizes.stream()
-                            .filter(p -> p == prize)
-                            .count();
-                    return prize.toString() + count + "개";
-                })
+                .map(this::formatPrizeStatistics)
                 .collect(Collectors.toList());
+    }
+
+    private String formatPrizeStatistics(LottoPrize prize) {
+        long prizeCount = countPrizes(prize);
+        return String.format(PRIZE_STATISTICS_FORMAT, prize, prizeCount);
+    }
+
+    private long countPrizes(LottoPrize prize) {
+        return lottoPrizes.stream()
+                .filter(lottoPrize -> lottoPrize == prize)
+                .count();
     }
 }

@@ -4,7 +4,6 @@ import lotto.exception.ErrorCode;
 
 public class PurchaseAmount {
     private static final int MIN_PURCHASE_AMOUNT = 0;
-    private static final int LOTTO_PRICE = 1000;
 
     private final int value;
 
@@ -27,7 +26,7 @@ public class PurchaseAmount {
     }
 
     private void validateUnits(int value) {
-        if (value % LOTTO_PRICE != 0) {
+        if (value % Lotto.PRICE != 0) {
             throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_NOT_IN_UNITS_OF_THOUSAND.getMessage());
         }
     }
@@ -39,6 +38,6 @@ public class PurchaseAmount {
     }
 
     public String calculatePurchaseLottoCount() {
-        return String.valueOf(value / LOTTO_PRICE);
+        return String.valueOf(value / Lotto.PRICE);
     }
 }

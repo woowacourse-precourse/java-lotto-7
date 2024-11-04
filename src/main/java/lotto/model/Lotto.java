@@ -10,6 +10,7 @@ import java.util.Set;
 public class Lotto {
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 45;
+    public static final int PRICE = 1000;
 
     private static final String LOTTO_DELIMITER = ",";
     private final List<Integer> numbers;
