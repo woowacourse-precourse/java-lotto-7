@@ -21,10 +21,9 @@ public class LottoPurchase {
     Output output = new Output();
 
     protected int purchaseAmount() {
-        int amount = input.price();
+        String amount = input.price();
         validation.purchase(amount);
-
-        return amount / LOTTO_PRICE;
+        return Integer.parseInt(amount.trim()) / LOTTO_PRICE;
     }
 
     public List<Lotto> issueLotto(int numberOfLottos) {

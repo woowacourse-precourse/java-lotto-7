@@ -10,9 +10,14 @@ import java.util.List;
 import java.util.Set;
 
 public class Validation {
-    public void purchase(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다.");
+    public void purchase(String amount) {
+        try {
+            int parsedAmount = Integer.parseInt(amount.trim());  // 문자열을 정수로 변환
+            if (parsedAmount % LOTTO_PRICE != 0) {
+                throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 금액은 숫자 형식으로 입력해야 합니다.");
         }
     }
 
@@ -31,7 +36,6 @@ public class Validation {
         }
     }
 
-
     public void duplicatedBonous(String input, List<Integer> winningNumbers) {
         String[] numbers = input.split(SPLIT);
         Set<Integer> winningSet = new HashSet<>(winningNumbers);
@@ -41,20 +45,6 @@ public class Validation {
             int num = Integer.parseInt(number);
             if (winningSet.contains(num)) {
                 throw new IllegalArgumentException("[ERROR] 당첨번호와 중복입니다: " + num);
-            }
-        }
-    }
-
-    public void duplicatedNumber(String input) {
-        String[] numbers = input.split(SPLIT);
-        Set<String> uniqueNumbers = new HashSet<>();
-
-        for (String number : numbers) {
-            number = number.trim();
-
-            // 중복 검사
-            if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 입력된 번호에 중복된 숫자가 있습니다: " + number);
             }
         }
     }
