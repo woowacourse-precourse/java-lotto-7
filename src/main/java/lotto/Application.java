@@ -42,7 +42,17 @@ public class Application {
     }
 
     private static List<Lotto> purchaseLottos(int ticketCount) {
-        return null;
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < ticketCount; i++) {
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return lottos;
+    }
+
+    private static void displayPurchasedLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     private static Lotto getWinningLotto() {
