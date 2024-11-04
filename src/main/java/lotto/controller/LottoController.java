@@ -1,9 +1,12 @@
 package lotto.controller;
 
 
+import static lotto.common.Constants.LOTTO_PRICE;
+
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
@@ -75,5 +78,22 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void calculateResults(WinningLotto winningLotto, Lottos lottos) {
+        int totalPrize = 0;
+        int[] results = new int[LottoRank.values().length];
+
+        for (Lotto lotto : lottos.getLottos()) {
+            int matchCount = winningLotto.matchCount(lotto);
+            boolean bonusMatch = winningLotto.isBonusMatched(lotto);
+            LottoRank rank = LottoRank.determineRank(matchCount, bonusMatch);
+
+            results[rank.ordinal()]++;
+            totalPrize += rank.getPrize();
+        }
+
+        output.printResults(results);
+        output.printEarningsRate(totalPrize, lottos.size() * LOTTO_PRICE);
     }
 }
