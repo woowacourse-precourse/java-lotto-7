@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLottoResults(List<Integer> lottoResults) {
+    public void printLottoResults(double rate, List<Integer> lottoResults) {
         System.out.println();
         System.out.println(ViewMessages.PRINT_RESULT_COMMENT.getMessage());
         for (int i = 1; i < lottoResults.size(); i++) {
@@ -37,6 +37,7 @@ public class OutputView {
             }
             System.out.println(message);
         }
+        System.out.println(ViewMessages.PRINT_RATE_OF_RETURN.getMessage(rate));
     }
 
     public void printBlank() {
