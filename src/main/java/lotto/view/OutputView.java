@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    private static final String OUTPUT_FORMAT_OF_LOTTO_COUNT = "%d개를 구매했습니다.\n";
+    private static final String OUTPUT_FORMAT_OF_LOTTO_COUNT = "\n%d개를 구매했습니다.\n";
     private static final String EMPTY_STRING = "";
     private static final String OUTPUT_FORMAT_OF_LOTTO = "%s\n";
-    private static final String STATICS_MESSAGE = "당첨 통계\n---";
+    private static final String STATICS_MESSAGE = "\n당첨 통계\n---";
     private static final String OUTPUT_FORMAT_OF_STATICS = "%s - %d개\n";
     private static final String OUTPUT_FORMAT_OF_PROFIT_RATE = "총 수익률은 %.1f%%입니다.\n";
     private static final int FIFTH_RANK = 5;
