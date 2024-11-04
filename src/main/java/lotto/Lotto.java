@@ -37,8 +37,4 @@ public class Lotto {
         Set<Integer> winningSet = new HashSet<>(winningNumbers);
         return (int) numbers.stream().filter(winningSet::contains).count();
     }
-
-    public boolean matchBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
-    }
 }

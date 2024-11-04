@@ -8,12 +8,17 @@ import java.util.*;
 
 public class LottoService {
 
+    private final int PRICE_PER_LOTTO = 1000;
+    private final int MIN_LOTTO_NUMBER = 1;
+    private final int MAX_LOTTO_NUMBER = 45;
+    private final int LOTTO_COUNT = 6;
+
     public List<Lotto> generateLotto(int purchaseAmount) {
-        int numberOfLotto = purchaseAmount / 1000;
+        int numberOfLotto = purchaseAmount / PRICE_PER_LOTTO;
         List<Lotto> lotto = new ArrayList<>();
 
         for (int i = 0; i < numberOfLotto; i++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT);
             Collections.sort(randomNumbers);
             lotto.add(new Lotto(randomNumbers));
         }

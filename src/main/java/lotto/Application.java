@@ -22,5 +22,6 @@ public class Application {
         int bonusNumber = InputView.inputBonusNumber(winningNumbers);
 
         Map<LottoRank, Integer> result = lottoService.calculateLottoResults(userLotto, winningNumbers, bonusNumber);
+        OutputView.printResult(result, purchaseAmount);
     }
 }

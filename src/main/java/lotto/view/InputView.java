@@ -11,8 +11,8 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
-    private static final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");
-    private static final Pattern WINNING_NUMBERS_PATTERN = Pattern.compile("^\\d+(,\\d+)*$");
+    private static final Pattern NUMERIC_REGEX = Pattern.compile("\\d+");
+    private static final Pattern WINNING_NUMBERS_REGEX = Pattern.compile("^\\d+(,\\d+)*$");
     private static final String NUMBER_DELIMITER = ",";
 
     public static int inputPurchaseAmount() {
@@ -23,8 +23,8 @@ public class InputView {
         return Integer.parseInt(amount);
     }
 
-    static void validatePurchaseAmount(String amount) {
-        if (!NUMERIC_PATTERN.matcher(amount).matches()) {
+    private static void validatePurchaseAmount(String amount) {
+        if (!NUMERIC_REGEX.matcher(amount).matches()) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해야 합니다.");
         }
         if (Integer.parseInt(amount) % 1000 != 0) {
@@ -41,8 +41,8 @@ public class InputView {
         return new Lotto(winningNumbers);
     }
 
-    static void validateWinningNumbers(String input) {
-        if (!WINNING_NUMBERS_PATTERN.matcher(input).matches()) {
+    private static void validateWinningNumbers(String input) {
+        if (!WINNING_NUMBERS_REGEX.matcher(input).matches()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자와 쉼표로만 입력해야 합니다.");
         }
     }
@@ -62,8 +62,8 @@ public class InputView {
         return Integer.parseInt(bonusNumber);
     }
 
-    static void validateBonusNumber(String bonusNumber, Lotto winningNumbers) {
-        if (!NUMERIC_PATTERN.matcher(bonusNumber).matches()) {
+    private static void validateBonusNumber(String bonusNumber, Lotto winningNumbers) {
+        if (!NUMERIC_REGEX.matcher(bonusNumber).matches()) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
         }
         int convertBonusNumber = Integer.parseInt(bonusNumber);
