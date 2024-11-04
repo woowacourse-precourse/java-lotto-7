@@ -39,6 +39,13 @@ public class Lotto {
         if(numbers.contains(bonusNumber)) {
             hasBonusNumber = true;
         }
+        if(countMatchingNumber < 3) {
+            return LottoRank.NONE.getRank();
+        }
+        return getRank(countMatchingNumber, hasBonusNumber);
+    }
+
+    public int getRank(int countMatchingNumber, boolean hasBonusNumber) {
         if(countMatchingNumber == 6) {
             return LottoRank.FIRST.getRank();
         }
@@ -54,7 +61,6 @@ public class Lotto {
         if(countMatchingNumber == 3) {
             return LottoRank.FIFTH.getRank();
         }
-        return LottoRank.NONE.getRank();
     }
 
     public List<Integer> getNumbers() {

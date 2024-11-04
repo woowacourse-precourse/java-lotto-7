@@ -18,6 +18,6 @@ public class Application {
             lottoChecker.recordLottoRank(lotto);
         }
         lottoChecker.printRankResult();
-        System.out.printf("총 수익률은 %.1f%% 입니다.\n", 1.0 * lottoChecker.getTotalPrize() / buyingPrice * 100);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", 1.0 * lottoChecker.getTotalPrize() / buyingPrice * 100);
     }
 }
