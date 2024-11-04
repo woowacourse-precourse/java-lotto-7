@@ -9,7 +9,7 @@ public class PurchaseAmountController {
         String purchaseAmount = "";
         boolean isValid = false;
         while (!isValid) {
-            purchaseAmount= InputView.requestLottoPurchase();
+            purchaseAmount = InputView.requestLottoPurchase();
             isValid = PurchaseAmountHandler.handle(purchaseAmount);
         }
         return new PurchaseAmountRequestDto(Integer.parseInt(purchaseAmount));

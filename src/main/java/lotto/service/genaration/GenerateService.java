@@ -11,16 +11,19 @@ import java.util.List;
 
 public class GenerateService {
     int numberOfLotto;
+
     public GenerateService(int numberOfLotto) {
         this.numberOfLotto = numberOfLotto;
     }
+
     public Lotto generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumber.MIN_LOTTO_NUMBER, LottoNumber.MAX_LOTTO_NUMBER, 6);
         return new Lotto(numbers);
     }
-    public Lottos generateLotos()  {
+
+    public Lottos generateLotos() {
         List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i < numberOfLotto; i++) {
+        for (int i = 0; i < numberOfLotto; i++) {
             Lotto lotto = generateLotto();
             lottos.add(lotto);
         }

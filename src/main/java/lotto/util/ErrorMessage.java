@@ -19,5 +19,4 @@ public class ErrorMessage {
     public static final String ERROR_INVALID_BONUS_NUMBER_FORMAT = "[ERROR] Bonus number must be an integer.";
     public static final String ERROR_BONUS_NUMBER_OUT_OF_RANGE = "[ERROR] Bonus number must be between 1 and 45.";
     public static final String ERROR_DUPLICATE_BONUS_NUMBER = "[ERROR] Bonus number must be unique from Winning Numbers.";
-
 }

@@ -6,5 +6,4 @@ public class PurchaseAmountHandler {
     public static boolean handle(String purchaseAmount) {
         return PurchaseAmountValidator.validateBlank(purchaseAmount) && PurchaseAmountValidator.validateDivisibleBy1000(purchaseAmount);
     }
-
 }

@@ -16,6 +16,7 @@ public class BonusNumberValidator {
             return false;
         }
     }
+
     public static boolean validateDataType(String bonusNUmber) {
         try {
             Integer.parseInt(bonusNUmber);
@@ -25,6 +26,7 @@ public class BonusNumberValidator {
             return false;
         }
     }
+
     public static boolean validateRange(String bonusNUmber) {
         try {
             int parsedNumber = Integer.parseInt(bonusNUmber);
@@ -37,6 +39,7 @@ public class BonusNumberValidator {
             return false;
         }
     }
+
     public static boolean validateDuplicate(String bonusNUmber, WinningNumbersRequestDto winningNumbersRequestDto) {
         try {
             int parsedNumber = Integer.parseInt(bonusNUmber);

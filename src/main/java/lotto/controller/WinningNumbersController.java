@@ -11,11 +11,12 @@ public class WinningNumbersController {
     public static List<Integer> convertWinningNumbers(String winningNumbers) {
         List<Integer> parsedWinningNumbers = new ArrayList<>();
         String[] winningNumbersList = winningNumbers.split(",");
-        for(String token : winningNumbersList) {
+        for (String token : winningNumbersList) {
             parsedWinningNumbers.add(Integer.parseInt(token));
         }
         return parsedWinningNumbers;
     }
+
     public static WinningNumbersRequestDto run() {
         String winningNumbers = "";
         boolean isValid = false;
@@ -27,4 +28,3 @@ public class WinningNumbersController {
         return new WinningNumbersRequestDto(convertWinningNumbers(winningNumbers));
     }
 }
-

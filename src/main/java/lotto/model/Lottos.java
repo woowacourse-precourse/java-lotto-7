@@ -8,9 +8,11 @@ public class Lottos {
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
     public int getLottosSize() {
         return lottos.size();
     }
+
     public Lotto getLotto(int idx) {
         return lottos.get(idx);
     }

@@ -23,7 +23,7 @@ public class ProfitController {
 
         OutputView.displayPrizeResults(prizeMap);
 
-        ProfitService profitService = new ProfitService(prizeMap, lottos.getLottosSize()*1000);
+        ProfitService profitService = new ProfitService(prizeMap, lottos.getLottosSize() * 1000);
         double profitRate = profitService.calculateProfitRate();
 
         OutputView.displayProfitRate(profitRate);
