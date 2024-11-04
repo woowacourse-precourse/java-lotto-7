@@ -22,11 +22,12 @@ class CalculateTest {
                 , WINNING_BONUS_NUMBERS.getNumber());
         DrawNumbers randomDrawNumbers = new DrawNumbers(lottoNumbers, bonusNumber);
         //when
-        Calculate calculate = new Calculate(winningDrawNumbers,randomDrawNumbers);
+        Calculate calculate = new Calculate(winningDrawNumbers, randomDrawNumbers);
         int result = calculate.calculatePrizeMoney();
         //then
         assertThat(result).isEqualTo(prizeMoney);
     }
+
     private static Stream<Arguments> provideALLPrizeMoney() {
         return Stream.of(
                 Arguments.of(THREE_MATCH_LOTTO_NUMBERS, NOT_MATCH_BONUS_NUMBERS, THREE_MATCH_PRIZE),
