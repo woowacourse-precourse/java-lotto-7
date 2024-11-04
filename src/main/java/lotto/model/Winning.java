@@ -24,6 +24,10 @@ public enum Winning {
 		this.hasBonusNumber = hasBonusNumber;
 	}
 
+	public int getCount() {
+		return count;
+	}
+
 	public static Map<Winning, Integer> initializeWinningResults() {
 		return Arrays.stream(Winning.values())
 				.collect(Collectors.toMap(winning -> winning, winning -> INITIAL_VALUE));
