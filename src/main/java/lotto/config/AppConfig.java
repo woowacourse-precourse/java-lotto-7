@@ -3,6 +3,8 @@ package lotto.config;
 import lotto.controller.LottoController;
 import lotto.domain.AutoLottoGenerator;
 import lotto.domain.LottoMachine;
+import lotto.domain.WinningResult;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.console.ConsoleReader;
@@ -21,7 +23,7 @@ public class AppConfig {
     }
 
     public LottoController lottoController() {
-        return new LottoController(createInputView(), createOutputView(), createLottoMachine());
+        return new LottoController(createInputView(), createOutputView(), createLottoMachine(), createLottoService());
     }
 
     private InputView createInputView() {
@@ -34,6 +36,14 @@ public class AppConfig {
 
     private LottoMachine createLottoMachine() {
         return new LottoMachine(new AutoLottoGenerator());
+    }
+
+    private WinningResult createWinningResult() {
+        return new WinningResult();
+    }
+
+    private LottoService createLottoService() {
+        return new LottoService(createWinningResult());
     }
 }
 
