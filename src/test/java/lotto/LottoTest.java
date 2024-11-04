@@ -1,21 +1,30 @@
 package lotto;
 
+
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import lotto.service.Lotto;
-import lotto.service.Purchase;
 import lotto.view.input.Input;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static lotto.view.exception.ErrorMessage.numberCommerForat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
+    private final InputStream originalIn = System.in;
 
+    @AfterEach
+    void restoreSystemIn() {
+        System.setIn(originalIn);
+    }
 
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
@@ -73,7 +82,26 @@ class LottoTest {
         Input input = new Input();
         String mockInput = "46\n";
         InputStream in = new ByteArrayInputStream(mockInput.getBytes());
+
         System.setIn(in);
+
+        //when && then
+        assertThatThrownBy(() -> input.getBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+
+    }
+
+    @DisplayName("로또 추가 번호 입력 시 동일한 함수 있을 시에 에러 발생한다.")
+    @Test
+    void 로또_추가_번호_입력_시_동일한_함수_있을시에_에러_발생한다() {
+        //given
+        Input input = new Input();
+        String mockInput = "6\n";
+        InputStream in = new ByteArrayInputStream(mockInput.getBytes());
+        System.setIn(in);
+
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
 
         //when && then
         assertThatThrownBy(() -> input.getBonusNumber())
