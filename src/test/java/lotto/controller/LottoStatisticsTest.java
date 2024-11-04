@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.LottoBundle;
 import lotto.model.MatchingRecord;
 import lotto.model.Rank;
 import lotto.model.WinningNumbers;
@@ -41,7 +42,7 @@ class LottoStatisticsTest {
         lottoes.add(lotto);
 
         List<MatchingRecord> matchingRecords = stream(Rank.values()).map(MatchingRecord::new).toList();
-        getStatistics(matchingRecords, lottoes, winningNumbers, bonusNumber);
+        getStatistics(matchingRecords, new LottoBundle(lottoes), winningNumbers, bonusNumber);
         assertThat(matchingRecords.get(index).getLottoQuantity()).isEqualTo(1);
     }
 }

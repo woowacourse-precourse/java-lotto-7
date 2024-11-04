@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.LottoBundle;
 import lotto.model.MatchingRecord;
 import lotto.model.WinningNumbers;
 
@@ -17,9 +18,9 @@ public class LottoStatistics {
         return wholeCashPrize;
     }
 
-    public static void getStatistics(List<MatchingRecord> matchingRecords, List<Lotto> lottos,
+    public static void getStatistics(List<MatchingRecord> matchingRecords, LottoBundle lottoes,
                                      WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoes.getLottoBundle()) {
             Integer count = (int) lotto.getNumbers().stream()
                     .filter(i -> winningNumbers.getWinningNumbers().contains(i)).count();
             if (count.equals(6)) {

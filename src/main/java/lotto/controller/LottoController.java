@@ -13,7 +13,7 @@ import static lotto.view.OutputView.printWinningStatistics;
 import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Deposit;
-import lotto.model.Lotto;
+import lotto.model.LottoBundle;
 import lotto.model.MatchingRecord;
 import lotto.model.Rank;
 import lotto.model.WinningNumbers;
@@ -21,7 +21,7 @@ import lotto.model.WinningNumbers;
 public class LottoController {
     public void run() {
         Deposit deposit = makeDeposit();
-        List<Lotto> lottoes = issueLottoes(deposit.getNumberOfLottoes());
+        LottoBundle lottoes = issueLottoes(deposit.getLottoAmount());
 
         WinningNumbers winningNumbers = getWinningNumbers();
         BonusNumber bonusNumber = getBonusNumber(winningNumbers);

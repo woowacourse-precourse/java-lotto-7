@@ -15,7 +15,7 @@ public class Deposit {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public int getNumberOfLottoes() {
+    public int getLottoAmount() {
         return this.purchaseAmount / PURCHASE_UNIT;
     }
 

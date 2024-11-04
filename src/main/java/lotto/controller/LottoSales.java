@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.Deposit;
 import lotto.model.Lotto;
+import lotto.model.LottoBundle;
 
 public class LottoSales {
     public static Deposit makeDeposit() {
@@ -22,10 +23,10 @@ public class LottoSales {
         }
     }
 
-    public static List<Lotto> issueLottoes(int numberOfLottoes) {
+    public static LottoBundle issueLottoes(int numberOfLottoes) {
         List<Lotto> lottoes = IntStream.range(0, numberOfLottoes)
                 .mapToObj(i -> new Lotto(pickUniqueNumbersInRange(1, 45, 6))).toList();
         printPurchasedLottos(lottoes);
-        return lottoes;
+        return new LottoBundle(lottoes);
     }
 }
