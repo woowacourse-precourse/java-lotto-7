@@ -38,4 +38,28 @@ public class LottoTickets {
                 .mapToObj(i -> generateLottoNumbers())
                 .collect(Collectors.toList());
     }
+
+    public int[] draw(List<List<Integer>> tickets, List<Integer> winningNumbers, Integer bonusNumber) {
+        int[] result = new int[7];
+
+        for (List<Integer> ticket : tickets) {
+            processTicket(ticket, winningNumbers, bonusNumber, result);
+        }
+        return result;
+    }
+
+    private void processTicket(List<Integer> ticket, List<Integer> winningNumbers, Integer bonusNumber, int[] result) {
+        int rank = calculateRank(ticket, winningNumbers, bonusNumber);
+        updateResult(result, rank);
+    }
+
+    private int calculateRank(List<Integer> ticket, List<Integer> winningNumbers, Integer bonusNumber) {
+        Lotto lotto = new Lotto(ticket);
+        return lotto.draw(winningNumbers, bonusNumber);
+    }
+
+    private void updateResult(int[] result, int rank) {
+        result[rank]++;
+    }
+
 }
