@@ -28,6 +28,9 @@ public class Number implements Comparable<Number> {
 
     @Override
     public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
         if (!(o instanceof Number other)) {
             return false;
         }
