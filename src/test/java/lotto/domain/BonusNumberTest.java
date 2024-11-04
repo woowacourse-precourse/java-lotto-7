@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.BonusNumber;
+import lotto.global.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +18,7 @@ class BonusNumberTest {
         // when & then
         assertThatThrownBy(() -> BonusNumber.from(invalidNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessage(ErrorMessage.INVALID_BONUS_NUMBER_RANGE);
     }
 
     @DisplayName("유효한 보너스 번호를 생성한다.")

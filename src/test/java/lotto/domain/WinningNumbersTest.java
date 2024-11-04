@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.Arrays;
 import lotto.global.message.ErrorMessage;
-import lotto.global.message.OutputMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,16 +14,11 @@ class WinningNumbersTest {
         // given
         Lotto mainNumbers = Lotto.from(Arrays.asList(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = BonusNumber.from(1);
-        String expectedErrorMessage = String.format(
-                OutputMessage.ERROR_FORMAT,
-                ErrorMessage.DUPLICATE_BONUS_NUMBER
-        );
 
         // when & then
         assertThatThrownBy(() -> WinningNumbers.of(mainNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(expectedErrorMessage)
-                .hasMessageStartingWith("[ERROR]");
+                .hasMessage(ErrorMessage.DUPLICATE_BONUS_NUMBER);
     }
 
     @DisplayName("당첨 번호와 일치하는 번호의 개수를 계산한다.")
