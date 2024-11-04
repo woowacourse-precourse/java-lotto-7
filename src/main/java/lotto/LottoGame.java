@@ -26,53 +26,55 @@ public class LottoGame {
 
     // 첫 번째 입력(구입 금액)
     private void inputPurchaseAmount() {
-        try {
-            System.out.println("구입금액을 입력해 주세요.");
+        while(true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
 
-            purchaseAmount = Integer.parseInt(checkPositiveNumber(Console.readLine()));
-            checkUnitOfPurchaseAmount(purchaseAmount);
-            checkPurchasedAmountExceeded(purchaseAmount);
+                purchaseAmount = Integer.parseInt(checkPositiveNumber(Console.readLine()));
+                checkUnitOfPurchaseAmount(purchaseAmount);
+                checkPurchasedAmountExceeded(purchaseAmount);
 
-            int numberOfLottoPurchases = lottoIssuesCount(purchaseAmount);
-            printLottoIssuesCount(numberOfLottoPurchases);
-            lottoIssuance(numberOfLottoPurchases);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputPurchaseAmount();
+                int numberOfLottoPurchases = lottoIssuesCount(purchaseAmount);
+                printLottoIssuesCount(numberOfLottoPurchases);
+                lottoIssuance(numberOfLottoPurchases);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     // 두 번째 입력(로또 번호(당첨 번호))
     private void inputLottoWinningNumber() {
-        try {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
+        while(true) {
+            try {
+                System.out.println("\n당첨 번호를 입력해 주세요.");
 
-            List<String> winningNumber = List.of(Console.readLine().replace(" ", "").split(","));
-            List<Integer> winningNumbers = new ArrayList<>();
+                List<String> winningNumber = List.of(Console.readLine().replace(" ", "").split(","));
+                List<Integer> winningNumbers = new ArrayList<>();
 
-            for (String number : winningNumber) {
-                winningNumbers.add(Integer.parseInt(checkPositiveNumber(number)));
+                addWinningNumbers(winningNumber, winningNumbers);
+                Collections.sort(winningNumbers);
+                lotto = new Lotto(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-
-            Collections.sort(winningNumbers);
-            lotto = new Lotto(winningNumbers);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputLottoWinningNumber();
         }
     }
 
     // 세 번째 입력(보너스 번호)
     private void inputLottoBonusNumber() {
-        try {
-            System.out.println("\n보너스 번호를 입력해 주세요.");
-            bonusNumber = Integer.parseInt(checkPositiveNumber(Console.readLine()));
-            checkBonusNumberRange(bonusNumber);
-            checkBonusNumberRedundancy(bonusNumber, lotto);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputLottoBonusNumber();
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                bonusNumber = Integer.parseInt(checkPositiveNumber(Console.readLine()));
+                checkBonusNumberRange(bonusNumber);
+                checkBonusNumberRedundancy(bonusNumber, lotto);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -152,5 +154,12 @@ public class LottoGame {
     // 로또 발급 건수를 출력하는 메서드
     public void printLottoIssuesCount(int numberOfLottoPurchases) {
         System.out.println(numberOfLottoPurchases + "개를 구매했습니다.");
+    }
+
+    // 로또 번호를 리스트에 추가하는 메서드
+    private void addWinningNumbers(List<String> winningNumber, List<Integer> winningNumbers) {
+        for (String number : winningNumber) {
+            winningNumbers.add(Integer.parseInt(checkPositiveNumber(number)));
+        }
     }
 }
