@@ -1,4 +1,6 @@
-package lotto;
+package lotto.lotto;
+
+import java.text.NumberFormat;
 
 public record Money(int value) {
 
@@ -21,5 +23,10 @@ public record Money(int value) {
         if (value % amount != 0) {
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public String toString() {
+        return NumberFormat.getNumberInstance().format(value);
     }
 }

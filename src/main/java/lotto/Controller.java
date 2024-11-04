@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.lotto.Lotto;
+import lotto.lotto.Money;
+
 import java.util.List;
 
 public class Controller {
@@ -13,4 +16,6 @@ public class Controller {
     public List<Lotto> buyLotto(Money money) {
         return lottoService.buyLotto(money);
     }
+
+
 }
