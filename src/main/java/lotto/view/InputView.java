@@ -19,15 +19,18 @@ public class InputView {
                 validateIsNumber(userInput);
 
                 long purchaseAmount = Long.parseLong(userInput);
-                validatePositive(purchaseAmount);
+                validateIsZero(purchaseAmount);
                 validateThousandUnit(purchaseAmount);
 
+                System.out.println();
                 return purchaseAmount;
 
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 입력 값이 너무 큽니다. 다시 입력해 주세요.");
+                System.out.println();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
     }
@@ -41,9 +44,11 @@ public class InputView {
                 List<Integer> winningNumbers = parseWinningNumbers(userInput);
                 validateWinningNumbers(winningNumbers);
 
+                System.out.println();
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
     }
@@ -57,11 +62,14 @@ public class InputView {
                 int bonusNumber = Integer.parseInt(userInput);
                 validateBonusNumber(bonusNumber, winningNumbers);
 
+                System.out.println();
                 return bonusNumber;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 입력 값은 숫자여야 합니다.");
+                System.out.println();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
     }
@@ -73,7 +81,7 @@ public class InputView {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해주세요.");
         }
     }
 }

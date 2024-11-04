@@ -11,13 +11,13 @@ public class ValidationUtils {
 
     public static void validateIsNumber(String input) {
         if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 올바른 금액을 입력해주세요.");
         }
     }
 
-    public static void validatePositive(long value) {
-        if (value <= 0) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 0보다 커야 합니다.");
+    public static void validateIsZero(long value) {
+        if (value == 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.");
         }
     }
 
