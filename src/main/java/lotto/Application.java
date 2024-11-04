@@ -1,63 +1,76 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-
 public class Application {
-    private static final int LOTTO_PRICE = 1000; // 로또 한 장 가격 정의
+    private static final int LOTTO_PRICE = 1000;
 
     public static void main(String[] args) {
         try {
-            int amount = inputAmount(); // 구입 금액 입력받기
-            List<Lotto> purchasedLottos = purchaseLottos(amount / LOTTO_PRICE); // 구매한 로또 수량만큼 로또 생성
-            printLottos(purchasedLottos); // 구매한 로또 번호 출력
+            int amount = inputAmount();
+            List<Lotto> purchasedLottos = purchaseLottos(amount / LOTTO_PRICE);
+            printLottos(purchasedLottos);
+            List<Integer> winningNumbers = inputWinningNumbers();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage()); // 예외 발생 시 에러 메시지 출력
+            System.out.println(e.getMessage());
         }
     }
 
-    // 구입 금액 입력 및 1000원 단위 검증
     private static int inputAmount() {
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
             try {
-                int amount = Integer.parseInt(Console.readLine()); // 구입 금액 입력
+                int amount = Integer.parseInt(Console.readLine());
                 if (amount < LOTTO_PRICE || amount % LOTTO_PRICE != 0) {
-                    throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다."); // 구입 금액이 1,000원 단위가 아니면 예외 발생
+                    throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
                 }
-                return amount; // 유효한 금액일 경우 반환
+                return amount;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage()); // 유효하지 않을 경우 에러 메시지 출력 후 다시 입력
+                System.out.println(e.getMessage());
             }
         }
     }
 
-     // 로또 구매 및 로또 번호 생성
     private static List<Lotto> purchaseLottos(int count) {
         System.out.println("\n" + count + "개를 구매했습니다.");
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            lottos.add(new Lotto(generateLottoNumbers())); // count 수만큼 로또 생성하여 리스트에 추가
+            lottos.add(new Lotto(generateLottoNumbers()));
         }
         return lottos;
     }
 
     private static List<Integer> generateLottoNumbers() {
-        // 1부터 45 사이의 중복되지 않는 랜덤 숫자 6개를 생성하여 정렬 후 반환
         List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
         return numbers;
     }
 
-
-    // 구매한 로또 번호 출력
     private static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
+        }
+    }
+
+    // 당첨 번호 입력 메서드 - 유효성 검사는 Lotto 클래스에서 처리
+    private static List<Integer> inputWinningNumbers() {
+        while (true) {
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            try {
+                String input = Console.readLine();
+                String[] inputs = input.split(",");
+                List<Integer> winningNumbers = new ArrayList<>();
+                for (String num : inputs) {
+                    winningNumbers.add(Integer.parseInt(num.trim()));
+                }
+                return winningNumbers;
+            } catch (Exception e) {
+                System.out.println("[ERROR] 올바른 형식의 당첨 번호를 입력해 주세요.");
+            }
         }
     }
 }
