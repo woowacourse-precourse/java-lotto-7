@@ -46,4 +46,11 @@ public class Validator {
             ExceptionFactory.throwIllegalArgumentException(ExceptionType.NON_DIVISIBLE);
         }
    }
+
+   public static void validateSpecificRange(int number , int startRange,int endRange){
+
+        if(number > endRange || number < startRange){
+            ExceptionFactory.throwIllegalArgumentException(ExceptionType.OUT_OF_SPECIFIC_RANGE);
+        }
+   }
 }

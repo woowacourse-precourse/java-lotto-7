@@ -6,6 +6,7 @@ public enum ExceptionType {
     OUT_OF_RANGE_INT("stage is out of int type rage"),
     NON_POSITIVE_NUMBER("number is not positive number"),
     NON_DIVISIBLE("values are not divisible relation"),
+    OUT_OF_SPECIFIC_RANGE("out of specific range"),
     //STRING related
     EMPTY_STRING("string is empty");
 
