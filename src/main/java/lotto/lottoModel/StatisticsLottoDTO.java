@@ -1,7 +1,5 @@
 package lotto.lottoModel;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class StatisticsLottoDTO {
@@ -12,10 +10,6 @@ public class StatisticsLottoDTO {
     public StatisticsLottoDTO(Map<Integer, Integer> hitNumberFrequency, int bonusNumberFrequency) {
         this.hitNumberFrequency = hitNumberFrequency;
         this.bonusNumberFrequency = bonusNumberFrequency;
-    }
-
-    public Map<Integer, Integer> getHitNumberFrequency() {
-        return hitNumberFrequency;
     }
 
     public int getBonusNumberFrequency() {

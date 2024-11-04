@@ -20,6 +20,7 @@ public class StatisticsLottoDAO {
 
     // DTO로 변환하여 통계 정보 반환
     public StatisticsLottoDTO getStatisticsAsDTO() {
-        return new StatisticsLottoDTO(statisticsLotto.getHitNumberFrequency(), statisticsLotto.getBonusNumberFrequency());
+        return new StatisticsLottoDTO(statisticsLotto.getHitNumberFrequency(),
+                statisticsLotto.getBonusNumberFrequency());
     }
 }

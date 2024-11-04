@@ -11,6 +11,11 @@ public class LottoMainService {
     private static final int START_NUMBER = 1;
     private static final int END_NUMBER = 45;
     private static final int LIST_NUMBER = 6;
+    private static final int ZERO = 0;
+    private static final int THREE = 3;
+    private static final int FIVE = 5;
+    private static final int SIX = 6;
+    private static final int ONE_THOUSAND = 1000;
 
     private LottoDAO lottoDAO; //생성된 로또 번호
     private StatisticsLottoDAO statisticsDAO; //당첨 통계
@@ -23,9 +28,9 @@ public class LottoMainService {
     //로또 구매 횟수 만큼 객체 생성
     public void buyLotto(String cost) {
         long calcCost = Long.parseLong(cost);
-        long numberOfBuy = calcCost / 1000;
+        long numberOfBuy = calcCost / ONE_THOUSAND;
 
-        for (int i = 0; i < numberOfBuy; i++) {
+        for (int i = ZERO; i < numberOfBuy; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LIST_NUMBER);
             Lotto lotto = new Lotto(numbers);
             lottoDAO.save(lotto); //생성된 로또 번호 저장
@@ -59,7 +64,7 @@ public class LottoMainService {
 
     //당첨 번호 반환
     public HitLottoDTO getAllHitLottosAsDTO() {
-        HitLotto hitLotto = HitLotto.getInstance(null, 0);  // 사용자가 입력한 당첨번호
+        HitLotto hitLotto = HitLotto.getInstance(null, ZERO);  // 사용자가 입력한 당첨번호
         return new HitLottoDTO(hitLotto.getAllHitNumbers());
     }
 
@@ -76,13 +81,13 @@ public class LottoMainService {
     // 통계 갱신 메서드
     private void saveLottoStatistics(Set<Integer> lottoNumber) {
         int hitSize = lottoNumber.size(); // 당첨 번호 맞춘 개수
-        HitLotto hitLotto = HitLotto.getInstance(null, 0); // 사용자가 입력한 당첨번호
+        HitLotto hitLotto = HitLotto.getInstance(null, ZERO); // 사용자가 입력한 당첨번호
 
-        if (hitSize >= 3 && hitSize <= 6) { // 3~6까지 맞춘 횟수 빈도 추가
+        if (hitSize >= THREE && hitSize <= SIX) { // 3~6까지 맞춘 횟수 빈도 추가
             statisticsDAO.updateSizeFrequency(hitSize);
         }
 
-        if (hitSize == 5 && lottoNumber.contains(hitLotto.getBonusNumber())) { // 5일 때 특정 값이 있는지 확인하고 있으면 추가
+        if (hitSize == FIVE && lottoNumber.contains(hitLotto.getBonusNumber())) { // 5일 때 특정 값이 있는지 확인하고 있으면 추가
             statisticsDAO.addSpecificValue();
         }
     }
@@ -95,9 +100,9 @@ public class LottoMainService {
 
     // 상금 합계 계산 후 반환
     public double sumPrize(StatisticsLottoDTO stats, String cost) {
-        long sumPrize = 0;
-        for (int i = 3; i <= 6; i++) {
-            if (i == 5) {
+        long sumPrize = ZERO;
+        for (int i = THREE; i <= SIX; i++) {
+            if (i == FIVE) {
                 sumPrize +=
                         LottoPrize.getPrize(i, false) * (stats.getHitNumberValue(i) - stats.getBonusNumberFrequency());
                 sumPrize += LottoPrize.getPrize(i, true) * stats.getBonusNumberFrequency();
