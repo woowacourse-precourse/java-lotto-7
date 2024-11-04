@@ -33,7 +33,7 @@ public class LottoNumberValidator {
 
     public static void validateDuplicatedBonusNumber(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + BONUS_NUMBER_DUPLICATION.getMessage());
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
 }
