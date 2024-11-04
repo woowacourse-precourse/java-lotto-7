@@ -4,16 +4,20 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.LottoConstant;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoRound {
     private List<Lotto> lottos;
 
+    private List<Integer> gradingNumbers;
+    private int bonusNumbers;
+
     public LottoRound() {
         this.lottos = new ArrayList<>();
     }
 
-    public LottoRound(List<Lotto> lottos) {
+    protected LottoRound(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
@@ -23,6 +27,33 @@ public class LottoRound {
 
     public List<Lotto> getLottos() {
         return this.lottos;
+    }
+
+    /**
+     * 설정된 당첨번호를 비교하여 우승내역을 계산합니다
+     *
+     * @return 각 index를 등수로 하는 복권의 개수
+     */
+    public List<Integer> getWinHistory() {
+        List<Integer> winHistory = new ArrayList<>(6);
+
+        lottos.stream()
+                .map(v -> v.grade(this.gradingNumbers, this.bonusNumbers))
+                .forEach(i -> {
+                    int wonHistoryCount = winHistory.get(i);
+                    winHistory.set(i, wonHistoryCount + 1);
+                });
+
+        return winHistory;
+    }
+
+    public void setWinNumbers(List<Integer> gradingNumbers, int bonusNumbers) {
+        this.gradingNumbers = gradingNumbers;
+        this.bonusNumbers = bonusNumbers;
+    }
+
+    private void addLotto(Lotto lotto) {
+        lottos.add(lotto);
     }
 
     /**
@@ -48,9 +79,5 @@ public class LottoRound {
                 LottoConstant.MAX_LOTTO_NUMBER,
                 LottoConstant.LOTTO_DIGITS
         );
-    }
-
-    private void addLotto(Lotto lotto) {
-        lottos.add(lotto);
     }
 }
