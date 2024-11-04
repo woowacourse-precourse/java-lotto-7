@@ -73,7 +73,7 @@
 - [x] (Service) 로또 번호와 당첨 번호를 비교하는 로직을 구현한다.
   - 1~5등 일치 번호와 당첨 금액
 - [x] (View) 당첨 내역을 출력한다.
-- [ ] (Service) 수익률 계산 및 출력
+- [x] (Service) 수익률 계산 및 출력
   - 소수점 둘째 자리에서 반올림한다.
 - [ ] (Exception) 예외 처리
   - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생

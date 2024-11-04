@@ -11,7 +11,8 @@ public class OutputView {
     private static final String WINNING_STATISTICS_TITLE = "당첨 통계";
     private static final String SEPARATOR_LINE = "---";
     private static final String COUNT_UNIT = "개";
-
+    private static final String FRONT_PROFIT_RATE = "총 수익률은 ";
+    private static final String BACK_PROFIT_RATE = "%입니다.";
 
     public static void printPurchasedLotto(int lottoCount, List<String> purchasedLotto) {
         System.out.println(NEW_LINE + lottoCount + RESPONSE_LOTTO_COUNT);
@@ -27,5 +28,9 @@ public class OutputView {
         for (WinningLotto winning : WinningLotto.values()) {
             System.out.println(winning.getDescription() + winning.getMatchCount() + COUNT_UNIT);
         }
+    }
+
+    public static void printProfitRate(double profitRate) {
+        System.out.println(FRONT_PROFIT_RATE + profitRate + BACK_PROFIT_RATE);
     }
 }
