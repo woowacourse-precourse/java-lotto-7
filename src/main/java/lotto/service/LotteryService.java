@@ -19,6 +19,7 @@ public class LotteryService {
     }
 
     public void purchaseLotto() {
+        LottoBuyer lottoBuyer = new LottoBuyer();
         outputView.printRequirePurchaseAmount();
 
         final String inputPurchaseAmount = Console.readLine();
@@ -27,10 +28,8 @@ public class LotteryService {
         lotteryValidator.validatePurchaseAmount(purchaseAmount);
 
         int lottoPurchaseAmount = purchaseAmount / 1000;
-        final LottoBuyer lottoBuyer = new LottoBuyer(lottoPurchaseAmount);
-        outputView.printPurchaseAmount(lottoPurchaseAmount);
-
-        issueLottoTickets(lottoPurchaseAmount);
+        lottoBuyer.setLottoPurchaseAmount(lottoPurchaseAmount);
+        issueLottoTickets(lottoBuyer, lottoPurchaseAmount);
     }
 
     public void getLottoWinningNumber() {
@@ -59,9 +58,12 @@ public class LotteryService {
         System.out.println("총 수익률은 " + lotteryYield + "%입니다.");
     }
 
-    private void issueLottoTickets(final int lottoIssueNumber) {
+    private void issueLottoTickets(final LottoBuyer lottoBuyer, final int lottoIssueNumber) {
         for (int i = 0; i < lottoIssueNumber; i++) {
-            System.out.println(getTicketNumbers());
+            List<Integer> ticketNumbers = getTicketNumbers();
+            Lotto lotto = new Lotto(ticketNumbers);
+            lottoBuyer.addLotto(lotto);
+            System.out.println(ticketNumbers);
         }
     }
 
