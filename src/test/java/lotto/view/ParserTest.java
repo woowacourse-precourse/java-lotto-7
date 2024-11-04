@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.constant.ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE;
+import static lotto.constant.ErrorMessage.NOT_DIVISIBLE_BY_THOUSAND_ERROR_MESSAGE;
+import static lotto.constant.ErrorMessage.NOT_NUMBER_FORMAT_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -31,7 +34,7 @@ class ParserTest {
         // when// then
         assertThatThrownBy(() -> parser.parseLottoPurchasePrice(value))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("ERROR 잘못된 입력입니다. 로또는 1000원당 한장입니다.");
+                .hasMessage(NOT_DIVISIBLE_BY_THOUSAND_ERROR_MESSAGE.getMessage());
     }
 
     @Test
@@ -42,9 +45,29 @@ class ParserTest {
         // when
         int result = parser.parseStringToInteger(value);
         // then
-        assertThat(result)
-                .isInstanceOf(Integer.class)
-                .isEqualTo(8000);
+        assertThat(result).isEqualTo(8000);
+    }
+
+    @Test
+    @DisplayName("빈 문자열이 들어오면 예외가 발생한다.")
+    void parseEmptyInputErrorTest() {
+        //given
+        String value = "";
+        //when//then
+        assertThatThrownBy(() -> parser.parseStringToInteger(value))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(EMPTY_INPUT_ERROR_MESSAGE.getMessage());
+    }
+
+    @Test
+    @DisplayName("null이 들어오면 예외가 발생한다.")
+    void parseNullInputErrorTest() {
+        //given
+        String value = null;
+        //when//then
+        assertThatThrownBy(() -> parser.parseStringToInteger(value))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(EMPTY_INPUT_ERROR_MESSAGE.getMessage());
     }
 
     @Nested
@@ -87,7 +110,7 @@ class ParserTest {
             // when// then
             assertThatThrownBy(() -> parser.parseStringToInteger(value))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 잘못된 입력입니다. 숫자만 입력할 수 있습니다.");
+                    .hasMessage(NOT_NUMBER_FORMAT_ERROR_MESSAGE.getMessage());
         }
 
         @Test
@@ -97,7 +120,7 @@ class ParserTest {
             // when// then
             assertThatThrownBy(() -> parser.parseWinningLottoNumbers(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 잘못된 입력입니다. 숫자만 입력할 수 있습니다.");
+                    .hasMessage(NOT_NUMBER_FORMAT_ERROR_MESSAGE.getMessage());
         }
 
     }
