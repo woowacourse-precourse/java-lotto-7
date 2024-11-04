@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.LottoGame;
+import lotto.model.LottoResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,6 +25,7 @@ public class LottoController {
         game.setWinningNumber(inputView.winningNumber());
         game.setBonusNumber(inputView.bonusNumber());
 
-        // 결과 출력 구현 필요
+        LottoResult result = game.calculateResult();
+
     }
 }

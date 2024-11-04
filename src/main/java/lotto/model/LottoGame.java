@@ -41,4 +41,18 @@ public class LottoGame {
     public List<Lotto> getTickets() {
         return tickets;
     }
+
+    public LottoResult calculateResult() {
+        LottoResult result = new LottoResult();
+
+        for (Lotto ticket : tickets) {
+            int matchCount = ticket.matchCount(winningNumber);
+            boolean bonusCheck = ticket.getNumbers().contains(bonusNumber);
+            WinningRank winningRank = WinningRank.matchRank(matchCount, bonusCheck);
+            if (winningRank != null) {
+                result.record(winningRank);
+            }
+        }
+        return result;
+    }
 }

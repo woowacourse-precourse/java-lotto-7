@@ -20,4 +20,9 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    // 당첨 번호와 일치하는 숫자 개수 카운트 메소드
+    public int matchCount(Lotto winningNumber) {
+        return (int) numbers.stream().filter(winningNumber.getNumbers()::contains).count();
+    }
 }
