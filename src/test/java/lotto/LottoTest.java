@@ -1,6 +1,8 @@
 package lotto;
 
 import enums.Prize;
+import functions.InputValidation;
+import functions.UserInput;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,61 +28,57 @@ class LottoTest {
 
     @Test
     void 로또_번호가_올바르지_않으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(new LottoService().checkWinningNumber(null)))
+        assertThatThrownBy(() -> new Lotto(new InputValidation().checkWinningNumber(null)))
                 .isInstanceOf(NullPointerException.class); // null 값
-        assertThatThrownBy(() -> new Lotto(new LottoService().checkWinningNumber("")))
+        assertThatThrownBy(() -> new Lotto(new InputValidation().checkWinningNumber("")))
                 .isInstanceOf(IllegalArgumentException.class); // 빈 값
-        assertThatThrownBy(() -> new Lotto(new LottoService().checkWinningNumber("j2,2,3k,4,5,6")))
+        assertThatThrownBy(
+                () -> new Lotto(new InputValidation().checkWinningNumber("j2,2,3k,4,5,6")))
                 .isInstanceOf(IllegalArgumentException.class); // 문자 포함
-        assertThatThrownBy(() -> new Lotto(new LottoService().checkWinningNumber("-1,2,3,-4,5,6")))
+        assertThatThrownBy(
+                () -> new Lotto(new InputValidation().checkWinningNumber("-1,2,3,-4,5,6")))
                 .isInstanceOf(IllegalArgumentException.class); // 음수 포함
-        assertThatThrownBy(() -> new Lotto(new LottoService().checkWinningNumber("0,2,3,46,5,6")))
+        assertThatThrownBy(
+                () -> new Lotto(new InputValidation().checkWinningNumber("0,2,3,46,5,6")))
                 .isInstanceOf(IllegalArgumentException.class); // 1-45에서 벗어난 양수 포함
     }
 
     @Test
     void 보너스_번호가_올바르지_않으면_예외가_발생한다() {
         assertThatThrownBy(
-                () -> new LottoService().checkBonusNumber(null, List.of(1, 2, 3, 4, 5, 6)))
+                () -> new InputValidation().checkBonusNumber(null, List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(NullPointerException.class); // null 값
-        assertThatThrownBy(() -> new LottoService().checkBonusNumber("", List.of(1, 2, 3, 4, 5, 6)))
+        assertThatThrownBy(() -> new InputValidation().checkBonusNumber("", List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class); // 빈 값
         assertThatThrownBy(
-                () -> new LottoService().checkBonusNumber("J", List.of(1, 2, 3, 4, 5, 6)))
+                () -> new InputValidation().checkBonusNumber("J", List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class); // 문자인 경우
         assertThatThrownBy(
-                () -> new LottoService().checkBonusNumber("-1", List.of(1, 2, 3, 4, 5, 6)))
+                () -> new InputValidation().checkBonusNumber("-1", List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class); // 음수인 경우
         assertThatThrownBy(
-                () -> new LottoService().checkBonusNumber("0", List.of(1, 2, 3, 4, 5, 6)))
+                () -> new InputValidation().checkBonusNumber("0", List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class); // 1-45에서 벗어난 양수인 경우
     }
 
     @Test
     void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() {
         assertThatThrownBy(
-                () -> new LottoService().checkBonusNumber("1", List.of(1, 2, 3, 4, 5, 6)))
+                () -> new InputValidation().checkBonusNumber("1", List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 천원당_한장의_티켓_수가_반환된다() {
-        assertThat(new LottoService().getNumberOfTickets("1000")).isEqualTo(1);
-        assertThat(new LottoService().getNumberOfTickets("5000")).isEqualTo(5);
-        assertThat(new LottoService().getNumberOfTickets("10000")).isEqualTo(10);
-    }
-
-    @Test
     void 구매금액이_천의_배수가_아니라면_예외가_발생한다() {
-        assertThatThrownBy(() -> new LottoService().getNumberOfTickets(null))
+        assertThatThrownBy(() -> new InputValidation().checkNumberOfTickets(null))
                 .isInstanceOf(NullPointerException.class); // null 값
-        assertThatThrownBy(() -> new LottoService().getNumberOfTickets(""))
+        assertThatThrownBy(() -> new InputValidation().checkNumberOfTickets(""))
                 .isInstanceOf(IllegalArgumentException.class); // 빈 값
-        assertThatThrownBy(() -> new LottoService().getNumberOfTickets("jkh2000"))
+        assertThatThrownBy(() -> new InputValidation().checkNumberOfTickets("jkh2000"))
                 .isInstanceOf(IllegalArgumentException.class); // 문자 포함
-        assertThatThrownBy(() -> new LottoService().getNumberOfTickets("-1000"))
+        assertThatThrownBy(() -> new InputValidation().checkNumberOfTickets("-1000"))
                 .isInstanceOf(IllegalArgumentException.class); // 음수일 때
-        assertThatThrownBy(() -> new LottoService().getNumberOfTickets("1001"))
+        assertThatThrownBy(() -> new InputValidation().checkNumberOfTickets("1001"))
                 .isInstanceOf(IllegalArgumentException.class); // 1000의 배수가 아닐 때
     }
 

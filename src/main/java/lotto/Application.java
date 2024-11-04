@@ -1,6 +1,7 @@
 package lotto;
 
 import enums.Prize;
+import functions.UserInput;
 import java.util.HashMap;
 import java.util.List;
 
