@@ -3,15 +3,22 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RandomLotto {
     private static RandomLotto instance;
     private final List<List<Integer>> randomLottos;
+    private final Map<Prise, Integer> prizeCount;
     IOManager ioManager;
 
     private RandomLotto() {
         randomLottos = new ArrayList<>();
+        prizeCount = new HashMap<>();
+        for (Prise prise : Prise.values()) {
+            prizeCount.put(prise, 0);
+        }
     }
 
     public static RandomLotto getInstance() {
@@ -19,6 +26,10 @@ public class RandomLotto {
             instance = new RandomLotto();
         }
         return instance;
+    }
+
+    public Map<Prise, Integer> getPrizeCount() {
+        return prizeCount;
     }
 
     public void countCalculator(int money) {
@@ -49,6 +60,8 @@ public class RandomLotto {
             int cnt = matchCount(randomLotto, numbers);
             boolean bonus = bonusCheck(randomLotto, bonusNumber);
             Prise prise = priseCheck(cnt, bonus);
+
+            prizeCount.put(prise, prizeCount.get(prise) + 1);
         }
     }
 

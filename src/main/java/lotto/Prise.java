@@ -1,17 +1,16 @@
 package lotto;
 
 public enum Prise {
-    FIRST(6, 2000000000),
-    SECOND(5, 30000000),
-    THIRD(5, 1500000),
-    FORTH(4, 50000),
-    FIFTH(3, 5000),
-    SIXTH(2, 0);
+    FIFTH(3, "(5,000원)"),
+    FORTH(4, "(50,000원)"),
+    THIRD(5, "(1,500,000원)"),
+    SECOND(5, "(30,000,000원)"),
+    FIRST(6, "(2,000,000,000원)");
 
     private final int match;
-    private final int money;
+    private final String money;
 
-    Prise(int match, int money) {
+    Prise(int match, String money) {
         this.match = match;
         this.money = money;
     }
@@ -20,7 +19,7 @@ public enum Prise {
         return match;
     }
 
-    public int getMoney() {
+    public String getMoney() {
         return money;
     }
 
@@ -30,6 +29,6 @@ public enum Prise {
                 return p;
             }
         }
-        return SIXTH;
+        return null;
     }
 }
