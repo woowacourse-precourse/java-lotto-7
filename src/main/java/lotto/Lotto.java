@@ -15,11 +15,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Lotto(List<Integer> numbers, Integer bonusNumber) {
-        this(numbers);
-        checkBonusNumberDuplication(bonusNumber);
-    }
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -51,7 +46,7 @@ public class Lotto {
         }
     }
 
-    private void checkBonusNumberDuplication(Integer bonusNumber) {
+    public void checkBonusNumberDuplication(Integer bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DUPLICATED_BONUS_NUMBER.show());
         }
