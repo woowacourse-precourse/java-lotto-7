@@ -1,25 +1,33 @@
 package lotto;
 
 import lotto.dto.LottoGameResultDto;
+import lotto.dto.LottoWinningResult;
 import lotto.exception.ErrorMessage;
 import lotto.service.LottoService;
+import lotto.service.LottoStatisticsService;
 import lotto.validator.LottoValidator;
 import org.assertj.core.api.AssertionsForClassTypes;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
+    private LottoService lottoService;
+    private LottoStatisticsService lottoStatisticsService;
+    @BeforeEach
+    public void setUp(){
+        lottoService = new LottoService();
+        lottoStatisticsService = new LottoStatisticsService();
+    }
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -54,7 +62,6 @@ class LottoTest {
     void 구입한금액만큼_로또장수가_맞는지_확인한다(int input) {
         int purchaseQuantity = input / 1000;
 
-        LottoService lottoService = new LottoService();
         LottoGameResultDto dto = lottoService.createLottoList(input);
 
         assertThat(dto.getLottoList().size() == purchaseQuantity).isTrue();
@@ -89,7 +96,6 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 5, 12, 15, 24, 36})
     void 당첨번호와_보너스번호가_중복되는지_확인한다(int input) {
-        LottoService lottoService = new LottoService();
         Lotto winningNumbers = new Lotto(List.of(1, 5, 12, 15, 24, 36));
 
         AssertionsForClassTypes.assertThatThrownBy(() ->
@@ -101,7 +107,6 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(ints = {0, -5, 46, 150, 124, 536})
     void 당첨번호와_로또번호_범위인지_확인한다(int input) {
-        LottoService lottoService = new LottoService();
         Lotto winningNumbers = new Lotto(List.of(1, 5, 12, 15, 24, 36));
 
         AssertionsForClassTypes.assertThatThrownBy(() ->
@@ -121,7 +126,6 @@ class LottoTest {
 
         LottoGameResultDto resultDto = new LottoGameResultDto(2, userNumbers);
         resultDto.setWinningNumbers(winningList);
-        LottoService lottoService = new LottoService();
         List<Map<Integer, Boolean>> list = lottoService.getLottoWinningResults(resultDto);
 
         int expectedCount1 = 3;
@@ -131,5 +135,38 @@ class LottoTest {
         assertEquals(false, list.get(0).values().stream().findFirst().orElse(false));
         assertEquals(expectedCount2, list.get(1).keySet().stream().findFirst().orElse(0));
         assertEquals(false, list.get(1).values().stream().findFirst().orElse(false));
+    }
+
+    @Test
+    void 로또결과를_확인한다() {
+        Lotto lotto1 = new Lotto(List.of(1,2,3,10,11,12));
+        Lotto lotto2 = new Lotto(List.of(10,11,12,20,21,22));
+        List<Lotto> lottoList = new ArrayList<>();
+        lottoList.add(lotto1);
+        lottoList.add(lotto2);
+        LottoGameResultDto dto = new LottoGameResultDto(2,lottoList);
+        dto.setWinningNumbers(List.of(1,2,3,20,21,22));
+        dto.setBonusNumber(45);
+        List<Map<Integer, Boolean>> result = lottoService.getLottoWinningResults(dto);
+        Map<LottoWinningResult, Integer> resultCount = lottoStatisticsService.getLottoStatistics(result);
+
+        assertEquals(resultCount.get(LottoWinningResult.MATCH_3),2);
+    }
+
+    @Test
+    void 수익률을_확인한다() {
+        LottoWinningResult winningResult = LottoWinningResult.MATCH_3;
+        Map<LottoWinningResult,Integer> map = new HashMap<>();
+        map.put(winningResult,1);
+        List<Lotto> lottoList = new ArrayList<>();
+        lottoList.add(new Lotto(List.of(1,2,3,4,5,6)));
+        LottoGameResultDto gameResultDto = new LottoGameResultDto(1,lottoList);
+        gameResultDto.setBonusNumber(7);
+        gameResultDto.setWinningNumbers(List.of(1,2,3,10,11,12));
+
+        double winningRate = lottoStatisticsService.calculateWinningRate(gameResultDto,map);
+        double testRate = ((double) winningResult.getPrize() /1000)*100;
+
+        assertEquals(testRate,winningRate);
     }
 }
