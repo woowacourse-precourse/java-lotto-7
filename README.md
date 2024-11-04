@@ -246,7 +246,7 @@
 ### 라이브러리 요구 사항
 
 - [ ]  camp.nextstep.edu.missionutils에서 제공하는 Console API를 사용하여 구현
-    - [ ]  Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickNumberInRange()를 활용한다.
+    - [ ]  Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
     - [ ]  사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용 
 
 ### Lotto 클래스 요구 사항
