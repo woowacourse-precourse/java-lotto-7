@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.constant.WinningRank;
 import lotto.model.Lotto;
 import lotto.model.LottoRepository;
@@ -117,9 +118,11 @@ public class LottoManager {
         outputView.printCount(lottoCount);
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumber = lottoNumberGenerator.generate();
-            lottoNumber.sort((x, y) -> x - y);
-            outputView.printLottoNumber(lottoNumber);
-            lottoRepository.save(new Lotto(lottoNumber));
+            List<Integer> sortedLottoNumber = lottoNumber.stream()
+                    .sorted()
+                    .collect(Collectors.toList());
+            outputView.printLottoNumber(sortedLottoNumber);
+            lottoRepository.save(new Lotto(sortedLottoNumber));
         }
         outputView.printBlank();
     }
