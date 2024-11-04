@@ -40,9 +40,14 @@ public class Result {
     }
 
     public double calculateProfitRate(PurchaseAmount purchaseAmount) {
-        int totalPrize = results.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
-                .sum();
+        int totalPrize = calculateTotalPrize();
         return (double) totalPrize / purchaseAmount.getAmount() * 100;
     }
+
+    private int calculateTotalPrize() {
+        return results.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
+
 }
