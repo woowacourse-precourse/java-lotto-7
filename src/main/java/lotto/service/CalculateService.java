@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Map;
 import lotto.domain.dto.LottoResult;
 
@@ -21,13 +20,10 @@ public class CalculateService {
         int sum = 0;
         for (LottoResult lottoResult: drawResult.keySet()){
             int matchingNumberCount = lottoResult.getMatchingNumberCount();
-            System.out.println(matchingNumberCount);
             if (matchingNumberCount == 5 && lottoResult.isBonusMatch()){
                 sum += MatchPrize.FIVE_MATCH_WITH_BONUS.getPrize();
-                System.out.println(sum);
             }
             sum += MatchPrize.getPrizeByMatchCount(lottoResult.getMatchingNumberCount());
-            System.out.println(sum);
         }
         return sum;
     }
