@@ -16,24 +16,24 @@ public class LottoController {
     }
 
     public void play() {
-        Money capital = attempt(() -> new Money(inputView.promptAmount()));
+        Money capital = attempt(() -> new Money(inputView.readPurchaseAmount()));
         List<Lotto> lottos = issueLottosWith(capital);
 
-        List<Rank> ranks = pickLotto().match(lottos);
+        List<Rank> ranks = drawLotto().match(lottos);
 
         statisticsView.printStatistics(new Statistics(ranks), capital);
     }
 
     private List<Lotto> issueLottosWith(Money money) {
         List<Lotto> lottos = new Seller().issueLottoesWith(money);
-        outputView.printPurchase(lottos);
-        outputView.printIssuedLottoes(lottos);
+        outputView.printHowMany(lottos);
+        outputView.printIssuedLottos(lottos);
         return lottos;
     }
 
-    private LottoReferee pickLotto() {
-        Lotto winningLotto = attempt(() -> new Lotto(inputView.promptWinningNumbers()));
-        LottoNumber bonusNumber = attempt(() -> new LottoNumber(inputView.promptBonusNumber()));
+    private LottoReferee drawLotto() {
+        Lotto winningLotto = attempt(() -> new Lotto(inputView.readWinningNumbers()));
+        LottoNumber bonusNumber = attempt(() -> new LottoNumber(inputView.readBonusNumber()));
         return new LottoReferee(winningLotto, bonusNumber);
     }
 

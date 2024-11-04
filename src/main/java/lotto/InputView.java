@@ -11,14 +11,14 @@ public class InputView {
     private final static Pattern LOTTO_NUMBERS_FORMAT = Pattern.compile("\\d+,\\d+,\\d+,\\d+,\\d+,\\d+");
     private static final String LOTTO_NUMBERS_DELIMITER = ",";
 
-    public long promptAmount() {
+    public long readPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         validateNumber(input);
         return Long.parseLong(input);
     }
 
-    public List<Integer> promptWinningNumbers() {
+    public List<Integer> readWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         validateLottoNumbersFormat(input);
@@ -27,7 +27,7 @@ public class InputView {
                 .toList();
     }
 
-    public int promptBonusNumber() {
+    public int readBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         validateNumber(input);
@@ -42,7 +42,7 @@ public class InputView {
 
     private void validateLottoNumbersFormat(String input) {
         if (!LOTTO_NUMBERS_FORMAT.matcher(input).matches()) {
-            throw new IllegalArgumentException("로또번호 형식과 맞지 않습니다");
+            throw new IllegalArgumentException("로또 입력 형식과 맞지 않습니다");
         }
     }
 }
