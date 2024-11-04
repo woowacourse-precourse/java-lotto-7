@@ -38,7 +38,7 @@ class WinningNumbersTest {
                 .hasMessage(INVALID_WINNING_NUMBERS_COUNT.getMessage());
     }
 
-    @DisplayName("WinningNumbers는_번호가_특정범위를_벗어나면_예외를_발생한다")
+    @DisplayName("WinningNumbers는_번호가_로또번호의_범위를_벗어나면_예외를_발생한다")
     @Test
     public void should_ThrowException_WhenNumberRangeIsInvalid() {
         //given
