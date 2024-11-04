@@ -12,4 +12,14 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
         this.lotto = new Lotto(lotto);
     }
+    
+    public int countMatches(Lotto otherLotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(i -> otherLotto.getNumbers().contains(i))
+                .count();
+    }
+
+    public boolean isMatchedBonus(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
 }
