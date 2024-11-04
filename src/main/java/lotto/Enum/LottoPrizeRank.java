@@ -8,15 +8,32 @@ public enum LottoPrizeRank {
     FIFTH(5, 3, 5_000, "3개 일치 (5,000원)"),
     MISS(6, 0, 0, "일치하는 번호가 없습니다.");
 
-    public final int rank;
     public final int matchCount;
     public final int prize;
     public final String resultMessage;
 
     LottoPrizeRank(int rank, int matchCount, int prize, String resultMessage) {
-        this.rank = rank;
         this.matchCount = matchCount;
         this.prize = prize;
         this.resultMessage = resultMessage;
     }
+    public static LottoPrizeRank getRank(int matchCount, boolean bonusMatch) {
+        if (matchCount == 6) {
+            return FIRST;
+        }
+        if (matchCount == 5 && bonusMatch) {
+            return SECOND;
+        }
+        if (matchCount == 5) {
+            return THIRD;
+        }
+        if (matchCount == 4) {
+            return FOURTH;
+        }
+        if (matchCount == 3) {
+            return FIFTH;
+        }
+        return MISS;
+    }
 }
+
