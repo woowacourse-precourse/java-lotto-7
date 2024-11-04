@@ -22,4 +22,15 @@ class InputTest {
                 .hasMessage("[ERROR] 구입 금액은 1000원 단위로 입력해 주세요");
     }
 
+    @DisplayName("로또 금액이 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void 로또_금액이_숫자가_아니면_예외가_발생한다() {
+        // 가상 입력을 설정
+        String inputAmount = "abc\n";
+        System.setIn(new ByteArrayInputStream(inputAmount.getBytes()));
+
+        assertThatThrownBy(() -> input.readLottoAmount())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액은 숫자만 입력해 주세요");
+    }
 }
