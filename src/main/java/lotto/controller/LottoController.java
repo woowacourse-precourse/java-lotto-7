@@ -33,12 +33,13 @@ public class LottoController {
     }
 
     private Lottos buyLotto() {
-        try {
-            int money = InputView.getPurchaseAmount();
-            return lottoService.buyLotto(money);
-        } catch (LottoException e) {
-            System.out.println(e.getMessage());
-            return buyLotto();
+        while (true) {
+            try {
+                int money = InputView.getPurchaseAmount();
+                return lottoService.buyLotto(money);
+            } catch (LottoException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -48,32 +49,35 @@ public class LottoController {
     }
 
     private Lotto getWinnerNumbers() {
-        try {
-            String winningNumbers = InputView.getWinningNumbers();
-            return lottoService.createWinnerLotto(parse(winningNumbers));
-        } catch (LottoException e) {
-            System.out.println(e.getMessage());
-            return getWinnerNumbers();
+        while (true) {
+            try {
+                String winningNumbers = InputView.getWinningNumbers();
+                return lottoService.createWinnerLotto(parse(winningNumbers));
+            } catch (LottoException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     private BonusNumber getBonusNumber() {
-        try {
-            int bonusNumber = InputView.getBonusNumber();
-            return lottoService.createBonusNumber(bonusNumber);
-        } catch (LottoException e) {
-            System.out.println(e.getMessage());
-            return getBonusNumber();
+        while (true) {
+            try {
+                int bonusNumber = InputView.getBonusNumber();
+                return lottoService.createBonusNumber(bonusNumber);
+            } catch (LottoException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     private LottoMachine createLottoMachine(Lotto winnerLotto) {
-        try {
-            BonusNumber bonusNumber = getBonusNumber();
-            return lottoService.createLottoMachine(winnerLotto, bonusNumber);
-        } catch (LottoException e) {
-            System.out.println(e.getMessage());
-            return createLottoMachine(winnerLotto);
+        while (true) {
+            try {
+                BonusNumber bonusNumber = getBonusNumber();
+                return lottoService.createLottoMachine(winnerLotto, bonusNumber);
+            } catch (LottoException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
