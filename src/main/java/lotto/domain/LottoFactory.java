@@ -1,12 +1,14 @@
 package lotto.domain;
 
+import lotto.Constants;
+
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 public class LottoFactory {
 
-    public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = Constants.LOTTO_PRICE;
     private final Supplier<List<Integer>> numberMachine;
 
     public LottoFactory(Supplier<List<Integer>> numberMachine) {

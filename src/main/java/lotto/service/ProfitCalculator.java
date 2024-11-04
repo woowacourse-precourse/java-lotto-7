@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.Constants;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGrade;
 import lotto.domain.Lottos;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 public class ProfitCalculator {
 
-    public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = Constants.LOTTO_PRICE;
     private final Lottos lottos;
     private final TargetLotto targetLotto;
 

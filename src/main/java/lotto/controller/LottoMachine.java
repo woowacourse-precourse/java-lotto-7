@@ -32,12 +32,13 @@ public class LottoMachine {
             Long payment = inputView.readPayment();
             return lottoFactory.generateLottos(payment);
         });
+
         outputView.printLottos(lottos);
 
         return lottos;
     }
 
-    private <T> T repeatOnIllegalArgument (Supplier<T> supplier) {
+    private <T> T repeatOnIllegalArgument(Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();
