@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,4 +24,17 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호는_1부터_45_사이의_숫자여야_합니다() {
+        assertThatThrownBy(() -> new Lotto(List.of(123, -2, 1241, 0, 26, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또번호가_6개_미만이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 }
