@@ -6,7 +6,6 @@ public class NumberConstants {
     public static final int SECOND_RANK_CHANCE = 5;
     public static final int SECOND_RANK = 2;
     public static final int TOTAL_RANK_TYPES = 6;
-
-
+    public static final int PERCENT_CONVERSION_FACTOR = 100;
 
 }

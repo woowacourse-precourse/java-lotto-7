@@ -23,9 +23,7 @@ public class Results implements Iterable<Result> {
 
     public int[] getCountOfRank() {
         int[] count = new int[TOTAL_RANK_TYPES];
-        results.stream()
-                .map(Result::rank)
-                .forEach(rank -> count[rank]++);
+        results.forEach(rank -> count[rank.rank()]++);
         return count;
     }
 

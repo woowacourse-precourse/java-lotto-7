@@ -3,6 +3,10 @@ package lotto.results.domain;
 
 import lotto.purchase.domain.Money;
 
+import java.util.Arrays;
+import java.util.Optional;
+
+import static lotto.common.NumberConstants.PERCENT_CONVERSION_FACTOR;
 import static lotto.common.NumberConstants.SECOND_RANK_CHANCE;
 
 public enum Result {
@@ -35,25 +39,27 @@ public enum Result {
     }
 
     public static Result findByCount(Integer winningNumberCount, Integer bonusNumberCount) {
-        for (Result rank : values()) {
-            if (found(rank, winningNumberCount, bonusNumberCount)) {
-                return rank;
-            }
-        }
-        return NONE;
+        return Arrays.stream(values())
+                .filter(rank -> found(rank, winningNumberCount, bonusNumberCount))
+                .findFirst()
+                .orElse(NONE);
     }
 
     private static Boolean found(Result rank, Integer winningNumberCount, Integer bonusNumberCount) {
-        return rank.winningNumberCount == winningNumberCount && rank.bonusNumberCount == bonusNumberCount;
+        if (rank.winningNumberCount == SECOND_RANK_CHANCE && winningNumberCount == SECOND_RANK_CHANCE)
+            return found(rank, bonusNumberCount);
+        return rank.winningNumberCount == winningNumberCount;
+    }
+
+    private static Boolean found(Result rank, Integer bonusNumberCount) {
+        return rank.bonusNumberCount == bonusNumberCount;
     }
 
     public static Result findByRank(Integer rank) {
-        for (Result rankResult : values()) {
-            if (rankResult.rank == rank) {
-                return rankResult;
-            }
-        }
-        return NONE;
+        return Arrays.stream(values())
+                .filter(rankResult -> rankResult.rank == rank)
+                .findFirst()
+                .orElse(NONE);
     }
 
     public int rank() {
@@ -77,6 +83,6 @@ public enum Result {
     }
 
     public double getROI(Money money) {
-        return (double) longPrize() / money.value() * 100;
+        return (double) longPrize() / money.value() * PERCENT_CONVERSION_FACTOR;
     }
 }

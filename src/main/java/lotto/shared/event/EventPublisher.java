@@ -1,14 +1,12 @@
 package lotto.shared.event;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventPublisher {
     private final List<EventListener> listeners;
 
-    public EventPublisher(List<EventListener> request) {
-        listeners = new ArrayList<>();
-        request.forEach(listener -> listeners.add(listener));
+    public EventPublisher(List<EventListener> listeners) {
+        this.listeners = listeners;
     }
 
     public void registerListener(EventListener listener) {
