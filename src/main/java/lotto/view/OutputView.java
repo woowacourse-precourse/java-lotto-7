@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.constants.OutputViewConstant;
 import lotto.model.Winning;
 import lotto.model.lotto.Lotto;
 
@@ -11,10 +12,9 @@ public class OutputView {
     public String resultToString(double revenueRate) {
         StringBuilder sb = new StringBuilder();
         double roundRevenueRate = getRoundRevenueRate(revenueRate);
-        sb.append("당첨 통계\n")
-                .append("---\n");
+        sb.append(OutputViewConstant.RESULT_HEADER);
         Arrays.stream(Winning.values()).forEach(winning -> sb.append(winning.toString()));
-        sb.append("총 수익률은 ").append(roundRevenueRate).append("%입니다.");
+        sb.append(String.format(OutputViewConstant.REVENUE_RATE_MESSAGE, revenueRate));
 
         return sb.toString();
     }
