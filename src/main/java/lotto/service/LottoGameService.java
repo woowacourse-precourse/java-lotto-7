@@ -16,8 +16,8 @@ public class LottoGameService {
     private final LottoGamePlayer player;
     private WinningLotto winningLotto;
 
-    public LottoGameService(LottoGamePlayer player) {
-        this.player = player;
+    public LottoGameService() {
+        this.player = new LottoGamePlayer();
     }
 
     public List<Lotto> generatePurchaserLottos(int purchaseCount) {
