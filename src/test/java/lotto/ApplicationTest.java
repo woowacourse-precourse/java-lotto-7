@@ -51,6 +51,8 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
