@@ -59,10 +59,10 @@ public class LottoProvider {
 		}
 	}
 
-	public void calculateRank(Answer answer) {
-		for (Lotto lotto : pickedLottos) {
-			int matchCounts = lotto.checkLottoResult(answer);
-			boolean hasBonus = lotto.hasBonusLotto(answer);
+	public void calculateRank() {
+		for (Lotto pickedLotto : pickedLottos) {
+			int matchCounts = answer.checkLottoResult(pickedLotto);
+			boolean hasBonus = answer.hasBonusLotto(pickedLotto);
 			LottoRank rankByMatch = LottoRank.findRankByMatch(matchCounts, hasBonus);
 			if (rankByMatch != null) {
 				user.updateRank(rankByMatch);
