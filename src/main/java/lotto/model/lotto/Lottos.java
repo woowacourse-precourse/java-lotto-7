@@ -9,14 +9,11 @@ import java.util.stream.Stream;
 
 public class Lottos {
     public static final int LOTTO_NUMBER_COUNT = 6;
+
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
-    }
-
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
     }
 
     public static Lottos fromCount(int lottosCount) {
@@ -26,11 +23,8 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
-    private static Lotto generateLotto() {
-        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
-                Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, LOTTO_NUMBER_COUNT));
-        randomNumbers.sort(Comparator.naturalOrder());
-        return new Lotto(randomNumbers);
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 
     public List<String> getLottoNumbers() {
@@ -42,5 +36,12 @@ public class Lottos {
 
     public int getTotalPrice() {
         return lottos.size() * Lotto.PRICE;
+    }
+
+    private static Lotto generateLotto() {
+        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, LOTTO_NUMBER_COUNT));
+        randomNumbers.sort(Comparator.naturalOrder());
+        return new Lotto(randomNumbers);
     }
 }
