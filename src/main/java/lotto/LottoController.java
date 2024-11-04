@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,24 @@ public class LottoController {
         List<Integer> winningNumbers = lottoView.requestWinningNumbers();
         int bonusNumber = lottoView.requestBonusNumber();
 
+        Map<LottoRank, Integer> result = calculateResult(winningNumbers, bonusNumber);
+    }
+
+    private Map<LottoRank, Integer> calculateResult(List<Integer> winningNumbers, int bonusNumber) {
+        Map<LottoRank, Integer> result = new HashMap<>();
+        for(LottoRank rank : LottoRank.values()){
+            result.put(rank, 0);
+        }
+
+        for (Lotto lotto : lottos) {
+            int matchCount = lotto.getMatchCount(winningNumbers);
+            boolean bonusMatch = lotto.hasBonusNumber(bonusNumber);
+            LottoRank rank = LottoRank.valueOf(matchCount, bonusMatch);
+
+            result.put(rank, result.get(rank) + 1);
+        }
+
+        return result;
     }
 
     private void generateLottos(int purchaseAmount) {
