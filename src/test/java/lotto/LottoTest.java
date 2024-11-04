@@ -29,4 +29,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다")
+    @Test
+    void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 6;
+        assertThatThrownBy(() -> Lotto.validateBonusNumber(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
 }
