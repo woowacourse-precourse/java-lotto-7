@@ -1,6 +1,5 @@
 package lotto.model.domain;
 
-import lotto.exception.InputErrorMessage;
 import lotto.exception.LottoErrorMessage;
 
 import java.util.HashSet;
@@ -10,12 +9,12 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateLottoSize(numbers);
+        validate(numbers);
         validateDuplicateNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void validateLottoSize(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
