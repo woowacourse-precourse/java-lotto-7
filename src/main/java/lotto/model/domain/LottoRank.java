@@ -15,9 +15,11 @@ public enum LottoRank {
     private final boolean isBonusMatched;
     private final int prize;
 
-    public static LottoRank of(int matchCount, boolean bonus) {
+    public static LottoRank of(int matchCount, boolean isBonusMatched) {
         return Arrays.stream(LottoRank.values())
-                .filter(lottoRank -> lottoRank.getMatchCount() == matchCount && lottoRank.isBonusMatched() == bonus)
+                .filter(lottoRank -> lottoRank.getMatchCount() == matchCount
+                        && lottoRank.isBonusMatched() == isBonusMatched
+                )
                 .findFirst()
                 .orElse(FAIL);
     }
