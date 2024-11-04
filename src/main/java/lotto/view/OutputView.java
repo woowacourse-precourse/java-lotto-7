@@ -27,4 +27,19 @@ public class OutputView {
     public void printWinningStatisticHeader() {
         System.out.println("당첨 통계\n---");
     }
+
+    // 당첨 결과 출력
+    public static void printLottoResult(LottoResult lottoResult) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---------");
+
+        Map<Rank, Integer> rankResults = lottoResult.getRankResults();
+
+        for (Rank rank : Rank.values()) {
+            if (rankResults.containsKey(rank)) {
+                System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getPrize() + "원) - "
+                        + rankResults.get(rank) + "개");
+            }
+        }
+    }
 }
