@@ -41,8 +41,8 @@ public class ConsoleView {
         outputView.printPurchasableLottoCount(lottoCount);
     }
 
-    public void printFormattedLottoNumbers(List<LottoResponse> lottoResponses) {
-        outputView.printFormattedLottoNumbers(lottoResponses);
+    public void printPurchasedLottos(List<LottoResponse> lottoResponses) {
+        outputView.printPurchasedLottos(lottoResponses);
     }
 
     public void printWinningResult(List<PrizeResponse> prizeResponses) {

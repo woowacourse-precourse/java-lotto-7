@@ -40,7 +40,7 @@ public class OutputView {
 
     }
 
-    public void printFormattedLottoNumbers(List<LottoResponse> lottoResponses) {
+    public void printPurchasedLottos(List<LottoResponse> lottoResponses) {
 
         lottoResponses.forEach(lottoResponse -> System.out.println(formatLottoNumbers(lottoResponse)));
     }
