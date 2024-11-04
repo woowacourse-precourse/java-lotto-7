@@ -17,7 +17,7 @@ public class LottoPrizeCalculatorTest {
         Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
-        int prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
+        long prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
         assertEquals(2_000_000_000, prize);
     }
 
@@ -27,7 +27,7 @@ public class LottoPrizeCalculatorTest {
         Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 7))));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
-        int prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
+        long prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
         assertEquals(30_000_000, prize);
     }
 
@@ -37,7 +37,7 @@ public class LottoPrizeCalculatorTest {
         Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 8))));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
-        int prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
+        long prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
         assertEquals(1_500_000, prize);
     }
 
@@ -47,7 +47,7 @@ public class LottoPrizeCalculatorTest {
         Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 4, 9, 10))));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
-        int prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
+        long prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
         assertEquals(50_000, prize);
     }
 
@@ -57,7 +57,7 @@ public class LottoPrizeCalculatorTest {
         Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13))));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
-        int prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
+        long prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
         assertEquals(5_000, prize);
     }
 
@@ -67,7 +67,7 @@ public class LottoPrizeCalculatorTest {
         Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 10, 11, 12, 13))));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
-        int prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
+        long prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
         assertEquals(0, prize);
     }
 
@@ -80,8 +80,8 @@ public class LottoPrizeCalculatorTest {
         ));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
-        int prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
-        int purchaseAmount = 2_000;
+        long prize = calculator.calculatePrize(lottos, winningNumbers, bonusNumber);
+        long purchaseAmount = 2_000;
         double yieldRate = calculator.calculateYield(prize, purchaseAmount);
         assertEquals(1_000_000.0, yieldRate, 0.01);
     }
