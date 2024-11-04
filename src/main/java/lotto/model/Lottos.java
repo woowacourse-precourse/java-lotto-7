@@ -11,11 +11,11 @@ public final class Lottos {
         this.lottos = lottos;
     }
 
-    public int size() {
+    public long size() {
         return lottos.size();
     }
 
-    public int amount() {
+    public long amount() {
         return size() * LOTTO_PRICE;
     }
 

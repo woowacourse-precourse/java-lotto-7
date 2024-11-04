@@ -18,7 +18,7 @@ public final class LottoResult {
         result.merge(rank, COUNTER_STEP, Integer::sum);
     }
 
-    public double computeProfit(int amount) {
+    public double computeProfit(long amount) {
         double profit = (double) computeTotalPrice() / amount;
         return convertPercent(profit);
     }
