@@ -1,8 +1,6 @@
 package lotto;
 
-import lotto.model.Lotto;
 import lotto.model.WinningNumbers;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -24,7 +22,7 @@ public class WinningNumbersTest {
 
     @Test
     void 당첨_번호가_1에서_45사이가_아니면_예외가_발생한다(){
-        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 47)))
+        assertThatThrownBy(() -> new WinningNumbers(List.of(0, 2, 3, 4, 5, 47)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
