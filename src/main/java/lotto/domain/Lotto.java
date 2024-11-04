@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -8,7 +10,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        sortedNumbers.sort(Comparator.naturalOrder());
+        this.numbers = sortedNumbers;
     }
 
     // 추가적인 validation을 대비해 validate 매서드 생성
