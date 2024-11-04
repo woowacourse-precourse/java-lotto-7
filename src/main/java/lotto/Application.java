@@ -37,8 +37,7 @@ public class Application {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String bonusText = Console.readLine();
-                Bonus bonus = new Bonus(bonusText);
-                lottoGame.setBonusNumber(bonus.getBonus());
+                Bonus.parseBonus(bonusText, lottoGame);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
