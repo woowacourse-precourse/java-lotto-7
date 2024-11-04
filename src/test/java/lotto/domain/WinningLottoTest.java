@@ -16,8 +16,8 @@ class WinningLottoTest {
     @Nested
     @DisplayName("당첨 로또 체크 테스트")
     class WinningLottoCheckLottoTest {
-        private final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        private final Lotto ticket = Lotto.of(numbers);
+        private final List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        private final Lotto ticket = Lotto.of(winningLottoNumbers);
 
         private static Stream<Arguments> provideLottoRankTestCases() {
             return Stream.of(
@@ -57,11 +57,11 @@ class WinningLottoTest {
         @ParameterizedTest(name = "{0}")
         @MethodSource("provideLottoRankTestCases")
         @DisplayName("로또 결과를 검증시")
-        void rankingTest(String description, List<Integer> numbers, int bonusNumber, Rank expectedRank) {
+        void rankingTest(String description, List<Integer> customerLottoNumbers, int bonusNumber, Rank expectedRank) {
             // given
-            BonusNumber bonusNum = BonusNumber.of(bonusNumber, numbers);
+            BonusNumber bonusNum = BonusNumber.of(bonusNumber, winningLottoNumbers);
             WinningLotto winningLotto = WinningLotto.of(ticket, bonusNum);
-            Lotto newTicket = Lotto.of(numbers);
+            Lotto newTicket = Lotto.of(customerLottoNumbers);
 
             // when
             LottoResult result = winningLotto.checkLotto(newTicket);
