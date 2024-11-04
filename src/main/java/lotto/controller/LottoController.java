@@ -30,4 +30,9 @@ public class LottoController {
             processInputMoney();
         }
     }
+
+    private void processInputWinningNumber() {
+        String winningNumberInput = inputView.inputWinningNumber();
+        lottoService.checkAndConvertInputWinningNumber(winningNumberInput);
+    }
 }

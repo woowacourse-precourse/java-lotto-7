@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.exception.MoneyExceptionType;
@@ -14,6 +15,7 @@ public class LottoService {
 
     private int numOfLottos;
     private List<Lotto> lottos = new ArrayList<>();
+    private Lotto winningNumber;
 
     public void checkAndConvertInputMoney(String moneyInput) throws IllegalArgumentException {
         if (moneyInput.isBlank()) {
@@ -27,6 +29,22 @@ public class LottoService {
         }
 
         numOfLottos = money.getMoney() / LOTTO_PRIZE;
+    }
+
+    public void checkAndConvertInputWinningNumber(String winningNumberInput) {
+        List<String> parsedWinningNumberInput = splitWinningNumberInput(winningNumberInput);
+
+        List<Integer> winningNumberConvertedToInt = new ArrayList<>();
+        for (String element : parsedWinningNumberInput) {
+            winningNumberConvertedToInt.add(Integer.parseInt(element));
+        }
+        winningNumber = new Lotto(winningNumberConvertedToInt);
+    }
+
+    private List<String> splitWinningNumberInput(String winningNumberInput) {
+        return Stream.of(winningNumberInput.split(",", -1))
+                .map(String::trim)
+                .toList();
     }
 
     public List<Lotto> generateLottos() {
