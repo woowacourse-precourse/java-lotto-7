@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 public final class ErrorMessage {
     public static final String INVALID_PURCHASE_AMOUNT = "[ERROR] 구입 금액은 1000원 단위의 양수여야 합니다.";

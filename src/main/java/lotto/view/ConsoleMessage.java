@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 public final class ConsoleMessage {
     public static final String REQ_PURCHASE_AMOUNT = "구입금액을 입력해주세요.";

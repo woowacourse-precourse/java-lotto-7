@@ -1,6 +1,9 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.domain.Prize;
 import lotto.view.InputView;
+import lotto.domain.LottoMachine;
 import lotto.view.ResultView;
 
 import java.util.List;
