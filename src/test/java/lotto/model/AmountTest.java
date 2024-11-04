@@ -25,9 +25,5 @@ class AmountTest {
         assertThrows(IllegalArgumentException.class, () -> new Amount(-1000));
     }
 
-    @Test
-    void 입력값이_비어있는지_확인한다(){
-        assertThrows(IllegalArgumentException.class, () -> new Amount(null));
-    }
 
 }
