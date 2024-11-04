@@ -35,7 +35,7 @@ public class Application {
     }
 
     private static List<Lotto> buyLottos(int amount) {
-        System.out.printf("\n%d개를 구매했습니다.\n", amount);
+        System.out.printf("%d개를 구매했습니다.\n", amount);
         List<Lotto> lottos = new ArrayList<>();
 
         while (amount-- > 0) {lottos.add(new Lotto(
@@ -53,7 +53,7 @@ public class Application {
 
     private static boolean[] getWinningNumbers() {
         while (true) {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
+            System.out.println("당첨 번호를 입력해 주세요.");
             String[] inputs = camp.nextstep.edu.missionutils.Console.readLine().split(",");
 
             try {
@@ -87,9 +87,7 @@ public class Application {
         }
 
         for (int winningNumber : winningNumbers) {
-            if (winningNumber < 1 || winningNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호의 숫자 범위는 1~45 입니다.");
-            }
+            Lotto.validateNumber(winningNumber);
         }
     }
 
@@ -103,10 +101,47 @@ public class Application {
         return winningNumberFlags;
     }
 
+    private static int getBonusNumber() {
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String input = camp.nextstep.edu.missionutils.Console.readLine();
+
+            try {
+                int bonusNumber = parseNumber(input);
+                Lotto.validateNumber(bonusNumber);
+                return bonusNumber;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+    }
+
+    private static int parseNumber(String input) {
+        try {
+            int number = Integer.parseInt(input);
+            return number;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
+        }
+    }
+
     public static void main(String[] args) {
+        //구입 금액 입력
         int amount = getAmount();
+        System.out.println();
+
+        //발행한 로또 출력
         List<Lotto> lottos = buyLottos(amount);
         printLottos(lottos);
+        System.out.println();
+
+        //당첨 번호 입력
         boolean[] winningNumberFlags = getWinningNumbers();
+        System.out.println();
+
+        //보너스 번호 입력
+        int bonusNumber = getBonusNumber();
+        System.out.println();
     }
 }
