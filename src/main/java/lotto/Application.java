@@ -23,7 +23,7 @@ public class Application {
 
         String winningNumbers = inputService.inputWinningNumbers();
         List<Integer> separatedNumbers = separator.separate(winningNumbers);
-        int bonusNumber = inputService.inputBonusNumber();
+        int bonusNumber = inputService.inputBonusNumber(separatedNumbers);
 
         WinningLotto winningLotto = new WinningLotto(separatedNumbers, bonusNumber);
         Map<Lotto, LottoRank> rankForEach = lottoService.checkWinning(lottos, winningLotto);

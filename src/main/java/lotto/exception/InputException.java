@@ -38,4 +38,10 @@ public class InputException {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
+
+    public void validateDuplicatedFromOriginNumber(int bonusNumberValue, List<Integer> numbers) {
+        if (numbers.contains(bonusNumberValue)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 일반 번호와 중복이 되면 안됩니다");
+        }
+    }
 }
