@@ -1,5 +1,6 @@
 package lotto.Service;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class ValidService {
@@ -30,32 +31,47 @@ public class ValidService {
             throw new IllegalArgumentException("[ERROR] 입력에는 1000원 단위에 금액만 들어가야합니다.");
         }
     }
-    public void checkLottoNumbers(String stringNumbers){
+
+    public void checkLottoNumbers(String stringNumbers) {
         String[] parts = stringNumbers.split(",");
-        if (parts.length!=6){
-            throw  new IllegalArgumentException("6개의 숫자를 입력해주세요");
+        if (parts.length != 6) {
+            throw new IllegalArgumentException("6개의 숫자를 입력해주세요");
         }
         for (String part : parts) {
             tryValid(part);
         }
     }
-    public void checkBonusNumber(String stringBonusNumber){
-        tryValid(stringBonusNumber);
-    }
-    public void checkBonusNumberDuplicate(int bonusNumber ,List<Integer> winningNumbers){
+
+    public void checkDuplicatedLottoNumbers(List<Integer> winningNumbers) {
+        HashSet<Integer> winningNumberSet = new HashSet<>();
         for (Integer winningNumber : winningNumbers) {
-            if (winningNumber==bonusNumber) throw new IllegalArgumentException("보너스 번호에 중복된 숫자가 들어갈 수 없습니다");
+            if (winningNumberSet.contains(winningNumber)) {
+                winningNumberSet.clear();
+                throw new IllegalArgumentException("중복된 숫자를 입력하실 수는 없습니다");
+            }
+            winningNumberSet.add(winningNumber);
         }
     }
 
-    private void tryValid(String part){
-        try{
-            int num=Integer.parseInt(part);
-            if (num>45 || num<1){
+
+    public void checkBonusNumber(String stringBonusNumber) {
+        tryValid(stringBonusNumber);
+    }
+
+    public void checkDuplicatedBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        for (Integer winningNumber : winningNumbers) {
+            if (winningNumber == bonusNumber) throw new IllegalArgumentException("보너스 번호에 중복된 숫자가 들어갈 수 없습니다");
+        }
+    }
+
+    private void tryValid(String part) {
+        try {
+            int num = Integer.parseInt(part);
+            if (num > 45 || num < 1) {
                 throw new IllegalArgumentException("1부터45까지의 숫자만 입력해주세요");
             }
 
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자만 입력해주세요");
         }
     }

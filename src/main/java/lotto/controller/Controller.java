@@ -69,11 +69,11 @@ public class Controller {
             try{
                 validService.checkLottoNumbers(winningNumbers);
                 parsingService.parseNumbers(winningNumbers);
+                validService.checkDuplicatedLottoNumbers(parsingService.getWinningNumbers());
                 break;
             }
             catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
-
             }
         }
     }
@@ -88,8 +88,8 @@ public class Controller {
             try{
                 validService.checkBonusNumber(stringBonusNumber);
                 parsingService.parseBonusNumbers(stringBonusNumber);
-                validService.checkBonusNumberDuplicate(parsingService.getBonusNumber(),parsingService.getNumbers());
-                winningLotto= new WinningLotto(parsingService.getBonusNumber(),parsingService.getNumbers());
+                validService.checkDuplicatedBonusNumber(parsingService.getBonusNumber(),parsingService.getWinningNumbers());
+                winningLotto= new WinningLotto(parsingService.getBonusNumber(),parsingService.getWinningNumbers());
                 break;
             }
             catch (IllegalArgumentException e){
@@ -97,6 +97,7 @@ public class Controller {
             }
         }
     }
+
     private String promptBonusNumber(){
         Output.requestBonusNumber();
         return Input.getInput();

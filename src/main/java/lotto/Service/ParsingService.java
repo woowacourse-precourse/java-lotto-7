@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ParsingService {
     private int money;
-    private List<Integer> numbers = new ArrayList<>();
+    private List<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber;
 
     public void setMoney(String money) {
@@ -16,14 +16,14 @@ public class ParsingService {
         return money;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
     }
 
     public void parseNumbers(String stringNumbers) {
         String[] parts = stringNumbers.split(",");
         for (String part : parts) {
-           numbers.add(Integer.parseInt(part));
+           winningNumbers.add(Integer.parseInt(part));
         }
     }
     public void parseBonusNumbers(String stringBonusNumber){
