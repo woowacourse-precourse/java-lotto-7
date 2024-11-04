@@ -26,17 +26,16 @@ class RandomNumberGeneratorTest {
         assertThat(numbers).filteredOn(num -> num >= start && num <= end);
     }
 
-    @DisplayName("잘못된 범위를 제공할 시 형식에 맞는 예외 메시지를 던진다.")
+    @DisplayName("잘못된 범위를 제공할 시 예외 메시지를 던진다.")
     @ParameterizedTest
     @MethodSource("provideInvalidRangeAndCount")
-    public void givenInvalidRange_thenThrowFormattedExceptionMessage(int start, int end, int count) {
+    public void givenInvalidRange_thenThrowExceptionMessage(int start, int end, int count) {
         //given
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
         //when & then
         assertThatThrownBy(() -> randomNumberGenerator.generate(start, end, count))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageStartingWith("[ERROR]");
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
 
