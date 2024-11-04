@@ -21,14 +21,14 @@ class WinningStatisticsTest {
 
     @ParameterizedTest
     @MethodSource("testMatchCountArgs")
-    void 당첨번호_개수기_테스트(List<Integer> testLottoNumbers, List<Integer> testWinningNumbers, int expected) {
+    void 당첨번호_개수기(List<Integer> testLottoNumbers, List<Integer> testWinningNumbers, int expected) {
         assertThat(testWinningStatistics.getMatchCount(testLottoNumbers, testWinningNumbers))
                 .isEqualTo(expected);
     }
 
     @ParameterizedTest
     @MethodSource("testBonusMatchArgs")
-    void 보너스_번호_적중_여부_테스트(List<Integer> testLottoNumbers, WinningNumbers testWinningNumbers, boolean expected) {
+    void 보너스_번호_적중_여부(List<Integer> testLottoNumbers, WinningNumbers testWinningNumbers, boolean expected) {
         assertThat(testWinningStatistics.checkBonusMatch(testLottoNumbers, testWinningNumbers.getBonusNumber()))
                 .isEqualTo(expected);
 
@@ -36,7 +36,7 @@ class WinningStatisticsTest {
 
     @ParameterizedTest
     @MethodSource("testUpdateArgs")
-    void 당첨_갱신_테스트(int testMatchCount, boolean testIsBonusMatch, Rank rank, int count) {
+    void 당첨_갱신(int testMatchCount, boolean testIsBonusMatch, Rank rank, int count) {
         testWinningStatistics.updateWinningStatistics(testMatchCount, testIsBonusMatch);
         Map<Rank, Integer> testMap = testWinningStatistics.getWinningStatistics();
         assertThat(testMap.get(rank)).isEqualTo(count);
@@ -44,14 +44,14 @@ class WinningStatisticsTest {
 
     @ParameterizedTest
     @MethodSource("testGetPrizeArgs")
-    void 총_당첨금_계산_테스트(int testMatchCount, boolean testIsBonusMatch, long totalPrize) {
+    void 총_당첨금_계산(int testMatchCount, boolean testIsBonusMatch, long totalPrize) {
         testWinningStatistics.updateWinningStatistics(testMatchCount, testIsBonusMatch);
         assertThat(testWinningStatistics.getTotalPrize()).isEqualTo(totalPrize);
     }
 
     @ParameterizedTest
     @MethodSource("testGetRateOfReturnArgs")
-    void 수익률_계산_테스트(int testMatchCount, boolean testIsBonusMatch, double rateOfReturn) {
+    void 수익률_계산(int testMatchCount, boolean testIsBonusMatch, double rateOfReturn) {
         testWinningStatistics.updateWinningStatistics(testMatchCount, testIsBonusMatch);
         Money money = new Money(10000);
         assertThat(testWinningStatistics.getRateOfReturn(money)).isEqualTo(rateOfReturn);
