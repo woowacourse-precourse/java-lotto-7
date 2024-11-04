@@ -14,25 +14,24 @@ import lotto.view.OutputView;
 public class Application {
     public static void main(String[] args) {
         final int purchaseAmount = InputView.getPurchaseAmount();
-        final int lottoCount = purchaseAmount / LottoConstants.LOTTO_PRICE.getValue();
-
+        final int lottoCount = calculateLottoCount(purchaseAmount);
         OutputView.printPurchaseMessage(lottoCount);
 
         final List<Lotto> lottoTickets = purchaseLottos(lottoCount);
-        lottoTickets.forEach(lotto -> OutputView.printLottoNumbers(lotto.getNumbers()));
-        System.out.println();
+        OutputView.printLottoTickets(lottoTickets);
 
         final List<Integer> winningNumbers = InputView.getWinningNumbers();
-        System.out.println();
 
         final int bonusNumber = InputView.getBonusNumber(winningNumbers);
-        System.out.println();
 
         final Map<Rank, Integer> statistics = calculateStatistics(lottoTickets, winningNumbers, bonusNumber);
         OutputView.printStatistics(statistics);
-
         final double yield = calculateYield(statistics, purchaseAmount);
         OutputView.printYield(yield);
+    }
+
+    private static int calculateLottoCount(final int purchaseAmount) {
+        return purchaseAmount / LottoConstants.LOTTO_PRICE.getValue();
     }
 
     private static List<Lotto> purchaseLottos(final int lottoCount) {

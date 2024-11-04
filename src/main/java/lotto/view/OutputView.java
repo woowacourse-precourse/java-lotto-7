@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import lotto.Lotto;
 import lotto.enums.Rank;
 
 import java.util.List;
@@ -11,6 +12,11 @@ public class OutputView {
     public static void printPurchaseMessage(final int lottoCount) {
         System.out.println();
         System.out.println(lottoCount + "개를 구매했습니다.");
+    }
+
+    public static void printLottoTickets(final List<Lotto> lottoTickets) {
+        lottoTickets.forEach(lotto -> printLottoNumbers(lotto.getNumbers()));
+        System.out.println();
     }
 
     public static void printLottoNumbers(final List<Integer> numbers) {

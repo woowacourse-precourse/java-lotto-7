@@ -25,6 +25,7 @@ public class InputView {
         while (true) {
             System.out.println("당첨 번호를 입력해 주세요.");
             final String input = Console.readLine().trim();
+            System.out.println();
 
             try {
                 return WinningNumberInput.getWinningNumbers(input);
@@ -38,6 +39,7 @@ public class InputView {
         while (true) {
             System.out.println("보너스 번호를 입력해 주세요:");
             final String input = Console.readLine().trim();
+            System.out.println();
 
             try {
                 return WinningNumberInput.getBonusNumber(input, winningNumbers);
