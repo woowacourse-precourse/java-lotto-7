@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -9,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static List<Integer> WINNING_NUMBERS = List.of(1, 2, 3, 4, 5, 6);
 
 //    @Test
 //    void 기능_테스트() {
@@ -112,6 +114,38 @@ class ApplicationTest extends NsTest {
                 }
             }
         });
+    }
+
+    @Test
+    void 당첨번호_부적절한_구분자_위치_예외_테스트() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.validateWinningNumbers(",1,2,3,4,5,6"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ERROR_MESSAGE + " 당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.");
+        });
+    }
+
+    @Test
+    void 당첨번호_개수_불일치_예외_테스트() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.validateWinningNumbers("1,2,3,4,5,6,7"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ERROR_MESSAGE + " 당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.");
+        });
+    }
+
+    @Test
+    void 보너스번호가_범위를_벗어났을때_예외_테스트() {
+        assertThatThrownBy(() -> Application.validateBonusNumber("50", WINNING_NUMBERS))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+    }
+
+    @Test
+    void 보너스번호가_당첨번호와_중복될떄_예외_테스트() {
+        assertThatThrownBy(() -> Application.validateBonusNumber("3", WINNING_NUMBERS))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
     }
 
     @Override
