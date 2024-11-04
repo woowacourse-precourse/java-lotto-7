@@ -72,7 +72,7 @@ public class LottoController {
         lottoView.printStat(lottoResult);
         long totalPrizeAmount = lottoResult.getTotalPrizeAmount();
         myWallet.saveWinnings(totalPrizeAmount);
-        float yield = YieldCalculator.calculateYield(myWallet);
+        double yield = YieldCalculator.calculateYield(myWallet);
         lottoView.printYield(yield);
     }
 }

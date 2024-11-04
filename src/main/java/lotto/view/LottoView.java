@@ -5,8 +5,8 @@ import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.PrizeAmount;
 import lotto.model.YieldCalculator;
-import lotto.util.Validation;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class LottoView {
@@ -14,7 +14,7 @@ public class LottoView {
     public String purchaseInput() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        Validation.validateInteger(input);
+
         System.out.println();
 
         return input;
@@ -58,8 +58,10 @@ public class LottoView {
         System.out.printf("6개 일치 (%,d원) - %d개\n", PrizeAmount.FIRST.getPrizeAmount(), rankCounts[0]); // 6개 일치 => 1등
     }
 
-    public void printYield(float yield) {
-        System.out.println("총 수익률은 " + yield + "%입니다.");
+    public void printYield(double yield) {
+        DecimalFormat df = new DecimalFormat("#,##0.0");
+        String formattedYield = df.format(yield);
+        System.out.println("총 수익률은 " + formattedYield + "%입니다.");
     }
 
     public void printError(String message) {
