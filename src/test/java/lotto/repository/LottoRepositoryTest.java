@@ -14,7 +14,7 @@ class LottoRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        lottoRepository.findAll().clear();
+        lottoRepository.findAllLottos().clear();
     }
 
     @Test
@@ -25,18 +25,18 @@ class LottoRepositoryTest {
         // when
         lottoRepository.addLotto(lotto);
         // then
-        assertThat(lottoRepository.findAll()).contains(lotto);
+        assertThat(lottoRepository.findAllLottos()).contains(lotto);
     }
 
     @Test
     @DisplayName("모든 로또 조회")
-    void findAll() {
+    void findAllLottos() {
         // given
         Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         // when
         lottoRepository.addLotto(lotto);
         // then
-        assertThat(lottoRepository.findAll()).contains(lotto);
+        assertThat(lottoRepository.findAllLottos()).contains(lotto);
         assertThat(lottoRepository.getLottoCount()).isEqualTo(1);
 
     }
@@ -70,6 +70,20 @@ class LottoRepositoryTest {
 
         // then
         assertEquals(lottoRepository, lottoRepository2);
+    }
+
+    @Test
+    @DisplayName("로또를 문자열로 반환")
+    void toStringTest() {
+        // given
+        Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        lottoRepository.addLotto(lotto);
+        // when
+        lottoRepository.findAllLottos().forEach(l -> {
+            System.out.println(l.toString());
+        });
+        // then
+        assertThat(lottoRepository.findAllLottos().get(0).toString()).isNotEmpty();
     }
 
 }
