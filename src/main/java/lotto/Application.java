@@ -77,7 +77,7 @@ public class Application {
             try {
                 return inputFunction.get();
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
