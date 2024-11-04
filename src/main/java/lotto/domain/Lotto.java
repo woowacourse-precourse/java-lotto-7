@@ -34,7 +34,7 @@ public class Lotto {
     private void validateLottoNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~ 45 사이여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이여야 합니다.");
             }
         }
     }
