@@ -69,4 +69,8 @@ public enum WinningRank {
                 .sum();
     }
 
+    public int getCount() {
+        return count;
+    }
+
 }
