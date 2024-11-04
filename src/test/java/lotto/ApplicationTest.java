@@ -47,9 +47,24 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 예외_테스트_구입금액_나눠떨어지지_않음() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 예외_테스트_구입금액_숫자아님() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_구입금액_음수() {
+        assertSimpleTest(() -> {
+            runException("-1000");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
