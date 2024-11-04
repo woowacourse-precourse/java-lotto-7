@@ -18,4 +18,8 @@ public class LottoPurchasePrice {
     public int getPurchaseCount() {
         return lottoPurchasePrice/LOTTO_PRICE;
     }
+
+    public int getPurchasePrice() {
+        return lottoPurchasePrice;
+    }
 }
