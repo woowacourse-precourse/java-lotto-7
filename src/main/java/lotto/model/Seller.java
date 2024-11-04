@@ -17,9 +17,8 @@ public class Seller {
         if (!matcherPay.matches()) {
             Error.reject(Error.INVALID_MSG);
         }
-
-        int money = Integer.parseInt(input);
-        if (money % 1000 != 0) {
+        
+        if (Utils.strToInteger(input) % 1000 != 0) {
             Error.reject(Error.MONEY_MSG);
         }
     }

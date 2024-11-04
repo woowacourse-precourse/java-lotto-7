@@ -12,6 +12,10 @@ public class Utils {
         return getRandomNumber(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT);
     }
 
+    public static int strToInteger(String input) {
+        return Integer.parseInt(input);
+    }
+    
     private static List<Integer> getRandomNumber(int start, int end, int count) {
         return Randoms.pickUniqueNumbersInRange(start, end, count);
     }
