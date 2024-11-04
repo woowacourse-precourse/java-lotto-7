@@ -36,7 +36,7 @@ public class InputController {
         }
     }
 
-    private Integer validatePurchaseNumberInput(String input) {
+    protected Integer validatePurchaseNumberInput(String input) {
         int purchaseNumber;
         try {
             purchaseNumber = Integer.parseInt(input);
@@ -73,7 +73,7 @@ public class InputController {
         }
     }
 
-    private Lotto validateLottoInput(String input) {
+    protected Lotto validateLottoInput(String input) {
         List<Integer> numbers = new ArrayList<>();
         try {
             for(String numberString : input.split(",")) {
@@ -100,7 +100,7 @@ public class InputController {
         }
     }
 
-    private Integer validateBonusNumberInput(String input, Lotto lotto) {
+    protected Integer validateBonusNumberInput(String input, Lotto lotto) {
         int bonusNumber;
         try {
             bonusNumber = Integer.parseInt(input);
