@@ -24,4 +24,8 @@ public class LottoReceipt {
         BigDecimal scaledTotalPrize = new BigDecimal(totalPrize).scaleByPowerOfTen(2);
         return scaledTotalPrize.divide(new BigDecimal(totalAmount), 1, RoundingMode.HALF_UP);
     }
+
+    public BigInteger getIssuedLottoQuantity() {
+        return BigInteger.valueOf(issuedTicket.lottos().size());
+    }
 }

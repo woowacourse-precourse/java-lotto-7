@@ -28,6 +28,8 @@ public class AppRunner {
         String inputAmount = inputView.requestPurchaseAmount();
         LottoReceipt lottoReceipt = controller.readPurchaseAmount(inputAmount);
 
+        outputView.printIssuedLottoQuantity(lottoReceipt.getIssuedLottoQuantity());
+
         String inputNumbers = inputView.requestWinningLottoNumbers();
         inputValidator.validateDigitAndDelimiterOnly(inputNumbers);
 

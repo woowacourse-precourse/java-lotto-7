@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.regex.Pattern;
 
 public class ViewConstants {
+    public static final String NEW_LINE = System.lineSeparator();
     public static final String HYPHEN = "-";
     public static final String VIEW_DELIMITER = ",";
     public static final String VIEW_DELIMITER_LABEL = "쉼표(,)";
