@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.validator.InputValidator;
 
 public class BonusNumberValidator implements InputValidator<Integer> {
 
@@ -12,7 +12,7 @@ public class BonusNumberValidator implements InputValidator<Integer> {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + " 유효한 숫자를 입력해야 합니다.");
+            throw new NumberFormatException(ERROR_MESSAGE + " 유효한 숫자를 입력해야 합니다.");
         }
     }
 }

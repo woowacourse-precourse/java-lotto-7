@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.validator.InputValidator;
 
 
 public class MoneyValidator implements InputValidator<Integer> {
@@ -13,7 +13,7 @@ public class MoneyValidator implements InputValidator<Integer> {
     private int isNumber(String input) {
         try {
             return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 유효한 숫자를 입력해야 합니다.");
         }
     }
