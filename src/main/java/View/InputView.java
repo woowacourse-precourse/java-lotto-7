@@ -7,9 +7,25 @@ import java.util.List;
 
 public class InputView {
 
-    public static int inputPurchaseAmount() {
+    public static String inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+
+        String input = Console.readLine();
+
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액을 입력해야 합니다.");
+        }
+
+        try {
+            int amount = Integer.parseInt(input);
+            if (amount % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+        }
+
+        return input;
     }
 
     public static List<Integer> inputWinningNumbers() {

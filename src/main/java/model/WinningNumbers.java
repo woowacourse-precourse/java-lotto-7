@@ -22,4 +22,5 @@ public class WinningNumbers {
     public boolean hasBonusNumber(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
     }
+
 }

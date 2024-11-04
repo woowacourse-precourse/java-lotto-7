@@ -1,6 +1,7 @@
 package View;
 
 import model.Lotto;
+import model.WinningRank;
 
 import java.util.List;
 
