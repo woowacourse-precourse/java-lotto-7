@@ -72,6 +72,10 @@ LottoFactory 클래스
 LottoNumberGenerator 클래스 
 - LottoNumber를 랜덤으로 pick 하는 역할
 
+LottoRank 클래스 
+- LottoRank를 저장하는 enum 역할
+- 조건에 알맞은 enum을 리턴
+  
 Lotto 통계 계산 클래스
 - List<Lotto>들의 등수를 계산하고, 수익률을 계산하는 역할
  
