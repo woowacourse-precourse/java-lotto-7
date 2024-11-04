@@ -23,13 +23,18 @@ class UserTest {
     @Test
     void countRank() {
         List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(12, 13, 14, 15, 23, 26)),
-                new Lotto(List.of(5, 7, 8, 19, 20, 45)), new Lotto(List.of(1, 2, 3, 4, 7, 9)));
+                new Lotto(List.of(5, 7, 8, 19, 20, 45)), new Lotto(List.of(1, 2, 3, 4, 7, 9)),
+                new Lotto(List.of(1, 2, 3, 4, 9, 10)), new Lotto(List.of(1, 2, 3, 4, 9, 11)));
         Lotto winnigNumbers = new Lotto(List.of(1, 2, 3, 4, 9, 10));
         int bonusNumber = 7;
 
-        assertThat(user.countRank(lottos, winnigNumbers, bonusNumber)).hasSize(3).contains(entry(Rank.SECOND, 1))
+        assertThat(user.countRank(lottos, winnigNumbers, bonusNumber)).hasSize(5)
+                .contains(entry(Rank.FIRST, 1))
+                .contains(entry(Rank.SECOND, 1))
+                .contains(entry(Rank.THIRD, 1))
                 .contains(entry(Rank.FOURTH, 1))
-                .contains(entry(Rank.ZERO, 2));
+                .contains(entry(Rank.ZERO, 2))
+                .doesNotContainKey(Rank.FIFTH);
     }
 
     @DisplayName("수익률 계산")
