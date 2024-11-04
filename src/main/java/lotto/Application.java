@@ -1,7 +1,11 @@
 package lotto;
 
+import lotto.domain.RandomLottoStrategy;
+import lotto.presentation.LottoController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoController lottoController = new LottoController(new RandomLottoStrategy());
+        lottoController.run();
     }
 }
