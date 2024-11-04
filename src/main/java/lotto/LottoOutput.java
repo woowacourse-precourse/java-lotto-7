@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 
 public class LottoOutput {
-    public void printPurchasedLottos(int count, List<Lotto> lottos) {
+    public void printLottos(int count, List<Lotto> lottos) {
         System.out.println(count + "개를 구매했습니다.");
         lottos.forEach(System.out::println);
     }

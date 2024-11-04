@@ -24,7 +24,7 @@ public class LottoGame {
 
         // 로또 발행
         List<Lotto> lottos = generator.generateLottos(count);
-        lottoOutput.printPurchasedLottos(count, lottos);
+        lottoOutput.printLottos(count, lottos);
 
         // 당첨 번호 입력
         List<Integer> winningNumbers = lottoInput.inputWinningNumbers();
