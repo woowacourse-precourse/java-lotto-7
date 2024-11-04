@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.Constant.*;
+
 public class Input {
     @FunctionalInterface
     private interface InputParser<T> {
@@ -37,7 +39,7 @@ public class Input {
 
     private static int parseCost(String input) {
         int cost = parseInteger(input);
-        if (cost % 1000 != 0) {
+        if (cost % LOTTO_CHARGE != ZERO) {
             throw new IllegalArgumentException("[ERROR] 구매 비용은 1,000원 단위로 입력할 수 있습니다.");
         }
 
@@ -45,11 +47,11 @@ public class Input {
     }
 
     private static List<Integer> parseWinNumbers(String input) {
-        List<Integer> numbers = Arrays.stream(input.split(","))
+        List<Integer> numbers = Arrays.stream(input.split(SPLITER))
                 .map(Input::parseInteger)
                 .toList();
 
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS_LIMIT) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
         }
 

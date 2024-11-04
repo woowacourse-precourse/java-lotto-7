@@ -17,13 +17,13 @@ public class Output {
         System.out.println("당첨 통계\n---");
 
         Arrays.stream(LottoEnum.values())
-                .filter(value -> value.getPrize().compareTo(BigDecimal.ZERO) > 0)
+                .filter(value -> value.getPrize().compareTo(BigDecimal.ZERO) > ZERO)
                 .forEach(Output::printLottoResult);
 
         System.out.println("총 수익률은 " +
                 formatDecimal(LottoEnum.sum()
                         .divide(BigDecimal.valueOf(cost))
-                        .multiply(BigDecimal.valueOf(100)), "#,###.0"
+                        .multiply(BigDecimal.valueOf(HUNDRED)), "#,###.0"
                 ) + "%입니다.");
 
     }

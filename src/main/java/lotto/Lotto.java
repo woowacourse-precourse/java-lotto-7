@@ -16,7 +16,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS_LIMIT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
@@ -44,7 +44,7 @@ public class Lotto {
     }
 
     public void search(List<Integer> winNumbers, int bonus) {
-        int matchCount = 0;
+        int matchCount = ZERO;
         for (Integer winNumber : winNumbers) {
             if (numbers.contains(winNumber)) {
                 matchCount++;
