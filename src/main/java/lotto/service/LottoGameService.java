@@ -16,7 +16,7 @@ public class LottoGameService {
 
 	public LottoResult playLottoGame(List<Lotto> lottos) {
 		List<Integer> winningNumbers = inputView.getWinningNumbers();
-		int bonusNumber = inputView.getBonusNumber();
+		int bonusNumber = inputView.getBonusNumber(winningNumbers);
 
 		LottoResult lottoResult = new LottoResult();
 
