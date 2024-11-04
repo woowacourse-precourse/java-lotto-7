@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.WinningLotto;
 import lotto.service.WinningLottoService;
+import lotto.util.Validator;
 import lotto.view.InputView;
 
 public class WinningLottoController {
@@ -13,7 +14,7 @@ public class WinningLottoController {
 
     public WinningLotto getWinningLotto(){
         String winningNumbersInput = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumbers();
+        int bonusNumber = Validator.parseInt(InputView.getBonusNumbers());
 
         return winningLottoService.create(winningNumbersInput, bonusNumber);
     }
