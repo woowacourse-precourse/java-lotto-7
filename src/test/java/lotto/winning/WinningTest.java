@@ -16,7 +16,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WinningTest {
-
     @Test
     @DisplayName("숫자와 쉼표로 이루어진 문자열은 올바른 당첨 번호 문자열이다.")
     public void testValidWinningString() {
@@ -143,9 +142,9 @@ public class WinningTest {
         HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
         winning.setHashSet(winningSet);
 
-        List lottoNumbers = Arrays.asList(1,2,3,4,5,6);
-        Lottos lottos = new Lottos();
-        WinningService winningService = new WinningService(lottos, winning);
+        List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+        //Lottos lottos = new Lottos();
+        //WinningService winningService = new WinningService(lottos, winning);
 
         WinningService.containsWinningNumber(lottoNumbers);
 
@@ -159,7 +158,8 @@ public class WinningTest {
         HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
         winning.setHashSet(winningSet);
 
-        List lottoNumbers = Arrays.asList(7,8,9,10,11,12);
+        List<Integer> lottoNumbers = Arrays.asList(7,8,9,10,11,12);
+
         Lottos lottos = new Lottos();
         WinningService winningService = new WinningService(lottos, winning);
 

@@ -22,6 +22,10 @@ public class Lotto {
         }
     }
 
+    public void removeNumber(int number) {
+        numbers.remove(Integer.valueOf(number));
+    }
+
     public int getSize() {
         return numbers.size();
     }

@@ -19,7 +19,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ResultTest {
-
     private User user;
     private Result result;
     private Winning winning;
@@ -48,7 +47,7 @@ public class ResultTest {
     @Test
     @DisplayName("당첨 번호 갯수를 확인한다.")
     public void testWinningNumbersCount() {
-        List lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+        List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,5,6);
 
         winningService.containsWinningNumber(lottoNumbers);
         int winningCount = resultService.checkWinningNumbersCount(lottoNumbers);
@@ -59,7 +58,7 @@ public class ResultTest {
     @Test
     @DisplayName("당첨 번호 갯수가 5개이다.")
     public void testIsWinningNumberFive() {
-        List lottoNumbers = Arrays.asList(1,2,3,4,7,9);
+        List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,7,9);
 
         winningService.containsWinningNumber(lottoNumbers);
         int winningCount = resultService.checkWinningNumbersCount(lottoNumbers);

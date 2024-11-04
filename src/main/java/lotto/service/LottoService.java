@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.User;
 import lotto.message.LottoMessage;
@@ -29,7 +30,9 @@ public class LottoService {
 
         for (int lotto = 0; lotto < lottoAmount; lotto++) {
             List<Integer> lottoNumbers = getRandomLottoNumber();
-            lottos.addLottoToList(lottoNumbers);
+
+            Lotto newLotto = new Lotto(lottoNumbers);
+            lottos.addLottoToList(newLotto);
         }
     }
 
@@ -42,15 +45,16 @@ public class LottoService {
     }
 
     public static void loopLottos(Lottos lottos) {
-        for (List LottoNumbers : lottos.getLottos()) {
-            sortAscending(LottoNumbers);
+        for (Lotto lotto : lottos.getLottos()) {
+            List<Integer> lottoNumbers = lotto.getNumber();
+            sortAscending(lottoNumbers);
 
-            if (!LottosValidate.isAscendingNumber(LottoNumbers)) {
+            if (!LottosValidate.isAscendingNumber(lottoNumbers)) {
                 System.out.println(LottoMessage.IS_NOT_ASCENDING_NUMBER.getMessage());
-                sortAscending(LottoNumbers);
+                sortAscending(lottoNumbers);
             }
 
-            LottosView.displayLottoNumbers(LottoNumbers);
+            LottosView.displayLottoNumbers(lottoNumbers);
         }
     }
 }

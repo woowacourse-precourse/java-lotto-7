@@ -8,7 +8,7 @@ public class LottosValidate {
 
     public static boolean isAscendingNumber(List<Integer> list) {
         List<Integer> ascendingList = new ArrayList<>(list);
-        Collections.sort(ascendingList);
+        Collections.sort(list);
 
         return ascendingList.equals(list);
     }

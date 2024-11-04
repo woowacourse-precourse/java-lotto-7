@@ -26,16 +26,18 @@ public class WinningService {
     }
 
     public void findWinningNumber(Lottos lottos) {
-        for (List LottoNumbers : lottos.getLottos()) {
-            containsWinningNumber(LottoNumbers);
+        for (Lotto lotto : lottos.getLottos()) {
+            containsWinningNumber(lotto.getNumber());
         }
     }
 
-    public static void containsWinningNumber(List lottoNumbers) {
+    public static void containsWinningNumber(List<Integer> lottoNumbers) {
         HashSet<Integer> winningSet = winning.getWinningSet();
 
         for (int winningNumber : winningSet) {
-            lottoNumbers.remove(Integer.valueOf(winningNumber));
+            if (lottoNumbers.contains(winningNumber)) {
+                lottoNumbers.remove(winningNumber);
+            }
         }
     }
 
