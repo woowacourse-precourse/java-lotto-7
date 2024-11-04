@@ -9,17 +9,9 @@ import lotto.domain.WinningLotto;
 
 public class LottoCheckService {
 
-    private final Lottos myLottos;
-    private final WinningLotto winningLotto;
-
-    LottoCheckService(Lottos myLotto, WinningLotto winningLotto) {
-        this.myLottos = myLotto;
-        this.winningLotto = winningLotto;
-    }
-
-    public List<LottoRank> checkRanks() {
+    public List<LottoRank> checkRanks(WinningLotto winningLotto, Lottos lottos) {
         List<LottoRank> ranks = new ArrayList<>();
-        for (Lotto myLotto : myLottos.getLottos()) {
+        for (Lotto myLotto : lottos.getLottos()) {
             ranks.add(winningLotto.match(myLotto));
         }
         return ranks;

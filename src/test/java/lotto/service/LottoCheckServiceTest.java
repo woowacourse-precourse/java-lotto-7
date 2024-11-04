@@ -18,7 +18,14 @@ public class LottoCheckServiceTest {
 
     @BeforeEach
     void setUp() {
-        Lottos myLottos = new Lottos(List.of(
+
+        lottoCheckService = new LottoCheckService();
+    }
+
+    @Test
+    void 구매한_로또들과_당첨로또를_비교하여_등수를_반환한다() {
+        //given
+        Lottos lottos = new Lottos(List.of(
             new Lotto(List.of(1, 2, 3, 4, 5, 6)),
             new Lotto(List.of(1, 2, 3, 4, 5, 7)),
             new Lotto(List.of(1, 2, 3, 4, 5, 8)),
@@ -32,12 +39,6 @@ public class LottoCheckServiceTest {
             7
         );
 
-        lottoCheckService = new LottoCheckService(myLottos, winningLotto);
-    }
-
-    @Test
-    void 구매한_로또들과_당첨로또를_비교하여_등수를_반환한다() {
-        //given
         List<LottoRank> expectedRank = List.of(
             LottoRank.FIRST,
             LottoRank.SECOND,
@@ -48,7 +49,7 @@ public class LottoCheckServiceTest {
         );
 
         //when
-        List<LottoRank> ranks = lottoCheckService.checkRanks();
+        List<LottoRank> ranks = lottoCheckService.checkRanks(winningLotto, lottos);
 
         //then
         assertThat(ranks).isEqualTo(expectedRank);
