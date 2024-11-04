@@ -57,8 +57,12 @@ public class WinnerManager {
     public void printRankStatistic() {
         System.out.println("당첨 통계");
         System.out.println("---");
-        for (Map.Entry<Rank, Long> entry : rankStatistic.entrySet()) {
-            System.out.println(entry.getKey().showRankCondition() + entry.getValue() + "개");
+        Rank[] ranks = Rank.values();
+        for (int rankIndex = ranks.length - 1; rankIndex >= 0; rankIndex--) {
+            Rank rank = ranks[rankIndex];
+            if (rank != Rank.UN_RANK) {
+                System.out.println(rank.showRankCondition() + rankStatistic.getOrDefault(rank, 0L) + "개");
+            }
         }
     }
 
