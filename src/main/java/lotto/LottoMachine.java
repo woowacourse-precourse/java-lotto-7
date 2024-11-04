@@ -16,4 +16,16 @@ public class LottoMachine {
         return lottos;
     }
 
+    public WinningResult checkWinningResults(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
+        WinningResult result = new WinningResult();
+        for (Lotto userLotto : userLottos) {
+            int matchCount = (int) userLotto.getNumbers().stream()
+                    .filter(winningLotto.getNumbers()::contains)
+                    .count();
+            boolean bonusMatch = userLotto.getNumbers().contains(bonusNumber);
+            Rank rank = Rank.valueOf(matchCount, bonusMatch);
+            result.addResult(rank);
+        }
+        return result;
+    }
 }
