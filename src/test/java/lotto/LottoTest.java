@@ -24,7 +24,16 @@ class LottoTest {
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.OVERLAPLOTTONUMBER.getMessage());
+    }
+
+    @DisplayName("로또 번호가 6개가 아닌경우")
+    @Test
+    void lottoNumbersNotSixCount() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.LOTTONUMBERCOUNTNOTSIX.getMessage());
     }
 
     @Test
@@ -37,6 +46,4 @@ class LottoTest {
 
         assertThat(lottos.getLottos().size()).isEqualTo(2);
     }
-
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }
