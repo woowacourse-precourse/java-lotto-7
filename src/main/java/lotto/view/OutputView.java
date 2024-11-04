@@ -44,7 +44,7 @@ public class OutputView {
     }
 
     public static void printProfitRate(double profitRate) {
-        DecimalFormat formatter = new DecimalFormat("0.0");
+        DecimalFormat formatter = new DecimalFormat("#,##0.0"); // 소수점 첫째 자리까지 반올림
         System.out.printf("총 수익률은 %s%%입니다.%n", formatter.format(profitRate));
     }
 }
