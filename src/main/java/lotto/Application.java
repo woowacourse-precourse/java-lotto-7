@@ -42,7 +42,20 @@ public class Application {
         checkLottoResults(lottoBoxes, lotto, bonusBall, num);
     }
 
+    // 3. 구매금액 처리
+    private static int parsePurchaseAmount(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "잘못된 입력입니다. 숫자를 입력해 주세요.");
+        }
+    }
 
+    private static void checkMinimumPurchaseAmount(int cost) {
+        if (cost < 1000) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "로또는 1장에 1000원입니다.");
+        }
+    }
 
 
 
