@@ -32,7 +32,12 @@ public class InputView {
     }
 
     private static void promptBonusNumber() {
+        printLine();
         System.out.println(BONUS_NUMBER_MESSAGE);
+    }
+
+    private static void printLine() {
+        System.out.println();
     }
 
 }

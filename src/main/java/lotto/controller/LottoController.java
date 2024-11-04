@@ -26,8 +26,11 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
-        PurchasedLotto purchasedLotto = new PurchasedLotto(purchaseAmount/LOTTO_PRICE);
-        OutputView.printPurchasedLottos(purchasedLotto);
+        int lottoQuantity = purchaseAmount / LOTTO_PRICE;
+        OutputView.printPurchaseAmount(lottoQuantity);
+
+        PurchasedLotto purchasedLotto = new PurchasedLotto(lottoQuantity);
+        OutputView.printPurchasedLottos(purchasedLotto.getLottos());
 
         LottoManager lottoManager = new LottoManager(createWinningLotto(), getBonusNumber());
         Map<LottoWinnerPrize, Integer> prizeCount = lottoManager.getWinningPrizes(purchasedLotto.getLottos());
@@ -99,7 +102,7 @@ public class LottoController {
                 .toList();
         for (LottoWinnerPrize prize : result) {
             int count = prizeCount.get(prize);
-            OutputView.printPrizeCount(prize, count);
+            OutputView.printPrizeCount(prize.getDescription(), count);
         }
     }
 
