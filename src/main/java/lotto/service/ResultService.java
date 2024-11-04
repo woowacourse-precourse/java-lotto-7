@@ -1,6 +1,5 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -11,28 +10,12 @@ import lotto.domain.Number;
 import lotto.domain.Numbers;
 import lotto.domain.Price;
 
-public class LottoService {
+public class ResultService {
 
-    private final List<Lotto> purchasedLotteries;
     private final LottoResult lottoResult;
 
-    public LottoService(List<Lotto> purchasedLotteries, LottoResult lottoResult) {
-        this.purchasedLotteries = purchasedLotteries;
+    public ResultService(LottoResult lottoResult) {
         this.lottoResult = lottoResult;
-    }
-
-    public Price getPurchasePrice(String input) {
-        return new Price(input);
-    }
-
-    public void buyLotto(Price purchasePrice) {
-        for (int i = 0; i < purchasePrice.getLottoAmount(); i++) {
-            purchasedLotteries.add(generateLottoByNumbers(generateRandomNumbers()));
-        }
-    }
-
-    public List<Lotto> getPurchasedLotteries() {
-        return Collections.unmodifiableList(purchasedLotteries);
     }
 
     public Numbers getWinNumbers(String input) {
@@ -45,7 +28,7 @@ public class LottoService {
         return bonusNumber;
     }
 
-    public void calculateLottoResult(Numbers winNumbers, Number bonusNumber) {
+    public void calculateLottoResult(List<Lotto> purchasedLotteries, Numbers winNumbers, Number bonusNumber) {
         Map<LottoRank, Integer> result = lottoResult.getResult();
         for (Lotto lotto : purchasedLotteries) {
             int lottoScore = lotto.countMatchNumbers(winNumbers);
@@ -64,20 +47,6 @@ public class LottoService {
     }
 
     public float getProfitRate(Price price) {
-        int profit = lottoResult.getResult().entrySet()
-            .stream()
-            .filter(result -> result.getValue() != 0)
-            .mapToInt(result -> result.getKey().getPrize() * result.getValue())
-            .sum();
-
-        return ((float) profit / price.value()) * 100;
-    }
-
-    private Lotto generateLottoByNumbers(List<Integer> lottoNumbers) {
-        return new Lotto(lottoNumbers);
-    }
-
-    private List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return ((float) lottoResult.calculateProfit() / price.value()) * 100;
     }
 }

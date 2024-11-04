@@ -19,4 +19,12 @@ public class LottoResult {
     public Map<LottoRank, Integer> getResult() {
         return result;
     }
+
+    public int calculateProfit() {
+        return result.entrySet()
+            .stream()
+            .filter(resultEntry -> resultEntry.getValue() != 0)
+            .mapToInt(resultEntry -> resultEntry.getKey().getPrize() * resultEntry.getValue())
+            .sum();
+    }
 }

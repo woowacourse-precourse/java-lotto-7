@@ -7,19 +7,23 @@ import lotto.domain.LottoResult;
 import lotto.domain.Numbers;
 import lotto.domain.Number;
 import lotto.domain.Price;
-import lotto.service.LottoService;
+import lotto.service.PurchaseService;
+import lotto.service.ResultService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    LottoService lottoService;
+    PurchaseService purchaseService;
+    ResultService resultService;
+
     Price purchasePrice;
     Numbers winNumbers;
     Number bonusNumber;
 
     public LottoController() {
-        lottoService = new LottoService(new ArrayList<>(), new LottoResult());
+        purchaseService = new PurchaseService(new ArrayList<>());
+        resultService = new ResultService(new LottoResult());
     }
 
     public void run() {
@@ -31,36 +35,36 @@ public class LottoController {
 
     private void purchase() {
         purchasePrice = executeWithRetry(
-            () -> lottoService.getPurchasePrice(InputView.inputPurchasePrice())
+            () -> purchaseService.getPurchasePrice(InputView.inputPurchasePrice())
         );
 
         OutputView.printPurchasedLottoAmount(purchasePrice.getLottoAmount());
 
-        lottoService.buyLotto(purchasePrice);
+        purchaseService.purchaseLotto(purchasePrice);
 
-        OutputView.printPurchasedLottoNumbers(lottoService.getPurchasedLotteries());
+        OutputView.printPurchasedLottoNumbers(purchaseService.getPurchasedLotteries());
     }
 
     private void winInformation() {
         winNumbers = executeWithRetry(
-            () -> lottoService.getWinNumbers(InputView.inputWinNumbers())
+            () -> resultService.getWinNumbers(InputView.inputWinNumbers())
         );
 
         bonusNumber = executeWithRetry(
-            () -> lottoService.getBonusNumber(winNumbers, InputView.inputBonusNumber())
+            () -> resultService.getBonusNumber(winNumbers, InputView.inputBonusNumber())
         );
     }
 
     private void result() {
-        lottoService.calculateLottoResult(winNumbers, bonusNumber);
+        resultService.calculateLottoResult(purchaseService.getPurchasedLotteries(), winNumbers, bonusNumber);
 
         OutputView.printWinStatistics();
 
-        lottoService.getLottoResult().forEach((result, count) -> {
+        resultService.getLottoResult().forEach((result, count) -> {
             OutputView.printWinStatisticsDetail(result.getMessage(), count);
         });
 
-        OutputView.printProfitRate(lottoService.getProfitRate(purchasePrice));
+        OutputView.printProfitRate(resultService.getProfitRate(purchasePrice));
     }
 
     private <T> T executeWithRetry(Supplier<T> supplier) {

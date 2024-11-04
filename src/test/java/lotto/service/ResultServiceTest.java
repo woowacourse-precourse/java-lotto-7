@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,16 +17,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoServiceTest {
+class ResultServiceTest {
 
-    private LottoService lottoService;
+    private ResultService resultService;
+    private List<Lotto> purchasedLotteries;
     private Numbers winNumbers;
-    private Number bonusNumber;
+    private lotto.domain.Number bonusNumber;
     private Price price;
 
     @BeforeEach
     void init() {
-        List<Lotto> purchasedLotteries = new ArrayList<>();
+        purchasedLotteries = new ArrayList<>();
 
         purchasedLotteries.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6))));
         purchasedLotteries.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 7))));
@@ -33,7 +36,7 @@ class LottoServiceTest {
         purchasedLotteries.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 43, 44, 45))));
         purchasedLotteries.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 42, 43, 44, 45))));
 
-        lottoService = new LottoService(purchasedLotteries, new LottoResult());
+        resultService = new ResultService(new LottoResult());
 
         winNumbers = new Numbers(Arrays.asList(1, 2, 3, 4, 5, 6));
 
@@ -45,18 +48,17 @@ class LottoServiceTest {
     @DisplayName("발행된 로또들과 당첨 번호를 비교한다.")
     @Test
     void 발행된_로또들과_당첨_번호_비교() {
-        lottoService.calculateLottoResult(winNumbers, bonusNumber);
+        resultService.calculateLottoResult(purchasedLotteries, winNumbers, bonusNumber);
 
-        Map<LottoRank, Integer> calculatedResult = lottoService.getLottoResult();
+        Map<LottoRank, Integer> calculatedResult = resultService.getLottoResult();
         Assertions.assertThat(calculatedResult.values()).containsExactly(1, 1, 1, 1, 1);
     }
 
     @DisplayName("로또 당첨 결과에 따른 수익률을 계산한다.")
     @Test
     void 로또_당첨_결과에_따른_수익률_계산() {
-        lottoService.calculateLottoResult(winNumbers, bonusNumber);
-        float profitRate = lottoService.getProfitRate(price);
+        resultService.calculateLottoResult(purchasedLotteries, winNumbers, bonusNumber);
+        float profitRate = resultService.getProfitRate(price);
         Assertions.assertThat(profitRate).isEqualTo(33859250);
     }
-
 }
