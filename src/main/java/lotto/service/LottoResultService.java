@@ -7,20 +7,28 @@ import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.dto.LottoPurchase;
+import lotto.dto.LottoResult;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 
 public class LottoResultService {
 
-    public Map<Rank, Integer> calculateResults(List<Lotto> purchasedLotto, List<Integer> winningNumbers,
-                                               int bonusNumber) {
-        Map<Rank, Integer> results = new HashMap<>();
-        purchasedLotto.forEach(lotto -> updateResults(results, lotto, winningNumbers, bonusNumber));
+    public LottoResult calculateLottoResult(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber,
+                                            LottoPurchase lottoPurchase) {
+        Map<Rank, Integer> rankResults = calculateResults(purchasedLottos, winningNumbers, bonusNumber);
+        double profitRate = calculateProfitRate(rankResults, lottoPurchase.amount());
+        return new LottoResult(rankResults, profitRate);
+    }
 
+    private Map<Rank, Integer> calculateResults(List<Lotto> purchasedLottos, List<Integer> winningNumbers,
+                                                int bonusNumber) {
+        Map<Rank, Integer> results = new HashMap<>();
+        purchasedLottos.forEach(lotto -> updateResults(results, lotto, winningNumbers, bonusNumber));
         return results;
     }
 
-    private void updateResults(Map<Rank, Integer> results,  Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+    private void updateResults(Map<Rank, Integer> results, Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         Rank rank = determineRank(lotto, winningNumbers, bonusNumber);
         results.putIfAbsent(rank, DEFAULT_STATISTIC_COUNT);
         results.put(rank, results.get(rank) + 1);
@@ -29,17 +37,13 @@ public class LottoResultService {
     private Rank determineRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = calculateMatchCount(lotto, winningNumbers);
         boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
-        return Rank.valueOf(matchCount, hasBonus);
+        return Rank.getRank(matchCount, hasBonus);
     }
 
     private int calculateMatchCount(Lotto lotto, List<Integer> winningNumbers) {
-        int matchCount = 0;
-        for (Integer number : lotto.getNumbers()) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 
     public double calculateProfitRate(Map<Rank, Integer> results, int purchaseAmount) {

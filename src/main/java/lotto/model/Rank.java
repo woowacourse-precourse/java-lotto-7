@@ -1,7 +1,9 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum Rank {
-    NONE(0,false,0),
+    NONE(0, false, 0),
     FIFTH(3, false, 5000),
     FOURTH(4, false, 50000),
     THIRD(5, false, 1500000),
@@ -18,13 +20,11 @@ public enum Rank {
         this.prizeMoney = prizeMoney;
     }
 
-    public static Rank valueOf(int matchCount, boolean bonusMatch) {
-        for (Rank rank : Rank.values()) {
-            if (rank.matchCount == matchCount && rank.bonusMatch == bonusMatch) {
-                return rank;
-            }
-        }
-        return NONE;
+    public static Rank getRank(int matchCount, boolean hasBonus) {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.matchCount == matchCount && rank.bonusMatch == hasBonus)
+                .findFirst()
+                .orElse(NONE);
     }
 
     public int getMatchCount() {
