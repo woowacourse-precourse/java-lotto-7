@@ -43,7 +43,7 @@ class LottoResultTest {
             lottoResult.putResult(Rank._2TH);
             lottoResult.putResult(Rank._2TH);
             lottoResult.putResult(Rank._1TH);
-            long expect = Rank._2TH.getPrice() * 2 + Rank._1TH.getPrice();
+            long expect = Rank._2TH.getPrize() * 2 + Rank._1TH.getPrize();
             assertThat(lottoResult.computeTotalPrice()).isEqualTo(expect);
         });
     }

@@ -28,14 +28,14 @@ public record LottoStatisticsDTO(
     public record RankDTO(
             int rank,
             long matchCount,
-            long price,
+            long prize,
             boolean containsBonus
     ) implements Comparable<RankDTO> {
         public static RankDTO from(Rank rank) {
             return new RankDTO(
                     rank.getRank(),
                     rank.getMatchCount(),
-                    rank.getPrice(),
+                    rank.getPrize(),
                     rank.isContainsBonus()
             );
         }

@@ -29,7 +29,7 @@ public final class LottoResult {
 
     public long computeTotalPrice() {
         return result.entrySet().stream()
-                .mapToLong(resultEntry -> resultEntry.getKey().getPrice() * resultEntry.getValue())
+                .mapToLong(resultEntry -> resultEntry.getKey().getPrize() * resultEntry.getValue())
                 .sum();
     }
 

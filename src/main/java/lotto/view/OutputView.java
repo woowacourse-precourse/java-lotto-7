@@ -66,7 +66,7 @@ public class OutputView {
         lottoStatistics.statistics().forEach(((rankDTO, count) -> stringBuilder.appendLine(getResultInfo(
                 rankDTO.rank(),
                 rankDTO.matchCount(),
-                rankDTO.price(),
+                rankDTO.prize(),
                 lottoStatistics.statistics().get(rankDTO)
         ))));
     }
