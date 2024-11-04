@@ -17,10 +17,19 @@ public class LottoMachine {
 
     public void start() {
         int amount = inputView.buyLotto();
-        int count = amount / DEFAULT_LOTTO_AMOUNT;
+        int count = getLottoCount(amount);
 
         Lottos lottos = generateLottos(count);
         outputView.printLottoPurchaseDetails(lottos);
+
+        WinningLotto winningLotto = createWinningLottoFromInput();
+
+    }
+
+    private int getLottoCount(int amount) {
+        int count = amount / DEFAULT_LOTTO_AMOUNT;
+
+        return count;
     }
 
     private Lottos generateLottos(int count) {
@@ -28,10 +37,20 @@ public class LottoMachine {
 
         while(count > 0) {
             Lotto lotto = new Lotto(LottoNumber.generate());
+
             lottos.add(lotto);
             count -= 1;
         }
 
         return new Lottos(lottos);
     }
+
+    private WinningLotto createWinningLottoFromInput() {
+        String input = inputView.enterWinningNumbers();
+        int bonusNumber = inputView.enterBonusNumber();
+        List<Integer> winningNumbers = NumberParser.split(input);
+
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
 }
