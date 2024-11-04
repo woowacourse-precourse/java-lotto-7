@@ -2,8 +2,15 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.LottoRank;
+import lotto.dto.LottoStatisticsDto;
 
 public class LottoStatisticsService {
+
+    public LottoStatisticsDto getLottoStatistics(List<LottoRank> lottoRanks, int purchaseAmount) {
+        double profitRate = calculateProfitRate(lottoRanks, purchaseAmount);
+
+        return LottoStatisticsDto.of(profitRate, lottoRanks);
+    }
 
     public double calculateProfitRate(List<LottoRank> ranks, int purchaseAmount) {
         int totalPrize = sumPrize(ranks);
@@ -21,5 +28,4 @@ public class LottoStatisticsService {
     private double roundToTwoDecimalPlaces(double profitRate) {
         return Math.round(profitRate * 10) / 10.0;
     }
-
 }
