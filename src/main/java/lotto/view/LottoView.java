@@ -9,17 +9,17 @@ import java.util.List;
 public class LottoView {
     public int getPurchasePrice(){
         System.out.println("구입금액을 입력해 주세요.");
-        return getValidatedInput(lotto.util.InputValidator::validatePurchasePrice);
+        return getValidatedInput(lotto.valid.InputValidator::validatePurchasePrice);
     }
 
     public List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        return getValidatedInput(lotto.util.InputValidator::validateWinningNumbers);
+        return getValidatedInput(lotto.valid.InputValidator::validateWinningNumbers);
     }
 
     public int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return getValidatedInput(lotto.util.InputValidator::validateBonusNumber);
+        return getValidatedInput(lotto.valid.InputValidator::validateBonusNumber);
     }
 
     private <T> T getValidatedInput(InputValidator<T> validator) {

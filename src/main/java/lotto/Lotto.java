@@ -1,7 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.util.LottoNumbersValidator;
+import lotto.valid.LottoNumbersValidator;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.util.InputValidator;
+import lotto.valid.InputValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
