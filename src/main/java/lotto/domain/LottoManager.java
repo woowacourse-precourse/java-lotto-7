@@ -65,5 +65,4 @@ public class LottoManager {
                 .orElse(0);
         return (double) totalWinningMoney / purchaseAmount * PERCENT;
     }
-
 }

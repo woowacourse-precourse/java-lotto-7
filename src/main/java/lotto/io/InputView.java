@@ -1,5 +1,6 @@
 package lotto.io;
 
+import java.util.function.Supplier;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinnerLotto;
 import lotto.error.ErrorCode;

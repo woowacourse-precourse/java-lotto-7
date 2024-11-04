@@ -10,8 +10,8 @@ public class PurchaseAmount {
 
     public PurchaseAmount(String amount) {
         int tempAmount = validateAndGetIsInt(amount);
-        validateIsPositive(tempAmount);
-        validateMultipleOf1000(tempAmount);
+        validateIsAvailableMinAmount(tempAmount);
+        validateMultipleOfLOTTO_PRICE(tempAmount);
         this.amount = tempAmount;
     }
 
@@ -23,13 +23,13 @@ public class PurchaseAmount {
         }
     }
 
-    private void validateIsPositive(int amount){
+    private void validateIsAvailableMinAmount(int amount){
         if (amount < AVAILABLE_MIN_AMOUNT) {
             throw new IllegalArgumentException(ErrorCode.UNAVAILABLE_MIN_AMOUNT.getMessage());
         }
     }
 
-    private void validateMultipleOf1000(int amount){
+    private void validateMultipleOfLOTTO_PRICE(int amount){
         if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorCode.NOT_MULTIPLE_OF_1000.getMessage());
         }

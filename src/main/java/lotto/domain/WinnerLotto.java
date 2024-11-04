@@ -48,12 +48,15 @@ public class WinnerLotto extends Lotto {
         }
     }
 
-
     private static Integer parseInt(String number) {
         try {
             return  Integer.parseInt(number);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ErrorCode.NOT_INTEGER.getMessage());
         }
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
     }
 }
