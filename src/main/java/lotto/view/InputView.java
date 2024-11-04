@@ -41,6 +41,20 @@ public class InputView {
         }
     }
 
+    public int inputBonusNumber(List<Integer> winningNumbers) {
+        System.out.println(INPUT_BONUS_NUMBER);
+        while (true) {
+            try {
+                int input = parseIntInputString();
+                validateInputNumber(input);
+                validateDuplicatedFromWinningNumbers(input, winningNumbers);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     protected List<Integer> convertStringToInteger(List<String> inputString) {
         List<Integer> inputNumbers = new ArrayList<>();
         int num = 0;
