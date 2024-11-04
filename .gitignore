@@ -5,6 +5,19 @@ build/
 !**/src/main/**
 !**/src/test/**
 
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
 ### STS ###
 .apt_generated
 .classpath
@@ -33,3 +46,5 @@ out/
 
 ### Mac OS ###
 .DS_Store
+.AppleDouble
+.LSOverride
