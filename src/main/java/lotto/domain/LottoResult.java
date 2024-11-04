@@ -31,4 +31,12 @@ public class LottoResult {
 	public Map<Prize, Long> getMatchCounts() {
 		return matchCounts;
 	}
+
+	public double calculateProfitRate(int purchaseAmount) {
+		long totalPrize = matchCounts.entrySet().stream()
+			.mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+			.sum();
+
+		return ((double)totalPrize / purchaseAmount) * 100;
+	}
 }
