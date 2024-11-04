@@ -62,6 +62,12 @@ public class LottoController {
 
     private void validateMoney(String moneyString) throws IllegalArgumentException {
 
+        moneyString = moneyString.trim();
+        // 숫자가 아닌 입력이 들어온 경우
+        if (!Pattern.matches("[\\d]+", moneyString)) {
+            throw new IllegalArgumentException(ErrorStatus.INVALID_MONEY_INPUT.getMessage());
+        }
+
     }
 
     private List<Integer> changeStringToNumberList(String numbersString) throws IllegalArgumentException {
