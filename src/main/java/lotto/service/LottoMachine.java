@@ -22,6 +22,7 @@ public class LottoMachine {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = createNumbers();
+            Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
         return new LottoTicket(lottos);
@@ -29,7 +30,6 @@ public class LottoMachine {
 
     private List<Integer> createNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_VALUE, END_VALUE, COUNT);
-        Collections.sort(numbers);
-        return numbers;
+        return new ArrayList<>(numbers);
     }
 }

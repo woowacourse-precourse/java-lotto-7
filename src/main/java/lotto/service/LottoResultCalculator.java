@@ -28,6 +28,9 @@ public class LottoResultCalculator {
 
     public double getRateOfReturn(PurchaseAmount purchaseAmount) {
         double totalPrize = 0;
+        if (purchaseAmount.getValue() == 0) {
+            return totalPrize;
+        }
         for (String key : winningLottos.keySet()) {
             int count = winningLottos.get(key);
             int prize = LottoWinningCriteria.valueOf(key).getPrizeMoney();
