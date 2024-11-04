@@ -5,6 +5,7 @@ public enum ExceptionType {
     INVALID_NUMERIC_STRING("String is not numeric."),
     OUT_OF_RANGE_INT("stage is out of int type rage"),
     NON_POSITIVE_NUMBER("number is not positive number"),
+    NON_DIVISIBLE("values are not divisible relation"),
     //STRING related
     EMPTY_STRING("string is empty");
 

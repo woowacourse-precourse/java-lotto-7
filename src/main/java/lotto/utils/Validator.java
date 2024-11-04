@@ -39,4 +39,11 @@ public class Validator {
         }
 
     }
+
+   public static void validateDivisible(int source, int divider){
+        int rest = 0;
+        if(source % divider != rest){
+            ExceptionFactory.throwIllegalArgumentException(ExceptionType.NON_DIVISIBLE);
+        }
+   }
 }
