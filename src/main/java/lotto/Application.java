@@ -16,6 +16,8 @@ public class Application {
         List<List<Integer>> totalRandomNumbers = lottoService.generateLottoTickets();
         Lotto lotto = getValidatedLottoWithRetry(lottoService, inputHandler);
         getValidatedBonusNumberWithRetry(lottoService, lotto, inputHandler);
+        lottoService.updateLottoResults(totalRandomNumbers, lotto.getNumbers());
+
         Console.close();
     }
 

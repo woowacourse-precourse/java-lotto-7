@@ -43,4 +43,8 @@ public class Lotto {
         copiedNumbers.add(number);
         validateRangeAndUniqueness(copiedNumbers);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
