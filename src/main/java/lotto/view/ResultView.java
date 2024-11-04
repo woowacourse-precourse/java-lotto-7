@@ -1,7 +1,9 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
+import lotto.enums.LottoRank;
 
 public class ResultView {
     public static void printLottoNumbers(List<Integer> lottoNumbers) {
@@ -12,12 +14,16 @@ public class ResultView {
         System.out.println(lottoSetCount+"개를 구매했습니다.");
     }
 
-    public static void printMatchResult(Map<String, Integer> matchResults) {
-        System.out.println("3개 일치 (5,000원) - " + matchResults.get("3") + "개");
-        System.out.println("4개 일치 (50,000원) - " + matchResults.get("4") + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + matchResults.get("5") + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchResults.get("5+Bonus") + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + matchResults.get("6") + "개");
+    public static void printMatchResult(Map<LottoRank, Integer> matchResults) {
+        LottoRank[] ranksToPrint = {LottoRank.FIFTH, LottoRank.FOURTH, LottoRank.THIRD, LottoRank.SECOND, LottoRank.FIRST};
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        for (LottoRank rank : ranksToPrint) {
+            if (rank == LottoRank.SECOND) {
+                System.out.println(rank.getMatchingCount() + "개 일치, 보너스 볼 일치 (" + formatter.format(rank.getPrize()) + "원) - " + matchResults.get(rank) + "개");
+                continue;
+            }
+            System.out.println(rank.getMatchingCount() + "개 일치 (" + formatter.format(rank.getPrize()) + "원) - " + matchResults.get(rank) + "개");
+        }
     }
 
     public static void printProfitRate(double profitRate){

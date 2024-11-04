@@ -1,13 +1,14 @@
 package lotto.service;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
 import lotto.controller.LottoNumberGenerator;
+import lotto.enums.LottoRank;
 
 public class LottoService {
-    private Map<String, Integer> matchResults;
+    private Map<LottoRank, Integer> matchResults;
     private final int lottoSetCount;
     private List<List<Integer>> lottoSets;
     private final int lottoMoney;
@@ -19,12 +20,10 @@ public class LottoService {
     }
 
     private void initializeMatchResults() {
-        matchResults = new HashMap<>();
-        matchResults.put("3", 0);
-        matchResults.put("4", 0);
-        matchResults.put("5", 0);
-        matchResults.put("5+Bonus", 0);
-        matchResults.put("6", 0);
+        matchResults = new EnumMap<>(LottoRank.class);
+        for (LottoRank rank : LottoRank.values()) {
+            matchResults.put(rank, 0);
+        }
     }
 
     public void generateLottoSet() {
@@ -45,31 +44,26 @@ public class LottoService {
             updateMatchResults(matchCount, bonusMatch);
         }
     }
-
-    public Map<String, Integer> getMatchResults() {
-        return matchResults;
-    }
-
     private void updateMatchResults(int matchCount, boolean bonusMatch) {
-        if (matchCount == 5 && bonusMatch) {
-            matchResults.put("5+Bonus", matchResults.get("5+Bonus") + 1);
-        } else if (matchCount >= 3) {
-            matchResults.put(matchCount + "", matchResults.get(matchCount + "") + 1);
+        for (LottoRank rank : LottoRank.values()) {
+            if (matchCount == rank.getMatchingCount() &&
+                    (!rank.isBonusRequired() || (rank.isBonusRequired() && bonusMatch))) {
+                matchResults.put(rank, matchResults.getOrDefault(rank, 0) + 1);
+                return;
+            }
         }
     }
 
-    private int calculateLottoSetCount(int lottoMoney) {
-        return lottoMoney / 1000;
+    public Map<LottoRank, Integer> getMatchResults() {
+        return matchResults;
     }
 
     public int calculateTotalEarnings() {
         int earnings = 0;
 
-        earnings += matchResults.get("3") * 5000;
-        earnings += matchResults.get("4") * 50000;
-        earnings += matchResults.get("5") * 1500000;
-        earnings += matchResults.get("5+Bonus") * 30000000;
-        earnings += matchResults.get("6") * 2000000000;
+        for (LottoRank rank : LottoRank.values()) {
+            earnings += matchResults.getOrDefault(rank, 0) * rank.getPrize();
+        }
 
         return earnings;
     }
@@ -84,5 +78,9 @@ public class LottoService {
 
         double profitRate = (double) totalEarnings / totalSpent * 100;
         return Math.round(profitRate * 100) / 100.0;
+    }
+
+    private int calculateLottoSetCount(int lottoMoney) {
+        return lottoMoney / 1000;
     }
 }

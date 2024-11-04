@@ -2,6 +2,7 @@ package lotto.handler;
 
 import java.util.List;
 import java.util.Map;
+import lotto.enums.LottoRank;
 import lotto.view.ResultView;
 
 public class LottoResultHandler {
@@ -14,7 +15,7 @@ public class LottoResultHandler {
         ResultView.printLottoNumbers(lottoNumbers);
     }
 
-    public void printMatchResult(Map<String, Integer> matchResults) {
+    public void printMatchResult(Map<LottoRank, Integer> matchResults) {
         ResultView.printMatchResult(matchResults);
     }
 
