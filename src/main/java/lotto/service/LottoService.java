@@ -7,6 +7,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.constants.LottoPrize;
 import lotto.constants.LottoConstants;
+
 public class LottoService implements LottosServiceInterface {
 
   @Override
@@ -19,7 +20,9 @@ public class LottoService implements LottosServiceInterface {
     List<Lotto> lottos = new ArrayList<>();
 
     for (int i = 0; i < numOfLottos; i++) {
-      lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER, LottoConstants.MAX_NUMBER, LottoConstants.NUMBER_COUNT)));
+      lottos.add(new Lotto(
+          Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER, LottoConstants.MAX_NUMBER,
+              LottoConstants.NUMBER_COUNT)));
     }
     return lottos;
   }
@@ -31,9 +34,7 @@ public class LottoService implements LottosServiceInterface {
     List<Integer> winningCounts = Arrays.asList(0, 0, 0, 0, 0);
 
     for (Lotto lotto : lottos) {
-      long matchCount = lotto.getNumbers().stream()
-          .filter(winningNumbers::contains)
-          .count();
+      long matchCount = lotto.getNumbers().stream().filter(winningNumbers::contains).count();
 
       if (matchCount == LottoPrize.FIFTH.getMatchCount()) {
         winningCounts.set(0, winningCounts.get(0) + 1);
@@ -42,7 +43,7 @@ public class LottoService implements LottosServiceInterface {
       } else if (matchCount == LottoPrize.THIRD.getMatchCount()) {
         if (lotto.getNumbers().contains(bonusNumber)) {
           winningCounts.set(3, winningCounts.get(3) + 1);
-        } else {
+        } else if (!lotto.getNumbers().contains(bonusNumber)) {
           winningCounts.set(2, winningCounts.get(2) + 1);
         }
       } else if (matchCount == LottoPrize.FIRST.getMatchCount()) {
