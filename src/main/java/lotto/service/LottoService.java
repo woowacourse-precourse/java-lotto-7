@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.common.IntegerParser;
 import lotto.common.RandomNumberGenerator;
 import lotto.domain.IssuedLotto;
 import lotto.domain.IssuedRandomLotto;
@@ -36,16 +35,12 @@ public class LottoService {
         return LottoStatisticsDto.of(calculator.getLottoRanks(), lottoRateOfProfit);
     }
 
-    public List<Integer> parseAndValidateWinningNumbers(List<String> inputWinningNumbers) {
-        List<Integer> winningNumbers = inputWinningNumbers.stream()
-                .map(winningNumber -> IntegerParser.parseToInt(winningNumber))
-                .toList();
+    public List<Integer> validateWinningNumbers(List<Integer> winningNumbers) {
         LottoValidator.validate(winningNumbers);
         return winningNumbers;
     }
 
-    public int parseAndValidateBonusNumber(String inputBonusNumber, List<Integer> winningNumbers) {
-        int bonusNumber = IntegerParser.parseToInt(inputBonusNumber);
+    public int parseAndValidateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         LottoResultValidator.bonusNumberValidate(bonusNumber, winningNumbers);
         return bonusNumber;
     }
