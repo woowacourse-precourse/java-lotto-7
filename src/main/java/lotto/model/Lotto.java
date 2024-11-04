@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.constants.ErrorMessage;
+
 import java.util.List;
 
 public class Lotto {
@@ -12,9 +14,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
+        }
+        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
 }
