@@ -8,6 +8,7 @@ public class InputView {
     public int getPrice() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
+        System.out.println();
 
         validateNumberInput(input);
         return Integer.parseInt(input);
@@ -16,9 +17,9 @@ public class InputView {
     public List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해주세요.");
         String input = Console.readLine();
+        System.out.println();
 
         String[] numbers = validateNumbersInput(input);
-
         return Arrays.stream(numbers)
                 .map(Integer::parseInt)
                 .toList();
@@ -27,6 +28,7 @@ public class InputView {
     public int getBonusNumber() {
         System.out.println("보너스 번호를 입력해주세요.");
         String input = Console.readLine();
+        System.out.println();
 
         validateNumberInput(input);
 

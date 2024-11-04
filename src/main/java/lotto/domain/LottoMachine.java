@@ -56,6 +56,7 @@ public class LottoMachine {
 
     public void printAllLottoNumbers() {
         lottos.forEach(lotto -> System.out.println(lotto.toString()));
+        System.out.println();
     }
 
 }
