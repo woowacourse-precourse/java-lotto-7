@@ -13,12 +13,12 @@ public class Lotto {
                 .toList();
     }
 
-    public boolean contains(LottoNumber number) {
+    protected boolean contains(LottoNumber number) {
         return numbers.stream()
                 .anyMatch(lottoNumber -> lottoNumber == number);
     }
 
-    public boolean contains(int number) {
+    protected boolean contains(int number) {
         return numbers.stream()
                 .anyMatch(lottoNumber -> lottoNumber.getNumber() == number);
     }
