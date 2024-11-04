@@ -24,5 +24,14 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     // TODO: 추가 기능 구현
 }
