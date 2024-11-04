@@ -1,7 +1,13 @@
 package lotto;
 
+import lotto.domain.WoowahanLottoCompany;
+import lotto.domain.Consumer;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        WoowahanLottoCompany company = new WoowahanLottoCompany();
+        Consumer consumer = new Consumer();
+        company.enterForLottoPurchase(consumer);
+        company.printLottoWinningResult(consumer);
     }
 }
