@@ -6,6 +6,7 @@ import static lotto.constants.ErrorMessage.LOTTO_NUMBER_MUST_BE_ONE_TO_FORTY_FIV
 import static lotto.constants.LottoCondition.MIN_LOTTO_NUMBER;
 import static lotto.constants.LottoCondition.MAX_LOTTO_NUMBER;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class BonusNumber {
@@ -42,6 +43,27 @@ public class BonusNumber {
         if (number < MIN_LOTTO_NUMBER.get() || number > MAX_LOTTO_NUMBER.get()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_MUST_BE_ONE_TO_FORTY_FIVE.get());
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        BonusNumber comparingBonusNumber = (BonusNumber) obj;
+        return Objects.equals(bonusNumber, comparingBonusNumber.bonusNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bonusNumber);
+    }
+
+    public int get() {
+        return bonusNumber;
     }
 
 }
