@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 
 import static lotto.Validator.promptWithValidation;
@@ -6,6 +6,7 @@ import static lotto.Validator.promptWithValidation;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.Validator;
 
 public class InputView {
     private InputView() {

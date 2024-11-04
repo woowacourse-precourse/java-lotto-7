@@ -1,7 +1,8 @@
-package lotto;
+package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Rank;
 
 public class WinningLotto {
     private final List<Integer> lottoWinningNumbers = new ArrayList<>();

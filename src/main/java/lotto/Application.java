@@ -1,6 +1,11 @@
 package lotto;
 
 import java.util.List;
+import lotto.model.LottoPurchase;
+import lotto.model.LottoResult;
+import lotto.model.WinningLotto;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
