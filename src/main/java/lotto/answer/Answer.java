@@ -23,9 +23,9 @@ public class Answer {
 	}
 
 	public int checkLottoResult(Lotto pickedLotto) {
-		List<Integer> numbers = answerLotto.getNumbers();
-		numbers.retainAll(pickedLotto.getNumbers());
-		return numbers.size();
+		List<Integer> pickedLottoNumber = pickedLotto.getNumbers();
+		pickedLottoNumber.retainAll(answerLotto.getNumbers());
+		return pickedLottoNumber.size();
 	}
 
 	public boolean hasBonusLotto(Lotto pickedLotto) {
