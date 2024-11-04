@@ -52,7 +52,9 @@ public class LottoNumberFormatter {
         if (winningNums.contains(bonusNum)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 겹칩니다.");
         }
+    }
 
+    public void hasDuplicateWinningNum(List<Integer> winningNums) {
         Set<Integer> uniqueWinningNums = new HashSet<>(winningNums);
 
         if (winningNums.size() != uniqueWinningNums.size()) {
