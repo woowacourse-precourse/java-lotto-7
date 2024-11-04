@@ -1,22 +1,23 @@
 package lotto.validator;
 
 import lotto.common.ErrorMessage;
-import lotto.common.RegexPattern;
 
 public class BonusNumberValidator {
 
     public static int validateBonusNumber(String input){
         validateNullAndBlank(input);
-        validatePositiveNumber(input);
 
-        return Integer.parseInt(input);
+        int parsedNumber= validateOnlyNumber(input);
+
+        return parsedNumber;
     }
 
-    private static int validatePositiveNumber(String input){
-        if (!RegexPattern.INTEGER_INPUT.matches(input)){
-            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_INPUT);
+    private static int validateOnlyNumber(String input){
+        try{
+            return Integer.parseInt(input);
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_TYPE);
         }
-        return Integer.parseInt(input);
 
     }
 

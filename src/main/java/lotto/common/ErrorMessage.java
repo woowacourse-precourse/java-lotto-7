@@ -10,4 +10,6 @@ public class ErrorMessage {
     public static final String DUPLICATED_NUMBER = "[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.";
     public static final String DUPLICATED_TO_WINNING_NUMBERS ="[ERROR] 보너스 번호는 당첨 번호와 달라야 합니다" ;
     public static final String INVALID_INPUT_TYPE ="[ERROR] 쉼표와 숫자만 입력할 수 있으며 숫자는 정수 범위이어야 합니다" ;
+    public static final String INVALID_BONUS_NUMBER_TYPE="[ERROR] 보너스 번호는 숫자만 입력할 수 있으며 숫자는 정수 범위이어야 합니다";
+    public static final String INVALID_BONUS_NUMBER_RANGE="[ERROR] 보너스 번호는 1부터 45 사이의 숫지여야 합니다";
 }

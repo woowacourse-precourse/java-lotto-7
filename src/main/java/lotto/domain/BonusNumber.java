@@ -19,7 +19,7 @@ public class BonusNumber {
 
     private static void validateBonusNumberInRange(int bonusNumber) {
         if (bonusNumber<MININUM_NUMBER || bonusNumber>MAXIM1UM_NUMBER){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_RANGE);
         }
     }
 }

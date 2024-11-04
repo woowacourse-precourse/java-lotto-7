@@ -27,12 +27,12 @@ class BonusNumberValidatorTest {
                 hasMessageContaining(ErrorMessage.BLANK_OR_NULL_INPUT);
     }
 
-        @ParameterizedTest
-    @ValueSource(strings = {"-1","a","^","1+3"})
-    void 양의_정수를_입력하지_않으면_예외_발생(String input){
+    @ParameterizedTest
+    @ValueSource(strings = {"a","1000000000000000000000000000"})
+    void 오버플로우이거나_문자를_입력하면_예외_발생(String input){
         assertThatThrownBy(() ->  BonusNumberValidator.validateBonusNumber(input)).
                 isInstanceOf(IllegalArgumentException.class).
-                hasMessageContaining(ErrorMessage.NOT_INTEGER_INPUT);
+                hasMessageContaining(ErrorMessage.INVALID_BONUS_NUMBER_TYPE);
     }
 
 }
