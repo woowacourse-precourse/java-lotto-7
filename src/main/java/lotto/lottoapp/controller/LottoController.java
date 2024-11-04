@@ -3,8 +3,8 @@ package lotto.lottoapp.controller;
 import java.util.List;
 import lotto.common.util.InteractionRepeatable;
 import lotto.lottoapp.business.LottoService;
-import lotto.lottoapp.model.WinningLotto;
 import lotto.lottoapp.model.value.LottoNumbers;
+import lotto.lottoapp.model.value.WinningLottoNumbers;
 import lotto.lottoapp.model.value.WinningStatistics;
 import lotto.lottoapp.model.value.Won;
 import lotto.lottoapp.view.LottoInput;
@@ -39,8 +39,8 @@ public class LottoController implements InteractionRepeatable {
 
     private void handleLottoWinningProcess() {
         WinningStatistics winningStatistics = supplyWithRetry(() -> {
-            WinningLotto winningLotto = lottoInput.askForWinningLotto();
-            return lottoService.checkWinningResults(winningLotto);
+            WinningLottoNumbers winningLottoNumbers = lottoInput.askForWinningLotto();
+            return lottoService.checkWinningResults(winningLottoNumbers);
         });
         lottoOutput.announceWinningStatistics(winningStatistics);
     }

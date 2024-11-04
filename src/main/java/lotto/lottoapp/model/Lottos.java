@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import lotto.lottoapp.model.value.LottoNumbers;
+import lotto.lottoapp.model.value.WinningLottoNumbers;
 import lotto.lottoapp.model.value.WinningResult;
 import lotto.lottoapp.model.value.WinningStatistics;
 import lotto.lottoapp.model.value.Won;
@@ -48,15 +49,15 @@ public class Lottos {
                 .toList();
     }
 
-    public WinningStatistics calculateWinningStatistics(WinningLotto winningLotto) {
+    public WinningStatistics calculateWinningStatistics(WinningLottoNumbers winningLottoNumbers) {
         if (amountOfPaid == null || lottos == null || lottos.isEmpty()) {
             throw new IllegalArgumentException("계산할 로또가 없습니다.");
         }
-        return new WinningStatistics(getWinningResults(winningLotto), amountOfPaid);
+        return new WinningStatistics(getWinningResults(winningLottoNumbers), amountOfPaid);
     }
 
-    private Map<WinningResult, Long> getWinningResults(WinningLotto winningLotto) {
-        Map<WinningResult, Long> lottosWinningCountMap = getLottosWinningCountMap(winningLotto);
+    private Map<WinningResult, Long> getWinningResults(WinningLottoNumbers winningLottoNumbers) {
+        Map<WinningResult, Long> lottosWinningCountMap = getLottosWinningCountMap(winningLottoNumbers);
         return WinningResult.orderedStream()
                 .collect(toMap(
                         Function.identity(),
@@ -65,9 +66,9 @@ public class Lottos {
                         () -> new EnumMap<>(WinningResult.class)));
     }
 
-    private Map<WinningResult, Long> getLottosWinningCountMap(WinningLotto winningLotto) {
+    private Map<WinningResult, Long> getLottosWinningCountMap(WinningLottoNumbers winningLottoNumbers) {
         return lottos.stream()
-                .map(winningLotto::drawLotto)
+                .map(winningLottoNumbers::drawLotto)
                 .collect(groupingBy(Function.identity(),
                         () -> new EnumMap<>(WinningResult.class),
                         counting()));

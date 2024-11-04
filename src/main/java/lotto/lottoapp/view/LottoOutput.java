@@ -30,7 +30,7 @@ public class LottoOutput {
                 """;
         System.out.printf(statisticsMessageFormat,
                 getTotalStatisticsOfWinningCount(winningStatistics),
-                winningStatistics.getRateReturn());
+                winningStatistics.calculateRateReturn());
     }
 
     private static String getNumbersOf(List<LottoNumbers> issuedLottoNumbers) {
@@ -41,6 +41,16 @@ public class LottoOutput {
                 .map(lineOfLotto -> lineOfLotto.stream()
                         .map(lottoNumber -> String.valueOf(lottoNumber.getNumber()))
                         .collect(Collectors.joining(delimiterOfNumbers, prefixOfLineOfLotto, suffixOfLineOfLotto)))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    private static String getTotalStatisticsOfWinningCount(WinningStatistics winningStatistics) {
+        int firstRank = 1;
+        int fifthRank = 5;
+        return IntStream.rangeClosed(firstRank, fifthRank).boxed()
+                .sorted(Comparator.reverseOrder())
+                .map(winningStatistics::findWinningBy)
+                .map(LottoOutput::getFormattedMessageOfWinningCount)
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
@@ -58,16 +68,6 @@ public class LottoOutput {
                 winCountEntry.getKey().minCountOfWinningNumber,
                 winCountEntry.getKey().prize,
                 winCountEntry.getValue());
-    }
-
-    private static String getTotalStatisticsOfWinningCount(WinningStatistics winningStatistics) {
-        int firstRank = 1;
-        int fifthRank = 5;
-        return IntStream.rangeClosed(firstRank, fifthRank).boxed()
-                .sorted(Comparator.reverseOrder())
-                .map(winningStatistics::findWinningBy)
-                .map(LottoOutput::getFormattedMessageOfWinningCount)
-                .collect(Collectors.joining(System.lineSeparator()));
     }
 
 }

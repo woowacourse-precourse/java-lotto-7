@@ -15,4 +15,9 @@ public record RateReturn(BigDecimal rateOfReturn) {
                 .scaleByPowerOfTen(2));
     }
 
+    @Override
+    public String toString() {
+        return rateOfReturn.toString();
+    }
+
 }

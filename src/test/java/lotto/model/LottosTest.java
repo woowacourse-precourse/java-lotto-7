@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 import java.util.List;
 import lotto.lottoapp.model.AutomaticLottoNumbersGenerator;
 import lotto.lottoapp.model.Lottos;
-import lotto.lottoapp.model.WinningLotto;
 import lotto.lottoapp.model.value.BonusNumber;
 import lotto.lottoapp.model.value.LottoNumbers;
+import lotto.lottoapp.model.value.WinningLottoNumbers;
 import lotto.lottoapp.model.value.WinningStatistics;
 import lotto.lottoapp.model.value.Won;
 import org.junit.jupiter.api.Test;
@@ -51,9 +51,10 @@ class LottosTest {
         Lottos lottos = Lottos.by(new SequentialLottoNumberGenerator());
         lottos.buyFor(Won.of(5_000));
         List<LottoNumbers> lottoNumbers = lottos.getLottoNumbers();
-        WinningLotto winningLotto = new WinningLotto(LottoNumbers.of(List.of(1, 2, 3, 21, 31, 41)), new BonusNumber(7));
+        WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers(LottoNumbers.of(List.of(1, 2, 3, 21, 31, 41)),
+                new BonusNumber(7));
 
-        WinningStatistics winningStatistics = lottos.calculateWinningStatistics(winningLotto);
+        WinningStatistics winningStatistics = lottos.calculateWinningStatistics(winningLottoNumbers);
         assertThat(winningStatistics.findWinningBy(5).getKey()).isEqualTo(FIFTH);
         assertThat(winningStatistics.findWinningBy(FIFTH.ranking).getKey()).isEqualTo(FIFTH);
         assertThat(winningStatistics.findWinningBy(FIFTH.ranking).getValue()).isEqualTo(1L);
@@ -62,7 +63,7 @@ class LottosTest {
         assertThat(winningStatistics.findWinningBy(SECOND.ranking).getValue()).isEqualTo(0L);
         assertThat(winningStatistics.findWinningBy(FIRST.ranking).getValue()).isEqualTo(0L);
 
-        assertThat(winningStatistics.getRateReturn()).isEqualTo(new BigDecimal("100.0"));
+        assertThat(winningStatistics.calculateRateReturn().rateOfReturn()).isEqualTo(new BigDecimal("100.0"));
     }
 
 }

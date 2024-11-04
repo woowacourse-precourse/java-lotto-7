@@ -4,12 +4,12 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.lottoapp.model.WinningLotto;
 import lotto.lottoapp.model.value.BonusNumber;
 import lotto.lottoapp.model.value.LottoNumbers;
+import lotto.lottoapp.model.value.WinningLottoNumbers;
 import org.junit.jupiter.api.Test;
 
-class WinningLottoTest {
+class WinningLottoNumbersTest {
 
     public static final Class<IllegalArgumentException> COMMON_EXCEPTION = IllegalArgumentException.class;
 
@@ -18,7 +18,7 @@ class WinningLottoTest {
         LottoNumbers lottoNumbers = LottoNumbers.of(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
 
-        assertThatCode(() -> new WinningLotto(lottoNumbers, bonusNumber))
+        assertThatCode(() -> new WinningLottoNumbers(lottoNumbers, bonusNumber))
                 .doesNotThrowAnyException();
     }
 
@@ -27,7 +27,7 @@ class WinningLottoTest {
         LottoNumbers lottoNumbers = LottoNumbers.of(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(1);
 
-        assertThatThrownBy(() -> new WinningLotto(lottoNumbers, bonusNumber))
+        assertThatThrownBy(() -> new WinningLottoNumbers(lottoNumbers, bonusNumber))
                 .isInstanceOf(COMMON_EXCEPTION);
     }
 
