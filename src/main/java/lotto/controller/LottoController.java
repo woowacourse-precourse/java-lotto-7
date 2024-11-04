@@ -28,18 +28,22 @@ public class LottoController {
 
 	public void start() {
 		PurchaseMoney purchaseMoney = getPurchaseMoney();
-
 		int lottoCount = getLottoCount(purchaseMoney);
-
 		LottoBundle lottoBundle = getLottoBundle(lottoCount);
 		WinningNumber winningNumber = getWinningNumber();
 		BonusNumber bonusNumber = getBonusNumber(winningNumber);
 	}
 
 	private PurchaseMoney getPurchaseMoney() {
-		OutputView.promptPurchaseMoney();
-		int purchaseMoney = InputView.purchaseMoney();
-		return new PurchaseMoney(purchaseMoney);
+		while (true) {
+			try {
+				OutputView.promptPurchaseMoney();
+				int purchaseMoney = InputView.purchaseMoney();
+				return new PurchaseMoney(purchaseMoney);
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
 	private static int getLottoCount(PurchaseMoney purchaseMoney) {
@@ -56,16 +60,26 @@ public class LottoController {
 	}
 
 	private WinningNumber getWinningNumber() {
-		OutputView.promptWinningNumber();
-		List<Integer> winningNumber = InputView.winningNumber();
-
-		return new WinningNumber(winningNumber);
+		while (true) {
+			try {
+				OutputView.promptWinningNumber();
+				List<Integer> winningNumber = InputView.winningNumber();
+				return new WinningNumber(winningNumber);
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
 	private BonusNumber getBonusNumber(WinningNumber winningNumber) {
-		OutputView.promptBonusNumber();
-		int bonusNumber = InputView.bonusNumber();
-
-		return new BonusNumber(winningNumber.getWinningNumber(), bonusNumber);
+		while (true) {
+			try {
+				OutputView.promptBonusNumber();
+				int bonusNumber = InputView.bonusNumber();
+				return new BonusNumber(winningNumber.getWinningNumber(), bonusNumber);
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 }
