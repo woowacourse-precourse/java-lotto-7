@@ -14,6 +14,7 @@ public class InputView {
     private static final String ERROR_WINNING_NUMBERS_RANGE = "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_DUPLICATE_WINNING_NUMBERS = "[ERROR] 당첨 번호에는 중복된 숫자가 없어야 합니다.";
     private static final String ERROR_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String ERROR_BONUS_NUMBER_DUPLICATE = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
     private static final String ERROR_PURCHASE_AMOUNT = "[ERROR] 구입금액은 1,000원 단위여야 합니다.";
 
     private static final int WINNING_NUMBER_COUNT = 6;
@@ -34,15 +35,15 @@ public class InputView {
         }
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(List<Integer> winningNumbers) {
         try {
             System.out.println(MESSAGE_BONUS_NUMBER);
             int bonusNumber = parseNumber(Console.readLine());
-            validateNumber(bonusNumber);
+            validateBonusNumber(bonusNumber, winningNumbers);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(winningNumbers);
         }
     }
 
@@ -90,9 +91,12 @@ public class InputView {
         }
     }
 
-    private static void validateNumber(int number) {
+    private static void validateBonusNumber(int number, List<Integer> winningNumbers) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ERROR_BONUS_NUMBER_RANGE);
+        }
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_DUPLICATE);
         }
     }
 
