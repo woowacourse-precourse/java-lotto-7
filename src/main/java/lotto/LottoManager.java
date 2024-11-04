@@ -1,11 +1,12 @@
 package lotto;
 
-import static lotto.InputParser.parseBonusNumber;
-import static lotto.InputParser.parsePurchaseAmount;
+import static lotto.view.InputParser.parseBonusNumber;
+import static lotto.view.InputParser.parsePurchaseAmount;
 import static lotto.view.Input.inputBonusNumber;
 import static lotto.view.Input.inputPurchaseAmount;
 import static lotto.view.Input.inputWinningNumbers;
-import static lotto.InputParser.parseWinningNumbers;
+import static lotto.view.InputParser.parseWinningNumbers;
+import static lotto.view.Output.printErrorMessage;
 import static lotto.view.Output.printPurchaseMessage;
 import static lotto.view.Output.printReturnRate;
 import static lotto.view.Output.printWinningStatistics;
@@ -29,7 +30,7 @@ public class LottoManager {
             int purchaseAmount = parsePurchaseAmount(inputPurchaseAmount());
             return PurchaseAmount.of(purchaseAmount);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printErrorMessage(e.getMessage());
             return getPurchaseAmount();
         }
     }
@@ -39,7 +40,7 @@ public class LottoManager {
             List<Integer> winningNumbers = parseWinningNumbers(inputWinningNumbers());
             return WinningNumbers.of(winningNumbers);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printErrorMessage(e.getMessage());
             return getWinningNumbers();
         }
     }
@@ -50,7 +51,7 @@ public class LottoManager {
             winningNumbers.validateDuplicatedWithBonusNumber(bonusNumber);
             return BonusNumber.of(bonusNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printErrorMessage(e.getMessage());
             return getBonusNumber(winningNumbers);
         }
     }

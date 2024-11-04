@@ -19,6 +19,7 @@ import lotto.WinningRecord;
 
 public class Output {
     private static final String LOTTO_NUMBER_DELIMITER = ", ";
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s\n\n";
     private static final List<Rank> winningRanks = List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
 
     public static void printPurchaseMessage(final int purchasedLottoesCount) {
@@ -54,5 +55,9 @@ public class Output {
 
     public static void printReturnRate(final double returnRate) {
         System.out.printf(RETURN_RATE.getMessage(), returnRate);
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.printf(ERROR_MESSAGE_FORMAT, errorMessage);
     }
 }
