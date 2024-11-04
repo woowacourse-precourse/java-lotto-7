@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -34,8 +33,7 @@ public class LottoStatisticsDto {
     }
 
     private String rateOfReturnToPrintFormat(double rateOfReturn) {
-        DecimalFormat df = new DecimalFormat("###,###.##");
-        return df.format(rateOfReturn);
+        return String.format("%,.1f", rateOfReturn);
     }
 
     @Override
