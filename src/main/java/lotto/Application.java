@@ -8,11 +8,12 @@ public class Application {
 
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();
-        lottery.issue(purchaseAmount);
+        lottery.issue(Integer.parseInt(purchaseAmount));
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String prizeNum = Console.readLine();
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNum = Console.readLine();
+        lottery.prize(prizeNum, bonusNum, purchaseAmount);
     }
 }
