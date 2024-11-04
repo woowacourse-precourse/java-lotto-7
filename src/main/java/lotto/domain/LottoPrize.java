@@ -45,10 +45,10 @@ public enum LottoPrize {
         if(matchCount == 5 && matchBonus){
             return MATCH_5_WITH_BONUS;
         }
-        return findPrizeBByMatchCount(matchCount);
+        return findPrizeByMatchCount(matchCount);
     }
 
-    public static LottoPrize findPrizeBByMatchCount(int matchCount){
+    public static LottoPrize findPrizeByMatchCount(int matchCount){
         return Arrays.stream(LottoPrize.values())
                 .filter(prize -> prize.matchCount == matchCount && prize != MATCH_5_WITH_BONUS)
                 .findFirst()
