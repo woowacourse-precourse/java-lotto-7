@@ -12,4 +12,8 @@ public class InputView {
         String winningNumbers = Console.readLine();
         return SplittingWinningNumbers.splitWinningNumbers(winningNumbers);
     }
+
+    public String inputBonusNumber(){
+        return Console.readLine();
+    }
 }
