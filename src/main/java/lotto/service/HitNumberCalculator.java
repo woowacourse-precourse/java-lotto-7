@@ -35,4 +35,12 @@ public class HitNumberCalculator {
         }
         return matchCount;
     }
+
+    public double calculateProfitRate(Map<Rank, Integer> results, int purchaseAmount) {
+        int totalPrize = results.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
+
+        return (double) totalPrize / purchaseAmount * 100;
+    }
 }
