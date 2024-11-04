@@ -15,12 +15,13 @@ public enum ExceptionMessages {
     BONUS_NUMBER_OUT_OF_RANGE("보너스 번호는 1에서 45 사이의 정수여야 합니다."),
     DUPLICATE_BONUS_NUMBER("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     private final String message;
+    private final String PREFIX = "[ERROR] ";
 
     ExceptionMessages(String message) {
         this.message = message;
     }
 
     public String getMessage() {
-        return message;
+        return PREFIX + message;
     }
 }

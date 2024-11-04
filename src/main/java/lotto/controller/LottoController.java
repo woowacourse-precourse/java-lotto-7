@@ -47,7 +47,7 @@ public class LottoController {
                 inputValidator.validatePurchaseAmount(purchaseAmount);
                 return purchaseAmount;
             } catch (InputException e) {
-                OutputView.printErrorMessage(e.getMessage());
+                OutputView.println(e.getMessage());
             }
         }
     }
@@ -59,7 +59,7 @@ public class LottoController {
                 inputValidator.validateWinningNumbers(winningNumbers);
                 return winningNumbers;
             } catch (InputException e) {
-                OutputView.printErrorMessage(e.getMessage());
+                OutputView.println(e.getMessage());
             }
         }
     }
@@ -71,7 +71,7 @@ public class LottoController {
                 inputValidator.validateBonusNumber(winningNumbers, bonusNumber);
                 return bonusNumber;
             } catch (InputException e) {
-                OutputView.printErrorMessage(e.getMessage());
+                OutputView.println(e.getMessage());
             }
         }
     }

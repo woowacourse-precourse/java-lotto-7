@@ -8,11 +8,10 @@ import lotto.util.enums.Rank;
 
 public class OutputView {
     private static final int LOTTO_PRICE = 1000;
-    private static final String PREFIX = "[ERROR] ";
 
     public static void printPurchaseAmount(String purchaseAmount) {
         int amount = Integer.parseInt(purchaseAmount) / LOTTO_PRICE;
-        System.out.println("\n"+ amount + "개를 구매했습니다.");
+        System.out.println("\n" + amount + "개를 구매했습니다.");
     }
 
     public static void printLottoNumbers(List<Integer> numbers) {
@@ -41,7 +40,7 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void printErrorMessage(String messages) {
-        System.out.println(PREFIX + messages);
+    public static void println(String input) {
+        System.out.println(input);
     }
 }
