@@ -4,6 +4,8 @@ import lotto.error.ErrorCode;
 
 public class PurchaseAmount {
 
+    private static final int LOTTO_PRICE = 1000;
+    private static final int AVAILABLE_MIN_AMOUNT = 1000;
     private int amount;
 
     public PurchaseAmount(String amount) {
@@ -22,13 +24,13 @@ public class PurchaseAmount {
     }
 
     private void validateIsPositive(int amount){
-        if (amount <= 0) {
-            throw new IllegalArgumentException(ErrorCode.NOT_POSITIVE.getMessage());
+        if (amount < AVAILABLE_MIN_AMOUNT) {
+            throw new IllegalArgumentException(ErrorCode.UNAVAILABLE_MIN_AMOUNT.getMessage());
         }
     }
 
     private void validateMultipleOf1000(int amount){
-        if (amount % 1000 != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorCode.NOT_MULTIPLE_OF_1000.getMessage());
         }
     }

@@ -8,12 +8,14 @@ import lotto.error.ErrorCode;
 
 public class LottoManager {
 
+    private static final int LOTTO_PRICE = 1000;
+    private static final int PERCENT = 100;
     private final int purchaseAmount;
     private final List<Lotto> publishedLottos;
     private final WinnerLotto winningLotto;
 
     public LottoManager(List<Lotto> publishedLottos) {
-        this.purchaseAmount = publishedLottos.size() * 1000;
+        this.purchaseAmount = publishedLottos.size() * LOTTO_PRICE;
         this.publishedLottos = publishedLottos;
         this.winningLotto = null;
     }
@@ -25,7 +27,7 @@ public class LottoManager {
     }
 
     public static LottoManager from(int purchaseAmount){
-        int lottoCount = purchaseAmount / 1000;
+        int lottoCount = purchaseAmount / LOTTO_PRICE;
         List<Lotto> publishedLottos = LottoFactory.createLottos(lottoCount);
         return new LottoManager(publishedLottos);
     }
@@ -37,7 +39,6 @@ public class LottoManager {
     public List<Lotto> getPublishedLottos() {
         return Collections.unmodifiableList(publishedLottos);
     }
-
 
     public Map<Prize, Integer> getPrizeResult() {
         if(winningLotto == null){
@@ -62,7 +63,7 @@ public class LottoManager {
                 .map(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
                 .reduce(Integer::sum)
                 .orElse(0);
-        return (double) totalWinningMoney / purchaseAmount * 100;
+        return (double) totalWinningMoney / purchaseAmount * PERCENT;
     }
 
 }
