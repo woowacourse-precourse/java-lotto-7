@@ -18,7 +18,8 @@ public class LottoWinningNumbers {
 
     private void validateBonusNumber() {
         if (bonusNumber < MINIMUM_LOTTO_NUMBER || bonusNumber > MAXIMUM_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(LOTTO_BONUS_NUMBER_RANGE_ERROR.getFormattedMessage(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER));
+            throw new IllegalArgumentException(
+                    LOTTO_BONUS_NUMBER_RANGE_ERROR.getFormattedMessage(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER));
         }
         if (containsNumber(bonusNumber)) {
             throw new IllegalArgumentException(LOTTO_BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
