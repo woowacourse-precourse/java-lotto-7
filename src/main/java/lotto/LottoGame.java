@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LottoGame {
     public int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -15,4 +18,14 @@ public class LottoGame {
         }
         return amount;
     }
+
+    public List<Lotto> generateLottos(int amount) {
+        int count = amount / 1000;
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            lottos.add(new Lotto());
+        }
+        return lottos;
+    }
+
 }
