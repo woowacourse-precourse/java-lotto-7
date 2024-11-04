@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lotto.model.WinningResultDto;
 import lotto.model.WinningResultsDto;
@@ -42,6 +43,9 @@ public class OutputView {
 		stringBuilder.append("\n");
 		stringBuilder.append("---");
 		stringBuilder.append("\n");
+		stringBuilder.append(winningResults.winningResults().stream()
+				.map(this::getWinningResult)
+				.collect(Collectors.joining()));
 	}
 
 	private String getLottoCountMessage(int count) {
