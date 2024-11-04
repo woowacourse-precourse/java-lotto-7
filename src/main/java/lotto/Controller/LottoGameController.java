@@ -1,6 +1,7 @@
 package lotto.Controller;
 
 import lotto.DTO.BonusNumberDTO;
+import lotto.DTO.LottoStatisticsDTO;
 import lotto.DTO.PaymentPriceDTO;
 import lotto.DTO.RandomLottoNumberDTO;
 import lotto.DTO.WinningNumberDTO;
@@ -28,5 +29,8 @@ public class LottoGameController {
 
         WinningNumberDTO winningNumberDTO = inputView.inputWinningNumber();
         BonusNumberDTO bonusNumberDTO = inputView.inputBonusNumber(winningNumberDTO);
+
+        LottoStatisticsDTO lottoStatisticsDTO = lottoService.calculatePrizeMoney(winningNumberDTO, bonusNumberDTO,
+                randomLottoNumberDTO);
     }
 }
