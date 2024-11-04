@@ -52,14 +52,6 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    // @Test
-    // void 숫자가_큰_보너스번호() {
-    // assertSimpleTest(() -> {
-    // runException("8000", "1,2,3,4,5,6", "100");
-    // assertThat(output()).contains(ERROR_MESSAGE);
-    // });
-    // }
-
     @Override
     public void runMain() {
         Application.main(new String[] {});
