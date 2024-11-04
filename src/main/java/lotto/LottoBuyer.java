@@ -17,10 +17,11 @@ public class LottoBuyer {
         this.lottoVendingMachine = lottoVendingMachine;
     }
 
-    public void purchaseLotto() {
+    public ArrayList<Lotto> purchaseLotto() {
         insertCoin();
         lottoTickets = lottoVendingMachine.giveLotto(lottoPurchaseAmount);
         printOwnLottoTickets();
+        return lottoTickets;
     }
 
     public void insertCoin() {
