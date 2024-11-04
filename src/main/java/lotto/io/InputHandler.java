@@ -66,8 +66,8 @@ public class InputHandler {
 
             try {
                 validateNotEmptyInput(input);
-                List<Integer> bonusNumber = parseInput(input);
-                return new BonusNumber(bonusNumber, winningNumbers);
+                List<Integer> bonusNumbers = parseInput(input);
+                return new BonusNumber(bonusNumbers, winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + BONUS_NUMBER_PROMPT);
             }

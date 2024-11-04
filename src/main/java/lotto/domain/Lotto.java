@@ -9,13 +9,15 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateNumbersDuplication(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
 
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LottoRules.WINNING_NUMBERS_REQUIRED) {
+            throw new IllegalArgumentException(String.format(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage(),
+                    LottoRules.WINNING_NUMBERS_REQUIRED));
         }
 
         for (int number : numbers) {
@@ -25,10 +27,16 @@ public class Lotto {
                                 LottoRules.MAX_NUMBER));
             }
         }
+    }
 
-        if (numbers.stream().distinct().count() != numbers.size()) {
+    private static void validateNumbersDuplication(List<Integer> numbers) {
+        if (hasDuplicateNumbers(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
+    }
+
+    private static boolean hasDuplicateNumbers(List<Integer> numbers) {
+        return numbers.stream().distinct().count() != numbers.size();
     }
 
     public List<Integer> getNumbers() {

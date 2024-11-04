@@ -2,19 +2,19 @@ package lotto.game;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 import lotto.io.InputHandler;
 import lotto.io.OutputHandler;
 
 public class LottoGame {
     private LottoMachine lottoMachine;
-    private Result result;
+    private LottoResult lottoResult;
 
     public LottoGame() {
         lottoMachine = new LottoMachine();
-        result = new Result();
+        lottoResult = new LottoResult();
     }
 
     public void play() {
@@ -26,7 +26,7 @@ public class LottoGame {
 
         WinningLotto winningLotto = InputHandler.getWinningLotto();
 
-        result.calculateResults(winningLotto, lottos);
-        OutputHandler.printResults(result, purchaseAmount);
+        lottoResult.updateRankCounts(winningLotto, lottos);
+        OutputHandler.printResults(lottoResult, purchaseAmount);
     }
 }

@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import lotto.constants.Rank;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.Result;
 
 public class OutputHandler {
     private static final String PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";
@@ -28,14 +28,14 @@ public class OutputHandler {
         return sortedNumbers;
     }
 
-    public static void printResults(Result result, PurchaseAmount purchaseAmount) {
+    public static void printResults(LottoResult lottoResult, PurchaseAmount purchaseAmount) {
         System.out.println(WINNING_STATISTICS_MESSAGE);
 
         for (Rank rank : Rank.values()) {
             if (rank != Rank.NONE) {
-                System.out.println(rank.getDescription() + " - " + result.getRankCount(rank) + "개");
+                System.out.println(rank.getDescription() + " - " + lottoResult.getRankCount(rank) + "개");
             }
         }
-        System.out.printf(TOTAL_PROFIT_RATE_MESSAGE, result.calculateProfitRate(purchaseAmount));
+        System.out.printf(TOTAL_PROFIT_RATE_MESSAGE, lottoResult.calculateProfitRate(purchaseAmount));
     }
 }

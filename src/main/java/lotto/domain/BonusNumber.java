@@ -9,8 +9,8 @@ public class BonusNumber {
 
     public BonusNumber(List<Integer> numbers, WinningNumbers winningNumbers) {
         validateNumbersCount(numbers);
-        validateNumbersDuplication(numbers, winningNumbers);
-        this.number = numbers.getFirst();
+        this.number = validateNumberInRange(numbers.getFirst());
+        validateNumbersDuplication(this.number, winningNumbers);
     }
 
     private static void validateNumbersCount(List<Integer> numbers) {
@@ -19,11 +19,8 @@ public class BonusNumber {
         }
     }
 
-    private static void validateNumbersDuplication(List<Integer> numbers, WinningNumbers winningNumbers) {
-        List<Integer> winningNumberList = winningNumbers.getNumbers();
-        int number = validateNumberInRange(numbers.getFirst());
-
-        if (isDuplicateBonus(number, winningNumberList)) {
+    private void validateNumbersDuplication(int number, WinningNumbers winningNumbers) {
+        if (winningNumbers.getNumbers().contains(number)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
@@ -35,10 +32,6 @@ public class BonusNumber {
                             LottoRules.MAX_NUMBER));
         }
         return number;
-    }
-
-    private static boolean isDuplicateBonus(int number, List<Integer> winning) {
-        return winning.contains(number);
     }
 
     public int getNumber() {

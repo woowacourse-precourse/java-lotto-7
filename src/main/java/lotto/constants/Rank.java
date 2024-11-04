@@ -13,11 +13,11 @@ public enum Rank {
     private final int prize;
     private final String description;
 
-    Rank(int matchCount, boolean matchBonus, int prize, String prompt) {
+    Rank(int matchCount, boolean matchBonus, int prize, String description) {
         this.matchCount = matchCount;
         this.matchBonus = matchBonus;
         this.prize = prize;
-        this.description = prompt;
+        this.description = description;
     }
 
     public static Rank findRank(int matchCount, boolean matchBonus) {
