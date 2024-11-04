@@ -39,7 +39,7 @@ public class LottoController {
     }
 
     private int readPurchaseAmount() {
-        return Integer.parseInt(RetryUtil.retryReadPurchaseAmount(inputView::readPurchaseAmount));
+        return Integer.parseInt(inputView.requestPurchaseAmount());
     }
 
     private Lottos generateLottos(AttemptCount attemptCount) {
@@ -52,7 +52,7 @@ public class LottoController {
     }
 
     private WinningNumbers createWinningNumbersFromInput() {
-        String input = RetryUtil.retryReadWinningNumber(inputView::readWinningNumber);
+        String input = inputView.requestWinningNumbers();
         List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .toList();
@@ -61,8 +61,7 @@ public class LottoController {
     }
 
     private BonusNumber createBonusNumberFromInput(WinningNumbers winningNumbers) {
-        int bonusNumber = Integer.parseInt(
-                RetryUtil.retryReadBonusNumber(inputView::readBonusNumber, winningNumbers.winningNumbers()));
+        int bonusNumber = Integer.parseInt(inputView.requestBonusNumber(winningNumbers.winningNumbers()));
 
         return BonusNumber.of(bonusNumber, winningNumbers.winningNumbers());
     }
