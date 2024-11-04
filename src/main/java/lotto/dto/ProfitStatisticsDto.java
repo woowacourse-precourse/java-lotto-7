@@ -1,21 +1,21 @@
 package lotto.dto;
 
-import java.util.Map;
-import lotto.configuration.Prize;
+import java.util.List;
 
-public record ProfitStatisticsDto(Map<Prize, Integer> prizeCountMap, double profitRate) {
+public record ProfitStatisticsDto(List<PrizeCountEntry> prizeCountEntries, double profitRate) {
     public ProfitStatisticsDto {
-        if (prizeCountMap == null) {
+        if (prizeCountEntries == null) {
             throw new IllegalArgumentException("prizeCountMap cannot be null");
         }
     }
 
     public static class Builder {
-        Map<Prize, Integer> prizeCountMap;
+        List<PrizeCountEntry> prizeCountEntries;
+
         double profitRate;
 
-        public Builder prizeCountMap(Map<Prize, Integer> prizeCountMap) {
-            this.prizeCountMap = prizeCountMap;
+        public Builder prizeCount(List<PrizeCountEntry> prizeCountEntries) {
+            this.prizeCountEntries = prizeCountEntries;
             return this;
         }
 
@@ -25,7 +25,7 @@ public record ProfitStatisticsDto(Map<Prize, Integer> prizeCountMap, double prof
         }
 
         public ProfitStatisticsDto build() {
-            return new ProfitStatisticsDto(prizeCountMap, profitRate);
+            return new ProfitStatisticsDto(prizeCountEntries, profitRate);
         }
     }
 }

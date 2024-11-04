@@ -3,10 +3,10 @@ package lotto.entity;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.configuration.LottoConfiguration;
 import lotto.configuration.Prize;
+import lotto.dto.PrizeCountEntry;
 import lotto.validator.ProfitReportVaildator;
 
 public class ProfitReport {
@@ -31,24 +31,21 @@ public class ProfitReport {
     }
 
     public long calculateProfit() {
-        return purchasedLottos.stream()
-                .mapToLong(this::calculatePrizeMoney)
-                .sum();
+        return purchasedLottos.stream().mapToLong(this::calculatePrizeMoney).sum();
     }
 
-    public Map<Prize, Integer> calculateWinningCountsByPrize() {
-        HashMap<Prize, Integer> prizeCount = purchasedLottos.stream()
-                .map(this::calculatePrize)
-                .collect(Collectors.toMap(
-                        prize -> prize,
-                        prize -> 1,
-                        Integer::sum,
-                        HashMap::new
-                ));
+    public List<PrizeCountEntry> calculateWinningCountsByPrize() {
+        HashMap<Prize, Integer> prizeCount = Arrays.stream(Prize.values())
+                .collect(Collectors.toMap(prize -> prize, prize -> 0, Integer::sum, HashMap::new));
 
-        Arrays.stream(Prize.values()).forEach(prize -> prizeCount.putIfAbsent(prize, 0));
+        purchasedLottos.stream().map(this::calculatePrize)
+                .forEach(prize -> prizeCount.put(prize, prizeCount.get(prize) + 1));
 
-        return prizeCount;
+        return prizeCount.keySet().stream()
+                .map(prize -> new PrizeCountEntry(prize, prizeCount.get(prize)))
+                .sorted((o1, o2) -> Long.compare(o1.prize().getPrizeMoney(), o2.prize().getPrizeMoney()))
+                .toList();
+
     }
 
     public List<Lotto> getPurchasedLottos() {
@@ -71,8 +68,7 @@ public class ProfitReport {
     }
 
     private Prize calculatePrize(Lotto lotto) {
-        int matchCount = (int) winningNumbers.getMainNumbers().stream()
-                .filter(lotto::contains).count();
+        int matchCount = (int) winningNumbers.getMainNumbers().stream().filter(lotto::contains).count();
         boolean matchBonus = lotto.contains(winningNumbers.getBonusNumber());
 
         return Prize.findPrize(matchCount, matchBonus);

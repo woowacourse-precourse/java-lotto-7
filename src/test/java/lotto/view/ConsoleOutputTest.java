@@ -3,8 +3,8 @@ package lotto.view;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
-import java.util.Map;
 import lotto.configuration.Prize;
+import lotto.dto.PrizeCountEntry;
 import lotto.dto.ProfitStatisticsDto;
 import lotto.entity.Lotto;
 import org.junit.jupiter.api.Assertions;
@@ -27,13 +27,13 @@ public class ConsoleOutputTest {
     void 성공__수익_통계_출력_테스트() {
         // given
         ProfitStatisticsDto dto = new ProfitStatisticsDto(
-                Map.of(
-                        Prize.FIRST, 1,
-                        Prize.SECOND, 2,
-                        Prize.THIRD, 3,
-                        Prize.FOURTH, 0,
-                        Prize.FIFTH, 0,
-                        Prize.NONE, 0
+                List.of(
+                        new PrizeCountEntry(Prize.NONE, 0),
+                        new PrizeCountEntry(Prize.FIFTH, 0),
+                        new PrizeCountEntry(Prize.FOURTH, 0),
+                        new PrizeCountEntry(Prize.THIRD, 3),
+                        new PrizeCountEntry(Prize.SECOND, 2),
+                        new PrizeCountEntry(Prize.FIRST, 1)
                 ),
                 200.5
         );
@@ -61,13 +61,13 @@ public class ConsoleOutputTest {
     void 성공__수익_통계_출력_퍼센트_반올림_테스트_버림() {
         // given
         ProfitStatisticsDto dto = new ProfitStatisticsDto(
-                Map.of(
-                        Prize.FIRST, 1,
-                        Prize.SECOND, 2,
-                        Prize.THIRD, 3,
-                        Prize.FOURTH, 0,
-                        Prize.FIFTH, 0,
-                        Prize.NONE, 0
+                List.of(
+                        new PrizeCountEntry(Prize.NONE, 0),
+                        new PrizeCountEntry(Prize.FIFTH, 0),
+                        new PrizeCountEntry(Prize.FOURTH, 0),
+                        new PrizeCountEntry(Prize.THIRD, 3),
+                        new PrizeCountEntry(Prize.SECOND, 2),
+                        new PrizeCountEntry(Prize.FIRST, 1)
                 ),
                 200.54
         );
@@ -95,13 +95,13 @@ public class ConsoleOutputTest {
     void 성공__수익_통계_출력_퍼센트_반올림_테스트_올림() {
         // given
         ProfitStatisticsDto dto = new ProfitStatisticsDto(
-                Map.of(
-                        Prize.FIRST, 1,
-                        Prize.SECOND, 2,
-                        Prize.THIRD, 3,
-                        Prize.FOURTH, 0,
-                        Prize.FIFTH, 0,
-                        Prize.NONE, 0
+                List.of(
+                        new PrizeCountEntry(Prize.NONE, 0),
+                        new PrizeCountEntry(Prize.FIFTH, 0),
+                        new PrizeCountEntry(Prize.FOURTH, 0),
+                        new PrizeCountEntry(Prize.THIRD, 3),
+                        new PrizeCountEntry(Prize.SECOND, 2),
+                        new PrizeCountEntry(Prize.FIRST, 1)
                 ),
                 200.55
         );

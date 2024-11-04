@@ -30,7 +30,7 @@ public class LottoController {
 
         // output
         ProfitStatisticsDto profitStatisticsDto = new ProfitStatisticsDto.Builder()
-                .prizeCountMap(profitReport.calculateWinningCountsByPrize())
+                .prizeCount(profitReport.calculateWinningCountsByPrize())
                 .profitRate(profitReport.calculateProfitRate()).build();
         consoleOutput.printPurchasedLottos(lottoMachine.getPurchasedLottos());
         consoleOutput.printProfitStatistics(profitStatisticsDto);

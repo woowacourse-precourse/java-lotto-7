@@ -1,10 +1,8 @@
 package lotto.view;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import lotto.configuration.Prize;
+import lotto.dto.PrizeCountEntry;
 import lotto.dto.ProfitStatisticsDto;
 import lotto.entity.Lotto;
 
@@ -24,7 +22,7 @@ public class ConsoleOutput {
         ConsoleUtils.printMessageWithNewLine(STATISTIC_TITLE);
         ConsoleUtils.printMessageWithNewLine(DVIDER_STRING);
 
-        printPrizeStatistics(input.prizeCountMap());
+        printPrizeStatistics(input.prizeCountEntries());
         printProfitRate(input.profitRate());
     }
 
@@ -41,13 +39,12 @@ public class ConsoleOutput {
 
     // private methods
 
-    private void printPrizeStatistics(Map<Prize, Integer> completePrizeMap) {
-        Arrays.stream(Prize.values())
-                .sorted(Comparator.comparingInt(Prize::getPrizeMoney))
-                .filter(prize -> prize != Prize.NONE)
-                .forEach(prize -> {
-                    String outMessage = formatPrizeMessage(prize, completePrizeMap.get(prize));
-                    ConsoleUtils.printMessageWithNewLine(outMessage);
+    private void printPrizeStatistics(List<PrizeCountEntry> prizeCountEntries) {
+        prizeCountEntries.stream()
+                .filter(prizeCountEntry -> prizeCountEntry.prize() != Prize.NONE)
+                .forEach(prizeCountEntry -> {
+                    String formatPrizeMessage = formatPrizeMessage(prizeCountEntry.prize(), prizeCountEntry.count());
+                    ConsoleUtils.printMessageWithNewLine(formatPrizeMessage);
                 });
     }
 

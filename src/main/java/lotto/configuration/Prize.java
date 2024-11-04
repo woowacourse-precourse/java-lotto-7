@@ -12,7 +12,7 @@ public enum Prize {
 
     final private int matchCount;
     final private Boolean matchBonus;
-    final private int prizeMoney;
+    final private long prizeMoney;
 
     Prize(int matchCount, Boolean matchBonus, int prizeMoney) {
         this.matchCount = matchCount;
@@ -31,7 +31,7 @@ public enum Prize {
         return matchCount;
     }
 
-    public int getPrizeMoney() {
+    public long getPrizeMoney() {
         return prizeMoney;
     }
 

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 import lotto.configuration.Prize;
+import lotto.dto.PrizeCountEntry;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -100,60 +101,66 @@ class ProfitReportTest {
                         List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.FIRST, 1,
-                                Prize.SECOND, 0,
-                                Prize.THIRD, 0,
-                                Prize.FOURTH, 0,
-                                Prize.FIFTH, 0,
-                                Prize.NONE, 0)
-                ),
+                        List.of(
+                                new PrizeCountEntry(Prize.NONE, 0),
+                                new PrizeCountEntry(Prize.FIFTH, 0),
+                                new PrizeCountEntry(Prize.FOURTH, 0),
+                                new PrizeCountEntry(Prize.THIRD, 0),
+                                new PrizeCountEntry(Prize.SECOND, 0),
+                                new PrizeCountEntry(Prize.FIRST, 1)
+                        )),
                 // 2등 당첨 (5개 + 보너스 번호 일치)
                 Arguments.of(
                         List.of(new Lotto(List.of(1, 2, 3, 4, 5, 7))),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.FIRST, 0,
-                                Prize.SECOND, 1,
-                                Prize.THIRD, 0,
-                                Prize.FOURTH, 0,
-                                Prize.FIFTH, 0,
-                                Prize.NONE, 0)
+                        List.of(
+                                new PrizeCountEntry(Prize.NONE, 0),
+                                new PrizeCountEntry(Prize.FIFTH, 0),
+                                new PrizeCountEntry(Prize.FOURTH, 0),
+                                new PrizeCountEntry(Prize.THIRD, 0),
+                                new PrizeCountEntry(Prize.SECOND, 1),
+                                new PrizeCountEntry(Prize.FIRST, 0))
                 ),
                 // 3등 당첨 (5개 일치)
                 Arguments.of(
                         List.of(new Lotto(List.of(1, 2, 3, 4, 5, 8))),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.FIRST, 0,
-                                Prize.SECOND, 0,
-                                Prize.THIRD, 1,
-                                Prize.FOURTH, 0,
-                                Prize.FIFTH, 0,
-                                Prize.NONE, 0)
+                        List.of(
+                                new PrizeCountEntry(Prize.NONE, 0),
+                                new PrizeCountEntry(Prize.FIFTH, 0),
+                                new PrizeCountEntry(Prize.FOURTH, 0),
+                                new PrizeCountEntry(Prize.THIRD, 1),
+                                new PrizeCountEntry(Prize.SECOND, 0),
+                                new PrizeCountEntry(Prize.FIRST, 0))
                 ),
                 // 4등 당첨 (4개 일치)
                 Arguments.of(
                         List.of(new Lotto(List.of(1, 2, 3, 4, 10, 11))),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.FIRST, 0,
-                                Prize.SECOND, 0,
-                                Prize.THIRD, 0,
-                                Prize.FOURTH, 1,
-                                Prize.FIFTH, 0,
-                                Prize.NONE, 0)
+                        List.of(
+                                new PrizeCountEntry(Prize.NONE, 0),
+                                new PrizeCountEntry(Prize.FIFTH, 0),
+                                new PrizeCountEntry(Prize.FOURTH, 1),
+                                new PrizeCountEntry(Prize.THIRD, 0),
+                                new PrizeCountEntry(Prize.SECOND, 0),
+                                new PrizeCountEntry(Prize.FIRST, 0))
                 ),
                 // 5등 당첨 (3개 일치)
                 Arguments.of(
                         List.of(new Lotto(List.of(1, 2, 3, 10, 11, 12))),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.FIRST, 0,
-                                Prize.SECOND, 0,
-                                Prize.THIRD, 0,
-                                Prize.FOURTH, 0,
-                                Prize.FIFTH, 1,
-                                Prize.NONE, 0)
+                        List.of(
+                                new PrizeCountEntry(Prize.NONE, 0),
+                                new PrizeCountEntry(Prize.FIFTH, 1),
+                                new PrizeCountEntry(Prize.FOURTH, 0),
+                                new PrizeCountEntry(Prize.THIRD, 0),
+                                new PrizeCountEntry(Prize.SECOND, 0),
+                                new PrizeCountEntry(Prize.FIRST, 0)
+                        )
                 ),
                 // 여러 등수 복합 테스트
                 Arguments.of(
@@ -165,12 +172,14 @@ class ProfitReportTest {
                         ),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.FIRST, 1,
-                                Prize.SECOND, 1,
-                                Prize.THIRD, 1,
-                                Prize.FOURTH, 1,
-                                Prize.FIFTH, 0,
-                                Prize.NONE, 0)
+                        List.of(
+                                new PrizeCountEntry(Prize.NONE, 0),
+                                new PrizeCountEntry(Prize.FIFTH, 0),
+                                new PrizeCountEntry(Prize.FOURTH, 1),
+                                new PrizeCountEntry(Prize.THIRD, 1),
+                                new PrizeCountEntry(Prize.SECOND, 1),
+                                new PrizeCountEntry(Prize.FIRST, 1)
+                        )
                 ),
                 Arguments.of(
                         List.of(
@@ -185,12 +194,14 @@ class ProfitReportTest {
                         ),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.FIRST, 0,
-                                Prize.SECOND, 0,
-                                Prize.THIRD, 0,
-                                Prize.FOURTH, 0,
-                                Prize.FIFTH, 1,
-                                Prize.NONE, 7)
+                        List.of(
+                                new PrizeCountEntry(Prize.NONE, 7),
+                                new PrizeCountEntry(Prize.FIFTH, 1),
+                                new PrizeCountEntry(Prize.FOURTH, 0),
+                                new PrizeCountEntry(Prize.THIRD, 0),
+                                new PrizeCountEntry(Prize.SECOND, 0),
+                                new PrizeCountEntry(Prize.FIRST, 0)
+                        )
                 )
         );
     }
@@ -351,13 +362,13 @@ class ProfitReportTest {
     @ParameterizedTest
     @MethodSource("각_등수_별_당첨_횟수_계산_테스트_케이스")
     void 성공__각_등수_별_당첨_횟수_계산(List<Lotto> lottoInputs, List<Integer> winningNumbersInput, int bonusNumber,
-                             Map<Prize, Integer> expected) {
+                             List<PrizeCountEntry> expected) {
         // given
         WinningNumbers winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumber);
         ProfitReport profitReport = new ProfitReport(lottoInputs, winningNumbers);
 
         // when
-        Map<Prize, Integer> actual = profitReport.calculateWinningCountsByPrize();
+        List<PrizeCountEntry> actual = profitReport.calculateWinningCountsByPrize();
 
         // then
         assertEquals(expected, actual);
