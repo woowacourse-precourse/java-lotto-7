@@ -45,7 +45,7 @@ public class LottoGame {
         result(lottoTicket);
     }
 
-    public void result(LottoTicket lottoTicket) {
+    private void result(LottoTicket lottoTicket) {
         Lotto winningLotto = retryUntilValid(() -> {
             List<Integer> winningNumbers = input.readWinningLotto();
             return new Lotto(winningNumbers);
@@ -56,7 +56,14 @@ public class LottoGame {
             return new Bonus(rawBonusNumber);
         });
 
-        WinningCombination winningCombination = new WinningCombination(winningLotto, bonus);
+        WinningCombination winningCombination = retryUntilValid(() ->
+                new WinningCombination(winningLotto, bonus)
+        );
+
+        match(lottoTicket, winningCombination);
+    }
+
+    private void match(LottoTicket lottoTicket, WinningCombination winningCombination) {
 
         Map<Rank, Integer> lottoResult = winningCombination.lottoWinningResult(lottoTicket);
     }
