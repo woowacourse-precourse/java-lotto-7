@@ -60,7 +60,7 @@ public class WinningLottoTest {
         // given
         sequentialRandomNumberGenerator.setSizeWillBeGenerated(WINNING_LOTTO_NUMBER_SIZE + 1);
 
-        LottoNumbers winningLottoNumbers = LottoNumbers.generateBy(WINNING_LOTTO_NUMBER_SIZE + 1,
+        LottoNumbers winningLottoNumbers = LottoNumbers.generate(WINNING_LOTTO_NUMBER_SIZE + 1,
                 sequentialRandomNumberGenerator);
 
         LottoNumber bonusNumber = LottoNumber.from(WINNING_LOTTO_NUMBER_SIZE + 2);
@@ -77,7 +77,7 @@ public class WinningLottoTest {
         // given
         sequentialRandomNumberGenerator.setSizeWillBeGenerated(WINNING_LOTTO_NUMBER_SIZE - 1);
 
-        LottoNumbers winningLottoNumbers = LottoNumbers.generateBy(WINNING_LOTTO_NUMBER_SIZE - 1,
+        LottoNumbers winningLottoNumbers = LottoNumbers.generate(WINNING_LOTTO_NUMBER_SIZE - 1,
                 sequentialRandomNumberGenerator);
 
         LottoNumber bonusNumber = LottoNumber.from(WINNING_LOTTO_NUMBER_SIZE);
@@ -94,7 +94,7 @@ public class WinningLottoTest {
         // given
         sequentialRandomNumberGenerator.setSizeWillBeGenerated(WINNING_LOTTO_NUMBER_SIZE);
 
-        LottoNumbers winningLottoNumbers = LottoNumbers.generateBy(WINNING_LOTTO_NUMBER_SIZE,
+        LottoNumbers winningLottoNumbers = LottoNumbers.generate(WINNING_LOTTO_NUMBER_SIZE,
                 duplicateRandomNumberGenerator);
         LottoNumber bonusNumber = LottoNumber.from(WINNING_LOTTO_NUMBER_SIZE + 1);
 
@@ -110,7 +110,7 @@ public class WinningLottoTest {
         // given
         sequentialRandomNumberGenerator.setSizeWillBeGenerated(WINNING_LOTTO_NUMBER_SIZE);
 
-        LottoNumbers winningLottoNumbers = LottoNumbers.generateBy(WINNING_LOTTO_NUMBER_SIZE,
+        LottoNumbers winningLottoNumbers = LottoNumbers.generate(WINNING_LOTTO_NUMBER_SIZE,
                 sequentialRandomNumberGenerator);
         LottoNumber bonusNumber = LottoNumber.from(sequentialRandomNumberGenerator.getLastGeneratedNumbers().getFirst());
 
@@ -127,7 +127,7 @@ public class WinningLottoTest {
         // given
         WinningLotto winningLotto = createWinningLotto(winningLottoNumbers, bonusNumber);
 
-        Lotto lotto = Lotto.generateBy(new ChoosableRandomNumberMaker(lottoNumbers));
+        Lotto lotto = Lotto.generate(new ChoosableRandomNumberMaker(lottoNumbers));
 
         // when
         int actual = winningLotto.getMatchCount(lotto);
@@ -143,7 +143,7 @@ public class WinningLottoTest {
         // given
         WinningLotto winningLotto = createWinningLotto(winningLottoNumbers, bonusNumber);
 
-        Lotto lotto = Lotto.generateBy(new ChoosableRandomNumberMaker(lottoNumbers));
+        Lotto lotto = Lotto.generate(new ChoosableRandomNumberMaker(lottoNumbers));
 
         // when
         boolean actual = winningLotto.isBonusNumberMatches(lotto);

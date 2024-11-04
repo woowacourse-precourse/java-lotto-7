@@ -19,9 +19,9 @@ public class PurchaseLottoResponseTest {
 
     static Stream<Arguments> 로또_일급_컬렉션_객체로부터_생성된다_테스트_케이스() {
         return Stream.of(
-                makeArguments(Lottos.generateBy(realRandomNumberGenerator, 3)),
-                makeArguments(Lottos.generateBy(realRandomNumberGenerator, 6)),
-                makeArguments(Lottos.generateBy(realRandomNumberGenerator, 10))
+                makeArguments(Lottos.generate(realRandomNumberGenerator, 3)),
+                makeArguments(Lottos.generate(realRandomNumberGenerator, 6)),
+                makeArguments(Lottos.generate(realRandomNumberGenerator, 10))
         );
     }
 

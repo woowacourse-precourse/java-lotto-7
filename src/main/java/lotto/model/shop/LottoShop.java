@@ -13,7 +13,7 @@ public class LottoShop {
         validateMoney(money);
         int lottoCount = money / LOTTO_PRICE;
 
-        return Lottos.generateBy(randomNumberGenerator, lottoCount);
+        return Lottos.generate(randomNumberGenerator, lottoCount);
     }
 
     private void validateMoney(int money) {

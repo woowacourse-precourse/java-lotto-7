@@ -20,17 +20,17 @@ public class LottoNumberResponseTest {
     static Stream<Arguments> 로또_번호_일급_컬렉션_객체로부터_생성된다_테스트_케이스() {
         return Stream.of(
                 Arguments.of(
-                        LottoNumbers.generateBy(3, realRandomNumberGenerator),
+                        LottoNumbers.generate(3, realRandomNumberGenerator),
                         realRandomNumberGenerator.getLastGeneratedNumbers()
                 ),
 
                 Arguments.of(
-                        LottoNumbers.generateBy(6, realRandomNumberGenerator),
+                        LottoNumbers.generate(6, realRandomNumberGenerator),
                         realRandomNumberGenerator.getLastGeneratedNumbers()
                 ),
 
                 Arguments.of(
-                        LottoNumbers.generateBy(7, realRandomNumberGenerator),
+                        LottoNumbers.generate(7, realRandomNumberGenerator),
                         realRandomNumberGenerator.getLastGeneratedNumbers()
                 )
         );

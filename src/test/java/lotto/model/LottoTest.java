@@ -29,7 +29,7 @@ class LottoTest {
         sequentialRandomNumberGenerator.setSizeWillBeGenerated(LOTTO_NUMBER_SIZE + 1);
 
         // when & then
-        assertThatThrownBy(() -> Lotto.generateBy(sequentialRandomNumberGenerator))
+        assertThatThrownBy(() -> Lotto.generate(sequentialRandomNumberGenerator))
                 .isInstanceOf(LottoNumberInvalidException.class)
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -41,7 +41,7 @@ class LottoTest {
         sequentialRandomNumberGenerator.setSizeWillBeGenerated(LOTTO_NUMBER_SIZE - 1);
 
         // when & then
-        assertThatThrownBy(() -> Lotto.generateBy(sequentialRandomNumberGenerator))
+        assertThatThrownBy(() -> Lotto.generate(sequentialRandomNumberGenerator))
                 .isInstanceOf(LottoNumberInvalidException.class)
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -50,7 +50,7 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
 
         // when & then
-        assertThatThrownBy(() -> Lotto.generateBy(duplicateRandomNumberGenerator))
+        assertThatThrownBy(() -> Lotto.generate(duplicateRandomNumberGenerator))
                 .isInstanceOf(LottoNumberInvalidException.class)
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -60,9 +60,9 @@ class LottoTest {
 
         // given
         sequentialRandomNumberGenerator.setSizeWillBeGenerated(LOTTO_NUMBER_SIZE);
-        Lotto lotto = Lotto.generateBy(sequentialRandomNumberGenerator);
+        Lotto lotto = Lotto.generate(sequentialRandomNumberGenerator);
 
-        LottoNumbers expected = LottoNumbers.generateBy(LOTTO_NUMBER_SIZE, sequentialRandomNumberGenerator);
+        LottoNumbers expected = LottoNumbers.generate(LOTTO_NUMBER_SIZE, sequentialRandomNumberGenerator);
 
         // when
         LottoNumbers actual = lotto.getLottoNumbers();
@@ -78,7 +78,7 @@ class LottoTest {
         sequentialRandomNumberGenerator.setSizeWillBeGenerated(LOTTO_NUMBER_SIZE);
 
         // when
-        Lotto lotto = Lotto.generateBy(sequentialRandomNumberGenerator);
+        Lotto lotto = Lotto.generate(sequentialRandomNumberGenerator);
         List<LottoNumber> generatedLottoNumbers = sequentialRandomNumberGenerator.getLastGeneratedNumbers().stream()
                 .map(LottoNumber::from).toList();
 

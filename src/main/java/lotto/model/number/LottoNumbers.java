@@ -17,7 +17,7 @@ public class LottoNumbers {
         return new LottoNumbers(numbers);
     }
 
-    public static LottoNumbers generateBy(int size, RandomNumberGenerator randomNumberGenerator) {
+    public static LottoNumbers generate(int size, RandomNumberGenerator randomNumberGenerator) {
         validateSize(size);
         List<Integer> numbers = randomNumberGenerator.pickUniqueNumbersInRange(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER, size);
 

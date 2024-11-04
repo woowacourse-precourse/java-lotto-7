@@ -25,10 +25,10 @@ public class LottoNumbersTest {
 
     static Stream<Arguments> 로또_번호가_특정_크기인지_여부를_반환한다_테스트_케이스() {
         return Stream.of(
-                Arguments.of(LottoNumbers.generateBy(7, realRandomNumberGenerator), 7, true),
-                Arguments.of(LottoNumbers.generateBy(6, realRandomNumberGenerator), 6, true),
-                Arguments.of(LottoNumbers.generateBy(7, realRandomNumberGenerator), 6, false),
-                Arguments.of(LottoNumbers.generateBy(8, realRandomNumberGenerator), 7, false)
+                Arguments.of(LottoNumbers.generate(7, realRandomNumberGenerator), 7, true),
+                Arguments.of(LottoNumbers.generate(6, realRandomNumberGenerator), 6, true),
+                Arguments.of(LottoNumbers.generate(7, realRandomNumberGenerator), 6, false),
+                Arguments.of(LottoNumbers.generate(8, realRandomNumberGenerator), 7, false)
         );
     }
 
@@ -82,7 +82,7 @@ public class LottoNumbersTest {
         int size = MAX_NUMBER - MIN_NUMBER + 2;
 
         // when & then
-        assertThatThrownBy(() -> LottoNumbers.generateBy(size, realRandomNumberGenerator))
+        assertThatThrownBy(() -> LottoNumbers.generate(size, realRandomNumberGenerator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -94,7 +94,7 @@ public class LottoNumbersTest {
         int expected = numberCount;
 
         // when
-        int actual = getLottoNumbers(LottoNumbers.generateBy(numberCount, realRandomNumberGenerator)).size();
+        int actual = getLottoNumbers(LottoNumbers.generate(numberCount, realRandomNumberGenerator)).size();
 
         // then
         assertThat(actual).isEqualTo(expected);
@@ -105,7 +105,7 @@ public class LottoNumbersTest {
     void 로또_번호들을_정수로_변환한다(int size) {
 
         // given
-        LottoNumbers lottoNumbers = LottoNumbers.generateBy(size, realRandomNumberGenerator);
+        LottoNumbers lottoNumbers = LottoNumbers.generate(size, realRandomNumberGenerator);
         List<Integer> expected = realRandomNumberGenerator.getLastGeneratedNumbers();
 
         // when

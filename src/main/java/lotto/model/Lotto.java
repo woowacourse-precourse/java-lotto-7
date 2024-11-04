@@ -16,8 +16,8 @@ public class Lotto {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public static Lotto generateBy(RandomNumberGenerator randomNumberGenerator) {
-        return new Lotto(LottoNumbers.generateBy(LOTTO_NUMBER_SIZE, randomNumberGenerator));
+    public static Lotto generate(RandomNumberGenerator randomNumberGenerator) {
+        return new Lotto(LottoNumbers.generate(LOTTO_NUMBER_SIZE, randomNumberGenerator));
     }
 
     private void validate(LottoNumbers lottoNumbers) {
