@@ -6,11 +6,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public enum Rank {
-    FIRST("6개 일치", 6),
-    SECOND("5개 일치, 보너스 볼 일치", 5),
-    THIRD("5개 일치", 5),
-    FOURTH("4개 일치", 4),
     FIFTH("3개 일치", 3),
+    FOURTH("4개 일치", 4),
+    THIRD("5개 일치", 5),
+    SECOND("5개 일치, 보너스 볼 일치", 5),
+    FIRST("6개 일치", 6),
     NONE("꽝", 0)
     ;
 
