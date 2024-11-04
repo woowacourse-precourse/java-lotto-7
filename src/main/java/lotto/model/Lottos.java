@@ -9,4 +9,9 @@ public class Lottos {
     public void addLotto(Lotto lotto) {
         lottos.add(lotto);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(lottos);
+    }
 }
