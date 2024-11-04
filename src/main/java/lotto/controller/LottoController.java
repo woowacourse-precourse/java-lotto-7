@@ -48,7 +48,7 @@ public class LottoController {
 
         outputView.printOutputLottoCount(lottoTickets.getLottoCount());
         outputView.printOutputLottoNumbers(lottoTickets.getLottos());
-        return lottoPurchaseService.purchaseLotto(purchaseAmount);
+        return lottoTickets;
     }
 
     private WinningNumbers getWinningNumbers(){
