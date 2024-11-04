@@ -15,10 +15,6 @@ public class Parse {
 		this.delimiter = delimiter;
 	}
 
-	public static int parseToInt(String money) {
-		return Integer.parseInt(money);
-	}
-
 	public static List<Integer> parseToWinningNumber(String winningNumber) {
 		WinningNumber.validateDelimiter(winningNumber);
 

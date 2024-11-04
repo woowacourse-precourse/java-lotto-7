@@ -10,7 +10,7 @@ public class InputView {
 	public static int purchaseMoney() {
 		try {
 			String money = Console.readLine();
-			return Parse.parseToInt(money);
+			return Integer.parseInt(money);
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
 		}
