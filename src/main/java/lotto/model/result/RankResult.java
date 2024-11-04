@@ -8,7 +8,7 @@ public class RankResult {
 
     private final Map<Rank, Integer> result;
 
-    private RankResult(Map<Rank, Integer> result) {
+    private RankResult(final Map<Rank, Integer> result) {
         this.result = result;
     }
 
@@ -19,7 +19,7 @@ public class RankResult {
         return new RankResult(result);
     }
 
-    public void compute(Rank rank) {
+    public void compute(final Rank rank) {
         result.computeIfPresent(rank, (status, value) -> value + 1);
     }
 
@@ -31,7 +31,7 @@ public class RankResult {
         return Money.of(totalPrizeValue);
     }
 
-    public Integer getCountByRank(Rank rank) {
+    public Integer getCountByRank(final Rank rank) {
         return result.getOrDefault(rank, 0);
     }
 }

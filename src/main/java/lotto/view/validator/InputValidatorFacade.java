@@ -17,7 +17,8 @@ import lotto.view.validator.winningNumber.WinningNumRangeValidator;
 
 public class InputValidatorFacade {
 
-    private InputValidatorFacade() { }
+    private InputValidatorFacade() {
+    }
 
     public static void moneyValidators(final String input) {
         List<InputValidator> validators = new ArrayList<>();
@@ -52,7 +53,7 @@ public class InputValidatorFacade {
         validateAll(validators, input);
     }
 
-    private static void validateAll(List<InputValidator> validators, String input) {
+    private static void validateAll(final List<InputValidator> validators, final String input) {
         validators.forEach(validator -> validator.validate(input));
     }
 }

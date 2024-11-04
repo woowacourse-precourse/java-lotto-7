@@ -16,7 +16,7 @@ public class MoneyZeroValidator extends InputValidator {
     }
 
     @Override
-    public void validate(String input) {
+    public void validate(final String input) {
         Money money = PreProcessor.stringToMoney(input);
 
         if (money.isZero(money)) {

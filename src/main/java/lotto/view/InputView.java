@@ -50,7 +50,7 @@ public class InputView {
         });
     }
 
-    public Integer readBonus(Lotto lotto) {
+    public Integer readBonus(final Lotto lotto) {
         return reInputOnException(() -> {
             writer.printLineBefore(ASK_BONUS_NUMBER);
             String input = reader.readInput();

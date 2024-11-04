@@ -5,7 +5,7 @@ public class NullValidator extends InputValidator {
 
     private final String errorMessage;
 
-    protected NullValidator(String errorMessage) {
+    protected NullValidator(final String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

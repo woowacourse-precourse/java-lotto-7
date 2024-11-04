@@ -12,7 +12,7 @@ public class RangeValidator extends InputValidator {
     private static final Pattern RANGE_NUMBER = Pattern.compile("^([1-9]|[1-3][0-9]|4[0-5])$");
     private final String errorMessage;
 
-    protected RangeValidator(String errorMessage) {
+    protected RangeValidator(final String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

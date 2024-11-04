@@ -7,12 +7,12 @@ import lotto.model.money.Money;
 
 public class PreProcessor {
 
-    public static Money stringToMoney(String input) {
+    public static Money stringToMoney(final String input) {
         long purchaseAmount = Long.parseLong(input);
         return Money.of(purchaseAmount);
     }
 
-    public static Lotto stringToLotto(String input) {
+    public static Lotto stringToLotto(final String input) {
         List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(String::strip)
                 .map(Integer::parseInt)
@@ -21,20 +21,13 @@ public class PreProcessor {
         return Lotto.from(numbers);
     }
 
-    public static List<String> stringToStringList(String input) {
+    public static List<String> stringToStringList(final String input) {
         return Arrays.stream(input.split(","))
                 .map(String::strip)
                 .toList();
     }
 
-    public static List<Integer> stringToIntegerList(String input) {
-        return Arrays.stream(input.split(","))
-                .map(String::strip)
-                .map(Integer::parseInt)
-                .toList();
-    }
-
-    public static Integer stringToInteger(String input) {
+    public static Integer stringToInteger(final String input) {
         return Integer.parseInt(input);
     }
 }

@@ -14,12 +14,12 @@ public class BonusDuplicateValidator extends InputValidator {
         this.lotto = lotto;
     }
 
-    public static BonusDuplicateValidator initiate(Lotto lotto) {
+    public static BonusDuplicateValidator initiate(final Lotto lotto) {
         return new BonusDuplicateValidator(lotto);
     }
 
     @Override
-    public void validate(String input) {
+    public void validate(final String input) {
         Integer number = PreProcessor.stringToInteger(input);
         if (lotto.hasBonus(number)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS.getMessage());

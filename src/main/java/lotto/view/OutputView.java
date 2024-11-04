@@ -35,19 +35,19 @@ public class OutputView {
         writer.printSout(lottos.toString());
     }
 
-    public void displayResult(RankResult result, EarningsRate earningsRate) {
+    public void displayResult(final RankResult result, final EarningsRate earningsRate) {
         writer.printLineBefore(RESULT_HEADER);
         generateRankMessages(result).forEach(writer::printSout);
         writer.printSout(String.format(EARNINGS_RATE_NOTICE, earningsRate.toString()));
     }
 
-    private List<String> generateRankMessages(RankResult result) {
+    private List<String> generateRankMessages(final RankResult result) {
         return Rank.sortedRanksExceptNone().stream()
                 .map(rank -> formatRankMessage(rank, result.getCountByRank(rank)))
                 .toList();
     }
 
-    private String formatRankMessage(Rank rank, int matchCount) {
+    private String formatRankMessage(final Rank rank, final int matchCount) {
         String formattedPrize = String.format("%,d", rank.getPrize());
         if (rank == Rank.SECOND) {
             return String.format(RANK_FORMAT_WITH_BONUS, rank.getMatchingCount(), formattedPrize, matchCount);

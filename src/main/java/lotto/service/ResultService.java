@@ -12,7 +12,7 @@ public class ResultService {
     public ResultService() {
     }
 
-    public RankResult getRankResult(Lottos lottos, Lotto winningLotto, int bonusNumber) {
+    public RankResult getRankResult(final Lottos lottos, final Lotto winningLotto, final int bonusNumber) {
         RankResult rankResult = RankResult.initiate();
 
         lottos.getLottos().forEach(lotto -> {
@@ -29,11 +29,11 @@ public class ResultService {
         return Rank.findRank(matchingCount, bonusMatched);
     }
 
-    private boolean hasBonusMatched(Lotto lotto, int matchingCount, int bonusNumber) {
+    private boolean hasBonusMatched(final Lotto lotto, final int matchingCount, final int bonusNumber) {
         return Rank.hasCountToBeSecond(matchingCount) && lotto.hasBonus(bonusNumber);
     }
 
-    public EarningsRate getEarningsRate(RankResult rankResult, Money purchaseAmount) {
+    public EarningsRate getEarningsRate(final RankResult rankResult, final Money purchaseAmount) {
         Money totalPrize = rankResult.calculateTotalPrize();
         return EarningsRate.from(totalPrize, purchaseAmount);
     }

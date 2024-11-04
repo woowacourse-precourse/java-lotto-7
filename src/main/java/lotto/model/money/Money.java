@@ -10,15 +10,15 @@ public class Money {
         this.value = value;
     }
 
-    public static Money of(long value) {
+    public static Money of(final long value) {
         return new Money(value);
     }
 
-    public boolean isDivisible(Money money) {
+    public boolean isDivisible(final Money money) {
         return money.value % LOTTO_PRICE.value != 0;
     }
 
-    public boolean isZero(Money money) {
+    public boolean isZero(final Money money) {
         return money.value == 0;
     }
 

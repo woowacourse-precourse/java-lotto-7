@@ -24,11 +24,11 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    public boolean hasBonus(Integer number) {
+    public boolean hasBonus(final Integer number) {
         return numbers.contains(number);
     }
 
-    public int countMatch(Lotto winning) {
+    public int countMatch(final Lotto winning) {
         return (int) numbers.stream()
                 .filter(winning.numbers::contains)
                 .count();

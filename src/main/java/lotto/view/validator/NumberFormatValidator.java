@@ -8,7 +8,7 @@ public class NumberFormatValidator extends InputValidator {
     private static final Pattern pattern = Pattern.compile("^[0-9]+$");
     private final String errorMessage;
 
-    protected NumberFormatValidator(String errorMessage) {
+    protected NumberFormatValidator(final String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
