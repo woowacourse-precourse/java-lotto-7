@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain.model;
 
-public enum Rank {
+public enum LottoRank {
     NONE(0, 0, "낙첨"),
     FIFTH(3, 5_000, "3개 일치"),
     FOURTH(4, 50_000, "4개 일치"),
@@ -17,18 +17,18 @@ public enum Rank {
         return description;
     }
 
-    Rank(int matchCount, int prize, String description) {
+    LottoRank(int matchCount, int prize, String description) {
         this(matchCount, prize, description, false);
     }
 
-    Rank(int matchCount, int prize, String description, boolean needsBonusMatch) {
+    LottoRank(int matchCount, int prize, String description, boolean needsBonusMatch) {
         this.matchCount = matchCount;
         this.prize = prize;
         this.description = description;
         this.needsBonusMatch = needsBonusMatch;
     }
 
-    public static Rank valueOf(int matchCount, boolean matchBonus) {
+    public static LottoRank valueOf(int matchCount, boolean matchBonus) {
         if (matchCount == 6) {
             return FIRST;
         }

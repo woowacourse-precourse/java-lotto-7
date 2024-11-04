@@ -1,14 +1,12 @@
-package lotto;
+package lotto.domain.dto;
 
-import java.util.NoSuchElementException;
-
-public class User {
+public class MoneyForm {
     private static final int STANDARD_UNIT = 1_000;
     private static final String ERROR_PREFIX = "[ERROR] ";
 
     private int money;
 
-    public User(String inputMoney) {
+    public MoneyForm(String inputMoney) {
         validateInput(inputMoney);
         int money = Integer.parseInt(inputMoney);
         validateMoney(money);

@@ -1,4 +1,8 @@
-package lotto;
+package lotto.factory;
+
+import lotto.domain.model.Lotto;
+import lotto.domain.model.Lottos;
+import lotto.generator.NumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +18,7 @@ public class LottoFactory {
 
     public Lottos createLottos(int money) {
         int quantity = money / STANDARD_UNIT;
+
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             Lotto lotto = new Lotto(numberGenerator.generate());

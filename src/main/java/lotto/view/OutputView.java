@@ -1,4 +1,8 @@
-package lotto;
+package lotto.view;
+
+import lotto.domain.model.Lotto;
+import lotto.domain.model.LottoRank;
+import lotto.domain.model.LottoResult;
 
 import java.util.*;
 
@@ -16,15 +20,10 @@ public class OutputView {
         System.out.print(sb);
     }
 
-    public void printLottoResult(Lottos lottos, WinningLotto winningLotto) {
-        LottoResult lottoResult = new LottoResult();
-        Map<Rank, Integer> results = lottoResult.calculate(lottos, winningLotto);
-        double prizeRate = lottoResult.calculatePrizeRate(lottos.getLottos().size());
-
+    public void printLottoResult(LottoResult lottoResult) {
         printStatHeader();
-        printRankStat(results);
-        printPrizeRate(prizeRate);
-
+        printRankStat(lottoResult.getLottoStat().getStats());
+        printPrizeRate(lottoResult.getPrizeRate());
     }
 
     private void printStatHeader() {
@@ -32,13 +31,13 @@ public class OutputView {
         System.out.println("---");
     }
 
-    private void printRankStat(Map<Rank, Integer> results) {
-        Arrays.stream(Rank.values())
-                .filter(rank -> rank != Rank.NONE)
-                .forEach(rank -> System.out.printf("%s (%,d원) - %d개%n",
-                        rank.getDescription(),
-                        rank.getPrize(),
-                        results.get(rank)));
+    private void printRankStat(Map<LottoRank, Integer> results) {
+        Arrays.stream(LottoRank.values())
+                .filter(lottoRank -> lottoRank != LottoRank.NONE)
+                .forEach(lottoRank -> System.out.printf("%s (%,d원) - %d개%n",
+                        lottoRank.getDescription(),
+                        lottoRank.getPrize(),
+                        results.get(lottoRank)));
     }
 
     private void printPrizeRate(double prizeRate) {
