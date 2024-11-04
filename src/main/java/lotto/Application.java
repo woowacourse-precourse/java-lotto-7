@@ -4,8 +4,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRound;
 import lotto.dto.IssuedLottoDTO;
+import lotto.dto.LottoWinStatisticDTO;
 import lotto.view.LottoInput;
 import lotto.view.LottoOutput;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -19,6 +23,11 @@ public class Application {
         }
         LottoOutput.printIssuedLotto(new IssuedLottoDTO(lottoRound));
 
-        LottoInput.getWinNumbers();
+//        LottoInput.getWinNumbers();
+        List<Integer> a = new ArrayList<>();
+        for ( int i = 0; i < 6; i++ ) {
+            a.add(i);
+        }
+        LottoOutput.printWinStatistic(new LottoWinStatisticDTO(a, 20.0001f));
     }
 }
