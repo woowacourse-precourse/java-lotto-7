@@ -29,11 +29,11 @@ public class Lottos {
 
     @Override
     public String toString() {
-        StringJoiner sj = new StringJoiner("\n");
-        for (Lotto lotto : lottos) {
-            sj.add(lotto.toString());
+        StringJoiner issueLottos = new StringJoiner("\n");
+        for (Lotto lotto : this.lottos) {
+            issueLottos.add(lotto.toString());
         }
-        return sj.toString();
+        return issueLottos.toString();
     }
 
     public List<Lotto> getLottos() {
