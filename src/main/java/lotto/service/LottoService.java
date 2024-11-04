@@ -5,8 +5,10 @@ import static lotto.domain.LottoConstants.LOTTO_PRICE;
 import static lotto.domain.LottoConstants.MAX_LOTTO_NUMBER;
 import static lotto.domain.LottoConstants.MIN_LOTTO_NUMBER;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.LottoReceipt;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoNumberGenerator;
@@ -47,8 +49,26 @@ public class LottoService {
         return lottoSeller.createWinningLotto(winningTicket, bonusNumber);
     }
 
-    public WinningReport createWinningReport(LottoReceipt lottoReceipt, WinningLotto winningLotto) {
+    private WinningReport createWinningReport(LottoReceipt lottoReceipt, WinningLotto winningLotto) {
         List<Winning> winnings = lottoReceipt.checkWinningsWith(winningLotto);
         return new WinningReport(winnings);
+    }
+
+    public Map<Winning, Integer> getWinningCounts(LottoReceipt lottoReceipt, WinningLotto winningLotto) {
+        WinningReport winningReport = createWinningReport(lottoReceipt, winningLotto);
+        return winningReport.getWinningCounts();
+    }
+
+    public BigInteger getLottoQuantity(LottoReceipt lottoReceipt) {
+        return lottoReceipt.getIssuedLottoQuantity();
+    }
+
+    public String getLottoDetails(LottoReceipt lottoReceipt) {
+        return lottoReceipt.toString();
+    }
+
+    public BigDecimal getRateOfReturn(Map<Winning, Integer> winningCounts, LottoReceipt lottoReceipt) {
+        BigInteger totalPrize = Winning.tellTotalPrize(winningCounts);
+        return lottoReceipt.calculateRateOfReturn(totalPrize);
     }
 }

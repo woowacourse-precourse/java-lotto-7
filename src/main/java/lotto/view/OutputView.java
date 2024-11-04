@@ -5,10 +5,8 @@ import static lotto.MessageContainer.RATE_OF_RETURN_MESSAGE;
 import static lotto.MessageContainer.WINNING_STATISTICS;
 import static lotto.view.ViewConstants.NEW_LINE;
 
-import java.math.BigInteger;
-
 public class OutputView {
-    public void printIssuedLottoQuantity(BigInteger lottoQuantity) {
+    public void printIssuedLottoQuantity(String lottoQuantity) {
         System.out.printf(NEW_LINE + NOTICE_ISSUED_LOTTO_QUANTITY + NEW_LINE, lottoQuantity);
     }
 

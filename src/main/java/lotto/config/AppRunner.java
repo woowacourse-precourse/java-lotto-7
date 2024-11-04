@@ -3,14 +3,11 @@ package lotto.config;
 import static lotto.view.ViewConstants.NEW_LINE;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.util.List;
 import lotto.controller.LottoController;
 import lotto.domain.LottoReceipt;
 import lotto.domain.LottoTicket;
-import lotto.domain.Winning;
 import lotto.domain.WinningLotto;
-import lotto.domain.WinningReport;
 import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -39,11 +36,10 @@ public class AppRunner {
     private LottoReceipt sellLottos() {
         LottoReceipt lottoReceipt = readPurchaseAmount();
 
-        BigInteger lottoQuantity = lottoReceipt.getIssuedLottoQuantity();
-        outputView.printIssuedLottoQuantity(lottoQuantity);
+        List<String> lottoDetails = controller.sendLottoDetails(lottoReceipt);
 
-        String lottoDetails = lottoReceipt.toString();
-        outputView.printIssuedLottoDetails(lottoDetails);
+        outputView.printIssuedLottoQuantity(lottoDetails.get(0));
+        outputView.printIssuedLottoDetails(lottoDetails.get(1));
 
         return lottoReceipt;
     }
@@ -54,13 +50,10 @@ public class AppRunner {
     }
 
     private void announceWinningResult(LottoReceipt lottoReceipt, WinningLotto winningLotto) {
-        WinningReport winningReport = controller.getReport(lottoReceipt, winningLotto);
-        String winningDetails = controller.sendWinningDetails(winningReport.getWinningCounts());
-        outputView.printWinningDetails(winningDetails);
+        List<String> winningResults = controller.sendWinningResult(lottoReceipt, winningLotto);
 
-        BigInteger totalPrize = Winning.tellTotalPrize(winningReport.getWinningCounts());
-        BigDecimal rateOfReturn = lottoReceipt.calculateRateOfReturn(totalPrize);
-        outputView.printRateOfReturn(rateOfReturn.toString());
+        outputView.printWinningDetails(winningResults.get(0));
+        outputView.printRateOfReturn(winningResults.get(1));
     }
 
     private LottoReceipt readPurchaseAmount() {

@@ -5,6 +5,7 @@ import static lotto.MessageContainer.SECOND_WINNING_DETAILS_TEMPLATE;
 import static lotto.MessageContainer.WINNING_DETAILS_TEMPLATE;
 import static lotto.view.ViewConstants.VIEW_DELIMITER;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +16,6 @@ import lotto.domain.LottoReceipt;
 import lotto.domain.LottoTicket;
 import lotto.domain.Winning;
 import lotto.domain.WinningLotto;
-import lotto.domain.WinningReport;
 import lotto.service.LottoService;
 
 public class LottoController {
@@ -29,8 +29,12 @@ public class LottoController {
         return lottoService.createLottoReceipt(toBigInteger(input));
     }
 
-    public BigInteger toBigInteger(String input) {
+    private BigInteger toBigInteger(String input) {
         return new BigInteger(input);
+    }
+
+    public WinningLotto getWinningLotto(LottoTicket winningTicket, int bonusNumber) {
+        return lottoService.createWinningLotto(winningTicket, bonusNumber);
     }
 
     public LottoTicket readWinningNumbers(String inputNumbers) {
@@ -45,22 +49,27 @@ public class LottoController {
     }
 
     public int toInt(String input) {
-        try{
+        try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(OVER_INTEGER_RANGE_ERROR);
         }
     }
 
-    public WinningLotto getWinningLotto(LottoTicket winningTicket, int bonusNumber) {
-        return lottoService.createWinningLotto(winningTicket, bonusNumber);
+    public List<String> sendLottoDetails(LottoReceipt lottoReceipt) {
+        BigInteger lottoQuantity = lottoService.getLottoQuantity(lottoReceipt);
+        String lottoDetails = lottoService.getLottoDetails(lottoReceipt);
+        return List.of(lottoQuantity.toString(), lottoDetails);
     }
 
-    public WinningReport getReport(LottoReceipt lottoReceipt, WinningLotto winningLotto) {
-        return lottoService.createWinningReport(lottoReceipt, winningLotto);
+    public List<String> sendWinningResult(LottoReceipt lottoReceipt, WinningLotto winningLotto) {
+        Map<Winning, Integer> winningCounts = lottoService.getWinningCounts(lottoReceipt, winningLotto);
+        String winningDetails = conertToWinningDetails(winningCounts);
+        BigDecimal rateOfReturn = lottoService.getRateOfReturn(winningCounts, lottoReceipt);
+        return List.of(winningDetails, rateOfReturn.toString());
     }
 
-    public String sendWinningDetails(Map<Winning, Integer> winningCounts) {
+    private String conertToWinningDetails(Map<Winning, Integer> winningCounts) {
         return Winning.valuesAsOrderedStream()
                 .map(winning -> {
                     if (winning == Winning.SECOND) {
