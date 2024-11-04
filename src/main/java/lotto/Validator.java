@@ -5,24 +5,24 @@ public class Validator {
 
     public static void validatePurchaseAmount(String input) {
         validateNumeric(input);
-        int price = Integer.parseInt(input);
-        validateDivisibleByLottoPrice(price);
-        validatePositiveAmount(price);
+        int amount = Integer.parseInt(input);
+        validateDivisibleByLottoPrice(amount);
+        validatePositiveAmount(amount);
     }
-    public static void validateNumeric(String input) {
+    private static void validateNumeric(String input) {
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 함");
         }
     }
 
-    public static void validateDivisibleByLottoPrice(int price) {
-        if (price % LOTTO_PRICE != 0) {
+    private static void validateDivisibleByLottoPrice(int amount) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 천원 단위로 나눠 떨어져야 함");
         }
     }
 
-    public static void validatePositiveAmount(int price) {
-        if (price <= 0) {
+    private static void validatePositiveAmount(int amount) {
+        if (amount <= 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 천원 이상이어야 함");
         }
     }
