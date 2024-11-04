@@ -96,4 +96,53 @@ public class ValidationUtilsTest {
         });
         assertEquals("[ERROR] 당첨 번호는 1~45 사이여야 합니다.", exception.getMessage());
     }
+
+    @Test
+    public void testValidateBonusNumber_ValidBonusNumber() {
+        List<Integer> winningNumbers = Arrays.asList(1, 15, 23, 34, 42, 45);
+        int validBonusNumber = 10;
+
+        assertDoesNotThrow(() -> validateBonusNumber(validBonusNumber, winningNumbers));
+    }
+
+    @Test
+    public void testValidateBonusNumber_OutOfRange() {
+        List<Integer> winningNumbers = Arrays.asList(1, 15, 23, 34, 42, 45);
+        int outOfRangeBonusNumber = 46;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validateBonusNumber(outOfRangeBonusNumber, winningNumbers);
+        });
+        assertEquals("[ERROR] 보너스 번호는 1~45 사이여야 합니다.", exception.getMessage());
+    }
+
+    @Test
+    public void testValidateBonusNumber_DuplicateWithWinningNumbers() {
+        List<Integer> winningNumbers = Arrays.asList(1, 15, 23, 34, 42, 45);
+        int duplicateBonusNumber = 15;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validateBonusNumber(duplicateBonusNumber, winningNumbers);
+        });
+        assertEquals("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.", exception.getMessage());
+    }
+
+    @Test
+    public void testValidateBonusNumber_MinBoundary() {
+        // 보너스 번호가 최소 경계값 (1)인 경우
+        List<Integer> winningNumbers = Arrays.asList(5, 10, 15, 20, 25, 30);
+        int minBoundaryBonusNumber = 1;
+
+        assertDoesNotThrow(() -> validateBonusNumber(minBoundaryBonusNumber, winningNumbers));
+    }
+
+    @Test
+    public void testValidateBonusNumber_MaxBoundary() {
+        // 보너스 번호가 최대 경계값 (45)인 경우
+        List<Integer> winningNumbers = Arrays.asList(5, 10, 15, 20, 25, 30);
+        int maxBoundaryBonusNumber = 45;
+
+        assertDoesNotThrow(() -> validateBonusNumber(maxBoundaryBonusNumber, winningNumbers));
+    }
+
 }
