@@ -8,7 +8,8 @@ public enum ErrorCode {
     NOT_MULTIPLE_OF_1000("구입 금액은 1,000원 단위여야 합니다."),
     INVALID_LOTTO_SIZE("로또 번호는 6개여야 합니다."),
     OUT_OF_RANGE("로또 번호는 1부터 45 사이여야 합니다."),
-    DUPLICATED_NUMBER("로또 번호는 중복되지 않아야 합니다.")
+    DUPLICATED_NUMBER("로또 번호는 중복되지 않아야 합니다."),
+    WINNING_LOTTO_NOT_EXIST("당첨 번호가 존재하지 않습니다.")
     ;
 
     private final String value;

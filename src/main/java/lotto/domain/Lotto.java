@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.error.ErrorCode;
 
@@ -43,6 +44,10 @@ public class Lotto {
         if (isOverRange) {
             throw new IllegalArgumentException(ErrorCode.OUT_OF_RANGE.getMessage());
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     @Override

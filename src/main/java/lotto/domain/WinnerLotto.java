@@ -27,6 +27,18 @@ public class WinnerLotto extends Lotto {
         return this;
     }
 
+    public Prize cacluatePrize(Lotto lotto) {
+        int sameNumberCount = getSameNumberCount(lotto);
+        boolean isBonusNumberMatch = lotto.getNumbers().contains(bonusNumber);
+        return Prize.of(sameNumberCount, isBonusNumberMatch);
+    }
+
+    private Integer getSameNumberCount(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(super.numbers::contains)
+                .count();
+    }
+
     private static void validateBonusNumber(Integer bonusNumber, List<Integer> numbers) {
         if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorCode.OUT_OF_RANGE.getMessage());
