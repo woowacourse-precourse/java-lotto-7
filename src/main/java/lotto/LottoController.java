@@ -23,6 +23,9 @@ public class LottoController {
         int bonusNumber = lottoView.requestBonusNumber();
 
         Map<LottoRank, Integer> result = calculateResult(winningNumbers, bonusNumber);
+        double earningsRate = calculateEarningsRate(result, purchaseAmount);
+
+        lottoView.displayResults(result, earningsRate);
     }
 
     private Map<LottoRank, Integer> calculateResult(List<Integer> winningNumbers, int bonusNumber) {
@@ -47,6 +50,13 @@ public class LottoController {
         for(int i = 0; i < lottoCount; i++){
             lottos.add(Lotto.generateRandomLotto());
         }
+    }
+
+    private double calculateEarningsRate(Map<LottoRank, Integer> resultSummary, int purchaseAmount) {
+        int totalPrize = resultSummary.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        return ((double) totalPrize / purchaseAmount) * 100;
     }
 
 

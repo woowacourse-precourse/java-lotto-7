@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class LottoView {
 
@@ -28,5 +29,16 @@ public class LottoView {
     public void displayPurchaseLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+
+    public void displayResults(Map<LottoRank, Integer> resultSummary, double earningsRate) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank != LottoRank.MISS) {
+                System.out.printf("%s - %d개\n", rank.getDescription(), resultSummary.get(rank));
+            }
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", earningsRate);
     }
 }
