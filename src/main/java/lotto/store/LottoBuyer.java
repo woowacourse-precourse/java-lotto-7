@@ -29,6 +29,6 @@ public class LottoBuyer {
         Money buyerProfit = Money.EMPTY;
         for (LottoRank lottoRank : result(winningNumbers))
             buyerProfit = buyerProfit.plus(lottoRank.price());
-        return buyerProfit.rateAs(seedMoney);
+        return buyerProfit.rateAsPercent(seedMoney);
     }
 }

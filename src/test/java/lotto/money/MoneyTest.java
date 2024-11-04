@@ -7,10 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MoneyTest {
     private final Money ONE = new Money(1);
-    private Money TWO = new Money(2);
+    private final Money TWO = new Money(2);
+    private final Money THREE = new Money(3);
     private final Money FOUR = new Money(4);
     private final Money FIVE = new Money(5);
     private final Money SIX = new Money(6);
+    private final Money NINE = new Money(9);
 
     @DisplayName("돈은 마이너스가 불가능함")
     @Test
@@ -44,11 +46,22 @@ class MoneyTest {
         assertEquals(FOUR.countBundle(new Money(2)), 2);
     }
 
-    @DisplayName("돈의 비율을 구할 수 있음")
+    @DisplayName("돈의 비율을 퍼센트 단위로 구할 수 있음")
     @Test
     void test6() {
-        assertEquals(FOUR.rateAs(ONE), 4);
-        assertEquals(FIVE.rateAs(ONE), 5);
-        assertEquals(SIX.rateAs(TWO), 3);
+        assertEquals(FOUR.rateAsPercent(ONE), 400);
+        assertEquals(FIVE.rateAsPercent(ONE), 500);
+        assertEquals(SIX.rateAsPercent(TWO), 300);
+
+        assertEquals(ONE.rateAsPercent(FIVE), 20);
+        assertEquals(ONE.rateAsPercent(FOUR), 25);
+        assertEquals(THREE.rateAsPercent(FOUR), 75);
+    }
+
+    @DisplayName("비율은 퍼센트 소수점 두 번째 자리에서 반올림됨")
+    @Test
+    void test7() {
+        assertEquals(THREE.rateAsPercent(NINE), 33.3);
+        assertEquals(SIX.rateAsPercent(NINE), 66.7);
     }
 }

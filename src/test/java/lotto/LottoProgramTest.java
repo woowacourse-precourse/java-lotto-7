@@ -35,7 +35,7 @@ class LottoProgramTest {
                         TestWinningNumbers.testBonusInt
                 )
         );
-        settingReaderStub.setTestSeedMoney(1);
+        settingReaderStub.setTestSeedMoney(100);
         lottoStoreStub.setSoldLottos(List.of(
                 TestWinningNumbers.FIFTH_LOTTO,
                 TestWinningNumbers.FOURTH_LOTTO
@@ -45,7 +45,7 @@ class LottoProgramTest {
 
 
         assertThat(result.getBuyerLottoRanks()).contains(LottoRank.FIFTH, LottoRank.FOURTH);
-        assertThat(result.getRateOfReturn()).isEqualTo(5000 + 50_000);
+        assertThat(result.getRateOfReturnPercent()).isEqualTo(5000 + 50_000);
     }
 
 }

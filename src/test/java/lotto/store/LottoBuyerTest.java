@@ -60,14 +60,14 @@ class LottoBuyerTest {
 
         LottoBuyer buyer = new LottoBuyer(storeStub, seedMoney);
 
-        assertEquals(buyer.rateOfReturn(winningNumbers),expectedRate);
+        assertEquals(buyer.rateOfReturn(winningNumbers), expectedRate);
     }
 
     static Stream<Arguments> rateOfReturnOptions() {
         return Stream.of(
-                Arguments.of(2.0, LottoRank.FIFTH.price(),
+                Arguments.of(200, LottoRank.FIFTH.price(),
                         List.of(TestWinningNumbers.FIFTH_LOTTO, TestWinningNumbers.FIFTH_LOTTO)),
-                Arguments.of(10.0, money(5_000),
+                Arguments.of(1000, money(5_000),
                         List.of(TestWinningNumbers.FOURTH_LOTTO))
         );
     }

@@ -1,12 +1,18 @@
 package lotto.money;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Money {
     private static final int EMPTY_MONEY = 0;
     public static final Money EMPTY = new Money(EMPTY_MONEY);
+    private static final int PERCENT_MULTIPLIER = 100;
+    private static final BigDecimal PERCENT_UNIT = new BigDecimal(PERCENT_MULTIPLIER);
+    private static final int SCALE = 3;
 
     private final int amount;
+
 
     public Money(int amount) {
         if(isMinusMoney(amount))
@@ -24,8 +30,17 @@ public class Money {
         return amount / bundleUnit.amount;
     }
 
-    public double rateAs(Money money) {
-        return (double) amount / money.amount;
+    public double rateAsPercent(Money money) {
+        BigDecimal baseAmount = new BigDecimal(toString(amount));
+        BigDecimal referenceAmount = new BigDecimal(toString(money.amount));
+
+        return toPercent(
+                baseAmount.divide(referenceAmount, SCALE, RoundingMode.HALF_UP)
+        ).doubleValue();
+    }
+
+    private BigDecimal toPercent(BigDecimal number) {
+        return number.multiply(PERCENT_UNIT);
     }
 
     @Override
@@ -43,5 +58,9 @@ public class Money {
 
     private boolean isMinusMoney(int amount) {
         return amount < EMPTY_MONEY;
+    }
+
+    private String toString(int money) {
+        return String.valueOf(money);
     }
 }

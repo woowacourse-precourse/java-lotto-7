@@ -6,20 +6,19 @@ import java.util.List;
 
 public class LottoResult {
     private final List<LottoRank> buyerLottoRanks;
-    private final double rateOfReturn;
-    private final int PERCENTAGE_MULTIPLIER = 100;
+    private final double rateOfReturnPercent;
 
-    public LottoResult(List<LottoRank> lottoRanks, double rateOfReturn) {
+    public LottoResult(List<LottoRank> lottoRanks, double rateOfReturnPercent) {
         this.buyerLottoRanks = List.copyOf(lottoRanks);
-        this.rateOfReturn = rateOfReturn;
+        this.rateOfReturnPercent = rateOfReturnPercent;
     }
 
     public List<LottoRank> getBuyerLottoRanks() {
         return buyerLottoRanks;
     }
 
-    public double getRateOfReturn() {
-        return rateOfReturn;
+    public double getRateOfReturnPercent() {
+        return rateOfReturnPercent;
     }
 
     @Override
@@ -32,7 +31,7 @@ public class LottoResult {
         sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n".formatted(count(buyerLottoRanks, LottoRank.SECOND)));
         sb.append("6개 일치 (2,000,000,000원) - %d개\n".formatted(count(buyerLottoRanks, LottoRank.FIRST)));
 
-        sb.append("총 수익률은 %.1f%%입니다.".formatted(rateOfReturn * PERCENTAGE_MULTIPLIER));
+        sb.append("총 수익률은 %.1f%%입니다.".formatted(rateOfReturnPercent));
         return sb.toString();
     }
 
