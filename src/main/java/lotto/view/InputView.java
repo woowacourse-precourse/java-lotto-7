@@ -15,7 +15,7 @@ public class InputView {
     public static List<String> requestWinningNumbers() {
         System.out.println(LottoConstants.REQUEST_WINNING_NUMBERS);
         String inputWinningNumbers = Console.readLine();
-        return Arrays.asList(inputWinningNumbers.split(","));
+        return Arrays.asList(inputWinningNumbers.split(LottoConstants.WINNING_NUMBER_DELIMITER));
     }
 
     public static String requestBonusNumber() {
