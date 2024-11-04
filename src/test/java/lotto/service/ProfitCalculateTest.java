@@ -14,15 +14,6 @@ import org.junit.jupiter.api.Test;
 @DisplayName("ProfitCalculate 클래스 테스트")
 public class ProfitCalculateTest {
 
-    private ProfitCalculate profitCalculate;
-    private PublishCount publishCount;
-
-    @BeforeEach
-    void setUp() {
-        ProfitCalculate = new ProfitCalculate();
-        publishCount = PublishCount.getInstance(5);
-    }
-
     @Test
     void 수익률_계산_테스트() {
         //given
@@ -34,12 +25,12 @@ public class ProfitCalculateTest {
         prizeCounts.put(Prize.FIFTH, 0);
 
         int purchasePrice = 10000;
-
+        BigDecimal expectedProfit = new BigDecimal("200000.0");
         //when
-        BigDecimal profit = ProfitCalculate.calculatePrice(purchasePrice, prizeCounts);
+        BigDecimal profit = ProfitCalculate.calculateProfit(purchasePrice, prizeCounts);
 
         //then
-        assertEquals(profit, 200000);
+        assertEquals(profit, expectedProfit);
     }
 
 }
