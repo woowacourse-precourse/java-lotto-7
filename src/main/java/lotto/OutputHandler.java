@@ -39,7 +39,7 @@ public class OutputHandler {
         }
     }
     public void printRateOfReturn(float totalProfit,int budget){
-        System.out.printf("총 수익률은 %.1f%%입니다.",totalProfit/budget*100));
+        System.out.printf("총 수익률은 %.1f%%입니다.",(totalProfit/budget)*100);
 
     }
 }

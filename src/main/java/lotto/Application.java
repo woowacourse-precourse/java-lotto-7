@@ -8,8 +8,11 @@ public class Application {
     private InputHandler inputHandler;
     private OutputHandler outputHandler;
     private LottoGenerator lottoGenerator;
-    private List<Lotto> lottoTickets;
     private LottoResult lottoResult;
+    private List<Lotto> lottoTickets;
+    private Lotto winningLotto;
+    private int bonusNumber;
+    private int budget;
 
     public Application() {
         inputHandler = new InputHandler();
@@ -24,21 +27,29 @@ public class Application {
     }
 
     public void run() {
+        purchaseLottoTickets();
+        setWinningInfo();
+        getResults();
+    }
+    private void purchaseLottoTickets(){
         outputHandler.printBudgetMessage();
-        int budget = inputHandler.budgetInput();
+        budget = inputHandler.budgetInput();
         int purchasedLottoCount = budget / 1000;
         outputHandler.printPurchasedLottoCount(purchasedLottoCount);
-
         lottoTickets = lottoGenerator.generate(purchasedLottoCount);
         outputHandler.printLottoTickets(lottoTickets);
+    }
+    private void setWinningInfo(){
         outputHandler.printWinningLottoMessage();
-        Lotto winningLotto = inputHandler.winningNumbersInput();
+        winningLotto = inputHandler.winningNumbersInput();
         outputHandler.printBonusNumberMessage();
-        int bonusNumber = inputHandler.bonusNumberInput(winningLotto.getNumbers());
-
+        bonusNumber = inputHandler.bonusNumberInput(winningLotto.getNumbers());
+    }
+    private void getResults(){
         Map<Rank, Integer> result = lottoResult.getFinalResult(lottoTickets, winningLotto.getNumbers(), bonusNumber);
         outputHandler.printStatistics(result);
         float totalProfit = lottoResult.getTotalProfit(result);
         outputHandler.printRateOfReturn(totalProfit, budget);
     }
+
 }
