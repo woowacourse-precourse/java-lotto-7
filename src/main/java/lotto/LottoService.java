@@ -16,8 +16,8 @@ public class LottoService {
         return cashier.sellLotto(money);
     }
 
-    public String compareNumbers(List<Lotto> tickets, WinningNumber winningNumber) {
-        Announcer announcer = new Announcer(winningNumber);
+    public String compareNumbers(List<Lotto> tickets, WinningNumber winningNumber, int bonusNumber) {
+        Announcer announcer = new Announcer(winningNumber, bonusNumber);
         List<Prize> prizes = announcer.compareLottoResult(tickets);
         Analyst analyst = new Analyst(prizes);
 

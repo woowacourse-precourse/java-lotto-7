@@ -7,12 +7,10 @@ import java.util.Set;
 public class WinningNumber {
 
     private final List<Integer> numbers;
-    private final int bonusNumber;
 
-    public WinningNumber(List<Integer> numbers, int bonusNumber) {
+    public WinningNumber(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        this.bonusNumber = bonusNumber;
     }
 
     private void validate(List<Integer> numbers) {

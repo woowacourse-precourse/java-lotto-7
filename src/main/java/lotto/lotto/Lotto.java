@@ -18,12 +18,10 @@ public class Lotto {
         }
     }
 
-    public Prize compare(WinningNumber winningNumber) {
+    public Prize compare(WinningNumber winningNumber, int bonusNumber) {
         int count = (int) IntStream.range(0, numbers.size())
                 .filter(i -> numbers.get(i).equals(winningNumber.getNumbers().get(i)))
                 .count();
-
-        int bonusNumber = winningNumber.getBonusNumber();
         boolean hasBonusNumber = numbers.contains(bonusNumber);
 
         return Prize.determinePrize(count, hasBonusNumber);

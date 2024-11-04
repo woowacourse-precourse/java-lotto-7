@@ -17,5 +17,9 @@ public class Controller {
         return lottoService.buyLotto(money);
     }
 
+    public void getProfits() {
+
+    }
+
 
 }
