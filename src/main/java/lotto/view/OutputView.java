@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.constants.IOMessageConstants;
 import lotto.dto.GeneratedNumbers;
 import lotto.dto.WinningNumbersStatics;

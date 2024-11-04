@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
 import lotto.dto.CountMatchNumbers;
 import lotto.dto.GeneratedNumbers;
 import lotto.dto.InputNumbers;
