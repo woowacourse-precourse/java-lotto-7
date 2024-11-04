@@ -13,19 +13,42 @@ public class WinningLotto {
     private final Integer bonusNumber;
 
     private WinningLotto(List<Integer> winningNumbers, Integer bonusNumber) {
-        validateSize(winningNumbers,WINNING_NUMBER_SIZE);
-        validateDuplicate(winningNumbers);
         this.winningNumbers = new ArrayList<>(winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto of(List<Integer> winningNumbers, Integer bonusNumber) {
-        return new WinningLotto(winningNumbers, bonusNumber);
+    public static WinningLottoBuilder builder() {
+        return new WinningLottoBuilder();
     }
 
     public Rank match(Lotto lotto) {
         int matchCount = lotto.matchNumbers(winningNumbers);
         boolean isBonusMatch = lotto.matchBonusNumber(bonusNumber);
         return Rank.rank(matchCount, isBonusMatch);
+    }
+
+    public static class WinningLottoBuilder {
+        private List<Integer> winningNumbers = new ArrayList<>();
+        private Integer bonusNumber;
+
+        public static WinningLottoBuilder builder() {
+            return new WinningLottoBuilder();
+        }
+
+        public WinningLottoBuilder winningNumbers(List<Integer> winningNumbers) {
+            validateSize(winningNumbers,WINNING_NUMBER_SIZE);
+            validateDuplicate(winningNumbers);
+            this.winningNumbers = new ArrayList<>(winningNumbers);
+            return this;
+        }
+
+        public WinningLottoBuilder bonusNumber(Integer bonusNumber) {
+            this.bonusNumber = bonusNumber;
+            return this;
+        }
+
+        public WinningLotto build() {
+            return new WinningLotto(this.winningNumbers, this.bonusNumber);
+        }
     }
 }
