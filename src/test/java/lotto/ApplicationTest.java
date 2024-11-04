@@ -1,13 +1,13 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -50,6 +50,33 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 구입 금액이 1000의 배수가 아니면 예외가 발생한다.")
+    @Test
+    void 로또_구입_금액_예외_테스트_1() {
+        assertSimpleTest(() -> {
+            runException("11327");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 구입 금액이 음수면 1000의 배수가 아니므로 예외가 발생한다.")
+    @Test
+    void 로또_구입_금액_예외_테스트_2() {
+        assertSimpleTest(() -> {
+            runException("-3");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 구입 금액이 0이면 1000의 배수가 아니므로 예외가 발생한다.")
+    @Test
+    void 로또_구입_금액_예외_테스트_3() {
+        assertSimpleTest(() -> {
+            runException("0");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
