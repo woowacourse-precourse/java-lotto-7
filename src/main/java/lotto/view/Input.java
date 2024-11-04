@@ -3,8 +3,11 @@ package lotto.view;
 import lotto.domain.Lotto;
 import java.util.Arrays;
 import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.validate.ValidateInput.*;
+import static lotto.validate.ValidateInput.validateAmount;
+import static lotto.validate.ValidateInput.validateBonusNumber;
+import static lotto.validate.ValidateInput.validateWinningNumbers;
 
 public class Input {
     public int inputPurchaseAmount(){
@@ -35,13 +38,13 @@ public class Input {
         }
     }
 
-    public int inputBonusNumber(){
+    public int inputBonusNumber(Lotto winningLotto){
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String inputBonusNumber = readLine();
 
-                return validateBonusNumber(inputBonusNumber);
+                return validateBonusNumber(inputBonusNumber, winningLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
