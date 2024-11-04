@@ -5,6 +5,10 @@ import java.util.List;
 import lotto.lotto.Lotto;
 import lotto.lotto.LottoResult;
 
+/**
+ * <code>LottoPrize</code> is an enum class that represents the prize of the lotto.
+ * It defines the prize as a <b>declarative</b> way.
+ */
 public enum LottoPrize {
     FIRST(2_000_000_000, 6, false),
     SECOND(30_000_000, 5, true),

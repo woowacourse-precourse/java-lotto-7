@@ -3,6 +3,22 @@ package lotto.io;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * Implementation of <code>IOManager</code> that can be used for testing.
+ * <p>
+ * <ul>
+ *   <li>Set <code>input</code> to the desired input value before calling the methods.</li>
+ *   <li>Get <code>outputBuilder</code> to the desired output value after calling the methods.</li>
+ * </ul>
+ * <p>
+ * The method call history is stored in the corresponding field.
+ * <ul>
+ *   <li>Method call count is stored in <code>methodCallCount</code>.</li>
+ *   <li>Last argument passed to method is stored in <code>methodLastCalledWith</code>.</li>
+ * </ul>
+ *
+ * @see IOManager
+ */
 public class MockedIOManager implements IOManager {
     public String input;
     public StringBuilder outputBuilder = new StringBuilder();
