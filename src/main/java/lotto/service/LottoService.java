@@ -32,6 +32,13 @@ public class LottoService {
         DecimalFormat formatter = new DecimalFormat("#,###");
         StringBuilder stringBuilder = new StringBuilder();
         for(WinningResult rank : WinningResult.values()){
+            if(rank.isMatchBonusNumber()) {
+                stringBuilder.append(rank.getMatchNumberCount()).append("개 일치, 보너스 볼 일치 ")
+                        .append("(").append(formatter.format(rank.getPrize())).append("원)").append(" - ")
+                        .append(countWinningResult(results, rank)).append("개")
+                        .append("\n");
+                continue;
+            }
             stringBuilder.append(rank.getMatchNumberCount()).append("개 일치").append("(")
                     .append(formatter.format(rank.getPrize())).append("원)").append(" - ")
                     .append(countWinningResult(results, rank)).append("개")
