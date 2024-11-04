@@ -4,15 +4,20 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Integer> lottoNumbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.lottoNumbers = numbers;
+    }
+
+    public List<Integer> getLottoNumbers (){
+        sort(lottoNumbers);
+        return lottoNumbers;
     }
 
     public Boolean contains(Integer number) {
-        return numbers.contains(number);
+        return lottoNumbers.contains(number);
     }
 
     private void validate(List<Integer> numbers) {
@@ -38,5 +43,15 @@ public class Lotto {
 
     private boolean isDuplication (List<Integer> numbers) {
         return new HashSet<>(numbers).size() != numbers.size();
+    }
+
+    @Override
+    public String toString() {
+        sort(lottoNumbers);
+        return lottoNumbers.toString();
+    }
+
+    private void sort(List<Integer> numbers) {
+        numbers.sort(Integer::compareTo);
     }
 }
