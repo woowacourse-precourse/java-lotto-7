@@ -1,9 +1,11 @@
 package lotto.utils;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NumberListTest {
@@ -43,6 +45,17 @@ public class NumberListTest {
             prev = num;
 
         }
+    }
+
+    @Test
+    void testPickUniqueNumber(){
+        assertRandomUniqueNumbersInRangeTest(()->{
+            NumberList numberList = new NumberList();
+
+            assertThat(numberList.generateRandomNumberList()).isEqualTo(List.of(1,2,3,4,5,6));
+
+        },List.of(1,2,3,4,5,6));
+
     }
 
 }
