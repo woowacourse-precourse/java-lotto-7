@@ -84,6 +84,7 @@ public class AppRunner {
         while (true) {
             String inputNumber = inputView.requestBonusNumber();
             try {
+                inputValidator.validateDigitOnly(inputNumber);
                 bonusNumber = controller.toInt(inputNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
