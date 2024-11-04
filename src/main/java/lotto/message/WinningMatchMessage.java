@@ -1,4 +1,4 @@
-package lotto.util.message;
+package lotto.message;
 
 import lotto.rule.Prize;
 

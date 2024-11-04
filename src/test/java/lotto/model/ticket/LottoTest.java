@@ -1,6 +1,6 @@
 package lotto.model.ticket;
 
-import lotto.util.message.LottoErrorMessage;
+import lotto.message.LottoErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

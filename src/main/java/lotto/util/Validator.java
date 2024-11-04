@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.rule.LottoRule;
-import lotto.util.message.Message;
-import lotto.util.message.LottoErrorMessage;
+import lotto.message.Message;
+import lotto.message.LottoErrorMessage;
 
 public class Validator {
 

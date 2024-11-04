@@ -2,8 +2,8 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.util.message.Message;
-import lotto.util.message.InputErrorMessage;
+import lotto.message.Message;
+import lotto.message.InputErrorMessage;
 import org.junit.platform.commons.util.StringUtils;
 
 public class InputParser {

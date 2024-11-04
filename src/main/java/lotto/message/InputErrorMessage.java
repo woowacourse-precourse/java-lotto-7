@@ -1,11 +1,11 @@
-package lotto.util.message;
+package lotto.message;
 
 public enum InputErrorMessage implements Message {
 
-    PURCHASE_AMOUNT_EMPTY("구입금액을 입력되지 않았어요."),
+    PURCHASE_AMOUNT_EMPTY("구입금액이 입력되지 않았어요."),
     PURCHASE_AMOUNT_INVALID("구입금액에 숫자가 아닌 문자가 포함되어 있어요."),
 
-    WINNING_NUMBERS_EMPTY("당첨 번호가 입력되지 않았어요. 다시 입력해주세요."),
+    WINNING_NUMBERS_EMPTY("당첨 번호가 입력되지 않았어요."),
     WINNING_NUMBERS_INVALID("당첨 번호에 숫자와 쉼표가 아닌 문자가 포함되어 있어요."),
 
     BONUS_NUMBER_EMPTY("보너스 번호가 입력되지 않았어요."),
