@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.validator.InputValidator;
 import lotto.validator.LottoValidator;
+import lotto.validator.PurchaseAmountValidator;
 
 public class InputView {
     static private final String PURCHASE_AMOUNT_GUIDE = "\n구입금액을 입력해 주세요.";
@@ -21,8 +22,8 @@ public class InputView {
             printInputMessage(PURCHASE_AMOUNT_GUIDE);
             try {
                 String input = Console.readLine();
-
                 InputValidator.validatePurchaseAmount(input);
+                PurchaseAmountValidator.validate(Integer.parseInt(input));
 
                 return Integer.parseInt(input);
 
