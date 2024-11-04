@@ -74,17 +74,17 @@ Validator
 3. 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 
 InputPurchaseAmount
--[ ] 숫자가 아닌 값 입력
--[ ] 공백 입력
--[ ] 음수 입력
--[ ] 0 입력
+-[x] 숫자가 아닌 값 입력
+-[x] 공백 입력
+-[x] 음수 입력
+-[x] 0 입력
 
 InputWinningLottoNumber
--[ ] 숫자가 아닌 값 입력
--[ ] 공백 입력
--[ ] 유효하지 않은 delimiter 입력
--[ ] 음수 입력
--[ ] 0 입력
+-[x] 숫자가 아닌 값 입력
+-[x] 공백 입력
+-[x] 유효하지 않은 delimiter 입력
+-[x] 음수 입력
+-[x] 0 입력
 
 InputBonusNumber
 -[ ] 숫자가 아닌 값 입력
