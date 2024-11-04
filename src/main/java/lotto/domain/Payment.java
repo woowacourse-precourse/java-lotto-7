@@ -22,6 +22,10 @@ public class Payment {
         return payment / Constants.LOTTO_PRICE;
     }
 
+    public int getPayment() {
+        return payment;
+    }
+
     private void validate(int payment) {
         validatePositiveNumber(payment);
         validateDivisible(payment);
