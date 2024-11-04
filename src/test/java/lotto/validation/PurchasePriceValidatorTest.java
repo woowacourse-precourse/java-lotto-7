@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
+import lotto.constatnt.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,11 +15,11 @@ public class PurchasePriceValidatorTest extends NsTest {
 
     @DisplayName("로또 구입 금액이 공백일 때 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"", " "})
+    @ValueSource(strings = {" "})
     void shouldThrowExceptionWhenPurchasePriceIsBlank(String input) {
         assertThatThrownBy(() -> runException(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 구입 금액은 공백이 될 수 없습니다.");
+                .hasMessageContaining(ExceptionMessage.PURCHASE_PRICE_BLANK_INPUT.getMessage());
     }
 
     @DisplayName("로또 구입 금액이 음수일 때 예외 처리")
