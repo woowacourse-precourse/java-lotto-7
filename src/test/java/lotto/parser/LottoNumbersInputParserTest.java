@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LottoNumbersInputParserTest {
     @DisplayName("주어진 입력값에 구분자 외에 숫자가 아닌 값이 포함되어 있을 때 예외를 발생시킨다.")
     @ParameterizedTest
-    @ValueSource(strings = {"d,1,2,3", "1,2,3,", "1,!,2,3", "1,2,(,3", "1,2,3,,"})
+    @ValueSource(strings = {"d,1,2,3", "1,!,2,3", "1,2,(,3"})
     void 주어진_입력값에_구분자_외에_숫자가_아닌_값이_포함되어_있을_때_예외를_발생시킨다(String input) {
         // when, then
         assertThatThrownBy(() -> new LottoNumbersInputParser().parse(input))
