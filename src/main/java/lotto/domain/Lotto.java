@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -21,5 +22,9 @@ public class Lotto {
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException("[ERROR] 유효한 범위의 숫자가 아닙니다.");
         }
+    }
+
+    public List<Integer> getLottoNumbers() {
+        return new ArrayList<>(numbers);
     }
 }
