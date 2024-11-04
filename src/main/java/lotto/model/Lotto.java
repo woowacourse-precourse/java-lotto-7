@@ -33,22 +33,46 @@ public class Lotto {
     public Rank findRank(WinNumber winNumber) {
         int countOfWin = winNumber.countMatchingNumbers(numbers);
         boolean matchBonus = winNumber.isMatchBonus(numbers);
-        if (countOfWin == 3) {
+        return matchRank(countOfWin, matchBonus);
+    }
+
+    private static Rank matchRank(int countOfWin, boolean matchBonus) {
+        if (isRank3(countOfWin)) {
             return FIFTH;
         }
-        if (countOfWin == 4) {
+        if (isRank4(countOfWin)) {
             return FOURTH;
         }
-        if (countOfWin == 5 && !matchBonus) {
+        if (isRank3(countOfWin, matchBonus)) {
             return THIRD;
         }
-        if (countOfWin == 5) {
+        if (isRank2(countOfWin)) {
             return SECOND;
         }
-        if (countOfWin == 6) {
+        if (isRank1(countOfWin)) {
             return FIRST;
         }
         return NONE;
+    }
+
+    private static boolean isRank1(int countOfWin) {
+        return countOfWin == 6;
+    }
+
+    private static boolean isRank2(int countOfWin) {
+        return countOfWin == 5;
+    }
+
+    private static boolean isRank3(int countOfWin, boolean matchBonus) {
+        return countOfWin == 5 && !matchBonus;
+    }
+
+    private static boolean isRank4(int countOfWin) {
+        return countOfWin == 4;
+    }
+
+    private static boolean isRank3(int countOfWin) {
+        return countOfWin == 3;
     }
 
     @Override
