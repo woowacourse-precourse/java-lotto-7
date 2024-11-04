@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoManager {
+    private static final int MIN_BONUS_NUMBER = 1;
+    private static final int MAX_BONUS_NUMBER = 45;
+
     private final Map<LottoPrize, Integer> statistics = new EnumMap<>(LottoPrize.class);
     private Lotto winningLotto;
     private Integer bonusNumber;
@@ -36,10 +39,10 @@ public class LottoManager {
 
     private void validateBonusNumber(Integer bonusNumber) {
         if (winningLotto != null && winningLotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("Bonus number cannot be a part of winning numbers.");
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호에 포함될 수 없습니다.");
         }
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("Bonus number must be between 1 and 45.");
+        if (bonusNumber < MIN_BONUS_NUMBER || bonusNumber > MAX_BONUS_NUMBER) {
+            throw new IllegalArgumentException("보너스 번호는 " + MIN_BONUS_NUMBER + "부터 " + MAX_BONUS_NUMBER + " 사이의 숫자여야 합니다.");
         }
     }
 
