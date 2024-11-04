@@ -24,6 +24,7 @@ public class Lotto {
 
     static public Lotto of(String numbers) {
         return new Lotto(Arrays.stream(numbers.split(","))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .toList());
     }

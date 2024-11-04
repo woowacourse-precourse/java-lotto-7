@@ -5,9 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoGroup {
+    public static final String PURCHASE_UNIT_EXCEPTION_MESSAGE = "구입 금액은 1,000원 단위로 입력해야 합니다.";
+
     private final List<Lotto> lottos;
 
-    LottoGroup(List<Lotto> lottos) {
+    public LottoGroup(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
@@ -19,7 +21,27 @@ public class LottoGroup {
         return new LottoGroup(lottos);
     }
 
-    public String getLottoGroupSize(){
+    public static LottoGroup of(String purchaseCost) {
+        long cost = Long.parseLong(purchaseCost);
+        validatePurchaseUnit(cost);
+        return create((int) (cost / Lotto.PRICE));
+    }
+
+    private static void validatePurchaseUnit(Long cost) {
+        if (cost % Lotto.PRICE != 0) {
+            throw new IllegalArgumentException(PURCHASE_UNIT_EXCEPTION_MESSAGE);
+        }
+    }
+
+    public List<String> getStatus() {
+        List<String> status = new ArrayList<>();
+        status.add(getLottoGroupSize());
+        status.addAll(getLottoNumbers());
+
+        return status;
+    }
+
+    private String getLottoGroupSize() {
         return String.format("%d개를 구매했습니다.", lottos.size());
     }
 
