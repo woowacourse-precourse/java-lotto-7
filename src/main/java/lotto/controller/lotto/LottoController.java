@@ -40,7 +40,7 @@ public class LottoController {
         lottoDto.updateWinningNumbers(winningNumbers);
 
         String bonusNumber = "";
-        bonusNumber = inputBonusNumber();
+        bonusNumber = inputBonusNumber(lottoDto);
         lottoDto.updateBonusNumber(bonusNumber);
 
         WinningStatisticsResponseDto winningStatisticsDto = lottoService.getWinningStatistics(lottoes, lottoDto);
@@ -71,13 +71,14 @@ public class LottoController {
         return winningNumbers;
     }
 
-    private String inputBonusNumber() {
+    private String inputBonusNumber(LottoDto lottoDto) {
         String bonusNumber = "";
         try {
             bonusNumber = lottoInputView.inputBonusNumber();
+            lottoValidator.validateBonusNumber(lottoDto.getWinningNumbers(), bonusNumber);
         } catch (IllegalArgumentException error) {
             lottoOutputView.printEnterAndMessage(error.getMessage());
-            inputBonusNumber();
+            inputBonusNumber(lottoDto);
         }
         return bonusNumber;
     }

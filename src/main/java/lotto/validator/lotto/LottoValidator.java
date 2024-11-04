@@ -3,7 +3,7 @@ package lotto.validator.lotto;
 import java.util.HashSet;
 import java.util.Set;
 import lotto.domain.lotto.LottoConstant;
-import lotto.error.lotto.LottoErrorMessage;
+import lotto.error.lotto.LottoError;
 
 public class LottoValidator {
 
@@ -17,21 +17,21 @@ public class LottoValidator {
         try {
             Integer.parseInt(amount);
         } catch (Exception e) {
-            throw new IllegalArgumentException(LottoErrorMessage.INPUT_DATA_IS_NOT_POSITIVE);
+            throw new IllegalArgumentException(LottoError.INPUT_DATA_IS_NOT_POSITIVE.getMessage());
         }
     }
 
     private void validatePurchaseAmountMultiple(String amount) {
         int amountOfInt = Integer.parseInt(amount);
         if (amountOfInt % LottoConstant.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(LottoErrorMessage.INVALID_PURCHASE_POLICY);
+            throw new IllegalArgumentException(LottoError.INVALID_PURCHASE_POLICY.getMessage());
         }
     }
 
     private void validatePurchaseAmountLimit(String amount) {
         int amountOfInt = Integer.parseInt(amount);
         if (amountOfInt > LottoConstant.LOTTO_PRICE * 100) {
-            throw new IllegalArgumentException(LottoErrorMessage.OUT_OF_PURCHASE_LIMIT);
+            throw new IllegalArgumentException(LottoError.OUT_OF_PURCHASE_LIMIT.getMessage());
         }
     }
 
@@ -47,14 +47,14 @@ public class LottoValidator {
         try {
             numbersOfText = numbers.split(",");
         } catch (Exception e) {
-            throw new IllegalArgumentException(LottoErrorMessage.INPUT_DATA_IS_NOT_POSITIVE_OR_DELIMITER);
+            throw new IllegalArgumentException(LottoError.INPUT_DATA_IS_NOT_POSITIVE_OR_DELIMITER.getMessage());
         }
 
         Set<Integer> winningNumbers = new HashSet<>();
         for (String numberOfText : numbersOfText) {
             int lottoNumber = Integer.parseInt(numberOfText);
             if (winningNumbers.contains(lottoNumber)) {
-                throw new IllegalArgumentException(LottoErrorMessage.DUPLICATED_LOTTO_NUMBERS);
+                throw new IllegalArgumentException(LottoError.DUPLICATED_LOTTO_NUMBERS.getMessage());
             }
             winningNumbers.add(lottoNumber);
         }
@@ -63,14 +63,14 @@ public class LottoValidator {
 
     private void validateWinningNumbersCount(Set<Integer> winningNumbers) {
         if (winningNumbers.size() != LottoConstant.LOTTO_WINNING_NUMBER_COUNT) {
-            throw new IllegalArgumentException(LottoErrorMessage.INVALID_NUMBER_OF_WINNING_NUMBERS);
+            throw new IllegalArgumentException(LottoError.INVALID_NUMBER_OF_WINNING_NUMBERS.getMessage());
         }
     }
 
     private void validateWinningNumbersRange(Set<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
             if (isInvalidNumberRange(winningNumber)) {
-                throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_RANGE);
+                throw new IllegalArgumentException(LottoError.INVALID_LOTTO_NUMBER_RANGE.getMessage());
             }
         }
     }
@@ -85,21 +85,21 @@ public class LottoValidator {
         try {
             Integer.parseInt(inputBonusNumber);
         } catch (Exception e) {
-            throw new IllegalArgumentException(LottoErrorMessage.INPUT_DATA_IS_NOT_POSITIVE);
+            throw new IllegalArgumentException(LottoError.INPUT_DATA_IS_NOT_POSITIVE.getMessage());
         }
     }
 
     private void validateBonusNumberRange(String inputBonusNumber) {
         int bonusNumber = Integer.parseInt(inputBonusNumber);
         if (isInvalidNumberRange(bonusNumber)) {
-            throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_RANGE);
+            throw new IllegalArgumentException(LottoError.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
     private void validateBonusNumberDuplicated(Set<Integer> winningNumbers, String inputBonusNumber) {
         int bonusNumber = Integer.parseInt(inputBonusNumber);
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATED_LOTTO_NUMBERS);
+            throw new IllegalArgumentException(LottoError.DUPLICATED_LOTTO_NUMBERS.getMessage());
         }
     }
 

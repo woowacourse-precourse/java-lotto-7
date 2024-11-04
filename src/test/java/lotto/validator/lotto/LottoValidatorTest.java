@@ -3,7 +3,7 @@ package lotto.validator.lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.error.lotto.LottoErrorMessage;
+import lotto.error.lotto.LottoError;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ class LottoValidatorTest {
         Assertions.assertThatThrownBy(() -> {
                     lottoValidator.validatePurchaseAmount(purchaseAmount);
                 }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessage.INPUT_DATA_IS_NOT_POSITIVE);
+                .hasMessage(LottoError.INPUT_DATA_IS_NOT_POSITIVE.getMessage());
     }
 
     @DisplayName("구입금액은 정책에 맞춘 단위어야 한다.")
@@ -59,12 +59,12 @@ class LottoValidatorTest {
         Assertions.assertThatThrownBy(() -> {
                     lottoValidator.validatePurchaseAmount(purchaseAmount);
                 }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessage.INVALID_PURCHASE_POLICY);
+                .hasMessage(LottoError.INVALID_PURCHASE_POLICY.getMessage());
     }
 
-    @DisplayName("당첨번호는 중복을 고려해 정책에 맞지않는 개수는 안된다.")
+    @DisplayName("당첨번호는 정책에 맞지않는 개수는 안된다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7", "1,2,3,4,5,1"})
+    @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7"})
     void 당첨번호_중복되지않은_개수_외_테스트(String winningNumbers) {
         //given
         LottoValidator lottoValidator = new LottoValidator();
@@ -73,12 +73,12 @@ class LottoValidatorTest {
         Assertions.assertThatThrownBy(() -> {
                     lottoValidator.validateWinningNumbers(winningNumbers);
                 }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
+                .hasMessage(LottoError.INVALID_NUMBER_OF_WINNING_NUMBERS.getMessage());
     }
 
     @DisplayName("1~45 외의 당첨번호는 안된다.")
     @ParameterizedTest
-    @ValueSource(strings = {"0,1,2,3,4", "1,2,3,4,46"})
+    @ValueSource(strings = {"0,1,2,3,4,5", "1,2,3,4,5,46"})
     void 당첨번호_범위_외_테스트(String winningNumbers) {
         //given
         LottoValidator lottoValidator = new LottoValidator();
@@ -87,7 +87,7 @@ class LottoValidatorTest {
         Assertions.assertThatThrownBy(() -> {
                     lottoValidator.validateWinningNumbers(winningNumbers);
                 }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
+                .hasMessage(LottoError.INVALID_LOTTO_NUMBER_RANGE.getMessage());
     }
 
     @DisplayName("담청번호는 6개의 번호가 중복되지 않으며 1~45 사이의 값이다.")
@@ -113,7 +113,7 @@ class LottoValidatorTest {
         Assertions.assertThatThrownBy(() -> {
                     lottoValidator.validateBonusNumber(winningNumbers, bonusNumber);
                 }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessage.INPUT_DATA_IS_NOT_POSITIVE);
+                .hasMessage(LottoError.INPUT_DATA_IS_NOT_POSITIVE.getMessage());
     }
 
     @DisplayName("1~45 외의 보너스번호는 안된다.")
@@ -128,7 +128,7 @@ class LottoValidatorTest {
         Assertions.assertThatThrownBy(() -> {
                     lottoValidator.validateBonusNumber(winningNumbers, bonusNumber);
                 }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
+                .hasMessage(LottoError.INVALID_LOTTO_NUMBER_RANGE.getMessage());
     }
 
     @DisplayName("보너스번호는 당첨번호와 중복될 수 없다.")
@@ -136,14 +136,14 @@ class LottoValidatorTest {
     void 보너스번호_중복_테스트() {
         //given
         LottoValidator lottoValidator = new LottoValidator();
-        Set<Integer> winningNumbers = new HashSet<>(List.of(1, 2, 3, 4, 5));
+        Set<Integer> winningNumbers = new HashSet<>(List.of(1, 2, 3, 4, 5, 6));
         String bonusNumber = "1";
 
         //when //then
         Assertions.assertThatThrownBy(() -> {
                     lottoValidator.validateBonusNumber(winningNumbers, bonusNumber);
                 }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
+                .hasMessage(LottoError.DUPLICATED_LOTTO_NUMBERS.getMessage());
     }
 
     @DisplayName("보너스번호는 1개의 번호가 당첨번호와 중복되지 않으며 1~45 사이의 값이다.")
@@ -151,8 +151,8 @@ class LottoValidatorTest {
     void 보너스번호_검증_통합_테스트() {
         //given
         LottoValidator lottoValidator = new LottoValidator();
-        Set<Integer> winningNumbers = new HashSet<>(List.of(1, 2, 3, 4, 5));
-        String bonusNumber = "6";
+        Set<Integer> winningNumbers = new HashSet<>(List.of(1, 2, 3, 4, 5, 6));
+        String bonusNumber = "7";
 
         //when //then
         lottoValidator.validateBonusNumber(winningNumbers, bonusNumber);

@@ -3,7 +3,7 @@ package lotto.domain.lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.error.lotto.LottoErrorMessage;
+import lotto.error.lotto.LottoError;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -24,7 +24,7 @@ public class Lotto {
         Set<Integer> set = new HashSet<>();
         for (int number : numbers) {
             if (set.contains(number)) {
-                throw new IllegalArgumentException(LottoErrorMessage.INPUT_DATA_IS_NOT_PATTERN);
+                throw new IllegalArgumentException(LottoError.INPUT_DATA_IS_NOT_PATTERN.getMessage());
             }
             set.add(number);
         }
