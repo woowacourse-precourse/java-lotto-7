@@ -29,17 +29,17 @@ public class LottoService {
     }
 
     public String toStringResult(List<WinningResult> results) {
-        DecimalFormat formatter = new DecimalFormat("#,###");
         StringBuilder stringBuilder = new StringBuilder();
 
         for (WinningResult rank : WinningResult.values()) {
-            stringBuilder.append(formatRankInfo(rank, results, formatter));
+            stringBuilder.append(formatRankInfo(rank, results));
         }
 
         return stringBuilder.toString();
     }
 
-    private String formatRankInfo(WinningResult rank, List<WinningResult> results, DecimalFormat formatter) {
+    private String formatRankInfo(WinningResult rank, List<WinningResult> results) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
         StringBuilder sb = new StringBuilder();
         sb.append(rank.getMatchNumberCount()).append("개 일치");
 
