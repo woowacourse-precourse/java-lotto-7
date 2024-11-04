@@ -32,14 +32,7 @@ public class LottoService {
                                                                     List<Integer> winningNumbers,
                                                                     int bonusNumber) {
         Map<LottoResult, Integer> lottoResultCount = initializeLottoResultCount();
-
-        for (Lotto lotto : lottoTicket.getLottos()) {
-            LottoResult lottoResult = determineLottoResult(lotto, winningNumbers, bonusNumber);
-            if (lottoResult != null) {
-                lottoResultCount.put(lottoResult, lottoResultCount.get(lottoResult) + 1);
-            }
-        }
-
+        updateLottoResultCount(lottoTicket, winningNumbers, bonusNumber, lottoResultCount);
         return lottoResultCount;
     }
 
@@ -49,6 +42,16 @@ public class LottoService {
             lottoResultCount.put(lottoResult, 0);
         }
         return lottoResultCount;
+    }
+
+    private void updateLottoResultCount(LottoTicket lottoTicket, List<Integer> winningNumbers,
+                                        int bonusNumber, Map<LottoResult, Integer> lottoResultCount) {
+        for (Lotto lotto : lottoTicket.getLottos()) {
+            LottoResult lottoResult = determineLottoResult(lotto, winningNumbers, bonusNumber);
+            if (lottoResult != null) {
+                lottoResultCount.put(lottoResult, lottoResultCount.get(lottoResult) + 1);
+            }
+        }
     }
 
     private LottoResult determineLottoResult(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
