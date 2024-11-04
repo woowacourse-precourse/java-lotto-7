@@ -15,11 +15,11 @@ import lotto.generator.LottoGenerator;
 public class LottoService {
     private final static String WINNING_NUMBER_SEPARATOR = ",";
 
+    private final LottoGenerator lottoGenerator;
+
     public LottoService(final LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
     }
-
-    private final LottoGenerator lottoGenerator;
 
     public LottoCount getLottoCountByAmount(String purchaseAmount) {
         return new LottoCount(parseInt(purchaseAmount));
