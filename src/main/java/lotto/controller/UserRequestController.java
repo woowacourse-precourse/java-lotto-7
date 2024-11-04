@@ -1,17 +1,22 @@
 package lotto.controller;
 
+import lotto.model.RandomLotto;
 import lotto.sevice.InputValidService;
 import lotto.sevice.LottoService;
+
+import java.util.List;
 
 import static lotto.view.UserResponseView.*;
 
 public class UserRequestController {
     InputValidService inputValidService = new InputValidService();
+    LottoService lottoService = new LottoService();
     int lottoCnt;
+    RandomLotto randomLotto;
 
     public void inputMoney(String money){
         if(inputValidService.isMoney(money)){
-            lottoCnt = LottoService.countLotto(money);
+            lottoCnt = lottoService.countLotto(money);
             pickLotto();
             return;
         }
@@ -24,5 +29,13 @@ public class UserRequestController {
 
     public void pickLotto(){
         countLottoMessage(lottoCnt);
+        randomLotto = new RandomLotto(lottoCnt);
+    }
+
+    public void showRandomLotto(){
+        List<List<Integer>> lotto = randomLotto.getLotto();
+        for(List<Integer> ls : lotto){
+            randomLottoMessage(ls);
+        }
     }
 }

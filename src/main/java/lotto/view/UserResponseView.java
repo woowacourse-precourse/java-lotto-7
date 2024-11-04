@@ -2,6 +2,8 @@ package lotto.view;
 
 import lotto.model.WinLotto;
 
+import java.util.List;
+
 public class UserResponseView {
 
     public static void startMessage(){
@@ -12,7 +14,7 @@ public class UserResponseView {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
-    public static void lottoMessage(int[] lotto){
+    public static void randomLottoMessage(List<Integer> lotto){
         System.out.println(lotto);
     }
 
@@ -36,7 +38,7 @@ public class UserResponseView {
         }
     }
 
-    public static void revenueMessage(double revenue){
+    public static void revenueMessage(String revenue){
         System.out.println("총 수익률은 "+revenue+"%입니다.");
     }
 
