@@ -58,11 +58,11 @@ public class WinningLottoWithBonus {
         return lotto.contains(bonusNumber);
     }
 
-    public void validate(Lotto winningLotto, LottoNumber bonusNumber) {
+    private void validate(Lotto winningLotto, LottoNumber bonusNumber) {
         validateUnique(winningLotto, bonusNumber);
     }
 
-    public void validateUnique(Lotto winningLotto, LottoNumber bonusNumber) {
+    private void validateUnique(Lotto winningLotto, LottoNumber bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED.getMessage());
         }
