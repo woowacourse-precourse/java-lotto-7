@@ -11,8 +11,8 @@ public class Output {
     }
 
     public void printLottoStatistics(Map<Rank, Integer> lottoResult) {
-        System.out.println("\n" + "당첨 통계");
-        System.out.println("---");
+        print("\n" + "당첨 통계");
+        print("---");
 
         for (Rank rank : Rank.values()) {
             if (rank == Rank.NONE) {
@@ -20,11 +20,15 @@ public class Output {
             }
 
             int count = lottoResult.getOrDefault(rank, 0);
-            System.out.println(rank.formatWinningStatistics(count));
+            print(rank.formatWinningStatistics(count));
         }
     }
 
     public void printProfitRate(double profitRate) {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+    }
+
+    public void print(String value) {
+        System.out.println(value);
     }
 }

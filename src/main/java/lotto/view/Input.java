@@ -7,12 +7,12 @@ import java.util.List;
 public class Input {
 
     public String readPurchaseAmount() {
-        System.out.println("구입금액을 입력해주세요.");
+        print("구입금액을 입력해주세요.");
         return Console.readLine();
     }
 
     public List<Integer> readWinningNumbers() {
-        System.out.println("\n" + "당첨 번호를 입력해주세요.");
+        print("\n" + "당첨 번호를 입력해주세요.");
         String rawWinningNumbers = Console.readLine();
         return parseToNumbers(rawWinningNumbers);
     }
@@ -24,7 +24,11 @@ public class Input {
     }
 
     public String readBonusNumber() {
-        System.out.println("\n" + "보너스 번호를 입력해주세요.");
+        print("\n" + "보너스 번호를 입력해주세요.");
         return Console.readLine();
+    }
+
+    private void print(String value) {
+        System.out.println(value);
     }
 }
