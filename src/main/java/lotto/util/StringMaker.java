@@ -29,7 +29,7 @@ public class StringMaker {
                 .append("5개 일치 (1,500,000원) - ").append(countPerWinningRank[3]).append("개\n")
                 .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(countPerWinningRank[2]).append("개\n")
                 .append("6개 일치 (2,000,000,000원) - ").append(countPerWinningRank[1]).append("개\n")
-                .append("총 수익률은 ").append(earningRate).append("%입니다.");
+                .append("총 수익률은 ").append(String.format("%.1f", earningRate)).append("%입니다.");
 
         return result.toString();
     }
