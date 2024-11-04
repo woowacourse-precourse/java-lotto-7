@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -12,6 +13,8 @@ public class Application {
         int purchaseAmount = inputPurchaseAmount();
         int numberOfLottos = purchaseAmount / 1000;
         List<Lotto> lottos = generateLottos(numberOfLottos);
+        printLottos(lottos);
+
         // TODO: 로또 번호 출력
     }
 
@@ -47,5 +50,14 @@ public class Application {
             lottos.add(lotto);
         }
         return lottos;
+    }
+
+    public static void printLottos(List<Lotto> lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            List<Integer> numbers = lotto.getNumbers();
+            Collections.sort(numbers);
+            System.out.println(numbers);
+        }
     }
 }
