@@ -15,7 +15,6 @@ public class Lotto {
     public void calculateStatistics(List<List<Integer>> buyLottoNumbers, int bonusNumber, int buyLottoAmount) {
         Map<WinningNums, Integer> statistics = new HashMap<>();
 
-        // 모든 WinningNums 초기화
         for (WinningNums rank : WinningNums.values()) {
             statistics.put(rank, 0);
         }
@@ -30,6 +29,7 @@ public class Lotto {
         printRate(statistics, buyLottoAmount);
     }
 
+    // 비교 후 번호가 몇개 맞았는지 반환
     private WinningNums numberCompare(List<Integer> lottoNumbers, int bonusNumber){
         int matchingCount = 0;
 
