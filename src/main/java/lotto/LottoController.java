@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.LottoResultAnalysisService;
@@ -42,7 +39,6 @@ public class LottoController {
             }
         }
 
-        String numbers;
         int bonusNumber;
         List<Integer> winningNumbers;
         List<Rank> winningResults;
@@ -50,14 +46,12 @@ public class LottoController {
         String lottoProfitRate;
         while (true) {
             outputView.printWinningNumbersRequestMessage();
-            numbers = inputView.readWinningNumbers();
+            winningNumbers = inputView.readWinningNumbers();
 
             outputView.printBonusNumberRequestMessage();
             bonusNumber = inputView.readBonusNumber();
 
             try {
-                winningNumbers = createWinningNumbers(numbers);
-
                 // TODO: 개선 요망
                 setLottoResultAnalysisService(winningNumbers, bonusNumber);
                 winningResults = resultAnalysisService.generateWinningResults(lottos);
@@ -79,16 +73,6 @@ public class LottoController {
     private void setLottoResultAnalysisService(List<Integer> winningLottoNumbers, int bonusNumber) {
         if (resultAnalysisService == null) {
             resultAnalysisService = new LottoResultAnalysisService(winningLottoNumbers, bonusNumber);
-        }
-    }
-
-    private List<Integer> createWinningNumbers(String numbers) {
-        List<String> splitNumbers = Arrays.stream(numbers.split(","))
-            .map(String::trim).toList();
-        try {
-            return splitNumbers.stream().map(Integer::parseInt).toList();
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("당첨 번호는 정수여야 합니다.");
         }
     }
 }
