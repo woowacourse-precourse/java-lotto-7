@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.error.ErrorMessage;
 import lotto.service.LottoGameService;
 import lotto.validation.Validation;
@@ -29,6 +31,9 @@ public class LottoGame {
                 int purchaseCount = getPurchaseCount(purchasePrice);
                 outputView.printPurchasedLottoCount(purchaseCount);
 
+                List<Lotto> purchaserLottos = lottoGameService.generatePurchaserLottos(purchaseCount);
+                outputView.printPurchaserLottos(purchaserLottos);
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
