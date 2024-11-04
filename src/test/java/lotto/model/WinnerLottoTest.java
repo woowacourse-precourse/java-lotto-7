@@ -26,11 +26,11 @@ class WinnerLottoTest {
     void 숫자_문자열_배열에_숫자_문자열이_범위_내_숫자가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> WinnerLotto.from("1,2,3,4,5,0"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBERS_MUST_BE_BETWEEN_1_AND_45.getMessage());
+                .hasMessage(ErrorMessage.LOTTO_NUMBERS_MUST_BE_BETWEEN_1_AND_45.getMessage() + ": 0");
 
         assertThatThrownBy(() -> WinnerLotto.from("1,2,3,4,5,46"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBERS_MUST_BE_BETWEEN_1_AND_45.getMessage());
+                .hasMessage(ErrorMessage.LOTTO_NUMBERS_MUST_BE_BETWEEN_1_AND_45.getMessage() + ": 46");
     }
 
     @DisplayName("입력된 보너스 번호가 1~45사이의 숫자가 아니면 예외가 발생한다.")
@@ -38,7 +38,7 @@ class WinnerLottoTest {
     void 입력된_보너스_번호가_범위_내_숫자가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> WinnerLotto.from("1,2,3,4,5,6").setBonusNumber("0"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBERS_MUST_BE_BETWEEN_1_AND_45.getMessage());
+                .hasMessage(ErrorMessage.LOTTO_NUMBERS_MUST_BE_BETWEEN_1_AND_45.getMessage() + ": 0");
     }
 
     @Test
@@ -50,7 +50,7 @@ class WinnerLottoTest {
         WinnerLottoValidator validator = new WinnerLottoValidator();
         assertThatThrownBy(() -> validator.checkForDuplicate(Arrays.asList(1, 2, 3, 4, 5), 5))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE.getMessage());
+                .hasMessage(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE.getMessage() + ": 5");
     }
 
     @Test

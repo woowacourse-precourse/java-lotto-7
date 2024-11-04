@@ -1,6 +1,9 @@
 package lotto.model;
 
+import java.math.BigInteger;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
 
@@ -18,9 +21,13 @@ public class Lotto {
             throw LottoException.from(ErrorMessage.LOTTO_NUMBERS_MUST_BE_SIX);
         }
 
-        if (numbers.stream().distinct().count() != 6) {
-            throw LottoException.from(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE);
-        }
+        Set<Integer> seen = new HashSet<>();
+        numbers.stream()
+                .filter(number -> !seen.add(number))
+                .findFirst()
+                .ifPresent(duplicate -> {
+                    throw LottoException.of(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE, duplicate);
+                });
     }
 
     public List<Integer> getNumbers() {

@@ -151,7 +151,7 @@ class ApplicationTest extends NsTest {
     void 숫자_분자열_배열에_중복된_숫자가_있으면_예외가_발생한다() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4,5,5", "6");
-            assertThat(output()).contains(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE.getMessage());
+            assertThat(output()).contains(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE.getMessage() + ": 5");
         });
     }
 

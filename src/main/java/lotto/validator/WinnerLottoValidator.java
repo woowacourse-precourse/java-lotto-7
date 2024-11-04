@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import java.math.BigInteger;
 import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
 
@@ -25,13 +26,13 @@ public class WinnerLottoValidator {
 
     public void numberRange(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            throw LottoException.from(ErrorMessage.LOTTO_NUMBERS_MUST_BE_BETWEEN_1_AND_45);
+            throw LottoException.of(ErrorMessage.LOTTO_NUMBERS_MUST_BE_BETWEEN_1_AND_45, number);
         }
     }
 
     public void checkForDuplicate(List<Integer> numbers, int number) {
         if (numbers.contains(number)) {
-            throw LottoException.from(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE);
+            throw LottoException.of(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE, number);
         }
     }
 }
