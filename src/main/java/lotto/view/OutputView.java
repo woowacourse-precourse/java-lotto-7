@@ -4,6 +4,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lotto.model.PurchasedLottoResultDto;
+import lotto.model.PurchasedLottoResultsDto;
 import lotto.model.WinningResultDto;
 import lotto.model.WinningResultsDto;
 
@@ -19,12 +21,12 @@ public class OutputView {
 		System.out.println(errorMessage);
 	}
 
-	public void printPurchasedLottoResultMessage(int count, List<List<String>> purchaseLottoResult) {
+	public void printPurchasedLottoResultMessage(int count, PurchasedLottoResultsDto purchasedLottoResults) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("\n");
 		stringBuilder.append(getLottoCountMessage(count));
-		for (List<String> lotto : purchaseLottoResult) {
-			stringBuilder.append(getPurchaseLottoResult(lotto));
+		for (PurchasedLottoResultDto purchasedLottoResult : purchasedLottoResults.purchasedLottoResults()) {
+			stringBuilder.append(getPurchaseLottoResult(purchasedLottoResult.purchasedLottoResult()));
 			stringBuilder.append("\n");
 		}
 		System.out.println(stringBuilder);
