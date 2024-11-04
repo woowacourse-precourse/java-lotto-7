@@ -47,7 +47,6 @@ public class LottosTest {
         void buyLottosError3() {
             // 1000원 이하
             Lottos lottos = new Lottos();
-            lottos.buyLottos(50000000000L);
             assertThatThrownBy(() -> lottos.buyLottos(50000000000L))
                     .isInstanceOf(IllegalArgumentException.class);
         }
