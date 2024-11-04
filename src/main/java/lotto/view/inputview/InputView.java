@@ -21,6 +21,7 @@ public class InputView implements Input {
         return purchaseAmount;
     }
 
+
     public void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount <= 0 || purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
