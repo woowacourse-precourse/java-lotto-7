@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class WinningResult {
@@ -11,7 +12,7 @@ public class WinningResult {
     }
 
     public WinningResult() {
-        rankCount = new HashMap<>() {{
+        rankCount = new LinkedHashMap<>() {{
             put(Reward.FIRST, 0);
             put(Reward.SECOND, 0);
             put(Reward.THIRD, 0);
