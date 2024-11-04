@@ -56,6 +56,8 @@ public class Lottos {
     }
 
     private void validateBonusNumber(final List<Integer> winningNumbers, final Integer bonusNumber) {
+        validateRange(bonusNumber);
+
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATION_ERROR_MESSAGE);
         }

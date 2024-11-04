@@ -51,4 +51,15 @@ class LottosTest {
                 .hasMessageContaining("[ERROR]");
     }
 
+    @DisplayName("보너스번호가 범위내에 없으면 에외를 발생한다.")
+    @Test
+    void 보너스번호가_범위내에_없으면_예외를_발생한다(){
+        List<Lotto> lottos = new ArrayList<>();
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Integer boundNumber = 60;
+        assertThatThrownBy(() -> new Lottos(lottos, winningNumbers, boundNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
 }
