@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.List;
 
+import static lotto.constant.ErrorMessage.DUPLICATE_BONUS_NUMBER;
+import static lotto.constant.ErrorMessage.INVALID_BONUS_NUMBER_RANGE;
 import static lotto.provider.NumberProvider.MAX_NUMBER;
 import static lotto.provider.NumberProvider.MIN_NUMBER;
 
@@ -24,9 +26,9 @@ public class WinningLotto {
 
     private int validateAndReturnBonusNum(int bonusNum) {
         if (bonusNum < MIN_NUMBER || bonusNum > MAX_NUMBER)
-            throw new IllegalArgumentException("보너스 번호는 1~45 사이 숫자여야합니다.");
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_RANGE);
         if (winningNums.getNumbers().contains(bonusNum))
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER);
         return bonusNum;
     }
 
