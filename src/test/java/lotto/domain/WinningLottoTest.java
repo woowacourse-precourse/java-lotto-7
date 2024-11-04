@@ -88,4 +88,26 @@ class WinningLottoTest {
 
         assertThat(rank).isEqualTo(Rank.NONE);
     }
+
+    @DisplayName("당첨 내역에 따라 정확한 수익률을 계산한다.")
+    @Test
+    void 수익률_계산() {
+        // given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
+        Map<Rank, Integer> results = new EnumMap<>(Rank.class);
+        results.put(Rank.FIRST, 1);
+        results.put(Rank.SECOND, 0);
+        results.put(Rank.THIRD, 0);
+        results.put(Rank.FOURTH, 0);
+        results.put(Rank.FIFTH, 0);
+
+        int purchaseAmount = 10_000;
+        // when
+        double yield = winningLotto.calculateYield(results, purchaseAmount);
+        // then
+        assertThat(yield).isEqualTo(20000000.0);
+    }
 }
