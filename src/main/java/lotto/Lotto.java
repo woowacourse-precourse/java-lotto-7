@@ -30,21 +30,21 @@ public class Lotto {
             hasBonusNumber = true;
         }
         if(countMatchingNumber == 6) {
-            return LottoRank.FIRST_RANK.getRank();
+            return LottoRank.FIRST.getRank();
         }
         if(countMatchingNumber == 5 && hasBonusNumber) {
-            return LottoRank.SECOND_RANK.getRank();
+            return LottoRank.SECOND.getRank();
         }
         if(countMatchingNumber == 5) {
-            return LottoRank.THIRD_RANK.getRank();
+            return LottoRank.THIRD.getRank();
         }
         if(countMatchingNumber == 4) {
-            return LottoRank.FIRTH_RANK.getRank();
+            return LottoRank.FOURTH.getRank();
         }
         if(countMatchingNumber == 3) {
-            return LottoRank.FIFTH_RANK.getRank();
+            return LottoRank.FIFTH.getRank();
         }
-        return LottoRank.NONE_RANK.getRank();
+        return LottoRank.NONE.getRank();
     }
 
     @Override
