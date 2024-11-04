@@ -16,7 +16,7 @@ public class OutputView {
     private static final String UNIT = "개";
     private static final String RATE_OF_PROFIT = "총 수익률은 ";
     private static final String FOOTER_PROFIT = "%입니다.";
-    private static final String NUMBER_FORMAT = "#,###.0";
+    private static final String NUMBER_FORMAT = "#,##0.0";
 
     public void printInputAmount() {
         System.out.println(GUIDE_INPUT_AMOUNT);
