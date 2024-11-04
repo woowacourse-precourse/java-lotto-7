@@ -24,7 +24,23 @@ public class Application {
         }
     }
 
+    // 2. 전체 실행 흐름 제어
+    private static void run() {
+        System.out.println("구매금액을 입력해 주세요.");
+        String cost = Console.readLine();
+        int num = parsePurchaseAmount(cost) / 1000;
+        checkMinimumPurchaseAmount(num * 1000);
 
+        List<List<Integer>> lottoBoxes = getLottoNumbers(num);
+
+        System.out.println("\n당첨번호를 입력해주세요");
+        Lotto lotto = new Lotto(parseLottoNumbers(Console.readLine()));
+
+        System.out.println("\n보너스 번호를 입력해주세요");
+        int bonusBall = getValidBonusBall();
+
+        checkLottoResults(lottoBoxes, lotto, bonusBall, num);
+    }
 
 
 
