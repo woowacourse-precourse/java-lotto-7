@@ -21,12 +21,14 @@ public class CheckerListener implements EventListener {
 
     @Override
     public void handle(DomainEvent event) {
+        moneyCreatedEvent(event);
+    }
+
+    private void moneyCreatedEvent(DomainEvent event) {
         if (event instanceof MoneyCreatedEvent moneyCreatedEvent) {
-            System.out.println("MoneyCreatedEvent: " + moneyCreatedEvent);
             Lottos lottos = fortuneMachineService.getLotto(moneyCreatedEvent.getMoney());
             eventOrchestrator.register(moneyCreatedEvent);
             eventPublisher.publish(new LottosCreatedEvent(lottos));
         }
-
     }
 }

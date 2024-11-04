@@ -1,5 +1,9 @@
 package lotto.results.listener;
 
+import lotto.checker.event.BonusNumberCreatedEvent;
+import lotto.results.application.ResultsService;
+import lotto.results.domain.Results;
+import lotto.results.dto.ResultsRequest;
 import lotto.results.event.ResultsRequestCreatedEvent;
 import lotto.shared.event.DomainEvent;
 import lotto.shared.event.EventListener;
@@ -11,22 +15,28 @@ public class ResultsListener implements EventListener {
 
     EventPublisher eventPublisher;
     EventOrchestrator eventOrchestrator;
-    OutputService outputService;
+    ResultsService resultsService;
 
     public ResultsListener(EventPublisher eventPublisher,
                            EventOrchestrator eventOrchestrator,
-                           OutputService outputService) {
+                           ResultsService resultsService) {
         this.eventPublisher = eventPublisher;
         this.eventOrchestrator = eventOrchestrator;
-        this.outputService = outputService;
+        this.resultsService = resultsService;
     }
 
     @Override
     public void handle(DomainEvent event) {
-        if (event instanceof ResultsRequestCreatedEvent resultsRequestCreatedEvent) {
-            System.out.println("결과 생성 됨: " + resultsRequestCreatedEvent);
-            outputService.showResults(resultsRequestCreatedEvent.getResults(), eventOrchestrator.getMoney());
-        }
-
+        bonusNumberCreatedEvent(event);
     }
+
+    private void bonusNumberCreatedEvent(DomainEvent event) {
+        if (event instanceof BonusNumberCreatedEvent bonusNumberCreatedEvent) {
+            eventOrchestrator.register(bonusNumberCreatedEvent);
+            ResultsRequest resultRequest = eventOrchestrator.createResultRequest();
+            Results results = resultsService.calculateResults(resultRequest);
+            eventPublisher.publish(new ResultsRequestCreatedEvent(results));
+        }
+    }
+
 }

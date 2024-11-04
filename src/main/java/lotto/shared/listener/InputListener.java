@@ -24,17 +24,21 @@ public class InputListener implements EventListener {
 
     @Override
     public void handle(DomainEvent event) {
+        showWinningNumbersPromptEvent(event);
+        showBonusNumberPromptEvent(event);
+    }
+
+    private void showWinningNumbersPromptEvent(DomainEvent event) {
         if (event instanceof ShowWinningNumbersPromptEvent) {
-            System.out.println("번호 받았어: ");
             WinningNumbers winningNumbers = inputService.getWinningNumbers();
             eventPublisher.publish(new WinningNumbersCreatedEvent(winningNumbers));
         }
+    }
 
+    private void showBonusNumberPromptEvent(DomainEvent event) {
         if (event instanceof ShowBonusNumberPromptEvent) {
-            System.out.println("보너스 번호 받았어: ");
             BonusNumber bonusNumber = inputService.getBonusNumber(eventOrchestrator.getWinningNumbers());
             eventPublisher.publish(new BonusNumberCreatedEvent(bonusNumber));
         }
-
     }
 }

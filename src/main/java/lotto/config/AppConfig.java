@@ -128,7 +128,7 @@ public class AppConfig {
 
     public ResultsListener getResultsListener () {
         if (resultsListener == null) {
-            resultsListener = new ResultsListener(getEventPublisher(), getEventOrchestrator(), getOutputService());
+            resultsListener = new ResultsListener(getEventPublisher(), getEventOrchestrator(), getResultsService());
             getEventPublisher().registerListener(resultsListener);
         }
         return resultsListener;
