@@ -1,39 +1,21 @@
 package lotto.service;
 
-import lotto.LottoConfig;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
-import lotto.model.LottoNumbers;
 import lotto.model.LottoRank;
 import lotto.model.WinningLotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoService {
 
-    public void validatePurchaseAmount(String input) {
-        try {
-            int amount = Integer.parseInt(input);
-            validateAmountRange(amount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
-        }
-    }
-
-    private void validateAmountRange(int amount) {
-        if (amount < LottoConfig.LOTTO_PRICE) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
-        }
-        if (amount % LottoConfig.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
-        }
-    }
-
-    public int calculateLottoCount(int purchaseAmount) {
-        return purchaseAmount / LottoConfig.LOTTO_PRICE;
+    public int calculateLottoCount(int amount) {
+        return amount / 1000;
     }
 
     public List<Lotto> generateLottos(int count) {
@@ -45,16 +27,19 @@ public class LottoService {
     }
 
     private Lotto generateLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(
-                LottoConfig.MIN_NUMBER,
-                LottoConfig.MAX_NUMBER,
-                LottoConfig.LOTTO_SIZE));
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
+    }
+
+    public List<Integer> convertToNumbers(String input) {
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        LottoNumbers.validateNumbers(winningNumbers);
-        Lotto winningLotto = new Lotto(winningNumbers);
-        return new WinningLotto(winningLotto, bonusNumber);
+        return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
     }
 
     public Map<LottoRank, Integer> calculateWinningStatistics(List<Lotto> lottos, WinningLotto winningLotto) {

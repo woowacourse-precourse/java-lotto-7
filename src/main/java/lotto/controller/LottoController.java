@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
+import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -12,9 +13,11 @@ import java.util.Map;
 
 public class LottoController {
     private final LottoService lottoService;
+    private final InputValidator inputValidator;
 
     public LottoController() {
         this.lottoService = new LottoService();
+        this.inputValidator = new InputValidator();
     }
 
     public void run() {
@@ -36,13 +39,9 @@ public class LottoController {
     }
 
     private int readPurchaseAmount() {
-        try {
-            String input = String.valueOf(InputView.readPurchaseAmount());
-            lottoService.validatePurchaseAmount(input);
-            return Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액이 올바르지 않습니다.");
-        }
+        String input = InputView.readLine();
+        inputValidator.validateAmount(input);
+        return Integer.parseInt(input);
     }
 
     private void printPurchasedLottos(int count, List<Lotto> lottos) {
@@ -51,15 +50,23 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto() {
-        while (true) {
-            try {
-                List<Integer> winningNumbers = InputView.readWinningNumbers();
-                int bonusNumber = InputView.readBonusNumber();
-                return lottoService.createWinningLotto(winningNumbers, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                OutputView.printError(e.getMessage());
-            }
-        }
+        List<Integer> winningNumbers = readWinningNumbers();
+        int bonusNumber = readBonusNumber(winningNumbers);
+        return lottoService.createWinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> readWinningNumbers() {
+        OutputView.printWinningNumbersInputMessage();
+        String input = InputView.readLine();
+        inputValidator.validateWinningNumbers(input);
+        return lottoService.convertToNumbers(input);
+    }
+
+    private int readBonusNumber(List<Integer> winningNumbers) {
+        OutputView.printBonusNumberInputMessage();
+        String input = InputView.readLine();
+        inputValidator.validateBonusNumber(input, winningNumbers);
+        return Integer.parseInt(input);
     }
 
     private void printWinningStatistics(List<Lotto> lottos, WinningLotto winningLotto) {
