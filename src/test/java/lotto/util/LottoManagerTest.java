@@ -103,6 +103,9 @@ class LottoManagerTest {
         result.clear();
         profitRate = lottoManager.getProfitRate(result, 8000);
         assertThat(profitRate).isEqualTo(0);
+
+        assertThatThrownBy(()->lottoManager.getProfitRate(result, -1)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(()->lottoManager.getProfitRate(result, 0)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }
