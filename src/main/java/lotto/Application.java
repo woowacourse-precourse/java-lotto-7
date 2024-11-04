@@ -16,6 +16,41 @@ public class Application {
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int[] PRIZES = {0, 2000000000, 30000000, 1500000, 50000, 5000};
 
+    public enum Rank {
+        FIRST(6, false, 2_000_000_000),
+        SECOND(5, true, 30_000_000),
+        THIRD(5, false, 1_500_000),
+        FOURTH(4, false, 50_000),
+        FIFTH(3, false, 5_000),
+        NONE(0, false, 0);
+
+        private final int matchCount;
+        private final boolean matchBonus;
+        private final int prize;
+
+        Rank(int matchCount, boolean matchBonus, int prize) {
+            this.matchCount = matchCount;
+            this.matchBonus = matchBonus;
+            this.prize = prize;
+        }
+
+        public int getPrize() {
+            return prize;
+        }
+
+        public static Rank valueOf(int matchCount, boolean matchBonus) {
+            for (Rank rank : Rank.values()) {
+                if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {
+                    return rank;
+                }
+            }
+            if (matchCount >= 3) {
+                return Rank.values()[matchCount - 2];
+            }
+            return NONE;
+        }
+    }
+
     public static void main(String[] args) {
 
         int purchaseAmount = inputPurchaseAmount();
@@ -60,7 +95,7 @@ public class Application {
     public static void printLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
-            List<Integer> numbers = lotto.getNumbers();
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
             Collections.sort(numbers);
             System.out.println(numbers);
         }
