@@ -1,6 +1,10 @@
 package lotto;
 
 import lotto.io.LottoIOHandler;
+import lotto.model.Lotto;
+import lotto.model.LottoPool;
+import lotto.model.LottoRank;
+import lotto.statistics.LottoStatistics;
 
 public class LottoMachine {
 

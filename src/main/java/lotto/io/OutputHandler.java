@@ -1,8 +1,8 @@
 package lotto.io;
 
-import lotto.LottoPool;
-import lotto.LottoRank;
-import lotto.LottoStatistics;
+import lotto.model.LottoPool;
+import lotto.model.LottoRank;
+import lotto.statistics.LottoStatistics;
 
 public class OutputHandler {
 
