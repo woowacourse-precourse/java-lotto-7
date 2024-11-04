@@ -12,6 +12,7 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         validateInput(input);
+        System.out.println();
         return parseNumber(input);
     }
 
@@ -19,6 +20,7 @@ public class InputView {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         validateInput(input);
+        System.out.println();
         return parseNumbers(input);
     }
 
@@ -26,6 +28,7 @@ public class InputView {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         validateInput(input);
+        System.out.println();
         return parseNumber(input);
     }
 
