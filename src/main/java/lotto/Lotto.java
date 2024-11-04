@@ -11,8 +11,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        numbers = eraseDuplicated(numbers);
         validate(numbers);
+        numbers = eraseDuplicated(numbers);
         checkLottoRange(numbers);
         this.numbers = numbers;
     }
