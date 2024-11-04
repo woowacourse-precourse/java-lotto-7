@@ -1,7 +1,5 @@
 package enums;
 
-import java.util.HashMap;
-
 public enum LottoRank {
     FIRST(1, 2000000000, "6개 일치 (2,000,000,000원) -"),
     SECOND(2, true, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) -"),
@@ -15,40 +13,41 @@ public enum LottoRank {
     private final int prize;
     private final String message;
 
-    LottoRank(int hitCount, int prize, String message){
+    LottoRank(int hitCount, int prize, String message) {
         this.hitCount = hitCount;
         this.hasBonus = false;
         this.prize = prize;
         this.message = message;
     }
 
-    LottoRank(int hitCount, boolean hasBonus, int prize, String message){
+    LottoRank(int hitCount, boolean hasBonus, int prize, String message) {
         this.hitCount = hitCount;
         this.hasBonus = hasBonus;
         this.prize = prize;
         this.message = message;
     }
 
-    public static LottoRank getLottoRank(int hitCount, boolean hasBonus){
-        if(hitCount == 5 && hasBonus){
+    public static LottoRank getLottoRank(int hitCount, boolean hasBonus) {
+        if (hitCount == 5 && hasBonus) {
             return SECOND;
         }
-        for(LottoRank rank : LottoRank.values()){
-            if(rank.getHitCount() == hitCount){
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank.getHitCount() == hitCount) {
                 return rank;
             }
         }
         return NONE;
     }
 
-    public int getHitCount(){
+    public int getHitCount() {
         return hitCount;
     }
 
-    public Long getPrize(){
-        return (long)prize;
+    public Long getPrize() {
+        return (long) prize;
     }
-    public String getMessage(){
+
+    public String getMessage() {
         return message;
     }
 }

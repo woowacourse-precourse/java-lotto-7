@@ -15,18 +15,20 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
-    private void getNumberValidate(int index){
-        if(index < 1 || index > 6){
+
+    private void getNumberValidate(int index) {
+        if (index < 1 || index > 6) {
             throw new IllegalArgumentException("[ERROR] 로또는 1 ~ 6번째 자릿수만 존재합니다.");
         }
     }
+
     // TODO: 추가 기능 구현
-    public Integer getNumber(int index){
+    public Integer getNumber(int index) {
         getNumberValidate(index);
-        return numbers.get(index-1);
+        return numbers.get(index - 1);
     }
 
-    public String toString(){
+    public String toString() {
         return numbers.toString();
     }
 }

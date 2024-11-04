@@ -9,11 +9,11 @@ public class LottoWinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public Integer getNumber(int index){
+    public Integer getNumber(int index) {
         return winningNumbers.getNumber(index);
     }
 
-    public Integer getBonusNumber(){
+    public Integer getBonusNumber() {
         return bonusNumber;
     }
 }

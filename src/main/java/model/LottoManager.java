@@ -46,7 +46,7 @@ public class LottoManager {
 
     private void calculateTotalPrizes(){
         for(var lottoRank : LOTTO_RANKS){
-            totalPrizes += lottoRank.getPrize() * winningCounter.get(lottoRank)
+            totalPrizes += lottoRank.getPrize() * winningCounter.get(lottoRank);
         }
     }
 
@@ -84,7 +84,8 @@ public class LottoManager {
     }
 
     public void displayReturnRate(){
-
+        double returnRate = (double)totalPrizes / (double)purchaseCost * 100;
+        outputService.printReturnRate(returnRate);
     }
 
 

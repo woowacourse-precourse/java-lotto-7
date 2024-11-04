@@ -10,28 +10,30 @@ public class OutputService {
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계\n---";
 
     private static final String RETURN_RATE_MESSAGE = "총 수익률은 %.2f%%입니다.";
-    public OutputService(){}
 
-    public void printPurchaseCountMessage(int purchaseCount){
+    public OutputService() {
+    }
+
+    public void printPurchaseCountMessage(int purchaseCount) {
         System.out.println(purchaseCount + PURCHASE_COUNT_MESSAGE);
     }
 
-    public void printWinningStatisticsMessage(){
+    public void printWinningStatisticsMessage() {
         System.out.println(WINNING_STATISTICS_MESSAGE);
     }
 
-    public void printLottoNumbers(List<Lotto> purchasedLottos){
-        for(var lotto : purchasedLottos){
+    public void printLottoNumbers(List<Lotto> purchasedLottos) {
+        for (var lotto : purchasedLottos) {
             System.out.println(lotto);
         }
         System.out.println();
     }
 
-    public void printWinningStatics(String lottoRankMessage, int winningCount){
+    public void printWinningStatics(String lottoRankMessage, int winningCount) {
         System.out.println(lottoRankMessage + winningCount);
     }
 
-    public void printReturnRate(Double returnRate){
+    public void printReturnRate(Double returnRate) {
         System.out.format(RETURN_RATE_MESSAGE, returnRate);
     }
 }

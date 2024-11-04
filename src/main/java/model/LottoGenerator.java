@@ -7,7 +7,9 @@ public class LottoGenerator {
     static final Integer LOTTO_NUMBER_START = 1;
     static final Integer LOTTO_NUMBER_END = 45;
     static final Integer LOTTO_NUMBER_COUNT = 6;
-    public LottoGenerator(){}
+
+    public LottoGenerator() {
+    }
 
     public Lotto lottoGenrate() {
         var lottoNumbers = Randoms.pickUniqueNumbersInRange(
