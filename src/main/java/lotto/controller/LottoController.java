@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import static lotto.constant.ErrorMessage.BONUS_NUMBER_DUPLICATE_WITH_WINNING_ERROR_MESSAGE;
-
 import lotto.dto.LottoResponse;
 import lotto.dto.LottoResultResponse;
 import lotto.model.*;
@@ -26,7 +24,7 @@ public class LottoController {
 
         outPutView.displayPurchaseCount(money.getBuyLottoCount());
 
-        List<Lotto> lottos = processingPurchessLottos(money);
+        List<Lotto> lottos = processingPurchaseLottos(money);
 
         Lotto lotto = processingWinningLottoNumber();
 
@@ -82,7 +80,7 @@ public class LottoController {
         }
     }
 
-    private List<Lotto> processingPurchessLottos(Money money) {
+    private List<Lotto> processingPurchaseLottos(Money money) {
         List<Lotto> lottos = LottoUtils.lottoGenerator(money.getBuyLottoCount());
 
         List<LottoResponse> lottoResponses = lottos.stream()
