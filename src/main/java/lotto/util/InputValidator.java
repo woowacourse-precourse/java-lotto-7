@@ -1,5 +1,10 @@
 package lotto.util;
 
+import static lotto.constants.LotteryConstant.LOTTO_NUMBERS_COUNT;
+import static lotto.constants.LotteryConstant.MAX_NUMBER;
+import static lotto.constants.LotteryConstant.MIN_NUMBER;
+import static lotto.constants.LotteryConstant.TICKET_PRICE;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,16 +21,16 @@ public class InputValidator {
 
     public static List<Integer> parseWinningNumbers(String input) {
         List<Integer> numbers = splitAndParseNumbers(input);
-        validateNumberRange(numbers);          // 범위 검증 먼저 수행
-        validateWinningNumberCount(numbers);   // 그 후 개수 검증 수행
-        validateNoDuplicates(numbers);         // 중복 검증 수행
+        validateNumberRange(numbers);
+        validateWinningNumberCount(numbers);
+        validateNoDuplicates(numbers);
         return numbers;
     }
 
     public static int parseBonusNumber(String input, List<Integer> winningNumbers) {
         int number = convertToInt(input);
         validateSingleNumberRange(number);
-        validateNotInWinningNumbers(number, winningNumbers);  // 당첨 번호와 중복되지 않도록 검증
+        validateNotInWinningNumbers(number, winningNumbers);
         return number;
     }
 
@@ -56,13 +61,13 @@ public class InputValidator {
     }
 
     private static void validateThousandUnit(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % TICKET_PRICE.getValue() != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
 
     private static void validateWinningNumberCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS_COUNT.getValue()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 6개의 숫자여야 합니다.");
         }
     }
@@ -74,7 +79,7 @@ public class InputValidator {
     }
 
     private static void validateSingleNumberRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException("[ERROR] 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
     }

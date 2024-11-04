@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.constants.LotteryConstant.TICKET_PRICE;
+
 import lotto.domain.LotteryDrawMachine;
 import lotto.domain.LotteryNumberGenerator;
 import lotto.domain.Lotto;
@@ -12,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LottoService {
+public class LotteryService {
     public List<Lotto> purchaseLottoTickets(int totalSpent) {
         validatePurchaseAmount(totalSpent);
         int ticketCount = calculateTicketCount(totalSpent);
@@ -20,13 +22,13 @@ public class LottoService {
     }
 
     private void validatePurchaseAmount(int totalSpent) {
-        if (totalSpent % 1000 != 0) {
+        if (totalSpent % TICKET_PRICE.getValue() != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
 
     private int calculateTicketCount(int totalSpent) {
-        return totalSpent / 1000;
+        return totalSpent / TICKET_PRICE.getValue();
     }
 
     private List<Lotto> generateLottoTickets(int ticketCount) {
