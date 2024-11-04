@@ -24,7 +24,7 @@ public class outputView {
             if(lottoRank==LottoRank.SECOND) {
                 msg = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
             }
-            String formatMSG = String.format(msg, lottoRank.getSameNumberCount(), lottoRank.getPrize(), lottoResult.getRankCount(lottoRank));
+            String formatMSG = String.format(msg, lottoRank.getSameNumberCount(), lottoRank.getPrize(), sameNumberCount);
             System.out.println(formatMSG);
         }
     }
