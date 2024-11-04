@@ -4,13 +4,20 @@ import lotto.constants.errorType.BonusNumberErrorType;
 
 public class BonusNumberValidation {
 
-    public static void validateNumberRange(int bonusNumber) {
-        if(bonusNumber < 1 || bonusNumber > 45) {
+    public static int checkedBonusNumber(String rawBonusNumber) {
+        validateNumberIsNull(rawBonusNumber);
+        int bonusNumber = validateNumberFormat(rawBonusNumber);
+        validateNumberRange(bonusNumber);
+        return bonusNumber;
+    }
+
+    private static void validateNumberRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(BonusNumberErrorType.INVALID_BONUS_NUMBER_RANGE.getMessage());
         }
     }
 
-    public static int validateNumberFormat(String rawBonusNumber) {
+    private static int validateNumberFormat(String rawBonusNumber) {
         try {
             return Integer.parseInt(rawBonusNumber);
         } catch (NumberFormatException e) {
@@ -18,8 +25,8 @@ public class BonusNumberValidation {
         }
     }
 
-    public static void validateNumberIsNull(String rawBonusNumber) {
-        if(rawBonusNumber.isBlank()) {
+    private static void validateNumberIsNull(String rawBonusNumber) {
+        if (rawBonusNumber.isBlank()) {
             throw new IllegalArgumentException(BonusNumberErrorType.BONUS_NUMBER_NULL_ERROR.getMessage());
         }
     }

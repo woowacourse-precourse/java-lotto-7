@@ -5,6 +5,7 @@ import lotto.model.Customer;
 import lotto.model.Lotto;
 import lotto.model.LottoHandler;
 import lotto.model.RankingHandler;
+import lotto.utils.BonusNumberValidation;
 import lotto.utils.LottoPurchaseValidation;
 import lotto.utils.WinningNumberValidation;
 import lotto.view.InputMessage;
@@ -47,9 +48,10 @@ public class LottoController {
     }
 
     private void inputBonusNumber() {
-        int rawBonusNumbers = Integer.parseInt(Console.readLine());
-        lottoHandler.setBonusNumber(rawBonusNumbers);
-        System.out.println(lottoHandler.getBonusNumber());
+        String rawBonusNumber = InputMessage.inputBonusNumber();
+        int bonusNumber = BonusNumberValidation.checkedBonusNumber(rawBonusNumber);
+
+        lottoHandler.setBonusNumber(bonusNumber);
     }
 
     private void outputWinningStatistics() {

@@ -15,4 +15,8 @@ public class InputMessage {
         return Console.readLine().trim();
     }
 
+    public static String inputBonusNumber() {
+        System.out.println(InputMessageType.INPUT_BONUS_NUMBER_MESSAGE.getMessage());
+        return Console.readLine().trim();
+    }
 }

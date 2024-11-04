@@ -44,7 +44,6 @@ public class LottoHandler {
     }
 
     public void setBonusNumber(int rawBonusNumber) {
-        BonusNumberValidation.validateNumberRange(rawBonusNumber);
         this.bonusNumber = rawBonusNumber;
     }
 
