@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.constants.OutputViewConstant;
+import lotto.constants.view.OutputViewMessage;
 import lotto.model.Winning;
 import lotto.model.lotto.Lotto;
 
@@ -11,9 +11,9 @@ public class OutputView {
 
     public String resultToString(double revenueRate) {
         StringBuilder sb = new StringBuilder();
-        sb.append(OutputViewConstant.RESULT_HEADER);
+        sb.append(OutputViewMessage.RESULT_HEADER);
         Arrays.stream(Winning.values()).forEach(winning -> sb.append(winning.toString()));
-        sb.append(String.format(OutputViewConstant.REVENUE_RATE_MESSAGE, revenueRate));
+        sb.append(String.format(OutputViewMessage.REVENUE_RATE_MESSAGE, revenueRate));
 
         return sb.toString();
     }

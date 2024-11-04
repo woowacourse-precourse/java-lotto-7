@@ -2,7 +2,7 @@ package lotto.utils;
 
 import lotto.error.PaymentErrorMessage;
 import lotto.model.lotto.Lotto;
-import lotto.constants.LottoNumber;
+import lotto.constants.lotto.LottoNumber;
 
 import java.math.BigInteger;
 

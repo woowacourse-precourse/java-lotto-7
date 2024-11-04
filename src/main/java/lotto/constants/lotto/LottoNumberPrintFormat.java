@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.constants.lotto;
 
 public final class LottoNumberPrintFormat {
 

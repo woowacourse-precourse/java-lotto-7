@@ -1,10 +1,10 @@
 package lotto.view;
 
 import lotto.DrawNumberHacker;
-import lotto.constants.OutputViewConstant;
+import lotto.constants.view.OutputViewMessage;
 import lotto.model.Winning;
 import lotto.model.lotto.Lotto;
-import lotto.constants.LottoNumberPrintFormat;
+import lotto.constants.lotto.LottoNumberPrintFormat;
 import lotto.model.lotto.LottoChecker;
 import lotto.model.lotto.LottoPublisher;
 import lotto.model.number_generator.NumberGenerator;
@@ -83,9 +83,9 @@ public class OutputViewTest {
 
     private static String makeExpectResult(double roundRevenueRate) {
         StringBuilder sb = new StringBuilder();
-        sb.append(OutputViewConstant.RESULT_HEADER);
+        sb.append(OutputViewMessage.RESULT_HEADER);
         Arrays.stream(Winning.values()).forEach(winning -> sb.append(winning.toString()));
-        sb.append(String.format(OutputViewConstant.REVENUE_RATE_MESSAGE, roundRevenueRate));
+        sb.append(String.format(OutputViewMessage.REVENUE_RATE_MESSAGE, roundRevenueRate));
 
         return sb.toString();
     }

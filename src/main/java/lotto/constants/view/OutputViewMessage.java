@@ -1,6 +1,6 @@
-package lotto.constants;
+package lotto.constants.view;
 
-public final class OutputViewConstant {
+public final class OutputViewMessage {
 
     public static final String RESULT_HEADER = "당첨 통계\n---\n";
     public static final String EXCEPT_SECOND_PLACE_RESULT_MESSAGE = "%s개 일치 (%s원) - %d개\n";

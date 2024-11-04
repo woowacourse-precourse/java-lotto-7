@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.constants.OutputViewConstant;
+import lotto.constants.view.OutputViewMessage;
 
 import java.text.NumberFormat;
 import java.util.Arrays;
@@ -74,9 +74,9 @@ public enum Winning {
 
     private String makeString() {
         if (isMatchBonusNumber) {
-            return makeUpFormat(OutputViewConstant.SECOND_PLACE_RESULT_MESSAGE);
+            return makeUpFormat(OutputViewMessage.SECOND_PLACE_RESULT_MESSAGE);
         }
-        return makeUpFormat(OutputViewConstant.EXCEPT_SECOND_PLACE_RESULT_MESSAGE);
+        return makeUpFormat(OutputViewMessage.EXCEPT_SECOND_PLACE_RESULT_MESSAGE);
     }
 
     private String makeUpFormat(String format) {
