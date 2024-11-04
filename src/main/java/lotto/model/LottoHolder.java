@@ -31,4 +31,12 @@ public class LottoHolder {
         return rankCounts;
     }
     
+    public double calculateProfitRate() {
+        int totalPrize = 0;
+        int purchaseAmount = lottoCollection.getLottos().size() * 1000;
+        for (Map.Entry<Ranking, Integer> entry : rankCounts.entrySet()) {
+            totalPrize += entry.getKey().award * entry.getValue();
+        }
+        return (double) totalPrize / purchaseAmount * 100;
+    }
 }

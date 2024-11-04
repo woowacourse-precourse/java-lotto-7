@@ -47,5 +47,6 @@ public class LottoSimulator {
     
     private void showLottoResults() {
         OutputView.printRankCounts(lottoHolder.getRankCounts());
+        OutputView.printProfitRate(lottoHolder.calculateProfitRate());
     }
 }

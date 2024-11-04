@@ -1,10 +1,7 @@
 package lotto.view;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.Ranking;
 
@@ -33,5 +30,9 @@ public class OutputView {
                 System.out.println(ranking.numberOfHits + "개 일치 (" + String.format("%,d", ranking.award) + "원) - " + count + "개");
             }
         }
+    }
+    
+    public static void printProfitRate(double profitRate) {
+        System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
     }
 }
