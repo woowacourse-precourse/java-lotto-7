@@ -8,7 +8,7 @@ public class IntegerValidator {
     private static final String INVALID_LOTTO = "[ERROR] 로또 번호는 정수여야 합니다.";
     private static final String DELIMITER = ",";
 
-    public static int moneyValidator(String money) {
+    public static int numberValidator(String money) {
         try {
             return Integer.parseInt(money);
         } catch (NumberFormatException e) {
