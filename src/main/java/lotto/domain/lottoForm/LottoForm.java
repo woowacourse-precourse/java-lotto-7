@@ -5,21 +5,21 @@ import lotto.domain.LottoNumber;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static lotto.constant.LottoValues.SIZE;
 import static lotto.message.ErrorMessage.LOTTO_NUMBERS_DUPLICATE;
 import static lotto.message.ErrorMessage.LOTTO_SIZE_ERROR;
 
-public abstract class LottoForm {
-    protected final List<LottoNumber> numbers;
+public interface LottoForm {
 
-    protected LottoForm(List<Integer> rawNumbers) {
-        this.numbers = validateAndSort(rawNumbers).stream()
+    default List<LottoNumber> initializeNumbers(List<Integer> rawNumbers) {
+        return validateAndSort(rawNumbers).stream()
                 .map(LottoNumber::new)
-                .toList();
+                .collect(Collectors.toList());
     }
 
-    protected List<Integer> validateAndSort(List<Integer> numbers) {
+    default List<Integer> validateAndSort(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
         return numbers.stream().sorted().toList();

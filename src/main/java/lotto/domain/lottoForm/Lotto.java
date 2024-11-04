@@ -5,11 +5,13 @@ import lotto.domain.LottoNumber;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Lotto extends LottoForm {
-    private final String DELIMITER = ", ";
+import static lotto.message.InfoMessage.NUMBER_DELIMITER;
+
+public class Lotto implements LottoForm {
+    private final List<LottoNumber> numbers;
 
     private Lotto(List<Integer> rawNumbers) {
-        super(rawNumbers);
+        this.numbers = initializeNumbers(rawNumbers);
     }
 
     public static Lotto from(List<Integer> rawIntegers) {
@@ -21,7 +23,7 @@ public class Lotto extends LottoForm {
         String result = numbers.stream()
                 .map(LottoNumber::number)
                 .map(String::valueOf)
-                .collect(Collectors.joining(DELIMITER));
+                .collect(Collectors.joining(NUMBER_DELIMITER.getMessage()));
         return String.format("[%s]", result);
     }
 

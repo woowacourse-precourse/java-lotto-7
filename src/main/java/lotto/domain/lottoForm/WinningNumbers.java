@@ -7,12 +7,13 @@ import java.util.List;
 
 import static lotto.message.ErrorMessage.BONUS_NUMBER_DUPLICATE;
 import static lotto.message.ErrorMessage.NON_INTEGER_LOTTO;
+import static lotto.message.InfoMessage.SPLIT_DELIMITER;
 
-public class WinningNumbers extends LottoForm {
-    private static final String SPLIT_DELIMITER = ",";
+public class WinningNumbers implements LottoForm {
+    private final List<LottoNumber> numbers;
 
-    private WinningNumbers(List<Integer> numbers) {
-        super(numbers);
+    private WinningNumbers(List<Integer> rawNumbers) {
+        this.numbers = initializeNumbers(rawNumbers);
     }
 
     public static WinningNumbers from(String input) {
@@ -22,7 +23,7 @@ public class WinningNumbers extends LottoForm {
 
 
     private static List<Integer> convertToIntegers(String input) {
-        List<String> inputs = Arrays.asList(input.split(SPLIT_DELIMITER));
+        List<String> inputs = Arrays.asList(input.split(SPLIT_DELIMITER.getMessage()));
         try {
             return inputs.stream().map(String::trim)
                     .map(Integer::parseInt)

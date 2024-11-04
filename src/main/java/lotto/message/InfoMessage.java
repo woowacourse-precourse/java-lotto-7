@@ -1,6 +1,8 @@
 package lotto.message;
 
 public enum InfoMessage {
+    SPLIT_DELIMITER(","),
+    NUMBER_DELIMITER(", "),
     LOTTO_COUNT_INFO("\n{}개를 구매했습니다."),
     WINNING_STATS_LABEL("\n당첨 통계\n---"),
     THREE_NUMBERS_MATCH("3개 일치 (5,000원) - {}개"),
