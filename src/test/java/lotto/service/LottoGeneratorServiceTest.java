@@ -1,8 +1,6 @@
 package lotto.service;
 
-import lotto.util.NumberUtil;
 import lotto.view.InputView;
-import lotto.view.OutputView;
 import lotto.view.TestInputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

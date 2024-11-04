@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.util.NumberUtil;
 import lotto.view.InputView;
-import lotto.view.OutputView;
 
 public class LottoGeneratorService {
     public static final int LOTTO_PRICE = 1000;
@@ -12,7 +11,7 @@ public class LottoGeneratorService {
         this.inputView = inputView;
     }
 
-    public int lottoPurchase() {
+    public int getPurchasedLottoCount() {
         int lottoCount = repeatPromptPurchaseAmount();
         return lottoCount;
     }
