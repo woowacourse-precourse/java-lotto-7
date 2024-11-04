@@ -18,7 +18,9 @@ public class Application {
         lottoProvider.pickLottoNumbers();
         lottoProvider.printPickedLottoResults();
 
-        Answer answer = attempt(() -> createLottoAnswer());
+        Lotto lottoAnswer = attempt(() -> createLottoAnswer());
+        int bonusLotto = attempt(() -> createBonusLotto());
+        Answer answer = new Answer(lottoAnswer, bonusLotto);
 
         List<LottoRank> lottoRanks = lottoProvider.calculateRank(answer);
         for (LottoRank lottoRank : lottoRanks) {
@@ -43,9 +45,11 @@ public class Application {
         return new LottoProvider(purchaseAmount, user);
     }
 
-    private static Answer createLottoAnswer() {
-        Lotto answerLotto = Input.readAnswerLotto();
-        int bonusLotto = Input.readBonusLotto();
-        return new Answer(answerLotto, bonusLotto);
+    private static Lotto createLottoAnswer() {
+        return Input.readAnswerLotto();
+    }
+
+    private static int createBonusLotto() {
+        return Input.readBonusLotto();
     }
 }
