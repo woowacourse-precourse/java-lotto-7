@@ -15,15 +15,8 @@ public class ValidateUtil {
     private static final Integer LOTTO_MAX_NUM = 45;
     private static final Integer LOTTO_LENGTH = 6;
 
-    public Integer validateAndParsePurchaseAmount(final String input) {
-        validateNumber(input);
-        final int purchaseAmount = Integer.parseInt(input);
-        validateAmount(purchaseAmount);
-        return purchaseAmount;
-    }
-
     public void validateWinningNumbers(final String input) {
-        List<String> winningNumbers = Arrays.asList(input.split(WINNING_NUMBER_DELIMITER));
+        final List<String> winningNumbers = Arrays.asList(input.split(WINNING_NUMBER_DELIMITER));
         winningNumbers.forEach(this::validateNumber);
         validateCount(winningNumbers);
         validateWinningNumbersDuplicate(winningNumbers);
@@ -51,7 +44,7 @@ public class ValidateUtil {
     }
 
     public void validateWinningNumbersDuplicate(final List<String> winningNumbers) {
-        Set<String> uniqueNumbers = new HashSet<>(winningNumbers);
+        final Set<String> uniqueNumbers = new HashSet<>(winningNumbers);
         if (uniqueNumbers.size() != winningNumbers.size())
             throw new IllegalArgumentException(LottoException.WINNING_NUMBERS_DUPLICATED.getMessage()); // 당첨 번호 중 중복 값이 있을 경우
     }
