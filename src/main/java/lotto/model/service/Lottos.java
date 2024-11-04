@@ -14,10 +14,10 @@ public class Lottos {
     private final List<Lotto> lottos;
 
     public static Lottos from(Long count, NumberGenerator numberGenerator) {
-        ArrayList<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            List<Integer> distintNumbers = numberGenerator.generate();
-            lottos.add(new Lotto(distintNumbers));
+            List<Integer> distinctNumbers = numberGenerator.generate();
+            lottos.add(new Lotto(distinctNumbers));
         }
         return new Lottos(lottos);
     }
