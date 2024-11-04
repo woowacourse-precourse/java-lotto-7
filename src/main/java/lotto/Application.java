@@ -1,3 +1,4 @@
+// Application.java (당첨 번호 입력 추가)
 package lotto;
 
 import lotto.InputView;
@@ -13,6 +14,8 @@ public class Application {
             int lottoCount = purchaseAmount / 1000;
             List<Lotto> lottos = LottoGenerator.generateLottos(lottoCount);
             ResultView.printLottos(lottos);
+
+            List<Integer> winningNumbers = InputView.readWinningNumbers();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
