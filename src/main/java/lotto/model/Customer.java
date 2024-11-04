@@ -5,15 +5,18 @@ import java.util.List;
 import java.util.Map;
 
 public class Customer {
+    private static final String DEFAULT_MONEY = "0";
+    private static final int WINNING_HISTORY_DEFAULT_VALUE = 0;
+    private static final int WINNING_HISTORY_INCREMENT = 1;
     private final Money budget;
     private Money totalWinningMoney;
     private final MyLotto myLotto;
     private final Map<WinningType, Integer> winningHistory;
 
     public Customer(Money budget,
-                     MyLotto myLotto,
-                     Money totalWinningMoney,
-                     Map<WinningType, Integer> winningHistory) {
+                    MyLotto myLotto,
+                    Money totalWinningMoney,
+                    Map<WinningType, Integer> winningHistory) {
         this.budget = budget;
         this.myLotto = myLotto;
         this.totalWinningMoney = totalWinningMoney;
@@ -21,7 +24,7 @@ public class Customer {
     }
 
     public Customer(Money budget, MyLotto myLotto) {
-        this(budget, myLotto, new Money("0"), new HashMap<>());
+        this(budget, myLotto, new Money(DEFAULT_MONEY), new HashMap<>());
     }
 
     public void buyLotto(List<Lotto> lottos) {
@@ -30,7 +33,7 @@ public class Customer {
 
     public float getEarningRate(AnswerNumbers answerNumbers, BonusNumber bonusNumber) {
         checkMyLotto(answerNumbers, bonusNumber);
-        return (float)totalWinningMoney.getValue() / budget.getValue();
+        return (float) totalWinningMoney.getValue() / budget.getValue();
     }
 
     public Map<WinningType, Integer> getWinningHistory() {
@@ -63,6 +66,8 @@ public class Customer {
     }
 
     private void addWinningHistory(WinningType type) {
-        winningHistory.put(type, winningHistory.getOrDefault(type, 0) + 1);
+        winningHistory.put(
+                type, winningHistory.getOrDefault(type, WINNING_HISTORY_DEFAULT_VALUE) + WINNING_HISTORY_INCREMENT
+        );
     }
 }
