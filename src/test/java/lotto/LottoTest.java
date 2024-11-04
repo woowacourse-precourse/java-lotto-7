@@ -26,10 +26,18 @@ class LottoTest {
     @Test
     void 로또_번호에_따른_정답_판단(){
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> answers = List.of(1, 2, 3, 4, 5, 6);
-        Grade grade = lotto.judgeLotto(answers,7);
 
-        assertEquals(grade, Grade.MATCH6);
+        List<Integer> answers_six = List.of(1, 2, 3, 4, 5, 6);
+        Grade grade_six = lotto.judgeLotto(answers_six,7);
+        assertEquals(grade_six, Grade.MATCH6);
+
+        List<Integer> answers_five = List.of(1, 2, 3, 4, 5, 9);
+        Grade grade_five = lotto.judgeLotto(answers_five,7);
+        assertEquals(grade_five, Grade.MATCH5);
+
+        List<Integer> answers_bonus = List.of(1, 2, 3, 4, 5, 7);
+        Grade grade_bonus = lotto.judgeLotto(answers_bonus,6);
+        assertEquals(grade_bonus, Grade.MATCH5_BONUS);
     }
 
 }
