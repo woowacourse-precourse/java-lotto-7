@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.LottoMoney;
 import lotto.domain.Rank;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,12 +20,13 @@ class LottoResultTest {
         ranks.add(Rank.NO3);
         ranks.add(Rank.NO3);
         ranks.add(Rank.NO3);
+        LottoMoney money = new LottoMoney(5000);
 
         // when
         LottoResult lottoResult = LottoResult.from(ranks);
 
         // then
-        Assertions.assertThat(lottoResult.calculateProfit(5000))
+        Assertions.assertThat(lottoResult.calculateProfit(money))
                 .isEqualTo(40690000.0);
 
     }

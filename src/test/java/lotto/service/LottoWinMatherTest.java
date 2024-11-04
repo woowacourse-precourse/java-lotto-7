@@ -1,12 +1,11 @@
 package lotto.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.BonusBall;
 import lotto.domain.Lotto;
+import lotto.domain.LottoMoney;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
@@ -18,7 +17,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoWinMatherTest {
 
-    private static final int MONEY = 1000;
+    private static final LottoMoney LOTTO_MONEY = new LottoMoney(1000);
 
     private final NumberGenerate numberGenerate = new LottoGeneratorTest();
     private final LottoMachine lottoMachine = new LottoMachine(numberGenerate);
@@ -28,15 +27,15 @@ class LottoWinMatherTest {
     @MethodSource("lottoArgsGenerate")
     void 로또_1개_당첨_테스트(List<Integer> numbers, int bonus, Rank win) {
         // given
-        PurchasedLottos purchasedLottos = lottoMachine.issueLotto(MONEY);
+        PurchasedLottos purchasedLottos = lottoMachine.issueLotto(LOTTO_MONEY);
         WinningLotto winningLotto = winningLottoMake(numbers, bonus);
 
         // when
         LottoResult lottoResult = lottoWinMather.calculateLottoWins(purchasedLottos, winningLotto);
 
         // then
-        Assertions.assertThat(lottoResult.calculateProfit(MONEY))
-                .isEqualTo(((double) win.getPrize() / MONEY) * 100.0);
+        Assertions.assertThat(lottoResult.calculateProfit(LOTTO_MONEY))
+                .isEqualTo(((double) win.getPrize() / LOTTO_MONEY.money()) * 100.0);
     }
 
     private static Stream<Arguments> lottoArgsGenerate() {
