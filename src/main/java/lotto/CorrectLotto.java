@@ -37,7 +37,7 @@ public class CorrectLotto {
         int matchCount = (int) lotto.numbers().stream()
                 .filter(other.numbers()::contains)
                 .count();
-        boolean isContainBonusNumber = other.numbers().contains(bonusNumber);
+        boolean isContainBonusNumber = other.numbers().contains(bonusNumber.number());
 
         return Rank.of(matchCount, isContainBonusNumber);
     }

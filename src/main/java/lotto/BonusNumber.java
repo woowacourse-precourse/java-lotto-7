@@ -16,7 +16,6 @@ public class BonusNumber {
         } catch(NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45의 정수이어야 합니다.");
         }
-
     }
 
     private static void validateDuplicate(int number, Lotto correctNumber) {
@@ -29,5 +28,9 @@ public class BonusNumber {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    public int number() {
+        return this.number;
     }
 }
