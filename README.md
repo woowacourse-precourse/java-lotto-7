@@ -139,3 +139,4 @@ lotto/
 
 ### 클래스 다이어그램
 
+![lotto](https://github.com/user-attachments/assets/3b6246b4-128d-474c-9d1e-57c919a58734)
