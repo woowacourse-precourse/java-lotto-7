@@ -42,7 +42,7 @@ class PurchaseTest {
                 Arguments.of(NOT_THOUSAND_MULTIPLE,
                         new IllegalArgumentException(ErrorMessage.NOT_ONE_THOUSAND_MULTIPLE_ERROR.getMessage())),
                 Arguments.of(MILLION,
-                        new IllegalArgumentException(ErrorMessage.NOT_PURCHASE_MORE_HUNDRED_THOUSAND.getMessage()))
+                        new IllegalArgumentException(ErrorMessage.NOT_PURCHASE_MORE_HUNDRED_THOUSAND_ERROR.getMessage()))
         );
     }
 }

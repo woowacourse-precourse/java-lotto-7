@@ -29,7 +29,7 @@ public class Purchase {
 
     private void validatePriceAmountUnderHundredThousand(int amount) {
         if (amount > 100000) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_PURCHASE_MORE_HUNDRED_THOUSAND.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_PURCHASE_MORE_HUNDRED_THOUSAND_ERROR.getMessage());
         }
     }
 }
