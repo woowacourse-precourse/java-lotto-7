@@ -17,4 +17,8 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public Grade judgeLotto(List<Integer> answer, int bonusNumber) {
+        LottoJudge lottoJudge = new LottoJudge(answer, numbers, bonusNumber);
+        return lottoJudge.judge();
+    }
 }
