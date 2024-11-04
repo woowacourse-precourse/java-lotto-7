@@ -60,7 +60,7 @@ class LottoServiceTest {
                 .isEqualTo(LottoConstant.LOTTO_NUMBER_COUNT);
     }
 
-    @DisplayName("getWinningStatistics")
+    @DisplayName("당첨통계_구하기_통합_테스트")
     @ParameterizedTest
     @CsvSource(value = {"1,2,3,4,5,6:7:2.0E8"}, delimiter = ':')
     void 통계함수_구하기(String winningNumbers, String bonusNumber, double rateOfReturn) {
