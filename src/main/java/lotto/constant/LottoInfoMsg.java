@@ -1,8 +1,9 @@
 package lotto.constant;
 
 public enum LottoInfoMsg {
-
     INPUT_PURCHASE_AMOUNT("구입 금액을 입력해 주세요."),
+    INPUT_WEEKLY_NUMBERS("\n당첨 번호를 입력해 주세요"),
+    INPUT_BONUS_NUMBER("\n보너스 번호를 입력해 주세요"),
     START_PRINT_LOTTO_NUMBERS("\n%d개를 구매했습니다."),
     START_PRINT_MATCHED_RESULT("\n당첨 통계\n---\n"),
     MATCHED_RESULT_PRINT_FORM("%d개 일치 (%d원) - %d개"),

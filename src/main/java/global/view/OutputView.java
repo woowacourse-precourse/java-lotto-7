@@ -1,4 +1,4 @@
-package lotto.view;
+package global.view;
 
 import static lotto.constant.LottoInfoMsg.PROFIT_RATE_PRINT_FORM;
 import static lotto.constant.LottoInfoMsg.START_PRINT_LOTTO_NUMBERS;
@@ -10,9 +10,9 @@ import lotto.constant.LottoInfoMsg;
 import lotto.constant.LottoRanking;
 import lotto.model.Lotto;
 
-public class LottoOutputView {
+public class OutputView {
 
-    public void printLottoNumbers(List<Lotto> lottos) {
+    public static void printLottoNumbers(List<Lotto> lottos) {
         System.out.println(START_PRINT_LOTTO_NUMBERS.getMsg().formatted(lottos.size()));
 
         for (Lotto lotto : lottos) {
@@ -20,12 +20,12 @@ public class LottoOutputView {
         }
     }
 
-    public void printFinalResult(Map<LottoRanking, Integer> matchedResult, double profitRate) {
+    public static void printFinalResult(Map<LottoRanking, Integer> matchedResult, double profitRate) {
         printMatchedResult(matchedResult);
         printProfitRate(profitRate);
     }
 
-    private void printMatchedResult(Map<LottoRanking, Integer> matchedResult) {
+    private static void printMatchedResult(Map<LottoRanking, Integer> matchedResult) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(START_PRINT_MATCHED_RESULT.getMsg());
@@ -40,7 +40,7 @@ public class LottoOutputView {
         System.out.print(sb);
     }
 
-    private void printProfitRate(double profitRate) {
+    private static void printProfitRate(double profitRate) {
         System.out.print(PROFIT_RATE_PRINT_FORM.getMsg().formatted(profitRate));
     }
 }

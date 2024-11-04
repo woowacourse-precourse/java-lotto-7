@@ -3,25 +3,20 @@ package store.controller;
 import static global.utils.Validator.validateBonusNumber;
 import static global.utils.Validator.validateWeeklyNumbers;
 
+import global.view.InputView;
 import java.util.List;
 import store.service.StoreService;
-import store.view.StoreInputView;
-import store.view.StoreOutputView;
 
 public class StoreController {
 
-    private final StoreInputView storeInputView;
-    private final StoreOutputView storeOutputView;
     private final StoreService storeService;
 
-    public StoreController(StoreInputView storeInputView, StoreOutputView storeOutputView, StoreService storeService) {
-        this.storeInputView = storeInputView;
-        this.storeOutputView = storeOutputView;
+    public StoreController(StoreService storeService) {
         this.storeService = storeService;
     }
 
     public void setWeeklyNumbers() {
-        String inputWeeklyNumbers = storeInputView.inputWeeklyNumbers();
+        String inputWeeklyNumbers = InputView.inputWeeklyNumbers();
 
         try {
             validateWeeklyNumbers(inputWeeklyNumbers);
@@ -35,7 +30,7 @@ public class StoreController {
     }
 
     public void setBonusNumber() {
-        String inputBonusNumber = storeInputView.inputBonusNumber();
+        String inputBonusNumber = InputView.inputBonusNumber();
         List<Integer> storedWeeklyNumbers = storeService.getStoredWeeklyNumbers();
 
         try {
