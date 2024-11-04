@@ -16,11 +16,11 @@ public class LottoProfitRate {
     }
 
     private static double getLottoProfitSum(){
-        double sum = 0;
+        long sum = 0;
         for(Rank rank: Rank.values()){
-            sum += rank.getPrize() * rank.getCount();
+            sum += (long) rank.getPrize() * rank.getCount();
         }
-        return sum;
+        return (double) sum;
     }
 
     private static double getLottoProfit(PurchasePrice purchasePrice){
