@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.validator.Validator;
+import lotto.validator.CommonValidator;
 
 public class Lotto {
 
@@ -22,11 +22,11 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.WIN_NUMBER_SIZE_MUST_6.getMessage());
         }
-        if (Validator.hasDuplicateNumber(numbers)) {
+        if (CommonValidator.hasDuplicateNumber(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WIN_NUMBERS.getMessage());
         }
         for (int num : numbers) {
-            if (!Validator.isBetween(MIN_LOTTO_NUM, num, MAX_LOTTO_NUM)) {
+            if (!CommonValidator.isBetween(MIN_LOTTO_NUM, num, MAX_LOTTO_NUM)) {
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_BETWEEN_1_AND_45.getMessage());
             }
         }

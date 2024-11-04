@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class LottoGameValidatorTest {
+public class LottoGameCommonValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1000", "0", "-123"})

@@ -2,7 +2,7 @@ package lotto.validator;
 
 import java.util.List;
 
-public class Validator {
+public class CommonValidator {
 
     private static final String NUMERIC_REGEX = "-?\\d+";
 

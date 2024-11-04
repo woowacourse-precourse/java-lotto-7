@@ -3,19 +3,19 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.validator.Validator;
+import lotto.validator.CommonValidator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class ValidatorTest {
+public class CommonValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "5", "-7", "123"})
     void 숫자로_구성된_문자열인지_확인(String str) {
         // when
-        boolean result = Validator.isNumeric(str);
+        boolean result = CommonValidator.isNumeric(str);
 
         // then
         assertThat(result)
@@ -26,7 +26,7 @@ public class ValidatorTest {
     @ValueSource(strings = {"ab", "5d", "-e7", "?!@"})
     void 에러_숫자로_구성되지_않은_문자열(String str) {
         // when
-        boolean result = Validator.isNumeric(str);
+        boolean result = CommonValidator.isNumeric(str);
 
         // then
         assertThat(result)
@@ -37,7 +37,7 @@ public class ValidatorTest {
     @ValueSource(strings = {"", " ", "  ", "\n", "\t"})
     void isBlankTrue(String str) {
         // when
-        boolean result = Validator.isBlank(str);
+        boolean result = CommonValidator.isBlank(str);
 
         // then
         assertThat(result)
@@ -48,7 +48,7 @@ public class ValidatorTest {
     @ValueSource(strings = {"s", "sfe", " def23 ", "df\n", "bl5e\t"})
     void isBlankFalse(String str) {
         // when
-        boolean result = Validator.isBlank(str);
+        boolean result = CommonValidator.isBlank(str);
 
         // then
         assertThat(result)
@@ -59,7 +59,7 @@ public class ValidatorTest {
     @CsvSource(value = {"2000:1000", "0:1000"}, delimiter = ':')
     void isDividedTure(int num, int divider) {
         // when
-        boolean result = Validator.isDivided(num, divider);
+        boolean result = CommonValidator.isDivided(num, divider);
 
         // then
         assertThat(result)
@@ -70,7 +70,7 @@ public class ValidatorTest {
     @CsvSource(value = {"2500:1000", "123:1000"}, delimiter = ':')
     void isDividedFalse(int num, int divider) {
         // when
-        boolean result = Validator.isDivided(num, divider);
+        boolean result = CommonValidator.isDivided(num, divider);
 
         // then
         assertThat(result)
@@ -85,7 +85,7 @@ public class ValidatorTest {
         int max = 45;
 
         // when
-        boolean result = Validator.isBetween(min, num, max);
+        boolean result = CommonValidator.isBetween(min, num, max);
 
         // then
         assertThat(result)
@@ -100,7 +100,7 @@ public class ValidatorTest {
         int max = 45;
 
         // when
-        boolean result = Validator.isBetween(min, num, max);
+        boolean result = CommonValidator.isBetween(min, num, max);
 
         // then
         assertThat(result)
@@ -113,7 +113,7 @@ public class ValidatorTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
 
         // when
-        boolean result = Validator.hasDuplicateNumber(numbers);
+        boolean result = CommonValidator.hasDuplicateNumber(numbers);
 
         // then
         assertThat(result)
@@ -126,7 +126,7 @@ public class ValidatorTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5);
 
         // when
-        boolean result = Validator.hasDuplicateNumber(numbers);
+        boolean result = CommonValidator.hasDuplicateNumber(numbers);
 
         // then
         assertThat(result)
