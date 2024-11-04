@@ -23,61 +23,61 @@
 ## 기능 정의
 
 ### Person.class
-- [ ] public Person(int purchaseAmount)
+- [x] public Person(int purchaseAmount)
   - 로또 구매자 생성
-- [ ] private void validatePurchaseAmount(int amount)
+- [x] private void validatePurchaseAmount(int amount)
   - 구매 금액 유효성 검증 (1000원 단위)
-- [ ] public LottoResult checkWinning(WinningLotto winningLotto)
+- [x] public LottoResult checkWinning(WinningLotto winningLotto)
   - 당첨 여부 확인 및 결과 반환
 
 ### Lotto.class
-- [ ] public Lotto(List<Integer> numbers)
+- [x] public Lotto(List<Integer> numbers)
   - 로또 번호 생성 및 검증
-- [ ] private void validateNumbers(List<Integer> numbers)
+- [x] private void validateNumbers(List<Integer> numbers)
   - 번호 유효성 검증 (1~45, 중복, 6개)
-- [ ] public boolean hasNumber(int number)
+- [x] public boolean hasNumber(int number)
   - 특정 번호 포함 여부 확인
-- [ ] public int countMatchingNumbers(Lotto other)
+- [x] public int countMatchingNumbers(Lotto other)
   - 일치하는 번호 개수 반환
 
 ### LottoMachine.class
-- [ ] public static Lotto generateLotto()
+- [x] public static Lotto generateLotto()
   - 랜덤 로또 번호 생성
 
 ### WinningLotto.class
-- [ ] public WinningLotto(List<Integer> numbers, int bonusNumber)
+- [x] public WinningLotto(List<Integer> numbers, int bonusNumber)
   - 당첨 번호와 보너스 번호 설정
-- [ ] private void validateBonusNumber(List<Integer> numbers, int bonusNumber)
+- [x] private void validateBonusNumber(List<Integer> numbers, int bonusNumber)
   - 보너스 번호 유효성 검증
-- [ ] public Prize match(Lotto userLotto)
+- [x] public Prize match(Lotto userLotto)
   - 당첨 등수 확인
 
 ### Prize.enum
-- [ ] public static Prize valueOf(int matchCount, boolean hasBonus)
+- [x] public static Prize valueOf(int matchCount, boolean hasBonus)
   - 당첨 등수 결정
-- [ ] public int getPrizeMoney()
+- [x] public int getPrizeMoney()
   - 당첨 금액 반환
-- [ ] public String getDescription()
+- [x] public String getDescription()
   - 당첨 내역 설명 반환
 
 ### LottoResult.class
-- [ ] public void addPrize(Prize prize)
+- [x] public void addPrize(Prize prize)
   - 당첨 결과 추가
-- [ ] public void calculateProfitRate(int purchaseAmount)
+- [x] public void calculateProfitRate(int purchaseAmount)
   - 수익률 계산
-- [ ] public void printStatistics()
+- [x] public void printStatistics()
   - 당첨 통계 출력
 
 ## LottoGame.class
-- [ ] public void start()
+- [x] public void start()
   - 게임 진행의 전체 흐름 관리
-- [ ] private Person createPerson()
+- [x] private Person createPerson()
   - 구매자 생성 및 금액 입력 처리
-- [ ] private WinningLotto createWinningLotto()
+- [x] private WinningLotto createWinningLotto()
   - 당첨 번호와 보너스 번호 입력 처리
-- [ ] private void validateNumeric(String input)
+- [x] private void validateNumeric(String input)
   - 입력값이 숫자인지 검증
-- [ ] private List<Integer> parseNumbers(String input)
+- [x] private List<Integer> parseNumbers(String input)
   - 쉼표로 구분된 문자열을 숫자 리스트로 변환
 
 ## 입출력 요구 사항
