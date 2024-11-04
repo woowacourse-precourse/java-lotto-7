@@ -1,15 +1,13 @@
 package lotto;
 
-import java.util.List;
-
 public class LottoPublish {
     private final int count; // 로또 개수
 
     public LottoPublish(int price) {
         validatePrice(price);
-        count = getCount(price);
+        count = calculateCount(price);
 
-        System.out.println("[debug] 구매한 로또개수: " + count);
+        System.out.println("[result] 구매한 로또개수: " + count);
     }
 
     // 로또 1장 가격 유효성 검사
@@ -20,8 +18,12 @@ public class LottoPublish {
     }
 
     // 로또 발행 개수
-    private int getCount(Integer price){
+    private int calculateCount(Integer price){
         return price/1000;
     }
 
+    // getter 메서드
+    public int getCount() {
+        return count;
+    }
 }

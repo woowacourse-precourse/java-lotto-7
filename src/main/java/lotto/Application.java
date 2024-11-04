@@ -28,8 +28,9 @@ public class Application {
         int bonusNumber = Integer.parseInt(Console.readLine());
         System.out.println("입력한 보너스 번호: " + bonusNumber);
 
-        new LottoPublish(price); // 금액 기반으로 구매한 로또 개수반환
-        new Lotto(winningNumbers); // 생성한 로또 번호 반환
+        LottoPublish lottoPublish = new LottoPublish(price); // 금액 기반으로 구매한 로또 개수반환
+        Lotto lotto = new Lotto(winningNumbers, bonusNumber); // 당첨금 반환
 
+        System.out.println("당첨금액은: " + lottoPublish.getCount()*lotto.getReward());
     }
 }
