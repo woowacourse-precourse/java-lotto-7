@@ -8,14 +8,14 @@ import java.util.Map;
 
 public class LottoResult {
     private final Map<LottoRank, Integer> rankCounts;
-    private final int totalPurchaseAmount;
+    private final PurchaseAmount purchaseAmount;
 
-    private LottoResult(Map<LottoRank, Integer> rankCounts, int totalPurchaseAmount) {
+    private LottoResult(Map<LottoRank, Integer> rankCounts, PurchaseAmount purchaseAmount) {
         this.rankCounts = Collections.unmodifiableMap(new EnumMap<>(rankCounts));
-        this.totalPurchaseAmount = totalPurchaseAmount;
+        this.purchaseAmount = purchaseAmount;
     }
 
-    public static LottoResult of(List<Lotto> lottos, WinningNumbers winningNumbers) {
+    public static LottoResult of(List<Lotto> lottos, WinningNumbers winningNumbers, PurchaseAmount purchaseAmount) {
         Map<LottoRank, Integer> rankCounts = new EnumMap<>(LottoRank.class);
         initializeRankCounts(rankCounts);
 
@@ -27,7 +27,7 @@ public class LottoResult {
             rankCounts.merge(rank, 1, Integer::sum);
         }
 
-        return new LottoResult(rankCounts, lottos.size() * 1000);
+        return new LottoResult(rankCounts, purchaseAmount);
     }
 
     private static void initializeRankCounts(Map<LottoRank, Integer> rankCounts) {
@@ -41,7 +41,7 @@ public class LottoResult {
 
     public double calculateProfitRate() {
         long totalPrize = calculateTotalPrize();
-        return (totalPrize * 100.0) / totalPurchaseAmount;
+        return (totalPrize * 100.0) / purchaseAmount.getAmount();
     }
 
     private long calculateTotalPrize() {

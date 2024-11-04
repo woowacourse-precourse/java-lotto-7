@@ -7,6 +7,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLottoNumbers;
 import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
@@ -72,9 +73,10 @@ public class LottoResultTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 8))
         );
         WinningNumbers winningNumbers = WinningNumbers.from(winningNumberList, bonusNumber);
+        PurchaseAmount purchaseAmount = PurchaseAmount.from("1000");
 
         // when
-        LottoResult result = LottoResult.of(lottos, winningNumbers);
+        LottoResult result = LottoResult.of(lottos, winningNumbers, purchaseAmount);
 
         // then
         assertThat(result.getCountByRank(LottoRank.FIRST)).isEqualTo(1);
@@ -94,8 +96,9 @@ public class LottoResultTest {
         );
 
         WinningNumbers winningNumbers = WinningNumbers.from(winningNumberList, bonusNumber);
+        PurchaseAmount purchaseAmount = PurchaseAmount.from("1000");
 
-        LottoResult result = LottoResult.of(lottos, winningNumbers);
+        LottoResult result = LottoResult.of(lottos, winningNumbers, purchaseAmount);
 
         // when
         double profitRate = result.calculateProfitRate();

@@ -3,6 +3,7 @@ package lotto.Service;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.generator.LottoNumberGenerator;
 
@@ -17,7 +18,8 @@ public class LottoService {
         return lottoNumberGenerator.generate(amount);
     }
 
-    public LottoResult createWinningResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
-        return LottoResult.of(lottos, winningNumbers);
+    public LottoResult createWinningResult(List<Lotto> lottos, WinningNumbers winningNumbers,
+                                           PurchaseAmount purchaseAmount) {
+        return LottoResult.of(lottos, winningNumbers, purchaseAmount);
     }
 }
