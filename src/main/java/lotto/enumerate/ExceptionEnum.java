@@ -1,4 +1,4 @@
-package lotto.utility;
+package lotto.enumerate;
 
 public enum ExceptionEnum {
     LOTTO_MUST_BE_SIX("[ERROR] 로또 번호는 6개여야 합니다."),

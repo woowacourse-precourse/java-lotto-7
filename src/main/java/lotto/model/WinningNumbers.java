@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.utility.ExceptionEnum;
+import lotto.enumerate.ExceptionEnum;
 import lotto.utility.ExceptionThrower;
 
 import java.util.HashSet;

@@ -1,9 +1,8 @@
 package lotto.view;
 
-import lotto.utility.MatchedCountNameEnum;
-import lotto.utility.MatchedNumberEnum;
+import lotto.enumerate.LottoPrizeEnum;
+import lotto.enumerate.MatchedCountKeyEnum;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,11 +24,11 @@ public class OutputView {
     public static void outputMatchedCount(Map<String, Integer> matchedCount) {
         System.out.println();
         System.out.println("당첨 통계\n---");
-        System.out.println(MatchedNumberEnum.THREE_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.THREE_MATCHED.getMessage()) + "개");
-        System.out.println(MatchedNumberEnum.FOUR_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.FOUR_MATCHED.getMessage()) + "개");
-        System.out.println(MatchedNumberEnum.FIVE_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.FIVE_MATCHED.getMessage()) + "개");
-        System.out.println(MatchedNumberEnum.FIVE_WITH_BONUS_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage()) + "개");
-        System.out.println(MatchedNumberEnum.SIX_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.SIX_MATCHED.getMessage()) + "개");
+        System.out.println(LottoPrizeEnum.THREE_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountKeyEnum.THREE_MATCHED.getMessage()) + "개");
+        System.out.println(LottoPrizeEnum.FOUR_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountKeyEnum.FOUR_MATCHED.getMessage()) + "개");
+        System.out.println(LottoPrizeEnum.FIVE_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountKeyEnum.FIVE_MATCHED.getMessage()) + "개");
+        System.out.println(LottoPrizeEnum.FIVE_WITH_BONUS_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountKeyEnum.FIVE_WITH_BONUS_MATCHED.getMessage()) + "개");
+        System.out.println(LottoPrizeEnum.SIX_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountKeyEnum.SIX_MATCHED.getMessage()) + "개");
     }
 
     public static void outputProfitRate(String profitRate) {

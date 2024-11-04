@@ -1,5 +1,7 @@
 package lotto.utility;
 
+import lotto.enumerate.ExceptionEnum;
+
 public class NumberParser {
 
     public static int parseToInteger(String rawNumber) {
@@ -9,6 +11,7 @@ public class NumberParser {
             return number;
         } catch (NumberFormatException exception) {
             ExceptionThrower.throwing(ExceptionEnum.INVALID_NUMBER);
+            return -1;
         }
     }
 

@@ -1,6 +1,6 @@
-package lotto.utility;
+package lotto.enumerate;
 
-public enum MatchedCountNameEnum {
+public enum MatchedCountKeyEnum {
     THREE_MATCHED("threeMatched"),
     FOUR_MATCHED("fourMatched"),
     FIVE_MATCHED("fiveMatched"),
@@ -9,7 +9,7 @@ public enum MatchedCountNameEnum {
 
     private final String message;
 
-    MatchedCountNameEnum(String message) {
+    MatchedCountKeyEnum(String message) {
         this.message = message;
     }
 

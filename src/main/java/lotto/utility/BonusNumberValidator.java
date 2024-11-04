@@ -1,5 +1,7 @@
 package lotto.utility;
 
+import lotto.enumerate.ExceptionEnum;
+
 public class BonusNumberValidator {
     private static final int MAX_LOTTO_NUMBER = 45;
 
