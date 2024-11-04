@@ -15,7 +15,10 @@ public class ConsoleView {
     }
 
     private static class ConsoleViewHolder {
-        private static final ConsoleView CONSOLE_VIEW = new ConsoleView(InputView.getInstance(), OutputView.getInstance());
+        private static final ConsoleView CONSOLE_VIEW = new ConsoleView(
+                InputView.getInstance(),
+                OutputView.getInstance()
+        );
     }
 
     public static ConsoleView getInstance() {
@@ -23,21 +26,15 @@ public class ConsoleView {
     }
 
     public int readPurchaseAmountInput() {
-        outputView.promptPurchaseAmount();
-
-        return inputView.readPurchaseAmountInput();
+        return readInput(outputView::promptPurchaseAmount, inputView::readPurchaseAmountInput);
     }
 
     public String readWinningLottoNumbersInput() {
-        outputView.promptLottoNumbers();
-
-        return inputView.readLottoNumbersInput();
+        return readInput(outputView::promptLottoNumbers, inputView::readLottoNumbersInput);
     }
 
     public int readBonusNumberInput() {
-        outputView.promptBonusNumber();
-
-        return inputView.readBonusNumberInput();
+        return readInput(outputView::promptBonusNumber, inputView::readBonusNumberInput);
     }
 
     public void printPurchasableLottoCount(int lottoCount) {
