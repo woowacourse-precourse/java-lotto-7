@@ -7,6 +7,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoUtility {
+    /**
+     * 당첨번호 문자열을 List 형태로 변환
+     * @param input 사용자 입력값
+     * @return 당첨번호 리스트
+     */
     public List<Integer> stringToWinningNumbers(String input) {
         List<Integer> numbers = new ArrayList<>();
         try {
@@ -38,6 +43,12 @@ public class LottoUtility {
         return standard.getMatchedNumberCount() + "개 일치 (" + prize + "원) - " + lottoCount + "개";
     }
 
+    /**
+     * 일치하는 당첨번호와 보너스 번호 개수를 확인하여 등수를 반환
+     * @param matchedNumberCount 일치하는 당첨번호 개수
+     * @param matchedBonusNumberCount 일치하는 보너스번호 개수
+     * @return 당첨 등수, 당첨조건에 해당하지 않는 경우 null 반환
+     */
     public LottoWinningStandard getLottoWinningStandard(int matchedNumberCount, int matchedBonusNumberCount) {
         if (matchedNumberCount == 6) {
             return LottoWinningStandard.FIRST_PRIZE;
@@ -57,6 +68,12 @@ public class LottoUtility {
         return null;
     }
 
+    /**
+     * 총 수익률 정보가 담긴 메시지를 반환
+     * @param returnAmount 수익금액
+     * @param purchaseAmount 구입금액
+     * @return 수익률 정보 (예시 : 총 수익률은 100.0%입니다.)
+     */
     public String getReturnRateMessage(double returnAmount, double purchaseAmount) {
         double returnRate = (returnAmount / purchaseAmount) * 100.0;
         returnRate = Math.round(returnRate * 100) / 100.0;
@@ -66,10 +83,20 @@ public class LottoUtility {
         return "총 수익률은 " + returnRateString + "%입니다.";
     }
 
+    /**
+     * 등수 별 총 당첨액을 반환
+     * @param standard 등수
+     * @param lottoCount 당첨건수
+     * @return 등수 별 상금액 * 당첨 건수
+     */
     public long getTotalPrizeByLottoWinningStandard(LottoWinningStandard standard, int lottoCount) {
         return (long) standard.getPrizeMoney() * lottoCount;
     }
 
+    /**
+     * 구입금액을 입력 받아 로또를 발행
+     * @return 발행된 로또 정보
+     */
     public LottoCreate getLottoCreate() {
         LottoCreate lottoCreate = null;
         while (lottoCreate == null) {
@@ -83,6 +110,10 @@ public class LottoUtility {
         return lottoCreate;
     }
 
+    /**
+     * 사용자 입력을 통해 로또 당첨번호를 생성
+     * @return 당첨번호(Lotto 인스턴스)
+     */
     public Lotto getWinningLotto() {
         Lotto lotto = null;
         while(lotto == null) {
@@ -96,6 +127,11 @@ public class LottoUtility {
         return lotto;
     }
 
+    /**
+     * 사용자 입력을 통해 보너스 번호를 생성
+     * @param winningLotto 당첨번호
+     * @return 보너스번호
+     */
     public int getBonusNumber(Lotto winningLotto) {
         boolean stop = false;
         int bonus = 0;
@@ -134,6 +170,10 @@ public class LottoUtility {
         return bonus;
     }
 
+    /**
+     * 문자열 출력
+     * @param message 출력할 문구
+     */
     public void printMessage(String message) {
         System.out.println(message);
     }
