@@ -126,16 +126,16 @@ public class LottoController {
 
 
     private static Lottos createLottoNumbers(int count) {
-
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            List<Integer> createdLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> createdLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             createdLotto.sort(Integer::compareTo);
             Lotto lotto = new Lotto(createdLotto);
             lottos.add(lotto);
         }
         return new Lottos(lottos);
     }
+
 
     private static int validateAndParsePurchaseAmount(String purchaseAmount) {
         int parsedPurchaseAmount = parsePurchaseAmount(purchaseAmount);
