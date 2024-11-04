@@ -43,6 +43,7 @@ public class InputPrizeNumberController {
                 checkNumberListRange(prizeNumbers);
                 checkNumbersDuplicate(prizeNumbers);
 
+                ViewUtil.printEmptyLine();
                 return new Lotto(prizeNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -64,6 +65,7 @@ public class InputPrizeNumberController {
                 prizeNumbers.add(bonusNumber);
                 checkNumbersDuplicate(prizeNumbers);
 
+                ViewUtil.printEmptyLine();
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
