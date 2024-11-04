@@ -26,12 +26,4 @@ public class WinningLotto {
 
         return LottoRank.of(matchCount, bonus);
     }
-
-    public WinningNumbers getWinningNumbers() {
-        return winningNumbers;
-    }
-
-    public BonusNumber getBonusNumber() {
-        return bonusNumber;
-    }
 }

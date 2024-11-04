@@ -2,13 +2,13 @@ package lotto.model.domain;
 
 import static lotto.constant.ErrorMessages.DUPLICATE_LOTTO_NUMBERS;
 import static lotto.constant.ErrorMessages.INVALID_LOTTO_NUMBERS_SIZE;
+import static lotto.constant.LottoGameConfig.LOTTO_NUMBERS_COUNT;
 
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
 
-    private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -29,7 +29,7 @@ public class Lotto {
     }
 
     private void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_SIZE);
         }
     }

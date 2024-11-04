@@ -1,5 +1,7 @@
 package lotto.model.domain;
 
+import static lotto.constant.LottoGameConfig.SPLIT_DELIMITER;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -7,7 +9,6 @@ import java.util.Set;
 
 public class WinningNumbers {
 
-    private static final String SPLIT_DELIMITER = ",";
     private final List<LottoNumber> numbers;
 
     public WinningNumbers(String stringNumbers) {

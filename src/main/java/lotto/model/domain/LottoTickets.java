@@ -1,21 +1,21 @@
 package lotto.model.domain;
 
 import static lotto.constant.ErrorMessages.INVALID_MONEY;
+import static lotto.constant.LottoGameConfig.TICKET_PRICE;
 
 public class LottoTickets {
 
-    private static final int PRICE_PER_TICKET = 1_000;
     private final int purchasePrice;
     private int ticketCount;
 
     public LottoTickets(String stringMoney) {
         int money = parsePositiveNumber(stringMoney);
-        if (money % PRICE_PER_TICKET != 0) {
+        if (money % TICKET_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_MONEY);
         }
 
         purchasePrice = money;
-        ticketCount = money / PRICE_PER_TICKET;
+        ticketCount = money / TICKET_PRICE;
     }
 
     public int getPurchasePrice() {

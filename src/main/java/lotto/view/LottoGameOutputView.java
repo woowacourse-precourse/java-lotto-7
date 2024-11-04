@@ -1,10 +1,10 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.LottoRank;
-import lotto.model.LottoRankCount;
-import lotto.model.LottoStatisticsDto;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.LottoRank;
+import lotto.model.dto.LottoRankCount;
+import lotto.model.dto.LottoStatisticsDto;
 
 public class LottoGameOutputView {
 
