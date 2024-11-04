@@ -7,7 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LotteryIssuerTest {
+class LottoIssuerTest {
 
     @Test
     @DisplayName("로또 구입 금액이 0원이면 예외가 발생한다.")

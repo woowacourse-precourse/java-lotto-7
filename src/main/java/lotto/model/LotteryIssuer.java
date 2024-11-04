@@ -1,24 +1,24 @@
 package lotto.model;
 
-import static lotto.model.Lottery.LOTTO_PRICE;
+import static lotto.model.Lotto.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoIssuer implements TicketIssuer {
+public class LotteryIssuer implements TicketIssuer {
     private int lotteryCount;
 
     @Override
     public List<Ticket> issue(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
         lotteryCount = purchaseAmount / LOTTO_PRICE;
-        List<Ticket> lottoTickets = new ArrayList<>();
+        List<Ticket> lotteries = new ArrayList<>();
         for (int i = 0; i < lotteryCount; i++) {
-            Lottery lottery = new Lottery(createRandomNumbers());
-            lottoTickets.add(lottery);
+            Lotto lotto = new Lotto(createRandomNumbers());
+            lotteries.add(lotto);
         }
-        return lottoTickets;
+        return lotteries;
     }
 
     @Override

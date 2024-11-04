@@ -1,4 +1,4 @@
-package lotto.machine.winnerdrawer;
+package lotto.model;
 
 public enum LotteryRank {
     FIRST(6, false, 2_000_000_000),  // 1등: 6개 번호 일치

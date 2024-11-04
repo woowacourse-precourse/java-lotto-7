@@ -1,28 +1,24 @@
-package lotto.machine.winnerdrawer;
+package lotto.model;
 
-import static lotto.machine.winnerdrawer.LotteryRank.getRank;
-import static lotto.machine.winnerdrawer.LotteryRank.values;
+import static lotto.model.LotteryRank.getRank;
+import static lotto.model.LotteryRank.values;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lotto.ticket.Lotto;
 
 public class LotteryDrawer extends WinnerDrawer {
 
-    private final List<Lotto> purchaseLotto;
+    private final List<Lotto> issuedLotto;
     private final Set<Integer> winningNumber;
     private final int bonusNumber;
     private final Map<LotteryRank, Integer> drawResult = new HashMap<>(5);
 
-    public LotteryDrawer(List<Lotto> purchaseLotto, Set<Integer> winningNumbers, int bonusNumber) {
-        validatePurchaseLotto(purchaseLotto);
-        validateWinningNumbers(winningNumbers);
-        validateBonusNumber(bonusNumber);
+    public LotteryDrawer(List<Lotto> issuedLotto, Set<Integer> winningNumbers, int bonusNumber) {
         initializeDrawResult();
-        this.purchaseLotto = purchaseLotto;
+        this.issuedLotto = issuedLotto;
         this.winningNumber = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -35,7 +31,7 @@ public class LotteryDrawer extends WinnerDrawer {
 
     @Override
     public void draw() {
-        for (Lotto lotto : purchaseLotto) {
+        for (Lotto lotto : issuedLotto) {
             Set<Integer> numbers = new HashSet<>(lotto.getNumbers());
             numbers.retainAll(winningNumber); // 당첨 번호와 일치하는 숫자만 남기고 제거
 
@@ -50,31 +46,26 @@ public class LotteryDrawer extends WinnerDrawer {
         }
     }
 
-    private void validatePurchaseLotto(List<Lotto> purchaseLotto) {
-        if (purchaseLotto == null || purchaseLotto.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 구매한 로또가 없습니다.");
-        }
-    }
-
-    private void validateWinningNumbers(Set<Integer> winningNumbers) {
+    public static void validateWinningNumbers(Set<Integer> winningNumbers) {
         if (winningNumbers == null || winningNumbers.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호가 없습니다.");
+            throw new IllegalArgumentException("당첨 번호가 없습니다.");
         }
         if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야합니다.");
+            throw new IllegalArgumentException("당첨 번호는 6개여야합니다.");
         }
         if (winningNumbers.stream().toList().stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("당첨 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
     }
 
-    private void validateBonusNumber(int bonusNumber) {
+    public static void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 1에서 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("보너스 숫자는 1에서 45 사이의 숫자여야 합니다.");
         }
     }
 
     public Map<LotteryRank, Integer> getDrawResult() {
         return drawResult;
     }
+
 }

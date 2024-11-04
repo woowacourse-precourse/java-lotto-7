@@ -18,7 +18,7 @@ import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LotteryDrawerTest {
+class LottoDrawerTest {
 
     private final Set<Integer> winningNumber = new HashSet<>(Set.of(1, 2, 3, 4, 5, 6));
 
@@ -95,8 +95,8 @@ class LotteryDrawerTest {
     void testInitializeDrawResult() {
         // given
         int bonusNumber = 7;
-        Lottery lottery = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6));
-        List<Lottery> lotteries = List.of(lottery);
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        List<Lotto> lotteries = List.of(lotto);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -122,8 +122,8 @@ class LotteryDrawerTest {
     void testWhenFirstPrize() {
         // given
         int bonusNumber = 7;
-        Lottery lottery = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
-        List<Lottery> lotteries = List.of(lottery);
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
+        List<Lotto> lotteries = List.of(lotto);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -144,9 +144,9 @@ class LotteryDrawerTest {
     void testWhenSecondPrize() {
         // given
         int bonusNumber = 7;
-        Lottery lottery1 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
-        Lottery lottery2 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
-        List<Lottery> lotteries = Arrays.asList(lottery1, lottery2);
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
+        List<Lotto> lotteries = Arrays.asList(lotto1, lotto2);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -167,10 +167,10 @@ class LotteryDrawerTest {
     void testWhenThirdPrize() {
         // given
         int bonusNumber = 7;
-        Lottery lottery1 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
-        Lottery lottery2 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
-        Lottery lottery3 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
-        List<Lottery> lotteries = Arrays.asList(lottery1, lottery2, lottery3);
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
+        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
+        List<Lotto> lotteries = Arrays.asList(lotto1, lotto2, lotto3);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -191,11 +191,11 @@ class LotteryDrawerTest {
     void testWhenFourthPrize() {
         // given
         int bonusNumber = 7;
-        Lottery lottery1 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
-        Lottery lottery2 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
-        Lottery lottery3 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
-        Lottery lottery4 = new Lottery(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
-        List<Lottery> lotteries = Arrays.asList(lottery1, lottery2, lottery3, lottery4);
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
+        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
+        Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
+        List<Lotto> lotteries = Arrays.asList(lotto1, lotto2, lotto3, lotto4);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -216,12 +216,12 @@ class LotteryDrawerTest {
     void testWhenFifthPrize() {
         // given
         int bonusNumber = 7;
-        Lottery lottery1 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
-        Lottery lottery2 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
-        Lottery lottery3 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
-        Lottery lottery4 = new Lottery(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
-        Lottery lottery5 = new Lottery(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
-        List<Lottery> lotteries = Arrays.asList(lottery1, lottery2, lottery3, lottery4, lottery5);
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
+        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
+        Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
+        Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
+        List<Lotto> lotteries = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -242,10 +242,10 @@ class LotteryDrawerTest {
     void testWhenNoHit() {
         // given
         int bonusNumber = 7;
-        Lottery lottery1 = new Lottery(Arrays.asList(1, 2, 8, 9, 10, 11));  // 일치하는 숫자 2개
-        Lottery lottery2 = new Lottery(Arrays.asList(1, 8, 9, 10, 11, 12)); // 일치하는 숫자 1개
-        Lottery lottery3 = new Lottery(Arrays.asList(8, 9, 10, 11, 12, 13)); // 일치하는 숫자 0개
-        List<Lottery> lotteries = Arrays.asList(lottery1, lottery2, lottery3);
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 8, 9, 10, 11));  // 일치하는 숫자 2개
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 8, 9, 10, 11, 12)); // 일치하는 숫자 1개
+        Lotto lotto3 = new Lotto(Arrays.asList(8, 9, 10, 11, 12, 13)); // 일치하는 숫자 0개
+        List<Lotto> lotteries = Arrays.asList(lotto1, lotto2, lotto3);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -266,13 +266,13 @@ class LotteryDrawerTest {
     void testWhenDuplicatedFirstRank() {
         // given
         int bonusNumber = 7;
-        Lottery lottery1 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
-        Lottery lottery2 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
-        Lottery lottery3 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
-        Lottery lottery4 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
-        Lottery lottery5 = new Lottery(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
-        Lottery lottery6 = new Lottery(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
-        List<Lottery> lotteries = Arrays.asList(lottery1, lottery2, lottery3, lottery4, lottery5, lottery6);
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
+        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
+        Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
+        Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
+        Lotto lotto6 = new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
+        List<Lotto> lotteries = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -293,13 +293,13 @@ class LotteryDrawerTest {
     void testWhenDuplicatedSecondRank() {
         // given
         int bonusNumber = 7;
-        Lottery lottery1 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
-        Lottery lottery2 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
-        Lottery lottery3 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
-        Lottery lottery4 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
-        Lottery lottery5 = new Lottery(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
-        Lottery lottery6 = new Lottery(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
-        List<Lottery> lotteries = Arrays.asList(lottery1, lottery2, lottery3, lottery4, lottery5, lottery6);
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
+        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
+        Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
+        Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
+        Lotto lotto6 = new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
+        List<Lotto> lotteries = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -320,13 +320,13 @@ class LotteryDrawerTest {
     void testWhenDuplicatedThirdRank() {
         // given
         int bonusNumber = 7;
-        Lottery lottery1 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
-        Lottery lottery2 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
-        Lottery lottery3 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 9)); // 3등 당첨
-        Lottery lottery4 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
-        Lottery lottery5 = new Lottery(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
-        Lottery lottery6 = new Lottery(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
-        List<Lottery> lotteries = Arrays.asList(lottery1, lottery2, lottery3, lottery4, lottery5, lottery6);
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
+        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 9)); // 3등 당첨
+        Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
+        Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
+        Lotto lotto6 = new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
+        List<Lotto> lotteries = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -347,13 +347,13 @@ class LotteryDrawerTest {
     void testWhenDuplicatedFourthRank() {
         // given
         int bonusNumber = 7;
-        Lottery lottery1 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
-        Lottery lottery2 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
-        Lottery lottery3 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
-        Lottery lottery4 = new Lottery(Arrays.asList(1, 2, 3, 4, 9, 10)); // 4등 당첨
-        Lottery lottery5 = new Lottery(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
-        Lottery lottery6 = new Lottery(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
-        List<Lottery> lotteries = Arrays.asList(lottery1, lottery2, lottery3, lottery4, lottery5, lottery6);
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
+        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
+        Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 9, 10)); // 4등 당첨
+        Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
+        Lotto lotto6 = new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
+        List<Lotto> lotteries = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -374,13 +374,13 @@ class LotteryDrawerTest {
     void testWhenDuplicatedFifthRank() {
         // given
         int bonusNumber = 7;
-        Lottery lottery1 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
-        Lottery lottery2 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
-        Lottery lottery3 = new Lottery(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
-        Lottery lottery4 = new Lottery(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
-        Lottery lottery5 = new Lottery(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
-        Lottery lottery6 = new Lottery(Arrays.asList(1, 2, 3, 11, 12, 13)); // 5등 당첨
-        List<Lottery> lotteries = Arrays.asList(lottery1, lottery2, lottery3, lottery4, lottery5, lottery6);
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등 당첨
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 당첨
+        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등 당첨
+        Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9)); // 4등 당첨
+        Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10)); // 5등 당첨
+        Lotto lotto6 = new Lotto(Arrays.asList(1, 2, 3, 11, 12, 13)); // 5등 당첨
+        List<Lotto> lotteries = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
@@ -401,11 +401,11 @@ class LotteryDrawerTest {
     void testWhenAllLottoFailToWin() {
         // given
         int bonusNumber = 7;
-        Lottery lottery1 = new Lottery(Arrays.asList(7, 8, 9, 10, 11, 12));
-        Lottery lottery2 = new Lottery(Arrays.asList(7, 8, 9, 10, 11, 13));
-        Lottery lottery3 = new Lottery(Arrays.asList(7, 8, 9, 10, 11, 14));
-        Lottery lottery4 = new Lottery(Arrays.asList(7, 8, 9, 10, 11, 15));
-        List<Lottery> lotteries = Arrays.asList(lottery1, lottery2, lottery3, lottery4);
+        Lotto lotto1 = new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12));
+        Lotto lotto2 = new Lotto(Arrays.asList(7, 8, 9, 10, 11, 13));
+        Lotto lotto3 = new Lotto(Arrays.asList(7, 8, 9, 10, 11, 14));
+        Lotto lotto4 = new Lotto(Arrays.asList(7, 8, 9, 10, 11, 15));
+        List<Lotto> lotteries = Arrays.asList(lotto1, lotto2, lotto3, lotto4);
         LotteryDrawer lotteryDrawer = new LotteryDrawer(lotteries, winningNumber, bonusNumber);
 
         // when
