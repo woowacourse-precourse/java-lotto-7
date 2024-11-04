@@ -23,6 +23,9 @@ public class LottoService {
     }
 
     public LottoStatistics getStatistics() {
+        if (statistics == null) {
+            ExceptionHandler.throwIllegalStateException(ErrorMessage.STATISTICS_NOT_CALCULATED);
+        }
         return statistics;
     }
 
