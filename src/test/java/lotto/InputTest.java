@@ -54,4 +54,11 @@ public class InputTest {
 		String number = "왁";
 		assertThrows(IllegalArgumentException.class, () -> input.validateInteger(number));
 	}
+
+	@Test
+	@DisplayName("당첨번호에 중복이 존재하는지 검증 테스트")
+	void 당첨번호에_중복이_존재하는지_검증하는_테스트() {
+		String numbers = "1,2,3,4,5,5";
+		assertThrows(IllegalArgumentException.class, () -> input.validateDuplicate(numbers));
+	}
 }
