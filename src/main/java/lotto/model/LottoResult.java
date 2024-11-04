@@ -26,15 +26,20 @@ public enum LottoResult {
     public static LottoResult getLottoResult(int matchCount, boolean hasBonus) {
         if (matchCount == 6) {
             return SIX;
-        } else if (matchCount == 5 && hasBonus) {
+        }
+        if (matchCount == 5 && hasBonus) {
             return FIVE_BONUS;
-        } else if (matchCount == 5) {
+        }
+        if (matchCount == 5) {
             return FIVE;
-        } else if (matchCount == 4) {
+        }
+        if (matchCount == 4) {
             return FOUR;
-        } else if (matchCount == 3) {
+        }
+        if (matchCount == 3) {
             return THREE;
         }
         return null;
     }
+
 }
