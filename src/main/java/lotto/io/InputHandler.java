@@ -43,9 +43,8 @@ public class InputHandler {
     }
 
     private static WinningNumbers getValidWinningNumbers() {
-        System.out.println(WINNING_NUMBERS_PROMPT);
-
         while (true) {
+            System.out.println(WINNING_NUMBERS_PROMPT);
             String input = Console.readLine();
 
             try {
@@ -53,15 +52,14 @@ public class InputHandler {
                 List<Integer> numbers = parseInput(input);
                 return new WinningNumbers(numbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage() + WINNING_NUMBERS_PROMPT);
+                System.out.println(e.getMessage());
             }
         }
     }
 
     private static BonusNumber getValidBonusNumber(WinningNumbers winningNumbers) {
-        System.out.println(BONUS_NUMBER_PROMPT);
-
         while (true) {
+            System.out.println(BONUS_NUMBER_PROMPT);
             String input = Console.readLine().trim();
 
             try {
@@ -69,7 +67,7 @@ public class InputHandler {
                 List<Integer> bonusNumbers = parseInput(input);
                 return new BonusNumber(bonusNumbers, winningNumbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage() + BONUS_NUMBER_PROMPT);
+                System.out.println(e.getMessage());
             }
         }
     }

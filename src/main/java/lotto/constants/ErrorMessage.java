@@ -28,6 +28,6 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return ERROR_PREFIX.message + " " + message + "\n\n";
+        return ERROR_PREFIX.message + " " + message + "\n";
     }
 }

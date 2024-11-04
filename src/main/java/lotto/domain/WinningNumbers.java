@@ -24,7 +24,7 @@ public class WinningNumbers {
 
     private static void validateNumbersDuplication(List<Integer> numbers) {
         if (hasDuplicateNumbers(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
 
