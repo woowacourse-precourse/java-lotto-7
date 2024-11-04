@@ -48,9 +48,9 @@ public class LottoService {
     public List<Integer> takeRankCount(List<Ticket> tickets, MainNumber mainNumber, BonusNumber bonusNumber) {
         List<Integer> mainValue = mainNumber.getNumbers();
         int bonusValue = bonusNumber.getNumber();
-        int[] TODO = countRank(tickets, mainValue, bonusValue);
+        int[] countRank = countRank(tickets, mainValue, bonusValue);
 
-        return Arrays.stream(TODO)
+        return Arrays.stream(countRank)
                 .boxed()
                 .collect(Collectors.toList());
     }

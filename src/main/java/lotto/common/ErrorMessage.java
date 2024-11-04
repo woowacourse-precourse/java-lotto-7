@@ -2,7 +2,6 @@ package lotto.common;
 
 public enum ErrorMessage {
     // TODO: 에러 세부화해서 클래스 추출?
-    // TODO: 이넘 정렬
     EMPTY_INPUT("[ERROR] 입력이 비어있습니다."),
     WINNING_NUMBER_SIZE("[ERROR] 로또 번호는 6개여야 합니다."),
     INTEGER_RANGE_EXCESS("[ERROR] 입력 숫자가 가능 범위를 초과합니다."),

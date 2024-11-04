@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class TicketManager { // TODO: 이름 개선
+public class TicketManager {
     private static final int UNIT = 1000;
 
     private final Payment payment;
