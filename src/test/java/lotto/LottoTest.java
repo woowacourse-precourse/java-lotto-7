@@ -21,6 +21,10 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 빈_리스트_입력시_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
 }
