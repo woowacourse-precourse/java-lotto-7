@@ -42,15 +42,9 @@ public class Lotto {
     }
 
     public int getMatchCount(Lotto winningNumbers) {
-        int matchCount = 0;
-
-        for (int number : numbers) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
-        }
-
-        return matchCount;
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 
     public boolean isBonusMatch(int bonusNumber) {
