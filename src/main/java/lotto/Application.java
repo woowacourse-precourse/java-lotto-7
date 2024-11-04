@@ -55,6 +55,10 @@ public class Application {
         List<Integer> purchaseAmount = new ArrayList<>();
 
         for (String amount : lottoPurchaseAmount.split(",")) {
+            if (!amount.trim().matches("\\d+")){
+                throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자로만 입력이 가능합니다.");
+            }
+
             int parsedAmount = Integer.parseInt(amount.trim());
 
             if (parsedAmount % 1000 != 0) {
