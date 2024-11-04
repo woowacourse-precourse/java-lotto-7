@@ -27,11 +27,11 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = getValidatedPurchaseAmount();
+        PurchaseAmount purchaseAmount = generateValidatedPurchaseAmount();
         PurchasedLottos purchasedLottos = lottoVendingMachine.purchase(purchaseAmount);
         displayPurchasedLottos(purchasedLottos);
 
-        WinningLotto winningLotto = registerValidatedWinningLotto();
+        WinningLotto winningLotto = generateValidatedWinningLotto();
 
         LottoResult lottoResult = LottoResult.of(
                 purchasedLottos.calculateRankCounts(winningLotto)
