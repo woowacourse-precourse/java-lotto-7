@@ -20,17 +20,6 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
-    private static void validateIsNull(final List<Lotto> lottos) {
-        if (isNull(lottos)) {
-            throw nullArgument();
-        }
-        boolean hasNullObj = lottos.stream()
-                .anyMatch(Objects::isNull);
-        if (hasNullObj) {
-            throw nullArgument();
-        }
-    }
-
     public Stream<Lotto> initiateReadOnlyStream() {
         return lottos.stream();
     }
@@ -45,5 +34,16 @@ public class Lottos {
 
     private String formatBrackets(final String source) {
         return String.format("[%s]", source);
+    }
+
+    private static void validateIsNull(final List<Lotto> lottos) {
+        if (isNull(lottos)) {
+            throw nullArgument();
+        }
+        boolean hasNullObj = lottos.stream()
+                .anyMatch(Objects::isNull);
+        if (hasNullObj) {
+            throw nullArgument();
+        }
     }
 }
