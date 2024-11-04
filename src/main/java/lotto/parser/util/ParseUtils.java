@@ -1,10 +1,11 @@
 package lotto.parser.util;
 
+import lotto.exception.ExceptionMessages;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParseUtils {
-    public static final String INVALID_NUMBER_FORMAT_ERROR = "숫자 형식만 입력 가능합니다. 잘못된 형식: ";
 
     public static List<Integer> convertToNumbers(List<String> inputs) {
         List<Integer> convertedNumbers = new ArrayList<>();
@@ -15,9 +16,9 @@ public class ParseUtils {
         return convertedNumbers;
     }
 
-    public static List<String> removeWhitespace(String[] inputs) {
+    public static List<String> removeWhitespaceAndFormat(String[] inputs) {
         List<String> trimmedWinNumbers = new ArrayList<>();
-        for (String input : inputs ) {
+        for (String input : inputs) {
             trimmedWinNumbers.add(input.trim());
         }
         return trimmedWinNumbers;
@@ -29,10 +30,9 @@ public class ParseUtils {
 
     private static int validateParseNumberAndReturn(String input) {
         try {
-            int parsedInput = Integer.parseInt(input);
-            return parsedInput;
+            return Integer.parseInt(input);
         } catch (Exception e) {
-            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT_ERROR + input);
+            throw new IllegalArgumentException(ExceptionMessages.INVALID_NUMBER_FORMAT_ERROR);
         }
     }
 }

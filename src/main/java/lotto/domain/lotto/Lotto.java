@@ -24,13 +24,5 @@ public class Lotto {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ExceptionMessages.LOTTO_NUMBER_COUNT_ERROR);
         }
-        validateDuplication(numbers);
-    }
-
-    private void validateDuplication(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(ExceptionMessages.LOTTO_NUMBER_DUPLICATION_ERROR);
-        }
     }
 }

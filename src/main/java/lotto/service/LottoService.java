@@ -42,8 +42,11 @@ public class LottoService {
 
     public void recordWinningLotto(String winningNumbers, String bonusNumber) {
         List<Integer> parsedWinningNumbers = LottoParser.parseWinningNumbers(winningNumbers);
+        lottoValidator.validateLottoRange(parsedWinningNumbers);
         lottoValidator.validateLottoNumbersDuplication(parsedWinningNumbers);
         int parsedBonusNumber = ParseUtils.convertToNumber(bonusNumber);
+        lottoValidator.validateBonusLottoRange(parsedBonusNumber);
+        lottoValidator.validateBonusNumberInLottoNumber(parsedWinningNumbers, parsedBonusNumber);
 
         for (Lotto lotto : lottoManager.getLottos()) {
             int matchedCount = calculateEqualWinningNumberBySingleLotto(parsedWinningNumbers, lotto);

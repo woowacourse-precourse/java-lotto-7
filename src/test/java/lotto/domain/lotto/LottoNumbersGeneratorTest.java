@@ -43,6 +43,6 @@ public class LottoNumbersGeneratorTest {
 
         Assertions.assertThatThrownBy(() -> lottoNumbersGenerator.generateLottoNumbers(randomNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageMatching("\\[ERROR\\] 로또 번호는 중복될 수 없습니다. 중복된 번호: 5");
+                .hasMessageMatching("\\[ERROR\\] 로또 번호에 중복된 숫자가 있습니다.");
     }
 }

@@ -16,6 +16,18 @@ public class LottoValidator {
         }
     }
 
+    public void validateBonusLottoRange(int bonusNumber) {
+        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+            throw new IllegalArgumentException(ExceptionMessages.LOTTO_NUMBER_RANGE_ERROR + bonusNumber);
+        }
+    }
+
+    public void validateBonusNumberInLottoNumber(List<Integer> lottoNumbers, int bonusNumber) {
+        if (lottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionMessages.BONUS_LOTTO_NUMBER_IN_LOTTO_NUMBERS_ERROR);
+        }
+    }
+
     public void validateLottoNumbersDuplication(List<Integer> lottoNumbers) {
         long uniqueCount = lottoNumbers.stream().distinct().count();
         if (uniqueCount != lottoNumbers.size()) {

@@ -27,4 +27,9 @@ public class OutputView {
     public void printWhiteSpace() {
         System.out.println();
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
 }

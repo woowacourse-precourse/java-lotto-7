@@ -19,32 +19,82 @@ public class LottoController {
     }
 
     public void run() {
-        int buyLottoMoney = Integer.parseInt(inputView.inputBuyLottoMoney());
+        int buyLottoMoney = getBuyLottoMoney();
         int buyLottoCount = lottoService.getCalculateBuyLottoCount(buyLottoMoney);
 
         lottoService.callCreateLottos(buyLottoCount);
         outputView.printBuyLottoCount(buyLottoCount);
 
+        printLottos();
+
+        String winningNumbers = getWinningNumbers();
+        String bonusNumber = getBonusNumber();
+
+        processWinningNumbers(winningNumbers, bonusNumber);
+
+        printWinningStatistics(buyLottoMoney);
+    }
+
+    private int getBuyLottoMoney() {
+        while (true) {
+            try {
+                return Integer.parseInt(inputView.inputBuyLottoMoney());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                outputView.printWhiteSpace();
+            }
+        }
+    }
+
+    private String getWinningNumbers() {
+        while (true) {
+            try {
+                return inputView.inputWinningNumbers();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                outputView.printWhiteSpace();
+            }
+        }
+    }
+
+    private String getBonusNumber() {
+        while (true) {
+            try {
+                return inputView.inputBonusNumber();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                outputView.printWhiteSpace();
+            }
+        }
+    }
+
+    private void printLottos() {
         List<String> formattedLottoNumbers = lottoService.formatBuyLottoNumbersResult();
         for (String formattedLottoNumber : formattedLottoNumbers) {
             outputView.printLottoNumbers(formattedLottoNumber);
         }
         outputView.printWhiteSpace();
+    }
 
-        String winningNumbers = inputView.inputWinningNumbers();
-        outputView.printWhiteSpace();
-        String bonusNumber = inputView.inputBonusNumber();
-
+    private void processWinningNumbers(String winningNumbers, String bonusNumber) {
         lottoService.recordWinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private void printWinningStatistics(int buyLottoMoney) {
         List<WinningLottoResultDTO> formatWinningLottoResults = lottoService.formatWinningLottoResults();
 
         outputView.printWhiteSpace();
         outputView.printBeforeWinningLottoInfo();
         for (WinningLottoResultDTO winningLottoResultDTO : formatWinningLottoResults) {
-            outputView.printWinningLottoInfo(winningLottoResultDTO.getMatchedCount(), winningLottoResultDTO.getPrize(), winningLottoResultDTO.getCount());
+            outputView.printWinningLottoInfo(
+                    winningLottoResultDTO.getMatchedCount(),
+                    winningLottoResultDTO.getPrize(),
+                    winningLottoResultDTO.getCount()
+            );
         }
 
         double lottoRateOfReturn = lottoService.callCalculateLottoRateOfReturn(buyLottoMoney);
         outputView.printRateOfReturn(lottoRateOfReturn);
     }
 }
+

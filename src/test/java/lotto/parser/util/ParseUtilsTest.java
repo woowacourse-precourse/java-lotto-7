@@ -13,7 +13,7 @@ public class ParseUtilsTest {
         String[] inputs = {" 1 ", " 2", "3 "};
         List<String> expected = Arrays.asList("1", "2", "3");
 
-        List<String> result = ParseUtils.removeWhitespace(inputs);
+        List<String> result = ParseUtils.removeWhitespaceAndFormat(inputs);
 
         Assertions.assertThat(result).isEqualTo(expected);
     }
