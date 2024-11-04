@@ -5,13 +5,14 @@ import lotto.domain.Lotto;
 import lotto.domain.Revenue;
 import lotto.dto.WinningSummary;
 import lotto.exception.LottoException;
+import lotto.utils.PriceFormatter;
 
 public class OutputView {
     private final static String NEW_LINE = System.lineSeparator();
     private final static String INFORM_PURCHASE_LOTTO_MESSAGE = "%d개를 구매했습니다.";
     private final static String WINNING_STATISTICS_TITLE = "당첨 통계";
     private final static String SEPARATOR = "---";
-    private final static String RETURN_RATE_STAT = "총 수익률은 %.1f%%입니다.";
+    private final static String RETURN_RATE_STAT = "총 수익률은 %s%%입니다.";
 
 
     public static void printNewLine() {
@@ -46,6 +47,7 @@ public class OutputView {
     }
 
     public static void printReturnRate(Revenue revenue) {
-        System.out.printf(RETURN_RATE_STAT, revenue.getReturnRate());
+        String returnRate = PriceFormatter.formatToKoreanStyle(revenue.getReturnRate());
+        System.out.printf(RETURN_RATE_STAT, returnRate);
     }
 }
