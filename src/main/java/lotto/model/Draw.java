@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.validation.DrawValidation;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +16,7 @@ public class Draw {
         List<Integer> numberGroup = Arrays.stream(numbers)
                 .map(number -> Integer.parseInt(number))
                 .collect(Collectors.toList());
+        DrawValidation.validateWinningNumbersCount(numberGroup);
 
         this.winningNumbers = numberGroup;
         this.bonusNumber = Integer.parseInt(bonusNumber);
