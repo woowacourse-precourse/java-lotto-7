@@ -1,12 +1,18 @@
 package lotto.domain;
 
+import lotto.util.WinningLottoParser;
+
 import java.util.List;
 
 public class WinningLotto {
     private final List<Integer> numbers;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
+    public WinningLotto(String input, String bonusNumberInput) {
+
+        numbers = WinningLottoParser.parseWinningNumbers(input);
+
+
         validateNumbers(numbers);
         validateBonusNumber(numbers, bonusNumber);
         this.numbers = numbers;

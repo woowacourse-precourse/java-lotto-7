@@ -1,8 +1,6 @@
 package lotto.service;
 
 import lotto.domain.BuyingPrice;
-import lotto.util.BuyingPriceParser;
-import static lotto.util.BuyingPriceParser.toIntStringPriceParser;
 
 public class BuyingPriceService {
     public static int returnNumberOfLotto(BuyingPrice buyingPrice){
