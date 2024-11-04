@@ -6,6 +6,8 @@ import lotto.utils.StringParser;
 
 public class InputView {
     private static final String MONEY_INPUT = "구입 금액을 입력해 주세요.";
+    private static final String WINNING_NUMBERS_INPUT = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
 
     private static String input(String message) {
         System.out.println(message);
@@ -14,6 +16,14 @@ public class InputView {
 
     private static String moneyInput() {
         return input(MONEY_INPUT);
+    }
+
+    private static String winningNumbersInput() {
+        return input(WINNING_NUMBERS_INPUT);
+    }
+
+    private static String bonusNumberInput() {
+        return input(BONUS_NUMBER_INPUT);
     }
 
     public static int getMoney() {
