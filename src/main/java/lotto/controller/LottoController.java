@@ -42,7 +42,7 @@ public class LottoController {
     }
 
     private void printLottoDetails(Lottos lottos) {
-        outputView.printBuyLottoCount(lottos.getLottos().size());
+        outputView.printBuyLottoCount(lottos.getBuyLottoQuantity());
         outputView.printLottoNumbers(lottos);
     }
 
@@ -53,7 +53,7 @@ public class LottoController {
     }
 
     private Map<Rank, Integer> getLottoRank(Lottos lottos, WinNumber winNumber) {
-        return lottos.getLottoRank(winNumber);
+        return lottos.findLottoRanks(winNumber);
     }
 
     private void printResults(Map<Rank, Integer> lottoRank, long purchase) {

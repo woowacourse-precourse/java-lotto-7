@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottosCreator {
+    private final static Long LOTTO_PRICE = 1000L;
+
     public Lottos createLottos(Money money) {
         long canBuyQuantityOfLottos = getCanBuyQuantityOfLottos(money);
         List<List<Integer>> lottos = new ArrayList<>();
@@ -16,7 +18,7 @@ public class LottosCreator {
     }
 
     private static Long getCanBuyQuantityOfLottos(Money money) {
-        return money.divideByUnit(1000L);
+        return money.divideByUnit(LOTTO_PRICE);
     }
 
     private List<Integer> pickNumbersRange1To45() {

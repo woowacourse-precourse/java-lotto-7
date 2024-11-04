@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import static lotto.enumerate.ErrorPrint.INPUT_HAS_WRONG_PATTERN;
+import static lotto.enumerate.ErrorPrint.LOTTO_DOES_NOT_HAVE_CORRECT_SIZE;
 
 public class WinNumber {
 
@@ -46,7 +47,7 @@ public class WinNumber {
 
     private void validateWinNumber(String[] split) {
         if (split.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개이어야합니다.");
+            throw new IllegalArgumentException(LOTTO_DOES_NOT_HAVE_CORRECT_SIZE.getMsg());
         }
     }
 

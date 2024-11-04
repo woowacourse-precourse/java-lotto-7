@@ -17,6 +17,10 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
+    public int getBuyLottoQuantity() {
+        return lottos.size();
+    }
+
     public List<Lotto> getLottos() {
         return lottos;
     }
@@ -27,7 +31,7 @@ public class Lottos {
                 .collect(Collectors.toList());
     }
 
-    public Map<Rank, Integer> getLottoRank(WinNumber winNumber) {
+    public Map<Rank, Integer> findLottoRanks(WinNumber winNumber) {
         Map<Rank, Integer> currentRankSituationMap = new HashMap<>();
 
         for (Lotto lotto : lottos) {
