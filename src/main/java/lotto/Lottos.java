@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
@@ -11,6 +12,7 @@ public class Lottos {
     public Lottos(WinningLotto winningLotto, int price) {
         validate(price);
         this.winningLotto = winningLotto;
+        this.lottos = new ArrayList<>();
         for (int i = 0; i < price / 1000; i++) {
             this.lottos.add(new Lotto(getSixRandomNumbers()));
         }
@@ -34,5 +36,11 @@ public class Lottos {
         return lottos.stream()
                 .map(lotto -> winningLotto.getRank(lotto))
                 .toList();
+    }
+
+    private double getEarningRate() {
+        Result result = new Result(getRanks());
+        int totalPrize = result.getTotalPrize();
+        return Math.round((double) totalPrize / getPrice());
     }
 }
