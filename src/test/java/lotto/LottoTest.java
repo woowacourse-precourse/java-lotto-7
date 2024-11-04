@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.Domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,7 @@ class LottoTest {
 
     @DisplayName("입력받은 로또 번호를 당첨 번호와 비교하여 일치하는 수 개수 카운팅")
     @Test
-    void 입력받은_로또_번호를_당첨_번호와_비교하여_일치하는_수의_개수를_카운팅한다() {
+    void 입력받은_로또_번호를_당첨_번호와_비교하여_일치하는_수의_개수가_맞는지_확인() {
         // given
         List<Integer> winningNumbers = List.of(1,5,3,4,11,25);
 

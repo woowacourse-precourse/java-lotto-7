@@ -1,7 +1,7 @@
 package lotto.Controller;
 
-import Common.Rank;
-import lotto.Lotto;
+import lotto.Common.Rank;
+import lotto.Domain.Lotto;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
@@ -58,7 +58,6 @@ public class LottoController {
             if (bonus) bonusMatch = true;
         }
         Rank rank = getRank(matchedCount, bonusMatch);
-        rank.setPrizeCount();
         output.printWinningStat(rank, lotteryTickets.size());
     }
 

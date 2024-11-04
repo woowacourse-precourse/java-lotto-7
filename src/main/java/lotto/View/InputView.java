@@ -1,8 +1,8 @@
 package lotto.View;
-import Common.Formatter;
-import Common.Validator;
+import lotto.Common.Formatter;
+import lotto.Common.Validator;
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
+import lotto.Domain.Lotto;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,8 +1,7 @@
-package lotto;
+package lotto.Domain;
 
-import Common.Validator;
+import lotto.Common.Validator;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {

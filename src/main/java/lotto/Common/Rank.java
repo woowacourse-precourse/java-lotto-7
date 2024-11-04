@@ -1,4 +1,4 @@
-package Common;
+package lotto.Common;
 
 
 public enum Rank {
@@ -11,12 +11,10 @@ public enum Rank {
 
     private final int matchCount;
     private final int prize;
-    private int prizeCount = 0;
 
     Rank(int matchCount, int prize) {
         this.matchCount = matchCount;
         this.prize = prize;
-        this.prizeCount = 0;
     }
 
     public int getMatchCount() {
@@ -25,13 +23,5 @@ public enum Rank {
 
     public int getPrize() {
         return prize;
-    }
-
-    public void setPrizeCount() {
-        this.prizeCount = 1;
-    }
-
-    public int getPrizeCount() {
-        return prizeCount;
     }
 }
