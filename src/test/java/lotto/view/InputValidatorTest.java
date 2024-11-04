@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.MessageContainer.ERROR_LABEL;
+import static lotto.MessageContainer.ERROR_MESSAGE;
 import static lotto.MessageContainer.NEITHER_DIGIT_NOR_DELIMITER_ERROR;
 import static lotto.MessageContainer.NON_DIGIT_ERROR;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -17,7 +17,7 @@ class InputValidatorTest {
     void throwIllegalArgumentExceptionIfNonDigitCharIsIn(String input) {
         assertThatThrownBy(() -> new InputValidator().validateDigitOnly(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith(ERROR_LABEL)
+                .hasMessageStartingWith(ERROR_MESSAGE)
                 .hasMessage(NON_DIGIT_ERROR);
     }
 
@@ -35,7 +35,7 @@ class InputValidatorTest {
     void throwIllegalArgumentExceptionIfNonDigitNonDelimiterCharIsIn(String input) {
         assertThatThrownBy(() -> new InputValidator().validateDigitAndDelimiterOnly(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith(ERROR_LABEL)
+                .hasMessageStartingWith(ERROR_MESSAGE)
                 .hasMessage(NEITHER_DIGIT_NOR_DELIMITER_ERROR);
     }
 

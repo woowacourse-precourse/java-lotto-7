@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.MessageContainer.INVALID_PURCHASE_AMOUNT;
+
 import java.math.BigInteger;
 import java.util.List;
 
@@ -13,10 +15,19 @@ public class LottoSeller {
     }
 
     public LottoReceipt sellAsMuchAs(BigInteger amount) {
+        validateMultiplesOfLottoPrice(amount);
         LottoTicket lottoTicket = createLottoTicketFor(amount);
         return new LottoReceipt(amount, lottoTicket);
     }
 
+    private void validateMultiplesOfLottoPrice(BigInteger amount) {
+        BigInteger remainder = amount.remainder(BigInteger.valueOf(lottoPrice));
+        if ((amount.equals(BigInteger.ZERO)) || (!remainder.equals(BigInteger.ZERO))) {
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT);
+        }
+    }
+
+    //테스트 미작성
     public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         LottoTicket winningTicket = createLottoTicketFor(winningNumbers);
         return new WinningLotto(winningTicket, bonusNumber);

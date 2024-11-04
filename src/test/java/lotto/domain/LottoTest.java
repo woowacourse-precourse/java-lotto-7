@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static lotto.MessageContainer.COUNT_OF_LOTTO_NUMBERS_ERROR;
 import static lotto.MessageContainer.DUPLICATE_NUMBER_ERROR;
-import static lotto.MessageContainer.ERROR_LABEL;
+import static lotto.MessageContainer.ERROR_MESSAGE;
 import static lotto.MessageContainer.OUT_OF_RANGE_NUMBER_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,7 +22,7 @@ class LottoTest {
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith(ERROR_LABEL)
+                .hasMessageStartingWith(ERROR_MESSAGE)
                 .hasMessage(COUNT_OF_LOTTO_NUMBERS_ERROR);
     }
 
@@ -31,7 +31,7 @@ class LottoTest {
     void throwIllegalArgumentExceptionIfParameterSizeIsLessThan6() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith(ERROR_LABEL)
+                .hasMessageStartingWith(ERROR_MESSAGE)
                 .hasMessage(COUNT_OF_LOTTO_NUMBERS_ERROR);
     }
 
@@ -49,7 +49,7 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith(ERROR_LABEL)
+                .hasMessageStartingWith(ERROR_MESSAGE)
                 .hasMessage(DUPLICATE_NUMBER_ERROR);
     }
 
@@ -68,7 +68,7 @@ class LottoTest {
     void throwIllegalArgumentExceptionIfAnyNumberIsOutOfRange(int outOfRangeNumber) {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, outOfRangeNumber)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith(ERROR_LABEL)
+                .hasMessageStartingWith(ERROR_MESSAGE)
                 .hasMessage(OUT_OF_RANGE_NUMBER_ERROR);
     }
 
