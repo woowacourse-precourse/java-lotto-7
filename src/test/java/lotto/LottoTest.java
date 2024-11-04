@@ -11,9 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTest {
     Lotto lotto;
+    LottoGame lottoGame;
     @BeforeEach
     void setUp() {
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        lottoGame = new LottoGame();
     }
 
     @Test
@@ -34,7 +36,7 @@ class LottoTest {
     void 로또_번호에_보너스_번호가_포함되어_있는지_검증하는_테스트() {
         List<Integer> lottos = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 1;
-        assertEquals(lotto.isBonusMatch(lottos, bonusNumber), true);
+        assertEquals(lottoGame.isBonusMatch(lottos, bonusNumber), true);
     }
 
     @Test
@@ -43,6 +45,6 @@ class LottoTest {
         List<Integer> lottos = List.of(1, 2, 3, 4, 5, 9);
         List<Integer> luckyNumber = List.of(1, 2, 3, 4, 5, 7);
         int bonusNumber = 9;
-        assertEquals(lotto.getMatchCount(lottos, luckyNumber, bonusNumber), 6);
+        assertEquals(lottoGame.getMatchCount(lottos, luckyNumber, bonusNumber), 6);
     }
 }
