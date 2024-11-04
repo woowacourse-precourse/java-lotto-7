@@ -5,6 +5,7 @@ import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_NUMBE
 import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_REQUIRED_COUNT;
 import static lotto.config.constant.LottoNumberConstant.*;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +15,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
