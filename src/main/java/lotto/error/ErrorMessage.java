@@ -2,7 +2,6 @@ package lotto.error;
 
 public enum ErrorMessage {
 
-    PREFIX("[ERROR] "),
     NOT_1000WON_UNIT("로또 구입 금액을 1,000원 단위로 입력해 주세요."),
     EXCESS_PRICE("1인당 구입 가능한 로또 금액은 최대 100,000원입니다."),
     INPUT_BLANK("입력 문자열이 공백이 되어서는 안 됩니다."),
@@ -20,6 +19,6 @@ public enum ErrorMessage {
         this.message = message;
     }
     public String getMessage() {
-        return PREFIX.getMessage() + message;
+        return "[ERROR] " + message;
     }
 }
