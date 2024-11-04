@@ -95,21 +95,26 @@ public class LottoService {
 
 	private void validateNumberRange(int number) {
 		if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
-			throw new IllegalArgumentException(
-				MessageFormat.format(NUMBER_OUT_OF_RANGE.getMessage(), LOTTO_START_NUMBER, LOTTO_END_NUMBER));
+			String message = MessageFormat.format(NUMBER_OUT_OF_RANGE.getMessage(), LOTTO_START_NUMBER,
+				LOTTO_END_NUMBER);
+			System.out.println(message);
+			throw new IllegalArgumentException(message);
 		}
 	}
 
 	private void validateDuplicateNumbers(Set<Integer> numbers) {
 		if (numbers.size() != LOTTO_NUMBER_COUNT) {
-			throw new IllegalArgumentException(
-				MessageFormat.format(DUPLICATE_NUMBERS.getMessage(), LOTTO_NUMBER_COUNT));
+			String message = MessageFormat.format(DUPLICATE_NUMBERS.getMessage(), LOTTO_NUMBER_COUNT);
+			System.out.println(message);
+			throw new IllegalArgumentException(message);
 		}
 	}
 
 	private void validateDuplicateNumbers(int number) {
 		if (winningNumbers.contains(number)) {
-			throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
+			String message = BONUS_NUMBER_DUPLICATE.getMessage();
+			System.out.println(message);
+			throw new IllegalArgumentException(message);
 		}
 	}
 }
