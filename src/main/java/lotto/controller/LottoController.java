@@ -20,7 +20,7 @@ public class LottoController {
 
     public void startLotto() {
         while (true) {
-            // to output -> "구입 금액을 입력해주세요."
+            lottoOutput.requestMoney();
             try {
                 String moneyString = Console.readLine();
                 Long money = changeStringToMoney(moneyString);
