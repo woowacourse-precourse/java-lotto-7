@@ -87,4 +87,15 @@ public class WinningNumbersTest {
         });
         assertEquals(INVALID_WINNING_NUMBERS.message(), e.getMessage());
     }
+
+    @Test
+    void 당첨_번호에_45를_초과하는_숫자가_포함된다면_예외발생() {
+        // given
+        String winningNumbers = "1,2,3,4,5,46";
+        // when & then
+        LottoException e = assertThrows(LottoException.class, () -> {
+            WinningNumbersValidator.validate(winningNumbers);
+        });
+        assertEquals(INVALID_WINNING_NUMBERS.message(), e.getMessage());
+    }
 }
