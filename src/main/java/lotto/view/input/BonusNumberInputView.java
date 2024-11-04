@@ -6,5 +6,6 @@ public class BonusNumberInputView extends InputView {
     @Override
     protected void printInputMessage() {
         System.out.println(InputMessage.BONUS_NUMBER_INPUT_MESSAGE.getMessage());
+        System.out.println();
     }
 }
