@@ -111,7 +111,11 @@ public class Handler {
     // 결과 문자열에서 당첨 금액 추출
     int winningAmount = 0;
     // 정규식으로 "원" 앞에 있는 금액 추출
-    Pattern pattern = Pattern.compile("(\\d{1, 3}(,\\d{3})*)원");
+    // '\\d{1, 3}' : 숫자가 1~3자리로 시작
+    // ?:,\\d{3})* : 캡처하지 않는 그룹으로 쉼표 뒤 세 자리 숫자 패턴을 0회 이상 반복
+    // \\s*원 : 금액 뒤에 공백이 있을 경우를 고려해 원 앞에 \\s 추가
+    //  문자열 내 공백이 패턴에 포함되지 않아 매칭에 실패하면 matcher.find()가 false를 반환해 매칭 실패로 PatternSyntaxException -> gpt의 도움받아 정규식 개선, 구글링 시간 감소. 스스로 고민하고 해결하는 시간 줄어드는 mitigation <-> 우테코 미션 제출 시간 엄수 트레이드 오프
+    Pattern pattern = Pattern.compile("(\\d{1,3}(?:,\\d{3})*)\\s*원");
     Matcher matcher = pattern.matcher(result);
 
     // mathcer 패턴과 일치하는 부분이 있는지 확인
