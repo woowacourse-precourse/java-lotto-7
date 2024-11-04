@@ -7,6 +7,24 @@ public class WinningResultExtractor {
     public Map<Integer, Integer> totalMatchCounts = new HashMap<>();
     public int bonusCount = 0;
 
+    private enum WinningAmount {
+        THREE(5000),
+        FOUR(50000),
+        FIVE(1500000),
+        SIX(2000000000),
+        BONUS(30000000);
+
+        private final int amount;
+
+        WinningAmount(int amount) {
+            this.amount = amount;
+        }
+
+        public int getAmount() {
+            return amount;
+        }
+    }
+
     public void getWinningResult(List<Set<Integer>> totalLottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
         initializeMatchCounts(totalMatchCounts);
 
@@ -17,7 +35,7 @@ public class WinningResultExtractor {
     }
 
     private void initializeMatchCounts(Map<Integer, Integer> matchCounts) {
-        for (int key : Arrays.asList(1, 2, 3, 4, 5, 6)) {
+        for (int key : Arrays.asList(1, 2, 3, 4, 5, 6, 7)) {
             matchCounts.put(key, 0);
         }
     }
@@ -38,11 +56,11 @@ public class WinningResultExtractor {
     }
 
     private int getWinningAmount() {
-        return totalMatchCounts.get(3) * 5000
-                + totalMatchCounts.get(4) * 50000
-                + totalMatchCounts.get(5) * 1500000
-                + totalMatchCounts.get(6) * 2000000000
-                + bonusCount * 30000000;
+        return WinningAmount.THREE.getAmount() * totalMatchCounts.get(3)
+                + WinningAmount.FOUR.getAmount() * totalMatchCounts.get(4)
+                + WinningAmount.FIVE.getAmount() * totalMatchCounts.get(5)
+                + WinningAmount.SIX.getAmount() * totalMatchCounts.get(6)
+                + WinningAmount.BONUS.getAmount() * bonusCount;
     }
 
     public String getWinningRate(int purchaseAmount) {
