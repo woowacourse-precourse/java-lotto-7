@@ -25,15 +25,13 @@ public class LottoController {
         Lottos lottos = lottoService.buyLottos(inputPrice());
         printBoughtLottoInfo(lottos);
         WinningLotto winningLotto = inputWinningLotto();
-        outputView.printStatistics(LottoStatistics.from(
-                winningLotto,
-                lottos
-        ));
+        LottoStatistics lottoStatistics = lottoService.getStatistics(winningLotto, lottos);
+        outputView.printStatistics(lottoStatistics);
     }
 
     private WinningLotto inputWinningLotto() {
         Lotto lotto = inputDrawLotto();
-        return handleInput(() -> new WinningLotto(
+        return handleInput(() -> lottoService.generateWinningLotto(
                 lotto,
                 inputBonusNumber()
         ));
@@ -43,7 +41,7 @@ public class LottoController {
         return handleInput(() -> {
             outputView.printInputBonusNumber();
             String bonusNumber = inputView.readBonusNumber();
-            return new BonusNumber(parseLottoNumberInteger(bonusNumber));
+            return lottoService.generateBonusNumber(parseLottoNumberInteger(bonusNumber));
         });
     }
 
@@ -51,7 +49,7 @@ public class LottoController {
         return handleInput(() -> {
             outputView.printInputWinningNumbers();
             String winningNumber = inputView.readWinningLottoNumber();
-            return new Lotto(parseLottoNumber(winningNumber));
+            return lottoService.generateLotto(parseLottoNumber(winningNumber));
         });
     }
 
