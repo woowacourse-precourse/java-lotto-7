@@ -1,5 +1,6 @@
 package controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -28,12 +29,16 @@ public class LottoController {
     }
 
     public void startLottoGame() {
-        BigDecimal purchaseAmount = readPurchaseAmount();
-        BigDecimal purchaseQuantity = calculateAndPrintPurchaseQuantity(purchaseAmount);
-        Lottos lottos = generateAndPrintLottos(purchaseQuantity);
-        LottoPurchaseInfo lottoPurchaseInfo = createLottoPurchaseInfo(purchaseAmount);
-        LottoResult lottoResult = calculateAndPrintLottoResult(lottos, lottoPurchaseInfo);
-        calculateAndPrintReturnOnInvestment(lottoPurchaseInfo, lottoResult);
+        try {
+            BigDecimal purchaseAmount = readPurchaseAmount();
+            BigDecimal purchaseQuantity = calculateAndPrintPurchaseQuantity(purchaseAmount);
+            Lottos lottos = generateAndPrintLottos(purchaseQuantity);
+            LottoPurchaseInfo lottoPurchaseInfo = createLottoPurchaseInfo(purchaseAmount);
+            LottoResult lottoResult = calculateAndPrintLottoResult(lottos, lottoPurchaseInfo);
+            calculateAndPrintReturnOnInvestment(lottoPurchaseInfo, lottoResult);
+        } finally {
+            Console.close();
+        }
     }
 
     private BigDecimal readPurchaseAmount() {
