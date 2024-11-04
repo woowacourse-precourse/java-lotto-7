@@ -46,7 +46,8 @@ public class LottoService {
     }
 
     public WinningLotto issueWinningLotto(List<Integer> winningNumber, int bonusNumber) {
-        Collections.sort(winningNumber);
-        return new WinningLotto(bonusNumber,winningNumber);
+        List<Integer> sortedWinningNumbers = new ArrayList<>(winningNumber);
+        Collections.sort(sortedWinningNumbers); // 정렬
+        return new WinningLotto(bonusNumber, sortedWinningNumbers);
     }
 }
