@@ -38,35 +38,13 @@ public class Controller {
         output.printPurchasedLottos(purchasedLotto);
 
         List<Integer> winningNumbers = parser.getWinningNumbers();
-        int bonusNumber = getBonusNumber(winningNumbers);
+        int bonusNumber = parser.getBonusNumber(winningNumbers);
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-        Statistics statistics = calculateStatistics(purchasedLotto, winningLotto);
+        Statistics statistics = lottoService.calculateStatistics(purchasedLotto, winningLotto);
 
-        printStatistics(statistics, purchaseAmount);
-    }
-
-    private int getBonusNumber(List<Integer> winningNumbers) {
-        while (true) {
-            try {
-                output.printPrompt(Prompt.ENTER_BONUS_NUMBER);
-                String bonusNumberInput = input.getInput();
-                int bonusNumber = Integer.parseInt(bonusNumberInput);
-                validator.validateBonusNumber(bonusNumber, winningNumbers);
-                return bonusNumber;
-            } catch (NumberFormatException e) {
-                output.printErrorMessage("보너스 번호는 숫자여야 합니다.");
-            } catch (IllegalArgumentException e) {
-                output.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    private Statistics calculateStatistics(List<Lotto> purchasedLotto, WinningLotto winningLotto) {
-        return lottoService.calculateStatistics(purchasedLotto, winningLotto);
-    }
-
-    private void printStatistics(Statistics statistics, int purchaseAmount) {
         output.printStatistics(statistics, purchaseAmount);
     }
+
+
 }
