@@ -30,6 +30,6 @@ public enum Rank {
                 return rank;
             }
         }
-        throw new IllegalArgumentException(ERROR_NO_MATCHING_RANK);
+        return NONE;
     }
 }
