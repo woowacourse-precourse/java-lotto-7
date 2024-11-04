@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.simulation;
 
 public class LottoSimulator {
     public void run() {
