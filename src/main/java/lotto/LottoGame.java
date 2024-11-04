@@ -41,7 +41,7 @@ public class LottoGame {
 
     private LottoTicket draw(PurchaseAmount purchaseAmount) {
         NumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
-        
+
         LottoDrawer lottoDrawer = new LottoDrawer(purchaseAmount, randomNumbersGenerator);
         LottoTicket lottoTicket = lottoDrawer.generateLottos();
 
@@ -51,7 +51,7 @@ public class LottoGame {
 
     private WinningCombination announceResults() {
         Lotto winningLotto = retryUntilValid(() -> {
-            List<Integer> winningNumbers = input.readWinningLotto();
+            List<Integer> winningNumbers = input.readWinningNumbers();
             return new Lotto(winningNumbers);
         });
 

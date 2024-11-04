@@ -17,6 +17,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -29,6 +30,14 @@ public class Lotto {
         for (int number : numbers) {
             if (Collections.frequency(numbers, number) >= 2) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            }
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
             }
         }
     }

@@ -11,7 +11,7 @@ public class Input {
         return Console.readLine();
     }
 
-    public List<Integer> readWinningLotto() {
+    public List<Integer> readWinningNumbers() {
         System.out.println("\n" + "당첨 번호를 입력해주세요.");
         String rawWinningNumbers = Console.readLine();
         return parseToNumbers(rawWinningNumbers);
