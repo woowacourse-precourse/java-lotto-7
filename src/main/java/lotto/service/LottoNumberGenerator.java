@@ -5,19 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import static lotto.constatnt.LottoConstants.*;
 
 public class LottoNumberGenerator {
-
-    private static final int LOTTO_NUMBER_MIN = 1;
-    private static final int LOTTO_NUMBER_MAX = 45;
-    private static final int LOTTO_NUMBERS_COUNT = 6;
-    private static final int START_INDEX = 0;
 
     public Lottos generateLottoNumbers(int lottoCount) {
         List<Lotto> allLottoNumbers = new ArrayList<>();
 
-        for (int count = START_INDEX; count < lottoCount; count++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBERS_COUNT);
+        for (int count = 0; count < lottoCount; count++) {
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_SIZE);
             allLottoNumbers.add(new Lotto(lottoNumbers));
         }
 
