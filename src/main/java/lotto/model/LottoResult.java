@@ -32,9 +32,6 @@ public class LottoResult {
             int matchCount = checkTickets(ticket, winningNumbers);
             boolean isBonus = ticket.getNumbers().contains(bonusNumber);
 
-            if (isBonus) {
-                matchCount++;
-            }
             Rank rank = Rank.createLottoRank(matchCount, isBonus);
             ranks.put(rank, ranks.get(rank) + 1);
         }
