@@ -10,7 +10,7 @@ public class BonusNumberInput {
     private static final int MAX_NUMBER = 45;
 
     public static int requestBonusNumber(List<Integer> winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         return parseAndValidateBonusNumber(input, winningNumbers);
     }
