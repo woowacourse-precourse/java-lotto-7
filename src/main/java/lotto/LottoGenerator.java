@@ -4,15 +4,15 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.common.LottoNumber;
+import lotto.common.LottoNumbers;
 
 public class LottoGenerator {
 
     public Lotto random() {
         final List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                LottoNumber.START.getNumber(),
-                LottoNumber.END.getNumber(),
-                LottoNumber.SIZE.getNumber()
+                LottoNumbers.START.get(),
+                LottoNumbers.END.get(),
+                LottoNumbers.SIZE.get()
         );
         final List<LottoNum> lottoNums = this.mapToLottoNumbers(numbers);
         return new Lotto(lottoNums);

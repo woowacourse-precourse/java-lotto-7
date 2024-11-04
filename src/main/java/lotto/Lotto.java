@@ -2,8 +2,7 @@ package lotto;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import lotto.common.LottoNumber;
+import lotto.common.LottoNumbers;
 import lotto.exception.LottoArgumentException;
 
 public class Lotto {
@@ -20,8 +19,8 @@ public class Lotto {
     }
 
     private void validateSize(final List<LottoNum> numbers) {
-        if (numbers.size() != LottoNumber.SIZE.getNumber()) {
-            throw new LottoArgumentException("로또 번호는 " + LottoNumber.SIZE.getNumber() + "개여야 합니다.");
+        if (numbers.size() != LottoNumbers.SIZE.get()) {
+            throw new LottoArgumentException("로또 번호는 " + LottoNumbers.SIZE.get() + "개여야 합니다.");
         }
     }
 

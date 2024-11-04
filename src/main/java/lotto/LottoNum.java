@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.Objects;
-import lotto.common.LottoNumber;
+import lotto.common.LottoNumbers;
 import lotto.exception.LottoArgumentException;
 
 public class LottoNum {
@@ -25,9 +25,9 @@ public class LottoNum {
 
     private void validateRange(final String lottoNumber) {
         final int number = Integer.parseInt(lottoNumber);
-        if (number < LottoNumber.START.getNumber() || number > LottoNumber.END.getNumber()) {
+        if (number < LottoNumbers.START.get() || number > LottoNumbers.END.get()) {
             throw new LottoArgumentException(
-                    "로또 숫자는 " + LottoNumber.START.getNumber() + "에서 " + LottoNumber.END.getNumber() + " 까지 입니다.");
+                    "로또 숫자는 " + LottoNumbers.START.get() + "에서 " + LottoNumbers.END.get() + " 까지 입니다.");
         }
     }
 
