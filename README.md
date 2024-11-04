@@ -1,5 +1,5 @@
 ️3️⃣ 프리코스 3주차 미션 - 로또
-
+## ✨기능
 간단한 로또 발매기를 구현한다.
 
 로또 번호의 숫자 범위는 1~45까지이다.
@@ -19,7 +19,7 @@
 Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 
-## 구현할 기능 목록
+## 🌟 구현 기능 목록
 기능 목록
 1. 입력 
    - [x] 구입 금액 입력
@@ -64,7 +64,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 6. 예외 처리 기능
    - [x] 입력 예외 처리
    - [x] 구입 금액, 당첨 번호, 보너스 번호가 유효하지 않은 경우 적절한 예외 메시지를 출력하고 재입력을 요청한다.
-   - [x]IllegalArgumentException 처리
+   - [x] IllegalArgumentException 처리
    - [x] 예외 발생 시 [ERROR]로 시작하는 에러 메시지를 출력하고 해당 부분부터 다시 입력받도록 한다.
    
 7. Prize Enum 관리 기능
