@@ -28,6 +28,10 @@ public class AppConfig {
     }
 
     private LottoService getLottoService() {
-        return new LottoService(new LottoGenerator());
+        return new LottoService(getLottoGenerator());
+    }
+
+    private LottoGenerator getLottoGenerator() {
+        return new LottoGenerator();
     }
 }
