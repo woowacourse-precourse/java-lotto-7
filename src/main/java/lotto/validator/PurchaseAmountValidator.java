@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.constants.Constants;
+import lotto.constants.LottoConstants;
 
 public class PurchaseAmountValidator {
 
@@ -14,6 +14,6 @@ public class PurchaseAmountValidator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 입력이 잘못되었습니다. 숫자로만 입력해 주세요.");
         }
-        return purchaseAmount % Constants.PURCHASE_UNIT == 0;
+        return purchaseAmount % LottoConstants.PURCHASE_UNIT == 0;
     }
 }
