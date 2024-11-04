@@ -16,6 +16,14 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers.getLottoNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateBonusNumberDuplicate(Lotto winningNumbers, int bonusNumber) {
         if (winningNumbers.getLottoNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 없는 숫자여야 합니다.");
