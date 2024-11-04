@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,31 +41,40 @@ public class LottoView {
     }
 
     public int readBuyingLottoCount(){
+        try {
+            int money = 0;
+            String rawMoney = this.readMoney();
+            money = this.parseInt(rawMoney);
+            return money/ LottoView.LOTTO_PRICE;
+        }catch (IllegalArgumentException exception){
+            return readBuyingLottoCount();
+        }
 
-        String rawMoney = this.readMoney();
-        int money = this.parseInt(rawMoney);
 
-        return money/ LottoView.LOTTO_PRICE;
     }
 
     public List<Integer> readWinningNumbers(){
         guideInputWinningNumbers();
-
         String rawNumbers = Console.readLine();
-        Validator.validateBlankString(rawNumbers);
-        String[] rawNumberList = rawNumbers.split(LottoView.DELIMITERS);
-
-        return transformToIntegerList(rawNumberList);
+        try {
+            Validator.validateBlankString(rawNumbers);
+            String[] rawNumberList = rawNumbers.split(LottoView.DELIMITERS);
+            return transformToIntegerList(rawNumberList);
+        }catch (IllegalArgumentException exception){
+            return readWinningNumbers();
+        }
     }
 
     public int readBonusNumber(){
         guideInputBonusNumber();
-
         String rawBonusNumber = Console.readLine();
+        try {
+            Validator.validateBlankString(rawBonusNumber);
+            return this.parseInt(rawBonusNumber);
+        }catch (IllegalArgumentException exception){
+            return readBonusNumber();
+        }
 
-        Validator.validateBlankString(rawBonusNumber);
-
-        return this.parseInt(rawBonusNumber);
     }
 
     public void printBoughtLottoInfo(List<Lotto> lottos){

@@ -39,6 +39,7 @@
   - [ ] read input winning number and **bonus number from user**
   - [ ] print bought Lotto info
   - [ ] print winning Lotto info from bough Lotto info
+  - [ ] repeat read input when input is invalid
 
 - handle user request
   - [ ] deliver user request and info 
