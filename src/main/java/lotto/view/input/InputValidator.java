@@ -18,4 +18,19 @@ public class InputValidator {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
     }
+
+    public static int validateNumber(String input) {
+        try {
+            int number = Integer.parseInt(input);
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
+        }
+    }
+
+    public static void validateContainBlank(String input){
+        if (input.contains(" ")) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CONTAIN_BLANK.getMessage());
+        }
+    }
 }
