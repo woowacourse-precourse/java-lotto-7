@@ -2,8 +2,8 @@ package lotto.service;
 
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
-import lotto.reposi.InMemoryLottoRepository;
-import lotto.reposi.LottoRepository;
+import lotto.repository.InMemoryLottoRepository;
+import lotto.repository.LottoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
