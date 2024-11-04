@@ -7,9 +7,6 @@ import java.util.*;
 
 public class LottoService {
 
-//    private StringParser stringParser = new StringParser();
-
-
     public Map<LottoRank, Integer> calculateStatistic(List<Integer> winningNumbers, int bonusNumber, List<List<Integer>> lottos) {
 
         Map<LottoRank, Integer> result = new HashMap<>();

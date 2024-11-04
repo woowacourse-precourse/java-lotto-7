@@ -8,33 +8,28 @@ public class LottoController {
     public View view;
     public LottoService lottoService;
 
-    public StringParser stringParser;
-
-    LottoController(View view, LottoService lottoService, StringParser stringParser) {
+    LottoController(View view, LottoService lottoService) {
         this.view = view;
         this.lottoService = lottoService;
-        this.stringParser = stringParser;
     }
 
     public void run() {
 
-        String purchaseAmount = view.printAndgetPurchaseAmount();
-        int amount = lottoService.calCulateLottoAmount(stringParser.convertStringToInt(purchaseAmount));
+        int purchaseAmount = view.printAndgetPurchaseAmount();
+        view.printNumberOfLotto(purchaseAmount);
 
-        view.printNumberOfLotto(amount);
-
-        List<List<Integer>> lottos = lottoService.publishLotto(amount);
+        List<List<Integer>> lottos = lottoService.publishLotto(purchaseAmount);
         view.printLottos(lottos);
 
-        String winningNumber = view.getLottoNumber();
-        Lotto lotto = new Lotto(stringParser.convertStringToIntegerList(winningNumber));
+
+        Lotto lotto = new Lotto(view.getLottoNumber());
 
         String bonusNumber = view.getBonusNumber();
 
         Map<LottoRank, Integer> lottoRankMap = lottoService.calculateStatistic(lotto.getNumbers(), Integer.parseInt(bonusNumber), lottos);
         view.printStaticsOfWinning(lottoRankMap.get(LottoRank.Fifth), lottoRankMap.get(LottoRank.Fourth), lottoRankMap.get(LottoRank.Third), lottoRankMap.get(LottoRank.Second), lottoRankMap.get(LottoRank.First));
 
-        double rateOfReturnMoney = lottoService.calculateRateOfReturnMoney(lottoRankMap, amount * 1000);
+        double rateOfReturnMoney = lottoService.calculateRateOfReturnMoney(lottoRankMap, purchaseAmount);
         view.printRateOfReturnMoney(rateOfReturnMoney);
 
     }

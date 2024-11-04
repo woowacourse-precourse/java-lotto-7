@@ -19,14 +19,24 @@ public class View {
 
     private static final String RATE_OF_RETURN_MONEY = "총 수익률은 %f%입니다.";
 
-    public String printAndgetPurchaseAmount(){
+    private StringParser stringParser = new StringParser();
+
+    public int printAndgetPurchaseAmount(){
+
         System.out.println(PURCHASE_AMOUNT_PROMPT);
-        return Console.readLine();
+
+        int purchaseAmount = stringParser.convertStringToInt(Console.readLine());
+        validatePurchaseAmount(purchaseAmount);
+
+        return purchaseAmount;
+
     }
 
-    public String getLottoNumber(){
+    public List<Integer> getLottoNumber(){
+
         System.out.println(WINNING_NUMBERS_PROMPT);
-        return Console.readLine();
+        return stringParser.convertStringToIntegerList(Console.readLine());
+
     }
 
     public String getBonusNumber(){
@@ -49,6 +59,12 @@ public class View {
     public void printLottos(List<List<Integer>> lottos){
         for(List<Integer> lotto : lottos){
             System.out.println(lotto.toString());
+        }
+    }
+
+    private void validatePurchaseAmount(int purchaseAmount){
+        if(purchaseAmount < 1000){
+            throw new IllegalArgumentException("로또 구입 금액은 1000원 이상이어야 합니다.");
         }
     }
 
