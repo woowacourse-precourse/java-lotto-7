@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoStatistics;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -26,6 +27,6 @@ public class LottoController {
 
         WinningLotto winningLotto = lottoService.issueWinningLotto(winningNumber, bonusNumber);
         // 당첨 통계 및 수익률 출력
-
+        LottoStatistics statistics = LottoStatistics.of(lottoTicket, winningLotto);
     }
 }
