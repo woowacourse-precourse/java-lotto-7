@@ -27,4 +27,8 @@ public class Payment {
         Validator.checkNegative(money);
         Validator.checkMultiplesOfThousand(money);
     }
+
+    public int getMoney() {
+        return money;
+    }
 }
