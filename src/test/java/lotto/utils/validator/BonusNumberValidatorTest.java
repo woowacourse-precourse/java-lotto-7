@@ -27,24 +27,24 @@ class BonusNumberValidatorTest {
     void Given_BonusNumberIsEmptyString_When_CheckEmptyAmounts_Then_Error(String input) {
         assertThatThrownBy(() -> BonusNumberValidator.validateNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.EMPTY_LOTTO_BONUS_NUMBERS.getMessage());
+                .hasMessage(ErrorMessage.EMPTY_LOTTO_BONUS_NUMBER.getMessage());
     }
 
     @ParameterizedTest
     @DisplayName("숫자가 아닌 값(문자)이 입력된다면, 예외가 발생한다.")
-    @ValueSource(strings = "a")
+    @ValueSource(strings = {"a", "bbb" , "ccc"})
     void Given_BonusNumberIsNotNumberButCharacter_When_CheckNonNumeric_Then_Error(String input) {
         assertThatThrownBy(() -> BonusNumberValidator.validateNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ONLY_DIGITS_ALLOWED.getMessage());
+                .hasMessage(ErrorMessage.ONLY_DIGITS_ALLOWED_BONUS_NUMBER.getMessage());
     }
 
     @ParameterizedTest
     @DisplayName("숫자가 아닌 값(기호)이 입력된다면, 예외가 발생한다.")
-    @ValueSource(strings = "-")
+    @ValueSource(strings = {"-", ".", ","})
     void Given_BonusNumberIsNotNumberButSymbol_When_CheckNonNumeric_Then_Error(String input) {
         assertThatThrownBy(() -> BonusNumberValidator.validateNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ONLY_DIGITS_ALLOWED.getMessage());
+                .hasMessage(ErrorMessage.ONLY_DIGITS_ALLOWED_BONUS_NUMBER.getMessage());
     }
 }
