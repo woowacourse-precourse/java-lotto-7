@@ -44,13 +44,13 @@ public class InputView {
         return new Lotto(Numbers);
     }
 
-    public static int readNumber() {
+    public static int readBonusNumber() {
         String input = readLine();
         try {
             return convertInputToNumber(input);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorOfRequestNumber();
-            return readNumber();
+            return readBonusNumber();
         }
     }
 
