@@ -17,7 +17,7 @@ public class GamePlay {
     private static final String COMMA = ",";
     private static final String LINE_BREAK = "\n";
 
-    private List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
     private int useMoneys;
     private Lotto winningLotto;
     private int bonusNumber;
@@ -46,8 +46,8 @@ public class GamePlay {
 
     private void inputMoney() {
         System.out.println("로또 구입 금액을 입력해주세요. 단, 1000원 단위로 입력해주세요.");
-        int money = Integer.parseInt(Console.readLine());
-        useMoneys = money;
+
+        useMoneys = Integer.parseInt(Console.readLine());
     }
 
     private void buyLotto() {
@@ -66,7 +66,7 @@ public class GamePlay {
 
     private void printLottos() {
         StringBuilder sb = new StringBuilder();
-        sb.append(lottos.size() + "개를 구매했습니다.\n");
+        sb.append(lottos.size()).append("개를 구매했습니다.\n");
 
         for(Lotto lotto : lottos){
             sb.append(LIST_START);
@@ -78,7 +78,7 @@ public class GamePlay {
             sb.append(LIST_END).append(LINE_BREAK);
         }
 
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
     private Map<Rank, Integer> calculateLotto() {
@@ -129,7 +129,7 @@ public class GamePlay {
                         .append(" - ").append(lottoResult.get(rank))
                         .append("개").append(LINE_BREAK));
 
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
     private void displayProfitRate(Map<Rank, Integer> lottoResult) {
