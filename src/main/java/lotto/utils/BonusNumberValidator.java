@@ -14,21 +14,21 @@ public class BonusNumberValidator {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("보너스 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_BONUS_NUMBER.getMessage());
         }
     }
 
     private static void validateInRange(String number) {
         int num = Integer.parseInt(number);
         if (num < 1 || num > 45) {
-            throw new IllegalArgumentException("보너스 번호는 1에서 45 사이여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.BONUS_OUT_OF_RANGE.getMessage());
         }
     }
 
     private static void validateNotDuplicateWithWinningNumbers(String number, List<Integer> winningNumbers) {
         int bonusNum = Integer.parseInt(number);
         if (winningNumbers.contains(bonusNum)) {
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessages.BONUS_DUPLICATE.getMessage());
         }
     }
 }
