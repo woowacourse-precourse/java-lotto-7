@@ -15,4 +15,12 @@ public enum Grade {
         this.matchCount = matchCount;
         this.price = price;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrice() {
+        return price;
+    }
 }
