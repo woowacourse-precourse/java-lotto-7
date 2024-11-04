@@ -4,12 +4,12 @@ import lotto.PrizeRank;
 import lotto.dto.LottoDto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import static lotto.Constants.MAXIMUM_LOTTO_NUMBER;
 import static lotto.Constants.MINIMUM_LOTTO_NUMBER;
+import static lotto.LottoInputErrorMessage.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -53,19 +53,19 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_ERROR.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(num -> num < MINIMUM_LOTTO_NUMBER || num > MAXIMUM_LOTTO_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR.getMessage());
         }
     }
 
     private void validateDuplicates(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 }

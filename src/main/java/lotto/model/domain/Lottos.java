@@ -5,6 +5,8 @@ import lotto.dto.LottosDto;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.LottoInputErrorMessage.LOTTO_LIST_EMPTY_ERROR;
+
 public class Lottos {
     private final List<Lotto> lottos;
 
@@ -25,7 +27,7 @@ public class Lottos {
 
     private void validate(final List<Lotto> lottos) {
         if (lottos == null || lottos.isEmpty()) {
-            throw new IllegalStateException("[ERROR] 로또 목록은 비어있을 수 없습니다.");
+            throw new IllegalStateException(LOTTO_LIST_EMPTY_ERROR.getMessage());
         }
     }
 }
