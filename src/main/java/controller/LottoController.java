@@ -11,7 +11,9 @@ import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.generator.RandomNumberGenerator;
 import lotto.service.LottoService;
-import validator.InputValidator;
+import validator.BonusNumberValidator;
+import validator.LottoNumbersValidator;
+import validator.PurchaseAmountValidator;
 import view.InputView;
 import view.OutputView;
 
@@ -39,7 +41,7 @@ public class LottoController {
             try {
                 OutputView.printPurchaseAmountMessage();
                 BigDecimal purchaseAmount = InputView.readPurchaseAmount();
-                InputValidator.validatePurchaseAmount(purchaseAmount);
+                PurchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
                 return purchaseAmount;
             } catch (IllegalArgumentException error) {
                 OutputView.printExceptionMessage(error);
@@ -70,7 +72,7 @@ public class LottoController {
             try {
                 OutputView.printLottoNumbersMessage();
                 List<Integer> lottoNumbers = InputView.readLottoNumbers();
-                InputValidator.validateLottoNumbers(lottoNumbers);
+                LottoNumbersValidator.validateLottoNumbers(lottoNumbers);
                 return lottoNumbers;
             } catch (IllegalArgumentException error) {
                 OutputView.printExceptionMessage(error);
@@ -83,7 +85,7 @@ public class LottoController {
             try {
                 OutputView.printBonusNumberMessage();
                 int bonusNumber = InputView.readBonusNumber();
-                InputValidator.validateBonusNumber(bonusNumber, lottoNumbers);
+                BonusNumberValidator.validateBonusNumber(bonusNumber, lottoNumbers);
                 return bonusNumber;
             } catch (IllegalArgumentException error) {
                 OutputView.printExceptionMessage(error);
