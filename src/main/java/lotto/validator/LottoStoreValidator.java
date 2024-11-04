@@ -14,6 +14,5 @@ public class LottoStoreValidator {
         if (price % LottoValue.LOTTO_PRICE.getValue() != 0) {
             throw new LottoException(ERROR_LOTTO_PRICE);
         }
-
     }
 }

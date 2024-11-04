@@ -36,7 +36,6 @@ public enum Ranking {
         return this.equals(SECOND);
     }
 
-
     public int getMatchCount() {
         return matchCount;
     }

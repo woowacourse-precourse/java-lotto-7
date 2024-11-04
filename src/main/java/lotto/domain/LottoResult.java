@@ -16,7 +16,7 @@ public class LottoResult {
         this.rankingMap = rankingMap;
     }
 
-    public static LottoResult from(List<Ranking> rankings) {
+    public static LottoResult from(final List<Ranking> rankings) {
         EnumMap<Ranking, Integer> rankingMap = rankings.stream()
                 .collect(Collectors.groupingBy(r -> r, () -> new EnumMap<>(Ranking.class), Collectors.summingInt(r -> 1)));
         return new LottoResult(rankingMap);

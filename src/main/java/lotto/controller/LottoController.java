@@ -28,7 +28,8 @@ public class LottoController {
 
     private WinningLotto createWinningLotto() {
         Lotto winLotto = Retry.retryOnException(() -> Lotto.from(InputView.inputWinNumbers()));
-        return Retry.retryOnException(() -> WinningLotto.of(winLotto, InputView.inputBonusNumber()));
+        WinningLotto winningLotto = Retry.retryOnException(() -> WinningLotto.of(winLotto, InputView.inputBonusNumber()));
+        return winningLotto;
     }
 
     private void checkLottoResult(final LottoTicket lottoTicket, final WinningLotto winningLotto) {

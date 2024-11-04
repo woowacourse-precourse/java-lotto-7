@@ -9,9 +9,9 @@ import static lotto.constants.ErrorMessage.ERROR_EMPTY_INPUT;
 import static lotto.constants.ErrorMessage.ERROR_NOT_POSITIVE_NUMBER;
 import static lotto.constants.ErrorMessage.ERROR_TRAILING_COMMA;
 import static lotto.constants.ErrorMessage.ERROR_INVALID_WIN_NUMBERS;
+import static lotto.utils.Converter.DELIMITER;
 
 public class InputValidator {
-    private static final String DELIMITER = ",";
     private static final Integer ZERO = 0;
     private static final Pattern TRAILING_DELIMITER_PATTERN = Pattern.compile(".*,$");
     private static final Pattern DELIMITER_PATTERN = Pattern.compile("^([a-zA-Z가-힣\\d-]+,)*[a-zA-Z가-힣\\d-]+$");

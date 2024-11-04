@@ -9,6 +9,9 @@ import static lotto.constants.LottoValue.*;
 public class LottoNumbersGenerator implements NumbersGenerator {
     @Override
     public List<Integer> createNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER_RANGE.getValue(), MAX_LOTTO_NUMBER_RANGE.getValue(), LOTTO_NUMBER_COUNT.getValue());
+        int minRange = MIN_LOTTO_NUMBER_RANGE.getValue();
+        int maxRange = MIN_LOTTO_NUMBER_RANGE.getValue();
+        int numberCount = LOTTO_NUMBER_COUNT.getValue();
+        return Randoms.pickUniqueNumbersInRange(minRange, maxRange, numberCount);
     }
 }
