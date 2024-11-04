@@ -10,12 +10,25 @@ public class Application {
 
 
     public static int inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        int amount = Integer.parseInt(input);
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String input = Console.readLine();
+                int amount = Integer.parseInt(input);
+
+                if (amount < 1000) {
+                    throw new IllegalArgumentException("[ERROR] 구입 금액은 최소 1,000원 이상이어야 합니다.");
+                }
+                if (amount % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+                }
+
+                return amount;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 금액은 숫자로 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return amount;
     }
 }
