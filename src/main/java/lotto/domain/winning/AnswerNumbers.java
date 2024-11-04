@@ -24,12 +24,4 @@ public class AnswerNumbers {
                 lotto.contains(bonusNumber)
         );
     }
-
-    public WinningLotto getWinningNumbers() {
-        return winningLotto;
-    }
-
-    public BonusNumber getBonusNumber() {
-        return bonusNumber;
-    }
 }

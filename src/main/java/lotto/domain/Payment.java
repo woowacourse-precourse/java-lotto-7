@@ -28,10 +28,6 @@ public class Payment {
         return (double) profit / payment;
     }
 
-    public int getPayment() {
-        return payment;
-    }
-
     private static class Validator {
         private static void validate(int payment, LottoDetail price) {
             validateZero(payment);

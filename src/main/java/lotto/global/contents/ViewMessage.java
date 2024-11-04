@@ -22,10 +22,6 @@ public enum ViewMessage {
         this.message = message;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
     public String formatMessage(Object... args) {
         return String.format(message, args);
     }
