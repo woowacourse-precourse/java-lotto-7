@@ -13,6 +13,15 @@ public class Input {
 		validatePayment(input);
 	}
 
+	public List<Integer> getLuckyNumber() {
+		String input = Console.readLine();
+		validateLuckyNumber(input);
+
+		return Arrays.stream(input.split(","))
+			.map(Integer::parseInt)
+			.toList();
+	}
+
 	public void validateRemainder(String input) {
 		if (Integer.parseInt(input) % 1000 != 0) {
 			throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
