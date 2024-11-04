@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NumberParserWithComma implements NumberParser {
+public class NumberParserWithComma {
 
     private final NumberConverter numberConverter;
 
@@ -14,10 +14,8 @@ public class NumberParserWithComma implements NumberParser {
         this.numberConverter = numberConverter;
     }
 
-    @Override
     public Set<Integer> parseNumbers(String input) {
         Set<Integer> parsedNumbers = new HashSet<>();
-
         Arrays.stream(input.split(","))
                 .map(this::parseNumber)
                 .forEach(number -> {
