@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class LottoPrizeTest {
     @Test
-    void 당첨_개수에_맞는_enum을_반환하는지_테스트() {
+    void 일치하는_로또_번호_개수에_맞는_enum을_반환하는지_테스트() {
         Assertions.assertThat(LottoPrize.valueOf(6, false))
                 .isEqualTo(LottoPrize.FIRST);
         Assertions.assertThat(LottoPrize.valueOf(5, true))
