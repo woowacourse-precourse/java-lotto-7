@@ -32,4 +32,15 @@ public class LottoServiceImpl implements LottoService{
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
+
+    @Override
+    public Rank checkWinning(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
+
+        return Rank.of(matchCount, matchBonus);
+    }
 }
