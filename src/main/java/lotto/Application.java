@@ -10,8 +10,8 @@ public class Application {
     public static void main(String[] args) {
         int attempts= validateBetAmount();
         printEntries(attempts);
-
-  }
+        enterLottoNumbers();
+    }
 
     private static int validateBetAmount(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -33,7 +33,7 @@ public class Application {
     private static void printEntries(int attempts) {
         List<List<Integer>> lists = new ArrayList<>();
         for(int i=0; i<attempts; i++){
-            List<Integer> entries = new ArrayList<>();
+            List<Integer> entries;
             entries = Randoms.pickUniqueNumbersInRange(1,45,6);
             entries.sort(Comparator.naturalOrder());
             lists.add(entries);
@@ -41,5 +41,18 @@ public class Application {
         for(int j=0; j<attempts; j++){
             System.out.println(lists.get(j));
         }
+    }
+
+    public static List<Integer> enterLottoNumbers(){
+        List<Integer> lottoNumbers = new ArrayList<>();
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        String[] splitInput = input.split(",");
+        for(String number : splitInput){
+            lottoNumbers.add(Integer.parseInt(number));
+        }
+        lottoNumbers.sort(Comparator.naturalOrder());
+        Lotto lotto = new Lotto(lottoNumbers);
+        return lottoNumbers;
     }
 }
