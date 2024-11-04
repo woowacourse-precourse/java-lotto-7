@@ -1,66 +1,47 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.enums.ErrorMessage;
+import lotto.Lotto;
+import lotto.Validate;
 import lotto.enums.InputMessage;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-    private final static String PRIZE_NUMBERS_SPLIT_STRING = ",";
-    private final static int LOTTO_PRIZE = 1000;
+    private final static String LOTTO_NUMBERS_SPLIT_STRING = ",";
 
     public static int inputPurchaseAmount() {
         System.out.println(InputMessage.PURCHASE_AMOUNT_INPUT.getMessage());
         String purchaseAmount = Console.readLine();
-        while (!isInteger(purchaseAmount)
-                || !validatePurchaseAmountPositive(Integer.parseInt(purchaseAmount))
-                || !validatePurchaseAmountUnit(Integer.parseInt(purchaseAmount))) {
-            purchaseAmount = Console.readLine();
-        }
+
+        Validate.validateInteger(purchaseAmount);
+        Validate.validatePurchaseAmountPositive(Integer.parseInt(purchaseAmount));
+        Validate.validatePurchaseAmountUnit(Integer.parseInt(purchaseAmount));
 
         return Integer.parseInt(purchaseAmount);
     }
 
-    public static List<Integer> inputLottoPrizeNumbers() {
+    public static List<Integer> inputLottoNumbers() {
         System.out.println(InputMessage.PRIZE_NUMBERS_INPUT.getMessage());
-        return Arrays.stream(Console.readLine().split(PRIZE_NUMBERS_SPLIT_STRING))
+        List<String> lottoNumbers = Arrays.stream(Console.readLine().split(LOTTO_NUMBERS_SPLIT_STRING)).toList();
+
+        Validate.validateNumbersInteger(lottoNumbers);
+        Validate.validateLottoNumbersRange(lottoNumbers);
+
+        return lottoNumbers.stream()
                 .map(Integer::parseInt)
                 .toList();
     }
 
-    public static int inputLottoBonusNumber() {
+    public static int inputLottoBonusNumber(Lotto winningNumbers) {
         System.out.println(InputMessage.BONUS_NUMBER_INPUT.getMessage());
-        return Integer.parseInt(Console.readLine());
-    }
+        String bonusNumber = Console.readLine();
 
-    private static boolean isInteger(String inputString) {
-        try {
-            Integer.parseInt(inputString);
-        } catch (NumberFormatException e) {
-            System.out.println(ErrorMessage.CHARACTER_INPUT_ERROR.getMessage());
-            return false;
-        }
+        Validate.validateInteger(bonusNumber);
+        Validate.validateLottoNumberRange(Integer.parseInt(bonusNumber));
+        Validate.validateLottoBonusNumberDuplication(winningNumbers, Integer.parseInt(bonusNumber));
 
-        return true;
-    }
-
-    private static boolean validatePurchaseAmountUnit(int purchaseAmount) {
-        if (purchaseAmount % LOTTO_PRIZE != 0) {
-            System.out.println(ErrorMessage.WRONG_LOTTO_PRIZE_ERROR.getMessage());
-            return false;
-        }
-
-        return true;
-    }
-
-    private static boolean validatePurchaseAmountPositive(int purchaseAmount) {
-        if (purchaseAmount < 0) {
-            System.out.println(ErrorMessage.NEGATIVE_LOTTO_PRIZE_ERROR.getMessage());
-            return false;
-        }
-
-        return true;
+        return Integer.parseInt(bonusNumber);
     }
 }

@@ -1,6 +1,10 @@
 package lotto.view;
 
-import lotto.*;
+import lotto.Lotto;
+import lotto.LottoDraw;
+import lotto.LottoPrizeMap;
+import lotto.LottoWinning;
+import lotto.CalculateProfitRate;
 import lotto.enums.OutputMessage;
 
 import java.util.Map;
@@ -36,10 +40,10 @@ public class OutputView {
         );
     }
 
-    public static void outputRateOfReturn(CalculateRateOfReturn calculateRateOfReturn) {
+    public static void outputRateOfReturn(CalculateProfitRate calculateRateOfReturn) {
         System.out.println(String.format(
                 OutputMessage.RATE_OF_RETURN_OUTPUT.getMessage(),
-                calculateRateOfReturn.calculateRateOfReturn()
+                calculateRateOfReturn.getProfitRate()
         ));
     }
 }

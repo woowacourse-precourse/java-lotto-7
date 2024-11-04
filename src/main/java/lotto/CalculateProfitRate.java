@@ -2,18 +2,18 @@ package lotto;
 
 import java.util.Map;
 
-public class CalculateRateOfReturn {
+public class CalculateProfitRate {
     private int purchaseAmount;
     private Map<String, Integer> winningLotto;
     private Map<String, Integer> prizes;
 
-    public CalculateRateOfReturn(int purchaseAmount, LottoWinning lottoWinning, LottoPrizeMap lottoPrizeMap) {
+    public CalculateProfitRate(int purchaseAmount, LottoWinning lottoWinning, LottoPrizeMap lottoPrizeMap) {
         this.purchaseAmount = purchaseAmount;
         this.winningLotto = lottoWinning.getWinningLotto();
         this.prizes = lottoPrizeMap.getPrizes();
     }
 
-    public double calculateRateOfReturn() {
+    public double getProfitRate() {
         return calculateNetProfit() / purchaseAmount * 100.0;
     }
 
