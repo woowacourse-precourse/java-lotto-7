@@ -1,9 +1,10 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
-import lotto.dto.LottoResponse;
+import lotto.domain.WinningLottoWithBonus;
 import lotto.dto.PrizeResponse;
 import lotto.parser.LottoNumbersInputParser;
 import lotto.service.LottoService;
@@ -22,14 +23,14 @@ public class LottoController {
 
     public void run() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
-        generateLottos(purchaseAmount);
-        consoleView.printFormattedLottoNumbers(findGeneratedLottos());
+        List<Lotto> purchasedLottos = generateLottos(purchaseAmount);
+        consoleView.printPurchasedLottos(purchasedLottos);
 
         Lotto winningLotto = readWinningLottoNumbers();
-
         LottoNumber bonusNumber = readBonusNumber();
+        WinningLottoWithBonus winningLottoWithBonus = new WinningLottoWithBonus(winningLotto, bonusNumber);
 
-        List<PrizeResponse> winningResult = lottoService.findWinningResult(winningLotto, bonusNumber);
+        List<PrizeResponse> winningResult = winningLottoWithBonus.findWinningResult(purchasedLottos);
         consoleView.printWinningResult(winningResult);
 
         double profitRate = lottoService.calculateProfitRate(purchaseAmount, winningResult);
@@ -44,14 +45,12 @@ public class LottoController {
         return new PurchaseAmount(purchaseAmountInput);
     }
 
-    private void generateLottos(PurchaseAmount purchaseAmount) {
+    private List<Lotto> generateLottos(PurchaseAmount purchaseAmount) {
         int lottoCount = purchaseAmount.calculatePurchasableLottoCount();
         consoleView.printPurchasableLottoCount(lottoCount);
-        lottoService.generateLottos(lottoCount);
-    }
+        LottoGenerator lottoGenerator = new LottoGenerator();
 
-    private List<LottoResponse> findGeneratedLottos() {
-        return lottoService.findAll();
+        return lottoGenerator.generateLottos(lottoCount);
     }
 
     private Lotto readWinningLottoNumbers() {
