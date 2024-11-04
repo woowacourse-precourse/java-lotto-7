@@ -7,6 +7,7 @@ public enum LottoPrice {
     private LottoPrice(int price) {
         this.price = price;
     }
+
     public int getPrice() {
         return price;
     }

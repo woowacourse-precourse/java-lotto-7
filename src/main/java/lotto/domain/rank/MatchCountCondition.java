@@ -2,8 +2,7 @@ package lotto.domain.rank;
 
 public enum MatchCountCondition {
     START_MATCH_COUNT_CONDITION(3),
-    END_MATCH_COUNT_CONDITION(7)
-    ;
+    END_MATCH_COUNT_CONDITION(7);
 
     private int condition;
 
