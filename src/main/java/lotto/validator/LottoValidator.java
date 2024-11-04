@@ -29,6 +29,16 @@ public class LottoValidator {
         }
     }
 
+    public static void validateBonusNumber(String inputBonusNumber, List<Integer> winningNumbers) {
+        isEmpty(inputBonusNumber);
+        isDigit(inputBonusNumber);
+        isInBound(inputBonusNumber);
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_UNIQUE_BONUS_NUMBER.getMessage());
+        }
+    }
+
     private static void isEmpty(String inputString) {
         if (inputString == null || inputString.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessages.INPUT_NOTHING.getMessage());
@@ -59,7 +69,7 @@ public class LottoValidator {
 
     private static void isUnique(List<String> winningNumbers) {
         if (winningNumbers.stream().distinct().count() != Constants.LOTTO_NUMBER_SIZE.getValue()) {
-            throw new IllegalArgumentException(ErrorMessages.LOTTO_UNIQUE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_UNIQUE_WINNING_NUMBER.getMessage());
         }
     }
 }
