@@ -37,7 +37,7 @@
 - 수익률은 **소수점 둘째 자리에서 반올림**하여 표시합니다.
 
 ### 7. 예외 처리
-- 잘못된 값을 입력하면 `IllegalArgumentException`을 발생시키고, **"[ERROR]"로 시작하는 에러 메시지**를 출력합니다.
+- 잘못된 값을 입력하면 `IllegalArgumentException`을 발생시키고, **"[ERROR]"로 시작하는 에러 메시지**를 출력합니다. 또한 에러가 발생한 부분부터 입력을 다시 받습니다.
 - `IllegalArgumentException`, `IllegalStateException` 등의 예외 유형을 사용하여 입력 오류를 처리합니다.
 
 ---
