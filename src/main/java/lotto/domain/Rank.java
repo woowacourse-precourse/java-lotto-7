@@ -28,7 +28,7 @@ public enum Rank {
                 .orElse(NO_MATCH);
     }
 
-    public boolean isMatch(int matchCount, boolean bonusMatch) {
+    private boolean isMatch(int matchCount, boolean bonusMatch) {
         if (this.requiredMatchCount != matchCount) {
             return false;
         }
