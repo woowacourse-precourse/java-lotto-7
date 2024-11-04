@@ -3,6 +3,7 @@ package controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import domain.LottoResult;
 import lotto.Lotto;
+import service.LottoService;
 import view.InputView;
 import view.OutputView;
 
@@ -12,22 +13,19 @@ import java.util.List;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoService lottoService;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lottoService = lottoService;
     }
 
     public void run() {
         LottoResult result = getTotalCost();
         setLottoAmount(result);
         setLottos(result);
-//        for (Lotto lotto : result.getPurchasedLottos()) {
-//            for (Integer l : lotto.getNumbers()) {
-//                System.out.print(l + " ");
-//            }
-//            System.out.println();
-//        }
+        setWinningNumbers(result);
     }
 
     private LottoResult getTotalCost() {
@@ -50,5 +48,10 @@ public class LottoController {
             outputView.printLotto(lotto);
         }
         result.setPurchasedLottos(lottos);
+    }
+
+    private void setWinningNumbers(LottoResult result) {
+        String input = inputView.getLottoNumbers();
+
     }
 }
