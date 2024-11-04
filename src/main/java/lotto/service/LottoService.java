@@ -11,6 +11,7 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.dto.LottoMatchResult;
 import lotto.domain.Prize;
+import lotto.dto.WinningLottoNum;
 
 public class LottoService {
 
@@ -24,15 +25,12 @@ public class LottoService {
         return lottoTickets;
     }
 
-    public List<Prize> calculateLottoResult(List<Lotto> lottoTickets, Lotto winningLotto, int bonusNumber) {
+    public List<Prize> calculateLottoResult(List<Lotto> lottoTickets, WinningLottoNum winningLotto) {
         List<Prize> prizes = new ArrayList<>();
 
         for (Lotto lottoTicket : lottoTickets) {
-            LottoMatchResult lottoMatchResult = matchLottoNums(lottoTicket, winningLotto, bonusNumber);
-
-            int matchedCount = lottoMatchResult.getMatchCount();
-            Boolean bonusMatched = lottoMatchResult.getBonusMatch();
-            Prize prize = calculatePrize(matchedCount, bonusMatched);
+            LottoMatchResult lottoMatchResult = matchLottoNums(lottoTicket, winningLotto);
+            Prize prize = calculatePrize(lottoMatchResult);
 
             if(prize != null) {
                 prize.incrementCount();
@@ -57,10 +55,12 @@ public class LottoService {
         return roundedProfit;
     }
 
-    private LottoMatchResult matchLottoNums(Lotto lottoTicket, Lotto winningLotto, int bonusNumber) {
+    private LottoMatchResult matchLottoNums(Lotto lottoTicket, WinningLottoNum winningLottoNum) {
         List<Integer> lottoNums = lottoTicket.getNumbers();
-        List<Integer> winningNums = winningLotto.getNumbers();
+        List<Integer> winningNums = winningLottoNum.getWinningLotto().getNumbers();
+        int bonusNumber = winningLottoNum.getBonusNum();
         int matchCount = 0;
+
         for (Integer lottoNum : lottoNums) {
             if(winningNums.contains(lottoNum)) {
                 matchCount++;
@@ -70,7 +70,10 @@ public class LottoService {
         return new LottoMatchResult(matchCount, bounsMatch);
     }
 
-    private Prize calculatePrize(int matchCount, Boolean bonusMatch) {
+    private Prize calculatePrize(LottoMatchResult lottoMatchResult) {
+        int matchCount = lottoMatchResult.getMatchCount();
+        Boolean bonusMatch = lottoMatchResult.getBonusMatch();
+
         for(Prize prize: Prize.values()) {
             if(prize.getMatchCount() == matchCount && prize.getBonusMatch() == bonusMatch) {
                 return prize;

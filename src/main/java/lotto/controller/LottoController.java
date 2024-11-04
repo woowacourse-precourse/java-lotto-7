@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
+import lotto.dto.WinningLottoNum;
 import lotto.service.LottoService;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
@@ -31,9 +32,8 @@ public class LottoController {
         int lottoAmount = getLottoTicketAmount(purchaseAmount);
         List<Lotto> purchasedLottos = generateAndPrintLottoTickets(lottoAmount);
 
-        Lotto winningLotto = getWinningLotto();
-        int bonusNumber = getBonusNumber();
-        List<Prize> prizes = lottoService.calculateLottoResult(purchasedLottos, winningLotto, bonusNumber);
+        WinningLottoNum winningLotto = new WinningLottoNum(getWinningLotto(), getBonusNumber());
+        List<Prize> prizes = lottoService.calculateLottoResult(purchasedLottos, winningLotto);
         outputView.printTotalLottoResult();
 
         printTotalProfit(purchaseAmount, prizes);
