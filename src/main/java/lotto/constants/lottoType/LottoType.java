@@ -7,7 +7,8 @@ public enum LottoType {
     LOTTO_MAX_NUMBER(45),
     LOTTO_NUMBER_COUNT(6),
     LOTTO_INIT_RANK(0),
-    LOTTO_RANK_UPDATE_VALUE(1);
+    RANK_INCREMENT_VALUE(1),
+    ZERO_MONEY(0);
 
     private final int value;
 

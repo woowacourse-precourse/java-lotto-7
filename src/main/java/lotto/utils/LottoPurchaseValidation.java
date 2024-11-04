@@ -22,13 +22,13 @@ public class LottoPurchaseValidation {
     }
 
     public static void validateMoneyIsPositive(int rawIntegerInput) {
-        if (rawIntegerInput < 0) {
+        if (rawIntegerInput < LottoType.ZERO_MONEY.getValue()) {
             throw new IllegalArgumentException(LottoPurchaseErrorType.INVALID_MONEY_NEGATIVE.getMessage());
         }
     }
 
     public static void validateMoneyIsNotDivisibleByLottoPrice(int rawIntegerInput) {
-        if (rawIntegerInput % LottoType.LOTTO_PRICE.getValue() != 0) {
+        if (rawIntegerInput % LottoType.LOTTO_PRICE.getValue() != LottoType.ZERO_MONEY.getValue()) {
             throw new IllegalArgumentException(LottoPurchaseErrorType.INVALID_MONEY_UNIT.getMessage());
         }
     }

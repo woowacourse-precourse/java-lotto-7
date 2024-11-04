@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constants.Ranking;
+import lotto.constants.lottoType.LottoType;
 import lotto.utils.WinningNumberValidation;
 
 import java.util.ArrayList;
@@ -78,7 +79,7 @@ public class LottoHandler {
     }
 
     private int checkSameNumber(List<Integer> winningLottoNumbers, List<Integer> buyLottoNumbers) {
-        int count = 0;
+        int count = LottoType.LOTTO_INIT_RANK.getValue();
         for (int num : buyLottoNumbers) {
             if (winningLottoNumbers.contains(num)) {
                 count++;

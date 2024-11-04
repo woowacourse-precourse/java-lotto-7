@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constants.Ranking;
+import lotto.constants.lottoType.CalculateType;
 import lotto.constants.lottoType.LottoType;
 
 import java.util.EnumMap;
@@ -26,7 +27,7 @@ public class Customer {
     }
 
     public void updateLottoRanking(Ranking ranking) {
-        lottoResults.put(ranking, lottoResults.get(ranking) + LottoType.LOTTO_RANK_UPDATE_VALUE.getValue());
+        lottoResults.put(ranking, lottoResults.get(ranking) + LottoType.RANK_INCREMENT_VALUE.getValue());
     }
 
     public Map<Ranking, Integer> getLottoResults() {
@@ -34,11 +35,11 @@ public class Customer {
     }
 
     public double getWinningsYield(int clientMoney) {
-        if (getResultSum() == 0) {
-            return 0;
+        if (getResultSum() == CalculateType.NO_WINNINGS_MONEY.getIntValue()) {
+            return CalculateType.NO_WINNINGS_MONEY.getIntValue();
         }
-        double yield = ((double) getResultSum() / clientMoney) * 100.0;
-        return Math.round(yield * 10) / 10.0;
+        double yield = ((double) getResultSum() / clientMoney) * CalculateType.PERCENT_100.getValue();
+        return Math.round(yield * CalculateType.ROUNDING_SCALE.getIntValue()) / CalculateType.ROUNDING_DIVISOR.getValue();
     }
 
     public long getResultSum() {

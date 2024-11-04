@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import lotto.constants.lottoType.LottoType;
 import lotto.model.Customer;
 import lotto.model.LottoHandler;
+import lotto.model.Lottos;
 import lotto.model.RankingHandler;
 import lotto.utils.BonusNumberValidation;
 import lotto.utils.LottoPurchaseValidation;
@@ -62,7 +64,7 @@ public class LottoController {
     }
 
     private void winningsYield() {
-        double value = customer.getWinningsYield(customer.getLottoTickets() * 1000);
+        double value = customer.getWinningsYield(customer.getLottoTickets() * LottoType.LOTTO_PRICE.getValue());
         OutputMessage.winningsYield(value);
     }
 
