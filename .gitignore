@@ -33,3 +33,17 @@ out/
 
 ### Mac OS ###
 .DS_Store
+
+### Java ###
+
+# Compiled class file
+*.class
+# Log file
+*.log
+# Packages file
+*.jar
+*.war
+
+### Windows ###
+Thumbs.db
+Desktop.ini
