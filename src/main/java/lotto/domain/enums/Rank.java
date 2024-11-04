@@ -1,8 +1,9 @@
 package lotto.domain.enums;
 
+import java.util.Optional;
+
 public enum Rank {
 
-	NONE(0, 0),
 	FIFTH(3, 5_000),
 	FOURTH(4, 50_000),
 	THIRD(5, 1_500_000),
@@ -18,20 +19,19 @@ public enum Rank {
 	private final int matchCount;
 	private final int prizeMoney;
 
-	public static Rank judgeBy(int winCount, boolean isBonusNumberWin) {
+	public static Optional<Rank> judgeBy(int winCount, boolean isBonusNumberWin) {
 		if (winCount == FIRST.matchCount) {
-			return Rank.FIRST;
+			return Optional.of(Rank.FIRST);
 		} else if (winCount == SECOND.matchCount && isBonusNumberWin) {
-			return Rank.SECOND;
+			return Optional.of(Rank.SECOND);
 		} else if (winCount == THIRD.matchCount) {
-			return Rank.THIRD;
+			return Optional.of(Rank.THIRD);
 		} else if (winCount == FOURTH.matchCount) {
-			return Rank.FOURTH;
-		}
-		else if(winCount == FIFTH.matchCount){
-			return Rank.FIFTH;
+			return Optional.of(Rank.FOURTH);
+		} else if (winCount == FIFTH.matchCount) {
+			return Optional.of(Rank.FIFTH);
 		}
 
-		return Rank.NONE;
+		return Optional.empty();
 	}
 }
