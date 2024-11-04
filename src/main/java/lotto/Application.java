@@ -31,7 +31,7 @@ public class Application {
                 System.out.println("구입금액을 입력해 주세요.");
                 int lotto_cost = stringToNum(readLine());
                 return lotto_cost;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
         }
@@ -79,8 +79,8 @@ public class Application {
                 String input = readLine();
                 List<Integer> numbers = stringToNumbers(Arrays.asList(input.split(",")));
                 winningLotto = new Lotto(numbers);
-                break;
-            } catch (Exception e) {
+                return;
+            } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
         }
@@ -100,8 +100,8 @@ public class Application {
                 checkRange(n);
                 checkBounsVaild(n);
                 bonusNumber = n;
-                break;
-            } catch (Exception e) {
+                return;
+            } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
         }
@@ -147,8 +147,8 @@ public class Application {
             if (rank != Rank.MISS)
                 Rank.printRankPrize(rank, count);
         });
-        double benefit = Math.round(calculateBenfit() / (10000 * lottos.size()) * 100 * 100);
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", benefit / 100);
+        double benefit = Math.round(calculateBenfit() / (1000 * lottos.size()) * 100 * 10);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", benefit / 10);
     }
 
     public static void main(String[] args) {
