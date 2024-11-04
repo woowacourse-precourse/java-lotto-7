@@ -4,6 +4,8 @@ import lotto.application.prize.controller.PrizeController;
 import lotto.application.prize.domain.BonusNumber;
 import lotto.application.prize.domain.WinnerNumbers;
 import lotto.application.prize.service.PrizeResponse;
+import lotto.usecase.prize.CreateBonusNumberUsecase;
+import lotto.usecase.prize.CreateWinnerNumbersUsecase;
 
 public class CreatePrizeUsecase {
 

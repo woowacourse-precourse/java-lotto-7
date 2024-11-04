@@ -13,10 +13,10 @@ import lotto.application.ticket.config.TicketAppConfig;
 import lotto.application.ticket.view.input.TicketInputView;
 import lotto.application.ticket.view.output.TicketOutputView;
 import lotto.usecase.CompileStatisticsUsecase;
-import lotto.usecase.CreateBonusNumberUsecase;
 import lotto.usecase.CreatePrizeUsecase;
 import lotto.usecase.CreateTicketUsecase;
-import lotto.usecase.CreateWinnerNumbersUsecase;
+import lotto.usecase.prize.CreateBonusNumberUsecase;
+import lotto.usecase.prize.CreateWinnerNumbersUsecase;
 
 public class UsecaseConfig {
 

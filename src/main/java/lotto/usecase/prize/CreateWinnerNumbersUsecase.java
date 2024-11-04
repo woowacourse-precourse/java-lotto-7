@@ -1,4 +1,4 @@
-package lotto.usecase;
+package lotto.usecase.prize;
 
 import lotto.application.common.OutputPrinter;
 import lotto.application.prize.controller.WinnerController;
@@ -26,7 +26,6 @@ public class CreateWinnerNumbersUsecase {
                 printer.appendWithLine(e.getMessage());
                 printer.execute();
             }
-
         }
     }
 

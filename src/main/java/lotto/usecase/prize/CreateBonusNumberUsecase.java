@@ -1,4 +1,4 @@
-package lotto.usecase;
+package lotto.usecase.prize;
 
 import lotto.application.common.OutputPrinter;
 import lotto.application.prize.controller.BonusController;
