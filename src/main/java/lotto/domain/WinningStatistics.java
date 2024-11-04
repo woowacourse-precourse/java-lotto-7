@@ -8,7 +8,6 @@ import lotto.common.config.LottoRank;
 public class WinningStatistics {
     private final Map<LottoRank, Integer> rankCounts;
     private long totalPrize;
-//    private int profitRate;
 
     public WinningStatistics() {
         this.rankCounts = new EnumMap<>(LottoRank.class);
@@ -29,9 +28,6 @@ public class WinningStatistics {
         int currentCount = rankCounts.get(rank);
         int newCount = currentCount + 1;
         rankCounts.put(rank, newCount);
-//        if (result.getRank() != null) {
-//            rankCounts.merge(result.getRank(), 1, Integer::sum);
-//        }
     }
 
     public double calculateProfitRate(int purchaseAmount) {
