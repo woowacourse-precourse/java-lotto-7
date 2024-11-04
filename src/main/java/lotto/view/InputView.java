@@ -10,25 +10,33 @@ public class InputView {
         throw new IllegalStateException("InputView is utility class");
     }
 
-    public static int inputPurchaseAmount() {
+    public static int inputPurchaseAmount() throws NumberFormatException {
         while (true) {
             try {
                 return Integer.parseInt(readUserInput());
             } catch (NumberFormatException e) {
                 printMessage(INVALID_NUMBER_INPUT.getMessage());
+            } catch (IllegalArgumentException e) {
+                printMessage(e.getMessage());
             }
         }
     }
 
     public static String inputWinningNumbers() {
-        return readUserInput();
+        while (true) {
+            try {
+                return readUserInput();
+            } catch (IllegalArgumentException e) {
+                printMessage(INVALID_NUMBER_INPUT.getMessage());
+            }
+        }
     }
 
     public static int inputBonusNumber() {
         while (true) {
             try {
                 return Integer.parseInt(readUserInput());
-            } catch (NumberFormatException e) {
+            } catch (IllegalArgumentException e) {
                 printMessage(INVALID_NUMBER_INPUT.getMessage());
             }
         }

@@ -10,42 +10,62 @@ import static lotto.view.OutputView.displayWinningNumberPrompt;
 import static lotto.view.OutputView.printNewLine;
 
 import java.util.List;
-import lotto.service.lotto.LottoTicketIssuer;
-import lotto.domain.value.LottoTicket;
-import lotto.utils.Parser;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
-import lotto.view.InputView;
+import lotto.domain.value.LottoTicket;
+import lotto.service.lotto.LottoTicketIssuer;
+import lotto.utils.Parser;
 
 public class PrintFormatter {
 
     public LottoTicketIssuer handlePurchaseInfo() {
+        LottoTicketIssuer lottoTicketIssuer = null;
         displayPurchasePrompt();
-        int purchaseAmount = inputPurchaseAmount();
-        LottoTicketIssuer lottoTicketIssuer = createLottoTicketIssuer(purchaseAmount);
-        printNewLine();
+        while (lottoTicketIssuer == null) {
+            try {
+                int purchaseAmount = inputPurchaseAmount();
+                lottoTicketIssuer = createLottoTicketIssuer(purchaseAmount);
+                printNewLine();
+            } catch (IllegalArgumentException e) {
+                OutputView.printMessage(e.getMessage());
+            }
+        }
         return lottoTicketIssuer;
+    }
+
+    public Lotto handleWinningNumbers() {
+        Lotto winningNumbers = null;
+        displayWinningNumberPrompt();
+        while (winningNumbers == null) {
+            try {
+                String winningNumbersInput = InputView.inputWinningNumbers();
+                winningNumbers = createLottoFromInput(winningNumbersInput);
+                printNewLine();
+            } catch (IllegalArgumentException e) {
+                OutputView.printMessage(e.getMessage());
+            }
+        }
+        return winningNumbers;
+    }
+
+    public Bonus handleBonusNumber(List<Integer> winningNumbers) {
+        Bonus bonus = null;
+        displayBonusNumberPrompt();
+        while (bonus == null) {
+            try {
+                int bonusNumber = InputView.inputBonusNumber();
+                bonus = createBonusFromInput(bonusNumber, winningNumbers);
+                printNewLine();
+            } catch (IllegalArgumentException e) {
+                OutputView.printMessage(e.getMessage());
+            }
+        }
+        return bonus;
     }
 
     public void displayLottoTicketsWithQuantity(List<LottoTicket> lottoTickets, int quantity) {
         displayTicketQuantity(quantity);
         displayLottoTickets(lottoTickets);
-    }
-
-    public Lotto handleWinningNumbers() {
-        displayWinningNumberPrompt();
-        String winningNumbersInput = InputView.inputWinningNumbers();
-        Lotto winningNumbers = createLottoFromInput(winningNumbersInput);
-        printNewLine();
-        return winningNumbers;
-    }
-
-    public Bonus handleBonusNumber(List<Integer> winningNumbers) {
-        displayBonusNumberPrompt();
-        int bonusNumber = InputView.inputBonusNumber();
-        Bonus bonus = createBonusFromInput(bonusNumber, winningNumbers);
-        printNewLine();
-        return bonus;
     }
 
     public void displayResultWithNewLine(String result) {
