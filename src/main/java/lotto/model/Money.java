@@ -24,11 +24,11 @@ public class Money {
         return money / LOTTO_UNIT;
     }
 
-    public int getMoney() {
-        return money;
-    }
-
     public double calculateProfitRatio(int profit) {
         return ((double) profit / money) * PERCENT_MULTIPLY;
+    }
+
+    public int getMoney() {
+        return money;
     }
 }
