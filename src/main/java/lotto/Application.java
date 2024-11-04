@@ -19,6 +19,7 @@ public class Application {
         int bonusNumber = InputController.validateBonusNumber(InputView.inputBonusNumber());
 
         OutputView.printWinningComment();
-        LottoMatcher.matchingLotto(purchase, lottoLists, winningNumbers, bonusNumber);
+        LottoMatcher lottoMatcher = new LottoMatcher(lottoLists, winningNumbers, bonusNumber);
+        lottoMatcher.matchingLotto(purchase);
     }
 }

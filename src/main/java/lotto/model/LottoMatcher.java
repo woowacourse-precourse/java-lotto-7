@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoMatcher {
-    List<List<Integer>> lottoLists;
-    List<Integer> winningNumbers;
-    int bonusNumber;
+    private List<List<Integer>> lottoLists;
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
 
     public LottoMatcher(List<List<Integer>> lottoLists, List<Integer> winningNumbers, int bonusNumber) {
         this.lottoLists = lottoLists;
@@ -15,79 +15,88 @@ public class LottoMatcher {
         this.bonusNumber = bonusNumber;
     }
 
-    public static void matchingLotto(int purchase, List<List<Integer>> lottoLists, List<Integer> winningNumbers, int bonusNumber) {
-        Map<Integer, Integer> winningResults = winningResults();
-        Map<Integer, String> winningDetails = winningDetails();
+    public void matchingLotto(int purchase) {
+        Map<Integer, Integer> winningResults = initializeWinningResults();
+        Map<Integer, String> winningDetails = initializeWinningDetails();
 
         for (List<Integer> lottoList : lottoLists) {
-            int matchCount = 0;
-            boolean bonusMatch = false;
+            int matchCount = calculateMatchCount(lottoList);
+            boolean bonusMatch = lottoList.contains(bonusNumber);
 
-            for (int num : lottoList) {
-                if (winningNumbers.contains(num)) {
-                    matchCount++;
-                }
-                if (num == bonusNumber) {
-                    bonusMatch = true;
-                }
-            }
-
-            if (matchCount >= 3) {
-                if (matchCount == 5 && bonusMatch) {
-                    winningResults.put(7, winningResults.get(7) + 1);
-                }
-                winningResults.put(matchCount, winningResults.get(matchCount) + 1);
-            }
+            updateWinningResults(winningResults, matchCount, bonusMatch);
         }
 
-        for (int key : winningResults.keySet()) {
-            if (key == 6) {
-                System.out.println(key-1 + "개 일치, 보너스 볼 일치 (" + winningDetails().get(key) + "원) - " + winningResults.get(key) + "개");
-                continue;
-            }
-            if (key == 7) {
-                System.out.println(key-1 + "개 일치 (" + winningDetails().get(key) + "원) - " + winningResults.get(key) + "개");
-                continue;
-            }
-            System.out.println(key + "개 일치 (" + winningDetails().get(key) + "원) - " + winningResults.get(key) + "개");
-        }
-
+        printWinningResults(winningResults, winningDetails);
         totalWinningRate(purchase, winningResults, winningDetails);
     }
 
-    public static void totalWinningRate(int purchase, Map<Integer, Integer> winningResults, Map<Integer, String> winningDetails) {
-        long totalPrice = 0;
-        float winningRate;
+    private int calculateMatchCount(List<Integer> lottoList) {
+        int matchCount = 0;
+        for (int num : lottoList) {
+            if (winningNumbers.contains(num)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
 
-        for(int key : winningResults.keySet()) {
+    private void updateWinningResults(Map<Integer, Integer> winningResults, int matchCount, boolean bonusMatch) {
+        if (matchCount < 3) {
+            return; // 3개 미만 일치 시 아무 작업도 하지 않음
+        }
+
+        if (matchCount == 5 && bonusMatch) {
+            winningResults.put(7, winningResults.get(7) + 1); // 5개 + 보너스 일치
+            return;
+        }
+
+        winningResults.put(matchCount, winningResults.get(matchCount) + 1);
+    }
+
+    private void printWinningResults(Map<Integer, Integer> winningResults, Map<Integer, String> winningDetails) {
+        for (int key : winningResults.keySet()) {
+            if (key == 6) {
+                System.out.println("5개 일치, 보너스 볼 일치 (" + winningDetails.get(key) + "원) - " + winningResults.get(key) + "개");
+                continue;
+            }
+
+            if (key == 7) {
+                System.out.println("6개 일치 (" + winningDetails.get(key) + "원) - " + winningResults.get(key) + "개");
+                continue;
+            }
+
+            System.out.println(key + "개 일치 (" + winningDetails.get(key) + "원) - " + winningResults.get(key) + "개");
+        }
+    }
+
+    private void totalWinningRate(int purchase, Map<Integer, Integer> winningResults, Map<Integer, String> winningDetails) {
+        long totalPrice = 0;
+
+        for (int key : winningResults.keySet()) {
             if (winningResults.get(key) != 0) {
-                totalPrice += Long.parseLong(winningDetails().get(key).replace(",", ""));
+                totalPrice += Long.parseLong(winningDetails.get(key).replace(",", ""));
             }
         }
 
-        winningRate = (float) totalPrice / purchase * 100;
+        float winningRate = (float) totalPrice / purchase * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.%n", winningRate);
     }
 
-    public static Map<Integer, Integer> winningResults() {
+    private Map<Integer, Integer> initializeWinningResults() {
         Map<Integer, Integer> winningResults = new HashMap<>();
-
-        for (int i = 3; i < 8; i++) {
+        for (int i = 3; i <= 7; i++) {
             winningResults.put(i, 0);
         }
-
         return winningResults;
     }
 
-    public static Map<Integer, String> winningDetails() {
+    private Map<Integer, String> initializeWinningDetails() {
         Map<Integer, String> winningDetails = new HashMap<>();
-
         winningDetails.put(3, "5,000");
         winningDetails.put(4, "50,000");
         winningDetails.put(5, "1,500,000");
         winningDetails.put(6, "30,000,000");
         winningDetails.put(7, "2,000,000,000");
-
         return winningDetails;
     }
 }
