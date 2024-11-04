@@ -32,7 +32,7 @@ public class LottoOutput {
         boolean pauseMatchCount = false;
         int[] prizes = LottoConstant.WINNING_PRIZE_VALUES;
         for (int i = 0; i < prizes.length; i++) {
-            printWinHistory(pauseMatchCount, matchCount, prizes[i], history.get(i));
+            printWinHistory(pauseMatchCount, matchCount, prizes[i], history.get(5-i));
             matchCount++;
 
             if (pauseMatchCount) pauseMatchCount = false;
