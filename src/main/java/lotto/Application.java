@@ -22,7 +22,7 @@ public class Application {
         printLottoNumber(lottoNumbers);
 
         List<Integer> inputNumber = numberOfLotto();
-        int bonusNumber = inputBonusNumber();
+        int bonusNumber = inputBonusNumber(inputNumber);
 
         checkResults(inputNumber, lottoNumbers, bonusNumber);
         printStatistics();
@@ -30,16 +30,22 @@ public class Application {
 
     // 로또 구매
     private static int purchaseTickets() {
-        System.out.println("구입 금액을 입력해 주세요.");
-        String input = Console.readLine();
-        try {
-            int tickets = Integer.parseInt(input);
-            validateTicketAmount(tickets);
-            return tickets / 1000;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
+        while (true) { // 무한 루프를 사용하여 유효한 입력을 받을 때까지 반복
+            try {
+                System.out.println("구입 금액을 입력해 주세요.");
+                int tickets = Integer.parseInt(Console.readLine());
+                if (tickets % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위로 구매해야 합니다.");
+                }
+                return tickets / 1000; // 유효한 입력인 경우 반복 종료
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효한 숫자를 입력해 주세요."); // 숫자가 아닌 입력 처리
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // 사용자 정의 예외 메시지 출력
+            }
         }
     }
+
 
 
     private static void validateTicketAmount(int tickets) {
@@ -50,23 +56,41 @@ public class Application {
 
     // 로또 번호 입력
     private static List<Integer> numberOfLotto() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        List<Integer> numbers = Arrays.stream(input.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        validateLottoNumbers(numbers);
-        return numbers;
+        while (true) { // 무한 루프를 사용하여 유효한 입력을 받을 때까지 반복
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                List<Integer> numbers = Arrays.stream(input.split(","))
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+
+                validateLottoNumbers(numbers); // 중복 및 범위 검사
+
+                return numbers; // 유효한 입력인 경우 반환
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효한 숫자를 입력해 주세요."); // 숫자가 아닌 입력 처리
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // 사용자 정의 예외 메시지 출력
+            }
+        }
     }
 
+    // 로또 번호 유효성 검사
     private static void validateLottoNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+        }
         for (int number : numbers) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 번호는 1과 45 사이여야 합니다.");
             }
         }
     }
+
 
     // 구매한 로또 번호
     private static List<Lotto> getLotto(int count) {
@@ -88,17 +112,28 @@ public class Application {
     }
 
     // 보너스 번호 입력
-    private static int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+    private static int inputBonusNumber(List<Integer> mainNumbers) {
         int bonusNumber;
-        try {
-            bonusNumber = Integer.parseInt(Console.readLine());
-            validateBonusNumber(bonusNumber);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
+        while (true) { // 무한 루프를 사용하여 유효한 입력이 들어올 때까지 반복
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                bonusNumber = Integer.parseInt(Console.readLine());
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1과 45 사이여야 합니다.");
+                }
+                if (mainNumbers.contains(bonusNumber)) { // 중복 체크
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                }
+                break; // 모든 검사를 통과하면 루프 종료
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효한 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
         return bonusNumber;
     }
+
 
     private static void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
