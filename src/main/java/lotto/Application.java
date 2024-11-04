@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -34,10 +33,7 @@ public class Application {
 
         try {
             int amount = Integer.parseInt(input);
-
-            if (amount % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1,000원 단위여야 합니다.");
-            }
+            Validator.validatePurchaseAmount(amount);
             return amount;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효한 금액을 입력해 주세요.");
@@ -66,49 +62,17 @@ public class Application {
     private static List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine().trim();
-
-        String sanitizedInput = input.replace(" ", "");
-        if (!sanitizedInput.matches("^(\\d+,){5}\\d+$")) {
-            throw new IllegalArgumentException("[ERROR] 쉼표(,)로 구분된 숫자 형식으로 입력해 주세요.");
-        }
-
-        List<Integer> winningNumbers = Arrays.stream(sanitizedInput.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-
-        if (winningNumbers.size() != 6 || !isValidLottoNumbers(winningNumbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
-        }
-        return winningNumbers;
+        return Validator.validateWinningNumbers(input);
     }
 
     private static int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine().trim();
-
-        // 쉼표가 포함되거나 숫자 외의 값이 포함된 경우 에러 발생
-        if (input.contains(",") || !input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 하나의 숫자로 입력해 주세요.");
-        }
-
-        int bonusNumber = Integer.parseInt(input);
-
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
-        }
-        return bonusNumber;
+        return Validator.validateBonusNumber(input, winningNumbers);
     }
 
-    private static boolean isValidLottoNumbers(List<Integer> numbers) {
-        return numbers.stream().allMatch(num -> num >= 1 && num <= 45) &&
-                numbers.stream().distinct().count() == numbers.size();
-    }
-
-    private static Map<Rank, Integer> calculateResults(List<Lotto> lottos, List<Integer> winningNumbers,
-                                                       int bonusNumber) {
+    private static Map<Rank, Integer> calculateResults(
+            List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         Map<Rank, Integer> result = new EnumMap<>(Rank.class);
 
         for (Lotto lotto : lottos) {
@@ -128,7 +92,6 @@ public class Application {
             if (rank == Rank.NONE) {
                 continue; // Rank.NONE은 출력하지 않음
             }
-
             int count = result.getOrDefault(rank, 0);
             System.out.println(rank.getMatchMessage() + " - " + count + "개");
             totalEarnings += rank.getPrize() * count;
@@ -138,4 +101,3 @@ public class Application {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", yield);
     }
 }
-
