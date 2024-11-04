@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.validator.ParamsValidator;
 import lotto.exception.money.MoneyAmountOutOfRangeException;
 import lotto.exception.money.MoneyUnitInvalidException;
 
@@ -11,7 +12,7 @@ final public class Money {
 
     private final int amount;
 
-    public Money(int amount) {
+    private Money(int amount) {
         validateMoneyInRange(amount);
         validateMoneyUnit(amount);
         this.amount = amount;
@@ -27,6 +28,12 @@ final public class Money {
         if (amount % MONEY_UNIT != 0) {
             throw new MoneyUnitInvalidException(MONEY_UNIT);
         }
+    }
+
+    public static Money from(Integer amount) {
+        ParamsValidator.validateParamsNotNull(Money.class, amount);
+
+        return new Money(amount);
     }
 
     public int getAmount() {

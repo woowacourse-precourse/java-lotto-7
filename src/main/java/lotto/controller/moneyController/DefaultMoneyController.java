@@ -14,6 +14,6 @@ public class DefaultMoneyController implements MoneyController {
     @Override
     public Money readMoney() {
         int amount = inputHandler.handlePurchaseCost();
-        return new Money(amount);
+        return Money.from(amount);
     }
 }

@@ -22,7 +22,7 @@ public class LottoStaticsController {
             final WinningLotto winningLotto,
             final Money money
     ) {
-        LottoStatics lottoStatics = new LottoStatics(purchasedLottos, winningLotto, money);
+        LottoStatics lottoStatics = LottoStatics.of(purchasedLottos, winningLotto, money);
         outputHandler.handlePrizeStatics(PrizeStatics.from(lottoStatics));
         outputHandler.handleIncomeStatics(IncomeStatics.from(lottoStatics));
     }

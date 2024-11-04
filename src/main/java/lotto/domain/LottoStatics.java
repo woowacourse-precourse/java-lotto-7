@@ -5,13 +5,14 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import lotto.domain.validator.ParamsValidator;
 
 final public class LottoStatics {
 
     private final EnumMap<LottoPrize, Long> prizeCount;
     private final Money money;
 
-    public LottoStatics(List<Lotto> lottos, WinningLotto winningLotto, Money money) {
+    private LottoStatics(List<Lotto> lottos, WinningLotto winningLotto, Money money) {
         this.prizeCount = calculatePrizeCount(lottos, winningLotto);
         this.money = money;
     }
@@ -33,6 +34,12 @@ final public class LottoStatics {
                 .forEach(prize -> prizeCount.putIfAbsent(prize, 0L));
 
         return prizeCount;
+    }
+
+    public static LottoStatics of(List<Lotto> lottos, WinningLotto winningLotto, Money money) {
+        ParamsValidator.validateParamsNotNull(LottoStatics.class, lottos, winningLotto, money);
+
+        return new LottoStatics(lottos, winningLotto, money);
     }
 
     public EnumMap<LottoPrize, Long> getPrizeCount() {

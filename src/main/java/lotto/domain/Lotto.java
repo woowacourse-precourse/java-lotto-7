@@ -15,7 +15,7 @@ final public class Lotto {
 
     private final List<Number> numbers;
 
-    public Lotto(final List<Number> numbers) {
+    private Lotto(final List<Number> numbers) {
         validateNumbersCount(numbers);
         validateNumbersNotDuplicated(numbers);
         this.numbers = numbers.stream()
@@ -37,6 +37,12 @@ final public class Lotto {
 
     private static boolean hasDuplicatedNumber(List<Number> numbers) {
         return new HashSet<>(numbers).size() != numbers.size();
+    }
+
+    public static Lotto from(List<Integer> numbers) {
+        ParamsValidator.validateParamsNotNull(Lotto.class, numbers);
+
+        return new Lotto(Number.from(numbers));
     }
 
     public static List<Lotto> purchase(final Money money, final NumberPicker numberPicker) {

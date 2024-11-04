@@ -9,7 +9,7 @@ final public class WinningLotto {
     private final Lotto winningNumbers;
     private final Number bonusNumber;
 
-    public WinningLotto(Lotto winningNumbers, Number bonusNumber) {
+    private WinningLotto(Lotto winningNumbers, Number bonusNumber) {
         validateBonusNumberNotDuplicated(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
@@ -19,6 +19,12 @@ final public class WinningLotto {
         if (winningNumbers.contains(bonusNumber)) {
             throw new BonusNumberDuplicatedException();
         }
+    }
+
+    public static WinningLotto of(Lotto winningNumbers, Integer bonusNumber) {
+        ParamsValidator.validateParamsNotNull(WinningLotto.class, winningNumbers, bonusNumber);
+
+        return new WinningLotto(winningNumbers, Number.from(bonusNumber));
     }
 
     public Optional<LottoPrize> matchLotto(Lotto targetLotto) {

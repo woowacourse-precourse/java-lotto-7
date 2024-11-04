@@ -16,15 +16,13 @@ public class DefaultWinningLottoController implements WinningLottoController {
 
     @Override
     public Lotto readWinningNumbers() {
-        List<Number> numbers = inputHandler.handleWinningNumbers().stream()
-                .map(Number::new)
-                .toList();
-        return new Lotto(numbers);
+        List<Integer> numbers = inputHandler.handleWinningNumbers();
+        return Lotto.from(numbers);
     }
 
     @Override
     public WinningLotto createWinningLotto(Lotto winningNumbers) {
         int bonusNumber = inputHandler.handleBonusNumber();
-        return new WinningLotto(winningNumbers, new Number(bonusNumber));
+        return WinningLotto.of(winningNumbers, bonusNumber);
     }
 }

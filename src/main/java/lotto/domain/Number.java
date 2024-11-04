@@ -16,7 +16,7 @@ final public class Number implements Comparable<Number> {
 
     private final int value;
 
-    public Number(int value) {
+    private Number(int value) {
         validateValueInRange(value);
         this.value = value;
     }
@@ -25,6 +25,12 @@ final public class Number implements Comparable<Number> {
         if (value < MIN_VALUE || MAX_VALUE < value) {
             throw new NumberOutOfRangeException(MIN_VALUE, MAX_VALUE);
         }
+    }
+
+    public static Number from(Integer number) {
+        ParamsValidator.validateParamsNotNull(Number.class, number);
+
+        return new Number(number);
     }
 
     public static List<Number> from(final List<Integer> numbers) {
