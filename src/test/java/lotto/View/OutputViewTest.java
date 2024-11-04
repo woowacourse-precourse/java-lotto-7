@@ -16,7 +16,7 @@ class OutputViewTest extends NsTest {
     void 구입한_로또_티켓_정보_출력() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("4000");
+                    run("4000", "8, 11, 41, 42, 31, 43", "21");
                     assertThat(output()).contains(
                             "4개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
