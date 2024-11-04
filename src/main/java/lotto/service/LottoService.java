@@ -25,11 +25,6 @@ public class LottoService {
     PrintService printService = PrintService.createPrintService();
     LottoGenerator lottoGenerator = LottoGenerator.createLottoGenerator();
 
-    public int countMatches(List<Integer> winnerNumbers, List<Integer> numbers) {
-        winnerNumbers.retainAll(numbers);
-        return winnerNumbers.size();
-    }
-
     private LottoService() {
 
     }
@@ -45,26 +40,52 @@ public class LottoService {
         for (Lotto lotto : lottos) {
             List<Integer> checkSet = new ArrayList<>(lotto.getNumbers());
             checkSet.retainAll(winnerLotto.getNumbers());
-            if (checkSet.size() == BONUS_CHECK_NUMBER && lotto.getNumbers().contains(bonusNumber)) {
-                int[] matched = addMatched(BONUS_CHECK_NUMBER);
-                matchedList.add(matched);
-            }
-            if (checkSet.size() == SIX) {
-                int[] matched = addMatched(SIX_MATCHED);
-                matchedList.add(matched);
-            }
-            if (checkSet.size() == FIVE) {
-                int[] matched = addMatched(FIVE_MATCHED);
-                matchedList.add(matched);
-            }
-            if (checkSet.size() == FOUR) {
-                int[] matched = addMatched(FOUR_MATCHED);
-                matchedList.add(matched);
-            }
-            if (checkSet.size() == THREE) {
-                int[] matched = addMatched(THREE_MATCHED);
-                matchedList.add(matched);
-            }
+            matchedList = checkBonusMatched(lotto, checkSet, matchedList, bonusNumber);
+            matchedList = checkThreeMatched(lotto, checkSet, matchedList);
+            matchedList = checkFourMatched(lotto, checkSet, matchedList);
+            matchedList = checkFiveMatched(lotto, checkSet, matchedList);
+            matchedList = checkSixMatched(lotto, checkSet, matchedList);
+        }
+        return matchedList;
+    }
+
+    private List<int[]> checkSixMatched(Lotto lotto, List<Integer> checkSet, List<int[]> matchedList) {
+        if (checkSet.size() == SIX) {
+            int[] matched = addMatched(SIX_MATCHED);
+            matchedList.add(matched);
+        }
+        return matchedList;
+    }
+
+    private List<int[]> checkFiveMatched(Lotto lotto, List<Integer> checkSet, List<int[]> matchedList) {
+        if (checkSet.size() == FIVE) {
+            int[] matched = addMatched(FIVE_MATCHED);
+            matchedList.add(matched);
+        }
+        return matchedList;
+    }
+
+    private List<int[]> checkFourMatched(Lotto lotto, List<Integer> checkSet, List<int[]> matchedList) {
+        if (checkSet.size() == FOUR) {
+            int[] matched = addMatched(FOUR_MATCHED);
+            matchedList.add(matched);
+        }
+        return matchedList;
+    }
+
+    private List<int[]> checkThreeMatched(Lotto lotto, List<Integer> checkSet, List<int[]> matchedList) {
+        if (checkSet.size() == THREE) {
+            int[] matched = addMatched(THREE_MATCHED);
+            matchedList.add(matched);
+        }
+        return matchedList;
+    }
+
+    private List<int[]> checkBonusMatched(Lotto lotto, List<Integer> checkSet, List<int[]> matchedList,
+                                          int bonusNumber) {
+        if (checkSet.size() == BONUS_CHECK_NUMBER && lotto.getNumbers().contains(bonusNumber)) {
+            int[] matched = addMatched(FIVE_BONUS_MATCHED);
+            matchedList.add(matched);
         }
         return matchedList;
     }
@@ -77,15 +98,15 @@ public class LottoService {
 
     public Pay payInput() {
         try {
-            System.out.println(LottoInfoMessages.INSERT_PAY.text());
+            printService.printInsertPay();
             String payInput = Console.readLine();
             Pay pay = Pay.createPay(payInput);
             return pay;
         } catch (NumberFormatException e) {
-            System.out.println(LottoErrorMessages.PAY_INPUT_ERROR.addErrorText());
+            printService.printPayInputError();
             return payInput();
         } catch (IllegalArgumentException e) {
-            System.out.println(LottoErrorMessages.NOT_THOUSAND.addErrorText());
+            printService.printNotThousand();
             return payInput();
         }
     }
