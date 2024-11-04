@@ -18,7 +18,9 @@ public final class LottoGenerator {
 
     private static Lotto generate() {
         return new Lotto(
-                Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                Randoms.pickUniqueNumbersInRange(1, 45, 6).stream()
+                        .sorted()
+                        .toList()
         );
     }
 }
