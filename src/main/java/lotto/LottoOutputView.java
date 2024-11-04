@@ -21,11 +21,12 @@ public class LottoOutputView {
 
         for (LottoRank rank : sortedRanks) {
             int count = result.getOrDefault(rank, 0);
-            System.out.printf("%s (%d원) - %d개%n", rank.getRank(), rank.getPrize(), count);
+            String formattedPrize = String.format("%,d", rank.getPrize());
+            System.out.printf("%s (%s원) - %d개%n", rank.getRank(), formattedPrize, count);
         }
     }
 
     public static void printrateOfReturn(double rate) {
-        System.out.printf("총 수익률은 %.2f%%입니다.%n", rate);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", rate);
     }
 }
