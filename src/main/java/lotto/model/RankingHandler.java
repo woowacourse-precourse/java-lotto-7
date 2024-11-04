@@ -17,7 +17,7 @@ public class RankingHandler {
     }
 
     private void resultOutput(Ranking ranking, int count) {
-        if(ranking == Ranking.FIVE_BONUS) {
+        if (ranking == Ranking.FIVE_BONUS) {
             System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n", ranking.getCount(), ranking.getStrWinnings(), count);
             return;
         }

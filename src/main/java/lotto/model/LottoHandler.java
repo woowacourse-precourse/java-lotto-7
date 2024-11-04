@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.constants.Ranking;
-import lotto.utils.BonusNumberValidation;
 import lotto.utils.WinningNumberValidation;
 
 import java.util.ArrayList;
@@ -63,7 +62,6 @@ public class LottoHandler {
             customer.updateLottoRanking(ranking);
         }
     }
-
 
     public Ranking checkedResult(Lotto winningLotto, Lottos buyLottos) {
         int rankedNumber = checkSameNumber(winningLotto.getNumbers(), buyLottos.getLottoNumbers());
